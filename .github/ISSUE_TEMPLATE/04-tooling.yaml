@@ -1,0 +1,27 @@
+name: "🛠 Tooling"
+description: "Report a bug or request an enhancement in repository tooling"
+title: "🛠 Tooling: <short description of the change>"
+labels:
+  - "area: tooling"
+body:
+  - attributes:
+      description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
+      label: Bug Report Checklist
+      options:
+        - label: I have tried restarting my IDE and the issue persists.
+          required: true
+        - label: I have pulled the latest `main` branch of the repository.
+          required: true
+        - label: I have [searched for related issues](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=is%3Aissue+label%3A%22area%3A+tooling%22) and found none that matched my issue.
+          required: true
+    type: checkboxes
+  - attributes:
+      description: What did you expect to be able to do?
+      label: Overview
+    type: textarea
+    validations:
+      required: true
+  - attributes:
+      label: Additional Info
+      description: Any additional info you'd like to provide.
+    type: textarea

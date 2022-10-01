@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "JoshuaKGoldberg"
+    target-branch: main
+    labels:
+      - "npm"
+      - "dependencies"
+    commit-message:
+      prefix: "build"
+      include: scope

@@ -16,9 +16,7 @@ npm i template-typescript-node-package
 ```ts
 import { greet } from "template-typescript-node-package";
 
-greet({
-  message: "Hello, world!",
-});
+greet("Hello, world!");
 ```
 
 ## Development

@@ -1,6 +1,6 @@
 {
   "author": "Josh Goldberg <npm@joshuakgoldberg.com>",
-  "description": "TODO: description!",
+  "description": "Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨",
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",

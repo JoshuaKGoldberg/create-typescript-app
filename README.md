@@ -5,7 +5,7 @@
 ![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-brightgreen.svg)
 [![NPM version](https://badge.fury.io/js/template-typescript-node-package.svg)](http://badge.fury.io/js/template-typescript-node-package)
 
-> TODO: description! ✨
+> Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨
 
 ## Usage
 
@@ -14,7 +14,11 @@ npm i template-typescript-node-package
 ```
 
 ```ts
-// TODO: Usage!
+import { greet } from "template-typescript-node-package";
+
+greet({
+  message: "Hello, world!",
+});
 ```
 
 ## Development

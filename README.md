@@ -5,6 +5,12 @@
 ![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-brightgreen.svg)
 [![NPM version](https://badge.fury.io/js/template-typescript-node-package.svg)](http://badge.fury.io/js/template-typescript-node-package)
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-green.svg)](#contributors)
+
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 > Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨
 
 ## Usage
@@ -23,3 +29,14 @@ greet("Hello, world!");
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
 Thanks! 💖
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->

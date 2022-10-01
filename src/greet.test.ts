@@ -4,7 +4,25 @@ import { greet } from "./greet.js";
 const message = "Yay, testing!";
 
 describe("greet", () => {
-  it("logs once when times is not provided", () => {
+  it("logs to the console once when message is provided as a string", () => {
+    const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+
+    greet(message);
+
+    expect(logger).toHaveBeenCalledWith(message);
+    expect(logger).toHaveBeenCalledTimes(1);
+  });
+
+  it("logs to the console once when message is provided as an object", () => {
+    const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+
+    greet({ message });
+
+    expect(logger).toHaveBeenCalledWith(message);
+    expect(logger).toHaveBeenCalledTimes(1);
+  });
+
+  it("logs once when times is not provided in an object", () => {
     const logger = vi.fn();
 
     greet({ logger, message });

@@ -1,4 +1,5 @@
 {
+	"config": "markdownlint/style/all.json",
 	"first-line-h1": false,
 	"no-hard-tabs": false,
 	"no-inline-html": false,

@@ -5,14 +5,24 @@
 <p align="center">
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 	<a href="#contributors-">
-		<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-14cc21.svg" />
+		<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />
 	</a>
 	<!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/actions/workflows/build.yml">
 		<img alt="Build Status: Build Passing" src="https://github.com/JoshuaKGoldberg/template-typescript-node-package/actions/workflows/build.yml/badge.svg" />
 	</a>
-	<img alt="Code Style: Prettier" src="https://img.shields.io/badge/code_style-prettier-14cc21.svg" />
-	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-14cc21.svg" />
+	<img alt="Code Style: Prettier" src="https://img.shields.io/badge/code_style-prettier-21bb42.svg" />
+	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/blob/main/.github/CODE_OF_CONDUCT.md">
+		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-contributor_covenant-21bb42" />
+	</a>
+	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/blob/main/LICENSE.md">
+	    <img alt="License: MIT" src="https://img.shields.io/github/license/JoshuaKGoldberg/template-typescript-node-package?color=21bb42">
+    </a>
+	<a href="https://github.com/sponsors/JoshuaKGoldberg">
+    	<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
+    </a>
+    <img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
+
 </p>
 
 ## Usage

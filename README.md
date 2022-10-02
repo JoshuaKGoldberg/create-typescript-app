@@ -1,8 +1,8 @@
-<h1 align="center">Template TypeScript Node Package</h1>
+# Template TypeScript Node Package
 
-<p align="center">Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨</p>
+Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨
 
-<p align="center">
+<p>
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 	<a href="#contributors-">
 		<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-14cc21.svg" />

@@ -20,6 +20,10 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
   },
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "simple-import-sort"],
   root: true,
+  rules: {
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "error",
+  },
 };

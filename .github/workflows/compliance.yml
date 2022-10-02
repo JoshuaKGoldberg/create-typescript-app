@@ -5,8 +5,8 @@ on:
     branches:
       - main
     types:
-      - opened
       - edited
+      - opened
       - reopened
       - synchronize
 
@@ -15,3 +15,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: mtfoley/pr-compliance-action@main
+        with:
+          body-auto-close: false

@@ -1,16 +1,9 @@
 {
-  "files": [
-    "README.md"
-  ],
-  "imageSize": 100,
   "commit": false,
   "commitConvention": "angular",
   "contributors": [
     {
-      "login": "JoshuaKGoldberg",
-      "name": "Josh Goldberg",
       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
-      "profile": "http://www.joshuakgoldberg.com",
       "contributions": [
         "bug",
         "code",
@@ -25,13 +18,20 @@
         "security",
         "tool",
         "test"
-      ]
+      ],
+      "login": "JoshuaKGoldberg",
+      "name": "Josh Goldberg",
+      "profile": "http://www.joshuakgoldberg.com"
     }
   ],
   "contributorsPerLine": 7,
-  "skipCi": true,
-  "repoType": "github",
-  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
   "projectName": "template-typescript-node-package",
-  "projectOwner": "JoshuaKGoldberg"
+  "projectOwner": "JoshuaKGoldberg",
+  "repoHost": "https://github.com",
+  "repoType": "github",
+  "skipCi": true
 }

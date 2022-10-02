@@ -8,9 +8,6 @@
 		<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />
 	</a>
 	<!-- ALL-CONTRIBUTORS-BADGE:END -->
-	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/actions/workflows/build.yml">
-		<img alt="Build Status: Build Passing" src="https://github.com/JoshuaKGoldberg/template-typescript-node-package/actions/workflows/build.yml/badge.svg" />
-	</a>
 	<img alt="Code Style: Prettier" src="https://img.shields.io/badge/code_style-prettier-21bb42.svg" />
 	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/blob/main/.github/CODE_OF_CONDUCT.md">
 		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-contributor_covenant-21bb42" />

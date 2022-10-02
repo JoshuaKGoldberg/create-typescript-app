@@ -2,6 +2,8 @@
 
 <p align="center">Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨</p>
 
+Bogus PR just to test actions.
+
 <p align="center">
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 	<a href="#contributors-">

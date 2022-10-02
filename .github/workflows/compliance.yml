@@ -17,3 +17,4 @@ jobs:
       - uses: mtfoley/pr-compliance-action@main
         with:
           body-auto-close: false
+          ignore-team-members: false

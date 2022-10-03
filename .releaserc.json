@@ -15,8 +15,8 @@
 			"@semantic-release/git",
 			{
 				"assets": [
+					"dist",
 					"docs",
-					"lib",
 					"package.json",
 					"README.md",
 					"src",

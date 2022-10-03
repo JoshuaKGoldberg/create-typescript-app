@@ -4,7 +4,7 @@
 		"declarationMap": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
-		"outDir": "lib",
+		"outDir": "dist",
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,

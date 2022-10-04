@@ -1,6 +1,5 @@
 {
 	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
-	"description": "Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨",
 	"devDependencies": {
 		"@semantic-release/changelog": "^6.0.1",
 		"@semantic-release/commit-analyzer": "^9.0.2",
@@ -18,6 +17,8 @@
 		"husky": ">=6",
 		"lint-staged": ">=10",
 		"markdownlint-cli": "^0.32.2",
+		"npm-package-json-lint": "^6.3.0",
+		"npm-package-json-lint-config-default": "^5.0.0",
 		"prettier": "^2.7.1",
 		"semantic-release": "^19.0.5",
 		"ts-prune": "^0.10.3",
@@ -33,6 +34,7 @@
 		"build": "tsc",
 		"format:write": "yarn format --write",
 		"format": "prettier \"**/*\" --ignore-unknown",
+		"lint:package": "npmPkgJsonLint .",
 		"lint:md": "npx markdownlint \"**/*.md\" \".github/**/*.md\"",
 		"lint:prune": "ts-prune",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",

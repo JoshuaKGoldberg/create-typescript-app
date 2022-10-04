@@ -3,3 +3,5 @@ export interface GreetOptions {
 	message: string;
 	times?: number;
 }
+
+export type IntentionallyUnusedToBreakBuild = 123;

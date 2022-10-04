@@ -1,13 +1,26 @@
 module.exports = {
 	extends: [
 		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"plugin:@typescript-eslint/strict",
 		"plugin:typescript-sort-keys/recommended",
 		"prettier",
 	],
 	overrides: [
+		{
+			extends: [
+				"plugin:@typescript-eslint/recommended",
+				"plugin:@typescript-eslint/recommended-requiring-type-checking",
+				"plugin:@typescript-eslint/strict",
+			],
+			files: ["**/*.{ts,tsx}"],
+		},
+		{
+			files: "*.json",
+			parser: "jsonc-eslint-parser",
+			rules: {
+				"jsonc/sort-keys": "error",
+			},
+			extends: ["plugin:jsonc/recommended-with-json"],
+		},
 		{
 			files: "**/*.test.ts",
 			rules: {

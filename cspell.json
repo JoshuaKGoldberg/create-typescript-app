@@ -1,5 +1,5 @@
 {
-	"dictionaries": ["typescript"],
 	"ignorePaths": [".github", "dist", "node_modules"],
+	"dictionaries": ["typescript"],
 	"words": ["commitlint"]
 }

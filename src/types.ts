@@ -1,6 +1,6 @@
 export interface GreetOptions {
-	message: string;
 	logger?: (message: string) => void;
+	message: string;
 	times?: number;
 }
 

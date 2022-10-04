@@ -1,0 +1,15 @@
+name: Lint Prune
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/prepare
+      - run: yarn lint:prune

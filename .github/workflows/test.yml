@@ -17,4 +17,4 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "./coverage/coverage-final.json"
+          path-to-lcov: "./coverage/clover.xml"

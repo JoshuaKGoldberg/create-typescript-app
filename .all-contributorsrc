@@ -22,6 +22,15 @@
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
       "profile": "http://www.joshuakgoldberg.com"
+    },
+    {
+      "login": "sinchang",
+      "name": "Jeff Wen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3297859?v=4",
+      "profile": "https://sinchang.me",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,

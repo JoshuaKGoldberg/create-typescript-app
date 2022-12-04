@@ -1,7 +1,6 @@
 module.exports = {
 	extends: [
 		"eslint:recommended",
-		"plugin:typescript-sort-keys/recommended",
 		"prettier",
 	],
 	overrides: [
@@ -9,6 +8,7 @@ module.exports = {
 			extends: [
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
+				"plugin:typescript-sort-keys/recommended",
 				"plugin:@typescript-eslint/strict",
 			],
 			files: ["**/*.{ts,tsx}"],

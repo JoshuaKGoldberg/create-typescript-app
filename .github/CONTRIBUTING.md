@@ -2,17 +2,11 @@
 
 Thanks for your interest in contributing to `template-typescript-node-package`! 💖
 
+> See [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
+
 ## Code of Conduct
 
 This project contains a [Contributor Covenant code of conduct](./CODE_OF_CONDUCT.md) all contributors are expected to follow.
-
-## Getting Started
-
-```shell
-git clone https://github.com/your-username/template-typescript-node-package
-cd template-typescript-node-package
-yarn
-```
 
 ## Reporting Issues
 

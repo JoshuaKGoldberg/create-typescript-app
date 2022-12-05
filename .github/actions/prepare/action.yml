@@ -4,6 +4,7 @@ description: Prepares the repo for a typical CI job
 runs:
   using: "composite"
   steps:
+    - uses: pnpm/action-setup@v2
     - uses: actions/setup-node@v3
       with:
         node-version: "18"

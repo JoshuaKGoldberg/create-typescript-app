@@ -37,6 +37,7 @@
 	},
 	"main": "./dist/index.js",
 	"name": "template-typescript-node-package",
+	"packageManager": "pnpm@7.16.0",
 	"scripts": {
 		"build": "tsc",
 		"format": "prettier \"**/*\" --ignore-unknown",

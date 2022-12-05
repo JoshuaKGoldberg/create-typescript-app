@@ -1,5 +1,5 @@
 {
 	"dictionaries": ["typescript"],
-	"ignorePaths": [".github", "dist", "node_modules"],
+	"ignorePaths": [".github", "dist", "node_modules", "pnpm-lock.yaml"],
 	"words": ["commitlint"]
 }

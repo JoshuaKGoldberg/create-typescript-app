@@ -24,6 +24,7 @@ specifiers:
   pnpm-deduplicate: ^0.4.0
   prettier: ^2.7.1
   semantic-release: ^19.0.5
+  sentences-per-line: ^0.2.1
   ts-prune: ^0.10.3
   typescript: ^4.8.4
   vitest: ^0.23.4
@@ -52,6 +53,7 @@ devDependencies:
   pnpm-deduplicate: 0.4.0
   prettier: 2.8.0
   semantic-release: 19.0.5
+  sentences-per-line: 0.2.1
   ts-prune: 0.10.3
   typescript: 4.9.3
   vitest: 0.23.4
@@ -1559,6 +1561,15 @@ packages:
       }
     dev: true
 
+  /argparse/1.0.10:
+    resolution:
+      {
+        integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==,
+      }
+    dependencies:
+      sprintf-js: 1.0.3
+    dev: true
+
   /argparse/2.0.1:
     resolution:
       {
@@ -2408,6 +2419,13 @@ packages:
     engines: { node: ">=10" }
     dependencies:
       mem: 8.1.1
+    dev: true
+
+  /entities/1.1.2:
+    resolution:
+      {
+        integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==,
+      }
     dev: true
 
   /entities/3.0.1:
@@ -3978,6 +3996,15 @@ packages:
       }
     dev: true
 
+  /linkify-it/2.2.0:
+    resolution:
+      {
+        integrity: sha512-GnAl/knGn+i1U/wjBz3akz2stz+HrHLsxMwHQGofCDfPvlf+gDKN58UtfmUquTY4/MXeE2x7k19KQmeoZi94Iw==,
+      }
+    dependencies:
+      uc.micro: 1.0.6
+    dev: true
+
   /linkify-it/4.0.1:
     resolution:
       {
@@ -4236,6 +4263,20 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
+  /markdown-it/8.4.2:
+    resolution:
+      {
+        integrity: sha512-GcRz3AWTqSUphY3vsUqQSFMbgR38a4Lh3GWlHRh/7MRwz8mcu9n2IO7HOh+bXHrR9kOPDl5RNCaEsrneb+xhHQ==,
+      }
+    hasBin: true
+    dependencies:
+      argparse: 1.0.10
+      entities: 1.1.2
+      linkify-it: 2.2.0
+      mdurl: 1.0.1
+      uc.micro: 1.0.6
+    dev: true
+
   /markdownlint-cli/0.32.2:
     resolution:
       {
@@ -4262,6 +4303,16 @@ packages:
         integrity: sha512-XaeoW2NYSlWxMCZM2B3H7YTG6nlaLfkEZWMBhr4hSPlq9MuY2sy83+Xr89jXOqZMZYjvi5nBCGoFh7hHoPKZmA==,
       }
     engines: { node: ">=12" }
+    dev: true
+
+  /markdownlint/0.11.0:
+    resolution:
+      {
+        integrity: sha512-wE5WdKD6zW2DQaPQ5TFBTXh5j76DnWd/IFffnDQgHmi6Y61DJXBDfLftZ/suJHuv6cwPjM6gKw2GaRLJMOR+Mg==,
+      }
+    engines: { node: ">=6" }
+    dependencies:
+      markdown-it: 8.4.2
     dev: true
 
   /markdownlint/0.26.2:
@@ -5589,6 +5640,15 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
+  /sentences-per-line/0.2.1:
+    resolution:
+      {
+        integrity: sha512-6hlyKBwqoaZJ5+RBTKNNem2kBGAboh9e9KfFw5KYKA+64xaTYWbv5C6XnOudx8xk1Sg6f/4yalhJtCZFSLWIsQ==,
+      }
+    dependencies:
+      markdownlint: 0.11.0
+    dev: true
+
   /shebang-command/2.0.0:
     resolution:
       {
@@ -5761,6 +5821,13 @@ packages:
       }
     dependencies:
       readable-stream: 3.6.0
+    dev: true
+
+  /sprintf-js/1.0.3:
+    resolution:
+      {
+        integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==,
+      }
     dev: true
 
   /stream-combiner2/1.1.1:

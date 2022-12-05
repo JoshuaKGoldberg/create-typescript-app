@@ -25,6 +25,7 @@
 		"pnpm-deduplicate": "^0.4.0",
 		"prettier": "^2.7.1",
 		"semantic-release": "^19.0.5",
+		"sentences-per-line": "^0.2.1",
 		"ts-prune": "^0.10.3",
 		"typescript": "^4.8.4",
 		"vitest": "^0.23.4"
@@ -43,8 +44,8 @@
 		"build": "tsc",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
-		"lint": "npx eslint . --max-warnings 0 --report-unused-disable-directives",
-		"lint:md": "npx markdownlint \"**/*.md\" \".github/**/*.md\"",
+		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package": "npmPkgJsonLint .",
 		"lint:packages": "pnpm-deduplicate --list",
 		"lint:prune": "ts-prune",

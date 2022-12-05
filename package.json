@@ -37,10 +37,11 @@
 	},
 	"main": "./dist/index.js",
 	"name": "template-typescript-node-package",
+	"packageManager": "pnpm@7.16.0",
 	"scripts": {
 		"build": "tsc",
 		"format": "prettier \"**/*\" --ignore-unknown",
-		"format:write": "yarn format --write",
+		"format:write": "pnpm format --write",
 		"lint": "npx eslint . --max-warnings 0 --report-unused-disable-directives",
 		"lint:md": "npx markdownlint \"**/*.md\" \".github/**/*.md\"",
 		"lint:package": "npmPkgJsonLint .",

@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
-      - run: yarn lint:package
+      - run: pnpm lint:package

@@ -2,7 +2,7 @@
 
 <p align="center">Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨</p>
 
-<p align="center">   
+<p align="center">    
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 	<a href="#contributors">
 		<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />

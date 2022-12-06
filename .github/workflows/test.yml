@@ -13,7 +13,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
       - run: pnpm run test --coverage
-      - run: node script/clover2lcov.js
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:

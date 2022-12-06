@@ -1,4 +1,8 @@
 module.exports = {
+	env: {
+		es2022: true,
+		node: true,
+	},
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
@@ -52,9 +56,13 @@ module.exports = {
 	],
 	root: true,
 	rules: {
+		// These off-by-default rules work well for this repo and we like them on.
 		"deprecation/deprecation": "error",
 		"no-only-tests/no-only-tests": "error",
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",
+
+		// These on-by-default rules don't work well for this repo and we like them off.
+		"no-inner-declarations": "off",
 	},
 };

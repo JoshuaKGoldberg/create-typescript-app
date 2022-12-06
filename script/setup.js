@@ -112,6 +112,7 @@ try {
 		["Template TypeScript Node Package", title],
 		["JoshuaKGoldberg", organization],
 		["template-typescript-node-package", repository],
+		[/"setup": ".*",/, ``, "./package.json"],
 		[
 			`"version": "${existingPackage.version}"`,
 			`"version": "0.0.1"`,
@@ -146,6 +147,13 @@ try {
 	console.log(chalk.gray`Hydrating repository settings...`);
 
 	await $`gh repo edit --delete-branch-on-merge --description "${description}" --enable-auto-merge --enable-rebase-merge=false --enable-squash-merge`;
+
+	console.log(chalk.gray`✔️ Done.`);
+
+	console.log();
+	console.log(chalk.gray`Removing setup script...`);
+
+	await fs.rm("./script", { force: true, recursive: true });
 
 	console.log(chalk.gray`✔️ Done.`);
 } catch (error) {

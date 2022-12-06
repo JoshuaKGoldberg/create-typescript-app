@@ -8,7 +8,7 @@
 		<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />
 	</a>
 	<!-- ALL-CONTRIBUTORS-BADGE:END -->
-	<a href="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package" > 
+	<a href="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package" >
 		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package/branch/main/graph/badge.svg?token=eVIFY4MhfQ"/>
 	</a>
 	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/blob/main/.github/CODE_OF_CONDUCT.md">

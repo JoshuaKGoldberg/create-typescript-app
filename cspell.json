@@ -7,5 +7,12 @@
 		"pnpm-lock.yaml",
 		"script/*.json"
 	],
-	"words": ["Codecov", "commitlint", "contributorsrc", "lcov", "wontfix"]
+	"words": [
+		"Codecov",
+		"codespace",
+		"commitlint",
+		"contributorsrc",
+		"lcov",
+		"wontfix"
+	]
 }

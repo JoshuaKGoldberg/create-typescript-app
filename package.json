@@ -59,8 +59,8 @@
 		"lint:prune": "ts-prune",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
-		"test": "vitest",
-		"setup": "npx --yes zx --quiet script/setup.js"
+		"setup": "npx --yes zx --quiet script/setup.js",
+		"test": "vitest"
 	},
 	"type": "module",
 	"version": "1.2.0"

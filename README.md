@@ -24,6 +24,36 @@
     <img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
 </p>
 
+## Explainer
+
+This template is available for anybody who wants to set up a basic Node application using TypeScript.
+It sets up the following tooling for you:
+
+- [**ESLint**](https://eslint.org): Static analysis for JavaScript code, configured with [typescript-eslint](https://typescript-eslint.io) for TypeScript code and other general-use plugins.
+- [**Markdownlint**](https://github.com/DavidAnson/markdownlint): Static analysis for Markdown code.
+- [**pnpm**](https://pnpm.io): Desk-efficient package manager alternative.
+- [**Prettier**](https://prettier.io): Opinionated formatting for code, run on file save and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
+- [**ts-prune**](https://github.com/nadeesha/ts-prune): Unused exports detection for TypeScript code.
+- [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
+- [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking.
+
+## Setup
+
+First make sure you have the following installed:
+
+- [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
+- [Node.js](https://nodejs.org)
+- [pnpm](https://pnpm.io)
+
+To use this template:
+
+1. Click the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button to create a new repository with the same Git history
+2. Open that repository, such as by [cloning it locally](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [developing in a codespace](https://docs.github.com/en/codespaces/developing-in-codespaces/developing-in-a-codespace)
+3. `pnpm install`
+4. `pnpm run setup`
+
+> The setup script removes the `## Explainer` and `## Setup` from this README.md.
+
 ## Usage
 
 ```shell

@@ -2,3 +2,4 @@
 .vscode/
 *.test.*
 coverage/
+pnpm-lock.yaml

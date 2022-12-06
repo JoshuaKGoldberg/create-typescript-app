@@ -1,5 +1,18 @@
 {
 	"dictionaries": ["typescript"],
-	"ignorePaths": [".github", "dist", "node_modules", "pnpm-lock.yaml"],
-	"words": ["Codecov", "commitlint", "lcov"]
+	"ignorePaths": [
+		".github",
+		"dist",
+		"node_modules",
+		"pnpm-lock.yaml",
+		"script/*.json"
+	],
+	"words": [
+		"Codecov",
+		"codespace",
+		"commitlint",
+		"contributorsrc",
+		"lcov",
+		"wontfix"
+	]
 }

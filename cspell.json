@@ -1,5 +1,5 @@
 {
 	"dictionaries": ["typescript"],
-	"ignorePaths": ["dist", "node_modules", "**/*.yml"],
-	"words": ["commitlint", "lcov"]
+	"ignorePaths": [".github", "dist", "node_modules", "pnpm-lock.yaml"],
+	"words": ["commitlint"]
 }

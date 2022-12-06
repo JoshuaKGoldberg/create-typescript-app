@@ -1,0 +1,7 @@
+{
+	"automerge": true,
+	"internalChecksFilter": "strict",
+	"labels": ["dependencies"],
+	"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+	"stabilityDays": 3
+}

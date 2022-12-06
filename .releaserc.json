@@ -14,14 +14,7 @@
 		[
 			"@semantic-release/git",
 			{
-				"assets": [
-					"dist",
-					"docs",
-					"package.json",
-					"README.md",
-					"src",
-					"!src/**/*.test.*"
-				],
+				"assets": false,
 				"message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
 			}
 		]

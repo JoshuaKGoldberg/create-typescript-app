@@ -1,2 +1,4 @@
-coverage/
+.github/
+.vscode/
 *.test.*
+coverage/

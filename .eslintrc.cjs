@@ -23,6 +23,13 @@ module.exports = {
 				"plugin:@typescript-eslint/strict",
 			],
 			files: ["**/*.{ts,tsx}"],
+			parserOptions: {
+				project: "./tsconfig.eslint.json",
+			},
+			rules: {
+				// These off-by-default rules work well for this repo and we like them on.
+				"deprecation/deprecation": "error",
+			},
 		},
 		{
 			files: "*.json",
@@ -41,10 +48,6 @@ module.exports = {
 		},
 	],
 	parser: "@typescript-eslint/parser",
-	parserOptions: {
-		tsconfigRootDir: __dirname,
-		project: ["./tsconfig.json"],
-	},
 	plugins: [
 		"@typescript-eslint",
 		"deprecation",
@@ -57,7 +60,6 @@ module.exports = {
 	root: true,
 	rules: {
 		// These off-by-default rules work well for this repo and we like them on.
-		"deprecation/deprecation": "error",
 		"no-only-tests/no-only-tests": "error",
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",

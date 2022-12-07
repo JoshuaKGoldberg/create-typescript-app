@@ -45,9 +45,13 @@
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
 	},
-	"main": "./dist/index.js",
+	"main": "./lib/index.js",
 	"name": "template-typescript-node-package",
 	"packageManager": "pnpm@7.16.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
+	},
 	"scripts": {
 		"build": "tsc",
 		"format": "prettier \"**/*\" --ignore-unknown",

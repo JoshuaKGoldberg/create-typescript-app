@@ -2,7 +2,7 @@
 	"dictionaries": ["typescript"],
 	"ignorePaths": [
 		".github",
-		"dist",
+		"lib",
 		"node_modules",
 		"pnpm-lock.yaml",
 		"script/*.json"

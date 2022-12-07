@@ -1,5 +1,11 @@
+.*
+./*.js
 .github/
 .vscode/
+*.config.*
 *.test.*
 coverage/
+cspell.json
 pnpm-lock.yaml
+tsconfig.*.json
+tsconfig*.json

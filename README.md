@@ -78,6 +78,7 @@ Thanks! 💖
 
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<!-- spellchecker: disable -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <table>
   <tbody>

@@ -3,11 +3,13 @@
 <p align="center">Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨</p>
 
 <p align="center">
-	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 	<a href="#contributors">
-		<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />
+<!-- prettier-ignore-start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- prettier-ignore-end -->
 	</a>
-	<!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<a href="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package" >
 		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package/branch/main/graph/badge.svg?token=eVIFY4MhfQ"/>
 	</a>
@@ -73,10 +75,10 @@ Thanks! 💖
 
 ## Contributors
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <!-- spellchecker: disable -->
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <table>
   <tbody>
     <tr>
@@ -86,8 +88,7 @@ Thanks! 💖
   </tbody>
 </table>
 
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->

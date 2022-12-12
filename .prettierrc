@@ -1,3 +1,13 @@
 {
+	"overrides": [
+		{
+			"files": ".*rc",
+			"options": { "parser": "json" }
+		},
+		{
+			"files": ".nvmrc",
+			"options": { "parser": "yaml" }
+		}
+	],
 	"useTabs": true
 }

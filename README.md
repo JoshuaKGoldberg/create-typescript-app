@@ -1,4 +1,7 @@
 <h1 align="center">Template TypeScript Node Package</h1>
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <p align="center">Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨</p>
 
@@ -73,10 +76,10 @@ Thanks! 💖
 
 ## Contributors
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <!-- spellchecker: disable -->
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <table>
   <tbody>
     <tr>
@@ -86,8 +89,7 @@ Thanks! 💖
   </tbody>
 </table>
 
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->

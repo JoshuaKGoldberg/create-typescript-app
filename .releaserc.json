@@ -10,6 +10,12 @@
 				"changelogTitle": "# Changelog"
 			}
 		],
+		[
+			"@semantic-release/exec",
+			{
+				"prepare": "echo hello world"
+			}
+		],
 		"@semantic-release/github",
 		"@semantic-release/npm",
 		[

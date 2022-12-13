@@ -1,10 +1,8 @@
 import { GreetOptions } from "./types.js";
 
-const boundConsoleLog = console.log.bind(console);
-
 export function greet(options: GreetOptions | string) {
 	const {
-		logger = boundConsoleLog,
+		logger = console.log.bind(console),
 		message,
 		times = 1,
 	} = typeof options === "string" ? { message: options } : options;

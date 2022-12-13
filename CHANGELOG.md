@@ -1,4 +1,4 @@
-Changelog
+# Changelog
 
 # [1.5.0](https://github.com/JoshuaKGoldberg/template-typescript-package/compare/v1.4.0...v1.5.0) (2022-12-13)
 

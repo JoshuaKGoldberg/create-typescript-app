@@ -14,7 +14,7 @@
 		[
 			"@semantic-release/git",
 			{
-				"assets": false,
+				"assets": [],
 				"message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
 			}
 		]

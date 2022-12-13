@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.6.0](https://github.com/JoshuaKGoldberg/template-typescript-package/compare/v1.5.0...v1.6.0) (2022-12-13)
+
+### Features
+
+- change GHANGELOG.md title to include hash ([297eb4e](https://github.com/JoshuaKGoldberg/template-typescript-package/commit/297eb4edf9187d7f38d03e3be2daf169f05fe8a4))
+
 # [1.5.0](https://github.com/JoshuaKGoldberg/template-typescript-package/compare/v1.4.0...v1.5.0) (2022-12-13)
 
 ### Features

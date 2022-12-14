@@ -1,14 +1,10 @@
 # Changelog
 
-# [1.7.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.6.0...v1.7.0) (2022-12-14)
+## [1.7.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.6.0...v1.7.0) (2022-12-14)
 
 ### Features
 
 - used semantic-release/exec to clean changelog headings ([#109](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/109)) ([db88e12](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/db88e12afd863020d46f9aaec12a4ef1d824c94b))
-
-<!-- markdownlint-disable no-duplicate-heading -->
-
-# Changelog
 
 ## [1.6.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.5.0...v1.6.0) (2022-12-13)
 

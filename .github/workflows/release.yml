@@ -7,16 +7,17 @@ on:
 
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-latest
-    if: github.event.head_commit.message != 'Initial commit'
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: ./.github/actions/prepare
-      - run: pnpm build
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: git config user.name "${GITHUB_ACTOR}"
+      - run: git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
-      - run: cat CHANGELOG.md
+        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm release-it

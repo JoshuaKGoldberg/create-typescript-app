@@ -1,3 +1,13 @@
+## [1.13.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.8.0...v1.13.0) (2022-12-14)
+
+### Features
+
+- bind console.log always to the same value ([#111](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/111)) ([c62dc71](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/c62dc7134408bb726af16550499a560fe117dee6))
+
+### Bug Fixes
+
+- temporarily disable branch protections for release-it ([#113](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/113)) ([e4c41b8](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/e4c41b8a18ea7d4fab1fff151213519c94596367))
+
 ## [1.8.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.7.0...v1.8.0) (2022-12-14)
 
 ### Features

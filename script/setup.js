@@ -13,7 +13,7 @@ try {
 	console.clear();
 	console.log(
 		chalk.greenBright`Welcome to the`,
-		chalk.bgGreenBright`template-typescript-package`,
+		chalk.bgGreenBright`template-typescript-node-package`,
 		chalk.greenBright`package setup!`
 	);
 	console.log(
@@ -111,7 +111,7 @@ try {
 		[existingPackage.description, description],
 		["Template TypeScript Node Package", title],
 		["JoshuaKGoldberg", organization],
-		["template-typescript-package", repository],
+		["template-typescript-node-package", repository],
 		[/"setup": ".*",/, ``, "./package.json"],
 		[
 			`"version": "${existingPackage.version}"`,
@@ -125,7 +125,7 @@ try {
 
 <!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
-> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-package](https://github.com/JoshuaKGoldberg/template-typescript-package).`,
+> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
 			"./README.md",
 		],
 	]) {

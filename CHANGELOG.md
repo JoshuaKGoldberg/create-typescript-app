@@ -1,3 +1,5 @@
+<!-- markdownlint-disable no-duplicate-heading -->
+
 # Changelog
 
 ## [1.6.0](https://github.com/JoshuaKGoldberg/template-typescript-package/compare/v1.5.0...v1.6.0) (2022-12-13)

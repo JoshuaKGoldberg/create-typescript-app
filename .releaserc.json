@@ -10,6 +10,12 @@
 				"changelogTitle": "# Changelog"
 			}
 		],
+		[
+			"@semantic-release/exec",
+			{
+				"prepare": "sed -i 's/# \\[/## \\[/g' CHANGELOG.md"
+			}
+		],
 		"@semantic-release/github",
 		"@semantic-release/npm",
 		[

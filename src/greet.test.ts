@@ -1,12 +1,14 @@
 import { describe, expect, it, vi } from "vitest";
 
+const logger = vi.spyOn(console, "log");
+
 import { greet } from "./greet.js";
 
 const message = "Yay, testing!";
 
 describe("greet", () => {
 	it("logs to the console once when message is provided as a string", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+		logger.mockImplementation(() => undefined);
 
 		greet(message);
 
@@ -15,7 +17,7 @@ describe("greet", () => {
 	});
 
 	it("logs to the console once when message is provided as an object", () => {
-		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
+		logger.mockImplementation(() => undefined);
 
 		greet({ message });
 

@@ -35,6 +35,7 @@ It sets up the following tooling for you:
 - [**Markdownlint**](https://github.com/DavidAnson/markdownlint): Static analysis for Markdown code.
 - [**pnpm**](https://pnpm.io): Desk-efficient package manager alternative.
 - [**Prettier**](https://prettier.io): Opinionated formatting for code, run on file save and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
+- [**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
 - [**ts-prune**](https://github.com/nadeesha/ts-prune): Unused exports detection for TypeScript code.
 - [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
 - [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking.

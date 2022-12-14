@@ -13,6 +13,8 @@
 		"codespace",
 		"commitlint",
 		"contributorsrc",
+		"conventionalcommits",
+		"infile",
 		"lcov",
 		"wontfix"
 	]

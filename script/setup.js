@@ -122,7 +122,7 @@ try {
 		[/"setup": ".*",/, ``, "./package.json"],
 		[
 			`"version": "${existingPackage.version}"`,
-			`"version": "0.0.1"`,
+			`"version": "0.0.0"`,
 			"./package.json",
 		],
 		[/## Explainer.*## Usage/s, `## Usage`, "./README.md"],
@@ -138,6 +138,23 @@ try {
 	]) {
 		await replace({ files, from, to });
 	}
+
+	console.log(chalk.gray`✔️ Done.`);
+
+	console.log();
+	console.log(chalk.gray`Clearing CHANGELOG.md...`);
+
+	await fs.writeFile(
+		"./CHANGELOG.md",
+		prettier.format(`# Changelog`, { parser: "markdown" })
+	);
+
+	console.log(chalk.gray`✔️ Done.`);
+
+	console.log();
+	console.log(chalk.gray`Deleting local git tags...`);
+
+	await $`git tag -d $(git tag -l)`;
 
 	console.log(chalk.gray`✔️ Done.`);
 

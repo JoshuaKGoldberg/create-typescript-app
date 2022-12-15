@@ -1,4 +1,6 @@
-### [1.20.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.20.0...v1.20.1) (2022-12-15)
+# Changelog
+
+## [1.20.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.20.0...v1.20.1) (2022-12-15)
 
 ### Bug Fixes
 
@@ -28,8 +30,6 @@
 ### Features
 
 - switch from semantic-release to release-it ([#110](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/110)) ([c0fcbf4](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/c0fcbf46718ee6ad0e3582b1f01e2910a3da847d))
-
-# Changelog
 
 ## [1.7.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.6.0...v1.7.0) (2022-12-14)
 

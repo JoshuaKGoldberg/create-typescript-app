@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.22.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.21.0...v1.22.0) (2022-12-15)
+
+### Features
+
+- add header to CHANGELOG.md ([#127](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/127)) ([4724643](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/4724643fb33de89b33e437af5e340d9fe2eb39c6))
+
 ## [1.21.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.20.2...v1.21.0) (2022-12-15)
 
 ### Features

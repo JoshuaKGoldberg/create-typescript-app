@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.20.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.20.0...v1.20.1) (2022-12-15)
+### [1.20.2](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.20.1...v1.20.2) (2022-12-15)
+
+### Bug Fixes
+
+- corrected allcontributors setup import path with fs ([#124](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/124)) ([2506907](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/25069072073b3b26b039aaf2f6b6dea9cd1cd8b2))
+
+### [1.20.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.20.0...v1.20.1) (2022-12-15)
 
 ### Bug Fixes
 

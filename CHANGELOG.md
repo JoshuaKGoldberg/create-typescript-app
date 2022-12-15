@@ -1,3 +1,9 @@
+## [1.20.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.19.0...v1.20.0) (2022-12-15)
+
+### Features
+
+- add 'area: testing' label to setup data ([#120](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/120)) ([e0f9e0b](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/e0f9e0b34f44db996400932185cd2359cb29bba2))
+
 ## [1.19.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.8.0...v1.19.0) (2022-12-15)
 
 ### Features

@@ -155,7 +155,7 @@ try {
 	console.log();
 	console.log(chalk.gray`Hydrating repository settings...`);
 
-	await $`gh repo edit --delete-branch-on-merge --description "${description}" --enable-auto-merge --enable-rebase-merge=false --enable-squash-merge`;
+	await $`gh repo edit --delete-branch-on-merge --description ${description} --enable-auto-merge --enable-rebase-merge=false --enable-squash-merge`;
 
 	console.log(chalk.gray`✔️ Done.`);
 

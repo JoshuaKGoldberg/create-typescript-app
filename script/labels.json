@@ -10,6 +10,11 @@
 		"name": "area: documentation"
 	},
 	{
+		"color": "6009D7",
+		"description": "Improving how the repository's tests are run and/or code is tested",
+		"name": "area: testing"
+	},
+	{
 		"color": "f9d0c4",
 		"description": "Managing the repository's maintenance",
 		"name": "area: tooling"

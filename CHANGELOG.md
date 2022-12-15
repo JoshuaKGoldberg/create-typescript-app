@@ -1,3 +1,9 @@
+### [1.20.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.20.0...v1.20.1) (2022-12-15)
+
+### Bug Fixes
+
+- corrected description quote in setup script ([#123](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/123)) ([1360510](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/1360510ee2173084499b5d4360d6213b8003e76c))
+
 ## [1.20.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.19.0...v1.20.0) (2022-12-15)
 
 ### Features

@@ -3,10 +3,6 @@ import chalk from "chalk";
 import { promises as fs } from "fs";
 import prettier from "prettier";
 
-import existingContributors from "../.all-contributorsrc.json" assert { type: "json" };
-import existingPackage from "../package.json" assert { type: "json" };
-import outcomeLabels from "./labels.json" assert { type: "json" };
-
 let caughtError;
 
 try {
@@ -87,8 +83,19 @@ try {
 	console.log();
 	console.log(chalk.gray`Hydrating package metadata locally...`);
 
+	async function readFileAsJSON(filePath) {
+		return JSON.parse((await fs.readFile(filePath)).toString());
+	}
+
+	const [existingContributors, existingPackage, outcomeLabels] =
+		await Promise.all([
+			readFileAsJSON("./.all-contributorsrc"),
+			readFileAsJSON("./package.json"),
+			readFileAsJSON("./script/labels.json"),
+		]);
+
 	await fs.writeFile(
-		"./.all-contributorsrc.json",
+		"./.all-contributorsrc",
 		prettier.format(
 			JSON.stringify({
 				...existingContributors,

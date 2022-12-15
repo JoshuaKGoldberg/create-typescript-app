@@ -18,17 +18,17 @@ jobs:
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - name: Temporarily disable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
-        with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
-          branch: ${{ github.event.repository.default_branch }}
+      # - name: Temporarily disable "include administrators" branch protection
+      #   uses: benjefferies/branch-protection-bot@1.0.7
+      #   with:
+      #     access_token: ${{ secrets.ACCESS_TOKEN }}
+      #     branch: ${{ github.event.repository.default_branch }}
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm release-it
-      - if: always()
-        name: Enable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
-        with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
-          branch: ${{ github.event.repository.default_branch }}
+      # - if: always()
+      #   name: Enable "include administrators" branch protection
+      #   uses: benjefferies/branch-protection-bot@1.0.7
+      #   with:
+      #     access_token: ${{ secrets.ACCESS_TOKEN }}
+      #     branch: ${{ github.event.repository.default_branch }}

@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.22.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.22.0...v1.22.1) (2022-12-20)
+
+### Bug Fixes
+
+- only append README.md notice once in setup ([#131](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/131)) ([bd2901d](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/bd2901d11f9d1c942d3bea816208845c47deff58))
+
 ## [1.22.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.21.0...v1.22.0) (2022-12-15)
 
 ### Features

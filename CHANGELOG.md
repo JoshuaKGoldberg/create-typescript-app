@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.23.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.22.1...v1.23.0) (2022-12-21)
+
+### Features
+
+- use Octokit to populate more settings ([#130](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/130)) ([ff33d79](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/ff33d796ee95f802262f413ba88af4e3237c1425))
+
 ### [1.22.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.22.0...v1.22.1) (2022-12-20)
 
 ### Bug Fixes

@@ -1,7 +1,13 @@
 /* global $ */
+import { parseArgs } from "node:util";
+
 import chalk from "chalk";
 import { promises as fs } from "fs";
+import { Octokit } from "octokit";
 import prettier from "prettier";
+import replace from "replace-in-file";
+
+const { prompt } = require("enquirer");
 
 let caughtError;
 
@@ -17,14 +23,11 @@ try {
 	);
 	console.log();
 
-	console.log(chalk.gray`Setting up temporary devDependency packages...`);
-	await $`pnpm add enquirer replace-in-file yargs -D`;
-	console.log(chalk.gray`✔️ Done.`);
-	console.log();
-
 	console.log(chalk.gray`Checking gh auth status...`);
+	let auth;
 	try {
 		await $`gh auth status`;
+		auth = (await $`gh auth token`).toString().trim();
 	} catch (error) {
 		throw new Error(error.stderr);
 	}
@@ -32,14 +35,11 @@ try {
 	console.log(chalk.gray`✔️ Done.`);
 	console.log();
 
-	const { parseArgs } = require("node:util");
-	const { prompt } = require("enquirer");
-
 	const { values } = parseArgs({
 		args: process.argv.slice(2),
 		options: {
 			description: { type: "string" },
-			organization: { type: "string" },
+			owner: { type: "string" },
 			repository: { type: "string" },
 			title: { type: "string" },
 		},
@@ -70,9 +70,9 @@ try {
 		"What will the Sentence Case title of the repository be?"
 	);
 
-	const organization = await getPrefillOrPromptedValue(
-		"organization",
-		"What organization or user will the repository be under?"
+	const owner = await getPrefillOrPromptedValue(
+		"owner",
+		"What owner or user will the repository be under?"
 	);
 
 	const description = await getPrefillOrPromptedValue(
@@ -112,12 +112,10 @@ try {
 		)
 	);
 
-	const replace = require("replace-in-file");
-
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
 		[existingPackage.description, description],
 		["Template TypeScript Node Package", title],
-		["JoshuaKGoldberg", organization],
+		["JoshuaKGoldberg", owner],
 		["template-typescript-node-package", repository],
 		[/"setup": ".*",/, ``, "./package.json"],
 		[
@@ -180,9 +178,59 @@ try {
 	console.log(chalk.gray`✔️ Done.`);
 
 	console.log();
-	console.log(chalk.gray`Hydrating repository settings...`);
+	console.log(chalk.gray`Hydrating initial repository settings...`);
 
-	await $`gh repo edit --delete-branch-on-merge --description ${description} --enable-auto-merge --enable-rebase-merge=false --enable-squash-merge`;
+	const octokit = new Octokit({ auth });
+
+	octokit.rest.repos.update({
+		allow_auto_merge: true,
+		allow_rebase_merge: false,
+		allow_squash_merge: true,
+		default_branch: "main",
+		delete_branch_on_merge: true,
+		description,
+		has_wiki: false,
+		owner,
+		repo: repository,
+	});
+
+	console.log();
+	console.log(chalk.gray`Hydrating branch protection settings...`);
+
+	await octokit.request(
+		`PUT /repos/${owner}/${repository}/branches/main/protection`,
+		{
+			allow_deletions: false,
+			allow_force_pushes: true,
+			allow_fork_pushes: false,
+			allow_fork_syncing: true,
+			block_creations: false,
+			branch: "main",
+			enforce_admins: false,
+			lock_branch: true,
+			owner,
+			repo: repository,
+			required_conversation_resolution: true,
+			required_linear_history: false,
+			required_pull_request_reviews: null,
+			required_status_checks: {
+				checks: [
+					{ context: "build" },
+					{ context: "compliance" },
+					{ context: "lint" },
+					{ context: "markdown" },
+					{ context: "package" },
+					{ context: "packages" },
+					{ context: "prettier" },
+					{ context: "prune" },
+					{ context: "spelling" },
+					{ context: "test" },
+				],
+				strict: false,
+			},
+			restrictions: null,
+		}
+	);
 
 	console.log(chalk.gray`✔️ Done.`);
 
@@ -193,12 +241,14 @@ try {
 
 	console.log(chalk.gray`✔️ Done.`);
 } catch (error) {
-	console.log(chalk.red(error));
+	console.log(chalk.red(error.stack));
 	caughtError = error;
 } finally {
 	console.log();
-	console.log(chalk.gray`Cleaning up temporary devDependency packages...`);
-	await $`pnpm remove enquirer replace-in-file yargs -D`;
+	console.log(
+		chalk.gray`Removing devDependency packages only used for setup...`
+	);
+	await $`pnpm remove enquirer octokit replace-in-file -D`;
 	console.log(chalk.gray`✔️ Done.`);
 }
 

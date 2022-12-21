@@ -207,7 +207,6 @@ try {
 			block_creations: false,
 			branch: "main",
 			enforce_admins: false,
-			lock_branch: true,
 			owner,
 			repo: repository,
 			required_conversation_resolution: true,

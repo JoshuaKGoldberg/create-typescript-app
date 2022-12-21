@@ -46,7 +46,7 @@
 	},
 	"main": "./lib/index.js",
 	"name": "template-typescript-node-package",
-	"packageManager": "pnpm@7.16.0",
+	"packageManager": "pnpm@7.18.2",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"

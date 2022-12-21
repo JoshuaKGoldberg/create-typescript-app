@@ -124,17 +124,20 @@ try {
 			"./package.json",
 		],
 		[/## Explainer.*## Usage/s, `## Usage`, "./README.md"],
-		[
-			"<!-- ALL-CONTRIBUTORS-LIST:END -->",
-			`<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-
-> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
-			"./README.md",
-		],
 	]) {
 		await replace({ files, from, to });
+	}
+
+	const endOfReadmeNotice = `
+
+	<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+	
+	> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`;
+
+	if (
+		!(await fs.readFile("./README.md")).toString().includes(endOfReadmeNotice)
+	) {
+		await fs.appendFile("./README.md", endOfReadmeNotice);
 	}
 
 	console.log(chalk.gray`✔️ Done.`);

@@ -7,20 +7,7 @@ import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";
 
-console.log("wat");
-
-let prompt;
-
-try {
-	console.log("a");
-	prompt = require("enquirer").prompt;
-	console.log("b");
-} catch (error) {
-	console.error({ error });
-	process.exitCode = 1;
-}
-
-console.log("Successfully imported prompt", { prompt });
+const { prompt } = require("enquirer");
 
 let caughtError;
 
@@ -40,9 +27,7 @@ try {
 	let auth;
 	try {
 		await $`gh auth status`;
-
-		// Todo (Josh, off stream): make sure this is working 🙃
-		auth = await $`gh auth token`;
+		auth = (await $`gh auth token`).toString().trim();
 	} catch (error) {
 		throw new Error(error.stderr);
 	}
@@ -192,8 +177,6 @@ try {
 	console.log();
 	console.log(chalk.gray`Hydrating initial repository settings...`);
 
-	console.log(chalk.gray`✔️ Done.`);
-
 	const octokit = new Octokit({ auth });
 
 	octokit.rest.repos.update({
@@ -216,6 +199,7 @@ try {
 		{
 			allow_deletions: false,
 			allow_force_pushes: true,
+			allow_fork_pushes: false,
 			allow_fork_syncing: true,
 			block_creations: false,
 			branch: "main",
@@ -225,6 +209,7 @@ try {
 			repo: repository,
 			required_conversation_resolution: true,
 			required_linear_history: false,
+			required_pull_request_reviews: null,
 			required_status_checks: {
 				checks: [
 					{ context: "build" },
@@ -241,6 +226,7 @@ try {
 				],
 				strict: false,
 			},
+			restrictions: null,
 		}
 	);
 
@@ -253,7 +239,7 @@ try {
 
 	console.log(chalk.gray`✔️ Done.`);
 } catch (error) {
-	console.log(chalk.red(error));
+	console.log(chalk.red(error.stack));
 	caughtError = error;
 } finally {
 	console.log();

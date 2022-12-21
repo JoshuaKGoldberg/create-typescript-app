@@ -223,7 +223,6 @@ try {
 					{ context: "packages" },
 					{ context: "prettier" },
 					{ context: "prune" },
-					{ context: "release" },
 					{ context: "spelling" },
 					{ context: "test" },
 				],

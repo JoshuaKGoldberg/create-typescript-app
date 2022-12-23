@@ -18,17 +18,61 @@ jobs:
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - name: Temporarily disable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
+      - name: Delete branch protection on main
+        uses: actions/github-script@v6.3.3
         with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
-          branch: ${{ github.event.repository.default_branch }}
+          github-token: ${{ secrets.ACCESS_TOKEN }}
+          script: |
+            try {
+              await github.request(
+                `DELETE /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection`,
+              );
+            } catch (error) {
+              if (!error.message?.includes?.("Branch not protected")) {
+                throw error;
+              }
+            }
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm release-it
       - if: always()
-        name: Enable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
+        name: Recreate branch protection on main
+        uses: actions/github-script@v6.3.3
         with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
-          branch: ${{ github.event.repository.default_branch }}
+          github-token: ${{ secrets.ACCESS_TOKEN }}
+          # Note: keep this inline script in sync with script/setup.js!
+          # Todo: it would be nice to not have two sources of truth...
+          script: |
+            github.request(
+              `PUT /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection`,
+              {
+                allow_deletions: false,
+                allow_force_pushes: true,
+                allow_fork_pushes: false,
+                allow_fork_syncing: true,
+                block_creations: false,
+                branch: "main",
+                enforce_admins: false,
+                owner: "JoshuaKGoldberg",
+                repo: "template-typescript-node-package",
+                required_conversation_resolution: true,
+                required_linear_history: false,
+                required_pull_request_reviews: null,
+                required_status_checks: {
+                  checks: [
+                    { context: "build" },
+                    { context: "compliance" },
+                    { context: "lint" },
+                    { context: "markdown" },
+                    { context: "package" },
+                    { context: "packages" },
+                    { context: "prettier" },
+                    { context: "prune" },
+                    { context: "spelling" },
+                    { context: "test" },
+                  ],
+                  strict: false,
+                },
+                restrictions: null,
+              }
+            );

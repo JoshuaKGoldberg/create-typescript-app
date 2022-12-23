@@ -197,6 +197,8 @@ try {
 	console.log();
 	console.log(chalk.gray`Hydrating branch protection settings...`);
 
+	// Note: keep this inline script in sync with .github/workflows/release.yml!
+	// Todo: it would be nice to not have two sources of truth...
 	await octokit.request(
 		`PUT /repos/${owner}/${repository}/branches/main/protection`,
 		{

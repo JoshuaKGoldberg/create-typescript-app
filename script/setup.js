@@ -23,18 +23,6 @@ try {
 	);
 	console.log();
 
-	console.log(chalk.gray`Checking gh auth status...`);
-	let auth;
-	try {
-		await $`gh auth status`;
-		auth = (await $`gh auth token`).toString().trim();
-	} catch (error) {
-		throw new Error(error.stderr);
-	}
-
-	console.log(chalk.gray`✔️ Done.`);
-	console.log();
-
 	const { values } = parseArgs({
 		args: process.argv.slice(2),
 		options: {
@@ -42,6 +30,7 @@ try {
 			owner: { type: "string" },
 			repository: { type: "string" },
 			title: { type: "string" },
+			"skip-api": { type: "boolean" },
 		},
 		tokens: true,
 		strict: false,
@@ -78,6 +67,11 @@ try {
 	const description = await getPrefillOrPromptedValue(
 		"description",
 		"How would you describe the new package?"
+	);
+
+	const skipApi = await getPrefillOrPromptedValue(
+		"skip-api",
+		"Whether to skip calling the GitHub API (effectively making this a local-only change)."
 	);
 
 	console.log();
@@ -118,6 +112,7 @@ try {
 		["JoshuaKGoldberg", owner],
 		["template-typescript-node-package", repository],
 		[/"setup": ".*",/, ``, "./package.json"],
+		[/"setup:test": ".*",/, ``, "./package.json"],
 		[
 			`"version": "${existingPackage.version}"`,
 			`"version": "0.0.0"`,
@@ -159,87 +154,105 @@ try {
 
 	console.log(chalk.gray`✔️ Done.`);
 
-	console.log();
-	console.log(chalk.gray`Hydrating repository labels...`);
-
-	const existingLabels = JSON.parse(
-		(await $`gh label list --json name`).stdout || "[]"
-	);
-
-	for (const outcome of outcomeLabels) {
-		const action = existingLabels.some(
-			(existing) => existing.name === outcome.name
-		)
-			? "edit"
-			: "create";
-		await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
-	}
-
 	console.log(chalk.gray`✔️ Done.`);
-
 	console.log();
-	console.log(chalk.gray`Hydrating initial repository settings...`);
 
-	const octokit = new Octokit({ auth });
+	if (skipApi) {
+		console.log(chalk.gray`➖ Skipping API hydration.`);
+	} else {
+		console.log(chalk.gray`Checking gh auth status...`);
+		let auth;
+		try {
+			await $`gh auth status`;
+			auth = (await $`gh auth token`).toString().trim();
+		} catch (error) {
+			throw new Error(error.stderr);
+		}
 
-	octokit.rest.repos.update({
-		allow_auto_merge: true,
-		allow_rebase_merge: false,
-		allow_squash_merge: true,
-		default_branch: "main",
-		delete_branch_on_merge: true,
-		description,
-		has_wiki: false,
-		owner,
-		repo: repository,
-	});
+		console.log(chalk.gray`✔️ Done.`);
+		console.log();
 
-	console.log();
-	console.log(chalk.gray`Hydrating branch protection settings...`);
+		console.log(chalk.gray`Hydrating repository labels...`);
 
-	// Note: keep this inline script in sync with .github/workflows/release.yml!
-	// Todo: it would be nice to not have two sources of truth...
-	// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
-	await octokit.request(
-		`PUT /repos/${owner}/${repository}/branches/main/protection`,
-		{
-			allow_deletions: false,
-			allow_force_pushes: true,
-			allow_fork_pushes: false,
-			allow_fork_syncing: true,
-			block_creations: false,
-			branch: "main",
-			enforce_admins: false,
+		const existingLabels = JSON.parse(
+			(await $`gh label list --json name`).stdout || "[]"
+		);
+
+		for (const outcome of outcomeLabels) {
+			const action = existingLabels.some(
+				(existing) => existing.name === outcome.name
+			)
+				? "edit"
+				: "create";
+			await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
+		}
+		console.log(chalk.gray`✔️ Done.`);
+
+		console.log();
+		console.log(chalk.gray`Hydrating initial repository settings...`);
+
+		const octokit = new Octokit({ auth });
+
+		octokit.rest.repos.update({
+			allow_auto_merge: true,
+			allow_rebase_merge: false,
+			allow_squash_merge: true,
+			default_branch: "main",
+			delete_branch_on_merge: true,
+			description,
+			has_wiki: false,
 			owner,
 			repo: repository,
-			required_conversation_resolution: true,
-			required_linear_history: false,
-			required_pull_request_reviews: null,
-			required_status_checks: {
-				checks: [
-					{ context: "build" },
-					{ context: "compliance" },
-					{ context: "lint" },
-					{ context: "markdown" },
-					{ context: "package" },
-					{ context: "packages" },
-					{ context: "prettier" },
-					{ context: "prune" },
-					{ context: "spelling" },
-					{ context: "test" },
-				],
-				strict: false,
-			},
-			restrictions: null,
-		}
-	);
+		});
 
-	console.log(chalk.gray`✔️ Done.`);
+		console.log();
+		console.log(chalk.gray`Hydrating branch protection settings...`);
+
+		// Note: keep this inline script in sync with .github/workflows/release.yml!
+		// Todo: it would be nice to not have two sources of truth...
+		// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
+		await octokit.request(
+			`PUT /repos/${owner}/${repository}/branches/main/protection`,
+			{
+				allow_deletions: false,
+				allow_force_pushes: true,
+				allow_fork_pushes: false,
+				allow_fork_syncing: true,
+				block_creations: false,
+				branch: "main",
+				enforce_admins: false,
+				owner,
+				repo: repository,
+				required_conversation_resolution: true,
+				required_linear_history: false,
+				required_pull_request_reviews: null,
+				required_status_checks: {
+					checks: [
+						{ context: "build" },
+						{ context: "compliance" },
+						{ context: "lint" },
+						{ context: "markdown" },
+						{ context: "package" },
+						{ context: "packages" },
+						{ context: "prettier" },
+						{ context: "prune" },
+						{ context: "spelling" },
+						{ context: "test" },
+					],
+					strict: false,
+				},
+				restrictions: null,
+			}
+		);
+
+		console.log(chalk.gray`✔️ Done.`);
+	}
 
 	console.log();
 	console.log(chalk.gray`Removing setup script...`);
 
 	await fs.rm("./script", { force: true, recursive: true });
+	await fs.rm(".github/workflows/setup.yml");
 
 	console.log(chalk.gray`✔️ Done.`);
 } catch (error) {

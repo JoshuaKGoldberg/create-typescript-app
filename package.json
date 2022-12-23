@@ -63,6 +63,7 @@
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
 		"setup": "npx --yes zx --quiet script/setup.js",
+		"setup:test": "npx --yes zx --quiet script/setup-test-e2e.js",
 		"test": "vitest"
 	},
 	"type": "module",

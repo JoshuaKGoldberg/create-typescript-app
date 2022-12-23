@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.27.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.26.0...v1.27.0) (2022-12-23)
+
+### Features
+
+- document 145, and re-add npm publishing ([4df06c6](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/4df06c6dd4092b041d29eefe573a021a62a40e0d))
+
 ## [1.26.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.22.1...v1.26.0) (2022-12-23)
 
 ### Features

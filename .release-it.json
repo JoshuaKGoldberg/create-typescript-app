@@ -6,6 +6,9 @@
 		"release": true,
 		"releaseName": "v${version}"
 	},
+	"npm": {
+		"publish": false
+	},
 	"plugins": {
 		"@release-it/conventional-changelog": {
 			"header": "# Changelog",

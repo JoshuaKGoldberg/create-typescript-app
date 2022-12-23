@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.26.0](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.22.1...v1.26.0) (2022-12-23)
+
+### Features
+
+- fix typo in pnpm description ([e1a21fc](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/e1a21fc62b3ba9d2421099b3e4db3eab33b301f0))
+- re-add branch protection toggling in release.yml ([#144](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/144)) ([b55395a](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/b55395a962dca3cc24cfb5590a9107f527c94855))
+- skip npm publish (just for testing ([14dc939](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/14dc939aafd648cd6d36587b5378b540da87770d))
+- try adding back benjefferies/branch-protection-bot ([7e12306](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/7e12306dffb37fb1e8545ec2ee7c7db970d26434))
+- use Octokit to populate more settings ([#130](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/130)) ([ff33d79](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/ff33d796ee95f802262f413ba88af4e3237c1425))
+
+### Bug Fixes
+
+- correct renovate config ([#133](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/133)) ([19f7666](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/19f766641d7d7cfa896134b398bc7431f200e087))
+- unlock base branch for PRs ([e0fa0c9](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/e0fa0c9b19caf1f7a6fff12a64917a58851db5d4))
+
 ### [1.22.1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.22.0...v1.22.1) (2022-12-20)
 
 ### Bug Fixes

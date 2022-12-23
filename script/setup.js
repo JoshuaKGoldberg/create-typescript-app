@@ -259,12 +259,12 @@ try {
 	console.log(chalk.red(error.stack));
 	caughtError = error;
 } finally {
-	// console.log();
-	// console.log(
-	// 	chalk.gray`Removing devDependency packages only used for setup...`
-	// );
-	// await $`pnpm remove enquirer octokit replace-in-file -D`;
-	// console.log(chalk.gray`✔️ Done.`);
+	console.log();
+	console.log(
+		chalk.gray`Removing devDependency packages only used for setup...`
+	);
+	await $`pnpm remove enquirer octokit replace-in-file -D`;
+	console.log(chalk.gray`✔️ Done.`);
 }
 
 console.log();

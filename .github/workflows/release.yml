@@ -42,6 +42,7 @@ jobs:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           # Note: keep this inline script in sync with script/setup.js!
           # Todo: it would be nice to not have two sources of truth...
+          # https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
           script: |
             github.request(
               `PUT /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection`,

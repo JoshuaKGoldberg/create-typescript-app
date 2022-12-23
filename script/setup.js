@@ -23,18 +23,6 @@ try {
 	);
 	console.log();
 
-	console.log(chalk.gray`Checking gh auth status...`);
-	let auth;
-	try {
-		await $`gh auth status`;
-		auth = (await $`gh auth token`).toString().trim();
-	} catch (error) {
-		throw new Error(error.stderr);
-	}
-
-	console.log(chalk.gray`✔️ Done.`);
-	console.log();
-
 	const { values } = parseArgs({
 		args: process.argv.slice(2),
 		options: {
@@ -172,6 +160,18 @@ try {
 	if (skipApi) {
 		console.log(chalk.gray`➖ Skipping API hydration.`);
 	} else {
+		console.log(chalk.gray`Checking gh auth status...`);
+		let auth;
+		try {
+			await $`gh auth status`;
+			auth = (await $`gh auth token`).toString().trim();
+		} catch (error) {
+			throw new Error(error.stderr);
+		}
+
+		console.log(chalk.gray`✔️ Done.`);
+		console.log();
+
 		console.log(chalk.gray`Hydrating repository labels...`);
 
 		const existingLabels = JSON.parse(

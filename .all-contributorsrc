@@ -60,6 +60,5 @@
   "projectName": "template-typescript-node-package",
   "projectOwner": "JoshuaKGoldberg",
   "repoHost": "https://github.com",
-  "repoType": "github",
-  "skipCi": true
+  "repoType": "github"
 }

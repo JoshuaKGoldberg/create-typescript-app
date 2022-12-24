@@ -1,5 +1,11 @@
 # Changelog
 
+### [1.27.5](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.27.4...v1.27.5) (2022-12-24)
+
+### Bug Fixes
+
+- don't skipCi for allcontributors ([#152](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/152)) ([674e2c1](https://github.com/JoshuaKGoldberg/template-typescript-node-package/commit/674e2c1ada116f0b04b7a137fa3bfe2f9f34d558))
+
 ### [1.27.4](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.27.3...v1.27.4) (2022-12-24)
 
 ### [1.27.3](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.27.2...v1.27.3) (2022-12-23)

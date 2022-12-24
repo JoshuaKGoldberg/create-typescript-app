@@ -50,6 +50,15 @@
       "contributions": [
         "tool"
       ]
+    },
+    {
+      "login": "test",
+      "name": "test",
+      "avatar_url": "https://avatars.githubusercontent.com/u/383316?v=4",
+      "profile": "https://github.com/test",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,

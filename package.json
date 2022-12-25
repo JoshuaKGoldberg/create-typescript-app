@@ -19,7 +19,7 @@
 		"eslint-plugin-regexp": "^1.11.0",
 		"eslint-plugin-simple-import-sort": "^8.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
-		"eslint-plugin-vitest": "^0.0.20",
+		"eslint-plugin-vitest": "^0.0.21",
 		"husky": ">=6",
 		"jsonc-eslint-parser": "^2.1.0",
 		"lint-staged": ">=10",

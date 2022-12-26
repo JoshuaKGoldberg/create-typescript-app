@@ -6,7 +6,7 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 4" src="https://img.shields.io/badge/all_contributors-4-21bb42.svg" />
+<img alt="All Contributors: 5" src="https://img.shields.io/badge/all_contributors-5-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>
@@ -115,6 +115,7 @@ Thanks! 💖
       <td align="center"><a href="https://sinchang.me"><img src="https://avatars.githubusercontent.com/u/3297859?v=4?s=100" width="100px;" alt="Jeff Wen"/><br /><sub><b>Jeff Wen</b></sub></a><br /><a href="#tool-sinchang" title="Tools">🔧</a></td>
       <td align="center"><a href="https://paulisaweso.me/"><img src="https://avatars.githubusercontent.com/u/6335792?v=4?s=100" width="100px;" alt="Paul Esch-Laurent"/><br /><sub><b>Paul Esch-Laurent</b></sub></a><br /><a href="#tool-Pinjasaur" title="Tools">🔧</a></td>
       <td align="center"><a href="https://github.com/NazCodeland"><img src="https://avatars.githubusercontent.com/u/113494366?v=4?s=100" width="100px;" alt="NazCodeland"/><br /><sub><b>NazCodeland</b></sub></a><br /><a href="#tool-NazCodeland" title="Tools">🔧</a></td>
+      <td align="center"><a href="https://blog.johnnyreilly.com/"><img src="https://avatars.githubusercontent.com/u/1010525?v=4?s=100" width="100px;" alt="John Reilly"/><br /><sub><b>John Reilly</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=author%3Ajohnnyreilly" title="Bug reports">🐛</a> <a href="#ideas-johnnyreilly" title="Ideas, Planning, & Feedback">🤔</a> <a href="#promotion-johnnyreilly" title="Promotion">📣</a> <a href="#maintenance-johnnyreilly" title="Maintenance">🚧</a> <a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=johnnyreilly" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

@@ -50,6 +50,19 @@
       "contributions": [
         "tool"
       ]
+    },
+    {
+      "login": "johnnyreilly",
+      "name": "John Reilly",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1010525?v=4",
+      "profile": "https://blog.johnnyreilly.com/",
+      "contributions": [
+        "bug",
+        "ideas",
+        "promotion",
+        "maintenance",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

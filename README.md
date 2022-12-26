@@ -66,7 +66,7 @@ To use this template:
 
 ### Setup Options
 
-The setup script requires for options to fill out repository details.
+The setup script requires four options to fill out repository details.
 It will interactively prompt for any that are not provided as a string CLI flag:
 
 1. `repository`: The kebab-case name of the repository (e.g. `template-typescript-node-package`)

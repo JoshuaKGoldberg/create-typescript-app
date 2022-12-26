@@ -7,4 +7,5 @@
 coverage/
 cspell.json
 pnpm-lock.yaml
+src
 tsconfig*.json

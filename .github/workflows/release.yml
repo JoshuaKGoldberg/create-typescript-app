@@ -13,6 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/prepare
+      - run: pnpm build
       - run: git config user.name "${GITHUB_ACTOR}"
       - run: git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - env:

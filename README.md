@@ -75,13 +75,17 @@ It will interactively prompt for any that are not provided as a string CLI flag:
 4. `description`: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 
 Additionally, a `--skip-api` boolean CLI flag may be specified to prevent the setup script from calling to GitHub APIs for repository hydration.
-Doing so limits setup changes to local files in Git: which can be useful to preview what running setup does.
+The script normally posts to GitHub APIs to set information such as repository description and branch protections on github.com.
+Specifying `--skip-api` prevents those API calls, effectively limiting setup changes to local files in Git.
+Doing so can be useful to preview what running setup does.
 
 For example, pre-populating all values and skipping API calls:
 
 ```shell
 pnpm run setup --repository "testing-repository" --title "Testing Title" --owner "TestingOwner" --description "Test Description" --skip-api
 ```
+
+> Tip: after running `pnpm run setup` with `--skip-api`, you can always `git add -A; git reset --hard HEAD` to completely reset all changes.
 
 ## Usage
 

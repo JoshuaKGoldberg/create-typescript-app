@@ -1,5 +1,7 @@
 # Changelog
 
+### [1.27.12](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.27.11...v1.27.12) (2022-12-31)
+
 ### [1.27.11](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.27.10...v1.27.11) (2022-12-29)
 
 ### [1.27.10](https://github.com/JoshuaKGoldberg/template-typescript-node-package/compare/v1.27.9...v1.27.10) (2022-12-26)

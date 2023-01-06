@@ -1,6 +1,6 @@
 {
 	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
-	"description": "Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨",
+	"description": "A quickstart-friendly TypeScript package with lots of great repository tooling. ✨",
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.38.1",
 		"@typescript-eslint/parser": "^5.38.1",

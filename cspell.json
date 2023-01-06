@@ -17,6 +17,7 @@
 		"conventionalcommits",
 		"infile",
 		"lcov",
+		"quickstart",
 		"wontfix"
 	]
 }

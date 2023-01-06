@@ -1,6 +1,6 @@
 <h1 align="center">Template TypeScript Node Package</h1>
 
-<p align="center">Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨</p>
+<p align="center">A quickstart-friendly TypeScript package with lots of great repository tooling. ✨</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">
@@ -63,6 +63,29 @@ To use this template:
 6. Install the [Renovate GitHub App](https://github.com/marketplace/renovate)
 
 > The setup script removes the `## Explainer` and `## Setup` from this README.md.
+
+### Setup Options
+
+The setup script requires four options to fill out repository details.
+It will interactively prompt for any that are not provided as a string CLI flag:
+
+1. `repository`: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
+2. `title`: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
+3. `owner`: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
+4. `description`: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
+
+Additionally, a `--skip-api` boolean CLI flag may be specified to prevent the setup script from calling to GitHub APIs for repository hydration.
+The script normally posts to GitHub APIs to set information such as repository description and branch protections on github.com.
+Specifying `--skip-api` prevents those API calls, effectively limiting setup changes to local files in Git.
+Doing so can be useful to preview what running setup does.
+
+For example, pre-populating all values and skipping API calls:
+
+```shell
+pnpm run setup --repository "testing-repository" --title "Testing Title" --owner "TestingOwner" --description "Test Description" --skip-api
+```
+
+> Tip: after running `pnpm run setup` with `--skip-api`, you can always `git add -A; git reset --hard HEAD` to completely reset all changes.
 
 ## Usage
 

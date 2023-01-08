@@ -60,7 +60,7 @@ To use this template:
    - `NPM_TOKEN`: An [npm access token](https://docs.npmjs.com/creating-and-viewing-access-tokens/) with _Automation_ permissions
 4. `pnpm install`
 5. `pnpm run setup`
-6. Install the [Renovate GitHub App](https://github.com/marketplace/renovate)
+6. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
 
 > The setup script removes the `## Explainer` and `## Setup` from this README.md.
 

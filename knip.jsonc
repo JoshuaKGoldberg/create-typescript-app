@@ -1,7 +1,7 @@
 {
 	"$schema": "https://unpkg.com/knip@next/schema.json",
-	"entry": ["src/index.ts", "script/setup*.js"],
-	"project": ["src/**/*.ts", "script/**/*.js"],
+	"entry": ["src/index.ts!", "script/setup*.js"],
+	"project": ["src/**/*.ts!", "script/**/*.js"],
 
 	// Remove when Knip has plugins for vitest, markdownlint, husky, npm-package-json-lint, GitHub Actions:
 	"ignoreDependencies": [

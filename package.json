@@ -34,8 +34,7 @@
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
 		"typescript": "^4.9.4",
-		"vitest": "^0.26.3",
-		"yargs": "^17.6.2"
+		"vitest": "^0.26.3"
 	},
 	"engines": {
 		"node": ">=18"

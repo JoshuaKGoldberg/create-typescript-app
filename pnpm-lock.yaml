@@ -34,7 +34,6 @@ specifiers:
   sentences-per-line: ^0.2.1
   typescript: ^4.9.4
   vitest: ^0.26.3
-  yargs: ^17.6.2
 
 devDependencies:
   '@typescript-eslint/eslint-plugin': 5.48.0_k73wpmdolxikpyqun3p36akaaq
@@ -70,7 +69,6 @@ devDependencies:
   sentences-per-line: 0.2.1
   typescript: 4.9.4
   vitest: 0.26.3
-  yargs: 17.6.2
 
 packages:
 

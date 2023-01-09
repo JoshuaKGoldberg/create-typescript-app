@@ -3,9 +3,10 @@
 	"entry": ["src/index.ts", "script/setup*.js"],
 	"project": ["src/**/*.ts", "script/**/*.js"],
 
-	// Remove when Knip has plugins for vitest, husky, npm-package-json-lint, GitHub Actions:
+	// Remove when Knip has plugins for vitest, markdownlint, husky, npm-package-json-lint, GitHub Actions:
 	"ignoreDependencies": [
 		"@vitest/coverage-istanbul",
+		"markdownlint",
 		"lint-staged",
 		"npm-package-json-lint-config-default",
 		"release-it",

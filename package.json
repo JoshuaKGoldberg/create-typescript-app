@@ -33,7 +33,6 @@
 		"release-it": "^15.6.0",
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
-		"ts-prune": "^0.10.3",
 		"typescript": "^4.9.4",
 		"vitest": "^0.26.3",
 		"yargs": "^17.6.2"
@@ -61,7 +60,6 @@
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package": "npmPkgJsonLint .",
 		"lint:packages": "pnpm-deduplicate --list",
-		"lint:prune": "ts-prune",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
 		"setup": "npx --yes zx --quiet script/setup.js",

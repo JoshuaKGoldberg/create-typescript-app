@@ -67,5 +67,5 @@
 		"test": "vitest"
 	},
 	"type": "module",
-	"version": "1.27.22"
+	"version": "1.27.23"
 }

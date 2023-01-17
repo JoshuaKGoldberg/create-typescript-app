@@ -2,13 +2,13 @@
 	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
 	"description": "A quickstart-friendly TypeScript package with lots of great repository tooling. ✨",
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.48.0",
-		"@typescript-eslint/parser": "^5.48.0",
-		"@vitest/coverage-istanbul": "^0.26.3",
+		"@typescript-eslint/eslint-plugin": "^5.48.2",
+		"@typescript-eslint/parser": "^5.48.2",
+		"@vitest/coverage-istanbul": "^0.27.2",
 		"chalk": "^5.2.0",
-		"cspell": "^6.18.1",
+		"cspell": "^6.19.1",
 		"enquirer": "^2.3.6",
-		"eslint": "^8.31.0",
+		"eslint": "^8.32.0",
 		"eslint-config-prettier": "^8.6.0",
 		"eslint-plugin-deprecation": "^1.3.3",
 		"eslint-plugin-eslint-comments": "^3.2.0",
@@ -16,12 +16,12 @@
 		"eslint-plugin-markdown": "^3.0.0",
 		"eslint-plugin-no-only-tests": "^3.1.0",
 		"eslint-plugin-regexp": "^1.12.0",
-		"eslint-plugin-simple-import-sort": "^8.0.0",
+		"eslint-plugin-simple-import-sort": "^9.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
-		"eslint-plugin-vitest": "^0.0.23",
+		"eslint-plugin-vitest": "^0.0.29",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
-		"knip": "1.0.0-beta.9",
+		"knip": "1.6.1",
 		"lint-staged": "^13.1.0",
 		"markdownlint": "^0.27.0",
 		"markdownlint-cli": "^0.33.0",
@@ -29,12 +29,14 @@
 		"npm-package-json-lint-config-default": "^5.0.0",
 		"octokit": "^2.0.11",
 		"pnpm-deduplicate": "^0.4.1",
-		"prettier": "^2.8.2",
+		"prettier": "^2.8.3",
 		"release-it": "^15.6.0",
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
+		"should-semantic-release": "^0.0.1",
 		"typescript": "^4.9.4",
-		"vitest": "^0.26.3"
+		"vitest": "^0.27.2",
+		"yargs": "^17.6.2"
 	},
 	"engines": {
 		"node": ">=18"
@@ -45,7 +47,7 @@
 	},
 	"main": "./lib/index.js",
 	"name": "template-typescript-node-package",
-	"packageManager": "pnpm@7.23.0",
+	"packageManager": "pnpm@7.25.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
@@ -66,5 +68,5 @@
 		"test": "vitest"
 	},
 	"type": "module",
-	"version": "1.27.21"
+	"version": "1.27.31"
 }

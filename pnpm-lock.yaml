@@ -35,7 +35,6 @@ specifiers:
   should-semantic-release: ^0.0.1
   typescript: ^4.9.4
   vitest: ^0.27.2
-  yargs: ^17.6.2
 
 devDependencies:
   '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
@@ -72,7 +71,6 @@ devDependencies:
   should-semantic-release: 0.0.1
   typescript: 4.9.4
   vitest: 0.27.2
-  yargs: 17.6.2
 
 packages:
 

@@ -3,13 +3,14 @@
 	"entry": ["src/index.ts!", "script/setup*.js"],
 	"project": ["src/**/*.ts!", "script/**/*.js"],
 
-	// Remove when Knip has plugins for vitest, markdownlint, husky, npm-package-json-lint, GitHub Actions:
+	// Remove when Knip has plugins for GitHub Actions, husky, markdownlint, npm-package-json-lint, should-semantic-release, vitest:
 	"ignoreDependencies": [
 		"@vitest/coverage-istanbul",
-		"markdownlint",
 		"lint-staged",
+		"markdownlint",
 		"npm-package-json-lint-config-default",
 		"release-it",
-		"sentences-per-line"
+		"sentences-per-line",
+		"should-semantic-release"
 	]
 }

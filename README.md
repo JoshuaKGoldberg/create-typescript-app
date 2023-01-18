@@ -33,13 +33,13 @@ It sets up the following tooling for you:
 
 - [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
 - [**ESLint**](https://eslint.org): Static analysis for JavaScript code, configured with [typescript-eslint](https://typescript-eslint.io) for TypeScript code and other general-use plugins.
+- [**Knip**](https://github.com/webpro/knip): Find unused files, dependencies and exports in your JS/TS project.
 - [**Markdownlint**](https://github.com/DavidAnson/markdownlint): Static analysis for Markdown code.
 - [**pnpm**](https://pnpm.io): Disk-efficient package manager alternative.
 - [**PR Compliance Action**](https://github.com/mtfoley/pr-compliance-action): Checks PRs for compliance on chore such as addressing a linked issue and proper title formatting.
 - [**Prettier**](https://prettier.io): Opinionated formatting for code, run on file save and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
 - [**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
 - [**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
-- [**ts-prune**](https://github.com/nadeesha/ts-prune): Unused exports detection for TypeScript code.
 - [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
 - [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking.
 

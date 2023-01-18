@@ -3,14 +3,6 @@
 	"entry": ["src/index.ts!", "script/setup*.js"],
 	"project": ["src/**/*.ts!", "script/**/*.js"],
 
-	// Remove when Knip has plugins for GitHub Actions, husky, markdownlint, npm-package-json-lint, should-semantic-release, vitest:
-	"ignoreDependencies": [
-		"@vitest/coverage-istanbul",
-		"lint-staged",
-		"markdownlint",
-		"npm-package-json-lint-config-default",
-		"release-it",
-		"sentences-per-line",
-		"should-semantic-release"
-	]
+	// Remove when Knip extended the release-it plugin to pluck binaries from hooks:
+	"ignoreDependencies": ["should-semantic-release"]
 }

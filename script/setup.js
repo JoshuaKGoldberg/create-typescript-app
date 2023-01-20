@@ -121,10 +121,10 @@ try {
 		[/## Explainer.*## Usage/s, `## Usage`, "./README.md"],
 		[
 			`["src/index.ts!", "script/setup*.js"]`,
-			`["src/index.ts!"]`,
+			`"src/index.ts!"`,
 			"./knip.jsonc",
 		],
-		[`["src/**/*.ts!", "script/**/*.js"]`, `["src/**/*.ts!"]`, "./knip.jsonc"],
+		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
 	]) {
 		await replace({ files, from, to });
 	}

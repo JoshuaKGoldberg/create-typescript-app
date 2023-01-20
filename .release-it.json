@@ -8,6 +8,6 @@
 		"releaseName": "v${version}"
 	},
 	"hooks": {
-		"before:bump": "if ! npx should-semantic-release ; then exit 1 ; fi"
+		"before:bump": "if ! npx should-semantic-release --verbose ; then exit 1 ; fi"
 	}
 }

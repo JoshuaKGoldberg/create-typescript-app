@@ -64,12 +64,12 @@ jobs:
                   checks: [
                     { context: "build" },
                     { context: "compliance" },
+                    { context: "knip" },
                     { context: "lint" },
                     { context: "markdown" },
                     { context: "package" },
                     { context: "packages" },
                     { context: "prettier" },
-                    { context: "prune" },
                     { context: "spelling" },
                     { context: "test" },
                   ],

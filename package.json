@@ -6,7 +6,7 @@
 		"@typescript-eslint/parser": "^5.48.2",
 		"@vitest/coverage-istanbul": "^0.27.2",
 		"chalk": "^5.2.0",
-		"cspell": "^6.19.0",
+		"cspell": "^6.19.1",
 		"enquirer": "^2.3.6",
 		"eslint": "^8.32.0",
 		"eslint-config-prettier": "^8.6.0",
@@ -21,6 +21,7 @@
 		"eslint-plugin-vitest": "^0.0.29",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
+		"knip": "1.9.0",
 		"lint-staged": "^13.1.0",
 		"markdownlint": "^0.27.0",
 		"markdownlint-cli": "^0.33.0",
@@ -33,10 +34,8 @@
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.1",
-		"ts-prune": "^0.10.3",
 		"typescript": "^4.9.4",
-		"vitest": "^0.27.2",
-		"yargs": "^17.6.2"
+		"vitest": "^0.27.2"
 	},
 	"engines": {
 		"node": ">=18"
@@ -57,10 +56,10 @@
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package": "npmPkgJsonLint .",
 		"lint:packages": "pnpm-deduplicate --list",
-		"lint:prune": "ts-prune",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
 		"setup": "npx --yes zx --quiet script/setup.js",

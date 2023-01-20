@@ -31,12 +31,12 @@ It should be applied automatically when you save files in VS Code or make a Git 
 This package includes several forms of linting to enforce consistent code quality and styling.
 Each should be shown in VS Code, and can be run manually on the command-line:
 
-- `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
+- `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
 - `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
 - `pnpm lint:package` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
 - `pnpm lint:packages` ([pnpm-deduplicate](https://github.com/ocavue/pnpm-deduplicate)): Deduplicates packages in the `pnpm-lock.yml` file
-- `pnpm lint:prune` ([ts-prune](https://github.com/nadeesha/ts-prune)): Detects unused exports in TypeScript source files
 - `pnpm lint:spelling` ([cspell](https://cspell.org)): Spell checks across all source files
+- `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 
 ## Testing
 
@@ -47,7 +47,7 @@ You can run it locally on the command-line:
 pnpm run test
 ```
 
-Add the `--coverage` flat to compute test coverage and place reports in the `coverage/` directory:
+Add the `--coverage` flag to compute test coverage and place reports in the `coverage/` directory:
 
 ```shell
 pnpm run test --coverage

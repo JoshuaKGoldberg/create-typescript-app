@@ -119,6 +119,12 @@ try {
 			"./package.json",
 		],
 		[/## Explainer.*## Usage/s, `## Usage`, "./README.md"],
+		[
+			`["src/index.ts!", "script/setup*.js"]`,
+			`"src/index.ts!"`,
+			"./knip.jsonc",
+		],
+		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
 	]) {
 		await replace({ files, from, to });
 	}
@@ -230,12 +236,12 @@ try {
 					checks: [
 						{ context: "build" },
 						{ context: "compliance" },
+						{ context: "knip" },
 						{ context: "lint" },
 						{ context: "markdown" },
 						{ context: "package" },
 						{ context: "packages" },
 						{ context: "prettier" },
-						{ context: "prune" },
 						{ context: "spelling" },
 						{ context: "test" },
 					],

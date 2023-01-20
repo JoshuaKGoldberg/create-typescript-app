@@ -1,0 +1,12 @@
+{
+	"$schema": "https://unpkg.com/knip@next/schema.json",
+	"entry": ["src/index.ts!", "script/setup*.js"],
+	"project": ["src/**/*.ts!", "script/**/*.js"],
+
+	"ignoreDependencies": [
+		// Remove when Knip understands ESLint overrides > extends:
+		"eslint-plugin-markdown",
+		// Remove when Knip extends the release-it plugin to pluck binaries from hooks:
+		"should-semantic-release"
+	]
+}

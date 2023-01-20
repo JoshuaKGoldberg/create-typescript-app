@@ -3,6 +3,10 @@
 	"entry": ["src/index.ts!", "script/setup*.js"],
 	"project": ["src/**/*.ts!", "script/**/*.js"],
 
-	// Remove when Knip extended the release-it plugin to pluck binaries from hooks:
-	"ignoreDependencies": ["should-semantic-release"]
+	"ignoreDependencies": [
+		// Remove when Knip understands ESLint overrides > extends:
+		"eslint-plugin-markdown",
+		// Remove when Knip extends the release-it plugin to pluck binaries from hooks:
+		"should-semantic-release"
+	]
 }

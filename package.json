@@ -6,7 +6,7 @@
 		"@typescript-eslint/parser": "^5.48.2",
 		"@vitest/coverage-istanbul": "^0.27.2",
 		"chalk": "^5.2.0",
-		"cspell": "^6.19.1",
+		"cspell": "^6.19.2",
 		"enquirer": "^2.3.6",
 		"eslint": "^8.32.0",
 		"eslint-config-prettier": "^8.6.0",

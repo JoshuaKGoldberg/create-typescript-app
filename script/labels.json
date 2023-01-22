@@ -1,10 +1,5 @@
 [
 	{
-		"color": "0E8A16",
-		"description": "Please, send a pull request to resolve this!",
-		"name": "accepting prs"
-	},
-	{
 		"color": "0075ca",
 		"description": "Improvements or additions to docs",
 		"name": "area: documentation"
@@ -30,6 +25,11 @@
 		"name": "invalid"
 	},
 	{
+		"color": "0E8A16",
+		"description": "Please, send a pull request to resolve this!",
+		"name": "status: accepting prs"
+	},
+	{
 		"color": "#ddcccc",
 		"description": "Waiting for something else to be resolved",
 		"name": "status: blocked"
@@ -50,6 +50,11 @@
 		"name": "status: waiting for author"
 	},
 	{
+		"color": "ffffff",
+		"description": "This will not be worked on",
+		"name": "status: wontfix"
+	},
+	{
 		"color": "d73a4a",
 		"description": "Something isn't working",
 		"name": "type: bug"
@@ -63,10 +68,5 @@
 		"color": "d876e3",
 		"description": "Further information is requested",
 		"name": "type: question"
-	},
-	{
-		"color": "ffffff",
-		"description": "This will not be worked on",
-		"name": "wontfix"
 	}
 ]

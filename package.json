@@ -18,7 +18,7 @@
 		"eslint-plugin-regexp": "^1.12.0",
 		"eslint-plugin-simple-import-sort": "^9.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
-		"eslint-plugin-vitest": "^0.0.29",
+		"eslint-plugin-vitest": "^0.0.30",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
 		"knip": "1.9.0",

@@ -4,7 +4,7 @@
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
-		"@vitest/coverage-istanbul": "^0.27.2",
+		"@vitest/coverage-istanbul": "^0.28.0",
 		"chalk": "^5.2.0",
 		"cspell": "^6.19.2",
 		"enquirer": "^2.3.6",

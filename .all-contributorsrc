@@ -64,6 +64,15 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "webpro",
+      "name": "Lars Kappert",
+      "avatar_url": "https://avatars.githubusercontent.com/u/456426?v=4",
+      "profile": "https://webpro.nl",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,

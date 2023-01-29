@@ -20,7 +20,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
       - name: Delete branch protection on main
-        uses: actions/github-script@v6.3.3
+        uses: actions/github-script@v6.4.0
         with:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           script: |
@@ -38,7 +38,7 @@ jobs:
         run: pnpm release-it
       - if: always()
         name: Recreate branch protection on main
-        uses: actions/github-script@v6.3.3
+        uses: actions/github-script@v6.4.0
         with:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           # Note: keep this inline script in sync with script/setup.js!

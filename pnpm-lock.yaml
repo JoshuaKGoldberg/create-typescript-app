@@ -20,7 +20,7 @@ specifiers:
   eslint-plugin-vitest: ^0.0.32
   husky: ^8.0.3
   jsonc-eslint-parser: ^2.1.0
-  knip: 1.12.2
+  knip: 1.12.3
   lint-staged: ^13.1.0
   markdownlint: ^0.27.0
   markdownlint-cli: ^0.33.0
@@ -56,7 +56,7 @@ devDependencies:
   eslint-plugin-vitest: 0.0.32_7uibuqfxkfaozanbtbziikiqje
   husky: 8.0.3
   jsonc-eslint-parser: 2.1.0
-  knip: 1.12.2
+  knip: 1.12.3
   lint-staged: 13.1.0_enquirer@2.3.6
   markdownlint: 0.27.0
   markdownlint-cli: 0.33.0
@@ -4853,8 +4853,8 @@ packages:
       graceful-fs: 4.2.10
     dev: true
 
-  /knip/1.12.2:
-    resolution: {integrity: sha512-605YH2cDkzDhEg2h7iD7/EiCW8DQlwmv8FBWMxk6+iHfzyVbu0c7uFAk2EVZztHCTjvuHIgpWjXvo7WpX15bEg==}
+  /knip/1.12.3:
+    resolution: {integrity: sha512-EZH0RIiyw7IhFKlKAp0DZfZkRAO2PkyPkyJxh2KYly8NN0WSYvYdHBoUfokT/LTqHc9Gv2eBJ/nU6uvDJ22SGA==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     requiresBuild: true

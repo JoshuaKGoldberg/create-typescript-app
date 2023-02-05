@@ -35,7 +35,7 @@ jobs:
             }
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: NODE_DEBUG=re* pnpm release-it --verbose
+        run: pnpm release-it --verbose
       - if: always()
         name: Recreate branch protection on main
         uses: actions/github-script@v6.4.0

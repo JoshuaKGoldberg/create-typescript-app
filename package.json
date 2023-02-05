@@ -64,6 +64,7 @@
 		"prepare": "husky install",
 		"setup": "npx --yes zx --quiet script/setup.js",
 		"setup:test": "npx --yes zx --quiet script/setup-test-e2e.js",
+		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest"
 	},
 	"type": "module",

@@ -32,7 +32,7 @@ specifiers:
   release-it: ^15.6.0
   replace-in-file: ^6.3.5
   sentences-per-line: ^0.2.1
-  should-semantic-release: ^0.0.2
+  should-semantic-release: ^0.0.3
   typescript: ^4.9.4
   vitest: ^0.28.0
 
@@ -68,7 +68,7 @@ devDependencies:
   release-it: 15.6.0
   replace-in-file: 6.3.5
   sentences-per-line: 0.2.1
-  should-semantic-release: 0.0.2
+  should-semantic-release: 0.0.3
   typescript: 4.9.4
   vitest: 0.28.2
 
@@ -6427,8 +6427,8 @@ packages:
       rechoir: 0.6.2
     dev: true
 
-  /should-semantic-release/0.0.2:
-    resolution: {integrity: sha512-ThYU7755xXam1WW7NkNZcuVp8ylUw0knjXSPFqPuEnHEJBXteeOTPvxgW4jjURPBljTiPyk/baUFe3YLg4ungw==}
+  /should-semantic-release/0.0.3:
+    resolution: {integrity: sha512-PDgsSaTt0vbnMgoG4t8Yq/3kAQ1ES1wNPMVuqAHskk7OtaBvQtQiYxZQM4ck0zOLB6aKJdtmTWy+uBUl7aWfTQ==}
     engines: {node: '>=18'}
     hasBin: true
     dependencies:

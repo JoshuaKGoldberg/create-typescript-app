@@ -30,6 +30,7 @@
 		"octokit": "^2.0.11",
 		"pnpm-deduplicate": "^0.4.1",
 		"prettier": "^2.8.3",
+		"prettier-plugin-packagejson": "^2.4.2",
 		"release-it": "^15.6.0",
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",

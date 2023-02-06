@@ -1,6 +1,34 @@
 {
-	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
+	"name": "template-typescript-node-package",
+	"version": "1.27.58",
 	"description": "A quickstart-friendly TypeScript package with lots of great repository tooling. ✨",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
+	},
+	"license": "MIT",
+	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
+	"type": "module",
+	"main": "./lib/index.js",
+	"scripts": {
+		"build": "tsc",
+		"format": "prettier \"**/*\" --ignore-unknown",
+		"format:write": "pnpm format --write",
+		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+		"lint:knip": "knip",
+		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
+		"lint:package": "npmPkgJsonLint .",
+		"lint:packages": "pnpm-deduplicate --list",
+		"lint:spelling": "cspell \"**\" \".github/**/*\"",
+		"prepare": "husky install",
+		"setup": "npx --yes zx --quiet script/setup.js",
+		"setup:test": "npx --yes zx --quiet script/setup-test-e2e.js",
+		"should-semantic-release": "should-semantic-release --verbose",
+		"test": "vitest"
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write"
+	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
@@ -38,36 +66,8 @@
 		"typescript": "^4.9.4",
 		"vitest": "^0.28.0"
 	},
+	"packageManager": "pnpm@7.26.3",
 	"engines": {
 		"node": ">=18"
-	},
-	"license": "MIT",
-	"lint-staged": {
-		"*": "prettier --ignore-unknown --write"
-	},
-	"main": "./lib/index.js",
-	"name": "template-typescript-node-package",
-	"packageManager": "pnpm@7.26.3",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
-	},
-	"scripts": {
-		"build": "tsc",
-		"format": "prettier \"**/*\" --ignore-unknown",
-		"format:write": "pnpm format --write",
-		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
-		"lint:knip": "knip",
-		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
-		"lint:package": "npmPkgJsonLint .",
-		"lint:packages": "pnpm-deduplicate --list",
-		"lint:spelling": "cspell \"**\" \".github/**/*\"",
-		"prepare": "husky install",
-		"setup": "npx --yes zx --quiet script/setup.js",
-		"setup:test": "npx --yes zx --quiet script/setup-test-e2e.js",
-		"should-semantic-release": "should-semantic-release --verbose",
-		"test": "vitest"
-	},
-	"type": "module",
-	"version": "1.27.58"
+	}
 }

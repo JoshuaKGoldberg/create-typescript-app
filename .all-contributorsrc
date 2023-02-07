@@ -74,6 +74,15 @@
         "tool",
         "ideas"
       ]
+    },
+    {
+      "login": "RebeccaStevens",
+      "name": "Rebecca Stevens",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
+      "profile": "https://github.com/RebeccaStevens",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

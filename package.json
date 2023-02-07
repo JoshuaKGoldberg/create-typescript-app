@@ -40,6 +40,12 @@
 	"engines": {
 		"node": ">=18"
 	},
+	"files": [
+		"lib/",
+		"package.json",
+		"LICENSE.md",
+		"README.md"
+	],
 	"license": "MIT",
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"

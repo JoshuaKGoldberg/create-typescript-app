@@ -10,6 +10,12 @@
 	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
 	"type": "module",
 	"main": "./lib/index.js",
+	"files": [
+		"lib/",
+		"package.json",
+		"LICENSE.md",
+		"README.md"
+	],
 	"scripts": {
 		"build": "tsc",
 		"format": "prettier \"**/*\" --ignore-unknown",

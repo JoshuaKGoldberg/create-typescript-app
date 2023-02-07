@@ -18,6 +18,7 @@
 		"infile",
 		"knip",
 		"lcov",
+		"packagejson",
 		"quickstart",
 		"wontfix"
 	]

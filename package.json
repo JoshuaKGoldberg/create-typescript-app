@@ -1,6 +1,40 @@
 {
-	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
+	"name": "template-typescript-node-package",
+	"version": "1.27.58",
 	"description": "A quickstart-friendly TypeScript package with lots of great repository tooling. ✨",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
+	},
+	"license": "MIT",
+	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
+	"type": "module",
+	"main": "./lib/index.js",
+	"files": [
+		"lib/",
+		"package.json",
+		"LICENSE.md",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"format": "prettier \"**/*\" --ignore-unknown",
+		"format:write": "pnpm format --write",
+		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+		"lint:knip": "knip",
+		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
+		"lint:package": "npmPkgJsonLint .",
+		"lint:packages": "pnpm-deduplicate --list",
+		"lint:spelling": "cspell \"**\" \".github/**/*\"",
+		"prepare": "husky install",
+		"setup": "npx --yes zx --quiet script/setup.js",
+		"setup:test": "npx --yes zx --quiet script/setup-test-e2e.js",
+		"should-semantic-release": "should-semantic-release --verbose",
+		"test": "vitest"
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write"
+	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
@@ -30,6 +64,7 @@
 		"octokit": "^2.0.11",
 		"pnpm-deduplicate": "^0.4.1",
 		"prettier": "^2.8.3",
+		"prettier-plugin-packagejson": "^2.4.2",
 		"release-it": "^15.6.0",
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
@@ -37,42 +72,8 @@
 		"typescript": "^4.9.4",
 		"vitest": "^0.28.0"
 	},
+	"packageManager": "pnpm@7.26.3",
 	"engines": {
 		"node": ">=18"
-	},
-	"files": [
-		"lib/",
-		"package.json",
-		"LICENSE.md",
-		"README.md"
-	],
-	"license": "MIT",
-	"lint-staged": {
-		"*": "prettier --ignore-unknown --write"
-	},
-	"main": "./lib/index.js",
-	"name": "template-typescript-node-package",
-	"packageManager": "pnpm@7.26.3",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
-	},
-	"scripts": {
-		"build": "tsc",
-		"format": "prettier \"**/*\" --ignore-unknown",
-		"format:write": "pnpm format --write",
-		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
-		"lint:knip": "knip",
-		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
-		"lint:package": "npmPkgJsonLint .",
-		"lint:packages": "pnpm-deduplicate --list",
-		"lint:spelling": "cspell \"**\" \".github/**/*\"",
-		"prepare": "husky install",
-		"setup": "npx --yes zx --quiet script/setup.js",
-		"setup:test": "npx --yes zx --quiet script/setup-test-e2e.js",
-		"should-semantic-release": "should-semantic-release --verbose",
-		"test": "vitest"
-	},
-	"type": "module",
-	"version": "1.27.59"
+	}
 }

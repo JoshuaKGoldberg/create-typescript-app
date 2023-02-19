@@ -192,6 +192,7 @@ try {
 				: "create";
 			await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
 		}
+
 		console.log(chalk.gray`✔️ Done.`);
 
 		console.log();
@@ -287,4 +288,5 @@ if (caughtError) {
 	console.log(chalk.gray`\tgit push`);
 	console.log(chalk.greenBright`See ya! 👋`);
 }
+
 console.log();

@@ -70,6 +70,7 @@ module.exports = {
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-inner-declarations": "off",
 
+		// Formatting rule - does not interfere with Prettier
 		"padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", prev: "block-like", next: "*" },

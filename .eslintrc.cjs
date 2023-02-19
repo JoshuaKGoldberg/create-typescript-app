@@ -32,7 +32,7 @@ module.exports = {
 			},
 		},
 		{
-			files: "*.json",
+			files: ["*.json", "*.jsonc"],
 			excludedFiles: ["package.json"],
 			parser: "jsonc-eslint-parser",
 			rules: {

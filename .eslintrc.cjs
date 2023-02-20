@@ -69,5 +69,12 @@ module.exports = {
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-inner-declarations": "off",
+
+		// Stylistic concerns that don't interfere with Prettier
+		"padding-line-between-statements": "off",
+		"@typescript-eslint/padding-line-between-statements": [
+			"error",
+			{ blankLine: "always", next: "*", prev: "block-like" },
+		],
 	},
 };

@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -34,7 +37,7 @@ jobs:
               }
             }
       - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: if pnpm run should-semantic-release ; then pnpm release-it --verbose ; fi
       - if: always()
         name: Recreate branch protection on main

@@ -13,4 +13,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           comment-template: |
-            :tada: This PR is included in version {release_link} :tada:
+            :tada: This is included in version {release_link} :tada:

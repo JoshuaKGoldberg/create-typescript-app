@@ -18,7 +18,7 @@ jobs:
       - name: Prettier review
         uses: EPMatt/reviewdog-action-prettier@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.ACCESS_TOKEN }}
           reporter: github-pr-review
           level: warning
           fail_on_error: false

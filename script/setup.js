@@ -270,7 +270,7 @@ try {
 	console.log(
 		chalk.gray`Removing devDependency packages only used for setup...`
 	);
-	await $`pnpm remove enquirer octokit replace-in-file -D`;
+	await $`pnpm remove chalk enquirer octokit replace-in-file -D`;
 	console.log(chalk.gray`✔️ Done.`);
 }
 

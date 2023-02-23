@@ -18,6 +18,7 @@ jobs:
         with:
           body-auto-close: false
           ignore-authors: |
+            allcontributors
             renovate
             renovate[bot]
           ignore-team-members: false

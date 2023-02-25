@@ -5,7 +5,8 @@
 	},
 	"github": {
 		"release": true,
-		"releaseName": "v${version}"
+		"releaseName": "v${version}",
+		"autoGenerate": true
 	},
 	"hooks": {
 		"before:bump": "if ! pnpm run should-semantic-release --verbose ; then exit 1 ; fi"

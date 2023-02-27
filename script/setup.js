@@ -36,6 +36,8 @@ try {
 		strict: false,
 	});
 
+	values["skip-api"] = true;
+
 	async function getPrefillOrPromptedValue(key, message) {
 		const { [key]: value } = values[key]
 			? (console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`)),

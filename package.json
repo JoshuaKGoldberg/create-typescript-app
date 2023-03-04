@@ -53,7 +53,7 @@
 		"eslint-plugin-regexp": "^1.12.0",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
-		"eslint-plugin-vitest": "^0.0.48",
+		"eslint-plugin-vitest": "^0.0.53",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
 		"knip": "^1.12.3",

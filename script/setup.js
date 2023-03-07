@@ -1,7 +1,7 @@
 /* global $ */
 import { parseArgs } from "node:util";
 
-import { cancel, intro, isCancel, outro, text } from "@clack/prompts";
+import { cancel, isCancel, text } from "@clack/prompts";
 import chalk from "chalk";
 import { promises as fs } from "fs";
 import { Octokit } from "octokit";

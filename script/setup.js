@@ -1,13 +1,12 @@
 /* global $ */
 import { parseArgs } from "node:util";
 
+import { cancel, intro, isCancel, outro, text } from "@clack/prompts";
 import chalk from "chalk";
 import { promises as fs } from "fs";
 import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";
-
-const { prompt } = require("enquirer");
 
 let caughtError;
 
@@ -36,42 +35,54 @@ try {
 		strict: false,
 	});
 
-	async function getPrefillOrPromptedValue(key, message) {
+	async function getPrefillOrPromptedValue(key, message, placeholder) {
 		const { [key]: value } = values[key]
 			? (console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`)),
 			  values)
-			: await prompt({
+			: await text({
 					message,
-					name: key,
-					type: "input",
+					placeholder,
+					validate: (val) => {
+						if (val.length === 0) return "Please enter a value.";
+					},
 			  });
+
+		if (isCancel(value)) {
+			cancel("Operation cancelled.");
+			process.exit(0);
+		}
 
 		return value;
 	}
 
 	const repository = await getPrefillOrPromptedValue(
 		"repository",
-		"What will the kebab-case name of the repository be?"
+		"What will the kebab-case name of the repository be?",
+		"my-repo"
 	);
 
 	const title = await getPrefillOrPromptedValue(
 		"title",
-		"What will the Title Case title of the repository be?"
+		"What will the Title Case title of the repository be?",
+		"My Title"
 	);
 
 	const owner = await getPrefillOrPromptedValue(
 		"owner",
-		"What owner or user will the repository be under?"
+		"What owner or user will the repository be under?",
+		"UserName"
 	);
 
 	const description = await getPrefillOrPromptedValue(
 		"description",
-		"How would you describe the new package?"
+		"How would you describe the new package?",
+		"a good package"
 	);
 
 	const skipApi = await getPrefillOrPromptedValue(
 		"skip-api",
-		"Whether to skip calling the GitHub API (effectively making this a local-only change)."
+		"Whether to skip calling the GitHub API (effectively making this a local-only change).",
+		"no"
 	);
 
 	console.log();

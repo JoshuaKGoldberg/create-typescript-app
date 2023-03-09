@@ -1,4 +1,5 @@
 /* global $ */
+import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
 import chalk from "chalk";
@@ -6,7 +7,6 @@ import { promises as fs } from "fs";
 import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";
-import { EOL } from "node:os";
 
 const { prompt } = require("enquirer");
 

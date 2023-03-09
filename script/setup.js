@@ -165,7 +165,7 @@ try {
 	console.log(chalk.gray`✔️ Done.`);
 
 	console.log();
-	console.log(chalk.gray`Generating all-contributors table in README.md...`);
+	console.log(chalk.gray`Generating all-contributors table in README.md...`));
 
 	await $`npx all-contributors generate`;
 

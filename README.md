@@ -106,8 +106,6 @@ Thanks! 💖
 
 ## Contributors
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
 <!-- spellchecker: disable -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -136,5 +134,3 @@ Thanks! 💖
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->

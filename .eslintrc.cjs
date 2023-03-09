@@ -1,3 +1,4 @@
+/** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
 	env: {
 		es2022: true,
@@ -12,8 +13,22 @@ module.exports = {
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
-			files: ["**/*.{md}"],
+			files: ["**/*.md", "**/*.md/*.js"],
 			processor: "markdown/markdown",
+		},
+		{
+			// https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-818463890
+			files: ["**/*.md/*.ts"],
+			parser: "@typescript-eslint/parser",
+			// Only rules that don't require type information are allowed
+			extends: [
+				"plugin:@typescript-eslint/recommended",
+				"plugin:typescript-sort-keys/recommended",
+			],
+			rules: {
+				"@typescript-eslint/no-unused-vars": "off",
+				"@typescript-eslint/padding-line-between-statements": "off",
+			},
 		},
 		{
 			extends: [
@@ -22,7 +37,9 @@ module.exports = {
 				"plugin:typescript-sort-keys/recommended",
 				"plugin:@typescript-eslint/strict",
 			],
-			files: ["**/*.{ts,tsx}"],
+			files: ["**/*.ts"],
+			// It's impossible to retrieve type-level information for TypeScript code blocks
+			excludedFiles: ["**/*.md/*.ts"],
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
 			},
@@ -45,6 +62,45 @@ module.exports = {
 			rules: {
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
+			},
+		},
+		{
+			files: ["**/*.{yml,yaml}"],
+			parser: "yaml-eslint-parser",
+			extends: ["plugin:yml/base", "plugin:yml/prettier"],
+			rules: {
+				"yml/sort-keys": [
+					"error",
+					{
+						order: [
+							"name",
+							"description",
+							"on",
+							"permissions",
+							"jobs",
+							"title",
+							"labels",
+							"body",
+							"runs-on",
+							"using",
+							"steps",
+							{
+								order: {
+									natural: false,
+									type: "asc",
+								},
+							},
+						],
+						pathPattern: "^.*$",
+					},
+				],
+				"yml/sort-sequence-values": [
+					"error",
+					{
+						order: { caseSensitive: true, type: "asc" },
+						pathPattern: "^$",
+					},
+				],
 			},
 		},
 	],

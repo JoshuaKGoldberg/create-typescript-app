@@ -1,11 +1,11 @@
 name: Lint Knip
 
 on:
+  pull_request:
+
   push:
     branches:
       - main
-  pull_request:
-
 jobs:
   knip:
     runs-on: ubuntu-latest

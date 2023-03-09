@@ -22,6 +22,6 @@ body:
     validations:
       required: true
   - attributes:
-      label: Additional Info
       description: Any additional info you'd like to provide.
+      label: Additional Info
     type: textarea

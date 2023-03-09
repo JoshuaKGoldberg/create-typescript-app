@@ -1,11 +1,11 @@
 name: Lint Packages
 
 on:
+  pull_request:
+
   push:
     branches:
       - main
-  pull_request:
-
 jobs:
   packages:
     runs-on: ubuntu-latest

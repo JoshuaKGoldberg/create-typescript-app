@@ -1,11 +1,11 @@
 name: Test Setup Script
 
 on:
+  pull_request:
+
   push:
     branches:
       - main
-  pull_request:
-
 jobs:
   setup:
     runs-on: ubuntu-latest

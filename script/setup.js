@@ -165,6 +165,13 @@ try {
 	console.log(chalk.gray`✔️ Done.`);
 
 	console.log();
+	console.log(chalk.gray`Generating all-contributors table in README.md...`);
+
+	await $`npx all-contributors generate`;
+
+	console.log(chalk.gray`✔️ Done.`);
+
+	console.log();
 	console.log(chalk.gray`Deleting local git tags...`);
 
 	await $`git tag -d $(git tag -l)`;

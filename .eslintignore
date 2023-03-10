@@ -1,2 +1,4 @@
 coverage
 lib
+# Dot files and folders are ignored by default by ESLint
+!.*

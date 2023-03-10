@@ -17,12 +17,8 @@ Please do [report an issue on the issue tracker](https://github.com/JoshuaKGoldb
 Sending your own changes as contribution is always appreciated!
 There are two steps involved:
 
-- [Contributing](#contributing)
-  - [Code of Conduct](#code-of-conduct)
-  - [Reporting Issues](#reporting-issues)
-  - [Sending Contributions](#sending-contributions)
-    - [Finding an Issue](#finding-an-issue)
-    - [Sending a Pull Request](#sending-a-pull-request)
+1. [Finding an Issue](#finding-an-issue)
+2. [Sending a Pull Request](#sending-a-pull-request)
 
 ### Finding an Issue
 

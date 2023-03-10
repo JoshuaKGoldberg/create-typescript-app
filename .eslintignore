@@ -1,5 +1,3 @@
 coverage
 lib
 pnpm-lock.yaml
-# Dot files and folders are ignored by default by ESLint
-!.github

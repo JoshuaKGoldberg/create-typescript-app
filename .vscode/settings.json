@@ -5,13 +5,5 @@
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
 	"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"eslint.probe": [
-		"javascript",
-		"json",
-		"jsonc",
-		"markdown",
-		"typescript",
-		"yaml"
-	]
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

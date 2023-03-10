@@ -1,4 +1,3 @@
-/** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
 	env: {
 		es2022: true,
@@ -13,22 +12,8 @@ module.exports = {
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
-			files: ["**/*.md", "**/*.md/*.js"],
+			files: ["**/*.{md}"],
 			processor: "markdown/markdown",
-		},
-		{
-			// https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-818463890
-			files: ["**/*.md/*.ts"],
-			parser: "@typescript-eslint/parser",
-			// Only rules that don't require type information are allowed
-			extends: [
-				"plugin:@typescript-eslint/recommended",
-				"plugin:typescript-sort-keys/recommended",
-			],
-			rules: {
-				"@typescript-eslint/no-unused-vars": "off",
-				"@typescript-eslint/padding-line-between-statements": "off",
-			},
 		},
 		{
 			extends: [
@@ -38,8 +23,6 @@ module.exports = {
 				"plugin:@typescript-eslint/strict",
 			],
 			files: ["**/*.ts"],
-			// It's impossible to retrieve type-level information for TypeScript code blocks
-			excludedFiles: ["**/*.md/*.ts"],
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
 			},
@@ -72,35 +55,14 @@ module.exports = {
 				"yml/sort-keys": [
 					"error",
 					{
-						order: [
-							// github workflow root-level keys
-							"name",
-							"on",
-							"permissions",
-							"jobs",
-							// github issue template
-							"description",
-							"title",
-							"labels",
-							"body",
-							// github job
-							"runs-on",
-							"using",
-							"steps",
-							{
-								order: {
-									natural: false,
-									type: "asc",
-								},
-							},
-						],
+						order: { type: "asc" },
 						pathPattern: "^.*$",
 					},
 				],
 				"yml/sort-sequence-values": [
 					"error",
 					{
-						order: { caseSensitive: true, type: "asc" },
+						order: { type: "asc" },
 						pathPattern: "^.*$",
 					},
 				],

@@ -6,7 +6,7 @@
 	"editor.formatOnSave": true,
 	"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"eslint.validate": [
+	"eslint.probe": [
 		"javascript",
 		"json",
 		"jsonc",

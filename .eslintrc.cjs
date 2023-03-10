@@ -22,7 +22,7 @@ module.exports = {
 				"plugin:typescript-sort-keys/recommended",
 				"plugin:@typescript-eslint/strict",
 			],
-			files: ["**/*.ts"],
+			files: ["**/*.{ts,tsx}"],
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
 			},

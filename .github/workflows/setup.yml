@@ -1,3 +1,10 @@
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/prepare
+      - run: pnpm run setup:test
 name: Test Setup Script
 
 on:
@@ -6,10 +13,3 @@ on:
   push:
     branches:
       - main
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/prepare
-      - run: pnpm run setup:test

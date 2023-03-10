@@ -1,3 +1,10 @@
+jobs:
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/prepare
+      - run: pnpm lint:md
 name: Lint Markdown
 
 on:
@@ -6,10 +13,3 @@ on:
   push:
     branches:
       - main
-jobs:
-  markdown:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/prepare
-      - run: pnpm lint:md

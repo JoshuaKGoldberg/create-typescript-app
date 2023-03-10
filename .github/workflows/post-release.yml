@@ -1,9 +1,3 @@
-name: Post-release
-
-on:
-  release:
-    types: [published]
-
 jobs:
   post_release:
     name: Comment on relevant PRs and issues
@@ -14,3 +8,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           comment-template: |
             :tada: This is included in version {release_link} :tada:
+name: Post-release
+on:
+  release:
+    types: [published]

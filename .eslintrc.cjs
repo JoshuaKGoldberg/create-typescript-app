@@ -73,14 +73,17 @@ module.exports = {
 					"error",
 					{
 						order: [
+							// github workflow root-level keys
 							"name",
-							"description",
 							"on",
 							"permissions",
 							"jobs",
+							// github issue template
+							"description",
 							"title",
 							"labels",
 							"body",
+							// github job
 							"runs-on",
 							"using",
 							"steps",
@@ -98,7 +101,7 @@ module.exports = {
 					"error",
 					{
 						order: { caseSensitive: true, type: "asc" },
-						pathPattern: "^$",
+						pathPattern: "^.*$",
 					},
 				],
 			},

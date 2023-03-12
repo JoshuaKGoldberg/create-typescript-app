@@ -17,12 +17,10 @@ module.exports = {
 			processor: "markdown/markdown",
 		},
 		{
-			// Only rules that don't require type information are allowed
 			extends: [
 				"plugin:@typescript-eslint/recommended",
 				"plugin:typescript-sort-keys/recommended",
 			],
-			// https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-818463890
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 		},
@@ -54,6 +52,7 @@ module.exports = {
 		{
 			files: "**/*.test.ts",
 			rules: {
+				// These on-by-default rules aren't useful in test files.
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
 			},

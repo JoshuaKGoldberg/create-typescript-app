@@ -13,17 +13,25 @@ module.exports = {
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
-			files: ["**/*.{md}"],
+			files: ["**/*.md"],
 			processor: "markdown/markdown",
 		},
 		{
 			extends: [
 				"plugin:@typescript-eslint/recommended",
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 				"plugin:typescript-sort-keys/recommended",
+			],
+			files: ["**/*.ts"],
+			parser: "@typescript-eslint/parser",
+		},
+		{
+			extends: [
+				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 				"plugin:@typescript-eslint/strict",
 			],
-			files: ["**/*.{ts,tsx}"],
+			excludedFiles: ["**/*.md/*.ts"],
+			files: ["**/*.ts"],
+			parser: "@typescript-eslint/parser",
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
 			},
@@ -44,6 +52,7 @@ module.exports = {
 		{
 			files: "**/*.test.ts",
 			rules: {
+				// These on-by-default rules aren't useful in test files.
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
 			},

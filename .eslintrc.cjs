@@ -58,6 +58,27 @@ module.exports = {
 				"@typescript-eslint/no-unsafe-call": "off",
 			},
 		},
+		{
+			files: ["**/*.{yml,yaml}"],
+			parser: "yaml-eslint-parser",
+			extends: ["plugin:yml/base", "plugin:yml/prettier"],
+			rules: {
+				"yml/sort-keys": [
+					"error",
+					{
+						order: { type: "asc" },
+						pathPattern: "^.*$",
+					},
+				],
+				"yml/sort-sequence-values": [
+					"error",
+					{
+						order: { type: "asc" },
+						pathPattern: "^.*$",
+					},
+				],
+			},
+		},
 	],
 	parser: "@typescript-eslint/parser",
 	plugins: [

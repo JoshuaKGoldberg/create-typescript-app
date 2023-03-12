@@ -11,13 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     uses: [actions/checkout@v3, ./.github/actions/prepare]
     steps:
-      - id: test1
+      - id: test
         run: |
-          pnpm build | sed 's/^/ Build Test : '
-      - id: test2
-        run: |
-          if node ./src/index.ts ; then
-              echo $? | sed 's/^/Imports Test : success : '
-          else
-              echo $? | sed 's/^/Imports Test : failed : '
-          fi
+          pnpm build
+          node ./src/index.js

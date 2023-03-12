@@ -5,6 +5,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
       - run: pnpm run setup:test
+
 name: Test Setup Script
 
 on:

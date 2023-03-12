@@ -71,7 +71,9 @@ jobs:
                 restrictions: null,
               }
             );
+
 name: Release
+
 on:
   push:
     branches:

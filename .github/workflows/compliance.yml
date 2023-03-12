@@ -10,6 +10,7 @@ jobs:
             renovate
             renovate[bot]
           ignore-team-members: false
+
 name: Compliance
 
 on:

@@ -12,33 +12,27 @@ module.exports = {
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
-			files: ["**/*.md", "**/*.md/*.js"],
+			files: ["**/*.md"],
 			processor: "markdown/markdown",
 		},
 		{
-			// https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-818463890
-			files: ["**/*.md/*.ts"],
-			parser: "@typescript-eslint/parser",
 			// Only rules that don't require type information are allowed
 			extends: [
 				"plugin:@typescript-eslint/recommended",
 				"plugin:typescript-sort-keys/recommended",
 			],
-			rules: {
-				"@typescript-eslint/no-unused-vars": "off",
-				"@typescript-eslint/padding-line-between-statements": "off",
-			},
+			// https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-818463890
+			files: ["**/*.ts"],
+			parser: "@typescript-eslint/parser",
 		},
 		{
 			extends: [
-				"plugin:@typescript-eslint/recommended",
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
-				"plugin:typescript-sort-keys/recommended",
 				"plugin:@typescript-eslint/strict",
 			],
-			files: ["**/*.ts"],
-			// It's impossible to retrieve type-level information for TypeScript code blocks
 			excludedFiles: ["**/*.md/*.ts"],
+			files: ["**/*.ts"],
+			parser: "@typescript-eslint/parser",
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
 			},

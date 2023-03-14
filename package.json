@@ -37,8 +37,8 @@
 	},
 	"devDependencies": {
 		"@types/eslint": "^8.21.1",
-		"@typescript-eslint/eslint-plugin": "^5.48.2",
-		"@typescript-eslint/parser": "^5.48.2",
+		"@typescript-eslint/eslint-plugin": "6.0.0-alpha.81",
+		"@typescript-eslint/parser": "6.0.0-alpha.81",
 		"@vitest/coverage-istanbul": "^0.29.0",
 		"chalk": "^5.2.0",
 		"cspell": "^6.19.2",

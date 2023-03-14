@@ -13,3 +13,8 @@ export function greet(options: GreetOptions | string) {
 		logger(message);
 	}
 }
+
+export async function thisFails(value: string) {
+	await value;
+	new Promise((resolve) => setTimeout(resolve, 1000));
+}

@@ -1,8 +1,8 @@
 /* global $ */
 import { parseArgs } from "node:util";
 
-import chalk from "chalk";
 import { cancel, isCancel, text } from "@clack/prompts";
+import chalk from "chalk";
 import { promises as fs } from "fs";
 import { Octokit } from "octokit";
 import prettier from "prettier";
@@ -48,7 +48,7 @@ try {
 			  });
 
 		if (isCancel(value)) {
-			cancel("Operation cancelled.");
+			cancel("Operation cancelled. Existing setup - maybe another time? 👋");
 			process.exit(0);
 		}
 
@@ -76,13 +76,12 @@ try {
 	const description = await getPrefillOrPromptedValue(
 		"description",
 		"How would you describe the new package?",
-		"a good package"
+		"A good package."
 	);
 
 	const skipApi = await getPrefillOrPromptedValue(
 		"skip-api",
-		"Whether to skip calling the GitHub API (effectively making this a local-only change).",
-		"no"
+		"Whether to skip calling the GitHub API (effectively making this a local-only change)."
 	);
 
 	console.log();

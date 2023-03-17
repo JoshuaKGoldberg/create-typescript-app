@@ -38,6 +38,7 @@
 	"devDependencies": {
 		"@clack/core": "^0.3.2",
 		"@clack/prompts": "^0.6.3",
+		"@types/eslint": "^8.21.1",
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
 		"@vitest/coverage-istanbul": "^0.29.0",
@@ -55,6 +56,7 @@
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
 		"eslint-plugin-vitest": "^0.0.54",
+		"eslint-plugin-yml": "^1.5.0",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
 		"knip": "^1.12.3",
@@ -72,9 +74,10 @@
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.4",
 		"typescript": "^4.9.4",
-		"vitest": "^0.29.0"
+		"vitest": "^0.29.0",
+		"yaml-eslint-parser": "^1.2.0"
 	},
-	"packageManager": "pnpm@7.28.0",
+	"packageManager": "pnpm@7.29.1",
 	"engines": {
 		"node": ">=18"
 	}

@@ -22,3 +22,6 @@ on:
       - opened
       - reopened
       - synchronize
+
+permissions:
+  pull-requests: write

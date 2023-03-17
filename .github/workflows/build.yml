@@ -11,7 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     uses: [actions/checkout@v3, ./.github/actions/prepare]
     steps:
-      - id: test
-        run: |
-          pnpm build
-          node ./src/index.js
+      - run: pnpm build
+      - run: node ./src/index.js

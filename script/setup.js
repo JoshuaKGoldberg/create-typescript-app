@@ -48,7 +48,7 @@ try {
 			  });
 
 		if (isCancel(value)) {
-			cancel("Operation cancelled. Existing setup - maybe another time? 👋");
+			cancel("Operation cancelled. Exiting setup - maybe another time? 👋");
 			process.exit(0);
 		}
 

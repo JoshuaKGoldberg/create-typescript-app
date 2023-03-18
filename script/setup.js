@@ -59,7 +59,7 @@ try {
 	const repository = await getPrefillOrPromptedValue(
 		"repository",
 		"What will the kebab-case name of the repository be?",
-		"my-repo"
+		"my-lovely-repository"
 	);
 
 	const title = await getPrefillOrPromptedValue(

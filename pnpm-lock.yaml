@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@clack/core': ^0.3.2
   '@clack/prompts': ^0.6.3
   '@types/eslint': ^8.21.1
   '@typescript-eslint/eslint-plugin': ^5.48.2
@@ -43,7 +42,6 @@ specifiers:
   yaml-eslint-parser: ^1.2.0
 
 devDependencies:
-  '@clack/core': 0.3.2
   '@clack/prompts': 0.6.3
   '@types/eslint': 8.21.2
   '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy

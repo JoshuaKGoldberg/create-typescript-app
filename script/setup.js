@@ -65,7 +65,7 @@ try {
 	const title = await getPrefillOrPromptedValue(
 		"title",
 		"What will the Title Case title of the repository be?",
-		"My Title"
+		"My Lovely Repository"
 	);
 
 	const owner = await getPrefillOrPromptedValue(

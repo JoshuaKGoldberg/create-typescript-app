@@ -37,7 +37,7 @@ try {
 	});
 
 	async function getPrefillOrPromptedValue(key, message, placeholder) {
-		const { [key]: value } = values[key]
+		const value = values[key]
 			? (console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`)),
 			  values)
 			: await text({

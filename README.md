@@ -45,6 +45,8 @@ It sets up the following tooling for you:
 
 ## Setup
 
+This package comes with a bootstrap/initialization setup script that fills out your repository's details, installs necessary packages, then removes itself and uninstalls setup dependencies.
+
 First make sure you have the following installed:
 
 - [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
@@ -59,7 +61,7 @@ To use this template:
    - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ permissions
    - `NPM_TOKEN`: An [npm access token](https://docs.npmjs.com/creating-and-viewing-access-tokens/) with _Automation_ permissions
 4. `pnpm install`
-5. `pnpm run setup`
+5. `pnpm run setup` to run the setup script
 6. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
 
 > The setup script removes the `## Explainer` and `## Setup` from this README.md.

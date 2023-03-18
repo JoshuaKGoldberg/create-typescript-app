@@ -45,6 +45,8 @@ It sets up the following tooling for you:
 
 ## Setup
 
+This package comes with a bootstrap/initialization setup script that fills out your repository's details, installs necessary packages, then removes itself and uninstalls setup dependencies.
+
 First make sure you have the following installed:
 
 - [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
@@ -59,7 +61,7 @@ To use this template:
    - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ permissions
    - `NPM_TOKEN`: An [npm access token](https://docs.npmjs.com/creating-and-viewing-access-tokens/) with _Automation_ permissions
 4. `pnpm install`
-5. `pnpm run setup`
+5. `pnpm run setup` to run the setup script
 6. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
 
 > The setup script removes the `## Explainer` and `## Setup` from this README.md.
@@ -106,8 +108,6 @@ Thanks! 💖
 
 ## Contributors
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
 <!-- spellchecker: disable -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -116,16 +116,16 @@ Thanks! 💖
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#content-JoshuaKGoldberg" title="Content">🖋</a> <a href="#example-JoshuaKGoldberg" title="Examples">💡</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-JoshuaKGoldberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-JoshuaKGoldberg" title="Maintenance">🚧</a> <a href="#platform-JoshuaKGoldberg" title="Packaging/porting to new platform">📦</a> <a href="#projectManagement-JoshuaKGoldberg" title="Project Management">📆</a> <a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/pulls?q=is%3Apr+reviewed-by%3AJoshuaKGoldberg" title="Reviewed Pull Requests">👀</a> <a href="#security-JoshuaKGoldberg" title="Security">🛡️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://sinchang.me"><img src="https://avatars.githubusercontent.com/u/3297859?v=4?s=100" width="100px;" alt="Jeff Wen"/><br /><sub><b>Jeff Wen</b></sub></a><br /><a href="#tool-sinchang" title="Tools">🔧</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://paulisaweso.me/"><img src="https://avatars.githubusercontent.com/u/6335792?v=4?s=100" width="100px;" alt="Paul Esch-Laurent"/><br /><sub><b>Paul Esch-Laurent</b></sub></a><br /><a href="#tool-Pinjasaur" title="Tools">🔧</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/NazCodeland"><img src="https://avatars.githubusercontent.com/u/113494366?v=4?s=100" width="100px;" alt="NazCodeland"/><br /><sub><b>NazCodeland</b></sub></a><br /><a href="#tool-NazCodeland" title="Tools">🔧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://blog.johnnyreilly.com/"><img src="https://avatars.githubusercontent.com/u/1010525?v=4?s=100" width="100px;" alt="John Reilly"/><br /><sub><b>John Reilly</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=author%3Ajohnnyreilly" title="Bug reports">🐛</a> <a href="#ideas-johnnyreilly" title="Ideas, Planning, & Feedback">🤔</a> <a href="#promotion-johnnyreilly" title="Promotion">📣</a> <a href="#maintenance-johnnyreilly" title="Maintenance">🚧</a> <a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=johnnyreilly" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/pulls?q=is%3Apr+reviewed-by%3Ajohnnyreilly" title="Reviewed Pull Requests">👀</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://webpro.nl"><img src="https://avatars.githubusercontent.com/u/456426?v=4?s=100" width="100px;" alt="Lars Kappert"/><br /><sub><b>Lars Kappert</b></sub></a><br /><a href="#tool-webpro" title="Tools">🔧</a> <a href="#ideas-webpro" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/RebeccaStevens"><img src="https://avatars.githubusercontent.com/u/7224206?v=4?s=100" width="100px;" alt="Rebecca Stevens"/><br /><sub><b>Rebecca Stevens</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=RebeccaStevens" title="Code">💻</a> <a href="#ideas-RebeccaStevens" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://sinchang.me"><img src="https://avatars.githubusercontent.com/u/3297859?v=4?s=100" width="100px;" alt="Jeff Wen"/><br /><sub><b>Jeff Wen</b></sub></a><br /><a href="#tool-sinchang" title="Tools">🔧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nowyDEV"><img src="https://avatars.githubusercontent.com/u/12304307?v=4?s=100" width="100px;" alt="Dominik Nowik"/><br /><sub><b>Dominik Nowik</b></sub></a><br /><a href="#tool-nowyDEV" title="Tools">🔧</a> <a href="#infra-nowyDEV" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://webpro.nl"><img src="https://avatars.githubusercontent.com/u/456426?v=4?s=100" width="100px;" alt="Lars Kappert"/><br /><sub><b>Lars Kappert</b></sub></a><br /><a href="#tool-webpro" title="Tools">🔧</a> <a href="#ideas-webpro" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/NazCodeland"><img src="https://avatars.githubusercontent.com/u/113494366?v=4?s=100" width="100px;" alt="NazCodeland"/><br /><sub><b>NazCodeland</b></sub></a><br /><a href="#tool-NazCodeland" title="Tools">🔧</a></td>
     </tr>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://paulisaweso.me/"><img src="https://avatars.githubusercontent.com/u/6335792?v=4?s=100" width="100px;" alt="Paul Esch-Laurent"/><br /><sub><b>Paul Esch-Laurent</b></sub></a><br /><a href="#tool-Pinjasaur" title="Tools">🔧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://ronjeanfrancois.com"><img src="https://avatars.githubusercontent.com/u/105710107?v=4?s=100" width="100px;" alt="Ron Jean-Francois"/><br /><sub><b>Ron Jean-Francois</b></sub></a><br /><a href="#tool-ronthetech" title="Tools">🔧</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nowyDEV"><img src="https://avatars.githubusercontent.com/u/12304307?v=4?s=100" width="100px;" alt="Dominik Nowik"/><br /><sub><b>Dominik Nowik</b></sub></a><br /><a href="#tool-nowyDEV" title="Tools">🔧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="#tool-TAKANOME-DEV" title="Tools">🔧</a></td>
     </tr>
   </tbody>
@@ -136,9 +136,3 @@ Thanks! 💖
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-
-> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).

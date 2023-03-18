@@ -1,8 +1,3 @@
-name: "📝 Documentation"
-description: "Report a typo or missing area of documentation"
-title: "📝 Documentation: <short description of the request>"
-labels:
-  - "area: documentation"
 body:
   - attributes:
       description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
@@ -20,6 +15,11 @@ body:
     validations:
       required: true
   - attributes:
-      label: Additional Info
       description: Any additional info you'd like to provide.
+      label: Additional Info
     type: textarea
+description: "Report a typo or missing area of documentation"
+labels:
+  - "area: documentation"
+name: "📝 Documentation"
+title: "📝 Documentation: <short description of the request>"

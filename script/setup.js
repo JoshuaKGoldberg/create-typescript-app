@@ -1,4 +1,5 @@
 /* global $ */
+import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
 import chalk from "chalk";
@@ -107,18 +108,18 @@ try {
 	);
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
-		[existingPackage.description, description],
-		["Template TypeScript Node Package", title],
-		["JoshuaKGoldberg", owner],
-		["template-typescript-node-package", repository],
-		[/"setup": ".*",/, ``, "./package.json"],
-		[/"setup:test": ".*",/, ``, "./package.json"],
+		[new RegExp(existingPackage.description, "g"), description],
+		[/Template TypeScript Node Package/g, title],
+		[/JoshuaKGoldberg/g, owner],
+		[/template-typescript-node-package/g, repository],
+		[/"setup": ".*",/g, ``, "./package.json"],
+		[/"setup:test": ".*",/g, ``, "./package.json"],
 		[
-			`"version": "${existingPackage.version}"`,
+			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,
 			"./package.json",
 		],
-		[/## Explainer.*## Usage/s, `## Usage`, "./README.md"],
+		[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
 		[
 			`["src/index.ts!", "script/setup*.js"]`,
 			`"src/index.ts!"`,
@@ -129,17 +130,27 @@ try {
 		await replace({ files, from, to });
 	}
 
-	const endOfReadmeNotice = `
+	await fs.writeFile(
+		".all-contributorsrc",
+		prettier.format(
+			JSON.stringify({
+				...JSON.parse((await fs.readFile(".all-contributorsrc")).toString()),
+				projectName: repository,
+				projectOwner: owner,
+			}),
+			{ parser: "json" }
+		)
+	);
 
-	<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-	
-	> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`;
+	const endOfReadmeNotice = [
+		``,
+		`<!-- You can remove this notice if you don't want it 🙂 no worries! -->`,
+		``,
+		`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
+		``,
+	].join(EOL);
 
-	if (
-		!(await fs.readFile("./README.md")).toString().includes(endOfReadmeNotice)
-	) {
-		await fs.appendFile("./README.md", endOfReadmeNotice);
-	}
+	await fs.appendFile("./README.md", endOfReadmeNotice);
 
 	console.log(chalk.gray`✔️ Done.`);
 
@@ -150,6 +161,13 @@ try {
 		"./CHANGELOG.md",
 		prettier.format(`# Changelog`, { parser: "markdown" })
 	);
+
+	console.log(chalk.gray`✔️ Done.`);
+
+	console.log();
+	console.log(chalk.gray`Generating all-contributors table in README.md...`);
+
+	await $`npx all-contributors generate`;
 
 	console.log(chalk.gray`✔️ Done.`);
 

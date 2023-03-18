@@ -1,7 +1,7 @@
 {
 	"name": "template-typescript-node-package",
 	"version": "1.27.58",
-	"description": "A quickstart-friendly TypeScript package with lots of great repository tooling. ✨",
+	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"

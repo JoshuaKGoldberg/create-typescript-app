@@ -77,7 +77,7 @@ try {
 	const description = await getPrefillOrPromptedValue(
 		"description",
 		"How would you describe the new package?",
-		"A good package."
+		"A very lovely package. Hooray!"
 	);
 
 	const skipApi = await getPrefillOrPromptedValue(

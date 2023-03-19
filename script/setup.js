@@ -2,13 +2,12 @@
 import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
+import { cancel, isCancel, text } from "@clack/prompts";
 import chalk from "chalk";
 import { promises as fs } from "fs";
 import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";
-
-const { prompt } = require("enquirer");
 
 let caughtError;
 
@@ -37,37 +36,52 @@ try {
 		strict: false,
 	});
 
-	async function getPrefillOrPromptedValue(key, message) {
-		const { [key]: value } = values[key]
-			? (console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`)),
-			  values)
-			: await prompt({
-					message,
-					name: key,
-					type: "input",
-			  });
+	async function getPrefillOrPromptedValue(key, message, placeholder) {
+		if (values[key]) {
+			console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`));
+			return values[key];
+		}
+
+		const value = await text({
+			message,
+			placeholder,
+			validate: (val) => {
+				if (val.length === 0) {
+					return "Please enter a value.";
+				}
+			},
+		});
+
+		if (isCancel(value)) {
+			cancel("Operation cancelled. Exiting setup - maybe another time? 👋");
+			process.exit(0);
+		}
 
 		return value;
 	}
 
 	const repository = await getPrefillOrPromptedValue(
 		"repository",
-		"What will the kebab-case name of the repository be?"
+		"What will the kebab-case name of the repository be?",
+		"my-lovely-repository"
 	);
 
 	const title = await getPrefillOrPromptedValue(
 		"title",
-		"What will the Title Case title of the repository be?"
+		"What will the Title Case title of the repository be?",
+		"My Lovely Repository"
 	);
 
 	const owner = await getPrefillOrPromptedValue(
 		"owner",
-		"What owner or user will the repository be under?"
+		"What owner or user will the repository be under?",
+		"UserName"
 	);
 
 	const description = await getPrefillOrPromptedValue(
 		"description",
-		"How would you describe the new package?"
+		"How would you describe the new package?",
+		"A very lovely package. Hooray!"
 	);
 
 	const skipApi = await getPrefillOrPromptedValue(
@@ -288,7 +302,7 @@ try {
 	console.log(
 		chalk.gray`Removing devDependency packages only used for setup...`
 	);
-	await $`pnpm remove chalk enquirer octokit replace-in-file -D`;
+	await $`pnpm remove @clack/prompts chalk octokit replace-in-file -D`;
 	console.log(chalk.gray`✔️ Done.`);
 }
 

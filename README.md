@@ -1,6 +1,6 @@
 <h1 align="center">Template TypeScript Node Package</h1>
 
-<p align="center">A quickstart-friendly TypeScript package with lots of great repository tooling. ✨</p>
+<p align="center">A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">

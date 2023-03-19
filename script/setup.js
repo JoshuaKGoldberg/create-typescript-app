@@ -37,16 +37,18 @@ try {
 	});
 
 	async function getPrefillOrPromptedValue(key, message, placeholder) {
-		const value = values[key]
-			? (console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`)),
-			  values)
-			: await text({
-					message,
-					placeholder,
-					validate: (val) => {
-						if (val.length === 0) return "Please enter a value.";
-					},
-			  });
+		if (values[key]) {
+			console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`));
+			return values[key];
+		}
+
+		const value = await text({
+			message,
+			placeholder,
+			validate: (val) => {
+				if (val.length === 0) return "Please enter a value.";
+			},
+		});
 
 		if (isCancel(value)) {
 			cancel("Operation cancelled. Exiting setup - maybe another time? 👋");

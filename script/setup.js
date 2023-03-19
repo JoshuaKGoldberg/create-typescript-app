@@ -46,7 +46,9 @@ try {
 			message,
 			placeholder,
 			validate: (val) => {
-				if (val.length === 0) return "Please enter a value.";
+				if (val.length === 0) {
+					return "Please enter a value.";
+				}
 			},
 		});
 

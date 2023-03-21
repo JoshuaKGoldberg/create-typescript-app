@@ -13,8 +13,7 @@ jobs:
 name: Test
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  pull_request: ~
 
   push:
     branches:

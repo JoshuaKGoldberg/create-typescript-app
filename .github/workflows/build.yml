@@ -9,8 +9,7 @@ jobs:
 name: Build
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  pull_request: ~
 
   push:
     branches:

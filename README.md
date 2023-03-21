@@ -103,7 +103,7 @@ greet("Hello, world!");
 
 ## Development
 
-See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md).
+See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
 Thanks! 💖
 
 ## Contributors

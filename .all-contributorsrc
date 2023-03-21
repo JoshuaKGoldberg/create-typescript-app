@@ -121,6 +121,15 @@
       "contributions": [
         "tool"
       ]
+    },
+    {
+      "login": "jsjoeio",
+      "name": "Joe Previte",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3806031?v=4",
+      "profile": "https://typescriptcourse.com/tutorials",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,

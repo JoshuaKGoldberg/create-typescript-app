@@ -2,7 +2,7 @@
 
 Thanks for your interest in contributing to `template-typescript-node-package`! 💖
 
-> See [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
+> After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
 
 ## Code of Conduct
 

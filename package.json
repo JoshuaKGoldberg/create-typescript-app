@@ -41,6 +41,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
 		"@vitest/coverage-istanbul": "^0.29.0",
+		"all-contributors-cli": "^6.24.0",
 		"chalk": "^5.2.0",
 		"cspell": "^6.19.2",
 		"eslint": "^8.32.0",

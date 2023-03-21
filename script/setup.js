@@ -181,7 +181,7 @@ try {
 	console.log();
 	console.log(chalk.gray`Generating all-contributors table in README.md...`);
 
-	await $`npx all-contributors generate`;
+	await $`pnpm all-contributors generate`;
 
 	console.log(chalk.gray`✔️ Done.`);
 
@@ -302,7 +302,7 @@ try {
 	console.log(
 		chalk.gray`Removing devDependency packages only used for setup...`
 	);
-	await $`pnpm remove @clack/prompts chalk octokit replace-in-file -D`;
+	await $`pnpm remove @clack/prompts chalk octokit replace-in-file all-contributors-cli -D`;
 	console.log(chalk.gray`✔️ Done.`);
 }
 

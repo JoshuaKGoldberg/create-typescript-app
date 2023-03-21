@@ -9,7 +9,7 @@ jobs:
 name: Lint Package
 
 on:
-  pull_request:
+  pull_request: ~
 
   push:
     branches:

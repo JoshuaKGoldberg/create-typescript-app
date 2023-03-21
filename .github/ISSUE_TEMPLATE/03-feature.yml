@@ -20,8 +20,8 @@ body:
       description: Any additional info you'd like to provide.
       label: Additional Info
     type: textarea
-description: "Report a bug or request an enhancement in repository tooling"
+description: Request that a new feature be added or an existing feature improved
 labels:
-  - "area: tooling"
-name: "🛠 Tooling"
-title: "🛠 Tooling: <short description of the change>"
+  - "type: feature"
+name: 🚀 Request a Feature
+title: "🚀 Feature: <short description of the feature>"

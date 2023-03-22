@@ -9,7 +9,7 @@ jobs:
 name: Test Setup Script
 
 on:
-  pull_request:
+  pull_request: ~
 
   push:
     branches:

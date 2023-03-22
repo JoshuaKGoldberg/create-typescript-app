@@ -9,7 +9,7 @@ jobs:
 name: Lint Markdown
 
 on:
-  pull_request:
+  pull_request: ~
 
   push:
     branches:

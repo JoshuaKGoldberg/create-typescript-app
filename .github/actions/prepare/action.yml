@@ -6,8 +6,8 @@ runs:
     - uses: pnpm/action-setup@v2
     - uses: actions/setup-node@v3
       with:
-        cache: "pnpm"
+        cache: pnpm
         node-version: "18"
     - run: pnpm install --frozen-lockfile
       shell: bash
-  using: "composite"
+  using: composite

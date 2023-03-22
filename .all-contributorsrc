@@ -112,6 +112,33 @@
       "contributions": [
         "tool"
       ]
+    },
+    {
+      "login": "emday4prez",
+      "name": "Emerson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35363144?v=4",
+      "profile": "https://github.com/emday4prez",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "jsjoeio",
+      "name": "Joe Previte",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3806031?v=4",
+      "profile": "https://typescriptcourse.com/tutorials",
+      "contributions": [
+        "tool"
+      ]
+    },
+    {
+      "login": "navin-moorthy",
+      "name": "Navin Moorthy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39694575?v=4",
+      "profile": "https://navinmoorthy.me/",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,

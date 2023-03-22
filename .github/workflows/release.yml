@@ -1,3 +1,17 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -71,13 +85,3 @@ jobs:
                 restrictions: null,
               }
             );
-
-name: Release
-
-on:
-  push:
-    branches:
-      - main
-
-permissions:
-  contents: write

@@ -1,3 +1,7 @@
+concurrency:
+  cancel-in-progress: false
+  group: ${{ github.workflow }}
+
 jobs:
   release:
     runs-on: ubuntu-latest

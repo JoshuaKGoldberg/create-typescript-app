@@ -24,7 +24,7 @@ specifiers:
   eslint-plugin-yml: ^1.5.0
   husky: ^8.0.3
   jsonc-eslint-parser: ^2.1.0
-  knip: 2.0.0-alpha.8
+  knip: 2.0.0
   lint-staged: ^13.1.0
   markdownlint: ^0.27.0
   markdownlint-cli: ^0.33.0
@@ -66,7 +66,7 @@ devDependencies:
   eslint-plugin-yml: 1.5.0_eslint@8.32.0
   husky: 8.0.3
   jsonc-eslint-parser: 2.1.0
-  knip: 2.0.0-alpha.8
+  knip: 2.0.0
   lint-staged: 13.1.0
   markdownlint: 0.27.0
   markdownlint-cli: 0.33.0
@@ -4669,8 +4669,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /knip/2.0.0-alpha.8:
-    resolution: {integrity: sha512-kIJXvZ373uIY6cXN1YG17FR+c3ZG3B8XFqJwiUj8vRRQmGQKmN1QiLcrhGvsKzMWdzbVaI/8ipPZufRH9ySCZg==}
+  /knip/2.0.0:
+    resolution: {integrity: sha512-iSO2Kd1NoM/opk8eFPXn/I1qzaNV0YJ8oJ/F1KTm29OW2+QAihzuD/VSwvHExwOzdiCX57rKlZfKWocH8TUa5A==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     dependencies:
@@ -4685,7 +4685,6 @@ packages:
       js-yaml: 4.1.0
       micromatch: 4.0.5
       minimist: 1.2.8
-      nano-memoize: 2.0.0
       pretty-ms: 8.0.0
       strip-json-comments: 5.0.0
       summary: 2.1.0
@@ -5153,10 +5152,6 @@ packages:
 
   /mute-stream/0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
-    dev: true
-
-  /nano-memoize/2.0.0:
-    resolution: {integrity: sha512-/m8k0gPWeZUYW8yQDchzxAkHt9Sw5DT8h+6QtRGu23OUj3d7qCXfO9+RU2O/zptPM1+fJCi4Tku4XoYN8s7AYQ==}
     dev: true
 
   /nanoid/3.3.4:

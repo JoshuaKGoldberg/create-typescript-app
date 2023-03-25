@@ -26,6 +26,12 @@ You should also see suggestions from TypeScript in your editor.
 [Prettier](https://prettier.io) is used to format code.
 It should be applied automatically when you save files in VS Code or make a Git commit.
 
+To manually reformat all files, you can run:
+
+```shell
+pnpm format:write
+```
+
 ## Linting
 
 This package includes several forms of linting to enforce consistent code quality and styling.

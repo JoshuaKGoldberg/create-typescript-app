@@ -26,7 +26,7 @@ specifiers:
   jsonc-eslint-parser: ^2.1.0
   knip: 2.1.2
   lint-staged: ^13.1.0
-  markdownlint: ^0.27.0
+  markdownlint: ^0.28.0
   markdownlint-cli: ^0.33.0
   npm-package-json-lint: ^6.4.0
   npm-package-json-lint-config-default: ^5.0.0
@@ -68,7 +68,7 @@ devDependencies:
   jsonc-eslint-parser: 2.1.0
   knip: 2.1.2
   lint-staged: 13.1.0
-  markdownlint: 0.27.0
+  markdownlint: 0.28.0
   markdownlint-cli: 0.33.0
   npm-package-json-lint: 6.4.0
   npm-package-json-lint-config-default: 5.0.0_ogc4gh2psjwvuyt5uwb7bwur54
@@ -4946,6 +4946,11 @@ packages:
       run-con: 1.2.11
     dev: true
 
+  /markdownlint-micromark/0.1.2:
+    resolution: {integrity: sha512-jRxlQg8KpOfM2IbCL9RXM8ZiYWz2rv6DlZAnGv8ASJQpUh6byTBnEsbuMZ6T2/uIgntyf7SKg/mEaEBo1164fQ==}
+    engines: {node: '>=14.18.0'}
+    dev: true
+
   /markdownlint/0.11.0:
     resolution: {integrity: sha512-wE5WdKD6zW2DQaPQ5TFBTXh5j76DnWd/IFffnDQgHmi6Y61DJXBDfLftZ/suJHuv6cwPjM6gKw2GaRLJMOR+Mg==}
     engines: {node: '>=6'}
@@ -4958,6 +4963,14 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       markdown-it: 13.0.1
+    dev: true
+
+  /markdownlint/0.28.0:
+    resolution: {integrity: sha512-7Gt/SzjE5420Dr93wZgTLlgfcWj5vxAWJtvN7bBfN35ytQwsVDEW46L+NswzeCVhZSFdWRgLdEwQo3lMavUjvQ==}
+    engines: {node: '>=14.18.0'}
+    dependencies:
+      markdown-it: 13.0.1
+      markdownlint-micromark: 0.1.2
     dev: true
 
   /mdast-util-from-markdown/0.8.5:

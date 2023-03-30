@@ -24,7 +24,7 @@ specifiers:
   eslint-plugin-yml: ^1.5.0
   husky: ^8.0.3
   jsonc-eslint-parser: ^2.1.0
-  knip: 2.1.2
+  knip: 2.1.3
   lint-staged: ^13.1.0
   markdownlint: ^0.28.0
   markdownlint-cli: ^0.33.0
@@ -66,7 +66,7 @@ devDependencies:
   eslint-plugin-yml: 1.5.0_eslint@8.32.0
   husky: 8.0.3
   jsonc-eslint-parser: 2.1.0
-  knip: 2.1.2
+  knip: 2.1.3
   lint-staged: 13.1.0
   markdownlint: 0.28.0
   markdownlint-cli: 0.33.0
@@ -4669,8 +4669,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /knip/2.1.2:
-    resolution: {integrity: sha512-59/I/tLj4gzQ4mSbO8QQQ/c0r+miyUvANlkSc9BRa2dyvvfe+EuYkYGkmbGYACgCiU9+3bslSFjvb9r2dOdaAA==}
+  /knip/2.1.3:
+    resolution: {integrity: sha512-HBo1dhOWFGUl0IRIA/JLgWizU5jPJoUtYdTyMWyUndfFYQNRhlBKQ0ST6MqlPTx+ZEfgsUJXKdpKWVGeGWPMqQ==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     dependencies:

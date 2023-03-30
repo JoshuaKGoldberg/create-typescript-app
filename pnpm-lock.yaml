@@ -38,6 +38,7 @@ specifiers:
   replace-in-file: ^6.3.5
   sentences-per-line: ^0.2.1
   should-semantic-release: ^0.0.4
+  title-case: ^3.0.3
   typescript: ^5.0.0
   vitest: ^0.29.0
   yaml-eslint-parser: ^1.2.0
@@ -80,6 +81,7 @@ devDependencies:
   replace-in-file: 6.3.5
   sentences-per-line: 0.2.1
   should-semantic-release: 0.0.4
+  title-case: 3.0.3
   typescript: 5.0.2
   vitest: 0.29.1
   yaml-eslint-parser: 1.2.0
@@ -6614,6 +6616,12 @@ packages:
   /tinyspy/1.0.2:
     resolution: {integrity: sha512-bSGlgwLBYf7PnUsQ6WOc6SJ3pGOcd+d8AA6EUnLDDM0kWEstC1JIlSZA3UNliDXhd9ABoS7hiRBDCu+XP/sf1Q==}
     engines: {node: '>=14.0.0'}
+    dev: true
+
+  /title-case/3.0.3:
+    resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}
+    dependencies:
+      tslib: 2.5.0
     dev: true
 
   /tmp/0.0.33:

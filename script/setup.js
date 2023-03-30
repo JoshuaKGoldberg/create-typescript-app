@@ -8,6 +8,7 @@ import { promises as fs } from "fs";
 import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";
+import { titleCase } from "title-case";
 
 let caughtError;
 
@@ -36,6 +37,31 @@ try {
 		strict: false,
 	});
 
+	async function getDefaultSettings() {
+		let gitRemoteFetch;
+		try {
+			gitRemoteFetch = await $`git remote -v | grep fetch`;
+		} catch {
+			console.log(
+				chalk.gray(
+					"Could not populate default owner and repository. Did not detect a Git repository with an origin. "
+				)
+			);
+			return {
+				defaultOwner: "UserName",
+				defaultRepository: "my-lovely-repository",
+			};
+		}
+
+		const [, defaultOwner, defaultRepository] = gitRemoteFetch.stdout.match(
+			/\s.+\/([^/]+)\/([^/]+) \(fetch\)/
+		);
+
+		return { defaultOwner, defaultRepository };
+	}
+
+	const { defaultOwner, defaultRepository } = await getDefaultSettings();
+
 	async function getPrefillOrPromptedValue(key, message, placeholder) {
 		if (values[key]) {
 			console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`));
@@ -63,19 +89,19 @@ try {
 	const repository = await getPrefillOrPromptedValue(
 		"repository",
 		"What will the kebab-case name of the repository be?",
-		"my-lovely-repository"
+		defaultRepository
 	);
 
 	const title = await getPrefillOrPromptedValue(
 		"title",
 		"What will the Title Case title of the repository be?",
-		"My Lovely Repository"
+		titleCase(repository).replaceAll("-", " ")
 	);
 
 	const owner = await getPrefillOrPromptedValue(
 		"owner",
 		"What owner or user will the repository be under?",
-		"UserName"
+		defaultOwner
 	);
 
 	const description = await getPrefillOrPromptedValue(

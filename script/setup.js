@@ -160,7 +160,6 @@ try {
 			return owner;
 		}
 
-		console.log({ username }, username.stdout.trim());
 		let npmUserInfo;
 
 		try {

@@ -5,6 +5,7 @@ import { parseArgs } from "node:util";
 import { cancel, isCancel, text } from "@clack/prompts";
 import chalk from "chalk";
 import { promises as fs } from "fs";
+import npmUser from "npm-user";
 import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";

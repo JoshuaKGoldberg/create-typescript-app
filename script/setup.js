@@ -179,7 +179,6 @@ try {
 	}
 
 	const npmAuthor = await getNpmAuthor();
-	console.log({ npmAuthor });
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
 		[new RegExp(existingPackage.description, "g"), description],

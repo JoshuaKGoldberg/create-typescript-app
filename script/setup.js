@@ -365,9 +365,9 @@ try {
 	);
 
 	try {
-		await $`pnpm remove @clack/prompts add-user all-contributors-cli chalk octokit replace-in-file title-case -D`;
+		await $`pnpm remove @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
 	} catch (error) {
-		console.log("WAT", { error });
+		console.log("Error uninstalling packages:", error);
 		caughtError = error;
 	}
 

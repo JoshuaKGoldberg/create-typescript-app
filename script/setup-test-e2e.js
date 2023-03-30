@@ -33,4 +33,9 @@ for (const search of [
 	);
 }
 
-await $`pnpm lint:knip`;
+try {
+	await $`pnpm lint:knip`;
+} catch (error) {
+	console.error("Error running lint:knip:", error);
+	process.exitCode = 1;
+}

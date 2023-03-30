@@ -147,6 +147,39 @@ try {
 		)
 	);
 
+	async function getNpmAuthor() {
+		let username;
+
+		try {
+			username = await $`npm whoami`;
+		} catch {
+			console.log(
+				chalk.gray("Could not populate npm user. Failed to run npm whoami. ")
+			);
+			return owner;
+		}
+
+		console.log({ username }, username.stdout.trim());
+		let npmUserInfo;
+
+		try {
+			npmUserInfo = await npmUser(username.stdout.trim());
+		} catch {
+			console.log(
+				chalk.gray(
+					"Could not populate npm user. Failed to retrieve user info from npm. "
+				)
+			);
+			return owner;
+		}
+
+		const { name = owner, email } = npmUserInfo;
+		return email ? `${name} <${email}>` : name;
+	}
+
+	const npmAuthor = await getNpmAuthor();
+	console.log({ npmAuthor });
+
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
 		[new RegExp(existingPackage.description, "g"), description],
 		[/Template TypeScript Node Package/g, title],
@@ -154,6 +187,7 @@ try {
 		[/template-typescript-node-package/g, repository],
 		[/"setup": ".*",/g, ``, "./package.json"],
 		[/"setup:test": ".*",/g, ``, "./package.json"],
+		[/"author": ".+"/g, `author: "${npmAuthor}"`, "./package.json"],
 		[
 			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,

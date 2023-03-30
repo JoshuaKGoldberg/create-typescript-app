@@ -5,6 +5,7 @@ import { parseArgs } from "node:util";
 import { cancel, isCancel, text } from "@clack/prompts";
 import chalk from "chalk";
 import { promises as fs } from "fs";
+import npmUser from "npm-user";
 import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";
@@ -147,6 +148,37 @@ try {
 		)
 	);
 
+	async function getNpmAuthor() {
+		let username;
+
+		try {
+			username = await $`npm whoami`;
+		} catch {
+			console.log(
+				chalk.gray("Could not populate npm user. Failed to run npm whoami. ")
+			);
+			return owner;
+		}
+
+		let npmUserInfo;
+
+		try {
+			npmUserInfo = await npmUser(username.stdout.trim());
+		} catch {
+			console.log(
+				chalk.gray(
+					"Could not populate npm user. Failed to retrieve user info from npm. "
+				)
+			);
+			return owner;
+		}
+
+		const { name = owner, email } = npmUserInfo;
+		return email ? `${name} <${email}>` : name;
+	}
+
+	const npmAuthor = await getNpmAuthor();
+
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
 		[new RegExp(existingPackage.description, "g"), description],
 		[/Template TypeScript Node Package/g, title],
@@ -154,6 +186,7 @@ try {
 		[/template-typescript-node-package/g, repository],
 		[/"setup": ".*",/g, ``, "./package.json"],
 		[/"setup:test": ".*",/g, ``, "./package.json"],
+		[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
 		[
 			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,
@@ -328,7 +361,14 @@ try {
 	console.log(
 		chalk.gray`Removing devDependency packages only used for setup...`
 	);
-	await $`pnpm remove @clack/prompts all-contributors-cli chalk octokit replace-in-file -D`;
+
+	try {
+		await $`pnpm remove @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
+	} catch (error) {
+		console.log("Error uninstalling packages:", error);
+		caughtError = error;
+	}
+
 	console.log(chalk.gray`✔️ Done.`);
 }
 

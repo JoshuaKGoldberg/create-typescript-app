@@ -1,25 +1,27 @@
-name: "📝 Documentation"
-description: "Report a typo or missing area of documentation"
-title: "📝 Documentation: <short description of the request>"
-labels:
-  - "area: documentation"
 body:
   - attributes:
       description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
       label: Bug Report Checklist
       options:
+        - label: I have tried restarting my IDE and the issue persists.
+          required: true
         - label: I have pulled the latest `main` branch of the repository.
           required: true
         - label: I have [searched for related issues](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=is%3Aissue) and found none that matched my issue.
           required: true
     type: checkboxes
   - attributes:
-      description: What would you like to report?
+      description: What did you expect to be able to do?
       label: Overview
     type: textarea
     validations:
       required: true
   - attributes:
-      label: Additional Info
       description: Any additional info you'd like to provide.
+      label: Additional Info
     type: textarea
+description: Request that a new feature be added or an existing feature improved
+labels:
+  - "type: feature"
+name: 🚀 Request a Feature
+title: "🚀 Feature: <short description of the feature>"

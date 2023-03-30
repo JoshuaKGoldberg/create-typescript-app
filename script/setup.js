@@ -1,13 +1,13 @@
 /* global $ */
+import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
+import { cancel, isCancel, text } from "@clack/prompts";
 import chalk from "chalk";
 import { promises as fs } from "fs";
 import { Octokit } from "octokit";
 import prettier from "prettier";
 import replace from "replace-in-file";
-
-const { prompt } = require("enquirer");
 
 let caughtError;
 
@@ -38,37 +38,52 @@ try {
 
 	values["skip-api"] = true;
 
-	async function getPrefillOrPromptedValue(key, message) {
-		const { [key]: value } = values[key]
-			? (console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`)),
-			  values)
-			: await prompt({
-					message,
-					name: key,
-					type: "input",
-			  });
+	async function getPrefillOrPromptedValue(key, message, placeholder) {
+		if (values[key]) {
+			console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`));
+			return values[key];
+		}
+
+		const value = await text({
+			message,
+			placeholder,
+			validate: (val) => {
+				if (val.length === 0) {
+					return "Please enter a value.";
+				}
+			},
+		});
+
+		if (isCancel(value)) {
+			cancel("Operation cancelled. Exiting setup - maybe another time? 👋");
+			process.exit(0);
+		}
 
 		return value;
 	}
 
 	const repository = await getPrefillOrPromptedValue(
 		"repository",
-		"What will the kebab-case name of the repository be?"
+		"What will the kebab-case name of the repository be?",
+		"my-lovely-repository"
 	);
 
 	const title = await getPrefillOrPromptedValue(
 		"title",
-		"What will the Title Case title of the repository be?"
+		"What will the Title Case title of the repository be?",
+		"My Lovely Repository"
 	);
 
 	const owner = await getPrefillOrPromptedValue(
 		"owner",
-		"What owner or user will the repository be under?"
+		"What owner or user will the repository be under?",
+		"UserName"
 	);
 
 	const description = await getPrefillOrPromptedValue(
 		"description",
-		"How would you describe the new package?"
+		"How would you describe the new package?",
+		"A very lovely package. Hooray!"
 	);
 
 	const skipApi = values["skip-api"];
@@ -106,18 +121,18 @@ try {
 	);
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
-		[existingPackage.description, description],
-		["Template TypeScript Node Package", title],
-		["JoshuaKGoldberg", owner],
-		["template-typescript-node-package", repository],
-		[/"setup": ".*",/, ``, "./package.json"],
-		[/"setup:test": ".*",/, ``, "./package.json"],
+		[new RegExp(existingPackage.description, "g"), description],
+		[/Template TypeScript Node Package/g, title],
+		[/JoshuaKGoldberg/g, owner],
+		[/template-typescript-node-package/g, repository],
+		[/"setup": ".*",/g, ``, "./package.json"],
+		[/"setup:test": ".*",/g, ``, "./package.json"],
 		[
-			`"version": "${existingPackage.version}"`,
+			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,
 			"./package.json",
 		],
-		[/## Explainer.*## Usage/s, `## Usage`, "./README.md"],
+		[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
 		[
 			`["src/index.ts!", "script/setup*.js"]`,
 			`"src/index.ts!"`,
@@ -128,17 +143,27 @@ try {
 		await replace({ files, from, to });
 	}
 
-	const endOfReadmeNotice = `
+	await fs.writeFile(
+		".all-contributorsrc",
+		prettier.format(
+			JSON.stringify({
+				...JSON.parse((await fs.readFile(".all-contributorsrc")).toString()),
+				projectName: repository,
+				projectOwner: owner,
+			}),
+			{ parser: "json" }
+		)
+	);
 
-	<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-	
-	> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`;
+	const endOfReadmeNotice = [
+		``,
+		`<!-- You can remove this notice if you don't want it 🙂 no worries! -->`,
+		``,
+		`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
+		``,
+	].join(EOL);
 
-	if (
-		!(await fs.readFile("./README.md")).toString().includes(endOfReadmeNotice)
-	) {
-		await fs.appendFile("./README.md", endOfReadmeNotice);
-	}
+	await fs.appendFile("./README.md", endOfReadmeNotice);
 
 	console.log(chalk.gray`✔️ Done.`);
 
@@ -149,6 +174,13 @@ try {
 		"./CHANGELOG.md",
 		prettier.format(`# Changelog`, { parser: "markdown" })
 	);
+
+	console.log(chalk.gray`✔️ Done.`);
+
+	console.log();
+	console.log(chalk.gray`Generating all-contributors table in README.md...`);
+
+	await $`pnpm all-contributors generate`;
 
 	console.log(chalk.gray`✔️ Done.`);
 
@@ -269,7 +301,7 @@ try {
 	console.log(
 		chalk.gray`Removing devDependency packages only used for setup...`
 	);
-	await $`pnpm remove chalk enquirer octokit replace-in-file -D`;
+	await $`pnpm remove @clack/prompts all-contributors-cli chalk octokit replace-in-file -D`;
 	console.log(chalk.gray`✔️ Done.`);
 }
 

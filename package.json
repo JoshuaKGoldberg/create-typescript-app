@@ -1,7 +1,7 @@
 {
 	"name": "template-typescript-node-package",
-	"version": "1.27.58",
-	"description": "A quickstart-friendly TypeScript package with lots of great repository tooling. ✨",
+	"version": "1.27.63",
+	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
@@ -36,12 +36,14 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"devDependencies": {
+		"@clack/prompts": "^0.6.3",
+		"@types/eslint": "^8.21.1",
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
-		"@vitest/coverage-istanbul": "^0.28.0",
+		"@vitest/coverage-istanbul": "^0.29.0",
+		"all-contributors-cli": "^6.24.0",
 		"chalk": "^5.2.0",
 		"cspell": "^6.19.2",
-		"enquirer": "^2.3.6",
 		"eslint": "^8.32.0",
 		"eslint-config-prettier": "^8.6.0",
 		"eslint-plugin-deprecation": "^1.3.3",
@@ -53,12 +55,13 @@
 		"eslint-plugin-regexp": "^1.12.0",
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-typescript-sort-keys": "^2.1.0",
-		"eslint-plugin-vitest": "^0.0.48",
+		"eslint-plugin-vitest": "^0.0.57",
+		"eslint-plugin-yml": "^1.5.0",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
-		"knip": "^1.12.3",
+		"knip": "2.1.3",
 		"lint-staged": "^13.1.0",
-		"markdownlint": "^0.27.0",
+		"markdownlint": "^0.28.0",
 		"markdownlint-cli": "^0.33.0",
 		"npm-package-json-lint": "^6.4.0",
 		"npm-package-json-lint-config-default": "^5.0.0",
@@ -70,10 +73,11 @@
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.4",
-		"typescript": "^4.9.4",
-		"vitest": "^0.28.0"
+		"typescript": "^5.0.0",
+		"vitest": "^0.29.0",
+		"yaml-eslint-parser": "^1.2.0"
 	},
-	"packageManager": "pnpm@7.27.1",
+	"packageManager": "pnpm@7.30.5",
 	"engines": {
 		"node": ">=18"
 	}

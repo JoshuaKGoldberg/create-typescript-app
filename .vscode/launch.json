@@ -1,5 +1,4 @@
 {
-	"version": "0.2.0",
 	"configurations": [
 		{
 			"args": ["run", "${relativeFile}"],
@@ -12,5 +11,6 @@
 			"smartStep": true,
 			"type": "node"
 		}
-	]
+	],
+	"version": "0.2.0"
 }

@@ -1,12 +1,6 @@
-name: Release
-
-on:
-  push:
-    branches:
-      - main
-
-permissions:
-  contents: write
+concurrency:
+  cancel-in-progress: false
+  group: ${{ github.workflow }}
 
 jobs:
   release:
@@ -81,3 +75,13 @@ jobs:
                 restrictions: null,
               }
             );
+
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write

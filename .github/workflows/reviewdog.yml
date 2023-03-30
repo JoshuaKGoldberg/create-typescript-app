@@ -1,25 +1,24 @@
-name: Reviewdog
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
 jobs:
   reviewdog:
-    runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
       - name: Prettier review
         uses: EPMatt/reviewdog-action-prettier@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          level: warning
           fail_on_error: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          level: warning
+          reporter: github-pr-review
           # prettier_flags: "**/* --ignore-unknown"
+
+name: Reviewdog
+
+on:
+  push:
+    branches:
+      - main

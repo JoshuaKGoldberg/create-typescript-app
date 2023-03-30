@@ -22,4 +22,4 @@ jobs:
           reporter: github-pr-review
           level: warning
           fail_on_error: false
-          prettier_flags: "**/* --ignore-unknown"
+          # prettier_flags: "**/* --ignore-unknown"

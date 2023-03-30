@@ -3,7 +3,7 @@
 		"source.fixAll.eslint": true
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.formatOnSave": true,
+	"editor.formatOnSave": false,
 	"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
 	"typescript.tsdk": "node_modules/typescript/lib"
 }

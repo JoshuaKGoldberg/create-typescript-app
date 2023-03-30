@@ -11,14 +11,8 @@ body:
           required: true
     type: checkboxes
   - attributes:
-      description: What did you expect to happen?
-      label: Expected
-    type: textarea
-    validations:
-      required: true
-  - attributes:
-      description: What happened instead?
-      label: Actual
+      description: What did you expect to be able to do?
+      label: Overview
     type: textarea
     validations:
       required: true
@@ -26,8 +20,8 @@ body:
       description: Any additional info you'd like to provide.
       label: Additional Info
     type: textarea
-description: "Report a bug trying to run the code."
+description: Report a bug or request an enhancement in repository tooling
 labels:
-  - "type: bug"
-name: "🐛 Report a Bug"
-title: "🐛 Bug: <short description of the bug>"
+  - "area: tooling"
+name: 🛠 Tooling
+title: "🛠 Tooling: <short description of the change>"

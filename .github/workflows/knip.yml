@@ -9,7 +9,7 @@ jobs:
 name: Lint Knip
 
 on:
-  pull_request:
+  pull_request: ~
 
   push:
     branches:

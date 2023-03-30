@@ -7,10 +7,11 @@ jobs:
       - run: pnpm build
       - run: node ./src/index.js
 
-
 name: Build
+
 on:
-  pull_request:
+  pull_request: ~
+
   push:
     branches:
       - main

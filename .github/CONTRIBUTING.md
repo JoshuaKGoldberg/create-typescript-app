@@ -2,7 +2,7 @@
 
 Thanks for your interest in contributing to `template-typescript-node-package`! 💖
 
-> See [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
+> After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
 
 ## Code of Conduct
 
@@ -36,6 +36,23 @@ Only PR titles need to be in that format, not individual commits.
 Don't worry if you get this wrong: you can always change the PR title after sending it.
 Check [previously merged PRs](https://github.com/JoshuaKGoldberg/template-typescript-node-package/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
 
+#### Draft PRs
+
+If you don't think your PR is ready for review, [set it as a draft](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request#converting-a-pull-request-to-a-draft).
+Draft PRs won't be reviewed.
+
+#### Pull Request Reviews
+
+When a PR is not in draft, it's considered ready for review.
+Please don't manually `@` tag anybody to request review.
+A maintainer will look at it when they're next able to.
+
+After a maintainer reviews your PR, they may request changes on it.
+Once you've made those changes, [re-request review on GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews#re-requesting-a-review).
+
 Please try not to force-push commits to PRs that have already been reviewed.
 Doing so makes it harder to review the changes.
 We squash merge all commits so there's no need to try to preserve Git history within a PR branch.
+
+Once your PR is merged, if you haven't yet been added to the [_Contributors_ table in the README.md](../README.md#contributors) for its [type of contribution](https://allcontributors.org/docs/en/emoji-key "Allcontributors emoji key"), you should be soon.
+Please do ping the maintainer who merged your PR if that doesn't happen within 24 hours - it was likely an oversight on our end!

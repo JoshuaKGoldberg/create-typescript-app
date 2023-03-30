@@ -11,8 +11,14 @@ body:
           required: true
     type: checkboxes
   - attributes:
-      description: What did you expect to be able to do?
-      label: Overview
+      description: What did you expect to happen?
+      label: Expected
+    type: textarea
+    validations:
+      required: true
+  - attributes:
+      description: What happened instead?
+      label: Actual
     type: textarea
     validations:
       required: true
@@ -20,8 +26,8 @@ body:
       description: Any additional info you'd like to provide.
       label: Additional Info
     type: textarea
-description: "Request that a new feature be added or an existing feature improved"
+description: Report a bug trying to run the code
 labels:
-  - "type: feature"
-name: "🚀 Request a Feature"
-title: "🚀 Feature: <short description of the feature>"
+  - "type: bug"
+name: 🐛 Report a Bug
+title: "🐛 Bug: <short description of the bug>"

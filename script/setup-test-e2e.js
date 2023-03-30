@@ -32,3 +32,5 @@ for (const search of [
 		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`
 	);
 }
+
+await $`pnpm lint:knip`;

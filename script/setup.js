@@ -362,7 +362,7 @@ try {
 	console.log(
 		chalk.gray`Removing devDependency packages only used for setup...`
 	);
-	await $`pnpm remove @clack/prompts all-contributors-cli chalk octokit replace-in-file -D`;
+	await $`pnpm remove @clack/prompts add-user all-contributors-cli chalk octokit replace-in-file title-case -D`;
 	console.log(chalk.gray`✔️ Done.`);
 }
 

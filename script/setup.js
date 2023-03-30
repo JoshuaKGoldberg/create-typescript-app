@@ -188,7 +188,7 @@ try {
 		[/template-typescript-node-package/g, repository],
 		[/"setup": ".*",/g, ``, "./package.json"],
 		[/"setup:test": ".*",/g, ``, "./package.json"],
-		[/"author": ".+"/g, `author: "${npmAuthor}"`, "./package.json"],
+		[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
 		[
 			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,

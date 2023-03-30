@@ -73,6 +73,7 @@
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.0.4",
+		"title-case": "^3.0.3",
 		"typescript": "^5.0.0",
 		"vitest": "^0.29.0",
 		"yaml-eslint-parser": "^1.2.0"

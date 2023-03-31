@@ -111,10 +111,7 @@ try {
 		"A very lovely package. Hooray!"
 	);
 
-	const skipApi = await getPrefillOrPromptedValue(
-		"skip-api",
-		"Whether to skip calling the GitHub API (effectively making this a local-only change)."
-	);
+	const skipApi = values["skip-api"];
 
 	console.log();
 	console.log(chalk.gray`Hydrating package metadata locally...`);

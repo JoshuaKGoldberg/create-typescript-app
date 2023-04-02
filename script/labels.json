@@ -40,6 +40,11 @@
 		"name": "status: duplicate"
 	},
 	{
+		"color": "#05104F",
+		"description": "Not yet ready for implementation or a pull request",
+		"name": "status: in discussion"
+	},
+	{
 		"color": "D3F82D",
 		"description": "Further research required...?",
 		"name": "status: needs investigation"

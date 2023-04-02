@@ -86,6 +86,7 @@ module.exports = {
 		"@typescript-eslint",
 		"deprecation",
 		"import",
+		"jsdoc",
 		"no-only-tests",
 		"regexp",
 		"simple-import-sort",

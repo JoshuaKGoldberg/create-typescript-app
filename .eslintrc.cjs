@@ -7,7 +7,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
-		"plugin:jsdoc/recommended",
+
 		"plugin:regexp/recommended",
 		"prettier",
 	],
@@ -19,6 +19,7 @@ module.exports = {
 		},
 		{
 			extends: [
+				"plugin:jsdoc/recommended",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:typescript-sort-keys/recommended",
 			],

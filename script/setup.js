@@ -31,7 +31,7 @@ try {
 	console.log(
 		chalk.greenBright`Welcome to the`,
 		chalk.bgGreenBright.black`template-typescript-node-package`,
-		chalk.greenBright`package setup!`
+		chalk.greenBright`package setup! 🎉`
 	);
 	console.log();
 
@@ -70,11 +70,18 @@ try {
 
 	const { defaultOwner, defaultRepository } = await getDefaultSettings();
 
+	intro(
+		chalk.blue(
+			"Enter the details to hydrate your repository for your new package!"
+		)
+	);
+	console.log();
+
 	const getPrefillOrPromptedValue =
 		(promptType = "text") =>
 		async (key, message, placeholder) => {
 			if (values[key]) {
-				console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`));
+				console.log(chalk.grey(`  Pre-filling ${key} to ${values[key]}.`));
 				return values[key];
 			}
 
@@ -103,12 +110,6 @@ try {
 
 			return value;
 		};
-
-	intro(
-		chalk.blue(
-			"Enter the details to hydrate your repository for your new package!"
-		)
-	);
 
 	const getPrefillOrPromptedTextValue = getPrefillOrPromptedValue();
 

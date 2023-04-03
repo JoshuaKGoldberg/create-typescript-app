@@ -317,7 +317,7 @@ try {
 
 	try {
 		const { stdout: allLocalTags } = await $`git tag -l`;
-		const allLocalTagsArray = allLocalTags.split("\n");
+		const allLocalTagsArray = allLocalTags.split("\n").filter(Boolean);
 
 		if (allLocalTagsArray.length !== 0) {
 			await $`git tag -d ${allLocalTagsArray}`;

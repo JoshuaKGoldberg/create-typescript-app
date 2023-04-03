@@ -921,8 +921,8 @@ packages:
     dependencies:
       '@octokit/auth-oauth-app': 5.0.5
       '@octokit/auth-oauth-user': 2.1.1
-      '@octokit/request': 6.2.2
-      '@octokit/request-error': 3.0.2
+      '@octokit/request': 6.2.3
+      '@octokit/request-error': 3.0.3
       '@octokit/types': 9.0.0
       '@types/lru-cache': 5.1.1
       deprecation: 2.3.1
@@ -939,7 +939,7 @@ packages:
     dependencies:
       '@octokit/auth-oauth-device': 4.0.4
       '@octokit/auth-oauth-user': 2.1.1
-      '@octokit/request': 6.2.2
+      '@octokit/request': 6.2.3
       '@octokit/types': 9.0.0
       '@types/btoa-lite': 1.0.0
       btoa-lite: 1.0.0
@@ -966,7 +966,7 @@ packages:
     dependencies:
       '@octokit/auth-oauth-device': 4.0.4
       '@octokit/oauth-methods': 2.0.5
-      '@octokit/request': 6.2.2
+      '@octokit/request': 6.2.3
       '@octokit/types': 9.0.0
       btoa-lite: 1.0.0
       universal-user-agent: 6.0.0
@@ -985,7 +985,7 @@ packages:
     resolution: {integrity: sha512-AT74XGBylcLr4lmUp1s6mjSUgphGdlse21Qjtv5DzpX1YOl5FXKwvNcZWESdhyBbpDT8VkVyLFqa/7a7eqpPNw==}
     engines: {node: '>= 14'}
     dependencies:
-      '@octokit/request-error': 3.0.2
+      '@octokit/request-error': 3.0.3
       '@octokit/types': 9.0.0
     dev: true
 
@@ -995,8 +995,8 @@ packages:
     dependencies:
       '@octokit/auth-token': 3.0.2
       '@octokit/graphql': 5.0.4
-      '@octokit/request': 6.2.2
-      '@octokit/request-error': 3.0.2
+      '@octokit/request': 6.2.3
+      '@octokit/request-error': 3.0.3
       '@octokit/types': 8.0.0
       before-after-hook: 2.2.3
       universal-user-agent: 6.0.0
@@ -1017,7 +1017,7 @@ packages:
     resolution: {integrity: sha512-amO1M5QUQgYQo09aStR/XO7KAl13xpigcy/kI8/N1PnZYSS69fgte+xA4+c2DISKqUZfsh0wwjc2FaCt99L41A==}
     engines: {node: '>= 14'}
     dependencies:
-      '@octokit/request': 6.2.2
+      '@octokit/request': 6.2.3
       '@octokit/types': 8.0.0
       universal-user-agent: 6.0.0
     transitivePeerDependencies:
@@ -1139,15 +1139,6 @@ packages:
       bottleneck: 2.19.5
     dev: true
 
-  /@octokit/request-error/3.0.2:
-    resolution: {integrity: sha512-WMNOFYrSaX8zXWoJg9u/pKgWPo94JXilMLb2VManNOby9EZxrQaBe/QSC4a1TzpAlpxofg2X/jMnCyZgL6y7eg==}
-    engines: {node: '>= 14'}
-    dependencies:
-      '@octokit/types': 8.0.0
-      deprecation: 2.3.1
-      once: 1.4.0
-    dev: true
-
   /@octokit/request-error/3.0.3:
     resolution: {integrity: sha512-crqw3V5Iy2uOU5Np+8M/YexTlT8zxCfI+qu+LxUB7SZpje4Qmx3mub5DfEKSO8Ylyk0aogi6TYdf6kxzh2BguQ==}
     engines: {node: '>= 14'}
@@ -1155,20 +1146,6 @@ packages:
       '@octokit/types': 9.0.0
       deprecation: 2.3.1
       once: 1.4.0
-    dev: true
-
-  /@octokit/request/6.2.2:
-    resolution: {integrity: sha512-6VDqgj0HMc2FUX2awIs+sM6OwLgwHvAi4KCK3mT2H2IKRt6oH9d0fej5LluF5mck1lRR/rFWN0YIDSYXYSylbw==}
-    engines: {node: '>= 14'}
-    dependencies:
-      '@octokit/endpoint': 7.0.3
-      '@octokit/request-error': 3.0.2
-      '@octokit/types': 8.0.0
-      is-plain-object: 5.0.0
-      node-fetch: 2.6.8
-      universal-user-agent: 6.0.0
-    transitivePeerDependencies:
-      - encoding
     dev: true
 
   /@octokit/request/6.2.3:
@@ -1222,7 +1199,7 @@ packages:
     resolution: {integrity: sha512-zZBbQMpXXnK/ki/utrFG/TuWv9545XCSLibfDTxrYqR1PmU6zel02ebTOrA7t5XIGHzlEOc/NgISUIBUe7pMFA==}
     engines: {node: '>= 14'}
     dependencies:
-      '@octokit/request-error': 3.0.2
+      '@octokit/request-error': 3.0.3
       '@octokit/webhooks-methods': 3.0.2
       '@octokit/webhooks-types': 6.10.0
       aggregate-error: 3.1.0
@@ -5965,6 +5942,7 @@ packages:
 
   /pnpm-deduplicate/0.4.1:
     resolution: {integrity: sha512-CaDESvQmXKr0amHVnz8NHGyguWZSLJUUwFXTTlxVisf1RUsbY/AXayeP/E2ehJvVZVv+hAvAkz9NzGoisW19rQ==}
+    deprecated: pnpm v7.26.0 supports built-in `pnpm dedupe` command
     hasBin: true
     dependencies:
       '@pnpm/lockfile-file': 6.0.5_@pnpm+logger@5.0.0

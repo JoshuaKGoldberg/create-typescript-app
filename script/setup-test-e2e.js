@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 
 import { $ } from "execa";
-import { readPackageUp } from "read-pkg-up";
+import { promises as fs } from "fs";
 
 const description = "New Description Test";
 const owner = "NewOwnerTest";
@@ -12,7 +12,9 @@ const result =
 	await $`pnpm run setup --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api`;
 console.log("Result from pnpm run setup:", result);
 
-const { packageJson: newPackageJson } = await readPackageUp();
+const newPackageJson = JSON.parse(
+	(await fs.readFile("./package.json")).toString()
+);
 console.log("New package JSON:", newPackageJson);
 
 assert.equal(newPackageJson.description, description);

@@ -305,7 +305,7 @@ try {
 	s.start(`Generating all-contributors table in README.md...`);
 
 	try {
-		await $`all-contributors generate`;
+		await $`pnpm all-contributors generate`;
 	} catch (error) {
 		s.stop(chalk.red`❌ Error generating all-contributors table in README.md.`);
 

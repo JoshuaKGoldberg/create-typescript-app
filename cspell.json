@@ -20,6 +20,8 @@
 		"lcov",
 		"packagejson",
 		"quickstart",
-		"wontfix"
+		"wontfix",
+		"titleize",
+		"outro"
 	]
 }

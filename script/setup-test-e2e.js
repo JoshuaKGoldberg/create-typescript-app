@@ -1,8 +1,7 @@
-/* global $ */
-
 import { strict as assert } from "node:assert";
 
-import { promises as fs } from "fs";
+import { $ } from "execa";
+import { readPackageUp } from "read-pkg-up";
 
 const description = "New Description Test";
 const owner = "NewOwnerTest";
@@ -13,9 +12,7 @@ const result =
 	await $`pnpm run setup --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api`;
 console.log("Result from pnpm run setup:", result);
 
-const newPackageJson = JSON.parse(
-	(await fs.readFile("./package.json")).toString()
-);
+const { packageJson: newPackageJson } = await readPackageUp();
 console.log("New package JSON:", newPackageJson);
 
 assert.equal(newPackageJson.description, description);
@@ -25,10 +22,11 @@ for (const search of [
 	`/JoshuaKGoldberg/`,
 	"template-typescript-node-package",
 ]) {
-	const grepResult =
-		await $`grep --exclude script/setup.js --exclude script/setup-test-e2e.js --exclude-dir node_modules -i ${search} *.* **/*.*`;
+	const { stdout } = await $({
+		shell: true,
+	})`grep --exclude script/setup.js --exclude script/setup-test-e2e.js --exclude-dir node_modules -i ${search} *.* **/*.*`;
 	assert.equal(
-		grepResult.stdout.trim(),
+		stdout,
 		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`
 	);
 }

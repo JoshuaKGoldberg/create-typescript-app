@@ -1,8 +1,7 @@
 /* global $ */
 
 import { strict as assert } from "node:assert";
-
-import { promises as fs } from "fs";
+import { readFile } from "node:fs/promises";
 
 const description = "New Description Test";
 const owner = "NewOwnerTest";
@@ -14,7 +13,7 @@ const result =
 console.log("Result from pnpm run setup:", result);
 
 const newPackageJson = JSON.parse(
-	(await fs.readFile("./package.json")).toString()
+	(await readFile("./package.json")).toString()
 );
 console.log("New package JSON:", newPackageJson);
 

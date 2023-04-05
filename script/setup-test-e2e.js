@@ -25,6 +25,8 @@ for (const search of [
 	"template-typescript-node-package",
 ]) {
 	const { stdout } = await $({
+		// Todo: it'd be nice to not have to use this... but we haven't figured out how yet.
+		// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/357
 		shell: true,
 	})`grep --exclude script/setup.js --exclude script/setup-test-e2e.js --exclude-dir node_modules -i ${search} *.* **/*.*`;
 	assert.equal(

@@ -36,7 +36,7 @@ for (const search of [
 }
 
 try {
-	await $`pnpm lint:knip`;
+	await $`pnpm run lint:knip`;
 } catch (error) {
 	console.error("Error running lint:knip:", error);
 	process.exitCode = 1;

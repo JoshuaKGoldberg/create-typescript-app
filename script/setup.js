@@ -1,11 +1,10 @@
-/* global $ */
-
-import { appendFile, readFile, rm, writeFile } from "node:fs/promises";
 import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
 import { cancel, intro, isCancel, outro, spinner, text } from "@clack/prompts";
 import chalk from "chalk";
+import { $ } from "execa";
+import { promises as fs } from "fs";
 import npmUser from "npm-user";
 import { Octokit } from "octokit";
 import prettier from "prettier";
@@ -40,10 +39,13 @@ try {
 	async function getDefaultSettings() {
 		let gitRemoteFetch;
 		try {
-			gitRemoteFetch = await $`git remote -v | grep fetch`;
+			// grep only the origin remote and it's fetch URL
+			gitRemoteFetch = await $`git remote -v`
+				.pipeStdout($({ stdin: "pipe" })`grep origin`)
+				.pipeStdout($({ stdin: "pipe" })`grep fetch`);
 		} catch {
 			console.log(
-				chalk.red(
+				chalk.yellow(
 					"Could not populate default owner and repository. Did not detect a Git repository with an origin. "
 				)
 			);
@@ -65,14 +67,14 @@ try {
 
 	intro(
 		chalk.blue(
-			"Enter the details to hydrate your repository for your new package!"
+			"Let's collect some information to fill out repository details..."
 		)
 	);
 	console.log();
 
 	async function getPrefillOrPromptedValue(key, message, placeholder) {
 		if (values[key]) {
-			console.log(chalk.grey(`  Pre-filling ${key} to ${values[key]}.`));
+			console.log(chalk.grey(`│  Pre-filling ${key} to ${values[key]}.`));
 
 			return values[key];
 		}
@@ -135,7 +137,7 @@ try {
 
 	async function readFileAsJSON(filePath) {
 		try {
-			return JSON.parse((await readFile(filePath)).toString());
+			return JSON.parse((await fs.readFile(filePath)).toString());
 		} catch (error) {
 			throw new Error(
 				`Could not read file from ${filePath} as JSON. Please ensure the file exists and is valid JSON.`,
@@ -144,8 +146,10 @@ try {
 		}
 	}
 
-	const pSpinner = async (callback, options) => {
-		const { startText, successText, stopText, errorText } = options;
+	const pSpinner = async (
+		callback,
+		{ startText, successText, stopText, errorText }
+	) => {
 		s.start(startText);
 
 		try {
@@ -165,7 +169,7 @@ try {
 				"./.all-contributorsrc"
 			);
 
-			await writeFile(
+			await fs.writeFile(
 				"./.all-contributorsrc",
 				prettier.format(
 					JSON.stringify({
@@ -196,7 +200,9 @@ try {
 		let username;
 
 		try {
-			username = await $`npm whoami`;
+			const { stdout } = await $`npm whoami`.pipeStdout($`cat`);
+
+			username = stdout;
 		} catch {
 			console.log(
 				chalk.yellow("Could not populate npm user. Failed to run npm whoami. ")
@@ -208,7 +214,7 @@ try {
 		let npmUserInfo;
 
 		try {
-			npmUserInfo = await npmUser(username.stdout.trim());
+			npmUserInfo = await npmUser(username);
 		} catch {
 			console.log(
 				chalk.yellow(
@@ -273,11 +279,13 @@ try {
 
 	await pSpinner(
 		async () => {
-			await writeFile(
+			await fs.writeFile(
 				".all-contributorsrc",
 				prettier.format(
 					JSON.stringify({
-						...JSON.parse((await readFile(".all-contributorsrc")).toString()),
+						...JSON.parse(
+							(await fs.readFile(".all-contributorsrc")).toString()
+						),
 						projectName: repository,
 						projectOwner: owner,
 					}),
@@ -305,7 +313,7 @@ try {
 				``,
 			].join(EOL);
 
-			await appendFile("./README.md", endOfReadmeNotice);
+			await fs.appendFile("./README.md", endOfReadmeNotice);
 		},
 		{
 			startText:
@@ -321,7 +329,7 @@ try {
 
 	await pSpinner(
 		async () => {
-			await writeFile(
+			await fs.writeFile(
 				"./CHANGELOG.md",
 				prettier.format(`# Changelog`, { parser: "markdown" })
 			);
@@ -348,7 +356,15 @@ try {
 
 	await pSpinner(
 		async () => {
-			await $`git tag -d $(git tag -l)`;
+			const { stdout: allLocalTags } = await $`git tag -l`;
+
+			// Create array of local tags by splitting the string at each new line and filtering out empty strings
+			const allLocalTagsArray = allLocalTags.split("\n").filter(Boolean);
+
+			// Delete all local tags if there are any
+			if (allLocalTagsArray.length !== 0) {
+				await $`git tag -d ${allLocalTagsArray}`;
+			}
 		},
 		{
 			startText: `Deleting local git tags...`,
@@ -357,6 +373,9 @@ try {
 			errorText: `Could not delete local git tags. `,
 		}
 	);
+
+	console.log(chalk.gray`✔️ Done.`);
+	console.log();
 
 	if (skipApi) {
 		skipSpinnerBlock(`Skipping API hydration.`);
@@ -368,7 +387,6 @@ try {
 		await pSpinner(
 			async () => {
 				await $`gh auth status`;
-
 				const auth = (await $`gh auth token`).toString().trim();
 
 				octokit = new Octokit({ auth });
@@ -480,8 +498,8 @@ try {
 
 	await pSpinner(
 		async () => {
-			await rm("./script", { force: true, recursive: true });
-			await rm(".github/workflows/setup.yml");
+			await fs.rm("./script", { force: true, recursive: true });
+			await fs.rm(".github/workflows/setup.yml");
 		},
 		{
 			startText: `Removing setup script...`,

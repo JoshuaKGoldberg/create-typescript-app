@@ -53,6 +53,10 @@ When a PR is not in draft, it's considered ready for review.
 Please don't manually `@` tag anybody to request review.
 A maintainer will look at it when they're next able to.
 
+PRs should have passing [GitHub status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) before review is requested (unless there are explicit questions asked in the PR about any failures).
+
+#### Requested Changes
+
 After a maintainer reviews your PR, they may request changes on it.
 Once you've made those changes, [re-request review on GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews#re-requesting-a-review).
 

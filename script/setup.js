@@ -45,7 +45,7 @@ try {
 				.pipeStdout($({ stdin: "pipe" })`grep fetch`);
 		} catch {
 			console.log(
-				chalk.yellow(
+				chalk.gray(
 					"Could not populate default owner and repository. Did not detect a Git repository with an origin. "
 				)
 			);
@@ -74,7 +74,7 @@ try {
 
 	async function getPrefillOrPromptedValue(key, message, placeholder) {
 		if (values[key]) {
-			console.log(chalk.grey(`│  Pre-filling ${key} to ${values[key]}.`));
+			console.log(chalk.gray(`│  Pre-filling ${key} to ${values[key]}.`));
 
 			return values[key];
 		}
@@ -208,10 +208,7 @@ try {
 		} catch {
 			console.log(chalk.gray("│"));
 			console.log(
-				chalk.gray("│  ") +
-					chalk.yellow(
-						"Could not populate npm user. Failed to run npm whoami. "
-					)
+				chalk.gray("│  Could not populate npm user. Failed to run npm whoami. ")
 			);
 
 			return owner;
@@ -224,10 +221,9 @@ try {
 		} catch {
 			console.log(chalk.gray("│"));
 			console.log(
-				chalk.gray("│  ") +
-					chalk.yellow(
-						"Could not populate npm user. Failed to retrieve user info from npm. "
-					)
+				chalk.gray(
+					"│  Could not populate npm user. Failed to retrieve user info from npm. "
+				)
 			);
 
 			return owner;

@@ -1,7 +1,7 @@
 import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
-import { cancel, intro, isCancel, outro, spinner, text } from "@clack/prompts";
+import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 import { $ } from "execa";
 import { promises as fs } from "fs";
@@ -12,7 +12,7 @@ import replace from "replace-in-file";
 import { titleCase } from "title-case";
 
 let exitCode = 0;
-const s = spinner();
+const s = prompts.spinner();
 
 try {
 	console.clear();
@@ -65,12 +65,12 @@ try {
 
 	const { defaultOwner, defaultRepository } = await getDefaultSettings();
 
-	intro(
+	prompts.intro(
 		chalk.blue(
 			"Let's collect some information to fill out repository details..."
 		)
 	);
-	console.log();
+	console.log(chalk.gray("│"));
 
 	async function getPrefillOrPromptedValue(key, message, placeholder) {
 		if (values[key]) {
@@ -79,7 +79,7 @@ try {
 			return values[key];
 		}
 
-		const value = await text({
+		const value = await prompts.text({
 			message,
 			placeholder,
 			validate: (val) => {
@@ -89,8 +89,10 @@ try {
 			},
 		});
 
-		if (isCancel(value)) {
-			cancel("Operation cancelled. Exiting setup - maybe another time? 👋");
+		if (prompts.isCancel(value)) {
+			prompts.cancel(
+				"Operation cancelled. Exiting setup - maybe another time? 👋"
+			);
 			process.exit(0);
 		}
 
@@ -146,7 +148,7 @@ try {
 		}
 	}
 
-	const pSpinner = async (
+	const withSpinner = async (
 		callback,
 		{ startText, successText, stopText, errorText }
 	) => {
@@ -163,7 +165,7 @@ try {
 		}
 	};
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			const existingContributors = await readFileAsJSON(
 				"./.all-contributorsrc"
@@ -200,12 +202,16 @@ try {
 		let username;
 
 		try {
-			const { stdout } = await $`npm whoami`.pipeStdout($`cat`);
+			const { stdout } = await $`npm whoami`;
 
 			username = stdout;
 		} catch {
+			console.log(chalk.gray("│"));
 			console.log(
-				chalk.yellow("Could not populate npm user. Failed to run npm whoami. ")
+				chalk.gray("│  ") +
+					chalk.yellow(
+						"Could not populate npm user. Failed to run npm whoami. "
+					)
 			);
 
 			return owner;
@@ -216,10 +222,12 @@ try {
 		try {
 			npmUserInfo = await npmUser(username);
 		} catch {
+			console.log(chalk.gray("│"));
 			console.log(
-				chalk.yellow(
-					"Could not populate npm user. Failed to retrieve user info from npm. "
-				)
+				chalk.gray("│  ") +
+					chalk.yellow(
+						"Could not populate npm user. Failed to retrieve user info from npm. "
+					)
 			);
 
 			return owner;
@@ -231,7 +239,7 @@ try {
 
 	const npmAuthor = await getNpmAuthor();
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			const existingPackage = await readFileAsJSON("./package.json");
 
@@ -277,7 +285,7 @@ try {
 		}
 	);
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			await fs.writeFile(
 				".all-contributorsrc",
@@ -303,7 +311,7 @@ try {
 		}
 	);
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			const endOfReadmeNotice = [
 				``,
@@ -327,7 +335,7 @@ try {
 
 	successSpinnerBlock(`Finished hydrating package metadata locally.`);
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			await fs.writeFile(
 				"./CHANGELOG.md",
@@ -342,7 +350,7 @@ try {
 		}
 	);
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			await $`pnpm all-contributors generate`;
 		},
@@ -354,7 +362,7 @@ try {
 		}
 	);
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			const { stdout: allLocalTags } = await $`git tag -l`;
 
@@ -374,9 +382,6 @@ try {
 		}
 	);
 
-	console.log(chalk.gray`✔️ Done.`);
-	console.log();
-
 	if (skipApi) {
 		skipSpinnerBlock(`Skipping API hydration.`);
 	} else {
@@ -384,7 +389,7 @@ try {
 
 		let octokit;
 
-		await pSpinner(
+		await withSpinner(
 			async () => {
 				await $`gh auth status`;
 				const auth = (await $`gh auth token`).toString().trim();
@@ -399,7 +404,7 @@ try {
 			}
 		);
 
-		await pSpinner(
+		await withSpinner(
 			async () => {
 				const existingLabels = JSON.parse(
 					(await $`gh label list --json name`).stdout || "[]"
@@ -424,7 +429,7 @@ try {
 			}
 		);
 
-		await pSpinner(
+		await withSpinner(
 			async () => {
 				await octokit.rest.repos.update({
 					allow_auto_merge: true,
@@ -446,7 +451,7 @@ try {
 			}
 		);
 
-		await pSpinner(
+		await withSpinner(
 			async () => {
 				// Note: keep this inline script in sync with .github/workflows/release.yml!
 				// Todo: it would be nice to not have two sources of truth...
@@ -496,7 +501,7 @@ try {
 		successSpinnerBlock(`Finished API hydration.`);
 	}
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			await fs.rm("./script", { force: true, recursive: true });
 			await fs.rm(".github/workflows/setup.yml");
@@ -509,7 +514,7 @@ try {
 		}
 	);
 
-	await pSpinner(
+	await withSpinner(
 		async () => {
 			await $`pnpm remove @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
 		},
@@ -521,7 +526,7 @@ try {
 		}
 	);
 
-	outro(chalk.green`Great, looks like everything worked! 🎉`);
+	prompts.outro(chalk.blue`Great, looks like everything worked! 🎉`);
 
 	console.log(chalk.blue`You may consider committing these changes:`);
 	console.log();
@@ -534,7 +539,7 @@ try {
 
 	exitCode = 0;
 } catch (error) {
-	outro(
+	prompts.outro(
 		chalk.red`Looks like there was a problem. Correct it and try again? 😕`
 	);
 

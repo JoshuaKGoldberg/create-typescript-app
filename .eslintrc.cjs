@@ -18,7 +18,7 @@ module.exports = {
 		},
 		{
 			extends: [
-				"plugin:jsdoc/recommended-typescript",
+				"plugin:jsdoc/recommended-typescript-error",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:typescript-sort-keys/recommended",
 			],

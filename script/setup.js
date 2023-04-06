@@ -1,9 +1,9 @@
-/* global $ */
 import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
 import { cancel, isCancel, text } from "@clack/prompts";
 import chalk from "chalk";
+import { $ } from "execa";
 import { promises as fs } from "fs";
 import npmUser from "npm-user";
 import { Octokit } from "octokit";
@@ -41,7 +41,10 @@ try {
 	async function getDefaultSettings() {
 		let gitRemoteFetch;
 		try {
-			gitRemoteFetch = await $`git remote -v | grep fetch`;
+			// grep only the origin remote and it's fetch URL
+			gitRemoteFetch = await $`git remote -v`
+				.pipeStdout($({ stdin: "pipe" })`grep origin`)
+				.pipeStdout($({ stdin: "pipe" })`grep fetch`);
 		} catch {
 			console.log(
 				chalk.gray(
@@ -149,7 +152,9 @@ try {
 		let username;
 
 		try {
-			username = await $`npm whoami`;
+			const { stdout } = await $`npm whoami`.pipeStdout($`cat`);
+
+			username = stdout;
 		} catch {
 			console.log(
 				chalk.gray("Could not populate npm user. Failed to run npm whoami. ")
@@ -160,7 +165,7 @@ try {
 		let npmUserInfo;
 
 		try {
-			npmUserInfo = await npmUser(username.stdout.trim());
+			npmUserInfo = await npmUser(username);
 		} catch {
 			console.log(
 				chalk.gray(
@@ -244,9 +249,15 @@ try {
 	console.log();
 	console.log(chalk.gray`Deleting local git tags...`);
 
-	await $`git tag -d $(git tag -l)`;
+	const { stdout: allLocalTags } = await $`git tag -l`;
 
-	console.log(chalk.gray`✔️ Done.`);
+	// Create array of local tags by splitting the string at each new line and filtering out empty strings
+	const allLocalTagsArray = allLocalTags.split("\n").filter(Boolean);
+
+	// Delete all local tags if there are any
+	if (allLocalTagsArray.length !== 0) {
+		await $`git tag -d ${allLocalTagsArray}`;
+	}
 
 	console.log(chalk.gray`✔️ Done.`);
 	console.log();
@@ -258,7 +269,8 @@ try {
 		let auth;
 		try {
 			await $`gh auth status`;
-			auth = (await $`gh auth token`).toString().trim();
+			const { stdout } = await $`gh auth token`;
+			auth = stdout;
 		} catch (error) {
 			throw new Error(error.stderr);
 		}
@@ -268,9 +280,8 @@ try {
 
 		console.log(chalk.gray`Hydrating repository labels...`);
 
-		const existingLabels = JSON.parse(
-			(await $`gh label list --json name`).stdout || "[]"
-		);
+		const { stdout } = await $`gh label list --json name`;
+		const existingLabels = JSON.parse(stdout) ?? [];
 
 		for (const outcome of outcomeLabels) {
 			const action = existingLabels.some(
@@ -360,7 +371,7 @@ try {
 	);
 
 	try {
-		await $`pnpm remove @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
+		await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
 	} catch (error) {
 		console.log("Error uninstalling packages:", error);
 		caughtError = error;

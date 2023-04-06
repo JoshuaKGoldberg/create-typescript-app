@@ -502,6 +502,9 @@ try {
 	if (skipUninstalls) {
 		console.log();
 		console.log(chalk.gray`➖ Skipping removal of setup script.`);
+		console.log(
+			chalk.gray`➖ Skipping removal of devDependencies only used for setup.`
+		);
 	} else {
 		await withSpinner(
 			async () => {
@@ -515,19 +518,19 @@ try {
 				errorText: `Could not remove setup script. `,
 			}
 		);
-	}
 
-	await withSpinner(
-		async () => {
-			await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
-		},
-		{
-			startText: `Removing devDependency packages only used for setup...`,
-			successText: `Removed devDependency packages only used for setup.`,
-			stopText: `Error removing devDependency packages only used for setup.`,
-			errorText: `Could not remove devDependency packages only used for setup. `,
-		}
-	);
+		await withSpinner(
+			async () => {
+				await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
+			},
+			{
+				startText: `Removing devDependency packages only used for setup...`,
+				successText: `Removed devDependency packages only used for setup.`,
+				stopText: `Error removing devDependency packages only used for setup.`,
+				errorText: `Could not remove devDependency packages only used for setup. `,
+			}
+		);
+	}
 
 	prompts.outro(chalk.blue`Great, looks like everything worked! 🎉`);
 

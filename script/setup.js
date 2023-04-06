@@ -31,6 +31,7 @@ try {
 			repository: { type: "string" },
 			title: { type: "string" },
 			"skip-api": { type: "boolean" },
+			"skip-uninstalls": { type: "boolean" },
 		},
 		tokens: true,
 		strict: false,

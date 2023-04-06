@@ -125,6 +125,7 @@ try {
 	);
 
 	const skipApi = values["skip-api"];
+	const skipUninstalls = values["skip-uninstalls"];
 
 	const successSpinnerBlock = (blockText) => {
 		s.start(chalk.green("✅ " + blockText));
@@ -498,18 +499,23 @@ try {
 		successSpinnerBlock(`Finished API hydration.`);
 	}
 
-	await withSpinner(
-		async () => {
-			await fs.rm("./script", { force: true, recursive: true });
-			await fs.rm(".github/workflows/setup.yml");
-		},
-		{
-			startText: `Removing setup script...`,
-			successText: `Removed setup script.`,
-			stopText: `Error removing setup script.`,
-			errorText: `Could not remove setup script. `,
-		}
-	);
+	if (skipUninstalls) {
+		console.log();
+		console.log(chalk.gray`➖ Skipping removal of setup script.`);
+	} else {
+		await withSpinner(
+			async () => {
+				await fs.rm("./script", { force: true, recursive: true });
+				await fs.rm(".github/workflows/setup.yml");
+			},
+			{
+				startText: `Removing setup script...`,
+				successText: `Removed setup script.`,
+				stopText: `Error removing setup script.`,
+				errorText: `Could not remove setup script. `,
+			}
+		);
+	}
 
 	await withSpinner(
 		async () => {

@@ -60,7 +60,7 @@
 		"execa": "^7.1.1",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.1.0",
-		"knip": "2.4.0",
+		"knip": "2.6.1",
 		"lint-staged": "^13.1.0",
 		"markdownlint": "^0.28.0",
 		"markdownlint-cli": "^0.33.0",

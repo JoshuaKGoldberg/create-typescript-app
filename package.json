@@ -74,7 +74,7 @@
 		"release-it": "^15.6.0",
 		"replace-in-file": "^6.3.5",
 		"sentences-per-line": "^0.2.1",
-		"should-semantic-release": "^0.0.4",
+		"should-semantic-release": "^0.1.0",
 		"title-case": "^3.0.3",
 		"typescript": "^5.0.0",
 		"vitest": "^0.29.0",

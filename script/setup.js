@@ -1,7 +1,7 @@
 import { EOL } from "node:os";
 import { parseArgs } from "node:util";
 
-import { cancel, isCancel, text } from "@clack/prompts";
+import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 import { $ } from "execa";
 import { promises as fs } from "fs";
@@ -11,17 +11,15 @@ import prettier from "prettier";
 import replace from "replace-in-file";
 import { titleCase } from "title-case";
 
-let caughtError;
+let exitCode = 0;
+const s = prompts.spinner();
 
 try {
 	console.clear();
 	console.log(
 		chalk.greenBright`Welcome to the`,
-		chalk.bgGreenBright`template-typescript-node-package`,
-		chalk.greenBright`package setup!`
-	);
-	console.log(
-		chalk.blue`This setup script will hydrate your repository based on your provided settings.`
+		chalk.bgGreenBright.black`template-typescript-node-package`,
+		chalk.greenBright`package setup! 🎉`
 	);
 	console.log();
 
@@ -51,6 +49,7 @@ try {
 					"Could not populate default owner and repository. Did not detect a Git repository with an origin. "
 				)
 			);
+
 			return {
 				defaultOwner: "UserName",
 				defaultRepository: "my-lovely-repository",
@@ -66,13 +65,21 @@ try {
 
 	const { defaultOwner, defaultRepository } = await getDefaultSettings();
 
+	prompts.intro(
+		chalk.blue(
+			"Let's collect some information to fill out repository details..."
+		)
+	);
+	console.log(chalk.gray("│"));
+
 	async function getPrefillOrPromptedValue(key, message, placeholder) {
 		if (values[key]) {
-			console.log(chalk.grey(`Pre-filling ${key} to ${values[key]}.`));
+			console.log(chalk.gray(`│  Pre-filling ${key} to ${values[key]}.`));
+
 			return values[key];
 		}
 
-		const value = await text({
+		const value = await prompts.text({
 			message,
 			placeholder,
 			validate: (val) => {
@@ -82,8 +89,10 @@ try {
 			},
 		});
 
-		if (isCancel(value)) {
-			cancel("Operation cancelled. Exiting setup - maybe another time? 👋");
+		if (prompts.isCancel(value)) {
+			prompts.cancel(
+				"Operation cancelled. Exiting setup - maybe another time? 👋"
+			);
 			process.exit(0);
 		}
 
@@ -116,49 +125,92 @@ try {
 
 	const skipApi = values["skip-api"];
 
-	console.log();
-	console.log(chalk.gray`Hydrating package metadata locally...`);
+	const successSpinnerBlock = (blockText) => {
+		s.start(chalk.green("✅ " + blockText));
+		s.stop(chalk.green("✅ " + blockText));
+	};
+
+	const skipSpinnerBlock = (blockText) => {
+		s.start(chalk.yellow("➖ " + blockText));
+		s.stop(chalk.yellow("➖ " + blockText));
+	};
+
+	successSpinnerBlock("Started hydrating package metadata locally.");
 
 	async function readFileAsJSON(filePath) {
-		return JSON.parse((await fs.readFile(filePath)).toString());
+		try {
+			return JSON.parse((await fs.readFile(filePath)).toString());
+		} catch (error) {
+			throw new Error(
+				`Could not read file from ${filePath} as JSON. Please ensure the file exists and is valid JSON.`,
+				{ cause: error }
+			);
+		}
 	}
 
-	const [existingContributors, existingPackage, outcomeLabels] =
-		await Promise.all([
-			readFileAsJSON("./.all-contributorsrc"),
-			readFileAsJSON("./package.json"),
-			readFileAsJSON("./script/labels.json"),
-		]);
+	const withSpinner = async (
+		callback,
+		{ startText, successText, stopText, errorText }
+	) => {
+		s.start(startText);
 
-	await fs.writeFile(
-		"./.all-contributorsrc",
-		prettier.format(
-			JSON.stringify({
-				...existingContributors,
-				contributors: [
-					{
-						...existingContributors.contributors.find(
-							({ login }) => login === "JoshuaKGoldberg"
-						),
-						contributions: ["tool"],
-					},
-				],
-			}),
-			{ parser: "json" }
-		)
+		try {
+			await callback();
+
+			s.stop(chalk.green("✅ " + successText));
+		} catch (error) {
+			s.stop(chalk.red("❌ " + stopText));
+
+			throw new Error(errorText, { cause: error });
+		}
+	};
+
+	await withSpinner(
+		async () => {
+			const existingContributors = await readFileAsJSON(
+				"./.all-contributorsrc"
+			);
+
+			await fs.writeFile(
+				"./.all-contributorsrc",
+				prettier.format(
+					JSON.stringify({
+						...existingContributors,
+						contributors: [
+							{
+								...existingContributors.contributors.find(
+									({ login }) => login === "JoshuaKGoldberg"
+								),
+								contributions: ["tool"],
+							},
+						],
+					}),
+					{ parser: "json" }
+				)
+			);
+		},
+		{
+			startText: "Updating existing contributors details...",
+			successText: `Updated existing contributors details.`,
+			stopText: `Error updating existing contributors details.`,
+			errorText:
+				"Failed to remove existing contributors & update '.all-contributorsrc' with new changes. ",
+		}
 	);
 
 	async function getNpmAuthor() {
 		let username;
 
 		try {
-			const { stdout } = await $`npm whoami`.pipeStdout($`cat`);
+			const { stdout } = await $`npm whoami`;
 
 			username = stdout;
 		} catch {
+			console.log(chalk.gray("│"));
 			console.log(
-				chalk.gray("Could not populate npm user. Failed to run npm whoami. ")
+				chalk.gray("│  Could not populate npm user. Failed to run npm whoami. ")
 			);
+
 			return owner;
 		}
 
@@ -167,11 +219,13 @@ try {
 		try {
 			npmUserInfo = await npmUser(username);
 		} catch {
+			console.log(chalk.gray("│"));
 			console.log(
 				chalk.gray(
-					"Could not populate npm user. Failed to retrieve user info from npm. "
+					"│  Could not populate npm user. Failed to retrieve user info from npm. "
 				)
 			);
+
 			return owner;
 		}
 
@@ -181,218 +235,315 @@ try {
 
 	const npmAuthor = await getNpmAuthor();
 
-	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
-		[new RegExp(existingPackage.description, "g"), description],
-		[/Template TypeScript Node Package/g, title],
-		[/JoshuaKGoldberg/g, owner],
-		[/template-typescript-node-package/g, repository],
-		[/"setup": ".*",/g, ``, "./package.json"],
-		[/"setup:test": ".*",/g, ``, "./package.json"],
-		[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
-		[
-			new RegExp(`"version": "${existingPackage.version}"`, "g"),
-			`"version": "0.0.0"`,
-			"./package.json",
-		],
-		[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
-		[
-			`["src/index.ts!", "script/setup*.js"]`,
-			`"src/index.ts!"`,
-			"./knip.jsonc",
-		],
-		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
-	]) {
-		await replace({ files, from, to });
-	}
+	await withSpinner(
+		async () => {
+			const existingPackage = await readFileAsJSON("./package.json");
 
-	await fs.writeFile(
-		".all-contributorsrc",
-		prettier.format(
-			JSON.stringify({
-				...JSON.parse((await fs.readFile(".all-contributorsrc")).toString()),
-				projectName: repository,
-				projectOwner: owner,
-			}),
-			{ parser: "json" }
-		)
+			for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
+				[new RegExp(existingPackage.description, "g"), description],
+				[/Template TypeScript Node Package/g, title],
+				[/JoshuaKGoldberg/g, owner],
+				[/template-typescript-node-package/g, repository],
+				[/"setup": ".*",/g, ``, "./package.json"],
+				[/"setup:test": ".*",/g, ``, "./package.json"],
+				[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
+				[
+					new RegExp(`"version": "${existingPackage.version}"`, "g"),
+					`"version": "0.0.0"`,
+					"./package.json",
+				],
+				[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
+				[
+					`["src/index.ts!", "script/setup*.js"]`,
+					`"src/index.ts!"`,
+					"./knip.jsonc",
+				],
+				[
+					`["src/**/*.ts!", "script/**/*.js"]`,
+					`"src/**/*.ts!"`,
+					"./knip.jsonc",
+				],
+			]) {
+				try {
+					await replace({ files, from, to });
+				} catch (error) {
+					throw new Error(`Failed to replace ${from} with ${to} in ${files}`, {
+						cause: error,
+					});
+				}
+			}
+		},
+		{
+			startText: "Updating all the files with provided details...",
+			successText: `Updated all the files with provided details.`,
+			stopText: `Error updating all the files with provided details.`,
+			errorText: "Failed to update all the files with provided details. ",
+		}
 	);
 
-	const endOfReadmeNotice = [
-		``,
-		`<!-- You can remove this notice if you don't want it 🙂 no worries! -->`,
-		``,
-		`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
-		``,
-	].join(EOL);
-
-	await fs.appendFile("./README.md", endOfReadmeNotice);
-
-	console.log(chalk.gray`✔️ Done.`);
-
-	console.log();
-	console.log(chalk.gray`Clearing CHANGELOG.md...`);
-
-	await fs.writeFile(
-		"./CHANGELOG.md",
-		prettier.format(`# Changelog`, { parser: "markdown" })
+	await withSpinner(
+		async () => {
+			await fs.writeFile(
+				".all-contributorsrc",
+				prettier.format(
+					JSON.stringify({
+						...JSON.parse(
+							(await fs.readFile(".all-contributorsrc")).toString()
+						),
+						projectName: repository,
+						projectOwner: owner,
+					}),
+					{ parser: "json" }
+				)
+			);
+		},
+		{
+			startText:
+				"Updating '.all-contributorsrc' with new repository details...",
+			successText: `Updated '.all-contributorsrc' with new repository details.`,
+			stopText: `Error updating '.all-contributorsrc' with new repository details.`,
+			errorText:
+				"Failed to update '.all-contributorsrc' with new repository details. ",
+		}
 	);
 
-	console.log(chalk.gray`✔️ Done.`);
+	await withSpinner(
+		async () => {
+			const endOfReadmeNotice = [
+				``,
+				`<!-- You can remove this notice if you don't want it 🙂 no worries! -->`,
+				``,
+				`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
+				``,
+			].join(EOL);
 
-	console.log();
-	console.log(chalk.gray`Generating all-contributors table in README.md...`);
+			await fs.appendFile("./README.md", endOfReadmeNotice);
+		},
+		{
+			startText:
+				"Appending template-typescript-node-package notice to 'README.md'...",
+			successText: `Appended template-typescript-node-package notice to 'README.md'.`,
+			stopText: `Error appending template-typescript-node-package notice to 'README.md'.`,
+			errorText:
+				"Failed to append template-typescript-node-package notice to 'README.md'. ",
+		}
+	);
 
-	await $`pnpm all-contributors generate`;
+	successSpinnerBlock(`Finished hydrating package metadata locally.`);
 
-	console.log(chalk.gray`✔️ Done.`);
+	await withSpinner(
+		async () => {
+			await fs.writeFile(
+				"./CHANGELOG.md",
+				prettier.format(`# Changelog`, { parser: "markdown" })
+			);
+		},
+		{
+			startText: `Clearing CHANGELOG.md...`,
+			successText: `Cleared CHANGELOG.md.`,
+			stopText: `Error clearing CHANGELOG.md.`,
+			errorText: `Could not empty 'CHANGELOG.md'. `,
+		}
+	);
 
-	console.log();
-	console.log(chalk.gray`Deleting local git tags...`);
+	await withSpinner(
+		async () => {
+			await $`pnpm all-contributors generate`;
+		},
+		{
+			startText: `Generating all-contributors table in README.md...`,
+			successText: `Generated all-contributors table in README.md.`,
+			stopText: `Error generating all-contributors table in README.md.`,
+			errorText: `Could not empty 'CHANGELOG.md'. `,
+		}
+	);
 
-	const { stdout: allLocalTags } = await $`git tag -l`;
+	await withSpinner(
+		async () => {
+			const { stdout: allLocalTags } = await $`git tag -l`;
 
-	// Create array of local tags by splitting the string at each new line and filtering out empty strings
-	const allLocalTagsArray = allLocalTags.split("\n").filter(Boolean);
+			// Create array of local tags by splitting the string at each new line and filtering out empty strings
+			const allLocalTagsArray = allLocalTags.split("\n").filter(Boolean);
 
-	// Delete all local tags if there are any
-	if (allLocalTagsArray.length !== 0) {
-		await $`git tag -d ${allLocalTagsArray}`;
-	}
-
-	console.log(chalk.gray`✔️ Done.`);
-	console.log();
+			// Delete all local tags if there are any
+			if (allLocalTagsArray.length !== 0) {
+				await $`git tag -d ${allLocalTagsArray}`;
+			}
+		},
+		{
+			startText: `Deleting local git tags...`,
+			successText: `Deleted local git tags.`,
+			stopText: `Error deleting local git tags.`,
+			errorText: `Could not delete local git tags. `,
+		}
+	);
 
 	if (skipApi) {
-		console.log(chalk.gray`➖ Skipping API hydration.`);
+		skipSpinnerBlock(`Skipping API hydration.`);
 	} else {
-		console.log(chalk.gray`Checking gh auth status...`);
-		let auth;
-		try {
-			await $`gh auth status`;
-			const { stdout } = await $`gh auth token`;
-			auth = stdout;
-		} catch (error) {
-			throw new Error(error.stderr);
-		}
+		successSpinnerBlock(`Starting API hydration.`);
 
-		console.log(chalk.gray`✔️ Done.`);
-		console.log();
+		let octokit;
 
-		console.log(chalk.gray`Hydrating repository labels...`);
+		await withSpinner(
+			async () => {
+				await $`gh auth status`;
+				const auth = (await $`gh auth token`).toString().trim();
 
-		const { stdout } = await $`gh label list --json name`;
-		const existingLabels = JSON.parse(stdout) ?? [];
-
-		for (const outcome of outcomeLabels) {
-			const action = existingLabels.some(
-				(existing) => existing.name === outcome.name
-			)
-				? "edit"
-				: "create";
-			await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
-		}
-
-		console.log(chalk.gray`✔️ Done.`);
-
-		console.log();
-		console.log(chalk.gray`Hydrating initial repository settings...`);
-
-		const octokit = new Octokit({ auth });
-
-		octokit.rest.repos.update({
-			allow_auto_merge: true,
-			allow_rebase_merge: false,
-			allow_squash_merge: true,
-			default_branch: "main",
-			delete_branch_on_merge: true,
-			description,
-			has_wiki: false,
-			owner,
-			repo: repository,
-		});
-
-		console.log();
-		console.log(chalk.gray`Hydrating branch protection settings...`);
-
-		// Note: keep this inline script in sync with .github/workflows/release.yml!
-		// Todo: it would be nice to not have two sources of truth...
-		// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
-		await octokit.request(
-			`PUT /repos/${owner}/${repository}/branches/main/protection`,
+				octokit = new Octokit({ auth });
+			},
 			{
-				allow_deletions: false,
-				allow_force_pushes: true,
-				allow_fork_pushes: false,
-				allow_fork_syncing: true,
-				block_creations: false,
-				branch: "main",
-				enforce_admins: false,
-				owner,
-				repo: repository,
-				required_conversation_resolution: true,
-				required_linear_history: false,
-				required_pull_request_reviews: null,
-				required_status_checks: {
-					checks: [
-						{ context: "build" },
-						{ context: "compliance" },
-						{ context: "knip" },
-						{ context: "lint" },
-						{ context: "markdown" },
-						{ context: "package" },
-						{ context: "packages" },
-						{ context: "prettier" },
-						{ context: "spelling" },
-						{ context: "test" },
-					],
-					strict: false,
-				},
-				restrictions: null,
+				startText: `Fetching gh auth status...`,
+				successText: `Fetched gh auth status.`,
+				stopText: `Error fetching gh auth status.`,
+				errorText: `Could not fetch github auth token. `,
 			}
 		);
 
-		console.log(chalk.gray`✔️ Done.`);
+		await withSpinner(
+			async () => {
+				const existingLabels = JSON.parse(
+					(await $`gh label list --json name`).stdout || "[]"
+				);
+
+				const outcomeLabels = await readFileAsJSON("./script/labels.json");
+
+				for (const outcome of outcomeLabels) {
+					const action = existingLabels.some(
+						(existing) => existing.name === outcome.name
+					)
+						? "edit"
+						: "create";
+					await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
+				}
+			},
+			{
+				startText: `Hydrating repository labels...`,
+				successText: `Hydrated repository labels.`,
+				stopText: `Error hydrating repository labels.`,
+				errorText: `Could not hydrate repository labels. `,
+			}
+		);
+
+		await withSpinner(
+			async () => {
+				await octokit.rest.repos.update({
+					allow_auto_merge: true,
+					allow_rebase_merge: false,
+					allow_squash_merge: true,
+					default_branch: "main",
+					delete_branch_on_merge: true,
+					description,
+					has_wiki: false,
+					owner,
+					repo: repository,
+				});
+			},
+			{
+				startText: `Hydrating initial repository settings...`,
+				successText: `Hydrated initial repository settings.`,
+				stopText: `Error hydrating initial repository settings.`,
+				errorText: `Could not hydrate initial repository settings. `,
+			}
+		);
+
+		await withSpinner(
+			async () => {
+				// Note: keep this inline script in sync with .github/workflows/release.yml!
+				// Todo: it would be nice to not have two sources of truth...
+				// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
+				await octokit.request(
+					`PUT /repos/${owner}/${repository}/branches/main/protection`,
+					{
+						allow_deletions: false,
+						allow_force_pushes: true,
+						allow_fork_pushes: false,
+						allow_fork_syncing: true,
+						block_creations: false,
+						branch: "main",
+						enforce_admins: false,
+						owner,
+						repo: repository,
+						required_conversation_resolution: true,
+						required_linear_history: false,
+						required_pull_request_reviews: null,
+						required_status_checks: {
+							checks: [
+								{ context: "build" },
+								{ context: "compliance" },
+								{ context: "knip" },
+								{ context: "lint" },
+								{ context: "markdown" },
+								{ context: "package" },
+								{ context: "packages" },
+								{ context: "prettier" },
+								{ context: "spelling" },
+								{ context: "test" },
+							],
+							strict: false,
+						},
+						restrictions: null,
+					}
+				);
+			},
+			{
+				startText: `Hydrating branch protection settings...`,
+				successText: `Hydrated branch protection settings.`,
+				stopText: `Error hydrating branch protection settings.`,
+				errorText: `Could not hydrate branch protection settings. `,
+			}
+		);
+
+		successSpinnerBlock(`Finished API hydration.`);
 	}
 
-	console.log();
-	console.log(chalk.gray`Removing setup script...`);
-
-	await fs.rm("./script", { force: true, recursive: true });
-	await fs.rm(".github/workflows/setup.yml");
-
-	console.log(chalk.gray`✔️ Done.`);
-} catch (error) {
-	console.log(chalk.red(error.stack));
-	caughtError = error;
-} finally {
-	console.log();
-	console.log(
-		chalk.gray`Removing devDependency packages only used for setup...`
+	await withSpinner(
+		async () => {
+			await fs.rm("./script", { force: true, recursive: true });
+			await fs.rm(".github/workflows/setup.yml");
+		},
+		{
+			startText: `Removing setup script...`,
+			successText: `Removed setup script.`,
+			stopText: `Error removing setup script.`,
+			errorText: `Could not remove setup script. `,
+		}
 	);
 
-	try {
-		await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
-	} catch (error) {
-		console.log("Error uninstalling packages:", error);
-		caughtError = error;
-	}
-
-	console.log(chalk.gray`✔️ Done.`);
-}
-
-console.log();
-
-if (caughtError) {
-	console.log(
-		chalk.yellow`Looks like there was a problem. Correct it and try again? 😕`
+	await withSpinner(
+		async () => {
+			await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
+		},
+		{
+			startText: `Removing devDependency packages only used for setup...`,
+			successText: `Removed devDependency packages only used for setup.`,
+			stopText: `Error removing devDependency packages only used for setup.`,
+			errorText: `Could not remove devDependency packages only used for setup. `,
+		}
 	);
-} else {
-	console.log(chalk.green`Great, looks like everything worked!`);
+
+	prompts.outro(chalk.blue`Great, looks like everything worked! 🎉`);
+
 	console.log(chalk.blue`You may consider committing these changes:`);
-	console.log(chalk.gray`\tgit add -A`);
-	console.log(chalk.gray`\tgit commit -m "chore: hydrated repo"`);
-	console.log(chalk.gray`\tgit push`);
+	console.log();
+	console.log(chalk.gray`git add -A`);
+	console.log(chalk.gray`git commit -m "chore: hydrated repo"`);
+	console.log(chalk.gray`git push`);
+	console.log();
 	console.log(chalk.greenBright`See ya! 👋`);
-}
+	console.log();
 
-console.log();
+	exitCode = 0;
+} catch (error) {
+	prompts.outro(
+		chalk.red`Looks like there was a problem. Correct it and try again? 😕`
+	);
+
+	console.log();
+	console.log(error);
+	console.log();
+
+	exitCode = 1;
+} finally {
+	process.exit(exitCode);
+}

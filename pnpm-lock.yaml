@@ -39,7 +39,7 @@ specifiers:
   release-it: ^15.6.0
   replace-in-file: ^6.3.5
   sentences-per-line: ^0.2.1
-  should-semantic-release: ^0.0.4
+  should-semantic-release: ^0.1.0
   title-case: ^3.0.3
   typescript: ^5.0.0
   vitest: ^0.29.0
@@ -84,7 +84,7 @@ devDependencies:
   release-it: 15.6.0
   replace-in-file: 6.3.5
   sentences-per-line: 0.2.1
-  should-semantic-release: 0.0.4
+  should-semantic-release: 0.1.1
   title-case: 3.0.3
   typescript: 5.0.2
   vitest: 0.29.1
@@ -1195,6 +1195,11 @@ packages:
       '@octokit/webhooks-methods': 3.0.2
       '@octokit/webhooks-types': 6.10.0
       aggregate-error: 3.1.0
+    dev: true
+
+  /@pkgjs/parseargs/0.11.0:
+    resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
+    engines: {node: '>=14'}
     dev: true
 
   /@pkgr/utils/2.3.1:
@@ -6456,11 +6461,12 @@ packages:
       rechoir: 0.6.2
     dev: true
 
-  /should-semantic-release/0.0.4:
-    resolution: {integrity: sha512-7KOlcX5zeEsTPtsgwQ0UKxAL71gPJs7wxcenWmkvxz0LogaCzxRcyKZHEuM90z0dQj5XrIn3CnThT04+8fSlIg==}
+  /should-semantic-release/0.1.1:
+    resolution: {integrity: sha512-gqZVaRzwRenYqfLv5ZLfUHvudjDvpHmdO4yGBark3+OnUA4AGgpwwLD1+aPPH8atXjKPJmplzN+FfKmJi6Ujfw==}
     engines: {node: '>=18'}
     hasBin: true
     dependencies:
+      '@pkgjs/parseargs': 0.11.0
       conventional-commits-parser: 3.2.4
     dev: true
 

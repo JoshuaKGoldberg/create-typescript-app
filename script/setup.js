@@ -501,7 +501,6 @@ try {
 
 	if (skipUninstalls) {
 		console.log();
-		console.log(chalk.gray`➖ Skipping removal of setup script.`);
 		console.log(
 			chalk.gray`➖ Skipping removal of devDependencies only used for setup.`
 		);

@@ -133,8 +133,8 @@ try {
 	};
 
 	const skipSpinnerBlock = (blockText) => {
-		s.start(chalk.yellow("➖ " + blockText));
-		s.stop(chalk.yellow("➖ " + blockText));
+		s.start(chalk.gray("➖ " + blockText));
+		s.stop(chalk.gray("➖ " + blockText));
 	};
 
 	successSpinnerBlock("Started hydrating package metadata locally.");
@@ -500,9 +500,8 @@ try {
 	}
 
 	if (skipUninstalls) {
-		console.log();
-		console.log(
-			chalk.gray`➖ Skipping removal of devDependencies only used for setup.`
+		skipSpinnerBlock(
+			`Skipping uninstall of devDependencies only used for setup.`
 		);
 	} else {
 		await withSpinner(

@@ -31,6 +31,7 @@ try {
 			repository: { type: "string" },
 			title: { type: "string" },
 			"skip-api": { type: "boolean" },
+			"skip-uninstalls": { type: "boolean" },
 		},
 		tokens: true,
 		strict: false,
@@ -124,6 +125,7 @@ try {
 	);
 
 	const skipApi = values["skip-api"];
+	const skipUninstalls = values["skip-uninstalls"];
 
 	const successSpinnerBlock = (blockText) => {
 		s.start(chalk.green("✅ " + blockText));
@@ -131,8 +133,8 @@ try {
 	};
 
 	const skipSpinnerBlock = (blockText) => {
-		s.start(chalk.yellow("➖ " + blockText));
-		s.stop(chalk.yellow("➖ " + blockText));
+		s.start(chalk.gray("➖ " + blockText));
+		s.stop(chalk.gray("➖ " + blockText));
 	};
 
 	successSpinnerBlock("Started hydrating package metadata locally.");
@@ -497,30 +499,36 @@ try {
 		successSpinnerBlock(`Finished API hydration.`);
 	}
 
-	await withSpinner(
-		async () => {
-			await fs.rm("./script", { force: true, recursive: true });
-			await fs.rm(".github/workflows/setup.yml");
-		},
-		{
-			startText: `Removing setup script...`,
-			successText: `Removed setup script.`,
-			stopText: `Error removing setup script.`,
-			errorText: `Could not remove setup script. `,
-		}
-	);
+	if (skipUninstalls) {
+		skipSpinnerBlock(
+			`Skipping uninstall of devDependencies only used for setup.`
+		);
+	} else {
+		await withSpinner(
+			async () => {
+				await fs.rm("./script", { force: true, recursive: true });
+				await fs.rm(".github/workflows/setup.yml");
+			},
+			{
+				startText: `Removing setup script...`,
+				successText: `Removed setup script.`,
+				stopText: `Error removing setup script.`,
+				errorText: `Could not remove setup script. `,
+			}
+		);
 
-	await withSpinner(
-		async () => {
-			await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
-		},
-		{
-			startText: `Removing devDependency packages only used for setup...`,
-			successText: `Removed devDependency packages only used for setup.`,
-			stopText: `Error removing devDependency packages only used for setup.`,
-			errorText: `Could not remove devDependency packages only used for setup. `,
-		}
-	);
+		await withSpinner(
+			async () => {
+				await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
+			},
+			{
+				startText: `Removing devDependency packages only used for setup...`,
+				successText: `Removed devDependency packages only used for setup.`,
+				stopText: `Error removing devDependency packages only used for setup.`,
+				errorText: `Could not remove devDependency packages only used for setup. `,
+			}
+		);
+	}
 
 	prompts.outro(chalk.blue`Great, looks like everything worked! 🎉`);
 

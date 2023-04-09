@@ -25,7 +25,7 @@ specifiers:
   execa: ^7.1.1
   husky: ^8.0.3
   jsonc-eslint-parser: ^2.1.0
-  knip: 2.7.1
+  knip: 2.8.2
   lint-staged: ^13.1.0
   markdownlint: ^0.28.0
   markdownlint-cli: ^0.33.0
@@ -70,7 +70,7 @@ devDependencies:
   execa: 7.1.1
   husky: 8.0.3
   jsonc-eslint-parser: 2.1.0
-  knip: 2.7.1
+  knip: 2.8.2
   lint-staged: 13.1.0
   markdownlint: 0.28.0
   markdownlint-cli: 0.33.0
@@ -4812,8 +4812,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /knip/2.7.1:
-    resolution: {integrity: sha512-4iDRLUmGCrgA1pY51/NH3C0AeNIZ3/ALVN/N/hdKJ31jhTFwGf9NDAl7n2LejcVstSGKawMQpx8oB1hqPd+kkQ==}
+  /knip/2.8.2:
+    resolution: {integrity: sha512-GUv6UliufgGMuwwkr2NkOsa/JuKNPRFgfGX1CjGPA2HGZYstYh3iiIBgl14pTuU1pelUVuzdlXW+U10AiV2D5A==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     dependencies:

@@ -2,6 +2,7 @@ import { strict as assert } from "node:assert";
 
 import { $ } from "execa";
 import { promises as fs } from "fs";
+import { globby } from "globby";
 
 const description = "New Description Test";
 const owner = "NewOwnerTest";
@@ -20,15 +21,16 @@ console.log("New package JSON:", newPackageJson);
 assert.equal(newPackageJson.description, description);
 assert.equal(newPackageJson.name, repository);
 
+const files = await globby(["*.*", "**/*.*"], {
+	gitignore: true,
+	ignoreFiles: ["script/setup.js", "script/setup-test-e2e.js"],
+});
+
 for (const search of [
 	`/JoshuaKGoldberg/`,
 	"template-typescript-node-package",
 ]) {
-	const { stdout } = await $({
-		// Todo: it'd be nice to not have to use this... but we haven't figured out how yet.
-		// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/357
-		shell: true,
-	})`grep --exclude script/setup.js --exclude script/setup-test-e2e.js --exclude-dir node_modules -i ${search} *.* **/*.*`;
+	const { stdout } = await $`grep -i ${search} ${files}`;
 	assert.equal(
 		stdout,
 		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`

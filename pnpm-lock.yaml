@@ -23,6 +23,7 @@ specifiers:
   eslint-plugin-vitest: ^0.0.57
   eslint-plugin-yml: ^1.5.0
   execa: ^7.1.1
+  globby: ^13.1.3
   husky: ^8.0.3
   jsonc-eslint-parser: ^2.1.0
   knip: 2.8.2
@@ -68,6 +69,7 @@ devDependencies:
   eslint-plugin-vitest: 0.0.57_pydb3hde2stcjsf742jarbqbry
   eslint-plugin-yml: 1.5.0_eslint@8.32.0
   execa: 7.1.1
+  globby: 13.1.3
   husky: 8.0.3
   jsonc-eslint-parser: 2.1.0
   knip: 2.8.2

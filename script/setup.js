@@ -519,7 +519,7 @@ try {
 
 		await withSpinner(
 			async () => {
-				await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
+				await $`pnpm remove execa @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case globby -D`;
 			},
 			{
 				startText: `Removing devDependency packages only used for setup...`,

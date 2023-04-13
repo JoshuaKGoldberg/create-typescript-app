@@ -81,7 +81,7 @@
 		"vitest": "^0.29.0",
 		"yaml-eslint-parser": "^1.2.0"
 	},
-	"packageManager": "pnpm@7.31.0",
+	"packageManager": "pnpm@7.32.0",
 	"engines": {
 		"node": ">=18"
 	}

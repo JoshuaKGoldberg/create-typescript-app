@@ -26,7 +26,7 @@ specifiers:
   globby: ^13.1.3
   husky: ^8.0.3
   jsonc-eslint-parser: ^2.1.0
-  knip: 2.10.1
+  knip: 2.10.2
   lint-staged: ^13.1.0
   markdownlint: ^0.28.0
   markdownlint-cli: ^0.33.0
@@ -72,7 +72,7 @@ devDependencies:
   globby: 13.1.3
   husky: 8.0.3
   jsonc-eslint-parser: 2.1.0
-  knip: 2.10.1
+  knip: 2.10.2
   lint-staged: 13.1.0
   markdownlint: 0.28.0
   markdownlint-cli: 0.33.0
@@ -4824,8 +4824,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /knip/2.10.1:
-    resolution: {integrity: sha512-pPEMW9QhF4WLVAenXCBF/swAm3BMIQYv6AlAVO54KErWMyVsJOIqLtMkjskWAkjCDFLit1ygOtCMKOjPaU1UeQ==}
+  /knip/2.10.2:
+    resolution: {integrity: sha512-aZWiMfYWQyyj58RhjMwFmrHNo7npPD4T2KxNyurOb3fGbFnZPVMp6Iq1Bt2oiW25Zbjyj8jx9PXh7KBtiGdmUw==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     dependencies:

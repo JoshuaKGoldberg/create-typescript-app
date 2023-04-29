@@ -43,7 +43,7 @@ Draft PRs won't be reviewed.
 
 #### Granular PRs
 
-Please keeep pull requests single-purpose: in other words, don't attempt to solve multiple unrelated problems in one pull request.
+Please keep pull requests single-purpose: in other words, don't attempt to solve multiple unrelated problems in one pull request.
 Send one PR per area of concern.
 Multi-purpose pull requests are harder and slower to review, block all changes from being merged until the whole pull request is reviewed, and are difficult to name well with semantic PR titles.
 
@@ -55,6 +55,15 @@ A maintainer will look at it when they're next able to.
 
 PRs should have passing [GitHub status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) before review is requested (unless there are explicit questions asked in the PR about any failures).
 
+#### Asking Questions
+
+If you need help and/or have a question, posting a comment in the PR is a great way to do so.
+There's no need to tag anybody individually.
+One of us will drop by and help when we can.
+
+Please post comments as [line comments](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request#adding-line-comments-to-a-pull-request) when possible, so that they can be threaded.
+You can [resolve conversations](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request#resolving-conversations) on your own when you feel they're resolved - no need to comment explicitly and/or wait for a maintainer.
+
 #### Requested Changes
 
 After a maintainer reviews your PR, they may request changes on it.
@@ -63,6 +72,10 @@ Once you've made those changes, [re-request review on GitHub](https://docs.githu
 Please try not to force-push commits to PRs that have already been reviewed.
 Doing so makes it harder to review the changes.
 We squash merge all commits so there's no need to try to preserve Git history within a PR branch.
+
+Once you've addressed all our feedback by making code changes and/or started a followup discussion, [re-request review](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews#re-requesting-a-review) from each maintainer whose feedback you addressed.
+
+Once all feedback is addressed and the PR is approved, we'll ensure the branch is up to date with `main` and merge it for you.
 
 #### Post-Merge Recognition
 

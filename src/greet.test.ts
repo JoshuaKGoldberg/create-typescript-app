@@ -15,7 +15,6 @@ describe("greet", () => {
 	});
 
 	it("logs to the console once when message is provided as an object", () => {
-		console.log("This demonstrates console-fail-test failing a test. :)");
 		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
 
 		greet({ message });

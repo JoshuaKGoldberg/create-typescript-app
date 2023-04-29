@@ -43,6 +43,7 @@
 		"@vitest/coverage-istanbul": "^0.30.0",
 		"all-contributors-cli": "^6.24.0",
 		"chalk": "^5.2.0",
+		"console-fail-test": "^0.2.0",
 		"cspell": "^6.19.2",
 		"eslint": "^8.32.0",
 		"eslint-config-prettier": "^8.6.0",

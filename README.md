@@ -41,7 +41,7 @@ It sets up the following tooling for you:
 - [**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
 - [**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
 - [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
-- [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking.
+- [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking and [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test).
 
 ## Setup
 

@@ -14,5 +14,6 @@ export default defineConfig({
 			provider: "istanbul",
 		},
 		exclude: ["lib", "node_modules"],
+		setupFiles: ["console-fail-test/setup"],
 	},
 });

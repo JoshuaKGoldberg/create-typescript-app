@@ -79,7 +79,6 @@
 		"should-semantic-release": "^0.1.0",
 		"title-case": "^3.0.3",
 		"typescript": "^5.0.0",
-		"vite": "^4.3.3",
 		"vitest": "^0.29.0",
 		"yaml-eslint-parser": "^1.2.0"
 	},

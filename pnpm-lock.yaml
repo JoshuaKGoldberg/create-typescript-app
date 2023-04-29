@@ -44,7 +44,6 @@ specifiers:
   should-semantic-release: ^0.1.0
   title-case: ^3.0.3
   typescript: ^5.0.0
-  vite: ^4.3.3
   vitest: ^0.29.0
   yaml-eslint-parser: ^1.2.0
 
@@ -92,7 +91,6 @@ devDependencies:
   should-semantic-release: 0.1.1
   title-case: 3.0.3
   typescript: 5.0.2
-  vite: 4.3.3
   vitest: 0.29.1
   yaml-eslint-parser: 1.2.0
 
@@ -7163,38 +7161,6 @@ packages:
       - sugarss
       - supports-color
       - terser
-    dev: true
-
-  /vite/4.3.3:
-    resolution: {integrity: sha512-MwFlLBO4udZXd+VBcezo3u8mC77YQk+ik+fbc0GZWGgzfbPP+8Kf0fldhARqvSYmtIWoAJ5BXPClUbMTlqFxrA==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.17.18
-      postcss: 8.4.23
-      rollup: 3.21.1
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /vite/4.3.3_@types+node@18.11.18:

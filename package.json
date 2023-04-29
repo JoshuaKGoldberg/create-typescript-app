@@ -43,6 +43,7 @@
 		"@vitest/coverage-istanbul": "^0.30.0",
 		"all-contributors-cli": "^6.24.0",
 		"chalk": "^5.2.0",
+		"console-fail-test": "^0.2.0",
 		"cspell": "^6.19.2",
 		"eslint": "^8.32.0",
 		"eslint-config-prettier": "^8.6.0",
@@ -78,6 +79,7 @@
 		"should-semantic-release": "^0.1.0",
 		"title-case": "^3.0.3",
 		"typescript": "^5.0.0",
+		"vite": "^4.3.3",
 		"vitest": "^0.29.0",
 		"yaml-eslint-parser": "^1.2.0"
 	},

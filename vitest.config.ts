@@ -13,5 +13,6 @@ export default defineConfig({
 			// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/100
 			provider: "istanbul",
 		},
+		exclude: ["lib", "node_modules"],
 	},
 });

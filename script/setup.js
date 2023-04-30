@@ -390,7 +390,7 @@ try {
 		await withSpinner(
 			async () => {
 				await $`gh auth status`;
-				const auth = (await $`gh auth token`).toString().trim();
+				const auth = (await $`gh auth token`).stdout.trim();
 
 				octokit = new Octokit({ auth });
 			},

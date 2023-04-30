@@ -61,3 +61,19 @@ pnpm run test --coverage
 
 Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
 Calls to `console.log`, `console.warn`, and other console methods will cause a test to fail.
+
+### Testing the Setup Script
+
+In addition to unit tests, this template also includes an "end-to-end" test for `script/setup.js`.
+You can run it locally on the command-line:
+
+```shell
+pnpm run setup:test
+```
+
+That end-to-end test executes `script/setup-test-e2e.js`, which:
+
+1. Runs the setup script using `--skip-api`
+2. Checks that the local repository's files were changed correctly (e.g. removed setup-only files)
+
+As with the setup script itself, end-to-end tests are removed on package setup.

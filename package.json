@@ -70,7 +70,6 @@
 		"npm-package-json-lint-config-default": "^5.0.0",
 		"npm-user": "^5.0.1",
 		"octokit": "^2.0.11",
-		"pnpm-deduplicate": "^0.4.1",
 		"prettier": "^2.8.3",
 		"prettier-plugin-packagejson": "^2.4.2",
 		"release-it": "^15.6.0",

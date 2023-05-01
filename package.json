@@ -24,7 +24,7 @@
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package": "npmPkgJsonLint .",
-		"lint:packages": "pnpm-deduplicate --list",
+		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
 		"setup": "node script/setup.js",
@@ -70,7 +70,6 @@
 		"npm-package-json-lint-config-default": "^5.0.0",
 		"npm-user": "^5.0.1",
 		"octokit": "^2.0.11",
-		"pnpm-deduplicate": "^0.4.1",
 		"prettier": "^2.8.3",
 		"prettier-plugin-packagejson": "^2.4.2",
 		"release-it": "^15.6.0",
@@ -82,7 +81,7 @@
 		"vitest": "^0.29.0",
 		"yaml-eslint-parser": "^1.2.0"
 	},
-	"packageManager": "pnpm@7.32.2",
+	"packageManager": "pnpm@8.3.1",
 	"engines": {
 		"node": ">=18"
 	}

@@ -8,17 +8,9 @@
       "contributions": [
         "bug",
         "code",
-        "content",
-        "example",
-        "ideas",
-        "infra",
         "maintenance",
-        "platform",
-        "projectManagement",
         "review",
-        "security",
-        "tool",
-        "test"
+        "tool"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -30,7 +22,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/3297859?v=4",
       "profile": "https://sinchang.me",
       "contributions": [
-        "tool"
+        "tool",
+        "code"
       ]
     },
     {
@@ -39,7 +32,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
       "profile": "https://paulisaweso.me/",
       "contributions": [
-        "tool"
+        "tool",
+        "code"
       ]
     },
     {
@@ -48,7 +42,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/113494366?v=4",
       "profile": "https://github.com/NazCodeland",
       "contributions": [
-        "tool"
+        "tool",
+        "code"
       ]
     },
     {
@@ -57,12 +52,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/1010525?v=4",
       "profile": "https://blog.johnnyreilly.com/",
       "contributions": [
-        "bug",
-        "ideas",
-        "promotion",
-        "maintenance",
-        "code",
-        "review"
+        "code"
       ]
     },
     {
@@ -72,7 +62,8 @@
       "profile": "https://webpro.nl",
       "contributions": [
         "tool",
-        "ideas"
+        "ideas",
+        "code"
       ]
     },
     {
@@ -81,8 +72,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
       "profile": "https://github.com/RebeccaStevens",
       "contributions": [
-        "code",
-        "ideas"
+        "code"
       ]
     },
     {
@@ -91,7 +81,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/105710107?v=4",
       "profile": "http://ronjeanfrancois.com",
       "contributions": [
-        "tool"
+        "tool",
+        "code"
       ]
     },
     {
@@ -101,7 +92,8 @@
       "profile": "https://github.com/nowyDEV",
       "contributions": [
         "tool",
-        "infra"
+        "infra",
+        "code"
       ]
     },
     {
@@ -110,7 +102,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/79809121?v=4",
       "profile": "https://github.com/TAKANOME-DEV",
       "contributions": [
-        "tool"
+        "tool",
+        "code"
       ]
     },
     {
@@ -119,7 +112,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/35363144?v=4",
       "profile": "https://github.com/emday4prez",
       "contributions": [
-        "tool"
+        "tool",
+        "code"
       ]
     },
     {
@@ -128,7 +122,9 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/3806031?v=4",
       "profile": "https://typescriptcourse.com/tutorials",
       "contributions": [
-        "tool"
+        "tool",
+        "bug",
+        "code"
       ]
     },
     {
@@ -137,7 +133,9 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/39694575?v=4",
       "profile": "https://navinmoorthy.me/",
       "contributions": [
-        "tool"
+        "tool",
+        "bug",
+        "code"
       ]
     },
     {
@@ -146,7 +144,26 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/23234342?v=4",
       "profile": "https://github.com/garuna-m6",
       "contributions": [
-        "tool"
+        "tool",
+        "code"
+      ]
+    },
+    {
+      "login": "danielroe",
+      "name": "Daniel Roe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28706372?v=4",
+      "profile": "https://roe.dev/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "the-lazy-learner",
+      "name": "Sudhansu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13695177?v=4",
+      "profile": "https://github.com/the-lazy-learner",
+      "contributions": [
+        "code"
       ]
     }
   ],

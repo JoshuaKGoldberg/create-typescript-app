@@ -1,21 +1,12 @@
-concurrency:
-  cancel-in-progress: false
-  group: ${{ github.workflow }}
-
 jobs:
-  release:
+  contributors:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: ./.github/actions/prepare
-      - run: pnpm build
-      - run: git config user.name "${GITHUB_ACTOR}"
-      - run: git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      - uses: JoshuaKGoldberg/all-contributors-auto-action@v0.1.0
       - name: Delete branch protection on main
         uses: actions/github-script@v6.4.1
         with:
@@ -30,9 +21,9 @@ jobs:
                 throw error;
               }
             }
-      - env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: if pnpm run should-semantic-release ; then pnpm release-it --verbose ; fi
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Fill in all-contributors
       - if: always()
         name: Recreate branch protection on main
         uses: actions/github-script@v6.4.1
@@ -76,12 +67,9 @@ jobs:
               }
             );
 
-name: Release
+name: Contributors
 
 on:
   push:
     branches:
       - main
-
-permissions:
-  contents: write

@@ -102,6 +102,10 @@ module.exports = {
 		"simple-import-sort/imports": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
+		"jsdoc/require-jsdoc": "off",
+		"jsdoc/require-param": "off",
+		"jsdoc/require-property": "off",
+		"jsdoc/require-returns": "off",
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier

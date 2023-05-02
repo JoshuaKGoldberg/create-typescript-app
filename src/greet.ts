@@ -2,8 +2,7 @@ import { GreetOptions } from "./types.js";
 
 /**
  *
- * @param options
- * @returns {void}
+ * @param options - The options for the greeting, or the message to greet.
  */
 export function greet(options: GreetOptions | string) {
 	const {

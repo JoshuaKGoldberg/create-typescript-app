@@ -1,5 +1,3 @@
-/* eslint-disable require-jsdoc */
-
 import { GreetOptions } from "./types.js";
 
 const consoleLogBound = console.log.bind(console);

@@ -25,6 +25,9 @@ module.exports = {
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			rules: {
+				// These off-by-default rules work well for this repo and we like them on.
+				"jsdoc/informative-docs": "error",
+
 				// These on-by-default rules don't work well for this repo and we like them off.
 				"jsdoc/require-jsdoc": "off",
 				"jsdoc/require-param": "off",

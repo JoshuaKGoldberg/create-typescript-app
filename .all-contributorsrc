@@ -153,6 +153,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "RNR1",
+      "name": "Ron Braha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45559220?v=4",
+      "profile": "https://linktr.ee/ronbraha",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -1,9 +1,5 @@
 import { GreetOptions } from "./types.js";
 
-/**
- * @abstract
- * @param {GreetOptions | string} options the options.
- */
 export function greet(options: GreetOptions | string) {
 	const {
 		logger = console.log.bind(console),

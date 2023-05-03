@@ -18,11 +18,19 @@ module.exports = {
 		},
 		{
 			extends: [
+				"plugin:jsdoc/recommended-typescript-error",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:typescript-sort-keys/recommended",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
+			rules: {
+				// These on-by-default rules don't work well for this repo and we like them off.
+				"jsdoc/require-jsdoc": "off",
+				"jsdoc/require-param": "off",
+				"jsdoc/require-property": "off",
+				"jsdoc/require-returns": "off",
+			},
 		},
 		{
 			extends: [
@@ -85,6 +93,7 @@ module.exports = {
 		"@typescript-eslint",
 		"deprecation",
 		"import",
+		"jsdoc",
 		"no-only-tests",
 		"regexp",
 		"simple-import-sort",

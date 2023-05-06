@@ -167,11 +167,36 @@ try {
 		}
 	};
 
+	const mainContributions = [
+		"code",
+		"content",
+		"doc",
+		"ideas",
+		"infra",
+		"maintenance",
+		"projectManagement",
+		"tool",
+	];
+
+	const addContributor = (user, contributions = []) =>
+		$`all-contributors add ${user} ${contributions.join(",")}`;
+
 	await withSpinner(
 		async () => {
-			const user = JSON.parse((await $`gh api user`).stdout);
-			const userName = user.login;
-			await $`all-contributors add ${userName} code,content,doc,ideas,infra,maintenance,projectManagement,tool`;
+			let user;
+			try {
+				user = JSON.parse((await $`gh api user`).stdout).login;
+			} catch (err) {
+				console.warn(
+					chalk.gray(
+						"Couldn't authenticate GitHub user, falling back to the owner name you provided"
+					)
+				);
+				user = owner;
+			}
+
+			await addContributor(user, mainContributions);
+
 			const existingContributors = await readFileAsJSON(
 				"./.all-contributorsrc"
 			);
@@ -182,9 +207,7 @@ try {
 					JSON.stringify({
 						...existingContributors,
 						contributors: existingContributors.contributors
-							.filter(({ login }) =>
-								[userName, "JoshuaKGoldberg"].includes(login)
-							)
+							.filter(({ login }) => [user, "JoshuaKGoldberg"].includes(login))
 							.map((contributor) =>
 								contributor.login === "JoshuaKGoldberg"
 									? { ...contributor, contributions: ["tool"] }

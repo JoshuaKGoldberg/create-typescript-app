@@ -169,6 +169,9 @@ try {
 
 	await withSpinner(
 		async () => {
+			const user = JSON.parse((await $`gh api user`).stdout);
+			const userName = user.login;
+			await $`all-contributors add ${userName} code,content,doc,ideas,infra,maintenance,projectManagement,tool`;
 			const existingContributors = await readFileAsJSON(
 				"./.all-contributorsrc"
 			);
@@ -178,14 +181,15 @@ try {
 				prettier.format(
 					JSON.stringify({
 						...existingContributors,
-						contributors: [
-							{
-								...existingContributors.contributors.find(
-									({ login }) => login === "JoshuaKGoldberg"
-								),
-								contributions: ["tool"],
-							},
-						],
+						contributors: existingContributors.contributors
+							.filter(({ login }) =>
+								[userName, "JoshuaKGoldberg"].includes(login)
+							)
+							.map((contributor) =>
+								contributor.login === "JoshuaKGoldberg"
+									? { ...contributor, contributions: ["tool"] }
+									: contributor
+							),
 					}),
 					{ parser: "json" }
 				)

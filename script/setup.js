@@ -167,20 +167,6 @@ try {
 		}
 	};
 
-	const mainContributions = [
-		"code",
-		"content",
-		"doc",
-		"ideas",
-		"infra",
-		"maintenance",
-		"projectManagement",
-		"tool",
-	];
-
-	const addContributor = (user, contributions = []) =>
-		$`all-contributors add ${user} ${contributions.join(",")}`;
-
 	await withSpinner(
 		async () => {
 			let user;
@@ -189,13 +175,22 @@ try {
 			} catch (err) {
 				console.warn(
 					chalk.gray(
-						"Couldn't authenticate GitHub user, falling back to the owner name you provided"
+						`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'`
 					)
 				);
 				user = owner;
 			}
 
-			await addContributor(user, mainContributions);
+			await $`all-contributors add ${user} ${[
+				"code",
+				"content",
+				"doc",
+				"ideas",
+				"infra",
+				"maintenance",
+				"projectManagement",
+				"tool",
+			].join(",")}`;
 
 			const existingContributors = await readFileAsJSON(
 				"./.all-contributorsrc"

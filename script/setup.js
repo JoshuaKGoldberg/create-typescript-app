@@ -169,6 +169,29 @@ try {
 
 	await withSpinner(
 		async () => {
+			let user;
+			try {
+				user = JSON.parse((await $`gh api user`).stdout).login;
+			} catch (err) {
+				console.warn(
+					chalk.gray(
+						`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'`
+					)
+				);
+				user = owner;
+			}
+
+			await $`all-contributors add ${user} ${[
+				"code",
+				"content",
+				"doc",
+				"ideas",
+				"infra",
+				"maintenance",
+				"projectManagement",
+				"tool",
+			].join(",")}`;
+
 			const existingContributors = await readFileAsJSON(
 				"./.all-contributorsrc"
 			);
@@ -178,14 +201,13 @@ try {
 				prettier.format(
 					JSON.stringify({
 						...existingContributors,
-						contributors: [
-							{
-								...existingContributors.contributors.find(
-									({ login }) => login === "JoshuaKGoldberg"
-								),
-								contributions: ["tool"],
-							},
-						],
+						contributors: existingContributors.contributors
+							.filter(({ login }) => [user, "JoshuaKGoldberg"].includes(login))
+							.map((contributor) =>
+								contributor.login === "JoshuaKGoldberg"
+									? { ...contributor, contributions: ["tool"] }
+									: contributor
+							),
 					}),
 					{ parser: "json" }
 				)

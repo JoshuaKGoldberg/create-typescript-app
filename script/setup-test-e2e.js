@@ -5,7 +5,7 @@ import { promises as fs } from "fs";
 import { globby } from "globby";
 
 const description = "New Description Test";
-const owner = "NewOwnerTest";
+const owner = "RNR1";
 const title = "New Title Test";
 const repository = "new-repository-test";
 

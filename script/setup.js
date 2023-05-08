@@ -12,6 +12,7 @@ import replace from "replace-in-file";
 import { titleCase } from "title-case";
 
 let exitCode = 0;
+let skipRestore = true;
 const s = prompts.spinner();
 
 try {
@@ -32,10 +33,13 @@ try {
 			title: { type: "string" },
 			"skip-api": { type: "boolean" },
 			"skip-uninstalls": { type: "boolean" },
+			"skip-restore": { type: "boolean" },
 		},
 		tokens: true,
 		strict: false,
 	});
+
+	skipRestore = Boolean(values["skip-restore"]);
 
 	async function getDefaultSettings() {
 		let gitRemoteFetch;
@@ -571,7 +575,15 @@ try {
 
 	console.log();
 	console.log(error);
-	console.log();
+
+	if (skipRestore) {
+		console.log();
+	} else {
+		const shouldRestore = await prompts.confirm({
+			message: "Do you want to restore the changes?",
+		});
+		if (shouldRestore) await $`git restore .`;
+	}
 
 	exitCode = 1;
 } finally {

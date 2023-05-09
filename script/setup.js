@@ -497,7 +497,7 @@ try {
 		}
 	);
 
-	if (octokit) {
+	if (!octokit) {
 		skipSpinnerBlock(`Skipping API hydration.`);
 	} else {
 		successSpinnerBlock(`Starting API hydration.`);

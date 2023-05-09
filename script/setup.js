@@ -12,7 +12,17 @@ import replace from "replace-in-file";
 import { titleCase } from "title-case";
 
 let exitCode = 0;
+let skipRestore = true;
 const s = prompts.spinner();
+
+function handlePromptCancel(value) {
+	if (prompts.isCancel(value)) {
+		prompts.cancel(
+			"Operation cancelled. Exiting setup - maybe another time? 👋"
+		);
+		process.exit(0);
+	}
+}
 
 try {
 	console.clear();
@@ -31,11 +41,14 @@ try {
 			repository: { type: "string" },
 			title: { type: "string" },
 			"skip-api": { type: "boolean" },
+			"skip-restore": { type: "boolean" },
 			"skip-uninstalls": { type: "boolean" },
 		},
 		tokens: true,
 		strict: false,
 	});
+
+	skipRestore = values["skip-restore"];
 
 	async function getDefaultSettings() {
 		let gitRemoteFetch;
@@ -90,12 +103,7 @@ try {
 			},
 		});
 
-		if (prompts.isCancel(value)) {
-			prompts.cancel(
-				"Operation cancelled. Exiting setup - maybe another time? 👋"
-			);
-			process.exit(0);
-		}
+		handlePromptCancel(value);
 
 		return value;
 	}
@@ -571,7 +579,30 @@ try {
 
 	console.log();
 	console.log(error);
-	console.log();
+
+	if (skipRestore) {
+		console.log();
+		console.log(chalk.gray`Skipping restoring local repository, as requested.`);
+		console.log();
+	} else {
+		const shouldRestore = await prompts.confirm({
+			message:
+				"Do you want to restore the repository to how it was before running setup?",
+		});
+
+		handlePromptCancel(shouldRestore);
+
+		if (shouldRestore) {
+			console.log();
+			console.log(
+				chalk.gray`Resetting repository using`,
+				chalk.reset`git restore .`
+			);
+			await $`git restore .`;
+			console.log("Repository is reset. Ready to try again?");
+			console.log();
+		}
+	}
 
 	exitCode = 1;
 } finally {

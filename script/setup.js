@@ -646,8 +646,10 @@ try {
 	prompts.outro(
 		chalk.red`Looks like there was a problem. Correct it and try again? 😕`
 	);
+
 	console.log();
 	console.log(error);
+
 	if (skipRestore) {
 		console.log();
 		console.log(chalk.gray`Skipping restoring local repository, as requested.`);
@@ -657,7 +659,9 @@ try {
 			message:
 				"Do you want to restore the repository to how it was before running setup?",
 		});
+
 		handlePromptCancel(shouldRestore);
+
 		if (shouldRestore) {
 			console.log();
 			console.log(

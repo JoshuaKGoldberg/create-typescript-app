@@ -15,12 +15,41 @@ let exitCode = 0;
 let skipRestore = true;
 const s = prompts.spinner();
 
+function handleCancel() {
+	prompts.cancel("Operation cancelled. Exiting setup - maybe another time? 👋");
+	process.exit(0);
+}
+
 function handlePromptCancel(value) {
 	if (prompts.isCancel(value)) {
-		prompts.cancel(
-			"Operation cancelled. Exiting setup - maybe another time? 👋"
-		);
-		process.exit(0);
+		handleCancel();
+	}
+}
+
+function skipSpinnerBlock(blockText) {
+	s.start(chalk.gray("➖ " + blockText));
+	s.stop(chalk.gray("➖ " + blockText));
+}
+
+function successSpinnerBlock(blockText) {
+	s.start(chalk.green("✅ " + blockText));
+	s.stop(chalk.green("✅ " + blockText));
+}
+
+async function withSpinner(
+	callback,
+	{ startText, successText, stopText, errorText }
+) {
+	s.start(startText);
+
+	try {
+		await callback();
+
+		s.stop(chalk.green("✅ " + successText));
+	} catch (error) {
+		s.stop(chalk.red("❌ " + stopText));
+
+		throw new Error(errorText, { cause: error });
 	}
 }
 
@@ -49,6 +78,33 @@ try {
 	});
 
 	skipRestore = values["skip-restore"];
+
+	const skipApi = values["skip-api"];
+	const skipUninstalls = values["skip-uninstalls"];
+
+	/** @type {Octokit} */
+	let octokit;
+
+	if (skipApi) {
+		skipSpinnerBlock(`Skipping checking GitHub authentication.`);
+	} else {
+		successSpinnerBlock(`Checking GitHub authentication.`);
+
+		await withSpinner(
+			async () => {
+				await $`gh auth status`;
+				const auth = (await $`gh auth token`).stdout.trim();
+
+				octokit = new Octokit({ auth });
+			},
+			{
+				startText: `Fetching gh auth status...`,
+				successText: `Fetched gh auth status.`,
+				stopText: `Error fetching gh auth status.`,
+				errorText: `Could not fetch github auth token. `,
+			}
+		);
+	}
 
 	async function getDefaultSettings() {
 		let gitRemoteFetch;
@@ -108,11 +164,78 @@ try {
 		return value;
 	}
 
-	const repository = await getPrefillOrPromptedValue(
-		"repository",
-		"What will the kebab-case name of the repository be?",
-		defaultRepository
+	const owner = await getPrefillOrPromptedValue(
+		"owner",
+		"What owner or user will the repository be under?",
+		defaultOwner
 	);
+
+	const repository = await ensureRepositoryExists(
+		await getPrefillOrPromptedValue(
+			"repository",
+			"What will the kebab-case name of the repository be?",
+			defaultRepository
+		)
+	);
+
+	async function ensureRepositoryExists(repository) {
+		if (skipApi) {
+			return repository;
+		}
+
+		// We'll continuously pester the user for a repository
+		// until they bail, create a new one, or it exists.
+		while (true) {
+			// Because the Octokit SDK throws on 404s (😡),
+			// we try/catch to check whether the repo exists.
+			try {
+				await octokit.rest.repos.get({
+					owner,
+					repo: repository,
+				});
+				return repository;
+			} catch (error) {
+				if (error.status !== 404) {
+					throw error;
+				}
+			}
+
+			const selection = await prompts.select({
+				message: `Repository ${repository} doesn't seem to exist under ${owner}. What would you like to do?`,
+				options: [
+					{ label: "Bail out and maybe try again later", value: "bail" },
+					{ label: "Create a new repository", value: "create" },
+					{
+						label: "Try again with a different repository",
+						value: "different",
+					},
+				],
+			});
+
+			handlePromptCancel(selection);
+
+			switch (selection) {
+				case "bail":
+					handleCancel();
+					break;
+
+				case "create":
+					await octokit.rest.repos.createUsingTemplate({
+						name: repository,
+						owner,
+						template_owner: "JoshuaKGoldberg",
+						template_repo: "template-typescript-node-package",
+					});
+					break;
+
+				case "different":
+					repository = await prompts.text({
+						message: `What would you like to call the repository?`,
+					});
+					break;
+			}
+		}
+	}
 
 	const title = await getPrefillOrPromptedValue(
 		"title",
@@ -120,30 +243,11 @@ try {
 		titleCase(repository).replaceAll("-", " ")
 	);
 
-	const owner = await getPrefillOrPromptedValue(
-		"owner",
-		"What owner or user will the repository be under?",
-		defaultOwner
-	);
-
 	const description = await getPrefillOrPromptedValue(
 		"description",
 		"How would you describe the new package?",
 		"A very lovely package. Hooray!"
 	);
-
-	const skipApi = values["skip-api"];
-	const skipUninstalls = values["skip-uninstalls"];
-
-	const successSpinnerBlock = (blockText) => {
-		s.start(chalk.green("✅ " + blockText));
-		s.stop(chalk.green("✅ " + blockText));
-	};
-
-	const skipSpinnerBlock = (blockText) => {
-		s.start(chalk.gray("➖ " + blockText));
-		s.stop(chalk.gray("➖ " + blockText));
-	};
 
 	successSpinnerBlock("Started hydrating package metadata locally.");
 
@@ -157,23 +261,6 @@ try {
 			);
 		}
 	}
-
-	const withSpinner = async (
-		callback,
-		{ startText, successText, stopText, errorText }
-	) => {
-		s.start(startText);
-
-		try {
-			await callback();
-
-			s.stop(chalk.green("✅ " + successText));
-		} catch (error) {
-			s.stop(chalk.red("❌ " + stopText));
-
-			throw new Error(errorText, { cause: error });
-		}
-	};
 
 	await withSpinner(
 		async () => {
@@ -410,27 +497,10 @@ try {
 		}
 	);
 
-	if (skipApi) {
+	if (octokit) {
 		skipSpinnerBlock(`Skipping API hydration.`);
 	} else {
 		successSpinnerBlock(`Starting API hydration.`);
-
-		let octokit;
-
-		await withSpinner(
-			async () => {
-				await $`gh auth status`;
-				const auth = (await $`gh auth token`).stdout.trim();
-
-				octokit = new Octokit({ auth });
-			},
-			{
-				startText: `Fetching gh auth status...`,
-				successText: `Fetched gh auth status.`,
-				stopText: `Error fetching gh auth status.`,
-				errorText: `Could not fetch github auth token. `,
-			}
-		);
 
 		await withSpinner(
 			async () => {
@@ -576,10 +646,8 @@ try {
 	prompts.outro(
 		chalk.red`Looks like there was a problem. Correct it and try again? 😕`
 	);
-
 	console.log();
 	console.log(error);
-
 	if (skipRestore) {
 		console.log();
 		console.log(chalk.gray`Skipping restoring local repository, as requested.`);
@@ -589,9 +657,7 @@ try {
 			message:
 				"Do you want to restore the repository to how it was before running setup?",
 		});
-
 		handlePromptCancel(shouldRestore);
-
 		if (shouldRestore) {
 			console.log();
 			console.log(

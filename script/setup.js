@@ -12,7 +12,46 @@ import replace from "replace-in-file";
 import { titleCase } from "title-case";
 
 let exitCode = 0;
+let skipRestore = true;
 const s = prompts.spinner();
+
+function handleCancel() {
+	prompts.cancel("Operation cancelled. Exiting setup - maybe another time? 👋");
+	process.exit(0);
+}
+
+function handlePromptCancel(value) {
+	if (prompts.isCancel(value)) {
+		handleCancel();
+	}
+}
+
+function skipSpinnerBlock(blockText) {
+	s.start(chalk.gray("➖ " + blockText));
+	s.stop(chalk.gray("➖ " + blockText));
+}
+
+function successSpinnerBlock(blockText) {
+	s.start(chalk.green("✅ " + blockText));
+	s.stop(chalk.green("✅ " + blockText));
+}
+
+async function withSpinner(
+	callback,
+	{ startText, successText, stopText, errorText }
+) {
+	s.start(startText);
+
+	try {
+		await callback();
+
+		s.stop(chalk.green("✅ " + successText));
+	} catch (error) {
+		s.stop(chalk.red("❌ " + stopText));
+
+		throw new Error(errorText, { cause: error });
+	}
+}
 
 try {
 	console.clear();
@@ -31,11 +70,41 @@ try {
 			repository: { type: "string" },
 			title: { type: "string" },
 			"skip-api": { type: "boolean" },
+			"skip-restore": { type: "boolean" },
 			"skip-uninstalls": { type: "boolean" },
 		},
 		tokens: true,
 		strict: false,
 	});
+
+	skipRestore = values["skip-restore"];
+
+	const skipApi = values["skip-api"];
+	const skipUninstalls = values["skip-uninstalls"];
+
+	/** @type {Octokit} */
+	let octokit;
+
+	if (skipApi) {
+		skipSpinnerBlock(`Skipping checking GitHub authentication.`);
+	} else {
+		successSpinnerBlock(`Checking GitHub authentication.`);
+
+		await withSpinner(
+			async () => {
+				await $`gh auth status`;
+				const auth = (await $`gh auth token`).stdout.trim();
+
+				octokit = new Octokit({ auth });
+			},
+			{
+				startText: `Fetching gh auth status...`,
+				successText: `Fetched gh auth status.`,
+				stopText: `Error fetching gh auth status.`,
+				errorText: `Could not fetch github auth token. `,
+			}
+		);
+	}
 
 	async function getDefaultSettings() {
 		let gitRemoteFetch;
@@ -90,27 +159,10 @@ try {
 			},
 		});
 
-		if (prompts.isCancel(value)) {
-			prompts.cancel(
-				"Operation cancelled. Exiting setup - maybe another time? 👋"
-			);
-			process.exit(0);
-		}
+		handlePromptCancel(value);
 
 		return value;
 	}
-
-	const repository = await getPrefillOrPromptedValue(
-		"repository",
-		"What will the kebab-case name of the repository be?",
-		defaultRepository
-	);
-
-	const title = await getPrefillOrPromptedValue(
-		"title",
-		"What will the Title Case title of the repository be?",
-		titleCase(repository).replaceAll("-", " ")
-	);
 
 	const owner = await getPrefillOrPromptedValue(
 		"owner",
@@ -118,24 +170,84 @@ try {
 		defaultOwner
 	);
 
+	const repository = await ensureRepositoryExists(
+		await getPrefillOrPromptedValue(
+			"repository",
+			"What will the kebab-case name of the repository be?",
+			defaultRepository
+		)
+	);
+
+	async function ensureRepositoryExists(repository) {
+		if (skipApi) {
+			return repository;
+		}
+
+		// We'll continuously pester the user for a repository
+		// until they bail, create a new one, or it exists.
+		while (true) {
+			// Because the Octokit SDK throws on 404s (😡),
+			// we try/catch to check whether the repo exists.
+			try {
+				await octokit.rest.repos.get({
+					owner,
+					repo: repository,
+				});
+				return repository;
+			} catch (error) {
+				if (error.status !== 404) {
+					throw error;
+				}
+			}
+
+			const selection = await prompts.select({
+				message: `Repository ${repository} doesn't seem to exist under ${owner}. What would you like to do?`,
+				options: [
+					{ label: "Bail out and maybe try again later", value: "bail" },
+					{ label: "Create a new repository", value: "create" },
+					{
+						label: "Try again with a different repository",
+						value: "different",
+					},
+				],
+			});
+
+			handlePromptCancel(selection);
+
+			switch (selection) {
+				case "bail":
+					handleCancel();
+					break;
+
+				case "create":
+					await octokit.rest.repos.createUsingTemplate({
+						name: repository,
+						owner,
+						template_owner: "JoshuaKGoldberg",
+						template_repo: "template-typescript-node-package",
+					});
+					break;
+
+				case "different":
+					repository = await prompts.text({
+						message: `What would you like to call the repository?`,
+					});
+					break;
+			}
+		}
+	}
+
+	const title = await getPrefillOrPromptedValue(
+		"title",
+		"What will the Title Case title of the repository be?",
+		titleCase(repository).replaceAll("-", " ")
+	);
+
 	const description = await getPrefillOrPromptedValue(
 		"description",
 		"How would you describe the new package?",
 		"A very lovely package. Hooray!"
 	);
-
-	const skipApi = values["skip-api"];
-	const skipUninstalls = values["skip-uninstalls"];
-
-	const successSpinnerBlock = (blockText) => {
-		s.start(chalk.green("✅ " + blockText));
-		s.stop(chalk.green("✅ " + blockText));
-	};
-
-	const skipSpinnerBlock = (blockText) => {
-		s.start(chalk.gray("➖ " + blockText));
-		s.stop(chalk.gray("➖ " + blockText));
-	};
 
 	successSpinnerBlock("Started hydrating package metadata locally.");
 
@@ -150,25 +262,31 @@ try {
 		}
 	}
 
-	const withSpinner = async (
-		callback,
-		{ startText, successText, stopText, errorText }
-	) => {
-		s.start(startText);
-
-		try {
-			await callback();
-
-			s.stop(chalk.green("✅ " + successText));
-		} catch (error) {
-			s.stop(chalk.red("❌ " + stopText));
-
-			throw new Error(errorText, { cause: error });
-		}
-	};
-
 	await withSpinner(
 		async () => {
+			let user;
+			try {
+				user = JSON.parse((await $`gh api user`).stdout).login;
+			} catch (err) {
+				console.warn(
+					chalk.gray(
+						`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'`
+					)
+				);
+				user = owner;
+			}
+
+			await $`all-contributors add ${user} ${[
+				"code",
+				"content",
+				"doc",
+				"ideas",
+				"infra",
+				"maintenance",
+				"projectManagement",
+				"tool",
+			].join(",")}`;
+
 			const existingContributors = await readFileAsJSON(
 				"./.all-contributorsrc"
 			);
@@ -178,14 +296,13 @@ try {
 				prettier.format(
 					JSON.stringify({
 						...existingContributors,
-						contributors: [
-							{
-								...existingContributors.contributors.find(
-									({ login }) => login === "JoshuaKGoldberg"
-								),
-								contributions: ["tool"],
-							},
-						],
+						contributors: existingContributors.contributors
+							.filter(({ login }) => [user, "JoshuaKGoldberg"].includes(login))
+							.map((contributor) =>
+								contributor.login === "JoshuaKGoldberg"
+									? { ...contributor, contributions: ["tool"] }
+									: contributor
+							),
 					}),
 					{ parser: "json" }
 				)
@@ -246,6 +363,7 @@ try {
 				[/Template TypeScript Node Package/g, title],
 				[/JoshuaKGoldberg/g, owner],
 				[/template-typescript-node-package/g, repository],
+				[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 				[/"setup": ".*",/g, ``, "./package.json"],
 				[/"setup:test": ".*",/g, ``, "./package.json"],
 				[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
@@ -381,27 +499,10 @@ try {
 		}
 	);
 
-	if (skipApi) {
+	if (!octokit) {
 		skipSpinnerBlock(`Skipping API hydration.`);
 	} else {
 		successSpinnerBlock(`Starting API hydration.`);
-
-		let octokit;
-
-		await withSpinner(
-			async () => {
-				await $`gh auth status`;
-				const auth = (await $`gh auth token`).stdout.trim();
-
-				octokit = new Octokit({ auth });
-			},
-			{
-				startText: `Fetching gh auth status...`,
-				successText: `Fetched gh auth status.`,
-				stopText: `Error fetching gh auth status.`,
-				errorText: `Could not fetch github auth token. `,
-			}
-		);
 
 		await withSpinner(
 			async () => {
@@ -550,7 +651,30 @@ try {
 
 	console.log();
 	console.log(error);
-	console.log();
+
+	if (skipRestore) {
+		console.log();
+		console.log(chalk.gray`Skipping restoring local repository, as requested.`);
+		console.log();
+	} else {
+		const shouldRestore = await prompts.confirm({
+			message:
+				"Do you want to restore the repository to how it was before running setup?",
+		});
+
+		handlePromptCancel(shouldRestore);
+
+		if (shouldRestore) {
+			console.log();
+			console.log(
+				chalk.gray`Resetting repository using`,
+				chalk.reset`git restore .`
+			);
+			await $`git restore .`;
+			console.log("Repository is reset. Ready to try again?");
+			console.log();
+		}
+	}
 
 	exitCode = 1;
 } finally {

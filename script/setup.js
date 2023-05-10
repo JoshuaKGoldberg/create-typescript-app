@@ -363,7 +363,7 @@ try {
 				[/Template TypeScript Node Package/g, title],
 				[/JoshuaKGoldberg/g, owner],
 				[/template-typescript-node-package/g, repository],
-				[/\/\*\n.+\*\//gs, ``, "./eslintrc.cjs"],
+				[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 				[/"setup": ".*",/g, ``, "./package.json"],
 				[/"setup:test": ".*",/g, ``, "./package.json"],
 				[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],

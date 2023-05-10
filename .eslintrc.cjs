@@ -1,3 +1,13 @@
+/*
+👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
+You can read from it to see all sorts of linting goodness, but don't worry -
+it's not something you need to exhaustively understand immediately. 💙
+
+If you're interested in learning more, see the 'getting started' docs on:
+- ESLint: https://eslint.org
+- typescript-eslint: https://typescript-eslint.io
+*/
+
 /** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
 	env: {

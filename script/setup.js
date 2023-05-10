@@ -373,6 +373,7 @@ try {
 					"./package.json",
 				],
 				[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
+				[/\n### Testing the Setup Script.*$/gs, "", "./.github/DEVELOPMENT.md"],
 				[
 					`["src/index.ts!", "script/setup*.js"]`,
 					`"src/index.ts!"`,

@@ -38,14 +38,14 @@ function successSpinnerBlock(blockText) {
 
 async function withSpinner(
 	callback,
-	{ startText, successText, stopText, errorText }
+	{ startText, successText, stopText, errorText, warnText }
 ) {
 	s.start(startText);
 
 	try {
-		await callback();
-
-		s.stop(chalk.green("✅ " + successText));
+		const success = await callback();
+		if (success === false) s.stop(chalk.yellow("⚠️ " + warnText));
+		else s.stop(chalk.green("✅ " + successText));
 	} catch (error) {
 		s.stop(chalk.red("❌ " + stopText));
 
@@ -267,7 +267,7 @@ try {
 			let user;
 			try {
 				user = JSON.parse((await $`gh api user`).stdout).login;
-			} catch (err) {
+			} catch (error) {
 				console.warn(
 					chalk.gray(
 						`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'`
@@ -554,45 +554,51 @@ try {
 				// Note: keep this inline script in sync with .github/workflows/release.yml!
 				// Todo: it would be nice to not have two sources of truth...
 				// https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/145
-				await octokit.request(
-					`PUT /repos/${owner}/${repository}/branches/main/protection`,
-					{
-						allow_deletions: false,
-						allow_force_pushes: true,
-						allow_fork_pushes: false,
-						allow_fork_syncing: true,
-						block_creations: false,
-						branch: "main",
-						enforce_admins: false,
-						owner,
-						repo: repository,
-						required_conversation_resolution: true,
-						required_linear_history: false,
-						required_pull_request_reviews: null,
-						required_status_checks: {
-							checks: [
-								{ context: "build" },
-								{ context: "compliance" },
-								{ context: "knip" },
-								{ context: "lint" },
-								{ context: "markdown" },
-								{ context: "package" },
-								{ context: "packages" },
-								{ context: "prettier" },
-								{ context: "spelling" },
-								{ context: "test" },
-							],
-							strict: false,
-						},
-						restrictions: null,
-					}
-				);
+				try {
+					await octokit.request(
+						`PUT /repos/${owner}/${repository}/branches/main/protection`,
+						{
+							allow_deletions: false,
+							allow_force_pushes: true,
+							allow_fork_pushes: false,
+							allow_fork_syncing: true,
+							block_creations: false,
+							branch: "main",
+							enforce_admins: false,
+							owner,
+							repo: repository,
+							required_conversation_resolution: true,
+							required_linear_history: false,
+							required_pull_request_reviews: null,
+							required_status_checks: {
+								checks: [
+									{ context: "build" },
+									{ context: "compliance" },
+									{ context: "knip" },
+									{ context: "lint" },
+									{ context: "markdown" },
+									{ context: "package" },
+									{ context: "packages" },
+									{ context: "prettier" },
+									{ context: "spelling" },
+									{ context: "test" },
+								],
+								strict: false,
+							},
+							restrictions: null,
+						}
+					);
+				} catch (error) {
+					if (error.status === 403) return false;
+					throw error;
+				}
 			},
 			{
 				startText: `Hydrating branch protection settings...`,
 				successText: `Hydrated branch protection settings.`,
 				stopText: `Error hydrating branch protection settings.`,
 				errorText: `Could not hydrate branch protection settings. `,
+				warnText: `Could not hydrate branch protection settings: private repositories require GitHub Pro for that API.`,
 			}
 		);
 

@@ -92,7 +92,15 @@ try {
 
 		await withSpinner(
 			async () => {
-				await $`gh auth status`;
+				try {
+					await $`gh auth status`;
+				} catch (error) {
+					console.error();
+					console.error(chalk.red(error.message));
+					console.error();
+					process.exit(0);
+				}
+
 				const auth = (await $`gh auth token`).stdout.trim();
 
 				octokit = new Octokit({ auth });

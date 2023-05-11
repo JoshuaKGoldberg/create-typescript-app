@@ -9,7 +9,7 @@ jobs:
           comment-template: |
             :tada: This is included in version {release_link} :tada:
 
-name: Post-release
+name: Post Release
 
 on:
   release:

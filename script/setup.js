@@ -506,19 +506,29 @@ try {
 
 		await withSpinner(
 			async () => {
+				const getLabelName = (label) => label.name;
+
 				const existingLabels = JSON.parse(
 					(await $`gh label list --json name`).stdout || "[]"
-				);
+				).map(getLabelName);
 
 				const outcomeLabels = await readFileAsJSON("./script/labels.json");
 
 				for (const outcome of outcomeLabels) {
 					const action = existingLabels.some(
-						(existing) => existing.name === outcome.name
+						(existing) => existing === outcome.name
 					)
 						? "edit"
 						: "create";
 					await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
+				}
+
+				const allowedLabels = new Set(outcomeLabels.map(getLabelName));
+
+				for (const existingLabel of existingLabels) {
+					if (!allowedLabels.has(existingLabel)) {
+						await $`gh label delete ${existingLabel} --yes`;
+					}
 				}
 			},
 			{

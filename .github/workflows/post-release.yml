@@ -9,8 +9,16 @@ jobs:
           comment-template: |
             :tada: This is included in version {release_link} :tada:
 
-name: Post-release
+            The release is available on:
+
+            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/template-typescript-node-package/v/{release_tag})
+            * [GitHub release](https://github.com/JoshuaKGoldberg/template-typescript-node-package/releases/tag/v{release_tag})
+
+            Cheers! 📦🚀
+
+name: Post Release
 
 on:
   release:
     types: [published]
+  workflow_dispatch: ~

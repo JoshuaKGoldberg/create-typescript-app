@@ -7,8 +7,5 @@
 		"autoGenerate": true,
 		"release": true,
 		"releaseName": "v${version}"
-	},
-	"hooks": {
-		"before:bump": "if ! pnpm run should-semantic-release --verbose ; then exit 1 ; fi"
 	}
 }

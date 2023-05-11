@@ -92,7 +92,15 @@ try {
 
 		await withSpinner(
 			async () => {
-				await $`gh auth status`;
+				try {
+					await $`gh auth status`;
+				} catch (error) {
+					console.error();
+					console.error(chalk.red(error.message));
+					console.error();
+					process.exit(0);
+				}
+
 				const auth = (await $`gh auth token`).stdout.trim();
 
 				octokit = new Octokit({ auth });
@@ -363,6 +371,7 @@ try {
 				[/Template TypeScript Node Package/g, title],
 				[/JoshuaKGoldberg/g, owner],
 				[/template-typescript-node-package/g, repository],
+				[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 				[/"setup": ".*",/g, ``, "./package.json"],
 				[/"setup:test": ".*",/g, ``, "./package.json"],
 				[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
@@ -372,6 +381,7 @@ try {
 					"./package.json",
 				],
 				[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
+				[/\n### Testing the Setup Script.*$/gs, "", "./.github/DEVELOPMENT.md"],
 				[
 					`["src/index.ts!", "script/setup*.js"]`,
 					`"src/index.ts!"`,
@@ -504,19 +514,29 @@ try {
 
 		await withSpinner(
 			async () => {
+				const getLabelName = (label) => label.name;
+
 				const existingLabels = JSON.parse(
 					(await $`gh label list --json name`).stdout || "[]"
-				);
+				).map(getLabelName);
 
 				const outcomeLabels = await readFileAsJSON("./script/labels.json");
 
 				for (const outcome of outcomeLabels) {
 					const action = existingLabels.some(
-						(existing) => existing.name === outcome.name
+						(existing) => existing === outcome.name
 					)
 						? "edit"
 						: "create";
 					await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
+				}
+
+				const allowedLabels = new Set(outcomeLabels.map(getLabelName));
+
+				for (const existingLabel of existingLabels) {
+					if (!allowedLabels.has(existingLabel)) {
+						await $`gh label delete ${existingLabel} --yes`;
+					}
 				}
 			},
 			{

@@ -10,7 +10,8 @@
         "code",
         "maintenance",
         "review",
-        "tool"
+        "tool",
+        "doc"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -67,7 +68,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
       "profile": "https://github.com/RebeccaStevens",
       "contributions": [
-        "code"
+        "code",
+        "infra"
       ]
     },
     {
@@ -76,7 +78,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/105710107?v=4",
       "profile": "http://ronjeanfrancois.com",
       "contributions": [
-        "code"
+        "code",
+        "infra"
       ]
     },
     {

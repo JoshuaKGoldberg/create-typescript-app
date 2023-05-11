@@ -14,3 +14,4 @@ name: Post Release
 on:
   release:
     types: [published]
+  workflow_dispatch: ~

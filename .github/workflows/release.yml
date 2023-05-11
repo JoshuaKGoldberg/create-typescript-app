@@ -31,8 +31,12 @@ jobs:
               }
             }
       - env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: if pnpm run should-semantic-release ; then pnpm release-it --verbose ; fi
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          if pnpm run should-semantic-release ; then
+            pnpm release-it --verbose
+            gh workflow run post-release.yml
+          fi
       - if: always()
         name: Recreate branch protection on main
         uses: actions/github-script@v6.4.1

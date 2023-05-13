@@ -44,11 +44,11 @@ async function withSpinner(
 
 	try {
 		const success = await callback();
-		if (success === false) {
-			s.stop(chalk.yellow("⚠️ " + warnText));
-		} else {
-			s.stop(chalk.green("✅ " + successText));
-		}
+		s.stop(
+			success === false
+				? chalk.yellow("⚠️ " + warnText)
+				: chalk.green("✅ " + successText)
+		);
 	} catch (error) {
 		s.stop(chalk.red("❌ " + stopText));
 

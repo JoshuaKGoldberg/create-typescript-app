@@ -13,7 +13,8 @@
         "tool",
         "doc",
         "infra",
-        "audio"
+        "audio",
+        "a11y"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",

@@ -3,6 +3,9 @@ jobs:
     name: Comment on relevant PRs and issues
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - run: echo "npm_version=$(npm pkg get version)" >> "$GITHUB_ENV"
       - uses: apexskier/github-release-commenter@v1
         with:
@@ -12,7 +15,7 @@ jobs:
 
             The release is available on:
 
-            * [GitHub releases]({release_link})
+            * [GitHub releases](https://github.com/JoshuaKGoldberg/template-typescript-node-package/releases/tag/{release_tag})
             * [npm package (@latest dist-tag)](https://www.npmjs.com/package/template-typescript-node-package/v/${{ env.npm_version }}})
 
             Cheers! 📦🚀

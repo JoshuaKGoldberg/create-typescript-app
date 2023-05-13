@@ -126,6 +126,7 @@ module.exports = {
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
+		curly: ["error", "all"],
 		"padding-line-between-statements": "off",
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",

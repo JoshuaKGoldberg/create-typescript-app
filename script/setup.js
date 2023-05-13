@@ -44,8 +44,11 @@ async function withSpinner(
 
 	try {
 		const success = await callback();
-		if (success === false) s.stop(chalk.yellow("⚠️ " + warnText));
-		else s.stop(chalk.green("✅ " + successText));
+		if (success === false) {
+			s.stop(chalk.yellow("⚠️ " + warnText));
+		} else {
+			s.stop(chalk.green("✅ " + successText));
+		}
 	} catch (error) {
 		s.stop(chalk.red("❌ " + stopText));
 
@@ -609,7 +612,10 @@ try {
 						}
 					);
 				} catch (error) {
-					if (error.status === 403) return false;
+					if (error.status === 403) {
+						return false;
+					}
+
 					throw error;
 				}
 			},

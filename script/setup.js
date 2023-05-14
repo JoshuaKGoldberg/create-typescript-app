@@ -278,7 +278,7 @@ try {
 			let user;
 			try {
 				user = JSON.parse((await $`gh api user`).stdout).login;
-			} catch (error) {
+			} catch {
 				console.warn(
 					chalk.gray(
 						`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'`

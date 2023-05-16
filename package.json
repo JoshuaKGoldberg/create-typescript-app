@@ -40,8 +40,7 @@
 		"@types/js-yaml": "^4.0.5",
 		"chalk": "^5.2.0",
 		"execa": "^7.1.1",
-		"js-yaml": "^4.1.0",
-		"json-to-pretty-yaml": "^1.2.2"
+		"js-yaml": "^4.1.0"
 	},
 	"devDependencies": {
 		"@clack/prompts": "^0.6.3",

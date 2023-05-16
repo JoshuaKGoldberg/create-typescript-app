@@ -1,5 +1,6 @@
-import chalk from "chalk";
 import * as fs from "node:fs/promises";
+
+import chalk from "chalk";
 import * as path from "path";
 import prettier from "prettier";
 

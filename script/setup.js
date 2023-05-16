@@ -650,7 +650,7 @@ try {
 	} else {
 		await withSpinner(
 			async () => {
-				await $`pnpm remove chalk execa json-to-pretty-yaml js-yaml`;
+				await $`pnpm remove chalk execa js-yaml`;
 				await $`pnpm remove @clack/prompts @types/js-yaml @types/prettier all-contributors-cli globby octokit npm-user replace-in-file title-case -D`;
 			},
 			{

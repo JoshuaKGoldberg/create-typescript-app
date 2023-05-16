@@ -1,3 +1,4 @@
+/* spellchecker: disable */
 export function createDotVSCode() {
 	return {
 		"extensions.json": JSON.stringify(

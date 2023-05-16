@@ -3,6 +3,7 @@
 		"declaration": true,
 		"declarationMap": true,
 		"esModuleInterop": true,
+		"module": "esnext",
 		"moduleResolution": "node",
 		"outDir": "lib",
 		"skipLibCheck": true,

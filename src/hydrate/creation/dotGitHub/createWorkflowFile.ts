@@ -1,11 +1,11 @@
 import jsYaml from "js-yaml";
 
-export interface WorkflowFileConcurrency {
+interface WorkflowFileConcurrency {
 	"cancel-in-progress": boolean;
 	group: string;
 }
 
-export interface WorkflowFileOn {
+interface WorkflowFileOn {
 	pull_request?:
 		| null
 		| string
@@ -22,12 +22,12 @@ export interface WorkflowFileOn {
 	workflow_dispatch?: null | string;
 }
 
-export interface WorkflowFilePermissions {
+interface WorkflowFilePermissions {
 	contents?: string;
 	"pull-requests"?: string;
 }
 
-export interface WorkflowFileStep {
+interface WorkflowFileStep {
 	env?: Record<string, string>;
 	if?: string;
 	name?: string;
@@ -36,24 +36,22 @@ export interface WorkflowFileStep {
 	with?: Record<string, unknown>;
 }
 
-export interface WorkflowFileOptionsBase {
+interface WorkflowFileOptionsBase {
 	concurrency?: WorkflowFileConcurrency;
 	name: string;
 	on?: WorkflowFileOn;
 	permissions?: WorkflowFilePermissions;
 }
 
-export interface WorkflowFileOptionsRuns extends WorkflowFileOptionsBase {
+interface WorkflowFileOptionsRuns extends WorkflowFileOptionsBase {
 	runs: (string | WorkflowFileStep)[];
 }
 
-export interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {
+interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {
 	steps: WorkflowFileStep[];
 }
 
-export type WorkflowFileOptions =
-	| WorkflowFileOptionsRuns
-	| WorkflowFileOptionsSteps;
+type WorkflowFileOptions = WorkflowFileOptionsRuns | WorkflowFileOptionsSteps;
 
 export function createWorkflowFile({
 	name,

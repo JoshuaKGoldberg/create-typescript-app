@@ -10,7 +10,7 @@ export interface RepositorySettings {
 	unitTests: boolean;
 }
 
-export type NullableProperties<T> = {
+type NullableProperties<T> = {
 	[K in keyof T]: T[K] | undefined;
 };
 

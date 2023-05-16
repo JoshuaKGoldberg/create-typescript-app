@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { execaCommand } from "execa";
 
-export interface FinalizeOptions {
+interface FinalizeOptions {
 	releases: boolean;
 	unitTests: boolean;
 }

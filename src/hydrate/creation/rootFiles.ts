@@ -1,4 +1,4 @@
-export interface CreateRootFilesOptions {
+interface CreateRootFilesOptions {
 	author: string;
 	description: string;
 	email: string;

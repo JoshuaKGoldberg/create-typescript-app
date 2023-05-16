@@ -631,33 +631,33 @@ try {
 		successSpinnerBlock(`Finished API hydration.`);
 	}
 
+	await withSpinner(
+		async () => {
+			await fs.rm("./script", { force: true, recursive: true });
+			await fs.rm("./src/hydrate", { force: true, recursive: true });
+			await fs.rm(".github/workflows/setup.yml");
+		},
+		{
+			startText: `Removing setup scripts...`,
+			successText: `Removed setup scripts.`,
+			stopText: `Error removing setup scripts.`,
+			errorText: `Could not remove setup scripts. `,
+		}
+	);
+
 	if (skipUninstalls) {
-		skipSpinnerBlock(
-			`Skipping uninstall of devDependencies only used for setup.`
-		);
+		skipSpinnerBlock(`Skipping uninstall of packages only used for setup.`);
 	} else {
 		await withSpinner(
 			async () => {
-				await fs.rm("./script", { force: true, recursive: true });
-				await fs.rm(".github/workflows/setup.yml");
+				await $`pnpm remove chalk execa json-to-pretty-yaml js-yaml`;
+				await $`pnpm remove @clack/prompts @types/js-yaml @types/prettier all-contributors-cli globby octokit npm-user replace-in-file title-case -D`;
 			},
 			{
-				startText: `Removing setup script...`,
-				successText: `Removed setup script.`,
-				stopText: `Error removing setup script.`,
-				errorText: `Could not remove setup script. `,
-			}
-		);
-
-		await withSpinner(
-			async () => {
-				await $`pnpm remove execa globby @clack/prompts all-contributors-cli chalk octokit npm-user replace-in-file title-case -D`;
-			},
-			{
-				startText: `Removing devDependency packages only used for setup...`,
-				successText: `Removed devDependency packages only used for setup.`,
-				stopText: `Error removing devDependency packages only used for setup.`,
-				errorText: `Could not remove devDependency packages only used for setup. `,
+				startText: `Removing packages only used for setup...`,
+				successText: `Removed packages only used for setup.`,
+				stopText: `Error removing packages only used for setup.`,
+				errorText: `Could not remove packages only used for setup. `,
 			}
 		);
 	}

@@ -89,6 +89,44 @@ pnpm run setup --repository "testing-repository" --title "Testing Title" --owner
 
 > Tip: after running `pnpm run setup` with `--skip-api`, you can always `git add -A; git reset --hard HEAD` to completely reset all changes.
 
+## Repository Hydration
+
+Alternately, if you have an existing repository that you'd like to give the files from this repository, you can run `template-typescript-node-package` in a repository to "hydrate" it.
+
+```shell
+npx template-typescript-node-package
+```
+
+Repository settings will be auto-filled from the repository's files if possible, but can be provided manually as well:
+
+- `author` _(`string`)_: e.g. `"Josh Goldberg"`
+- `description` _(`string`)_: e.g. `"A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨"`
+- `email` _(`string`)_: e.g. `"git@joshuakgoldberg.com"`
+- `funding` _(`string`, optional)_: e.g. `"JoshuaKGoldberg"`
+- `owner` _(`string`)_: e.g. `"JoshuaKGoldberg"`
+- `repository` _(`string`)_: e.g. `"template-typescript-node-package"`
+- `title` _(`string`)_: e.g. `"Template TypeScript Node Package"`
+
+For example, providing a `funding` value different from the `author`:
+
+```shell
+npx template-typescript-node-package --funding MyOrganization
+```
+
+The hydration script by default will include all the features in this template.
+You can disable some of them on the command-line:
+
+- `releases` _(`boolean`)_: Whether to include automated package publishing
+- `unitTests` _(`boolean`)_: Whether to include unit tests with code coverage tracking
+
+```shell
+npx template-typescript-node-package --releases false --unitTests false
+```
+
+> **Warning**
+> This will override many files in your repository.
+> You'll want to review each of the changes and make sure nothing important is removed.
+
 ## Usage
 
 ```shell

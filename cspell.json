@@ -15,13 +15,14 @@
 		"commitlint",
 		"contributorsrc",
 		"conventionalcommits",
-		"infile",
+		"execa",
 		"knip",
 		"lcov",
+		"markdownlintignore",
+		"npmpackagejsonlintrc",
+		"outro",
 		"packagejson",
 		"quickstart",
-		"wontfix",
-		"outro",
-		"execa"
+		"wontfix"
 	]
 }

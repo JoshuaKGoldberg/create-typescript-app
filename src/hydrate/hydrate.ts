@@ -1,5 +1,6 @@
 import { parseArgs } from "node:util";
 
+import chalk from "chalk";
 import { $ } from "execa";
 
 import { clearUnnecessaryFiles } from "./clearUnnecessaryFiles.js";
@@ -76,4 +77,6 @@ export async function hydrate(args: string[]) {
 	await writeStructure(createStructure(settings));
 	await writeReadme(settings);
 	await finalize(settings);
+
+	console.log(chalk.green("Done!"));
 }

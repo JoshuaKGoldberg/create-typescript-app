@@ -43,7 +43,7 @@ export function createRootFiles({
 				repoType: "github",
 			},
 			null,
-			4
+			"\t"
 		),
 		".eslintignore": [
 			"!.*",
@@ -136,9 +136,9 @@ module.exports = {
 		}`
 		}
 		{
+			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
 			files: ["**/*.{yml,yaml}"],
 			parser: "yaml-eslint-parser",
-			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
 			rules: {
 				"yml/file-extension": ["error", { extension: "yml" }],
 				"yml/sort-keys": [
@@ -204,7 +204,7 @@ module.exports = {
 				"no-inline-html": false,
 			},
 			null,
-			4
+			"\t"
 		),
 		".markdownlintignore": [
 			".github/CODE_OF_CONDUCT.md",
@@ -221,7 +221,7 @@ module.exports = {
 				},
 			},
 			null,
-			4
+			"\t"
 		),
 		".nvmrc": `18.16.0`,
 		".prettierignore": [
@@ -249,7 +249,7 @@ module.exports = {
 				useTabs: true,
 			},
 			null,
-			4
+			"\t"
 		),
 		".release-it.json": JSON.stringify(
 			{
@@ -264,7 +264,7 @@ module.exports = {
 				},
 			},
 			null,
-			4
+			"\t"
 		),
 		"LICENSE.md": `# MIT License
 
@@ -317,7 +317,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				],
 			},
 			null,
-			4
+			"\t"
 		),
 		"knip.jsonc": JSON.stringify(
 			{
@@ -327,7 +327,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				project: ["src/**/*.ts!", "script/**/*.js"],
 			},
 			null,
-			4
+			"\t"
 		),
 		"package.json": JSON.stringify(
 			{
@@ -368,7 +368,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				},
 			},
 			null,
-			4
+			"\t"
 		),
 		"tsconfig.eslint.json": JSON.stringify(
 			{
@@ -376,7 +376,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				include: ["."],
 			},
 			null,
-			4
+			"\t"
 		),
 		"tsconfig.json": JSON.stringify(
 			{
@@ -394,27 +394,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				include: ["src"],
 			},
 			null,
-			4
+			"\t"
 		),
 		...(unitTests && {
-			"vitest.config.ts": `
-				import { defineConfig } from "vitest/config";
+			"vitest.config.ts": `import { defineConfig } from "vitest/config";
 
-				export default defineConfig({
-					test: {
-						clearMocks: true,
-						coverage: {
-							all: true,
-							exclude: ["lib"],
-							include: ["src"],
-							provider: "istanbul",
-							reporter: ["html", "lcov"],
-						},
-						exclude: ["lib", "node_modules"],
-						setupFiles: ["console-fail-test/setup"],
-					},
-				});
-			`,
+export default defineConfig({
+	test: {
+		clearMocks: true,
+		coverage: {
+			all: true,
+			exclude: ["lib"],
+			include: ["src"],
+			provider: "istanbul",
+			reporter: ["html", "lcov"],
+		},
+		exclude: ["lib", "node_modules"],
+		setupFiles: ["console-fail-test/setup"],
+	},
+});
+`,
 		}),
 	};
 }

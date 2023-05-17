@@ -127,8 +127,8 @@ module.exports = {
 				"yml/sort-keys": [
 					"error",
 					{
-							order: { type: "asc" },
-							pathPattern: "^.*$",
+						order: { type: "asc" },
+						pathPattern: "^.*$",
 					},
 				],
 				"yml/sort-sequence-values": [
@@ -143,22 +143,19 @@ module.exports = {
 	],
 	parser: "@typescript-eslint/parser",
 	plugins: [
-			"@typescript-eslint",
-			"deprecation",
-			"import",
-			"jsdoc",
-			"no-only-tests",
-			"regexp",
-			"simple-import-sort",
-			"typescript-sort-keys",
-			"vitest",
+		"@typescript-eslint",
+		"deprecation",
+		"import",
+		"jsdoc",
+		"regexp",
+		"simple-import-sort",
+		"typescript-sort-keys",
 	],
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 		"import/extensions": ["error", "ignorePackages"],
-		"no-only-tests/no-only-tests": "error",
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",
 

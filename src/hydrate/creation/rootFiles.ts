@@ -125,8 +125,7 @@ module.exports = {
 			extends: ["plugin:jsonc/recommended-with-json"],
 		},${
 			unitTests
-				? ""
-				: `\n{
+				? `\n{
 			files: "**/*.test.ts",
 			rules: {
 				// These on-by-default rules aren't useful in test files.
@@ -134,6 +133,7 @@ module.exports = {
 				"@typescript-eslint/no-unsafe-call": "off",
 			},
 		}`
+				: ""
 		}
 		{
 			extends: ["plugin:yml/standard", "plugin:yml/prettier"],

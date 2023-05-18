@@ -11,7 +11,7 @@ vi.mock("execa", () => ({
 	},
 }));
 
-describe("finalize", () => {
+describe("clearUnnecessaryFiles", () => {
 	beforeEach(() => {
 		console.log = vi.fn();
 	});

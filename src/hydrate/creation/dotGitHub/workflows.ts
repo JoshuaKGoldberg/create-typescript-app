@@ -33,6 +33,11 @@ export function createWorkflows() {
 		}),
 		"contributors.yml": createWorkflowFile({
 			name: "Contributors",
+			on: {
+				push: {
+					branches: ["main"],
+				},
+			},
 			steps: [
 				{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },
 				{ uses: "./.github/actions/prepare" },

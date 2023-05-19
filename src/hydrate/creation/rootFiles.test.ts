@@ -174,7 +174,8 @@ module.exports = {
 };
 `,
 			".gitignore": `lib/
-node_modules/`,
+node_modules/
+`,
 			".markdownlint.json": `{
 	"extends": "markdownlint/style/prettier",
 	"first-line-h1": false,

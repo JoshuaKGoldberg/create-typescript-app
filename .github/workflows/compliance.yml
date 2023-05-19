@@ -5,7 +5,7 @@ jobs:
       - uses: mtfoley/pr-compliance-action@main
         with:
           body-auto-close: false
-          ignore-authors: |
+          ignore-authors: |-
             allcontributors
             allcontributors[bot]
             renovate
@@ -23,6 +23,3 @@ on:
       - opened
       - reopened
       - synchronize
-
-permissions:
-  pull-requests: write

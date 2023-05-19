@@ -1,6 +1,7 @@
 description: Prepares the repo for a typical CI job
 
 name: Prepare
+
 runs:
   steps:
     - uses: pnpm/action-setup@v2

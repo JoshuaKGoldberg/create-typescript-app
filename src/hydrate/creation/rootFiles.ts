@@ -1,3 +1,6 @@
+import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
+import { formatJson } from "./formatters/formatJson.js";
+
 interface CreateRootFilesOptions {
 	author: string;
 	description: string;
@@ -18,40 +21,36 @@ export function createRootFiles({
 	unitTests,
 }: CreateRootFilesOptions) {
 	return {
-		".all-contributorsrc": JSON.stringify(
-			{
-				badgeTemplate:
-					'<img alt="All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/all_contributors-<%= contributors.length %>-21bb42.svg" />',
-				commit: false,
-				commitConvention: "angular",
-				contributors: [
-					{
-						avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
-						contributions: ["tool"],
-						login: "JoshuaKGoldberg",
-						name: "Josh Goldberg",
-						profile: "http://www.joshuakgoldberg.com",
-					},
-				],
-				contributorsPerLine: 7,
-				contributorsSortAlphabetically: true,
-				files: ["README.md"],
-				imageSize: 100,
-				projectName: "template-typescript-node-package",
-				projectOwner: "JoshuaKGoldberg",
-				repoHost: "https://github.com",
-				repoType: "github",
-			},
-			null,
-			"\t"
-		),
-		".eslintignore": [
+		".all-contributorsrc": formatJson({
+			badgeTemplate:
+				'<img alt="All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/all_contributors-<%= contributors.length %>-21bb42.svg" />',
+			commit: false,
+			commitConvention: "angular",
+			contributors: [
+				{
+					avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
+					contributions: ["tool"],
+					login: "JoshuaKGoldberg",
+					name: "Josh Goldberg",
+					profile: "http://www.joshuakgoldberg.com",
+				},
+			],
+			contributorsPerLine: 7,
+			contributorsSortAlphabetically: true,
+			files: ["README.md"],
+			imageSize: 100,
+			projectName: "template-typescript-node-package",
+			projectOwner: "JoshuaKGoldberg",
+			repoHost: "https://github.com",
+			repoType: "github",
+		}),
+		".eslintignore": formatIgnoreFile([
 			"!.*",
 			...(unitTests ? ["coverage"] : []),
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",
-		].join("\n"),
+		]),
 		".eslintrc.cjs": `/*
 👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
 You can read from it to see all sorts of linting goodness, but don't worry -
@@ -132,7 +131,7 @@ module.exports = {
 				"@typescript-eslint/no-unsafe-assignment": "off",
 				"@typescript-eslint/no-unsafe-call": "off",
 			},
-		}`
+		},`
 				: ""
 		}
 		{
@@ -192,80 +191,64 @@ module.exports = {
 	},
 };
 `,
-		".gitignore": [
+		".gitignore": formatIgnoreFile([
 			...(unitTests ? ["coverage/"] : []),
 			"lib/",
 			"node_modules/",
-		].join("\n"),
-		".markdownlint.json": JSON.stringify(
-			{
-				extends: "markdownlint/style/prettier",
-				"first-line-h1": false,
-				"no-inline-html": false,
-			},
-			null,
-			"\t"
-		),
-		".markdownlintignore": [
+		]),
+		".markdownlint.json": formatJson({
+			extends: "markdownlint/style/prettier",
+			"first-line-h1": false,
+			"no-inline-html": false,
+		}),
+		".markdownlintignore": formatIgnoreFile([
 			".github/CODE_OF_CONDUCT.md",
 			"CHANGELOG.md",
 			"lib/",
 			"node_modules/",
-		].join("\n"),
-		".npmpackagejsonlintrc.json": JSON.stringify(
-			{
-				extends: "npm-package-json-lint-config-default",
-				rules: {
-					"require-description": "error",
-					"require-license": "error",
-				},
+		]),
+		".npmpackagejsonlintrc.json": formatJson({
+			extends: "npm-package-json-lint-config-default",
+			rules: {
+				"require-description": "error",
+				"require-license": "error",
 			},
-			null,
-			"\t"
-		),
-		".nvmrc": `18.16.0`,
-		".prettierignore": [
+		}),
+		".nvmrc": `18.16.0\n`,
+		".prettierignore": formatIgnoreFile([
 			...(unitTests ? ["coverage/"] : []),
 			"lib/",
 			"pnpm-lock.yaml",
 			"",
 			"# See https://github.com/all-contributors/cli/issues/347",
 			".all-contributorsrc",
-		].join("\n"),
-		".prettierrc": JSON.stringify(
-			{
-				$schema: "http://json.schemastore.org/prettierrc",
-				plugins: ["prettier-plugin-packagejson"],
-				overrides: [
-					{
-						files: ".*rc",
-						options: { parser: "json" },
-					},
-					{
-						files: ".nvmrc",
-						options: { parser: "yaml" },
-					},
-				],
-				useTabs: true,
-			},
-			null,
-			"\t"
-		),
-		".release-it.json": JSON.stringify(
-			{
-				git: {
-					commitMessage: "chore: release v${version}",
-					requireCommits: true,
+		]),
+		".prettierrc": formatJson({
+			$schema: "http://json.schemastore.org/prettierrc",
+			plugins: ["prettier-plugin-packagejson"],
+			overrides: [
+				{
+					files: ".*)rc",
+					options: { parser2: "json" },
 				},
-				github: {
-					autoGenerate: true,
-					release: true,
-					releaseName: "v${version}",
+				{
+					files: ".nvmrc",
+					options: { parser: "yaml" },
 				},
+			],
+			useTabs: true,
+		}),
+		".release-it.json": formatJson({
+			git: {
+				commitMessage: "chore: release v${version}",
+				requireCommits: true,
 			},
-			null,
-			"\t"
-		),
+			github: {
+				autoGenerate: true,
+				release: true,
+				releaseName: "v${version}",
+			},
+		}),
 		"LICENSE.md": `# MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining
@@ -287,115 +270,96 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 `,
-		"cspell.json": JSON.stringify(
-			{
-				dictionaries: ["typescript"],
-				ignorePaths: [
-					".github",
-					"CHANGELOG.md",
-					...(unitTests ? ["coverage"] : []),
-					"lib",
-					"node_modules",
-					"pnpm-lock.yaml",
-					"script/*.json",
-				],
-				words: [
-					"Codecov",
-					"codespace",
-					"commitlint",
-					"contributorsrc",
-					"conventionalcommits",
-					"execa",
-					"knip",
-					"lcov",
-					"markdownlintignore",
-					"npmpackagejsonlintrc",
-					"outro",
-					"packagejson",
-					"quickstart",
-					"wontfix",
-				],
+		"cspell.json": formatJson({
+			dictionaries: ["typescript"],
+			ignorePaths: [
+				".github",
+				"CHANGELOG.md",
+				...(unitTests ? ["coverage"] : []),
+				"lib",
+				"node_modules",
+				"pnpm-lock.yaml",
+				"script/*.json",
+			],
+			words: [
+				"Codecov",
+				"codespace",
+				"commitlint",
+				"contributorsrc",
+				"conventionalcommits",
+				"execa",
+				"knip",
+				"lcov",
+				"markdownlintignore",
+				"npmpackagejsonlintrc",
+				"outro",
+				"packagejson",
+				"quickstart",
+				"wontfix",
+			],
+		}),
+		"knip.jsonc": formatJson({
+			$schema: "https://unpkg.com/knip@next/schema.json",
+			entry: ["src/index.ts!", "script/setup*.js"],
+			ignoreBinaries: ["dedupe", "gh"],
+			project: ["src/**/*.ts!", "script/**/*.js"],
+		}),
+		"package.json": formatJson({
+			name: repository,
+			description,
+			repository: {
+				type: "git",
+				url: `https://github.com/${owner}/${repository}`,
 			},
-			null,
-			"\t"
-		),
-		"knip.jsonc": JSON.stringify(
-			{
-				$schema: "https://unpkg.com/knip@next/schema.json",
-				entry: ["src/index.ts!", "script/setup*.js"],
-				ignoreBinaries: ["dedupe", "gh"],
-				project: ["src/**/*.ts!", "script/**/*.js"],
+			license: "MIT",
+			author: { email, name: author },
+			type: "module",
+			main: "./lib/index.js",
+			files: ["lib/", "package.json", "LICENSE.md", "README.md"],
+			scripts: {
+				build: "tsc",
+				format: 'prettier "**/*" --ignore-unknown',
+				"format:write": "pnpm format --write",
+				lint: "eslint . --max-warnings 0 --report-unused-disable-directives",
+				"lint:knip": "knip",
+				"lint:md":
+					'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
+				"lint:package": "npmPkgJsonLint .",
+				"lint:packages": "pnpm dedupe --check",
+				"lint:spelling": 'cspell "**" ".github/**/*"',
+				prepare: "husky install",
+				...(releases && {
+					"should-semantic-release": "should-semantic-release --verbose",
+				}),
+				...(unitTests && { test: "vitest" }),
 			},
-			null,
-			"\t"
-		),
-		"package.json": JSON.stringify(
-			{
-				name: repository,
-				description,
-				repository: {
-					type: "git",
-					url: `https://github.com/${owner}/${repository}`,
-				},
-				license: "MIT",
-				author: { email, name: author },
-				type: "module",
-				main: "./lib/index.js",
-				files: ["lib/", "package.json", "LICENSE.md", "README.md"],
-				scripts: {
-					build: "tsc",
-					format: 'prettier "**/*" --ignore-unknown',
-					"format:write": "pnpm format --write",
-					lint: "eslint . --max-warnings 0 --report-unused-disable-directives",
-					"lint:knip": "knip",
-					"lint:md":
-						'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
-					"lint:package": "npmPkgJsonLint .",
-					"lint:packages": "pnpm dedupe --check",
-					"lint:spelling": 'cspell "**" ".github/**/*"',
-					prepare: "husky install",
-					...(releases && {
-						"should-semantic-release": "should-semantic-release --verbose",
-					}),
-					...(unitTests && { test: "vitest" }),
-				},
-				"lint-staged": {
-					"*": "prettier --ignore-unknown --write",
-				},
-				packageManager: "pnpm@8.5.0",
-				engines: {
-					node: ">=18",
-				},
+			"lint-staged": {
+				"*": "prettier --ignore-unknown --write",
 			},
-			null,
-			"\t"
-		),
-		"tsconfig.eslint.json": JSON.stringify(
-			{
-				extends: "./tsconfig.json",
-				include: ["."],
+			packageManager: "pnpm@8.5.0",
+			engines: {
+				node: ">=18",
 			},
-			null,
-			"\t"
-		),
-		"tsconfig.json": JSON.stringify(
-			{
-				compilerOptions: {
-					declaration: true,
-					declarationMap: true,
-					esModuleInterop: true,
-					moduleResolution: "node",
-					outDir: "lib",
-					skipLibCheck: true,
-					sourceMap: true,
-					strict: true,
-					target: "ES2021",
-				},
-				include: ["src"],
+		}),
+		"tsconfig.eslint.json": formatJson({
+			extends: "./tsconfig.json",
+			include: ["."],
+		}),
+		"tsconfig.json": formatJson({
+			compilerOptions: {
+				declaration: true,
+				declarationMap: true,
+				esModuleInterop: true,
+				module: "esnext",
+				moduleResolution: "node",
+				outDir: "lib",
+				skipLibCheck: true,
+				sourceMap: true,
+				strict: true,
+				target: "ES2021",
 			},
-			null,
-			"\t"
-		),
+			include: ["src"],
+		}),
 		...(unitTests && {
 			"vitest.config.ts": `import { defineConfig } from "vitest/config";
 

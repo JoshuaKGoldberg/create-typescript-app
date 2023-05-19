@@ -1,8 +1,8 @@
-import jsYaml from "js-yaml";
+import { formatYaml } from "../formatters/formatYaml.js";
 
 export function createDotGitHubIssueTemplate() {
 	return {
-		"01-bug.yml": jsYaml.dump({
+		"01-bug.yml": formatYaml({
 			body: [
 				{
 					attributes: {
@@ -61,7 +61,7 @@ export function createDotGitHubIssueTemplate() {
 			name: "🐛 Report a Bug",
 			title: "🐛 Bug: <short description of the bug>",
 		}),
-		"02-documentation.yml": jsYaml.dump({
+		"02-documentation.yml": formatYaml({
 			body: [
 				{
 					attributes: {
@@ -106,7 +106,7 @@ export function createDotGitHubIssueTemplate() {
 			name: "📝 Documentation",
 			title: "📝 Documentation: <short description of the request>",
 		}),
-		"03-feature.yml": jsYaml.dump({
+		"03-feature.yml": formatYaml({
 			body: [
 				{
 					attributes: {
@@ -156,7 +156,7 @@ export function createDotGitHubIssueTemplate() {
 			name: "🚀 Request a Feature",
 			title: "🚀 Feature: <short description of the feature>",
 		}),
-		"04-tooling.yml": jsYaml.dump({
+		"04-tooling.yml": formatYaml({
 			body: [
 				{
 					attributes: {

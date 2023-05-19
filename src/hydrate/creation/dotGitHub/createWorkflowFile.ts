@@ -1,4 +1,4 @@
-import jsYaml from "js-yaml";
+import { formatYaml } from "../formatters/formatYaml.js";
 
 interface WorkflowFileConcurrency {
 	"cancel-in-progress": boolean;
@@ -54,6 +54,7 @@ interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {
 type WorkflowFileOptions = WorkflowFileOptionsRuns | WorkflowFileOptionsSteps;
 
 export function createWorkflowFile({
+	concurrency,
 	name,
 	on = {
 		pull_request: null,
@@ -61,47 +62,29 @@ export function createWorkflowFile({
 			branches: ["main"],
 		},
 	},
+	permissions,
 	...options
 }: WorkflowFileOptions) {
 	return (
-		jsYaml
-			.dump(
-				{
-					jobs: {
-						[name.replaceAll(" ", "_").toLowerCase()]: {
-							"runs-on": "ubuntu-latest",
-							steps:
-								"runs" in options
-									? [
-											{ uses: "actions/checkout@v3" },
-											{ uses: "./.github/actions/prepare" },
-											...options.runs.map((run) => ({ run })),
-									  ]
-									: options.steps,
-						},
-					},
-					name,
-					on,
+		formatYaml({
+			concurrency,
+			jobs: {
+				[name.replaceAll(" ", "_").toLowerCase()]: {
+					"runs-on": "ubuntu-latest",
+					steps:
+						"runs" in options
+							? [
+									{ uses: "actions/checkout@v3" },
+									{ uses: "./.github/actions/prepare" },
+									...options.runs.map((run) => ({ run })),
+							  ]
+							: options.steps,
 				},
-				{
-					lineWidth: -1,
-					noCompatMode: true,
-					sortKeys: true,
-					styles: {
-						"!!null": "canonical",
-					},
-					// https://github.com/nodeca/js-yaml/pull/515
-					replacer(_, value: unknown) {
-						if (typeof value !== "string" || !value.includes("\n\t\t")) {
-							return value;
-						}
-
-						return value
-							.replaceAll("\n\t  \t\t\t", "")
-							.replaceAll(/\n\t\t\t\t\t\t$/g, "");
-					},
-				}
-			)
+			},
+			name,
+			on,
+			permissions,
+		})
 			.replaceAll(/\n(\S)/g, "\n\n$1")
 			// https://github.com/nodeca/js-yaml/pull/515
 			.replaceAll(/: "\\n(.+)"/g, ": |\n$1")

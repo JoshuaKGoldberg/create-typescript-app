@@ -2,6 +2,7 @@
 import * as jsYaml from "js-yaml";
 
 import { RepositorySettings } from "../../repositorySettings.js";
+import { formatYaml } from "../formatters/formatYaml.js";
 
 export function createDotGitHubFiles({
 	email,
@@ -312,7 +313,7 @@ That end-to-end test executes \`script/setup-test-e2e.js\`, which:
 
 As with the setup script itself, end-to-end tests are removed on package setup.
 		`,
-		...(funding && { "FUNDING.yml": jsYaml.dump({ github: funding }) }),
+		...(funding && { "FUNDING.yml": formatYaml({ github: funding }) }),
 		"ISSUE_TEMPLATE.md": `<!-- Note: Please must use one of our issue templates to file an issue! 🛑 -->
 <!-- 👉 https://github.com/${owner}/${repository}/issues/new/choose 👈 -->
 <!-- **Issues that should have been filed with a template will be closed without action, and we will ask you to use a template.** -->

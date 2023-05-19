@@ -1,6 +1,4 @@
 /* spellchecker: disable */
-import * as jsYaml from "js-yaml";
-
 import { RepositorySettings } from "../../repositorySettings.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 

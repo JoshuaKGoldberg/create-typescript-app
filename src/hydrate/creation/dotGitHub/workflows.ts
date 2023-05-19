@@ -149,15 +149,27 @@ export function createWorkflows() {
 					uses: "actions/github-script@v6.4.1",
 					with: {
 						"github-token": "${{ secrets.ACCESS_TOKEN }}",
-						script:
-							'try {\n  await github.request(\n    `DELETE /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection`,\n  );\n} catch (error) {\n  if (!error.message?.includes?.("Branch not protected")) {\n    throw error;\n  }\n}\n',
+						script: `
+							try {
+								await github.request(
+								  \`DELETE /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection\`,
+								);
+							} catch (error) {
+								if (!error.message?.includes?.("Branch not protected")) {
+									throw error;
+								}
+							}`,
 					},
 				},
 				{
 					env: {
 						GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
 					},
-					run: "if pnpm run should-semantic-release ; then\n  pnpm release-it --verbose\n  gh workflow run post-release.yml\nfi\n",
+					run: `
+					if pnpm run should-semantic-release ; then
+					  pnpm release-it --verbose
+					  gh workflow run post-release.yml
+					fi`,
 				},
 				{
 					if: "always()",

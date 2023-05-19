@@ -228,8 +228,8 @@ module.exports = {
 			plugins: ["prettier-plugin-packagejson"],
 			overrides: [
 				{
-					files: ".*)rc",
-					options: { parser2: "json" },
+					files: ".*rc",
+					options: { parser: "json" },
 				},
 				{
 					files: ".nvmrc",

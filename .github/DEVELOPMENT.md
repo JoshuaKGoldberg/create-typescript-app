@@ -87,7 +87,7 @@ npm init --yes
 Then, in that directory, you can directly call the hydration script:
 
 ```shell
-node ../template-typescript-node-package -- description "Hooray, trying things out locally."
+node ../template-typescript-node-package/lib/hydrate/index.js -- description "Hooray, trying things out locally."
 ```
 
 Along with the hydration script itself, end-to-end tests are removed on package setup.

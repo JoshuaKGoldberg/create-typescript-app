@@ -16,10 +16,11 @@ const options: jsYaml.DumpOptions = {
 		return value
 			.replaceAll(": |-\n", ": |\n")
 			.replaceAll("\n\t  \t\t\t", "")
+
 			.replaceAll(/\n\t\t\t\t\t\t$/g, "");
 	},
 };
 
 export function formatYaml(value: unknown) {
-	return jsYaml.dump(value, options);
+	return jsYaml.dump(value, options).replaceAll(`\\"`, `"`);
 }

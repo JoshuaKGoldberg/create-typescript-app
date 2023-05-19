@@ -15,6 +15,9 @@ export function createWorkflows() {
 					types: ["edited", "opened", "reopened", "synchronize"],
 				},
 			},
+			permissions: {
+				"pull-requests": "write",
+			},
 			steps: [
 				{
 					uses: "mtfoley/pr-compliance-action@main",
@@ -162,8 +165,41 @@ export function createWorkflows() {
 					uses: "actions/github-script@v6.4.1",
 					with: {
 						"github-token": "${{ secrets.ACCESS_TOKEN }}",
-						script:
-							'github.request(\n  `PUT /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection`,\n  {\n    allow_deletions: false,\n    allow_force_pushes: true,\n    allow_fork_pushes: false,\n    allow_fork_syncing: true,\n    block_creations: false,\n    branch: "main",\n    enforce_admins: false,\n    owner: "JoshuaKGoldberg",\n    repo: "template-typescript-node-package",\n    required_conversation_resolution: true,\n    required_linear_history: false,\n    required_pull_request_reviews: null,\n    required_status_checks: {\n      checks: [\n        { context: "build" },\n        { context: "compliance" },\n        { context: "knip" },\n        { context: "lint" },\n        { context: "markdown" },\n        { context: "package" },\n        { context: "packages" },\n        { context: "prettier" },\n        { context: "spelling" },\n        { context: "test" },\n      ],\n      strict: false,\n    },\n    restrictions: null,\n  }\n);\n',
+						script: `
+						github.request(
+						  \`PUT /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection\`,
+						  {
+							  allow_deletions: false,
+							  allow_force_pushes: true,
+							  allow_fork_pushes: false,
+							  allow_fork_syncing: true,
+							  block_creations: false,
+							  branch: "main",
+							  enforce_admins: false,
+							  owner: "JoshuaKGoldberg",
+							  repo: "template-typescript-node-package",
+							  required_conversation_resolution: true,
+							  required_linear_history: false,
+							  required_pull_request_reviews: null,
+							  required_status_checks: {
+							    checks: [
+							      { context: "build" },
+							      { context: "compliance" },
+							      { context: "lint" },
+							      { context: "lint_knip" },
+							      { context: "lint_markdown" },
+							      { context: "lint_package" },
+							      { context: "lint_packages" },
+							      { context: "lint_spelling" },
+							      { context: "prettier" },
+							      { context: "test" },
+							    ],
+							    strict: false,
+							  },
+							  restrictions: null,
+						  }
+						);
+					`,
 					},
 				},
 			],

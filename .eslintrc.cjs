@@ -79,9 +79,9 @@ module.exports = {
 			},
 		},
 		{
+			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
 			files: ["**/*.{yml,yaml}"],
 			parser: "yaml-eslint-parser",
-			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
 			rules: {
 				"yml/file-extension": ["error", { extension: "yml" }],
 				"yml/sort-keys": [

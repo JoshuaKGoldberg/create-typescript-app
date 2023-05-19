@@ -1,15 +1,17 @@
 jobs:
-  prettier:
+  hydrate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
-      - run: pnpm format --list-different
+      - run: pnpm run build
+      - run: pnpm run setup:test
 
-name: Prettier
+name: Test Hydrate Script
 
 on:
   pull_request: ~
+
   push:
     branches:
       - main

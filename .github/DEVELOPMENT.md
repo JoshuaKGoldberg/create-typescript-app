@@ -67,9 +67,38 @@ Calls to `console.log`, `console.warn`, and other console methods will cause a t
 This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
 To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
 
+## The Hydration Script
+
+This template's "hydration" script is located in `src/hydrate/`.
+It needs to be [built](#building) before it can be run.
+
+Be warned that running the hydration script in a repository -including this one- will modify that repository.
+To test out the script, you may want to create a new test repository to run on:
+
+```shell
+cd ..
+mkdir temp
+cd temp
+echo node_modules > .gitignore
+git init
+npm init --yes
+```
+
+Then, in that directory, you can directly call the hydration script:
+
+```shell
+node ../template-typescript-node-package -- description "Hooray, trying things out locally."
+```
+
+Along with the hydration script itself, end-to-end tests are removed on package setup.
+
+## The Setup Script
+
+This template's "setup" script is located in `script/`.
+
 ### Testing the Setup Script
 
-In addition to unit tests, this template also includes an "end-to-end" test for `script/setup.js`.
+This template source includes an "end-to-end" test for `script/setup.js`.
 You can run it locally on the command-line:
 
 ```shell
@@ -81,4 +110,4 @@ That end-to-end test executes `script/setup-test-e2e.js`, which:
 1. Runs the setup script using `--skip-api`
 2. Checks that the local repository's files were changed correctly (e.g. removed setup-only files)
 
-As with the setup script itself, end-to-end tests are removed on package setup.
+Along with the setup script itself, end-to-end tests are removed on package setup.

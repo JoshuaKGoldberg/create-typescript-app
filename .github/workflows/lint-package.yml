@@ -1,5 +1,5 @@
 jobs:
-  package:
+  lint_package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -10,7 +10,6 @@ name: Lint Package
 
 on:
   pull_request: ~
-
   push:
     branches:
       - main

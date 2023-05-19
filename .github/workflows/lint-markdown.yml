@@ -1,5 +1,5 @@
 jobs:
-  markdown:
+  lint_markdown:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -10,7 +10,6 @@ name: Lint Markdown
 
 on:
   pull_request: ~
-
   push:
     branches:
       - main

@@ -6,7 +6,7 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 17" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" />
+<img alt="All Contributors: 18" src="https://img.shields.io/badge/all_contributors-18-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>
@@ -173,6 +173,7 @@ Thanks! 💖
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://ronjeanfrancois.com"><img src="https://avatars.githubusercontent.com/u/105710107?v=4?s=100" width="100px;" alt="Ron Jean-Francois"/><br /><sub><b>Ron Jean-Francois</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=ronthetech" title="Code">💻</a> <a href="#infra-ronthetech" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/the-lazy-learner"><img src="https://avatars.githubusercontent.com/u/13695177?v=4?s=100" width="100px;" alt="Sudhansu"/><br /><sub><b>Sudhansu</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=the-lazy-learner" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tungbq"><img src="https://avatars.githubusercontent.com/u/85242618?v=4?s=100" width="100px;" alt="Tung Bui (Leo)"/><br /><sub><b>Tung Bui (Leo)</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=tungbq" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/commits?author=TAKANOME-DEV" title="Code">💻</a></td>
     </tr>
   </tbody>

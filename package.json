@@ -34,9 +34,6 @@
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest"
 	},
-	"publishConfig": {
-		"provenance": true
-	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
 	},
@@ -95,5 +92,8 @@
 	"packageManager": "pnpm@8.5.1",
 	"engines": {
 		"node": ">=18"
+	},
+	"publishConfig": {
+		"provenance": true
 	}
 }

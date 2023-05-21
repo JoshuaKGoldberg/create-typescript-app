@@ -16,6 +16,8 @@ name: PR Compliance
 
 on:
   pull_request_target:
+    branches:
+        - main
     types: [edited, opened, reopened, synchronize]
 
 # Action should have write permission to make updates to PR

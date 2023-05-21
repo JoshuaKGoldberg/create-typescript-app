@@ -12,7 +12,7 @@ jobs:
             renovate[bot]
           ignore-team-members: false
 permissions:
-  pull-requests: write
+  pull-requests: write-all
 
 
 name: Compliance

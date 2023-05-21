@@ -34,6 +34,9 @@
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest"
 	},
+	"publishConfig": {
+		"provenance": true
+	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"
 	},

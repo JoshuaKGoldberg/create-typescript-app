@@ -17,7 +17,11 @@ name: Compliance
 
 on:
   pull_request_target:
-    types: [edited, opened, reopened, synchronize]
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
 
 permissions:
   pull-requests: write

@@ -2,8 +2,6 @@ name: Compliance
 
 on:
   pull_request_target:
-    branches:
-      - main
     types:
       - edited
       - opened

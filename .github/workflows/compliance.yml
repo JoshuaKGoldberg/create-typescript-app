@@ -16,7 +16,7 @@ on:
       - reopened
       - synchronize
 permissions:
-  pull-requests: write|read
+  pull-requests: write
 
 jobs:
   compliance:

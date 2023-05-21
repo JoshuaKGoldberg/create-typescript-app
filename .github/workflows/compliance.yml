@@ -1,3 +1,17 @@
+name: Compliance
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
+permissions:
+  pull-requests: write
+
 jobs:
   compliance:
     runs-on: ubuntu-latest
@@ -11,17 +25,3 @@ jobs:
             renovate
             renovate[bot]
           ignore-team-members: false
-
-name: Compliance
-
-on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - edited
-      - opened
-      - reopened
-      - synchronize
-permissions:
-  pull-requests: write-all

@@ -10,7 +10,7 @@ on:
       - reopened
       - synchronize
 permissions:
-  pull-requests: write
+  pull-requests: write|read
 
 jobs:
   compliance:

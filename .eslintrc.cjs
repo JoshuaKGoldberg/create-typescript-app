@@ -59,6 +59,14 @@ module.exports = {
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
 				"deprecation/deprecation": "error",
+
+				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
+				"@typescript-eslint/no-unnecessary-condition": [
+					"error",
+					{
+						allowConstantLoopConditions: true,
+					},
+				],
 			},
 		},
 		{
@@ -124,6 +132,7 @@ module.exports = {
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-constant-condition": "off",
+		"no-case-declarations": "off",
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier

@@ -359,7 +359,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				skipLibCheck: true,
 				sourceMap: true,
 				strict: true,
-				target: "ES2021",
+				target: "ES2022",
 			},
 			include: ["src"],
 		}),

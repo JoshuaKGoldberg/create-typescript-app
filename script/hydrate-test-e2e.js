@@ -31,9 +31,11 @@ const unstagedModifiedFiles = gitStatus
 	.map((match) => match.split(/\s+/g)[1])
 	.filter((filePath) => !filesExpectedToBeChanged.has(filePath));
 
+console.log("Unstaged modified files are:", unstagedModifiedFiles);
+
 if (unstagedModifiedFiles.length) {
 	console.log(
-		`Stdout from running \`git diff\`:${(await $`git diff HEAD`).stdout}`
+		`Stdout from running \`git diff\`:\n${(await $`git diff HEAD`).stdout}`
 	);
 	console.error(
 		chalk.red(

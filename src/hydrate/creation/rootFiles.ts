@@ -340,6 +340,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			engines: {
 				node: ">=18",
 			},
+			publishConfig: {
+				provenance: true,
+			},
 		}),
 		"tsconfig.eslint.json": formatJson({
 			extends: "./tsconfig.json",

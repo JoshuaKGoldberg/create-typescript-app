@@ -9,6 +9,10 @@ const owner = "RNR1";
 const title = "New Title Test";
 const repository = "new-repository-test";
 
+await $({
+	stdio: "inherit",
+})`c8 -o ./coverage-setup -r html -r lcov node ./lib/setup/index.js`;
+
 const result =
 	await $`pnpm run setup --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-restore`;
 console.log("Result from pnpm run setup:", result);

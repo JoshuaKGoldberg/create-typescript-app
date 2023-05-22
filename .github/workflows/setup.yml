@@ -4,7 +4,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
+      - run: pnpm run build
       - run: pnpm run setup:test
+      - name: Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage-setup/lcov.info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          path: coverage-setup
 
 name: Test Setup Script
 

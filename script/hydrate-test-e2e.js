@@ -1,6 +1,10 @@
 import chalk from "chalk";
 import { $ } from "execa";
 
+await $({
+	stdio: "inherit",
+})`c8 -o ./coverage-hydrate -r html -r lcov node ./lib/hydrate/index.js`;
+
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
 

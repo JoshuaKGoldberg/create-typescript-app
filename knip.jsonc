@@ -7,5 +7,6 @@
 		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["dedupe", "gh"],
+	"ignoreDependencies": ["c8"],
 	"project": ["src/**/*.ts!", "script/**/*.js"]
 }

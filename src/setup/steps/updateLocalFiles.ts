@@ -40,6 +40,7 @@ export async function updateLocalFiles({
 		[`,\n\t\t["src/setup/*.json"`, ``, "./cspell.json"],
 		[`\t\t"src/hydrate/index.ts",\n`, ``, "./knip.jsonc"],
 		[`\t\t"src/setup/index.ts",\n`, ``, "./knip.jsonc"],
+		[`\t\t"ignoreDependencies": ["c8"],\n`, ``, "./knip.jsonc"],
 		[
 			`["src/index.ts!", "script/setup*.js"]`,
 			`"src/index.ts!"`,

@@ -9,9 +9,9 @@ const owner = "RNR1";
 const title = "New Title Test";
 const repository = "new-repository-test";
 
-const result =
-	await $`pnpm run setup --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-restore`;
-console.log("Result from pnpm run setup:", result);
+await $({
+	stdio: "inherit",
+})`node ./lib/setup/index.js --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-restore`;
 
 const newPackageJson = JSON.parse(
 	(await fs.readFile("./package.json")).toString()

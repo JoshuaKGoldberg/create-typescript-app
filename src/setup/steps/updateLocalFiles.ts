@@ -58,7 +58,7 @@ export async function updateLocalFiles({
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of replacements) {
 		try {
-			// @ts-expect-error -- it's a namespace? and a function? TS bug?
+			// @ts-expect-error -- https://github.com/microsoft/TypeScript/issues/54342
 			await replaceInFile({ files, from, to });
 		} catch (error) {
 			throw new Error(

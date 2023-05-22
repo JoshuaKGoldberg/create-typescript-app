@@ -57,7 +57,7 @@ export async function finalize({ releases, unitTests }: FinalizeOptions) {
 
 	for (const command of [
 		`pnpm add ${devDependencies.join(" ")} -D`,
-		`pnpx all-contributors generate`,
+		`npx all-contributors generate`,
 		`pnpm uninstall all-contributors-cli -D`,
 		"pnpm run format:write",
 	]) {

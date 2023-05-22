@@ -29,7 +29,7 @@
 		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
-		"setup": "node script/setup.js",
+		"setup": "tsx src/setup/index.ts",
 		"setup:test": "node script/setup-test-e2e.js",
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest"
@@ -44,6 +44,7 @@
 	},
 	"devDependencies": {
 		"@clack/prompts": "^0.6.3",
+		"@octokit/request-error": "^3.0.3",
 		"@types/eslint": "^8.37.0",
 		"@types/js-yaml": "^4.0.5",
 		"@types/prettier": "^2.7.2",
@@ -85,6 +86,7 @@
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.1.1",
 		"title-case": "^3.0.3",
+		"tsx": "^3.12.7",
 		"typescript": "^5.0.4",
 		"vitest": "^0.31.0",
 		"yaml-eslint-parser": "^1.2.2"

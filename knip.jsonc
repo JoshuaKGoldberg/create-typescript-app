@@ -3,8 +3,8 @@
 	"entry": [
 		"src/index.ts!",
 		"src/hydrate/index.ts",
-		"script/*e2e.js",
-		"script/setup*.js"
+		"src/setup/index.ts",
+		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["dedupe", "gh"],
 	"project": ["src/**/*.ts!", "script/**/*.js"]

@@ -6,6 +6,12 @@ interface GhLabelData {
 	name: string;
 }
 
+interface FileLabelData {
+	color: string;
+	description: string;
+	name: string;
+}
+
 export async function hydrateRepositoryLabels() {
 	const getLabelName = (label: { name: string }) => label.name;
 
@@ -17,7 +23,7 @@ export async function hydrateRepositoryLabels() {
 
 	const outcomeLabels = (await readFileAsJSON(
 		"./script/labels.json"
-	)) as typeof import("../labels.json");
+	)) as FileLabelData[];
 
 	for (const outcome of outcomeLabels) {
 		const action = existingLabels.some((existing) => existing === outcome.name)

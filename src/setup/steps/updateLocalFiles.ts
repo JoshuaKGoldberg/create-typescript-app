@@ -10,6 +10,11 @@ interface UpdateLocalFilesOptions {
 	title: string;
 }
 
+interface ExistingPackageData {
+	description?: string;
+	version?: string;
+}
+
 export async function updateLocalFiles({
 	description,
 	npmAuthor,
@@ -17,9 +22,9 @@ export async function updateLocalFiles({
 	repository,
 	title,
 }: UpdateLocalFilesOptions) {
-	const existingPackage = (await readFileAsJSON("./package.json")) as Partial<
-		typeof import("../../../package.json")
-	>;
+	const existingPackage = (await readFileAsJSON(
+		"./package.json"
+	)) as ExistingPackageData;
 
 	const replacements: [string | RegExp, string, string?][] = [
 		[/Template TypeScript Node Package/g, title],

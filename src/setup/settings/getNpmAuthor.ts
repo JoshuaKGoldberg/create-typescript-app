@@ -12,7 +12,7 @@ export async function getNpmAuthor(owner: string) {
 	} catch {
 		console.log(chalk.gray("│"));
 		console.log(
-			chalk.gray("│  Could not populate npm user. Failed to run npm whoami. ")
+			chalk.gray("│  Could not populate npm user. Failed to run npm whoami.")
 		);
 
 		return owner;
@@ -26,7 +26,7 @@ export async function getNpmAuthor(owner: string) {
 		console.log(chalk.gray("│"));
 		console.log(
 			chalk.gray(
-				"│  Could not populate npm user. Failed to retrieve user info from npm. "
+				"│  Could not populate npm user. Failed to retrieve user info from npm."
 			)
 		);
 

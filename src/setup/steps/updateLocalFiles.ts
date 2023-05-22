@@ -32,6 +32,7 @@ export async function updateLocalFiles({
 
 		[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
 		[/\n### Testing the Setup Script.*$/gs, "", "./.github/DEVELOPMENT.md"],
+		[`,\n\t\t["src/setup/*.json"`, ``, "./cspell.json"],
 		[
 			`["src/index.ts!", "script/setup*.js"]`,
 			`"src/index.ts!"`,
@@ -57,6 +58,7 @@ export async function updateLocalFiles({
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of replacements) {
 		try {
+			// @ts-expect-error -- it's a namespace? and a function? TS bug?
 			await replaceInFile({ files, from, to });
 		} catch (error) {
 			throw new Error(

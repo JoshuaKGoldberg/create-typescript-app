@@ -33,8 +33,8 @@ export async function updateLocalFiles({
 		[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
 		[/\n### Testing the Setup Script.*$/gs, "", "./.github/DEVELOPMENT.md"],
 		[`,\n\t\t["src/setup/*.json"`, ``, "./cspell.json"],
-		[`"src/hydrate/index.ts",\n`, ``, "./knip.jsonc"],
-		[`"src/setup/index.ts",\n`, ``, "./knip.jsonc"],
+		[`\t\t"src/hydrate/index.ts",\n`, ``, "./knip.jsonc"],
+		[`\t\t"src/setup/index.ts",\n`, ``, "./knip.jsonc"],
 		[
 			`["src/index.ts!", "script/setup*.js"]`,
 			`"src/index.ts!"`,

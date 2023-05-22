@@ -11,6 +11,7 @@ export async function finalize({ releases, unitTests }: FinalizeOptions) {
 		"@types/eslint",
 		"@typescript-eslint/eslint-plugin",
 		"@typescript-eslint/parser",
+		"all-contributors-cli",
 		"cspell",
 		"eslint",
 		"eslint-config-prettier",
@@ -56,7 +57,8 @@ export async function finalize({ releases, unitTests }: FinalizeOptions) {
 
 	for (const command of [
 		`pnpm add ${devDependencies.join(" ")} -D`,
-		`all-contributors generate`,
+		`pnpx all-contributors generate`,
+		`pnpm uninstall all-contributors-cli -D`,
 		"pnpm run format:write",
 	]) {
 		console.log(chalk.gray(`$ ${command}`));

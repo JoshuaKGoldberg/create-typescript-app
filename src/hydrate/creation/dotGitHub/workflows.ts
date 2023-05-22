@@ -1,7 +1,11 @@
 /* spellchecker: disable */
+import { RepositorySettings } from "../../repositorySettings.js";
 import { createWorkflowFile } from "./createWorkflowFile.js";
 
-export function createWorkflows() {
+export function createWorkflows({
+	owner,
+	repository,
+}: Pick<RepositorySettings, "owner" | "repository">) {
 	return {
 		"build.yml": createWorkflowFile({
 			name: "Build",
@@ -46,7 +50,7 @@ export function createWorkflows() {
 				{ uses: "./.github/actions/prepare" },
 				{
 					env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
-					uses: "JoshuaKGoldberg/all-contributors-auto-action@v0.3.0",
+					uses: `${owner}/all-contributors-auto-action@v0.3.0`,
 				},
 			],
 		}),
@@ -92,8 +96,8 @@ export function createWorkflows() {
 
 							The release is available on:
 				
-							* [GitHub releases](https://github.com/JoshuaKGoldberg/template-typescript-node-package/releases/tag/{release_tag})
-							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/template-typescript-node-package/v/\${{ env.npm_version }})
+							* [GitHub releases](https://github.com/${owner}/${repository}/releases/tag/{release_tag})
+							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${repository}/v/\${{ env.npm_version }})
 				
 							Cheers! 📦🚀
 						`,
@@ -152,7 +156,7 @@ export function createWorkflows() {
 						script: `
 							try {
 								await github.request(
-								  \`DELETE /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection\`,
+								  \`DELETE /repos/${owner}/${repository}/branches/main/protection\`,
 								);
 							} catch (error) {
 								if (!error.message?.includes?.("Branch not protected")) {
@@ -179,7 +183,7 @@ export function createWorkflows() {
 						"github-token": "${{ secrets.ACCESS_TOKEN }}",
 						script: `
 						github.request(
-						  \`PUT /repos/JoshuaKGoldberg/template-typescript-node-package/branches/main/protection\`,
+						  \`PUT /repos/${owner}/${repository}/branches/main/protection\`,
 						  {
 							  allow_deletions: false,
 							  allow_force_pushes: true,
@@ -188,8 +192,8 @@ export function createWorkflows() {
 							  block_creations: false,
 							  branch: "main",
 							  enforce_admins: false,
-							  owner: "JoshuaKGoldberg",
-							  repo: "template-typescript-node-package",
+							  owner: "${owner}",
+							  repo: "${repository}",
 							  required_conversation_resolution: true,
 							  required_linear_history: false,
 							  required_pull_request_reviews: null,

@@ -1,6 +1,10 @@
+import { RepositorySettings } from "../../repositorySettings.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 
-export function createDotGitHubIssueTemplate() {
+export function createDotGitHubIssueTemplate({
+	owner,
+	repository,
+}: Pick<RepositorySettings, "owner" | "repository">) {
 	return {
 		"01-bug.yml": formatYaml({
 			body: [
@@ -20,8 +24,7 @@ export function createDotGitHubIssueTemplate() {
 								required: true,
 							},
 							{
-								label:
-									"I have [searched for related issues](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=is%3Aissue) and found none that matched my issue.",
+								label: `I have [searched for related issues](https://github.com/${owner}/${repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
 								required: true,
 							},
 						],
@@ -75,8 +78,7 @@ export function createDotGitHubIssueTemplate() {
 								required: true,
 							},
 							{
-								label:
-									"I have [searched for related issues](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=is%3Aissue) and found none that matched my issue.",
+								label: `I have [searched for related issues](https://github.com/${owner}/${repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
 								required: true,
 							},
 						],
@@ -124,8 +126,7 @@ export function createDotGitHubIssueTemplate() {
 								required: true,
 							},
 							{
-								label:
-									"I have [searched for related issues](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=is%3Aissue) and found none that matched my issue.",
+								label: `I have [searched for related issues](https://github.com/${owner}/${repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
 								required: true,
 							},
 						],
@@ -174,8 +175,7 @@ export function createDotGitHubIssueTemplate() {
 								required: true,
 							},
 							{
-								label:
-									"I have [searched for related issues](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=is%3Aissue) and found none that matched my issue.",
+								label: `I have [searched for related issues](https://github.com/${owner}/${repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
 								required: true,
 							},
 						],

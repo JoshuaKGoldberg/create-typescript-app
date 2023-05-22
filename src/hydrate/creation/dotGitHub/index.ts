@@ -6,9 +6,9 @@ import { createWorkflows } from "./workflows.js";
 
 export function createDotGitHub(settings: RepositorySettings) {
 	return {
-		ISSUE_TEMPLATE: createDotGitHubIssueTemplate(),
+		ISSUE_TEMPLATE: createDotGitHubIssueTemplate(settings),
 		actions: createDotGitHubActions(),
-		workflows: createWorkflows(),
+		workflows: createWorkflows(settings),
 		...createDotGitHubFiles(settings),
 	};
 }

@@ -11,11 +11,7 @@ const repository = "new-repository-test";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-setup -r html -r lcov node ./lib/setup/index.js`;
-
-const result =
-	await $`pnpm run setup --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-restore`;
-console.log("Result from pnpm run setup:", result);
+})`c8 -o ./coverage-setup -r html -r lcov node ./lib/setup/index.js --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-restore`;
 
 const newPackageJson = JSON.parse(
 	(await fs.readFile("./package.json")).toString()

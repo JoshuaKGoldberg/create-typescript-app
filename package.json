@@ -83,7 +83,7 @@
 		"prettier": "^2.8.8",
 		"prettier-plugin-packagejson": "^2.4.3",
 		"release-it": "^15.10.3",
-		"replace-in-file": "^6.3.5",
+		"replace-in-file": "^7.0.0",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.1.1",
 		"title-case": "^3.0.3",

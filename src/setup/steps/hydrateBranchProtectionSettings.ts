@@ -1,7 +1,7 @@
 import { RequestError } from "@octokit/request-error";
 import { Octokit } from "octokit";
 
-import { InputValues } from "../settings/inputs.js";
+import { InputValues } from "../../shared/inputs.js";
 
 export async function hydrateBranchProtectionSettings(
 	octokit: Octokit,

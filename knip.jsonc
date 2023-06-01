@@ -7,7 +7,7 @@
 		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["dedupe", "gh"],
-	"ignoreDependencies": ["c8"],
+	"ignoreDependencies": ["all-contributors-cli", "c8"],
 	"ignoreExportsUsedInFile": {
 		"interface": true,
 		"type": true

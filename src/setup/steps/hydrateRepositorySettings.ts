@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 
-import { InputValues } from "../settings/inputs.js";
+import { InputValues } from "../../shared/inputs.js";
 
 type HydrateRepositoryValues = Pick<
 	InputValues,

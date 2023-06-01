@@ -91,6 +91,10 @@ pnpm run setup --repository "testing-repository" --title "Testing Title" --owner
 
 ## Repository Hydration
 
+> **Warning**
+> Hydration will override many files in your repository.
+> You'll want to review each of the changes and make sure nothing important is removed.
+
 Alternately, if you have an existing repository that you'd like to give the files from this repository, you can run `template-typescript-node-package` in a repository to "hydrate" it.
 
 ```shell
@@ -123,9 +127,14 @@ You can disable some of them on the command-line:
 npx template-typescript-node-package --releases false --unitTests false
 ```
 
-> **Warning**
-> This will override many files in your repository.
-> You'll want to review each of the changes and make sure nothing important is removed.
+You can prevent the hydration script from making network-based changes using either or both of the following CLI flags:
+
+- `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`
+- `--skip-setup` _(`boolean`)_: Skips running the setup script at the end of hydration
+
+```shell
+npx template-typescript-node-package --skip-install --skip-setup
+```
 
 ## Usage
 

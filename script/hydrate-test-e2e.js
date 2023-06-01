@@ -1,9 +1,15 @@
 import chalk from "chalk";
-import { $ } from "execa";
+import { $, execaCommand } from "execa";
+
+import packageData from "../package.json" assert { type: "json" };
+
+const { description, name: repository } = packageData;
+const owner = "JoshuaKGoldberg";
+const title = "Template TypeScript Node Package";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-hydrate -r html -r lcov node ./lib/hydrate/index.js`;
+})`c8 -o ./coverage-hydrate -r html -r lcov node ./lib/hydrate/index.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-install --skip-setup`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
@@ -46,7 +52,7 @@ if (unstagedModifiedFiles.length) {
 	const gitDiffCommand = `git diff HEAD -- ${unstagedModifiedFiles.join(" ")}`;
 	console.log(
 		`Stdout from running \`${gitDiffCommand}\`:\n${
-			(await $(gitDiffCommand)).stdout
+			(await execaCommand(gitDiffCommand)).stdout
 		}`
 	);
 	console.error(

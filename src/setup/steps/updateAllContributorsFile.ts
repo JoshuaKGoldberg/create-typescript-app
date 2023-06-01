@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 
 import prettier from "prettier";
 
-import { InputValues } from "../settings/inputs.js";
+import { InputValues } from "../../shared/inputs.js";
 
 export async function updateAllContributorsFile({
 	owner,

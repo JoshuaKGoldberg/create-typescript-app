@@ -8,5 +8,9 @@
 	],
 	"ignoreBinaries": ["dedupe", "gh"],
 	"ignoreDependencies": ["c8"],
+	"ignoreExportsUsedInFile": {
+		"interface": true,
+		"type": true
+	},
 	"project": ["src/**/*.ts!", "script/**/*.js"]
 }

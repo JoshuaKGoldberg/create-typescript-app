@@ -6,6 +6,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm run build
       - run: pnpm run setup:test
+      - run: pnpm restore src
       - name: Codecov
         uses: codecov/codecov-action@v3
         with:

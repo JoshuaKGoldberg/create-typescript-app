@@ -25,7 +25,7 @@ export async function hydrate(args: string[]) {
 		strict: false,
 	});
 
-	await runOrRestore({
+	return await runOrRestore({
 		args,
 		defaults: await getHydrationDefaults(),
 		label: "hydration",

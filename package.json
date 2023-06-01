@@ -7,7 +7,10 @@
 		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
 	},
 	"license": "MIT",
-	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
+	"author": {
+		"name": "Josh Goldberg",
+		"email": "npm@joshuakgoldberg.com"
+	},
 	"type": "module",
 	"main": "./lib/index.js",
 	"bin": "./lib/hydrate/index.js",

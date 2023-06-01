@@ -22,7 +22,7 @@ export async function hydrateRepositoryLabels() {
 	).map(getLabelName);
 
 	const outcomeLabels = (await readFileAsJSON(
-		"./script/labels.json"
+		"./src/setup/labels.json"
 	)) as FileLabelData[];
 
 	for (const outcome of outcomeLabels) {

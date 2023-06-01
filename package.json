@@ -60,7 +60,7 @@
 		"eslint-plugin-deprecation": "^1.4.1",
 		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-plugin-import": "^2.27.5",
-		"eslint-plugin-jsdoc": "^44.2.3",
+		"eslint-plugin-jsdoc": "^45.0.0",
 		"eslint-plugin-jsonc": "^2.8.0",
 		"eslint-plugin-markdown": "^3.0.0",
 		"eslint-plugin-no-only-tests": "^3.1.0",
@@ -72,7 +72,7 @@
 		"globby": "^13.1.4",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
-		"knip": "2.11.0",
+		"knip": "2.13.0",
 		"lint-staged": "^13.2.2",
 		"markdownlint": "^0.28.2",
 		"markdownlint-cli": "^0.34.0",
@@ -83,7 +83,7 @@
 		"prettier": "^2.8.8",
 		"prettier-plugin-packagejson": "^2.4.3",
 		"release-it": "^15.10.3",
-		"replace-in-file": "^6.3.5",
+		"replace-in-file": "^7.0.0",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.1.1",
 		"title-case": "^3.0.3",
@@ -92,7 +92,7 @@
 		"vitest": "^0.31.0",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.5.1",
+	"packageManager": "pnpm@8.6.0",
 	"engines": {
 		"node": ">=18"
 	},

@@ -18,20 +18,18 @@ export async function getOctokit(
 
 	successSpinnerBlock(`Checking GitHub authentication.`);
 
-	return await withSpinner(getOctokitFromAuth, "fetch gh auth status");
-}
+	return await withSpinner(async () => {
+		try {
+			await $`gh auth status`;
+		} catch (error) {
+			console.error();
+			console.error(chalk.red((error as Error).message));
+			console.error();
+			process.exit(0);
+		}
 
-export async function getOctokitFromAuth(): Promise<Octokit | never> {
-	try {
-		await $`gh auth status`;
-	} catch (error) {
-		console.error();
-		console.error(chalk.red((error as Error).message));
-		console.error();
-		process.exit(0);
-	}
+		const auth = (await $`gh auth token`).stdout.trim();
 
-	const auth = (await $`gh auth token`).stdout.trim();
-
-	return new Octokit({ auth });
+		return new Octokit({ auth });
+	}, "fetch gh auth status");
 }

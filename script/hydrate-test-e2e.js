@@ -1,9 +1,14 @@
 import chalk from "chalk";
 import { $ } from "execa";
 
+const description = "New Description Test";
+const owner = "RNR1";
+const title = "New Title Test";
+const repository = "new-repository-test";
+
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-hydrate -r html -r lcov node ./lib/hydrate/index.js`;
+})`c8 -o ./coverage-hydrate -r html -r lcov node ./lib/hydrate/index.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-setup`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);

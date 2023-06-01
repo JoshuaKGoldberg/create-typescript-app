@@ -49,8 +49,7 @@ describe("finalize", () => {
 				"typescript",
 				"yaml-eslint-parser",
 				"-D",
-			].join(" "),
-			{ stdio: "inherit" }
+			].join(" ")
 		);
 	});
 
@@ -98,8 +97,7 @@ describe("finalize", () => {
 				"eslint-plugin-vitest",
 				"vitest",
 				"-D",
-			].join(" "),
-			{ stdio: "inherit" }
+			].join(" ")
 		);
 	});
 });

@@ -1,6 +1,5 @@
 import { execaCommand } from "execa";
 
-import { logLine } from "../../shared/cli/lines.js";
 import { HydrationInputValues } from "../values/types.js";
 
 export async function finalizeDependencies({

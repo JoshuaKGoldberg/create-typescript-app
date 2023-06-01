@@ -2,17 +2,12 @@ import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 import { $ } from "execa";
 
-import { logLine } from "./cli/lines.js";
 import {
 	getInputValuesAndOctokit,
 	GetterDefaultInputValues,
 	InputValuesAndOctokit,
 } from "./inputs.js";
 import { handlePromptCancel } from "./prompts.js";
-
-export interface StatusBag {
-	skipRestore: boolean;
-}
 
 export interface RunOrRestoreOptions {
 	args: string[];

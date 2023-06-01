@@ -34,7 +34,7 @@ export async function withSpinner<Return>(
 	} catch (error) {
 		s.stop(chalk.red(`❌ Error ${label}.`));
 
-		throw new Error(`Failed to ${label}`, { cause: error });
+		throw new Error(`Failed ${label}`, { cause: error });
 	}
 }
 

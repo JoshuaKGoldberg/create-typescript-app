@@ -52,6 +52,8 @@ export async function getInputValuesAndOctokit(
 	args: string[],
 	defaults: Partial<GetterDefaultInputValues> = {}
 ): Promise<InputValuesAndOctokit> {
+	let shouldLogLineBeforePrefill = true;
+
 	const { defaultOwner, defaultRepository } = await getDefaultSettings();
 	const { values } = parseArgs({
 		args,
@@ -80,6 +82,8 @@ export async function getInputValuesAndOctokit(
 	);
 
 	const octokit = await getOctokit(!!values["skip-api"]);
+
+	shouldLogLineBeforePrefill = true;
 
 	const repository = await ensureRepositoryExists(
 		octokit,
@@ -143,6 +147,11 @@ export async function getInputValuesAndOctokit(
 	): Promise<StringInputValues[Key]> {
 		const existing = values[key] as string | undefined;
 		if (existing) {
+			if (shouldLogLineBeforePrefill) {
+				logLine();
+				shouldLogLineBeforePrefill = false;
+			}
+
 			logLine(chalk.gray(`Pre-filling ${key} to ${existing}.`));
 			return existing;
 		}

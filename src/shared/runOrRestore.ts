@@ -31,7 +31,7 @@ export async function runOrRestore({
 	console.log(
 		chalk.greenBright`Welcome to the`,
 		chalk.bgGreenBright.black`template-typescript-node-package`,
-		chalk.greenBright`package ${label}! 🎉`
+		chalk.greenBright(`package ${label} script! 🎉`)
 	);
 	console.log();
 

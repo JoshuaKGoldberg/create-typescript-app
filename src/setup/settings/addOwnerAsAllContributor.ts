@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 
 import chalk from "chalk";
-import { $ } from "execa";
+import { $, execaCommand } from "execa";
 import prettier from "prettier";
 
 import { readFileAsJSON } from "../readFileAsJSON.js";
@@ -23,7 +23,7 @@ export async function addOwnerAsAllContributor(owner: string) {
 		user = owner;
 	}
 
-	await $`all-contributors add ${user} ${[
+	await $`npx -y all-contributors-cli add ${user} ${[
 		"code",
 		"content",
 		"doc",

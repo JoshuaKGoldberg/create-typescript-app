@@ -31,5 +31,5 @@ export async function getOctokit(
 		const auth = (await $`gh auth token`).stdout.trim();
 
 		return new Octokit({ auth });
-	}, "fetch gh auth status");
+	}, "fetching gh auth status");
 }

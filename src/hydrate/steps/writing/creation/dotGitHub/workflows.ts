@@ -50,7 +50,7 @@ export function createWorkflows({
 				{ uses: "./.github/actions/prepare" },
 				{
 					env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
-					uses: `${owner}/all-contributors-auto-action@v0.3.0`,
+					uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.3.0`,
 				},
 			],
 		}),

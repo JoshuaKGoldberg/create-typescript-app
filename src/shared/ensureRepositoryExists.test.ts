@@ -50,7 +50,7 @@ describe("ensureRepositoryExists", () => {
 		expect(actual).toEqual(repository);
 	});
 
-	it("throws the error when awaiting the octokit GET thows a non-404 error", async () => {
+	it("throws the error when awaiting the octokit GET throws a non-404 error", async () => {
 		const error = new Error("Oh no!");
 		const octokit = createMockOctokit({
 			get: vi.fn().mockRejectedValue(error),

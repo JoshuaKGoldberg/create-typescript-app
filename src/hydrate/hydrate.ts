@@ -1,82 +1,68 @@
 import { parseArgs } from "node:util";
 
-import chalk from "chalk";
-import { $ } from "execa";
-
-import { clearUnnecessaryFiles } from "./clearUnnecessaryFiles.js";
-import { createStructure } from "./creation/index.js";
-import { finalize } from "./finalize.js";
-import { readFileSafe } from "./readFileSafe.js";
-import { readFundingIfExists } from "./readFundingIfExists.js";
-import { ensureSettingsAreFilledOut } from "./repositorySettings.js";
-import { writeReadme } from "./writeReadme.js";
-import { writeStructure } from "./writing.js";
-
-interface PartialPackageData {
-	author?: string | { email: string; name: string };
-	description?: string;
-	email?: string;
-	name?: string;
-	repository?: string;
-}
+import { setupWithInformation } from "../setup/setupWithInformation.js";
+import {
+	skipSpinnerBlock,
+	successSpinnerBlock,
+	withSpinner,
+} from "../shared/cli/spinners.js";
+import { runOrRestore } from "../shared/runOrRestore.js";
+import { clearUnnecessaryFiles } from "./steps/clearUnnecessaryFiles.js";
+import { finalizeDependencies as finalizeDependencies } from "./steps/finalizeDependencies.js";
+import { writeReadme } from "./steps/writeReadme.js";
+import { writeStructure } from "./steps/writing/writeStructure.js";
+import { getHydrationDefaults } from "./values/getHydrationDefaults.js";
+import { ensureHydrationInputValues } from "./values/hydrationInputValues.js";
 
 export async function hydrate(args: string[]) {
-	const { values } = parseArgs({
+	const { values: hydrationValues } = parseArgs({
 		args,
 		options: {
-			author: { type: "string" },
-			description: { type: "string" },
-			email: { type: "string" },
-			funding: { type: "string" },
-			owner: { type: "string" },
-			releases: { type: "boolean" },
-			repository: { type: "string" },
-			unitTests: { type: "boolean" },
-			title: { type: "string" },
+			"skip-install": { type: "boolean" },
+			"skip-setup": { type: "boolean" },
 		},
 		tokens: true,
 		strict: false,
 	});
 
-	const existingReadme = await readFileSafe("./README.md", "");
-	const existingPackage = JSON.parse(
-		await readFileSafe("./package.json", "{}")
-	) as PartialPackageData;
+	await runOrRestore({
+		args,
+		defaults: await getHydrationDefaults(),
+		label: "hydration",
+		run: async ({ octokit, values }) => {
+			ensureHydrationInputValues(values);
 
-	const settings = {
-		author:
-			(values.author as string | undefined) ??
-			(typeof existingPackage.author === "string"
-				? existingPackage.author.split("<")[0].trim()
-				: existingPackage.author?.name),
-		description:
-			(values.description as string | undefined) ?? existingPackage.description,
-		email:
-			(values.email as string | undefined) ??
-			(typeof existingPackage.author === "string"
-				? existingPackage.author.split(/<|>/)[1]
-				: existingPackage.author?.email),
-		funding: await readFundingIfExists(),
-		owner:
-			(values.owner as string | undefined) ??
-			(await $`git remote -v`).stdout.match(
-				/origin\s+https:\/\/\S+\.\w+\/([^/]+)/
-			)?.[1],
-		releases: (values.releases as boolean | undefined) ?? true,
-		repository:
-			(values.repository as string | undefined) ?? existingPackage.name,
-		unitTests: (values.unitTests as boolean | undefined) ?? true,
-		title:
-			(values.title as string | undefined) ??
-			existingReadme.match(/^(?:# |<h1\s+align="center">)(\S+)/)?.[1],
-	};
+			await withSpinner(clearUnnecessaryFiles, "clearing unnecessary files");
 
-	ensureSettingsAreFilledOut(settings);
+			await withSpinner(
+				() => writeStructure(values),
+				"writing new repository structure"
+			);
 
-	await clearUnnecessaryFiles();
-	await writeStructure(createStructure(settings));
-	await writeReadme(settings);
-	await finalize(settings);
+			await withSpinner(() => writeReadme(values), "writing README.md");
 
-	console.log(chalk.green("Done!"));
+			if (hydrationValues["skip-install"]) {
+				skipSpinnerBlock(`Skipping package installations.`);
+			} else {
+				await withSpinner(
+					() => finalizeDependencies(values),
+					"finalizing dependencies"
+				);
+			}
+
+			if (hydrationValues["skip-setup"]) {
+				skipSpinnerBlock(`Done hydrating, and skipping setup command.`);
+			} else {
+				successSpinnerBlock("Done hydrating. Starting setup command...");
+
+				await setupWithInformation({
+					octokit,
+					values: {
+						...values,
+						skipUninstalls: true,
+					},
+				});
+			}
+		},
+	});
 }

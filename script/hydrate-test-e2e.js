@@ -10,6 +10,8 @@ await $({
 	stdio: "inherit",
 })`c8 -o ./coverage-hydrate -r html -r lcov node ./lib/hydrate/index.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-install --skip-setup`;
 
+await $`git add -A`;
+
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
 

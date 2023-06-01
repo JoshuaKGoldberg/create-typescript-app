@@ -8,6 +8,7 @@ const {
 	name: repository,
 } = packageData;
 const title = "Template TypeScript Node Package";
+console.log({ description, owner, repository });
 
 await $({
 	stdio: "inherit",

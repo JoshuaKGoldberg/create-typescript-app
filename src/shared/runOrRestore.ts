@@ -27,8 +27,6 @@ export async function runOrRestore({
 	label,
 	run,
 }: RunOrRestoreOptions) {
-	const { octokit, values } = await getInputValuesAndOctokit(args, defaults);
-
 	console.clear();
 	console.log(
 		chalk.greenBright`Welcome to the`,
@@ -42,7 +40,8 @@ export async function runOrRestore({
 			"Let's collect some information to fill out repository details..."
 		)
 	);
-	logLine();
+
+	const { octokit, values } = await getInputValuesAndOctokit(args, defaults);
 
 	try {
 		await run({ octokit, values });
@@ -52,7 +51,7 @@ export async function runOrRestore({
 		console.log(chalk.blue`You may consider committing these changes:`);
 		console.log();
 		console.log(chalk.gray`git add -A`);
-		console.log(chalk.gray`git commit -m "chore: ${label} repo"`);
+		console.log(chalk.gray(`git commit -m "chore: ${label} repo"`));
 		console.log(chalk.gray`git push`);
 		console.log();
 		console.log(chalk.greenBright`See ya! 👋`);

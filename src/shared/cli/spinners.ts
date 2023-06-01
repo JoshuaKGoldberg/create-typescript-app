@@ -18,7 +18,7 @@ export async function withSpinner<Return>(
 	label: string,
 	warningHint?: string
 ) {
-	s.start(`Starting ${label}...`);
+	s.start(`${upperFirst(label)}...`);
 
 	try {
 		const result = await callback();
@@ -36,4 +36,8 @@ export async function withSpinner<Return>(
 
 		throw new Error(`Failed to ${label}`, { cause: error });
 	}
+}
+
+function upperFirst(text: string) {
+	return text[0].toUpperCase() + text.slice(1);
 }

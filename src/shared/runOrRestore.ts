@@ -30,15 +30,19 @@ export async function runOrRestore({
 	);
 	console.log();
 
-	prompts.intro(
-		chalk.blue(
-			"Let's collect some information to fill out repository details..."
-		)
-	);
-
-	const { octokit, values } = await getInputValuesAndOctokit(args, defaults);
+	let skipRestore = false;
 
 	try {
+		prompts.intro(
+			chalk.blue(
+				"Let's collect some information to fill out repository details..."
+			)
+		);
+
+		const { octokit, values } = await getInputValuesAndOctokit(args, defaults);
+
+		skipRestore = values.skipRestore;
+
 		await run({ octokit, values });
 
 		prompts.outro(chalk.blue`Great, looks like everything worked! 🎉`);
@@ -61,7 +65,7 @@ export async function runOrRestore({
 		console.log();
 		console.log(error);
 
-		if (values.skipRestore) {
+		if (skipRestore) {
 			console.log();
 			console.log(
 				chalk.gray`Skipping restoring local repository, as requested.`

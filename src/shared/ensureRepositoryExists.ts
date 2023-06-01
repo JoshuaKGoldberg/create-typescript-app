@@ -9,6 +9,7 @@ export async function ensureRepositoryExists(
 	owner: string,
 	repository: string
 ) {
+	console.log("Looking at", { octokit, owner, repository });
 	if (!octokit) {
 		return repository;
 	}
@@ -67,6 +68,4 @@ export async function ensureRepositoryExists(
 				break;
 		}
 	}
-
-	return repository;
 }

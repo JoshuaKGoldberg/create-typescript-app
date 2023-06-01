@@ -2,11 +2,8 @@ import chalk from "chalk";
 import { $, execaCommand } from "execa";
 
 import packageData from "../package.json" assert { type: "json" };
-const {
-	author: { name: owner },
-	description,
-	name: repository,
-} = packageData;
+const { description, name: repository } = packageData;
+const owner = "JoshuaKGoldberg";
 const title = "Template TypeScript Node Package";
 console.log({ description, owner, repository });
 

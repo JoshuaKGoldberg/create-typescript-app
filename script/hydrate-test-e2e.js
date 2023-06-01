@@ -1,10 +1,13 @@
 import chalk from "chalk";
-import { $ } from "execa";
+import { $, execaCommand } from "execa";
 
-const description = "New Description Test";
-const owner = "RNR1";
-const title = "New Title Test";
-const repository = "new-repository-test";
+import packageData from "../package.json" assert { type: "json" };
+const {
+	author: { name: owner },
+	description,
+	name: repository,
+} = packageData;
+const title = "Template TypeScript Node Package";
 
 await $({
 	stdio: "inherit",
@@ -51,7 +54,7 @@ if (unstagedModifiedFiles.length) {
 	const gitDiffCommand = `git diff HEAD -- ${unstagedModifiedFiles.join(" ")}`;
 	console.log(
 		`Stdout from running \`${gitDiffCommand}\`:\n${
-			(await $(gitDiffCommand)).stdout
+			(await execaCommand(gitDiffCommand)).stdout
 		}`
 	);
 	console.error(

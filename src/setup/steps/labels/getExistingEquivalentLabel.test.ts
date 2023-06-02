@@ -9,6 +9,12 @@ describe("getExistingEquivalentLabel", () => {
 		expect(actual).toBe(undefined);
 	});
 
+	it("returns undefined when no existing labels matches", () => {
+		const actual = getExistingEquivalentLabel(["abc"], "def");
+
+		expect(actual).toBe(undefined);
+	});
+
 	it("returns the existing label when it matches by name", () => {
 		const actual = getExistingEquivalentLabel(["def", "abc", "ghi"], "abc");
 

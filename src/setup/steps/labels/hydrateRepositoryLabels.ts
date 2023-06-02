@@ -1,6 +1,7 @@
 import { $ } from "execa";
 
-import { readFileAsJSON } from "../readFileAsJSON.js";
+import { readFileAsJSON } from "../../readFileAsJSON.js";
+import { getExistingEquivalentLabel } from "./getExistingEquivalentLabel.js";
 
 interface GhLabelData {
 	name: string;
@@ -26,10 +27,15 @@ export async function hydrateRepositoryLabels() {
 	)) as FileLabelData[];
 
 	for (const outcome of outcomeLabels) {
-		const action = existingLabels.some((existing) => existing === outcome.name)
-			? "edit"
-			: "create";
-		await $`gh label ${action} ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
+		const existingEquivalent = getExistingEquivalentLabel(
+			existingLabels,
+			outcome.name
+		);
+		const [action, label] = existingEquivalent
+			? ["edit", existingEquivalent]
+			: ["create", outcome.name];
+
+		await $`gh label ${action} ${label} --color ${outcome.color} --description ${outcome.description}`;
 	}
 
 	const allowedLabels = new Set(outcomeLabels.map(getLabelName));

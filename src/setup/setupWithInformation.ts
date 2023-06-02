@@ -78,7 +78,11 @@ export async function setupWithInformation({
 		successSpinnerBlock(`Finished API hydration.`);
 	}
 
-	await withSpinner(removeSetupScripts, "removing setup scripts");
+	if (values.skipRemoval) {
+		skipSpinnerBlock(`Skipping removal of setup scripts.`);
+	} else {
+		await withSpinner(removeSetupScripts, "removing setup scripts");
+	}
 
 	if (values.skipUninstalls) {
 		skipSpinnerBlock(`Skipping uninstall of packages only used for setup.`);

@@ -16,6 +16,7 @@ describe("ensureHydrationInputValues", () => {
 				title: undefined,
 				unitTests: undefined,
 				skipApi: undefined,
+				skipRemoval: undefined,
 				skipRestore: undefined,
 				skipUninstalls: undefined,
 			})
@@ -41,6 +42,7 @@ describe("ensureHydrationInputValues", () => {
 				title: "Test Title",
 				unitTests: true,
 				skipApi: undefined,
+				skipRemoval: undefined,
 				skipRestore: undefined,
 				skipUninstalls: undefined,
 			})

@@ -33,6 +33,7 @@ export interface DefaultInputValues {
 	releases: boolean | undefined;
 	repository: string;
 	skipApi: boolean;
+	skipRemoval: boolean;
 	skipRestore: boolean;
 	skipUninstalls: boolean;
 	title: string;
@@ -68,6 +69,7 @@ export async function getInputValuesAndOctokit(
 			unitTests: { type: "boolean" },
 			title: { type: "string" },
 			"skip-api": { type: "boolean" },
+			"skip-removal": { type: "boolean" },
 			"skip-restore": { type: "boolean" },
 			"skip-uninstall": { type: "boolean" },
 		},
@@ -134,6 +136,7 @@ export async function getInputValuesAndOctokit(
 			owner,
 			repository,
 			skipApi: !!values["skip-api"],
+			skipRemoval: !!values["skip-removal"],
 			skipRestore: !!values["skip-restore"],
 			skipUninstalls: !!values["skip-uninstalls"],
 			title,

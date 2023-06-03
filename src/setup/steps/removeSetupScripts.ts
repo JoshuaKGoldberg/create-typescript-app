@@ -1,10 +1,16 @@
 import fs from "node:fs/promises";
 
+const globPaths = [
+	"./script",
+	"./src/hydrate",
+	"./src/setup",
+	"./src/shared",
+	".github/workflows/hydrate.yml",
+	".github/workflows/setup.yml",
+];
+
 export async function removeSetupScripts() {
-	await fs.rm("./script", { force: true, recursive: true });
-	await fs.rm("./src/hydrate", { force: true, recursive: true });
-	await fs.rm("./src/setup", { force: true, recursive: true });
-	await fs.rm("./src/shared", { force: true, recursive: true });
-	await fs.rm(".github/workflows/hydrate.yml");
-	await fs.rm(".github/workflows/setup.yml");
+	for (const globPath of globPaths) {
+		await fs.rm(globPath, { force: true, recursive: true });
+	}
 }

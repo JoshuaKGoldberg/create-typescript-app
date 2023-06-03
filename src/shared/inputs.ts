@@ -1,27 +1,18 @@
 import { parseArgs } from "node:util";
 
-import * as prompts from "@clack/prompts";
-import chalk from "chalk";
 import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
-import { logLine } from "./cli/lines.js";
 import { getDefaultSettings } from "./defaults.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { optionalDefault } from "./optionalDefault.js";
-import { handlePromptCancel } from "./prompts.js";
+import { PrefillPrompter } from "./PrefillPrompter.js";
 
 export type GetterDefaultInputValues = {
 	[K in keyof DefaultInputValues]:
 		| DefaultInputValues[K]
 		| (() => Promise<DefaultInputValues[K]>);
-};
-
-type StringInputValues = {
-	[K in keyof InputValues as InputValues[K] extends string
-		? K
-		: never]: InputValues[K];
 };
 
 export interface DefaultInputValues {
@@ -53,8 +44,6 @@ export async function getInputValuesAndOctokit(
 	args: string[],
 	defaults: Partial<GetterDefaultInputValues> = {}
 ): Promise<InputValuesAndOctokit> {
-	let shouldLogLineBeforePrefill = true;
-
 	const { defaultOwner, defaultRepository } = await getDefaultSettings();
 	const { values } = parseArgs({
 		args,
@@ -76,35 +65,40 @@ export async function getInputValuesAndOctokit(
 		tokens: true,
 		strict: false,
 	});
+	const prompter = new PrefillPrompter();
 
-	const owner = await getPrefillOrPromptedValue(
+	const owner = await prompter.getPrefillOrPromptedValue(
 		"owner",
+		values.owner as string | undefined,
 		"What owner or user will the repository be under?",
 		defaultOwner
 	);
 
 	const octokit = await getOctokit(!!values["skip-api"]);
 
-	shouldLogLineBeforePrefill = true;
+	prompter.reset();
 
 	const repository = await ensureRepositoryExists(
 		octokit,
 		owner,
-		await getPrefillOrPromptedValue(
+		await prompter.getPrefillOrPromptedValue(
 			"repository",
+			values.repository as string | undefined,
 			"What will the kebab-case name of the repository be?",
 			defaultRepository
 		)
 	);
 
-	const title = await getPrefillOrPromptedValue(
+	const title = await prompter.getPrefillOrPromptedValue(
 		"title",
+		values.title as string | undefined,
 		"What will the Title Case title of the repository be?",
 		titleCase(repository).replaceAll("-", " ")
 	);
 
-	const description = await getPrefillOrPromptedValue(
+	const description = await prompter.getPrefillOrPromptedValue(
 		"description",
+		values.description as string | undefined,
 		"How would you describe the new package?",
 		"A very lovely package. Hooray!"
 	);
@@ -142,35 +136,4 @@ export async function getInputValuesAndOctokit(
 			title,
 		},
 	};
-
-	async function getPrefillOrPromptedValue<Key extends keyof StringInputValues>(
-		key: Key,
-		message: string,
-		placeholder: string
-	): Promise<StringInputValues[Key]> {
-		const existing = values[key] as string | undefined;
-		if (existing) {
-			if (shouldLogLineBeforePrefill) {
-				logLine();
-				shouldLogLineBeforePrefill = false;
-			}
-
-			logLine(chalk.gray(`Pre-filling ${key} to ${existing}.`));
-			return existing;
-		}
-
-		const value = await prompts.text({
-			message,
-			placeholder,
-			validate: (val) => {
-				if (val.length === 0) {
-					return "Please enter a value.";
-				}
-			},
-		});
-
-		handlePromptCancel(value);
-
-		return value;
-	}
 }

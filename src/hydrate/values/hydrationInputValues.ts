@@ -1,39 +1,20 @@
 import { InputValues } from "../../shared/inputs.js";
-import { HydrationInputValues } from "./types.js";
+import { PrefillPrompter } from "../../shared/PrefillPrompter.js";
 
-type NullableProperties<T> = {
-	[K in keyof T]: T[K] | undefined;
-};
+export async function augmentWithHydrationValues(values: InputValues) {
+	const prompter = new PrefillPrompter();
 
-export function ensureHydrationInputValues(
-	values: NullableProperties<InputValues>
-): asserts values is HydrationInputValues {
-	const complaints: string[] = [];
-
-	for (const [key, suggestion] of [
-		["description", "add a 'description' to package.json"],
-		["repository", "add a 'name' to package.json"],
-		[
+	return {
+		...values,
+		author: await prompter.getPrefillOrPromptedValue(
 			"author",
-			"add an 'author' to package.json like \"Your Name <your@email.com>\" or an { email, name } object",
-		],
-		[
+			values.author,
+			"What author will be used for the owner?"
+		),
+		email: await prompter.getPrefillOrPromptedValue(
 			"email",
-			"add an 'author' to package.json like \"Your Name <your@email.com>\" or an { email, name } object",
-		],
-		["owner", "add an 'origin' git remote"],
-		["title", "add an h1 to the README.md"],
-	] as const) {
-		if (!values[key]) {
-			complaints.push(
-				`- Could not determine ${key}. Please ${suggestion}, or provide with --${key}.`
-			);
-		}
-	}
-
-	if (complaints.length) {
-		throw new Error(
-			`Failed to determine repository settings:\n${complaints.join("\n")}`
-		);
-	}
+			values.email,
+			"What email will be used for the owner?"
+		),
+	};
 }

@@ -12,10 +12,10 @@ import { finalizeDependencies as finalizeDependencies } from "./steps/finalizeDe
 import { writeReadme } from "./steps/writeReadme.js";
 import { writeStructure } from "./steps/writing/writeStructure.js";
 import { getHydrationDefaults } from "./values/getHydrationDefaults.js";
-import { ensureHydrationInputValues } from "./values/hydrationInputValues.js";
+import { augmentWithHydrationValues } from "./values/hydrationInputValues.js";
 
 export async function hydrate(args: string[]) {
-	const { values: hydrationValues } = parseArgs({
+	const { values: hydrationSkips } = parseArgs({
 		args,
 		options: {
 			"skip-install": { type: "boolean" },
@@ -30,27 +30,30 @@ export async function hydrate(args: string[]) {
 		defaults: await getHydrationDefaults(),
 		label: "hydration",
 		run: async ({ octokit, values }) => {
-			ensureHydrationInputValues(values);
+			const hydrationValues = await augmentWithHydrationValues(values);
 
 			await withSpinner(clearUnnecessaryFiles, "clearing unnecessary files");
 
 			await withSpinner(
-				() => writeStructure(values),
+				() => writeStructure(hydrationValues),
 				"writing new repository structure"
 			);
 
-			await withSpinner(() => writeReadme(values), "writing README.md");
+			await withSpinner(
+				() => writeReadme(hydrationValues),
+				"writing README.md"
+			);
 
-			if (hydrationValues["skip-install"]) {
+			if (hydrationSkips["skip-install"]) {
 				skipSpinnerBlock(`Skipping package installations.`);
 			} else {
 				await withSpinner(
-					() => finalizeDependencies(values),
+					() => finalizeDependencies(hydrationValues),
 					"finalizing dependencies"
 				);
 			}
 
-			if (hydrationValues["skip-setup"]) {
+			if (hydrationSkips["skip-setup"]) {
 				skipSpinnerBlock(`Done hydrating, and skipping setup command.`);
 			} else {
 				successSpinnerBlock("Done hydrating. Starting setup command...");
@@ -58,7 +61,7 @@ export async function hydrate(args: string[]) {
 				await setupWithInformation({
 					octokit,
 					values: {
-						...values,
+						...hydrationValues,
 						skipUninstalls: true,
 					},
 				});

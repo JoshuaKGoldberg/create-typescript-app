@@ -11,6 +11,7 @@ interface PartialPackageData {
 	name?: string;
 	repository?: string;
 }
+
 export async function getHydrationDefaults() {
 	const existingReadme = await readFileSafe("./README.md", "");
 	const existingPackage = JSON.parse(

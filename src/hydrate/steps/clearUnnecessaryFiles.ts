@@ -3,9 +3,7 @@ import { execaCommand } from "execa";
 export async function clearUnnecessaryFiles() {
 	for (const glob of [
 		"dist lib package-lock.json yarn.lock",
-		".eslint*",
-		".prettier*",
-		"jest.*",
+		".eslintrc*",
 		"./src/**/*.js",
 	]) {
 		try {

@@ -4,7 +4,7 @@ import chalk from "chalk";
 import { $ } from "execa";
 import prettier from "prettier";
 
-import { readFileAsJSON } from "../readFileAsJSON.js";
+import { readFileAsJson } from "../../shared/readFileAsJson.js";
 
 interface GhUserOutput {
 	login: string;
@@ -34,7 +34,7 @@ export async function addOwnerAsAllContributor(owner: string) {
 		"tool",
 	].join(",")}`;
 
-	const existingContributors = (await readFileAsJSON(
+	const existingContributors = (await readFileAsJson(
 		"./.all-contributorsrc"
 	)) as AllContributorsData;
 	if (!isValidAllContributorsData(existingContributors)) {

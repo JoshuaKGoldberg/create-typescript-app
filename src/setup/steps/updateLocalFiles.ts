@@ -1,6 +1,6 @@
 import replaceInFile from "replace-in-file";
 
-import { readFileAsJSON } from "../readFileAsJSON.js";
+import { readFileAsJson } from "../../shared/readFileAsJson.js";
 
 interface UpdateLocalFilesOptions {
 	description: string;
@@ -22,7 +22,7 @@ export async function updateLocalFiles({
 	repository,
 	title,
 }: UpdateLocalFilesOptions) {
-	const existingPackage = (await readFileAsJSON(
+	const existingPackage = (await readFileAsJson(
 		"./package.json"
 	)) as ExistingPackageData;
 

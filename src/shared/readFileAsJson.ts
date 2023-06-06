@@ -1,6 +1,6 @@
-import { promises as fs } from "fs";
+import * as fs from "node:fs/promises";
 
-export async function readFileAsJSON(filePath: string) {
+export async function readFileAsJson(filePath: string) {
 	try {
 		return JSON.parse((await fs.readFile(filePath)).toString()) as unknown;
 	} catch (error) {

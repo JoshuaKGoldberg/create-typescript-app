@@ -1,6 +1,6 @@
 {
 	"name": "template-typescript-node-package",
-	"version": "1.28.3",
+	"version": "1.28.5",
 	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
@@ -77,7 +77,7 @@
 		"jsonc-eslint-parser": "^2.3.0",
 		"knip": "2.13.0",
 		"lint-staged": "^13.2.2",
-		"markdownlint": "^0.28.2",
+		"markdownlint": "^0.29.0",
 		"markdownlint-cli": "^0.34.0",
 		"npm-package-json-lint": "^6.4.0",
 		"npm-package-json-lint-config-default": "^5.0.0",

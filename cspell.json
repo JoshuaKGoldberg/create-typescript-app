@@ -19,11 +19,12 @@
 		"knip",
 		"lcov",
 		"markdownlintignore",
+		"npmignore",
 		"npmpackagejsonlintrc",
 		"outro",
 		"packagejson",
-		"Unstaged",
 		"quickstart",
+		"Unstaged",
 		"wontfix"
 	]
 }

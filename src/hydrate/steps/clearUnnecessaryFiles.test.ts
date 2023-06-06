@@ -11,9 +11,11 @@ vi.mock("execa", () => ({
 }));
 
 describe("clearUnnecessaryFiles", () => {
-	it("runs all commands even when they fail", async () => {
+	it("removes all globs, quoted", async () => {
 		await clearUnnecessaryFiles();
 
-		expect(mockExecaCommand).toHaveBeenCalledWith(`rm -rf ./src/**/*.js`);
+		expect(mockExecaCommand).toHaveBeenCalledWith(
+			`rm -rf "./src/**/*.js" ".eslintrc.j*" ".npmignore" ".prettierrc.*" "babel.*" "CODE_OF_CONDUCT.md" "CONTRIBUTING.md" "DEVELOPMENT.md" "dist" "jest.*" "lib" "package-lock.json" "yarn.lock"`
+		);
 	});
 });

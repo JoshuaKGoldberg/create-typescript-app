@@ -1,15 +1,27 @@
 import { execaCommand } from "execa";
 
+const ignoreGlobs = [
+	"./src/**/*.js",
+	".eslintrc.j*",
+	".npmignore",
+	".prettierrc.*",
+	"babel.*",
+	"CODE_OF_CONDUCT.md",
+	"CONTRIBUTING.md",
+	"DEVELOPMENT.md",
+	"dist",
+	"jest.*",
+	"lib",
+	"package-lock.json",
+	"yarn.lock",
+];
+
 export async function clearUnnecessaryFiles() {
-	for (const glob of [
-		"dist lib package-lock.json yarn.lock",
-		".eslintrc*",
-		"./src/**/*.js",
-	]) {
-		try {
-			await execaCommand(`rm -rf ${glob}`);
-		} catch {
-			// (we ignore failures if nothing matched)
-		}
+	try {
+		await execaCommand(
+			`rm -rf ${ignoreGlobs.map((glob) => `"${glob}"`).join(" ")}`
+		);
+	} catch {
+		// (we ignore failures if nothing matched)
 	}
 }

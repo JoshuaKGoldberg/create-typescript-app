@@ -2,11 +2,11 @@ import { describe, expect, it, vi } from "vitest";
 
 import { writePackageJson } from "./writePackageJson.js";
 
-const mockreadFileAsJson = vi.fn();
+const mockReadFileAsJson = vi.fn();
 
 vi.mock("../../../../shared/readFileAsJson.js", () => ({
 	get readFileAsJson() {
-		return mockreadFileAsJson;
+		return mockReadFileAsJson;
 	},
 }));
 
@@ -23,7 +23,7 @@ const values = {
 describe("writePackageJson", () => {
 	it("preserves existing dependencies when they exist", async () => {
 		const dependencies = { abc: "1.2.3" };
-		mockreadFileAsJson.mockResolvedValue({ dependencies });
+		mockReadFileAsJson.mockResolvedValue({ dependencies });
 
 		const packageJson = await writePackageJson(values);
 
@@ -33,7 +33,7 @@ describe("writePackageJson", () => {
 	});
 
 	it("includes a release script when releases is true", async () => {
-		mockreadFileAsJson.mockResolvedValue({});
+		mockReadFileAsJson.mockResolvedValue({});
 
 		const packageJson = await writePackageJson({
 			...values,
@@ -50,7 +50,7 @@ describe("writePackageJson", () => {
 	});
 
 	it("includes a test script when unitTests is true", async () => {
-		mockreadFileAsJson.mockResolvedValue({});
+		mockReadFileAsJson.mockResolvedValue({});
 
 		const packageJson = await writePackageJson({
 			...values,

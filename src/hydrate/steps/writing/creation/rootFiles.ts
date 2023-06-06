@@ -1,16 +1,9 @@
 import { HydrationInputValues } from "../../../values/types.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
+import { writePackageJson } from "./writePackageJson.js";
 
-export function createRootFiles({
-	author,
-	description,
-	email,
-	owner,
-	releases,
-	repository,
-	unitTests,
-}: HydrationInputValues) {
+export async function createRootFiles(values: HydrationInputValues) {
 	return {
 		".all-contributorsrc": formatJson({
 			badgeTemplate:
@@ -22,14 +15,14 @@ export function createRootFiles({
 			contributorsSortAlphabetically: true,
 			files: ["README.md"],
 			imageSize: 100,
-			projectName: repository,
-			projectOwner: owner,
+			projectName: values.repository,
+			projectOwner: values.owner,
 			repoHost: "https://github.com",
 			repoType: "github",
 		}),
 		".eslintignore": formatIgnoreFile([
 			"!.*",
-			...(unitTests ? ["coverage"] : []),
+			...(values.unitTests ? ["coverage"] : []),
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",
@@ -106,7 +99,7 @@ module.exports = {
 			},
 			extends: ["plugin:jsonc/recommended-with-json"],
 		},${
-			unitTests
+			values.unitTests
 				? `\n{
 			files: "**/*.test.ts",
 			rules: {
@@ -145,17 +138,17 @@ module.exports = {
 		"@typescript-eslint",
 		"deprecation",
 		"import",
-		"jsdoc",${unitTests ? `\n"no-only-tests",` : ""}
+		"jsdoc",${values.unitTests ? `\n"no-only-tests",` : ""}
 		"regexp",
 		"simple-import-sort",
-		"typescript-sort-keys",${unitTests ? `\n"vitest",` : ""}
+		"typescript-sort-keys",${values.unitTests ? `\n"vitest",` : ""}
 	],
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 		"import/extensions": ["error", "ignorePackages"],${
-			unitTests ? `\n"no-only-tests/no-only-tests": "error",` : ""
+			values.unitTests ? `\n"no-only-tests/no-only-tests": "error",` : ""
 		}
 		"simple-import-sort/exports": "error",
 		"simple-import-sort/imports": "error",
@@ -175,7 +168,7 @@ module.exports = {
 };
 `,
 		".gitignore": formatIgnoreFile([
-			...(unitTests ? ["coverage/"] : []),
+			...(values.unitTests ? ["coverage/"] : []),
 			"lib/",
 			"node_modules/",
 		]),
@@ -199,7 +192,7 @@ module.exports = {
 		}),
 		".nvmrc": `18.16.0\n`,
 		".prettierignore": formatIgnoreFile([
-			...(unitTests ? ["coverage/"] : []),
+			...(values.unitTests ? ["coverage/"] : []),
 			"lib/",
 			"pnpm-lock.yaml",
 			"",
@@ -258,7 +251,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			ignorePaths: [
 				".github",
 				"CHANGELOG.md",
-				...(unitTests ? ["coverage"] : []),
+				...(values.unitTests ? ["coverage"] : []),
 				"lib",
 				"node_modules",
 				"pnpm-lock.yaml",
@@ -287,46 +280,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			ignoreBinaries: ["dedupe", "gh"],
 			project: ["src/**/*.ts!", "script/**/*.js"],
 		}),
-		"package.json": formatJson({
-			name: repository,
-			description,
-			repository: {
-				type: "git",
-				url: `https://github.com/${owner}/${repository}`,
-			},
-			license: "MIT",
-			author: { email, name: author },
-			type: "module",
-			main: "./lib/index.js",
-			files: ["lib/", "package.json", "LICENSE.md", "README.md"],
-			scripts: {
-				build: "tsc",
-				format: 'prettier "**/*" --ignore-unknown',
-				"format:write": "pnpm format --write",
-				lint: "eslint . --max-warnings 0 --report-unused-disable-directives",
-				"lint:knip": "knip",
-				"lint:md":
-					'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
-				"lint:package": "npmPkgJsonLint .",
-				"lint:packages": "pnpm dedupe --check",
-				"lint:spelling": 'cspell "**" ".github/**/*"',
-				prepare: "husky install",
-				...(releases && {
-					"should-semantic-release": "should-semantic-release --verbose",
-				}),
-				...(unitTests && { test: "vitest" }),
-			},
-			"lint-staged": {
-				"*": "prettier --ignore-unknown --write",
-			},
-			packageManager: "pnpm@8.5.0",
-			engines: {
-				node: ">=18",
-			},
-			publishConfig: {
-				provenance: true,
-			},
-		}),
+		"package.json": await writePackageJson(values),
 		"tsconfig.eslint.json": formatJson({
 			extends: "./tsconfig.json",
 			include: ["."],
@@ -346,7 +300,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			},
 			include: ["src"],
 		}),
-		...(unitTests && {
+		...(values.unitTests && {
 			"vitest.config.ts": `import { defineConfig } from "vitest/config";
 
 export default defineConfig({

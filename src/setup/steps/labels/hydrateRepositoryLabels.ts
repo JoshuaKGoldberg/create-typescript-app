@@ -1,6 +1,6 @@
 import { $ } from "execa";
 
-import { readFileAsJSON } from "../../readFileAsJSON.js";
+import { readFileAsJson } from "../../../shared/readFileAsJson.js";
 import { getExistingEquivalentLabel } from "./getExistingEquivalentLabel.js";
 
 interface GhLabelData {
@@ -22,7 +22,7 @@ export async function hydrateRepositoryLabels() {
 		) as GhLabelData[]
 	).map(getLabelName);
 
-	const outcomeLabels = (await readFileAsJSON(
+	const outcomeLabels = (await readFileAsJson(
 		"./src/setup/labels.json"
 	)) as FileLabelData[];
 

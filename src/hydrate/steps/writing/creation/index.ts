@@ -5,11 +5,13 @@ import { createDotHusky } from "./dotHusky.js";
 import { createDotVSCode } from "./dotVSCode.js";
 import { createRootFiles } from "./rootFiles.js";
 
-export function createStructure(values: HydrationInputValues): Structure {
+export async function createStructure(
+	values: HydrationInputValues
+): Promise<Structure> {
 	return {
 		".github": createDotGitHub(values),
 		".husky": createDotHusky(),
 		".vscode": createDotVSCode(),
-		...createRootFiles(values),
+		...(await createRootFiles(values)),
 	};
 }

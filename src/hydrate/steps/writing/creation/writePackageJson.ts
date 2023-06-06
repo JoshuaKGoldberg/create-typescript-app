@@ -30,7 +30,7 @@ export async function writePackageJson({
 		prettierConfig: undefined,
 		types: undefined,
 
-		// The rest of the fields are ones we know from templating
+		// The rest of the fields are ones we know from our template
 		name: repository,
 		description,
 		repository: {

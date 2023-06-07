@@ -1,6 +1,8 @@
 import chalk from "chalk";
 import { $ } from "execa";
 
+import { logLine } from "./cli/lines.js";
+
 export async function getDefaultSettings() {
 	let gitRemoteFetch;
 	try {
@@ -9,7 +11,8 @@ export async function getDefaultSettings() {
 			.pipeStdout?.($({ stdin: "pipe" })`grep origin`)
 			.pipeStdout?.($({ stdin: "pipe" })`grep fetch`);
 	} catch {
-		console.log(
+		logLine();
+		logLine(
 			chalk.gray(
 				"Could not populate default owner and repository. Did not detect a Git repository with an origin. "
 			)

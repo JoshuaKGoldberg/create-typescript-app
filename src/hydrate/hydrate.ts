@@ -9,6 +9,7 @@ import {
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { clearUnnecessaryFiles } from "./steps/clearUnnecessaryFiles.js";
 import { finalizeDependencies as finalizeDependencies } from "./steps/finalizeDependencies.js";
+import { runCommand } from "./steps/runCommand.js";
 import { writeReadme } from "./steps/writeReadme.js";
 import { writeStructure } from "./steps/writing/writeStructure.js";
 import { getHydrationDefaults } from "./values/getHydrationDefaults.js";
@@ -52,6 +53,9 @@ export async function hydrate(args: string[]) {
 					"finalizing dependencies"
 				);
 			}
+
+			await runCommand("pnpm lint --fix", "auto-fixing lint rules");
+			await runCommand("pnpm format --write", "formatting files");
 
 			if (hydrationSkips["skip-setup"]) {
 				skipSpinnerBlock(`Done hydrating, and skipping setup command.`);

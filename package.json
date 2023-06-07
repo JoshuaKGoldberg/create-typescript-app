@@ -1,6 +1,6 @@
 {
 	"name": "template-typescript-node-package",
-	"version": "1.28.7",
+	"version": "1.28.8",
 	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",

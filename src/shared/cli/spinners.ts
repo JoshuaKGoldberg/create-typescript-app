@@ -13,11 +13,6 @@ export function successSpinnerBlock(blockText: string) {
 	s.stop(chalk.green("✅ " + blockText));
 }
 
-export function warnSpinnerBlock(blockText: string) {
-	s.start(chalk.yellow("⚠️ " + blockText));
-	s.stop(chalk.yellow("⚠️ " + blockText));
-}
-
 export async function withSpinner<Return>(
 	callback: () => Promise<Return>,
 	label: string,

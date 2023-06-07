@@ -27,7 +27,7 @@ export async function withSpinner<Return>(
 			const extra = warningHint ? `: ${warningHint}` : "";
 			s.stop(chalk.yellow(`⚠️ Error ${label}${extra}.`));
 		} else {
-			s.stop(chalk.green(`✅ Success ${label}.`));
+			s.stop(chalk.green(`✅ Passed ${label}.`));
 		}
 
 		return result;

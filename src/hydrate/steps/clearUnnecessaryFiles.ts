@@ -1,27 +1,29 @@
-import { execaCommand } from "execa";
+import fs from "node:fs/promises";
 
-const ignoreGlobs = [
+const globPaths = [
+	...extensions(".babelrc", "cjs", "cts", "js", "json", "mjs"),
+	...extensions(".eslintrc", "js", "json", "yml"),
+	...extensions(".prettierrc", "json", "json5", "yaml", "yml"),
+	...extensions("babel.config", "cjs", "cts", "js", "json", "mjs"),
+	...extensions("jest.config", "cjs", "js", "json", "mjs", "ts"),
 	"./src/**/*.js",
-	".eslintrc.j*",
+	".babelrc",
 	".npmignore",
-	".prettierrc.*",
-	"babel.*",
 	"CODE_OF_CONDUCT.md",
 	"CONTRIBUTING.md",
 	"DEVELOPMENT.md",
 	"dist",
-	"jest.*",
 	"lib",
 	"package-lock.json",
 	"yarn.lock",
 ];
 
+function extensions(base: string, ...extensions: string[]) {
+	return extensions.map((extension) => [base, extension].join("."));
+}
+
 export async function clearUnnecessaryFiles() {
-	try {
-		await execaCommand(
-			`rm -rf ${ignoreGlobs.map((glob) => `"${glob}"`).join(" ")}`
-		);
-	} catch {
-		// (we ignore failures if nothing matched)
+	for (const globPath of globPaths) {
+		await fs.rm(globPath, { force: true, recursive: true });
 	}
 }

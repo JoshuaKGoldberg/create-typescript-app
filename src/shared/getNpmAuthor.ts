@@ -1,40 +1,20 @@
 import chalk from "chalk";
-import { $ } from "execa";
-import npmUser from "npm-user";
 
 import { logLine } from "./cli/lines.js";
+import { getNpmUserInfo, type UserInfo } from "./getNpmUserInfo.js";
 
 export async function getNpmAuthor(): Promise<string | undefined>;
 export async function getNpmAuthor(owner: string): Promise<string>;
 export async function getNpmAuthor(
 	owner?: string | undefined
 ): Promise<string | undefined> {
-	let username;
+	let npmUserInfo: UserInfo;
 
 	try {
-		const { stdout } = await $`npm whoami`;
-
-		username = stdout;
-	} catch {
+		npmUserInfo = await getNpmUserInfo();
+	} catch (error) {
 		logLine();
-		logLine(
-			chalk.gray("Could not populate npm user. Failed to run npm whoami.")
-		);
-
-		return owner;
-	}
-
-	let npmUserInfo;
-
-	try {
-		npmUserInfo = await npmUser(username);
-	} catch {
-		logLine();
-		logLine(
-			chalk.gray(
-				"Could not populate npm user. Failed to retrieve user info from npm."
-			)
-		);
+		logLine(chalk.gray((error as Error).message));
 
 		return owner;
 	}

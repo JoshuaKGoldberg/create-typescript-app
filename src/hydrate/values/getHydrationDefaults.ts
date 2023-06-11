@@ -1,6 +1,7 @@
 import { $ } from "execa";
 
 import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
+import { getNpmUserInfo } from "../../shared/getNpmUserInfo.js";
 import { readFileSafe } from "../readFileSafe.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
 
@@ -27,10 +28,28 @@ export async function getHydrationDefaults() {
 
 			return fromPackage ?? (await getNpmAuthor());
 		},
-		email:
-			typeof existingPackage.author === "string"
-				? existingPackage.author.split(/<|>/)[1]
-				: existingPackage.author?.email,
+		email: async () => {
+			const fromPackage =
+				typeof existingPackage.author === "string"
+					? existingPackage.author.split(/<|>/)[1]
+					: existingPackage.author?.email;
+			if (fromPackage) {
+				return fromPackage;
+			}
+
+			try {
+				const npmUserInfo = await getNpmUserInfo();
+				return npmUserInfo.email;
+			} catch {
+				/* empty */
+			}
+
+			try {
+				return (await $`git config --get user.email`).stdout;
+			} catch {
+				return undefined;
+			}
+		},
 		funding: readFundingIfExists,
 		owner: async () =>
 			(await $`git remote -v`).stdout.match(

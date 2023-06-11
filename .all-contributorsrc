@@ -12,7 +12,8 @@
         "review",
         "tool",
         "doc",
-        "infra"
+        "infra",
+        "test"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -205,5 +206,6 @@
   "projectName": "template-typescript-node-package",
   "projectOwner": "JoshuaKGoldberg",
   "repoHost": "https://github.com",
-  "repoType": "github"
+  "repoType": "github",
+  "commitType": "docs"
 }

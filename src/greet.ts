@@ -7,6 +7,7 @@ export function greet(options: GreetOptions | string) {
 		times = 1,
 	} = typeof options === "string" ? { message: options } : options;
 
-	for (let i = 0; i < times; i += 1)
+	for (let i = 0; i < times; i += 1) {
 		logger(message);
+	}
 }

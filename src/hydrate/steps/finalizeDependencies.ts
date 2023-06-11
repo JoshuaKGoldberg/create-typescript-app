@@ -33,6 +33,7 @@ export async function finalizeDependencies({
 		"npm-package-json-lint",
 		"npm-package-json-lint-config-default",
 		"prettier",
+		"prettier-plugin-curly",
 		"prettier-plugin-packagejson",
 		"sentences-per-line",
 		"should-semantic-release",

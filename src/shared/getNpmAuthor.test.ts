@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { beforeEach, describe, expect, it, SpyInstance, vi } from "vitest";
+import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getNpmAuthor } from "./getNpmAuthor.js";
 

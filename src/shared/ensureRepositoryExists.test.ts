@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
-import { beforeEach, describe, expect, it, SpyInstance, vi } from "vitest";
+import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 

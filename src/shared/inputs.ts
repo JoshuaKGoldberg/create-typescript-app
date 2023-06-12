@@ -1,13 +1,12 @@
 import { parseArgs } from "node:util";
-
 import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
+import { PrefillPrompter } from "./PrefillPrompter.js";
 import { getDefaultSettings } from "./defaults.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { optionalDefault } from "./optionalDefault.js";
-import { PrefillPrompter } from "./PrefillPrompter.js";
 
 export type GetterDefaultInputValues = {
 	[K in keyof DefaultInputValues]:

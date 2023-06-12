@@ -118,7 +118,6 @@ module.exports = {
 		"no-only-tests",
 		"perfectionist",
 		"regexp",
-		"simple-import-sort",
 		"vitest",
 	],
 	root: true,
@@ -127,8 +126,6 @@ module.exports = {
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 		"import/extensions": ["error", "ignorePackages"],
 		"no-only-tests/no-only-tests": "error",
-		"simple-import-sort/exports": "error",
-		"simple-import-sort/imports": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-constant-condition": "off",

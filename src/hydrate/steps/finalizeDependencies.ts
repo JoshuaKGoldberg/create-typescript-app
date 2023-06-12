@@ -22,7 +22,6 @@ export async function finalizeDependencies({
 		"eslint-plugin-markdown",
 		"eslint-plugin-perfectionist",
 		"eslint-plugin-regexp",
-		"eslint-plugin-simple-import-sort",
 		"eslint-plugin-yml",
 		"husky",
 		"jsonc-eslint-parser",

@@ -1,7 +1,6 @@
-import fs from "node:fs/promises";
-
 import chalk from "chalk";
 import { $ } from "execa";
+import fs from "node:fs/promises";
 import prettier from "prettier";
 
 import { readFileAsJson } from "../../shared/readFileAsJson.js";

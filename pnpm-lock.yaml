@@ -1028,7 +1028,7 @@ packages:
     dependencies:
       '@npmcli/name-from-folder': 2.0.0
       glob: 10.2.2
-      minimatch: 9.0.0
+      minimatch: 9.0.1
       read-package-json-fast: 3.0.2
     dev: true
 
@@ -3098,7 +3098,7 @@ packages:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
     dependencies:
       debug: 3.2.7
-      is-core-module: 2.11.0
+      is-core-module: 2.12.1
       resolve: 1.22.1
     transitivePeerDependencies:
       - supports-color
@@ -3139,7 +3139,7 @@ packages:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
       typescript: ^3.7.5 || ^4.0.0 || ^5.0.0
     dependencies:
-      '@typescript-eslint/utils': 5.59.5(eslint@8.40.0)(typescript@5.0.4)
+      '@typescript-eslint/utils': 5.59.11(eslint@8.40.0)(typescript@5.0.4)
       eslint: 8.40.0
       tslib: 2.5.0
       tsutils: 3.21.0(typescript@5.0.4)
@@ -3179,7 +3179,7 @@ packages:
       eslint-import-resolver-node: 0.3.7
       eslint-module-utils: 2.7.4(@typescript-eslint/parser@5.59.5)(eslint-import-resolver-node@0.3.7)(eslint@8.40.0)
       has: 1.0.3
-      is-core-module: 2.11.0
+      is-core-module: 2.12.1
       is-glob: 4.0.3
       minimatch: 3.1.2
       object.values: 1.1.6
@@ -3280,7 +3280,7 @@ packages:
     peerDependencies:
       eslint: '>=8.0.0'
     dependencies:
-      '@typescript-eslint/utils': 5.59.5(eslint@8.40.0)(typescript@5.0.4)
+      '@typescript-eslint/utils': 5.59.11(eslint@8.40.0)(typescript@5.0.4)
       eslint: 8.40.0
     transitivePeerDependencies:
       - supports-color
@@ -4226,12 +4226,6 @@ packages:
       ci-info: 3.7.1
     dev: true
 
-  /is-core-module@2.11.0:
-    resolution: {integrity: sha512-RRjxlvLDkD1YJwDbroBHMb+cukurkDWNyHx7D3oNB5x9rb5ogcksMC5wHCadcXoo67gVr/+3GFySh3134zi6rw==}
-    dependencies:
-      has: 1.0.3
-    dev: true
-
   /is-core-module@2.12.1:
     resolution: {integrity: sha512-Q4ZuBAe2FUsKtyQJoQHlvP8OvBERxO3jEmy1I7hcRXcJBGGHFh/aJBswbXuS9sgrDH2QUO8ilkwNPHvHMd8clg==}
     dependencies:
@@ -5053,7 +5047,7 @@ packages:
       js-yaml: 4.1.0
       jsonc-parser: 3.2.0
       markdownlint: 0.28.2
-      minimatch: 9.0.0
+      minimatch: 9.0.1
       run-con: 1.2.11
     dev: true
 
@@ -5222,13 +5216,6 @@ packages:
   /minimatch@5.1.6:
     resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
     engines: {node: '>=10'}
-    dependencies:
-      brace-expansion: 2.0.1
-    dev: true
-
-  /minimatch@9.0.0:
-    resolution: {integrity: sha512-0jJj8AvgKqWN05mrwuqi8QYKx1WmYSUoKSxu5Qhs9prezTz10sxAHGNZe9J9cqIJzta8DWsleh2KaVaLl6Ru2w==}
-    engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       brace-expansion: 2.0.1
     dev: true
@@ -6157,7 +6144,7 @@ packages:
     resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}
     hasBin: true
     dependencies:
-      is-core-module: 2.11.0
+      is-core-module: 2.12.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true

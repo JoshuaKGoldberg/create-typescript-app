@@ -26,7 +26,7 @@ export async function updateLocalFiles({
 		"./package.json"
 	)) as ExistingPackageData;
 
-	const replacements: [string | RegExp, string, string?][] = [
+	const replacements: [RegExp | string, string, string?][] = [
 		[/Template TypeScript Node Package/g, title],
 		[/JoshuaKGoldberg/g, owner],
 		[/template-typescript-node-package/g, repository],

@@ -39,7 +39,7 @@ export async function getNpmAuthor(
 		return owner;
 	}
 
-	const { name = owner, email } = npmUserInfo;
+	const { email, name = owner } = npmUserInfo;
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	return email ? `${name!} <${email}>` : name;
 }

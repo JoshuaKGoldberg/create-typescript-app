@@ -49,7 +49,7 @@ export async function addOwnerAsAllContributor(owner: string) {
 			JSON.stringify({
 				...existingContributors,
 				contributors: existingContributors.contributors
-					.filter(({ login }) => [user, "JoshuaKGoldberg"].includes(login))
+					.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
 					.map((contributor) =>
 						contributor.login === "JoshuaKGoldberg"
 							? { ...contributor, contributions: ["tool"] }

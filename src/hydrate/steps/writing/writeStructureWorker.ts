@@ -30,8 +30,8 @@ function format(fileName: string, text: string) {
 	}
 
 	return prettier.format(text, {
-		useTabs: true,
 		parser,
+		useTabs: true,
 	});
 }
 

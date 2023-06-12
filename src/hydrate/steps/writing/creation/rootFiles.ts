@@ -202,7 +202,6 @@ module.exports = {
 		]),
 		".prettierrc": formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
-			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
 			overrides: [
 				{
 					files: ".*rc",
@@ -213,6 +212,7 @@ module.exports = {
 					options: { parser: "yaml" },
 				},
 			],
+			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
 			useTabs: true,
 		}),
 		".release-it.json": formatJson({

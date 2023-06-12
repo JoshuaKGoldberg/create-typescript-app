@@ -46,6 +46,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
+		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
 		"prettier",
 	],
@@ -59,7 +60,6 @@ module.exports = {
 			extends: [
 				"plugin:jsdoc/recommended-typescript-error",
 				"plugin:@typescript-eslint/recommended",
-				"plugin:typescript-sort-keys/recommended",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
@@ -139,6 +139,7 @@ module.exports = {
 		"deprecation",
 		"import",
 		"jsdoc",${values.unitTests ? `\n"no-only-tests",` : ""}
+		"perfectionist",
 		"regexp",
 		"simple-import-sort",
 		"typescript-sort-keys",${values.unitTests ? `\n"vitest",` : ""}

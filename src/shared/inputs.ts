@@ -1,18 +1,17 @@
 import { parseArgs } from "node:util";
-
 import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
+import { PrefillPrompter } from "./PrefillPrompter.js";
 import { getDefaultSettings } from "./defaults.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { optionalDefault } from "./optionalDefault.js";
-import { PrefillPrompter } from "./PrefillPrompter.js";
 
 export type GetterDefaultInputValues = {
 	[K in keyof DefaultInputValues]:
-		| DefaultInputValues[K]
-		| (() => Promise<DefaultInputValues[K]>);
+		| (() => Promise<DefaultInputValues[K]>)
+		| DefaultInputValues[K];
 };
 
 export interface DefaultInputValues {
@@ -55,15 +54,15 @@ export async function getInputValuesAndOctokit(
 			owner: { type: "string" },
 			releases: { type: "boolean" },
 			repository: { type: "string" },
-			unitTests: { type: "boolean" },
-			title: { type: "string" },
 			"skip-api": { type: "boolean" },
 			"skip-removal": { type: "boolean" },
 			"skip-restore": { type: "boolean" },
 			"skip-uninstall": { type: "boolean" },
+			title: { type: "string" },
+			unitTests: { type: "boolean" },
 		},
-		tokens: true,
 		strict: false,
+		tokens: true,
 	});
 	const prompter = new PrefillPrompter();
 
@@ -110,6 +109,7 @@ export async function getInputValuesAndOctokit(
 				values.author as string | undefined,
 				defaults.author
 			),
+			description,
 			email: await optionalDefault(
 				values.email as string | undefined,
 				defaults.email
@@ -118,22 +118,21 @@ export async function getInputValuesAndOctokit(
 				values.funding as string | undefined,
 				defaults.funding
 			),
+			owner,
 			releases: await optionalDefault(
 				values.releases as boolean | undefined,
 				defaults.releases
 			),
-			unitTests: await optionalDefault(
-				values.unitTests as boolean | undefined,
-				defaults.unitTests
-			),
-			description,
-			owner,
 			repository,
 			skipApi: !!values["skip-api"],
 			skipRemoval: !!values["skip-removal"],
 			skipRestore: !!values["skip-restore"],
 			skipUninstalls: !!values["skip-uninstalls"],
 			title,
+			unitTests: await optionalDefault(
+				values.unitTests as boolean | undefined,
+				defaults.unitTests
+			),
 		},
 	};
 }

@@ -3,9 +3,9 @@ import chalk from "chalk";
 import { $ } from "execa";
 
 import {
-	getInputValuesAndOctokit,
 	GetterDefaultInputValues,
 	InputValuesAndOctokit,
+	getInputValuesAndOctokit,
 } from "./inputs.js";
 import { handlePromptCancel } from "./prompts.js";
 

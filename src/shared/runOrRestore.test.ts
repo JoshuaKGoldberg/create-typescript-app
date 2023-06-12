@@ -8,8 +8,8 @@ vi.mock("@clack/prompts", () => ({
 	get confirm() {
 		return mockConfirm;
 	},
-	isCancel: vi.fn(),
 	intro: vi.fn(),
+	isCancel: vi.fn(),
 	outro: vi.fn(),
 }));
 

@@ -17,6 +17,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
+		"plugin:n/recommended",
 		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
 		"prettier",
@@ -46,20 +47,17 @@ module.exports = {
 			},
 		},
 		{
+			excludedFiles: ["**/*.md/*.ts"],
 			extends: [
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 				"plugin:@typescript-eslint/strict",
 			],
-			excludedFiles: ["**/*.md/*.ts"],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
 			},
 			rules: {
-				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
-
 				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
 				"@typescript-eslint/no-unnecessary-condition": [
 					"error",
@@ -67,16 +65,19 @@ module.exports = {
 						allowConstantLoopConditions: true,
 					},
 				],
+
+				// These off-by-default rules work well for this repo and we like them on.
+				"deprecation/deprecation": "error",
 			},
 		},
 		{
-			files: ["*.json", "*.jsonc"],
 			excludedFiles: ["package.json"],
+			extends: ["plugin:jsonc/recommended-with-json"],
+			files: ["*.json", "*.jsonc"],
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",
 			},
-			extends: ["plugin:jsonc/recommended-with-json"],
 		},
 		{
 			files: "**/*.test.ts",
@@ -124,19 +125,19 @@ module.exports = {
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-		"import/extensions": ["error", "ignorePackages"],
-		"no-only-tests/no-only-tests": "error",
-
-		// These on-by-default rules don't work well for this repo and we like them off.
-		"no-constant-condition": "off",
-		"no-case-declarations": "off",
-		"no-inner-declarations": "off",
-
-		// Stylistic concerns that don't interfere with Prettier
-		"padding-line-between-statements": "off",
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
+		"import/extensions": ["error", "ignorePackages"],
+
+		"no-case-declarations": "off",
+		// These on-by-default rules don't work well for this repo and we like them off.
+		"no-constant-condition": "off",
+		"no-inner-declarations": "off",
+
+		"no-only-tests/no-only-tests": "error",
+		// Stylistic concerns that don't interfere with Prettier
+		"padding-line-between-statements": "off",
 	},
 };

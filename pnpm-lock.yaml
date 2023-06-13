@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -76,6 +76,9 @@ devDependencies:
   eslint-plugin-markdown:
     specifier: ^3.0.0
     version: 3.0.0(eslint@8.40.0)
+  eslint-plugin-n:
+    specifier: ^16.0.0
+    version: 16.0.0(eslint@8.40.0)
   eslint-plugin-no-only-tests:
     specifier: ^3.1.0
     version: 3.1.0
@@ -3148,6 +3151,17 @@ packages:
       - supports-color
     dev: true
 
+  /eslint-plugin-es-x@6.2.1(eslint@8.40.0):
+    resolution: {integrity: sha512-uR34zUhZ9EBoiSD2DdV5kHLpydVEvwWqjteUr9sXRgJknwbKZJZhdJ7uFnaTtd+Nr/2G3ceJHnHXrFhJ67n3Tw==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      eslint: '>=8'
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.40.0)
+      '@eslint-community/regexpp': 4.5.1
+      eslint: 8.40.0
+    dev: true
+
   /eslint-plugin-eslint-comments@3.2.0(eslint@8.40.0):
     resolution: {integrity: sha512-0jkOl0hfojIHHmEHgmNdqv4fmh7300NdpA9FFpF7zaoLvB/QeXOGNLIo86oAveJFrfB1p05kC8hpEMHM8DwWVQ==}
     engines: {node: '>=6.5.0'}
@@ -3233,6 +3247,23 @@ packages:
       mdast-util-from-markdown: 0.8.5
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /eslint-plugin-n@16.0.0(eslint@8.40.0):
+    resolution: {integrity: sha512-akkZTE3hsHBrq6CwmGuYCzQREbVUrA855kzcHqe6i0FLBkeY7Y/6tThCVkjUnjhvRBAlc+8lILcSe5QvvDpeZQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.40.0)
+      builtins: 5.0.1
+      eslint: 8.40.0
+      eslint-plugin-es-x: 6.2.1(eslint@8.40.0)
+      ignore: 5.2.4
+      is-core-module: 2.12.1
+      minimatch: 3.1.2
+      resolve: 1.22.2
+      semver: 7.5.1
     dev: true
 
   /eslint-plugin-no-only-tests@3.1.0:
@@ -6142,6 +6173,15 @@ packages:
 
   /resolve@1.22.1:
     resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}
+    hasBin: true
+    dependencies:
+      is-core-module: 2.12.1
+      path-parse: 1.0.7
+      supports-preserve-symlinks-flag: 1.0.0
+    dev: true
+
+  /resolve@1.22.2:
+    resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
     hasBin: true
     dependencies:
       is-core-module: 2.12.1

@@ -1,6 +1,6 @@
 export async function optionalDefault<T extends boolean | number | string>(
 	value: T | undefined,
-	getDefault: T | (() => Promise<T | undefined>) | undefined
+	getDefault: (() => Promise<T | undefined>) | T | undefined
 ) {
 	if (value !== undefined) {
 		return value;

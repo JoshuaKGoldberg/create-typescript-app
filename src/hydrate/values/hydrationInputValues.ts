@@ -1,5 +1,5 @@
-import { InputValues } from "../../shared/inputs.js";
 import { PrefillPrompter } from "../../shared/PrefillPrompter.js";
+import { InputValues } from "../../shared/inputs.js";
 
 export async function augmentWithHydrationValues(values: InputValues) {
 	const prompter = new PrefillPrompter();

@@ -1,6 +1,6 @@
 {
 	"name": "template-typescript-node-package",
-	"version": "1.28.9",
+	"version": "1.28.13",
 	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
@@ -68,9 +68,8 @@
 		"eslint-plugin-jsonc": "^2.8.0",
 		"eslint-plugin-markdown": "^3.0.0",
 		"eslint-plugin-no-only-tests": "^3.1.0",
+		"eslint-plugin-perfectionist": "^1.1.2",
 		"eslint-plugin-regexp": "^1.15.0",
-		"eslint-plugin-simple-import-sort": "^10.0.0",
-		"eslint-plugin-typescript-sort-keys": "^2.3.0",
 		"eslint-plugin-vitest": "^0.2.2",
 		"eslint-plugin-yml": "^1.7.0",
 		"git-remote-origin-url": "^4.0.0",
@@ -87,6 +86,7 @@
 		"npm-user": "^5.0.1",
 		"octokit": "^2.0.14",
 		"prettier": "^2.8.8",
+		"prettier-plugin-curly": "^0.0.2",
 		"prettier-plugin-packagejson": "^2.4.3",
 		"release-it": "^15.10.3",
 		"replace-in-file": "^7.0.0",

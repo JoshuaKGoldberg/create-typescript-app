@@ -1,5 +1,4 @@
 import * as fs from "node:fs/promises";
-
 import * as path from "path";
 import prettier from "prettier";
 
@@ -30,8 +29,8 @@ function format(fileName: string, text: string) {
 	}
 
 	return prettier.format(text, {
-		useTabs: true,
 		parser,
+		useTabs: true,
 	});
 }
 

@@ -80,7 +80,6 @@ export function createWorkflows({
 				release: {
 					types: ["published"],
 				},
-				workflow_dispatch: null,
 			},
 			steps: [
 				{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },

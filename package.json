@@ -95,7 +95,7 @@
 		"title-case": "^3.0.3",
 		"tsx": "^3.12.7",
 		"typescript": "^5.0.4",
-		"vitest": "^0.31.0",
+		"vitest": "^0.32.0",
 		"yaml-eslint-parser": "^1.2.2"
 	},
 	"packageManager": "pnpm@8.6.1",

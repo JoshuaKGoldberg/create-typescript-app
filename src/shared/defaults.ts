@@ -1,15 +1,15 @@
 import chalk from "chalk";
-import { $ } from "execa";
+import gitRemoteOriginUrl from "git-remote-origin-url";
+import gitUrlParse from "git-url-parse";
 
 import { logLine } from "./cli/lines.js";
 
 export async function getDefaultSettings() {
-	let gitRemoteFetch;
 	try {
-		// Grep only the origin remote and its fetch URL
-		gitRemoteFetch = await $`git remote -v`
-			.pipeStdout?.($({ stdin: "pipe" })`grep origin`)
-			.pipeStdout?.($({ stdin: "pipe" })`grep fetch`);
+		const gitRemoteUrl = await gitRemoteOriginUrl();
+		const { name, owner } = gitUrlParse(gitRemoteUrl);
+
+		return { defaultOwner: owner, defaultRepository: name };
 	} catch {
 		logLine();
 		logLine(
@@ -23,15 +23,4 @@ export async function getDefaultSettings() {
 			defaultRepository: "my-lovely-repository",
 		};
 	}
-
-	const remoteFetchMatch = gitRemoteFetch?.stdout.match(
-		/\s.+\/([^/]+)\/([^/]+) \(fetch\)/
-	);
-	if (!remoteFetchMatch) {
-		throw new Error("Could not match a fetch remote from git.");
-	}
-
-	const [, defaultOwner, defaultRepository] = remoteFetchMatch;
-
-	return { defaultOwner, defaultRepository };
 }

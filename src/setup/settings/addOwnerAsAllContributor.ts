@@ -22,7 +22,7 @@ export async function addOwnerAsAllContributor(owner: string) {
 		user = owner;
 	}
 
-	await $`npx -y all-contributors-cli add ${user} ${[
+	await $`npx -y all-contributors-cli@6.25 add ${user} ${[
 		"code",
 		"content",
 		"doc",

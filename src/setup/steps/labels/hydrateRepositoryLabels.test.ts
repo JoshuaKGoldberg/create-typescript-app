@@ -1,5 +1,4 @@
-import chalk from "chalk";
-import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { hydrateRepositoryLabels } from "./hydrateRepositoryLabels.js";
 

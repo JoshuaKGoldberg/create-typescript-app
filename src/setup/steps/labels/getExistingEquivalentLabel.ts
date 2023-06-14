@@ -9,8 +9,11 @@ export function getExistingEquivalentLabel(
 ) {
 	const outcomeTrimmed = outcomeLabel.replace(/\w+: (\w+)/, "$1");
 
-	return existingLabels.find(
-		(existingLabel) =>
-			aliases.has(existingLabel) || existingLabel === outcomeTrimmed
-	);
+	return existingLabels.find((existingLabel) => {
+		return (
+			existingLabel === outcomeLabel ||
+			existingLabel === outcomeTrimmed ||
+			aliases.get(existingLabel) === outcomeLabel
+		);
+	});
 }

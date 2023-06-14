@@ -336,6 +336,16 @@ Otherwise we may not be able to review your PR. -->
 
 <!-- Description of what is changed and how the code change does that. -->
 `,
+		"SECURITY.md": `# Security Policy
+
+We take all security vulnerabilities seriously.
+If you have a vulnerability or other security issues to disclose:
+
+- Thank you very much, please do!
+- Please send them to us by emailing \`${email}\`
+
+We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
+`,
 		"renovate.json": JSON.stringify(
 			{
 				$schema: "https://docs.renovatebot.com/renovate-schema.json",

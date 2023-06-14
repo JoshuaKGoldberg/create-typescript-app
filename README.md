@@ -143,7 +143,6 @@ npm i template-typescript-node-package
 ```
 
 ```ts
-// eslint-disable-next-line n/no-missing-import
 import { greet } from "template-typescript-node-package";
 
 greet("Hello, world!");

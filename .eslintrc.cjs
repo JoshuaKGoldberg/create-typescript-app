@@ -131,6 +131,12 @@ module.exports = {
 		],
 		"import/extensions": ["error", "ignorePackages"],
 
+		"n/no-missing-import": [
+			"error",
+			{
+				allowModules: ["template-typescript-node-package"],
+			},
+		],
 		"no-case-declarations": "off",
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-constant-condition": "off",

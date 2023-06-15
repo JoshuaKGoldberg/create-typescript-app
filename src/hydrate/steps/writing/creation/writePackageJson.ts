@@ -54,7 +54,7 @@ export async function writePackageJson({
 			build: "tsc",
 			format: 'prettier "**/*" --ignore-unknown',
 			"format:write": "pnpm format --write",
-			lint: "eslint . --max-warnings 0 --report-unused-disable-directives",
+			lint: "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 			"lint:knip": "knip",
 			"lint:md":
 				'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',

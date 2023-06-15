@@ -1,3 +1,4 @@
+/* spellchecker: disable */
 export const outcomeLabels = [
 	{
 		color: "0075ca",

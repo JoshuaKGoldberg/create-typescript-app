@@ -25,7 +25,8 @@ export async function getOctokit(
 			console.error();
 			console.error(chalk.red((error as Error).message));
 			console.error();
-			process.exit(0);
+			// eslint-disable-next-line n/no-process-exit
+			process.exit(1);
 		}
 
 		const auth = (await $`gh auth token`).stdout.trim();

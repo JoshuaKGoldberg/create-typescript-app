@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
-import { beforeEach, describe, expect, it, SpyInstance, vi } from "vitest";
+import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 
@@ -7,8 +7,8 @@ const mockSelect = vi.fn();
 const mockText = vi.fn();
 
 vi.mock("@clack/prompts", () => ({
-	isCancel: vi.fn(),
 	intro: vi.fn(),
+	isCancel: vi.fn(),
 	outro: vi.fn(),
 	get select() {
 		return mockSelect;
@@ -63,11 +63,11 @@ describe("ensureRepositoryExists", () => {
 
 	it("creates the repository when the octokit GET rejects and the prompt resolves 'create'", async () => {
 		const octokit = createMockOctokit({
+			createUsingTemplate: vi.fn().mockResolvedValue({}),
 			get: vi
 				.fn()
 				.mockRejectedValueOnce({ status: 404 })
 				.mockResolvedValueOnce({}),
-			createUsingTemplate: vi.fn().mockResolvedValue({}),
 		});
 
 		mockSelect.mockResolvedValue("create");

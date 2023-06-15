@@ -24,24 +24,32 @@ export async function writePackageJson({
 		// To start, copy over all existing package fields (e.g. "dependencies")
 		...((await readFileAsJson("./package.json")) as object),
 
+		author: { email, name: author },
+		description,
+		engines: {
+			node: ">=18",
+		},
 		// Remove fields we know we don't want, such as old or redundant configs
 		eslintConfig: undefined,
-		husky: undefined,
-		prettierConfig: undefined,
-		types: undefined,
 
+		files: ["lib/", "package.json", "LICENSE.md", "README.md"],
+		husky: undefined,
+		license: "MIT",
+		"lint-staged": {
+			"*": "prettier --ignore-unknown --write",
+		},
+		main: "./lib/index.js",
 		// The rest of the fields are ones we know from our template
 		name: repository,
-		description,
+		packageManager: "pnpm@8.5.0",
+		prettierConfig: undefined,
+		publishConfig: {
+			provenance: true,
+		},
 		repository: {
 			type: "git",
 			url: `https://github.com/${owner}/${repository}`,
 		},
-		license: "MIT",
-		author: { email, name: author },
-		type: "module",
-		main: "./lib/index.js",
-		files: ["lib/", "package.json", "LICENSE.md", "README.md"],
 		scripts: {
 			build: "tsc",
 			format: 'prettier "**/*" --ignore-unknown',
@@ -59,15 +67,7 @@ export async function writePackageJson({
 			}),
 			...(unitTests && { test: "vitest" }),
 		},
-		"lint-staged": {
-			"*": "prettier --ignore-unknown --write",
-		},
-		packageManager: "pnpm@8.5.0",
-		engines: {
-			node: ">=18",
-		},
-		publishConfig: {
-			provenance: true,
-		},
+		type: "module",
+		types: undefined,
 	});
 }

@@ -1,5 +1,4 @@
 import fs from "node:fs/promises";
-
 import prettier from "prettier";
 
 import { InputValues } from "../../shared/inputs.js";

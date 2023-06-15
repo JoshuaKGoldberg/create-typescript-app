@@ -1,7 +1,6 @@
-import fs from "node:fs/promises";
-
 import chalk from "chalk";
 import { $ } from "execa";
+import fs from "node:fs/promises";
 import prettier from "prettier";
 
 import { readFileAsJson } from "../../shared/readFileAsJson.js";
@@ -23,7 +22,7 @@ export async function addOwnerAsAllContributor(owner: string) {
 		user = owner;
 	}
 
-	await $`npx -y all-contributors-cli add ${user} ${[
+	await $`npx -y all-contributors-cli@6.25 add ${user} ${[
 		"code",
 		"content",
 		"doc",
@@ -49,7 +48,7 @@ export async function addOwnerAsAllContributor(owner: string) {
 			JSON.stringify({
 				...existingContributors,
 				contributors: existingContributors.contributors
-					.filter(({ login }) => [user, "JoshuaKGoldberg"].includes(login))
+					.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
 					.map((contributor) =>
 						contributor.login === "JoshuaKGoldberg"
 							? { ...contributor, contributions: ["tool"] }

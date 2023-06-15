@@ -7,12 +7,12 @@ interface WorkflowFileConcurrency {
 
 interface WorkflowFileOn {
 	pull_request?:
-		| null
-		| string
 		| {
 				branches?: string | string[];
 				types?: string[];
-		  };
+		  }
+		| null
+		| string;
 	push?: {
 		branches: string[];
 	};
@@ -44,7 +44,7 @@ interface WorkflowFileOptionsBase {
 }
 
 interface WorkflowFileOptionsRuns extends WorkflowFileOptionsBase {
-	runs: (string | WorkflowFileStep)[];
+	runs: (WorkflowFileStep | string)[];
 }
 
 interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {

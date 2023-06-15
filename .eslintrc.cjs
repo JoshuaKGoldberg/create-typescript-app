@@ -17,6 +17,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
+		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
 		"prettier",
 	],
@@ -30,7 +31,6 @@ module.exports = {
 			extends: [
 				"plugin:jsdoc/recommended-typescript-error",
 				"plugin:@typescript-eslint/recommended",
-				"plugin:typescript-sort-keys/recommended",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
@@ -116,9 +116,8 @@ module.exports = {
 		"import",
 		"jsdoc",
 		"no-only-tests",
+		"perfectionist",
 		"regexp",
-		"simple-import-sort",
-		"typescript-sort-keys",
 		"vitest",
 	],
 	root: true,
@@ -127,8 +126,6 @@ module.exports = {
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 		"import/extensions": ["error", "ignorePackages"],
 		"no-only-tests/no-only-tests": "error",
-		"simple-import-sort/exports": "error",
-		"simple-import-sort/imports": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-constant-condition": "off",
@@ -136,7 +133,6 @@ module.exports = {
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
-		curly: ["error", "all"],
 		"padding-line-between-statements": "off",
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",

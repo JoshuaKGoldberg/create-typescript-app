@@ -21,5 +21,7 @@ export async function hydrateRepositorySettings(
 		has_wiki: false,
 		owner,
 		repo: repository,
+		squash_merge_commit_message: "PR_BODY",
+		squash_merge_commit_title: "PR_TITLE",
 	});
 }

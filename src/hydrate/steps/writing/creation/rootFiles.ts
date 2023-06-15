@@ -46,6 +46,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
+		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
 		"prettier",
 	],
@@ -59,7 +60,6 @@ module.exports = {
 			extends: [
 				"plugin:jsdoc/recommended-typescript-error",
 				"plugin:@typescript-eslint/recommended",
-				"plugin:typescript-sort-keys/recommended",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
@@ -139,8 +139,8 @@ module.exports = {
 		"deprecation",
 		"import",
 		"jsdoc",${values.unitTests ? `\n"no-only-tests",` : ""}
+		"perfectionist",
 		"regexp",
-		"simple-import-sort",
 		"typescript-sort-keys",${values.unitTests ? `\n"vitest",` : ""}
 	],
 	root: true,
@@ -150,8 +150,6 @@ module.exports = {
 		"import/extensions": ["error", "ignorePackages"],${
 			values.unitTests ? `\n"no-only-tests/no-only-tests": "error",` : ""
 		}
-		"simple-import-sort/exports": "error",
-		"simple-import-sort/imports": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-constant-condition": "off",
@@ -201,7 +199,6 @@ module.exports = {
 		]),
 		".prettierrc": formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
-			plugins: ["prettier-plugin-packagejson"],
 			overrides: [
 				{
 					files: ".*rc",
@@ -212,6 +209,7 @@ module.exports = {
 					options: { parser: "yaml" },
 				},
 			],
+			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
 			useTabs: true,
 		}),
 		".release-it.json": formatJson({

@@ -15,10 +15,16 @@ describe("getExistingEquivalentLabel", () => {
 		expect(actual).toBe(undefined);
 	});
 
-	it("returns the existing label when it matches by name", () => {
+	it("returns an existing un-prefixed label when it matches by name", () => {
 		const actual = getExistingEquivalentLabel(["def", "abc", "ghi"], "abc");
 
 		expect(actual).toBe("abc");
+	});
+
+	it("returns an existing prefixed label when it matches by name", () => {
+		const actual = getExistingEquivalentLabel(["abc: def"], "abc: def");
+
+		expect(actual).toBe("abc: def");
 	});
 
 	it("returns the existing label when it matches excluding prefix", () => {

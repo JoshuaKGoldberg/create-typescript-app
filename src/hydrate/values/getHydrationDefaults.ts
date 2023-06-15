@@ -6,7 +6,7 @@ import { readFileSafe } from "../readFileSafe.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
 
 interface PartialPackageData {
-	author?: string | { email: string; name: string };
+	author?: { email: string; name: string } | string;
 	description?: string;
 	email?: string;
 	name?: string;
@@ -56,7 +56,7 @@ export async function getHydrationDefaults() {
 				/origin\s+https:\/\/\S+\.\w+\/([^/]+)/
 			)?.[1],
 		releases: true,
-		unitTests: true,
 		title: existingReadme.match(/^(?:# |<h1\s+align="center">)(\S+)/)?.[1],
+		unitTests: true,
 	};
 }

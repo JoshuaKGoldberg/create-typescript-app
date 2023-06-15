@@ -22,8 +22,8 @@ export async function hydrate(args: string[]) {
 			"skip-install": { type: "boolean" },
 			"skip-setup": { type: "boolean" },
 		},
-		tokens: true,
 		strict: false,
+		tokens: true,
 	});
 
 	return await runOrRestore({

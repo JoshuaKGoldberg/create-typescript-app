@@ -50,7 +50,7 @@ export function createWorkflows({
 				{ uses: "./.github/actions/prepare" },
 				{
 					env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
-					uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.3.0`,
+					uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.3.1`,
 				},
 			],
 		}),
@@ -80,7 +80,6 @@ export function createWorkflows({
 				release: {
 					types: ["published"],
 				},
-				workflow_dispatch: null,
 			},
 			steps: [
 				{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },

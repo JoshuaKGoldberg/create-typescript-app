@@ -1,6 +1,6 @@
 {
 	"name": "template-typescript-node-package",
-	"version": "1.28.16",
+	"version": "1.28.19",
 	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
@@ -99,7 +99,7 @@
 		"vitest": "^0.32.0",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.6.1",
+	"packageManager": "pnpm@8.6.2",
 	"engines": {
 		"node": ">=18"
 	},

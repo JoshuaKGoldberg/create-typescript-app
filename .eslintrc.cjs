@@ -110,7 +110,6 @@ module.exports = {
 			},
 		},
 	],
-	/* eslint-enable perfectionist/sort-objects */
 	parser: "@typescript-eslint/parser",
 	plugins: [
 		"@typescript-eslint",
@@ -125,11 +124,8 @@ module.exports = {
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
+		"no-only-tests/no-only-tests": "error",
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-		"@typescript-eslint/padding-line-between-statements": [
-			"error",
-			{ blankLine: "always", next: "*", prev: "block-like" },
-		],
 		"import/extensions": ["error", "ignorePackages"],
 
 		// These on-by-default rules don't work well for this repo and we like them off.
@@ -137,8 +133,12 @@ module.exports = {
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
 
-		"no-only-tests/no-only-tests": "error",
 		// Stylistic concerns that don't interfere with Prettier
 		"padding-line-between-statements": "off",
+		"@typescript-eslint/padding-line-between-statements": [
+			"error",
+			{ blankLine: "always", next: "*", prev: "block-like" },
+		],
 	},
+	/* eslint-enable perfectionist/sort-objects */
 };

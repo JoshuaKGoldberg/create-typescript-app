@@ -21,6 +21,7 @@ module.exports = {
 		"plugin:regexp/recommended",
 		"prettier",
 	],
+	/* eslint-disable perfectionist/sort-objects -- https://github.com/azat-io/eslint-plugin-perfectionist/issues/22 */
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
@@ -46,11 +47,11 @@ module.exports = {
 			},
 		},
 		{
+			excludedFiles: ["**/*.md/*.ts"],
 			extends: [
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 				"plugin:@typescript-eslint/strict",
 			],
-			excludedFiles: ["**/*.md/*.ts"],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			parserOptions: {
@@ -70,13 +71,13 @@ module.exports = {
 			},
 		},
 		{
-			files: ["*.json", "*.jsonc"],
 			excludedFiles: ["package.json"],
+			extends: ["plugin:jsonc/recommended-with-json"],
+			files: ["*.json", "*.jsonc"],
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",
 			},
-			extends: ["plugin:jsonc/recommended-with-json"],
 		},
 		{
 			files: "**/*.test.ts",
@@ -109,6 +110,7 @@ module.exports = {
 			},
 		},
 	],
+	/* eslint-enable perfectionist/sort-objects */
 	parser: "@typescript-eslint/parser",
 	plugins: [
 		"@typescript-eslint",
@@ -124,19 +126,19 @@ module.exports = {
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-		"import/extensions": ["error", "ignorePackages"],
-		"no-only-tests/no-only-tests": "error",
-
-		// These on-by-default rules don't work well for this repo and we like them off.
-		"no-constant-condition": "off",
-		"no-case-declarations": "off",
-		"no-inner-declarations": "off",
-
-		// Stylistic concerns that don't interfere with Prettier
-		"padding-line-between-statements": "off",
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
+		"import/extensions": ["error", "ignorePackages"],
+
+		// These on-by-default rules don't work well for this repo and we like them off.
+		"no-case-declarations": "off",
+		"no-constant-condition": "off",
+		"no-inner-declarations": "off",
+
+		"no-only-tests/no-only-tests": "error",
+		// Stylistic concerns that don't interfere with Prettier
+		"padding-line-between-statements": "off",
 	},
 };

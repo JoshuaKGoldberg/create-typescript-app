@@ -10,6 +10,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           files: coverage-setup/lcov.info
+          flags: setup
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:

@@ -10,6 +10,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           files: coverage-hydrate/lcov.info
+          flags: hydrate
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:

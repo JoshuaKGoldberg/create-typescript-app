@@ -7,7 +7,7 @@
 		"lib",
 		"node_modules",
 		"pnpm-lock.yaml",
-		"src/setup/*.json"
+		"src/setup/**/*.json"
 	],
 	"words": [
 		"Codecov",

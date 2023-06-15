@@ -6,8 +6,7 @@
 		"CHANGELOG.md",
 		"lib",
 		"node_modules",
-		"pnpm-lock.yaml",
-		"src/setup/*.json"
+		"pnpm-lock.yaml"
 	],
 	"words": [
 		"Codecov",

@@ -299,6 +299,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				module: "esnext",
 				moduleResolution: "node",
 				outDir: "lib",
+				resolveJsonModule: true,
 				skipLibCheck: true,
 				sourceMap: true,
 				strict: true,

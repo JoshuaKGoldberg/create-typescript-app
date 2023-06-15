@@ -10,18 +10,14 @@ vi.mock("execa", () => ({
 	},
 }));
 
-const mockReadFileAsJson = vi.fn().mockResolvedValue([
-	{
-		color: "000000",
-		description: "def ghi",
-		name: "abc",
-	},
-]);
-
-vi.mock("../../../shared/readFileAsJson.js", () => ({
-	get readFileAsJson() {
-		return mockReadFileAsJson;
-	},
+vi.mock("./outcomeLabels.js", () => ({
+	outcomeLabels: [
+		{
+			color: "000000",
+			description: "def ghi",
+			name: "abc",
+		},
+	],
 }));
 
 describe("hydrateRepositoryLabels", () => {

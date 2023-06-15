@@ -1,7 +1,7 @@
 import { $ } from "execa";
 
 import { getExistingEquivalentLabel } from "./getExistingEquivalentLabel.js";
-import outcomeLabels from "./labels.json" assert { type: "json" };
+import { outcomeLabels } from "./outcomeLabels.js";
 
 interface GhLabelData {
 	name: string;

@@ -10,8 +10,8 @@ vi.mock("execa", () => ({
 	},
 }));
 
-vi.mock("./labels.json", () => ({
-	default: [
+vi.mock("./outcomeLabels.js", () => ({
+	outcomeLabels: [
 		{
 			color: "000000",
 			description: "def ghi",

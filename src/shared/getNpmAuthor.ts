@@ -1,7 +1,7 @@
 import chalk from "chalk";
 
 import { logLine } from "./cli/lines.js";
-import { getNpmUserInfo, type UserInfo } from "./getNpmUserInfo.js";
+import { type UserInfo, getNpmUserInfo } from "./getNpmUserInfo.js";
 
 export async function getNpmAuthor(): Promise<string | undefined>;
 export async function getNpmAuthor(owner: string): Promise<string>;

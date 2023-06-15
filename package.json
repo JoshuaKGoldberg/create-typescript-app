@@ -1,6 +1,6 @@
 {
 	"name": "template-typescript-node-package",
-	"version": "1.28.19",
+	"version": "1.28.20",
 	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
@@ -25,7 +25,7 @@
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"hydrate:test": "node script/hydrate-test-e2e.js",
-		"lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+		"lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package": "npmPkgJsonLint .",

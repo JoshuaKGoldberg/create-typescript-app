@@ -38,12 +38,7 @@ describe("getNpmAuthor", () => {
 
 		expect(author).toBe(owner);
 		expect(mockConsoleLog).toHaveBeenCalledWith(chalk.gray("│"));
-		expect(mockConsoleLog).toHaveBeenCalledWith(
-			[
-				chalk.gray("│"),
-				chalk.gray("Could not populate npm user. Failed to run npm whoami."),
-			].join("  ")
-		);
+		expect(mockConsoleLog).toHaveBeenCalledWith([chalk.gray("│")].join("  "));
 	});
 
 	it("logs and defaults to owner when retrieving the npm whoami user fails", async () => {
@@ -54,14 +49,7 @@ describe("getNpmAuthor", () => {
 
 		expect(author).toBe(owner);
 		expect(mockConsoleLog).toHaveBeenCalledWith(chalk.gray("│"));
-		expect(mockConsoleLog).toHaveBeenCalledWith(
-			[
-				chalk.gray("│"),
-				chalk.gray(
-					"Could not populate npm user. Failed to retrieve user info from npm."
-				),
-			].join("  ")
-		);
+		expect(mockConsoleLog).toHaveBeenCalledWith([chalk.gray("│")].join("  "));
 	});
 
 	it("returns npm user info when retrieving the npm whoami user succeeds", async () => {

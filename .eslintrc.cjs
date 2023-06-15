@@ -21,6 +21,7 @@ module.exports = {
 		"plugin:regexp/recommended",
 		"prettier",
 	],
+	/* eslint-disable perfectionist/sort-objects -- https://github.com/azat-io/eslint-plugin-perfectionist/issues/22 */
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
@@ -46,11 +47,11 @@ module.exports = {
 			},
 		},
 		{
+			excludedFiles: ["**/*.md/*.ts"],
 			extends: [
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
 				"plugin:@typescript-eslint/strict",
 			],
-			excludedFiles: ["**/*.md/*.ts"],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			parserOptions: {
@@ -70,13 +71,13 @@ module.exports = {
 			},
 		},
 		{
-			files: ["*.json", "*.jsonc"],
 			excludedFiles: ["package.json"],
+			extends: ["plugin:jsonc/recommended-with-json"],
+			files: ["*.json", "*.jsonc"],
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",
 			},
-			extends: ["plugin:jsonc/recommended-with-json"],
 		},
 		{
 			files: "**/*.test.ts",
@@ -128,8 +129,8 @@ module.exports = {
 		"no-only-tests/no-only-tests": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
-		"no-constant-condition": "off",
 		"no-case-declarations": "off",
+		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
@@ -139,4 +140,5 @@ module.exports = {
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
 	},
+	/* eslint-enable perfectionist/sort-objects */
 };

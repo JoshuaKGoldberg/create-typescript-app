@@ -28,7 +28,7 @@ vi.mock("../../shared/getNpmUserInfo.js", () => ({
 }));
 
 describe("readEmailIfExists", () => {
-	it('Reads email from the package "author" field', async () => {
+	it('reads email from the package "author" field', async () => {
 		const email = await readEmailIfExists(validAuthorPackage);
 
 		expect(email).toBe("author@package.com");

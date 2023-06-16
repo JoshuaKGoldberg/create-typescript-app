@@ -140,18 +140,17 @@ module.exports = {
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
-		"perfectionist/sort-objects": [
-			"error",
-			{
-				order: "asc",
-				type: "natural",
-				"partition-by-comment": true,
-			},
-		],
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
+		"perfectionist/sort-objects": [
+			"error",
+			{
+				order: "asc",
+				"partition-by-comment": true,
+				type: "natural",
+			},
+		],
 	},
-	/* eslint-enable perfectionist/sort-objects */
 };

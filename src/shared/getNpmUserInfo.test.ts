@@ -36,17 +36,17 @@ describe("getNpmUserInfo", () => {
 	});
 
 	it("returns an error result the npm whoami user fails", async () => {
-		mock$.mockRejectedValue({ stdout: npmUsername });
+		mock$.mockResolvedValue({ stdout: npmUsername });
 		mockNpmUser.mockRejectedValue("error");
 		const result = (await getNpmUserInfo()) as ErrorResult;
 
 		expect(result.succeeded).toBe(false);
 		expect(result.reason).toBe(
-			"Could not populate npm user. Failed to run npm whoami."
+			"Could not populate npm user. Failed to retrieve user info from npm."
 		);
 	});
 
-	it("returns an error result the npm whoami user fails", async () => {
+	it("returns a success result when the npm whoami user succeeds", async () => {
 		mock$.mockResolvedValue({ stdout: npmUsername });
 		mockNpmUser.mockResolvedValue({ name: npmUsername });
 		const result = (await getNpmUserInfo()) as SuccessResult;

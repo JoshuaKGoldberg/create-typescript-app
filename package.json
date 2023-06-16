@@ -41,12 +41,12 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
+		"@clack/prompts": "^0.6.3",
 		"chalk": "^5.2.0",
 		"execa": "^7.1.1",
 		"js-yaml": "^4.1.0"
 	},
 	"devDependencies": {
-		"@clack/prompts": "^0.6.3",
 		"@octokit/request-error": "^3.0.3",
 		"@types/eslint": "^8.37.0",
 		"@types/git-url-parse": "^9.0.1",

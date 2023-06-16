@@ -2,7 +2,17 @@ import { $ } from "execa";
 import npmUser, { type UserInfo } from "npm-user";
 
 export type { UserInfo };
-export async function getNpmUserInfo(): Promise<UserInfo> {
+export interface ErrorResult {
+	reason: string;
+	succeeded: false;
+}
+export interface SuccessResult {
+	succeeded: true;
+	value: UserInfo;
+}
+type Result = ErrorResult | SuccessResult;
+
+export async function getNpmUserInfo(): Promise<Result> {
 	let username;
 
 	try {
@@ -10,14 +20,20 @@ export async function getNpmUserInfo(): Promise<UserInfo> {
 
 		username = stdout;
 	} catch {
-		throw new Error("Could not populate npm user. Failed to run npm whoami.");
+		return {
+			reason: "Could not populate npm user. Failed to run npm whoami.",
+			succeeded: false,
+		};
 	}
 
 	try {
-		return npmUser(username);
+		const user = await npmUser(username);
+		return { succeeded: true, value: user };
 	} catch {
-		throw new Error(
-			"Could not populate npm user. Failed to retrieve user info from npm."
-		);
+		return {
+			reason:
+				"Could not populate npm user. Failed to retrieve user info from npm.",
+			succeeded: false,
+		};
 	}
 }

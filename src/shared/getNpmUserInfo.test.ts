@@ -1,6 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { getNpmUserInfo } from "./getNpmUserInfo.js";
+import {
+	ErrorResult,
+	SuccessResult,
+	getNpmUserInfo,
+} from "./getNpmUserInfo.js";
 
 const mock$ = vi.fn();
 
@@ -21,25 +25,33 @@ vi.mock("npm-user", () => ({
 const npmUsername = "test-npm-username";
 
 describe("getNpmUserInfo", () => {
-	it("logs and defaults to owner when npm whoami fails", async () => {
+	it("returns an error result when npm whoami fails", async () => {
 		mock$.mockRejectedValue({ stderr: "Oh no!" });
-		try {
-			await getNpmUserInfo();
-		} catch (error) {
-			expect((error as Error).message).toBe(
-				"Could not populate npm user. Failed to run npm whoami."
-			);
-		}
+		const result = (await getNpmUserInfo()) as ErrorResult;
+
+		expect(result.succeeded).toBe(false);
+		expect(result.reason).toBe(
+			"Could not populate npm user. Failed to run npm whoami."
+		);
 	});
 
-	it("logs and defaults to owner when retrieving the npm whoami user fails", async () => {
+	it("returns an error result the npm whoami user fails", async () => {
+		mock$.mockRejectedValue({ stdout: npmUsername });
+		mockNpmUser.mockRejectedValue("error");
+		const result = (await getNpmUserInfo()) as ErrorResult;
+
+		expect(result.succeeded).toBe(false);
+		expect(result.reason).toBe(
+			"Could not populate npm user. Failed to run npm whoami."
+		);
+	});
+
+	it("returns an error result the npm whoami user fails", async () => {
 		mock$.mockResolvedValue({ stdout: npmUsername });
-		try {
-			await getNpmUserInfo();
-		} catch (error) {
-			expect((error as Error).message).toBe(
-				"Could not populate npm user. Failed to retrieve user info from npm."
-			);
-		}
+		mockNpmUser.mockResolvedValue({ name: npmUsername });
+		const result = (await getNpmUserInfo()) as SuccessResult;
+
+		expect(result.succeeded).toBe(true);
+		expect(result.value).toStrictEqual({ name: npmUsername });
 	});
 });

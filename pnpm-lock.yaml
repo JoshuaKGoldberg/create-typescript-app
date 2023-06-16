@@ -86,8 +86,8 @@ devDependencies:
     specifier: ^3.1.0
     version: 3.1.0
   eslint-plugin-perfectionist:
-    specifier: ^1.1.2
-    version: 1.1.2(eslint@8.40.0)(typescript@5.0.4)
+    specifier: ^1.4.0
+    version: 1.4.0(eslint@8.40.0)(typescript@5.0.4)
   eslint-plugin-regexp:
     specifier: ^1.15.0
     version: 1.15.0(eslint@8.40.0)
@@ -3284,8 +3284,8 @@ packages:
     engines: {node: '>=5.0.0'}
     dev: true
 
-  /eslint-plugin-perfectionist@1.1.2(eslint@8.40.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-JG/rS7VnH6hXjWAGO83xCHTK+tgGRJyaDk5wGv2qTpnS8Iw+TpzSj/gQSJ2WAPaQJ9hEMN4OvrrUO1mzikUNEg==}
+  /eslint-plugin-perfectionist@1.4.0(eslint@8.40.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-9gO+qmuU1DYzoYeN2D0PqYrI1FlqMPYGsZTWUWnWPrMQdFGFtq7eYraeQ57/8ffNBbVX6e6HvQOJ9iok9DfJvw==}
     peerDependencies:
       eslint: '>=8.0.0'
     dependencies:

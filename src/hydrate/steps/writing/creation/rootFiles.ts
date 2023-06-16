@@ -142,20 +142,16 @@ module.exports = {
 		"import",
 		"jsdoc",${values.unitTests ? `\n"no-only-tests",` : ""}
 		"perfectionist",
-		"regexp",
-		"typescript-sort-keys",${values.unitTests ? `\n"vitest",` : ""}
+		"regexp",${values.unitTests ? `\n"vitest",` : ""}
 	],
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 		"import/extensions": ["error", "ignorePackages"],
-		"n/no-missing-import": [
-			"error",
-			{
-				allowModules: ["template-typescript-node-package"],
-			},
-		],${values.unitTests ? `\n"no-only-tests/no-only-tests": "error",` : ""}
+		"n/no-missing-import": "off",${
+			values.unitTests ? `\n"no-only-tests/no-only-tests": "error",` : ""
+		}
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-case-declarations": "off",

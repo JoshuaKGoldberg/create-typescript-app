@@ -7,6 +7,7 @@ const globPaths = [
 	...extensions("babel.config", "cjs", "cts", "js", "json", "mjs"),
 	...extensions("jest.config", "cjs", "js", "json", "mjs", "ts"),
 	"./src/**/*.js",
+	".circleci/config.yml",
 	".babelrc",
 	".npmignore",
 	"CODE_OF_CONDUCT.md",
@@ -15,6 +16,7 @@ const globPaths = [
 	"dist",
 	"lib",
 	"package-lock.json",
+	"travis.yml",
 	"yarn.lock",
 ];
 

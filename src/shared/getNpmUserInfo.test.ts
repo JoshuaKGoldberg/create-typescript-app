@@ -27,12 +27,12 @@ const npmUsername = "test-npm-username";
 describe("getNpmUserInfo", () => {
 	it("returns an error result when npm whoami fails", async () => {
 		mock$.mockRejectedValue({ stderr: "Oh no!" });
-		const result = (await getNpmUserInfo()) as ErrorResult;
+		const result = await getNpmUserInfo();
 
-		expect(result.succeeded).toBe(false);
-		expect(result.reason).toBe(
-			"Could not populate npm user. Failed to run npm whoami."
-		);
+		expect(result).toEqual({
+			reason: "Could not populate npm user. Failed to run npm whoami.",
+			succeeded: false,
+		});
 	});
 
 	it("returns an error result the npm whoami user fails", async () => {

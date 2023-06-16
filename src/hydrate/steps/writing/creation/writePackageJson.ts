@@ -2,6 +2,27 @@ import { readFileAsJson } from "../../../../shared/readFileAsJson.js";
 import { HydrationInputValues } from "../../../values/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
+const devDependenciesToRemove = [
+	"@babel/core",
+	"@babel/preset-env",
+	"@babel/preset-react",
+	"@babel/preset-typescript",
+	"@swc/jest",
+	"ava",
+	"babel-jest",
+	"commitlint",
+	"cson-parser",
+	"esbuild",
+	"eslint-config-prettier",
+	"eslint-plugin-prettier",
+	"eslint-plugin-simple-import-sort",
+	"jasmine",
+	"jest",
+	"mocha",
+	"npm-run-all",
+	"pretty-quick",
+];
+
 export async function writePackageJson({
 	author,
 	description,
@@ -20,12 +41,20 @@ export async function writePackageJson({
 	| "repository"
 	| "unitTests"
 >) {
+	const existingPackageJson = (await readFileAsJson(
+		"./package.json"
+	)) as object;
+
 	return formatJson({
 		// To start, copy over all existing package fields (e.g. "dependencies")
-		...((await readFileAsJson("./package.json")) as object),
+		...existingPackageJson,
 
 		author: { email, name: author },
 		description,
+
+		// We copy all existing dev dependencies except those we know are not used anymore
+		devDependencies: copyDevDependencies(existingPackageJson),
+
 		engines: {
 			node: ">=18",
 		},
@@ -70,4 +99,18 @@ export async function writePackageJson({
 		type: "module",
 		types: undefined,
 	});
+}
+
+function copyDevDependencies(existingPackageJson: object) {
+	const devDependencies =
+		"devDependencies" in existingPackageJson
+			? (existingPackageJson.devDependencies as Record<string, string>)
+			: {};
+
+	for (const devDependencyToRemove of devDependenciesToRemove) {
+		// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+		delete devDependencies[devDependencyToRemove];
+	}
+
+	return devDependencies;
 }

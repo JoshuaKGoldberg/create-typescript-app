@@ -140,7 +140,6 @@ module.exports = {
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
-		"padding-line-between-statements": "off",
 		"perfectionist/sort-objects": [
 			"error",
 			{

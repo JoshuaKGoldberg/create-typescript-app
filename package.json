@@ -45,7 +45,11 @@
 		"@clack/prompts": "^0.6.3",
 		"chalk": "^5.2.0",
 		"execa": "^7.1.1",
-		"js-yaml": "^4.1.0"
+		"git-remote-origin-url": "^4.0.0",
+		"git-url-parse": "^13.1.0",
+		"js-yaml": "^4.1.0",
+		"npm-user": "^5.0.1",
+		"title-case": "^3.0.3"
 	},
 	"devDependencies": {
 		"@octokit/request-error": "^3.0.3",
@@ -74,8 +78,6 @@
 		"eslint-plugin-regexp": "^1.15.0",
 		"eslint-plugin-vitest": "^0.2.2",
 		"eslint-plugin-yml": "^1.7.0",
-		"git-remote-origin-url": "^4.0.0",
-		"git-url-parse": "^13.1.0",
 		"globby": "^13.1.4",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
@@ -85,7 +87,6 @@
 		"markdownlint-cli": "^0.34.0",
 		"npm-package-json-lint": "^6.4.0",
 		"npm-package-json-lint-config-default": "^5.0.0",
-		"npm-user": "^5.0.1",
 		"octokit": "^2.0.14",
 		"prettier": "^2.8.8",
 		"prettier-plugin-curly": "^0.0.2",
@@ -94,7 +95,6 @@
 		"replace-in-file": "^7.0.0",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.1.1",
-		"title-case": "^3.0.3",
 		"tsx": "^3.12.7",
 		"typescript": "^5.0.4",
 		"vitest": "^0.32.0",

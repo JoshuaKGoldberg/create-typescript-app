@@ -28,7 +28,7 @@ export async function getHydrationDefaults() {
 
 			return fromPackage ?? (await getNpmAuthor());
 		},
-		email: readEmailIfExists(existingPackage),
+		email: () => readEmailIfExists(existingPackage),
 		funding: readFundingIfExists,
 		owner: async () =>
 			(await $`git remote -v`).stdout.match(

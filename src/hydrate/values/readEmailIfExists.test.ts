@@ -67,7 +67,7 @@ describe("readEmailIfExists", () => {
 			reason: "it doesn't matter",
 			succeeded: false,
 		});
-		mock$.mockResolvedValue("info@git.worked");
+		mock$.mockResolvedValue({ stdout: "info@git.worked" });
 		const email = await readEmailIfExists({});
 
 		expect(email).toBe("info@git.worked");

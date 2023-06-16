@@ -4,7 +4,9 @@ import type { PartialPackageData } from "./getHydrationDefaults.js";
 
 import { getNpmUserInfo } from "../../shared/getNpmUserInfo.js";
 
-export async function readEmailIfExists(existingPackage: PartialPackageData) {
+export async function readEmailIfExists(
+	existingPackage: PartialPackageData
+): Promise<string | undefined> {
 	const fromPackage =
 		typeof existingPackage.author === "string"
 			? existingPackage.author.split(/<|>/)[1]
@@ -19,7 +21,8 @@ export async function readEmailIfExists(existingPackage: PartialPackageData) {
 	}
 
 	try {
-		return await $`git config --get user.email`;
+		const { stdout } = await $`git config --get user.email`;
+		return stdout;
 	} catch {
 		return undefined;
 	}

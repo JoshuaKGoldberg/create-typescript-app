@@ -22,7 +22,6 @@ module.exports = {
 		"plugin:regexp/recommended",
 		"prettier",
 	],
-	/* eslint-disable perfectionist/sort-objects -- https://github.com/azat-io/eslint-plugin-perfectionist/issues/22 */
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
@@ -142,6 +141,14 @@ module.exports = {
 
 		// Stylistic concerns that don't interfere with Prettier
 		"padding-line-between-statements": "off",
+		"perfectionist/sort-objects": [
+			"error",
+			{
+				type: "natural",
+				order: "asc",
+				"partition-by-comment": true,
+			},
+		],
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },

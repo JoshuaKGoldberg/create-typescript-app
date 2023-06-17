@@ -195,6 +195,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jolg42",
+      "name": "Joël Galeran",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
+      "profile": "https://twitter.com/Jolg42",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

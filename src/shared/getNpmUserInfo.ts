@@ -2,11 +2,11 @@ import { $ } from "execa";
 import npmUser, { type UserInfo } from "npm-user";
 
 export type { UserInfo };
-export interface ErrorResult {
+interface ErrorResult {
 	reason: string;
 	succeeded: false;
 }
-export interface SuccessResult {
+interface SuccessResult {
 	succeeded: true;
 	value: UserInfo;
 }
@@ -17,7 +17,6 @@ export async function getNpmUserInfo(): Promise<Result> {
 
 	try {
 		const { stdout } = await $`npm whoami`;
-
 		username = stdout;
 	} catch {
 		return {

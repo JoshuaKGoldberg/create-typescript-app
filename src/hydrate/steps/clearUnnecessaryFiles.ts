@@ -12,6 +12,7 @@ const globPaths = [
 	".npmignore",
 	"CODE_OF_CONDUCT.md",
 	"CONTRIBUTING.md",
+	"codecov.yml",
 	"DEVELOPMENT.md",
 	"dist",
 	"lib",

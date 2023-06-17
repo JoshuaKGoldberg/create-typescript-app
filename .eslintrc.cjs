@@ -22,7 +22,6 @@ module.exports = {
 		"plugin:regexp/recommended",
 		"prettier",
 	],
-	/* eslint-disable perfectionist/sort-objects -- https://github.com/azat-io/eslint-plugin-perfectionist/issues/22 */
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],
@@ -127,25 +126,26 @@ module.exports = {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 		"import/extensions": ["error", "ignorePackages"],
-		"n/no-missing-import": [
-			"error",
-			{
-				allowModules: ["template-typescript-node-package"],
-			},
-		],
 		"no-only-tests/no-only-tests": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
+		"n/no-missing-import": "off",
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
-		"padding-line-between-statements": "off",
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
+		"perfectionist/sort-objects": [
+			"error",
+			{
+				order: "asc",
+				"partition-by-comment": true,
+				type: "natural",
+			},
+		],
 	},
-	/* eslint-enable perfectionist/sort-objects */
 };

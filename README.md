@@ -64,7 +64,7 @@ To use this template:
 5. `pnpm run setup` to run the setup script
 6. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
 
-> The setup script removes the `## Explainer` and `## Setup` from this README.md.
+> The setup script removes the `## Explainer`, `## Setup`, and `## Repository Hydration` sections from this README.md.
 
 ### Setup Options
 

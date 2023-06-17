@@ -9,7 +9,7 @@ const title = "Template TypeScript Node Package";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-hydrate -r html -r lcov node ./lib/hydrate/index.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-install --skip-setup`;
+})`c8 -o ./coverage-hydrate -r html -r lcov node ./bin/hydrate.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-install --skip-setup`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
@@ -33,6 +33,8 @@ const filesExpectedToBeChanged = new Set([
 	".eslintrc.cjs",
 	".github/DEVELOPMENT.md",
 	".github/workflows/release.yml",
+	".github/workflows/lint.yml",
+	".github/workflows/lint-knip.yml",
 	".github/workflows/test.yml",
 	".gitignore",
 	".prettierignore",

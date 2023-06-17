@@ -32,6 +32,17 @@ describe("writePackageJson", () => {
 		);
 	});
 
+	it("preserves existing devDependencies that aren't known to be unnecessary when they exist", async () => {
+		const devDependencies = { abc: "1.2.3", jest: "4.5.6" };
+		mockReadFileAsJson.mockResolvedValue({ devDependencies });
+
+		const packageJson = await writePackageJson(values);
+
+		expect(JSON.parse(packageJson)).toEqual(
+			expect.objectContaining({ devDependencies })
+		);
+	});
+
 	it("includes a release script when releases is true", async () => {
 		mockReadFileAsJson.mockResolvedValue({});
 

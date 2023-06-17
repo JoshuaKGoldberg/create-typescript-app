@@ -20,6 +20,7 @@ export async function finalizeDependencies({
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-jsonc",
 		"eslint-plugin-markdown",
+		"eslint-plugin-n",
 		"eslint-plugin-perfectionist",
 		"eslint-plugin-regexp",
 		"eslint-plugin-yml",

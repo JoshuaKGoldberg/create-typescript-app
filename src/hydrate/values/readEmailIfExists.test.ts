@@ -34,19 +34,13 @@ describe("readEmailIfExists", () => {
 		expect(email).toBe("author@package.com");
 	});
 
-	it("Reads email from the package email field if author is missing", async () => {
+	it("reads email from the email field in an author object", async () => {
 		const email = await readEmailIfExists(validEmailPackage);
 
 		expect(email).toBe("info@package.com");
 	});
 
-	it("Reads email from the email field if author is missing", async () => {
-		const email = await readEmailIfExists(validEmailPackage);
-
-		expect(email).toBe("info@package.com");
-	});
-
-	it("Reads email from getNpmUserInfo if available", async () => {
+	it("reads email from getNpmUserInfo if available", async () => {
 		mockGetNpmUserInfo.mockResolvedValue({
 			succeeded: true,
 			value: {
@@ -62,7 +56,7 @@ describe("readEmailIfExists", () => {
 		expect(email).toBe("info@npm.worked");
 	});
 
-	it("Reads email from git config if nothing else worked", async () => {
+	it("reads email from git config if nothing else worked", async () => {
 		mockGetNpmUserInfo.mockResolvedValue({
 			reason: "it doesn't matter",
 			succeeded: false,
@@ -73,7 +67,7 @@ describe("readEmailIfExists", () => {
 		expect(email).toBe("info@git.worked");
 	});
 
-	it("Return undefined if nothing worked", async () => {
+	it("return undefined if nothing worked", async () => {
 		mockGetNpmUserInfo.mockResolvedValue({
 			reason: "it doesn't matter",
 			succeeded: false,

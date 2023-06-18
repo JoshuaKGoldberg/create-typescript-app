@@ -66,12 +66,10 @@ describe("getNpmAuthor", () => {
 
 	it("returns npm user info when retrieving the npm whoami user succeeds", async () => {
 		const name = "Test Author <test@test.test>";
-
 		mock$.mockResolvedValue({ stdout: npmUsername });
 		mockNpmUser.mockResolvedValue({ name });
 
 		const author = await getNpmAuthor(owner);
-
 		expect(author).toBe(name);
 		expect(mockConsoleLog).not.toHaveBeenCalled();
 	});

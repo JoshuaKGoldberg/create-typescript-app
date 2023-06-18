@@ -31,6 +31,17 @@ describe("getNpmUserInfo", () => {
 		});
 	});
 
+	it("returns a success result when the npm whoami user succeeds", async () => {
+		mock$.mockResolvedValue({ stdout: npmUsername });
+		mockNpmUser.mockResolvedValue({ name: npmUsername });
+		const result = await getNpmUserInfo();
+
+		expect(result).toEqual({
+			succeeded: true,
+			value: { name: npmUsername },
+		});
+	});
+
 	it("returns an error result the npm whoami user fails", async () => {
 		mock$.mockResolvedValue({ stdout: npmUsername });
 		mockNpmUser.mockRejectedValue("error");
@@ -40,17 +51,6 @@ describe("getNpmUserInfo", () => {
 			reason:
 				"Could not populate npm user. Failed to retrieve user info from npm.",
 			succeeded: false,
-		});
-	});
-
-	it("returns a success result when the npm whoami user succeeds", async () => {
-		mock$.mockResolvedValue({ stdout: npmUsername });
-		mockNpmUser.mockResolvedValue({ name: npmUsername });
-		const result = await getNpmUserInfo();
-
-		expect(result).toEqual({
-			succeeded: true,
-			value: { name: npmUsername },
 		});
 	});
 });

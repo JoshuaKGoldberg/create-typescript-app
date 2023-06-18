@@ -19,7 +19,6 @@ export async function readEmailIfExists(
 	if (result.succeeded) {
 		return result.value.email;
 	}
-
 	try {
 		const { stdout } = await $`git config --get user.email`;
 		return stdout;

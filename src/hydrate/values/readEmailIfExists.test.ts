@@ -74,7 +74,6 @@ describe("readEmailIfExists", () => {
 		});
 		mock$.mockRejectedValue("");
 		const email = await readEmailIfExists({});
-
 		expect(email).toBe(undefined);
 	});
 });

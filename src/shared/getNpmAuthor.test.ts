@@ -24,8 +24,8 @@ describe("getNpmAuthor", () => {
 
 	it("logs and defaults to owner when getNpmUserInfo fails", async () => {
 		mockNpmUserInfo.mockResolvedValue({
-			succeeded: false,
 			reason: "Some reason",
+			succeeded: false,
 		});
 
 		const author = await getNpmAuthor(owner);
@@ -38,7 +38,6 @@ describe("getNpmAuthor", () => {
 
 	it("returns npm user info with only name when no email available for npm user", async () => {
 		const name = "Test Author";
-		const email = "<test@test.test>";
 		mockNpmUserInfo.mockResolvedValue({
 			succeeded: true,
 			value: { name },
@@ -54,11 +53,11 @@ describe("getNpmAuthor", () => {
 		const email = "<test@test.test>";
 		mockNpmUserInfo.mockResolvedValue({
 			succeeded: true,
-			value: { name, email },
+			value: { email, name },
 		});
 
 		const author = await getNpmAuthor(owner);
-		expect(author).toBe(`${name!} <${email}>`);
+		expect(author).toBe(`${name} <${email}>`);
 		expect(mockConsoleLog).not.toHaveBeenCalled();
 	});
 });

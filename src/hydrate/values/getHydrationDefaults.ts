@@ -1,10 +1,11 @@
 import { $ } from "execa";
 
+import type { PartialPackageData } from "./types.js";
+
 import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
 import { readFileSafe } from "../readFileSafe.js";
 import { readEmailIfExists } from "./readEmailIfExists.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
-import type { PartialPackageData } from "./types.js";
 
 export async function getHydrationDefaults() {
 	const existingReadme = await readFileSafe("./README.md", "");

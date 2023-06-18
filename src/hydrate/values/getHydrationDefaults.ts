@@ -4,14 +4,7 @@ import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
 import { readFileSafe } from "../readFileSafe.js";
 import { readEmailIfExists } from "./readEmailIfExists.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
-
-export interface PartialPackageData {
-	author?: { email: string; name: string } | string;
-	description?: string;
-	email?: string;
-	name?: string;
-	repository?: string;
-}
+import type { PartialPackageData } from "./types.js";
 
 export async function getHydrationDefaults() {
 	const existingReadme = await readFileSafe("./README.md", "");

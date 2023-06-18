@@ -1,6 +1,6 @@
 import { $ } from "execa";
 
-import type { PartialPackageData } from "./getHydrationDefaults.js";
+import type { PartialPackageData } from "./types.js";
 
 import { getNpmUserInfo } from "../../shared/getNpmUserInfo.js";
 

@@ -3,25 +3,16 @@ import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getNpmAuthor } from "./getNpmAuthor.js";
 
-const mock$ = vi.fn();
+const mockNpmUserInfo = vi.fn();
 
-vi.mock("execa", () => ({
-	get $() {
-		return mock$;
-	},
-}));
-
-const mockNpmUser = vi.fn();
-
-vi.mock("npm-user", () => ({
-	get default() {
-		return mockNpmUser;
+vi.mock("./getNpmUserInfo", () => ({
+	get getNpmUserInfo() {
+		return mockNpmUserInfo;
 	},
 }));
 
 let mockConsoleLog: SpyInstance;
 
-const npmUsername = "test-npm-username";
 const owner = "test-owner";
 
 describe("getNpmAuthor", () => {
@@ -31,46 +22,43 @@ describe("getNpmAuthor", () => {
 			.mockImplementation(() => undefined);
 	});
 
-	it("logs and defaults to owner when npm whoami fails", async () => {
-		mock$.mockRejectedValue({ stderr: "Oh no!" });
+	it("logs and defaults to owner when getNpmUserInfo fails", async () => {
+		mockNpmUserInfo.mockResolvedValue({
+			succeeded: false,
+			reason: "Some reason",
+		});
 
 		const author = await getNpmAuthor(owner);
 
 		expect(author).toBe(owner);
 		expect(mockConsoleLog).toHaveBeenCalledWith(
-			[
-				chalk.gray("│"),
-				chalk.gray("Could not populate npm user. Failed to run npm whoami."),
-			].join("  ")
-		);
-		expect(mockConsoleLog).toHaveBeenCalledWith([chalk.gray("│")].join("  "));
-	});
-
-	it("logs and defaults to owner when retrieving the npm whoami user fails", async () => {
-		mock$.mockResolvedValue({ stdout: npmUsername });
-		mockNpmUser.mockRejectedValue("Oh no!");
-
-		const author = await getNpmAuthor(owner);
-
-		expect(author).toBe(owner);
-		expect(mockConsoleLog).toHaveBeenCalledWith(chalk.gray("│"));
-		expect(mockConsoleLog).toHaveBeenCalledWith(
-			[
-				chalk.gray("│"),
-				chalk.gray(
-					"Could not populate npm user. Failed to retrieve user info from npm."
-				),
-			].join("  ")
+			[chalk.gray("│"), chalk.gray("Some reason")].join("  ")
 		);
 	});
 
-	it("returns npm user info when retrieving the npm whoami user succeeds", async () => {
-		const name = "Test Author <test@test.test>";
-		mock$.mockResolvedValue({ stdout: npmUsername });
-		mockNpmUser.mockResolvedValue({ name });
+	it("returns npm user info with only name when no email available for npm user", async () => {
+		const name = "Test Author";
+		const email = "<test@test.test>";
+		mockNpmUserInfo.mockResolvedValue({
+			succeeded: true,
+			value: { name },
+		});
 
 		const author = await getNpmAuthor(owner);
 		expect(author).toBe(name);
+		expect(mockConsoleLog).not.toHaveBeenCalled();
+	});
+
+	it("returns npm user info when getNpmUserInfo succeeds and contains all information", async () => {
+		const name = "Test Author";
+		const email = "<test@test.test>";
+		mockNpmUserInfo.mockResolvedValue({
+			succeeded: true,
+			value: { name, email },
+		});
+
+		const author = await getNpmAuthor(owner);
+		expect(author).toBe(`${name!} <${email}>`);
 		expect(mockConsoleLog).not.toHaveBeenCalled();
 	});
 });

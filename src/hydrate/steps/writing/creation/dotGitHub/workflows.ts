@@ -110,7 +110,7 @@ export function createWorkflows({
 		}),
 		"release.yml": createWorkflowFile({
 			concurrency: {
-				"cancel-in-progress": false,
+				"cancel-in-progress": true,
 				group: "${{ github.workflow }}",
 			},
 			name: "Release",

@@ -1,5 +1,5 @@
 concurrency:
-  cancel-in-progress: false
+  cancel-in-progress: true
   group: ${{ github.workflow }}
 
 jobs:

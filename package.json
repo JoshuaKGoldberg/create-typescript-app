@@ -1,6 +1,6 @@
 {
 	"name": "template-typescript-node-package",
-	"version": "1.28.32",
+	"version": "1.28.35",
 	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
@@ -90,7 +90,7 @@
 		"markdownlint-cli": "^0.34.0",
 		"npm-package-json-lint": "^6.4.0",
 		"npm-package-json-lint-config-default": "^5.0.0",
-		"prettier-plugin-curly": "^0.0.2",
+		"prettier-plugin-curly": "^0.1.0",
 		"prettier-plugin-packagejson": "^2.4.3",
 		"release-it": "^15.10.3",
 		"sentences-per-line": "^0.2.1",

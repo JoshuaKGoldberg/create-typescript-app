@@ -2,8 +2,8 @@ import { $ } from "execa";
 
 import type { PartialPackageData } from "./types.js";
 
-import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
 import { readFileSafe } from "../readFileSafe.js";
+import { readAuthorIfExists } from "./readAuthorIfExists.js";
 import { readEmailIfExists } from "./readEmailIfExists.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
 
@@ -14,14 +14,7 @@ export async function getHydrationDefaults() {
 	) as PartialPackageData;
 
 	return {
-		author: async () => {
-			const fromPackage =
-				typeof existingPackage.author === "string"
-					? existingPackage.author.split("<")[0].trim()
-					: existingPackage.author?.name;
-
-			return fromPackage ?? (await getNpmAuthor());
-		},
+		author: () => readAuthorIfExists(existingPackage),
 		email: () => readEmailIfExists(existingPackage),
 		funding: readFundingIfExists,
 		owner: async () =>

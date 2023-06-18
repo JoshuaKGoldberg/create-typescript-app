@@ -28,19 +28,19 @@ vi.mock("../../shared/getNpmUserInfo.js", () => ({
 }));
 
 describe("readEmailIfExists", () => {
-	it('reads email from the package "author" field', async () => {
+	it('reads email from the package "author" field when it exists', async () => {
 		const email = await readEmailIfExists(validAuthorPackage);
 
 		expect(email).toBe("author@package.com");
 	});
 
-	it("reads email from the email field in an author object", async () => {
+	it("reads email from the email field in an author object when it exists", async () => {
 		const email = await readEmailIfExists(validEmailPackage);
 
 		expect(email).toBe("info@package.com");
 	});
 
-	it("reads email from getNpmUserInfo if available", async () => {
+	it("reads email from getNpmUserInfo when available and no author information exists", async () => {
 		mockGetNpmUserInfo.mockResolvedValue({
 			succeeded: true,
 			value: {
@@ -56,7 +56,7 @@ describe("readEmailIfExists", () => {
 		expect(email).toBe("info@npm.worked");
 	});
 
-	it("reads email from git config if nothing else worked", async () => {
+	it("reads email from git config when it exists and nothing else worked", async () => {
 		mockGetNpmUserInfo.mockResolvedValue({
 			reason: "it doesn't matter",
 			succeeded: false,
@@ -67,7 +67,7 @@ describe("readEmailIfExists", () => {
 		expect(email).toBe("info@git.worked");
 	});
 
-	it("return undefined if nothing worked", async () => {
+	it("return undefined when nothing worked", async () => {
 		mockGetNpmUserInfo.mockResolvedValue({
 			reason: "it doesn't matter",
 			succeeded: false,

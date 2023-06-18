@@ -16,22 +16,23 @@ describe("readAuthorIfExists", () => {
 	it('reads author as a string from the existing package "author" field when it exists', async () => {
 		mockGetNpmAuthor.mockResolvedValue(npmAuthorMockResult);
 		const author = await readAuthorIfExists({
-			author: "Someone <someone@example.com>",
+			author: "John Doe <someone@example.com>",
 		});
 		expect(author).not.toBe(npmAuthorMockResult);
-		expect(author).toBe("Someone");
+		expect(author).not.toContain(" <someone@example.com>");
+		expect(author).toBe("John Doe");
 	});
 
 	it('reads author as an object from the existing package "author" field when it exists', async () => {
 		mockGetNpmAuthor.mockResolvedValue(npmAuthorMockResult);
 		const author = await readAuthorIfExists({
-			author: { email: "someone@example.com", name: "Someone" },
+			author: { email: "someone@example.com", name: "John Doe" },
 		});
 		expect(author).not.toBe(npmAuthorMockResult);
-		expect(author).toBe("Someone");
+		expect(author).toBe("John Doe");
 	});
 
-	it("reads missing author from getNpmAuthor when exists", async () => {
+	it("reads author from getNpmAuthor when author is missing from package", async () => {
 		mockGetNpmAuthor.mockResolvedValue(npmAuthorMockResult);
 		const author = await readAuthorIfExists({});
 		expect(author).toBe(npmAuthorMockResult);

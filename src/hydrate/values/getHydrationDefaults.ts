@@ -1,16 +1,11 @@
 import { $ } from "execa";
 
+import type { PartialPackageData } from "./types.js";
+
 import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
 import { readFileSafe } from "../readFileSafe.js";
+import { readEmailIfExists } from "./readEmailIfExists.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
-
-interface PartialPackageData {
-	author?: { email: string; name: string } | string;
-	description?: string;
-	email?: string;
-	name?: string;
-	repository?: string;
-}
 
 export async function getHydrationDefaults() {
 	const existingReadme = await readFileSafe("./README.md", "");
@@ -27,10 +22,7 @@ export async function getHydrationDefaults() {
 
 			return fromPackage ?? (await getNpmAuthor());
 		},
-		email:
-			typeof existingPackage.author === "string"
-				? existingPackage.author.split(/<|>/)[1]
-				: existingPackage.author?.email,
+		email: () => readEmailIfExists(existingPackage),
 		funding: readFundingIfExists,
 		owner: async () =>
 			(await $`git remote -v`).stdout.match(

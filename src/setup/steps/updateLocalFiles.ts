@@ -31,9 +31,11 @@ export async function updateLocalFiles({
 		[/JoshuaKGoldberg/g, owner],
 		[/template-typescript-node-package/g, repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
-		[/"setup": ".*",/g, ``, "./package.json"],
-		[/"setup:test": ".*",/g, ``, "./package.json"],
 		[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
+		[/"bin": ".+\n/g, ``, "./package.json"],
+		[/"hydrate:test": ".+\n/g, ``, "./package.json"],
+		[/"setup:test": ".*/g, ``, "./package.json"],
+		[/"setup": ".*/g, ``, "./package.json"],
 
 		[/## Explainer.*## Usage/gs, `## Usage`, "./README.md"],
 		[/\n### Testing the Setup Script.*$/gs, "", "./.github/DEVELOPMENT.md"],

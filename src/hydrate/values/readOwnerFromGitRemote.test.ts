@@ -10,8 +10,8 @@ vi.mock("execa", () => ({
 	},
 }));
 
-describe("readEmailIfExists", () => {
-	it('reads email from the package "author" field when it exists', async () => {
+describe("readOwnerFromGitRemote", () => {
+	it("reads owner from the git remote when it exists", async () => {
 		mock$.mockResolvedValue({
 			stdout:
 				"origin  https://github.com/Contributor/template-typescript-node-package.git (fetch)",
@@ -21,7 +21,7 @@ describe("readEmailIfExists", () => {
 		expect(result).toBe("Contributor");
 	});
 
-	it("does something when no remote available", async () => {
+	it("reads undefined when no remote available", async () => {
 		mock$.mockResolvedValue({ stdout: "" });
 		const result = await readOwnerFromGitRemote();
 		expect(result).toBe(undefined);

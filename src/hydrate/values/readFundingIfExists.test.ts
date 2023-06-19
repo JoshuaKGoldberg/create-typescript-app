@@ -4,8 +4,8 @@ import { readFundingIfExists } from "./readFundingIfExists.js";
 
 const mockReadFile = vi.fn();
 
-vi.mock("node:fs", () => ({
-	get promises() {
+vi.mock("node:fs/promises", () => ({
+	get default() {
 		return {
 			get readFile() {
 				return mockReadFile;

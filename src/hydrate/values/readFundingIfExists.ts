@@ -1,4 +1,4 @@
-import { promises as fs } from "node:fs";
+import fs from "node:fs/promises";
 
 export async function readFundingIfExists() {
 	try {

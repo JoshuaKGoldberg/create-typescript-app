@@ -1,7 +1,7 @@
 import { $ } from "execa";
-import { promises as fs } from "fs";
 import { globby } from "globby";
 import { strict as assert } from "node:assert";
+import fs from "node:fs/promises";
 
 const description = "New Description Test";
 const owner = "RNR1";

@@ -1,11 +1,10 @@
-import { $ } from "execa";
-
 import type { PartialPackageData } from "./types.js";
 
-import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
 import { readFileSafe } from "../readFileSafe.js";
+import { readAuthorIfExists } from "./readAuthorIfExists.js";
 import { readEmailIfExists } from "./readEmailIfExists.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
+import { readOwnerFromGitRemote } from "./readOwnerFromGitRemote.js";
 
 export async function getHydrationDefaults() {
 	const existingReadme = await readFileSafe("./README.md", "");
@@ -14,20 +13,10 @@ export async function getHydrationDefaults() {
 	) as PartialPackageData;
 
 	return {
-		author: async () => {
-			const fromPackage =
-				typeof existingPackage.author === "string"
-					? existingPackage.author.split("<")[0].trim()
-					: existingPackage.author?.name;
-
-			return fromPackage ?? (await getNpmAuthor());
-		},
+		author: () => readAuthorIfExists(existingPackage),
 		email: () => readEmailIfExists(existingPackage),
 		funding: readFundingIfExists,
-		owner: async () =>
-			(await $`git remote -v`).stdout.match(
-				/origin\s+https:\/\/\S+\.\w+\/([^/]+)/
-			)?.[1],
+		owner: readOwnerFromGitRemote,
 		releases: true,
 		title: existingReadme.match(/^(?:# |<h1\s+align="center">)(\S+)/)?.[1],
 		unitTests: true,

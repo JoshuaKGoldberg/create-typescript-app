@@ -4,7 +4,7 @@ import { readTitleFromReadme } from "./readTitleFromReadme.js";
 
 const mockReadFileSafe = vi.fn();
 
-vi.mock("../readFileSafe.ts", () => ({
+vi.mock("../readFileSafe.js", () => ({
 	get readFileSafe() {
 		return mockReadFileSafe;
 	},

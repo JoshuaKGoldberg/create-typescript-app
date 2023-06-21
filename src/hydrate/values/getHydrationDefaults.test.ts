@@ -4,7 +4,7 @@ import { getHydrationDefaults } from "./getHydrationDefaults.js";
 
 const mockReadFileSafe = vi.fn();
 
-vi.mock("../readFileSafe.ts", () => ({
+vi.mock("../readFileSafe.js", () => ({
 	get readFileSafe() {
 		return mockReadFileSafe;
 	},
@@ -12,7 +12,7 @@ vi.mock("../readFileSafe.ts", () => ({
 
 const mockReadFundingIfExists = vi.fn();
 
-vi.mock("./readFundingIfExists.ts", () => ({
+vi.mock("./readFundingIfExists.js", () => ({
 	get readFundingIfExists() {
 		return mockReadFundingIfExists;
 	},
@@ -20,7 +20,7 @@ vi.mock("./readFundingIfExists.ts", () => ({
 
 const mockReadOwnerFromGitRemote = vi.fn();
 
-vi.mock("./readOwnerFromGitRemote.ts", () => ({
+vi.mock("./readOwnerFromGitRemote.js", () => ({
 	get readOwnerFromGitRemote() {
 		return mockReadOwnerFromGitRemote;
 	},
@@ -28,7 +28,7 @@ vi.mock("./readOwnerFromGitRemote.ts", () => ({
 
 const mockReadTitleFromReadme = vi.fn();
 
-vi.mock("./readTitleFromReadme.ts", () => ({
+vi.mock("./readTitleFromReadme.js", () => ({
 	get readTitleFromReadme() {
 		return mockReadTitleFromReadme;
 	},
@@ -44,14 +44,12 @@ describe("getHydrationDefaults", () => {
 		mockReadOwnerFromGitRemote.mockResolvedValue("SUM1");
 
 		const result = await getHydrationDefaults();
-		expect(result).toEqual({
-			author: "Someone",
-			email: "someone@test.com",
-			funding: "Someone",
-			owner: "SUM1",
-			releases: true,
-			title: "My Awesome Package",
-			unitTests: true,
-		});
+		expect(await result.author()).toBe("Someone");
+		expect(await result.email()).toBe("someone@test.com");
+		expect(await result.funding()).toBe("Someone");
+		expect(await result.owner()).toBe("SUM1");
+		expect(result.releases).toBe(true);
+		expect(await result.title()).toBe("My Awesome Package");
+		expect(result.unitTests).toBe(true);
 	});
 });

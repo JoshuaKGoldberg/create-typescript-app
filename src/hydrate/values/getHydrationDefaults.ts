@@ -13,12 +13,12 @@ export async function getHydrationDefaults() {
 	) as PartialPackageData;
 
 	return {
-		author: await readAuthorIfExists(existingPackage),
-		email: await readEmailIfExists(existingPackage),
-		funding: await readFundingIfExists(),
-		owner: await readOwnerFromGitRemote(),
+		author: () => readAuthorIfExists(existingPackage),
+		email: () => readEmailIfExists(existingPackage),
+		funding: () => readFundingIfExists(),
+		owner: () => readOwnerFromGitRemote(),
 		releases: true,
-		title: await readTitleFromReadme(),
+		title: () => readTitleFromReadme(),
 		unitTests: true,
 	};
 }

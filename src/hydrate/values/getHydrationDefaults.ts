@@ -5,9 +5,9 @@ import { readAuthorIfExists } from "./readAuthorIfExists.js";
 import { readEmailIfExists } from "./readEmailIfExists.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";
 import { readOwnerFromGitRemote } from "./readOwnerFromGitRemote.js";
+import { readTitleFromReadme } from "./readTitleFromReadme.js";
 
 export async function getHydrationDefaults() {
-	const existingReadme = await readFileSafe("./README.md", "");
 	const existingPackage = JSON.parse(
 		await readFileSafe("./package.json", "{}")
 	) as PartialPackageData;
@@ -18,7 +18,7 @@ export async function getHydrationDefaults() {
 		funding: readFundingIfExists,
 		owner: readOwnerFromGitRemote,
 		releases: true,
-		title: existingReadme.match(/^(?:# |<h1\s+align="center">)(\S+)/)?.[1],
+		title: readTitleFromReadme,
 		unitTests: true,
 	};
 }

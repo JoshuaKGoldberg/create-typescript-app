@@ -15,10 +15,10 @@ export async function getHydrationDefaults() {
 	return {
 		author: () => readAuthorIfExists(existingPackage),
 		email: () => readEmailIfExists(existingPackage),
-		funding: () => readFundingIfExists(),
-		owner: () => readOwnerFromGitRemote(),
+		funding: readFundingIfExists,
+		owner: readOwnerFromGitRemote,
 		releases: true,
-		title: () => readTitleFromReadme(),
+		title: readTitleFromReadme,
 		unitTests: true,
 	};
 }

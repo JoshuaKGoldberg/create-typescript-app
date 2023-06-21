@@ -128,8 +128,8 @@ devDependencies:
     specifier: ^2.3.0
     version: 2.3.0
   knip:
-    specifier: 2.13.0
-    version: 2.13.0
+    specifier: 2.14.0
+    version: 2.14.0
   lint-staged:
     specifier: ^13.2.2
     version: 13.2.2
@@ -137,8 +137,8 @@ devDependencies:
     specifier: ^0.29.0
     version: 0.29.0
   markdownlint-cli:
-    specifier: ^0.34.0
-    version: 0.34.0
+    specifier: ^0.35.0
+    version: 0.35.0
   npm-package-json-lint:
     specifier: ^6.4.0
     version: 6.4.0
@@ -1039,7 +1039,7 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
       '@npmcli/name-from-folder': 2.0.0
-      glob: 10.2.2
+      glob: 10.2.7
       minimatch: 9.0.1
       read-package-json-fast: 3.0.2
     dev: true
@@ -2387,6 +2387,11 @@ packages:
   /commander@10.0.1:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
+    dev: true
+
+  /commander@11.0.0:
+    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
+    engines: {node: '>=16'}
     dev: true
 
   /commander@4.1.1:
@@ -3771,8 +3776,8 @@ packages:
       is-glob: 4.0.3
     dev: true
 
-  /glob@10.2.2:
-    resolution: {integrity: sha512-Xsa0BcxIC6th9UwNjZkhrMtNo/MnyRL8jGCP+uEwhA5oFOCY1f2s1/oNKY47xQ0Bg5nkjsfAEIej1VeH62bDDQ==}
+  /glob@10.2.7:
+    resolution: {integrity: sha512-jTKehsravOJo8IJxUGfZILnkvVJM/MOfHRs8QcXolVef2zNI9Tqyy5+SeuOAZd3upViEZQLyFpQhYiHLrMUNmA==}
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
     dependencies:
@@ -4714,8 +4719,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /knip@2.13.0:
-    resolution: {integrity: sha512-KDka1j4vajJ4V4s7T/DnXHy9ExjFj+8P3LQDQgi3T1DKhv0K90fPAEyp5mALV/nx/i4rwdAdczVYftpOpGaoTQ==}
+  /knip@2.14.0:
+    resolution: {integrity: sha512-YcJScUrNniXq8Dn8wyr4Bwn3y3vYUt3H+OVyVZnjQ+DDwWHuaDUMJ9qw93sk/M7ZFFIEI93JwgJofHZ5IPCSug==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     dependencies:
@@ -5036,25 +5041,20 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
-  /markdownlint-cli@0.34.0:
-    resolution: {integrity: sha512-4G9I++VBTZkaye6Yfc/7dU6HQHcyldZEVB+bYyQJLcpJOHKk/q5ZpGqK80oKMIdlxzsA3aWOJLZ4DkoaoUWXbQ==}
-    engines: {node: '>=14'}
+  /markdownlint-cli@0.35.0:
+    resolution: {integrity: sha512-lVIIIV1MrUtjoocgDqXLxUCxlRbn7Ve8rsWppfwciUNwLlNS28AhNiyQ3PU7jjj4Qvj+rWTTvwkqg7AcdG988g==}
+    engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      commander: 10.0.1
+      commander: 11.0.0
       get-stdin: 9.0.0
-      glob: 10.2.2
+      glob: 10.2.7
       ignore: 5.2.4
       js-yaml: 4.1.0
       jsonc-parser: 3.2.0
-      markdownlint: 0.28.2
+      markdownlint: 0.29.0
       minimatch: 9.0.1
       run-con: 1.2.11
-    dev: true
-
-  /markdownlint-micromark@0.1.2:
-    resolution: {integrity: sha512-jRxlQg8KpOfM2IbCL9RXM8ZiYWz2rv6DlZAnGv8ASJQpUh6byTBnEsbuMZ6T2/uIgntyf7SKg/mEaEBo1164fQ==}
-    engines: {node: '>=14.18.0'}
     dev: true
 
   /markdownlint-micromark@0.1.5:
@@ -5067,14 +5067,6 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       markdown-it: 8.4.2
-    dev: true
-
-  /markdownlint@0.28.2:
-    resolution: {integrity: sha512-yYaQXoKKPV1zgrFsyAuZPEQoe+JrY9GDag9ObKpk09twx4OCU5lut+0/kZPrQ3W7w82SmgKhd7D8m34aG1unVw==}
-    engines: {node: '>=14.18.0'}
-    dependencies:
-      markdown-it: 13.0.1
-      markdownlint-micromark: 0.1.2
     dev: true
 
   /markdownlint@0.29.0:

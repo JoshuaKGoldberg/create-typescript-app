@@ -225,6 +225,12 @@ Once all feedback is addressed and the PR is approved, we'll ensure the branch i
 
 Once your PR is merged, if you haven't yet been added to the [_Contributors_ table in the README.md](../README.md#contributors) for its [type of contribution](https://allcontributors.org/docs/en/emoji-key "Allcontributors emoji key"), you should be soon.
 Please do ping the maintainer who merged your PR if that doesn't happen within 24 hours - it was likely an oversight on our end!
+
+## Emojis & Appreciation
+
+If you made it all the way to the end, bravo dear user, we love you.
+Please include your favorite emoji in the bottom of your issues and PRs to signal to us that you did in fact read this file and are trying to conform to it as best as possible.
+💖 is a good starter if you're not sure which to use.
 `,
 		"DEVELOPMENT.md": `# Development
 

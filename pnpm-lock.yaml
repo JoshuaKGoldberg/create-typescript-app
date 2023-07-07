@@ -143,8 +143,8 @@ devDependencies:
     specifier: ^7.0.0
     version: 7.0.0
   npm-package-json-lint-config-default:
-    specifier: ^5.0.0
-    version: 5.0.0(npm-package-json-lint@7.0.0)
+    specifier: ^6.0.0
+    version: 6.0.0(npm-package-json-lint@7.0.0)
   prettier-plugin-curly:
     specifier: ^0.1.0
     version: 0.1.1(prettier@2.8.8)
@@ -5366,11 +5366,11 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
 
-  /npm-package-json-lint-config-default@5.0.0(npm-package-json-lint@7.0.0):
-    resolution: {integrity: sha512-guf+bECFtVz6sekPBmkf/m/k8gbX16F5S9wZI6cvhrkSEl+AhM2GoCU6alOhbaGbkn0PgbNRcRrsuu4jWEZFHQ==}
-    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+  /npm-package-json-lint-config-default@6.0.0(npm-package-json-lint@7.0.0):
+    resolution: {integrity: sha512-Ek3EcbMEjvGSxEywxNF2tTHuzvtaUH48Z7sljmeSejANMSpE1ssIN0oOG/Tlpc+U/P7ElfsOySIjijjmEnvMGw==}
+    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
-      npm-package-json-lint: ^6.0.0
+      npm-package-json-lint: ^7.0.0
     dependencies:
       npm-package-json-lint: 7.0.0
     dev: true

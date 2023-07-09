@@ -55,7 +55,7 @@
 		"title-case": "^3.0.3"
 	},
 	"devDependencies": {
-		"@octokit/request-error": "^3.0.3",
+		"@octokit/request-error": "^4.0.0",
 		"@types/eslint": "^8.37.0",
 		"@types/git-url-parse": "^9.0.1",
 		"@types/js-yaml": "^4.0.5",

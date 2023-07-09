@@ -41,8 +41,8 @@ dependencies:
 
 devDependencies:
   '@octokit/request-error':
-    specifier: ^3.0.3
-    version: 3.0.3
+    specifier: ^4.0.0
+    version: 4.0.0
   '@types/eslint':
     specifier: ^8.37.0
     version: 8.37.0
@@ -1277,6 +1277,15 @@ packages:
       '@octokit/types': 9.3.2
       deprecation: 2.3.1
       once: 1.4.0
+
+  /@octokit/request-error@4.0.0:
+    resolution: {integrity: sha512-RDoDgQpneiCvoh/0mrqfd5MBInW9cSeat0tvLy2Kc5wgpJf46gJ0TCsRzXFjEHWp+qcUAkaFpmrszk2WsfEuvw==}
+    engines: {node: '>= 18'}
+    dependencies:
+      '@octokit/types': 9.3.2
+      deprecation: 2.3.1
+      once: 1.4.0
+    dev: true
 
   /@octokit/request@6.2.3:
     resolution: {integrity: sha512-TNAodj5yNzrrZ/VxP+H5HiYaZep0H3GU0O7PaF+fhDrt8FPrnkei9Aal/txsN/1P7V3CPiThG0tIvpPDYUsyAA==}

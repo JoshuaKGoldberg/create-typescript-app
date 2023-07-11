@@ -7,7 +7,15 @@
 		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["dedupe", "gh"],
-	"ignoreDependencies": ["all-contributors-cli", "c8"],
+	"ignoreDependencies": [
+		"all-contributors-cli",
+		"c8",
+
+		// https://github.com/webpro/knip/issues/154
+		"@typescript-eslint/eslint-plugin-strict-type-checked",
+		"@typescript-eslint/eslint-plugin-stylistic",
+		"@typescript-eslint/eslint-plugin-stylistic-type-checked"
+	],
 	"ignoreExportsUsedInFile": {
 		"interface": true,
 		"type": true

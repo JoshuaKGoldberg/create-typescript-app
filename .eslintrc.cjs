@@ -81,6 +81,12 @@ module.exports = {
 			},
 		},
 		{
+			files: ["*.jsonc"],
+			rules: {
+				"jsonc/no-comments": "off",
+			},
+		},
+		{
 			files: "**/*.test.ts",
 			rules: {
 				// These on-by-default rules aren't useful in test files.

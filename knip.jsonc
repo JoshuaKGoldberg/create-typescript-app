@@ -8,6 +8,7 @@
 	],
 	"ignoreBinaries": ["dedupe", "gh"],
 	"ignoreDependencies": [
+		// TODO: investigate if these are still flagged, and file issues if not
 		"all-contributors-cli",
 		"c8",
 

@@ -31,7 +31,8 @@ module.exports = {
 		{
 			extends: [
 				"plugin:jsdoc/recommended-typescript-error",
-				"plugin:@typescript-eslint/recommended",
+				"plugin:@typescript-eslint/strict",
+				"plugin:@typescript-eslint/stylistic",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
@@ -49,8 +50,8 @@ module.exports = {
 		{
 			excludedFiles: ["**/*.md/*.ts"],
 			extends: [
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
-				"plugin:@typescript-eslint/strict",
+				"plugin:@typescript-eslint/strict-type-checked",
+				"plugin:@typescript-eslint/stylistic-type-checked",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
@@ -77,6 +78,12 @@ module.exports = {
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",
+			},
+		},
+		{
+			files: ["*.jsonc"],
+			rules: {
+				"jsonc/no-comments": "off",
 			},
 		},
 		{

@@ -3,5 +3,5 @@ import { createStructure } from "./creation/index.js";
 import { writeStructureWorker } from "./writeStructureWorker.js";
 
 export async function writeStructure(values: HydrationInputValues) {
-	return await writeStructureWorker(await createStructure(values), ".");
+	await writeStructureWorker(await createStructure(values), ".");
 }

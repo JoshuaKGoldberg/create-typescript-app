@@ -128,8 +128,8 @@ devDependencies:
     specifier: ^2.3.0
     version: 2.3.0
   knip:
-    specifier: 2.14.3
-    version: 2.14.3
+    specifier: 2.15.0
+    version: 2.15.0
   lint-staged:
     specifier: ^13.2.2
     version: 13.2.2
@@ -4602,8 +4602,8 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: true
 
-  /jiti@1.18.2:
-    resolution: {integrity: sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==}
+  /jiti@1.19.1:
+    resolution: {integrity: sha512-oVhqoRDaBXf7sjkll95LHVS6Myyyb1zaunVwk4Z0+WPSW4gjS0pl01zYKHScTuyEhQsFxV5L4DR5r+YqSyqyyg==}
     hasBin: true
     dev: true
 
@@ -4740,8 +4740,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /knip@2.14.3:
-    resolution: {integrity: sha512-TDjWB828W5FlSNIemoUj9MK4+NsE5AkTuSt75+V+4hIbsgu29Ftfu1vuQwXv8cIXpRTTX8RN39YUxzTmtiFUTA==}
+  /knip@2.15.0:
+    resolution: {integrity: sha512-W3+gmOhoLknMx2EA0vcIzyHf/BAxXLDaIHWE14zBjgihi9VY+dUGlGCNSKWZTOl8BpqVjLFBCEEsky+Nguieog==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     dependencies:
@@ -4752,7 +4752,7 @@ packages:
       easy-table: 1.2.0
       fast-glob: 3.2.12
       globby: 13.2.1
-      jiti: 1.18.2
+      jiti: 1.19.1
       js-yaml: 4.1.0
       micromatch: 4.0.5
       minimist: 1.2.8
@@ -7115,6 +7115,7 @@ packages:
   /vm2@3.9.19:
     resolution: {integrity: sha512-J637XF0DHDMV57R6JyVsTak7nIL8gy5KH4r1HiwWLf/4GBbb5MKL5y7LpmF4A8E2nR6XmzpmMFQ7V7ppPTmUQg==}
     engines: {node: '>=6.0'}
+    deprecated: The library contains critical security issues and should not be used for production! The maintenance of the project has been discontinued. Consider migrating your code to isolated-vm.
     hasBin: true
     dependencies:
       acorn: 8.10.0

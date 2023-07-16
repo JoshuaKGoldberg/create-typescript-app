@@ -30,8 +30,8 @@ dependencies:
     specifier: ^3.0.0
     version: 3.0.0
   prettier:
-    specifier: ^2.8.8
-    version: 2.8.8
+    specifier: ^3.0.0
+    version: 3.0.0
   replace-in-file:
     specifier: ^7.0.0
     version: 7.0.0
@@ -147,10 +147,10 @@ devDependencies:
     version: 6.0.0(npm-package-json-lint@7.0.0)
   prettier-plugin-curly:
     specifier: ^0.1.0
-    version: 0.1.1(prettier@2.8.8)
+    version: 0.1.1(prettier@3.0.0)
   prettier-plugin-packagejson:
     specifier: ^2.4.3
-    version: 2.4.3(prettier@2.8.8)
+    version: 2.4.3(prettier@3.0.0)
   release-it:
     specifier: ^16.0.0
     version: 16.0.0
@@ -5876,7 +5876,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-curly@0.1.1(prettier@2.8.8):
+  /prettier-plugin-curly@0.1.1(prettier@3.0.0):
     resolution: {integrity: sha512-nbisA1XyqbaN47pi1ZLOc+oQ2uWaPTovJ3zMF4s/q47hwcFcc3j+60S4tSsgP1qEvo1qyRXmY9Wb4/hCRANpxQ==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -5884,12 +5884,12 @@ packages:
     dependencies:
       '@babel/parser': 7.22.5
       '@babel/traverse': 7.22.5
-      prettier: 2.8.8
+      prettier: 3.0.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /prettier-plugin-packagejson@2.4.3(prettier@2.8.8):
+  /prettier-plugin-packagejson@2.4.3(prettier@3.0.0):
     resolution: {integrity: sha512-kPeeviJiwy0BgOSk7No8NmzzXfW4R9FYWni6ziA5zc1kGVVrKnBzMZdu2TUhI+I7h8/5Htt3vARYOk7KKJTTNQ==}
     peerDependencies:
       prettier: '>= 1.16.0'
@@ -5897,14 +5897,14 @@ packages:
       prettier:
         optional: true
     dependencies:
-      prettier: 2.8.8
+      prettier: 3.0.0
       sort-package-json: 2.4.1
       synckit: 0.8.5
     dev: true
 
-  /prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
+  /prettier@3.0.0:
+    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+    engines: {node: '>=14'}
     hasBin: true
 
   /pretty-format@29.6.1:

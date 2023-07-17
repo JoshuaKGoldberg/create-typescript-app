@@ -41,7 +41,7 @@ export interface InputValuesAndOctokit {
 
 export async function getInputValuesAndOctokit(
 	args: string[],
-	defaults: Partial<GetterDefaultInputValues> = {}
+	defaults: Partial<GetterDefaultInputValues> = {},
 ): Promise<InputValuesAndOctokit> {
 	const { defaultOwner, defaultRepository } = await getDefaultSettings();
 	const { values } = parseArgs({
@@ -70,7 +70,7 @@ export async function getInputValuesAndOctokit(
 		"owner",
 		values.owner as string | undefined,
 		"What owner or user will the repository be under?",
-		defaultOwner
+		defaultOwner,
 	);
 
 	const octokit = await getOctokit(!!values["skip-api"]);
@@ -84,22 +84,22 @@ export async function getInputValuesAndOctokit(
 			"repository",
 			values.repository as string | undefined,
 			"What will the kebab-case name of the repository be?",
-			defaultRepository
-		)
+			defaultRepository,
+		),
 	);
 
 	const title = await prompter.getPrefillOrPromptedValue(
 		"title",
 		values.title as string | undefined,
 		"What will the Title Case title of the repository be?",
-		titleCase(repository).replaceAll("-", " ")
+		titleCase(repository).replaceAll("-", " "),
 	);
 
 	const description = await prompter.getPrefillOrPromptedValue(
 		"description",
 		values.description as string | undefined,
 		"How would you describe the new package?",
-		"A very lovely package. Hooray!"
+		"A very lovely package. Hooray!",
 	);
 
 	return {
@@ -107,21 +107,21 @@ export async function getInputValuesAndOctokit(
 		values: {
 			author: await optionalDefault(
 				values.author as string | undefined,
-				defaults.author
+				defaults.author,
 			),
 			description,
 			email: await optionalDefault(
 				values.email as string | undefined,
-				defaults.email
+				defaults.email,
 			),
 			funding: await optionalDefault(
 				values.funding as string | undefined,
-				defaults.funding
+				defaults.funding,
 			),
 			owner,
 			releases: await optionalDefault(
 				values.releases as boolean | undefined,
-				defaults.releases
+				defaults.releases,
 			),
 			repository,
 			skipApi: !!values["skip-api"],
@@ -131,7 +131,7 @@ export async function getInputValuesAndOctokit(
 			title,
 			unitTests: await optionalDefault(
 				values.unitTests as boolean | undefined,
-				defaults.unitTests
+				defaults.unitTests,
 			),
 		},
 	};

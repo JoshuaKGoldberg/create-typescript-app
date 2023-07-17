@@ -7,7 +7,7 @@ import { handleCancel, handlePromptCancel } from "./prompts.js";
 export async function ensureRepositoryExists(
 	octokit: Octokit | undefined,
 	owner: string,
-	repository: string
+	repository: string,
 ) {
 	if (!octokit) {
 		return repository;

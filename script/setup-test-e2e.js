@@ -14,7 +14,7 @@ await $({
 })`node ./lib/setup/index.js --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-restore`;
 
 const newPackageJson = JSON.parse(
-	(await fs.readFile("./package.json")).toString()
+	(await fs.readFile("./package.json")).toString(),
 );
 console.log("New package JSON:", newPackageJson);
 
@@ -33,7 +33,7 @@ for (const search of [
 	const { stdout } = await $`grep -i ${search} ${files}`;
 	assert.equal(
 		stdout,
-		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`
+		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
 	);
 }
 

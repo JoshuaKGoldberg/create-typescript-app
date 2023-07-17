@@ -19,7 +19,7 @@ describe("readTitleFromReadme", () => {
 
 	it('reads title as HTML from "README.md" when it exists', async () => {
 		mockReadFileSafe.mockResolvedValue(
-			'<h1 align="center">My Awesome Package</h1>'
+			'<h1 align="center">My Awesome Package</h1>',
 		);
 		const result = await readTitleFromReadme();
 		expect(result).toBe("My Awesome Package");

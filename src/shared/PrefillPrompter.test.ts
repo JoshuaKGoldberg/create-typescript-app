@@ -28,7 +28,7 @@ describe("PrefillPrompter", () => {
 		const actual = await prompter.getPrefillOrPromptedValue(
 			"key",
 			existing,
-			""
+			"",
 		);
 
 		expect(actual).toEqual(existing);
@@ -46,7 +46,7 @@ describe("PrefillPrompter", () => {
 		const actual = await prompter.getPrefillOrPromptedValue(
 			"key 2",
 			"existing 2",
-			""
+			"",
 		);
 
 		expect(actual).toEqual("existing 2");
@@ -66,7 +66,7 @@ describe("PrefillPrompter", () => {
 		const actual = await prompter.getPrefillOrPromptedValue(
 			"key",
 			undefined,
-			""
+			"",
 		);
 
 		expect(actual).toEqual(expected);

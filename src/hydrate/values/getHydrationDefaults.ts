@@ -9,7 +9,7 @@ import { readTitleFromReadme } from "./readTitleFromReadme.js";
 
 export async function getHydrationDefaults() {
 	const existingPackage = JSON.parse(
-		await readFileSafe("./package.json", "{}")
+		await readFileSafe("./package.json", "{}"),
 	) as PartialPackageData;
 
 	return {

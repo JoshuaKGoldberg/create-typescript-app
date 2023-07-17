@@ -16,7 +16,7 @@ export function successSpinnerBlock(blockText: string) {
 export async function withSpinner<Return>(
 	callback: () => Promise<Return>,
 	label: string,
-	warningHint?: string
+	warningHint?: string,
 ) {
 	s.start(`${upperFirst(label)}...`);
 

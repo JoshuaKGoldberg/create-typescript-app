@@ -32,7 +32,7 @@ describe("getNpmAuthor", () => {
 
 		expect(author).toBe(owner);
 		expect(mockConsoleLog).toHaveBeenCalledWith(
-			[chalk.gray("│"), chalk.gray("Some reason")].join("  ")
+			[chalk.gray("│"), chalk.gray("Some reason")].join("  "),
 		);
 	});
 

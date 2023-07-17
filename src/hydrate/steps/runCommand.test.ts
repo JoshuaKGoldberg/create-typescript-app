@@ -42,7 +42,7 @@ describe("runCommand", () => {
 				chalk.yellow(`⚠️ Running \``),
 				chalk.yellowBright("command"),
 				chalk.yellow(`\` failed. You should run it and fix its complaints.`),
-			].join("")
+			].join(""),
 		);
 	});
 });

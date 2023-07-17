@@ -3,7 +3,7 @@ import type { PartialPackageData } from "./types";
 import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
 
 export async function readAuthorIfExists(
-	existingPackage: PartialPackageData
+	existingPackage: PartialPackageData,
 ): Promise<string | undefined> {
 	const fromPackage =
 		typeof existingPackage.author === "string"

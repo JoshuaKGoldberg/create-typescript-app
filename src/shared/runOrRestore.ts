@@ -26,7 +26,7 @@ export async function runOrRestore({
 	console.log(
 		chalk.greenBright`Welcome to the`,
 		chalk.bgGreenBright.black`template-typescript-node-package`,
-		chalk.greenBright(`package ${label} script! 🎉`)
+		chalk.greenBright(`package ${label} script! 🎉`),
 	);
 	console.log();
 
@@ -35,8 +35,8 @@ export async function runOrRestore({
 	try {
 		prompts.intro(
 			chalk.blue(
-				"Let's collect some information to fill out repository details..."
-			)
+				"Let's collect some information to fill out repository details...",
+			),
 		);
 
 		const { octokit, values } = await getInputValuesAndOctokit(args, defaults);
@@ -59,7 +59,7 @@ export async function runOrRestore({
 		return 0;
 	} catch (error) {
 		prompts.outro(
-			chalk.red`Looks like there was a problem. Correct it and try again? 😕`
+			chalk.red`Looks like there was a problem. Correct it and try again? 😕`,
 		);
 
 		console.log();
@@ -68,7 +68,7 @@ export async function runOrRestore({
 		if (skipRestore) {
 			console.log();
 			console.log(
-				chalk.gray`Skipping restoring local repository, as requested.`
+				chalk.gray`Skipping restoring local repository, as requested.`,
 			);
 			console.log();
 		} else {
@@ -82,7 +82,7 @@ export async function runOrRestore({
 				console.log();
 				console.log(
 					chalk.gray`Resetting repository using`,
-					chalk.reset`git restore .`
+					chalk.reset`git restore .`,
 				);
 				await $`git restore .`;
 				console.log("Repository is reset. Ready to try again?");

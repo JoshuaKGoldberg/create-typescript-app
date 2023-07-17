@@ -20,7 +20,7 @@ describe("writeStructureWorker", () => {
 			{
 				file: "content",
 			},
-			"."
+			".",
 		);
 
 		expect(mockMkdir).toHaveBeenCalledWith(".", { recursive: true });
@@ -46,7 +46,7 @@ describe("writeStructureWorker", () => {
 					file: "content",
 				},
 			},
-			"."
+			".",
 		);
 
 		expect(mockMkdir).toHaveBeenCalledWith(".", { recursive: true });

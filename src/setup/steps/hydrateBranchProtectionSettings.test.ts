@@ -6,7 +6,7 @@ import { hydrateBranchProtectionSettings } from "./hydrateBranchProtectionSettin
 const createMockOctokit = (request: SpyInstance) =>
 	({
 		request,
-	} as unknown as Octokit);
+	}) as unknown as Octokit;
 
 const stubValues = { owner: "", repository: "" };
 
@@ -16,7 +16,7 @@ describe("hydrateBranchProtectionSettings", () => {
 
 		const actual = await hydrateBranchProtectionSettings(
 			createMockOctokit(mockRequest),
-			stubValues
+			stubValues,
 		);
 
 		expect(actual).toBe(false);
@@ -29,8 +29,8 @@ describe("hydrateBranchProtectionSettings", () => {
 		await expect(() =>
 			hydrateBranchProtectionSettings(
 				createMockOctokit(mockRequest),
-				stubValues
-			)
+				stubValues,
+			),
 		).rejects.toBe(error);
 	});
 });

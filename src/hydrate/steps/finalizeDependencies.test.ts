@@ -51,7 +51,7 @@ describe("finalize", () => {
 				"yaml-eslint-parser@latest",
 				"-D",
 			].join(" "),
-			{ stdio: "inherit" }
+			{ stdio: "inherit" },
 		);
 	});
 
@@ -101,7 +101,7 @@ describe("finalize", () => {
 				"vitest@latest",
 				"-D",
 			].join(" "),
-			{ stdio: "inherit" }
+			{ stdio: "inherit" },
 		);
 	});
 });

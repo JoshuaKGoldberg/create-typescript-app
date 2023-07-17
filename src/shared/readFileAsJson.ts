@@ -6,7 +6,7 @@ export async function readFileAsJson(filePath: string) {
 	} catch (error) {
 		throw new Error(
 			`Could not read file from ${filePath} as JSON. Please ensure the file exists and is valid JSON.`,
-			{ cause: error }
+			{ cause: error },
 		);
 	}
 }

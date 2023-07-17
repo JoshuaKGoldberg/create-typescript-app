@@ -6,12 +6,12 @@ import { createDotVSCode } from "./dotVSCode.js";
 import { createRootFiles } from "./rootFiles.js";
 
 export async function createStructure(
-	values: HydrationInputValues
+	values: HydrationInputValues,
 ): Promise<Structure> {
 	return {
 		".github": createDotGitHub(values),
 		".husky": createDotHusky(),
-		".vscode": createDotVSCode(),
+		".vscode": await createDotVSCode(),
 		...(await createRootFiles(values)),
 	};
 }

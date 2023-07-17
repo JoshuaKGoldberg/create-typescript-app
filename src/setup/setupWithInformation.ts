@@ -24,36 +24,32 @@ export async function setupWithInformation({
 }: InputValuesAndOctokit) {
 	successSpinnerBlock("Started hydrating package metadata locally.");
 
-	await withSpinner(
-		() => addOwnerAsAllContributor(values.owner),
-		"updating existing contributors details..."
-	);
+	await withSpinner(async () => {
+		await addOwnerAsAllContributor(values.owner);
+	}, "updating existing contributors details...");
 
 	const npmAuthor = await getNpmAuthor(values.owner);
 
-	await withSpinner(
-		() => updateLocalFiles({ ...values, npmAuthor }),
-		"Updating all the files with provided details."
-	);
+	await withSpinner(async () => {
+		await updateLocalFiles({ ...values, npmAuthor });
+	}, "Updating all the files with provided details.");
 
-	await withSpinner(
-		() => updateAllContributorsFile(values),
-		"Updating '.all-contributorsrc' with new repository details."
-	);
+	await withSpinner(async () => {
+		await updateAllContributorsFile(values);
+	}, "Updating '.all-contributorsrc' with new repository details.");
 
 	await withSpinner(
 		updateReadme,
-		"Appending template-typescript-node-package notice to 'README.md'"
+		"Appending template-typescript-node-package notice to 'README.md'",
 	);
 
 	successSpinnerBlock(`Finished hydrating package metadata locally.`);
 
 	await withSpinner(clearChangelog, "clearing CHANGELOG.md");
 
-	await withSpinner(
-		() => updateAllContributorsTable(values),
-		"generating all-contributors table in README.md"
-	);
+	await withSpinner(async () => {
+		await updateAllContributorsTable(values);
+	}, "generating all-contributors table in README.md");
 
 	await withSpinner(resetGitTags, "deleting local git tags...");
 
@@ -64,15 +60,14 @@ export async function setupWithInformation({
 
 		await withSpinner(hydrateRepositoryLabels, "hydrating repository labels");
 
-		await withSpinner(
-			() => hydrateRepositorySettings(octokit, values),
-			"hydrating initial repository settings"
-		);
+		await withSpinner(async () => {
+			await hydrateRepositorySettings(octokit, values);
+		}, "hydrating initial repository settings");
 
 		await withSpinner(
 			() => hydrateBranchProtectionSettings(octokit, values),
 			"hydrating branch protection settings",
-			"private repositories require GitHub Pro for that API."
+			"private repositories require GitHub Pro for that API.",
 		);
 
 		successSpinnerBlock(`Finished API hydration.`);

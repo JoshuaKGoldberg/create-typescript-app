@@ -16,8 +16,8 @@ export async function addOwnerAsAllContributor(owner: string) {
 	} catch {
 		console.warn(
 			chalk.gray(
-				`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'.`
-			)
+				`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'.`,
+			),
 		);
 		user = owner;
 	}
@@ -34,17 +34,17 @@ export async function addOwnerAsAllContributor(owner: string) {
 	].join(",")}`;
 
 	const existingContributors = (await readFileAsJson(
-		"./.all-contributorsrc"
+		"./.all-contributorsrc",
 	)) as AllContributorsData;
 	if (!isValidAllContributorsData(existingContributors)) {
 		throw new Error(
-			`Invalid .all-contributorsrc: ${JSON.stringify(existingContributors)}`
+			`Invalid .all-contributorsrc: ${JSON.stringify(existingContributors)}`,
 		);
 	}
 
 	await fs.writeFile(
 		"./.all-contributorsrc",
-		prettier.format(
+		await prettier.format(
 			JSON.stringify({
 				...existingContributors,
 				contributors: existingContributors.contributors
@@ -52,11 +52,11 @@ export async function addOwnerAsAllContributor(owner: string) {
 					.map((contributor) =>
 						contributor.login === "JoshuaKGoldberg"
 							? { ...contributor, contributions: ["tool"] }
-							: contributor
+							: contributor,
 					),
 			}),
-			{ parser: "json" }
-		)
+			{ parser: "json" },
+		),
 	);
 }
 
@@ -65,7 +65,7 @@ interface AllContributorsData {
 }
 
 function isValidAllContributorsData(
-	value: unknown
+	value: unknown,
 ): value is AllContributorsData {
 	return !!value && typeof value === "object" && "contributors" in value;
 }

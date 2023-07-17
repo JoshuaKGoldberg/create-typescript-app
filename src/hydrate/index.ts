@@ -37,12 +37,12 @@ export async function hydrate(args: string[]) {
 
 			await withSpinner(
 				() => writeStructure(hydrationValues),
-				"writing new repository structure"
+				"writing new repository structure",
 			);
 
 			await withSpinner(
 				() => writeReadme(hydrationValues),
-				"writing README.md"
+				"writing README.md",
 			);
 
 			if (hydrationSkips["skip-install"]) {
@@ -50,7 +50,7 @@ export async function hydrate(args: string[]) {
 			} else {
 				await withSpinner(
 					() => finalizeDependencies(hydrationValues),
-					"finalizing dependencies"
+					"finalizing dependencies",
 				);
 			}
 

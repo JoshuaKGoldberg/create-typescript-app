@@ -9,12 +9,12 @@ export async function augmentWithHydrationValues(values: InputValues) {
 		author: await prompter.getPrefillOrPromptedValue(
 			"author",
 			values.author,
-			"What author will be used for the owner?"
+			"What author will be used for the owner?",
 		),
 		email: await prompter.getPrefillOrPromptedValue(
 			"email",
 			values.email,
-			"What email will be used for the owner?"
+			"What email will be used for the owner?",
 		),
 	};
 }

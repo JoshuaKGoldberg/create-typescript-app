@@ -15,7 +15,7 @@ describe("optionalDefault", () => {
 		const value = "abc";
 
 		const actual = await optionalDefault(undefined, () =>
-			Promise.resolve(value)
+			Promise.resolve(value),
 		);
 
 		expect(actual).toBe(value);

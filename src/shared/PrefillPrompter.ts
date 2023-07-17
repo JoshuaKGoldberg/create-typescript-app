@@ -11,7 +11,7 @@ export class PrefillPrompter {
 		key: string,
 		existingValue: string | undefined,
 		message: string,
-		placeholder?: string
+		placeholder?: string,
 	) {
 		if (existingValue) {
 			if (this.#shouldLogLineBeforePrefill) {

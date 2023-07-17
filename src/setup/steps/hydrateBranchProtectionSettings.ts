@@ -5,7 +5,7 @@ import { InputValues } from "../../shared/inputs.js";
 
 export async function hydrateBranchProtectionSettings(
 	octokit: Octokit,
-	{ owner, repository }: Pick<InputValues, "owner" | "repository">
+	{ owner, repository }: Pick<InputValues, "owner" | "repository">,
 ) {
 	try {
 		await octokit.request(
@@ -39,7 +39,7 @@ export async function hydrateBranchProtectionSettings(
 					strict: false,
 				},
 				restrictions: null,
-			}
+			},
 		);
 	} catch (error) {
 		if ((error as RequestError).status === 403) {

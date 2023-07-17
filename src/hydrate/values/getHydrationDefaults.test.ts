@@ -38,7 +38,7 @@ describe("getHydrationDefaults", () => {
 	it("reads hydration defaults from existing readme and package json when exists", async () => {
 		mockReadTitleFromReadme.mockResolvedValue("My Awesome Package");
 		mockReadFileSafe.mockResolvedValueOnce(
-			'{"author":"Someone <someone@test.com>"}'
+			'{"author":"Someone <someone@test.com>"}',
 		);
 		mockReadFundingIfExists.mockResolvedValue("Someone");
 		mockReadOwnerFromGitRemote.mockResolvedValue("SUM1");

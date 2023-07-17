@@ -5,7 +5,7 @@ import { writePackageJson } from "./writePackageJson.js";
 
 export async function createRootFiles(values: HydrationInputValues) {
 	return {
-		".all-contributorsrc": formatJson({
+		".all-contributorsrc": await formatJson({
 			badgeTemplate:
 				'<img alt="All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/all_contributors-<%= contributors.length %>-21bb42.svg" />',
 			commit: false,
@@ -174,7 +174,7 @@ module.exports = {
 			"lib/",
 			"node_modules/",
 		]),
-		".markdownlint.json": formatJson({
+		".markdownlint.json": await formatJson({
 			extends: "markdownlint/style/prettier",
 			"first-line-h1": false,
 			"no-inline-html": false,
@@ -185,7 +185,7 @@ module.exports = {
 			"lib/",
 			"node_modules/",
 		]),
-		".npmpackagejsonlintrc.json": formatJson({
+		".npmpackagejsonlintrc.json": await formatJson({
 			extends: "npm-package-json-lint-config-default",
 			rules: {
 				"require-description": "error",
@@ -201,7 +201,7 @@ module.exports = {
 			"# See https://github.com/all-contributors/cli/issues/347",
 			".all-contributorsrc",
 		]),
-		".prettierrc": formatJson({
+		".prettierrc": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
 			overrides: [
 				{
@@ -216,7 +216,7 @@ module.exports = {
 			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
 			useTabs: true,
 		}),
-		".release-it.json": formatJson({
+		".release-it.json": await formatJson({
 			git: {
 				commitMessage: "chore: release v${version}",
 				requireCommits: true,
@@ -248,7 +248,7 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 `,
-		"cspell.json": formatJson({
+		"cspell.json": await formatJson({
 			dictionaries: ["typescript"],
 			ignorePaths: [
 				".github",
@@ -276,18 +276,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				"wontfix",
 			],
 		}),
-		"knip.jsonc": formatJson({
+		"knip.jsonc": await formatJson({
 			$schema: "https://unpkg.com/knip@next/schema.json",
 			entry: ["src/index.ts!", "script/setup*.js"],
 			ignoreBinaries: ["dedupe", "gh"],
 			project: ["src/**/*.ts!", "script/**/*.js"],
 		}),
 		"package.json": await writePackageJson(values),
-		"tsconfig.eslint.json": formatJson({
+		"tsconfig.eslint.json": await formatJson({
 			extends: "./tsconfig.json",
 			include: ["."],
 		}),
-		"tsconfig.json": formatJson({
+		"tsconfig.json": await formatJson({
 			compilerOptions: {
 				declaration: true,
 				declarationMap: true,

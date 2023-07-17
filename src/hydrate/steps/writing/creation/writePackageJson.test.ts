@@ -28,7 +28,7 @@ describe("writePackageJson", () => {
 		const packageJson = await writePackageJson(values);
 
 		expect(JSON.parse(packageJson)).toEqual(
-			expect.objectContaining({ dependencies })
+			expect.objectContaining({ dependencies }),
 		);
 	});
 
@@ -39,7 +39,7 @@ describe("writePackageJson", () => {
 		const packageJson = await writePackageJson(values);
 
 		expect(JSON.parse(packageJson)).toEqual(
-			expect.objectContaining({ devDependencies })
+			expect.objectContaining({ devDependencies }),
 		);
 	});
 
@@ -56,7 +56,7 @@ describe("writePackageJson", () => {
 				scripts: expect.objectContaining({
 					"should-semantic-release": "should-semantic-release --verbose",
 				}),
-			})
+			}),
 		);
 	});
 
@@ -73,7 +73,7 @@ describe("writePackageJson", () => {
 				scripts: expect.objectContaining({
 					test: "vitest",
 				}),
-			})
+			}),
 		);
 	});
 });

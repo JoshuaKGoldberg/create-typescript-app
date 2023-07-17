@@ -22,13 +22,13 @@ const owner = "StubOwner";
 const repository = "stub-repository";
 
 const createMockOctokit = (
-	repos: Partial<Record<keyof Octokit["rest"]["repos"], SpyInstance>>
+	repos: Partial<Record<keyof Octokit["rest"]["repos"], SpyInstance>>,
 ) =>
 	({
 		rest: {
 			repos,
 		},
-	} as unknown as Octokit);
+	}) as unknown as Octokit;
 
 describe("ensureRepositoryExists", () => {
 	beforeEach(() => {
@@ -57,7 +57,7 @@ describe("ensureRepositoryExists", () => {
 		});
 
 		await expect(() =>
-			ensureRepositoryExists(octokit, owner, repository)
+			ensureRepositoryExists(octokit, owner, repository),
 		).rejects.toEqual(error);
 	});
 

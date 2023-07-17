@@ -25,7 +25,7 @@ on:
   push:
     branches:
       - main
-`
+`,
 		);
 	});
 });

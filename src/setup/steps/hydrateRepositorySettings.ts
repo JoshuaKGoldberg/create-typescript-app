@@ -9,7 +9,7 @@ type HydrateRepositoryValues = Pick<
 
 export async function hydrateRepositorySettings(
 	octokit: Octokit,
-	{ description, owner, repository }: HydrateRepositoryValues
+	{ description, owner, repository }: HydrateRepositoryValues,
 ) {
 	await octokit.rest.repos.update({
 		allow_auto_merge: true,

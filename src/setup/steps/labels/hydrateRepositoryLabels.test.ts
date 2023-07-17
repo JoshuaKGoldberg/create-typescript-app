@@ -39,7 +39,7 @@ describe("hydrateRepositoryLabels", () => {
 			"create",
 			"abc",
 			"000000",
-			"def ghi"
+			"def ghi",
 		);
 	});
 
@@ -61,7 +61,7 @@ describe("hydrateRepositoryLabels", () => {
 			"edit",
 			"abc",
 			"000000",
-			"def ghi"
+			"def ghi",
 		);
 	});
 
@@ -80,7 +80,7 @@ describe("hydrateRepositoryLabels", () => {
 
 		expect(mock$).toHaveBeenCalledWith(
 			["gh label delete ", " --yes"],
-			"unknown"
+			"unknown",
 		);
 		expect(mock$).toHaveBeenCalledTimes(3);
 	});
@@ -100,7 +100,7 @@ describe("hydrateRepositoryLabels", () => {
 
 		expect(mock$).not.toHaveBeenCalledWith(
 			["gh label delete ", " --yes"],
-			"abc"
+			"abc",
 		);
 		expect(mock$).toHaveBeenCalledTimes(2);
 	});

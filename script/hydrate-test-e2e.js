@@ -15,11 +15,11 @@ const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
 
 const indexOfUnstagedFilesMessage = gitStatus.indexOf(
-	"Changes not staged for commit:"
+	"Changes not staged for commit:",
 );
 if (indexOfUnstagedFilesMessage === -1) {
 	throw new Error(
-		`Looks like hydrate didn't cause any file changes? That's ...probably incorrect? 😬`
+		`Looks like hydrate didn't cause any file changes? That's ...probably incorrect? 😬`,
 	);
 }
 
@@ -55,7 +55,7 @@ if (unstagedModifiedFiles.length) {
 	console.log(
 		`Stdout from running \`${gitDiffCommand}\`:\n${
 			(await execaCommand(gitDiffCommand)).stdout
-		}`
+		}`,
 	);
 	console.error(
 		[
@@ -70,7 +70,7 @@ if (unstagedModifiedFiles.length) {
 			"the corresponding template and update those as well.",
 		]
 			.map((line) => chalk.red(line))
-			.join("\n")
+			.join("\n"),
 	);
 	process.exitCode = 1;
 }

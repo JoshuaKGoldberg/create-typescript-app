@@ -7,7 +7,7 @@ export function handleCancel() {
 }
 
 export function handlePromptCancel(
-	value: boolean | string | symbol
+	value: boolean | string | symbol,
 ): asserts value is boolean | string {
 	if (prompts.isCancel(value)) {
 		handleCancel();

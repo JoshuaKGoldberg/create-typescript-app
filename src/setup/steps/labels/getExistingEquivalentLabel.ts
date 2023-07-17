@@ -5,7 +5,7 @@ const aliases = new Map([
 
 export function getExistingEquivalentLabel(
 	existingLabels: string[],
-	outcomeLabel: string
+	outcomeLabel: string,
 ) {
 	const outcomeTrimmed = outcomeLabel.replace(/\w+: (\w+)/, "$1");
 

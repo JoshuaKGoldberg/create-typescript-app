@@ -30,7 +30,7 @@ describe("getExistingEquivalentLabel", () => {
 	it("returns the existing label when it matches excluding prefix", () => {
 		const actual = getExistingEquivalentLabel(
 			["abc: def", "abc", "ghi"],
-			"type: abc"
+			"type: abc",
 		);
 
 		expect(actual).toBe("abc");
@@ -39,7 +39,7 @@ describe("getExistingEquivalentLabel", () => {
 	it("returns the existing label when it matches an alias", () => {
 		const actual = getExistingEquivalentLabel(
 			["abc: def", "enhancement", "ghi"],
-			"type: feature"
+			"type: feature",
 		);
 
 		expect(actual).toBe("enhancement");

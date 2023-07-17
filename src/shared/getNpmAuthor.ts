@@ -6,7 +6,7 @@ import { getNpmUserInfo } from "./getNpmUserInfo.js";
 export async function getNpmAuthor(): Promise<string | undefined>;
 export async function getNpmAuthor(owner: string): Promise<string>;
 export async function getNpmAuthor(
-	owner?: string | undefined
+	owner?: string | undefined,
 ): Promise<string | undefined> {
 	const result = await getNpmUserInfo();
 	if (!result.succeeded) {

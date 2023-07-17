@@ -362,7 +362,7 @@ We appreciate your efforts and responsible disclosure and will make every effort
 				stabilityDays: 3,
 			},
 			null,
-			4
+			4,
 		),
 	};
 }

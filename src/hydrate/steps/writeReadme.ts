@@ -28,7 +28,7 @@ export async function writeReadme(values: HydrationInputValues) {
 	if (!contents) {
 		await fs.writeFile(
 			"README.md",
-			[generateTopContent(values), allContributorsContent].join("\n\n")
+			[generateTopContent(values), allContributorsContent].join("\n\n"),
 		);
 		return;
 	}

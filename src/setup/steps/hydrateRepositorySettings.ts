@@ -21,6 +21,17 @@ export async function hydrateRepositorySettings(
 		has_wiki: false,
 		owner,
 		repo: repository,
+		security_and_analysis: {
+			advanced_security: {
+				status: "enabled",
+			},
+			secret_scanning: {
+				status: "enabled",
+			},
+			secret_scanning_push_protection: {
+				status: "enabled",
+			},
+		},
 		squash_merge_commit_message: "PR_BODY",
 		squash_merge_commit_title: "PR_TITLE",
 	});

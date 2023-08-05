@@ -104,6 +104,29 @@ export function createWorkflows({
 				},
 			],
 		}),
+		"pr-review-requested.yml": createWorkflowFile({
+			name: "PR Review Requested",
+			on: {
+				pull_request_target: {
+					types: ["review_requested"],
+				},
+			},
+			permissions: {
+				"pull-requests": "write",
+			},
+			steps: [
+				{
+					uses: "actions-ecosystem/action-remove-labels@v1",
+					with: {
+						labels: "status: waiting for author",
+					},
+				},
+				{
+					if: "failure()",
+					run: 'echo "Don\'t worry about if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
+				},
+			],
+		}),
 		"prettier.yml": createWorkflowFile({
 			name: "Prettier",
 			runs: ["pnpm format --list-different"],

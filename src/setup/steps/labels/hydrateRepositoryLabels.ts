@@ -12,14 +12,14 @@ export async function hydrateRepositoryLabels() {
 
 	const existingLabels = (
 		JSON.parse(
-			(await $`gh label list --json name`).stdout || "[]"
+			(await $`gh label list --json name`).stdout || "[]",
 		) as GhLabelData[]
 	).map(getLabelName);
 
 	for (const outcome of outcomeLabels) {
 		const existingEquivalent = getExistingEquivalentLabel(
 			existingLabels,
-			outcome.name
+			outcome.name,
 		);
 		const [action, label] = existingEquivalent
 			? ["edit", existingEquivalent]

@@ -9,7 +9,7 @@ import {
 } from "./cli/spinners.js";
 
 export async function getOctokit(
-	skipApi: boolean
+	skipApi: boolean,
 ): Promise<Octokit | undefined> {
 	if (skipApi) {
 		skipSpinnerBlock(`Skipping checking GitHub authentication.`);

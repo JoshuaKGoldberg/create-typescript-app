@@ -6,7 +6,7 @@ import { Structure } from "./types.js";
 
 export async function writeStructureWorker(
 	structure: Structure,
-	basePath: string
+	basePath: string,
 ) {
 	await fs.mkdir(basePath, { recursive: true });
 
@@ -14,7 +14,7 @@ export async function writeStructureWorker(
 		if (typeof contents === "string") {
 			await fs.writeFile(
 				path.join(basePath, fileName),
-				format(fileName, contents)
+				await format(fileName, contents),
 			);
 		} else {
 			await writeStructureWorker(contents, path.join(basePath, fileName));
@@ -22,13 +22,13 @@ export async function writeStructureWorker(
 	}
 }
 
-function format(fileName: string, text: string) {
+async function format(fileName: string, text: string) {
 	const parser = inferParser(fileName, text);
 	if (!parser) {
 		return text;
 	}
 
-	return prettier.format(text, {
+	return await prettier.format(text, {
 		parser,
 		useTabs: true,
 	});

@@ -23,7 +23,7 @@ export async function updateLocalFiles({
 	title,
 }: UpdateLocalFilesOptions) {
 	const existingPackage = (await readFileAsJson(
-		"./package.json"
+		"./package.json",
 	)) as ExistingPackageData;
 
 	const replacements: [RegExp | string, string, string?][] = [
@@ -75,7 +75,7 @@ export async function updateLocalFiles({
 				`Failed to replace ${from.toString()} with ${to} in ${files.toString()}`,
 				{
 					cause: error,
-				}
+				},
 			);
 		}
 	}

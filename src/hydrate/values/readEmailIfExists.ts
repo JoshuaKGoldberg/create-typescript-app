@@ -5,7 +5,7 @@ import type { PartialPackageData } from "./types.js";
 import { getNpmUserInfo } from "../../shared/getNpmUserInfo.js";
 
 export async function readEmailIfExists(
-	existingPackage: PartialPackageData
+	existingPackage: PartialPackageData,
 ): Promise<string | undefined> {
 	const fromPackage =
 		typeof existingPackage.author === "string"

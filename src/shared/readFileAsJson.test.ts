@@ -29,8 +29,8 @@ describe("readFileAsJson", () => {
 		await expect(() => readFileAsJson("filePath.json")).rejects.toEqual(
 			new Error(
 				`Could not read file from filePath.json as JSON. Please ensure the file exists and is valid JSON.`,
-				{ cause: error }
-			)
+				{ cause: error },
+			),
 		);
 	});
 });

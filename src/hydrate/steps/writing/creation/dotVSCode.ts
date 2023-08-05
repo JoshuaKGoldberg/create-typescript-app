@@ -1,9 +1,9 @@
 import { formatJson } from "./formatters/formatJson.js";
 
 /* spellchecker: disable */
-export function createDotVSCode() {
+export async function createDotVSCode() {
 	return {
-		"extensions.json": formatJson({
+		"extensions.json": await formatJson({
 			recommendations: [
 				"DavidAnson.vscode-markdownlint",
 				"dbaeumer.vscode-eslint",
@@ -11,7 +11,7 @@ export function createDotVSCode() {
 				"streetsidesoftware.code-spell-checker",
 			],
 		}),
-		"launch.json": formatJson({
+		"launch.json": await formatJson({
 			configurations: [
 				{
 					args: ["run", "${relativeFile}"],
@@ -27,7 +27,7 @@ export function createDotVSCode() {
 			],
 			version: "0.2.0",
 		}),
-		"settings.json": formatJson({
+		"settings.json": await formatJson({
 			"editor.codeActionsOnSave": {
 				"source.fixAll.eslint": true,
 			},

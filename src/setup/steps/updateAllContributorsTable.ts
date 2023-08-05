@@ -9,13 +9,13 @@ export async function updateAllContributorsTable({
 }: Pick<InputValues, "owner" | "repository">) {
 	await fs.writeFile(
 		".all-contributorsrc",
-		prettier.format(
+		await prettier.format(
 			JSON.stringify({
 				...JSON.parse((await fs.readFile(".all-contributorsrc")).toString()),
 				projectName: repository,
 				projectOwner: owner,
 			}),
-			{ parser: "json" }
-		)
+			{ parser: "json" },
+		),
 	);
 }

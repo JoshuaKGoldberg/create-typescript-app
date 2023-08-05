@@ -42,10 +42,10 @@ export async function writePackageJson({
 	| "unitTests"
 >) {
 	const existingPackageJson = (await readFileAsJson(
-		"./package.json"
+		"./package.json",
 	)) as object;
 
-	return formatJson({
+	return await formatJson({
 		// To start, copy over all existing package fields (e.g. "dependencies")
 		...existingPackageJson,
 

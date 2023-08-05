@@ -51,7 +51,7 @@ export async function finalizeDependencies({
 			"console-fail-test",
 			"eslint-plugin-no-only-tests",
 			"eslint-plugin-vitest",
-			"vitest"
+			"vitest",
 		);
 	}
 

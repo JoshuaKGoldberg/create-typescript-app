@@ -1,0 +1,16 @@
+name: PR Review Submitted
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  pr_review_submitted:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: "status: waiting for author"
+
+permissions:
+  pull-requests: write

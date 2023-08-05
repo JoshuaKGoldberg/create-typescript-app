@@ -11,7 +11,8 @@ jobs:
         with:
           files: coverage-setup/lcov.info
           flags: setup
-      - name: Archive code coverage results
+      - if: always()
+        name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
           path: coverage-setup

@@ -11,7 +11,8 @@ jobs:
         with:
           files: coverage-hydrate/lcov.info
           flags: hydrate
-      - name: Archive code coverage results
+      - if: always()
+        name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
           path: coverage-hydrate

@@ -1,4 +1,4 @@
-import type { PartialPackageData } from "./types";
+import type { PartialPackageData } from "./types.js";
 
 import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
 

@@ -127,25 +127,6 @@ export function createWorkflows({
 				},
 			],
 		}),
-		"pr-review-submitted.yml": createWorkflowFile({
-			name: "PR Review Submitted",
-			on: {
-				pull_request_review: {
-					types: ["submitted"],
-				},
-			},
-			permissions: {
-				"pull-requests": "write",
-			},
-			steps: [
-				{
-					uses: "actions-ecosystem/action-add-labels@v1",
-					with: {
-						labels: "status: waiting for author",
-					},
-				},
-			],
-		}),
 		"prettier.yml": createWorkflowFile({
 			name: "Prettier",
 			runs: ["pnpm format --list-different"],

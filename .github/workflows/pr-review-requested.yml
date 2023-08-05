@@ -1,9 +1,3 @@
-name: PR Review Requested
-
-on:
-  pull_request_target:
-    types: [review_requested]
-
 jobs:
   pr_review_requested:
     runs-on: ubuntu-latest
@@ -15,6 +9,13 @@ jobs:
         run: |
           echo "Don't worry about if the previous step failed."
           echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+
+name: PR Review Requested
+
+on:
+  pull_request_target:
+    types:
+      - review_requested
 
 permissions:
   pull-requests: write

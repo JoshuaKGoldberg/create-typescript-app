@@ -123,7 +123,7 @@ export function createWorkflows({
 				},
 				{
 					if: "failure()",
-					run: 'echo "Don\'t worry about if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
+					run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
 				},
 			],
 		}),

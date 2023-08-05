@@ -13,9 +13,6 @@ interface WorkflowFileOn {
 		  }
 		| null
 		| string;
-	pull_request_review?: {
-		types: string[];
-	};
 	pull_request_target?: {
 		types: string[];
 	};

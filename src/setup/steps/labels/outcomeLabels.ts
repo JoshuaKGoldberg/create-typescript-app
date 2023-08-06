@@ -76,4 +76,9 @@ export const outcomeLabels = [
 		description: "Further information is requested",
 		name: "type: question",
 	},
+	{
+		color: "fde282",
+		description: "Tech debt or other code/repository cleanups",
+		name: "type: cleanup"
+	},
 ];

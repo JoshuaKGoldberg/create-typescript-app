@@ -73,5 +73,10 @@
 		"color": "d876e3",
 		"description": "Further information is requested",
 		"name": "type: question"
+	},
+	{
+		"color": "d876e3",
+		"description": "Further information is requested",
+		"name": "type: question"
 	}
 ]

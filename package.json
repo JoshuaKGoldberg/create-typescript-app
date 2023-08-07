@@ -22,7 +22,7 @@
 		"README.md"
 	],
 	"scripts": {
-		"build": "tsc",
+		"build": "tsup",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"hydrate:test": "node script/hydrate-test-e2e.js",
@@ -60,6 +60,7 @@
 		"@types/eslint": "^8.37.0",
 		"@types/git-url-parse": "^9.0.1",
 		"@types/js-yaml": "^4.0.5",
+		"@types/node": "^20.4.8",
 		"@types/prettier": "^2.7.2",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
@@ -96,6 +97,7 @@
 		"release-it": "^16.0.0",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.1.1",
+		"tsup": "^7.2.0",
 		"tsx": "^3.12.7",
 		"typescript": "^5.0.4",
 		"vitest": "^0.34.0",

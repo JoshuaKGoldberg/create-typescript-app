@@ -13,13 +13,17 @@ pnpm install
 
 ## Building
 
-Run [TypeScript](https://typescriptlang.org) locally to type check and build source files from `src/` into output files in `lib/`:
+Run [[**tsup**](https://tsup.egoist.dev) locally to build source files from `src/` into output files in `lib/`:
+
+```shell
+pnpm build
+```
+
+Add `--watch` to run the builder in a watch mode that continuously cleans and recreates `lib/` as you save files:
 
 ```shell
 pnpm build --watch
 ```
-
-You should also see suggestions from TypeScript in your editor.
 
 ## Formatting
 
@@ -66,6 +70,22 @@ Calls to `console.log`, `console.warn`, and other console methods will cause a t
 
 This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
 To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
+
+## Type Checking
+
+You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
+
+However, it can be useful to run the TypeScript command-line (`tsc`) to type check all files in `src/`:
+
+```shell
+pnpm tsc
+```
+
+Add `--watch` to keep the type checker running in a watch mode that updates the display as you save files:
+
+```shell
+pnpm tsc --watch
+```
 
 ## The Hydration Script
 

@@ -71,7 +71,7 @@ function generateTopContent(values: HydrationInputValues) {
 	}" target="_blank">${
 		values.unitTests
 			? `
-	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${values.owner}/${values.repository}/branch/main/graph/badge.svg?token=INSERT_CODECOV_TOKEN_HERE"/>`
+	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${values.owner}/${values.repository}/branch/main/graph/badge.svg"/>`
 			: ""
 	}
 	</a>

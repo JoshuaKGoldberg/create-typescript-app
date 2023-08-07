@@ -24,10 +24,10 @@ vi.mock("../readFileSafe.js", () => ({
 
 const stubValues = {
 	author: "Test Author",
-	email: "test@test.test",
-	owner: "TestOwner",
 	description: "Test description.",
+	email: "test@test.test",
 	funding: undefined,
+	owner: "TestOwner",
 	releases: undefined,
 	repository: "test-repository",
 	skipApi: false,

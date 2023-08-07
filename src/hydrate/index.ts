@@ -14,11 +14,13 @@ import { writeReadme } from "./steps/writeReadme.js";
 import { writeStructure } from "./steps/writing/writeStructure.js";
 import { getHydrationDefaults } from "./values/getHydrationDefaults.js";
 import { augmentWithHydrationValues } from "./values/hydrationInputValues.js";
+import { detectExistingContributors } from "./steps/detectExistingContributors.js";
 
 export async function hydrate(args: string[]) {
 	const { values: hydrationSkips } = parseArgs({
 		args,
 		options: {
+			"skip-contributors": { type: "boolean" },
 			"skip-install": { type: "boolean" },
 			"skip-setup": { type: "boolean" },
 		},
@@ -44,6 +46,15 @@ export async function hydrate(args: string[]) {
 				() => writeReadme(hydrationValues),
 				"writing README.md",
 			);
+
+			if (hydrationSkips["skip-contributors"]) {
+				skipSpinnerBlock(`Skipping detecting existing contributors.`);
+			} else {
+				await withSpinner(
+					detectExistingContributors,
+					"detecting existing contributors",
+				);
+			}
 
 			if (hydrationSkips["skip-install"]) {
 				skipSpinnerBlock(`Skipping package installations.`);

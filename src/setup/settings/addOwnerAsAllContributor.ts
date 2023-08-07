@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import prettier from "prettier";
 
 import { readFileAsJson } from "../../shared/readFileAsJson.js";
+import { AllContributorsData } from "../../shared/types.js";
 
 interface GhUserOutput {
 	login: string;
@@ -58,10 +59,6 @@ export async function addOwnerAsAllContributor(owner: string) {
 			{ parser: "json" },
 		),
 	);
-}
-
-interface AllContributorsData {
-	contributors: { contributions: string[]; login: string }[];
 }
 
 function isValidAllContributorsData(

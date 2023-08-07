@@ -1,6 +1,6 @@
 import type { PartialPackageData } from "./types.js";
 
-import { readFileSafe } from "../readFileSafe.js";
+import { readFileSafe } from "../../shared/readFileSafe.js";
 import { readAuthorIfExists } from "./readAuthorIfExists.js";
 import { readEmailIfExists } from "./readEmailIfExists.js";
 import { readFundingIfExists } from "./readFundingIfExists.js";

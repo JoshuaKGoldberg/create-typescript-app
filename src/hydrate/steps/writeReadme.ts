@@ -1,6 +1,6 @@
 import * as fs from "node:fs/promises";
 
-import { readFileSafe } from "../readFileSafe.js";
+import { readFileSafe } from "../../shared/readFileSafe.js";
 import { HydrationInputValues } from "../values/types.js";
 
 const contributorsIndicator = `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`;

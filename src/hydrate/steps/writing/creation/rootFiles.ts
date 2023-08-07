@@ -1,25 +1,12 @@
 import { HydrationInputValues } from "../../../values/types.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
+import { writeAllContributorsRC } from "./writeAllContributorsRC.js";
 import { writePackageJson } from "./writePackageJson.js";
 
 export async function createRootFiles(values: HydrationInputValues) {
 	return {
-		".all-contributorsrc": await formatJson({
-			badgeTemplate:
-				'<img alt="All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/all_contributors-<%= contributors.length %>-21bb42.svg" />',
-			commit: false,
-			commitConvention: "angular",
-			contributors: [],
-			contributorsPerLine: 7,
-			contributorsSortAlphabetically: true,
-			files: ["README.md"],
-			imageSize: 100,
-			projectName: values.repository,
-			projectOwner: values.owner,
-			repoHost: "https://github.com",
-			repoType: "github",
-		}),
+		".all-contributorsrc": await writeAllContributorsRC(values),
 		".eslintignore": formatIgnoreFile([
 			"!.*",
 			...(values.unitTests ? ["coverage"] : []),

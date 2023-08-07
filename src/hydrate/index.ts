@@ -8,13 +8,13 @@ import {
 } from "../shared/cli/spinners.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { clearUnnecessaryFiles } from "./steps/clearUnnecessaryFiles.js";
+import { detectExistingContributors } from "./steps/detectExistingContributors.js";
 import { finalizeDependencies as finalizeDependencies } from "./steps/finalizeDependencies.js";
 import { runCommand } from "./steps/runCommand.js";
 import { writeReadme } from "./steps/writeReadme.js";
 import { writeStructure } from "./steps/writing/writeStructure.js";
 import { getHydrationDefaults } from "./values/getHydrationDefaults.js";
 import { augmentWithHydrationValues } from "./values/hydrationInputValues.js";
-import { detectExistingContributors } from "./steps/detectExistingContributors.js";
 
 export async function hydrate(args: string[]) {
 	const { values: hydrationSkips } = parseArgs({

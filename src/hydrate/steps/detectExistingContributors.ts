@@ -1,8 +1,8 @@
+import { getAllContributorsForRepository } from "all-contributors-for-repository";
 import { $ } from "execa";
-import { createAllContributorsForRepository } from "all-contributors-for-repository";
 
 export async function detectExistingContributors() {
-	const contributors = await createAllContributorsForRepository({
+	const contributors = await getAllContributorsForRepository({
 		owner: "JoshuaKGoldberg",
 		repo: "template-typescript-node-package",
 	});

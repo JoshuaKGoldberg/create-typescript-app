@@ -38,7 +38,7 @@ export async function writeReadme(values: HydrationInputValues) {
 	contents = [generateTopContent(values), contents.slice(endOfH1)]
 		.join("")
 		.replace(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
-		.replace(/!\[[a-zA-Z :]+\]\(.+\)/g, "")
+		.replace(/!\[.+\]\(.+\)/g, "")
 		.replaceAll("\r", "")
 		.replaceAll("\n\n\n", "\n\n");
 

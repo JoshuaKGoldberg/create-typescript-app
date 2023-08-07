@@ -102,7 +102,7 @@ describe("writeReadme", () => {
 [![NPM version](https://badge.fury.io/js/existing-package-name.svg)](http://badge.fury.io/js/existing-package-name)
 
 Existing contents.
-		`);
+`);
 
 		await writeReadme(stubValues);
 

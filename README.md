@@ -129,6 +129,7 @@ npx template-typescript-node-package --releases false --unitTests false
 
 You can prevent the hydration script from making network-based changes using either or both of the following CLI flags:
 
+- `--skip-contributors` _(`boolean`)_: Skips detecting existing contributors with [`all-contributors-for-repository`](https://github.com/JoshuaKGoldberg/all-contributors-for-repository)
 - `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`
 - `--skip-setup` _(`boolean`)_: Skips running the setup script at the end of hydration
 

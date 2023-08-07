@@ -43,6 +43,7 @@
 	},
 	"dependencies": {
 		"@clack/prompts": "^0.6.3",
+		"all-contributors-for-repository": "^0.0.10",
 		"chalk": "^5.2.0",
 		"execa": "^7.1.1",
 		"git-remote-origin-url": "^4.0.0",

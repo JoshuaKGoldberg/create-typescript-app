@@ -255,5 +255,9 @@ export function createWorkflows({
 				},
 			],
 		}),
+		"tsc.yml": createWorkflowFile({
+			name: "Type Check",
+			runs: ["pnpm tsc"],
+		}),
 	};
 }

@@ -4,7 +4,7 @@ import { getHydrationDefaults } from "./getHydrationDefaults.js";
 
 const mockReadFileSafe = vi.fn();
 
-vi.mock("../readFileSafe.js", () => ({
+vi.mock("../../shared/readFileSafe.js", () => ({
 	get readFileSafe() {
 		return mockReadFileSafe;
 	},

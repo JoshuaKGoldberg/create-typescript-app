@@ -1,4 +1,4 @@
-import { readFileSafe } from "../readFileSafe.js";
+import { readFileSafe } from "../../shared/readFileSafe.js";
 
 export async function readTitleFromReadme() {
 	return (

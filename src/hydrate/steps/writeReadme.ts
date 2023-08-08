@@ -1,4 +1,4 @@
-import * as fs from "node:fs/promises";
+import fs from "node:fs/promises";
 
 import { readFileSafe } from "../../shared/readFileSafe.js";
 import { HydrationInputValues } from "../values/types.js";
@@ -35,7 +35,12 @@ export async function writeReadme(values: HydrationInputValues) {
 
 	const endOfH1 = findH1Close(contents);
 
-	contents = [generateTopContent(values), contents.slice(endOfH1)].join("");
+	contents = [generateTopContent(values), contents.slice(endOfH1)]
+		.join("")
+		.replace(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
+		.replace(/!\[.+\]\(.+\)/g, "")
+		.replaceAll("\r", "")
+		.replaceAll("\n\n\n", "\n\n");
 
 	if (!contents.includes(contributorsIndicator)) {
 		contents = [contents, allContributorsContent].join("\n\n");

@@ -42,7 +42,7 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
-		"@clack/prompts": "^0.6.3",
+		"@clack/prompts": "^0.7.0",
 		"all-contributors-for-repository": "^0.0.10",
 		"chalk": "^5.2.0",
 		"execa": "^7.1.1",

@@ -68,7 +68,7 @@
 		"all-contributors-cli": "^6.25.1",
 		"c8": "^8.0.0",
 		"console-fail-test": "^0.2.3",
-		"cspell": "^6.31.1",
+		"cspell": "^7.0.0",
 		"eslint": "^8.40.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-deprecation": "^1.4.1",

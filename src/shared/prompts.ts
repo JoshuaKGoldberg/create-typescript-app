@@ -2,7 +2,6 @@ import * as prompts from "@clack/prompts";
 
 export function handleCancel() {
 	prompts.cancel("Operation cancelled. Exiting - maybe another time? 👋");
-	// eslint-disable-next-line n/no-process-exit
 	throw new Error("GitHub authentication failed.");
 }
 

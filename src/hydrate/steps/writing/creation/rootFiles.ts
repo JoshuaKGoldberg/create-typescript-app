@@ -179,7 +179,7 @@ module.exports = {
 				"require-license": "error",
 			},
 		}),
-		".nvmrc": `18.17.0\n`,
+		".nvmrc": `18.17.1\n`,
 		".prettierignore": formatIgnoreFile([
 			...(values.unitTests ? ["coverage/"] : []),
 			"lib/",

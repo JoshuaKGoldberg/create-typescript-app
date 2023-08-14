@@ -13,7 +13,6 @@ import { hydrateRepositoryLabels } from "./steps/labels/hydrateRepositoryLabels.
 import { removeSetupScripts } from "./steps/removeSetupScripts.js";
 import { resetGitTags } from "./steps/resetGitTags.js";
 import { uninstallPackages } from "./steps/uninstallPackages.js";
-import { updateAllContributorsFile } from "./steps/updateAllContributorsFile.js";
 import { updateAllContributorsTable } from "./steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "./steps/updateLocalFiles.js";
 import { updateReadme } from "./steps/updateReadme.js";
@@ -33,10 +32,6 @@ export async function setupWithInformation({
 	await withSpinner(async () => {
 		await updateLocalFiles({ ...values, npmAuthor });
 	}, "Updating all the files with provided details.");
-
-	await withSpinner(async () => {
-		await updateAllContributorsFile(values);
-	}, "Updating '.all-contributorsrc' with new repository details.");
 
 	await withSpinner(
 		updateReadme,

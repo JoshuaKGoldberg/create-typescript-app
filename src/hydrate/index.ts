@@ -8,6 +8,7 @@ import {
 } from "../shared/cli/spinners.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { clearUnnecessaryFiles } from "./steps/clearUnnecessaryFiles.js";
+import { detectExistingContributors } from "./steps/detectExistingContributors.js";
 import { finalizeDependencies as finalizeDependencies } from "./steps/finalizeDependencies.js";
 import { runCommand } from "./steps/runCommand.js";
 import { writeReadme } from "./steps/writeReadme.js";
@@ -19,6 +20,7 @@ export async function hydrate(args: string[]) {
 	const { values: hydrationSkips } = parseArgs({
 		args,
 		options: {
+			"skip-contributors": { type: "boolean" },
 			"skip-install": { type: "boolean" },
 			"skip-setup": { type: "boolean" },
 		},
@@ -44,6 +46,15 @@ export async function hydrate(args: string[]) {
 				() => writeReadme(hydrationValues),
 				"writing README.md",
 			);
+
+			if (hydrationSkips["skip-contributors"]) {
+				skipSpinnerBlock(`Skipping detecting existing contributors.`);
+			} else {
+				await withSpinner(
+					detectExistingContributors,
+					"detecting existing contributors",
+				);
+			}
 
 			if (hydrationSkips["skip-install"]) {
 				skipSpinnerBlock(`Skipping package installations.`);

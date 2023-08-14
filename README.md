@@ -11,7 +11,7 @@
 <!-- prettier-ignore-end -->
 	</a>
 	<a href="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package" target="_blank">
-		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package/branch/main/graph/badge.svg?token=eVIFY4MhfQ"/>
+		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package/branch/main/graph/badge.svg"/>
 	</a>
 	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
 		<img alt="Code of Conduct: Enforced 🤝" src="https://img.shields.io/badge/code_of_conduct-enforced_🤝-21bb42" />
@@ -40,6 +40,7 @@ It sets up the following tooling for you:
 - [**Prettier**](https://prettier.io): Opinionated formatting for code, run on file save and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
 - [**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
 - [**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
+- [**tsup**](https://tsup.egoist.dev): Builds output definitions and JavaScript files using [esbuild](https://esbuild.github.io).
 - [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
 - [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking and [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test).
 
@@ -129,6 +130,7 @@ npx template-typescript-node-package --releases false --unitTests false
 
 You can prevent the hydration script from making network-based changes using either or both of the following CLI flags:
 
+- `--skip-contributors` _(`boolean`)_: Skips detecting existing contributors with [`all-contributors-for-repository`](https://github.com/JoshuaKGoldberg/all-contributors-for-repository)
 - `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`
 - `--skip-setup` _(`boolean`)_: Skips running the setup script at the end of hydration
 

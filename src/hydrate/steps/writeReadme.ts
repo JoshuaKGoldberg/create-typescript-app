@@ -1,6 +1,6 @@
-import * as fs from "node:fs/promises";
+import fs from "node:fs/promises";
 
-import { readFileSafe } from "../readFileSafe.js";
+import { readFileSafe } from "../../shared/readFileSafe.js";
 import { HydrationInputValues } from "../values/types.js";
 
 const contributorsIndicator = `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`;
@@ -35,7 +35,12 @@ export async function writeReadme(values: HydrationInputValues) {
 
 	const endOfH1 = findH1Close(contents);
 
-	contents = [generateTopContent(values), contents.slice(endOfH1)].join("");
+	contents = [generateTopContent(values), contents.slice(endOfH1)]
+		.join("")
+		.replace(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
+		.replace(/!\[.+\]\(.+\)/g, "")
+		.replaceAll("\r", "")
+		.replaceAll("\n\n\n", "\n\n");
 
 	if (!contents.includes(contributorsIndicator)) {
 		contents = [contents, allContributorsContent].join("\n\n");
@@ -71,7 +76,7 @@ function generateTopContent(values: HydrationInputValues) {
 	}" target="_blank">${
 		values.unitTests
 			? `
-	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${values.owner}/${values.repository}/branch/main/graph/badge.svg?token=INSERT_CODECOV_TOKEN_HERE"/>`
+	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${values.owner}/${values.repository}/branch/main/graph/badge.svg"/>`
 			: ""
 	}
 	</a>

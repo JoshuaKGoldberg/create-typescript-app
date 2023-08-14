@@ -25,8 +25,7 @@ export async function getOctokit(
 			console.error();
 			console.error(chalk.red((error as Error).message));
 			console.error();
-			// eslint-disable-next-line n/no-process-exit
-			process.exit(1);
+			throw new Error("GitHub authentication failed.");
 		}
 
 		const auth = (await $`gh auth token`).stdout.trim();

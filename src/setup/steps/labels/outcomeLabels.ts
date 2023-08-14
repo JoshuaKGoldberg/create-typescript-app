@@ -79,6 +79,6 @@ export const outcomeLabels = [
 	{
 		color: "fde282",
 		description: "Tech debt or other code/repository cleanups",
-		name: "type: cleanup"
+		name: "type: cleanup",
 	},
 ];

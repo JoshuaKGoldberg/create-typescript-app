@@ -58,7 +58,9 @@ export async function writePackageJson({
 		engines: {
 			node: ">=18",
 		},
+
 		// Remove fields we know we don't want, such as old or redundant configs
+		bin: undefined,
 		eslintConfig: undefined,
 
 		files: ["lib/", "package.json", "LICENSE.md", "README.md"],

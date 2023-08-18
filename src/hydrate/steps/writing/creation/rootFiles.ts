@@ -266,6 +266,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		"knip.jsonc": await formatJson({
 			$schema: "https://unpkg.com/knip@latest/schema.json",
 			entry: ["src/index.ts!"],
+			ignoreExportsUsedInFile: {
+				interface: true,
+				type: true,
+			},
 			project: ["src/**/*.ts!"],
 		}),
 		"package.json": await writePackageJson(values),

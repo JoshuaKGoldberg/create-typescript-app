@@ -66,7 +66,6 @@
 		"@typescript-eslint/parser": "^6.4.0",
 		"@vitest/coverage-istanbul": "^0.34.2",
 		"all-contributors-cli": "^6.26.1",
-		"c8": "^8.0.1",
 		"console-fail-test": "^0.2.3",
 		"cspell": "^7.0.0",
 		"eslint": "^8.47.0",

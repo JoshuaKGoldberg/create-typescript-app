@@ -7,10 +7,6 @@
 		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["gh"],
-	"ignoreDependencies": [
-		// TODO: investigate if these are still flagged, and file issues if not
-		"c8"
-	],
 	"ignoreExportsUsedInFile": {
 		"interface": true,
 		"type": true

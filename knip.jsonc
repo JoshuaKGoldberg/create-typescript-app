@@ -1,15 +1,14 @@
 {
-	"$schema": "https://unpkg.com/knip@next/schema.json",
+	"$schema": "https://unpkg.com/knip@latest/schema.json",
 	"entry": [
 		"src/index.ts!",
 		"src/hydrate/index.ts",
 		"src/setup/index.ts",
 		"script/*e2e.js"
 	],
-	"ignoreBinaries": ["dedupe", "gh"],
+	"ignoreBinaries": ["gh"],
 	"ignoreDependencies": [
-		// TODO: investigate if these are still flagged, and file issues if not
-		"all-contributors-cli",
+		// https://github.com/webpro/knip/issues/207
 		"c8"
 	],
 	"ignoreExportsUsedInFile": {

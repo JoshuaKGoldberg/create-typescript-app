@@ -264,10 +264,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			],
 		}),
 		"knip.jsonc": await formatJson({
-			$schema: "https://unpkg.com/knip@next/schema.json",
-			entry: ["src/index.ts!", "script/setup*.js"],
-			ignoreBinaries: ["dedupe", "gh"],
-			project: ["src/**/*.ts!", "script/**/*.js"],
+			$schema: "https://unpkg.com/knip@latest/schema.json",
+			entry: ["src/index.ts!"],
+			project: ["src/**/*.ts!"],
 		}),
 		"package.json": await writePackageJson(values),
 		"tsconfig.eslint.json": await formatJson({

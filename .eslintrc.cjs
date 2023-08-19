@@ -39,6 +39,12 @@ module.exports = {
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
 				"jsdoc/informative-docs": "error",
+				"logical-assignment-operators": [
+					"error",
+					"always",
+					{ enforceForIfStatements: true },
+				],
+				"operator-assignment": "error",
 
 				// These on-by-default rules don't work well for this repo and we like them off.
 				"jsdoc/require-jsdoc": "off",

@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 
 const globPaths = [
+	"./bin",
 	"./script",
 	"./src/hydrate",
 	"./src/setup",

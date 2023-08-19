@@ -1,3 +1,4 @@
+import { $ } from "execa";
 import fs from "node:fs/promises";
 import prettier from "prettier";
 
@@ -22,4 +23,6 @@ export async function updateAllContributorsTable({
 			{ parser: "json" },
 		),
 	);
+
+	await $`npx all-contributors-cli generate`;
 }

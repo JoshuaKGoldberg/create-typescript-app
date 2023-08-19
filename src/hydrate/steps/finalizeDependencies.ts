@@ -57,7 +57,7 @@ export async function finalizeDependencies({
 
 	for (const command of [
 		`pnpm add ${devDependencies.map(atLatest).join(" ")} -D`,
-		`npx all-contributors generate`,
+		`npx all-contributors-cli generate`,
 		`pnpm uninstall all-contributors-cli all-contributors-for-repository -D`,
 		"pnpm run format:write",
 	]) {

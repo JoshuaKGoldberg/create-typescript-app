@@ -9,7 +9,7 @@ import {
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { clearUnnecessaryFiles } from "./steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "./steps/detectExistingContributors.js";
-import { finalizeDependencies as finalizeDependencies } from "./steps/finalizeDependencies.js";
+import { finalizeDependencies } from "./steps/finalizeDependencies.js";
 import { runCommand } from "./steps/runCommand.js";
 import { writeReadme } from "./steps/writeReadme.js";
 import { writeStructure } from "./steps/writing/writeStructure.js";

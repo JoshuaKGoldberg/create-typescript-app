@@ -77,6 +77,9 @@ export async function setupWithInformation({
 	if (values.skipUninstalls) {
 		skipSpinnerBlock(`Skipping uninstall of packages only used for setup.`);
 	} else {
-		await withSpinner(uninstallPackages, "removing packages only");
+		await withSpinner(
+			uninstallPackages,
+			"removing packages only used for setup",
+		);
 	}
 }

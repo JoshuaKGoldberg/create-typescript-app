@@ -36,7 +36,6 @@ export async function updateLocalFiles({
 		[/"initialize:test": ".*/g, ``, "./package.json"],
 		[/"initialize": ".*/g, ``, "./package.json"],
 		[/"migrate:test": ".+\n/g, ``, "./package.json"],
-
 		[/## Getting Started.*## Development/gs, `## Development`, "./README.md"],
 		[/\n## Setup Scripts.*$/gs, "", "./.github/DEVELOPMENT.md"],
 		[`\t\t"src/initialize/index.ts",\n`, ``, "./knip.jsonc"],

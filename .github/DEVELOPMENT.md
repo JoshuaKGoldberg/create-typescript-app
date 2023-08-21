@@ -109,7 +109,8 @@ pnpm run initialize
 
 #### Testing the Initialization Script
 
-You can run the end-to-end test for initializing locally on the command-line:
+You can run the end-to-end test for initializing locally on the command-line.
+Note that files need to be built with `pnpm run build` beforehand.
 
 ```shell
 pnpm run initialize:test

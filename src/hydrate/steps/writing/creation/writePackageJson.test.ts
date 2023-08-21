@@ -2,11 +2,11 @@ import { describe, expect, it, vi } from "vitest";
 
 import { writePackageJson } from "./writePackageJson.js";
 
-const mockReadFileAsJson = vi.fn();
+const mockReadFileSafeAsJson = vi.fn();
 
-vi.mock("../../../../shared/readFileAsJson.js", () => ({
-	get readFileAsJson() {
-		return mockReadFileAsJson;
+vi.mock("../../../../shared/readFileSafeAsJson.js", () => ({
+	get readFileSafeAsJson() {
+		return mockReadFileSafeAsJson;
 	},
 }));
 
@@ -23,7 +23,7 @@ const values = {
 describe("writePackageJson", () => {
 	it("preserves existing dependencies when they exist", async () => {
 		const dependencies = { abc: "1.2.3" };
-		mockReadFileAsJson.mockResolvedValue({ dependencies });
+		mockReadFileSafeAsJson.mockResolvedValue({ dependencies });
 
 		const packageJson = await writePackageJson(values);
 
@@ -34,7 +34,7 @@ describe("writePackageJson", () => {
 
 	it("preserves existing devDependencies that aren't known to be unnecessary when they exist", async () => {
 		const devDependencies = { abc: "1.2.3", jest: "4.5.6" };
-		mockReadFileAsJson.mockResolvedValue({ devDependencies });
+		mockReadFileSafeAsJson.mockResolvedValue({ devDependencies });
 
 		const packageJson = await writePackageJson(values);
 
@@ -44,7 +44,7 @@ describe("writePackageJson", () => {
 	});
 
 	it("includes a release script when releases is true", async () => {
-		mockReadFileAsJson.mockResolvedValue({});
+		mockReadFileSafeAsJson.mockResolvedValue({});
 
 		const packageJson = await writePackageJson({
 			...values,
@@ -61,7 +61,7 @@ describe("writePackageJson", () => {
 	});
 
 	it("includes a test script when unitTests is true", async () => {
-		mockReadFileAsJson.mockResolvedValue({});
+		mockReadFileSafeAsJson.mockResolvedValue({});
 
 		const packageJson = await writePackageJson({
 			...values,

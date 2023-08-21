@@ -67,7 +67,8 @@ describe("runOrRestore", () => {
 
 		expect(actual).toEqual(1);
 
-		expect(mock$).not.toHaveBeenCalled();
+		expect(mock$).toHaveBeenCalledWith(["git status"]);
+		expect(mock$).toHaveBeenCalledTimes(1);
 	});
 
 	it("returns 1 and restores the repository when run rejects, skipRestore is false, and shouldRestore is confirmed", async () => {
@@ -87,6 +88,8 @@ describe("runOrRestore", () => {
 
 		expect(actual).toEqual(1);
 
+		expect(mock$).toHaveBeenCalledWith(["git status"]);
 		expect(mock$).toHaveBeenCalledWith(["git restore ."]);
+		expect(mock$).toHaveBeenCalledTimes(2);
 	});
 });

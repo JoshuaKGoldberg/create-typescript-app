@@ -14,7 +14,7 @@ You can always copy & paste them in manually.
 
 See [🚀 Feature: Add a script to sync the tooling updates from forked template repo #498](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/498): it will likely eventually be possible.
 
-## Why does this package template so many tools?
+## Why does this package include so many tools?
 
 This repository is meant to serve as a starter that includes all the general tooling a modern TypeScript/Node repository could possibly need.
 Each of the included tools exists for a good reason and provides real value.

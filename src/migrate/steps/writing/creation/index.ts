@@ -1,0 +1,17 @@
+import { MigrationInputValues } from "../../../values/types.js";
+import { Structure } from "../types.js";
+import { createDotGitHub } from "./dotGitHub/index.js";
+import { createDotHusky } from "./dotHusky.js";
+import { createDotVSCode } from "./dotVSCode.js";
+import { createRootFiles } from "./rootFiles.js";
+
+export async function createStructure(
+	values: MigrationInputValues,
+): Promise<Structure> {
+	return {
+		".github": createDotGitHub(values),
+		".husky": createDotHusky(),
+		".vscode": await createDotVSCode(),
+		...(await createRootFiles(values)),
+	};
+}

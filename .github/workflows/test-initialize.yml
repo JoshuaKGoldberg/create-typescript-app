@@ -1,0 +1,27 @@
+jobs:
+  initialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/prepare
+      - run: pnpm run build
+      - run: pnpm run initialize:test
+      - name: Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage-initialize/lcov.info
+          flags: initialize
+      - if: always()
+        name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          path: coverage-initialize
+
+name: Test Initialization Script
+
+on:
+  pull_request: ~
+
+  push:
+    branches:
+      - main

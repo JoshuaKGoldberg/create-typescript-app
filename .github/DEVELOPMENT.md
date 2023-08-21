@@ -13,7 +13,7 @@ pnpm install
 
 ## Building
 
-Run [[**tsup**](https://tsup.egoist.dev) locally to build source files from `src/` into output files in `lib/`:
+Run [**tsup**](https://tsup.egoist.dev) locally to build source files from `src/` into output files in `lib/`:
 
 ```shell
 pnpm build
@@ -87,47 +87,81 @@ Add `--watch` to keep the type checker running in a watch mode that updates the 
 pnpm tsc --watch
 ```
 
-## The Hydration Script
+## Setup Scripts
 
-This template's "hydration" script is located in `src/hydrate/`.
-It needs to be [built](#building) before it can be run.
+As described in the `README.md` file and `docs/`, this template repository comes with two scripts that can set up an existing or new repository.
 
-Be warned that running the hydration script in a repository -including this one- will modify that repository.
-To test out the script, you may want to create a new test repository to run on:
+> **Warning**
+> Both setup scripts override many files in the directory they're run in.
+> Make sure to save any changes you want to preserve before running them.
+
+### The Initialization Script
+
+This template's "initialization" script is located in `src/initialize/`.
+You can run it locally with `pnpm run initialize`.
+It uses [`tsx`](https://github.com/esbuild-kit/tsx) so you don't need to build files before running.
+
+```shell
+pnpm run initialize
+```
+
+> 💡 Consider running `git add -A` to stage all local changes before running.
+
+#### Testing the Initialization Script
+
+You can run the end-to-end test for initializing locally on the command-line.
+Note that files need to be built with `pnpm run build` beforehand.
+
+```shell
+pnpm run initialize:test
+```
+
+That end-to-end test executes `script/initialize-test-e2e.js`, which:
+
+1. Runs the initialization script using `--skip-github-api` and other skip flags
+2. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
+3. Runs `pnpm run lint:knip` to make sure no excess dependencies or files were left over
+4. Resets everything
+5. Runs initialization a second time, capturing test coverage
+
+The `pnpm run initialize:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+See `.github/workflows/test-initialize.yml`.
+
+### The Migration Script
+
+This template's "migration" script is located in `src/migrate/`.
+Note that files need to be built with `pnpm run build` beforehand.
+
+To test out the script locally, run it from a different repository's directory:
+
+```shell
+cd ../other-repo
+node ../template-typescript-node-package/bin/migrate.js
+```
+
+The migration script will work on any directory.
+You can try it out in a blank directory with scripts like:
 
 ```shell
 cd ..
 mkdir temp
 cd temp
-echo node_modules > .gitignore
-git init
-npm init --yes
+node ../template-typescript-node-package/bin/migrate.js
 ```
 
-Then, in that directory, you can directly call the hydration script:
+#### Testing the Migration Script
+
+You can run the end-to-end test for migrating locally on the command-line:
 
 ```shell
-node ../template-typescript-node-package/lib/hydrate/index.js -- description "Hooray, trying things out locally."
+pnpm run initiamigratelize:test
 ```
 
-Along with the hydration script itself, end-to-end tests are removed on package setup.
+That end-to-end test executes `script/migrate-test-e2e.js`, which:
 
-## The Setup Script
+1. Runs the migration script using `--skip-github-api` and other skip flags
+2. Checks that only a small list of allowed files were changed
+3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
 
-This template's "setup" script is located in `script/`.
-
-### Testing the Setup Script
-
-This template source includes an "end-to-end" test for `script/setup.js`.
-You can run it locally on the command-line:
-
-```shell
-pnpm run setup:test
-```
-
-That end-to-end test executes `script/setup-test-e2e.js`, which:
-
-1. Runs the setup script using `--skip-api`
-2. Checks that the local repository's files were changed correctly (e.g. removed setup-only files)
-
-Along with the setup script itself, end-to-end tests are removed on package setup.
+The `pnpm run migrate:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+See `.github/workflows/test-migrate.yml`.

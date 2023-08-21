@@ -2,8 +2,8 @@
 	"$schema": "https://unpkg.com/knip@latest/schema.json",
 	"entry": [
 		"src/index.ts!",
-		"src/hydrate/index.ts",
-		"src/setup/index.ts",
+		"src/initialize/index.ts",
+		"src/migrate/index.ts",
 		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["gh"],

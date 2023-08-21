@@ -26,9 +26,23 @@
     <img alt="TypeScript: Strict 💪" src="https://img.shields.io/badge/typescript-strict_💪-21bb42.svg" />
 </p>
 
+## Getting Started
+
+First make sure you have the following installed:
+
+- [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
+- [Node.js](https://nodejs.org)
+- [pnpm](https://pnpm.io)
+
+This repository comes with two scripts to set up an existing or new repository with tooling.
+Use the corresponding docs page to get started:
+
+- [Initializing from the template](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub
+- [Migrating an existing repository](./docs/Migration.md): adding this template's tooling on top of an existing repository
+
 ## Explainer
 
-This template is available for anybody who wants to set up a basic Node application using TypeScript.
+This template is available for anybody who wants to set up a Node application using TypeScript.
 It sets up the following tooling for you:
 
 - [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
@@ -43,112 +57,6 @@ It sets up the following tooling for you:
 - [**tsup**](https://tsup.egoist.dev): Builds output definitions and JavaScript files using [esbuild](https://esbuild.github.io).
 - [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
 - [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking and [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test).
-
-## Setup
-
-This package comes with a bootstrap/initialization setup script that fills out your repository's details, installs necessary packages, then removes itself and uninstalls setup dependencies.
-
-First make sure you have the following installed:
-
-- [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
-- [Node.js](https://nodejs.org)
-- [pnpm](https://pnpm.io)
-
-To use this template:
-
-1. Click the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button to create a new repository with the same Git history
-2. Open that repository, such as by [cloning it locally](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [developing in a codespace](https://docs.github.com/en/codespaces/developing-in-codespaces/developing-in-a-codespace)
-3. Create two tokens in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
-   - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
-   - `NPM_TOKEN`: An [npm access token](https://docs.npmjs.com/creating-and-viewing-access-tokens/) with _Automation_ permissions
-4. `pnpm install`
-5. `pnpm run setup` to run the setup script
-6. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
-
-> The setup script removes the `## Explainer`, `## Setup`, and `## Repository Hydration` sections from this README.md.
-
-### Setup Options
-
-The setup script requires four options to fill out repository details.
-It will interactively prompt for any that are not provided as a string CLI flag:
-
-1. `repository`: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
-2. `title`: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
-3. `owner`: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
-4. `description`: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
-
-Additionally, a `--skip-api` boolean CLI flag may be specified to prevent the setup script from calling to GitHub APIs for repository hydration.
-The script normally posts to GitHub APIs to set information such as repository description and branch protections on github.com.
-Specifying `--skip-api` prevents those API calls, effectively limiting setup changes to local files in Git.
-Doing so can be useful to preview what running setup does.
-
-For example, pre-populating all values and skipping API calls:
-
-```shell
-pnpm run setup --repository "testing-repository" --title "Testing Title" --owner "TestingOwner" --description "Test Description" --skip-api
-```
-
-> Tip: after running `pnpm run setup` with `--skip-api`, you can always `git add -A; git reset --hard HEAD` to completely reset all changes.
-
-## Repository Hydration
-
-> **Warning**
-> Hydration will override many files in your repository.
-> You'll want to review each of the changes and make sure nothing important is removed.
-
-Alternately, if you have an existing repository that you'd like to give the files from this repository, you can run `template-typescript-node-package` in a repository to "hydrate" it.
-
-```shell
-npx template-typescript-node-package
-```
-
-Repository settings will be auto-filled from the repository's files if possible, but can be provided manually as well:
-
-- `author` _(`string`)_: e.g. `"Josh Goldberg"`
-- `description` _(`string`)_: e.g. `"A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨"`
-- `email` _(`string`)_: e.g. `"git@joshuakgoldberg.com"`
-- `funding` _(`string`, optional)_: e.g. `"JoshuaKGoldberg"`
-- `owner` _(`string`)_: e.g. `"JoshuaKGoldberg"`
-- `repository` _(`string`)_: e.g. `"template-typescript-node-package"`
-- `title` _(`string`)_: e.g. `"Template TypeScript Node Package"`
-
-For example, providing a `funding` value different from the `author`:
-
-```shell
-npx template-typescript-node-package --funding MyOrganization
-```
-
-The hydration script by default will include all the features in this template.
-You can disable some of them on the command-line:
-
-- `releases` _(`boolean`)_: Whether to include automated package publishing
-- `unitTests` _(`boolean`)_: Whether to include unit tests with code coverage tracking
-
-```shell
-npx template-typescript-node-package --releases false --unitTests false
-```
-
-You can prevent the hydration script from making network-based changes using either or both of the following CLI flags:
-
-- `--skip-contributors` _(`boolean`)_: Skips detecting existing contributors with [`all-contributors-for-repository`](https://github.com/JoshuaKGoldberg/all-contributors-for-repository)
-- `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`
-- `--skip-setup` _(`boolean`)_: Skips running the setup script at the end of hydration
-
-```shell
-npx template-typescript-node-package --skip-install --skip-setup
-```
-
-## Usage
-
-```shell
-npm i template-typescript-node-package
-```
-
-```ts
-import { greet } from "template-typescript-node-package";
-
-greet("Hello, world!");
-```
 
 ## Development
 

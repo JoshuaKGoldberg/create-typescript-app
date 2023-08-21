@@ -1,4 +1,4 @@
-import { readFileAsJson } from "../../../../shared/readFileAsJson.js";
+import { readFileSafeAsJson } from "../../../../shared/readFileSafeAsJson.js";
 import { HydrationInputValues } from "../../../values/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
@@ -41,9 +41,8 @@ export async function writePackageJson({
 	| "repository"
 	| "unitTests"
 >) {
-	const existingPackageJson = (await readFileAsJson(
-		"./package.json",
-	)) as object;
+	const existingPackageJson =
+		((await readFileSafeAsJson("./package.json")) as null | object) ?? {};
 
 	return await formatJson({
 		// To start, copy over all existing package fields (e.g. "dependencies")

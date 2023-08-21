@@ -2,6 +2,7 @@ import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 import { $ } from "execa";
 
+import { ensureGitRepository } from "./ensureGitRepository.js";
 import {
 	GetterDefaultInputValues,
 	InputValuesAndOctokit,
@@ -38,6 +39,8 @@ export async function runOrRestore({
 				"Let's collect some information to fill out repository details...",
 			),
 		);
+
+		await ensureGitRepository();
 
 		const { octokit, values } = await getInputValuesAndOctokit(args, defaults);
 

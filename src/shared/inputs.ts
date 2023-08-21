@@ -54,7 +54,7 @@ export async function getInputValuesAndOctokit(
 			owner: { type: "string" },
 			releases: { type: "boolean" },
 			repository: { type: "string" },
-			"skip-api": { type: "boolean" },
+			"skip-github-api": { type: "boolean" },
 			"skip-removal": { type: "boolean" },
 			"skip-restore": { type: "boolean" },
 			"skip-uninstall": { type: "boolean" },
@@ -73,7 +73,7 @@ export async function getInputValuesAndOctokit(
 		defaultOwner,
 	);
 
-	const octokit = await getOctokit(!!values["skip-api"]);
+	const octokit = await getOctokit(!!values["skip-github-api"]);
 
 	prompter.reset();
 
@@ -124,7 +124,7 @@ export async function getInputValuesAndOctokit(
 				defaults.releases,
 			),
 			repository,
-			skipApi: !!values["skip-api"],
+			skipApi: !!values["skip-github-api"],
 			skipRemoval: !!values["skip-removal"],
 			skipRestore: !!values["skip-restore"],
 			skipUninstalls: !!values["skip-uninstalls"],

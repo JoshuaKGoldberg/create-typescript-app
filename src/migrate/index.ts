@@ -1,6 +1,6 @@
 import { parseArgs } from "node:util";
 
-import { setupWithInformation } from "../setup/setupWithInformation.js";
+import { initializeWithInformation } from "../initialize/initializeWithInformation.js";
 import {
 	skipSpinnerBlock,
 	successSpinnerBlock,
@@ -16,11 +16,12 @@ import { writeStructure } from "./steps/writing/writeStructure.js";
 import { getHydrationDefaults } from "./values/getHydrationDefaults.js";
 import { augmentWithHydrationValues } from "./values/hydrationInputValues.js";
 
-export async function hydrate(args: string[]) {
+export async function migrate(args: string[]) {
 	const { values: hydrationSkips } = parseArgs({
 		args,
 		options: {
 			"skip-contributors": { type: "boolean" },
+			"skip-github-api": { type: "boolean" },
 			"skip-install": { type: "boolean" },
 			"skip-setup": { type: "boolean" },
 		},
@@ -47,7 +48,10 @@ export async function hydrate(args: string[]) {
 				"writing README.md",
 			);
 
-			if (hydrationSkips["skip-contributors"]) {
+			if (
+				hydrationSkips["skip-github-api"] ??
+				hydrationSkips["skip-contributors"]
+			) {
 				skipSpinnerBlock(`Skipping detecting existing contributors.`);
 			} else {
 				await withSpinner(
@@ -56,7 +60,7 @@ export async function hydrate(args: string[]) {
 				);
 			}
 
-			if (hydrationSkips["skip-install"]) {
+			if (hydrationSkips["skip-github-api"] ?? hydrationSkips["skip-install"]) {
 				skipSpinnerBlock(`Skipping package installations.`);
 			} else {
 				await withSpinner(
@@ -68,12 +72,12 @@ export async function hydrate(args: string[]) {
 			await runCommand("pnpm lint --fix", "auto-fixing lint rules");
 			await runCommand("pnpm format --write", "formatting files");
 
-			if (hydrationSkips["skip-setup"]) {
-				skipSpinnerBlock(`Done hydrating, and skipping setup command.`);
+			if (hydrationSkips["skip-initialize"]) {
+				skipSpinnerBlock(`Done hydrating, and skipping initialize command.`);
 			} else {
-				successSpinnerBlock("Done hydrating. Starting setup command...");
+				successSpinnerBlock("Done hydrating. Starting initialize command...");
 
-				await setupWithInformation({
+				await initializeWithInformation({
 					octokit,
 					values: {
 						...hydrationValues,

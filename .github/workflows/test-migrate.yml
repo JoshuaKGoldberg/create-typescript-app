@@ -1,23 +1,23 @@
 jobs:
-  hydrate:
+  migrate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/prepare
       - run: pnpm run build
-      - run: pnpm run hydrate:test
+      - run: pnpm run migrate:test
       - name: Codecov
         uses: codecov/codecov-action@v3
         with:
-          files: coverage-hydrate/lcov.info
-          flags: hydrate
+          files: coverage-migrate/lcov.info
+          flags: migrate
       - if: always()
         name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
-          path: coverage-hydrate
+          path: coverage-migrate
 
-name: Test Hydrate Script
+name: Test Migration Script
 
 on:
   pull_request: ~

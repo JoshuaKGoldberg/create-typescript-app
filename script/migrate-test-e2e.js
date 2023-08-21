@@ -9,7 +9,7 @@ const title = "Template TypeScript Node Package";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-hydrate -r html -r lcov node ./bin/hydrate.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-api --skip-contributors --skip-install --skip-setup`;
+})`c8 -o ./coverage-migrate -r html -r lcov node ./bin/migrate.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-contributors --skip-initialize --skip-install`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
@@ -19,7 +19,7 @@ const indexOfUnstagedFilesMessage = gitStatus.indexOf(
 );
 if (indexOfUnstagedFilesMessage === -1) {
 	throw new Error(
-		`Looks like hydrate didn't cause any file changes? That's ...probably incorrect? 😬`,
+		`Looks like migrate didn't cause any file changes? That's ...probably incorrect? 😬`,
 	);
 }
 
@@ -60,13 +60,13 @@ if (unstagedModifiedFiles.length) {
 	console.error(
 		[
 			"",
-			"Oh no! Running the hydrate script modified some files:",
+			"Oh no! Running the migrate script modified some files:",
 			...unstagedModifiedFiles.map((filePath) => ` - ${filePath}`),
 			"",
 			"That likely indicates changes made to the repository without",
-			"corresponding updates to templates in src/hydrate/creation.",
+			"corresponding updates to templates in src/migrate/creation.",
 			"",
-			"Please search for those file(s)' name(s) under src/hydrate for",
+			"Please search for those file(s)' name(s) under src/migrate for",
 			"the corresponding template and update those as well.",
 		]
 			.map((line) => chalk.red(line))

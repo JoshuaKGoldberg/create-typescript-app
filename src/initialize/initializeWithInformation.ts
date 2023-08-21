@@ -17,7 +17,7 @@ import { updateAllContributorsTable } from "./steps/updateAllContributorsTable.j
 import { updateLocalFiles } from "./steps/updateLocalFiles.js";
 import { updateReadme } from "./steps/updateReadme.js";
 
-export async function setupWithInformation({
+export async function initializeWithInformation({
 	octokit,
 	values,
 }: InputValuesAndOctokit) {

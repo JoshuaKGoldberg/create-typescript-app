@@ -14,7 +14,7 @@ export async function getDefaultSettings() {
 		logLine();
 		logLine(
 			chalk.gray(
-				"Could not populate default owner and repository. Did not detect a Git repository with an origin. ",
+				"Could not populate default owner and repository. Did not detect an 'origin' remote. ",
 			),
 		);
 

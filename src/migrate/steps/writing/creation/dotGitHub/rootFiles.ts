@@ -300,23 +300,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 
 This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
 To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-
-### Testing the Setup Script
-
-In addition to unit tests, this template also includes an "end-to-end" test for \`script/setup.js\`.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run setup:test
-\`\`\`
-
-That end-to-end test executes \`script/setup-test-e2e.js\`, which:
-
-1. Runs the setup script using \`--skip-api\`
-2. Checks that the local repository's files were changed correctly (e.g. removed setup-only files)
-
-As with the setup script itself, end-to-end tests are removed on package setup.
-		`,
+`,
 		...(funding && { "FUNDING.yml": formatYaml({ github: funding }) }),
 		"ISSUE_TEMPLATE.md": `<!-- Note: Please must use one of our issue templates to file an issue! 🛑 -->
 <!-- 👉 https://github.com/${owner}/${repository}/issues/new/choose 👈 -->

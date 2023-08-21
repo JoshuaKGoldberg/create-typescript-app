@@ -4,10 +4,10 @@ const globPaths = [
 	"./bin",
 	"./script",
 	"./src/hydrate",
-	"./src/setup",
+	"./src/initialize",
 	"./src/shared",
-	".github/workflows/hydrate.yml",
-	".github/workflows/setup.yml",
+	".github/workflows/test-initialize.yml",
+	".github/workflows/test-migrate.yml",
 ];
 
 export async function removeSetupScripts() {

@@ -31,6 +31,18 @@ export async function runOrRestore({
 	);
 	console.log();
 
+	console.log(
+		chalk.yellow(
+			"⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️",
+		),
+	);
+	console.log(
+		chalk.yellow(
+			"⚠️ If any tooling it sets displeases you, you can always remove that portion manually. ⚠️",
+		),
+	);
+	console.log();
+
 	let skipRestore = false;
 
 	try {

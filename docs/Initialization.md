@@ -1,7 +1,6 @@
 # Initializing from the Template
 
 The [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub can be used to quickly create a new repository.
-
 After creating the new repository, you can set it up locally by cloning it and installing packages:
 
 ```shell
@@ -10,7 +9,7 @@ cd YourRepositoryName
 pnpm i
 ```
 
-> 👉 If you don't want to `git clone` it locally, you can always [develop in a codespace](https://docs.github.com/en/codespaces/developing-in-codespaces/developing-in-a-codespace) instead.
+> 💡 If you don't want to `git clone` it locally, you can always [develop in a codespace](https://docs.github.com/en/codespaces/developing-in-codespaces/developing-in-a-codespace) instead.
 
 ## The Initialization Script
 
@@ -41,6 +40,8 @@ Then, go through the following two steps to set up required repository tooling o
    - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
    - `NPM_TOKEN`: An [npm access token](https://docs.npmjs.com/creating-and-viewing-access-tokens/) with _Automation_ permissions
 2. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
+
+At this point, your new repository should be ready for development! 🥳
 
 ### Skipping API Calls
 

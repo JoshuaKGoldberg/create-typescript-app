@@ -2,14 +2,14 @@ import { Octokit } from "octokit";
 
 import { InputValues } from "../../shared/inputs.js";
 
-type HydrateRepositoryValues = Pick<
+type MigrateRepositoryValues = Pick<
 	InputValues,
 	"description" | "owner" | "repository"
 >;
 
-export async function hydrateRepositorySettings(
+export async function migrateRepositorySettings(
 	octokit: Octokit,
-	{ description, owner, repository }: HydrateRepositoryValues,
+	{ description, owner, repository }: MigrateRepositoryValues,
 ) {
 	await octokit.rest.repos.update({
 		allow_auto_merge: true,

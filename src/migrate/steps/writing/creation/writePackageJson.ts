@@ -1,5 +1,5 @@
 import { readFileSafeAsJson } from "../../../../shared/readFileSafeAsJson.js";
-import { HydrationInputValues } from "../../../values/types.js";
+import { MigrationInputValues } from "../../../values/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 const devDependenciesToRemove = [
@@ -32,7 +32,7 @@ export async function writePackageJson({
 	repository,
 	unitTests,
 }: Pick<
-	HydrationInputValues,
+	MigrationInputValues,
 	| "author"
 	| "description"
 	| "email"

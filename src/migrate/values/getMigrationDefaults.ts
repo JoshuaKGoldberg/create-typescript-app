@@ -7,7 +7,7 @@ import { readFundingIfExists } from "./readFundingIfExists.js";
 import { readOwnerFromGitRemote } from "./readOwnerFromGitRemote.js";
 import { readTitleFromReadme } from "./readTitleFromReadme.js";
 
-export async function getHydrationDefaults() {
+export async function getMigrationDefaults() {
 	const existingPackage = JSON.parse(
 		await readFileSafe("./package.json", "{}"),
 	) as PartialPackageData;

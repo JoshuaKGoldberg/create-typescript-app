@@ -1,10 +1,10 @@
-import { HydrationInputValues } from "../../../../values/types.js";
+import { MigrationInputValues } from "../../../../values/types.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 
 export function createDotGitHubIssueTemplate({
 	owner,
 	repository,
-}: Pick<HydrationInputValues, "owner" | "repository">) {
+}: Pick<MigrationInputValues, "owner" | "repository">) {
 	return {
 		"01-bug.yml": formatYaml({
 			body: [

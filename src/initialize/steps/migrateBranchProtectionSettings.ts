@@ -3,7 +3,7 @@ import { Octokit } from "octokit";
 
 import { InputValues } from "../../shared/inputs.js";
 
-export async function hydrateBranchProtectionSettings(
+export async function migrateBranchProtectionSettings(
 	octokit: Octokit,
 	{ owner, repository }: Pick<InputValues, "owner" | "repository">,
 ) {

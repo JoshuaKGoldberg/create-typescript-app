@@ -1,11 +1,11 @@
 import { execaCommand } from "execa";
 
-import { HydrationInputValues } from "../values/types.js";
+import { MigrationInputValues } from "../values/types.js";
 
 export async function finalizeDependencies({
 	releases,
 	unitTests,
-}: Pick<HydrationInputValues, "releases" | "unitTests">) {
+}: Pick<MigrationInputValues, "releases" | "unitTests">) {
 	const devDependencies = [
 		"@types/eslint",
 		"@typescript-eslint/eslint-plugin",

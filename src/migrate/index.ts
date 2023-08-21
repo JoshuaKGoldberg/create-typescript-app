@@ -13,11 +13,11 @@ import { finalizeDependencies } from "./steps/finalizeDependencies.js";
 import { runCommand } from "./steps/runCommand.js";
 import { writeReadme } from "./steps/writeReadme.js";
 import { writeStructure } from "./steps/writing/writeStructure.js";
-import { getHydrationDefaults } from "./values/getHydrationDefaults.js";
-import { augmentWithHydrationValues } from "./values/hydrationInputValues.js";
+import { getMigrationDefaults } from "./values/getMigrationDefaults.js";
+import { augmentWithMigrationValues } from "./values/migrationInputValues.js";
 
 export async function migrate(args: string[]) {
-	const { values: hydrationSkips } = parseArgs({
+	const { values: migrationSkips } = parseArgs({
 		args,
 		options: {
 			"skip-contributors": { type: "boolean" },
@@ -31,26 +31,26 @@ export async function migrate(args: string[]) {
 
 	return await runOrRestore({
 		args,
-		defaults: await getHydrationDefaults(),
-		label: "hydration",
+		defaults: await getMigrationDefaults(),
+		label: "migration",
 		run: async ({ octokit, values }) => {
-			const hydrationValues = await augmentWithHydrationValues(values);
+			const migrationValues = await augmentWithMigrationValues(values);
 
 			await withSpinner(clearUnnecessaryFiles, "clearing unnecessary files");
 
 			await withSpinner(
-				() => writeStructure(hydrationValues),
+				() => writeStructure(migrationValues),
 				"writing new repository structure",
 			);
 
 			await withSpinner(
-				() => writeReadme(hydrationValues),
+				() => writeReadme(migrationValues),
 				"writing README.md",
 			);
 
 			if (
-				hydrationSkips["skip-github-api"] ??
-				hydrationSkips["skip-contributors"]
+				migrationSkips["skip-github-api"] ??
+				migrationSkips["skip-contributors"]
 			) {
 				skipSpinnerBlock(`Skipping detecting existing contributors.`);
 			} else {
@@ -60,11 +60,11 @@ export async function migrate(args: string[]) {
 				);
 			}
 
-			if (hydrationSkips["skip-github-api"] ?? hydrationSkips["skip-install"]) {
+			if (migrationSkips["skip-github-api"] ?? migrationSkips["skip-install"]) {
 				skipSpinnerBlock(`Skipping package installations.`);
 			} else {
 				await withSpinner(
-					() => finalizeDependencies(hydrationValues),
+					() => finalizeDependencies(migrationValues),
 					"finalizing dependencies",
 				);
 			}
@@ -72,15 +72,15 @@ export async function migrate(args: string[]) {
 			await runCommand("pnpm lint --fix", "auto-fixing lint rules");
 			await runCommand("pnpm format --write", "formatting files");
 
-			if (hydrationSkips["skip-initialize"]) {
-				skipSpinnerBlock(`Done hydrating, and skipping initialize command.`);
+			if (migrationSkips["skip-initialize"]) {
+				skipSpinnerBlock(`Done migrating, and skipping initialize command.`);
 			} else {
-				successSpinnerBlock("Done hydrating. Starting initialize command...");
+				successSpinnerBlock("Done migrating. Starting initialize command...");
 
 				await initializeWithInformation({
 					octokit,
 					values: {
-						...hydrationValues,
+						...migrationValues,
 						skipUninstalls: true,
 					},
 				});

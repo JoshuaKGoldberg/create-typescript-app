@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { getHydrationDefaults } from "./getHydrationDefaults.js";
+import { getMigrationDefaults } from "./getMigrationDefaults.js";
 
 const mockReadFileSafe = vi.fn();
 
@@ -34,8 +34,8 @@ vi.mock("./readTitleFromReadme.js", () => ({
 	},
 }));
 
-describe("getHydrationDefaults", () => {
-	it("reads hydration defaults from existing readme and package json when exists", async () => {
+describe("getMigrationDefaults", () => {
+	it("reads migration defaults from existing readme and package json when exists", async () => {
 		mockReadTitleFromReadme.mockResolvedValue("My Awesome Package");
 		mockReadFileSafe.mockResolvedValueOnce(
 			'{"author":"Someone <someone@test.com>"}',
@@ -43,7 +43,7 @@ describe("getHydrationDefaults", () => {
 		mockReadFundingIfExists.mockResolvedValue("Someone");
 		mockReadOwnerFromGitRemote.mockResolvedValue("SUM1");
 
-		const result = await getHydrationDefaults();
+		const result = await getMigrationDefaults();
 		expect(await result.author()).toBe("Someone");
 		expect(await result.email()).toBe("someone@test.com");
 		expect(await result.funding()).toBe("Someone");

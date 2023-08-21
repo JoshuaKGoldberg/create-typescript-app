@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { hydrateRepositoryLabels } from "./hydrateRepositoryLabels.js";
+import { migrateRepositoryLabels } from "./migrateRepositoryLabels.js";
 
 const mock$ = vi.fn();
 
@@ -20,7 +20,7 @@ vi.mock("./outcomeLabels.js", () => ({
 	],
 }));
 
-describe("hydrateRepositoryLabels", () => {
+describe("migrateRepositoryLabels", () => {
 	it("creates a setup label when it doesn't already exist", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
@@ -32,7 +32,7 @@ describe("hydrateRepositoryLabels", () => {
 			]),
 		});
 
-		await hydrateRepositoryLabels();
+		await migrateRepositoryLabels();
 
 		expect(mock$).toHaveBeenCalledWith(
 			["gh label ", " ", " --color ", " --description ", ""],
@@ -54,7 +54,7 @@ describe("hydrateRepositoryLabels", () => {
 			]),
 		});
 
-		await hydrateRepositoryLabels();
+		await migrateRepositoryLabels();
 
 		expect(mock$).toHaveBeenCalledWith(
 			["gh label ", " ", " --color ", " --description ", ""],
@@ -76,7 +76,7 @@ describe("hydrateRepositoryLabels", () => {
 			]),
 		});
 
-		await hydrateRepositoryLabels();
+		await migrateRepositoryLabels();
 
 		expect(mock$).toHaveBeenCalledWith(
 			["gh label delete ", " --yes"],
@@ -96,7 +96,7 @@ describe("hydrateRepositoryLabels", () => {
 			]),
 		});
 
-		await hydrateRepositoryLabels();
+		await migrateRepositoryLabels();
 
 		expect(mock$).not.toHaveBeenCalledWith(
 			["gh label delete ", " --yes"],

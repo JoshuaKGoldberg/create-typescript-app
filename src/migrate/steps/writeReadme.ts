@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 
 import { readFileSafe } from "../../shared/readFileSafe.js";
-import { HydrationInputValues } from "../values/types.js";
+import { MigrationInputValues } from "../values/types.js";
 
 const contributorsIndicator = `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`;
 
@@ -23,7 +23,7 @@ ${contributorsIndicator}
 <!-- spellchecker: enable -->
 `;
 
-export async function writeReadme(values: HydrationInputValues) {
+export async function writeReadme(values: MigrationInputValues) {
 	let contents = await readFileSafe("README.md", "");
 	if (!contents) {
 		await fs.writeFile(
@@ -58,7 +58,7 @@ function findH1Close(contents: string) {
 	return contents.indexOf("</h1>") + "</h1>".length;
 }
 
-function generateTopContent(values: HydrationInputValues) {
+function generateTopContent(values: MigrationInputValues) {
 	return `<h1 align="center">${values.title}</h1>
 
 <p align="center">${values.description}</p>

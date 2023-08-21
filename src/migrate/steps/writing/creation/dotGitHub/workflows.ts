@@ -1,11 +1,11 @@
 /* spellchecker: disable */
-import { HydrationInputValues } from "../../../../values/types.js";
+import { MigrationInputValues } from "../../../../values/types.js";
 import { createWorkflowFile } from "./createWorkflowFile.js";
 
 export function createWorkflows({
 	owner,
 	repository,
-}: Pick<HydrationInputValues, "owner" | "repository">) {
+}: Pick<MigrationInputValues, "owner" | "repository">) {
 	return {
 		"build.yml": createWorkflowFile({
 			name: "Build",

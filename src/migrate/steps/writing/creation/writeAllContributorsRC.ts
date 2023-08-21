@@ -1,9 +1,9 @@
 import { readFileSafeAsJson } from "../../../../shared/readFileSafeAsJson.js";
 import { AllContributorsData } from "../../../../shared/types.js";
-import { HydrationInputValues } from "../../../values/types.js";
+import { MigrationInputValues } from "../../../values/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
-export async function writeAllContributorsRC(values: HydrationInputValues) {
+export async function writeAllContributorsRC(values: MigrationInputValues) {
 	const existing = (await readFileSafeAsJson(
 		".all-contributorsrc",
 	)) as AllContributorsData | null;

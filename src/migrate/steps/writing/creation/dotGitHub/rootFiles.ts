@@ -1,5 +1,5 @@
 /* spellchecker: disable */
-import { HydrationInputValues } from "../../../../values/types.js";
+import { MigrationInputValues } from "../../../../values/types.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 
 export function createDotGitHubFiles({
@@ -7,7 +7,7 @@ export function createDotGitHubFiles({
 	funding,
 	owner,
 	repository,
-}: Pick<HydrationInputValues, "email" | "funding" | "owner" | "repository">) {
+}: Pick<MigrationInputValues, "email" | "funding" | "owner" | "repository">) {
 	return {
 		"CODE_OF_CONDUCT.md": `# Contributor Covenant Code of Conduct
 

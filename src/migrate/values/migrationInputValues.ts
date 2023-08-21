@@ -1,10 +1,10 @@
 import { PrefillPrompter } from "../../shared/PrefillPrompter.js";
 import { InputValues } from "../../shared/inputs.js";
-import { HydrationInputValues } from "./types.js";
+import { MigrationInputValues } from "./types.js";
 
-export async function augmentWithHydrationValues(
+export async function augmentWithMigrationValues(
 	values: InputValues,
-): Promise<HydrationInputValues> {
+): Promise<MigrationInputValues> {
 	const prompter = new PrefillPrompter();
 
 	return {

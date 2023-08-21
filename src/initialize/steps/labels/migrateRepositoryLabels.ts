@@ -7,7 +7,7 @@ interface GhLabelData {
 	name: string;
 }
 
-export async function hydrateRepositoryLabels() {
+export async function migrateRepositoryLabels() {
 	const getLabelName = (label: { name: string }) => label.name;
 
 	const existingLabels = (

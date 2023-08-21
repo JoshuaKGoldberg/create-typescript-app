@@ -1,7 +1,7 @@
 import { Octokit } from "octokit";
 import { SpyInstance, describe, expect, it, vi } from "vitest";
 
-import { hydrateBranchProtectionSettings } from "./hydrateBranchProtectionSettings.js";
+import { migrateBranchProtectionSettings } from "./migrateBranchProtectionSettings.js";
 
 const createMockOctokit = (request: SpyInstance) =>
 	({
@@ -10,11 +10,11 @@ const createMockOctokit = (request: SpyInstance) =>
 
 const stubValues = { owner: "", repository: "" };
 
-describe("hydrateBranchProtectionSettings", () => {
+describe("migrateBranchProtectionSettings", () => {
 	it("returns false when the request receives a 403 response", async () => {
 		const mockRequest = vi.fn().mockRejectedValue({ status: 403 });
 
-		const actual = await hydrateBranchProtectionSettings(
+		const actual = await migrateBranchProtectionSettings(
 			createMockOctokit(mockRequest),
 			stubValues,
 		);
@@ -27,7 +27,7 @@ describe("hydrateBranchProtectionSettings", () => {
 		const mockRequest = vi.fn().mockRejectedValue(error);
 
 		await expect(() =>
-			hydrateBranchProtectionSettings(
+			migrateBranchProtectionSettings(
 				createMockOctokit(mockRequest),
 				stubValues,
 			),

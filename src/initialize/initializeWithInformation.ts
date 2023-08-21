@@ -7,9 +7,9 @@ import { getNpmAuthor } from "../shared/getNpmAuthor.js";
 import { InputValuesAndOctokit } from "../shared/inputs.js";
 import { addOwnerAsAllContributor } from "./settings/addOwnerAsAllContributor.js";
 import { clearChangelog } from "./steps/clearChangelog.js";
-import { hydrateBranchProtectionSettings } from "./steps/hydrateBranchProtectionSettings.js";
-import { hydrateRepositorySettings } from "./steps/hydrateRepositorySettings.js";
-import { hydrateRepositoryLabels } from "./steps/labels/hydrateRepositoryLabels.js";
+import { migrateRepositoryLabels } from "./steps/labels/migrateRepositoryLabels.js";
+import { migrateBranchProtectionSettings } from "./steps/migrateBranchProtectionSettings.js";
+import { migrateRepositorySettings } from "./steps/migrateRepositorySettings.js";
 import { removeSetupScripts } from "./steps/removeSetupScripts.js";
 import { resetGitTags } from "./steps/resetGitTags.js";
 import { uninstallPackages } from "./steps/uninstallPackages.js";
@@ -21,7 +21,7 @@ export async function initializeWithInformation({
 	octokit,
 	values,
 }: InputValuesAndOctokit) {
-	successSpinnerBlock("Started hydrating package metadata locally.");
+	successSpinnerBlock("Started migrating package metadata locally.");
 
 	await withSpinner(async () => {
 		await addOwnerAsAllContributor(values.owner);
@@ -38,7 +38,7 @@ export async function initializeWithInformation({
 		"Appending template-typescript-node-package notice to 'README.md'",
 	);
 
-	successSpinnerBlock(`Finished hydrating package metadata locally.`);
+	successSpinnerBlock(`Finished migrating package metadata locally.`);
 
 	await withSpinner(clearChangelog, "clearing CHANGELOG.md");
 
@@ -49,23 +49,23 @@ export async function initializeWithInformation({
 	await withSpinner(resetGitTags, "deleting local git tags...");
 
 	if (!octokit) {
-		skipSpinnerBlock(`Skipping API hydration.`);
+		skipSpinnerBlock(`Skipping API migration.`);
 	} else {
-		successSpinnerBlock(`Starting API hydration.`);
+		successSpinnerBlock(`Starting API migration.`);
 
-		await withSpinner(hydrateRepositoryLabels, "hydrating repository labels");
+		await withSpinner(migrateRepositoryLabels, "migrating repository labels");
 
 		await withSpinner(async () => {
-			await hydrateRepositorySettings(octokit, values);
-		}, "hydrating initial repository settings");
+			await migrateRepositorySettings(octokit, values);
+		}, "migrating initial repository settings");
 
 		await withSpinner(
-			() => hydrateBranchProtectionSettings(octokit, values),
-			"hydrating branch protection settings",
+			() => migrateBranchProtectionSettings(octokit, values),
+			"migrating branch protection settings",
 			"private repositories require GitHub Pro for that API.",
 		);
 
-		successSpinnerBlock(`Finished API hydration.`);
+		successSpinnerBlock(`Finished API migration.`);
 	}
 
 	if (values.skipRemoval) {

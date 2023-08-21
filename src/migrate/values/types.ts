@@ -1,6 +1,6 @@
 import { InputValues } from "../../shared/inputs.js";
 
-export interface HydrationInputValues extends InputValues {
+export interface MigrationInputValues extends InputValues {
 	author: string;
 	email: string;
 }

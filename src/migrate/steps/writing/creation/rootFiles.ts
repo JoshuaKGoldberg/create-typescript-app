@@ -1,10 +1,10 @@
-import { HydrationInputValues } from "../../../values/types.js";
+import { MigrationInputValues } from "../../../values/types.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
 import { writeAllContributorsRC } from "./writeAllContributorsRC.js";
 import { writePackageJson } from "./writePackageJson.js";
 
-export async function createRootFiles(values: HydrationInputValues) {
+export async function createRootFiles(values: MigrationInputValues) {
 	return {
 		".all-contributorsrc": await writeAllContributorsRC(values),
 		".eslintignore": formatIgnoreFile([

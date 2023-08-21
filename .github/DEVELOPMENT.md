@@ -123,7 +123,8 @@ That end-to-end test executes `script/initialize-test-e2e.js`, which:
 4. Resets everything
 5. Runs initialization a second time, capturing test coverage
 
-`pnpm run initialize:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+The `pnpm run initialize:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+See `.github/workflows/test-initialize.yml`.
 
 ### The Migration Script
 
@@ -161,4 +162,5 @@ That end-to-end test executes `script/migrate-test-e2e.js`, which:
 2. Checks that only a small list of allowed files were changed
 3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
 
-`pnpm run migrate:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+The `pnpm run migrate:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+See `.github/workflows/test-migrate.yml`.

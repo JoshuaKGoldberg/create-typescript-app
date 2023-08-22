@@ -101,7 +101,7 @@ This tempalte's "creation" script is located in `src/create/`.
 You can run it locally with `node bin/index.js --mode create`.
 Note that files need to be built with `pnpm run build` beforehand.
 
-#### Testing the Initialization Script
+#### Testing the Creation Script
 
 Todo: next!
 

@@ -2,7 +2,9 @@ import { $, execaCommand } from "execa";
 import { strict as assert } from "node:assert";
 import fs from "node:fs/promises";
 
+const author = "Test Author";
 const description = "Test description.";
+const email = "test@email.com";
 const repository = "test-repository";
 const owner = "TestOwner";
 const title = "Test Title";
@@ -12,7 +14,7 @@ process.chdir(repository);
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-create -r html -r lcov node ../bin/index.js  --mode create --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api`;
+})`c8 -o ./coverage-create -r html -r lcov node ../bin/index.js  --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api`;
 
 const failures = [];
 

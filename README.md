@@ -26,6 +26,12 @@
     <img alt="TypeScript: Strict 💪" src="https://img.shields.io/badge/typescript-strict_💪-21bb42.svg" />
 </p>
 
+Note that this template is early stage, opinionated, and not endorsed by the TypeScript team.
+It sets up a _lot_ of tooling out of the box.
+Each of the included tools exists for a good reason and provides real value.
+
+If you don't want to use any particular tool, you can always remove it manually.
+
 ## Getting Started
 
 First make sure you have the following installed:

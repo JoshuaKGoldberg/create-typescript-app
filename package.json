@@ -37,7 +37,8 @@
 		"migrate:test": "node script/migrate-test-e2e.js",
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
-		"test": "vitest"
+		"test": "vitest",
+		"tsc": "tsc"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"

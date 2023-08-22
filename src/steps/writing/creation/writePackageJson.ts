@@ -83,7 +83,7 @@ export async function writePackageJson({
 			url: `https://github.com/${owner}/${repository}`,
 		},
 		scripts: {
-			build: "tsc",
+			build: "tsup",
 			format: 'prettier "**/*" --ignore-unknown',
 			"format:write": "pnpm format --write",
 			lint: "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
@@ -98,6 +98,7 @@ export async function writePackageJson({
 				"should-semantic-release": "should-semantic-release --verbose",
 			}),
 			...(unitTests && { test: "vitest" }),
+			tsc: "tsc",
 		},
 		type: "module",
 		types: undefined,

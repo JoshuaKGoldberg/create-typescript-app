@@ -38,6 +38,7 @@ export async function finalizeDependencies({
 		"prettier-plugin-packagejson",
 		"sentences-per-line",
 		"should-semantic-release",
+		"tsup",
 		"typescript",
 		"yaml-eslint-parser",
 	];

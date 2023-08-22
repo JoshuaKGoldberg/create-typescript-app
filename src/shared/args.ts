@@ -1,0 +1,17 @@
+export const allArgOptions = {
+	author: { type: "string" },
+	description: { type: "string" },
+	email: { type: "string" },
+	funding: { type: "string" },
+	owner: { type: "string" },
+	releases: { default: true, type: "boolean" },
+	repository: { type: "string" },
+	"skip-contributors": { type: "boolean" },
+	"skip-github-api": { type: "boolean" },
+	"skip-install": { type: "boolean" },
+	"skip-removal": { type: "boolean" },
+	"skip-restore": { type: "boolean" },
+	"skip-uninstall": { type: "boolean" },
+	title: { type: "string" },
+	unitTests: { default: true, type: "boolean" },
+} as const;

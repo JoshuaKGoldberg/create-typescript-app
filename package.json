@@ -13,7 +13,7 @@
 	},
 	"type": "module",
 	"main": "./lib/index.js",
-	"bin": "./bin/migrate.js",
+	"bin": "./bin/index.js",
 	"files": [
 		"bin/",
 		"lib/",
@@ -23,9 +23,10 @@
 	],
 	"scripts": {
 		"build": "tsup",
+		"create:test": "node script/create-test-e2e.js",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
-		"initialize": "tsx src/initialize/index.ts",
+		"initialize": "tsx ./src/bin/index.js --mode initialize",
 		"initialize:test": "node script/initialize-test-e2e.js",
 		"lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 		"lint:knip": "knip",
@@ -36,7 +37,8 @@
 		"migrate:test": "node script/migrate-test-e2e.js",
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
-		"test": "vitest"
+		"test": "vitest",
+		"tsc": "tsc"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"

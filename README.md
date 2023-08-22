@@ -26,6 +26,12 @@
     <img alt="TypeScript: Strict 💪" src="https://img.shields.io/badge/typescript-strict_💪-21bb42.svg" />
 </p>
 
+Note that this template is early stage, opinionated, and not endorsed by the TypeScript team.
+It sets up a _lot_ of tooling out of the box.
+Each of the included tools exists for a good reason and provides real value.
+
+If you don't want to use any particular tool, you can always remove it manually.
+
 ## Getting Started
 
 First make sure you have the following installed:
@@ -37,7 +43,8 @@ First make sure you have the following installed:
 This repository comes with two scripts to set up an existing or new repository with tooling.
 Use the corresponding docs page to get started:
 
-- [Initializing from the template](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub
+- [Initializing from the template](./docs/InitializationFromTemplate.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub _(recommended)_
+- [Initializing from the terminal](./docs/InitializationFromTerminal.md): creating a new repository locally on the command-line
 - [Migrating an existing repository](./docs/Migration.md): adding this template's tooling on top of an existing repository
 
 ## Explainer

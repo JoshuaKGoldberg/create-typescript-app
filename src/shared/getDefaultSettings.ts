@@ -4,12 +4,17 @@ import gitUrlParse from "git-url-parse";
 
 import { logLine } from "./cli/lines.js";
 
-export async function getDefaultSettings() {
+export interface GitDefaultSettings {
+	owner: string;
+	repository: string;
+}
+
+export async function getGitDefaultSettings(): Promise<GitDefaultSettings> {
 	try {
 		const gitRemoteUrl = await gitRemoteOriginUrl();
 		const { name, owner } = gitUrlParse(gitRemoteUrl);
 
-		return { defaultOwner: owner, defaultRepository: name };
+		return { owner, repository: name };
 	} catch {
 		logLine();
 		logLine(
@@ -19,8 +24,8 @@ export async function getDefaultSettings() {
 		);
 
 		return {
-			defaultOwner: "UserName",
-			defaultRepository: "my-lovely-repository",
+			owner: "UserName",
+			repository: "my-lovely-repository",
 		};
 	}
 }

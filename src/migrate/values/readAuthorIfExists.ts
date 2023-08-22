@@ -1,6 +1,5 @@
-import type { PartialPackageData } from "./types.js";
-
 import { getNpmAuthor } from "../../shared/getNpmAuthor.js";
+import { PartialPackageData } from "../../shared/types.js";
 
 export async function readAuthorIfExists(
 	existingPackage: PartialPackageData,

@@ -9,7 +9,7 @@ const title = "Template TypeScript Node Package";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-migrate -r html -r lcov node ./bin/migrate.js  --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-contributors --skip-initialize --skip-install`;
+})`c8 -o ./coverage-migrate -r html -r lcov node ./bin/index.js --mode migrate --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-contributors --skip-install`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
@@ -25,6 +25,7 @@ if (indexOfUnstagedFilesMessage === -1) {
 
 const filesExpectedToBeChanged = new Set([
 	".all-contributorsrc",
+	"bin/index.js",
 	"README.md",
 	"knip.jsonc",
 	"package.json",

@@ -25,6 +25,7 @@ if (indexOfUnstagedFilesMessage === -1) {
 
 const filesExpectedToBeChanged = new Set([
 	".all-contributorsrc",
+	"bin/index.js",
 	"README.md",
 	"knip.jsonc",
 	"package.json",

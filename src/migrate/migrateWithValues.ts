@@ -8,7 +8,7 @@ import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeBranchProtectionSettings } from "../steps/initializeBranchProtectionSettings.js";
 import { initializeRepositorySettings } from "../steps/initializeRepositorySettings.js";
 import { initializeRepositoryLabels } from "../steps/labels/initializeRepositoryLabels.js";
-import { runCommands } from "../steps/runCommand.js";
+import { runCommands } from "../steps/runCommands.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";
 import { writeReadme } from "../steps/writeReadme.js";

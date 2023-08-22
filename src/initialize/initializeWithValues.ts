@@ -8,7 +8,7 @@ import { initializeRepositorySettings } from "../steps/initializeRepositorySetti
 import { initializeRepositoryLabels } from "../steps/labels/initializeRepositoryLabels.js";
 import { removeSetupScripts } from "../steps/removeSetupScripts.js";
 import { resetGitTags } from "../steps/resetGitTags.js";
-import { runCommands } from "../steps/runCommand.js";
+import { runCommands } from "../steps/runCommands.js";
 import { uninstallPackages } from "../steps/uninstallPackages.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";

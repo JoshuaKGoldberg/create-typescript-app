@@ -18,7 +18,7 @@ describe("getDefaultSettings", () => {
 
 		const settings = await getGitDefaultSettings();
 
-		expect(settings).toEqual({ defaultOwner: "abc", defaultRepository: "def" });
+		expect(settings).toEqual({ owner: "abc", repository: "def" });
 	});
 
 	it("returns arbitrary owner and repository defaults when gitRemoteOriginUrl rejects", async () => {
@@ -27,8 +27,8 @@ describe("getDefaultSettings", () => {
 		const settings = await getGitDefaultSettings();
 
 		expect(settings).toEqual({
-			defaultOwner: "UserName",
-			defaultRepository: "my-lovely-repository",
+			owner: "UserName",
+			repository: "my-lovely-repository",
 		});
 	});
 });

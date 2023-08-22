@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { describe, expect, it, vi } from "vitest";
 
-import { runCommands } from "./runCommand.js";
+import { runCommands } from "./runCommands.js";
 
 const mockExecaCommand = vi.fn().mockRejectedValue("Oh no!");
 
@@ -13,14 +13,14 @@ vi.mock("execa", () => ({
 
 const mockLogLine = vi.fn();
 
-vi.mock("../../shared/cli/lines.js", () => ({
+vi.mock("../shared/cli/lines.js", () => ({
 	get logLine() {
 		return mockLogLine;
 	},
 }));
 
-vi.mock("../../shared/cli/spinners.js", () => ({
-	withSpinner: vi.fn((callback: () => unknown) => callback()),
+vi.mock("../shared/cli/spinners.js", () => ({
+	withSpinner: vi.fn((_label: string, callback: () => unknown) => callback()),
 }));
 
 describe("runCommands", () => {
@@ -41,7 +41,7 @@ describe("runCommands", () => {
 
 		expect(mockLogLine).toHaveBeenCalledWith(
 			[
-				chalk.yellow(`⚠️ Running \``),
+				chalk.yellow(`🟡 Running \``),
 				chalk.yellowBright("first"),
 				chalk.yellow(`\` failed. You should run it and fix its complaints.`),
 			].join(""),
@@ -55,14 +55,14 @@ describe("runCommands", () => {
 
 		expect(mockLogLine).toHaveBeenCalledWith(
 			[
-				chalk.yellow(`⚠️ Running \``),
+				chalk.yellow(`🟡 Running \``),
 				chalk.yellowBright("first"),
 				chalk.yellow(`\` failed. You should run it and fix its complaints.`),
 			].join(""),
 		);
 		expect(mockLogLine).toHaveBeenCalledWith(
 			[
-				chalk.yellow(`⚠️ Running \``),
+				chalk.yellow(`🟡 Running \``),
 				chalk.yellowBright("second"),
 				chalk.yellow(`\` failed. You should run it and fix its complaints.`),
 			].join(""),

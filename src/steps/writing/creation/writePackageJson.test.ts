@@ -4,7 +4,7 @@ import { writePackageJson } from "./writePackageJson.js";
 
 const mockReadFileSafeAsJson = vi.fn();
 
-vi.mock("../../../../shared/readFileSafeAsJson.js", () => ({
+vi.mock("../../../shared/readFileSafeAsJson.js", () => ({
 	get readFileSafeAsJson() {
 		return mockReadFileSafeAsJson;
 	},

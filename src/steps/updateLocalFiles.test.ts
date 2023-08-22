@@ -12,7 +12,7 @@ vi.mock("replace-in-file", () => ({
 
 const mockReadFileSafeAsJson = vi.fn();
 
-vi.mock("../../shared/readFileSafeAsJson.js", () => ({
+vi.mock("../shared/readFileSafeAsJson.js", () => ({
 	get readFileSafeAsJson() {
 		return mockReadFileSafeAsJson;
 	},

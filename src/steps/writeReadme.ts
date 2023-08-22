@@ -40,11 +40,7 @@ export async function writeReadme(values: InputValues) {
 
 	const endOfH1 = findH1Close(contents);
 
-	contents = [
-		generateTopContent(values),
-		contents.slice(endOfH1),
-		endOfReadmeNotice,
-	]
+	contents = [generateTopContent(values), contents.slice(endOfH1)]
 		.join("")
 		.replace(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
 		.replace(/!\[.+\]\(.+\)/g, "")
@@ -53,6 +49,10 @@ export async function writeReadme(values: InputValues) {
 
 	if (!contents.includes(contributorsIndicator)) {
 		contents = [contents, allContributorsContent].join("\n\n");
+	}
+
+	if (!contents.includes(endOfReadmeNotice)) {
+		contents = [contents, endOfReadmeNotice].join("\n\n");
 	}
 
 	await fs.writeFile("README.md", contents);

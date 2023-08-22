@@ -2,7 +2,7 @@ import { runOrSkip } from "../shared/cli/runOrSkip.js";
 import { withSpinner } from "../shared/cli/spinners.js";
 import { HelpersAndValues } from "../shared/inputs.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
-import { runCommands } from "../steps/runCommand.js";
+import { runCommands } from "../steps/runCommands.js";
 import { writeReadme } from "../steps/writeReadme.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 import { addAllContributors } from "./addAllContributors.js";

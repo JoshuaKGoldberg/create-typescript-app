@@ -1,6 +1,5 @@
 import { $, execaCommand } from "execa";
 import { strict as assert } from "node:assert";
-import fs from "node:fs/promises";
 
 const author = "Test Author";
 const description = "Test description.";
@@ -9,11 +8,13 @@ const repository = "test-repository";
 const owner = "TestOwner";
 const title = "Test Title";
 
-await fs.rmdir(repository, { force: true, recursive: true });
+await $`rm -rf ${repository}`;
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-create -r html -r lcov node ../bin/index.js  --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api`;
+})`c8 -o ./coverage-create -r html -r lcov node ./bin/index.js --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api`;
+
+process.chdir(repository);
 
 const failures = [];
 

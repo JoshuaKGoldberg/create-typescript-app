@@ -11,7 +11,7 @@ const repository = "new-repository-test";
 // First we run initialize to modifies the local repo, so we can test the changes
 await $({
 	stdio: "inherit",
-})`node ./bin/index.js --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-restore`;
+})`node ./bin/index.js --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-restore`;
 
 const newPackageJson = JSON.parse(
 	(await fs.readFile("./package.json")).toString(),

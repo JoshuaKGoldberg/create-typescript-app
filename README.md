@@ -37,7 +37,8 @@ First make sure you have the following installed:
 This repository comes with two scripts to set up an existing or new repository with tooling.
 Use the corresponding docs page to get started:
 
-- [Initializing from the template](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub
+- [Initializing from the template](./docs/InitializationFromTemplate.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub _(recommended)_
+- [Initializing from the terminal](./docs/InitializationFromTerminal.md): creating a new repository locally on the command-line
 - [Migrating an existing repository](./docs/Migration.md): adding this template's tooling on top of an existing repository
 
 ## Explainer

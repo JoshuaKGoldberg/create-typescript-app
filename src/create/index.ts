@@ -44,9 +44,10 @@ export async function create(args: string[]) {
 						"Consider creating a GitHub repository from the new directory:",
 					lines: [
 						`cd ${inputs.values.repository}`,
+						`gh repo create ${inputs.values.repository} --public --source=. --remote=origin`,
+						`npx template-typescript-node-package --mode initialize`,
 						`git add -A`,
 						`git commit -m "chore: initial commit ✨"`,
-						`gh repo create ${inputs.values.repository} --public --source=. --remote=origin`,
 						`git push -u origin main`,
 					],
 				},

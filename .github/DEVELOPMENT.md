@@ -89,11 +89,21 @@ pnpm tsc --watch
 
 ## Setup Scripts
 
-As described in the `README.md` file and `docs/`, this template repository comes with two scripts that can set up an existing or new repository.
+As described in the `README.md` file and `docs/`, this template repository comes with three scripts that can set up an existing or new repository.
 
 > **Warning**
 > Both setup scripts override many files in the directory they're run in.
 > Make sure to save any changes you want to preserve before running them.
+
+### The Creation Script
+
+This tempalte's "creation" script is located in `src/create/`.
+You can run it locally with `node bin/index.js --mode create`.
+Note that files need to be built with `pnpm run build` beforehand.
+
+#### Testing the Initialization Script
+
+Todo: next!
 
 ### The Initialization Script
 

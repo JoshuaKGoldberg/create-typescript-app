@@ -31,17 +31,17 @@ export async function promptForMode(
 		options: [
 			{
 				label:
-					"Create a new repository in a child directory using the template",
+					"--create a new repository in a child directory using the template",
 				value: "create",
 			},
 			{
 				label:
-					"Initialize a repository in the current directory freshly forked from the GitHub template",
+					"--initialize a repository in the current directory freshly forked from the GitHub template",
 				value: "initialize",
 			},
 			{
 				label:
-					"Migrate an existing repository in the current directory to use the template's tooling",
+					"--migrate an existing repository in the current directory to use the template's tooling",
 				value: "migrate",
 			},
 		],

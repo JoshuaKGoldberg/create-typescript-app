@@ -22,9 +22,8 @@ export async function updateLocalFiles({
 	repository,
 	title,
 }: UpdateLocalFilesOptions) {
-	const existingPackage = (await readFileSafeAsJson(
-		"./package.json",
-	)) as ExistingPackageData;
+	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
+		{}) as ExistingPackageData;
 
 	const replacements = [
 		[/Template TypeScript Node Package/g, title],

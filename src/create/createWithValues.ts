@@ -26,7 +26,8 @@ export async function createWithValues(input: HelpersAndValues) {
 	);
 
 	await runCommands("Cleaning up files", [
-		"pnpm lint --fix",
+		"pnpm dedupe",
 		"pnpm format --write",
+		"pnpm lint --fix",
 	]);
 }

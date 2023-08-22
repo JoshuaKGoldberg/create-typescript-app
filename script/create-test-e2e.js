@@ -12,7 +12,7 @@ process.chdir(repository);
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-create -r html -r lcov node ../bin/index.js  --mode create --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors`;
+})`c8 -o ./coverage-create -r html -r lcov node ../bin/index.js  --mode create --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api`;
 
 const failures = [];
 

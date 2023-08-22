@@ -6,32 +6,6 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 22" src="https://img.shields.io/badge/all_contributors-22-21bb42.svg" />
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-<!-- prettier-ignore-end -->
-	</a>
-	<a href="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package" target="_blank">
-	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/template-typescript-node-package/branch/main/graph/badge.svg"/>
-	</a>
-	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
-		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
-	</a>
-	<a href="https://github.com/JoshuaKGoldberg/template-typescript-node-package/blob/main/LICENSE.md" target="_blank">
-		<img alt="License: MIT" src="https://img.shields.io/github/license/JoshuaKGoldberg/template-typescript-node-package?color=21bb42">
-	</a>
-	<a href="https://github.com/sponsors/JoshuaKGoldberg" target="_blank">
-		<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
-	</a>
-	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
-	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-</p>
-
-<p align="center">A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨</p>
-
-<p align="center">
-	<a href="#contributors" target="_blank">
-<!-- prettier-ignore-start -->
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <img alt="All Contributors: 22 🤝" src="https://img.shields.io/badge/all_contributors-22_🤝-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
@@ -51,6 +25,39 @@
 	<img alt="Style: Prettier 🧹" src="https://img.shields.io/badge/style-prettier_🧹-21bb42.svg" />
     <img alt="TypeScript: Strict 💪" src="https://img.shields.io/badge/typescript-strict_💪-21bb42.svg" />
 </p>
+
+## Getting Started
+
+First make sure you have the following installed:
+
+- [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
+- [Node.js](https://nodejs.org)
+- [pnpm](https://pnpm.io)
+
+This repository comes with two scripts to set up an existing or new repository with tooling.
+Use the corresponding docs page to get started:
+
+- [Initializing from the template](./docs/InitializationFromTemplate.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub _(recommended)_
+- [Initializing from the terminal](./docs/InitializationFromTerminal.md): creating a new repository locally on the command-line
+- [Migrating an existing repository](./docs/Migration.md): adding this template's tooling on top of an existing repository
+
+## Explainer
+
+This template is available for anybody who wants to set up a Node application using TypeScript.
+It sets up the following tooling for you:
+
+- [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
+- [**ESLint**](https://eslint.org): Static analysis for JavaScript code, configured with [typescript-eslint](https://typescript-eslint.io) for TypeScript code and other general-use plugins.
+- [**Knip**](https://github.com/webpro/knip): Detects unused files, dependencies, and code exports.
+- [**Markdownlint**](https://github.com/DavidAnson/markdownlint): Static analysis for Markdown code.
+- [**pnpm**](https://pnpm.io): Disk-efficient package manager alternative.
+- [**PR Compliance Action**](https://github.com/mtfoley/pr-compliance-action): Checks PRs for compliance such as addressing a linked issue and proper title formatting.
+- [**Prettier**](https://prettier.io): Opinionated formatting for code, run on file save and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
+- [**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
+- [**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
+- [**tsup**](https://tsup.egoist.dev): Builds output definitions and JavaScript files using [esbuild](https://esbuild.github.io).
+- [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
+- [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking and [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test).
 
 ## Development
 
@@ -103,7 +110,3 @@ Thanks! 💖
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
-
-<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-
-> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).

@@ -8,7 +8,13 @@ jobs:
       - name: Codecov
         uses: codecov/codecov-action@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flags: unit
+      - if: always()
+        name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: coverage
 
 name: Test
 

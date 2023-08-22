@@ -1,6 +1,20 @@
 {
 	"$schema": "https://unpkg.com/knip@latest/schema.json",
-	"entry": ["src/index.ts!"],
-	"ignoreExportsUsedInFile": { "interface": true, "type": true },
-	"project": ["src/**/*.ts!"]
+	"entry": [
+		"src/index.ts!",
+		"src/guide/index.ts",
+		"src/initialize/index.ts",
+		"src/migrate/index.ts",
+		"script/*e2e.js"
+	],
+	"ignoreBinaries": ["gh"],
+	"ignoreDependencies": [
+		// https://github.com/webpro/knip/issues/207
+		"c8"
+	],
+	"ignoreExportsUsedInFile": {
+		"interface": true,
+		"type": true
+	},
+	"project": ["src/**/*.ts!", "script/**/*.js"]
 }

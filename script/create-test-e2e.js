@@ -9,8 +9,7 @@ const repository = "test-repository";
 const owner = "TestOwner";
 const title = "Test Title";
 
-await fs.mkdir(repository);
-process.chdir(repository);
+await fs.rmdir(repository, { force: true, recursive: true });
 
 await $({
 	stdio: "inherit",
@@ -21,7 +20,7 @@ const failures = [];
 for (const command of [
 	`pnpm i`,
 	`pnpm run build`,
-	`pnpm run format`,
+	`pnpm run format --list-different`,
 	`pnpm run lint`,
 	`pnpm run lint:md`,
 	`pnpm run lint:package`,

@@ -112,9 +112,8 @@ pnpm run create:test
 
 That end-to-end test executes `script/create-test-e2e.js`, which:
 
-1. Creates a new `test-repository` child directory
-2. Runs the creation script in that directory
-3. Asserts that commands such as `build` and `lint` each pass
+1. Runs the creation script to create a new `test-repository` child directory and repository
+2. Asserts that commands such as `build` and `lint` each pass
 
 ### The Initialization Script
 

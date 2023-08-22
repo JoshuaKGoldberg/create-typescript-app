@@ -7,4 +7,5 @@ export default defineConfig({
 	entry: ["src/**/*.ts", "!src/**/*.test.*"],
 	format: "esm",
 	outDir: "lib",
+	sourcemap: true,
 });

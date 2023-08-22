@@ -18,7 +18,7 @@ export async function getGitHubUserAsAllContributor(owner: string) {
 		user = owner;
 	}
 
-	await $`npx -y all-contributors-cli@6.25 add ${user} ${[
+	const contributions = [
 		"code",
 		"content",
 		"doc",
@@ -27,7 +27,8 @@ export async function getGitHubUserAsAllContributor(owner: string) {
 		"maintenance",
 		"projectManagement",
 		"tool",
-	].join(",")}`;
+	].join(",");
+	await $`npx -y all-contributors-cli@6.25 add ${user} ${contributions}`;
 
 	return user;
 }

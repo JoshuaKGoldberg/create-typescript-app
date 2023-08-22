@@ -8,8 +8,6 @@ import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
 import { promptForMode } from "./mode.js";
 
-const runners = { create, initialize, migrate };
-
 export async function bin(args: string[]) {
 	console.clear();
 
@@ -54,5 +52,5 @@ export async function bin(args: string[]) {
 		),
 	);
 
-	return await runners[mode](args);
+	return await { create, initialize, migrate }[mode](args);
 }

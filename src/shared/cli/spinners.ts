@@ -10,11 +10,6 @@ export function skipSpinnerBlock(blockText: string) {
 	s.stop(chalk.gray("➖ " + blockText));
 }
 
-export function successSpinnerBlock(blockText: string) {
-	s.start(chalk.green("✅ " + blockText));
-	s.stop(chalk.green("✅ " + blockText));
-}
-
 export async function withSpinner<Return>(
 	label: string,
 	callback: () => Promise<Return>,

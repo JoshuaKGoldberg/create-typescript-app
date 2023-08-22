@@ -4,7 +4,6 @@ import { titleCase } from "title-case";
 
 import { allArgOptions } from "./args.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
-import { getGitDefaultSettings } from "./getDefaultSettings.js";
 import { getOctokit } from "./getOctokit.js";
 import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
 import { optionalDefault } from "./optionalDefault.js";

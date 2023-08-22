@@ -1,4 +1,4 @@
-import { outtro } from "../shared/cli/outtro.js";
+import { outro } from "../shared/cli/outro.js";
 import { getGitDefaultSettings } from "../shared/getDefaultSettings.js";
 import { readInputs } from "../shared/inputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
@@ -14,7 +14,7 @@ export async function initialize(args: string[]) {
 		run: async () => {
 			await initializeWithValues(inputs);
 
-			outtro([
+			outro([
 				{
 					label: "You may consider committing these changes:",
 					lines: [

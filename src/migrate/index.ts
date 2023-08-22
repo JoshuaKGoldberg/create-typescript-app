@@ -1,5 +1,5 @@
 import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
-import { outtro } from "../shared/cli/outtro.js";
+import { outro } from "../shared/cli/outro.js";
 import { getGitDefaultSettings } from "../shared/getDefaultSettings.js";
 import { readInputs } from "../shared/inputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
@@ -24,7 +24,7 @@ export async function migrate(args: string[]) {
 				values: await augmentValuesWithNpmInfo(inputs.values),
 			});
 
-			outtro([
+			outro([
 				{
 					label: "You may consider committing these changes:",
 					lines: [

@@ -3,7 +3,7 @@ import chalk from "chalk";
 import fs from "node:fs/promises";
 
 import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
-import { outtro } from "../shared/cli/outtro.js";
+import { outro } from "../shared/cli/outro.js";
 import { getPrefillOrPromptedValue } from "../shared/getPrefillOrPromptedValue.js";
 import { readInputs } from "../shared/inputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
@@ -38,7 +38,7 @@ export async function create(args: string[]) {
 				values: await augmentValuesWithNpmInfo(inputs.values),
 			});
 
-			outtro([
+			outro([
 				{
 					label:
 						"Consider creating a GitHub repository from the new directory:",

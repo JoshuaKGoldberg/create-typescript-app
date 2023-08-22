@@ -1,12 +1,12 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
-export interface OuttroGroup {
+export interface outroGroup {
 	label: string;
 	lines?: string[];
 }
 
-export function outtro(groups: OuttroGroup[]) {
+export function outro(groups: outroGroup[]) {
 	prompts.outro(chalk.blue(`Great, looks like the script finished! 🎉`));
 
 	for (const { label, lines } of groups) {

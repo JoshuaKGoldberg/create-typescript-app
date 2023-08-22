@@ -23,6 +23,7 @@
 	],
 	"scripts": {
 		"build": "tsup",
+		"create:test": "node script/create-test-e2e.js",
 		"format": "prettier \"**/*\" --ignore-unknown",
 		"format:write": "pnpm format --write",
 		"initialize": "tsx ./src/bin/index.js --mode initialize",

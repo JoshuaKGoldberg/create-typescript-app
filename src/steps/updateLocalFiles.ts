@@ -33,6 +33,7 @@ export async function updateLocalFiles({
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
 		[/"bin": ".+\n/g, ``, "./package.json"],
+		[/"create:test": ".+\n/g, ``, "./package.json"],
 		[/"initialize:test": ".*/g, ``, "./package.json"],
 		[/"initialize": ".*/g, ``, "./package.json"],
 		[/"migrate:test": ".+\n/g, ``, "./package.json"],

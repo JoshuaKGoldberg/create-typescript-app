@@ -9,7 +9,7 @@ export async function createRootFiles(values: InputValues) {
 		".all-contributorsrc": await writeAllContributorsRC(values),
 		".eslintignore": formatIgnoreFile([
 			"!.*",
-			...(values.unitTests ? ["coverage"] : []),
+			...(values.unitTests ? ["coverage*"] : []),
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",
@@ -157,7 +157,7 @@ module.exports = {
 };
 `,
 		".gitignore": formatIgnoreFile([
-			...(values.unitTests ? ["coverage/"] : []),
+			...(values.unitTests ? ["coverage*/"] : []),
 			"lib/",
 			"node_modules/",
 		]),
@@ -181,7 +181,7 @@ module.exports = {
 		}),
 		".nvmrc": `18.17.1\n`,
 		".prettierignore": formatIgnoreFile([
-			...(values.unitTests ? ["coverage/"] : []),
+			...(values.unitTests ? ["coverage*/"] : []),
 			"lib/",
 			"pnpm-lock.yaml",
 			"",
@@ -240,7 +240,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			ignorePaths: [
 				".github",
 				"CHANGELOG.md",
-				...(values.unitTests ? ["coverage"] : []),
+				...(values.unitTests ? ["coverage*"] : []),
 				"lib",
 				"node_modules",
 				"pnpm-lock.yaml",

@@ -4,9 +4,11 @@ const globPaths = [
 	"./bin",
 	"./docs",
 	"./script",
+	"./src/bin",
 	"./src/initialize",
 	"./src/migrate",
 	"./src/shared",
+	"./src/steps",
 	".github/workflows/test-initialize.yml",
 	".github/workflows/test-migrate.yml",
 ];

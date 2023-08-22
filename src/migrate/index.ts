@@ -1,6 +1,6 @@
 import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
 import { outro } from "../shared/cli/outro.js";
-import { getGitDefaultSettings } from "../shared/getDefaultSettings.js";
+import { getGitDefaultSettings } from "../shared/getGitDefaultSettings.js";
 import { readInputs } from "../shared/inputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { migrateWithValues } from "./migrateWithValues.js";

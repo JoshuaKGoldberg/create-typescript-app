@@ -3,6 +3,7 @@ import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
 import { allArgOptions } from "./args.js";
+import { runOrSkip } from "./cli/runOrSkip.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
@@ -71,7 +72,11 @@ export async function readInputs({
 				"What owner or user will the repository be under?",
 			))));
 
-	const octokit = await getOctokit(!!values["skip-github-api"]);
+	const octokit = await runOrSkip(
+		"Checking GitHub authentication",
+		!!values["skip-github-api"],
+		getOctokit,
+	);
 
 	const repository =
 		(values.repository as string | undefined) ??

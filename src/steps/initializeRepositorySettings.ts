@@ -11,7 +11,6 @@ export async function initializeRepositorySettings(
 	octokit: Octokit,
 	{ description, owner, repository }: MigrateRepositoryValues,
 ) {
-	console.log("Will update repo settings");
 	await octokit.rest.repos.update({
 		allow_auto_merge: true,
 		allow_rebase_merge: false,

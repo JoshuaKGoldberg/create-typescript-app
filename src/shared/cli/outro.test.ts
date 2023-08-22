@@ -37,7 +37,7 @@ describe("outro", () => {
 	});
 
 	it("also logs lines when provided", () => {
-		outro([{ label: "Abc 123", lines: ["def", "ghi"] }]);
+		outro([{ label: "Abc 123", lines: ["One", "Two"] }]);
 
 		expect(mockConsoleLog.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -46,10 +46,10 @@ describe("outro", () => {
 			  ],
 			  [],
 			  [
-			    "[90mdef[39m",
+			    "[90meat[39m",
 			  ],
 			  [
-			    "[90mghi[39m",
+			    "[90meat[39m",
 			  ],
 			  [],
 			  [

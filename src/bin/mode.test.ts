@@ -21,7 +21,7 @@ describe("promptForMode", () => {
 		);
 	});
 
-	it("returns theinput when it is a mode", async () => {
+	it("returns the input when it is a mode", async () => {
 		const input = "create";
 
 		const mode = await promptForMode(input);

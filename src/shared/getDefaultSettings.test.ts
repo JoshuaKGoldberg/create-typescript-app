@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { getDefaultSettings } from "./getDefaultSettings.js";
+import { getGitDefaultSettings } from "./getDefaultSettings.js";
 
 vi.mock("./cli/lines.js");
 
@@ -16,7 +16,7 @@ describe("getDefaultSettings", () => {
 	it("returns the retrieved owner and repository when gitRemoteOriginUrl succeeds", async () => {
 		mockGitRemoteOriginUrl.mockResolvedValue("https://github.com/abc/def");
 
-		const settings = await getDefaultSettings();
+		const settings = await getGitDefaultSettings();
 
 		expect(settings).toEqual({ defaultOwner: "abc", defaultRepository: "def" });
 	});
@@ -24,7 +24,7 @@ describe("getDefaultSettings", () => {
 	it("returns arbitrary owner and repository defaults when gitRemoteOriginUrl rejects", async () => {
 		mockGitRemoteOriginUrl.mockRejectedValue(new Error("Oh no!"));
 
-		const settings = await getDefaultSettings();
+		const settings = await getGitDefaultSettings();
 
 		expect(settings).toEqual({
 			defaultOwner: "UserName",

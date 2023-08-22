@@ -3,74 +3,17 @@ import chalk from "chalk";
 import { $ } from "execa";
 
 import { ensureGitRepository } from "./ensureGitRepository.js";
-import {
-	GetterDefaultInputValues,
-	InputValuesAndOctokit,
-	getInputValuesAndOctokit,
-} from "./inputs.js";
 import { handlePromptCancel } from "./prompts.js";
 
 export interface RunOrRestoreOptions {
-	args: string[];
-	defaults?: Partial<GetterDefaultInputValues>;
-	label: string;
-	run: (inputValuesAndOctokit: InputValuesAndOctokit) => Promise<void>;
+	run: () => Promise<void>;
+	skipRestore: boolean | undefined;
 }
 
-export async function runOrRestore({
-	args,
-	defaults,
-	label,
-	run,
-}: RunOrRestoreOptions) {
-	console.clear();
-	console.log(
-		chalk.greenBright`Welcome to the`,
-		chalk.bgGreenBright.black`template-typescript-node-package`,
-		chalk.greenBright(`package ${label} script! 🎉`),
-	);
-	console.log();
-
-	console.log(
-		chalk.yellow(
-			"⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️",
-		),
-	);
-	console.log(
-		chalk.yellow(
-			"⚠️ If any tooling it sets displeases you, you can always remove that portion manually. ⚠️",
-		),
-	);
-	console.log();
-
-	let skipRestore = false;
-
+export async function runOrRestore({ run, skipRestore }: RunOrRestoreOptions) {
 	try {
-		prompts.intro(
-			chalk.blue(
-				"Let's collect some information to fill out repository details...",
-			),
-		);
-
 		await ensureGitRepository();
-
-		const { octokit, values } = await getInputValuesAndOctokit(args, defaults);
-
-		skipRestore = values.skipRestore;
-
-		await run({ octokit, values });
-
-		prompts.outro(chalk.blue`Great, looks like everything worked! 🎉`);
-
-		console.log(chalk.blue`You may consider committing these changes:`);
-		console.log();
-		console.log(chalk.gray`git add -A`);
-		console.log(chalk.gray(`git commit -m "chore: ${label} repo"`));
-		console.log(chalk.gray`git push`);
-		console.log();
-		console.log(chalk.greenBright`See ya! 👋`);
-		console.log();
-
+		await run();
 		return 0;
 	} catch (error) {
 		prompts.outro(
@@ -82,9 +25,7 @@ export async function runOrRestore({
 
 		if (skipRestore) {
 			console.log();
-			console.log(
-				chalk.gray`Skipping restoring local repository, as requested.`,
-			);
+			console.log(chalk.gray`Leaving changes to the local directory on disk.`);
 			console.log();
 		} else {
 			const shouldRestore = await prompts.confirm({

@@ -2,23 +2,12 @@ import chalk from "chalk";
 import { $ } from "execa";
 import { Octokit } from "octokit";
 
-import {
-	skipSpinnerBlock,
-	successSpinnerBlock,
-	withSpinner,
-} from "./cli/spinners.js";
+import { runOrSkip } from "./cli/runOrSkip.js";
 
 export async function getOctokit(
 	skipApi: boolean,
 ): Promise<Octokit | undefined> {
-	if (skipApi) {
-		skipSpinnerBlock(`Skipping checking GitHub authentication.`);
-		return undefined;
-	}
-
-	successSpinnerBlock(`Checking GitHub authentication.`);
-
-	return await withSpinner(async () => {
+	return runOrSkip("Checking GitHub authentication", skipApi, async () => {
 		try {
 			await $`gh auth status`;
 		} catch (error) {
@@ -31,5 +20,5 @@ export async function getOctokit(
 		const auth = (await $`gh auth token`).stdout.trim();
 
 		return new Octokit({ auth });
-	}, "fetching gh auth status");
+	});
 }

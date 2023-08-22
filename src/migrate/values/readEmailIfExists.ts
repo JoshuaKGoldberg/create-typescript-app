@@ -1,8 +1,7 @@
 import { $ } from "execa";
 
-import type { PartialPackageData } from "./types.js";
-
 import { getNpmUserInfo } from "../../shared/getNpmUserInfo.js";
+import { PartialPackageData } from "../../shared/types.js";
 
 export async function readEmailIfExists(
 	existingPackage: PartialPackageData,

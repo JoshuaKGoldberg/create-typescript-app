@@ -1,6 +1,8 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
+import { lowerFirst } from "./lowerFirst.js";
+
 const s = prompts.spinner();
 
 export function skipSpinnerBlock(blockText: string) {
@@ -14,30 +16,24 @@ export function successSpinnerBlock(blockText: string) {
 }
 
 export async function withSpinner<Return>(
-	callback: () => Promise<Return>,
 	label: string,
-	warningHint?: string,
+	callback: () => Promise<Return>,
 ) {
-	s.start(`${upperFirst(label)}...`);
+	s.start(`${label}...`);
 
 	try {
 		const result = await callback();
 
 		if (result === false) {
-			const extra = warningHint ? `: ${warningHint}` : "";
-			s.stop(chalk.yellow(`⚠️ Error ${label}${extra}.`));
+			s.stop(chalk.yellow(`⚠️ Error ${lowerFirst(label)}.`));
 		} else {
-			s.stop(chalk.green(`✅ Passed ${label}.`));
+			s.stop(chalk.green(`✅ Passed ${lowerFirst(label)}.`));
 		}
 
 		return result;
 	} catch (error) {
-		s.stop(chalk.red(`❌ Error ${label}.`));
+		s.stop(chalk.red(`❌ Error ${lowerFirst(label)}.`));
 
-		throw new Error(`Failed ${label}`, { cause: error });
+		throw new Error(`Failed ${lowerFirst(label)}`, { cause: error });
 	}
-}
-
-function upperFirst(text: string) {
-	return text[0].toUpperCase() + text.slice(1);
 }

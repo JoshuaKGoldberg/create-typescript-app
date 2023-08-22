@@ -1,38 +1,12 @@
-import chalk from "chalk";
-import { $ } from "execa";
 import fs from "node:fs/promises";
 import prettier from "prettier";
 
+import { getGitHubUserAsAllContributor } from "../../shared/getGitHubUserAsAllContributor.js";
 import { readFileAsJson } from "../../shared/readFileAsJson.js";
 import { AllContributorsData } from "../../shared/types.js";
 
-interface GhUserOutput {
-	login: string;
-}
-
 export async function addOwnerAsAllContributor(owner: string) {
-	let user: string;
-	try {
-		user = (JSON.parse((await $`gh api user`).stdout) as GhUserOutput).login;
-	} catch {
-		console.warn(
-			chalk.gray(
-				`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'.`,
-			),
-		);
-		user = owner;
-	}
-
-	await $`npx -y all-contributors-cli@6.25 add ${user} ${[
-		"code",
-		"content",
-		"doc",
-		"ideas",
-		"infra",
-		"maintenance",
-		"projectManagement",
-		"tool",
-	].join(",")}`;
+	const user = await getGitHubUserAsAllContributor(owner);
 
 	const existingContributors = (await readFileAsJson(
 		"./.all-contributorsrc",

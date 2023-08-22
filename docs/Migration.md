@@ -49,10 +49,9 @@ You can prevent the migration script from making some network-based changes usin
 - `--skip-contributors` _(`boolean`)_: Skips detecting existing contributors with [`all-contributors-for-repository`](https://github.com/JoshuaKGoldberg/all-contributors-for-repository)
 - `--skip-github-api` _(`boolean`)_: Skips calling to GitHub APIs
 - `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`
-- `--skip-initialize` _(`boolean`)_: Skips running the initialize script at the end of migration
 
 ```shell
-npx template-typescript-node-package --skip-github-api --skip-initialize --skip-install
+npx template-typescript-node-package --skip-github-api --skip-install
 ```
 
 > Tip: the `--skip-github-api` flag will cause all changes to be limited to your local repository.

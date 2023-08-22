@@ -2,10 +2,11 @@ import { parseArgs } from "node:util";
 import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
-import { PrefillPrompter } from "./PrefillPrompter.js";
+import { allArgOptions } from "./args.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
-import { getDefaultSettings } from "./getDefaultSettings.js";
+import { getGitDefaultSettings } from "./getDefaultSettings.js";
 import { getOctokit } from "./getOctokit.js";
+import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
 import { optionalDefault } from "./optionalDefault.js";
 
 export type GetterDefaultInputValues = {
@@ -23,9 +24,11 @@ export interface DefaultInputValues {
 	releases: boolean | undefined;
 	repository: string;
 	skipApi: boolean;
-	skipRemoval: boolean;
-	skipRestore: boolean;
-	skipUninstalls: boolean;
+	skipContributors: boolean | undefined;
+	skipInstall: boolean | undefined;
+	skipRemoval: boolean | undefined;
+	skipRestore: boolean | undefined;
+	skipUninstall: boolean | undefined;
 	title: string;
 	unitTests: boolean | undefined;
 }
@@ -34,69 +37,62 @@ export interface InputValues extends DefaultInputValues {
 	owner: string;
 }
 
-export interface InputValuesAndOctokit {
+export interface HelpersAndValues {
 	octokit: Octokit | undefined;
 	values: InputValues;
 }
 
-export async function getInputValuesAndOctokit(
-	args: string[],
-	defaults: Partial<GetterDefaultInputValues> = {},
-): Promise<InputValuesAndOctokit> {
-	const { defaultOwner, defaultRepository } = await getDefaultSettings();
+export interface InputValuesOverrides {
+	owner?: () => Promise<string> | string;
+	repository?: () => Promise<string> | string;
+}
+
+export interface InputValuesAndOctokitSettings {
+	args: string[];
+	defaults?: Partial<GetterDefaultInputValues>;
+	overrides?: InputValuesOverrides;
+}
+
+export async function readInputs({
+	args,
+	defaults = {},
+	overrides = {},
+}: InputValuesAndOctokitSettings): Promise<HelpersAndValues> {
 	const { values } = parseArgs({
 		args,
-		options: {
-			author: { type: "string" },
-			description: { type: "string" },
-			email: { type: "string" },
-			funding: { type: "string" },
-			owner: { type: "string" },
-			releases: { type: "boolean" },
-			repository: { type: "string" },
-			"skip-github-api": { type: "boolean" },
-			"skip-removal": { type: "boolean" },
-			"skip-restore": { type: "boolean" },
-			"skip-uninstall": { type: "boolean" },
-			title: { type: "string" },
-			unitTests: { type: "boolean" },
-		},
+		options: allArgOptions,
 		strict: false,
 		tokens: true,
 	});
-	const prompter = new PrefillPrompter();
-
-	const owner = await prompter.getPrefillOrPromptedValue(
-		"owner",
-		values.owner as string | undefined,
-		"What owner or user will the repository be under?",
-		defaultOwner,
-	);
+	const owner =
+		(values.owner as string | undefined) ??
+		(await (overrides.owner?.() ??
+			(await getPrefillOrPromptedValue(
+				values.owner as string | undefined,
+				"What owner or user will the repository be under?",
+			))));
 
 	const octokit = await getOctokit(!!values["skip-github-api"]);
 
-	prompter.reset();
+	const repository =
+		(values.repository as string | undefined) ??
+		(await (overrides.repository?.() ??
+			ensureRepositoryExists(
+				octokit,
+				owner,
+				await getPrefillOrPromptedValue(
+					values.repository as string | undefined,
+					"What will the kebab-case name of the repository be?",
+				),
+			)));
 
-	const repository = await ensureRepositoryExists(
-		octokit,
-		owner,
-		await prompter.getPrefillOrPromptedValue(
-			"repository",
-			values.repository as string | undefined,
-			"What will the kebab-case name of the repository be?",
-			defaultRepository,
-		),
-	);
-
-	const title = await prompter.getPrefillOrPromptedValue(
-		"title",
+	const title = await getPrefillOrPromptedValue(
 		values.title as string | undefined,
 		"What will the Title Case title of the repository be?",
 		titleCase(repository).replaceAll("-", " "),
 	);
 
-	const description = await prompter.getPrefillOrPromptedValue(
-		"description",
+	const description = await getPrefillOrPromptedValue(
 		values.description as string | undefined,
 		"How would you describe the new package?",
 		"A very lovely package. Hooray!",
@@ -123,12 +119,14 @@ export async function getInputValuesAndOctokit(
 				values.releases as boolean | undefined,
 				defaults.releases,
 			),
-			repository,
+			repository: repository,
 			skipApi: !!values["skip-github-api"],
+			skipContributors: !!values["skip-contributors"],
+			skipInstall: !!values["skip-install"],
 			skipRemoval: !!values["skip-removal"],
-			skipRestore: !!values["skip-restore"],
-			skipUninstalls: !!values["skip-uninstalls"],
-			title,
+			skipRestore: values["skip-restore"] as boolean | undefined,
+			skipUninstall: !!values["skip-uninstall"],
+			title: title,
 			unitTests: await optionalDefault(
 				values.unitTests as boolean | undefined,
 				defaults.unitTests,

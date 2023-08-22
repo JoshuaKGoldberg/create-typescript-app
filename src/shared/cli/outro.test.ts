@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { outro } from "./outro.js";
@@ -22,41 +23,25 @@ describe("outro", () => {
 	it("logs only basic statements when no lines are provided", () => {
 		outro([{ label: "Abc 123" }]);
 
-		expect(mockConsoleLog.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    "[34mAbc 123[39m",
-			  ],
-			  [],
-			  [
-			    "[92mSee ya! 👋[39m",
-			  ],
-			  [],
-			]
-		`);
+		expect(mockConsoleLog.mock.calls).toEqual([
+			[chalk.blue("Abc 123")],
+			[],
+			[chalk.greenBright(`See ya! 👋`)],
+			[],
+		]);
 	});
 
 	it("also logs lines when provided", () => {
-		outro([{ label: "Abc 123", lines: ["One", "Two"] }]);
+		outro([{ label: "Abc 123", lines: ["one", "two"] }]);
 
-		expect(mockConsoleLog.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    "[34mAbc 123[39m",
-			  ],
-			  [],
-			  [
-			    "[90mOne[39m",
-			  ],
-			  [
-			    "[90mTwo[39m",
-			  ],
-			  [],
-			  [
-			    "[92mSee ya! 👋[39m",
-			  ],
-			  [],
-			]
-		`);
+		expect(mockConsoleLog.mock.calls).toEqual([
+			[chalk.blue("Abc 123")],
+			[],
+			[chalk.gray("one")],
+			[chalk.gray("two")],
+			[],
+			[chalk.greenBright(`See ya! 👋`)],
+			[],
+		]);
 	});
 });

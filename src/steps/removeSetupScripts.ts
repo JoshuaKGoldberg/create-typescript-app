@@ -5,6 +5,7 @@ const globPaths = [
 	"./docs",
 	"./script",
 	"./src/bin",
+	"./src/create",
 	"./src/initialize",
 	"./src/migrate",
 	"./src/shared",

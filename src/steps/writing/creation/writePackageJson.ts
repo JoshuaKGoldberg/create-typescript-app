@@ -45,6 +45,9 @@ export async function writePackageJson({
 		((await readFileSafeAsJson("./package.json")) as null | object) ?? {};
 
 	return await formatJson({
+		// If we didn't already have a version, set it to 0.0.0
+		version: "0.0.0",
+
 		// To start, copy over all existing package fields (e.g. "dependencies")
 		...existingPackageJson,
 

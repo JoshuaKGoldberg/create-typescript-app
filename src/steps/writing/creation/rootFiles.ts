@@ -9,7 +9,7 @@ export async function createRootFiles(values: InputValues) {
 		".all-contributorsrc": await writeAllContributorsRC(values),
 		".eslintignore": formatIgnoreFile([
 			"!.*",
-			...(values.unitTests ? ["coverage"] : []),
+			...(values.unitTests ? ["coverage*"] : []),
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",

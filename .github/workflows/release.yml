@@ -35,6 +35,7 @@ jobs:
         run: |
           if pnpm run should-semantic-release ; then
             pnpm release-it --verbose
+            gh workflow run post-release.yml
           fi
       - if: always()
         name: Recreate branch protection on main
@@ -85,4 +86,3 @@ on:
 
 permissions:
   contents: write
-  id-token: write

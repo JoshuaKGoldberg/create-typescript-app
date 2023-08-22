@@ -7,8 +7,5 @@
 		"autoGenerate": true,
 		"release": true,
 		"releaseName": "v${version}"
-	},
-	"npm": {
-		"publishArgs": ["--provenance"]
 	}
 }

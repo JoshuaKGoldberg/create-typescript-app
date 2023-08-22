@@ -102,6 +102,13 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
+			      "from": /"create:test": "\\.\\+\\\\n/g,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
 			      "from": /"initialize:test": "\\.\\*/g,
 			      "to": "",
 			    },
@@ -227,6 +234,13 @@ describe("updateLocalFiles", () => {
 			    {
 			      "files": "./package.json",
 			      "from": /"bin": "\\.\\+\\\\n/g,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"create:test": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],

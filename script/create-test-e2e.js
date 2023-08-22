@@ -28,7 +28,7 @@ for (const command of [
 	`pnpm run lint:packages`,
 	`pnpm run lint:spelling`,
 	`pnpm run lint:knip`,
-	`pnpm run test`,
+	`pnpm run test run`,
 	`pnpm run tsc`,
 ]) {
 	const result = await execaCommand(command, { stdio: "inherit" });
@@ -38,4 +38,4 @@ for (const command of [
 	}
 }
 
-assert.equal(failures, []);
+assert.deepEqual(failures, []);

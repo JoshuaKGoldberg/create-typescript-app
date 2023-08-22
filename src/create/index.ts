@@ -1,5 +1,6 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
+import { $ } from "execa";
 import fs from "node:fs/promises";
 
 import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
@@ -68,6 +69,7 @@ async function createAndEnterRepository(repository: string) {
 
 	await fs.mkdir(repository);
 	process.chdir(repository);
+	await $`git init`;
 
 	return true;
 }

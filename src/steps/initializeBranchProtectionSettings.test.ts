@@ -11,6 +11,15 @@ const createMockOctokit = (request: SpyInstance) =>
 const stubValues = { owner: "", repository: "" };
 
 describe("migrateBranchProtectionSettings", () => {
+	it("does not throw when the request receives a non-error response", async () => {
+		const mockRequest = vi.fn().mockResolvedValue({ status: 200 });
+
+		await initializeBranchProtectionSettings(
+			createMockOctokit(mockRequest),
+			stubValues,
+		);
+	});
+
 	it("returns false when the request receives a 403 response", async () => {
 		const mockRequest = vi.fn().mockRejectedValue({ status: 403 });
 

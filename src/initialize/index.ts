@@ -1,5 +1,5 @@
 import { outro } from "../shared/cli/outro.js";
-import { getGitDefaultSettings } from "../shared/getDefaultSettings.js";
+import { getGitDefaultSettings } from "../shared/getGitDefaultSettings.js";
 import { readInputs } from "../shared/inputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { initializeWithValues } from "./initializeWithValues.js";

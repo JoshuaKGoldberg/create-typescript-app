@@ -1,6 +1,6 @@
 import replaceInFile from "replace-in-file";
 
-import { readFileAsJson } from "../../shared/readFileAsJson.js";
+import { readFileSafeAsJson } from "../../shared/readFileSafeAsJson.js";
 
 interface UpdateLocalFilesOptions {
 	description: string;
@@ -22,11 +22,11 @@ export async function updateLocalFiles({
 	repository,
 	title,
 }: UpdateLocalFilesOptions) {
-	const existingPackage = (await readFileAsJson(
+	const existingPackage = (await readFileSafeAsJson(
 		"./package.json",
 	)) as ExistingPackageData;
 
-	const replacements: [RegExp | string, string, string?][] = [
+	const replacements = [
 		[/Template TypeScript Node Package/g, title],
 		[/JoshuaKGoldberg/g, owner],
 		[/template-typescript-node-package/g, repository],

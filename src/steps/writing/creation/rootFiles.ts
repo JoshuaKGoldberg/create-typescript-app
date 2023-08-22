@@ -259,6 +259,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				"npmpackagejsonlintrc",
 				"outro",
 				"packagejson",
+				"tsup",
 				"quickstart",
 				"wontfix",
 			],

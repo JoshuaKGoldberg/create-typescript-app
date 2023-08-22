@@ -43,18 +43,27 @@ export async function addOwnerAsAllContributor(owner: string) {
 		);
 	}
 
+	const contributors = existingContributors.contributors
+		.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
+		.map((contributor) =>
+			contributor.login === "JoshuaKGoldberg"
+				? { ...contributor, contributions: ["tool"] }
+				: contributor,
+		);
+
+	if (!contributors.some((contributor) => contributor.login === user)) {
+		contributors.push({
+			contributions: ["tool"],
+			login: user,
+		});
+	}
+
 	await fs.writeFile(
 		"./.all-contributorsrc",
 		await prettier.format(
 			JSON.stringify({
 				...existingContributors,
-				contributors: existingContributors.contributors
-					.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
-					.map((contributor) =>
-						contributor.login === "JoshuaKGoldberg"
-							? { ...contributor, contributions: ["tool"] }
-							: contributor,
-					),
+				contributors,
 			}),
 			{ parser: "json" },
 		),

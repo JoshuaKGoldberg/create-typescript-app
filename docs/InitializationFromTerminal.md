@@ -25,7 +25,7 @@ At this point, your new repository should be ready for development! 🥳
 ## The Creation Script
 
 The creation script will interactively prompt for values to be used in creating the new repository.
-Each may provided as a string CLI flag as well:
+Each may provided as a CLI flag as well:
 
 - `--create-repository`: Whether to automatically create a repository on github.com with the given repository name under the owner
 - `--description`: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)

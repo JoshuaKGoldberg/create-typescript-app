@@ -21,7 +21,7 @@ pnpm run initialize
 ```
 
 The initialization script will interactively prompt for values to be used in creating the new repository.
-Each may provided as a string CLI flag as well:
+Each may provided as a CLI flag as well:
 
 - `--description`: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner`: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)

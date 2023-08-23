@@ -20,3 +20,12 @@ This repository is meant to serve as a starter that includes all the general too
 Each of the included tools exists for a good reason and provides real value.
 
 If you don't want to use any particular tool, you can always remove it manually.
+
+### Which tools can't I remove?
+
+- The code of conduct
+- TypeScript
+- ESLint
+- tsup
+- Prettier
+- GitHub templates

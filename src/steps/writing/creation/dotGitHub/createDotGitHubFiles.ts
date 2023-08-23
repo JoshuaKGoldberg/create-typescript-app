@@ -1,13 +1,10 @@
 /* spellchecker: disable */
-import { InputValues } from "../../../../shared/inputs.js";
+import { InputValues } from "../../../../shared/readInputs.js";
+import { formatJson } from "../formatters/formatJson.js";
 import { formatYaml } from "../formatters/formatYaml.js";
+import { createDevelopment } from "./createDevelopment.js";
 
-export function createDotGitHubFiles({
-	email,
-	funding,
-	owner,
-	repository,
-}: Pick<InputValues, "email" | "funding" | "owner" | "repository">) {
+export async function createDotGitHubFiles(values: InputValues) {
 	return {
 		"CODE_OF_CONDUCT.md": `# Contributor Covenant Code of Conduct
 
@@ -71,7 +68,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-${email}.
+${values.email}.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
@@ -144,7 +141,7 @@ For answers to common questions about this code of conduct, see the FAQ at
 `,
 		"CONTRIBUTING.md": `# Contributing
 
-Thanks for your interest in contributing to \`${repository}\`! 💖
+Thanks for your interest in contributing to \`${values.repository}\`! 💖
 
 > After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
 
@@ -154,7 +151,7 @@ This project contains a [Contributor Covenant code of conduct](./CODE_OF_CONDUCT
 
 ## Reporting Issues
 
-Please do [report an issue on the issue tracker](https://github.com/${owner}/${repository}/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
+Please do [report an issue on the issue tracker](https://github.com/${values.owner}/${values.repository}/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
 
 ## Sending Contributions
 
@@ -166,8 +163,8 @@ There are two steps involved:
 
 ### Finding an Issue
 
-With the exception of very small typos, all changes to this repository generally need to correspond to an [open issue marked as \`accepting prs\` on the issue tracker](https://github.com/${owner}/${repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22).
-If this is your first time contributing, consider searching for [unassigned issues that also have the \`good first issue\` label](https://github.com/${owner}/${repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22+label%3A%22good+first+issue%22+no%3Aassignee).
+With the exception of very small typos, all changes to this repository generally need to correspond to an [open issue marked as \`accepting prs\` on the issue tracker](https://github.com/${values.owner}/${values.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22).
+If this is your first time contributing, consider searching for [unassigned issues that also have the \`good first issue\` label](https://github.com/${values.owner}/${values.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22+label%3A%22good+first+issue%22+no%3Aassignee).
 If the issue you'd like to fix isn't found on the issue, see [Reporting Issues](#reporting-issues) for filing your own (please do!).
 
 ### Sending a Pull Request
@@ -178,7 +175,7 @@ Be sure to fill out the pull request template's requested information -- otherwi
 PRs are also expected to have a title that adheres to [commitlint](https://github.com/conventional-changelog/commitlint).
 Only PR titles need to be in that format, not individual commits.
 Don't worry if you get this wrong: you can always change the PR title after sending it.
-Check [previously merged PRs](https://github.com/${owner}/${repository}/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
+Check [previously merged PRs](https://github.com/${values.owner}/${values.repository}/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
 
 #### Draft PRs
 
@@ -232,78 +229,13 @@ If you made it all the way to the end, bravo dear user, we love you.
 Please include your favorite emoji in the bottom of your issues and PRs to signal to us that you did in fact read this file and are trying to conform to it as best as possible.
 💖 is a good starter if you're not sure which to use.
 `,
-		"DEVELOPMENT.md": `# Development
+		"DEVELOPMENT.md": createDevelopment(values),
+		...(values.funding && {
+			"FUNDING.yml": formatYaml({ github: values.funding }),
+		}),
 
-After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
-
-\`\`\`shell
-git clone https://github.com/<your-name-here>/${repository}
-cd ${repository}
-pnpm install
-\`\`\`
-
-> This repository includes a list of suggested VS Code extensions.
-> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.
-
-## Building
-
-Run [TypeScript](https://typescriptlang.org) locally to type check and build source files from \`src/\` into output files in \`lib/\`:
-
-\`\`\`shell
-pnpm build --watch
-\`\`\`
-
-You should also see suggestions from TypeScript in your editor.
-
-## Formatting
-
-[Prettier](https://prettier.io) is used to format code.
-It should be applied automatically when you save files in VS Code or make a Git commit.
-
-To manually reformat all files, you can run:
-
-\`\`\`shell
-pnpm format:write
-\`\`\`
-
-## Linting
-
-This package includes several forms of linting to enforce consistent code quality and styling.
-Each should be shown in VS Code, and can be run manually on the command-line:
-
-- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
-- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
-- \`pnpm lint:package\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file
-- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file
-- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files
-- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
-
-## Testing
-
-[Vitest](https://vitest.dev) is used for tests.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run test
-\`\`\`
-
-Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-
-\`\`\`shell
-pnpm run test --coverage
-\`\`\`
-
-Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-### Debugging Tests
-
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-`,
-		...(funding && { "FUNDING.yml": formatYaml({ github: funding }) }),
 		"ISSUE_TEMPLATE.md": `<!-- Note: Please must use one of our issue templates to file an issue! 🛑 -->
-<!-- 👉 https://github.com/${owner}/${repository}/issues/new/choose 👈 -->
+<!-- 👉 https://github.com/${values.owner}/${values.repository}/issues/new/choose 👈 -->
 <!-- **Issues that should have been filed with a template will be closed without action, and we will ask you to use a template.** -->
 
 <!-- This blank issue template is only for issues that don't fit any of the templates. -->
@@ -312,15 +244,15 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 
 ...
 `,
-		"PULL_REQUEST_TEMPLATE.md": `<!-- 👋 Hi, thanks for sending a PR to ${repository}! 💖.
+		"PULL_REQUEST_TEMPLATE.md": `<!-- 👋 Hi, thanks for sending a PR to ${values.repository}! 💖.
 Please fill out all fields below and make sure each item is true and [x] checked.
 Otherwise we may not be able to review your PR. -->
 
 ## PR Checklist
 
 - [ ] Addresses an existing open issue: fixes #000
-- [ ] That issue was marked as [\`status: accepting prs\`](https://github.com/${owner}/${repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22status%3A+accepting+prs%22)
-- [ ] Steps in [CONTRIBUTING.md](https://github.com/${owner}/${repository}/blob/main/.github/CONTRIBUTING.md) were taken
+- [ ] That issue was marked as [\`status: accepting prs\`](https://github.com/${values.owner}/${values.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22status%3A+accepting+prs%22)
+- [ ] Steps in [CONTRIBUTING.md](https://github.com/${values.owner}/${values.repository}/blob/main/.github/CONTRIBUTING.md) were taken
 
 ## Overview
 
@@ -332,21 +264,19 @@ We take all security vulnerabilities seriously.
 If you have a vulnerability or other security issues to disclose:
 
 - Thank you very much, please do!
-- Please send them to us by emailing \`${email}\`
+- Please send them to us by emailing \`${values.email}\`
 
 We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
 `,
-		"renovate.json": JSON.stringify(
-			{
+		...(!values.excludeRenovate && {
+			"renovate.json": await formatJson({
 				$schema: "https://docs.renovatebot.com/renovate-schema.json",
 				automerge: true,
 				internalChecksFilter: "strict",
 				labels: ["dependencies"],
 				postUpdateOptions: ["pnpmDedupe"],
 				stabilityDays: 3,
-			},
-			null,
-			4,
-		),
+			}),
+		}),
 	};
 }

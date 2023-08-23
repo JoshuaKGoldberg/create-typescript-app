@@ -43,6 +43,31 @@ Then, go through the following two steps to set up required repository tooling o
 
 At this point, your new repository should be ready for development! 🥳
 
+### Skipping Tooling Portions
+
+The initialization script normally will prompt you to select how much of the tooling you'd like to enable in your new repository.
+Alternately, you can bypass that prompt by providing any number of the following CLI flags:
+
+- `--exclude-compliance`: Don't add a GitHub Actions workflow to verify that PRs match an expected format.
+- `--exclude-contributors`: Don't add all-contributors to track contributions and display them in a README.md table.
+- `--exclude-lint-json`: Don't apply linting and sorting to `*.json` and `*.jsonc` files.
+- `--exclude-lint-knip`: Don't add Knip to detect unused files, dependencies, and code exports.
+- `--exclude-lint-md`: Don't apply linting to `*.md` files.
+- `--exclude-lint-package`: Don't add npm-package-json-lint to lint for package.json correctness.
+- `--exclude-lint-packages`: Don't add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.
+- `--exclude-lint-perfectionist`: Don't apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.
+- `--exclude-lint-spelling`: Don't add cspell to spell check against dictionaries of known words.
+- `--exclude-lint-yml`: Don't apply linting and sorting to `*.yaml` and `*.yml` files.
+- `--exclude-releases`: Don't add release-it to generate changelogs, package bumps, and publishes based on conventional commits.
+- `--exclude-renovate`: Don't add a Renovate config to dependencies up-to-date with PRs.
+- `--exclude-tests`: Don't add Vitest tooling for fast unit tests, configured with coverage tracking.
+
+For example, initializing with all tooling except for `package.json` checks and Renovate:
+
+```shell
+pnpm run initialize --exclude-lint-package --exclude-lint-packages --exclude-renovate
+```
+
 ### Skipping API Calls
 
 The initialization script normally posts to GitHub APIs to set repository information such as repository description and branch protections on github.com.

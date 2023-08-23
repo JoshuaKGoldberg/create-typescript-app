@@ -2,8 +2,8 @@ import { $ } from "execa";
 import fs from "node:fs/promises";
 import prettier from "prettier";
 
-import { InputValues } from "../shared/inputs.js";
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
+import { InputValues } from "../shared/readInputs.js";
 import { AllContributorsData } from "../shared/types.js";
 
 export async function updateAllContributorsTable({

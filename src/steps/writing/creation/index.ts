@@ -1,4 +1,4 @@
-import { InputValues } from "../../../shared/inputs.js";
+import { InputValues } from "../../../shared/readInputs.js";
 import { Structure } from "../types.js";
 import { createDotGitHub } from "./dotGitHub/index.js";
 import { createDotHusky } from "./dotHusky.js";
@@ -8,10 +8,10 @@ import { createSrc } from "./src.js";
 
 export async function createStructure(values: InputValues): Promise<Structure> {
 	return {
-		".github": createDotGitHub(values),
+		".github": await createDotGitHub(values),
 		".husky": createDotHusky(),
-		".vscode": await createDotVSCode(),
-		src: await createSrc(values.unitTests),
+		".vscode": await createDotVSCode(values),
+		src: await createSrc(values),
 		...(await createRootFiles(values)),
 	};
 }

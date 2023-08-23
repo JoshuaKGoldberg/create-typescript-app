@@ -12,12 +12,31 @@ vi.mock("../../../shared/readFileSafeAsJson.js", () => ({
 
 const values = {
 	author: "test-author",
+	createRepository: undefined,
 	description: "test-description",
 	email: "test-email",
+	excludeCompliance: undefined,
+	excludeContributors: undefined,
+	excludeLintJson: undefined,
+	excludeLintKnip: undefined,
+	excludeLintMd: undefined,
+	excludeLintPackage: undefined,
+	excludeLintPackages: undefined,
+	excludeLintPerfectionist: undefined,
+	excludeLintSpelling: undefined,
+	excludeLintYml: undefined,
+	excludeReleases: false,
+	excludeRenovate: undefined,
+	excludeTests: false,
+	funding: undefined,
 	owner: "test-owner",
-	releases: false,
 	repository: "test-repository",
-	unitTests: false,
+	skipApi: false,
+	skipInstall: undefined,
+	skipRemoval: undefined,
+	skipRestore: undefined,
+	skipUninstall: undefined,
+	title: "",
 };
 
 describe("writePackageJson", () => {
@@ -43,37 +62,124 @@ describe("writePackageJson", () => {
 		);
 	});
 
-	it("includes a release script when releases is true", async () => {
+	it("includes all optional portions when no exclusions are enabled", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 
-		const packageJson = await writePackageJson({
-			...values,
-			releases: true,
-		});
+		const packageJson = await writePackageJson(values);
 
-		expect(JSON.parse(packageJson)).toEqual(
-			expect.objectContaining({
-				scripts: expect.objectContaining({
-					"should-semantic-release": "should-semantic-release --verbose",
-				}),
-			}),
-		);
+		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
+			{
+			  "author": {
+			    "email": "test-email",
+			    "name": "test-author",
+			  },
+			  "description": "test-description",
+			  "devDependencies": {},
+			  "engines": {
+			    "node": ">=18",
+			  },
+			  "files": [
+			    "lib/",
+			    "package.json",
+			    "LICENSE.md",
+			    "README.md",
+			  ],
+			  "license": "MIT",
+			  "lint-staged": {
+			    "*": "prettier --ignore-unknown --write",
+			  },
+			  "main": "./lib/index.js",
+			  "name": "test-repository",
+			  "packageManager": "pnpm@8.5.0",
+			  "publishConfig": {
+			    "provenance": true,
+			  },
+			  "repository": {
+			    "type": "git",
+			    "url": "https://github.com/test-owner/test-repository",
+			  },
+			  "scripts": {
+			    "build": "tsup",
+			    "format": "prettier \\"**/*\\" --ignore-unknown",
+			    "format:write": "pnpm format --write",
+			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
+			    "lint:knip": "knip",
+			    "lint:md": "markdownlint \\"**/*.md\\" \\".github/**/*.md\\" --rules sentences-per-line",
+			    "lint:package": "npmPkgJsonLint .",
+			    "lint:packages": "pnpm dedupe --check",
+			    "lint:spelling": "cspell \\"**\\" \\".github/**/*\\"",
+			    "prepare": "husky install",
+			    "should-semantic-release": "should-semantic-release --verbose",
+			    "test": "vitest",
+			    "tsc": "tsc",
+			  },
+			  "type": "module",
+			  "version": "0.0.0",
+			}
+		`);
 	});
 
-	it("includes a test script when unitTests is true", async () => {
+	it("excludes all optional portions when all exclusions are enabled", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 
 		const packageJson = await writePackageJson({
 			...values,
-			unitTests: true,
+			excludeCompliance: true,
+			excludeContributors: true,
+			excludeLintJson: true,
+			excludeLintKnip: true,
+			excludeLintMd: true,
+			excludeLintPackage: true,
+			excludeLintPackages: true,
+			excludeLintPerfectionist: true,
+			excludeLintSpelling: true,
+			excludeLintYml: true,
+			excludeReleases: true,
+			excludeRenovate: true,
 		});
 
-		expect(JSON.parse(packageJson)).toEqual(
-			expect.objectContaining({
-				scripts: expect.objectContaining({
-					test: "vitest",
-				}),
-			}),
-		);
+		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
+			{
+			  "author": {
+			    "email": "test-email",
+			    "name": "test-author",
+			  },
+			  "description": "test-description",
+			  "devDependencies": {},
+			  "engines": {
+			    "node": ">=18",
+			  },
+			  "files": [
+			    "lib/",
+			    "package.json",
+			    "LICENSE.md",
+			    "README.md",
+			  ],
+			  "license": "MIT",
+			  "lint-staged": {
+			    "*": "prettier --ignore-unknown --write",
+			  },
+			  "main": "./lib/index.js",
+			  "name": "test-repository",
+			  "packageManager": "pnpm@8.5.0",
+			  "publishConfig": {
+			    "provenance": true,
+			  },
+			  "repository": {
+			    "type": "git",
+			    "url": "https://github.com/test-owner/test-repository",
+			  },
+			  "scripts": {
+			    "build": "tsup",
+			    "format": "prettier \\"**/*\\" --ignore-unknown",
+			    "format:write": "pnpm format --write",
+			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
+			    "prepare": "husky install",
+			    "tsc": "tsc",
+			  },
+			  "type": "module",
+			  "version": "0.0.0",
+			}
+		`);
 	});
 });

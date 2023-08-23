@@ -2,8 +2,8 @@ import * as prompts from "@clack/prompts";
 import { Octokit } from "octokit";
 
 import { doesRepositoryExist } from "./doesRepositoryExist.js";
-import { InputValues } from "./inputs.js";
 import { handleCancel, handlePromptCancel } from "./prompts.js";
+import { InputValues } from "./readInputs.js";
 
 export type EnsureRepositoryValues = Pick<
 	InputValues,
@@ -31,24 +31,25 @@ export async function ensureRepositoryExists(
 
 		const selection = createRepository
 			? "create"
-			: ((await prompts.select({
-					message: `Repository ${values.repository} doesn't seem to exist under ${values.owner}. What would you like to do?`,
-					options: [
-						{ label: "Create a new repository", value: "create" },
-						{
-							label: "Switch to a different repository name",
-							value: "different",
-						},
-						{
-							label: "Keep changes local",
-							value: "local",
-						},
-						{ label: "Bail out and maybe try again later", value: "bail" },
-					],
-			  })) as "bail" | "create" | "different" | "local");
+			: handlePromptCancel(
+					(await prompts.select({
+						message: `Repository ${values.repository} doesn't seem to exist under ${values.owner}. What would you like to do?`,
+						options: [
+							{ label: "Create a new repository", value: "create" },
+							{
+								label: "Switch to a different repository name",
+								value: "different",
+							},
+							{
+								label: "Keep changes local",
+								value: "local",
+							},
+							{ label: "Bail out and maybe try again later", value: "bail" },
+						],
+					})) as "bail" | "create" | "different" | "local",
+			  );
 
 		createRepository = false;
-		handlePromptCancel(selection);
 
 		switch (selection) {
 			case "bail":
@@ -65,11 +66,12 @@ export async function ensureRepositoryExists(
 				return { octokit, repository };
 
 			case "different":
-				const newRepository = await prompts.text({
-					message: `What would you like to call the repository?`,
-				});
+				const newRepository = handlePromptCancel(
+					await prompts.text({
+						message: `What would you like to call the repository?`,
+					}),
+				);
 
-				handlePromptCancel(newRepository);
 				repository = newRepository;
 				break;
 

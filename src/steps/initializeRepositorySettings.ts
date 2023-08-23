@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 
-import { InputValues } from "../shared/inputs.js";
+import { InputValues } from "../shared/readInputs.js";
 
 type InitializeRepositorySettings = Pick<
 	InputValues,

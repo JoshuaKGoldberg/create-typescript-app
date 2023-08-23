@@ -3,7 +3,7 @@ import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
 import { allArgOptions } from "./args.js";
-import { runOrSkip } from "./cli/runOrSkip.js";
+import { withSpinner } from "./cli/spinners.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
@@ -20,18 +20,28 @@ export interface DefaultInputValues {
 	createRepository: boolean | undefined;
 	description: string;
 	email: string | undefined;
+	excludeCompliance: boolean | undefined;
+	excludeContributors: boolean | undefined;
+	excludeLintJson: boolean | undefined;
+	excludeLintKnip: boolean | undefined;
+	excludeLintMd: boolean | undefined;
+	excludeLintPackage: boolean | undefined;
+	excludeLintPackages: boolean | undefined;
+	excludeLintPerfectionist: boolean | undefined;
+	excludeLintSpelling: boolean | undefined;
+	excludeLintYml: boolean | undefined;
+	excludeReleases: boolean | undefined;
+	excludeRenovate: boolean | undefined;
+	excludeTests: boolean | undefined;
 	funding: string | undefined;
 	owner: string | undefined;
-	releases: boolean | undefined;
 	repository: string;
 	skipApi: boolean;
-	skipContributors: boolean | undefined;
 	skipInstall: boolean | undefined;
 	skipRemoval: boolean | undefined;
 	skipRestore: boolean | undefined;
 	skipUninstall: boolean | undefined;
 	title: string;
-	unitTests: boolean | undefined;
 }
 
 export interface InputValues extends DefaultInputValues {
@@ -74,11 +84,9 @@ export async function readInputs({
 			))));
 
 	const { octokit, repository } = await ensureRepositoryExists(
-		await runOrSkip(
-			"Checking GitHub authentication",
-			!!values["skip-github-api"],
-			getOctokit,
-		),
+		values["skip-github-api"]
+			? undefined
+			: await withSpinner("Checking GitHub authentication", getOctokit),
 		{
 			createRepository: values["create-repository"] as boolean | undefined,
 			owner,
@@ -120,27 +128,70 @@ export async function readInputs({
 				values.email as string | undefined,
 				defaults.email,
 			),
+			excludeCompliance: await optionalDefault(
+				values["exclude-compliance"] as boolean | undefined,
+				defaults.excludeCompliance,
+			),
+			excludeContributors: await optionalDefault(
+				values["exclude-contributors"] as boolean | undefined,
+				defaults.excludeContributors,
+			),
+			excludeLintJson: await optionalDefault(
+				values["exclude-lint-json"] as boolean | undefined,
+				defaults.excludeLintJson,
+			),
+			excludeLintKnip: await optionalDefault(
+				values["exclude-lint-knip"] as boolean | undefined,
+				defaults.excludeLintKnip,
+			),
+			excludeLintMd: await optionalDefault(
+				values["exclude-lint-md"] as boolean | undefined,
+				defaults.excludeLintMd,
+			),
+			excludeLintPackage: await optionalDefault(
+				values["exclude-lint-package"] as boolean | undefined,
+				defaults.excludeLintPackage,
+			),
+			excludeLintPackages: await optionalDefault(
+				values["exclude-lint-packages"] as boolean | undefined,
+				defaults.excludeLintPackages,
+			),
+			excludeLintPerfectionist: await optionalDefault(
+				values["exclude-lint-perfectionist"] as boolean | undefined,
+				defaults.excludeLintPerfectionist,
+			),
+			excludeLintSpelling: await optionalDefault(
+				values["exclude-lint-spelling"] as boolean | undefined,
+				defaults.excludeLintSpelling,
+			),
+			excludeLintYml: await optionalDefault(
+				values["exclude-lint-yml"] as boolean | undefined,
+				defaults.excludeLintYml,
+			),
+			excludeReleases: await optionalDefault(
+				values["exclude-releases"] as boolean | undefined,
+				defaults.excludeReleases,
+			),
+			excludeRenovate: await optionalDefault(
+				values["exclude-renovate"] as boolean | undefined,
+				defaults.excludeRenovate,
+			),
+			excludeTests: await optionalDefault(
+				values["unit-tests"] as boolean | undefined,
+				defaults.excludeTests,
+			),
 			funding: await optionalDefault(
 				values.funding as string | undefined,
 				defaults.funding,
 			),
 			owner,
-			releases: await optionalDefault(
-				values.releases as boolean | undefined,
-				defaults.releases,
-			),
 			repository: repository,
 			skipApi: !!values["skip-github-api"],
-			skipContributors: !!values["skip-contributors"],
 			skipInstall: !!values["skip-install"],
 			skipRemoval: !!values["skip-removal"],
 			skipRestore: values["skip-restore"] as boolean | undefined,
 			skipUninstall: !!values["skip-uninstall"],
-			title: title,
-			unitTests: await optionalDefault(
-				values.unitTests as boolean | undefined,
-				defaults.unitTests,
-			),
+			title,
 		},
 	};
 }

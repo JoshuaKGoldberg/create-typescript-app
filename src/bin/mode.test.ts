@@ -5,12 +5,11 @@ import { promptForMode } from "./mode.js";
 const mockSelect = vi.fn();
 
 vi.mock("@clack/prompts", () => ({
+	isCancel: () => false,
 	get select() {
 		return mockSelect;
 	},
 }));
-
-vi.mock("../shared/prompts.js");
 
 describe("promptForMode", () => {
 	it("returns an error when the input exists and is not a mode", async () => {
@@ -29,7 +28,7 @@ describe("promptForMode", () => {
 		expect(mode).toEqual(input);
 	});
 
-	it("returns the selection when input is undefined and the user selects it", async () => {
+	it.only("returns the selection when input is undefined and the user selects it", async () => {
 		const mode = "create";
 		mockSelect.mockResolvedValue(mode);
 

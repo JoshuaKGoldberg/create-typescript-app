@@ -1,4 +1,4 @@
-import { InputValues } from "../../shared/inputs.js";
+import { InputValues } from "../../shared/readInputs.js";
 import { createStructure } from "./creation/index.js";
 import { writeStructureWorker } from "./writeStructureWorker.js";
 

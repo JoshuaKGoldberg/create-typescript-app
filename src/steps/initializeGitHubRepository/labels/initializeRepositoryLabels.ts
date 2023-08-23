@@ -22,15 +22,12 @@ export async function initializeRepositoryLabels() {
 			existingLabels,
 			outcome.name,
 		);
-		const [action, label] = existingEquivalent
-			? ["edit", existingEquivalent]
-			: ["create", outcome.name];
 
 		if (existingEquivalent) {
 			allowedLabels.add(existingEquivalent);
-			await $`gh label ${action} ${label} --color ${outcome.color} --description ${outcome.description} --name ${outcome.name}`;
+			await $`gh label edit ${existingEquivalent} --color ${outcome.color} --description ${outcome.description} --name ${outcome.name}`;
 		} else {
-			await $`gh label ${action} ${label} --color ${outcome.color} --description ${outcome.description}`;
+			await $`gh label create ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
 		}
 	}
 

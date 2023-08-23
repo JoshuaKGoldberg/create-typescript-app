@@ -8,10 +8,6 @@
 		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["gh"],
-	"ignoreDependencies": [
-		// https://github.com/webpro/knip/issues/207
-		"c8"
-	],
 	"ignoreExportsUsedInFile": {
 		"interface": true,
 		"type": true

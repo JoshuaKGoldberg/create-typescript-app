@@ -35,8 +35,7 @@ describe("migrateRepositoryLabels", () => {
 		await initializeRepositoryLabels();
 
 		expect(mock$).toHaveBeenCalledWith(
-			["gh label ", " ", " --color ", " --description ", ""],
-			"create",
+			["gh label create ", " --color ", " --description ", ""],
 			"abc",
 			"000000",
 			"def ghi",
@@ -57,8 +56,7 @@ describe("migrateRepositoryLabels", () => {
 		await initializeRepositoryLabels();
 
 		expect(mock$).toHaveBeenCalledWith(
-			["gh label ", " ", " --color ", " --description ", " --name ", ""],
-			"edit",
+			["gh label edit ", " --color ", " --description ", " --name ", ""],
 			"abc",
 			"000000",
 			"def ghi",

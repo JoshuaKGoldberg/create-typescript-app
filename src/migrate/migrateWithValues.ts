@@ -1,13 +1,10 @@
-import { runOrSkip } from "../shared/cli/runOrSkip.js";
 import { withSpinner } from "../shared/cli/spinners.js";
 import { getNpmAuthor } from "../shared/getNpmAuthor.js";
-import { HelpersAndValues } from "../shared/inputs.js";
+import { HelpersAndValues } from "../shared/readInputs.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
-import { initializeBranchProtectionSettings } from "../steps/initializeBranchProtectionSettings.js";
-import { initializeRepositorySettings } from "../steps/initializeRepositorySettings.js";
-import { initializeRepositoryLabels } from "../steps/labels/initializeRepositoryLabels.js";
+import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { runCommands } from "../steps/runCommands.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";
@@ -25,23 +22,24 @@ export async function migrateWithValues({ octokit, values }: HelpersAndValues) {
 		await updateAllContributorsTable(values);
 	});
 
-	await runOrSkip("Initializing API metadata", !octokit, async () => {
-		/* eslint-disable @typescript-eslint/no-non-null-assertion */
-		await initializeBranchProtectionSettings(octokit!, values);
-		await initializeRepositoryLabels();
-		await initializeRepositorySettings(octokit!, values);
-		/* eslint-enable @typescript-eslint/no-non-null-assertion */
-	});
+	if (octokit) {
+		await withSpinner("Initializing GitHub repository", async () => {
+			await initializeGitHubRepository(octokit, values);
+		});
+	}
 
-	await runOrSkip(
-		"Detecting existing contributors",
-		values.skipContributors,
-		detectExistingContributors,
-	);
+	if (!values.excludeContributors) {
+		await withSpinner(
+			"Detecting existing contributors",
+			detectExistingContributors,
+		);
+	}
 
-	await runOrSkip("Installing packages", values.skipInstall, async () =>
-		finalizeDependencies(values),
-	);
+	if (!values.skipInstall) {
+		await withSpinner("Installing packages", async () =>
+			finalizeDependencies(values),
+		);
+	}
 
 	await runCommands("Cleaning up files", [
 		"pnpm lint --fix",

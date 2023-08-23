@@ -1,5 +1,5 @@
 import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
-import { InputValues } from "./inputs.js";
+import { InputValues } from "./readInputs.js";
 
 export interface ValuesWithNpmInfo extends InputValues {
 	author: string;

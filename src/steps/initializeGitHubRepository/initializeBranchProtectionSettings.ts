@@ -1,7 +1,7 @@
 import { RequestError } from "@octokit/request-error";
 import { Octokit } from "octokit";
 
-import { InputValues } from "../shared/inputs.js";
+import { InputValues } from "../../shared/readInputs.js";
 
 export async function initializeBranchProtectionSettings(
 	octokit: Octokit,

@@ -5,11 +5,6 @@ import { lowerFirst } from "./lowerFirst.js";
 
 const s = prompts.spinner();
 
-export function skipSpinnerBlock(blockText: string) {
-	s.start(chalk.gray("➖ " + blockText));
-	s.stop(chalk.gray("➖ " + blockText));
-}
-
 export async function withSpinner<Return>(
 	label: string,
 	callback: () => Promise<Return>,

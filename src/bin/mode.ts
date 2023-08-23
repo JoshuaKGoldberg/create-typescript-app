@@ -26,28 +26,28 @@ export async function promptForMode(
 		return input;
 	}
 
-	const selection = (await prompts.select({
-		message: chalk.blue("How would you like to use the template?"),
-		options: [
-			{
-				label:
-					"--create a new repository in a child directory using the template",
-				value: "create",
-			},
-			{
-				label:
-					"--initialize a repository in the current directory freshly forked from the GitHub template",
-				value: "initialize",
-			},
-			{
-				label:
-					"--migrate an existing repository in the current directory to use the template's tooling",
-				value: "migrate",
-			},
-		],
-	})) as Mode;
-
-	handlePromptCancel(selection);
+	const selection = handlePromptCancel(
+		(await prompts.select({
+			message: chalk.blue("How would you like to use the template?"),
+			options: [
+				{
+					label:
+						"--create a new repository in a child directory using the template",
+					value: "create",
+				},
+				{
+					label:
+						"--initialize a repository in the current directory freshly forked from the GitHub template",
+					value: "initialize",
+				},
+				{
+					label:
+						"--migrate an existing repository in the current directory to use the template's tooling",
+					value: "migrate",
+				},
+			],
+		})) as Mode | symbol,
+	);
 
 	return selection;
 }

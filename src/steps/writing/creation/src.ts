@@ -1,8 +1,9 @@
+import { InputValues } from "../../../shared/readInputs.js";
 import { formatTypeScript } from "./formatters/formatTypeScript.js";
 
-export async function createSrc(unitTests: boolean | undefined) {
+export async function createSrc(values: InputValues) {
 	return {
-		...(unitTests && {
+		...(!values.excludeTests && {
 			"greet.test.ts": await formatTypeScript(
 				`
 					import { describe, expect, it, vi } from "vitest";

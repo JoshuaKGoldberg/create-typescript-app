@@ -1,7 +1,8 @@
+import { augmentValuesWithExcludes } from "../shared/augmentValuesWithExcludes.js";
 import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
 import { outro } from "../shared/cli/outro.js";
 import { getGitDefaultSettings } from "../shared/getGitDefaultSettings.js";
-import { readInputs } from "../shared/inputs.js";
+import { readInputs } from "../shared/readInputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { migrateWithValues } from "./migrateWithValues.js";
 import { getMigrationDefaults } from "./values/getMigrationDefaults.js";
@@ -21,7 +22,9 @@ export async function migrate(args: string[]) {
 		run: async () => {
 			await migrateWithValues({
 				...inputs,
-				values: await augmentValuesWithNpmInfo(inputs.values),
+				values: await augmentValuesWithExcludes(
+					await augmentValuesWithNpmInfo(inputs.values),
+				),
 			});
 
 			outro([

@@ -44,7 +44,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 - `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 - `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
 - `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
-- `pnpm lint:package` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
+- `pnpm lint:package-json` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
 - `pnpm lint:packages` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the `pnpm-lock.yml` file
 - `pnpm lint:spelling` ([cspell](https://cspell.org)): Spell checks across all source files
 
@@ -90,6 +90,14 @@ pnpm tsc --watch
 ## Setup Scripts
 
 As described in the `README.md` file and `docs/`, this template repository comes with three scripts that can set up an existing or new repository.
+
+Each follows roughly the same general flow:
+
+1. `bin/index.ts` uses `bin/mode.ts` determines which of the three setup scripts to run
+2. `readInputs` parses in values from local files, Git commands, npm APIs, and/or files on disk
+3. `runOrRestore` wraps the setup script's main logic in a friendly prompt wrapper
+4. The setup script wraps each portion of its main logic with `withSpinner`
+5. A call to `outro` summarizes the results for the user
 
 > **Warning**
 > Each setup script overrides many files in the directory they're run in.

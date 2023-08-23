@@ -1,14 +1,13 @@
 import { outro } from "../shared/cli/outro.js";
-import { getGitDefaultSettings } from "../shared/getGitDefaultSettings.js";
+import { ensureGitRepository } from "../shared/ensureGitRepository.js";
 import { readInputs } from "../shared/readInputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { initializeWithValues } from "./initializeWithValues.js";
 
 export async function initialize(args: string[]) {
-	const inputs = await readInputs({
-		args,
-		defaults: await getGitDefaultSettings(),
-	});
+	const inputs = await readInputs(args);
+
+	await ensureGitRepository();
 
 	return await runOrRestore({
 		run: async () => {

@@ -1,6 +1,6 @@
 # FAQs
 
-## Can I use &lt;insert tool here&gt with this template?
+## Can I use _(insert tool here)_ with this template?
 
 Yes!
 After you set up a repository, you can substitute in any tools you'd like.
@@ -23,9 +23,12 @@ If you don't want to use any particular tool, you can always remove it manually.
 
 ### Which tools can't I remove?
 
-- The code of conduct
-- TypeScript
-- ESLint
-- tsup
-- Prettier
-- GitHub templates
+The following pieces of this template's tooling don't have options to be removed:
+
+- Linting with ESLint and `pnpm run lint`
+- GitHub repository metadata such as the code of conduct and issue templates
+- Prettier and `pnpm run format`
+- tsup and `pnpm run build`
+- TypeScript and `pnpm run tsc`
+
+If you have a strong desire to add an `--exclude-*` flag for any of them, please do [file a feature request](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/new?assignees=&labels=type%3A+feature&projects=&template=03-feature.yml&title=%F0%9F%9A%80+Feature%3A+%3Cshort+description+of+the+feature%3E).

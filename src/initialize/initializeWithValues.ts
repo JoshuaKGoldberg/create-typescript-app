@@ -1,5 +1,4 @@
 import { withSpinner } from "../shared/cli/spinners.js";
-import { getNpmAuthor } from "../shared/getNpmAuthor.js";
 import { HelpersAndValues } from "../shared/readInputs.js";
 import { clearChangelog } from "../steps/clearChangelog.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
@@ -16,10 +15,8 @@ export async function initializeWithValues({
 	octokit,
 	values,
 }: HelpersAndValues) {
-	const npmAuthor = await getNpmAuthor(values.owner);
-
 	await withSpinner("Initializing local files", async () => {
-		await updateLocalFiles({ ...values, npmAuthor });
+		await updateLocalFiles(values);
 		await updateReadme();
 		await clearChangelog();
 		await updateAllContributorsTable(values);

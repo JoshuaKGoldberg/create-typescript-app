@@ -14,7 +14,7 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-lint-json`: Don't apply linting and sorting to `*.json` and `*.jsonc` files.
 - `--exclude-lint-knip`: Don't add Knip to detect unused files, dependencies, and code exports.
 - `--exclude-lint-md`: Don't apply linting to `*.md` files.
-- `--exclude-lint-package`: Don't add npm-package-json-lint to lint for package.json correctness.
+- `--exclude-lint-package-json`: Don't add npm-package-json-lint to lint for package.json correctness.
 - `--exclude-lint-packages`: Don't add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.
 - `--exclude-lint-perfectionist`: Don't apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.
 - `--exclude-lint-spelling`: Don't add cspell to spell check against dictionaries of known words.
@@ -26,14 +26,14 @@ Alternately, you can bypass that prompt by providing any number of the following
 For example, initializing with all tooling except for `package.json` checks and Renovate:
 
 ```shell
-npx template-typescript-node-package --exclude-lint-package --exclude-lint-packages --exclude-renovate
+npx template-typescript-node-package --exclude-lint-package-json --exclude-lint-packages --exclude-renovate
 ```
 
 ## Skipping API Calls
 
 You can prevent the migration script from making some network-based changes using any or all of the following CLI flags:
 
-- `--skip-contributors-data`: Skips network calls that fetch all-contributors data from GitHub
+- `--skip-contributors-data` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
   - This flag does nothing if `--exclude-contributors` was specified.
 - `--skip-github-api` _(`boolean`)_: Skips calling to GitHub APIs.
 - `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`.
@@ -45,3 +45,17 @@ npx template-typescript-node-package --skip-contributors-data --skip-github-api 
 ```
 
 > 💡 Tip: To temporarily preview what the script would apply, you can run with all `--skip-*` flags, then `git add -A; git reset --hard HEAD` to completely reset all changes.
+
+## Skipping Local Changes
+
+You can prevent the migration script from making some changes on disk using any or all of the following CLI flags:
+
+- `--skip-removal` _(`boolean`)_: Skips removing setup docs and scripts, including this `docs/` directory
+- `--skip-restore` _(`boolean`)_: Skips the prompt offering to restore the repository if an error occurs during setup
+- `--skip-uninstall` _(`boolean`)_: Skips uninstalling packages only used for setup scripts
+
+For example, providing all local change skip flags:
+
+```shell
+npx template-typescript-node-package --skip-removal --skip-restore --skip-uninstall
+```

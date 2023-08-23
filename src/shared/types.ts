@@ -14,5 +14,5 @@ export interface PartialPackageData {
 	devDependencies?: Record<string, string>;
 	email?: string;
 	name?: string;
-	repository?: string;
+	repository?: { type: string; url: string } | string;
 }

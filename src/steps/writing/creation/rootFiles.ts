@@ -37,7 +37,7 @@ export async function createRootFiles(values: InputValues) {
 				"node_modules/",
 			]),
 		}),
-		...(!values.excludeLintPackage && {
+		...(!values.excludeLintPackageJson && {
 			".npmpackagejsonlintrc.json": await formatJson({
 				extends: "npm-package-json-lint-config-default",
 				rules: {

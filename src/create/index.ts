@@ -3,26 +3,13 @@ import chalk from "chalk";
 import { $ } from "execa";
 import fs from "node:fs/promises";
 
-import { augmentValuesWithExcludes } from "../shared/augmentValuesWithExcludes.js";
-import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
 import { outro } from "../shared/cli/outro.js";
-import { getPrefillOrPromptedValue } from "../shared/getPrefillOrPromptedValue.js";
 import { readInputs } from "../shared/readInputs.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { createWithValues } from "./createWithValues.js";
 
 export async function create(args: string[]) {
-	const inputs = await readInputs({
-		args,
-		overrides: {
-			repository: async () => {
-				return await getPrefillOrPromptedValue(
-					undefined,
-					"What would you like the kebab-case directory and repository name to be?",
-				);
-			},
-		},
-	});
+	const inputs = await readInputs(args);
 
 	if (!(await createAndEnterRepository(inputs.values.repository))) {
 		prompts.outro(
@@ -35,12 +22,7 @@ export async function create(args: string[]) {
 
 	return await runOrRestore({
 		run: async () => {
-			const { sentToGitHub } = await createWithValues({
-				...inputs,
-				values: await augmentValuesWithExcludes(
-					await augmentValuesWithNpmInfo(inputs.values),
-				),
-			});
+			const { sentToGitHub } = await createWithValues(inputs);
 
 			outro(
 				sentToGitHub
@@ -70,7 +52,7 @@ export async function create(args: string[]) {
 					  ],
 			);
 		},
-		skipRestore: inputs.values.skipRestore ?? true,
+		skipRestore: inputs.values.skipRestore,
 	});
 }
 

@@ -2,7 +2,6 @@ import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 import { $ } from "execa";
 
-import { ensureGitRepository } from "./ensureGitRepository.js";
 import { handlePromptCancel } from "./prompts.js";
 
 export interface RunOrRestoreOptions {
@@ -12,7 +11,6 @@ export interface RunOrRestoreOptions {
 
 export async function runOrRestore({ run, skipRestore }: RunOrRestoreOptions) {
 	try {
-		await ensureGitRepository();
 		await run();
 		return 0;
 	} catch (error) {

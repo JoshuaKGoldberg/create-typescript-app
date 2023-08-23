@@ -28,8 +28,8 @@ const exclusionDescriptions = {
 		hint: "--exclude-lint-md",
 		label: "Apply linting to *.md files.",
 	},
-	excludeLintPackage: {
-		hint: "--exclude-lint-package",
+	excludeLintPackageJson: {
+		hint: "--exclude-lint-package-json",
 		label: "Add npm-package-json-lint to lint for package.json correctness.",
 	},
 	excludeLintPackages: {

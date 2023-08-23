@@ -36,7 +36,7 @@ export async function finalizeDependencies(values: InputValues) {
 					"markdownlint-cli",
 					"sentences-per-line",
 			  ]),
-		...(values.excludeLintPackage
+		...(values.excludeLintPackageJson
 			? []
 			: ["npm-package-json-lint", "npm-package-json-lint-config-default"]),
 		...(values.excludeLintPerfectionist ? [] : ["eslint-plugin-perfectionist"]),

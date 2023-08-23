@@ -1,5 +1,4 @@
 import { withSpinner } from "../shared/cli/spinners.js";
-import { getNpmAuthor } from "../shared/getNpmAuthor.js";
 import { HelpersAndValues } from "../shared/readInputs.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
@@ -12,13 +11,11 @@ import { writeReadme } from "../steps/writeReadme.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function migrateWithValues({ octokit, values }: HelpersAndValues) {
-	const npmAuthor = await getNpmAuthor(values.owner);
-
 	await withSpinner("Migrating repository structure", async () => {
 		await clearUnnecessaryFiles();
 		await writeStructure(values);
 		await writeReadme(values);
-		await updateLocalFiles({ ...values, npmAuthor });
+		await updateLocalFiles(values);
 		await updateAllContributorsTable(values);
 	});
 

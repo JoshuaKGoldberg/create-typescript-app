@@ -18,11 +18,32 @@ vi.mock("../shared/readFileSafeAsJson.js", () => ({
 	},
 }));
 
-const stubOptions = {
+const values = {
+	author: undefined,
+	createRepository: undefined,
 	description: "Stub description.",
-	npmAuthor: "stub-npm-author",
+	email: undefined,
+	excludeCompliance: undefined,
+	excludeContributors: undefined,
+	excludeLintJson: undefined,
+	excludeLintKnip: undefined,
+	excludeLintMd: undefined,
+	excludeLintPackageJson: undefined,
+	excludeLintPackages: undefined,
+	excludeLintPerfectionist: undefined,
+	excludeLintSpelling: undefined,
+	excludeLintYml: undefined,
+	excludeReleases: undefined,
+	excludeRenovate: undefined,
+	excludeTests: undefined,
+	funding: undefined,
 	owner: "StubOwner",
 	repository: "stub-repository",
+	skipApi: false,
+	skipInstall: undefined,
+	skipRemoval: undefined,
+	skipRestore: undefined,
+	skipUninstall: undefined,
 	title: "Stub Title",
 };
 
@@ -34,7 +55,7 @@ describe("updateLocalFiles", () => {
 		mockReplaceInFile.mockRejectedValue(error);
 
 		await expect(async () => {
-			await updateLocalFiles(stubOptions);
+			await updateLocalFiles(values);
 		}).rejects.toThrowErrorMatchingInlineSnapshot(
 			'"Failed to replace /Template TypeScript Node Package/g with Stub Title in ./.github/**/*,./*.*"',
 		);
@@ -44,7 +65,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue(null);
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(stubOptions);
+		await updateLocalFiles(values);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -179,7 +200,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(stubOptions);
+		await updateLocalFiles(values);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -317,7 +338,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(stubOptions);
+		await updateLocalFiles(values);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[

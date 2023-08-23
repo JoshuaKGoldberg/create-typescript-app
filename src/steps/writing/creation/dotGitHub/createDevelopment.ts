@@ -6,8 +6,8 @@ export function createDevelopment(values: InputValues) {
 			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
 		values.excludeLintMd &&
 			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files`,
-		values.excludeLintPackage &&
-			`- \`pnpm lint:package\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file`,
+		values.excludeLintPackageJson &&
+			`- \`pnpm lint:package-json\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file`,
 		values.excludeLintPackages &&
 			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
 		values.excludeLintSpelling &&

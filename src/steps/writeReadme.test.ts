@@ -32,7 +32,7 @@ const values = {
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
-	excludeLintPackage: undefined,
+	excludeLintPackageJson: undefined,
 	excludeLintPackages: undefined,
 	excludeLintPerfectionist: undefined,
 	excludeLintSpelling: undefined,

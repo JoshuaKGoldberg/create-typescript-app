@@ -3,17 +3,13 @@ import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
 import { allArgOptions } from "./args.js";
+import { augmentValuesWithExcludes } from "./augmentValuesWithExcludes.js";
 import { withSpinner } from "./cli/spinners.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
 import { optionalDefault } from "./optionalDefault.js";
-
-export type GetterDefaultInputValues = {
-	[K in keyof DefaultInputValues]:
-		| (() => Promise<DefaultInputValues[K]>)
-		| DefaultInputValues[K];
-};
+import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
 
 export interface DefaultInputValues {
 	author: string | undefined;
@@ -25,7 +21,7 @@ export interface DefaultInputValues {
 	excludeLintJson: boolean | undefined;
 	excludeLintKnip: boolean | undefined;
 	excludeLintMd: boolean | undefined;
-	excludeLintPackage: boolean | undefined;
+	excludeLintPackageJson: boolean | undefined;
 	excludeLintPackages: boolean | undefined;
 	excludeLintPerfectionist: boolean | undefined;
 	excludeLintSpelling: boolean | undefined;
@@ -53,35 +49,20 @@ export interface HelpersAndValues {
 	values: InputValues;
 }
 
-export interface InputValuesOverrides {
-	owner?: () => Promise<string> | string;
-	repository?: () => Promise<string> | string;
-}
-
-export interface InputValuesAndOctokitSettings {
-	args: string[];
-	defaults?: Partial<GetterDefaultInputValues>;
-	overrides?: InputValuesOverrides;
-}
-
-export async function readInputs({
-	args,
-	defaults = {},
-	overrides = {},
-}: InputValuesAndOctokitSettings): Promise<HelpersAndValues> {
+export async function readInputs(args: string[]): Promise<HelpersAndValues> {
+	const defaults = await getGitAndNpmDefaults();
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
 		strict: false,
 		tokens: true,
 	});
-	const owner =
-		(values.owner as string | undefined) ??
-		(await (overrides.owner?.() ??
-			(await getPrefillOrPromptedValue(
-				values.owner as string | undefined,
-				"What organization or user will the repository be under?",
-			))));
+
+	const owner = await getPrefillOrPromptedValue(
+		values.owner as string | undefined,
+		"What organization or user will the repository be under?",
+		defaults.owner,
+	);
 
 	const { octokit, repository } = await ensureRepositoryExists(
 		values["skip-github-api"]
@@ -90,96 +71,63 @@ export async function readInputs({
 		{
 			createRepository: values["create-repository"] as boolean | undefined,
 			owner,
-			repository:
-				(values.repository as string | undefined) ??
-				(await overrides.repository?.()) ??
-				(await getPrefillOrPromptedValue(
-					undefined,
-					"What will the kebab-case name of the repository be?",
-				)),
+			repository: await getPrefillOrPromptedValue(
+				values.repository as string | undefined,
+				"What will the kebab-case name of the repository be?",
+				defaults.repository,
+			),
 		},
 	);
 
-	const title = await getPrefillOrPromptedValue(
-		values.title as string | undefined,
-		"What will the Title Case title of the repository be?",
-		titleCase(repository).replaceAll("-", " "),
-	);
-
-	const description = await getPrefillOrPromptedValue(
-		values.description as string | undefined,
-		"How would you describe the new package?",
-		"A very lovely package. Hooray!",
-	);
+	const authorDefault =
+		(values.author as string | undefined) ??
+		defaults.author ??
+		owner.toLowerCase();
 
 	return {
 		octokit,
-		values: {
-			author: await optionalDefault(
-				values.author as string | undefined,
-				defaults.author,
+		values: await augmentValuesWithExcludes({
+			author: await getPrefillOrPromptedValue(
+				values["exclude-releases"]
+					? authorDefault
+					: (values.author as string | undefined),
+				"What author (username) will be used for the npm owner?",
+				authorDefault,
 			),
-			createRepository: await optionalDefault(
-				values["create-repository"] as boolean | undefined,
-				defaults.createRepository,
+			createRepository: values["create-repository"] as boolean | undefined,
+			description: await getPrefillOrPromptedValue(
+				values.description as string | undefined,
+				"How would you describe the new package?",
+				defaults.description ?? "A very lovely package. Hooray!",
 			),
-			description,
-			email: await optionalDefault(
+			email: await getPrefillOrPromptedValue(
 				values.email as string | undefined,
+				"What email will be used for contact information?",
 				defaults.email,
 			),
-			excludeCompliance: await optionalDefault(
-				values["exclude-compliance"] as boolean | undefined,
-				defaults.excludeCompliance,
-			),
-			excludeContributors: await optionalDefault(
-				values["exclude-contributors"] as boolean | undefined,
-				defaults.excludeContributors,
-			),
-			excludeLintJson: await optionalDefault(
-				values["exclude-lint-json"] as boolean | undefined,
-				defaults.excludeLintJson,
-			),
-			excludeLintKnip: await optionalDefault(
-				values["exclude-lint-knip"] as boolean | undefined,
-				defaults.excludeLintKnip,
-			),
-			excludeLintMd: await optionalDefault(
-				values["exclude-lint-md"] as boolean | undefined,
-				defaults.excludeLintMd,
-			),
-			excludeLintPackage: await optionalDefault(
-				values["exclude-lint-package"] as boolean | undefined,
-				defaults.excludeLintPackage,
-			),
-			excludeLintPackages: await optionalDefault(
-				values["exclude-lint-packages"] as boolean | undefined,
-				defaults.excludeLintPackages,
-			),
-			excludeLintPerfectionist: await optionalDefault(
-				values["exclude-lint-perfectionist"] as boolean | undefined,
-				defaults.excludeLintPerfectionist,
-			),
-			excludeLintSpelling: await optionalDefault(
-				values["exclude-lint-spelling"] as boolean | undefined,
-				defaults.excludeLintSpelling,
-			),
-			excludeLintYml: await optionalDefault(
-				values["exclude-lint-yml"] as boolean | undefined,
-				defaults.excludeLintYml,
-			),
-			excludeReleases: await optionalDefault(
-				values["exclude-releases"] as boolean | undefined,
-				defaults.excludeReleases,
-			),
-			excludeRenovate: await optionalDefault(
-				values["exclude-renovate"] as boolean | undefined,
-				defaults.excludeRenovate,
-			),
-			excludeTests: await optionalDefault(
-				values["unit-tests"] as boolean | undefined,
-				defaults.excludeTests,
-			),
+			excludeCompliance: values["exclude-compliance"] as boolean | undefined,
+			excludeContributors: values["exclude-contributors"] as
+				| boolean
+				| undefined,
+			excludeLintJson: values["exclude-lint-json"] as boolean | undefined,
+			excludeLintKnip: values["exclude-lint-knip"] as boolean | undefined,
+			excludeLintMd: values["exclude-lint-md"] as boolean | undefined,
+			excludeLintPackageJson: values["exclude-lint-package-json"] as
+				| boolean
+				| undefined,
+			excludeLintPackages: values["exclude-lint-packages"] as
+				| boolean
+				| undefined,
+			excludeLintPerfectionist: values["exclude-lint-perfectionist"] as
+				| boolean
+				| undefined,
+			excludeLintSpelling: values["exclude-lint-spelling"] as
+				| boolean
+				| undefined,
+			excludeLintYml: values["exclude-lint-yml"] as boolean | undefined,
+			excludeReleases: values["exclude-releases"] as boolean | undefined,
+			excludeRenovate: values["exclude-renovate"] as boolean | undefined,
+			excludeTests: values["unit-tests"] as boolean | undefined,
 			funding: await optionalDefault(
 				values.funding as string | undefined,
 				defaults.funding,
@@ -191,7 +139,11 @@ export async function readInputs({
 			skipRemoval: !!values["skip-removal"],
 			skipRestore: values["skip-restore"] as boolean | undefined,
 			skipUninstall: !!values["skip-uninstall"],
-			title,
-		},
+			title: await getPrefillOrPromptedValue(
+				values.title as string | undefined,
+				"What will the Title Case title of the repository be?",
+				defaults.title ?? titleCase(repository).replaceAll("-", " "),
+			),
+		}),
 	};
 }

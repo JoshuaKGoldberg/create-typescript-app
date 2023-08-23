@@ -8,10 +8,12 @@ npx template-typescript-node-package
 
 Then, go through the following two steps to set up required repository tooling on GitHub:
 
-1. Create two tokens in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+1. Create two tokens in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) _(unless you chose to opt out of releases)_:
    - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
    - `NPM_TOKEN`: An [npm access token](https://docs.npmjs.com/creating-and-viewing-access-tokens/) with _Automation_ permissions
-2. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
+2. Install two GitHub apps:
+   - [Codecov](https://github.com/marketplace/codecov) _(unless you chose to opt out of tests)_
+   - [Renovate](https://github.com/marketplace/renovate) _(unless you chose to opt out of renovate)_
 
 Your new repository will then be ready for development!
 Hooray! 🥳
@@ -38,24 +40,38 @@ npx template-typescript-node-package --create-repository --mode create
 
 ### Template Values
 
-These flags determine the values that will be substituted into the template's files:
+These required flags determine the values that will be substituted into the template's files:
 
-- `--description`: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
-- `--owner`: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
-- `--repository`: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
-- `--title`: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
+- `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
+- `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
+- `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
+- `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
+- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
 
 ```shell
-npx template-typescript-node-package --repository "testing-repository" --title "Testing Title" --owner "TestingOwner" --description "Test Description"
+npx template-typescript-node-package --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
 ```
 
 For example, pre-populating all values and also creating a new repository:
 
 ```shell
-npx template-typescript-node-package --create-repository --mode create --repository "testing-repository" --title "Testing Title" --owner "TestingOwner" --description "Test Description"
+npx template-typescript-node-package --create-repository --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
 ```
 
-That script will run completely autonomously: no prompted inputs required.
+That script will run completely autonomously, no prompted inputs required. ✨
+
+#### Optional Values
+
+Creation also allows for optional overrides of the following inputs whose defaults are based on other values:
+
+- `--author` _(`string`)_: Username on npm to publish packages under (by default, `owner.toLowerCase()`)
+- `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
+
+For example, customizing the ownership and users associated with a new repository:
+
+```shell
+npx template-typescript-node-package --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
+```
 
 ## Opt-Outs
 

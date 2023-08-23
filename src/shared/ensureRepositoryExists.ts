@@ -5,7 +5,7 @@ import { doesRepositoryExist } from "./doesRepositoryExist.js";
 import { handleCancel, handlePromptCancel } from "./prompts.js";
 import { InputValues } from "./readInputs.js";
 
-export type EnsureRepositoryValues = Pick<
+export type EnsureRepositoryExistsValues = Pick<
 	InputValues,
 	"createRepository" | "owner" | "repository"
 >;
@@ -17,7 +17,7 @@ export interface RepositoryExistsResult {
 
 export async function ensureRepositoryExists(
 	octokit: Octokit | undefined,
-	values: EnsureRepositoryValues,
+	values: EnsureRepositoryExistsValues,
 ): Promise<RepositoryExistsResult> {
 	// We'll only assume --create-repository should be true once
 	let { createRepository, repository } = values;

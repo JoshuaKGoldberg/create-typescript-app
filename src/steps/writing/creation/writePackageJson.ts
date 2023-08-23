@@ -77,8 +77,8 @@ export async function writePackageJson(values: InputValues) {
 				"lint:md":
 					'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
 			}),
-			...(!values.excludeLintPackage && {
-				"lint:package": "npmPkgJsonLint .",
+			...(!values.excludeLintPackageJson && {
+				"lint:package-json": "npmPkgJsonLint .",
 			}),
 			...(!values.excludeLintPackages && {
 				"lint:packages": "pnpm dedupe --check",

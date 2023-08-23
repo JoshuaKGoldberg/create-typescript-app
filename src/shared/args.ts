@@ -8,7 +8,7 @@ export const allArgOptions = {
 	"exclude-lint-json": { type: "boolean" },
 	"exclude-lint-knip": { type: "boolean" },
 	"exclude-lint-md": { type: "boolean" },
-	"exclude-lint-package": { type: "boolean" },
+	"exclude-lint-package-json": { type: "boolean" },
 	"exclude-lint-packages": { type: "boolean" },
 	"exclude-lint-perfectionist": { type: "boolean" },
 	"exclude-lint-spelling": { type: "boolean" },
@@ -18,7 +18,6 @@ export const allArgOptions = {
 	"exclude-tests": { type: "boolean" },
 	funding: { type: "string" },
 	owner: { type: "string" },
-	releases: { default: true, type: "boolean" },
 	repository: { type: "string" },
 	"skip-github-api": { type: "boolean" },
 	"skip-install": { type: "boolean" },
@@ -26,5 +25,4 @@ export const allArgOptions = {
 	"skip-restore": { type: "boolean" },
 	"skip-uninstall": { type: "boolean" },
 	title: { type: "string" },
-	unitTests: { default: true, type: "boolean" },
 } as const;

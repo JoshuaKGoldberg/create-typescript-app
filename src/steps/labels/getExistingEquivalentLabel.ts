@@ -13,7 +13,8 @@ export function getExistingEquivalentLabel(
 		return (
 			existingLabel === outcomeLabel ||
 			existingLabel === outcomeTrimmed ||
-			aliases.get(existingLabel) === outcomeLabel
+			aliases.get(existingLabel) === outcomeLabel ||
+			existingLabel.replace(/\w+: (\w+)/, "$1") === outcomeLabel
 		);
 	});
 }

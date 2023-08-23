@@ -7,7 +7,6 @@ export default defineConfig({
 			all: true,
 			exclude: ["lib"],
 			include: ["src"],
-			provider: "istanbul",
 			reporter: ["html", "lcov"],
 		},
 		exclude: ["lib", "node_modules"],

@@ -49,7 +49,7 @@ export async function finalizeDependencies({
 
 	if (unitTests) {
 		devDependencies.push(
-			"@vitest/coverage-istanbul",
+			"@vitest/coverage-v8",
 			"console-fail-test",
 			"eslint-plugin-no-only-tests",
 			"eslint-plugin-vitest",

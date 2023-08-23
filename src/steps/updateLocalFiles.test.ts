@@ -110,7 +110,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"stub-npm-author\\"",
+			      "to": "\\"author\\": \\"undefined\\"",
 			    },
 			  ],
 			  [
@@ -245,7 +245,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"stub-npm-author\\"",
+			      "to": "\\"author\\": \\"undefined\\"",
 			    },
 			  ],
 			  [
@@ -383,7 +383,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"stub-npm-author\\"",
+			      "to": "\\"author\\": \\"undefined\\"",
 			    },
 			  ],
 			  [

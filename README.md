@@ -40,7 +40,7 @@ First make sure you have the following installed:
 - [Node.js](https://nodejs.org)
 - [pnpm](https://pnpm.io)
 
-This repository comes with two scripts to set up an existing or new repository with tooling.
+This repository comes with three script forms to set up an existing or new repository with tooling.
 Use the corresponding docs page to get started:
 
 - [Creating from the terminal](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_

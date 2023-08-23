@@ -9,7 +9,7 @@ const title = "Template TypeScript Node Package";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --mode migrate --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-contributors --skip-install`;
+})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --mode migrate --description ${description} --owner ${owner} --title ${title} --repository ${repository} --exclude-contributors --skip-github-api --skip-install`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);

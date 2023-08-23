@@ -31,18 +31,15 @@ export async function promptForMode(
 			message: chalk.blue("How would you like to use the template?"),
 			options: [
 				{
-					label:
-						"--create a new repository in a child directory using the template",
+					label: "--create a new repository in a child directory",
 					value: "create",
 				},
 				{
-					label:
-						"--initialize a repository in the current directory freshly forked from the GitHub template",
+					label: "--initialize a freshly repository in the current directory",
 					value: "initialize",
 				},
 				{
-					label:
-						"--migrate an existing repository in the current directory to use the template's tooling",
+					label: "--migrate an existing repository in the current directory",
 					value: "migrate",
 				},
 			],

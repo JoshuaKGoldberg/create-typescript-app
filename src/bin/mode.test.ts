@@ -28,7 +28,7 @@ describe("promptForMode", () => {
 		expect(mode).toEqual(input);
 	});
 
-	it.only("returns the selection when input is undefined and the user selects it", async () => {
+	it("returns the selection when input is undefined and the user selects it", async () => {
 		const mode = "create";
 		mockSelect.mockResolvedValue(mode);
 

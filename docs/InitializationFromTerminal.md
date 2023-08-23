@@ -27,15 +27,16 @@ At this point, your new repository should be ready for development! 🥳
 The creation script will interactively prompt for values to be used in creating the new repository.
 Each may provided as a string CLI flag as well:
 
+- `--create-repository`: Whether to automatically create a repository on github.com with the given repository name under the owner
 - `--description`: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner`: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
 - `--repository`: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
 - `--title`: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
 
-For example, pre-populating all values:
+For example, pre-populating all values and creating a new repository:
 
 ```shell
-npx template-typescript-node-package --mode create --repository "testing-repository" --title "Testing Title" --owner "TestingOwner" --description "Test Description"
+npx template-typescript-node-package --create-repository --mode create --repository "testing-repository" --title "Testing Title" --owner "TestingOwner" --description "Test Description"
 ```
 
 Then, go through the following two steps to set up required repository tooling on GitHub:

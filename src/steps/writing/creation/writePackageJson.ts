@@ -40,10 +40,6 @@ export async function writePackageJson(values: InputValues) {
 		// We copy all existing dev dependencies except those we know are not used anymore
 		devDependencies: copyDevDependencies(existingPackageJson),
 
-		engines: {
-			node: ">=18",
-		},
-
 		// Remove fields we know we don't want, such as old or redundant configs
 		eslintConfig: undefined,
 		husky: undefined,
@@ -51,6 +47,9 @@ export async function writePackageJson(values: InputValues) {
 		types: undefined,
 
 		// The rest of the fields are ones we know from our template
+		engines: {
+			node: ">=18",
+		},
 		files: ["lib/", "package.json", "LICENSE.md", "README.md"],
 		license: "MIT",
 		"lint-staged": {

@@ -65,7 +65,7 @@ if (unstagedModifiedFiles.length) {
 			...unstagedModifiedFiles.map((filePath) => ` - ${filePath}`),
 			"",
 			"That likely indicates changes made to the repository without",
-			"corresponding updates to templates in src/migrate/creation.",
+			"corresponding updates to templates in src/.",
 			"",
 			"Please search for those file(s)' name(s) under src/migrate for",
 			"the corresponding template and update those as well.",

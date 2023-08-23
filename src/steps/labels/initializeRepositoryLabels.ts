@@ -15,6 +15,7 @@ export async function initializeRepositoryLabels() {
 			(await $`gh label list --json name`).stdout || "[]",
 		) as GhLabelData[]
 	).map(getLabelName);
+	const allowedLabels = new Set(outcomeLabels.map(getLabelName));
 
 	for (const outcome of outcomeLabels) {
 		const existingEquivalent = getExistingEquivalentLabel(
@@ -25,10 +26,13 @@ export async function initializeRepositoryLabels() {
 			? ["edit", existingEquivalent]
 			: ["create", outcome.name];
 
-		await $`gh label ${action} ${label} --color ${outcome.color} --description ${outcome.description}`;
+		if (existingEquivalent) {
+			allowedLabels.add(existingEquivalent);
+			await $`gh label ${action} ${label} --color ${outcome.color} --description ${outcome.description} --name ${outcome.name}`;
+		} else {
+			await $`gh label ${action} ${label} --color ${outcome.color} --description ${outcome.description}`;
+		}
 	}
-
-	const allowedLabels = new Set(outcomeLabels.map(getLabelName));
 
 	for (const existingLabel of existingLabels) {
 		if (!allowedLabels.has(existingLabel)) {

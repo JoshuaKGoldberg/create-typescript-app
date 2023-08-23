@@ -62,12 +62,13 @@ export async function ensureRepositoryExists(
 					template_owner: "JoshuaKGoldberg",
 					template_repo: "template-typescript-node-package",
 				});
-				break;
+				return { octokit, repository };
 
 			case "different":
 				const newRepository = await prompts.text({
 					message: `What would you like to call the repository?`,
 				});
+
 				handlePromptCancel(newRepository);
 				repository = newRepository;
 				break;

@@ -1,47 +1,53 @@
 import * as prompts from "@clack/prompts";
-import { RequestError } from "@octokit/request-error";
 import { Octokit } from "octokit";
 
+import { doesRepositoryExist } from "./doesRepositoryExist.js";
+import { InputValues } from "./inputs.js";
 import { handleCancel, handlePromptCancel } from "./prompts.js";
+
+export type EnsureRepositoryValues = Pick<
+	InputValues,
+	"createRepository" | "owner" | "repository"
+>;
+
+export interface RepositoryExistsResult {
+	octokit: Octokit | undefined;
+	repository: string;
+}
 
 export async function ensureRepositoryExists(
 	octokit: Octokit | undefined,
-	owner: string,
-	repository: string,
-) {
-	if (!octokit) {
-		return repository;
-	}
+	values: EnsureRepositoryValues,
+): Promise<RepositoryExistsResult> {
+	// We'll only assume --create-repository should be true once
+	let { createRepository, repository } = values;
 
 	// We'll continuously pester the user for a repository
 	// until they bail, create a new one, or it exists.
-	while (true) {
-		// Because the Octokit SDK throws on 404s (😡),
-		// we try/catch to check whether the repo exists.
-		try {
-			await octokit.rest.repos.get({
-				owner,
-				repo: repository,
-			});
-			return repository;
-		} catch (error) {
-			if ((error as RequestError).status !== 404) {
-				throw error;
-			}
+	while (octokit) {
+		if (await doesRepositoryExist(octokit, values)) {
+			return { octokit, ...values };
 		}
 
-		const selection = (await prompts.select({
-			message: `Repository ${repository} doesn't seem to exist under ${owner}. What would you like to do?`,
-			options: [
-				{ label: "Bail out and maybe try again later", value: "bail" },
-				{ label: "Create a new repository", value: "create" },
-				{
-					label: "Try again with a different repository",
-					value: "different",
-				},
-			],
-		})) as "bail" | "create" | "different";
+		const selection = createRepository
+			? "create"
+			: ((await prompts.select({
+					message: `Repository ${values.repository} doesn't seem to exist under ${values.owner}. What would you like to do?`,
+					options: [
+						{ label: "Create a new repository", value: "create" },
+						{
+							label: "Switch to a different repository name",
+							value: "different",
+						},
+						{
+							label: "Keep changes local",
+							value: "local",
+						},
+						{ label: "Bail out and maybe try again later", value: "bail" },
+					],
+			  })) as "bail" | "create" | "different" | "local");
 
+		createRepository = false;
 		handlePromptCancel(selection);
 
 		switch (selection) {
@@ -52,7 +58,7 @@ export async function ensureRepositoryExists(
 			case "create":
 				await octokit.rest.repos.createUsingTemplate({
 					name: repository,
-					owner,
+					owner: values.owner,
 					template_owner: "JoshuaKGoldberg",
 					template_repo: "template-typescript-node-package",
 				});
@@ -65,6 +71,12 @@ export async function ensureRepositoryExists(
 				handlePromptCancel(newRepository);
 				repository = newRepository;
 				break;
+
+			case "local":
+				octokit = undefined;
+				break;
 		}
 	}
+
+	return { octokit, repository };
 }

@@ -13,17 +13,14 @@ Pass `--mode create` to tell it to create a new repository in a child directory:
 npx template-typescript-node-package --mode create
 ```
 
-Upon completion, the prompt will suggest commands to get started working in the repository and create a corresponding GitHub repository.
-Those commands will roughly run the [The Initialization Script](./InitializationFromTemplate.md#the-initialization-script), but with `npm template-typescript-node-package --mode initialize` instead of `pnpm run initialize`:
+Then, go through the following two steps to set up required repository tooling on GitHub:
 
-```shell
-cd repository-name
-gh repo create repository-name --public --source=. --remote=origin
-npx template-typescript-node-package --mode initialize
-git add -A
-git commit -m "chore: initial commit ✨"
-git push -u origin main
-```
+1. Create two tokens in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+   - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
+   - `NPM_TOKEN`: An [npm access token](https://docs.npmjs.com/creating-and-viewing-access-tokens/) with _Automation_ permissions
+2. Install the [Codecov GitHub App](https://github.com/marketplace/codecov) and [Renovate GitHub App](https://github.com/marketplace/renovate)
+
+At this point, your new repository should be ready for development! 🥳
 
 ## The Creation Script
 

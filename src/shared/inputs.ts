@@ -17,6 +17,7 @@ export type GetterDefaultInputValues = {
 
 export interface DefaultInputValues {
 	author: string | undefined;
+	createRepository: boolean | undefined;
 	description: string;
 	email: string | undefined;
 	funding: string | undefined;
@@ -72,23 +73,24 @@ export async function readInputs({
 				"What owner or user will the repository be under?",
 			))));
 
-	const octokit = await runOrSkip(
-		"Checking GitHub authentication",
-		!!values["skip-github-api"],
-		getOctokit,
-	);
-
-	const repository =
-		(values.repository as string | undefined) ??
-		(await (overrides.repository?.() ??
-			ensureRepositoryExists(
-				octokit,
-				owner,
-				await getPrefillOrPromptedValue(
-					values.repository as string | undefined,
+	const { octokit, repository } = await ensureRepositoryExists(
+		await runOrSkip(
+			"Checking GitHub authentication",
+			!!values["skip-github-api"],
+			getOctokit,
+		),
+		{
+			createRepository: values["create-repository"] as boolean | undefined,
+			owner,
+			repository:
+				(values.repository as string | undefined) ??
+				(await overrides.repository?.()) ??
+				(await getPrefillOrPromptedValue(
+					undefined,
 					"What will the kebab-case name of the repository be?",
-				),
-			)));
+				)),
+		},
+	);
 
 	const title = await getPrefillOrPromptedValue(
 		values.title as string | undefined,
@@ -108,6 +110,10 @@ export async function readInputs({
 			author: await optionalDefault(
 				values.author as string | undefined,
 				defaults.author,
+			),
+			createRepository: await optionalDefault(
+				values["create-repository"] as boolean | undefined,
+				defaults.createRepository,
 			),
 			description,
 			email: await optionalDefault(

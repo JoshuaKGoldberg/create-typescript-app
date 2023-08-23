@@ -36,9 +36,9 @@ export async function initializeWithValues(input: HelpersAndValues) {
 
 	await runOrSkip("Initializing API metadata", !input.octokit, async () => {
 		/* eslint-disable @typescript-eslint/no-non-null-assertion */
+		await initializeBranchProtectionSettings(input.octokit!, input.values);
 		await initializeRepositoryLabels();
 		await initializeRepositorySettings(input.octokit!, input.values);
-		await initializeBranchProtectionSettings(input.octokit!, input.values);
 		/* eslint-enable @typescript-eslint/no-non-null-assertion */
 	});
 

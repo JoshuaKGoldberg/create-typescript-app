@@ -44,7 +44,7 @@ export async function create(args: string[]) {
 					? [
 							{
 								label:
-									"Now, all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets.",
+									"Now all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
 							},
 					  ]
 					: [
@@ -62,7 +62,7 @@ export async function create(args: string[]) {
 							},
 							{
 								label:
-									"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets.",
+									"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
 							},
 					  ],
 			);

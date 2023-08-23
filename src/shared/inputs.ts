@@ -70,7 +70,7 @@ export async function readInputs({
 		(await (overrides.owner?.() ??
 			(await getPrefillOrPromptedValue(
 				values.owner as string | undefined,
-				"What owner or user will the repository be under?",
+				"What organization or user will the repository be under?",
 			))));
 
 	const { octokit, repository } = await ensureRepositoryExists(

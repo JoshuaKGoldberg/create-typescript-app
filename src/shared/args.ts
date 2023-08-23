@@ -1,5 +1,6 @@
 export const allArgOptions = {
 	author: { type: "string" },
+	"create-repository": { type: "boolean" },
 	description: { type: "string" },
 	email: { type: "string" },
 	funding: { type: "string" },

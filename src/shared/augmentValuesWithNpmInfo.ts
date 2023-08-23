@@ -14,6 +14,7 @@ export async function augmentValuesWithNpmInfo<Values extends InputValues>(
 		author: await getPrefillOrPromptedValue(
 			values.author,
 			"What author (username) will be used for the npm owner?",
+			values.owner.toLowerCase(),
 		),
 		email: await getPrefillOrPromptedValue(
 			values.email,

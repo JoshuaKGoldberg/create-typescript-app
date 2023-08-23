@@ -34,29 +34,38 @@ export async function create(args: string[]) {
 
 	return await runOrRestore({
 		run: async () => {
-			await createWithValues({
+			const { sentToGitHub } = await createWithValues({
 				...inputs,
 				values: await augmentValuesWithNpmInfo(inputs.values),
 			});
 
-			outro([
-				{
-					label:
-						"Consider creating a GitHub repository from the new directory:",
-					lines: [
-						`cd ${inputs.values.repository}`,
-						`gh repo create ${inputs.values.repository} --public --source=. --remote=origin`,
-						`npx template-typescript-node-package --mode initialize`,
-						`git add -A`,
-						`git commit -m "chore: initial commit ✨"`,
-						`git push -u origin main`,
-					],
-				},
-				{
-					label:
-						"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets.",
-				},
-			]);
+			outro(
+				sentToGitHub
+					? [
+							{
+								label:
+									"Now, all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets.",
+							},
+					  ]
+					: [
+							{
+								label:
+									"Consider creating a GitHub repository from the new directory:",
+								lines: [
+									`cd ${inputs.values.repository}`,
+									`gh repo create ${inputs.values.repository} --public --source=. --remote=origin`,
+									`npx template-typescript-node-package --mode initialize`,
+									`git add -A`,
+									`git commit -m "chore: initial commit ✨"`,
+									`git push -u origin main`,
+								],
+							},
+							{
+								label:
+									"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets.",
+							},
+					  ],
+			);
 		},
 		skipRestore: inputs.values.skipRestore ?? true,
 	});

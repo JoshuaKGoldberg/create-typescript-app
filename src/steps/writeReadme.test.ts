@@ -24,6 +24,7 @@ vi.mock("../shared/readFileSafe.js", () => ({
 
 const stubValues = {
 	author: "Test Author",
+	createRepository: false,
 	description: "Test description.",
 	email: "test@test.test",
 	funding: undefined,

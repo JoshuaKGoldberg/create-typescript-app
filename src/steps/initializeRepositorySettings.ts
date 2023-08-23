@@ -2,14 +2,14 @@ import { Octokit } from "octokit";
 
 import { InputValues } from "../shared/inputs.js";
 
-type MigrateRepositoryValues = Pick<
+type InitializeRepositorySettings = Pick<
 	InputValues,
 	"description" | "owner" | "repository"
 >;
 
 export async function initializeRepositorySettings(
 	octokit: Octokit,
-	{ description, owner, repository }: MigrateRepositoryValues,
+	{ description, owner, repository }: InitializeRepositorySettings,
 ) {
 	await octokit.rest.repos.update({
 		allow_auto_merge: true,

@@ -18,6 +18,7 @@ vi.mock("@clack/prompts", () => ({
 	},
 }));
 
+const createRepository = false;
 const owner = "StubOwner";
 const repository = "stub-repository";
 
@@ -37,17 +38,25 @@ describe("ensureRepositoryExists", () => {
 	});
 
 	it("returns the repository when octokit is undefined", async () => {
-		const actual = await ensureRepositoryExists(undefined, owner, repository);
+		const actual = await ensureRepositoryExists(undefined, {
+			createRepository,
+			owner,
+			repository,
+		});
 
-		expect(actual).toEqual(repository);
+		expect(actual).toEqual({ octokit: undefined, repository });
 	});
 
 	it("returns the repository when the octokit GET resolves", async () => {
 		const octokit = createMockOctokit({ get: vi.fn().mockResolvedValue({}) });
 
-		const actual = await ensureRepositoryExists(octokit, owner, repository);
+		const actual = await ensureRepositoryExists(octokit, {
+			createRepository,
+			owner,
+			repository,
+		});
 
-		expect(actual).toEqual(repository);
+		expect(actual).toEqual({ octokit, repository });
 	});
 
 	it("throws the error when awaiting the octokit GET throws a non-404 error", async () => {
@@ -57,7 +66,7 @@ describe("ensureRepositoryExists", () => {
 		});
 
 		await expect(() =>
-			ensureRepositoryExists(octokit, owner, repository),
+			ensureRepositoryExists(octokit, { createRepository, owner, repository }),
 		).rejects.toEqual(error);
 	});
 
@@ -72,9 +81,13 @@ describe("ensureRepositoryExists", () => {
 
 		mockSelect.mockResolvedValue("create");
 
-		const actual = await ensureRepositoryExists(octokit, owner, repository);
+		const actual = await ensureRepositoryExists(octokit, {
+			createRepository,
+			owner,
+			repository,
+		});
 
-		expect(actual).toEqual(repository);
+		expect(actual).toEqual({ octokit, repository });
 	});
 
 	it("creates a different repository when the octokit GET rejects and the prompt resolves 'different'", async () => {
@@ -89,8 +102,12 @@ describe("ensureRepositoryExists", () => {
 		mockSelect.mockResolvedValue("different");
 		mockText.mockResolvedValue(newRepository);
 
-		const actual = await ensureRepositoryExists(octokit, owner, repository);
+		const actual = await ensureRepositoryExists(octokit, {
+			createRepository,
+			owner,
+			repository,
+		});
 
-		expect(actual).toEqual(newRepository);
+		expect(actual).toEqual({ octokit, repository: newRepository });
 	});
 });

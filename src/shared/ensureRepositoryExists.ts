@@ -26,7 +26,7 @@ export async function ensureRepositoryExists(
 	// until they bail, create a new one, or it exists.
 	while (octokit) {
 		if (await doesRepositoryExist(octokit, values)) {
-			return { octokit, ...values };
+			return { octokit, repository };
 		}
 
 		const selection = createRepository

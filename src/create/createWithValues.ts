@@ -41,7 +41,7 @@ export async function createWithValues(input: HelpersAndValues) {
 	const sendToGitHub =
 		input.octokit &&
 		(await doesRepositoryExist(input.octokit, input.values)) &&
-		(input.values.createRepository ||
+		(input.values.createRepository ??
 			(await prompts.confirm({
 				message:
 					"Would you like to push the template's tooling up to the repository on GitHub?",

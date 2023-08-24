@@ -43,13 +43,20 @@ module.exports = {
 		{
 			extends: [
 				"plugin:jsdoc/recommended-typescript-error",
-				"plugin:@typescript-eslint/recommended",
+				"plugin:@typescript-eslint/strict",
+				"plugin:@typescript-eslint/stylistic",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
 				"jsdoc/informative-docs": "error",
+				"logical-assignment-operators": [
+					"error",
+					"always",
+					{ enforceForIfStatements: true },
+				],
+				"operator-assignment": "error",
 
 				// These on-by-default rules don't work well for this repo and we like them off.
 				"jsdoc/require-jsdoc": "off",
@@ -65,8 +72,8 @@ module.exports = {
 					: `excludedFiles: ["**/*.md/*.ts"],
 			`
 			}extends: [
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
-				"plugin:@typescript-eslint/strict",
+				"plugin:@typescript-eslint/strict-type-checked",
+				"plugin:@typescript-eslint/stylistic-type-checked",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
@@ -85,6 +92,12 @@ module.exports = {
 			parser: "jsonc-eslint-parser",
 			rules: {
 				"jsonc/sort-keys": "error",
+			},
+		},
+		{
+			files: ["*.jsonc"],
+			rules: {
+				"jsonc/no-comments": "off",
 			},
 		},${
 			options.excludeTests
@@ -139,22 +152,28 @@ module.exports = {
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-		"import/extensions": ["error", "ignorePackages"],
-		"n/no-missing-import": "off",${
+		"import/extensions": ["error", "ignorePackages"],${
 			options.excludeTests ? "" : `\n"no-only-tests/no-only-tests": "error",`
 		}
 
 		// These on-by-default rules don't work well for this repo and we like them off.
+		"n/no-missing-import": "off",
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
-		curly: ["error", "all"],
-		"padding-line-between-statements": "off",
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
+		],
+		"perfectionist/sort-objects": [
+			"error",
+			{
+				order: "asc",
+				"partition-by-comment": true,
+				type: "natural",
+			},
 		],
 	},
 };

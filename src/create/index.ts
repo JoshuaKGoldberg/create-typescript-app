@@ -4,12 +4,12 @@ import { $ } from "execa";
 import fs from "node:fs/promises";
 
 import { outro } from "../shared/cli/outro.js";
-import { readInputs } from "../shared/options/readOptions.js";
+import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { createWithOptions } from "./createWithOptions.js";
 
 export async function create(args: string[]) {
-	const inputs = await readInputs(args);
+	const inputs = await readOptions(args);
 
 	if (!(await createAndEnterRepository(inputs.options.repository))) {
 		prompts.outro(

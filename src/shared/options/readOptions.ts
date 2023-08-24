@@ -17,7 +17,7 @@ export interface OctokitAndOptions {
 	options: Options;
 }
 
-export async function readInputs(args: string[]): Promise<OctokitAndOptions> {
+export async function readOptions(args: string[]): Promise<OctokitAndOptions> {
 	const defaults = await getGitAndNpmDefaults();
 	const { values } = parseArgs({
 		args,

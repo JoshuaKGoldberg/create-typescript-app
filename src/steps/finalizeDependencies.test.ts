@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { InputValues } from "../shared/options/readOptions.js";
+import { InputValues } from "../shared/types.js";
 import { finalizeDependencies } from "./finalizeDependencies.js";
 
 const mockExecaCommand = vi.fn();

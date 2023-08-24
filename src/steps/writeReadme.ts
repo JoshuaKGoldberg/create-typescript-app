@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 
-import { InputValues } from "../shared/options/readOptions.js";
 import { readFileSafe } from "../shared/readFileSafe.js";
+import { InputValues } from "../shared/types.js";
 import { endOfReadmeNotice } from "./updateReadme.js";
 
 const contributorsIndicator = `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`;

@@ -1,7 +1,7 @@
 import { execaCommand } from "execa";
 
-import { InputValues } from "../shared/options/readOptions.js";
 import { readPackageData, removeDevDependencies } from "../shared/packages.js";
+import { InputValues } from "../shared/types.js";
 
 export async function finalizeDependencies(values: InputValues) {
 	const devDependencies = [

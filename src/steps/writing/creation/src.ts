@@ -1,4 +1,4 @@
-import { InputValues } from "../../../shared/options/readOptions.js";
+import { InputValues } from "../../../shared/types.js";
 import { formatTypeScript } from "./formatters/formatTypeScript.js";
 
 export async function createSrc(values: InputValues) {

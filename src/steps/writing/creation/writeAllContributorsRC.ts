@@ -1,6 +1,5 @@
-import { InputValues } from "../../../shared/options/readOptions.js";
 import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
-import { AllContributorsData } from "../../../shared/types.js";
+import { AllContributorsData, InputValues } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 export async function writeAllContributorsRC(values: InputValues) {

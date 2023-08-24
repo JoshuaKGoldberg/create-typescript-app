@@ -1,5 +1,5 @@
-import { InputValues } from "../../../shared/options/readOptions.js";
 import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
+import { InputValues } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 const devDependenciesToRemove = [

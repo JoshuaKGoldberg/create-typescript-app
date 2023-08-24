@@ -3,7 +3,7 @@ import { Octokit } from "octokit";
 
 import { doesRepositoryExist } from "../doesRepositoryExist.js";
 import { handleCancel, handlePromptCancel } from "../prompts.js";
-import { InputValues } from "./readOptions.js";
+import { InputValues } from "../types.js";
 
 export type EnsureRepositoryExistsValues = Pick<
 	InputValues,

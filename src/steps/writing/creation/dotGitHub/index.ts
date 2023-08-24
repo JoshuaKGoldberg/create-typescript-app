@@ -1,4 +1,4 @@
-import { InputValues } from "../../../../shared/options/readOptions.js";
+import { InputValues } from "../../../../shared/types.js";
 import { createDotGitHubActions } from "./actions.js";
 import { createDotGitHubFiles } from "./createDotGitHubFiles.js";
 import { createDotGitHubIssueTemplate } from "./issueTemplate.js";

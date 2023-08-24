@@ -1,4 +1,4 @@
-import { InputValues } from "../../../shared/options/readOptions.js";
+import { InputValues } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 /* spellchecker: disable */

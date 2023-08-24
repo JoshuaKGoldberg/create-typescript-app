@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 
-import { InputValues } from "../../shared/options/readOptions.js";
+import { InputValues } from "../../shared/types.js";
 import { initializeRepositorySettings } from "../initializeRepositorySettings.js";
 import { initializeBranchProtectionSettings } from "./initializeBranchProtectionSettings.js";
 import { initializeRepositoryLabels } from "./labels/initializeRepositoryLabels.js";

@@ -4,48 +4,13 @@ import { titleCase } from "title-case";
 
 import { allArgOptions } from "../args.js";
 import { withSpinner } from "../cli/spinners.js";
+import { InputBase, InputValues } from "../types.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { optionalDefault } from "./optionalDefault.js";
 import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
-
-export type InputBase = "everything" | "minimum" | "prompt";
-
-export interface DefaultInputValues {
-	author: string | undefined;
-	base: InputBase | undefined;
-	createRepository: boolean | undefined;
-	description: string;
-	email: string | undefined;
-	excludeCompliance: boolean | undefined;
-	excludeContributors: boolean | undefined;
-	excludeLintJson: boolean | undefined;
-	excludeLintKnip: boolean | undefined;
-	excludeLintMd: boolean | undefined;
-	excludeLintPackageJson: boolean | undefined;
-	excludeLintPackages: boolean | undefined;
-	excludeLintPerfectionist: boolean | undefined;
-	excludeLintSpelling: boolean | undefined;
-	excludeLintYml: boolean | undefined;
-	excludeReleases: boolean | undefined;
-	excludeRenovate: boolean | undefined;
-	excludeTests: boolean | undefined;
-	funding: string | undefined;
-	owner: string | undefined;
-	repository: string;
-	skipApi: boolean;
-	skipInstall: boolean | undefined;
-	skipRemoval: boolean | undefined;
-	skipRestore: boolean | undefined;
-	skipUninstall: boolean | undefined;
-	title: string;
-}
-
-export interface InputValues extends DefaultInputValues {
-	owner: string;
-}
 
 export interface HelpersAndValues {
 	octokit: Octokit | undefined;

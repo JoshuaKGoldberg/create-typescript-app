@@ -1,7 +1,7 @@
 import * as prompts from "@clack/prompts";
 
 import { handlePromptCancel } from "../prompts.js";
-import { InputValues } from "./readOptions.js";
+import { InputValues } from "../types.js";
 
 type Basis = "everything" | "minimum" | "prompt";
 

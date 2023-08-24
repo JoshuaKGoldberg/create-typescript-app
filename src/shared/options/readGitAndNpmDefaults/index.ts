@@ -6,6 +6,7 @@ import npmUser from "npm-user";
 
 import { readPackageData } from "../../packages.js";
 import { tryCatchAsync } from "../../tryCatchAsync.js";
+import { parsePackageAuthor } from "./parsePackageAuthor.js";
 import { readTitleFromReadme } from "./readTitleFromReadme.js";
 
 export async function getGitAndNpmDefaults() {
@@ -18,21 +19,14 @@ export async function getGitAndNpmDefaults() {
 	);
 
 	const packageData = await readPackageData();
-
-	const [packageAuthor, packageEmail] =
-		typeof packageData.author === "string"
-			? [
-					packageData.author.split("<")[0].trim(),
-					packageData.author.split(/<|>/)[1].trim(),
-			  ]
-			: [packageData.author?.name, packageData.author?.email];
+	const packageAuthor = parsePackageAuthor(packageData);
 
 	return {
-		author: packageAuthor ?? npmDefaults?.name,
+		author: packageAuthor.author ?? npmDefaults?.name,
 		description: packageData.description,
 		email:
 			npmDefaults?.email ??
-			packageEmail ??
+			packageAuthor.email ??
 			(await tryCatchAsync(
 				async () => (await $`git config --get user.email`).stdout,
 			)),
@@ -43,7 +37,7 @@ export async function getGitAndNpmDefaults() {
 					.split(":")[1]
 					?.trim(),
 		),
-		owner: gitDefaults?.organization ?? packageAuthor,
+		owner: gitDefaults?.organization ?? packageAuthor.author,
 		repository: gitDefaults?.name ?? packageData.name,
 		title: await readTitleFromReadme(),
 	};

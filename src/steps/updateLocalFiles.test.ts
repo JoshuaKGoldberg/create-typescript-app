@@ -19,7 +19,7 @@ vi.mock("../shared/readFileSafeAsJson.js", () => ({
 	},
 }));
 
-const values = {
+const options = {
 	author: undefined,
 	base: "everything",
 	createRepository: undefined,
@@ -57,7 +57,7 @@ describe("updateLocalFiles", () => {
 		mockReplaceInFile.mockRejectedValue(error);
 
 		await expect(async () => {
-			await updateLocalFiles(values);
+			await updateLocalFiles(options);
 		}).rejects.toThrowErrorMatchingInlineSnapshot(
 			'"Failed to replace /Template TypeScript Node Package/g with Stub Title in ./.github/**/*,./*.*"',
 		);
@@ -67,7 +67,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue(null);
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(values);
+		await updateLocalFiles(options);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -202,7 +202,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(values);
+		await updateLocalFiles(options);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -340,7 +340,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(values);
+		await updateLocalFiles(options);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[

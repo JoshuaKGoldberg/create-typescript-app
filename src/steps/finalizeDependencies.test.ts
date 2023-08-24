@@ -20,7 +20,7 @@ vi.mock("../shared/packages.js", () => ({
 	},
 }));
 
-const values = {
+const options = {
 	author: undefined,
 	base: "everything",
 	createRepository: undefined,
@@ -52,7 +52,7 @@ const values = {
 
 describe("finalize", () => {
 	it("installs the full list of commands when no options are enabled", async () => {
-		await finalizeDependencies(values);
+		await finalizeDependencies(options);
 
 		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -71,7 +71,7 @@ describe("finalize", () => {
 
 	it("installs the base list of commands when all options are enabled", async () => {
 		await finalizeDependencies({
-			...values,
+			...options,
 			excludeCompliance: true,
 			excludeContributors: true,
 			excludeLintJson: true,

@@ -23,7 +23,7 @@ vi.mock("../shared/readFileSafe.js", () => ({
 	},
 }));
 
-const values = {
+const options = {
 	author: "Test Author",
 	base: "everything",
 	createRepository: false,
@@ -57,7 +57,7 @@ describe("writeReadme", () => {
 	it("writes a new file when the README.md does not yet exist", async () => {
 		mockReadFileSafe.mockResolvedValue(undefined);
 
-		await writeReadme(values);
+		await writeReadme(options);
 
 		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -107,9 +107,9 @@ describe("writeReadme", () => {
 	});
 
 	it("adds sections when the README.md already exists and is sparse", async () => {
-		mockReadFileSafe.mockResolvedValue(`# ${values.title}`);
+		mockReadFileSafe.mockResolvedValue(`# ${options.title}`);
 
-		await writeReadme(values);
+		await writeReadme(options);
 
 		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -207,7 +207,7 @@ describe("writeReadme", () => {
 > 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).
 `);
 
-		await writeReadme(values);
+		await writeReadme(options);
 
 		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
 			[

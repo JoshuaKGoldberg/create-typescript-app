@@ -11,7 +11,7 @@ vi.mock("../../../shared/readFileSafeAsJson.js", () => ({
 	},
 }));
 
-const values = {
+const options = {
 	author: "test-author",
 	base: "everything",
 	createRepository: undefined,
@@ -46,7 +46,7 @@ describe("writePackageJson", () => {
 		const dependencies = { abc: "1.2.3" };
 		mockReadFileSafeAsJson.mockResolvedValue({ dependencies });
 
-		const packageJson = await writePackageJson(values);
+		const packageJson = await writePackageJson(options);
 
 		expect(JSON.parse(packageJson)).toEqual(
 			expect.objectContaining({ dependencies }),
@@ -57,7 +57,7 @@ describe("writePackageJson", () => {
 		const devDependencies = { abc: "1.2.3", jest: "4.5.6" };
 		mockReadFileSafeAsJson.mockResolvedValue({ devDependencies });
 
-		const packageJson = await writePackageJson(values);
+		const packageJson = await writePackageJson(options);
 
 		expect(JSON.parse(packageJson)).toEqual(
 			expect.objectContaining({ devDependencies }),
@@ -67,7 +67,7 @@ describe("writePackageJson", () => {
 	it("includes all optional portions when no exclusions are enabled", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 
-		const packageJson = await writePackageJson(values);
+		const packageJson = await writePackageJson(options);
 
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
@@ -125,7 +125,7 @@ describe("writePackageJson", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 
 		const packageJson = await writePackageJson({
-			...values,
+			...options,
 			excludeCompliance: true,
 			excludeContributors: true,
 			excludeLintJson: true,

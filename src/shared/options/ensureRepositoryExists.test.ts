@@ -20,7 +20,7 @@ vi.mock("@clack/prompts", () => ({
 
 const mockDoesRepositoryExist = vi.fn();
 
-vi.mock("./doesRepositoryExist.js", () => ({
+vi.mock("../doesRepositoryExist.js", () => ({
 	get doesRepositoryExist() {
 		return mockDoesRepositoryExist;
 	},

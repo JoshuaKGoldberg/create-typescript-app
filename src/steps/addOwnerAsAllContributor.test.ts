@@ -26,7 +26,7 @@ vi.mock("node:fs/promises", () => ({
 
 const mockReadFileAsJson = vi.fn();
 
-vi.mock("../../shared/readFileAsJson.js", () => ({
+vi.mock("../shared/readFileAsJson.js", () => ({
 	get readFileAsJson() {
 		return mockReadFileAsJson;
 	},

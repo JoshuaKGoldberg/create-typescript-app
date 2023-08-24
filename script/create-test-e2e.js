@@ -18,6 +18,13 @@ process.chdir(repository);
 
 const failures = [];
 
+console.log("HI ITS ME JOSH");
+
+await $({ stdio: "inherit" })`cat tsconfig.json`;
+await $({ stdio: "inherit" })`cat tsup.config.ts`;
+
+console.log("BYE ITS ME JOSH");
+
 for (const command of [
 	`pnpm i`,
 	`pnpm run build`,
@@ -31,6 +38,8 @@ for (const command of [
 	`pnpm run test run`,
 	`pnpm run tsc`,
 ]) {
+	console.log("HI ITS ME JOSH RUNNING", { command });
+
 	const result = await execaCommand(command, { stdio: "inherit" });
 
 	if (result.exitCode) {

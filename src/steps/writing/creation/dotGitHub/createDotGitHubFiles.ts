@@ -1,5 +1,5 @@
 /* spellchecker: disable */
-import { InputValues } from "../../../../shared/readInputs.js";
+import { InputValues } from "../../../../shared/options/readOptions.js";
 import { formatJson } from "../formatters/formatJson.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 import { createDevelopment } from "./createDevelopment.js";

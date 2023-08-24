@@ -1,4 +1,4 @@
-import { InputValues } from "../../../shared/readInputs.js";
+import { InputValues } from "../../../shared/options/readOptions.js";
 import { createESLintRC } from "./createESLintRC.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";

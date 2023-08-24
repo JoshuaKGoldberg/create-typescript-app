@@ -4,8 +4,8 @@ import gitUrlParse from "git-url-parse";
 import fs from "node:fs/promises";
 import npmUser from "npm-user";
 
-import { readPackageData } from "../packages.js";
-import { tryCatchAsync } from "../tryCatchAsync.js";
+import { readPackageData } from "../../packages.js";
+import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { readTitleFromReadme } from "./readTitleFromReadme.js";
 
 export async function getGitAndNpmDefaults() {

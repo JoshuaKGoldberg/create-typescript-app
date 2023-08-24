@@ -2,12 +2,12 @@ import { parseArgs } from "node:util";
 import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
-import { allArgOptions } from "./args.js";
-import { augmentValuesWithExcludes } from "./augmentValuesWithExcludes.js";
-import { withSpinner } from "./cli/spinners.js";
+import { allArgOptions } from "../args.js";
+import { withSpinner } from "../cli/spinners.js";
+import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
-import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
+import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { optionalDefault } from "./optionalDefault.js";
 import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
 
@@ -61,7 +61,7 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 		tokens: true,
 	});
 
-	const owner = await getPrefillOrPromptedValue(
+	const owner = await getPrefillOrPromptedOption(
 		values.owner as string | undefined,
 		"What organization or user will the repository be under?",
 		defaults.owner,
@@ -74,7 +74,7 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 		{
 			createRepository: values["create-repository"] as boolean | undefined,
 			owner,
-			repository: await getPrefillOrPromptedValue(
+			repository: await getPrefillOrPromptedOption(
 				values.repository as string | undefined,
 				"What will the kebab-case name of the repository be?",
 				defaults.repository,
@@ -84,14 +84,14 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 
 	return {
 		octokit,
-		values: await augmentValuesWithExcludes({
+		values: await augmentOptionsWithExcludes({
 			author:
 				(values.author as string | undefined) ??
 				defaults.author ??
 				owner.toLowerCase(),
 			base: values.base as InputBase,
 			createRepository: values["create-repository"] as boolean | undefined,
-			description: await getPrefillOrPromptedValue(
+			description: await getPrefillOrPromptedOption(
 				values.description as string | undefined,
 				"How would you describe the new package?",
 				defaults.description ?? "A very lovely package. Hooray!",
@@ -131,7 +131,7 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 			skipRemoval: !!values["skip-removal"],
 			skipRestore: values["skip-restore"] as boolean | undefined,
 			skipUninstall: !!values["skip-uninstall"],
-			title: await getPrefillOrPromptedValue(
+			title: await getPrefillOrPromptedOption(
 				values.title as string | undefined,
 				"What will the Title Case title of the repository be?",
 				defaults.title ?? titleCase(repository).replaceAll("-", " "),

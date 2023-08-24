@@ -1,5 +1,5 @@
 import { withSpinner } from "../shared/cli/spinners.js";
-import { HelpersAndValues } from "../shared/readInputs.js";
+import { HelpersAndValues } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";

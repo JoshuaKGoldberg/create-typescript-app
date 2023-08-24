@@ -1,7 +1,7 @@
 import * as prompts from "@clack/prompts";
 
-import { handlePromptCancel } from "./prompts.js";
-import { InputValues } from "./readInputs.js";
+import { handlePromptCancel } from "../prompts.js";
+import { InputValues } from "./readOptions.js";
 
 type Basis = "everything" | "minimum" | "prompt";
 
@@ -70,7 +70,7 @@ type ExclusionKey = keyof typeof exclusionDescriptions;
 
 const exclusionKeys = Object.keys(exclusionDescriptions) as ExclusionKey[];
 
-export async function augmentValuesWithExcludes(
+export async function augmentOptionsWithExcludes(
 	values: InputValues,
 ): Promise<InputValues> {
 	const alreadyExcluded = exclusionKeys.filter(

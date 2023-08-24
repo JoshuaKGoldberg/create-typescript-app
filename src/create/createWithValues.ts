@@ -3,7 +3,7 @@ import { $ } from "execa";
 
 import { withSpinner } from "../shared/cli/spinners.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
-import { HelpersAndValues } from "../shared/readInputs.js";
+import { HelpersAndValues } from "../shared/options/readOptions.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { runCommands } from "../steps/runCommands.js";

@@ -1,5 +1,5 @@
 import { withSpinner } from "../shared/cli/spinners.js";
-import { HelpersAndValues } from "../shared/readInputs.js";
+import { HelpersAndValues } from "../shared/options/readOptions.js";
 import { clearChangelog } from "../steps/clearChangelog.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { removeSetupScripts } from "../steps/removeSetupScripts.js";

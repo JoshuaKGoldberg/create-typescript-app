@@ -1,5 +1,5 @@
 /* spellchecker: disable */
-import { InputValues } from "../../../../shared/readInputs.js";
+import { InputValues } from "../../../../shared/options/readOptions.js";
 import { createWorkflowFile } from "./createWorkflowFile.js";
 
 export function createWorkflows(values: InputValues) {

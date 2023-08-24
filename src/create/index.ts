@@ -4,7 +4,7 @@ import { $ } from "execa";
 import fs from "node:fs/promises";
 
 import { outro } from "../shared/cli/outro.js";
-import { readInputs } from "../shared/readInputs.js";
+import { readInputs } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { createWithValues } from "./createWithValues.js";
 

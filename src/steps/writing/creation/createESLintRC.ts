@@ -1,4 +1,4 @@
-import { InputValues } from "../../../shared/readInputs.js";
+import { InputValues } from "../../../shared/options/readOptions.js";
 import { formatTypeScript } from "./formatters/formatTypeScript.js";
 
 export async function createESLintRC(values: InputValues) {

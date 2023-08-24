@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { InputValues } from "../shared/readInputs.js";
+import { InputValues } from "../shared/options/readOptions.js";
 import { updateLocalFiles } from "./updateLocalFiles.js";
 
 const mockReplaceInFile = vi.fn();

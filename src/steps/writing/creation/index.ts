@@ -1,4 +1,4 @@
-import { InputValues } from "../../../shared/readInputs.js";
+import { InputValues } from "../../../shared/options/readOptions.js";
 import { Structure } from "../types.js";
 import { createDotGitHub } from "./dotGitHub/index.js";
 import { createDotHusky } from "./dotHusky.js";

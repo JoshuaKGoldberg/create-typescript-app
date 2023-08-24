@@ -1,4 +1,4 @@
-import { InputValues } from "../../../../shared/readInputs.js";
+import { InputValues } from "../../../../shared/options/readOptions.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 
 export function createDotGitHubIssueTemplate({

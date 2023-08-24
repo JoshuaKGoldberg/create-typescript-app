@@ -1,9 +1,9 @@
 import * as prompts from "@clack/prompts";
 import { Octokit } from "octokit";
 
+import { handleCancel, handlePromptCancel } from "../prompts.js";
 import { doesRepositoryExist } from "./doesRepositoryExist.js";
-import { handleCancel, handlePromptCancel } from "./prompts.js";
-import { InputValues } from "./readInputs.js";
+import { InputValues } from "./readOptions.js";
 
 export type EnsureRepositoryExistsValues = Pick<
 	InputValues,
@@ -19,7 +19,7 @@ export async function ensureRepositoryExists(
 	octokit: Octokit | undefined,
 	values: EnsureRepositoryExistsValues,
 ): Promise<RepositoryExistsResult> {
-	// We'll only assume --create-repository should be true once
+	// We'll only respect input options once before prompting for them
 	let { createRepository, repository } = values;
 
 	// We'll continuously pester the user for a repository

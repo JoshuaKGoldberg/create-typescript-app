@@ -1,6 +1,6 @@
 import { outro } from "../shared/cli/outro.js";
 import { ensureGitRepository } from "../shared/ensureGitRepository.js";
-import { readInputs } from "../shared/readInputs.js";
+import { readInputs } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { migrateWithValues } from "./migrateWithValues.js";
 

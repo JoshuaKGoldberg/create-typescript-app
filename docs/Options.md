@@ -1,14 +1,16 @@
-# Template Values
+# Options
 
-All three versions of running `template-typescript-node-package` -[](), [](), and []()- support a shared set of input values.
+All three of `template-typescript-node-package`'s setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- support a shared set of input options.
 
-## Required Values
+> This page uses `npx template-typescript-node-package` in its code examples, but `pnpm run initialize` and `pnpm run migrate` work the same.
 
-These values will be prompted for interactively if not provided.
+## Required Options
+
+The following required options will be prompted for interactively if not provided as CLI flags.
 
 ### Base and Mode
 
-These required flags determine how the creation script will set up and scaffold the repository:
+These required options determine how the creation script will set up and scaffold the repository:
 
 - `--base`: Whether to scaffold the repository with:
   - `everything` that comes with the template _(recommended)_
@@ -26,9 +28,9 @@ For example, scaffolding a full new repository in the current directory and also
 npx template-typescript-node-package --base everything --create-repository --mode create
 ```
 
-### Core Values
+### Core Options
 
-These required flags determine the values that will be substituted into the template's files:
+These required options determine the values that will be substituted into the template's files:
 
 - `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
@@ -43,9 +45,9 @@ npx template-typescript-node-package --create-repository --base everything --mod
 
 That script will run completely autonomously, no prompted inputs required. ✨
 
-### Optional Values
+## Optional Values
 
-Creation also allows for optional overrides of the following inputs whose defaults are based on other values:
+The setup scripts also allow for optional overrides of the following inputs whose defaults are based on other values:
 
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
@@ -57,11 +59,11 @@ For example, customizing the ownership and users associated with a new repositor
 npx template-typescript-node-package --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
 ```
 
+> 💡 You can always manually edit files such as `package.json` after running a setup script.
+
 ## Opt-Outs
 
 The setup scripts can be directed with CLI flags to opt out tooling portions and/or using API calls.
-
-> This page uses `npx template-typescript-node-package` in its code examples, but `pnpm run initialize` and `pnpm run migrate` work the same.
 
 ### Excluding Tooling Portions
 

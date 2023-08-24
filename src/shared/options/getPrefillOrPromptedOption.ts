@@ -1,8 +1,8 @@
 import * as prompts from "@clack/prompts";
 
-import { handlePromptCancel } from "./prompts.js";
+import { handlePromptCancel } from "../prompts.js";
 
-export async function getPrefillOrPromptedValue(
+export async function getPrefillOrPromptedOption(
 	existingValue: string | undefined,
 	message: string,
 	placeholder?: string,

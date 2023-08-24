@@ -1,5 +1,5 @@
 import { withSpinner } from "../shared/cli/spinners.js";
-import { HelpersAndValues } from "../shared/options/readOptions.js";
+import { OctokitAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
@@ -10,31 +10,34 @@ import { updateLocalFiles } from "../steps/updateLocalFiles.js";
 import { writeReadme } from "../steps/writeReadme.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
-export async function migrateWithValues({ octokit, values }: HelpersAndValues) {
+export async function migrateWithOptions({
+	octokit,
+	options,
+}: OctokitAndOptions) {
 	await withSpinner("Migrating repository structure", async () => {
 		await clearUnnecessaryFiles();
-		await writeStructure(values);
-		await writeReadme(values);
-		await updateLocalFiles(values);
-		await updateAllContributorsTable(values);
+		await writeStructure(options);
+		await writeReadme(options);
+		await updateLocalFiles(options);
+		await updateAllContributorsTable(options);
 	});
 
 	if (octokit) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await initializeGitHubRepository(octokit, values);
+			await initializeGitHubRepository(octokit, options);
 		});
 	}
 
-	if (!values.excludeContributors) {
+	if (!options.excludeContributors) {
 		await withSpinner(
 			"Detecting existing contributors",
 			detectExistingContributors,
 		);
 	}
 
-	if (!values.skipInstall) {
+	if (!options.skipInstall) {
 		await withSpinner("Installing packages", async () =>
-			finalizeDependencies(values),
+			finalizeDependencies(options),
 		);
 	}
 

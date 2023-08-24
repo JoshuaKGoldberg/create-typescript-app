@@ -3,12 +3,12 @@ import fs from "node:fs/promises";
 import prettier from "prettier";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
-import { AllContributorsData, InputValues } from "../shared/types.js";
+import { AllContributorsData, Options } from "../shared/types.js";
 
 export async function updateAllContributorsTable({
 	owner,
 	repository,
-}: Pick<InputValues, "owner" | "repository">) {
+}: Pick<Options, "owner" | "repository">) {
 	await fs.writeFile(
 		".all-contributorsrc",
 		await prettier.format(

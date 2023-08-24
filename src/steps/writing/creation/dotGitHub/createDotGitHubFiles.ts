@@ -1,10 +1,10 @@
 /* spellchecker: disable */
-import { InputValues } from "../../../../shared/types.js";
+import { Options } from "../../../../shared/types.js";
 import { formatJson } from "../formatters/formatJson.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 import { createDevelopment } from "./createDevelopment.js";
 
-export async function createDotGitHubFiles(values: InputValues) {
+export async function createDotGitHubFiles(options: Options) {
 	return {
 		"CODE_OF_CONDUCT.md": `# Contributor Covenant Code of Conduct
 
@@ -68,7 +68,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-${values.email}.
+${options.email}.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
@@ -141,7 +141,7 @@ For answers to common questions about this code of conduct, see the FAQ at
 `,
 		"CONTRIBUTING.md": `# Contributing
 
-Thanks for your interest in contributing to \`${values.repository}\`! 💖
+Thanks for your interest in contributing to \`${options.repository}\`! 💖
 
 > After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
 
@@ -151,7 +151,7 @@ This project contains a [Contributor Covenant code of conduct](./CODE_OF_CONDUCT
 
 ## Reporting Issues
 
-Please do [report an issue on the issue tracker](https://github.com/${values.owner}/${values.repository}/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
+Please do [report an issue on the issue tracker](https://github.com/${options.owner}/${options.repository}/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
 
 ## Sending Contributions
 
@@ -163,8 +163,8 @@ There are two steps involved:
 
 ### Finding an Issue
 
-With the exception of very small typos, all changes to this repository generally need to correspond to an [open issue marked as \`accepting prs\` on the issue tracker](https://github.com/${values.owner}/${values.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22).
-If this is your first time contributing, consider searching for [unassigned issues that also have the \`good first issue\` label](https://github.com/${values.owner}/${values.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22+label%3A%22good+first+issue%22+no%3Aassignee).
+With the exception of very small typos, all changes to this repository generally need to correspond to an [open issue marked as \`accepting prs\` on the issue tracker](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22).
+If this is your first time contributing, consider searching for [unassigned issues that also have the \`good first issue\` label](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22+label%3A%22good+first+issue%22+no%3Aassignee).
 If the issue you'd like to fix isn't found on the issue, see [Reporting Issues](#reporting-issues) for filing your own (please do!).
 
 ### Sending a Pull Request
@@ -175,7 +175,7 @@ Be sure to fill out the pull request template's requested information -- otherwi
 PRs are also expected to have a title that adheres to [commitlint](https://github.com/conventional-changelog/commitlint).
 Only PR titles need to be in that format, not individual commits.
 Don't worry if you get this wrong: you can always change the PR title after sending it.
-Check [previously merged PRs](https://github.com/${values.owner}/${values.repository}/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
+Check [previously merged PRs](https://github.com/${options.owner}/${options.repository}/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
 
 #### Draft PRs
 
@@ -229,13 +229,13 @@ If you made it all the way to the end, bravo dear user, we love you.
 Please include your favorite emoji in the bottom of your issues and PRs to signal to us that you did in fact read this file and are trying to conform to it as best as possible.
 💖 is a good starter if you're not sure which to use.
 `,
-		"DEVELOPMENT.md": createDevelopment(values),
-		...(values.funding && {
-			"FUNDING.yml": formatYaml({ github: values.funding }),
+		"DEVELOPMENT.md": createDevelopment(options),
+		...(options.funding && {
+			"FUNDING.yml": formatYaml({ github: options.funding }),
 		}),
 
 		"ISSUE_TEMPLATE.md": `<!-- Note: Please must use one of our issue templates to file an issue! 🛑 -->
-<!-- 👉 https://github.com/${values.owner}/${values.repository}/issues/new/choose 👈 -->
+<!-- 👉 https://github.com/${options.owner}/${options.repository}/issues/new/choose 👈 -->
 <!-- **Issues that should have been filed with a template will be closed without action, and we will ask you to use a template.** -->
 
 <!-- This blank issue template is only for issues that don't fit any of the templates. -->
@@ -244,15 +244,15 @@ Please include your favorite emoji in the bottom of your issues and PRs to signa
 
 ...
 `,
-		"PULL_REQUEST_TEMPLATE.md": `<!-- 👋 Hi, thanks for sending a PR to ${values.repository}! 💖.
+		"PULL_REQUEST_TEMPLATE.md": `<!-- 👋 Hi, thanks for sending a PR to ${options.repository}! 💖.
 Please fill out all fields below and make sure each item is true and [x] checked.
 Otherwise we may not be able to review your PR. -->
 
 ## PR Checklist
 
 - [ ] Addresses an existing open issue: fixes #000
-- [ ] That issue was marked as [\`status: accepting prs\`](https://github.com/${values.owner}/${values.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22status%3A+accepting+prs%22)
-- [ ] Steps in [CONTRIBUTING.md](https://github.com/${values.owner}/${values.repository}/blob/main/.github/CONTRIBUTING.md) were taken
+- [ ] That issue was marked as [\`status: accepting prs\`](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22status%3A+accepting+prs%22)
+- [ ] Steps in [CONTRIBUTING.md](https://github.com/${options.owner}/${options.repository}/blob/main/.github/CONTRIBUTING.md) were taken
 
 ## Overview
 
@@ -264,11 +264,11 @@ We take all security vulnerabilities seriously.
 If you have a vulnerability or other security issues to disclose:
 
 - Thank you very much, please do!
-- Please send them to us by emailing \`${values.email}\`
+- Please send them to us by emailing \`${options.email}\`
 
 We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
 `,
-		...(!values.excludeRenovate && {
+		...(!options.excludeRenovate && {
 			"renovate.json": await formatJson({
 				$schema: "https://docs.renovatebot.com/renovate-schema.json",
 				automerge: true,

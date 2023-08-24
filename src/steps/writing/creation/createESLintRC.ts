@@ -1,7 +1,7 @@
-import { InputValues } from "../../../shared/types.js";
+import { Options } from "../../../shared/types.js";
 import { formatTypeScript } from "./formatters/formatTypeScript.js";
 
-export async function createESLintRC(values: InputValues) {
+export async function createESLintRC(options: Options) {
 	return await formatTypeScript(`/*
 👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
 You can read from it to see all sorts of linting goodness, but don't worry -
@@ -22,7 +22,7 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
 		"plugin:n/recommended",${
-			values.excludeLintPerfectionist
+			options.excludeLintPerfectionist
 				? ""
 				: `
 		"plugin:perfectionist/recommended-natural",`
@@ -31,7 +31,7 @@ module.exports = {
 		"prettier",
 	],
 	overrides: [${
-		values.excludeLintMd
+		options.excludeLintMd
 			? ""
 			: `
 		{
@@ -60,7 +60,7 @@ module.exports = {
 		},
 		{
 			${
-				values.excludeLintMd
+				options.excludeLintMd
 					? ""
 					: `excludedFiles: ["**/*.md/*.ts"],
 			`
@@ -87,7 +87,7 @@ module.exports = {
 				"jsonc/sort-keys": "error",
 			},
 		},${
-			values.excludeTests
+			options.excludeTests
 				? ""
 				: `\n{
 			files: "**/*.test.ts",
@@ -98,7 +98,7 @@ module.exports = {
 			},
 		},`
 		}${
-			values.excludeLintYml
+			options.excludeLintYml
 				? ""
 				: `\n
 		{
@@ -130,10 +130,10 @@ module.exports = {
 		"@typescript-eslint",
 		"deprecation",
 		"import",
-		"jsdoc",${values.excludeTests ? "" : `"no-only-tests",`}${
-			values.excludeLintPerfectionist ? "" : `"perfectionist",`
+		"jsdoc",${options.excludeTests ? "" : `"no-only-tests",`}${
+			options.excludeLintPerfectionist ? "" : `"perfectionist",`
 		}
-		"regexp",${values.excludeTests ? "" : `\n"vitest",`}
+		"regexp",${options.excludeTests ? "" : `\n"vitest",`}
 	],
 	root: true,
 	rules: {
@@ -141,7 +141,7 @@ module.exports = {
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 		"import/extensions": ["error", "ignorePackages"],
 		"n/no-missing-import": "off",${
-			values.excludeTests ? "" : `\n"no-only-tests/no-only-tests": "error",`
+			options.excludeTests ? "" : `\n"no-only-tests/no-only-tests": "error",`
 		}
 
 		// These on-by-default rules don't work well for this repo and we like them off.

@@ -19,7 +19,7 @@ export interface PartialPackageData {
 
 export type InputBase = "everything" | "minimum" | "prompt";
 
-export interface InputValues {
+export interface Options {
 	author: string | undefined;
 	base: InputBase | undefined;
 	createRepository: boolean | undefined;

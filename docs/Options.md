@@ -30,14 +30,14 @@ npx template-typescript-node-package --base everything --create-repository --mod
 
 ### Core Options
 
-These required options determine the values that will be substituted into the template's files:
+These required options determine the options that will be substituted into the template's files:
 
 - `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
 - `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
 - `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
 
-For example, pre-populating all core required values and also creating a new repository:
+For example, pre-populating all core required options and also creating a new repository:
 
 ```shell
 npx template-typescript-node-package --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
@@ -45,9 +45,9 @@ npx template-typescript-node-package --create-repository --base everything --mod
 
 That script will run completely autonomously, no prompted inputs required. ✨
 
-## Optional Values
+## Optional Options
 
-The setup scripts also allow for optional overrides of the following inputs whose defaults are based on other values:
+The setup scripts also allow for optional overrides of the following inputs whose defaults are based on other options:
 
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)

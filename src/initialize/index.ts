@@ -2,7 +2,7 @@ import { outro } from "../shared/cli/outro.js";
 import { ensureGitRepository } from "../shared/ensureGitRepository.js";
 import { readInputs } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
-import { initializeWithValues } from "./initializeWithValues.js";
+import { initializeWithOptions } from "./initializeWithOptions.js";
 
 export async function initialize(args: string[]) {
 	const inputs = await readInputs(args);
@@ -11,7 +11,7 @@ export async function initialize(args: string[]) {
 
 	return await runOrRestore({
 		run: async () => {
-			await initializeWithValues(inputs);
+			await initializeWithOptions(inputs);
 
 			outro([
 				{
@@ -22,8 +22,12 @@ export async function initialize(args: string[]) {
 						`git push`,
 					],
 				},
+				{
+					label:
+						"Otherwise, all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
+				},
 			]);
 		},
-		skipRestore: inputs.values.skipRestore,
+		skipRestore: inputs.options.skipRestore,
 	});
 }

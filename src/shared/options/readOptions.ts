@@ -3,7 +3,7 @@ import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
 import { withSpinner } from "../cli/spinners.js";
-import { InputBase, InputValues } from "../types.js";
+import { InputBase, Options } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
@@ -12,12 +12,12 @@ import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { optionalDefault } from "./optionalDefault.js";
 import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
 
-export interface HelpersAndValues {
+export interface OctokitAndOptions {
 	octokit: Octokit | undefined;
-	values: InputValues;
+	options: Options;
 }
 
-export async function readInputs(args: string[]): Promise<HelpersAndValues> {
+export async function readInputs(args: string[]): Promise<OctokitAndOptions> {
 	const defaults = await getGitAndNpmDefaults();
 	const { values } = parseArgs({
 		args,
@@ -49,7 +49,7 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 
 	return {
 		octokit,
-		values: await augmentOptionsWithExcludes({
+		options: await augmentOptionsWithExcludes({
 			author:
 				(values.author as string | undefined) ??
 				defaults.author ??

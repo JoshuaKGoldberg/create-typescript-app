@@ -1,16 +1,16 @@
-import { InputValues } from "../../../../shared/types.js";
+import { Options } from "../../../../shared/types.js";
 
-export function createDevelopment(values: InputValues) {
+export function createDevelopment(options: Options) {
 	const lintLines = [
-		values.excludeLintKnip &&
+		options.excludeLintKnip &&
 			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
-		values.excludeLintMd &&
+		options.excludeLintMd &&
 			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files`,
-		values.excludeLintPackageJson &&
+		options.excludeLintPackageJson &&
 			`- \`pnpm lint:package-json\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file`,
-		values.excludeLintPackages &&
+		options.excludeLintPackages &&
 			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
-		values.excludeLintSpelling &&
+		options.excludeLintSpelling &&
 			`- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
 	].filter(Boolean);
 
@@ -19,8 +19,8 @@ export function createDevelopment(values: InputValues) {
 After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 
 \`\`\`shell
-git clone https://github.com/<your-name-here>/${values.repository}
-cd ${values.repository}
+git clone https://github.com/<your-name-here>/${options.repository}
+cd ${options.repository}
 pnpm install
 \`\`\`
 
@@ -78,7 +78,7 @@ pnpm run lint --fix
 \`\`\`
 
 ${
-	!values.excludeTests &&
+	!options.excludeTests &&
 	`## Testing
 
 [Vitest](https://vitest.dev) is used for tests.

@@ -6,15 +6,15 @@ import fs from "node:fs/promises";
 import { outro } from "../shared/cli/outro.js";
 import { readInputs } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
-import { createWithValues } from "./createWithValues.js";
+import { createWithOptions } from "./createWithOptions.js";
 
 export async function create(args: string[]) {
 	const inputs = await readInputs(args);
 
-	if (!(await createAndEnterRepository(inputs.values.repository))) {
+	if (!(await createAndEnterRepository(inputs.options.repository))) {
 		prompts.outro(
 			chalk.red(
-				`The ${inputs.values.repository} directory already exists. Please remove the directory or try a different name.`,
+				`The ${inputs.options.repository} directory already exists. Please remove the directory or try a different name.`,
 			),
 		);
 		return;
@@ -22,7 +22,7 @@ export async function create(args: string[]) {
 
 	return await runOrRestore({
 		run: async () => {
-			const { sentToGitHub } = await createWithValues(inputs);
+			const { sentToGitHub } = await createWithOptions(inputs);
 
 			outro(
 				sentToGitHub
@@ -37,7 +37,7 @@ export async function create(args: string[]) {
 								label:
 									"Consider creating a GitHub repository from the new directory:",
 								lines: [
-									`cd ${inputs.values.repository}`,
+									`cd ${inputs.options.repository}`,
 									`npx template-typescript-node-package --mode initialize`,
 									`git add -A`,
 									`git commit -m "chore: initial commit ✨"`,
@@ -51,7 +51,7 @@ export async function create(args: string[]) {
 					  ],
 			);
 		},
-		skipRestore: inputs.values.skipRestore,
+		skipRestore: inputs.options.skipRestore,
 	});
 }
 

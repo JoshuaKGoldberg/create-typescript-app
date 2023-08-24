@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { addAllContributors } from "./addAllContributors.js";
+import { addToolAllContributors } from "./addToolAllContributors.js";
 
 const mock$ = vi.fn();
 
@@ -18,11 +18,11 @@ vi.mock("../shared/getGitHubUserAsAllContributor.js", () => ({
 	},
 }));
 
-describe("addAllContributors", () => {
+describe("addToolAllContributors", () => {
 	it("adds JoshuaKGoldberg when that is not the current github user", async () => {
 		mockGetGitHubUserAsAllContributor.mockResolvedValue("JoshuaKGoldberg");
 
-		await addAllContributors("owner");
+		await addToolAllContributors("owner");
 
 		expect(mock$).not.toHaveBeenCalled();
 	});
@@ -30,7 +30,7 @@ describe("addAllContributors", () => {
 	it("does not add JoshuaKGoldberg when that not the current github user", async () => {
 		mockGetGitHubUserAsAllContributor.mockResolvedValue("other");
 
-		await addAllContributors("owner");
+		await addToolAllContributors("owner");
 
 		expect(mock$).toHaveBeenCalledWith([
 			`npx all-contributors add JoshuaKGoldberg tool`,

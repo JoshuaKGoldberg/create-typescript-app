@@ -1,8 +1,8 @@
 /* spellchecker: disable */
-import { InputValues } from "../../../../shared/types.js";
+import { Options } from "../../../../shared/types.js";
 import { createWorkflowFile } from "./createWorkflowFile.js";
 
-export function createWorkflows(values: InputValues) {
+export function createWorkflows(options: Options) {
 	return {
 		"build.yml": createWorkflowFile({
 			name: "Build",
@@ -39,7 +39,7 @@ export function createWorkflows(values: InputValues) {
 			name: "Type Check",
 			runs: ["pnpm tsc"],
 		}),
-		...(!values.excludeCompliance && {
+		...(!options.excludeCompliance && {
 			"compliance.yml": createWorkflowFile({
 				name: "Compliance",
 				on: {
@@ -68,7 +68,7 @@ export function createWorkflows(values: InputValues) {
 				],
 			}),
 		}),
-		...(!values.excludeContributors && {
+		...(!options.excludeContributors && {
 			"contributors.yml": createWorkflowFile({
 				name: "Contributors",
 				on: {
@@ -90,31 +90,31 @@ export function createWorkflows(values: InputValues) {
 			name: "Lint",
 			runs: ["pnpm lint"],
 		}),
-		...(!values.excludeLintKnip && {
+		...(!options.excludeLintKnip && {
 			"lint-knip.yml": createWorkflowFile({
 				name: "Lint Knip",
 				runs: ["pnpm lint:knip"],
 			}),
 		}),
-		...(!values.excludeLintMd && {
+		...(!options.excludeLintMd && {
 			"lint-markdown.yml": createWorkflowFile({
 				name: "Lint Markdown",
 				runs: ["pnpm lint:md"],
 			}),
 		}),
-		...(!values.excludeLintPackageJson && {
+		...(!options.excludeLintPackageJson && {
 			"lint-package.yml": createWorkflowFile({
 				name: "Lint Package JSON",
 				runs: ["pnpm lint:package-json"],
 			}),
 		}),
-		...(!values.excludeLintSpelling && {
+		...(!options.excludeLintSpelling && {
 			"lint-spelling.yml": createWorkflowFile({
 				name: "Lint spelling",
 				runs: ["pnpm lint:spelling"],
 			}),
 		}),
-		...(!values.excludeReleases && {
+		...(!options.excludeReleases && {
 			"post-release.yml": createWorkflowFile({
 				name: "Post Release",
 				on: {
@@ -136,8 +136,8 @@ export function createWorkflows(values: InputValues) {
 
 							The release is available on:
 				
-							* [GitHub releases](https://github.com/${values.owner}/${values.repository}/releases/tag/{release_tag})
-							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${values.repository}/v/\${{ env.npm_version }})
+							* [GitHub releases](https://github.com/${options.owner}/${options.repository}/releases/tag/{release_tag})
+							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/\${{ env.npm_version }})
 				
 							Cheers! 📦🚀
 						`,
@@ -192,7 +192,7 @@ export function createWorkflows(values: InputValues) {
 							script: `
 								try {
 									await github.request(
-									  \`DELETE /repos/${values.owner}/${values.repository}/branches/main/protection\`,
+									  \`DELETE /repos/${options.owner}/${options.repository}/branches/main/protection\`,
 									);
 								} catch (error) {
 									if (!error.message?.includes?.("Branch not protected")) {
@@ -219,7 +219,7 @@ export function createWorkflows(values: InputValues) {
 							"github-token": "${{ secrets.ACCESS_TOKEN }}",
 							script: `
 							github.request(
-							  \`PUT /repos/${values.owner}/${values.repository}/branches/main/protection\`,
+							  \`PUT /repos/${options.owner}/${options.repository}/branches/main/protection\`,
 							  {
 								  allow_deletions: false,
 								  allow_force_pushes: true,
@@ -228,8 +228,8 @@ export function createWorkflows(values: InputValues) {
 								  block_creations: false,
 								  branch: "main",
 								  enforce_admins: false,
-								  owner: "${values.owner}",
-								  repo: "${values.repository}",
+								  owner: "${options.owner}",
+								  repo: "${options.repository}",
 								  required_conversation_resolution: true,
 								  required_linear_history: false,
 								  required_pull_request_reviews: null,
@@ -257,7 +257,7 @@ export function createWorkflows(values: InputValues) {
 				],
 			}),
 		}),
-		...(values.excludeTests && {
+		...(options.excludeTests && {
 			"test.yml": createWorkflowFile({
 				name: "Test",
 				steps: [

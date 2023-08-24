@@ -1,9 +1,9 @@
 import { execaCommand } from "execa";
 
 import { readPackageData, removeDevDependencies } from "../shared/packages.js";
-import { InputValues } from "../shared/types.js";
+import { Options } from "../shared/types.js";
 
-export async function finalizeDependencies(values: InputValues) {
+export async function finalizeDependencies(options: Options) {
 	const devDependencies = [
 		"@types/eslint",
 		"@typescript-eslint/eslint-plugin",
@@ -23,12 +23,12 @@ export async function finalizeDependencies(values: InputValues) {
 		"prettier-plugin-packagejson",
 		"tsup",
 		"typescript",
-		...(values.excludeContributors ? [] : ["all-contributors-cli"]),
-		...(values.excludeLintJson
+		...(options.excludeContributors ? [] : ["all-contributors-cli"]),
+		...(options.excludeLintJson
 			? []
 			: ["eslint-plugin-jsonc", "jsonc-eslint-parser"]),
-		...(values.excludeLintKnip ? [] : ["knip"]),
-		...(values.excludeLintMd
+		...(options.excludeLintKnip ? [] : ["knip"]),
+		...(options.excludeLintMd
 			? []
 			: [
 					"eslint-plugin-markdown",
@@ -36,18 +36,20 @@ export async function finalizeDependencies(values: InputValues) {
 					"markdownlint-cli",
 					"sentences-per-line",
 			  ]),
-		...(values.excludeLintPackageJson
+		...(options.excludeLintPackageJson
 			? []
 			: ["npm-package-json-lint", "npm-package-json-lint-config-default"]),
-		...(values.excludeLintPerfectionist ? [] : ["eslint-plugin-perfectionist"]),
-		...(values.excludeLintSpelling ? [] : ["cspell"]),
-		...(values.excludeLintYml
+		...(options.excludeLintPerfectionist
+			? []
+			: ["eslint-plugin-perfectionist"]),
+		...(options.excludeLintSpelling ? [] : ["cspell"]),
+		...(options.excludeLintYml
 			? []
 			: ["eslint-plugin-yml", "yaml-eslint-parser"]),
-		...(values.excludeReleases
+		...(options.excludeReleases
 			? []
 			: ["release-it", "should-semantic-release"]),
-		...(values.excludeTests
+		...(options.excludeTests
 			? []
 			: [
 					"@vitest/coverage-v8",
@@ -64,7 +66,7 @@ export async function finalizeDependencies(values: InputValues) {
 
 	await execaCommand(`pnpm add ${devDependencies} -D`);
 
-	if (!values.excludeContributors) {
+	if (!options.excludeContributors) {
 		await execaCommand(`npx all-contributors-cli generate`);
 		await removeDevDependencies(
 			["all-contributors-cli", "all-contributors-for-repository"],

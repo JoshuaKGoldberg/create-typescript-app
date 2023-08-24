@@ -1,5 +1,5 @@
 import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
-import { InputValues } from "../../../shared/types.js";
+import { Options } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 const devDependenciesToRemove = [
@@ -23,7 +23,7 @@ const devDependenciesToRemove = [
 	"pretty-quick",
 ];
 
-export async function writePackageJson(values: InputValues) {
+export async function writePackageJson(options: Options) {
 	const existingPackageJson =
 		((await readFileSafeAsJson("./package.json")) as null | object) ?? {};
 
@@ -34,8 +34,8 @@ export async function writePackageJson(values: InputValues) {
 		// To start, copy over all existing package fields (e.g. "dependencies")
 		...existingPackageJson,
 
-		author: { email: values.email, name: values.author },
-		description: values.description,
+		author: { email: options.email, name: options.author },
+		description: options.description,
 
 		// We copy all existing dev dependencies except those we know are not used anymore
 		devDependencies: copyDevDependencies(existingPackageJson),
@@ -56,41 +56,41 @@ export async function writePackageJson(values: InputValues) {
 			"*": "prettier --ignore-unknown --write",
 		},
 		main: "./lib/index.js",
-		name: values.repository,
+		name: options.repository,
 		packageManager: "pnpm@8.5.0",
 		publishConfig: {
 			provenance: true,
 		},
 		repository: {
 			type: "git",
-			url: `https://github.com/${values.owner}/${values.repository}`,
+			url: `https://github.com/${options.owner}/${options.repository}`,
 		},
 		scripts: {
 			build: "tsup",
 			format: 'prettier "**/*" --ignore-unknown',
 			"format:write": "pnpm format --write",
 			lint: "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
-			...(!values.excludeLintKnip && {
+			...(!options.excludeLintKnip && {
 				"lint:knip": "knip",
 			}),
-			...(!values.excludeLintMd && {
+			...(!options.excludeLintMd && {
 				"lint:md":
 					'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
 			}),
-			...(!values.excludeLintPackageJson && {
+			...(!options.excludeLintPackageJson && {
 				"lint:package-json": "npmPkgJsonLint .",
 			}),
-			...(!values.excludeLintPackages && {
+			...(!options.excludeLintPackages && {
 				"lint:packages": "pnpm dedupe --check",
 			}),
-			...(!values.excludeLintSpelling && {
+			...(!options.excludeLintSpelling && {
 				"lint:spelling": 'cspell "**" ".github/**/*"',
 			}),
 			prepare: "husky install",
-			...(!values.excludeReleases && {
+			...(!options.excludeReleases && {
 				"should-semantic-release": "should-semantic-release --verbose",
 			}),
-			...(!values.excludeReleases && { test: "vitest" }),
+			...(!options.excludeReleases && { test: "vitest" }),
 			tsc: "tsc",
 		},
 		type: "module",

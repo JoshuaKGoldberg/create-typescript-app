@@ -32,7 +32,7 @@ Hooray! 🥳
 
 ## Options
 
-You can explicitly provide some or all of the values the script would prompt for as command-line flags.
+You can explicitly provide some or all of the options the script would prompt for as command-line flags.
 See [Options.md](./Options.md).
 
 `pnpm run initialize` will set `--mode` to `initialize`.

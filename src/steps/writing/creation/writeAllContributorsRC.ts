@@ -1,8 +1,8 @@
 import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
-import { AllContributorsData, InputValues } from "../../../shared/types.js";
+import { AllContributorsData, Options } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
-export async function writeAllContributorsRC(values: InputValues) {
+export async function writeAllContributorsRC(options: Options) {
 	const existing = (await readFileSafeAsJson(
 		".all-contributorsrc",
 	)) as AllContributorsData | null;
@@ -17,8 +17,8 @@ export async function writeAllContributorsRC(values: InputValues) {
 		contributorsSortAlphabetically: true,
 		files: ["README.md"],
 		imageSize: 100,
-		projectName: values.repository,
-		projectOwner: values.owner,
+		projectName: options.repository,
+		projectOwner: options.owner,
 		repoHost: "https://github.com",
 		repoType: "github",
 	});

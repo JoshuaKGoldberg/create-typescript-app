@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { InputValues } from "../../../shared/types.js";
+import { Options } from "../../../shared/types.js";
 import { writePackageJson } from "./writePackageJson.js";
 
 const mockReadFileSafeAsJson = vi.fn();
@@ -39,7 +39,7 @@ const values = {
 	skipRestore: undefined,
 	skipUninstall: undefined,
 	title: "",
-} satisfies InputValues;
+} satisfies Options;
 
 describe("writePackageJson", () => {
 	it("preserves existing dependencies when they exist", async () => {

@@ -1,10 +1,10 @@
-import { InputValues } from "../../../../shared/types.js";
+import { Options } from "../../../../shared/types.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 
 export function createDotGitHubIssueTemplate({
 	owner,
 	repository,
-}: Pick<InputValues, "owner" | "repository">) {
+}: Pick<Options, "owner" | "repository">) {
 	return {
 		"01-bug.yml": formatYaml({
 			body: [

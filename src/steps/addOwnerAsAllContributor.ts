@@ -1,9 +1,9 @@
 import fs from "node:fs/promises";
 import prettier from "prettier";
 
-import { getGitHubUserAsAllContributor } from "../../shared/getGitHubUserAsAllContributor.js";
-import { readFileAsJson } from "../../shared/readFileAsJson.js";
-import { AllContributorsData } from "../../shared/types.js";
+import { getGitHubUserAsAllContributor } from "../shared/getGitHubUserAsAllContributor.js";
+import { readFileAsJson } from "../shared/readFileAsJson.js";
+import { AllContributorsData } from "../shared/types.js";
 
 export async function addOwnerAsAllContributor(owner: string) {
 	const user = await getGitHubUserAsAllContributor(owner);

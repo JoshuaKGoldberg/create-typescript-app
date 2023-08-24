@@ -1,18 +1,18 @@
-import { InputValues } from "../../../shared/types.js";
+import { Options } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 /* spellchecker: disable */
-export async function createDotVSCode(values: InputValues) {
+export async function createDotVSCode(options: Options) {
 	return {
 		"extensions.json": await formatJson({
 			recommendations: [
 				"DavidAnson.vscode-markdownlint",
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
-				!values.excludeLintSpelling && "streetsidesoftware.code-spell-checker",
+				!options.excludeLintSpelling && "streetsidesoftware.code-spell-checker",
 			].filter(Boolean),
 		}),
-		...(!values.excludeTests && {
+		...(!options.excludeTests && {
 			"launch.json": await formatJson({
 				configurations: [
 					{

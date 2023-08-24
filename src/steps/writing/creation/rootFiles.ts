@@ -1,4 +1,4 @@
-import { InputValues } from "../../../shared/types.js";
+import { Options } from "../../../shared/types.js";
 import { createESLintRC } from "./createESLintRC.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
@@ -6,25 +6,25 @@ import { formatTypeScript } from "./formatters/formatTypeScript.js";
 import { writeAllContributorsRC } from "./writeAllContributorsRC.js";
 import { writePackageJson } from "./writePackageJson.js";
 
-export async function createRootFiles(values: InputValues) {
+export async function createRootFiles(options: Options) {
 	return {
-		".all-contributorsrc": await writeAllContributorsRC(values),
+		".all-contributorsrc": await writeAllContributorsRC(options),
 		".eslintignore": formatIgnoreFile(
 			[
 				"!.*",
-				...(values.excludeTests ? [] : ["coverage*"]),
+				...(options.excludeTests ? [] : ["coverage*"]),
 				"lib",
 				"node_modules",
 				"pnpm-lock.yaml",
 			].filter(Boolean),
 		),
-		".eslintrc.cjs": await createESLintRC(values),
+		".eslintrc.cjs": await createESLintRC(options),
 		".gitignore": formatIgnoreFile([
-			...(values.excludeTests ? [] : ["coverage*/"]),
+			...(options.excludeTests ? [] : ["coverage*/"]),
 			"lib/",
 			"node_modules/",
 		]),
-		...(!values.excludeLintMd && {
+		...(!options.excludeLintMd && {
 			".markdownlint.json": await formatJson({
 				extends: "markdownlint/style/prettier",
 				"first-line-h1": false,
@@ -37,7 +37,7 @@ export async function createRootFiles(values: InputValues) {
 				"node_modules/",
 			]),
 		}),
-		...(!values.excludeLintPackageJson && {
+		...(!options.excludeLintPackageJson && {
 			".npmpackagejsonlintrc.json": await formatJson({
 				extends: "npm-package-json-lint-config-default",
 				rules: {
@@ -48,7 +48,7 @@ export async function createRootFiles(values: InputValues) {
 		}),
 		".nvmrc": `18.17.1\n`,
 		".prettierignore": formatIgnoreFile([
-			...(values.excludeTests ? [] : ["coverage*/"]),
+			...(options.excludeTests ? [] : ["coverage*/"]),
 			"lib/",
 			"pnpm-lock.yaml",
 			"",
@@ -70,7 +70,7 @@ export async function createRootFiles(values: InputValues) {
 			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
 			useTabs: true,
 		}),
-		...(!values.excludeReleases && {
+		...(!options.excludeReleases && {
 			".release-it.json": await formatJson({
 				git: {
 					commitMessage: "chore: release v${version}",
@@ -104,13 +104,13 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 `,
-		...(!values.excludeLintSpelling && {
+		...(!options.excludeLintSpelling && {
 			"cspell.json": await formatJson({
 				dictionaries: ["typescript"],
 				ignorePaths: [
 					".github",
 					"CHANGELOG.md",
-					...(values.excludeTests ? [] : ["coverage*"]),
+					...(options.excludeTests ? [] : ["coverage*"]),
 					"lib",
 					"node_modules",
 					"pnpm-lock.yaml",
@@ -121,7 +121,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					"commitlint",
 					"contributorsrc",
 					"conventionalcommits",
-					...(values.excludeLintKnip ? [] : ["knip"]),
+					...(options.excludeLintKnip ? [] : ["knip"]),
 					"lcov",
 					"markdownlintignore",
 					"npmpackagejsonlintrc",
@@ -133,7 +133,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				].sort(),
 			}),
 		}),
-		...(!values.excludeLintKnip && {
+		...(!options.excludeLintKnip && {
 			"knip.jsonc": await formatJson({
 				$schema: "https://unpkg.com/knip@latest/schema.json",
 				entry: ["src/index.ts!"],
@@ -144,7 +144,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				project: ["src/**/*.ts!"],
 			}),
 		}),
-		"package.json": await writePackageJson(values),
+		"package.json": await writePackageJson(options),
 		"tsconfig.eslint.json": await formatJson({
 			extends: "./tsconfig.json",
 			include: ["."],
@@ -172,13 +172,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			bundle: false,
 			clean: true,
 			dts: true,
-			entry: ["src/**/*.ts"${values.excludeTests ? "" : `, "!src/**/*.test.*"`}],
+			entry: ["src/**/*.ts"${options.excludeTests ? "" : `, "!src/**/*.test.*"`}],
 			format: "esm",
 			outDir: "lib",
 			sourcemap: true,
 		});
 		`),
-		...(!values.excludeTests && {
+		...(!options.excludeTests && {
 			"vitest.config.ts": `import { defineConfig } from "vitest/config";
 
 export default defineConfig({

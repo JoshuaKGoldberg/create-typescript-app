@@ -1,11 +1,11 @@
 import { RequestError } from "@octokit/request-error";
 import { Octokit } from "octokit";
 
-import { InputValues } from "../../shared/types.js";
+import { Options } from "../../shared/types.js";
 
 export async function initializeBranchProtectionSettings(
 	octokit: Octokit,
-	{ owner, repository }: Pick<InputValues, "owner" | "repository">,
+	{ owner, repository }: Pick<Options, "owner" | "repository">,
 ) {
 	try {
 		await octokit.request(

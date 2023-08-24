@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { InputValues } from "../shared/types.js";
+import { Options } from "../shared/types.js";
 import { updateLocalFiles } from "./updateLocalFiles.js";
 
 const mockReplaceInFile = vi.fn();
@@ -47,7 +47,7 @@ const values = {
 	skipRestore: undefined,
 	skipUninstall: undefined,
 	title: "Stub Title",
-} satisfies InputValues;
+} satisfies Options;
 
 describe("updateLocalFiles", () => {
 	it("throws a wrapping error when replaceInFiles rejects", async () => {

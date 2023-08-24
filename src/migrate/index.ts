@@ -2,7 +2,7 @@ import { outro } from "../shared/cli/outro.js";
 import { ensureGitRepository } from "../shared/ensureGitRepository.js";
 import { readInputs } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
-import { migrateWithValues } from "./migrateWithValues.js";
+import { migrateWithOptions } from "./migrateWithOptions.js";
 
 export async function migrate(args: string[]) {
 	const inputs = await readInputs(args);
@@ -11,7 +11,7 @@ export async function migrate(args: string[]) {
 
 	return await runOrRestore({
 		run: async () => {
-			await migrateWithValues(inputs);
+			await migrateWithOptions(inputs);
 
 			outro([
 				{
@@ -24,6 +24,6 @@ export async function migrate(args: string[]) {
 				},
 			]);
 		},
-		skipRestore: inputs.values.skipRestore,
+		skipRestore: inputs.options.skipRestore,
 	});
 }

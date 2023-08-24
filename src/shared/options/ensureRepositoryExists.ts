@@ -3,10 +3,10 @@ import { Octokit } from "octokit";
 
 import { doesRepositoryExist } from "../doesRepositoryExist.js";
 import { handleCancel, handlePromptCancel } from "../prompts.js";
-import { InputValues } from "../types.js";
+import { Options } from "../types.js";
 
-export type EnsureRepositoryExistsValues = Pick<
-	InputValues,
+export type EnsureRepositoryExistsOptions = Pick<
+	Options,
 	"createRepository" | "owner" | "repository"
 >;
 
@@ -17,15 +17,15 @@ export interface RepositoryExistsResult {
 
 export async function ensureRepositoryExists(
 	octokit: Octokit | undefined,
-	values: EnsureRepositoryExistsValues,
+	options: EnsureRepositoryExistsOptions,
 ): Promise<RepositoryExistsResult> {
 	// We'll only respect input options once before prompting for them
-	let { createRepository, repository } = values;
+	let { createRepository, repository } = options;
 
 	// We'll continuously pester the user for a repository
 	// until they bail, create a new one, or it exists.
 	while (octokit) {
-		if (await doesRepositoryExist(octokit, values)) {
+		if (await doesRepositoryExist(octokit, options)) {
 			return { octokit, repository };
 		}
 
@@ -33,7 +33,7 @@ export async function ensureRepositoryExists(
 			? "create"
 			: handlePromptCancel(
 					(await prompts.select({
-						message: `Repository ${values.repository} doesn't seem to exist under ${values.owner}. What would you like to do?`,
+						message: `Repository ${options.repository} doesn't seem to exist under ${options.owner}. What would you like to do?`,
 						options: [
 							{ label: "Create a new repository", value: "create" },
 							{
@@ -59,7 +59,7 @@ export async function ensureRepositoryExists(
 			case "create":
 				await octokit.rest.repos.createUsingTemplate({
 					name: repository,
-					owner: values.owner,
+					owner: options.owner,
 					template_owner: "JoshuaKGoldberg",
 					template_repo: "template-typescript-node-package",
 				});

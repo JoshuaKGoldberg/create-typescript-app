@@ -94,9 +94,10 @@ As described in the `README.md` file and `docs/`, this template repository comes
 Each follows roughly the same general flow:
 
 1. `bin/index.ts` uses `bin/mode.ts` determines which of the three setup scripts to run
-2. `readInputs` parses in values from local files, Git commands, npm APIs, and/or files on disk
+2. `readOptions` parses in options from local files, Git commands, npm APIs, and/or files on disk
 3. `runOrRestore` wraps the setup script's main logic in a friendly prompt wrapper
 4. The setup script wraps each portion of its main logic with `withSpinner`
+   - Each step of setup logic is generally imported from within `src/steps`
 5. A call to `outro` summarizes the results for the user
 
 > **Warning**

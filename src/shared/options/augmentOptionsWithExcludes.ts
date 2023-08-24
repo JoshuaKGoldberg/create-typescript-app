@@ -3,7 +3,7 @@ import * as prompts from "@clack/prompts";
 import { handlePromptCancel } from "../prompts.js";
 import { Options } from "../types.js";
 
-type Basis = "everything" | "minimum" | "prompt";
+type Base = "everything" | "minimum" | "prompt";
 
 const exclusionDescriptions = {
 	excludeCompliance: {
@@ -88,7 +88,7 @@ export async function augmentOptionsWithExcludes(
 
 	const base =
 		options.base ??
-		handlePromptCancel<Basis | symbol>(
+		handlePromptCancel<Base | symbol>(
 			await prompts.select({
 				message: `How much tooling would you like the template to set up for you?`,
 				options: [

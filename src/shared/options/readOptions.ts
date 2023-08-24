@@ -2,9 +2,9 @@ import { parseArgs } from "node:util";
 import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
-import { allArgOptions } from "../args.js";
 import { withSpinner } from "../cli/spinners.js";
 import { InputBase, InputValues } from "../types.js";
+import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";

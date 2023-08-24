@@ -1,8 +1,8 @@
 import * as prompts from "@clack/prompts";
 import { Octokit } from "octokit";
 
+import { doesRepositoryExist } from "../doesRepositoryExist.js";
 import { handleCancel, handlePromptCancel } from "../prompts.js";
-import { doesRepositoryExist } from "./doesRepositoryExist.js";
 import { InputValues } from "./readOptions.js";
 
 export type EnsureRepositoryExistsValues = Pick<

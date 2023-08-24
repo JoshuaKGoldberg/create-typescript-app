@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+import { InputValues } from "../shared/readInputs.js";
 import { updateLocalFiles } from "./updateLocalFiles.js";
 
 const mockReplaceInFile = vi.fn();
@@ -20,6 +21,7 @@ vi.mock("../shared/readFileSafeAsJson.js", () => ({
 
 const values = {
 	author: undefined,
+	base: "everything",
 	createRepository: undefined,
 	description: "Stub description.",
 	email: undefined,
@@ -45,7 +47,7 @@ const values = {
 	skipRestore: undefined,
 	skipUninstall: undefined,
 	title: "Stub Title",
-};
+} satisfies InputValues;
 
 describe("updateLocalFiles", () => {
 	it("throws a wrapping error when replaceInFiles rejects", async () => {

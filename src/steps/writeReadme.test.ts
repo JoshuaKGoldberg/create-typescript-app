@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+import { InputValues } from "../shared/readInputs.js";
 import { writeReadme } from "./writeReadme.js";
 
 const mockWriteFile = vi.fn();
@@ -24,6 +25,7 @@ vi.mock("../shared/readFileSafe.js", () => ({
 
 const values = {
 	author: "Test Author",
+	base: "everything",
 	createRepository: false,
 	description: "Test description.",
 	email: "test@test.test",
@@ -49,7 +51,7 @@ const values = {
 	skipRestore: false,
 	skipUninstall: false,
 	title: "Test Title",
-};
+} satisfies InputValues;
 
 describe("writeReadme", () => {
 	it("writes a new file when the README.md does not yet exist", async () => {

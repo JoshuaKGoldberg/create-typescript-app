@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+import { InputValues } from "../shared/readInputs.js";
 import { finalizeDependencies } from "./finalizeDependencies.js";
 
 const mockExecaCommand = vi.fn();
@@ -21,6 +22,7 @@ vi.mock("../shared/packages.js", () => ({
 
 const values = {
 	author: undefined,
+	base: "everything",
 	createRepository: undefined,
 	description: "Stub description.",
 	email: undefined,
@@ -46,7 +48,7 @@ const values = {
 	skipRestore: undefined,
 	skipUninstall: undefined,
 	title: "Stub Title",
-};
+} satisfies InputValues;
 
 describe("finalize", () => {
 	it("installs the full list of commands when no options are enabled", async () => {

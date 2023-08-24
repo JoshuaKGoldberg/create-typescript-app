@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+import { InputValues } from "../../../shared/readInputs.js";
 import { writePackageJson } from "./writePackageJson.js";
 
 const mockReadFileSafeAsJson = vi.fn();
@@ -12,6 +13,7 @@ vi.mock("../../../shared/readFileSafeAsJson.js", () => ({
 
 const values = {
 	author: "test-author",
+	base: "everything",
 	createRepository: undefined,
 	description: "test-description",
 	email: "test-email",
@@ -37,7 +39,7 @@ const values = {
 	skipRestore: undefined,
 	skipUninstall: undefined,
 	title: "",
-};
+} satisfies InputValues;
 
 describe("writePackageJson", () => {
 	it("preserves existing dependencies when they exist", async () => {

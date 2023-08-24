@@ -19,5 +19,5 @@ See [Options.md](./Options.md).
 For example, running the migration script and skipping all APIs:
 
 ```shell
-npx template-typescript-node-package --mode migrate --skip-contributors-data --skip-github-api --skip-install
+npx template-typescript-node-package --mode migrate --skip-contributors-data --skip-github-api
 ```

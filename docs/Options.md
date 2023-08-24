@@ -2,7 +2,7 @@
 
 All three of `template-typescript-node-package`'s setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- support a shared set of input options.
 
-> This page uses `npx template-typescript-node-package` in its code examples, but `pnpm run initialize` and `pnpm run migrate` work the same.
+> This page uses `npx template-typescript-node-package` in its code examples, but `pnpm run initialize` works the same.
 
 ## Required Options
 

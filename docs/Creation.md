@@ -22,12 +22,16 @@ Hooray! 🥳
 
 You can explicitly provide some or all of the values the script would prompt for as command-line flags.
 
-### Repository Behavior
+### Base and Mode
 
-These two flags determine how the creation script will create a new repository:
+These flags determine how the creation script will create a new repository:
 
+- `--base`: Whether to create the repository with:
+  - `everything` that comes with the template _(recommended)_
+  - `minimum` amounts of tooling, essentially opting out of everything
+  - `prompt` for which portions to exclude
 - `--create-repository` _(boolean)_: Whether to automatically create a corresponding repository on github.com if it doesn't yet exist
-- `--mode`: whether to:
+- `--mode`: Whether to:
   - `create` a new repository in a child directory
   - `initialize` a freshly repository in the current directory
   - `migrate` an existing repository in the current directory
@@ -35,7 +39,7 @@ These two flags determine how the creation script will create a new repository:
 For example, creating a new repository in the current directory and also linking it to a new repository on github.com:
 
 ```shell
-npx template-typescript-node-package --create-repository --mode create
+npx template-typescript-node-package --create-repository --base everything --mode create
 ```
 
 ### Template Values
@@ -55,7 +59,7 @@ npx template-typescript-node-package --repository testing-repository --title "Te
 For example, pre-populating all values and also creating a new repository:
 
 ```shell
-npx template-typescript-node-package --create-repository --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
+npx template-typescript-node-package --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
 ```
 
 That script will run completely autonomously, no prompted inputs required. ✨

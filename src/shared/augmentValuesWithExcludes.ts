@@ -3,7 +3,7 @@ import * as prompts from "@clack/prompts";
 import { handlePromptCancel } from "./prompts.js";
 import { InputValues } from "./readInputs.js";
 
-type Basis = "customize" | "everything" | "minimum";
+type Basis = "everything" | "minimum" | "prompt";
 
 const exclusionDescriptions = {
 	excludeCompliance: {
@@ -86,28 +86,30 @@ export async function augmentValuesWithExcludes(
 		};
 	}
 
-	const basis = handlePromptCancel<Basis | symbol>(
-		await prompts.select({
-			message: `How much tooling would you like the template to set up for you?`,
-			options: [
-				{
-					hint: "recommended",
-					label: "Everything! 🙌",
-					value: "everything",
-				},
-				{
-					label: "Just the bare essentials, please.",
-					value: "minimum",
-				},
-				{
-					label: "Allow me to customize.",
-					value: "customize",
-				},
-			],
-		}),
-	);
+	const base =
+		values.base ??
+		handlePromptCancel<Basis | symbol>(
+			await prompts.select({
+				message: `How much tooling would you like the template to set up for you?`,
+				options: [
+					{
+						hint: "recommended",
+						label: "Everything! 🙌",
+						value: "everything",
+					},
+					{
+						label: "Just the bare essentials, please.",
+						value: "minimum",
+					},
+					{
+						label: "Allow me to customize.",
+						value: "prompt",
+					},
+				],
+			}),
+		);
 
-	switch (basis) {
+	switch (base) {
 		case "everything":
 			return values;
 
@@ -121,32 +123,33 @@ export async function augmentValuesWithExcludes(
 					]),
 				),
 			};
-	}
 
-	const exclusionsNotEnabled = new Set(
-		handlePromptCancel(
-			await prompts.multiselect({
-				initialValues: exclusionKeys,
-				message:
-					"Select the tooling portions you'd like to remove. All are enabled by default.",
-				options: Object.entries(exclusionDescriptions).map(
-					([value, { hint, label }]) => ({
-						hint,
-						label,
-						value: value as ExclusionKey,
+		case "prompt":
+			const exclusionsNotEnabled = new Set(
+				handlePromptCancel(
+					await prompts.multiselect({
+						initialValues: exclusionKeys,
+						message:
+							"Select the tooling portions you'd like to remove. All are enabled by default.",
+						options: Object.entries(exclusionDescriptions).map(
+							([value, { hint, label }]) => ({
+								hint,
+								label,
+								value: value as ExclusionKey,
+							}),
+						),
 					}),
 				),
-			}),
-		),
-	);
+			);
 
-	return {
-		...values,
-		...Object.fromEntries(
-			exclusionKeys.map(
-				(exclusionKey) =>
-					[exclusionKey, !exclusionsNotEnabled.has(exclusionKey)] as const,
-			),
-		),
-	};
+			return {
+				...values,
+				...Object.fromEntries(
+					exclusionKeys.map(
+						(exclusionKey) =>
+							[exclusionKey, !exclusionsNotEnabled.has(exclusionKey)] as const,
+					),
+				),
+			};
+	}
 }

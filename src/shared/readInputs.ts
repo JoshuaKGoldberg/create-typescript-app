@@ -11,8 +11,11 @@ import { getPrefillOrPromptedValue } from "./getPrefillOrPromptedValue.js";
 import { optionalDefault } from "./optionalDefault.js";
 import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
 
+export type InputBase = "everything" | "minimum" | "prompt";
+
 export interface DefaultInputValues {
 	author: string | undefined;
+	base: InputBase | undefined;
 	createRepository: boolean | undefined;
 	description: string;
 	email: string | undefined;
@@ -94,6 +97,7 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 				"What author (username) will be used for the npm owner?",
 				authorDefault,
 			),
+			base: values.base as InputBase,
 			createRepository: values["create-repository"] as boolean | undefined,
 			description: await getPrefillOrPromptedValue(
 				values.description as string | undefined,

@@ -6,7 +6,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm lint:package-json
 
-name: Lint Package
+name: Lint Package JSON
 
 on:
   pull_request: ~

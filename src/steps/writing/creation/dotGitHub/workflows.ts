@@ -104,7 +104,7 @@ export function createWorkflows(values: InputValues) {
 		}),
 		...(!values.excludeLintPackageJson && {
 			"lint-package.yml": createWorkflowFile({
-				name: "Lint Package.json",
+				name: "Lint Package JSON",
 				runs: ["pnpm lint:package-json"],
 			}),
 		}),

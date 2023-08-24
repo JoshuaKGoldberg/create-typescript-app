@@ -73,17 +73,14 @@ const exclusionKeys = Object.keys(exclusionDescriptions) as ExclusionKey[];
 export async function augmentOptionsWithExcludes(
 	options: Options,
 ): Promise<Options> {
-	const alreadyExcluded = exclusionKeys.filter(
-		(exclusionKey) => options[exclusionKey],
-	);
-
-	if (alreadyExcluded.length) {
-		return {
-			...options,
-			...Object.fromEntries(
-				alreadyExcluded.map((exclusion) => [exclusion, true]),
-			),
-		};
+	if (
+		Object.keys(options).some(
+			(key) =>
+				key in exclusionDescriptions &&
+				options[key as keyof typeof options] !== undefined,
+		)
+	) {
+		return options;
 	}
 
 	const base =

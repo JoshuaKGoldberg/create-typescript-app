@@ -90,6 +90,9 @@ For example, initializing with all tooling except for `package.json` checks and 
 npx template-typescript-node-package --exclude-lint-package-json --exclude-lint-packages --exclude-renovate
 ```
 
+> **Warning**
+> Specifying any `--exclude-*` flag on the command-line will cause the setup script to skip prompting for more excludes.
+
 ### Skipping API Calls
 
 You can prevent the migration script from making some network-based changes using any or all of the following CLI flags:

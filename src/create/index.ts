@@ -38,7 +38,7 @@ export async function create(args: string[]) {
 									"Consider creating a GitHub repository from the new directory:",
 								lines: [
 									`cd ${inputs.options.repository}`,
-									`npx template-typescript-node-package --mode initialize`,
+									`pnpm run initialize`,
 									`git add -A`,
 									`git commit -m "chore: initial commit ✨"`,
 									`git push -u origin main`,

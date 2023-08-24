@@ -82,21 +82,13 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 		},
 	);
 
-	const authorDefault =
-		(values.author as string | undefined) ??
-		defaults.author ??
-		owner.toLowerCase();
-
 	return {
 		octokit,
 		values: await augmentValuesWithExcludes({
-			author: await getPrefillOrPromptedValue(
-				values["exclude-releases"]
-					? authorDefault
-					: (values.author as string | undefined),
-				"What author (username) will be used for the npm owner?",
-				authorDefault,
-			),
+			author:
+				(values.author as string | undefined) ??
+				defaults.author ??
+				owner.toLowerCase(),
 			base: values.base as InputBase,
 			createRepository: values["create-repository"] as boolean | undefined,
 			description: await getPrefillOrPromptedValue(
@@ -104,11 +96,7 @@ export async function readInputs(args: string[]): Promise<HelpersAndValues> {
 				"How would you describe the new package?",
 				defaults.description ?? "A very lovely package. Hooray!",
 			),
-			email: await getPrefillOrPromptedValue(
-				values.email as string | undefined,
-				"What email will be used for contact information?",
-				defaults.email,
-			),
+			email: (values.email as string | undefined) ?? defaults.email,
 			excludeCompliance: values["exclude-compliance"] as boolean | undefined,
 			excludeContributors: values["exclude-contributors"] as
 				| boolean

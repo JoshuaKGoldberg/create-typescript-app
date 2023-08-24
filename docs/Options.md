@@ -1,10 +1,69 @@
-# Opt-Outs
+# Template Values
+
+All three versions of running `template-typescript-node-package` -[](), [](), and []()- support a shared set of input values.
+
+## Required Values
+
+These values will be prompted for interactively if not provided.
+
+### Base and Mode
+
+These required flags determine how the creation script will set up and scaffold the repository:
+
+- `--base`: Whether to scaffold the repository with:
+  - `everything` that comes with the template _(recommended)_
+  - `minimum` amounts of tooling, essentially opting out of everything
+  - `prompt` for which portions to exclude
+- `--create-repository` _(boolean)_: Whether to create a corresponding repository on github.com (if it doesn't yet exist)
+- `--mode`: Whether to:
+  - `create` a new repository in a child directory
+  - `initialize` a freshly repository in the current directory
+  - `migrate` an existing repository in the current directory
+
+For example, scaffolding a full new repository in the current directory and also linking it to a new repository on github.com:
+
+```shell
+npx template-typescript-node-package --base everything --create-repository --mode create
+```
+
+### Core Values
+
+These required flags determine the values that will be substituted into the template's files:
+
+- `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
+- `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
+- `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
+- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
+
+For example, pre-populating all core required values and also creating a new repository:
+
+```shell
+npx template-typescript-node-package --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
+```
+
+That script will run completely autonomously, no prompted inputs required. ✨
+
+### Optional Values
+
+Creation also allows for optional overrides of the following inputs whose defaults are based on other values:
+
+- `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
+- `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
+- `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
+
+For example, customizing the ownership and users associated with a new repository:
+
+```shell
+npx template-typescript-node-package --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
+```
+
+## Opt-Outs
 
 The setup scripts can be directed with CLI flags to opt out tooling portions and/or using API calls.
 
 > This page uses `npx template-typescript-node-package` in its code examples, but `pnpm run initialize` and `pnpm run migrate` work the same.
 
-## Excluding Tooling Portions
+### Excluding Tooling Portions
 
 The setup scripts normally will prompt you to select how much of the tooling you'd like to enable in a new repository.
 Alternately, you can bypass that prompt by providing any number of the following CLI flags:
@@ -29,7 +88,7 @@ For example, initializing with all tooling except for `package.json` checks and 
 npx template-typescript-node-package --exclude-lint-package-json --exclude-lint-packages --exclude-renovate
 ```
 
-## Skipping API Calls
+### Skipping API Calls
 
 You can prevent the migration script from making some network-based changes using any or all of the following CLI flags:
 
@@ -46,7 +105,7 @@ npx template-typescript-node-package --skip-contributors-data --skip-github-api 
 
 > 💡 Tip: To temporarily preview what the script would apply, you can run with all `--skip-*` flags, then `git add -A; git reset --hard HEAD` to completely reset all changes.
 
-## Skipping Local Changes
+### Skipping Local Changes
 
 You can prevent the migration script from making some changes on disk using any or all of the following CLI flags:
 

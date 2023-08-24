@@ -28,7 +28,7 @@ export async function getGitAndNpmDefaults() {
 			: [packageData.author?.name, packageData.author?.email];
 
 	return {
-		author: packageAuthor,
+		author: packageAuthor ?? npmDefaults?.name,
 		description: packageData.description,
 		email:
 			npmDefaults?.email ??

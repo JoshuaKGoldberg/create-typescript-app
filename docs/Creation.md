@@ -21,63 +21,10 @@ Hooray! 🥳
 ## Options
 
 You can explicitly provide some or all of the values the script would prompt for as command-line flags.
+See [Options.md](./Options.md).
 
-### Base and Mode
-
-These flags determine how the creation script will create a new repository:
-
-- `--base`: Whether to create the repository with:
-  - `everything` that comes with the template _(recommended)_
-  - `minimum` amounts of tooling, essentially opting out of everything
-  - `prompt` for which portions to exclude
-- `--create-repository` _(boolean)_: Whether to automatically create a corresponding repository on github.com if it doesn't yet exist
-- `--mode`: Whether to:
-  - `create` a new repository in a child directory
-  - `initialize` a freshly repository in the current directory
-  - `migrate` an existing repository in the current directory
-
-For example, creating a new repository in the current directory and also linking it to a new repository on github.com:
+For example, running the creation script and skipping all APIs:
 
 ```shell
-npx template-typescript-node-package --create-repository --base everything --mode create
+npx template-typescript-node-package --mode create --skip-contributors-data --skip-github-api --skip-install
 ```
-
-### Template Values
-
-These required flags determine the values that will be substituted into the template's files:
-
-- `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
-- `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
-- `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
-- `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
-- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
-
-```shell
-npx template-typescript-node-package --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
-```
-
-For example, pre-populating all values and also creating a new repository:
-
-```shell
-npx template-typescript-node-package --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
-```
-
-That script will run completely autonomously, no prompted inputs required. ✨
-
-#### Optional Values
-
-Creation also allows for optional overrides of the following inputs whose defaults are based on other values:
-
-- `--author` _(`string`)_: Username on npm to publish packages under (by default, `owner.toLowerCase()`)
-- `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
-
-For example, customizing the ownership and users associated with a new repository:
-
-```shell
-npx template-typescript-node-package --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
-```
-
-## Opt-Outs
-
-`npx template-typescript-node-package` supports `--exclude-*` and `--skip-*` CLI flags to opt out of tooling portions and/or using API calls.
-See [Tooling Exclusions](./ToolingExclusions.md) for more information.

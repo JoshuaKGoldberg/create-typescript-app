@@ -11,8 +11,10 @@ npx template-typescript-node-package
 > You'll want to review each of the changes.
 > There will almost certainly be some incorrect changes you'll need to fix.
 
-Migrating an existing repository behaves the same as [`npx template-typescript-node-package`](./Creation.md)'s creation mode.
-The migration mode accepts the same [CLI options](./Creation.md#options) and [CLI opt-outs](./OptOuts.md).
+## Options
+
+You can explicitly provide some or all of the values the script would prompt for as command-line flags.
+See [Options.md](./Options.md).
 
 For example, running the migration script and skipping all APIs:
 

@@ -154,7 +154,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				declaration: true,
 				declarationMap: true,
 				esModuleInterop: true,
-				module: "ESNext",
+				module: "NodeNext",
 				moduleResolution: "NodeNext",
 				outDir: "lib",
 				resolveJsonModule: true,

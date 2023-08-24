@@ -31,11 +31,6 @@ for (const command of [
 	`pnpm run test run`,
 	`pnpm run tsc`,
 ]) {
-	console.log("HI ITS ME JOSH RUNNING", { command });
-
-	await $({ stdio: "inherit" })`cat tsconfig.json`;
-	await $({ stdio: "inherit" })`cat tsup.config.ts`;
-
 	const result = await execaCommand(command, { stdio: "inherit" });
 
 	if (result.exitCode) {

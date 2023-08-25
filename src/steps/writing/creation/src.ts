@@ -1,8 +1,9 @@
+import { Options } from "../../../shared/types.js";
 import { formatTypeScript } from "./formatters/formatTypeScript.js";
 
-export async function createSrc(unitTests: boolean | undefined) {
+export async function createSrc(options: Options) {
 	return {
-		...(unitTests && {
+		...(!options.excludeTests && {
 			"greet.test.ts": await formatTypeScript(
 				`
 					import { describe, expect, it, vi } from "vitest";

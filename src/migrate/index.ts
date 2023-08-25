@@ -1,28 +1,17 @@
-import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
 import { outro } from "../shared/cli/outro.js";
-import { getGitDefaultSettings } from "../shared/getGitDefaultSettings.js";
-import { readInputs } from "../shared/inputs.js";
+import { ensureGitRepository } from "../shared/ensureGitRepository.js";
+import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
-import { migrateWithValues } from "./migrateWithValues.js";
-import { getMigrationDefaults } from "./values/getMigrationDefaults.js";
+import { migrateWithOptions } from "./migrateWithOptions.js";
 
 export async function migrate(args: string[]) {
-	const gitDefaults = await getGitDefaultSettings();
-	const inputs = await readInputs({
-		args,
-		defaults: await getMigrationDefaults(),
-		overrides: {
-			owner: () => gitDefaults.owner,
-			repository: () => gitDefaults.repository,
-		},
-	});
+	const inputs = await readOptions(args);
+
+	await ensureGitRepository();
 
 	return await runOrRestore({
 		run: async () => {
-			await migrateWithValues({
-				...inputs,
-				values: await augmentValuesWithNpmInfo(inputs.values),
-			});
+			await migrateWithOptions(inputs);
 
 			outro([
 				{
@@ -35,6 +24,6 @@ export async function migrate(args: string[]) {
 				},
 			]);
 		},
-		skipRestore: inputs.values.skipRestore,
+		skipRestore: inputs.options.skipRestore,
 	});
 }

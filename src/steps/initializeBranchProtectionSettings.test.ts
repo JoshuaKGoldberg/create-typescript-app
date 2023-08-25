@@ -1,7 +1,7 @@
 import { Octokit } from "octokit";
 import { SpyInstance, describe, expect, it, vi } from "vitest";
 
-import { initializeBranchProtectionSettings } from "./initializeBranchProtectionSettings.js";
+import { initializeBranchProtectionSettings } from "./initializeGitHubRepository/initializeBranchProtectionSettings.js";
 
 const createMockOctokit = (request: SpyInstance) =>
 	({

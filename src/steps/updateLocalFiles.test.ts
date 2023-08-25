@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
+import { Options } from "../shared/types.js";
 import { updateLocalFiles } from "./updateLocalFiles.js";
 
 const mockReplaceInFile = vi.fn();
@@ -18,13 +19,35 @@ vi.mock("../shared/readFileSafeAsJson.js", () => ({
 	},
 }));
 
-const stubOptions = {
+const options = {
+	author: undefined,
+	base: "everything",
+	createRepository: undefined,
 	description: "Stub description.",
-	npmAuthor: "stub-npm-author",
+	email: undefined,
+	excludeCompliance: undefined,
+	excludeContributors: undefined,
+	excludeLintJson: undefined,
+	excludeLintKnip: undefined,
+	excludeLintMd: undefined,
+	excludeLintPackageJson: undefined,
+	excludeLintPackages: undefined,
+	excludeLintPerfectionist: undefined,
+	excludeLintSpelling: undefined,
+	excludeLintYml: undefined,
+	excludeReleases: undefined,
+	excludeRenovate: undefined,
+	excludeTests: undefined,
+	funding: undefined,
 	owner: "StubOwner",
 	repository: "stub-repository",
+	skipApi: false,
+	skipInstall: undefined,
+	skipRemoval: undefined,
+	skipRestore: undefined,
+	skipUninstall: undefined,
 	title: "Stub Title",
-};
+} satisfies Options;
 
 describe("updateLocalFiles", () => {
 	it("throws a wrapping error when replaceInFiles rejects", async () => {
@@ -34,7 +57,7 @@ describe("updateLocalFiles", () => {
 		mockReplaceInFile.mockRejectedValue(error);
 
 		await expect(async () => {
-			await updateLocalFiles(stubOptions);
+			await updateLocalFiles(options);
 		}).rejects.toThrowErrorMatchingInlineSnapshot(
 			'"Failed to replace /Template TypeScript Node Package/g with Stub Title in ./.github/**/*,./*.*"',
 		);
@@ -44,7 +67,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue(null);
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(stubOptions);
+		await updateLocalFiles(options);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -89,7 +112,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"stub-npm-author\\"",
+			      "to": "\\"author\\": \\"undefined\\"",
 			    },
 			  ],
 			  [
@@ -179,7 +202,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(stubOptions);
+		await updateLocalFiles(options);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -224,7 +247,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"stub-npm-author\\"",
+			      "to": "\\"author\\": \\"undefined\\"",
 			    },
 			  ],
 			  [
@@ -317,7 +340,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(stubOptions);
+		await updateLocalFiles(options);
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -362,7 +385,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"stub-npm-author\\"",
+			      "to": "\\"author\\": \\"undefined\\"",
 			    },
 			  ],
 			  [

@@ -1,53 +1,57 @@
 import fs from "node:fs/promises";
 
-import { InputValues } from "../shared/inputs.js";
 import { readFileSafe } from "../shared/readFileSafe.js";
+import { Options } from "../shared/types.js";
 import { endOfReadmeNotice } from "./updateReadme.js";
 
 const contributorsIndicator = `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`;
 
-const allContributorsContent = `
-## Contributors
+function generateAllContributorsContent(options: Options) {
+	return [
+		`## Contributors`,
+		``,
+		`<!-- spellchecker: disable -->`,
+		contributorsIndicator,
+		`<!-- prettier-ignore-start -->`,
+		!options.excludeLintMd && `<!-- markdownlint-disable -->`,
+		`<table>`,
+		`<!-- (this will be filled in by all-contributors) -->`,
+		`</table>`,
+		``,
+		!options.excludeLintMd && `<!-- markdownlint-restore -->`,
+		`<!-- prettier-ignore-end -->`,
+		``,
+		`<!-- ALL-CONTRIBUTORS-LIST:END -->`,
+		`<!-- spellchecker: enable -->`,
+	]
+		.filter(Boolean)
+		.join("\n");
+}
 
-<!-- spellchecker: disable -->
-${contributorsIndicator}
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-<!-- (this will be filled in by all-contributors) -->
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<!-- spellchecker: enable -->
-`;
-
-export async function writeReadme(values: InputValues) {
+export async function writeReadme(options: Options) {
+	const allContributorsContent =
+		!options.excludeContributors && generateAllContributorsContent(options);
 	let contents = await readFileSafe("README.md", "");
 	if (!contents) {
 		await fs.writeFile(
 			"README.md",
-			[
-				generateTopContent(values),
-				allContributorsContent,
-				endOfReadmeNotice,
-			].join("\n\n"),
+			[generateTopContent(options), allContributorsContent, endOfReadmeNotice]
+				.filter(Boolean)
+				.join("\n\n"),
 		);
 		return;
 	}
 
 	const endOfH1 = findH1Close(contents);
 
-	contents = [generateTopContent(values), contents.slice(endOfH1)]
+	contents = [generateTopContent(options), contents.slice(endOfH1)]
 		.join("")
 		.replace(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
 		.replace(/!\[.+\]\(.+\)/g, "")
 		.replaceAll("\r", "")
 		.replaceAll("\n\n\n", "\n\n");
 
-	if (!contents.includes(contributorsIndicator)) {
+	if (allContributorsContent && !contents.includes(contributorsIndicator)) {
 		contents = [contents, allContributorsContent].join("\n\n");
 	}
 
@@ -67,48 +71,40 @@ function findH1Close(contents: string) {
 	return contents.indexOf("</h1>") + "</h1>".length;
 }
 
-function generateTopContent(values: InputValues) {
-	return `<h1 align="center">${values.title}</h1>
-
-<p align="center">${values.description}</p>
-
-<p align="center">
-	<a href="#contributors" target="_blank">
+function generateTopContent(options: Options) {
+	const badgeLines = [
+		!options.excludeContributors &&
+			`<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
-	</a>
-	<a href="https://codecov.io/gh/${values.owner}/${
-		values.repository
-	}" target="_blank">${
-		values.unitTests
-			? `
-	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${values.owner}/${values.repository}/branch/main/graph/badge.svg"/>`
-			: ""
-	}
-	</a>
-	<a href="https://github.com/${values.owner}/${
-		values.repository
-	}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
-		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
-	</a>
-	<a href="https://github.com/${values.owner}/${
-		values.repository
-	}/blob/main/LICENSE.md" target="_blank">
-		<img alt="License: MIT" src="https://img.shields.io/github/license/${
-			values.owner
-		}/${values.repository}?color=21bb42">
-	</a>${
-		values.funding
-			? `
-	<a href="https://github.com/sponsors/${values.owner}" target="_blank">
-		<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
-	</a>`
-			: ""
-	}
-	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
-	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
+</a>`,
+		!options.excludeTests &&
+			`<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank">
+	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${options.owner}/${options.repository}/branch/main/graph/badge.svg"/>
+</a>`,
+		`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
+	<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
+</a>`,
+		`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md" target="_blank">
+	<img alt="License: MIT" src="https://img.shields.io/github/license/${options.owner}/${options.repository}?color=21bb42">
+</a>`,
+		options.funding &&
+			`
+		<a href="https://github.com/sponsors/${options.funding}" target="_blank">
+			<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
+		</a>`,
+		`<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />`,
+		`<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
+	].filter(Boolean);
+
+	return `<h1 align="center">${options.title}</h1>
+
+<p align="center">${options.description}</p>
+
+<p align="center">
+	${badgeLines.join("")}
 </p>`;
 }

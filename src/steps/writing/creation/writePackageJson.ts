@@ -1,5 +1,5 @@
-import { InputValues } from "../../../shared/inputs.js";
 import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
+import { Options } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 const devDependenciesToRemove = [
@@ -23,24 +23,7 @@ const devDependenciesToRemove = [
 	"pretty-quick",
 ];
 
-export async function writePackageJson({
-	author,
-	description,
-	email,
-	owner,
-	releases,
-	repository,
-	unitTests,
-}: Pick<
-	InputValues,
-	| "author"
-	| "description"
-	| "email"
-	| "owner"
-	| "releases"
-	| "repository"
-	| "unitTests"
->) {
+export async function writePackageJson(options: Options) {
 	const existingPackageJson =
 		((await readFileSafeAsJson("./package.json")) as null | object) ?? {};
 
@@ -51,57 +34,66 @@ export async function writePackageJson({
 		// To start, copy over all existing package fields (e.g. "dependencies")
 		...existingPackageJson,
 
-		author: { email, name: author },
-		description,
+		author: { email: options.email, name: options.author },
+		description: options.description,
 
 		// We copy all existing dev dependencies except those we know are not used anymore
 		devDependencies: copyDevDependencies(existingPackageJson),
 
+		// Remove fields we know we don't want, such as old or redundant configs
+		eslintConfig: undefined,
+		husky: undefined,
+		prettierConfig: undefined,
+		types: undefined,
+
+		// The rest of the fields are ones we know from our template
 		engines: {
 			node: ">=18",
 		},
-
-		// Remove fields we know we don't want, such as old or redundant configs
-		eslintConfig: undefined,
-
 		files: ["lib/", "package.json", "LICENSE.md", "README.md"],
-		husky: undefined,
 		license: "MIT",
 		"lint-staged": {
 			"*": "prettier --ignore-unknown --write",
 		},
 		main: "./lib/index.js",
-		// The rest of the fields are ones we know from our template
-		name: repository,
+		name: options.repository,
 		packageManager: "pnpm@8.5.0",
-		prettierConfig: undefined,
 		publishConfig: {
 			provenance: true,
 		},
 		repository: {
 			type: "git",
-			url: `https://github.com/${owner}/${repository}`,
+			url: `https://github.com/${options.owner}/${options.repository}`,
 		},
 		scripts: {
 			build: "tsup",
 			format: 'prettier "**/*" --ignore-unknown',
 			"format:write": "pnpm format --write",
 			lint: "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
-			"lint:knip": "knip",
-			"lint:md":
-				'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
-			"lint:package": "npmPkgJsonLint .",
-			"lint:packages": "pnpm dedupe --check",
-			"lint:spelling": 'cspell "**" ".github/**/*"',
+			...(!options.excludeLintKnip && {
+				"lint:knip": "knip",
+			}),
+			...(!options.excludeLintMd && {
+				"lint:md":
+					'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
+			}),
+			...(!options.excludeLintPackageJson && {
+				"lint:package-json": "npmPkgJsonLint .",
+			}),
+			...(!options.excludeLintPackages && {
+				"lint:packages": "pnpm dedupe --check",
+			}),
+			...(!options.excludeLintSpelling && {
+				"lint:spelling": 'cspell "**" ".github/**/*"',
+			}),
 			prepare: "husky install",
-			...(releases && {
+			...(!options.excludeReleases && {
 				"should-semantic-release": "should-semantic-release --verbose",
 			}),
-			...(unitTests && { test: "vitest" }),
+			...(!options.excludeReleases && { test: "vitest" }),
 			tsc: "tsc",
 		},
 		type: "module",
-		types: undefined,
 	});
 }
 

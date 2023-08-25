@@ -31,7 +31,7 @@
 		"lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
-		"lint:package": "npmPkgJsonLint .",
+		"lint:package-json": "npmPkgJsonLint .",
 		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"migrate:test": "node script/migrate-test-e2e.js",
@@ -45,7 +45,7 @@
 	},
 	"dependencies": {
 		"@clack/prompts": "^0.7.0",
-		"all-contributors-for-repository": "^0.0.10",
+		"all-contributors-for-repository": "^0.1.0",
 		"chalk": "^5.3.0",
 		"execa": "^8.0.0",
 		"git-remote-origin-url": "^4.0.0",

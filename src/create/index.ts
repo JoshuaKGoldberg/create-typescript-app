@@ -3,30 +3,18 @@ import chalk from "chalk";
 import { $ } from "execa";
 import fs from "node:fs/promises";
 
-import { augmentValuesWithNpmInfo } from "../shared/augmentValuesWithNpmInfo.js";
 import { outro } from "../shared/cli/outro.js";
-import { getPrefillOrPromptedValue } from "../shared/getPrefillOrPromptedValue.js";
-import { readInputs } from "../shared/inputs.js";
+import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
-import { createWithValues } from "./createWithValues.js";
+import { createWithOptions } from "./createWithOptions.js";
 
 export async function create(args: string[]) {
-	const inputs = await readInputs({
-		args,
-		overrides: {
-			repository: async () => {
-				return await getPrefillOrPromptedValue(
-					undefined,
-					"What would you like the kebab-case directory and repository name to be?",
-				);
-			},
-		},
-	});
+	const inputs = await readOptions(args);
 
-	if (!(await createAndEnterRepository(inputs.values.repository))) {
+	if (!(await createAndEnterRepository(inputs.options.repository))) {
 		prompts.outro(
 			chalk.red(
-				`The ${inputs.values.repository} directory already exists. Please remove the directory or try a different name.`,
+				`The ${inputs.options.repository} directory already exists. Please remove the directory or try a different name.`,
 			),
 		);
 		return;
@@ -34,10 +22,7 @@ export async function create(args: string[]) {
 
 	return await runOrRestore({
 		run: async () => {
-			const { sentToGitHub } = await createWithValues({
-				...inputs,
-				values: await augmentValuesWithNpmInfo(inputs.values),
-			});
+			const { sentToGitHub } = await createWithOptions(inputs);
 
 			outro(
 				sentToGitHub
@@ -52,9 +37,8 @@ export async function create(args: string[]) {
 								label:
 									"Consider creating a GitHub repository from the new directory:",
 								lines: [
-									`cd ${inputs.values.repository}`,
-									`gh repo create ${inputs.values.repository} --public --source=. --remote=origin`,
-									`npx template-typescript-node-package --mode initialize`,
+									`cd ${inputs.options.repository}`,
+									`pnpm run initialize`,
 									`git add -A`,
 									`git commit -m "chore: initial commit ✨"`,
 									`git push -u origin main`,
@@ -67,7 +51,7 @@ export async function create(args: string[]) {
 					  ],
 			);
 		},
-		skipRestore: inputs.values.skipRestore ?? true,
+		skipRestore: inputs.options.skipRestore,
 	});
 }
 

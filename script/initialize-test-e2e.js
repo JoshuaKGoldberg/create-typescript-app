@@ -11,7 +11,7 @@ const repository = "new-repository-test";
 // First we run initialize to modifies the local repo, so we can test the changes
 await $({
 	stdio: "inherit",
-})`node ./bin/index.js --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-restore`;
+})`node ./bin/index.js --description ${description} --base everything --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-restore`;
 
 const newPackageJson = JSON.parse(
 	(await fs.readFile("./package.json")).toString(),
@@ -52,4 +52,4 @@ await $`pnpm i`;
 await $`pnpm run build`;
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-initialize -r html -r lcov --src src node ./bin/index.js --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-removal --skip-restore`;
+})`c8 -o ./coverage-initialize -r html -r lcov --src src node ./bin/index.js --base everything --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api --skip-removal --skip-restore`;

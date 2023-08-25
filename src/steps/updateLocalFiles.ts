@@ -1,36 +1,23 @@
 import replaceInFile from "replace-in-file";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
-
-interface UpdateLocalFilesOptions {
-	description: string;
-	npmAuthor: string;
-	owner: string;
-	repository: string;
-	title: string;
-}
+import { Options } from "../shared/types.js";
 
 interface ExistingPackageData {
 	description?: string;
 	version?: string;
 }
 
-export async function updateLocalFiles({
-	description,
-	npmAuthor,
-	owner,
-	repository,
-	title,
-}: UpdateLocalFilesOptions) {
+export async function updateLocalFiles(options: Options) {
 	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
 		{}) as ExistingPackageData;
 
 	const replacements = [
-		[/Template TypeScript Node Package/g, title],
-		[/JoshuaKGoldberg/g, owner],
-		[/template-typescript-node-package/g, repository],
+		[/Template TypeScript Node Package/g, options.title],
+		[/JoshuaKGoldberg/g, options.owner],
+		[/template-typescript-node-package/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
-		[/"author": ".+"/g, `"author": "${npmAuthor}"`, "./package.json"],
+		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
 		[/"bin": ".+\n/g, ``, "./package.json"],
 		[/"create:test": ".+\n/g, ``, "./package.json"],
 		[/"initialize:test": ".*/g, ``, "./package.json"],
@@ -51,7 +38,7 @@ export async function updateLocalFiles({
 	if (existingPackage.description) {
 		replacements.push([
 			new RegExp(existingPackage.description, "g"),
-			description,
+			options.description,
 		]);
 	}
 

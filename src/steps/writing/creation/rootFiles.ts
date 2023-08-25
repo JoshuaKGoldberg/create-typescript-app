@@ -1,187 +1,54 @@
-import { InputValues } from "../../../shared/inputs.js";
+import { Options } from "../../../shared/types.js";
+import { createESLintRC } from "./createESLintRC.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
+import { formatTypeScript } from "./formatters/formatTypeScript.js";
 import { writeAllContributorsRC } from "./writeAllContributorsRC.js";
 import { writePackageJson } from "./writePackageJson.js";
 
-export async function createRootFiles(values: InputValues) {
+export async function createRootFiles(options: Options) {
 	return {
-		".all-contributorsrc": await writeAllContributorsRC(values),
-		".eslintignore": formatIgnoreFile([
-			"!.*",
-			...(values.unitTests ? ["coverage*"] : []),
-			"lib",
-			"node_modules",
-			"pnpm-lock.yaml",
-		]),
-		".eslintrc.cjs": `/*
-👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
-You can read from it to see all sorts of linting goodness, but don't worry -
-it's not something you need to exhaustively understand immediately. 💙
-
-If you're interested in learning more, see the 'getting started' docs on:
-- ESLint: https://eslint.org
-- typescript-eslint: https://typescript-eslint.io
-*/
-
-/** @type {import("@types/eslint").Linter.Config} */
-module.exports = {
-	env: {
-		es2022: true,
-		node: true,
-	},
-	extends: [
-		"eslint:recommended",
-		"plugin:eslint-comments/recommended",
-		"plugin:n/recommended",
-		"plugin:perfectionist/recommended-natural",
-		"plugin:regexp/recommended",
-		"prettier",
-	],
-	/* eslint-disable perfectionist/sort-objects -- https://github.com/azat-io/eslint-plugin-perfectionist/issues/22 */
-	overrides: [
-		{
-			extends: ["plugin:markdown/recommended"],
-			files: ["**/*.md"],
-			processor: "markdown/markdown",
-		},
-		{
-			extends: [
-				"plugin:jsdoc/recommended-typescript-error",
-				"plugin:@typescript-eslint/recommended",
-			],
-			files: ["**/*.ts"],
-			parser: "@typescript-eslint/parser",
-			rules: {
-				// These off-by-default rules work well for this repo and we like them on.
-				"jsdoc/informative-docs": "error",
-
-				// These on-by-default rules don't work well for this repo and we like them off.
-				"jsdoc/require-jsdoc": "off",
-				"jsdoc/require-param": "off",
-				"jsdoc/require-property": "off",
-				"jsdoc/require-returns": "off",
-			},
-		},
-		{
-			excludedFiles: ["**/*.md/*.ts"],
-			extends: [
-				"plugin:@typescript-eslint/recommended-requiring-type-checking",
-				"plugin:@typescript-eslint/strict",
-			],
-			files: ["**/*.ts"],
-			parser: "@typescript-eslint/parser",
-			parserOptions: {
-				project: "./tsconfig.eslint.json",
-			},
-			rules: {
-				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
-			},
-		},
-		{
-			excludedFiles: ["package.json"],
-			extends: ["plugin:jsonc/recommended-with-json"],
-			files: ["*.json", "*.jsonc"],
-			parser: "jsonc-eslint-parser",
-			rules: {
-				"jsonc/sort-keys": "error",
-			},
-		},${
-			values.unitTests
-				? `\n{
-			files: "**/*.test.ts",
-			rules: {
-				// These on-by-default rules aren't useful in test files.
-				"@typescript-eslint/no-unsafe-assignment": "off",
-				"@typescript-eslint/no-unsafe-call": "off",
-			},
-		},`
-				: ""
-		}
-		{
-			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
-			files: ["**/*.{yml,yaml}"],
-			parser: "yaml-eslint-parser",
-			rules: {
-				"yml/file-extension": ["error", { extension: "yml" }],
-				"yml/sort-keys": [
-					"error",
-					{
-						order: { type: "asc" },
-						pathPattern: "^.*$",
-					},
-				],
-				"yml/sort-sequence-values": [
-					"error",
-					{
-						order: { type: "asc" },
-						pathPattern: "^.*$",
-					},
-				],
-			},
-		},
-	],
-	parser: "@typescript-eslint/parser",
-	plugins: [
-		"@typescript-eslint",
-		"deprecation",
-		"import",
-		"jsdoc",${values.unitTests ? `\n"no-only-tests",` : ""}
-		"perfectionist",
-		"regexp",${values.unitTests ? `\n"vitest",` : ""}
-	],
-	root: true,
-	rules: {
-		// These off/less-strict-by-default rules work well for this repo and we like them on.
-		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-		"import/extensions": ["error", "ignorePackages"],
-		"n/no-missing-import": "off",${
-			values.unitTests ? `\n"no-only-tests/no-only-tests": "error",` : ""
-		}
-
-		// These on-by-default rules don't work well for this repo and we like them off.
-		"no-case-declarations": "off",
-		"no-constant-condition": "off",
-		"no-inner-declarations": "off",
-
-		// Stylistic concerns that don't interfere with Prettier
-		curly: ["error", "all"],
-		"padding-line-between-statements": "off",
-		"@typescript-eslint/padding-line-between-statements": [
-			"error",
-			{ blankLine: "always", next: "*", prev: "block-like" },
-		],
-	},
-	/* eslint-enable perfectionist/sort-objects */
-};
-`,
+		".all-contributorsrc": await writeAllContributorsRC(options),
+		".eslintignore": formatIgnoreFile(
+			[
+				"!.*",
+				...(options.excludeTests ? [] : ["coverage*"]),
+				"lib",
+				"node_modules",
+				"pnpm-lock.yaml",
+			].filter(Boolean),
+		),
+		".eslintrc.cjs": await createESLintRC(options),
 		".gitignore": formatIgnoreFile([
-			...(values.unitTests ? ["coverage*/"] : []),
+			...(options.excludeTests ? [] : ["coverage*/"]),
 			"lib/",
 			"node_modules/",
 		]),
-		".markdownlint.json": await formatJson({
-			extends: "markdownlint/style/prettier",
-			"first-line-h1": false,
-			"no-inline-html": false,
+		...(!options.excludeLintMd && {
+			".markdownlint.json": await formatJson({
+				extends: "markdownlint/style/prettier",
+				"first-line-h1": false,
+				"no-inline-html": false,
+			}),
+			".markdownlintignore": formatIgnoreFile([
+				".github/CODE_OF_CONDUCT.md",
+				"CHANGELOG.md",
+				"lib/",
+				"node_modules/",
+			]),
 		}),
-		".markdownlintignore": formatIgnoreFile([
-			".github/CODE_OF_CONDUCT.md",
-			"CHANGELOG.md",
-			"lib/",
-			"node_modules/",
-		]),
-		".npmpackagejsonlintrc.json": await formatJson({
-			extends: "npm-package-json-lint-config-default",
-			rules: {
-				"require-description": "error",
-				"require-license": "error",
-			},
+		...(!options.excludeLintPackageJson && {
+			".npmpackagejsonlintrc.json": await formatJson({
+				extends: "npm-package-json-lint-config-default",
+				rules: {
+					"require-description": "error",
+					"require-license": "error",
+				},
+			}),
 		}),
 		".nvmrc": `18.17.1\n`,
 		".prettierignore": formatIgnoreFile([
-			...(values.unitTests ? ["coverage*/"] : []),
+			...(options.excludeTests ? [] : ["coverage*/"]),
 			"lib/",
 			"pnpm-lock.yaml",
 			"",
@@ -203,16 +70,18 @@ module.exports = {
 			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
 			useTabs: true,
 		}),
-		".release-it.json": await formatJson({
-			git: {
-				commitMessage: "chore: release v${version}",
-				requireCommits: true,
-			},
-			github: {
-				autoGenerate: true,
-				release: true,
-				releaseName: "v${version}",
-			},
+		...(!options.excludeReleases && {
+			".release-it.json": await formatJson({
+				git: {
+					commitMessage: "chore: release v${version}",
+					requireCommits: true,
+				},
+				github: {
+					autoGenerate: true,
+					release: true,
+					releaseName: "v${version}",
+				},
+			}),
 		}),
 		"LICENSE.md": `# MIT License
 
@@ -235,45 +104,47 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 `,
-		"cspell.json": await formatJson({
-			dictionaries: ["typescript"],
-			ignorePaths: [
-				".github",
-				"CHANGELOG.md",
-				...(values.unitTests ? ["coverage*"] : []),
-				"lib",
-				"node_modules",
-				"pnpm-lock.yaml",
-				"script/*.json",
-			],
-			words: [
-				"Codecov",
-				"codespace",
-				"commitlint",
-				"contributorsrc",
-				"conventionalcommits",
-				"execa",
-				"knip",
-				"lcov",
-				"markdownlintignore",
-				"npmpackagejsonlintrc",
-				"outro",
-				"packagejson",
-				"tsup",
-				"quickstart",
-				"wontfix",
-			],
+		...(!options.excludeLintSpelling && {
+			"cspell.json": await formatJson({
+				dictionaries: ["typescript"],
+				ignorePaths: [
+					".github",
+					"CHANGELOG.md",
+					...(options.excludeTests ? [] : ["coverage*"]),
+					"lib",
+					"node_modules",
+					"pnpm-lock.yaml",
+				],
+				words: [
+					"Codecov",
+					"codespace",
+					"commitlint",
+					"contributorsrc",
+					"conventionalcommits",
+					...(options.excludeLintKnip ? [] : ["knip"]),
+					"lcov",
+					"markdownlintignore",
+					"npmpackagejsonlintrc",
+					"outro",
+					"packagejson",
+					"tsup",
+					"quickstart",
+					"wontfix",
+				].sort(),
+			}),
 		}),
-		"knip.jsonc": await formatJson({
-			$schema: "https://unpkg.com/knip@latest/schema.json",
-			entry: ["src/index.ts!"],
-			ignoreExportsUsedInFile: {
-				interface: true,
-				type: true,
-			},
-			project: ["src/**/*.ts!"],
+		...(!options.excludeLintKnip && {
+			"knip.jsonc": await formatJson({
+				$schema: "https://unpkg.com/knip@latest/schema.json",
+				entry: ["src/index.ts!"],
+				ignoreExportsUsedInFile: {
+					interface: true,
+					type: true,
+				},
+				project: ["src/**/*.ts!"],
+			}),
 		}),
-		"package.json": await writePackageJson(values),
+		"package.json": await writePackageJson(options),
 		"tsconfig.eslint.json": await formatJson({
 			extends: "./tsconfig.json",
 			include: ["."],
@@ -283,7 +154,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				declaration: true,
 				declarationMap: true,
 				esModuleInterop: true,
-				module: "ESNext",
+				module: "NodeNext",
 				moduleResolution: "NodeNext",
 				outDir: "lib",
 				resolveJsonModule: true,
@@ -294,7 +165,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			},
 			include: ["src"],
 		}),
-		...(values.unitTests && {
+		"tsup.config.ts":
+			await formatTypeScript(`import { defineConfig } from "tsup";
+
+		export default defineConfig({
+			bundle: false,
+			clean: true,
+			dts: true,
+			entry: ["src/**/*.ts"${options.excludeTests ? "" : `, "!src/**/*.test.*"`}],
+			format: "esm",
+			outDir: "lib",
+			sourcemap: true,
+		});
+		`),
+		...(!options.excludeTests && {
 			"vitest.config.ts": `import { defineConfig } from "vitest/config";
 
 export default defineConfig({

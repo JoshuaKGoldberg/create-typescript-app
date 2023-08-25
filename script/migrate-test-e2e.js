@@ -9,7 +9,7 @@ const title = "Template TypeScript Node Package";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --mode migrate --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-github-api --skip-contributors --skip-install`;
+})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api --skip-install`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
@@ -65,7 +65,7 @@ if (unstagedModifiedFiles.length) {
 			...unstagedModifiedFiles.map((filePath) => ` - ${filePath}`),
 			"",
 			"That likely indicates changes made to the repository without",
-			"corresponding updates to templates in src/migrate/creation.",
+			"corresponding updates to templates in src/.",
 			"",
 			"Please search for those file(s)' name(s) under src/migrate for",
 			"the corresponding template and update those as well.",

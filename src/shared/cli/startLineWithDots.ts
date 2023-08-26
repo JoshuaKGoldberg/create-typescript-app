@@ -1,11 +1,13 @@
+import readline from "readline";
+
 export function startLineWithDots(line: string) {
 	let dots = 0;
 	let lastLogged!: string;
 
 	function clearLine() {
 		if (lastLogged) {
-			process.stdout.clearLine(-1);
-			process.stdout.moveCursor(-lastLogged.length, 0);
+			readline.clearLine(process.stdout, -1);
+			readline.moveCursor(process.stdout, -lastLogged.length, 0);
 		}
 	}
 

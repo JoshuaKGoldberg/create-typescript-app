@@ -1,5 +1,6 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
+import readline from "readline";
 
 import { logLine, logNewSection, makeLine } from "./lines.js";
 import { lowerFirst } from "./lowerFirst.js";
@@ -51,13 +52,13 @@ export async function withSpinners(
 			const lineLength = stopWriting();
 			lastLogged = chalk.gray(`${line} ✔️\n`);
 
-			process.stdout.clearLine(-1);
-			process.stdout.moveCursor(-lineLength, 0);
+			readline.clearLine(process.stdout, -1);
+			readline.moveCursor(process.stdout, -lineLength, 0);
 			process.stdout.write(lastLogged);
 		}
 
-		process.stdout.moveCursor(-lastLogged.length, -tasks.length - 2);
-		process.stdout.clearScreenDown();
+		readline.moveCursor(process.stdout, -lastLogged.length, -tasks.length - 2);
+		readline.clearScreenDown(process.stdout);
 
 		logNewSection(chalk.green(`✅ Passed ${lowerFirst(label)}.`));
 	} catch (error) {

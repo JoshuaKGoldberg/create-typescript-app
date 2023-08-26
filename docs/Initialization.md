@@ -40,5 +40,5 @@ See [Options.md](./Options.md).
 For example, running the initialization script and skipping all APIs:
 
 ```shell
-pnpm run initialize --skip-contributors-data --skip-github-api
+pnpm run initialize --exclude-contributors --skip-github-api
 ```

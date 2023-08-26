@@ -26,5 +26,5 @@ See [Options.md](./Options.md).
 For example, running the creation script and skipping all APIs:
 
 ```shell
-npx template-typescript-node-package --mode create --skip-contributors-data --skip-github-api
+npx template-typescript-node-package --mode create --exclude-contributors --skip-github-api
 ```

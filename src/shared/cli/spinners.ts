@@ -3,7 +3,6 @@ import chalk from "chalk";
 
 import { logLine, logNewSection, makeLine } from "./lines.js";
 import { lowerFirst } from "./lowerFirst.js";
-import { clearLine, clearScreenDown, moveCursor, write } from "./process.js";
 import { startLineWithDots } from "./startLineWithDots.js";
 
 const s = prompts.spinner();
@@ -52,13 +51,13 @@ export async function withSpinners(
 			const lineLength = stopWriting();
 			lastLogged = chalk.gray(`${line} ✔️\n`);
 
-			await clearLine(-1);
-			await moveCursor(-lineLength, 0);
-			await write(lastLogged);
+			process.stdout.clearLine(-1);
+			process.stdout.moveCursor(-lineLength, 0);
+			process.stdout.write(lastLogged);
 		}
 
 		process.stdout.moveCursor(-lastLogged.length, -tasks.length - 2);
-		await clearScreenDown();
+		process.stdout.clearScreenDown();
 
 		logNewSection(chalk.green(`✅ Passed ${lowerFirst(label)}.`));
 	} catch (error) {

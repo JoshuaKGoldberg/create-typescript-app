@@ -30,7 +30,7 @@ describe("detectExistingContributors", () => {
 			[
 			  [
 			    [
-			      "npx all-contributors add ",
+			      "npx -y all-contributors-cli add ",
 			      " ",
 			      "",
 			    ],

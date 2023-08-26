@@ -1,4 +1,4 @@
-import { withSpinner } from "../shared/cli/spinners.js";
+import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { OctokitAndOptions } from "../shared/options/readOptions.js";
 import { addOwnerAsAllContributor } from "../steps/addOwnerAsAllContributor.js";
 import { clearChangelog } from "../steps/clearChangelog.js";
@@ -15,13 +15,23 @@ export async function initializeWithOptions({
 	octokit,
 	options,
 }: OctokitAndOptions) {
-	await withSpinner("Initializing local files", async () => {
-		await updateLocalFiles(options);
-		await updateReadme();
-		await clearChangelog();
-		await updateAllContributorsTable(options);
-		await resetGitTags();
-	});
+	await withSpinners("Initializing local files", [
+		[
+			"Updating local files",
+			async () => {
+				await updateLocalFiles(options);
+			},
+		],
+		["Updating README.md", updateReadme],
+		["Clearing changelog", clearChangelog],
+		[
+			"Updating all-contributors table",
+			async () => {
+				await updateAllContributorsTable(options);
+			},
+		],
+		["Resetting Git tags", resetGitTags],
+	]);
 
 	if (!options.excludeContributors) {
 		await withSpinner("Updating existing contributor details", async () => {

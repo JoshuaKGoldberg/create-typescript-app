@@ -1,4 +1,4 @@
-import { withSpinner } from "../shared/cli/spinners.js";
+import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { OctokitAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
@@ -14,13 +14,33 @@ export async function migrateWithOptions({
 	octokit,
 	options,
 }: OctokitAndOptions) {
-	await withSpinner("Migrating repository structure", async () => {
-		await clearUnnecessaryFiles();
-		await writeStructure(options);
-		await writeReadme(options);
-		await updateLocalFiles(options);
-		await updateAllContributorsTable(options);
-	});
+	await withSpinners("Migrating repository structure", [
+		["Clearing unnecessary files", clearUnnecessaryFiles],
+		[
+			"Writing structure",
+			async () => {
+				await writeStructure(options);
+			},
+		],
+		[
+			"Writing README.md",
+			async () => {
+				await writeReadme(options);
+			},
+		],
+		[
+			"Updating local files",
+			async () => {
+				await updateLocalFiles(options);
+			},
+		],
+		[
+			"Updating all-contributors table",
+			async () => {
+				await updateAllContributorsTable(options);
+			},
+		],
+	]);
 
 	if (octokit) {
 		await withSpinner("Initializing GitHub repository", async () => {

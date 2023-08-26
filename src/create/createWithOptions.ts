@@ -1,7 +1,7 @@
 import * as prompts from "@clack/prompts";
 import { $ } from "execa";
 
-import { withSpinner } from "../shared/cli/spinners.js";
+import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
 import { OctokitAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
@@ -15,10 +15,20 @@ export async function createWithOptions({
 	octokit,
 	options,
 }: OctokitAndOptions) {
-	await withSpinner("Creating repository structure", async () => {
-		await writeStructure(options);
-		await writeReadme(options);
-	});
+	await withSpinners("Creating repository structure", [
+		[
+			"Writing structure",
+			async () => {
+				await writeStructure(options);
+			},
+		],
+		[
+			"Writing README.md",
+			async () => {
+				await writeReadme(options);
+			},
+		],
+	]);
 
 	if (!options.excludeContributors) {
 		await withSpinner("Adding contributors to table", async () => {

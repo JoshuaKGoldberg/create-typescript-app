@@ -97,7 +97,7 @@ npx template-typescript-node-package --exclude-lint-package-json --exclude-lint-
 
 You can prevent the migration script from making some network-based changes using any or all of the following CLI flags:
 
-- `--skip-contributors-data` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
+- `--exclude-contributors` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
   - This flag does nothing if `--exclude-contributors` was specified.
 - `--skip-github-api` _(`boolean`)_: Skips calling to GitHub APIs.
 - `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`.
@@ -105,7 +105,7 @@ You can prevent the migration script from making some network-based changes usin
 For example, providing all three flags will completely skip all network requests:
 
 ```shell
-npx template-typescript-node-package --skip-contributors-data --skip-github-api --skip-install
+npx template-typescript-node-package --exclude-contributors --skip-github-api --skip-install
 ```
 
 > 💡 Tip: To temporarily preview what the script would apply, you can run with all `--skip-*` flags, then `git add -A; git reset --hard HEAD` to completely reset all changes.

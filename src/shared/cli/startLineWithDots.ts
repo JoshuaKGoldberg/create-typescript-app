@@ -5,10 +5,8 @@ export function startLineWithDots(line: string) {
 	let lastLogged!: string;
 
 	function clearLine() {
-		if (lastLogged) {
-			readline.clearLine(process.stdout, -1);
-			readline.moveCursor(process.stdout, -lastLogged.length, 0);
-		}
+		readline.clearLine(process.stdout, -1);
+		readline.moveCursor(process.stdout, -lastLogged.length, 0);
 	}
 
 	function writeLine() {

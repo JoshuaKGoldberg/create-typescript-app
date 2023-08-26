@@ -14,6 +14,7 @@ export async function uninstallPackages() {
 			"@clack/prompts",
 			"all-contributors-for-repository",
 			"chalk",
+			"debug",
 			"execa",
 			"git-remote-origin-url",
 			"git-url-parse",

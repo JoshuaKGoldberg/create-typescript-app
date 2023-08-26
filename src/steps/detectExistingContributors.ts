@@ -9,6 +9,6 @@ export async function detectExistingContributors() {
 
 	for (const [contributor, contributions] of Object.entries(contributors)) {
 		const contributionTypes = Object.keys(contributions).join(",");
-		await $`npx all-contributors add ${contributor} ${contributionTypes}`;
+		await $`npx -y all-contributors-cli add ${contributor} ${contributionTypes}`;
 	}
 }

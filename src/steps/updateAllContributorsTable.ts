@@ -23,5 +23,5 @@ export async function updateAllContributorsTable({
 		),
 	);
 
-	await $`npx all-contributors generate`;
+	await $`npx -y all-contributors-cli generate`;
 }

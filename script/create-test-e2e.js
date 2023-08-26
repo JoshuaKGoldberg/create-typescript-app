@@ -27,7 +27,8 @@ for (const command of [
 	`pnpm run lint:package-json`,
 	`pnpm run lint:packages`,
 	`pnpm run lint:spelling`,
-	`pnpm run lint:knip`,
+	// https://github.com/webpro/knip/issues/219
+	// `pnpm run lint:knip`,
 	`pnpm run test run`,
 	`pnpm run tsc`,
 ]) {

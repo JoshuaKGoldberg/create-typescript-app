@@ -27,6 +27,7 @@ interface WorkflowFileOn {
 
 interface WorkflowFilePermissions {
 	contents?: string;
+	"id-token"?: string;
 	"pull-requests"?: string;
 }
 

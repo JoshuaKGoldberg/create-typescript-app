@@ -158,6 +158,7 @@ export function createWorkflows(options: Options) {
 				},
 				permissions: {
 					contents: "write",
+					"id-token": "write",
 				},
 				steps: [
 					{

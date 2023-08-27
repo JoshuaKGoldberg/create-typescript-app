@@ -100,7 +100,7 @@
 		"should-semantic-release": "^0.1.1",
 		"tsup": "^7.2.0",
 		"tsx": "^3.12.7",
-		"typescript": "^5.2.2",
+		"typescript": "^5.1.6",
 		"vitest": "^0.34.3",
 		"yaml-eslint-parser": "^1.2.2"
 	},

@@ -18,7 +18,7 @@ export async function initialize(args: string[]) {
 					label: "You may consider committing these changes:",
 					lines: [
 						`git add -A`,
-						`git commit -m "chore: initialized repo ✨`,
+						`git commit -m "feat: initialized repo ✨`,
 						`git push`,
 					],
 				},

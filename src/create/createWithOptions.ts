@@ -61,7 +61,7 @@ export async function createWithOptions({
 		await withSpinner("Initializing GitHub repository", async () => {
 			await $`git remote add origin https://github.com/${options.owner}/${options.repository}`;
 			await $`git add -A`;
-			await $`git commit --message ${"chore: initialized repo ✨"}`;
+			await $`git commit --message ${"feat: initialized repo ✨"}`;
 			await $`git push -u origin main --force`;
 			await initializeGitHubRepository(octokit, options);
 		});

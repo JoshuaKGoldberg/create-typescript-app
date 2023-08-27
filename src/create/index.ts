@@ -40,7 +40,7 @@ export async function create(args: string[]) {
 									`cd ${inputs.options.repository}`,
 									`pnpm run initialize`,
 									`git add -A`,
-									`git commit -m "chore: initial commit ✨"`,
+									`git commit -m "feat: initial commit ✨"`,
 									`git push -u origin main`,
 								],
 							},

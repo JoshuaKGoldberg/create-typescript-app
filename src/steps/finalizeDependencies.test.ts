@@ -11,13 +11,9 @@ vi.mock("execa", () => ({
 	},
 }));
 
-const mockRemoveDevDependencies = vi.fn();
-
 vi.mock("../shared/packages.js", () => ({
 	readPackageData: () => [],
-	get removeDevDependencies() {
-		return mockRemoveDevDependencies;
-	},
+	removeDependencies: vi.fn(),
 }));
 
 const options = {

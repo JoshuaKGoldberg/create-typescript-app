@@ -26,14 +26,11 @@ const files = await globby(["*.*", "**/*.*"], {
 	ignoreFiles: ["script/initialize-test-e2e.js"],
 });
 
-for (const search of [
-	`/JoshuaKGoldberg/`,
-	"template-typescript-node-package",
-]) {
+for (const search of [`/JoshuaKGoldberg/`, "create-typescript-app"]) {
 	const { stdout } = await $`grep -i ${search} ${files}`;
 	assert.equal(
 		stdout,
-		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
+		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
 	);
 }
 

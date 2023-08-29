@@ -73,7 +73,7 @@ describe("ensureRepositoryExists", () => {
 			name: repository,
 			owner,
 			template_owner: "JoshuaKGoldberg",
-			template_repo: "template-typescript-node-package",
+			template_repo: "create-typescript-app",
 		});
 	});
 
@@ -94,7 +94,7 @@ describe("ensureRepositoryExists", () => {
 			name: repository,
 			owner,
 			template_owner: "JoshuaKGoldberg",
-			template_repo: "template-typescript-node-package",
+			template_repo: "create-typescript-app",
 		});
 	});
 
@@ -139,7 +139,7 @@ describe("ensureRepositoryExists", () => {
 			name: newRepository,
 			owner,
 			template_owner: "JoshuaKGoldberg",
-			template_repo: "template-typescript-node-package",
+			template_repo: "create-typescript-app",
 		});
 	});
 

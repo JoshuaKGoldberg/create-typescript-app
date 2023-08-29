@@ -3,8 +3,8 @@
 After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 
 ```shell
-git clone https://github.com/<your-name-here>/template-typescript-node-package
-cd template-typescript-node-package
+git clone https://github.com/<your-name-here>/create-typescript-app
+cd create-typescript-app
 pnpm install
 ```
 
@@ -165,7 +165,7 @@ To test out the script locally, run it from a different repository's directory:
 
 ```shell
 cd ../other-repo
-node ../template-typescript-node-package/bin/migrate.js
+node ../create-typescript-app/bin/migrate.js
 ```
 
 The migration script will work on any directory.
@@ -175,7 +175,7 @@ You can try it out in a blank directory with scripts like:
 cd ..
 mkdir temp
 cd temp
-node ../template-typescript-node-package/bin/migrate.js
+node ../create-typescript-app/bin/migrate.js
 ```
 
 #### Testing the Migration Script

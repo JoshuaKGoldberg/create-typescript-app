@@ -5,7 +5,7 @@ import packageData from "../package.json" assert { type: "json" };
 
 const { description, name: repository } = packageData;
 const owner = "JoshuaKGoldberg";
-const title = "Template TypeScript Node Package";
+const title = "Create TypeScript App";
 
 await $({
 	stdio: "inherit",

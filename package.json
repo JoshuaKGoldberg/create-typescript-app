@@ -1,10 +1,10 @@
 {
-	"name": "template-typescript-node-package",
+	"name": "create-typescript-app",
 	"version": "1.29.13",
 	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
+		"url": "https://github.com/JoshuaKGoldberg/create-typescript-app"
 	},
 	"license": "MIT",
 	"author": {

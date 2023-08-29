@@ -41,7 +41,7 @@ export interface Options {
 	funding: string | undefined;
 	owner: string;
 	repository: string;
-	skipApi: boolean;
+	skipGitHubApi: boolean;
 	skipInstall: boolean | undefined;
 	skipRemoval: boolean | undefined;
 	skipRestore: boolean | undefined;

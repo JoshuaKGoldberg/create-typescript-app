@@ -45,7 +45,7 @@ const options = {
 	funding: undefined,
 	owner: "TestOwner",
 	repository: "test-repository",
-	skipApi: false,
+	skipGitHubApi: false,
 	skipInstall: true,
 	skipRemoval: false,
 	skipRestore: false,

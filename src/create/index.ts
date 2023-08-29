@@ -6,6 +6,7 @@ import fs from "node:fs/promises";
 import { outro } from "../shared/cli/outro.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
+import { createRerunSuggestion } from "./createRerunSuggestion.js";
 import { createWithOptions } from "./createWithOptions.js";
 
 export async function create(args: string[]) {
@@ -38,7 +39,11 @@ export async function create(args: string[]) {
 									"Consider creating a GitHub repository from the new directory:",
 								lines: [
 									`cd ${inputs.options.repository}`,
-									`pnpm run initialize`,
+									createRerunSuggestion("initialize", {
+										...inputs.options,
+										skipGitHubApi: false,
+										skipInstall: false,
+									}),
 									`git add -A`,
 									`git commit -m "feat: initial commit ✨"`,
 									`git push -u origin main`,

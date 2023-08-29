@@ -21,11 +21,9 @@ describe("removeDependencies", () => {
 			  [
 			    [
 			      "pnpm remove ",
-			      " ",
 			      "",
 			    ],
 			    "exists",
-			    "",
 			  ],
 			]
 		`);
@@ -45,11 +43,9 @@ describe("removeDependencies", () => {
 			  [
 			    [
 			      "pnpm remove ",
-			      " ",
 			      "",
 			    ],
-			    "exists",
-			    "-D",
+			    "exists -D",
 			  ],
 			]
 		`);

@@ -17,6 +17,6 @@ export async function removeDependencies(
 	const present = packageNames.filter((packageName) => packageName in existing);
 
 	if (present.length) {
-		await $`pnpm remove ${present.join(" ")} ${flags}`;
+		await $`pnpm remove ${[...present, flags].filter(Boolean).join(" ")}`;
 	}
 }

@@ -29,7 +29,7 @@ describe("removeDependencies", () => {
 		`);
 	});
 
-	it("adds a flag removes packages when one is provided", async () => {
+	it("adds a flag to removing packages when one is provided", async () => {
 		await removeDependencies(
 			["exists", "missing"],
 			{

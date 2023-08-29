@@ -2,32 +2,39 @@ import { describe, expect, it, vi } from "vitest";
 
 import { removeDependencies } from "./packages.js";
 
-const mock$ = vi.fn();
+const mockExecaCommand = vi.fn();
 
 vi.mock("execa", () => ({
-	get $() {
-		return mock$;
+	get execaCommand() {
+		return mockExecaCommand;
 	},
 }));
 
 describe("removeDependencies", () => {
+	it("removes all packages that already exist when all already exist", async () => {
+		await removeDependencies(["one", "two"], {
+			one: "1.2.3",
+			two: "4.5.6",
+		});
+
+		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    "pnpm remove one two",
+			  ],
+			]
+		`);
+	});
+
 	it("removes only packages that already exist when some don't exist", async () => {
 		await removeDependencies(["exists", "missing"], {
 			exists: "1.2.3",
 		});
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "pnpm remove ",
-			      "",
-			      "",
-			    ],
-			    [
-			      "exists",
-			    ],
-			    "",
+			    "pnpm remove exists",
 			  ],
 			]
 		`);
@@ -42,18 +49,10 @@ describe("removeDependencies", () => {
 			"-D",
 		);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "pnpm remove ",
-			      "",
-			      "",
-			    ],
-			    [
-			      "exists",
-			    ],
-			    " -D",
+			    "pnpm remove exists -D",
 			  ],
 			]
 		`);
@@ -62,6 +61,6 @@ describe("removeDependencies", () => {
 	it("does nothing when no packages already exist", async () => {
 		await removeDependencies(["missing"]);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot("[]");
+		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot("[]");
 	});
 });

@@ -14,7 +14,7 @@ export async function bin(args: string[]) {
 	prompts.intro(
 		[
 			chalk.greenBright(`Welcome to`),
-			chalk.bgGreenBright.black(`template-typescript-node-package`),
+			chalk.bgGreenBright.black(`create-typescript-app`),
 			chalk.greenBright(`! 🎉`),
 		].join(" "),
 	);

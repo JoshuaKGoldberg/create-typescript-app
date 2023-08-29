@@ -61,7 +61,7 @@ export async function ensureRepositoryExists(
 					name: repository,
 					owner: options.owner,
 					template_owner: "JoshuaKGoldberg",
-					template_repo: "template-typescript-node-package",
+					template_repo: "create-typescript-app",
 				});
 				return { octokit, repository };
 

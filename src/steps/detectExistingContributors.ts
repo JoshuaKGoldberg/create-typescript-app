@@ -4,7 +4,7 @@ import { $ } from "execa";
 export async function detectExistingContributors() {
 	const contributors = await getAllContributorsForRepository({
 		owner: "JoshuaKGoldberg",
-		repo: "template-typescript-node-package",
+		repo: "create-typescript-app",
 	});
 
 	for (const [contributor, contributions] of Object.entries(contributors)) {

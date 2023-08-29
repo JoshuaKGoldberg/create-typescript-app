@@ -59,7 +59,7 @@ describe("updateLocalFiles", () => {
 		await expect(async () => {
 			await updateLocalFiles(options);
 		}).rejects.toThrowErrorMatchingInlineSnapshot(
-			'"Failed to replace /Template TypeScript Node Package/g with Stub Title in ./.github/**/*,./*.*"',
+			'"Failed to replace /Create TypeScript App/g with Stub Title in ./.github/**/*,./*.*"',
 		);
 	});
 
@@ -77,7 +77,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /Template TypeScript Node Package/g,
+			      "from": /Create TypeScript App/g,
 			      "to": "Stub Title",
 			    },
 			  ],
@@ -97,7 +97,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /template-typescript-node-package/g,
+			      "from": /create-typescript-app/g,
 			      "to": "stub-repository",
 			    },
 			  ],
@@ -212,7 +212,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /Template TypeScript Node Package/g,
+			      "from": /Create TypeScript App/g,
 			      "to": "Stub Title",
 			    },
 			  ],
@@ -232,7 +232,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /template-typescript-node-package/g,
+			      "from": /create-typescript-app/g,
 			      "to": "stub-repository",
 			    },
 			  ],
@@ -350,7 +350,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /Template TypeScript Node Package/g,
+			      "from": /Create TypeScript App/g,
 			      "to": "Stub Title",
 			    },
 			  ],
@@ -370,7 +370,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /template-typescript-node-package/g,
+			      "from": /create-typescript-app/g,
 			      "to": "stub-repository",
 			    },
 			  ],

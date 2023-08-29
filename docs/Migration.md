@@ -1,9 +1,9 @@
 # Migrating an Existing Repository
 
-If you have an existing repository that you'd like to give the files from this repository, you can run `npx template-typescript-node-package` in it to "migrate" its tooling to this template's.
+If you have an existing repository that you'd like to give the files from this repository, you can run `npx create-typescript-app` in it to "migrate" its tooling to this template's.
 
 ```shell
-npx template-typescript-node-package
+npx create-typescript-app
 ```
 
 > **Warning**
@@ -19,5 +19,5 @@ See [Options.md](./Options.md).
 For example, running the migration script and skipping all APIs:
 
 ```shell
-npx template-typescript-node-package --mode migrate --exclude-contributors --skip-github-api
+npx create-typescript-app --mode migrate --exclude-contributors --skip-github-api
 ```

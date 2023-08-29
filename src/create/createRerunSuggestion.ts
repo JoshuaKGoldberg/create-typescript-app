@@ -19,5 +19,5 @@ export function createRerunSuggestion(mode: Mode, options: Options): string {
 		})
 		.join(" ");
 
-	return `npx template-typescript-node-package --mode ${mode} ${args}`;
+	return `npx create-typescript-app --mode ${mode} ${args}`;
 }

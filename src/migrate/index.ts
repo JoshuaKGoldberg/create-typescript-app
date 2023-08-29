@@ -18,7 +18,7 @@ export async function migrate(args: string[]) {
 					label: "You may consider committing these changes:",
 					lines: [
 						`git add -A`,
-						`git commit -m "migrated repo to template-typescript-node-package ✨`,
+						`git commit -m "migrated repo to create-typescript-app ✨`,
 						`git push`,
 					],
 				},

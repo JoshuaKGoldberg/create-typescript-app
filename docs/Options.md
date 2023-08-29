@@ -1,8 +1,8 @@
 # Options
 
-All three of `template-typescript-node-package`'s setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- support a shared set of input options.
+All three of `create-typescript-app`'s setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- support a shared set of input options.
 
-> This page uses `npx template-typescript-node-package` in its code examples, but `pnpm run initialize` works the same.
+> This page uses `npx create-typescript-app` in its code examples, but `pnpm run initialize` works the same.
 
 ## Required Options
 
@@ -25,7 +25,7 @@ These required options determine how the creation script will set up and scaffol
 For example, scaffolding a full new repository in the current directory and also linking it to a new repository on github.com:
 
 ```shell
-npx template-typescript-node-package --base everything --create-repository --mode create
+npx create-typescript-app --base everything --create-repository --mode create
 ```
 
 ### Core Options
@@ -34,13 +34,13 @@ These required options determine the options that will be substituted into the t
 
 - `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
-- `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
-- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
+- `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `create-typescript-app`)
+- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Create TypeScript App`)
 
 For example, pre-populating all core required options and also creating a new repository:
 
 ```shell
-npx template-typescript-node-package --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
+npx create-typescript-app --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
 ```
 
 That script will run completely autonomously, no prompted inputs required. ✨
@@ -56,7 +56,7 @@ The setup scripts also allow for optional overrides of the following inputs whos
 For example, customizing the ownership and users associated with a new repository:
 
 ```shell
-npx template-typescript-node-package --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
+npx create-typescript-app --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
 ```
 
 > 💡 You can always manually edit files such as `package.json` after running a setup script.
@@ -87,7 +87,7 @@ Alternately, you can bypass that prompt by providing any number of the following
 For example, initializing with all tooling except for `package.json` checks and Renovate:
 
 ```shell
-npx template-typescript-node-package --exclude-lint-package-json --exclude-lint-packages --exclude-renovate
+npx create-typescript-app --exclude-lint-package-json --exclude-lint-packages --exclude-renovate
 ```
 
 > **Warning**
@@ -105,7 +105,7 @@ You can prevent the migration script from making some network-based changes usin
 For example, providing all three flags will completely skip all network requests:
 
 ```shell
-npx template-typescript-node-package --exclude-contributors --skip-github-api --skip-install
+npx create-typescript-app --exclude-contributors --skip-github-api --skip-install
 ```
 
 > 💡 Tip: To temporarily preview what the script would apply, you can run with all `--skip-*` flags, then `git add -A; git reset --hard HEAD` to completely reset all changes.
@@ -121,5 +121,5 @@ You can prevent the migration script from making some changes on disk using any 
 For example, providing all local change skip flags:
 
 ```shell
-npx template-typescript-node-package --skip-removal --skip-restore --skip-uninstall
+npx create-typescript-app --skip-removal --skip-restore --skip-uninstall
 ```

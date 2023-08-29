@@ -13,9 +13,9 @@ export async function updateLocalFiles(options: Options) {
 		{}) as ExistingPackageData;
 
 	const replacements = [
-		[/Template TypeScript Node Package/g, options.title],
+		[/Create TypeScript App/g, options.title],
 		[/JoshuaKGoldberg/g, options.owner],
-		[/template-typescript-node-package/g, options.repository],
+		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
 		[/"bin": ".+\n/g, ``, "./package.json"],

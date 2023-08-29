@@ -1,6 +1,6 @@
 # Initializing from the Template
 
-As an alternative to [creating with `npx template-typescript-node-package`](./Creation.md), the [_Use this template_](https://github.com/JoshuaKGoldberg/template-typescript-node-package/generate) button on GitHub can be used to quickly create a new repository from the template.
+As an alternative to [creating with `npx create-typescript-app`](./Creation.md), the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub can be used to quickly create a new repository from the template.
 You can set up the new repository locally by cloning it and installing packages:
 
 ```shell

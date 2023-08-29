@@ -1,6 +1,6 @@
 import { execaCommand } from "execa";
 
-import { readPackageData, removeDevDependencies } from "../shared/packages.js";
+import { readPackageData, removeDependencies } from "../shared/packages.js";
 import { Options } from "../shared/types.js";
 
 export async function finalizeDependencies(options: Options) {
@@ -68,9 +68,10 @@ export async function finalizeDependencies(options: Options) {
 
 	if (!options.excludeContributors) {
 		await execaCommand(`npx all-contributors-cli generate`);
-		await removeDevDependencies(
+		await removeDependencies(
 			["all-contributors-cli", "all-contributors-for-repository"],
-			await readPackageData(),
+			(await readPackageData()).devDependencies,
+			"-D",
 		);
 	}
 

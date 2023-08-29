@@ -1,10 +1,6 @@
 import { $ } from "execa";
 
-import {
-	readPackageData,
-	removeDependencies,
-	removeDevDependencies,
-} from "../shared/packages.js";
+import { readPackageData, removeDependencies } from "../shared/packages.js";
 
 export async function uninstallPackages() {
 	const packageData = await readPackageData();
@@ -24,10 +20,10 @@ export async function uninstallPackages() {
 			"replace-in-file",
 			"title-case",
 		],
-		packageData,
+		packageData.dependencies,
 	);
 
-	await removeDevDependencies(
+	await removeDependencies(
 		[
 			"@octokit/request-error",
 			"@types/git-url-parse",
@@ -38,7 +34,8 @@ export async function uninstallPackages() {
 			"globby",
 			"tsx",
 		],
-		packageData,
+		packageData.devDependencies,
+		"-D",
 	);
 
 	await $`pnpm add prettier -D`;

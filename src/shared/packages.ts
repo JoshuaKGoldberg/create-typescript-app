@@ -1,4 +1,4 @@
-import { $ } from "execa";
+import { execaCommand } from "execa";
 
 import { readFileSafe } from "./readFileSafe.js";
 import { PartialPackageData } from "./types.js";
@@ -11,22 +11,14 @@ export async function readPackageData() {
 
 export async function removeDependencies(
 	packageNames: string[],
-	packageData: PartialPackageData,
+	existing: Record<string, string> = {},
+	flags = "",
 ) {
-	await $`pnpm remove ${packageNames.filter(
-		packageExists(packageData.dependencies),
-	)}`;
-}
+	const present = packageNames.filter((packageName) => packageName in existing);
 
-export async function removeDevDependencies(
-	packageNames: string[],
-	packageData: PartialPackageData,
-) {
-	await $`pnpm remove ${packageNames.filter(
-		packageExists(packageData.devDependencies),
-	)} -D`;
-}
-
-function packageExists(listing: Record<string, string> = {}) {
-	return (packageName: string) => packageName in listing;
+	if (present.length) {
+		await execaCommand(
+			`pnpm remove ${present.join(" ")}${flags ? ` ${flags}` : ""}`,
+		);
+	}
 }

@@ -35,7 +35,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx template-typescript-node-package --mode initialize --description \\"Test description.\\" --exclude-compliance true --owner TestOwner --repository test-repository --title \\"Test Title\\""',
+			'"npx template-typescript-node-package --mode initialize --author TestAuthor --base everything --create-repository true --description \\"Test description.\\" --email test@test.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 });

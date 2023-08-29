@@ -91,7 +91,7 @@ export async function readOptions(args: string[]): Promise<OctokitAndOptions> {
 			),
 			owner,
 			repository: repository,
-			skipApi: !!values["skip-github-api"],
+			skipGitHubApi: !!values["skip-github-api"],
 			skipInstall: !!values["skip-install"],
 			skipRemoval: !!values["skip-removal"],
 			skipRestore: values["skip-restore"] as boolean | undefined,

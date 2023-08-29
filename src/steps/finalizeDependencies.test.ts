@@ -42,7 +42,7 @@ const options = {
 	funding: undefined,
 	owner: "StubOwner",
 	repository: "stub-repository",
-	skipApi: false,
+	skipGitHubApi: false,
 	skipInstall: undefined,
 	skipRemoval: undefined,
 	skipRestore: undefined,

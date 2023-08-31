@@ -148,6 +148,7 @@ module.exports = {
 		}
 		"regexp",${options.excludeTests ? "" : `\n"vitest",`}
 	],
+	reportUnusedDisableDirectives: true,
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.

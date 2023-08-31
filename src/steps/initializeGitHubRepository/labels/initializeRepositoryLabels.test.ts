@@ -23,6 +23,35 @@ vi.mock("./outcomeLabels.js", () => ({
 }));
 
 describe("migrateRepositoryLabels", () => {
+	it("creates a outcome label when labels stdout is returned", async () => {
+		mock$.mockResolvedValue({
+			stdout: "",
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label create ",
+			      " --color ",
+			      " --description ",
+			      "",
+			    ],
+			    "abc",
+			    "000000",
+			    "def ghi",
+			  ],
+			]
+		`);
+	});
+
 	it("creates a outcome label when it doesn't already exist", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([

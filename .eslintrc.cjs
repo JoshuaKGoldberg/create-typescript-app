@@ -135,6 +135,7 @@ module.exports = {
 		"vitest",
 	],
 	root: true,
+	reportUnusedDisableDirectives: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],

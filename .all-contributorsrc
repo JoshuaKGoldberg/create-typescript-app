@@ -214,6 +214,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ryota-murakami",
+      "name": "Ryota Murakami",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5501268?v=4",
+      "profile": "https://ryota-murakami.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

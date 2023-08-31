@@ -6,7 +6,7 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 22 🤝" src="https://img.shields.io/badge/all_contributors-22_🤝-21bb42.svg" />
+<img alt="All Contributors: 23 🤝" src="https://img.shields.io/badge/all_contributors-23_🤝-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>
@@ -102,10 +102,11 @@ Thanks! 💖
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/RebeccaStevens"><img src="https://avatars.githubusercontent.com/u/7224206?v=4?s=100" width="100px;" alt="Rebecca Stevens"/><br /><sub><b>Rebecca Stevens</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=RebeccaStevens" title="Code">💻</a> <a href="#infra-RebeccaStevens" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://linktr.ee/ronbraha"><img src="https://avatars.githubusercontent.com/u/45559220?v=4?s=100" width="100px;" alt="Ron Braha"/><br /><sub><b>Ron Braha</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=RNR1" title="Code">💻</a> <a href="#design-RNR1" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=RNR1" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://ronjeanfrancois.com"><img src="https://avatars.githubusercontent.com/u/105710107?v=4?s=100" width="100px;" alt="Ron Jean-Francois"/><br /><sub><b>Ron Jean-Francois</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=ronthetech" title="Code">💻</a> <a href="#infra-ronthetech" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://ryota-murakami.github.io/"><img src="https://avatars.githubusercontent.com/u/5501268?v=4?s=100" width="100px;" alt="Ryota Murakami"/><br /><sub><b>Ryota Murakami</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=ryota-murakami" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/the-lazy-learner"><img src="https://avatars.githubusercontent.com/u/13695177?v=4?s=100" width="100px;" alt="Sudhansu"/><br /><sub><b>Sudhansu</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=the-lazy-learner" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tungbq"><img src="https://avatars.githubusercontent.com/u/85242618?v=4?s=100" width="100px;" alt="Tung Bui (Leo)"/><br /><sub><b>Tung Bui (Leo)</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=tungbq" title="Code">💻</a></td>
     </tr>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tungbq"><img src="https://avatars.githubusercontent.com/u/85242618?v=4?s=100" width="100px;" alt="Tung Bui (Leo)"/><br /><sub><b>Tung Bui (Leo)</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=tungbq" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=TAKANOME-DEV" title="Code">💻</a></td>
     </tr>
   </tbody>

@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "1.29.17",
+	"version": "1.29.19",
 	"description": "Quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
@@ -64,8 +64,8 @@
 		"@types/js-yaml": "^4.0.5",
 		"@types/node": "^20.5.6",
 		"@types/prettier": "^2.7.3",
-		"@typescript-eslint/eslint-plugin": "^6.4.1",
-		"@typescript-eslint/parser": "^6.4.1",
+		"@typescript-eslint/eslint-plugin": "^6.5.0",
+		"@typescript-eslint/parser": "^6.5.0",
 		"@vitest/coverage-v8": "^0.34.3",
 		"c8": "^8.0.1",
 		"console-fail-test": "^0.2.3",

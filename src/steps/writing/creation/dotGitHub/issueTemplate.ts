@@ -61,7 +61,7 @@ export function createDotGitHubIssueTemplate({
 			],
 			description: "Report a bug trying to run the code",
 			labels: ["type: bug"],
-			name: "🐛 Report a Bug",
+			name: "🐛 Bug",
 			title: "🐛 Bug: <short description of the bug>",
 		}),
 		"02-documentation.yml": formatYaml({
@@ -154,7 +154,7 @@ export function createDotGitHubIssueTemplate({
 			description:
 				"Request that a new feature be added or an existing feature improved",
 			labels: ["type: feature"],
-			name: "🚀 Request a Feature",
+			name: "🚀 Feature",
 			title: "🚀 Feature: <short description of the feature>",
 		}),
 		"04-tooling.yml": formatYaml({

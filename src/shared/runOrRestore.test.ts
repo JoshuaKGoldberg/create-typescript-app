@@ -64,7 +64,7 @@ describe("runOrRestore", () => {
 		});
 
 		expect(actual).toEqual(2);
-		expect(mock$.mock.calls).toMatchInlineSnapshot("[]");
+		expect(mock$).toHaveBeenCalledTimes(0);
 	});
 
 	it("returns 2 and restores the repository when run rejects and skipRestore is false", async () => {

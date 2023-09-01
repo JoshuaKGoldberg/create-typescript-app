@@ -3,14 +3,22 @@ import chalk from "chalk";
 import { $ } from "execa";
 import fs from "node:fs/promises";
 
+import { ModeResult } from "../bin/mode.js";
 import { outro } from "../shared/cli/outro.js";
+import { StatusCodes } from "../shared/codes.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 import { createWithOptions } from "./createWithOptions.js";
 
-export async function create(args: string[]) {
+export async function create(args: string[]): Promise<ModeResult> {
 	const inputs = await readOptions(args);
+	if (inputs.cancelled) {
+		return {
+			code: StatusCodes.Cancelled,
+			options: inputs.options,
+		};
+	}
 
 	if (!(await createAndEnterRepository(inputs.options.repository))) {
 		prompts.outro(
@@ -18,46 +26,49 @@ export async function create(args: string[]) {
 				`The ${inputs.options.repository} directory already exists. Please remove the directory or try a different name.`,
 			),
 		);
-		return;
+		return { code: 1, options: inputs.options };
 	}
 
-	return await runOrRestore({
-		run: async () => {
-			const { sentToGitHub } = await createWithOptions(inputs);
+	return {
+		code: await runOrRestore({
+			run: async () => {
+				const { sentToGitHub } = await createWithOptions(inputs);
 
-			outro(
-				sentToGitHub
-					? [
-							{
-								label:
-									"Now all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
-							},
-					  ]
-					: [
-							{
-								label:
-									"Consider creating a GitHub repository from the new directory:",
-								lines: [
-									`cd ${inputs.options.repository}`,
-									createRerunSuggestion("initialize", {
-										...inputs.options,
-										skipGitHubApi: false,
-										skipInstall: false,
-									}),
-									`git add -A`,
-									`git commit -m "feat: initial commit ✨"`,
-									`git push -u origin main`,
-								],
-							},
-							{
-								label:
-									"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
-							},
-					  ],
-			);
-		},
-		skipRestore: inputs.options.skipRestore,
-	});
+				outro(
+					sentToGitHub
+						? [
+								{
+									label:
+										"Now all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
+								},
+						  ]
+						: [
+								{
+									label:
+										"Consider creating a GitHub repository from the new directory:",
+									lines: [
+										`cd ${inputs.options.repository}`,
+										createRerunSuggestion("initialize", {
+											...inputs.options,
+											skipGitHubApi: false,
+											skipInstall: false,
+										}),
+										`git add -A`,
+										`git commit -m "feat: initial commit ✨"`,
+										`git push -u origin main`,
+									],
+								},
+								{
+									label:
+										"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
+								},
+						  ],
+				);
+			},
+			skipRestore: inputs.options.skipRestore,
+		}),
+		options: inputs.options,
+	};
 }
 
 async function createAndEnterRepository(repository: string) {

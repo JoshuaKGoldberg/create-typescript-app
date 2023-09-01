@@ -1,7 +1,15 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
-import { handlePromptCancel } from "../shared/prompts.js";
+import { filterPromptCancel } from "../shared/prompts.js";
+import { Options } from "../shared/types.js";
+
+export interface ModeResult {
+	code: number;
+	options: Partial<Options>;
+}
+
+export type ModeRunner = (args: string[]) => Promise<ModeResult>;
 
 export type Mode = "create" | "initialize" | "migrate";
 
@@ -11,9 +19,7 @@ function isMode(input: boolean | string): input is Mode {
 	return allowedModes.includes(input as Mode);
 }
 
-export async function promptForMode(
-	input: boolean | string | undefined,
-): Promise<Error | Mode> {
+export async function promptForMode(input: boolean | string | undefined) {
 	if (input) {
 		if (!isMode(input)) {
 			return new Error(
@@ -26,7 +32,7 @@ export async function promptForMode(
 		return input;
 	}
 
-	const selection = handlePromptCancel(
+	const selection = filterPromptCancel(
 		(await prompts.select({
 			message: chalk.blue("How would you like to use the template?"),
 			options: [

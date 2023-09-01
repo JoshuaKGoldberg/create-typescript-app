@@ -2,7 +2,7 @@ import * as prompts from "@clack/prompts";
 import { Octokit } from "octokit";
 
 import { doesRepositoryExist } from "../doesRepositoryExist.js";
-import { handleCancel, handlePromptCancel } from "../prompts.js";
+import { filterPromptCancel } from "../prompts.js";
 import { Options } from "../types.js";
 
 export type EnsureRepositoryExistsOptions = Pick<
@@ -18,7 +18,7 @@ export interface RepositoryExistsResult {
 export async function ensureRepositoryExists(
 	octokit: Octokit | undefined,
 	options: EnsureRepositoryExistsOptions,
-): Promise<RepositoryExistsResult> {
+): Promise<Partial<RepositoryExistsResult>> {
 	// We'll only respect input options once before prompting for them
 	let { createRepository, repository } = options;
 
@@ -31,7 +31,7 @@ export async function ensureRepositoryExists(
 
 		const selection = createRepository
 			? "create"
-			: handlePromptCancel(
+			: filterPromptCancel(
 					(await prompts.select({
 						message: `Repository ${options.repository} doesn't seem to exist under ${options.owner}. What would you like to do?`,
 						options: [
@@ -53,8 +53,7 @@ export async function ensureRepositoryExists(
 
 		switch (selection) {
 			case "bail":
-				handleCancel();
-				break;
+				return {};
 
 			case "create":
 				await octokit.rest.repos.createUsingTemplate({
@@ -66,11 +65,15 @@ export async function ensureRepositoryExists(
 				return { octokit, repository };
 
 			case "different":
-				const newRepository = handlePromptCancel(
+				const newRepository = filterPromptCancel(
 					await prompts.text({
 						message: `What would you like to call the repository?`,
 					}),
 				);
+
+				if (!newRepository) {
+					return {};
+				}
 
 				repository = newRepository;
 				break;

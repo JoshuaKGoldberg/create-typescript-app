@@ -49,7 +49,7 @@ describe("runOrRestore", () => {
 		expect(actual).toEqual(0);
 	});
 
-	it("returns 1 and does not restore the repository when run rejects and skipRestore is true", async () => {
+	it("returns 2 and does not restore the repository when run rejects and skipRestore is true", async () => {
 		mockGetInputValuesAndOctokit.mockResolvedValue({
 			octokit: undefined,
 			values: {
@@ -63,11 +63,11 @@ describe("runOrRestore", () => {
 			skipRestore: true,
 		});
 
-		expect(actual).toEqual(1);
-		expect(mock$).toHaveBeenCalledTimes(0);
+		expect(actual).toEqual(2);
+		expect(mock$.mock.calls).toMatchInlineSnapshot("[]");
 	});
 
-	it("returns 1 and restores the repository when run rejects and skipRestore is false", async () => {
+	it("returns 2 and restores the repository when run rejects and skipRestore is false", async () => {
 		mockGetInputValuesAndOctokit.mockResolvedValue({
 			octokit: undefined,
 			values: {
@@ -81,8 +81,15 @@ describe("runOrRestore", () => {
 			skipRestore: false,
 		});
 
-		expect(actual).toEqual(1);
-		expect(mock$).toHaveBeenCalledTimes(1);
-		expect(mock$).toHaveBeenCalledWith(["git restore ."]);
+		expect(actual).toEqual(2);
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "git restore .",
+			    ],
+			  ],
+			]
+		`);
 	});
 });

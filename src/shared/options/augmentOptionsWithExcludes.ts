@@ -1,6 +1,6 @@
 import * as prompts from "@clack/prompts";
 
-import { handlePromptCancel } from "../prompts.js";
+import { filterPromptCancel } from "../prompts.js";
 import { Options } from "../types.js";
 
 type Base = "everything" | "minimum" | "prompt";
@@ -72,7 +72,7 @@ const exclusionKeys = Object.keys(exclusionDescriptions) as ExclusionKey[];
 
 export async function augmentOptionsWithExcludes(
 	options: Options,
-): Promise<Options> {
+): Promise<Options | undefined> {
 	if (
 		Object.keys(options).some(
 			(key) =>
@@ -85,7 +85,7 @@ export async function augmentOptionsWithExcludes(
 
 	const base =
 		options.base ??
-		handlePromptCancel<Base | symbol>(
+		filterPromptCancel<Base | symbol>(
 			await prompts.select({
 				message: `How much tooling would you like the template to set up for you?`,
 				options: [
@@ -107,6 +107,9 @@ export async function augmentOptionsWithExcludes(
 		);
 
 	switch (base) {
+		case undefined:
+			return undefined;
+
 		case "everything":
 			return options;
 
@@ -123,7 +126,7 @@ export async function augmentOptionsWithExcludes(
 
 		case "prompt":
 			const exclusionsNotEnabled = new Set(
-				handlePromptCancel(
+				filterPromptCancel(
 					await prompts.multiselect({
 						initialValues: exclusionKeys,
 						message:

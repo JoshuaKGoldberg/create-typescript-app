@@ -1,13 +1,12 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
-import { $ } from "execa";
-import fs from "node:fs/promises";
 
 import { ModeResult } from "../bin/mode.js";
 import { outro } from "../shared/cli/outro.js";
 import { StatusCodes } from "../shared/codes.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
+import { createAndEnterRepository } from "./createAndEnterRepository.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 import { createWithOptions } from "./createWithOptions.js";
 
@@ -20,13 +19,14 @@ export async function create(args: string[]): Promise<ModeResult> {
 		};
 	}
 
-	if (!(await createAndEnterRepository(inputs.options.repository))) {
+	const wat = await createAndEnterRepository(inputs.options.repository);
+	if (!wat) {
 		prompts.outro(
 			chalk.red(
 				`The ${inputs.options.repository} directory already exists. Please remove the directory or try a different name.`,
 			),
 		);
-		return { code: 1, options: inputs.options };
+		return { code: StatusCodes.Failure, options: inputs.options };
 	}
 
 	return {
@@ -69,16 +69,4 @@ export async function create(args: string[]): Promise<ModeResult> {
 		}),
 		options: inputs.options,
 	};
-}
-
-async function createAndEnterRepository(repository: string) {
-	if ((await fs.readdir(".")).includes(repository)) {
-		return false;
-	}
-
-	await fs.mkdir(repository);
-	process.chdir(repository);
-	await $`git init`;
-
-	return true;
 }

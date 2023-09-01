@@ -3,9 +3,13 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { bin } from "./index.js";
 
+const mockCancel = vi.fn();
 const mockOutro = vi.fn();
 
 vi.mock("@clack/prompts", () => ({
+	get cancel() {
+		return mockCancel;
+	},
 	intro: vi.fn(),
 	log: {
 		info: vi.fn(),
@@ -81,7 +85,7 @@ describe("bin", () => {
 		expect(result).toEqual(1);
 	});
 
-	it("returns the result of a runner promptForMode returns a mode", async () => {
+	it("returns the success result of the corresponding runner without cancel logging when promptForMode returns a mode that succeeds", async () => {
 		const mode = "create";
 		const args = ["--owner", "abc123"];
 		const code = 0;
@@ -92,8 +96,43 @@ describe("bin", () => {
 		const result = await bin(args);
 
 		expect(mockCreate).toHaveBeenCalledWith(args);
+		expect(mockCancel).not.toHaveBeenCalled();
 		expect(mockInitialize).not.toHaveBeenCalled();
 		expect(mockMigrate).not.toHaveBeenCalled();
+		expect(result).toEqual(code);
+	});
+
+	it("returns the cancel result of the corresponding runner and cancel logs when promptForMode returns a mode that cancels", async () => {
+		const mode = "create";
+		const args = ["--owner", "abc123"];
+		const code = 2;
+
+		mockPromptForMode.mockResolvedValue(mode);
+		mockCreate.mockResolvedValue({ code, options: {} });
+
+		const result = await bin(args);
+
+		expect(mockCreate).toHaveBeenCalledWith(args);
+		expect(mockCancel).toHaveBeenCalledWith(
+			`Operation cancelled. Exiting - maybe another time? 👋`,
+		);
+		expect(result).toEqual(code);
+	});
+
+	it("returns the cancel result of the corresponding runner and cancel logs when promptForMode returns a mode that fails", async () => {
+		const mode = "create";
+		const args = ["--owner", "abc123"];
+		const code = 1;
+
+		mockPromptForMode.mockResolvedValue(mode);
+		mockCreate.mockResolvedValue({ code, options: {} });
+
+		const result = await bin(args);
+
+		expect(mockCreate).toHaveBeenCalledWith(args);
+		expect(mockCancel).toHaveBeenCalledWith(
+			`Operation failed. Exiting - maybe another time? 👋`,
+		);
 		expect(result).toEqual(code);
 	});
 });

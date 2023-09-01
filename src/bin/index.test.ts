@@ -65,13 +65,9 @@ describe("bin", () => {
 
 		const result = await bin([]);
 
-		expect(mockOutro.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    "[31mOperation cancelled. Exiting - maybe another time? 👋[39m",
-			  ],
-			]
-		`);
+		expect(mockOutro).toHaveBeenCalledWith(
+			chalk.red("Operation cancelled. Exiting - maybe another time? 👋"),
+		);
 		expect(result).toEqual(1);
 	});
 
@@ -81,13 +77,7 @@ describe("bin", () => {
 
 		const result = await bin([]);
 
-		expect(mockOutro.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    "[31mOh no![39m",
-			  ],
-			]
-		`);
+		expect(mockOutro).toHaveBeenCalledWith(chalk.red(error.message));
 		expect(result).toEqual(1);
 	});
 

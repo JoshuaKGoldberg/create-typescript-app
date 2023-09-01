@@ -1,11 +1,12 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
+import { StatusCode } from "../shared/codes.js";
 import { filterPromptCancel } from "../shared/prompts.js";
 import { Options } from "../shared/types.js";
 
 export interface ModeResult {
-	code: number;
+	code: StatusCode;
 	options: Partial<Options>;
 }
 

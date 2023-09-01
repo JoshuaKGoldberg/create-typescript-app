@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { describe, expect, it, vi } from "vitest";
 
 import { StatusCodes } from "../shared/codes.js";
@@ -61,12 +62,10 @@ describe("create", () => {
 			code: StatusCodes.Failure,
 			options: optionsBase,
 		});
-		expect(mockOutro.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    "[31mThe TestRepository directory already exists. Please remove the directory or try a different name.[39m",
-			  ],
-			]
-		`);
+		expect(mockOutro).toHaveBeenCalledWith(
+			chalk.red(
+				"The TestRepository directory already exists. Please remove the directory or try a different name.",
+			),
+		);
 	});
 });

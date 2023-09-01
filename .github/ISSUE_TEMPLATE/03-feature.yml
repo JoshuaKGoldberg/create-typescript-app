@@ -23,5 +23,5 @@ body:
 description: Request that a new feature be added or an existing feature improved
 labels:
   - "type: feature"
-name: 🚀 Request a Feature
+name: 🚀 Feature
 title: "🚀 Feature: <short description of the feature>"

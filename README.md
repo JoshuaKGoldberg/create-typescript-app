@@ -1,6 +1,6 @@
 <h1 align="center">Create TypeScript App</h1>
 
-<p align="center">A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨</p>
+<p align="center">Quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">

@@ -32,7 +32,7 @@ npx create-typescript-app --base everything --create-repository --mode create
 
 These required options determine the options that will be substituted into the template's files:
 
-- `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
+- `--description` _(`string`)_: Sentence case description of the repository (e.g. `Quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
 - `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `create-typescript-app`)
 - `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Create TypeScript App`)

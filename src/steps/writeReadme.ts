@@ -105,6 +105,6 @@ function generateTopContent(options: Options) {
 <p align="center">${options.description}</p>
 
 <p align="center">
-	${badgeLines.join("")}
+	${badgeLines.join("\n")}
 </p>`;
 }

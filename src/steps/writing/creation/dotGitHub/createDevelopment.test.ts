@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { Options } from "../../../../shared/types.js";
 import { createDevelopment } from "./createDevelopment.js";

@@ -2,15 +2,15 @@ import { Options } from "../../../../shared/types.js";
 
 export function createDevelopment(options: Options) {
 	const lintLines = [
-		options.excludeLintKnip &&
+		!options.excludeLintKnip &&
 			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
-		options.excludeLintMd &&
+		!options.excludeLintMd &&
 			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files`,
-		options.excludeLintPackageJson &&
+		!options.excludeLintPackageJson &&
 			`- \`pnpm lint:package-json\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file`,
-		options.excludeLintPackages &&
+		!options.excludeLintPackages &&
 			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
-		options.excludeLintSpelling &&
+		!options.excludeLintSpelling &&
 			`- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
 	].filter(Boolean);
 

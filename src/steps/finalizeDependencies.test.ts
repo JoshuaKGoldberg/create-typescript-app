@@ -87,10 +87,7 @@ describe("finalize", () => {
 			[
 			  [
 			    "pnpm add @types/eslint@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@latest eslint-config-prettier@latest eslint-plugin-deprecation@latest eslint-plugin-eslint-comments@latest eslint-plugin-import@latest eslint-plugin-jsdoc@latest eslint-plugin-n@latest eslint-plugin-regexp@latest husky@latest lint-staged@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest tsup@latest typescript@latest -D",
-			  ],
-			  [
-			    "pnpm run format:write",
-			  ],
+			  ]
 			]
 		`);
 	});

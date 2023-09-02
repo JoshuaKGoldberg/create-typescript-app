@@ -6,6 +6,7 @@ import { create } from "../create/index.js";
 import { initialize } from "../initialize/index.js";
 import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
+import { logHelpText } from "./help.js";
 import { promptForMode } from "./mode.js";
 
 export async function bin(args: string[]) {
@@ -35,9 +36,20 @@ export async function bin(args: string[]) {
 		args,
 		options: {
 			mode: { type: "string" },
+			help: {
+				type: "boolean",
+				short: "h",
+			},
 		},
 		strict: false,
 	});
+
+	const help = values.help;
+
+	if (help) {
+		logHelpText("");
+		return 0;
+	}
 
 	const mode = await promptForMode(values.mode);
 	if (mode instanceof Error) {

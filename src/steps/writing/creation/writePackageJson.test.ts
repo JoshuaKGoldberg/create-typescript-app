@@ -92,7 +92,7 @@ describe("writePackageJson", () => {
 			  },
 			  "main": "./lib/index.js",
 			  "name": "test-repository",
-			  "packageManager": "pnpm@8.5.0",
+			  "packageManager": "pnpm@8.7.0",
 			  "publishConfig": {
 			    "provenance": true,
 			  },
@@ -163,7 +163,7 @@ describe("writePackageJson", () => {
 			  },
 			  "main": "./lib/index.js",
 			  "name": "test-repository",
-			  "packageManager": "pnpm@8.5.0",
+			  "packageManager": "pnpm@8.7.0",
 			  "publishConfig": {
 			    "provenance": true,
 			  },

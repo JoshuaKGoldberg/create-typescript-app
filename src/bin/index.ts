@@ -35,11 +35,11 @@ export async function bin(args: string[]) {
 	const { values } = parseArgs({
 		args,
 		options: {
-			mode: { type: "string" },
 			help: {
-				type: "boolean",
 				short: "h",
+				type: "boolean",
 			},
+			mode: { type: "string" },
 		},
 		strict: false,
 	});

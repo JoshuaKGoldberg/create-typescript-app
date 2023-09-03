@@ -49,9 +49,8 @@ export async function migrateWithOptions({
 	}
 
 	if (!options.excludeContributors) {
-		await withSpinner(
-			"Detecting existing contributors",
-			detectExistingContributors,
+		await withSpinner("Detecting existing contributors", async () =>
+			detectExistingContributors(options),
 		);
 	}
 

@@ -13,7 +13,7 @@ vi.mock("execa", () => ({
 const mockOutcomeLabel = {
 	color: "000000",
 	description: "def ghi",
-	name: "abc",
+	name: "area: abc",
 };
 
 vi.mock("./outcomeLabels.js", () => ({
@@ -23,7 +23,7 @@ vi.mock("./outcomeLabels.js", () => ({
 }));
 
 describe("migrateRepositoryLabels", () => {
-	it("creates a outcome label when labels stdout is returned", async () => {
+	it("creates an outcome label when labels stdout is empty", async () => {
 		mock$.mockResolvedValue({
 			stdout: "",
 		});
@@ -44,7 +44,7 @@ describe("migrateRepositoryLabels", () => {
 			      " --description ",
 			      "",
 			    ],
-			    "abc",
+			    "area: abc",
 			    "000000",
 			    "def ghi",
 			  ],
@@ -52,7 +52,7 @@ describe("migrateRepositoryLabels", () => {
 		`);
 	});
 
-	it("creates a outcome label when it doesn't already exist", async () => {
+	it("creates an outcome label when it doesn't already exist", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
 				{
@@ -79,7 +79,7 @@ describe("migrateRepositoryLabels", () => {
 			      " --description ",
 			      "",
 			    ],
-			    "abc",
+			    "area: abc",
 			    "000000",
 			    "def ghi",
 			  ],
@@ -105,7 +105,7 @@ describe("migrateRepositoryLabels", () => {
 		`);
 	});
 
-	it("edits a outcome label when it already exists with different color", async () => {
+	it("edits the outcome label when it already exists with different color", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
 				{
@@ -130,18 +130,18 @@ describe("migrateRepositoryLabels", () => {
 			      " --color ",
 			      " --description ",
 			      " --name ",
-			      "",
+			      " --yes",
 			    ],
-			    "abc",
+			    "area: abc",
 			    "000000",
 			    "def ghi",
-			    "abc",
+			    "area: abc",
 			  ],
 			]
 		`);
 	});
 
-	it("edits a outcome label when it already exists with different description", async () => {
+	it("edits the outcome label when it already exists with a different description", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
 				{
@@ -166,12 +166,12 @@ describe("migrateRepositoryLabels", () => {
 			      " --color ",
 			      " --description ",
 			      " --name ",
-			      "",
+			      " --yes",
 			    ],
-			    "abc",
+			    "area: abc",
 			    "000000",
 			    "def ghi",
-			    "abc",
+			    "area: abc",
 			  ],
 			]
 		`);
@@ -183,7 +183,7 @@ describe("migrateRepositoryLabels", () => {
 				{
 					color: "000000",
 					description: "def ghi",
-					name: "abc",
+					name: "area: abc",
 				},
 				{
 					color: "000000",
@@ -233,9 +233,94 @@ describe("migrateRepositoryLabels", () => {
 			      " --description ",
 			      "",
 			    ],
-			    "abc",
+			    "area: abc",
 			    "000000",
 			    "def ghi",
+			  ],
+			]
+		`);
+	});
+
+	it("deletes the existing duplicate outcome label and edits the label with the outcome name and different color when both exist", async () => {
+		mock$.mockResolvedValue({
+			stdout: JSON.stringify([
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "abc",
+				},
+				{
+					color: "111111",
+					description: "def ghi",
+					name: "area: abc",
+				},
+			]),
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label delete ",
+			      " --yes",
+			    ],
+			    "abc",
+			  ],
+			  [
+			    [
+			      "gh label edit ",
+			      " --color ",
+			      " --description ",
+			      " --name ",
+			      " --yes",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			    "area: abc",
+			  ],
+			]
+		`);
+	});
+
+	it("deletes the existing duplicate outcome label and does not edit the label with the outcome name and same information when both exist", async () => {
+		mock$.mockResolvedValue({
+			stdout: JSON.stringify([
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "abc",
+				},
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "area: abc",
+				},
+			]),
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label delete ",
+			      " --yes",
+			    ],
+			    "abc",
 			  ],
 			]
 		`);
@@ -268,7 +353,7 @@ describe("migrateRepositoryLabels", () => {
 			      " --description ",
 			      "",
 			    ],
-			    "abc",
+			    "area: abc",
 			    "000000",
 			    "def ghi",
 			  ],

@@ -42,7 +42,7 @@ export async function initializeRepositoryLabels() {
 				outcome.description !== existingEquivalent.description ||
 				outcome.name !== existingEquivalent.name
 			) {
-				await $`gh label edit ${existingEquivalent.name} --color ${outcome.color} --description ${outcome.description} --name ${outcome.name} --yes`;
+				await $`gh label edit ${existingEquivalent.name} --color ${outcome.color} --description ${outcome.description} --name ${outcome.name}`;
 			}
 		}
 	}

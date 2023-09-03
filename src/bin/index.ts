@@ -7,11 +7,8 @@ import { create } from "../create/index.js";
 import { initialize } from "../initialize/index.js";
 import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
-<<<<<<< HEAD
 import { logHelpText } from "./help.js";
-=======
 import { StatusCodes } from "../shared/codes.js";
->>>>>>> 03609fe1101c0d4a41bc67190b2f8159f962b235
 import { promptForMode } from "./mode.js";
 
 const operationMessage = (verb: string) =>

@@ -74,30 +74,29 @@ function findH1Close(contents: string) {
 function generateTopContent(options: Options) {
 	const badgeLines = [
 		!options.excludeContributors &&
-			`<a href="#contributors" target="_blank">
+			`	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
-</a>`,
+	</a>`,
 		!options.excludeTests &&
-			`<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank">
-	<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${options.owner}/${options.repository}/branch/main/graph/badge.svg"/>
-</a>`,
-		`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
-	<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
-</a>`,
-		`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md" target="_blank">
-	<img alt="License: MIT" src="https://img.shields.io/github/license/${options.owner}/${options.repository}?color=21bb42">
-</a>`,
+			`	<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank">
+		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/${options.owner}/${options.repository}/branch/main/graph/badge.svg"/>
+	</a>`,
+		`	<a href="https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
+		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
+	</a>`,
+		`	<a href="https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md" target="_blank">
+		<img alt="License: MIT" src="https://img.shields.io/github/license/${options.owner}/${options.repository}?color=21bb42">
+	</a>`,
 		options.funding &&
-			`
-		<a href="https://github.com/sponsors/${options.funding}" target="_blank">
-			<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
-		</a>`,
-		`<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />`,
-		`<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
+			`	<a href="https://github.com/sponsors/${options.funding}" target="_blank">
+		<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
+	</a>`,
+		`	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />`,
+		`	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
 	].filter(Boolean);
 
 	return `<h1 align="center">${options.title}</h1>
@@ -105,6 +104,6 @@ function generateTopContent(options: Options) {
 <p align="center">${options.description}</p>
 
 <p align="center">
-	${badgeLines.join("")}
+${badgeLines.join("\n")}
 </p>`;
 }

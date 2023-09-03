@@ -1,7 +1,7 @@
 {
 	"name": "create-typescript-app",
-	"version": "1.29.16",
-	"description": "A quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
+	"version": "1.29.30",
+	"description": "Quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/create-typescript-app"
@@ -64,8 +64,8 @@
 		"@types/js-yaml": "^4.0.5",
 		"@types/node": "^20.5.6",
 		"@types/prettier": "^2.7.3",
-		"@typescript-eslint/eslint-plugin": "^6.4.1",
-		"@typescript-eslint/parser": "^6.4.1",
+		"@typescript-eslint/eslint-plugin": "^6.5.0",
+		"@typescript-eslint/parser": "^6.5.0",
 		"@vitest/coverage-v8": "^0.34.3",
 		"c8": "^8.0.1",
 		"console-fail-test": "^0.2.3",
@@ -87,7 +87,7 @@
 		"globby": "^13.2.2",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
-		"knip": "2.20.2",
+		"knip": "2.21.1",
 		"lint-staged": "^14.0.1",
 		"markdownlint": "^0.30.0",
 		"markdownlint-cli": "^0.35.0",
@@ -104,7 +104,7 @@
 		"vitest": "^0.34.3",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.7.0",
+	"packageManager": "pnpm@8.7.1",
 	"engines": {
 		"node": ">=18"
 	},

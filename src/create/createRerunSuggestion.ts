@@ -8,7 +8,10 @@ function getFirstMatchingArg(key: string) {
 	);
 }
 
-export function createRerunSuggestion(mode: Mode, options: Options): string {
+export function createRerunSuggestion(
+	mode: Mode,
+	options: Partial<Options>,
+): string {
 	const args = Object.entries(options)
 		.filter(([, value]) => !!value)
 		.map(([key, value]) => {

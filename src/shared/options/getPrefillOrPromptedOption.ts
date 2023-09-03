@@ -1,6 +1,6 @@
 import * as prompts from "@clack/prompts";
 
-import { handlePromptCancel } from "../prompts.js";
+import { filterPromptCancel } from "../prompts.js";
 
 export async function getPrefillOrPromptedOption(
 	existingValue: string | undefined,
@@ -11,7 +11,7 @@ export async function getPrefillOrPromptedOption(
 		return existingValue;
 	}
 
-	const value = handlePromptCancel(
+	const value = filterPromptCancel(
 		await prompts.text({
 			message,
 			placeholder,

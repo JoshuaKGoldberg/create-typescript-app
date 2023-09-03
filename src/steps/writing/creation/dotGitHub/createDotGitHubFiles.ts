@@ -167,6 +167,14 @@ With the exception of very small typos, all changes to this repository generally
 If this is your first time contributing, consider searching for [unassigned issues that also have the \`good first issue\` label](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22+label%3A%22good+first+issue%22+no%3Aassignee).
 If the issue you'd like to fix isn't found on the issue, see [Reporting Issues](#reporting-issues) for filing your own (please do!).
 
+#### Issue Claiming
+
+We don't use any kind of issue claiming system.
+We've found in the past that they result in accidental ["licked cookie"](https://devblogs.microsoft.com/oldnewthing/20091201-00/?p=15843) situations where contributors claim an issue but run out of time or energy trying before sending a PR.
+
+If an issue has been marked as \`accepting prs\` and an open PR does not exist, feel free to send a PR.
+You don't need to ask for permission.
+
 ### Sending a Pull Request
 
 Once you've identified an open issue accepting PRs that doesn't yet have a PR sent, you're free to send a pull request.

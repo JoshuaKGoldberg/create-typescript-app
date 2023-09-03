@@ -1,10 +1,14 @@
 import { getAllContributorsForRepository } from "all-contributors-for-repository";
 import { $ } from "execa";
 
-export async function detectExistingContributors() {
+import { Options } from "../shared/types.js";
+
+export async function detectExistingContributors(
+	options: Pick<Options, "owner" | "repository">,
+) {
 	const contributors = await getAllContributorsForRepository({
-		owner: "JoshuaKGoldberg",
-		repo: "create-typescript-app",
+		owner: options.owner,
+		repo: options.repository,
 	});
 
 	for (const [contributor, contributions] of Object.entries(contributors)) {

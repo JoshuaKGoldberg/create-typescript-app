@@ -18,13 +18,18 @@ vi.mock("execa", () => ({
 	},
 }));
 
+const options = {
+	owner: "TestOwner",
+	repository: "test-repository",
+};
+
 describe("detectExistingContributors", () => {
 	it("runs npx all-contributors add for each contributor and contribution type", async () => {
 		mockGetAllContributorsForRepository.mockResolvedValue({
 			username: ["bug", "docs"],
 		});
 
-		await detectExistingContributors();
+		await detectExistingContributors(options);
 
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[

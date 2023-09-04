@@ -10,7 +10,7 @@ vi.mock("all-contributors-for-repository", () => ({
 	},
 }));
 
-const mock$ = vi.fn();
+const mock$ = vi.fn().mockImplementation(() => mock$);
 
 vi.mock("execa", () => ({
 	get $() {
@@ -29,10 +29,17 @@ describe("detectExistingContributors", () => {
 			username: ["bug", "docs"],
 		});
 
-		await detectExistingContributors(options);
+		await detectExistingContributors("auth-token", options);
 
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
+			  [
+			    {
+			      "env": {
+			        "PRIVATE_TOKEN": "auth-token",
+			      },
+			    },
+			  ],
 			  [
 			    [
 			      "npx -y all-contributors-cli add ",

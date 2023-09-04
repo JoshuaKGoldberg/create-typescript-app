@@ -28,7 +28,7 @@ export interface OptionsParseSuccess extends OctokitAndOptions {
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
 export async function readOptions(args: string[]): Promise<OptionsParseResult> {
-	const defaults = await getGitAndNpmDefaults();
+	const defaults = getGitAndNpmDefaults();
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
@@ -111,7 +111,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.description ??= await getPrefillOrPromptedOption(
 		options.description,
 		"How would you describe the new package?",
-		defaults.description ?? "A very lovely package. Hooray!",
+		async () =>
+			(await defaults.description()) ?? "A very lovely package. Hooray!",
 	);
 	if (!options.description) {
 		return { cancelled: true, options };
@@ -120,7 +121,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.title ??= await getPrefillOrPromptedOption(
 		options.title,
 		"What will the Title Case title of the repository be?",
-		defaults.title ?? titleCase(repository).replaceAll("-", " "),
+		async () =>
+			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
 	);
 	if (!options.title) {
 		return { cancelled: true, options };
@@ -128,9 +130,9 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
-		author: options.author ?? defaults.owner,
-		email: options.email ?? defaults.email,
-		funding: options.funding ?? defaults.funding,
+		author: options.author ?? (await defaults.owner()),
+		email: options.email ?? (await defaults.email()),
+		funding: options.funding ?? (await defaults.funding()),
 		repository,
 	} as Options);
 

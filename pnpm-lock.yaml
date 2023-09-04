@@ -26,6 +26,9 @@ dependencies:
   js-yaml:
     specifier: ^4.1.0
     version: 4.1.0
+  lazy-value:
+    specifier: ^3.0.0
+    version: 3.0.0
   npm-user:
     specifier: ^5.0.1
     version: 5.0.1
@@ -4971,6 +4974,11 @@ packages:
     dependencies:
       package-json: 8.1.0
     dev: true
+
+  /lazy-value@3.0.0:
+    resolution: {integrity: sha512-BBcLu68yjVhYSqRLYbiDOCWOD7Q8pm39SNL+UfhSfroJScJKRZMaoDJMXLYA2wBA+JCY/5ICoVEvG3yQjqQtKw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}

@@ -52,6 +52,7 @@ export async function ensureRepositoryExists(
 		createRepository = false;
 
 		switch (selection) {
+			case undefined:
 			case "bail":
 				return {};
 

@@ -241,7 +241,7 @@ export function createWorkflows(options: Options) {
 									  { context: "lint" },
 									  { context: "lint_knip" },
 									  { context: "lint_markdown" },
-									  { context: "lint_package" },
+									  { context: "lint_package_json" },
 									  { context: "lint_packages" },
 									  { context: "lint_spelling" },
 									  { context: "prettier" },

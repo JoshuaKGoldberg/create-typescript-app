@@ -103,9 +103,15 @@ export function createWorkflows(options: Options) {
 			}),
 		}),
 		...(!options.excludeLintPackageJson && {
-			"lint-package.yml": createWorkflowFile({
+			"lint-package-json.yml": createWorkflowFile({
 				name: "Lint Package JSON",
 				runs: ["pnpm lint:package-json"],
+			}),
+		}),
+		...(!options.excludeLintPackageJson && {
+			"lint-packages.yml": createWorkflowFile({
+				name: "Lint Packages",
+				runs: ["pnpm lint:package"],
 			}),
 		}),
 		...(!options.excludeLintSpelling && {

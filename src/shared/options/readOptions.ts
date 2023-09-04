@@ -130,9 +130,9 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
-		author: options.author ?? defaults.owner,
-		email: options.email ?? defaults.email,
-		funding: options.funding ?? defaults.funding,
+		author: options.author ?? (await defaults.owner()),
+		email: options.email ?? (await defaults.email()),
+		funding: options.funding ?? (await defaults.funding()),
 		repository,
 	} as Options);
 

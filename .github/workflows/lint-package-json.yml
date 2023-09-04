@@ -1,5 +1,5 @@
 jobs:
-  lint_package:
+  lint_package_json:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

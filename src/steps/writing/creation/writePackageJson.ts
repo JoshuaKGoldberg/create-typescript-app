@@ -16,6 +16,7 @@ const devDependenciesToRemove = [
 	"eslint-config-prettier",
 	"eslint-plugin-prettier",
 	"eslint-plugin-simple-import-sort",
+	"eslint-plugin-typescript-sort-keys",
 	"jasmine",
 	"jest",
 	"mocha",

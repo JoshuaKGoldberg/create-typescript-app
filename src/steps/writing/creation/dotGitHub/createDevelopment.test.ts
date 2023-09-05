@@ -60,13 +60,17 @@ describe("createDevelopment", () => {
 
 			## Building
 
-			Run [TypeScript](https://typescriptlang.org) locally to type check and build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+
+			\`\`\`shell
+			pnpm build
+			\`\`\`
+
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
 			\`\`\`
-
-			You should also see suggestions from TypeScript in your editor.
 
 			## Formatting
 
@@ -167,13 +171,17 @@ describe("createDevelopment", () => {
 
 			## Building
 
-			Run [TypeScript](https://typescriptlang.org) locally to type check and build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+
+			\`\`\`shell
+			pnpm build
+			\`\`\`
+
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
 			\`\`\`
-
-			You should also see suggestions from TypeScript in your editor.
 
 			## Formatting
 

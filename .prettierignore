@@ -1,6 +1,3 @@
 coverage*/
 lib/
 pnpm-lock.yaml
-
-# See https://github.com/all-contributors/cli/issues/347
-.all-contributorsrc

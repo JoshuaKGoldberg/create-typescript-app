@@ -51,9 +51,6 @@ export async function createRootFiles(options: Options) {
 			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",
-			"",
-			"# See https://github.com/all-contributors/cli/issues/347",
-			".all-contributorsrc",
 		]),
 		".prettierrc": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",

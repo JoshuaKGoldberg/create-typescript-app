@@ -45,7 +45,7 @@ Use the corresponding docs page to get started:
 
 - [Creating from the terminal](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_
 - [Initializing from the template](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
-- [Migrating an existing repository](./docs/Migrate.md): adding this template's tooling on top of an existing repository
+- [Migrating an existing repository](./docs/Migration.md): adding this template's tooling on top of an existing repository
 
 ## Explainer
 

@@ -116,7 +116,7 @@ You can run the end-to-end test for creation locally on the command-line.
 Note that the files need to be built with `pnpm run build` beforehand.
 
 ```shell
-pnpm run create:test
+pnpm run test:create
 ```
 
 That end-to-end test executes `script/create-test-e2e.js`, which:
@@ -142,7 +142,7 @@ You can run the end-to-end test for initializing locally on the command-line.
 Note that files need to be built with `pnpm run build` beforehand.
 
 ```shell
-pnpm run initialize:test
+pnpm run test:initialize
 ```
 
 That end-to-end test executes `script/initialize-test-e2e.js`, which:
@@ -153,7 +153,7 @@ That end-to-end test executes `script/initialize-test-e2e.js`, which:
 4. Resets everything
 5. Runs initialization a second time, capturing test coverage
 
-The `pnpm run initialize:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+The `pnpm run test:initialize` script is run in CI to ensure that templating changes are in sync with the template's actual files.
 See `.github/workflows/test-initialize.yml`.
 
 ### The Migration Script
@@ -183,7 +183,7 @@ node ../create-typescript-app/bin/migrate.js
 You can run the end-to-end test for migrating locally on the command-line:
 
 ```shell
-pnpm run initiamigratelize:test
+pnpm run test:migrate
 ```
 
 That end-to-end test executes `script/migrate-test-e2e.js`, which:
@@ -192,5 +192,5 @@ That end-to-end test executes `script/migrate-test-e2e.js`, which:
 2. Checks that only a small list of allowed files were changed
 3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
 
-The `pnpm run migrate:test` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+The `pnpm run test:migrate` script is run in CI to ensure that templating changes are in sync with the template's actual files.
 See `.github/workflows/test-migrate.yml`.

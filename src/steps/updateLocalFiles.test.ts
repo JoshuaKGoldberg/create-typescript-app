@@ -125,14 +125,14 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"create:test": "\\.\\+\\\\n/g,
+			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"initialize:test": "\\.\\*/g,
+			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
 			    },
 			  ],
@@ -146,7 +146,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"migrate:test": "\\.\\+\\\\n/g,
+			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
@@ -260,14 +260,14 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"create:test": "\\.\\+\\\\n/g,
+			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"initialize:test": "\\.\\*/g,
+			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
 			    },
 			  ],
@@ -281,7 +281,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"migrate:test": "\\.\\+\\\\n/g,
+			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
@@ -398,14 +398,14 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"create:test": "\\.\\+\\\\n/g,
+			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"initialize:test": "\\.\\*/g,
+			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
 			    },
 			  ],
@@ -419,7 +419,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"migrate:test": "\\.\\+\\\\n/g,
+			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],

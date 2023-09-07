@@ -33,7 +33,7 @@ It should be applied automatically when you save files in VS Code or make a Git 
 To manually reformat all files, you can run:
 
 ```shell
-pnpm format:write
+pnpm format --write
 ```
 
 ## Linting

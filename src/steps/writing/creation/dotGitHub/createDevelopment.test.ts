@@ -80,7 +80,7 @@ describe("createDevelopment", () => {
 			To manually reformat all files, you can run:
 
 			\`\`\`shell
-			pnpm format:write
+			pnpm format --write
 			\`\`\`
 
 			## Linting
@@ -191,7 +191,7 @@ describe("createDevelopment", () => {
 			To manually reformat all files, you can run:
 
 			\`\`\`shell
-			pnpm format:write
+			pnpm format --write
 			\`\`\`
 
 			## Linting

@@ -2,7 +2,7 @@ import { $ } from "execa";
 
 import { readPackageData, removeDependencies } from "../shared/packages.js";
 
-export async function uninstallPackages() {
+export async function uninstallPackages(offline: boolean) {
 	const packageData = await readPackageData();
 
 	await removeDependencies(
@@ -38,5 +38,5 @@ export async function uninstallPackages() {
 		"-D",
 	);
 
-	await $`pnpm add prettier -D`;
+	await $`pnpm add prettier -D${offline ? " --offline" : ""}`;
 }

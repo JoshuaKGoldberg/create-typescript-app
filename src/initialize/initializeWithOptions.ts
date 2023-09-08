@@ -50,9 +50,8 @@ export async function initializeWithOptions({
 	}
 
 	if (!options.skipUninstall) {
-		await withSpinner(
-			"Uninstalling initialization-only packages",
-			uninstallPackages,
+		await withSpinner("Uninstalling initialization-only packages", async () =>
+			uninstallPackages(options.offline),
 		);
 	}
 

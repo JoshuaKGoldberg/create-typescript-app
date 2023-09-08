@@ -15,7 +15,7 @@ export async function getGitAndNpmDefaults() {
 	);
 
 	const npmDefaults = await tryCatchAsync(
-		async () => await npmUser((await $`npm whoami`).stdout),
+		async () => await npmUser((await $({ timeout: 1000 })`npm whoami`).stdout),
 	);
 
 	const packageData = await readPackageData();

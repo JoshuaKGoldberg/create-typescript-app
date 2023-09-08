@@ -18,6 +18,7 @@ export const allArgOptions = {
 	"exclude-renovate": { type: "boolean" },
 	"exclude-tests": { type: "boolean" },
 	funding: { type: "string" },
+	offline: { type: "boolean" },
 	owner: { type: "string" },
 	repository: { type: "string" },
 	"skip-github-api": { type: "boolean" },

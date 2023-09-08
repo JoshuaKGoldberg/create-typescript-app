@@ -95,6 +95,8 @@ npx create-typescript-app --exclude-lint-package-json --exclude-lint-packages --
 
 ### Skipping API Calls
 
+> Alternately, see [Offline Mode](#offline-mode) to skip API calls without disabling features
+
 You can prevent the migration script from making some network-based changes using any or all of the following CLI flags:
 
 - `--exclude-contributors` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
@@ -122,4 +124,17 @@ For example, providing all local change skip flags:
 
 ```shell
 npx create-typescript-app --skip-removal --skip-restore --skip-uninstall
+```
+
+## Offline Mode
+
+You can run `create-typescript-app` in an "offline" mode with `--offline`.
+Doing so will:
+
+- Enable `--skip-github-api`
+- Skip network calls when setting up contributors
+- Run pnpm commands with pnpm's `--offline` mode
+
+```shell
+npx create-typescript-app --offline
 ```

@@ -23,6 +23,7 @@ const optionsBase = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	offline: true,
 	owner: "",
 	repository: "",
 	skipGitHubApi: false,

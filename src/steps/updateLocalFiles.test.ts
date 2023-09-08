@@ -39,6 +39,7 @@ const options = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	offline: true,
 	owner: "StubOwner",
 	repository: "stub-repository",
 	skipGitHubApi: false,

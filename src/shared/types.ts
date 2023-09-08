@@ -39,6 +39,7 @@ export interface Options {
 	excludeRenovate: boolean | undefined;
 	excludeTests: boolean | undefined;
 	funding: string | undefined;
+	offline: boolean;
 	owner: string;
 	repository: string;
 	skipGitHubApi: boolean;

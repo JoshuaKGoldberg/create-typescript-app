@@ -7,9 +7,9 @@ import npmUser from "npm-user";
 import { readPackageData } from "../../packages.js";
 import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
-import { readTitleFromReadme } from "./readTitleFromReadme.js";
+import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
 
-export async function getGitAndNpmDefaults() {
+export async function readOptionDefaults() {
 	const gitDefaults = await tryCatchAsync(async () =>
 		gitUrlParse(await gitRemoteOriginUrl()),
 	);
@@ -39,6 +39,6 @@ export async function getGitAndNpmDefaults() {
 		),
 		owner: gitDefaults?.organization ?? packageAuthor.author,
 		repository: gitDefaults?.name ?? packageData.name,
-		title: await readTitleFromReadme(),
+		...(await readDefaultsFromReadme()),
 	};
 }

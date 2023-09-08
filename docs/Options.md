@@ -52,6 +52,8 @@ The setup scripts also allow for optional overrides of the following inputs whos
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
 - `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
+- `--logo` _(`string`)_: Local image file in the repository to display near the top of the README.md as a logo
+  - `--logoAlt` _(`string`)_: If `--logo` is provided or detected from an existing README.md, alt text that describes the image will be prompted for if not provided
 
 For example, customizing the ownership and users associated with a new repository:
 

@@ -9,7 +9,7 @@ import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getOctokit } from "./getOctokit.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
-import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
+import { readOptionDefaults } from "./readOptionDefaults/index.js";
 
 export interface OctokitAndOptions {
 	octokit: Octokit | undefined;
@@ -28,7 +28,7 @@ export interface OptionsParseSuccess extends OctokitAndOptions {
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
 export async function readOptions(args: string[]): Promise<OptionsParseResult> {
-	const defaults = await getGitAndNpmDefaults();
+	const defaults = await readOptionDefaults();
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
@@ -131,6 +131,15 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		author: options.author ?? defaults.owner,
 		email: options.email ?? defaults.email,
 		funding: options.funding ?? defaults.funding,
+		logo: values.logo
+			? {
+					alt: await getPrefillOrPromptedOption(
+						values["logoAlt"] as string | undefined,
+						"What is the alt text (non-visual description) of the logo?",
+					),
+					src: values.logo as string | undefined,
+			  }
+			: undefined,
 		repository,
 	} as Options);
 

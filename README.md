@@ -26,11 +26,7 @@
     <img alt="TypeScript: Strict 💪" src="https://img.shields.io/badge/typescript-strict_💪-21bb42.svg" />
 </p>
 
-Note that this template is early stage, opinionated, and not endorsed by the TypeScript team.
-It sets up a _lot_ of tooling out of the box.
-Each of the included tools exists for a good reason and provides real value.
-
-If you don't want to use any particular tool, you can always remove it manually.
+<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./create-typescript-app.png">
 
 ## Getting Started
 
@@ -46,6 +42,12 @@ Use the corresponding docs page to get started:
 - [Creating from the terminal](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_
 - [Initializing from the template](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
 - [Migrating an existing repository](./docs/Migrate.md): adding this template's tooling on top of an existing repository
+
+Note that this template is early stage, opinionated, and not endorsed by the TypeScript team.
+It sets up a _lot_ of tooling out of the box.
+Each of the included tools exists for a good reason and provides real value.
+
+If you don't want to use any particular tool, you can always remove it manually.
 
 ## Explainer
 

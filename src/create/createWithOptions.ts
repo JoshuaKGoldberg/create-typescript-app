@@ -3,7 +3,7 @@ import { $ } from "execa";
 
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
-import { OctokitAndOptions } from "../shared/options/readOptions.js";
+import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
@@ -11,10 +11,7 @@ import { runCommands } from "../steps/runCommands.js";
 import { writeReadme } from "../steps/writeReadme.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
-export async function createWithOptions({
-	octokit,
-	options,
-}: OctokitAndOptions) {
+export async function createWithOptions({ github, options }: GitHubAndOptions) {
 	await withSpinners("Creating repository structure", [
 		[
 			"Writing structure",
@@ -49,8 +46,8 @@ export async function createWithOptions({
 	]);
 
 	const sendToGitHub =
-		octokit &&
-		(await doesRepositoryExist(octokit, options)) &&
+		github &&
+		(await doesRepositoryExist(github.octokit, options)) &&
 		(options.createRepository ??
 			(await prompts.confirm({
 				message:
@@ -63,7 +60,7 @@ export async function createWithOptions({
 			await $`git add -A`;
 			await $`git commit --message ${"feat: initialized repo ✨"}`;
 			await $`git push -u origin main --force`;
-			await initializeGitHubRepository(octokit, options);
+			await initializeGitHubRepository(github.octokit, options);
 		});
 	}
 

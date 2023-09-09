@@ -14,13 +14,16 @@ const devDependenciesToRemove = [
 	"cson-parser",
 	"esbuild",
 	"eslint-config-prettier",
+	"eslint-plugin-jest",
 	"eslint-plugin-prettier",
 	"eslint-plugin-simple-import-sort",
+	"eslint-plugin-typescript-sort-keys",
 	"jasmine",
 	"jest",
 	"mocha",
 	"npm-run-all",
 	"pretty-quick",
+	"ts-jest",
 ];
 
 export async function writePackageJson(options: Options) {

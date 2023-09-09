@@ -1,5 +1,4 @@
 import { parseArgs } from "node:util";
-import { Octokit } from "octokit";
 import { titleCase } from "title-case";
 
 import { withSpinner } from "../cli/spinners.js";
@@ -7,12 +6,12 @@ import { InputBase, Options } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
-import { getOctokit } from "./getOctokit.js";
+import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
 
-export interface OctokitAndOptions {
-	octokit: Octokit | undefined;
+export interface GitHubAndOptions {
+	github: GitHub | undefined;
 	options: Options;
 }
 
@@ -21,14 +20,14 @@ export interface OptionsParseCancelled {
 	options: Partial<Options>;
 }
 
-export interface OptionsParseSuccess extends OctokitAndOptions {
+export interface OptionsParseSuccess extends GitHubAndOptions {
 	cancelled: false;
 }
 
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
 export async function readOptions(args: string[]): Promise<OptionsParseResult> {
-	const defaults = await getGitAndNpmDefaults();
+	const defaults = getGitAndNpmDefaults();
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
@@ -94,10 +93,10 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		};
 	}
 
-	const { octokit, repository } = await ensureRepositoryExists(
+	const { github, repository } = await ensureRepositoryExists(
 		values["skip-github-api"]
 			? undefined
-			: await withSpinner("Checking GitHub authentication", getOctokit),
+			: await withSpinner("Checking GitHub authentication", getGitHub),
 		{
 			createRepository: options.createRepository,
 			owner: options.owner,
@@ -111,7 +110,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.description ??= await getPrefillOrPromptedOption(
 		options.description,
 		"How would you describe the new package?",
-		defaults.description ?? "A very lovely package. Hooray!",
+		async () =>
+			(await defaults.description()) ?? "A very lovely package. Hooray!",
 	);
 	if (!options.description) {
 		return { cancelled: true, options };
@@ -120,7 +120,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.title ??= await getPrefillOrPromptedOption(
 		options.title,
 		"What will the Title Case title of the repository be?",
-		defaults.title ?? titleCase(repository).replaceAll("-", " "),
+		async () =>
+			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
 	);
 	if (!options.title) {
 		return { cancelled: true, options };
@@ -128,9 +129,9 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
-		author: options.author ?? defaults.owner,
-		email: options.email ?? defaults.email,
-		funding: options.funding ?? defaults.funding,
+		author: options.author ?? (await defaults.owner()),
+		email: options.email ?? (await defaults.email()),
+		funding: options.funding ?? (await defaults.funding()),
 		repository,
 	} as Options);
 
@@ -143,7 +144,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 
 	return {
 		cancelled: false,
-		octokit,
+		github,
 		options: augmentedOptions,
 	};
 }

@@ -13,6 +13,7 @@ export async function uninstallPackages() {
 			"execa",
 			"git-remote-origin-url",
 			"git-url-parse",
+			"lazy-value",
 			"js-yaml",
 			"npm-user",
 			"octokit",

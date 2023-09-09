@@ -1,248 +1,207 @@
 {
-  "badgeTemplate": "<img alt=\"All Contributors: <%= contributors.length %> 🤝\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\" />",
-  "commit": false,
-  "commitConvention": "angular",
-  "contributors": [
-    {
-      "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
-      "contributions": [
-        "bug",
-        "code",
-        "maintenance",
-        "review",
-        "tool",
-        "doc",
-        "infra",
-        "test"
-      ],
-      "login": "JoshuaKGoldberg",
-      "name": "Josh Goldberg",
-      "profile": "http://www.joshuakgoldberg.com"
-    },
-    {
-      "login": "sinchang",
-      "name": "Jeff Wen",
-      "avatar_url": "https://avatars.githubusercontent.com/u/3297859?v=4",
-      "profile": "https://sinchang.me",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "Pinjasaur",
-      "name": "Paul Esch-Laurent",
-      "avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
-      "profile": "https://paulisaweso.me/",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "NazCodeland",
-      "name": "NazCodeland",
-      "avatar_url": "https://avatars.githubusercontent.com/u/113494366?v=4",
-      "profile": "https://github.com/NazCodeland",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "johnnyreilly",
-      "name": "John Reilly",
-      "avatar_url": "https://avatars.githubusercontent.com/u/1010525?v=4",
-      "profile": "https://blog.johnnyreilly.com/",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "webpro",
-      "name": "Lars Kappert",
-      "avatar_url": "https://avatars.githubusercontent.com/u/456426?v=4",
-      "profile": "https://webpro.nl",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "RebeccaStevens",
-      "name": "Rebecca Stevens",
-      "avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
-      "profile": "https://github.com/RebeccaStevens",
-      "contributions": [
-        "code",
-        "infra"
-      ]
-    },
-    {
-      "login": "ronthetech",
-      "name": "Ron Jean-Francois",
-      "avatar_url": "https://avatars.githubusercontent.com/u/105710107?v=4",
-      "profile": "http://ronjeanfrancois.com",
-      "contributions": [
-        "code",
-        "infra"
-      ]
-    },
-    {
-      "login": "nowyDEV",
-      "name": "Dominik Nowik",
-      "avatar_url": "https://avatars.githubusercontent.com/u/12304307?v=4",
-      "profile": "https://github.com/nowyDEV",
-      "contributions": [
-        "tool",
-        "code"
-      ]
-    },
-    {
-      "login": "TAKANOME-DEV",
-      "name": "takanomedev",
-      "avatar_url": "https://avatars.githubusercontent.com/u/79809121?v=4",
-      "profile": "https://github.com/TAKANOME-DEV",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "emday4prez",
-      "name": "Emerson",
-      "avatar_url": "https://avatars.githubusercontent.com/u/35363144?v=4",
-      "profile": "https://github.com/emday4prez",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "jsjoeio",
-      "name": "Joe Previte",
-      "avatar_url": "https://avatars.githubusercontent.com/u/3806031?v=4",
-      "profile": "https://typescriptcourse.com/tutorials",
-      "contributions": [
-        "bug",
-        "code"
-      ]
-    },
-    {
-      "login": "navin-moorthy",
-      "name": "Navin Moorthy",
-      "avatar_url": "https://avatars.githubusercontent.com/u/39694575?v=4",
-      "profile": "https://navinmoorthy.me/",
-      "contributions": [
-        "bug",
-        "code"
-      ]
-    },
-    {
-      "login": "garuna-m6",
-      "name": "Anurag",
-      "avatar_url": "https://avatars.githubusercontent.com/u/23234342?v=4",
-      "profile": "https://github.com/garuna-m6",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "danielroe",
-      "name": "Daniel Roe",
-      "avatar_url": "https://avatars.githubusercontent.com/u/28706372?v=4",
-      "profile": "https://roe.dev/",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "the-lazy-learner",
-      "name": "Sudhansu",
-      "avatar_url": "https://avatars.githubusercontent.com/u/13695177?v=4",
-      "profile": "https://github.com/the-lazy-learner",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "RNR1",
-      "name": "Ron Braha",
-      "avatar_url": "https://avatars.githubusercontent.com/u/45559220?v=4",
-      "profile": "https://linktr.ee/ronbraha",
-      "contributions": [
-        "code",
-        "design",
-        "test"
-      ]
-    },
-    {
-      "login": "tungbq",
-      "name": "Tung Bui (Leo)",
-      "avatar_url": "https://avatars.githubusercontent.com/u/85242618?v=4",
-      "profile": "https://github.com/tungbq",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "orta",
-      "name": "Orta Therox",
-      "avatar_url": "https://avatars.githubusercontent.com/u/49038?v=4",
-      "profile": "https://orta.io",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "promise-dash",
-      "name": "Promise Dash",
-      "avatar_url": "https://avatars.githubusercontent.com/u/86062880?v=4",
-      "profile": "https://github.com/promise-dash",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "jolg42",
-      "name": "Joël Galeran",
-      "avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
-      "profile": "https://twitter.com/Jolg42",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "kristo-baricevic",
-      "name": "Kristo Baricevic",
-      "avatar_url": "https://avatars.githubusercontent.com/u/108290619?v=4",
-      "profile": "https://kristo-baricevic.github.io/",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "ryota-murakami",
-      "name": "Ryota Murakami",
-      "avatar_url": "https://avatars.githubusercontent.com/u/5501268?v=4",
-      "profile": "https://ryota-murakami.github.io/",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "ruthwikreddy09",
-      "name": "Ruthwik",
-      "avatar_url": "https://avatars.githubusercontent.com/u/126862059?v=4",
-      "profile": "https://github.com/RuthwikReddy09",
-      "contributions": [
-        "code"
-      ]
-    }
-  ],
-  "contributorsPerLine": 7,
-  "contributorsSortAlphabetically": true,
-  "files": [
-    "README.md"
-  ],
-  "imageSize": 100,
-  "projectName": "create-typescript-app",
-  "projectOwner": "JoshuaKGoldberg",
-  "repoHost": "https://github.com",
-  "repoType": "github",
-  "commitType": "docs"
+	"badgeTemplate": "<img alt=\"All Contributors: <%= contributors.length %> 🤝\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\" />",
+	"commit": false,
+	"commitConvention": "angular",
+	"contributors": [
+		{
+			"avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+			"contributions": [
+				"bug",
+				"code",
+				"maintenance",
+				"review",
+				"tool",
+				"doc",
+				"infra",
+				"test"
+			],
+			"login": "JoshuaKGoldberg",
+			"name": "Josh Goldberg",
+			"profile": "http://www.joshuakgoldberg.com"
+		},
+		{
+			"login": "sinchang",
+			"name": "Jeff Wen",
+			"avatar_url": "https://avatars.githubusercontent.com/u/3297859?v=4",
+			"profile": "https://sinchang.me",
+			"contributions": ["code"]
+		},
+		{
+			"login": "Pinjasaur",
+			"name": "Paul Esch-Laurent",
+			"avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
+			"profile": "https://paulisaweso.me/",
+			"contributions": ["code"]
+		},
+		{
+			"login": "NazCodeland",
+			"name": "NazCodeland",
+			"avatar_url": "https://avatars.githubusercontent.com/u/113494366?v=4",
+			"profile": "https://github.com/NazCodeland",
+			"contributions": ["code"]
+		},
+		{
+			"login": "johnnyreilly",
+			"name": "John Reilly",
+			"avatar_url": "https://avatars.githubusercontent.com/u/1010525?v=4",
+			"profile": "https://blog.johnnyreilly.com/",
+			"contributions": ["code"]
+		},
+		{
+			"login": "webpro",
+			"name": "Lars Kappert",
+			"avatar_url": "https://avatars.githubusercontent.com/u/456426?v=4",
+			"profile": "https://webpro.nl",
+			"contributions": ["code"]
+		},
+		{
+			"login": "RebeccaStevens",
+			"name": "Rebecca Stevens",
+			"avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
+			"profile": "https://github.com/RebeccaStevens",
+			"contributions": ["code", "infra"]
+		},
+		{
+			"login": "ronthetech",
+			"name": "Ron Jean-Francois",
+			"avatar_url": "https://avatars.githubusercontent.com/u/105710107?v=4",
+			"profile": "http://ronjeanfrancois.com",
+			"contributions": ["code", "infra"]
+		},
+		{
+			"login": "nowyDEV",
+			"name": "Dominik Nowik",
+			"avatar_url": "https://avatars.githubusercontent.com/u/12304307?v=4",
+			"profile": "https://github.com/nowyDEV",
+			"contributions": ["tool", "code"]
+		},
+		{
+			"login": "TAKANOME-DEV",
+			"name": "takanomedev",
+			"avatar_url": "https://avatars.githubusercontent.com/u/79809121?v=4",
+			"profile": "https://github.com/TAKANOME-DEV",
+			"contributions": ["code"]
+		},
+		{
+			"login": "emday4prez",
+			"name": "Emerson",
+			"avatar_url": "https://avatars.githubusercontent.com/u/35363144?v=4",
+			"profile": "https://github.com/emday4prez",
+			"contributions": ["code"]
+		},
+		{
+			"login": "jsjoeio",
+			"name": "Joe Previte",
+			"avatar_url": "https://avatars.githubusercontent.com/u/3806031?v=4",
+			"profile": "https://typescriptcourse.com/tutorials",
+			"contributions": ["bug", "code"]
+		},
+		{
+			"login": "navin-moorthy",
+			"name": "Navin Moorthy",
+			"avatar_url": "https://avatars.githubusercontent.com/u/39694575?v=4",
+			"profile": "https://navinmoorthy.me/",
+			"contributions": ["bug", "code"]
+		},
+		{
+			"login": "garuna-m6",
+			"name": "Anurag",
+			"avatar_url": "https://avatars.githubusercontent.com/u/23234342?v=4",
+			"profile": "https://github.com/garuna-m6",
+			"contributions": ["code"]
+		},
+		{
+			"login": "danielroe",
+			"name": "Daniel Roe",
+			"avatar_url": "https://avatars.githubusercontent.com/u/28706372?v=4",
+			"profile": "https://roe.dev/",
+			"contributions": ["code"]
+		},
+		{
+			"login": "the-lazy-learner",
+			"name": "Sudhansu",
+			"avatar_url": "https://avatars.githubusercontent.com/u/13695177?v=4",
+			"profile": "https://github.com/the-lazy-learner",
+			"contributions": ["code"]
+		},
+		{
+			"login": "RNR1",
+			"name": "Ron Braha",
+			"avatar_url": "https://avatars.githubusercontent.com/u/45559220?v=4",
+			"profile": "https://linktr.ee/ronbraha",
+			"contributions": ["code", "design", "test"]
+		},
+		{
+			"login": "tungbq",
+			"name": "Tung Bui (Leo)",
+			"avatar_url": "https://avatars.githubusercontent.com/u/85242618?v=4",
+			"profile": "https://github.com/tungbq",
+			"contributions": ["code"]
+		},
+		{
+			"login": "orta",
+			"name": "Orta Therox",
+			"avatar_url": "https://avatars.githubusercontent.com/u/49038?v=4",
+			"profile": "https://orta.io",
+			"contributions": ["code"]
+		},
+		{
+			"login": "promise-dash",
+			"name": "Promise Dash",
+			"avatar_url": "https://avatars.githubusercontent.com/u/86062880?v=4",
+			"profile": "https://github.com/promise-dash",
+			"contributions": ["code"]
+		},
+		{
+			"login": "jolg42",
+			"name": "Joël Galeran",
+			"avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
+			"profile": "https://twitter.com/Jolg42",
+			"contributions": ["code"]
+		},
+		{
+			"login": "kristo-baricevic",
+			"name": "Kristo Baricevic",
+			"avatar_url": "https://avatars.githubusercontent.com/u/108290619?v=4",
+			"profile": "https://kristo-baricevic.github.io/",
+			"contributions": ["code"]
+		},
+		{
+			"login": "ryota-murakami",
+			"name": "Ryota Murakami",
+			"avatar_url": "https://avatars.githubusercontent.com/u/5501268?v=4",
+			"profile": "https://ryota-murakami.github.io/",
+			"contributions": ["code", "bug"]
+		},
+		{
+			"login": "ruthwikreddy09",
+			"name": "Ruthwik",
+			"avatar_url": "https://avatars.githubusercontent.com/u/126862059?v=4",
+			"profile": "https://github.com/RuthwikReddy09",
+			"contributions": ["code"]
+		},
+		{
+			"login": "jdwilkin4",
+			"name": "Jessica Wilkins ",
+			"avatar_url": "https://avatars.githubusercontent.com/u/67210629?v=4",
+			"profile": "https://jessicawilkins.dev/",
+			"contributions": ["code"]
+		},
+		{
+			"login": "vasanth9",
+			"name": "Vasanth Kumar Cheepurupalli",
+			"avatar_url": "https://avatars.githubusercontent.com/u/42891954?v=4",
+			"profile": "https://github.com/vasanth9",
+			"contributions": ["code"]
+		}
+	],
+	"contributorsPerLine": 7,
+	"contributorsSortAlphabetically": true,
+	"files": ["README.md"],
+	"imageSize": 100,
+	"projectName": "create-typescript-app",
+	"projectOwner": "JoshuaKGoldberg",
+	"repoHost": "https://github.com",
+	"repoType": "github",
+	"commitType": "docs"
 }

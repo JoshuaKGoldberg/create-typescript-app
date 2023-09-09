@@ -33,20 +33,28 @@ export async function promptForMode(input: boolean | string | undefined) {
 		return input;
 	}
 
+	const label = (base: string, text: string) => `${chalk.bold(base)} ${text}`;
+
 	const selection = filterPromptCancel(
 		(await prompts.select({
 			message: chalk.blue("How would you like to use the template?"),
 			options: [
 				{
-					label: "--create a new repository in a child directory",
+					label: label("create", "a new repository in a child directory"),
 					value: "create",
 				},
 				{
-					label: "--initialize a freshly repository in the current directory",
+					label: label(
+						"initialize",
+						"a freshly repository in the current directory",
+					),
 					value: "initialize",
 				},
 				{
-					label: "--migrate an existing repository in the current directory",
+					label: label(
+						"migrate",
+						"an existing repository in the current directory",
+					),
 					value: "migrate",
 				},
 			],

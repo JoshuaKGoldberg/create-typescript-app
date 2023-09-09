@@ -10,6 +10,7 @@ import { logLine } from "../shared/cli/lines.js";
 import { logHelpText } from "./help.js";
 import { StatusCodes } from "../shared/codes.js";
 import { promptForMode } from "./mode.js";
+import { getVersionFromPackageJson } from "./packageJson.js";
 
 const operationMessage = (verb: string) =>
 	`Operation ${verb}. Exiting - maybe another time? 👋`;
@@ -17,11 +18,15 @@ const operationMessage = (verb: string) =>
 export async function bin(args: string[]) {
 	console.clear();
 
+	const version = await getVersionFromPackageJson();
+
 	prompts.intro(
 		[
-			chalk.greenBright(`Welcome to`),
+			chalk.greenBright(`✨ Welcome to`),
 			chalk.bgGreenBright.black(`create-typescript-app`),
-			chalk.greenBright(`! 🎉`),
+			chalk.greenBright(
+				`${typeof version === "string" ? ` ${version}` : ""}! ✨`,
+			),
 		].join(" "),
 	);
 
@@ -52,7 +57,7 @@ export async function bin(args: string[]) {
 	const help = values.help;
 
 	if (help) {
-		logHelpText("");
+		logHelpText();
 		return 0;
 	}
 

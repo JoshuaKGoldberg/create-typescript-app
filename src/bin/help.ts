@@ -2,10 +2,8 @@ import chalk from "chalk";
 
 import { logLine } from "../shared/cli/lines.js";
 
-export function logHelpText(version: string): void {
+export function logHelpText(): void {
 	logLine();
-
-	logLine(chalk.cyan(`✨ template-typescript-node-package v${version} ✨`));
 
 	logLine(
 		chalk.cyan(

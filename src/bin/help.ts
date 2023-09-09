@@ -1,8 +1,196 @@
 import chalk from "chalk";
 
 import { logLine } from "../shared/cli/lines.js";
+import { allArgOptions } from "../shared/options/args.js";
+
+interface HelpTextSection {
+	sectionHeading: string;
+	subsections: {
+		flags: Flag[];
+		subheading: string | undefined;
+		warning: string | undefined;
+	}[];
+}
+
+interface Flag {
+	description: string;
+	flag: string;
+	type: string;
+}
+
+function logHelpTextSection(section: HelpTextSection): void {
+	logLine();
+
+	logLine(chalk.black.bgGreenBright(section.sectionHeading));
+
+	for (const subsection of section.subsections) {
+		if (typeof subsection.warning === "string") {
+			logLine(chalk.yellow(subsection.warning));
+
+			logLine();
+		}
+
+		if (typeof subsection.subheading === "string") {
+			logLine(chalk.green(subsection.subheading));
+
+			logLine();
+		}
+
+		for (const option of subsection.flags) {
+			const { description, flag, type } = option;
+			logLine(
+				chalk.cyan(
+					`
+      --${flag}${
+				type !== "boolean" ? ` (${chalk.cyanBright(type)}) ` : ""
+			}: ${description}
+      `,
+				),
+			);
+		}
+	}
+}
+
+function createHelpTextSections(options: any): HelpTextSection[] {
+	const helpTextSections: HelpTextSection[] = [];
+
+	let core: HelpTextSection = {
+		sectionHeading: "Core options:",
+		subsections: [
+			{
+				flags: [],
+				subheading: undefined,
+				warning: undefined,
+			},
+		],
+	};
+
+	let optional: HelpTextSection = {
+		sectionHeading: "Optional options:",
+		subsections: [
+			{
+				flags: [],
+				subheading: undefined,
+				warning: undefined,
+			},
+		],
+	};
+
+	let optOut: HelpTextSection = {
+		sectionHeading: "Opt-outs:",
+		subsections: [
+			{
+				flags: [],
+				subheading: undefined,
+				warning: `
+      ⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
+      cause the setup script to skip prompting for more excludes. ⚠️
+      `,
+			},
+			{
+				flags: [
+					{
+						description: `
+        Skips network calls that fetch 
+        all-contributors data from GitHub
+        `,
+						flag: "exclude-contributors",
+						type: "boolean",
+					},
+					{
+						description: `
+        Skips calling to GitHub APIs.
+        `,
+						flag: "skip-github-api",
+						type: "boolean",
+					},
+					{
+						description: `
+        Skips installing all the new template 
+        packages with pnpm.
+        `,
+						flag: "skip-install",
+						type: "boolean",
+					},
+				],
+				subheading: `
+      You can prevent the migration script from making some network-based 
+      changes using any or all of the following CLI flags:
+      `,
+				warning: undefined,
+			},
+			{
+				flags: [
+					{
+						description: `
+        Skips removing setup docs and scripts, 
+        including this ${chalk.cyanBright("docs/")} directory
+        `,
+						flag: "skip-removal",
+						type: "boolean",
+					},
+					{
+						description: `
+        Skips the prompt offering to restore the 
+        repository if an error occurs during setup
+        `,
+						flag: "skip-restore",
+						type: "boolean",
+					},
+					{
+						description: `
+        Skips uninstalling packages only used for 
+        setup scripts
+        `,
+						flag: "skip-uninstall",
+						type: "boolean",
+					},
+				],
+				subheading: `
+      You can prevent the migration script from making some changes on disk 
+      using any or all of the following CLI flags:
+      `,
+				warning: undefined,
+			},
+		],
+	};
+
+	for (const option of Object.keys(options)) {
+		const data = options[option];
+
+		if (data.docsSection === "core") {
+			core.subsections[0].flags.push({
+				description: data.description,
+				flag: option,
+				type: data.type,
+			});
+		}
+
+		if (data.docsSection === "optional") {
+			optional.subsections[0].flags.push({
+				description: data.description,
+				flag: option,
+				type: data.type,
+			});
+		}
+
+		if (data.docsSection === "opt-out") {
+			optOut.subsections[0].flags.push({
+				description: data.description,
+				flag: option,
+				type: data.type,
+			});
+		}
+	}
+
+	helpTextSections.push(core, optional, optOut);
+
+	return helpTextSections;
+}
 
 export function logHelpText(): void {
+	const helpTextSections = createHelpTextSections(allArgOptions);
+
 	logLine();
 
 	logLine(
@@ -13,6 +201,14 @@ export function logHelpText(): void {
       `,
 		),
 	);
+
+	logLine();
+
+	for (const section of helpTextSections) {
+		logHelpTextSection(section);
+
+		logLine();
+	}
 
 	logLine();
 

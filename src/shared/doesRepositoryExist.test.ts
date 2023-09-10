@@ -21,7 +21,7 @@ describe("doesRepositoryExist", () => {
 
 		const actual = await doesRepositoryExist(octokit, { owner, repository });
 
-		expect(actual).toEqual(true);
+		expect(actual).toBe(true);
 	});
 
 	it("returns false when the octokit GET rejects with a 404", async () => {
@@ -31,7 +31,7 @@ describe("doesRepositoryExist", () => {
 
 		const actual = await doesRepositoryExist(octokit, { owner, repository });
 
-		expect(actual).toEqual(false);
+		expect(actual).toBe(false);
 	});
 
 	it("throws the error when awaiting the octokit GET throws a non-404 error", async () => {

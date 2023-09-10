@@ -25,6 +25,6 @@ describe("tryCatchLazyValueAsync", () => {
 
 		const lazy = tryCatchLazyValueAsync(get);
 
-		expect(await lazy()).toEqual(undefined);
+		expect(await lazy()).toBeUndefined();
 	});
 });

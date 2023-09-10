@@ -11,6 +11,7 @@ const createMockOctokit = (request: SpyInstance) =>
 const stubValues = { owner: "", repository: "" };
 
 describe("migrateBranchProtectionSettings", () => {
+	// eslint-disable-next-line vitest/expect-expect
 	it("does not throw when the request receives a non-error response", async () => {
 		const mockRequest = vi.fn().mockResolvedValue({ status: 200 });
 

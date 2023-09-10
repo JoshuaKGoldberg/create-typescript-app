@@ -9,7 +9,7 @@ describe("createWorkflowFile", () => {
 			runs: ["pnpm build"],
 		});
 
-		expect(actual).toEqual(
+		expect(actual).toBe(
 			`jobs:
   test_name:
     runs-on: ubuntu-latest

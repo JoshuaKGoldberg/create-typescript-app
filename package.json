@@ -88,7 +88,7 @@
 		"globby": "^13.2.2",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
-		"knip": "2.21.2",
+		"knip": "2.22.0",
 		"lint-staged": "^14.0.1",
 		"markdownlint": "^0.30.0",
 		"markdownlint-cli": "^0.36.0",

@@ -7,8 +7,8 @@ import { create } from "../create/index.js";
 import { initialize } from "../initialize/index.js";
 import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
-import { logHelpText } from "./help.js";
 import { StatusCodes } from "../shared/codes.js";
+import { logHelpText } from "./help.js";
 import { promptForMode } from "./mode.js";
 import { getVersionFromPackageJson } from "./packageJson.js";
 

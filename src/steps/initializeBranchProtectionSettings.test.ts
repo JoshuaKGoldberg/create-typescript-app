@@ -11,14 +11,15 @@ const createMockOctokit = (request: SpyInstance) =>
 const stubValues = { owner: "", repository: "" };
 
 describe("migrateBranchProtectionSettings", () => {
-	// eslint-disable-next-line vitest/expect-expect
 	it("does not throw when the request receives a non-error response", async () => {
 		const mockRequest = vi.fn().mockResolvedValue({ status: 200 });
 
-		await initializeBranchProtectionSettings(
-			createMockOctokit(mockRequest),
-			stubValues,
-		);
+		await expect(
+			initializeBranchProtectionSettings(
+				createMockOctokit(mockRequest),
+				stubValues,
+			),
+		).resolves.not.toThrow();
 	});
 
 	it("returns false when the request receives a 403 response", async () => {

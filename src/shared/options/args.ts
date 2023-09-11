@@ -4,7 +4,7 @@ export const allArgOptions = {
 	author: {
 		description: `Username on npm to publish packages under (by 
 	default, an existing npm author, or the currently logged in npm user, 
-	or ${chalk.cyanBright("owner.")}${chalk.magenta("toLowerCase()")})`,
+	or ${chalk.cyanBright("owner.toLowerCase()")})`,
 		docsSection: "optional",
 		type: "string",
 	},

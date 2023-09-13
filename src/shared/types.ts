@@ -1,3 +1,7 @@
+import { z } from "zod";
+
+import { optionsSchema } from "./schemas.js";
+
 export interface AllContributorContributor {
 	contributions: string[];
 	login: string;
@@ -16,3 +20,7 @@ export interface PartialPackageData {
 	name?: string;
 	repository?: { type: string; url: string } | string;
 }
+
+export type Options = z.infer<typeof optionsSchema>;
+
+export type InputBase = NonNullable<Options["base"]>;

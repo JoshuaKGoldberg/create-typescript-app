@@ -3,12 +3,10 @@ import { titleCase } from "title-case";
 import { z } from "zod";
 
 import { withSpinner } from "../cli/spinners.js";
+import { optionsSchema } from "../schemas.js";
+import { Options } from "../types.js";
 import { allArgOptions } from "./args.js";
-import {
-	Options,
-	augmentOptionsWithExcludes,
-	optionsSchema,
-} from "./augmentOptionsWithExcludes.js";
+import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";

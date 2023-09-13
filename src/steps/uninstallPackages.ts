@@ -20,6 +20,7 @@ export async function uninstallPackages() {
 			"prettier",
 			"replace-in-file",
 			"title-case",
+			"zod",
 		],
 		packageData.dependencies,
 	);

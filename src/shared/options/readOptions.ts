@@ -149,36 +149,12 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	};
 }
 
-const optionsFromArgsSchema = z.object({
-	author: z.string().optional(),
-	base: z.union([
-		z.literal("everything"),
-		z.literal("minimum"),
-		z.literal("prompt"),
-	]),
-	createRepository: z.boolean().optional(),
+const optionsFromArgsSchema = optionsSchema.extend({
 	description: z.string().optional(),
-	email: z.string().email().optional(),
-	excludeCompliance: z.boolean().optional(),
-	excludeContributors: z.boolean().optional(),
-	excludeLintJson: z.boolean().optional(),
-	excludeLintKnip: z.boolean().optional(),
-	excludeLintMd: z.boolean().optional(),
-	excludeLintPackageJson: z.boolean().optional(),
-	excludeLintPackages: z.boolean().optional(),
-	excludeLintPerfectionist: z.boolean().optional(),
-	excludeLintSpelling: z.boolean().optional(),
-	excludeLintYml: z.boolean().optional(),
-	excludeReleases: z.boolean().optional(),
-	excludeRenovate: z.boolean().optional(),
-	excludeTests: z.boolean().optional(),
-	funding: z.string().optional(),
 	owner: z.string().optional(),
 	repository: z.string().optional(),
-	skipGitHubApi: z.boolean(),
 	skipInstall: z.boolean(),
 	skipRemoval: z.boolean(),
-	skipRestore: z.boolean().optional(),
 	skipUninstall: z.boolean(),
 	title: z.string().optional(),
 });

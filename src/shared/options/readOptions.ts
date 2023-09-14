@@ -166,7 +166,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	};
 }
 
-export const optionsSchema = z
+const optionsSchema = z
 	.object({
 		author: z.string().optional(),
 		base: z

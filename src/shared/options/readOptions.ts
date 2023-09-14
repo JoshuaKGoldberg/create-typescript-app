@@ -205,7 +205,6 @@ const optionsSchema = z
 	// This is necessary since we want to require schema fields, but allow values to be undefined
 	// https://stackoverflow.com/questions/71477015/specify-a-zod-schema-with-a-non-optional-but-possibly-undefined-field
 	.transform((o) => ({
-		...o,
 		author: o.author,
 		base: o.base,
 		createRepository: o.createRepository,
@@ -227,6 +226,10 @@ const optionsSchema = z
 		funding: o.funding,
 		owner: o.owner,
 		repository: o.repository,
+		skipGitHubApi: o.skipGitHubApi,
+		skipInstall: o.skipInstall,
+		skipRemoval: o.skipRemoval,
 		skipRestore: o.skipRestore,
+		skipUninstall: o.skipUninstall,
 		title: o.title,
 	}));

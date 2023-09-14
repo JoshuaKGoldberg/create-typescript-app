@@ -53,6 +53,12 @@ vi.mock("./ensureRepositoryExists.js", () => ({
 	},
 }));
 
+vi.mock("./getGithub.js", () => ({
+	get getGithub() {
+		return vi.fn(() => ({}));
+	},
+}));
+
 vi.mock("./augmentOptionsWithExcludes.js", () => ({
 	get augmentOptionsWithExcludes() {
 		return vi.fn(() => ({ ...emptyOptions, ...mockOptions }));

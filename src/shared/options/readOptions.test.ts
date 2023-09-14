@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { readOptions } from "./readOptions.js";
 
 describe("readOptions", () => {
-	it("validates unusupported arguments and cancels the function", async () => {
+	it("validates unsupported arguments and cancels the function", async () => {
 		expect(await readOptions(["--base", "true"])).toStrictEqual({
 			cancelled: true,
 			options: {

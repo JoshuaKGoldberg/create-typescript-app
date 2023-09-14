@@ -3,7 +3,6 @@ import { titleCase } from "title-case";
 import { z } from "zod";
 
 import { withSpinner } from "../cli/spinners.js";
-import { optionsSchema } from "../schemas.js";
 import { Options } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
@@ -37,7 +36,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		tokens: true,
 	});
 
-	const options = optionsFromArgsSchema.parse({
+	const mappedOptions = {
 		author: values.author,
 		base: values.base,
 		createRepository: values["create-repository"],
@@ -65,7 +64,24 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		skipRestore: values["skip-restore"],
 		skipUninstall: !!values["skip-uninstall"],
 		title: values.title,
-	});
+	};
+
+	const optionsParseResult = optionsSchema.safeParse(mappedOptions);
+
+	if (!optionsParseResult.success) {
+		return {
+			cancelled: true,
+			options: Object.entries(mappedOptions).reduce(
+				(acc, [key, value]) => ({
+					...acc,
+					[key]: typeof value === "string" ? undefined : value,
+				}),
+				{},
+			),
+		};
+	}
+
+	const options = optionsParseResult.data;
 
 	options.owner ??= await getPrefillOrPromptedOption(
 		options.owner,
@@ -125,15 +141,16 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		return { cancelled: true, options };
 	}
 
-	const augmentedOptions = await augmentOptionsWithExcludes(
-		optionsSchema.parse({
-			...options,
-			author: options.author ?? (await defaults.owner()),
-			email: options.email ?? (await defaults.email()),
-			funding: options.funding ?? (await defaults.funding()),
-			repository,
-		}),
-	);
+	const augmentedOptions = await augmentOptionsWithExcludes({
+		...options,
+		author: options.author ?? (await defaults.owner()),
+		description: options.description,
+		email: options.email ?? (await defaults.email()),
+		funding: options.funding ?? (await defaults.funding()),
+		owner: options.owner,
+		repository,
+		title: options.title,
+	});
 
 	if (!augmentedOptions) {
 		return {
@@ -149,12 +166,67 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	};
 }
 
-const optionsFromArgsSchema = optionsSchema.extend({
-	description: z.string().optional(),
-	owner: z.string().optional(),
-	repository: z.string().optional(),
-	skipInstall: z.boolean(),
-	skipRemoval: z.boolean(),
-	skipUninstall: z.boolean(),
-	title: z.string().optional(),
-});
+export const optionsSchema = z
+	.object({
+		author: z.string().optional(),
+		base: z
+			.union([
+				z.literal("everything"),
+				z.literal("minimum"),
+				z.literal("prompt"),
+			])
+			.optional(),
+		createRepository: z.boolean().optional(),
+		description: z.string().optional(),
+		email: z.string().email().optional(),
+		excludeCompliance: z.boolean().optional(),
+		excludeContributors: z.boolean().optional(),
+		excludeLintJson: z.boolean().optional(),
+		excludeLintKnip: z.boolean().optional(),
+		excludeLintMd: z.boolean().optional(),
+		excludeLintPackageJson: z.boolean().optional(),
+		excludeLintPackages: z.boolean().optional(),
+		excludeLintPerfectionist: z.boolean().optional(),
+		excludeLintSpelling: z.boolean().optional(),
+		excludeLintYml: z.boolean().optional(),
+		excludeReleases: z.boolean().optional(),
+		excludeRenovate: z.boolean().optional(),
+		excludeTests: z.boolean().optional(),
+		funding: z.string().optional(),
+		owner: z.string().optional(),
+		repository: z.string().optional(),
+		skipGitHubApi: z.boolean(),
+		skipInstall: z.boolean(),
+		skipRemoval: z.boolean(),
+		skipRestore: z.boolean().optional(),
+		skipUninstall: z.boolean(),
+		title: z.string().optional(),
+	})
+	// This is necessary since we want to require schema fields, but allow values to be undefined
+	// https://stackoverflow.com/questions/71477015/specify-a-zod-schema-with-a-non-optional-but-possibly-undefined-field
+	.transform((o) => ({
+		...o,
+		author: o.author,
+		base: o.base,
+		createRepository: o.createRepository,
+		description: o.description,
+		email: o.email,
+		excludeCompliance: o.excludeCompliance,
+		excludeContributors: o.excludeContributors,
+		excludeLintJson: o.excludeLintJson,
+		excludeLintKnip: o.excludeLintKnip,
+		excludeLintMd: o.excludeLintMd,
+		excludeLintPackageJson: o.excludeLintPackageJson,
+		excludeLintPackages: o.excludeLintPackages,
+		excludeLintPerfectionist: o.excludeLintPerfectionist,
+		excludeLintSpelling: o.excludeLintSpelling,
+		excludeLintYml: o.excludeLintYml,
+		excludeReleases: o.excludeReleases,
+		excludeRenovate: o.excludeRenovate,
+		excludeTests: o.excludeTests,
+		funding: o.funding,
+		owner: o.owner,
+		repository: o.repository,
+		skipRestore: o.skipRestore,
+		title: o.title,
+	}));

@@ -53,8 +53,8 @@ vi.mock("./ensureRepositoryExists.js", () => ({
 	},
 }));
 
-vi.mock("./getGithub.js", () => ({
-	get getGithub() {
+vi.mock("../../shared/cli/spinners.ts", () => ({
+	get withSpinner() {
 		return vi.fn(() => ({}));
 	},
 }));

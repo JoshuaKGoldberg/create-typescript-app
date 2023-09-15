@@ -57,7 +57,8 @@
 		"prettier": "^3.0.2",
 		"replace-in-file": "^7.0.1",
 		"title-case": "^3.0.3",
-		"zod": "^3.22.2"
+		"zod": "^3.22.2",
+		"zod-validation-error": "^1.5.0"
 	},
 	"devDependencies": {
 		"@octokit/request-error": "^5.0.0",

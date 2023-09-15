@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import z from "zod";
 
 import { bin } from "./index.js";
 
@@ -113,6 +114,34 @@ describe("bin", () => {
 		const result = await bin(args);
 
 		expect(mockCreate).toHaveBeenCalledWith(args);
+		expect(mockCancel).toHaveBeenCalledWith(
+			`Operation cancelled. Exiting - maybe another time? 👋`,
+		);
+		expect(result).toEqual(code);
+	});
+
+	it("returns the cancel result containing zod error of the corresponding runner and output plus cancel logs when promptForMode returns a mode that cancels", async () => {
+		const mode = "initialize";
+		const args = ["--email", "abc123"];
+		const code = 2;
+
+		const validationResult = z
+			.object({ email: z.string().email() })
+			.safeParse({ email: "abc123" });
+
+		mockPromptForMode.mockResolvedValue(mode);
+		mockInitialize.mockResolvedValue({
+			code: 2,
+			options: {},
+			zodError: !validationResult.success ? validationResult.error : null,
+		});
+
+		const result = await bin(args);
+
+		expect(mockInitialize).toHaveBeenCalledWith(args);
+		expect(mockOutro).toHaveBeenCalledWith(
+			chalk.red('Validation error: Invalid email at "email"'),
+		);
 		expect(mockCancel).toHaveBeenCalledWith(
 			`Operation cancelled. Exiting - maybe another time? 👋`,
 		);

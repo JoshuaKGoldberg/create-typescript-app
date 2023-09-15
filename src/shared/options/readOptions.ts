@@ -18,7 +18,8 @@ export interface GitHubAndOptions {
 
 export interface OptionsParseCancelled {
 	cancelled: true;
-	options: Partial<Options>;
+	options: object;
+	zodError?: z.ZodError<object>;
 }
 
 export interface OptionsParseSuccess extends GitHubAndOptions {
@@ -71,13 +72,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	if (!optionsParseResult.success) {
 		return {
 			cancelled: true,
-			options: Object.entries(mappedOptions).reduce(
-				(acc, [key, value]) => ({
-					...acc,
-					[key]: typeof value === "string" ? undefined : value,
-				}),
-				{},
-			),
+			options: mappedOptions,
+			zodError: optionsParseResult.error,
 		};
 	}
 
@@ -166,70 +162,34 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	};
 }
 
-const optionsSchema = z
-	.object({
-		author: z.string().optional(),
-		base: z
-			.union([
-				z.literal("everything"),
-				z.literal("minimum"),
-				z.literal("prompt"),
-			])
-			.optional(),
-		createRepository: z.boolean().optional(),
-		description: z.string().optional(),
-		email: z.string().email().optional(),
-		excludeCompliance: z.boolean().optional(),
-		excludeContributors: z.boolean().optional(),
-		excludeLintJson: z.boolean().optional(),
-		excludeLintKnip: z.boolean().optional(),
-		excludeLintMd: z.boolean().optional(),
-		excludeLintPackageJson: z.boolean().optional(),
-		excludeLintPackages: z.boolean().optional(),
-		excludeLintPerfectionist: z.boolean().optional(),
-		excludeLintSpelling: z.boolean().optional(),
-		excludeLintYml: z.boolean().optional(),
-		excludeReleases: z.boolean().optional(),
-		excludeRenovate: z.boolean().optional(),
-		excludeTests: z.boolean().optional(),
-		funding: z.string().optional(),
-		owner: z.string().optional(),
-		repository: z.string().optional(),
-		skipGitHubApi: z.boolean(),
-		skipInstall: z.boolean(),
-		skipRemoval: z.boolean(),
-		skipRestore: z.boolean().optional(),
-		skipUninstall: z.boolean(),
-		title: z.string().optional(),
-	})
-	// This is necessary since we want to require schema fields, but allow values to be undefined
-	// https://stackoverflow.com/questions/71477015/specify-a-zod-schema-with-a-non-optional-but-possibly-undefined-field
-	.transform((o) => ({
-		author: o.author,
-		base: o.base,
-		createRepository: o.createRepository,
-		description: o.description,
-		email: o.email,
-		excludeCompliance: o.excludeCompliance,
-		excludeContributors: o.excludeContributors,
-		excludeLintJson: o.excludeLintJson,
-		excludeLintKnip: o.excludeLintKnip,
-		excludeLintMd: o.excludeLintMd,
-		excludeLintPackageJson: o.excludeLintPackageJson,
-		excludeLintPackages: o.excludeLintPackages,
-		excludeLintPerfectionist: o.excludeLintPerfectionist,
-		excludeLintSpelling: o.excludeLintSpelling,
-		excludeLintYml: o.excludeLintYml,
-		excludeReleases: o.excludeReleases,
-		excludeRenovate: o.excludeRenovate,
-		excludeTests: o.excludeTests,
-		funding: o.funding,
-		owner: o.owner,
-		repository: o.repository,
-		skipGitHubApi: o.skipGitHubApi,
-		skipInstall: o.skipInstall,
-		skipRemoval: o.skipRemoval,
-		skipRestore: o.skipRestore,
-		skipUninstall: o.skipUninstall,
-		title: o.title,
-	}));
+const optionsSchema = z.object({
+	author: z.string().optional(),
+	base: z
+		.union([z.literal("everything"), z.literal("minimum"), z.literal("prompt")])
+		.optional(),
+	createRepository: z.boolean().optional(),
+	description: z.string().optional(),
+	email: z.string().email().optional(),
+	excludeCompliance: z.boolean().optional(),
+	excludeContributors: z.boolean().optional(),
+	excludeLintJson: z.boolean().optional(),
+	excludeLintKnip: z.boolean().optional(),
+	excludeLintMd: z.boolean().optional(),
+	excludeLintPackageJson: z.boolean().optional(),
+	excludeLintPackages: z.boolean().optional(),
+	excludeLintPerfectionist: z.boolean().optional(),
+	excludeLintSpelling: z.boolean().optional(),
+	excludeLintYml: z.boolean().optional(),
+	excludeReleases: z.boolean().optional(),
+	excludeRenovate: z.boolean().optional(),
+	excludeTests: z.boolean().optional(),
+	funding: z.string().optional(),
+	owner: z.string().optional(),
+	repository: z.string().optional(),
+	skipGitHubApi: z.boolean(),
+	skipInstall: z.boolean(),
+	skipRemoval: z.boolean(),
+	skipRestore: z.boolean().optional(),
+	skipUninstall: z.boolean(),
+	title: z.string().optional(),
+});

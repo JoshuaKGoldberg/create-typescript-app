@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
+import z from "zod";
 
 import { readOptions } from "./readOptions.js";
 
@@ -39,41 +40,46 @@ const mockOptions = {
 };
 
 vi.mock("./getPrefillOrPromptedOption.js", () => ({
-	get getPrefillOrPromptedOption() {
-		return vi.fn(() => "mock");
+	getPrefillOrPromptedOption() {
+		return () => "mock";
 	},
 }));
 
 vi.mock("./ensureRepositoryExists.js", () => ({
-	get ensureRepositoryExists() {
-		return vi.fn(() => ({
+	ensureRepositoryExists() {
+		return {
 			github: mockOptions.github,
 			repository: mockOptions.repository,
-		}));
+		};
 	},
 }));
 
 vi.mock("../../shared/cli/spinners.ts", () => ({
-	get withSpinner() {
-		return vi.fn(() => ({}));
+	withSpinner() {
+		return () => ({});
 	},
 }));
 
 vi.mock("./augmentOptionsWithExcludes.js", () => ({
-	get augmentOptionsWithExcludes() {
-		return vi.fn(() => ({ ...emptyOptions, ...mockOptions }));
+	augmentOptionsWithExcludes() {
+		return { ...emptyOptions, ...mockOptions };
 	},
 }));
 
 describe("readOptions", () => {
-	it("validates unsupported argument and cancels the function", async () => {
-		expect(await readOptions(["--base", "true"])).toStrictEqual({
+	it("cancels the function when --email is invalid", async () => {
+		const validationResult = z
+			.object({ email: z.string().email() })
+			.safeParse({ email: "wrongEmail" });
+
+		expect(await readOptions(["--email", "wrongEmail"])).toStrictEqual({
 			cancelled: true,
-			options: emptyOptions,
+			options: { ...emptyOptions, email: "wrongEmail" },
+			zodError: !validationResult.success ? validationResult.error : null,
 		});
 	});
 
-	it("validates valid argument and continues function execution", async () => {
+	it("successfully runs the function when --base is valid", async () => {
 		expect(await readOptions(["--base", mockOptions.base])).toStrictEqual({
 			cancelled: false,
 			github: mockOptions.github,

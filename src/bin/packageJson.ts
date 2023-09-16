@@ -1,7 +1,8 @@
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 
 export async function getVersionFromPackageJson(): Promise<string | undefined> {
-	const data = (await readFileSafeAsJson("package.json")) as any;
+	const path = new URL("../../package.json", import.meta.url);
+	const data = (await readFileSafeAsJson(path)) as any;
 
 	if (
 		typeof data === "object" &&

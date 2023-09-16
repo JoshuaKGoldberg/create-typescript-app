@@ -12,3 +12,11 @@ export function logNewSection(line: string) {
 export function makeLine(line: string | undefined) {
 	return [chalk.gray("│"), line].filter(Boolean).join("  ");
 }
+
+export function logPipelessLine(line?: string) {
+	if (typeof line !== "undefined") {
+		console.log(line);
+	} else {
+		console.log(" ");
+	}
+}

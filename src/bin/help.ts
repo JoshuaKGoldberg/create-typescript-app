@@ -1,6 +1,6 @@
 import chalk from "chalk";
 
-import { logLine } from "../shared/cli/lines.js";
+import { logPipelessLine } from "../shared/cli/lines.js";
 import { allArgOptions } from "../shared/options/args.js";
 
 interface HelpTextSection {
@@ -19,22 +19,22 @@ interface Flag {
 }
 
 function logHelpTextSection(section: HelpTextSection): void {
-	logLine();
+	logPipelessLine();
 
-	logLine(chalk.black.bgGreenBright(section.sectionHeading));
+	logPipelessLine(`   ${chalk.black.bgGreenBright(section.sectionHeading)}`);
 
 	for (const subsection of section.subsections) {
 		if (typeof subsection.warning === "string") {
-			logLine(chalk.yellow(subsection.warning));
+			logPipelessLine(chalk.yellow(subsection.warning));
 		}
 
 		if (typeof subsection.subheading === "string") {
-			logLine(chalk.green(subsection.subheading));
+			logPipelessLine(chalk.green(subsection.subheading));
 		}
 
 		for (const option of subsection.flags) {
 			const { description, flag, type } = option;
-			logLine(
+			logPipelessLine(
 				chalk.cyan(
 					`
       --${flag}${
@@ -84,8 +84,8 @@ function createHelpTextSections(options: any): HelpTextSection[] {
 			{
 				flags: [
 					{
-						description: `Skips network calls that fetch all-contributors 
-				data from GitHub`,
+						description: `Skips network calls that fetch all-contributors
+        data from GitHub`,
 						flag: "exclude-contributors",
 						type: "boolean",
 					},
@@ -157,9 +157,9 @@ function createHelpTextSections(options: any): HelpTextSection[] {
 export function logHelpText(): void {
 	const helpTextSections = createHelpTextSections(allArgOptions);
 
-	logLine();
+	logPipelessLine();
 
-	logLine(
+	logPipelessLine(
 		chalk.cyan(
 			`
       A quickstart-friendly TypeScript template with comprehensive formatting, 
@@ -171,6 +171,6 @@ export function logHelpText(): void {
 	for (const section of helpTextSections) {
 		logHelpTextSection(section);
 
-		logLine();
+		logPipelessLine();
 	}
 }

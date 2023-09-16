@@ -22,6 +22,7 @@ const devDependenciesToRemove = [
 	"jest",
 	"mocha",
 	"npm-run-all",
+	"pnpm-deduplicate",
 	"pretty-quick",
 	"ts-jest",
 ];

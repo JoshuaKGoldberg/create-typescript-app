@@ -18,6 +18,12 @@ interface Flag {
 	type: string;
 }
 
+interface Option {
+	description: string;
+	docsSection: string;
+	type: string;
+}
+
 function logHelpTextSection(section: HelpTextSection): void {
 	logPipelessLine();
 
@@ -46,7 +52,7 @@ function logHelpTextSection(section: HelpTextSection): void {
 	}
 }
 
-function createHelpTextSections(options: any): HelpTextSection[] {
+function createHelpTextSections(options: object): HelpTextSection[] {
 	const helpTextSections: HelpTextSection[] = [];
 
 	const core: HelpTextSection = {
@@ -106,7 +112,7 @@ function createHelpTextSections(options: any): HelpTextSection[] {
 	};
 
 	for (const option of Object.keys(options)) {
-		const data = options[option];
+		const data = options[option as keyof object] as unknown as Option;
 
 		if (data.docsSection === "core") {
 			core.subsections[0].flags.push({

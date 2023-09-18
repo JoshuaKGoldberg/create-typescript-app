@@ -67,7 +67,8 @@ export async function bin(args: string[]) {
 
 		if (zodError) {
 			const validationError = fromZodError(zodError);
-			prompts.outro(chalk.red(validationError));
+			logLine(chalk.red(validationError));
+			logLine();
 		}
 
 		prompts.cancel(

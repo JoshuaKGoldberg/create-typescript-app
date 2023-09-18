@@ -194,3 +194,7 @@ That end-to-end test executes `script/migrate-test-e2e.js`, which:
 
 The `pnpm run test:migrate` script is run in CI to ensure that templating changes are in sync with the template's actual files.
 See `.github/workflows/test-migrate.yml`.
+
+> Tip: if the migration test is failing in CI and you don't see any errors, try [downloading the full logs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs#downloading-logs).
+> There'll likely be a list of changed files under a message like _`Oh no! Running the migrate script modified some files:`_.
+> You can also try running the test script locally.

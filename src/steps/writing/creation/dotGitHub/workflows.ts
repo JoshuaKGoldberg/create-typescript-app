@@ -77,7 +77,7 @@ export function createWorkflows(options: Options) {
 					},
 				},
 				steps: [
-					{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },
+					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{ uses: "./.github/actions/prepare" },
 					{
 						env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
@@ -129,7 +129,7 @@ export function createWorkflows(options: Options) {
 					},
 				},
 				steps: [
-					{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },
+					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{
 						run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
 					},
@@ -168,7 +168,7 @@ export function createWorkflows(options: Options) {
 				},
 				steps: [
 					{
-						uses: "actions/checkout@v3",
+						uses: "actions/checkout@v4",
 						with: {
 							"fetch-depth": 0,
 						},
@@ -268,7 +268,7 @@ export function createWorkflows(options: Options) {
 			"test.yml": createWorkflowFile({
 				name: "Test",
 				steps: [
-					{ uses: "actions/checkout@v3" },
+					{ uses: "actions/checkout@v4" },
 					{ uses: "./.github/actions/prepare" },
 					{ run: "pnpm run test --coverage" },
 					{

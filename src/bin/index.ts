@@ -51,9 +51,8 @@ export async function bin(args: string[]) {
 		return 1;
 	}
 
-	const { code, options, zodError } = await { create, initialize, migrate }[
-		mode
-	](args);
+	const runners = { create, initialize, migrate };
+	const { code, options, zodError } = await runners[mode](args);
 
 	prompts.log.info(
 		[

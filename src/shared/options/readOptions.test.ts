@@ -75,7 +75,7 @@ describe("readOptions", () => {
 		expect(await readOptions(["--email", "wrongEmail"])).toStrictEqual({
 			cancelled: true,
 			options: { ...emptyOptions, email: "wrongEmail" },
-			zodError: !validationResult.success ? validationResult.error : null,
+			zodError: (validationResult as z.SafeParseError<{ email: string }>).error,
 		});
 	});
 

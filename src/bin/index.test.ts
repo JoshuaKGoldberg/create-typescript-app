@@ -133,7 +133,7 @@ describe("bin", () => {
 		mockInitialize.mockResolvedValue({
 			code: 2,
 			options: {},
-			zodError: !validationResult.success ? validationResult.error : null,
+			zodError: (validationResult as z.SafeParseError<{ email: string }>).error,
 		});
 
 		const result = await bin(args);

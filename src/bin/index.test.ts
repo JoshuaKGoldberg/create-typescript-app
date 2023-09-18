@@ -139,7 +139,7 @@ describe("bin", () => {
 		const result = await bin(args);
 
 		expect(mockInitialize).toHaveBeenCalledWith(args);
-		expect(mockOutro).toHaveBeenCalledWith(
+		expect(mockLogLine).toHaveBeenCalledWith(
 			chalk.red('Validation error: Invalid email at "email"'),
 		);
 		expect(mockCancel).toHaveBeenCalledWith(

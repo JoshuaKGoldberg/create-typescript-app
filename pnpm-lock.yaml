@@ -44,6 +44,12 @@ dependencies:
   title-case:
     specifier: ^3.0.3
     version: 3.0.3
+  zod:
+    specifier: ^3.22.2
+    version: 3.22.2
+  zod-validation-error:
+    specifier: ^1.5.0
+    version: 1.5.0(zod@3.22.2)
 
 devDependencies:
   '@octokit/request-error':
@@ -7577,8 +7583,6 @@ packages:
       zod: ^3.18.0
     dependencies:
       zod: 3.22.2
-    dev: true
 
   /zod@3.22.2:
     resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
-    dev: true

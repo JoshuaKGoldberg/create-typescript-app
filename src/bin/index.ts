@@ -1,6 +1,7 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 import { parseArgs } from "node:util";
+import { fromZodError } from "zod-validation-error";
 
 import { createRerunSuggestion } from "../create/createRerunSuggestion.js";
 import { create } from "../create/index.js";
@@ -50,7 +51,8 @@ export async function bin(args: string[]) {
 		return 1;
 	}
 
-	const { code, options } = await { create, initialize, migrate }[mode](args);
+	const runners = { create, initialize, migrate };
+	const { code, options, zodError } = await runners[mode](args);
 
 	prompts.log.info(
 		[
@@ -61,6 +63,13 @@ export async function bin(args: string[]) {
 
 	if (code) {
 		logLine();
+
+		if (zodError) {
+			const validationError = fromZodError(zodError);
+			logLine(chalk.red(validationError));
+			logLine();
+		}
+
 		prompts.cancel(
 			code === StatusCodes.Cancelled
 				? operationMessage("cancelled")

@@ -200,6 +200,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/363781?v=4",
 			"profile": "https://conormeagher.com/",
 			"contributions": ["code"]
+		},
+		{
+			"login": "DanexQ",
+			"name": "Daniel",
+			"avatar_url": "https://avatars.githubusercontent.com/u/72567464?v=4",
+			"profile": "https://github.com/DanexQ",
+			"contributions": ["infra"]
 		}
 	],
 	"contributorsPerLine": 7,

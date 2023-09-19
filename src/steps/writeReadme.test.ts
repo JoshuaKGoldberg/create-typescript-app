@@ -74,7 +74,7 @@ describe("writeReadme", () => {
 			<img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" />
 			<!-- ALL-CONTRIBUTORS-BADGE:END -->
 			<!-- prettier-ignore-end -->
-				</a>
+			</a>
 				<a href=\\"https://codecov.io/gh/TestOwner/test-repository\\" target=\\"_blank\\">
 					<img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/TestOwner/test-repository/branch/main/graph/badge.svg\\"/>
 				</a>
@@ -134,7 +134,7 @@ describe("writeReadme", () => {
 			<img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" />
 			<!-- ALL-CONTRIBUTORS-BADGE:END -->
 			<!-- prettier-ignore-end -->
-				</a>
+			</a>
 				<a href=\\"https://codecov.io/gh/TestOwner/test-repository\\" target=\\"_blank\\">
 					<img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/TestOwner/test-repository/branch/main/graph/badge.svg\\"/>
 				</a>
@@ -240,7 +240,7 @@ describe("writeReadme", () => {
 			<img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" />
 			<!-- ALL-CONTRIBUTORS-BADGE:END -->
 			<!-- prettier-ignore-end -->
-				</a>
+			</a>
 				<a href=\\"https://codecov.io/gh/TestOwner/test-repository\\" target=\\"_blank\\">
 					<img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/TestOwner/test-repository/branch/main/graph/badge.svg\\"/>
 				</a>

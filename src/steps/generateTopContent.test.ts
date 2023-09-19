@@ -1,6 +1,5 @@
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
-import { findExistingBadges } from "./findExistingBadges.js";
 import { generateTopContent } from "./generateTopContent.js";
 
 const optionsBase = {

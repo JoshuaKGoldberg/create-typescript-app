@@ -48,6 +48,7 @@ export async function createRootFiles(options: Options) {
 		}),
 		".nvmrc": `18.17.1\n`,
 		".prettierignore": formatIgnoreFile([
+			...(options.excludeContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",

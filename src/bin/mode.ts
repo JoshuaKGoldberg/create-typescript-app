@@ -1,5 +1,6 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
+import z from "zod";
 
 import { StatusCode } from "../shared/codes.js";
 import { filterPromptCancel } from "../shared/prompts.js";
@@ -8,6 +9,7 @@ import { Options } from "../shared/types.js";
 export interface ModeResult {
 	code: StatusCode;
 	options: Partial<Options>;
+	zodError?: z.ZodError<object>;
 }
 
 export type ModeRunner = (args: string[]) => Promise<ModeResult>;

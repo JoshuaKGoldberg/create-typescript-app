@@ -12,6 +12,7 @@ export const migrate: ModeRunner = async (args) => {
 		return {
 			code: StatusCodes.Cancelled,
 			options: inputs.options,
+			zodError: inputs.zodError,
 		};
 	}
 

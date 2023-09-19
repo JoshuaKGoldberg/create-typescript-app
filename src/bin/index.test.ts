@@ -73,7 +73,7 @@ describe("bin", () => {
 		expect(mockOutro).toHaveBeenCalledWith(
 			chalk.red("Operation cancelled. Exiting - maybe another time? 👋"),
 		);
-		expect(result).toEqual(1);
+		expect(result).toBe(1);
 	});
 
 	it("returns 1 when promptForMode returns an error", async () => {
@@ -83,7 +83,7 @@ describe("bin", () => {
 		const result = await bin([]);
 
 		expect(mockOutro).toHaveBeenCalledWith(chalk.red(error.message));
-		expect(result).toEqual(1);
+		expect(result).toBe(1);
 	});
 
 	it("returns the success result of the corresponding runner without cancel logging when promptForMode returns a mode that succeeds", async () => {

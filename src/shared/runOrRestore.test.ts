@@ -46,7 +46,7 @@ describe("runOrRestore", () => {
 			skipRestore: true,
 		});
 
-		expect(actual).toEqual(0);
+		expect(actual).toBe(0);
 	});
 
 	it("returns 2 and does not restore the repository when run rejects and skipRestore is true", async () => {
@@ -63,7 +63,7 @@ describe("runOrRestore", () => {
 			skipRestore: true,
 		});
 
-		expect(actual).toEqual(2);
+		expect(actual).toBe(2);
 		expect(mock$).toHaveBeenCalledTimes(0);
 	});
 
@@ -81,7 +81,7 @@ describe("runOrRestore", () => {
 			skipRestore: false,
 		});
 
-		expect(actual).toEqual(2);
+		expect(actual).toBe(2);
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [

@@ -16,6 +16,7 @@ export async function create(args: string[]): Promise<ModeResult> {
 		return {
 			code: StatusCodes.Cancelled,
 			options: inputs.options,
+			zodError: inputs.zodError,
 		};
 	}
 

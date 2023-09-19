@@ -193,6 +193,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/42891954?v=4",
 			"profile": "https://github.com/vasanth9",
 			"contributions": ["code"]
+		},
+		{
+			"login": "conrmahr",
+			"name": "Conor Meagher",
+			"avatar_url": "https://avatars.githubusercontent.com/u/363781?v=4",
+			"profile": "https://conormeagher.com/",
+			"contributions": ["code"]
 		}
 	],
 	"contributorsPerLine": 7,

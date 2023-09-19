@@ -644,6 +644,13 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "files": "./README.md",
+			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
+			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			    },
+			  ],
+			  [
+			    {
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",

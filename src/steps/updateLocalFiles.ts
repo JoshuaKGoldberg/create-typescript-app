@@ -36,6 +36,12 @@ export async function updateLocalFiles(
 			"./knip.jsonc",
 		],
 		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
+		// Edge case: migration scripts will rewrite README.md attribution
+		[
+			`> 💙 This package is based on [@${options.owner}](https://github.com/${options.owner})'s [${options.repository}](https://github.com/JoshuaKGoldberg/${options.repository}).`,
+			`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
+			"./README.md",
+		],
 	];
 
 	if (existingPackage.description) {

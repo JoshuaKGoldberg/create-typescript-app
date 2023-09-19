@@ -19,7 +19,7 @@ export async function migrateWithOptions({
 		[
 			"Writing structure",
 			async () => {
-				await writeStructure(options);
+				await writeStructure(options, "migrate");
 			},
 		],
 		[

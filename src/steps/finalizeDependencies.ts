@@ -48,7 +48,11 @@ export async function finalizeDependencies(options: Options) {
 			: ["eslint-plugin-yml", "yaml-eslint-parser"]),
 		...(options.excludeReleases
 			? []
-			: ["release-it", "should-semantic-release"]),
+			: [
+					"@release-it/conventional-changelog",
+					"release-it",
+					"should-semantic-release",
+			  ]),
 		...(options.excludeTests
 			? []
 			: [

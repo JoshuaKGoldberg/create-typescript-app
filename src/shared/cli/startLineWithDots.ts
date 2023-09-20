@@ -1,9 +1,9 @@
 import readline from "readline";
 
 export function startLineWithDots(line: string) {
+	const timer = [setTimeout(tick, 500)];
 	let dots = 0;
 	let lastLogged!: string;
-	let timer: NodeJS.Timeout;
 
 	function clearLine() {
 		readline.clearLine(process.stdout, -1);
@@ -25,15 +25,14 @@ export function startLineWithDots(line: string) {
 	function tick() {
 		clearLine();
 		writeLine();
-		timer = setTimeout(tick, 500);
+		timer[0] = setTimeout(tick, 500);
 	}
 
 	writeLine();
-	setTimeout(tick, 500);
 
 	return () => {
 		clearLine();
-		clearInterval(timer);
+		clearInterval(timer[0]);
 		return lastLogged.length;
 	};
 }

@@ -1,4 +1,4 @@
-import { Options } from "../shared/types.js";
+import { Options } from "../../shared/types.js";
 
 export function generateTopContent(options: Options, existingBadges: string[]) {
 	const remainingExistingBadges = new Set(existingBadges);

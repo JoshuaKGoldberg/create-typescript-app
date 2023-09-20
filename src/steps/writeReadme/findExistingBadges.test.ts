@@ -53,17 +53,17 @@ describe("findExistingBadges", () => {
 			`<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />`,
 			`<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
 		])("%s", (contents) => {
-			expect(findExistingBadges(contents)).toEqual([contents]);
+			expect(findExistingBadges(contents)).toEqual([contents.trim()]);
 		});
 	});
 
-	it("doesn't collect badges after a closing paragraph", () => {
+	it("doesn't collect badges after a ##", () => {
 		expect(
 			findExistingBadges(`
-			<p>
-				<img alt="test badge a" src="test-a.jpg" />
-			</p>
+			<img alt="test badge a" src="test-a.jpg" />
 			
+			## Usage
+
 			<img alt="test badge b" src="test-b.jpg" />
 		`),
 		).toEqual([`<img alt="test badge a" src="test-a.jpg" />`]);
@@ -74,10 +74,56 @@ describe("findExistingBadges", () => {
 			findExistingBadges(`
 			<img alt="test badge a" src="test-a.jpg" />
 			
-			## Usage
+			<h2 align="left">Usage</h2>
 
 			<img alt="test badge b" src="test-b.jpg" />
 		`),
 		).toEqual([`<img alt="test badge a" src="test-a.jpg" />`]);
+	});
+
+	test("real-world usage", () => {
+		expect(
+			findExistingBadges(`
+<p align="center">
+	<a href="#contributors" target="_blank">
+<!-- prettier-ignore-start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<img alt="All Contributors: 1" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- prettier-ignore-end -->
+	</a>
+	<a href="https://codecov.io/gh/JoshuaKGoldberg/all-contributors-auto-action" target="_blank">
+		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/all-contributors-auto-action/branch/main/graph/badge.svg?token=eVIFY4MhfQ"/>
+	</a>
+	<a href="https://github.com/JoshuaKGoldberg/all-contributors-auto-action/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
+		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
+	</a>
+	<a href="https://github.com/JoshuaKGoldberg/all-contributors-auto-action/blob/main/LICENSE.md" target="_blank">
+	    <img alt="License: MIT" src="https://img.shields.io/github/license/JoshuaKGoldberg/all-contributors-auto-action?color=21bb42">
+    </a>
+	<a href="https://github.com/sponsors/JoshuaKGoldberg" target="_blank">
+    	<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
+    </a>
+	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
+    <img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
+</p>
+			`),
+		).toMatchInlineSnapshot(`
+			[
+			  "<a href=\\"#contributors\\" target=\\"_blank\\">
+			<!-- prettier-ignore-start -->
+			<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+			<img alt=\\"All Contributors: 1\\" src=\\"https://img.shields.io/badge/all_contributors-1-21bb42.svg\\" />
+			<!-- ALL-CONTRIBUTORS-BADGE:END -->
+			<!-- prettier-ignore-end -->
+				</a>",
+			  "<a href=\\"https://github.com/JoshuaKGoldberg/all-contributors-auto-action/blob/main/LICENSE.md\\" target=\\"_blank\\">
+				    <img alt=\\"License: MIT\\" src=\\"https://img.shields.io/github/license/JoshuaKGoldberg/all-contributors-auto-action?color=21bb42\\">
+			    </a>",
+			  "<img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/JoshuaKGoldberg/all-contributors-auto-action/branch/main/graph/badge.svg?token=eVIFY4MhfQ\\"/>",
+			  "<img alt=\\"Sponsor: On GitHub\\" src=\\"https://img.shields.io/badge/sponsor-on_github-21bb42.svg\\" />",
+			  "<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />",
+			]
+		`);
 	});
 });

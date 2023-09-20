@@ -1,10 +1,11 @@
 import fs from "node:fs/promises";
 
-import { readFileSafe } from "../shared/readFileSafe.js";
-import { Options } from "../shared/types.js";
+import { readFileSafe } from "../../shared/readFileSafe.js";
+import { Options } from "../../shared/types.js";
+import { endOfReadmeNotice } from "../updateReadme.js";
 import { findExistingBadges } from "./findExistingBadges.js";
+import { findIntroSectionClose } from "./findIntroSectionClose.js";
 import { generateTopContent } from "./generateTopContent.js";
-import { endOfReadmeNotice } from "./updateReadme.js";
 
 const contributorsIndicator = `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`;
 
@@ -48,11 +49,11 @@ export async function writeReadme(options: Options) {
 		return;
 	}
 
-	const endOfH1 = findH1Close(contents);
+	const endOfIntroSection = findIntroSectionClose(contents);
 
 	contents = [
 		generateTopContent(options, findExistingBadges(contents)),
-		contents.slice(endOfH1),
+		contents.slice(endOfIntroSection),
 	]
 		.join("")
 		.replace(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
@@ -69,13 +70,4 @@ export async function writeReadme(options: Options) {
 	}
 
 	await fs.writeFile("README.md", contents);
-}
-
-function findH1Close(contents: string) {
-	const markdownMatch = contents.match(/^#.+/);
-	if (markdownMatch) {
-		return (markdownMatch.index ?? 0) + markdownMatch[0].length;
-	}
-
-	return contents.indexOf("</h1>") + "</h1>".length;
 }

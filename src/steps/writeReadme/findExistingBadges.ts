@@ -1,15 +1,17 @@
-const matchers = [
-	/\[!\[.+\]\(.+\)\]\(.+\)/,
-	/!\[.+\]\(.+\)/,
-	/^\s*<a[ \tA-Za-z_\-=#&;?./:'"]*>[\s\S]+<\/a>/gm,
-	/<img.+src.+\/>/,
+export const existingBadgeMatcherCreators = [
+	() => /\[!\[.+\]\(.+\)\]\(.+\)/g,
+	() => /!\[.+\]\(.+\)/g,
+	() => /^\s*<a[ \tA-Za-z_\-=#&;?./:'"]*>[\s\S]+?<\/a>/gm,
+	() => /<img.+src.+\/>/g,
 ];
 
 export function findExistingBadges(contents: string): string[] {
 	const badges: string[] = [];
-	let remaining = contents.split(/<\/p>|##/)[0];
+	let remaining = contents.split(/<\s*h2.*>|##/)[0];
 
-	for (const matcher of matchers) {
+	for (const createMatcher of existingBadgeMatcherCreators) {
+		const matcher = createMatcher();
+
 		while (true) {
 			const matched = matcher.exec(remaining);
 
@@ -19,7 +21,7 @@ export function findExistingBadges(contents: string): string[] {
 
 			const [badge] = matched;
 
-			badges.push(badge);
+			badges.push(badge.trim());
 			remaining = [
 				remaining.slice(0, matched.index),
 				remaining.slice(matched.index + badge.length),

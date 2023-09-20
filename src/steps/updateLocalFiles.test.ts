@@ -87,7 +87,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg/g,
+			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
 			      "to": "StubOwner",
 			    },
 			  ],
@@ -125,14 +125,14 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"create:test": "\\.\\+\\\\n/g,
+			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"initialize:test": "\\.\\*/g,
+			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
 			    },
 			  ],
@@ -146,7 +146,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"migrate:test": "\\.\\+\\\\n/g,
+			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
@@ -192,6 +192,13 @@ describe("updateLocalFiles", () => {
 			      "files": "./knip.jsonc",
 			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
 			      "to": "\\"src/**/*.ts!\\"",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./README.md",
+			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
+			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
 			    },
 			  ],
 			]
@@ -222,7 +229,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg/g,
+			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
 			      "to": "StubOwner",
 			    },
 			  ],
@@ -260,14 +267,14 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"create:test": "\\.\\+\\\\n/g,
+			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"initialize:test": "\\.\\*/g,
+			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
 			    },
 			  ],
@@ -281,7 +288,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"migrate:test": "\\.\\+\\\\n/g,
+			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
@@ -329,11 +336,179 @@ describe("updateLocalFiles", () => {
 			      "to": "\\"src/**/*.ts!\\"",
 			    },
 			  ],
+			  [
+			    {
+			      "files": "./README.md",
+			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
+			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			    },
+			  ],
 			]
 		`);
 	});
 
 	it("replaces using the extra replacements when the existing package data is full", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({
+			description: "Existing description",
+			version: "1.2.3",
+		});
+		mockReplaceInFile.mockResolvedValue([]);
+
+		await updateLocalFiles(options, { resetPackageVersion: true });
+
+		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    {
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /Create TypeScript App/g,
+			      "to": "Stub Title",
+			    },
+			  ],
+			  [
+			    {
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
+			      "to": "StubOwner",
+			    },
+			  ],
+			  [
+			    {
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /create-typescript-app/g,
+			      "to": "stub-repository",
+			    },
+			  ],
+			  [
+			    {
+			      "files": ".eslintrc.cjs",
+			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"author": "\\.\\+"/g,
+			      "to": "\\"author\\": \\"undefined\\"",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"bin": "\\.\\+\\\\n/g,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"test:create": "\\.\\+\\\\n/g,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"test:initialize": "\\.\\*/g,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"initialize": "\\.\\*/g,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"test:migrate": "\\.\\+\\\\n/g,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./README.md",
+			      "from": /## Getting Started\\.\\*## Development/gs,
+			      "to": "## Development",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./.github/DEVELOPMENT.md",
+			      "from": /\\\\n## Setup Scripts\\.\\*\\$/gs,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./knip.jsonc",
+			      "from": "		\\"src/initialize/index.ts\\",
+			",
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./knip.jsonc",
+			      "from": "		\\"src/migrate/index.ts\\",
+			",
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./knip.jsonc",
+			      "from": "[\\"src/index.ts!\\", \\"script/initialize*.js\\"]",
+			      "to": "\\"src/index.ts!\\"",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./knip.jsonc",
+			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
+			      "to": "\\"src/**/*.ts!\\"",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./README.md",
+			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
+			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			    },
+			  ],
+			  [
+			    {
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /Existing description/g,
+			      "to": "Stub description.",
+			    },
+			  ],
+			  [
+			    {
+			      "files": "./package.json",
+			      "from": /"version": "1\\.2\\.3"/g,
+			      "to": "\\"version\\": \\"0.0.0\\"",
+			    },
+			  ],
+			]
+		`);
+	});
+	it("does not overwrite package version when resetPackageVersion parameter is not set", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
 			description: "Existing description",
 			version: "1.2.3",
@@ -360,7 +535,7 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg/g,
+			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
 			      "to": "StubOwner",
 			    },
 			  ],
@@ -398,14 +573,14 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"create:test": "\\.\\+\\\\n/g,
+			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"initialize:test": "\\.\\*/g,
+			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
 			    },
 			  ],
@@ -419,7 +594,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "files": "./package.json",
-			      "from": /"migrate:test": "\\.\\+\\\\n/g,
+			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
 			    },
 			  ],
@@ -469,19 +644,19 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "files": "./README.md",
+			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
+			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			    },
+			  ],
+			  [
+			    {
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
 			      "from": /Existing description/g,
 			      "to": "Stub description.",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"version": "1\\.2\\.3"/g,
-			      "to": "\\"version\\": \\"0.0.0\\"",
 			    },
 			  ],
 			]

@@ -12,7 +12,7 @@ export async function createRootFiles(options: Options) {
 		".eslintignore": formatIgnoreFile(
 			[
 				"!.*",
-				...(options.excludeTests ? [] : ["coverage*"]),
+				...(options.excludeTests ? [] : ["coverage"]),
 				"lib",
 				"node_modules",
 				"pnpm-lock.yaml",
@@ -20,7 +20,7 @@ export async function createRootFiles(options: Options) {
 		),
 		".eslintrc.cjs": await createESLintRC(options),
 		".gitignore": formatIgnoreFile([
-			...(options.excludeTests ? [] : ["coverage*/"]),
+			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"node_modules/",
 		]),
@@ -48,12 +48,10 @@ export async function createRootFiles(options: Options) {
 		}),
 		".nvmrc": `18.17.1\n`,
 		".prettierignore": formatIgnoreFile([
-			...(options.excludeTests ? [] : ["coverage*/"]),
+			...(options.excludeContributors ? [] : [".all-contributorsrc"]),
+			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",
-			"",
-			"# See https://github.com/all-contributors/cli/issues/347",
-			".all-contributorsrc",
 		]),
 		".prettierrc": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
@@ -110,7 +108,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				ignorePaths: [
 					".github",
 					"CHANGELOG.md",
-					...(options.excludeTests ? [] : ["coverage*"]),
+					...(options.excludeTests ? [] : ["coverage"]),
 					"lib",
 					"node_modules",
 					"pnpm-lock.yaml",

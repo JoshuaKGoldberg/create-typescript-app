@@ -28,6 +28,6 @@ describe("readTitleFromReadme", () => {
 	it("returns undefined when title does not exist", async () => {
 		mockReadFileSafe.mockResolvedValue("");
 		const result = await readTitleFromReadme();
-		expect(result).toBe(undefined);
+		expect(result).toBeUndefined();
 	});
 });

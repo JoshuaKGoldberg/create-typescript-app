@@ -33,7 +33,7 @@ function logHelpTextSection(section: HelpTextSection): void {
 			console.log(chalk.yellow(subsection.warning));
 		}
 
-		if (typeof subsection.subheading === "string") {
+		if (subsection.subheading) {
 			console.log(chalk.green(subsection.subheading));
 		}
 

@@ -57,7 +57,7 @@ describe("updateLocalFiles", () => {
 		mockReplaceInFile.mockRejectedValue(error);
 
 		await expect(async () => {
-			await updateLocalFiles(options);
+			await updateLocalFiles(options, "initialize");
 		}).rejects.toThrowErrorMatchingInlineSnapshot(
 			'"Failed to replace /Create TypeScript App/g with Stub Title in ./.github/**/*,./*.*"',
 		);
@@ -67,7 +67,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue(null);
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options);
+		await updateLocalFiles(options, "initialize");
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -209,7 +209,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options);
+		await updateLocalFiles(options, "initialize");
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -347,319 +347,67 @@ describe("updateLocalFiles", () => {
 		`);
 	});
 
-	it("replaces using the extra replacements when the existing package data is full", async () => {
+	it("removes bin when the mode is initialize", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
 			description: "Existing description",
 			version: "1.2.3",
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, { resetPackageVersion: true });
+		await updateLocalFiles(options, "initialize");
 
-		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /Create TypeScript App/g,
-			      "to": "Stub Title",
-			    },
-			  ],
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
-			      "to": "StubOwner",
-			    },
-			  ],
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /create-typescript-app/g,
-			      "to": "stub-repository",
-			    },
-			  ],
-			  [
-			    {
-			      "files": ".eslintrc.cjs",
-			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"undefined\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"bin": "\\.\\+\\\\n/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"test:create": "\\.\\+\\\\n/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"test:initialize": "\\.\\*/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"initialize": "\\.\\*/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"test:migrate": "\\.\\+\\\\n/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./README.md",
-			      "from": /## Getting Started\\.\\*## Development/gs,
-			      "to": "## Development",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./.github/DEVELOPMENT.md",
-			      "from": /\\\\n## Setup Scripts\\.\\*\\$/gs,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "		\\"src/initialize/index.ts\\",
-			",
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "		\\"src/migrate/index.ts\\",
-			",
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "[\\"src/index.ts!\\", \\"script/initialize*.js\\"]",
-			      "to": "\\"src/index.ts!\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
-			      "to": "\\"src/**/*.ts!\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
-			    },
-			  ],
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /Existing description/g,
-			      "to": "Stub description.",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"version": "1\\.2\\.3"/g,
-			      "to": "\\"version\\": \\"0.0.0\\"",
-			    },
-			  ],
-			]
-		`);
+		expect(mockReplaceInFile).toHaveBeenCalledWith({
+			files: "./package.json",
+			from: /"bin": ".+\n/g,
+			to: "",
+		});
 	});
-	it("does not overwrite package version when resetPackageVersion parameter is not set", async () => {
+
+	it("does not remove bin when the mode is migrate", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
 			description: "Existing description",
 			version: "1.2.3",
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options);
+		await updateLocalFiles(options, "migrate");
 
-		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /Create TypeScript App/g,
-			      "to": "Stub Title",
-			    },
-			  ],
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
-			      "to": "StubOwner",
-			    },
-			  ],
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /create-typescript-app/g,
-			      "to": "stub-repository",
-			    },
-			  ],
-			  [
-			    {
-			      "files": ".eslintrc.cjs",
-			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"undefined\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"bin": "\\.\\+\\\\n/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"test:create": "\\.\\+\\\\n/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"test:initialize": "\\.\\*/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"initialize": "\\.\\*/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./package.json",
-			      "from": /"test:migrate": "\\.\\+\\\\n/g,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./README.md",
-			      "from": /## Getting Started\\.\\*## Development/gs,
-			      "to": "## Development",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./.github/DEVELOPMENT.md",
-			      "from": /\\\\n## Setup Scripts\\.\\*\\$/gs,
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "		\\"src/initialize/index.ts\\",
-			",
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "		\\"src/migrate/index.ts\\",
-			",
-			      "to": "",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "[\\"src/index.ts!\\", \\"script/initialize*.js\\"]",
-			      "to": "\\"src/index.ts!\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./knip.jsonc",
-			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
-			      "to": "\\"src/**/*.ts!\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
-			    },
-			  ],
-			  [
-			    {
-			      "files": [
-			        "./.github/**/*",
-			        "./*.*",
-			      ],
-			      "from": /Existing description/g,
-			      "to": "Stub description.",
-			    },
-			  ],
-			]
-		`);
+		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
+			files: "./package.json",
+			from: /"bin": ".+\n/g,
+			to: "",
+		});
+	});
+
+	it("resets package version to 0.0.0 when mode is initialize", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({
+			description: "Existing description",
+			version: "1.2.3",
+		});
+		mockReplaceInFile.mockResolvedValue([]);
+
+		await updateLocalFiles(options, "initialize");
+
+		expect(mockReplaceInFile).toHaveBeenCalledWith({
+			files: "./package.json",
+			from: /"version": "1.2.3"/g,
+			to: '"version": "0.0.0"',
+		});
+	});
+
+	it("does not reset package version to 0.0.0 when mode is migrate", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({
+			description: "Existing description",
+			version: "1.2.3",
+		});
+		mockReplaceInFile.mockResolvedValue([]);
+
+		await updateLocalFiles(options, "migrate");
+
+		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
+			files: "./package.json",
+			from: /"version": "1.2.3"/g,
+			to: '"version": "0.0.0"',
+		});
 	});
 });

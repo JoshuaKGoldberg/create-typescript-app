@@ -31,7 +31,7 @@ export async function migrateWithOptions({
 		[
 			"Updating local files",
 			async () => {
-				await updateLocalFiles(options);
+				await updateLocalFiles(options, "migrate");
 			},
 		],
 		[

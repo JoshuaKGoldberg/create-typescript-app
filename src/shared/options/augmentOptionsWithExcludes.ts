@@ -3,11 +3,20 @@ import * as prompts from "@clack/prompts";
 import { filterPromptCancel } from "../prompts.js";
 import { InputBase, Options } from "../types.js";
 
-const exclusionDescriptions = {
+interface ExclusionDescription {
+	hint: string;
+	label: string;
+	uncommon?: true;
+}
+
+type ExclusionKey = keyof Options & `exclude${string}`;
+
+const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> = {
 	excludeCompliance: {
 		hint: "--exclude-compliance",
 		label:
 			"Add a GitHub Actions workflow to verify that PRs match an expected format.",
+		uncommon: true,
 	},
 	excludeContributors: {
 		hint: "--exclude-contributors",
@@ -17,6 +26,7 @@ const exclusionDescriptions = {
 	excludeLintJson: {
 		hint: "--exclude-lint-json",
 		label: "Apply linting and sorting to *.json and *.jsonc files.",
+		uncommon: true,
 	},
 	excludeLintKnip: {
 		hint: "--exclude-lint-knip",
@@ -25,28 +35,34 @@ const exclusionDescriptions = {
 	excludeLintMd: {
 		hint: "--exclude-lint-md",
 		label: "Apply linting to *.md files.",
+		uncommon: true,
 	},
 	excludeLintPackageJson: {
 		hint: "--exclude-lint-package-json",
 		label: "Add npm-package-json-lint to lint for package.json correctness.",
+		uncommon: true,
 	},
 	excludeLintPackages: {
 		hint: "--exclude-lint-packages",
 		label:
 			"Add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.",
+		uncommon: true,
 	},
 	excludeLintPerfectionist: {
 		hint: "--exclude-lint-perfectionist",
 		label:
 			"Apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.",
+		uncommon: true,
 	},
 	excludeLintSpelling: {
 		hint: "--exclude-lint-spelling",
 		label: "Add cspell to spell check against dictionaries of known words.",
+		uncommon: true,
 	},
 	excludeLintYml: {
 		hint: "--exclude-lint-yml",
 		label: "Apply linting and sorting to *.yaml and *.yml files.",
+		uncommon: true,
 	},
 	excludeReleases: {
 		hint: "--exclude-releases",
@@ -55,16 +71,14 @@ const exclusionDescriptions = {
 	},
 	excludeRenovate: {
 		hint: "--exclude-renovate",
-		label: "Add a Renovate config to dependencies up-to-date with PRs.",
+		label: "Add a Renovate config to keep dependencies up-to-date with PRs.",
 	},
 	excludeTests: {
 		hint: "--exclude-tests",
 		label:
 			"Add Vitest tooling for fast unit tests, configured with coverage tracking.",
 	},
-} as const;
-
-type ExclusionKey = keyof typeof exclusionDescriptions;
+};
 
 const exclusionKeys = Object.keys(exclusionDescriptions) as ExclusionKey[];
 
@@ -85,15 +99,23 @@ export async function augmentOptionsWithExcludes(
 		options.base ??
 		filterPromptCancel<InputBase | symbol>(
 			await prompts.select({
+				initialValue: "common" as InputBase,
 				message: `How much tooling would you like the template to set up for you?`,
 				options: [
 					{
-						hint: "recommended",
-						label: "Everything! 🙌",
+						label:
+							"Everything! Lint and sort all the things! Deduplicate and auto-update packages! 🙌",
 						value: "everything",
 					},
 					{
-						label: "Just the bare essentials, please.",
+						hint: "recommended",
+						label:
+							"Essentials plus useful tooling for all-contributors, releases, and testing.",
+						value: "common",
+					},
+					{
+						label:
+							"Just the bare essentials, please: building, formatting, linting, and type checking.",
 						value: "minimum",
 					},
 					{
@@ -107,6 +129,16 @@ export async function augmentOptionsWithExcludes(
 	switch (base) {
 		case undefined:
 			return undefined;
+
+		case "common":
+			return {
+				...options,
+				...Object.fromEntries(
+					exclusionKeys
+						.filter((exclusion) => exclusionDescriptions[exclusion].uncommon)
+						.map((exclusion) => [exclusion, options[exclusion] ?? true]),
+				),
+			};
 
 		case "everything":
 			return options;

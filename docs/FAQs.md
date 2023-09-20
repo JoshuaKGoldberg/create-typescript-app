@@ -21,6 +21,19 @@ Each of the included tools exists for a good reason and provides real value.
 
 If you don't want to use any particular tool, you can always remove it manually.
 
+### What determines which "base" a tool goes into?
+
+The four bases correspond to what have seemed to be the most common user needs of template consumers:
+
+1. **Minimum**: Developers who just want the barest of starting templates.
+   - They may be very new to TypeScript tooling, or they may have made an informed decision that the additional tooling isn't worth the complexity and/or time investment.
+   - Tooling in this base is only what would be essential for a small TypeScript package that can be built, formatted, and linted.
+2. **Common**: The common case of users who want the minimum tooling along with common repository management.
+   - Tooling added in this base should be essential for a TypeScript repository that additionally automates useful GitHub tasks: contributor recognition, release management, and testing.
+3. **Everything**: Power users (including this repository) who want as much of the latest and greatest safety checks and standardization as possible.
+
+Note that users can always customize exactly with portions are kept in with `--base` **`prompt`**.
+
 ### Which tools can't I remove?
 
 The following pieces of this template's tooling don't have options to be removed:

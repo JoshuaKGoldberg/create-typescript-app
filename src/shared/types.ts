@@ -17,7 +17,7 @@ export interface PartialPackageData {
 	repository?: { type: string; url: string } | string;
 }
 
-export type InputBase = "everything" | "minimum" | "prompt";
+export type InputBase = "common" | "everything" | "minimum" | "prompt";
 
 export interface Options {
 	author?: string;

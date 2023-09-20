@@ -165,7 +165,12 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 const optionsSchema = z.object({
 	author: z.string().optional(),
 	base: z
-		.union([z.literal("everything"), z.literal("minimum"), z.literal("prompt")])
+		.union([
+			z.literal("common"),
+			z.literal("everything"),
+			z.literal("minimum"),
+			z.literal("prompt"),
+		])
 		.optional(),
 	createRepository: z.boolean().optional(),
 	description: z.string().optional(),

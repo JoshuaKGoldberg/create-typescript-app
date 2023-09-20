@@ -8,7 +8,7 @@ import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { runCommands } from "../steps/runCommands.js";
-import { writeReadme } from "../steps/writeReadme.js";
+import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function createWithOptions({ github, options }: GitHubAndOptions) {

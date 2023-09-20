@@ -8,7 +8,10 @@ interface ExistingPackageData {
 	version?: string;
 }
 
-export async function updateLocalFiles(options: Options) {
+export async function updateLocalFiles(
+	options: Options,
+	config = { resetPackageVersion: false },
+) {
 	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
 		{}) as ExistingPackageData;
 
@@ -48,7 +51,7 @@ export async function updateLocalFiles(options: Options) {
 		]);
 	}
 
-	if (existingPackage.version) {
+	if (config.resetPackageVersion && existingPackage.version) {
 		replacements.push([
 			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,

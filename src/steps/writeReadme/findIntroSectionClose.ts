@@ -1,7 +1,7 @@
 import { existingBadgeMatcherCreators } from "./findExistingBadges.js";
 
 export function findIntroSectionClose(contents: string) {
-	// Highest prioerity match: an h2, presumably following badges
+	// Highest priority match: an h2, presumably following badges
 	const indexOfH2OrCodeBlock = contents.search(/## |<\s*h2|```/);
 
 	if (indexOfH2OrCodeBlock !== -1) {

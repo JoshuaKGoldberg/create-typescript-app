@@ -114,7 +114,7 @@ export async function augmentOptionsWithExcludes(
 						hint: "recommended",
 						label: makeLabel(
 							"essentials",
-							"The starter tools plus automation for all-contributors, releases, and tests.",
+							"Bare starters plus testing and automation for all-contributors and releases.",
 						),
 						value: "common",
 					},

@@ -1,4 +1,5 @@
 import * as prompts from "@clack/prompts";
+import chalk from "chalk";
 
 import { filterPromptCancel } from "../prompts.js";
 import { InputBase, Options } from "../types.js";
@@ -103,23 +104,29 @@ export async function augmentOptionsWithExcludes(
 				message: `How much tooling would you like the template to set up for you?`,
 				options: [
 					{
-						label:
-							"Everything! Lint and sort all the things! Deduplicate and auto-update packages! 🙌",
+						label: makeLabel(
+							"everything",
+							"Sort and spellcheck all files! Deduplicate packages versions! Formalize PRs!",
+						),
 						value: "everything",
 					},
 					{
 						hint: "recommended",
-						label:
-							"Essentials plus useful tooling for all-contributors, releases, and testing.",
+						label: makeLabel(
+							"essentials",
+							"Essentials, plus useful tooling for all-contributors, releases, and testing.",
+						),
 						value: "common",
 					},
 					{
-						label:
-							"Just the bare essentials, please: building, formatting, linting, and type checking.",
+						label: makeLabel(
+							"minimum",
+							"Just bare starter tooling: building, formatting, linting, and type checking.",
+						),
 						value: "minimum",
 					},
 					{
-						label: "Allow me to customize.",
+						label: makeLabel("prompt", "(allow me to customize)"),
 						value: "prompt",
 					},
 				],
@@ -182,4 +189,8 @@ export async function augmentOptionsWithExcludes(
 				),
 			};
 	}
+}
+
+function makeLabel(label: string, message: string) {
+	return [chalk.bold(label), message].join("\t ");
 }

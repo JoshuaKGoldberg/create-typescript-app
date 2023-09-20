@@ -27,7 +27,7 @@
 </p>
 
 Note that this template is early stage, opinionated, and not endorsed by the TypeScript team.
-It sets up a _lot_ of tooling out of the box.
+It can be configured to set up a _lot_ of tooling out of the box.
 Each of the included tools exists for a good reason and provides real value.
 
 If you don't want to use any particular tool, you can always remove it manually.
@@ -50,7 +50,7 @@ Use the corresponding docs page to get started:
 ## Explainer
 
 This template is available for anybody who wants to set up a Node application using TypeScript.
-It sets up the following tooling for you:
+It can set up the following tooling for you:
 
 - [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
 - [**ESLint**](https://eslint.org): Static analysis for JavaScript code, configured with [typescript-eslint](https://typescript-eslint.io) for TypeScript code and other general-use plugins.

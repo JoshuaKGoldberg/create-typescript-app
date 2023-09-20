@@ -17,7 +17,7 @@ export interface PartialPackageData {
 	repository?: { type: string; url: string } | string;
 }
 
-export type InputBase = "everything" | "minimum" | "prompt";
+export type InputBase = "common" | "everything" | "minimum" | "prompt";
 
 export interface OptionsLogo {
 	alt: string;
@@ -25,32 +25,32 @@ export interface OptionsLogo {
 }
 
 export interface Options {
-	author: string | undefined;
-	base: InputBase | undefined;
-	createRepository: boolean | undefined;
+	author?: string;
+	base?: InputBase;
+	createRepository?: boolean;
 	description: string;
-	email: string | undefined;
-	excludeCompliance: boolean | undefined;
-	excludeContributors: boolean | undefined;
-	excludeLintJson: boolean | undefined;
-	excludeLintKnip: boolean | undefined;
-	excludeLintMd: boolean | undefined;
-	excludeLintPackageJson: boolean | undefined;
-	excludeLintPackages: boolean | undefined;
-	excludeLintPerfectionist: boolean | undefined;
-	excludeLintSpelling: boolean | undefined;
-	excludeLintYml: boolean | undefined;
-	excludeReleases: boolean | undefined;
-	excludeRenovate: boolean | undefined;
-	excludeTests: boolean | undefined;
-	funding: string | undefined;
+	email?: string;
+	excludeCompliance?: boolean;
+	excludeContributors?: boolean;
+	excludeLintJson?: boolean;
+	excludeLintKnip?: boolean;
+	excludeLintMd?: boolean;
+	excludeLintPackageJson?: boolean;
+	excludeLintPackages?: boolean;
+	excludeLintPerfectionist?: boolean;
+	excludeLintSpelling?: boolean;
+	excludeLintYml?: boolean;
+	excludeReleases?: boolean;
+	excludeRenovate?: boolean;
+	excludeTests?: boolean;
+	funding?: string;
 	logo: OptionsLogo | undefined;
 	owner: string;
 	repository: string;
 	skipGitHubApi: boolean;
-	skipInstall: boolean | undefined;
-	skipRemoval: boolean | undefined;
-	skipRestore: boolean | undefined;
-	skipUninstall: boolean | undefined;
+	skipInstall?: boolean;
+	skipRemoval?: boolean;
+	skipRestore?: boolean;
+	skipUninstall?: boolean;
 	title: string;
 }

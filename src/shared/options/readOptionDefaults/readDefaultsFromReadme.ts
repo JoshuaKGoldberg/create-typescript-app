@@ -1,14 +1,23 @@
+import lazyValue from "lazy-value";
+
 import { readFileSafe } from "../../readFileSafe.js";
 
-export async function readDefaultsFromReadme() {
-	const contents = await readFileSafe("./README.md", "");
+export function readDefaultsFromReadme() {
+	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
+
+	const imageTag = lazyValue(
+		async () => (await readme()).match(/<img.+src.+\/>/)?.[0],
+	);
 
 	return {
-		// TODO: This!
-		logo: undefined,
-		title: contents
-			.match(/^(?:# |<h1\s+align="center">)(.*?)(?:<\/h1>)?$/i)?.[1]
-			?.trim()
-			.replace(/<[^>]+(?:>|$)/g, ""),
+		logo: async () =>
+			(await imageTag())
+				?.match(/src\s*=\s*['"]?(.+)['"]?\/>/)?.[1]
+				?.replace(/['"]$/, ""),
+		title: async () =>
+			(await readme())
+				?.match(/^(?:# |<h1\s+align="center">)(.*?)(?:<\/h1>)?$/i)?.[1]
+				?.trim()
+				?.replace(/<[^>]+(?:>|$)/g, ""),
 	};
 }

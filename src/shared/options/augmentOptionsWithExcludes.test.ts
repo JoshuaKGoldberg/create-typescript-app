@@ -46,7 +46,54 @@ describe("augmentOptionsWithExcludes", () => {
 		expect(actual).toBe(options);
 	});
 
-	it("uses base without prompting when base is provided manually", async () => {
+	it("uses the 'common' base without prompting when provided manually", async () => {
+		const options = {
+			...optionsBase,
+			base: "common",
+		} satisfies Options;
+
+		const actual = await augmentOptionsWithExcludes(options);
+
+		expect(actual).toEqual({
+			...options,
+			excludeCompliance: true,
+			excludeLintJson: true,
+			excludeLintMd: true,
+			excludeLintPackageJson: true,
+			excludeLintPackages: true,
+			excludeLintPerfectionist: true,
+			excludeLintSpelling: true,
+			excludeLintYml: true,
+		});
+	});
+
+	it("uses the 'minimum' base without prompting when provided manually", async () => {
+		const options = {
+			...optionsBase,
+			base: "minimum",
+		} satisfies Options;
+
+		const actual = await augmentOptionsWithExcludes(options);
+
+		expect(actual).toEqual({
+			...options,
+			excludeCompliance: true,
+			excludeContributors: true,
+			excludeLintJson: true,
+			excludeLintKnip: true,
+			excludeLintMd: true,
+			excludeLintPackageJson: true,
+			excludeLintPackages: true,
+			excludeLintPerfectionist: true,
+			excludeLintSpelling: true,
+			excludeLintYml: true,
+			excludeReleases: true,
+			excludeRenovate: true,
+			excludeTests: true,
+		});
+	});
+
+	it("uses the 'everything' base without prompting when provided manually", async () => {
 		const options = {
 			...optionsBase,
 			base: "everything",

@@ -77,7 +77,7 @@ export function createWorkflows(options: Options) {
 					},
 				},
 				steps: [
-					{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },
+					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{ uses: "./.github/actions/prepare" },
 					{
 						env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
@@ -103,9 +103,15 @@ export function createWorkflows(options: Options) {
 			}),
 		}),
 		...(!options.excludeLintPackageJson && {
-			"lint-package.yml": createWorkflowFile({
+			"lint-package-json.yml": createWorkflowFile({
 				name: "Lint Package JSON",
 				runs: ["pnpm lint:package-json"],
+			}),
+		}),
+		...(!options.excludeLintPackages && {
+			"lint-packages.yml": createWorkflowFile({
+				name: "Lint Packages",
+				runs: ["pnpm lint:packages"],
 			}),
 		}),
 		...(!options.excludeLintSpelling && {
@@ -123,7 +129,7 @@ export function createWorkflows(options: Options) {
 					},
 				},
 				steps: [
-					{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },
+					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{
 						run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
 					},
@@ -162,7 +168,7 @@ export function createWorkflows(options: Options) {
 				},
 				steps: [
 					{
-						uses: "actions/checkout@v3",
+						uses: "actions/checkout@v4",
 						with: {
 							"fetch-depth": 0,
 						},
@@ -241,7 +247,7 @@ export function createWorkflows(options: Options) {
 									  { context: "lint" },
 									  { context: "lint_knip" },
 									  { context: "lint_markdown" },
-									  { context: "lint_package" },
+									  { context: "lint_package_json" },
 									  { context: "lint_packages" },
 									  { context: "lint_spelling" },
 									  { context: "prettier" },
@@ -262,7 +268,7 @@ export function createWorkflows(options: Options) {
 			"test.yml": createWorkflowFile({
 				name: "Test",
 				steps: [
-					{ uses: "actions/checkout@v3" },
+					{ uses: "actions/checkout@v4" },
 					{ uses: "./.github/actions/prepare" },
 					{ run: "pnpm run test --coverage" },
 					{

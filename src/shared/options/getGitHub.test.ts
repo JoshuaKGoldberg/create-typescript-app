@@ -1,7 +1,7 @@
 import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
-import { getOctokit } from "./getOctokit.js";
+import { getGitHub } from "./getGitHub.js";
 
 const mock$ = vi.fn();
 
@@ -17,7 +17,7 @@ describe("getOctokit", () => {
 	it("throws an error when gh auth status fails", async () => {
 		mock$.mockRejectedValueOnce(new Error("Oh no!"));
 
-		await expect(getOctokit).rejects.toMatchInlineSnapshot(
+		await expect(getGitHub).rejects.toMatchInlineSnapshot(
 			"[Error: GitHub authentication failed.]",
 		);
 	});
@@ -26,8 +26,8 @@ describe("getOctokit", () => {
 		const auth = "abc123";
 		mock$.mockResolvedValueOnce({}).mockResolvedValueOnce({ stdout: auth });
 
-		const actual = await getOctokit();
+		const actual = await getGitHub();
 
-		expect(actual).toEqual(new Octokit({ auth }));
+		expect(actual).toEqual({ auth, octokit: new Octokit({ auth }) });
 	});
 });

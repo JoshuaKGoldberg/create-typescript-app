@@ -1,34 +1,35 @@
 import { parseArgs } from "node:util";
-import { Octokit } from "octokit";
 import { titleCase } from "title-case";
+import { z } from "zod";
 
 import { withSpinner } from "../cli/spinners.js";
-import { InputBase, Options } from "../types.js";
+import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
-import { getOctokit } from "./getOctokit.js";
+import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
-import { readOptionDefaults } from "./readOptionDefaults/index.js";
+import { getGitAndNpmDefaults } from "./readOptionDefaults/index.js";
 
-export interface OctokitAndOptions {
-	octokit: Octokit | undefined;
+export interface GitHubAndOptions {
+	github: GitHub | undefined;
 	options: Options;
 }
 
 export interface OptionsParseCancelled {
 	cancelled: true;
-	options: Partial<Options>;
+	options: object;
+	zodError?: z.ZodError<object>;
 }
 
-export interface OptionsParseSuccess extends OctokitAndOptions {
+export interface OptionsParseSuccess extends GitHubAndOptions {
 	cancelled: false;
 }
 
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
 export async function readOptions(args: string[]): Promise<OptionsParseResult> {
-	const defaults = await readOptionDefaults();
+	const defaults = getGitAndNpmDefaults();
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
@@ -36,42 +37,50 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		tokens: true,
 	});
 
-	const options = {
-		author: values.author as string | undefined,
-		base: values.base as InputBase,
-		createRepository: values["create-repository"] as boolean | undefined,
-		description: values.description as string | undefined,
-		email: values.email as string | undefined,
-		excludeCompliance: values["exclude-compliance"] as boolean | undefined,
-		excludeContributors: values["exclude-contributors"] as boolean | undefined,
-		excludeLintJson: values["exclude-lint-json"] as boolean | undefined,
-		excludeLintKnip: values["exclude-lint-knip"] as boolean | undefined,
-		excludeLintMd: values["exclude-lint-md"] as boolean | undefined,
-		excludeLintPackageJson: values["exclude-lint-package-json"] as
-			| boolean
-			| undefined,
-		excludeLintPackages: values["exclude-lint-packages"] as boolean | undefined,
-		excludeLintPerfectionist: values["exclude-lint-perfectionist"] as
-			| boolean
-			| undefined,
-		excludeLintSpelling: values["exclude-lint-spelling"] as boolean | undefined,
-		excludeLintYml: values["exclude-lint-yml"] as boolean | undefined,
-		excludeReleases: values["exclude-releases"] as boolean | undefined,
-		excludeRenovate: values["exclude-renovate"] as boolean | undefined,
-		excludeTests: values["unit-tests"] as boolean | undefined,
-		funding: values.funding as string | undefined,
-		owner: values.owner as string | undefined,
-		repository: values.repository as string | undefined,
+	const mappedOptions = {
+		author: values.author,
+		base: values.base,
+		createRepository: values["create-repository"],
+		description: values.description,
+		email: values.email,
+		excludeCompliance: values["exclude-compliance"],
+		excludeContributors: values["exclude-contributors"],
+		excludeLintJson: values["exclude-lint-json"],
+		excludeLintKnip: values["exclude-lint-knip"],
+		excludeLintMd: values["exclude-lint-md"],
+		excludeLintPackageJson: values["exclude-lint-package-json"],
+		excludeLintPackages: values["exclude-lint-packages"],
+		excludeLintPerfectionist: values["exclude-lint-perfectionist"],
+		excludeLintSpelling: values["exclude-lint-spelling"],
+		excludeLintYml: values["exclude-lint-yml"],
+		excludeReleases: values["exclude-releases"],
+		excludeRenovate: values["exclude-renovate"],
+		excludeTests: values["unit-tests"],
+		funding: values.funding,
+		owner: values.owner,
+		repository: values.repository,
 		skipGitHubApi: !!values["skip-github-api"],
 		skipInstall: !!values["skip-install"],
 		skipRemoval: !!values["skip-removal"],
-		skipRestore: values["skip-restore"] as boolean | undefined,
+		skipRestore: values["skip-restore"],
 		skipUninstall: !!values["skip-uninstall"],
-		title: values.title as string | undefined,
+		title: values.title,
 	};
 
+	const optionsParseResult = optionsSchema.safeParse(mappedOptions);
+
+	if (!optionsParseResult.success) {
+		return {
+			cancelled: true,
+			options: mappedOptions,
+			zodError: optionsParseResult.error,
+		};
+	}
+
+	const options = optionsParseResult.data;
+
 	options.owner ??= await getPrefillOrPromptedOption(
-		values.owner as string | undefined,
+		options.owner,
 		"What organization or user will the repository be under?",
 		defaults.owner,
 	);
@@ -94,10 +103,10 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		};
 	}
 
-	const { octokit, repository } = await ensureRepositoryExists(
+	const { github, repository } = await ensureRepositoryExists(
 		values["skip-github-api"]
 			? undefined
-			: await withSpinner("Checking GitHub authentication", getOctokit),
+			: await withSpinner("Checking GitHub authentication", getGitHub),
 		{
 			createRepository: options.createRepository,
 			owner: options.owner,
@@ -111,7 +120,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.description ??= await getPrefillOrPromptedOption(
 		options.description,
 		"How would you describe the new package?",
-		defaults.description ?? "A very lovely package. Hooray!",
+		async () =>
+			(await defaults.description()) ?? "A very lovely package. Hooray!",
 	);
 	if (!options.description) {
 		return { cancelled: true, options };
@@ -120,28 +130,37 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.title ??= await getPrefillOrPromptedOption(
 		options.title,
 		"What will the Title Case title of the repository be?",
-		defaults.title ?? titleCase(repository).replaceAll("-", " "),
+		async () =>
+			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
 	);
 	if (!options.title) {
 		return { cancelled: true, options };
 	}
 
+	let logo: OptionsLogo | undefined;
+
+	if (options.logo) {
+		const alt = await getPrefillOrPromptedOption(
+			options.logoAlt,
+			"What is the alt text (non-visual description) of the logo?",
+		);
+		if (!alt) {
+			return { cancelled: true, options };
+		}
+		logo = { alt, src: options.logo };
+	}
+
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
-		author: options.author ?? defaults.owner,
-		email: options.email ?? defaults.email,
-		funding: options.funding ?? defaults.funding,
-		logo: values.logo
-			? {
-					alt: await getPrefillOrPromptedOption(
-						values["logoAlt"] as string | undefined,
-						"What is the alt text (non-visual description) of the logo?",
-					),
-					src: values.logo as string | undefined,
-			  }
-			: undefined,
+		author: options.author ?? (await defaults.owner()),
+		description: options.description,
+		email: options.email ?? (await defaults.email()),
+		funding: options.funding ?? (await defaults.funding()),
+		logo,
+		owner: options.owner,
 		repository,
-	} as Options);
+		title: options.title,
+	});
 
 	if (!augmentedOptions) {
 		return {
@@ -152,7 +171,46 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 
 	return {
 		cancelled: false,
-		octokit,
+		github,
 		options: augmentedOptions,
 	};
 }
+
+const optionsSchema = z.object({
+	author: z.string().optional(),
+	base: z
+		.union([
+			z.literal("common"),
+			z.literal("everything"),
+			z.literal("minimum"),
+			z.literal("prompt"),
+		])
+		.optional(),
+	createRepository: z.boolean().optional(),
+	description: z.string().optional(),
+	email: z.string().email().optional(),
+	excludeCompliance: z.boolean().optional(),
+	excludeContributors: z.boolean().optional(),
+	excludeLintJson: z.boolean().optional(),
+	excludeLintKnip: z.boolean().optional(),
+	excludeLintMd: z.boolean().optional(),
+	excludeLintPackageJson: z.boolean().optional(),
+	excludeLintPackages: z.boolean().optional(),
+	excludeLintPerfectionist: z.boolean().optional(),
+	excludeLintSpelling: z.boolean().optional(),
+	excludeLintYml: z.boolean().optional(),
+	excludeReleases: z.boolean().optional(),
+	excludeRenovate: z.boolean().optional(),
+	excludeTests: z.boolean().optional(),
+	funding: z.string().optional(),
+	logo: z.string().optional(),
+	logoAlt: z.string().optional(),
+	owner: z.string().optional(),
+	repository: z.string().optional(),
+	skipGitHubApi: z.boolean(),
+	skipInstall: z.boolean(),
+	skipRemoval: z.boolean(),
+	skipRestore: z.boolean().optional(),
+	skipUninstall: z.boolean(),
+	title: z.string().optional(),
+});

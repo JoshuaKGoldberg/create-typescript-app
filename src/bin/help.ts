@@ -29,7 +29,7 @@ function logHelpTextSection(section: HelpTextSection): void {
 	console.log(`   ${chalk.black.bgGreenBright(section.sectionHeading)}`);
 
 	for (const subsection of section.subsections) {
-		if (typeof subsection.warning === "string") {
+		if (subsection.warning) {
 			console.log(chalk.yellow(subsection.warning));
 		}
 

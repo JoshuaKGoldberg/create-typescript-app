@@ -106,7 +106,7 @@ export async function augmentOptionsWithExcludes(
 					{
 						label: makeLabel(
 							"everything",
-							"Sort and spellcheck all files! Deduplicate packages versions! Formalize PRs!",
+							"The most comprehensive tooling imaginable: sorting, spellchecking, and more!",
 						),
 						value: "everything",
 					},

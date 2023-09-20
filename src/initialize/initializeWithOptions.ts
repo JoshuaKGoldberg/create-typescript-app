@@ -19,7 +19,7 @@ export async function initializeWithOptions({
 		[
 			"Updating local files",
 			async () => {
-				await updateLocalFiles(options, { resetPackageVersion: true });
+				await updateLocalFiles(options, "initialize");
 			},
 		],
 		["Updating README.md", updateReadme],

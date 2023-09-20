@@ -1,6 +1,5 @@
 import chalk from "chalk";
 
-import { logPipelessLine } from "../shared/cli/lines.js";
 import { allArgOptions } from "../shared/options/args.js";
 
 interface HelpTextSection {
@@ -25,22 +24,22 @@ interface Option {
 }
 
 function logHelpTextSection(section: HelpTextSection): void {
-	logPipelessLine();
+	console.log(" ");
 
-	logPipelessLine(`   ${chalk.black.bgGreenBright(section.sectionHeading)}`);
+	console.log(`   ${chalk.black.bgGreenBright(section.sectionHeading)}`);
 
 	for (const subsection of section.subsections) {
 		if (typeof subsection.warning === "string") {
-			logPipelessLine(chalk.yellow(subsection.warning));
+			console.log(chalk.yellow(subsection.warning));
 		}
 
 		if (typeof subsection.subheading === "string") {
-			logPipelessLine(chalk.green(subsection.subheading));
+			console.log(chalk.green(subsection.subheading));
 		}
 
 		for (const option of subsection.flags) {
 			const { description, flag, type } = option;
-			logPipelessLine(
+			console.log(
 				chalk.cyan(
 					`
       --${flag}${
@@ -163,9 +162,9 @@ function createHelpTextSections(options: object): HelpTextSection[] {
 export function logHelpText(): void {
 	const helpTextSections = createHelpTextSections(allArgOptions);
 
-	logPipelessLine();
+	console.log(" ");
 
-	logPipelessLine(
+	console.log(
 		chalk.cyan(
 			`
       A quickstart-friendly TypeScript template with comprehensive formatting, 
@@ -177,6 +176,6 @@ export function logHelpText(): void {
 	for (const section of helpTextSections) {
 		logHelpTextSection(section);
 
-		logPipelessLine();
+		console.log();
 	}
 }

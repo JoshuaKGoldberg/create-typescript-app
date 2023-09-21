@@ -76,10 +76,7 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": {
-			      "github": "github@email.com",
-			      "npm": "npm@email.com",
-			    },
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
 			  "description": "test-description",
@@ -150,10 +147,7 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": {
-			      "github": "github@email.com",
-			      "npm": "npm@email.com",
-			    },
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
 			  "description": "test-description",

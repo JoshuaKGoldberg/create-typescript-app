@@ -191,6 +191,7 @@ module.exports = {
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
+		"no-mixed-spaces-and-tabs": "off",
 
 		${
 			options.excludeLintStylistic

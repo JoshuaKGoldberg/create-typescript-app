@@ -144,6 +144,7 @@ module.exports = {
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
+		"no-mixed-spaces-and-tabs": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
 		"@typescript-eslint/padding-line-between-statements": [

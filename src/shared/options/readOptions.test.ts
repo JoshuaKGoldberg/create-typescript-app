@@ -52,6 +52,14 @@ vi.mock("./augmentOptionsWithExcludes.js", () => ({
 	},
 }));
 
+const mockDetectEmailRedundancy = vi.fn();
+
+vi.mock("./detectEmailRedundancy.js", () => ({
+	get detectEmailRedundancy() {
+		return mockDetectEmailRedundancy;
+	},
+}));
+
 const mockGetPrefillOrPromptedOption = vi.fn();
 
 vi.mock("./getPrefillOrPromptedOption.js", () => ({
@@ -104,7 +112,22 @@ describe("readOptions", () => {
 		});
 	});
 
+	it("returns a cancellation when an email redundancy is detected", async () => {
+		const error = "Too many emails!";
+		mockDetectEmailRedundancy.mockReturnValue(error);
+		mockGetPrefillOrPromptedOption.mockImplementation(() => undefined);
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			error,
+			options: {
+				...emptyOptions,
+			},
+		});
+	});
+
 	it("returns a cancellation when the owner prompt is cancelled", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption.mockImplementation(() => undefined);
 
 		expect(await readOptions([])).toStrictEqual({
@@ -116,6 +139,7 @@ describe("readOptions", () => {
 	});
 
 	it("returns a cancellation when the repository prompt is cancelled", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementation(() => undefined);
@@ -130,6 +154,7 @@ describe("readOptions", () => {
 	});
 
 	it("returns a cancellation when ensureRepositoryPrompt does not return a repository", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
@@ -147,6 +172,7 @@ describe("readOptions", () => {
 	});
 
 	it("returns a cancellation when the description prompt is cancelled", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
@@ -167,6 +193,7 @@ describe("readOptions", () => {
 	});
 
 	it("returns a cancellation when the title prompt is cancelled", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
@@ -189,6 +216,7 @@ describe("readOptions", () => {
 	});
 
 	it("returns a cancellation when the logo alt prompt is cancelled", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
@@ -211,6 +239,7 @@ describe("readOptions", () => {
 	});
 
 	it("returns a cancellation when the email prompt is cancelled", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")

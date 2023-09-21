@@ -46,10 +46,13 @@ vi.mock("../cli/spinners.ts", () => ({
 	},
 }));
 
+const mockAugmentOptionsWithExcludes = vi.fn();
+
 vi.mock("./augmentOptionsWithExcludes.js", () => ({
-	augmentOptionsWithExcludes() {
-		return { ...emptyOptions, ...mockOptions };
+	get augmentOptionsWithExcludes() {
+		return mockAugmentOptionsWithExcludes;
 	},
+	// return { ...emptyOptions, ...mockOptions };
 }));
 
 const mockDetectEmailRedundancy = vi.fn();
@@ -263,7 +266,37 @@ describe("readOptions", () => {
 		});
 	});
 
+	it("returns a cancellation when augmentOptionsWithExcludes returns undefined", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementationOnce(() => "MockRepository")
+			.mockImplementationOnce(() => "Mock description.")
+			.mockImplementationOnce(() => "Mock title.")
+			.mockImplementation(() => undefined);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
+		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				description: "Mock description.",
+				owner: "MockOwner",
+				repository: "MockRepository",
+				title: "Mock title.",
+			},
+		});
+	});
+
 	it("returns success options when --base is valid", async () => {
+		mockAugmentOptionsWithExcludes.mockResolvedValue({
+			...emptyOptions,
+			...mockOptions,
+		});
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 
 		expect(await readOptions(["--base", mockOptions.base])).toStrictEqual({

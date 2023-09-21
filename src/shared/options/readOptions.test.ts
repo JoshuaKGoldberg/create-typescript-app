@@ -39,9 +39,17 @@ const mockOptions = {
 	repository: "mock.repository",
 };
 
+const mockGetPrefillOrPromptedOption = vi.fn();
+
+vi.mock("../cli/spinners.ts", () => ({
+	withSpinner() {
+		return () => ({});
+	},
+}));
+
 vi.mock("./getPrefillOrPromptedOption.js", () => ({
-	getPrefillOrPromptedOption() {
-		return () => "mock";
+	get getPrefillOrPromptedOption() {
+		return mockGetPrefillOrPromptedOption;
 	},
 }));
 
@@ -54,20 +62,35 @@ vi.mock("./ensureRepositoryExists.js", () => ({
 	},
 }));
 
-vi.mock("../../shared/cli/spinners.ts", () => ({
-	withSpinner() {
-		return () => ({});
-	},
-}));
-
 vi.mock("./augmentOptionsWithExcludes.js", () => ({
 	augmentOptionsWithExcludes() {
 		return { ...emptyOptions, ...mockOptions };
 	},
 }));
 
+vi.mock("./getGitHub.js", () => ({
+	getGitHub() {
+		return undefined;
+	},
+}));
+
+vi.mock("./readOptionDefaults/index.js", () => ({
+	getGitAndNpmDefaults() {
+		return {
+			author: vi.fn(),
+			description: vi.fn(),
+			email: vi.fn(),
+			funding: vi.fn(),
+			logo: vi.fn(),
+			owner: vi.fn(),
+			repository: vi.fn(),
+			title: vi.fn(),
+		};
+	},
+}));
+
 describe("readOptions", () => {
-	it("cancels the function when --email is invalid", async () => {
+	it("returns a cancellation when an arg is invalid", async () => {
 		const validationResult = z
 			.object({ email: z.string().email() })
 			.safeParse({ email: "wrongEmail" });
@@ -79,7 +102,86 @@ describe("readOptions", () => {
 		});
 	});
 
-	it("successfully runs the function when --base is valid", async () => {
+	it("returns a cancellation when the owner prompt is cancelled", async () => {
+		mockGetPrefillOrPromptedOption.mockImplementation(() => undefined);
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+			},
+		});
+	});
+
+	it("returns a cancellation when the repository prompt is cancelled", async () => {
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementation(() => undefined);
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				owner: "MockOwner",
+			},
+		});
+	});
+
+	it("returns a cancellation when the description prompt is cancelled", async () => {
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementationOnce(() => "MockRepository")
+			.mockImplementation(() => undefined);
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				owner: "MockOwner",
+				repository: "MockRepository",
+			},
+		});
+	});
+
+	it("returns a cancellation when the title prompt is cancelled", async () => {
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementationOnce(() => "MockRepository")
+			.mockImplementationOnce(() => "Mock description.")
+			.mockImplementation(() => undefined);
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				description: "Mock description.",
+				owner: "MockOwner",
+				repository: "MockRepository",
+			},
+		});
+	});
+
+	it("returns a cancellation when the logo alt prompt is cancelled", async () => {
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementationOnce(() => "MockRepository")
+			.mockImplementationOnce(() => "Mock description.")
+			.mockImplementation(() => undefined);
+
+		expect(await readOptions(["--logo", "logo.svg"])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				description: "Mock description.",
+				owner: "MockOwner",
+				repository: "MockRepository",
+			},
+		});
+	});
+
+	it("returns success options when --base is valid", async () => {
+		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+
 		expect(await readOptions(["--base", mockOptions.base])).toStrictEqual({
 			cancelled: false,
 			github: mockOptions.github,

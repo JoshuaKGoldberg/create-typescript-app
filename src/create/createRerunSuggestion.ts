@@ -12,7 +12,17 @@ export function createRerunSuggestion(
 	mode: Mode,
 	options: Partial<Options>,
 ): string {
-	const args = Object.entries(options)
+	const optionsNormalized = {
+		...options,
+		...(options.logo
+			? {
+					logo: options.logo.src,
+					logoAlt: options.logo.alt,
+			  }
+			: { logo: undefined }),
+	};
+
+	const args = Object.entries(optionsNormalized)
 		.filter(([, value]) => !!value)
 		.map(([key, value]) => {
 			const valueStringified = `${value}`;

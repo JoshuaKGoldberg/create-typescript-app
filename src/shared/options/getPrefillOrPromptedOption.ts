@@ -11,7 +11,7 @@ export async function getPrefillOrPromptedOption(
 		return existingValue;
 	}
 
-	const value = filterPromptCancel(
+	return filterPromptCancel(
 		await prompts.text({
 			message,
 			placeholder: await getPlaceholder?.(),
@@ -22,6 +22,4 @@ export async function getPrefillOrPromptedOption(
 			},
 		}),
 	);
-
-	return value;
 }

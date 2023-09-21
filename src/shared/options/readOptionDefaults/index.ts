@@ -9,7 +9,7 @@ import { readPackageData } from "../../packages.js";
 import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { tryCatchLazyValueAsync } from "../../tryCatchLazyValueAsync.js";
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
-import { readTitleFromReadme } from "./readTitleFromReadme.js";
+import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
 
 export function getGitAndNpmDefaults() {
 	const gitDefaults = tryCatchLazyValueAsync(async () =>
@@ -46,6 +46,6 @@ export function getGitAndNpmDefaults() {
 			(await gitDefaults())?.organization ?? (await packageAuthor()).author,
 		repository: async () =>
 			(await gitDefaults())?.name ?? (await packageData()).name,
-		title: async () => await readTitleFromReadme(),
+		...readDefaultsFromReadme(),
 	};
 }

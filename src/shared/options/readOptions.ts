@@ -3,13 +3,13 @@ import { titleCase } from "title-case";
 import { z } from "zod";
 
 import { withSpinner } from "../cli/spinners.js";
-import { Options } from "../types.js";
+import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
-import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
+import { getGitAndNpmDefaults } from "./readOptionDefaults/index.js";
 
 export interface GitHubAndOptions {
 	github: GitHub | undefined;
@@ -137,12 +137,27 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		return { cancelled: true, options };
 	}
 
+	let logo: OptionsLogo | undefined;
+
+	if (options.logo) {
+		const alt = await getPrefillOrPromptedOption(
+			options.logoAlt,
+			"What is the alt text (non-visual description) of the logo?",
+		);
+		if (!alt) {
+			return { cancelled: true, options };
+		}
+
+		logo = { alt, src: options.logo };
+	}
+
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
 		author: options.author ?? (await defaults.owner()),
 		description: options.description,
 		email: options.email ?? (await defaults.email()),
 		funding: options.funding ?? (await defaults.funding()),
+		logo,
 		owner: options.owner,
 		repository,
 		title: options.title,
@@ -189,6 +204,8 @@ const optionsSchema = z.object({
 	excludeRenovate: z.boolean().optional(),
 	excludeTests: z.boolean().optional(),
 	funding: z.string().optional(),
+	logo: z.string().optional(),
+	logoAlt: z.string().optional(),
 	owner: z.string().optional(),
 	repository: z.string().optional(),
 	skipGitHubApi: z.boolean(),

@@ -23,6 +23,7 @@ const options = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	logo: undefined,
 	owner: "TestOwner",
 	repository: "test-repository",
 	skipGitHubApi: false,

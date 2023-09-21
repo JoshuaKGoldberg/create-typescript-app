@@ -19,6 +19,11 @@ export interface PartialPackageData {
 
 export type InputBase = "common" | "everything" | "minimum" | "prompt";
 
+export interface OptionsLogo {
+	alt: string;
+	src: string;
+}
+
 export interface Options {
 	author?: string;
 	base?: InputBase;
@@ -39,6 +44,7 @@ export interface Options {
 	excludeRenovate?: boolean;
 	excludeTests?: boolean;
 	funding?: string;
+	logo: OptionsLogo | undefined;
 	owner: string;
 	repository: string;
 	skipGitHubApi: boolean;

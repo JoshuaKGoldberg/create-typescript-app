@@ -214,8 +214,7 @@ export function createWorkflows(options: Options) {
 						},
 						run: `
 						if pnpm run should-semantic-release ; then
-						  pnpm release-it --verbose
-						  gh workflow run post-release.yml
+							pnpm release-it --verbose
 						fi`,
 					},
 					{

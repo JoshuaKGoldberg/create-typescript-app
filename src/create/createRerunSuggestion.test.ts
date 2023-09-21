@@ -14,6 +14,7 @@ const options = {
 	},
 	excludeCompliance: true,
 	excludeContributors: true,
+	excludeLintJSDoc: true,
 	excludeLintJson: true,
 	excludeLintKnip: true,
 	excludeLintMd: false,
@@ -42,7 +43,7 @@ describe("createRerunSuggestion", () => {
 		const actual = createRerunSuggestion("initialize", options);
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
@@ -56,7 +57,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --logo test/src.png --logo-alt \\"Test alt.\\" --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --logo test/src.png --logo-alt \\"Test alt.\\" --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
@@ -69,7 +70,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 });

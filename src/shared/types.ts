@@ -24,12 +24,17 @@ export interface OptionsLogo {
 	src: string;
 }
 
+export interface OptionsEmail {
+	github: string;
+	npm: string;
+}
+
 export interface Options {
 	author?: string;
 	base?: InputBase;
 	createRepository?: boolean;
 	description: string;
-	email?: string;
+	email: OptionsEmail;
 	excludeCompliance?: boolean;
 	excludeContributors?: boolean;
 	excludeLintJson?: boolean;
@@ -47,7 +52,7 @@ export interface Options {
 	logo: OptionsLogo | undefined;
 	owner: string;
 	repository: string;
-	skipGitHubApi: boolean;
+	skipGitHubApi?: boolean;
 	skipInstall?: boolean;
 	skipRemoval?: boolean;
 	skipRestore?: boolean;

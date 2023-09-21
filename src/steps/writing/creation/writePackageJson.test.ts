@@ -16,7 +16,10 @@ const options = {
 	base: "everything",
 	createRepository: undefined,
 	description: "test-description",
-	email: "test-email",
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
 	excludeCompliance: undefined,
 	excludeContributors: undefined,
 	excludeLintJson: undefined,
@@ -73,7 +76,7 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": "test-email",
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
 			  "description": "test-description",
@@ -144,7 +147,7 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": "test-email",
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
 			  "description": "test-description",

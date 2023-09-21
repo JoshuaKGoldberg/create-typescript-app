@@ -4,6 +4,8 @@ export const allArgOptions = {
 	"create-repository": { type: "boolean" },
 	description: { type: "string" },
 	email: { type: "string" },
+	"email-github": { type: "string" },
+	"email-npm": { type: "string" },
 	"exclude-compliance": { type: "boolean" },
 	"exclude-contributors": { type: "boolean" },
 	"exclude-lint-json": { type: "boolean" },

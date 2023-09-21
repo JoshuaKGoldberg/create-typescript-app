@@ -11,8 +11,8 @@ export const initialize: ModeRunner = async (args) => {
 	if (inputs.cancelled) {
 		return {
 			code: StatusCodes.Cancelled,
+			error: inputs.error,
 			options: inputs.options,
-			zodError: inputs.zodError,
 		};
 	}
 

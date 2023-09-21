@@ -8,8 +8,8 @@ import { Options } from "../shared/types.js";
 
 export interface ModeResult {
 	code: StatusCode;
+	error?: string | z.ZodError<object>;
 	options: Partial<Options>;
-	zodError?: z.ZodError<object>;
 }
 
 export type ModeRunner = (args: string[]) => Promise<ModeResult>;

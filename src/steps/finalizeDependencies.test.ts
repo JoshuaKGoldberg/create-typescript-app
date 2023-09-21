@@ -21,7 +21,10 @@ const options = {
 	base: "everything",
 	createRepository: undefined,
 	description: "Stub description.",
-	email: undefined,
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
 	excludeCompliance: undefined,
 	excludeContributors: undefined,
 	excludeLintJson: undefined,

@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import z from "zod";
 
+import { optionsSchemaShape } from "./optionsSchema.js";
 import { readOptions } from "./readOptions.js";
 
 const emptyOptions = {
@@ -25,11 +26,11 @@ const emptyOptions = {
 	funding: undefined,
 	owner: undefined,
 	repository: undefined,
-	skipGitHubApi: false,
-	skipInstall: false,
-	skipRemoval: false,
+	skipGitHubApi: undefined,
+	skipInstall: undefined,
+	skipRemoval: undefined,
 	skipRestore: undefined,
-	skipUninstall: false,
+	skipUninstall: undefined,
 	title: undefined,
 };
 
@@ -75,7 +76,7 @@ vi.mock("./getGitHub.js", () => ({
 }));
 
 vi.mock("./readOptionDefaults/index.js", () => ({
-	getGitAndNpmDefaults() {
+	readOptionDefaults() {
 		return {
 			author: vi.fn(),
 			description: vi.fn(),
@@ -92,13 +93,15 @@ vi.mock("./readOptionDefaults/index.js", () => ({
 describe("readOptions", () => {
 	it("returns a cancellation when an arg is invalid", async () => {
 		const validationResult = z
-			.object({ email: z.string().email() })
-			.safeParse({ email: "wrongEmail" });
+			.object({ base: optionsSchemaShape.base })
+			.safeParse({ base: "b" });
 
-		expect(await readOptions(["--email", "wrongEmail"])).toStrictEqual({
+		const actual = await readOptions(["--base", "b"]);
+
+		expect(actual).toStrictEqual({
 			cancelled: true,
-			options: { ...emptyOptions, email: "wrongEmail" },
-			zodError: (validationResult as z.SafeParseError<{ email: string }>).error,
+			error: (validationResult as z.SafeParseError<{ base: string }>).error,
+			options: { ...emptyOptions, base: "b" },
 		});
 	});
 

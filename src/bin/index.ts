@@ -52,7 +52,7 @@ export async function bin(args: string[]) {
 	}
 
 	const runners = { create, initialize, migrate };
-	const { code, options, zodError } = await runners[mode](args);
+	const { code, error, options } = await runners[mode](args);
 
 	prompts.log.info(
 		[
@@ -64,8 +64,9 @@ export async function bin(args: string[]) {
 	if (code) {
 		logLine();
 
-		if (zodError) {
-			const validationError = fromZodError(zodError);
+		if (error) {
+			const validationError =
+				typeof error === "string" ? error : fromZodError(error);
 			logLine(chalk.red(validationError));
 			logLine();
 		}

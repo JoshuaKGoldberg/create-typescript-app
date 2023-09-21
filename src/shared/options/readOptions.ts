@@ -6,10 +6,12 @@ import { withSpinner } from "../cli/spinners.js";
 import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
+import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
-import { getGitAndNpmDefaults } from "./readOptionDefaults/index.js";
+import { optionsSchema } from "./optionsSchema.js";
+import { readOptionDefaults } from "./readOptionDefaults/index.js";
 
 export interface GitHubAndOptions {
 	github: GitHub | undefined;
@@ -18,8 +20,8 @@ export interface GitHubAndOptions {
 
 export interface OptionsParseCancelled {
 	cancelled: true;
+	error?: string | z.ZodError<object>;
 	options: object;
-	zodError?: z.ZodError<object>;
 }
 
 export interface OptionsParseSuccess extends GitHubAndOptions {
@@ -29,7 +31,7 @@ export interface OptionsParseSuccess extends GitHubAndOptions {
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
 export async function readOptions(args: string[]): Promise<OptionsParseResult> {
-	const defaults = getGitAndNpmDefaults();
+	const defaults = readOptionDefaults();
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
@@ -42,7 +44,13 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		base: values.base,
 		createRepository: values["create-repository"],
 		description: values.description,
-		email: values.email,
+		email:
+			values.email ?? values["email-github"] ?? values["email-npm"]
+				? {
+						github: values.email ?? values["email-github"],
+						npm: values.email ?? values["email-npm"],
+				  }
+				: undefined,
 		excludeCompliance: values["exclude-compliance"],
 		excludeContributors: values["exclude-contributors"],
 		excludeLintJson: values["exclude-lint-json"],
@@ -59,21 +67,31 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		funding: values.funding,
 		owner: values.owner,
 		repository: values.repository,
-		skipGitHubApi: !!values["skip-github-api"],
-		skipInstall: !!values["skip-install"],
-		skipRemoval: !!values["skip-removal"],
+		skipGitHubApi: values["skip-github-api"],
+		skipInstall: values["skip-install"],
+		skipRemoval: values["skip-removal"],
 		skipRestore: values["skip-restore"],
-		skipUninstall: !!values["skip-uninstall"],
+		skipUninstall: values["skip-uninstall"],
 		title: values.title,
 	};
+
+	const emailError = detectEmailRedundancy(values);
+	if (emailError) {
+		return {
+			cancelled: true,
+			error:
+				"--email should not be specified if both --email-github and --email-npm are specified.",
+			options: mappedOptions,
+		};
+	}
 
 	const optionsParseResult = optionsSchema.safeParse(mappedOptions);
 
 	if (!optionsParseResult.success) {
 		return {
 			cancelled: true,
+			error: optionsParseResult.error,
 			options: mappedOptions,
-			zodError: optionsParseResult.error,
 		};
 	}
 
@@ -176,42 +194,3 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		options: augmentedOptions,
 	};
 }
-
-const optionsSchema = z.object({
-	author: z.string().optional(),
-	base: z
-		.union([
-			z.literal("common"),
-			z.literal("everything"),
-			z.literal("minimum"),
-			z.literal("prompt"),
-		])
-		.optional(),
-	createRepository: z.boolean().optional(),
-	description: z.string().optional(),
-	email: z.string().email().optional(),
-	excludeCompliance: z.boolean().optional(),
-	excludeContributors: z.boolean().optional(),
-	excludeLintJson: z.boolean().optional(),
-	excludeLintKnip: z.boolean().optional(),
-	excludeLintMd: z.boolean().optional(),
-	excludeLintPackageJson: z.boolean().optional(),
-	excludeLintPackages: z.boolean().optional(),
-	excludeLintPerfectionist: z.boolean().optional(),
-	excludeLintSpelling: z.boolean().optional(),
-	excludeLintYml: z.boolean().optional(),
-	excludeReleases: z.boolean().optional(),
-	excludeRenovate: z.boolean().optional(),
-	excludeTests: z.boolean().optional(),
-	funding: z.string().optional(),
-	logo: z.string().optional(),
-	logoAlt: z.string().optional(),
-	owner: z.string().optional(),
-	repository: z.string().optional(),
-	skipGitHubApi: z.boolean(),
-	skipInstall: z.boolean(),
-	skipRemoval: z.boolean(),
-	skipRestore: z.boolean().optional(),
-	skipUninstall: z.boolean(),
-	title: z.string().optional(),
-});

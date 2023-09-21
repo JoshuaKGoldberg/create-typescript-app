@@ -28,7 +28,10 @@ const options = {
 	base: "everything",
 	createRepository: false,
 	description: "Test description.",
-	email: "test@test.test",
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
 	excludeCompliance: undefined,
 	excludeContributors: undefined,
 	excludeLintJson: undefined,

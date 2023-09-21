@@ -132,8 +132,8 @@ describe("bin", () => {
 		mockPromptForMode.mockResolvedValue(mode);
 		mockInitialize.mockResolvedValue({
 			code: 2,
+			error: (validationResult as z.SafeParseError<{ email: string }>).error,
 			options: {},
-			zodError: (validationResult as z.SafeParseError<{ email: string }>).error,
 		});
 
 		const result = await bin(args);

@@ -79,8 +79,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	if (emailError) {
 		return {
 			cancelled: true,
-			error:
-				"--email should not be specified if both --email-github and --email-npm are specified.",
+			error: emailError,
 			options: mappedOptions,
 		};
 	}

@@ -12,11 +12,11 @@ export function readDefaultsFromReadme() {
 	return {
 		logo: async () =>
 			(await imageTag())
-				?.match(/src\s*=\s*['"]?(.+)['"]?\/>/)?.[1]
-				?.replace(/['"]$/, ""),
+				?.match(/src\s*=(.+)?\/>/)?.[1]
+				?.replaceAll(/^['"]|['"]$/g, ""),
 		title: async () =>
 			(await readme())
-				?.match(/^(?:# |<h1\s+align="center">)(.*?)(?:<\/h1>)?$/i)?.[1]
+				.match(/^(?:# |<h1\s+align="center">)(.*?)(?:<\/h1>)?$/i)?.[1]
 				?.trim()
 				?.replace(/<[^>]+(?:>|$)/g, ""),
 	};

@@ -17,7 +17,7 @@ describe("readDefaultsFromReadme", () => {
 
 			const logo = await readDefaultsFromReadme().logo();
 
-			expect(logo).toBe(undefined);
+			expect(logo).toBeUndefined();
 		});
 
 		it("parses when found in an unquoted string", async () => {
@@ -51,7 +51,7 @@ describe("readDefaultsFromReadme", () => {
 
 			const title = await readDefaultsFromReadme().title();
 
-			expect(title).toBe(undefined);
+			expect(title).toBeUndefined();
 		});
 
 		it('reads title as markdown from "README.md" when it exists', async () => {
@@ -77,7 +77,7 @@ describe("readDefaultsFromReadme", () => {
 
 			const title = await readDefaultsFromReadme().title();
 
-			expect(title).toBe(undefined);
+			expect(title).toBeUndefined();
 		});
 	});
 });

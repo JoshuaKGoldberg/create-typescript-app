@@ -7,7 +7,7 @@
 		"src/migrate/index.ts",
 		"script/*e2e.js"
 	],
-	"ignoreBinaries": ["chmod", "gh"],
+	"ignoreBinaries": ["gh"],
 	"ignoreExportsUsedInFile": {
 		"interface": true,
 		"type": true

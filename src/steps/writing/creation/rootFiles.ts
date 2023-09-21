@@ -79,6 +79,15 @@ export async function createRootFiles(options: Options) {
 					release: true,
 					releaseName: "v${version}",
 				},
+				npm: {
+					publishArgs: ["--provenance"],
+				},
+				plugins: {
+					"@release-it/conventional-changelog": {
+						infile: "CHANGELOG.md",
+						preset: "angular",
+					},
+				},
 			}),
 		}),
 		"LICENSE.md": `# MIT License

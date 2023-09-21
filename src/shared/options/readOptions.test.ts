@@ -39,13 +39,19 @@ const mockOptions = {
 	repository: "mock.repository",
 };
 
-const mockGetPrefillOrPromptedOption = vi.fn();
-
 vi.mock("../cli/spinners.ts", () => ({
 	withSpinner() {
 		return () => ({});
 	},
 }));
+
+vi.mock("./augmentOptionsWithExcludes.js", () => ({
+	augmentOptionsWithExcludes() {
+		return { ...emptyOptions, ...mockOptions };
+	},
+}));
+
+const mockGetPrefillOrPromptedOption = vi.fn();
 
 vi.mock("./getPrefillOrPromptedOption.js", () => ({
 	get getPrefillOrPromptedOption() {
@@ -59,12 +65,6 @@ vi.mock("./ensureRepositoryExists.js", () => ({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
 		};
-	},
-}));
-
-vi.mock("./augmentOptionsWithExcludes.js", () => ({
-	augmentOptionsWithExcludes() {
-		return { ...emptyOptions, ...mockOptions };
 	},
 }));
 

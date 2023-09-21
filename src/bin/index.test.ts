@@ -120,7 +120,30 @@ describe("bin", () => {
 		expect(result).toEqual(code);
 	});
 
-	it("returns the cancel result containing zod error of the corresponding runner and output plus cancel logs when promptForMode returns a mode that cancels", async () => {
+	it("returns the cancel result containing a zod error of the corresponding runner and output plus cancel logs when promptForMode returns a mode that cancels with a string error", async () => {
+		const mode = "initialize";
+		const args = ["--email", "abc123"];
+		const code = 2;
+		const error = "Oh no!";
+
+		mockPromptForMode.mockResolvedValue(mode);
+		mockInitialize.mockResolvedValue({
+			code: 2,
+			error,
+			options: {},
+		});
+
+		const result = await bin(args);
+
+		expect(mockInitialize).toHaveBeenCalledWith(args);
+		expect(mockLogLine).toHaveBeenCalledWith(chalk.red(error));
+		expect(mockCancel).toHaveBeenCalledWith(
+			`Operation cancelled. Exiting - maybe another time? 👋`,
+		);
+		expect(result).toEqual(code);
+	});
+
+	it("returns the cancel result containing a zod error of the corresponding runner and output plus cancel logs when promptForMode returns a mode that cancels with a zod error", async () => {
 		const mode = "initialize";
 		const args = ["--email", "abc123"];
 		const code = 2;

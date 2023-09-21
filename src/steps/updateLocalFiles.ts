@@ -43,10 +43,7 @@ export async function updateLocalFiles(options: Options, mode: Mode) {
 	];
 
 	if (existingPackage.description) {
-		replacements.push([
-			new RegExp(existingPackage.description, "g"),
-			options.description,
-		]);
+		replacements.push([existingPackage.description, options.description]);
 	}
 
 	if (mode === "initialize" && existingPackage.version) {

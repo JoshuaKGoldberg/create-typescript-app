@@ -351,9 +351,37 @@ describe("updateLocalFiles", () => {
 		`);
 	});
 
+	it("does not replace an existing description when it does not exist", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({});
+		mockReplaceInFile.mockResolvedValue([]);
+
+		await updateLocalFiles(options, "initialize");
+
+		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
+			files: ["./.github/**/*", "./*.*"],
+			from: expect.anything(),
+			to: options.description,
+		});
+	});
+	it("replaces an existing description when it exists", async () => {
+		const existingDescription = "Existing description.";
+
+		mockReadFileSafeAsJson.mockResolvedValue({
+			description: existingDescription,
+		});
+		mockReplaceInFile.mockResolvedValue([]);
+
+		await updateLocalFiles(options, "initialize");
+
+		expect(mockReplaceInFile).toHaveBeenCalledWith({
+			files: ["./.github/**/*", "./*.*"],
+			from: existingDescription,
+			to: options.description,
+		});
+	});
+
 	it("removes bin when the mode is initialize", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
-			description: "Existing description",
 			version: "1.2.3",
 		});
 		mockReplaceInFile.mockResolvedValue([]);
@@ -369,7 +397,6 @@ describe("updateLocalFiles", () => {
 
 	it("does not remove bin when the mode is migrate", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
-			description: "Existing description",
 			version: "1.2.3",
 		});
 		mockReplaceInFile.mockResolvedValue([]);
@@ -385,7 +412,6 @@ describe("updateLocalFiles", () => {
 
 	it("resets package version to 0.0.0 when mode is initialize", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
-			description: "Existing description",
 			version: "1.2.3",
 		});
 		mockReplaceInFile.mockResolvedValue([]);
@@ -401,7 +427,6 @@ describe("updateLocalFiles", () => {
 
 	it("does not reset package version to 0.0.0 when mode is migrate", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
-			description: "Existing description",
 			version: "1.2.3",
 		});
 		mockReplaceInFile.mockResolvedValue([]);

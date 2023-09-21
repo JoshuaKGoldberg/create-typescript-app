@@ -65,9 +65,9 @@ export async function bin(args: string[]) {
 		logLine();
 
 		if (error) {
-			const validationError =
-				typeof error === "string" ? error : fromZodError(error);
-			logLine(chalk.red(validationError));
+			logLine(
+				chalk.red(typeof error === "string" ? error : fromZodError(error)),
+			);
 			logLine();
 		}
 

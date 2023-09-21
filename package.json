@@ -62,6 +62,7 @@
 	},
 	"devDependencies": {
 		"@octokit/request-error": "^5.0.0",
+		"@release-it/conventional-changelog": "^7.0.1",
 		"@types/eslint": "^8.44.2",
 		"@types/git-url-parse": "^9.0.1",
 		"@types/js-yaml": "^4.0.5",

@@ -39,7 +39,6 @@ const filesExpectedToBeChanged = new Set([
 	".github/workflows/test.yml",
 	".gitignore",
 	".prettierignore",
-	".release-it.json",
 	"cspell.json",
 ]);
 

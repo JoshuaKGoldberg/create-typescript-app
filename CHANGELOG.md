@@ -1,3 +1,9 @@
+# [1.30.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.52...v1.30.0) (2023-09-21)
+
+### Features
+
+- added --logo and --logo-alt ([#851](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/851)) ([72c6d99](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/72c6d99633b2298931577ebc6f6990a5600b733a)), closes [#739](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/739)
+
 ## [1.29.52](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.51...v1.29.52) (2023-09-21)
 
 ### Bug Fixes

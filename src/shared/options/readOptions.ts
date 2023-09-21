@@ -169,11 +169,22 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		logo = { alt, src: options.logo };
 	}
 
+	const email =
+		options.email ??
+		(await defaults.email()) ??
+		(await getPrefillOrPromptedOption(
+			undefined,
+			"What email should be used in package.json and .md files?",
+		));
+	if (!email) {
+		return { cancelled: true, options };
+	}
+
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
 		author: options.author ?? (await defaults.owner()),
 		description: options.description,
-		email: options.email ?? (await defaults.email()),
+		email: typeof email === "string" ? { github: email, npm: email } : email,
 		funding: options.funding ?? (await defaults.funding()),
 		logo,
 		owner: options.owner,

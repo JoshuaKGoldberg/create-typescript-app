@@ -34,7 +34,7 @@ export interface Options {
 	base?: InputBase;
 	createRepository?: boolean;
 	description: string;
-	email?: OptionsEmail;
+	email: OptionsEmail;
 	excludeCompliance?: boolean;
 	excludeContributors?: boolean;
 	excludeLintJson?: boolean;

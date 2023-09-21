@@ -68,7 +68,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-${options.email}.
+${options.email.github}.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
@@ -272,7 +272,7 @@ We take all security vulnerabilities seriously.
 If you have a vulnerability or other security issues to disclose:
 
 - Thank you very much, please do!
-- Please send them to us by emailing \`${options.email}\`
+- Please send them to us by emailing \`${options.email.github}\`
 
 We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
 `,

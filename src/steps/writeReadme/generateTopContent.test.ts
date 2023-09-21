@@ -7,7 +7,10 @@ const optionsBase = {
 	base: undefined,
 	createRepository: undefined,
 	description: "",
-	email: undefined,
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
 	excludeCompliance: undefined,
 	excludeContributors: undefined,
 	excludeLintJson: undefined,

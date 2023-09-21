@@ -147,6 +147,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		if (!alt) {
 			return { cancelled: true, options };
 		}
+
 		logo = { alt, src: options.logo };
 	}
 

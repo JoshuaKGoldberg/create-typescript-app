@@ -39,11 +39,11 @@ describe("createRerunSuggestion", () => {
 		const actual = createRerunSuggestion("initialize", options);
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --author TestAuthor --base everything --createrepository true --description \\"Test description.\\" --email test@test.com --excludecompliance true --excludecontributors true --excludelintjson true --excludelintknip true --excludelintpackagejson true --excludelintperfectionist true --owner TestOwner --repository test-repository --skipgithubapi true --skipinstall true --skipremoval true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --author TestAuthor --base everything --create-repository true --description \\"Test description.\\" --email test@test.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
-	it("includes stringifies logo when it exists", () => {
+	it("includes stringified logo when it exists", () => {
 		const actual = createRerunSuggestion("initialize", {
 			...options,
 			logo: {
@@ -53,7 +53,20 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --author TestAuthor --base everything --createrepository true --description \\"Test description.\\" --email test@test.com --excludecompliance true --excludecontributors true --excludelintjson true --excludelintknip true --excludelintpackagejson true --excludelintperfectionist true --logo test/src.png --logoalt \\"Test alt.\\" --owner TestOwner --repository test-repository --skipgithubapi true --skipinstall true --skipremoval true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --author TestAuthor --base everything --create-repository true --description \\"Test description.\\" --email test@test.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --logo test/src.png --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\" --logo-alt \\"Test alt.\\""',
+		);
+	});
+
+	it("includes exclusions when they exist", () => {
+		const actual = createRerunSuggestion("initialize", {
+			...options,
+			excludeCompliance: true,
+			excludeLintMd: true,
+			excludeLintSpelling: true,
+		});
+
+		expect(actual).toMatchInlineSnapshot(
+			'"npx create-typescript-app --mode initialize --author TestAuthor --base everything --create-repository true --description \\"Test description.\\" --email test@test.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 });

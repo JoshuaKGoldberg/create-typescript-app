@@ -19,7 +19,7 @@ export const allArgOptions = {
 	"exclude-tests": { type: "boolean" },
 	funding: { type: "string" },
 	logo: { type: "string" },
-	logoAlt: { type: "string" },
+	"logo-alt": { type: "string" },
 	owner: { type: "string" },
 	repository: { type: "string" },
 	"skip-github-api": { type: "boolean" },

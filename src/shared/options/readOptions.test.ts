@@ -179,7 +179,7 @@ describe("readOptions", () => {
 		});
 	});
 
-	it.only("returns success options when --base is valid", async () => {
+	it("returns success options when --base is valid", async () => {
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 
 		expect(await readOptions(["--base", mockOptions.base])).toStrictEqual({

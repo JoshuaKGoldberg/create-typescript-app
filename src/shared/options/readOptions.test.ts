@@ -210,6 +210,30 @@ describe("readOptions", () => {
 		});
 	});
 
+	it("returns a cancellation when the email prompt is cancelled", async () => {
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementationOnce(() => "MockRepository")
+			.mockImplementationOnce(() => "Mock description.")
+			.mockImplementationOnce(() => "Mock title.")
+			.mockImplementation(() => undefined);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				description: "Mock description.",
+				owner: "MockOwner",
+				repository: "MockRepository",
+				title: "Mock title.",
+			},
+		});
+	});
+
 	it("returns success options when --base is valid", async () => {
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 

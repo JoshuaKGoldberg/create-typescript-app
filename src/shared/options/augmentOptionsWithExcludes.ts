@@ -24,6 +24,24 @@ const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> = {
 		label:
 			"Add all-contributors to track contributions and display them in a README.md table.",
 	},
+	excludeLintDeprecation: {
+		hint: "--exclude-lint-deprecation",
+		label:
+			"Include an eslint-plugin-deprecation to reports on usage of code marked as @deprecated.",
+		uncommon: true,
+	},
+	excludeLintESLint: {
+		hint: "--exclude-lint-eslint",
+		label:
+			"Include eslint-plugin-eslint-comment to enforce good practices around ESLint comment directives.",
+		uncommon: true,
+	},
+	excludeLintJSDoc: {
+		hint: "--exclude-lint-jsdoc",
+		label:
+			"Include eslint-plugin-jsdoc to enforce good practices around JSDoc comments.",
+		uncommon: true,
+	},
 	excludeLintJson: {
 		hint: "--exclude-lint-json",
 		label: "Apply linting and sorting to *.json and *.jsonc files.",
@@ -55,9 +73,27 @@ const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> = {
 			"Apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.",
 		uncommon: true,
 	},
+	excludeLintRegex: {
+		hint: "--exclude-lint-regex",
+		label:
+			"Include eslint-plugin-regex to enforce good practices around regular expressions.",
+		uncommon: true,
+	},
 	excludeLintSpelling: {
 		hint: "--exclude-lint-spelling",
 		label: "Add cspell to spell check against dictionaries of known words.",
+		uncommon: true,
+	},
+	excludeLintStrict: {
+		hint: "--exclude-lint-strict",
+		label:
+			"Include strict logical lint rules such as typescript-eslint's strict config. ",
+		uncommon: true,
+	},
+	excludeLintStylistic: {
+		hint: "--exclude-lint-stylistic",
+		label:
+			"Include stylistic lint rules such as typescript-eslint's stylistic config.",
 		uncommon: true,
 	},
 	excludeLintYml: {

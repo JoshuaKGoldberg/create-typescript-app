@@ -34,6 +34,7 @@ export async function uninstallPackages() {
 			"@types/prettier",
 			"all-contributors-cli",
 			"c8",
+			"eslint-config-prettier",
 			"globby",
 			"tsx",
 		],

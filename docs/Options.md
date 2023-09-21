@@ -79,8 +79,14 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-lint-knip`: Don't add Knip to detect unused files, dependencies, and code exports.
 - `--exclude-lint-md`: Don't apply linting to `*.md` files.
 - `--exclude-lint-package-json`: Don't add npm-package-json-lint to lint for package.json correctness.
+- `--exclude-lint-deprecation`: Don't use eslint-plugin-deprecation to report on usage of code marked as `@deprecated`.
+- `--exclude-lint-eslint`: Don't use eslint-plugin-eslint-comment to enforce good practices around ESLint comment directives.
+- `--exclude-lint-jsdoc`: Don't use eslint-plugin-jsdoc to enforce good practices around JSDoc comments.
 - `--exclude-lint-packages`: Don't add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.
 - `--exclude-lint-perfectionist`: Don't apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.
+- `--exclude-lint-regex`: Don't add eslint-plugin-regex to enforce good practices around regular expressions.
+- `--exclude-lint-strict`: Don't augment the recommended logical lint rules with typescript-eslint's strict config.
+- `--exclude-lint-stylistic`: Don't add stylistic rules such as typescript-eslint's stylistic config.
 - `--exclude-lint-spelling`: Don't add cspell to spell check against dictionaries of known words.
 - `--exclude-lint-yml`: Don't apply linting and sorting to `*.yaml` and `*.yml` files.
 - `--exclude-releases`: Don't add release-it to generate changelogs, package bumps, and publishes based on conventional commits.

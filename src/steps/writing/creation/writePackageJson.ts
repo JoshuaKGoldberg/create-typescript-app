@@ -13,7 +13,6 @@ const devDependenciesToRemove = [
 	"commitlint",
 	"cson-parser",
 	"esbuild",
-	"eslint-config-prettier",
 	"eslint-plugin-jest",
 	"eslint-plugin-prettier",
 	"eslint-plugin-simple-import-sort",

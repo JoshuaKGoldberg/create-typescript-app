@@ -60,12 +60,11 @@ vi.mock("./getPrefillOrPromptedOption.js", () => ({
 	},
 }));
 
+const mockEnsureRepositoryExists = vi.fn();
+
 vi.mock("./ensureRepositoryExists.js", () => ({
-	ensureRepositoryExists() {
-		return {
-			github: mockOptions.github,
-			repository: mockOptions.repository,
-		};
+	get ensureRepositoryExists() {
+		return mockEnsureRepositoryExists;
 	},
 }));
 
@@ -130,11 +129,32 @@ describe("readOptions", () => {
 		});
 	});
 
+	it("returns a cancellation when ensureRepositoryPrompt does not return a repository", async () => {
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementationOnce(() => "MockRepository")
+			.mockImplementation(() => undefined);
+		mockEnsureRepositoryExists.mockResolvedValue({});
+
+		expect(await readOptions([])).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				owner: "MockOwner",
+				repository: "MockRepository",
+			},
+		});
+	});
+
 	it("returns a cancellation when the description prompt is cancelled", async () => {
 		mockGetPrefillOrPromptedOption
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementation(() => undefined);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
 
 		expect(await readOptions([])).toStrictEqual({
 			cancelled: true,
@@ -152,6 +172,10 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementation(() => undefined);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
 
 		expect(await readOptions([])).toStrictEqual({
 			cancelled: true,
@@ -170,6 +194,10 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementation(() => undefined);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
 
 		expect(await readOptions(["--logo", "logo.svg"])).toStrictEqual({
 			cancelled: true,

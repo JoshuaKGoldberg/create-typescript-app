@@ -35,7 +35,6 @@ const filesExpectedToBeChanged = new Set([
 	".eslintignore",
 	".eslintrc.cjs",
 	".github/DEVELOPMENT.md",
-	".github/workflows/release.yml",
 	".github/workflows/lint.yml",
 	".github/workflows/lint-knip.yml",
 	".github/workflows/test.yml",

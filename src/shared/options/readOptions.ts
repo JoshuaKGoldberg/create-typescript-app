@@ -74,7 +74,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		offline: values.offline,
 		owner: values.owner,
 		repository: values.repository,
-		skipGitHubApi: values["skip-github-api"],
+		skipGitHubApi: values["skip-github-api"] ?? values.offline,
 		skipInstall: values["skip-install"],
 		skipRemoval: values["skip-removal"],
 		skipRestore: values["skip-restore"],
@@ -128,7 +128,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	}
 
 	const { github, repository } = await ensureRepositoryExists(
-		values["skip-github-api"]
+		options.skipGitHubApi
 			? undefined
 			: await withSpinner("Checking GitHub authentication", getGitHub),
 		{

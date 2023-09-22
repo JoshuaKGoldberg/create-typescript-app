@@ -2,7 +2,7 @@ import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
 import { filterPromptCancel } from "../prompts.js";
-import { OptionsBase, Options } from "../types.js";
+import { Options, OptionsBase } from "../types.js";
 
 interface ExclusionDescription {
 	hint: string;

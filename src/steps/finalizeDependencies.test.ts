@@ -70,6 +70,7 @@ describe("finalize", () => {
 			]
 		`);
 	});
+
 	it("installs the full list of commands in offline mode when options.offline is true", async () => {
 		await finalizeDependencies({
 			...options,

@@ -35,7 +35,7 @@ export async function initializeWithOptions({
 
 	if (!options.excludeContributors) {
 		await withSpinner("Updating existing contributor details", async () => {
-			await addOwnerAsAllContributor(options.owner);
+			await addOwnerAsAllContributor(options);
 		});
 	}
 

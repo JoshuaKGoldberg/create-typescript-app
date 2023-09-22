@@ -29,7 +29,7 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 
 	if (!options.excludeContributors) {
 		await withSpinner("Adding contributors to table", async () => {
-			await addToolAllContributors(options.owner);
+			await addToolAllContributors(options);
 		});
 	}
 

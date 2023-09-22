@@ -6,7 +6,7 @@ import { readFileAsJson } from "../shared/readFileAsJson.js";
 import { AllContributorsData, Options } from "../shared/types.js";
 
 export async function addOwnerAsAllContributor(
-	options: Pick<Options, "owner" | "offline">,
+	options: Pick<Options, "offline" | "owner">,
 ) {
 	const user = await getGitHubUserAsAllContributor(options);
 

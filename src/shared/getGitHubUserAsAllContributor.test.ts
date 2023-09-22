@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import prettier from "prettier";
 import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getGitHubUserAsAllContributor } from "./getGitHubUserAsAllContributor.js";

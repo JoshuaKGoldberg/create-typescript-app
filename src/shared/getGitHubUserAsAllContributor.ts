@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { $ } from "execa";
+
 import { Options } from "./types.js";
 
 interface GhUserOutput {
@@ -7,7 +8,7 @@ interface GhUserOutput {
 }
 
 export async function getGitHubUserAsAllContributor(
-	options: Pick<Options, "owner" | "offline">,
+	options: Pick<Options, "offline" | "owner">,
 ) {
 	if (options.offline) {
 		console.warn(

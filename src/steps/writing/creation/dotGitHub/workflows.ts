@@ -153,7 +153,6 @@ export function createWorkflows(options: Options) {
 			}),
 			"release.yml": createWorkflowFile({
 				concurrency: {
-					"cancel-in-progress": true,
 					group: "${{ github.workflow }}",
 				},
 				name: "Release",
@@ -171,6 +170,7 @@ export function createWorkflows(options: Options) {
 						uses: "actions/checkout@v4",
 						with: {
 							"fetch-depth": 0,
+							ref: "main",
 						},
 					},
 					{

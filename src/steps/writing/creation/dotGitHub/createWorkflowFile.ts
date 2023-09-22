@@ -1,7 +1,7 @@
 import { formatYaml } from "../formatters/formatYaml.js";
 
 interface WorkflowFileConcurrency {
-	"cancel-in-progress": boolean;
+	"cancel-in-progress"?: boolean;
 	group: string;
 }
 

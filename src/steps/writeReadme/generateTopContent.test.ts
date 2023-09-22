@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 
+import { Options } from "../../shared/types.js";
 import { generateTopContent } from "./generateTopContent.js";
 
 const optionsBase = {
+	access: "public",
 	author: undefined,
 	base: undefined,
 	createRepository: undefined,
@@ -34,7 +36,7 @@ const optionsBase = {
 	skipRestore: undefined,
 	skipUninstall: undefined,
 	title: "",
-};
+} satisfies Options;
 
 describe("findExistingBadges", () => {
 	it("generates full contents when there are no existing badges", () => {

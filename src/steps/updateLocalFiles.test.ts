@@ -20,6 +20,7 @@ vi.mock("../shared/readFileSafeAsJson.js", () => ({
 }));
 
 const options = {
+	access: "public",
 	author: undefined,
 	base: "everything",
 	createRepository: undefined,

@@ -40,6 +40,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	});
 
 	const mappedOptions = {
+		access: values.access,
 		author: values.author,
 		base: values.base,
 		createRepository: values["create-repository"],
@@ -186,6 +187,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
+		access: options.access ?? "public",
 		author: options.author ?? (await defaults.owner()),
 		description: options.description,
 		email: typeof email === "string" ? { github: email, npm: email } : email,

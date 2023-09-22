@@ -17,21 +17,24 @@ export interface PartialPackageData {
 	repository?: { type: string; url: string } | string;
 }
 
-export type InputBase = "common" | "everything" | "minimum" | "prompt";
+export type OptionsAccess = "public" | "restricted";
 
-export interface OptionsLogo {
-	alt: string;
-	src: string;
-}
+export type OptionsBase = "common" | "everything" | "minimum" | "prompt";
 
 export interface OptionsEmail {
 	github: string;
 	npm: string;
 }
 
+export interface OptionsLogo {
+	alt: string;
+	src: string;
+}
+
 export interface Options {
+	access: OptionsAccess;
 	author?: string;
-	base?: InputBase;
+	base?: OptionsBase;
 	createRepository?: boolean;
 	description: string;
 	email: OptionsEmail;

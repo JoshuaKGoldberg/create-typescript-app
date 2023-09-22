@@ -80,7 +80,7 @@ export async function createRootFiles(options: Options) {
 					releaseName: "v${version}",
 				},
 				npm: {
-					publishArgs: ["--provenance"],
+					publishArgs: [`--access ${options.access}`, "--provenance"],
 				},
 				plugins: {
 					"@release-it/conventional-changelog": {

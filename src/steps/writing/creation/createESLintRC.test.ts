@@ -5,6 +5,7 @@ import { createESLintRC } from "./createESLintRC.js";
 
 function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 	return {
+		access: "public",
 		author: "TestAuthor",
 		base: "everything",
 		createRepository: true,

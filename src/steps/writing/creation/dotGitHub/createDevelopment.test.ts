@@ -4,6 +4,7 @@ import { Options } from "../../../../shared/types.js";
 import { createDevelopment } from "./createDevelopment.js";
 
 const options = {
+	access: "public",
 	author: "Test Author",
 	base: "everything",
 	createRepository: false,

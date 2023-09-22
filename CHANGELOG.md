@@ -1,3 +1,18 @@
+# [1.31.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.52...v1.31.0) (2023-09-22)
+
+### Bug Fixes
+
+- remove cancel-in-progress from release.yml ([#876](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/876)) ([f124518](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f12451821d64b6e3ac00d0d1fdc307d4c992e162)), closes [#862](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/862) [#145](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/145)
+- remove unnecessary gh workflow run ([#868](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/868)) ([cc0cbaf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cc0cbaf3754b0b7a9d8983fffbca3e7c487b8f8c)), closes [#863](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/863)
+- replace existing description with string, not regex ([#861](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/861)) ([dcc6ad4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dcc6ad40ce4b5b5ac2af69f014567c8f9bc26c97)), closes [#803](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/803)
+
+### Features
+
+- added --logo and --logo-alt ([#851](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/851)) ([72c6d99](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/72c6d99633b2298931577ebc6f6990a5600b733a)), closes [#739](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/739)
+- allow specific GitHub and/or npm emails ([#858](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/858)) ([d112a31](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d112a31310c8f6694181ff82ba02efef34a6cad3)), closes [#542](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/542) [#851](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/851)
+- fix .nvmrc template to 18.18.0 ([b077fbc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b077fbcd549c0ce685cddb27c93ff94956b7fc77))
+- much more ESLint config configurability ([#867](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/867)) ([094b253](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/094b253411168038a2c7585e5172f8b773c18ea2)), closes [#864](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/864) [#866](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/866)
+
 ## [1.29.52](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.51...v1.29.52) (2023-09-21)
 
 ### Bug Fixes

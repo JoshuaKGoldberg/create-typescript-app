@@ -13,14 +13,17 @@ const devDependenciesToRemove = [
 	"commitlint",
 	"cson-parser",
 	"esbuild",
-	"eslint-config-prettier",
+	"eslint-plugin-jest",
 	"eslint-plugin-prettier",
 	"eslint-plugin-simple-import-sort",
+	"eslint-plugin-typescript-sort-keys",
 	"jasmine",
 	"jest",
 	"mocha",
 	"npm-run-all",
+	"pnpm-deduplicate",
 	"pretty-quick",
+	"ts-jest",
 ];
 
 export async function writePackageJson(options: Options) {
@@ -34,7 +37,7 @@ export async function writePackageJson(options: Options) {
 		// To start, copy over all existing package fields (e.g. "dependencies")
 		...existingPackageJson,
 
-		author: { email: options.email, name: options.author },
+		author: { email: options.email.npm, name: options.author },
 		description: options.description,
 
 		// We copy all existing dev dependencies except those we know are not used anymore

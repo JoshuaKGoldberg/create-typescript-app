@@ -49,9 +49,13 @@ That script will run completely autonomously, no prompted inputs required. ✨
 
 The setup scripts also allow for optional overrides of the following inputs whose defaults are based on other options:
 
+- `--access` _(`"public" | "restricted`)_: Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with (by default, `"public"`)
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
+  - Optionally, `--email-github` _(`string`)_ and/or `--email-npm` _(`string`)_ may be provided to use different emails in `.md` files and `package.json`, respectively
 - `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
+- `--logo` _(`string`)_: Local image file in the repository to display near the top of the README.md as a logo
+  - `--logo-alt` _(`string`)_: If `--logo` is provided or detected from an existing README.md, alt text that describes the image will be prompted for if not provided
 
 For example, customizing the ownership and users associated with a new repository:
 
@@ -76,8 +80,14 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-lint-knip`: Don't add Knip to detect unused files, dependencies, and code exports.
 - `--exclude-lint-md`: Don't apply linting to `*.md` files.
 - `--exclude-lint-package-json`: Don't add npm-package-json-lint to lint for package.json correctness.
+- `--exclude-lint-deprecation`: Don't use eslint-plugin-deprecation to report on usage of code marked as `@deprecated`.
+- `--exclude-lint-eslint`: Don't use eslint-plugin-eslint-comment to enforce good practices around ESLint comment directives.
+- `--exclude-lint-jsdoc`: Don't use eslint-plugin-jsdoc to enforce good practices around JSDoc comments.
 - `--exclude-lint-packages`: Don't add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.
 - `--exclude-lint-perfectionist`: Don't apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.
+- `--exclude-lint-regex`: Don't add eslint-plugin-regex to enforce good practices around regular expressions.
+- `--exclude-lint-strict`: Don't augment the recommended logical lint rules with typescript-eslint's strict config.
+- `--exclude-lint-stylistic`: Don't add stylistic rules such as typescript-eslint's stylistic config.
 - `--exclude-lint-spelling`: Don't add cspell to spell check against dictionaries of known words.
 - `--exclude-lint-yml`: Don't apply linting and sorting to `*.yaml` and `*.yml` files.
 - `--exclude-releases`: Don't add release-it to generate changelogs, package bumps, and publishes based on conventional commits.

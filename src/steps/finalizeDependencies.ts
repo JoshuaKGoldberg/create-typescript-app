@@ -9,10 +9,8 @@ export async function finalizeDependencies(options: Options) {
 		"@typescript-eslint/eslint-plugin",
 		"@typescript-eslint/parser",
 		"eslint",
-		"eslint-config-prettier",
 		"eslint-plugin-deprecation",
 		"eslint-plugin-eslint-comments",
-		"eslint-plugin-import",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
 		"eslint-plugin-regexp",
@@ -48,7 +46,11 @@ export async function finalizeDependencies(options: Options) {
 			: ["eslint-plugin-yml", "yaml-eslint-parser"]),
 		...(options.excludeReleases
 			? []
-			: ["release-it", "should-semantic-release"]),
+			: [
+					"@release-it/conventional-changelog",
+					"release-it",
+					"should-semantic-release",
+			  ]),
 		...(options.excludeTests
 			? []
 			: [

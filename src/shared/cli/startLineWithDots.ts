@@ -1,6 +1,7 @@
 import readline from "readline";
 
 export function startLineWithDots(line: string) {
+	const timer = [setTimeout(tick, 500)];
 	let dots = 0;
 	let lastLogged!: string;
 
@@ -21,17 +22,17 @@ export function startLineWithDots(line: string) {
 		return toLog;
 	}
 
-	writeLine();
-
-	const timer = setInterval(() => {
+	function tick() {
 		clearLine();
 		writeLine();
-		dots += 1;
-	}, 500);
+		timer[0] = setTimeout(tick, 500);
+	}
+
+	writeLine();
 
 	return () => {
 		clearLine();
-		clearInterval(timer);
+		clearInterval(timer[0]);
 		return lastLogged.length;
 	};
 }

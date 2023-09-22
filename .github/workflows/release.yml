@@ -1,14 +1,14 @@
 concurrency:
-  cancel-in-progress: true
   group: ${{ github.workflow }}
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
       - uses: ./.github/actions/prepare
       - run: pnpm build
       - run: git config user.name "${GITHUB_ACTOR}"
@@ -64,7 +64,7 @@ jobs:
                     { context: "lint" },
                     { context: "lint_knip" },
                     { context: "lint_markdown" },
-                    { context: "lint_package" },
+                    { context: "lint_package_json" },
                     { context: "lint_packages" },
                     { context: "lint_spelling" },
                     { context: "prettier" },

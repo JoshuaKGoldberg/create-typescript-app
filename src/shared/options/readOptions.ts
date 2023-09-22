@@ -1,34 +1,37 @@
 import { parseArgs } from "node:util";
-import { Octokit } from "octokit";
 import { titleCase } from "title-case";
+import { z } from "zod";
 
 import { withSpinner } from "../cli/spinners.js";
-import { InputBase, Options } from "../types.js";
+import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
+import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
-import { getOctokit } from "./getOctokit.js";
+import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
-import { getGitAndNpmDefaults } from "./readGitAndNpmDefaults/index.js";
+import { optionsSchema } from "./optionsSchema.js";
+import { readOptionDefaults } from "./readOptionDefaults/index.js";
 
-export interface OctokitAndOptions {
-	octokit: Octokit | undefined;
+export interface GitHubAndOptions {
+	github: GitHub | undefined;
 	options: Options;
 }
 
 export interface OptionsParseCancelled {
 	cancelled: true;
-	options: Partial<Options>;
+	error?: string | z.ZodError<object>;
+	options: object;
 }
 
-export interface OptionsParseSuccess extends OctokitAndOptions {
+export interface OptionsParseSuccess extends GitHubAndOptions {
 	cancelled: false;
 }
 
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
 export async function readOptions(args: string[]): Promise<OptionsParseResult> {
-	const defaults = await getGitAndNpmDefaults();
+	const defaults = readOptionDefaults();
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
@@ -36,43 +39,72 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		tokens: true,
 	});
 
-	const options = {
-		author: values.author as string | undefined,
-		base: values.base as InputBase,
-		createRepository: values["create-repository"] as boolean | undefined,
-		description: values.description as string | undefined,
-		email: values.email as string | undefined,
-		excludeCompliance: values["exclude-compliance"] as boolean | undefined,
-		excludeContributors: !!values.offline || !!values["exclude-contributors"],
-		excludeLintJson: values["exclude-lint-json"] as boolean | undefined,
-		excludeLintKnip: values["exclude-lint-knip"] as boolean | undefined,
-		excludeLintMd: values["exclude-lint-md"] as boolean | undefined,
-		excludeLintPackageJson: values["exclude-lint-package-json"] as
-			| boolean
-			| undefined,
-		excludeLintPackages: values["exclude-lint-packages"] as boolean | undefined,
-		excludeLintPerfectionist: values["exclude-lint-perfectionist"] as
-			| boolean
-			| undefined,
-		excludeLintSpelling: values["exclude-lint-spelling"] as boolean | undefined,
-		excludeLintYml: values["exclude-lint-yml"] as boolean | undefined,
-		excludeReleases: values["exclude-releases"] as boolean | undefined,
-		excludeRenovate: values["exclude-renovate"] as boolean | undefined,
-		excludeTests: values["unit-tests"] as boolean | undefined,
-		funding: values.funding as string | undefined,
-		offline: !!values.offline,
-		owner: values.owner as string | undefined,
-		repository: values.repository as string | undefined,
-		skipGitHubApi: !!values.offline || !!values["skip-github-api"],
-		skipInstall: !!values["skip-install"],
-		skipRemoval: !!values["skip-removal"],
-		skipRestore: values["skip-restore"] as boolean | undefined,
-		skipUninstall: !!values["skip-uninstall"],
-		title: values.title as string | undefined,
+	const mappedOptions = {
+		access: values.access,
+		author: values.author,
+		base: values.base,
+		createRepository: values["create-repository"],
+		description: values.description,
+		email:
+			values.email ?? values["email-github"] ?? values["email-npm"]
+				? {
+						github: values.email ?? values["email-github"],
+						npm: values.email ?? values["email-npm"],
+				  }
+				: undefined,
+		excludeCompliance: values["exclude-compliance"],
+		excludeContributors: values["exclude-contributors"],
+		excludeLintDeprecation: values["exclude-lint-deprecation"],
+		excludeLintESLint: values["exclude-lint-eslint"],
+		excludeLintJSDoc: values["exclude-lint-jsdoc"],
+		excludeLintJson: values["exclude-lint-json"],
+		excludeLintKnip: values["exclude-lint-knip"],
+		excludeLintMd: values["exclude-lint-md"],
+		excludeLintPackageJson: values["exclude-lint-package-json"],
+		excludeLintPackages: values["exclude-lint-packages"],
+		excludeLintPerfectionist: values["exclude-lint-perfectionist"],
+		excludeLintRegex: values["exclude-lint-regex"],
+		excludeLintSpelling: values["exclude-lint-spelling"],
+		excludeLintStrict: values["exclude-lint-strict"],
+		excludeLintYml: values["exclude-lint-yml"],
+		excludeReleases: values["exclude-releases"],
+		excludeRenovate: values["exclude-renovate"],
+		excludeTests: values["unit-tests"],
+		funding: values.funding,
+		offline: values.offline,
+		owner: values.owner,
+		repository: values.repository,
+		skipGitHubApi: values["skip-github-api"],
+		skipInstall: values["skip-install"],
+		skipRemoval: values["skip-removal"],
+		skipRestore: values["skip-restore"],
+		skipUninstall: values["skip-uninstall"],
+		title: values.title,
 	};
 
+	const emailError = detectEmailRedundancy(values);
+	if (emailError) {
+		return {
+			cancelled: true,
+			error: emailError,
+			options: mappedOptions,
+		};
+	}
+
+	const optionsParseResult = optionsSchema.safeParse(mappedOptions);
+
+	if (!optionsParseResult.success) {
+		return {
+			cancelled: true,
+			error: optionsParseResult.error,
+			options: mappedOptions,
+		};
+	}
+
+	const options = optionsParseResult.data;
+
 	options.owner ??= await getPrefillOrPromptedOption(
-		values.owner as string | undefined,
+		options.owner,
 		"What organization or user will the repository be under?",
 		defaults.owner,
 	);
@@ -95,10 +127,10 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		};
 	}
 
-	const { octokit, repository } = await ensureRepositoryExists(
+	const { github, repository } = await ensureRepositoryExists(
 		values["skip-github-api"]
 			? undefined
-			: await withSpinner("Checking GitHub authentication", getOctokit),
+			: await withSpinner("Checking GitHub authentication", getGitHub),
 		{
 			createRepository: options.createRepository,
 			owner: options.owner,
@@ -112,7 +144,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.description ??= await getPrefillOrPromptedOption(
 		options.description,
 		"How would you describe the new package?",
-		defaults.description ?? "A very lovely package. Hooray!",
+		async () =>
+			(await defaults.description()) ?? "A very lovely package. Hooray!",
 	);
 	if (!options.description) {
 		return { cancelled: true, options };
@@ -121,19 +154,50 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 	options.title ??= await getPrefillOrPromptedOption(
 		options.title,
 		"What will the Title Case title of the repository be?",
-		defaults.title ?? titleCase(repository).replaceAll("-", " "),
+		async () =>
+			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
 	);
 	if (!options.title) {
 		return { cancelled: true, options };
 	}
 
+	let logo: OptionsLogo | undefined;
+
+	if (options.logo) {
+		const alt = await getPrefillOrPromptedOption(
+			options.logoAlt,
+			"What is the alt text (non-visual description) of the logo?",
+		);
+		if (!alt) {
+			return { cancelled: true, options };
+		}
+
+		logo = { alt, src: options.logo };
+	}
+
+	const email =
+		options.email ??
+		(await defaults.email()) ??
+		(await getPrefillOrPromptedOption(
+			undefined,
+			"What email should be used in package.json and .md files?",
+		));
+	if (!email) {
+		return { cancelled: true, options };
+	}
+
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
-		author: options.author ?? defaults.owner,
-		email: options.email ?? defaults.email,
-		funding: options.funding ?? defaults.funding,
+		access: options.access ?? "public",
+		author: options.author ?? (await defaults.owner()),
+		description: options.description,
+		email: typeof email === "string" ? { github: email, npm: email } : email,
+		funding: options.funding ?? (await defaults.funding()),
+		logo,
+		owner: options.owner,
 		repository,
-	} as Options);
+		title: options.title,
+	});
 
 	if (!augmentedOptions) {
 		return {
@@ -144,7 +208,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 
 	return {
 		cancelled: false,
-		octokit,
+		github,
 		options: augmentedOptions,
 	};
 }

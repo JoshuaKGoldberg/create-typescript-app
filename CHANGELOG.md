@@ -1,3 +1,9 @@
+## [1.29.52](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.51...v1.29.52) (2023-09-21)
+
+### Bug Fixes
+
+- generate CHANGELOG.md files again ([#854](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/854)) ([88fbfb9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/88fbfb92f2cb16a93fe7f7badbb40c8e069de468)), closes [#842](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/842)
+
 # Changelog
 
 ### [1.27.12](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.27.11...v1.27.12) (2022-12-31)

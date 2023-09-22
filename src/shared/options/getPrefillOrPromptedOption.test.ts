@@ -29,4 +29,33 @@ describe("getPrefillOrPromptedValue", () => {
 
 		expect(actual).toEqual(expected);
 	});
+
+	it("provides no placeholder when one is not provided", async () => {
+		const message = "Test message";
+
+		await getPrefillOrPromptedOption(undefined, message);
+
+		expect(mockText).toHaveBeenCalledWith({
+			message,
+			placeholder: undefined,
+			validate: expect.any(Function),
+		});
+	});
+
+	it("provides the placeholder's awaited return when a placeholder function is provided", async () => {
+		const message = "Test message";
+		const placeholder = "Test placeholder";
+
+		await getPrefillOrPromptedOption(
+			undefined,
+			message,
+			vi.fn().mockResolvedValue(placeholder),
+		);
+
+		expect(mockText).toHaveBeenCalledWith({
+			message,
+			placeholder,
+			validate: expect.any(Function),
+		});
+	});
 });

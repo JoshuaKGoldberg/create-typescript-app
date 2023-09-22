@@ -1,5 +1,5 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
-import { OctokitAndOptions } from "../shared/options/readOptions.js";
+import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
@@ -7,19 +7,19 @@ import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/
 import { runCommands } from "../steps/runCommands.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";
-import { writeReadme } from "../steps/writeReadme.js";
+import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function migrateWithOptions({
-	octokit,
+	github,
 	options,
-}: OctokitAndOptions) {
+}: GitHubAndOptions) {
 	await withSpinners("Migrating repository structure", [
 		["Clearing unnecessary files", clearUnnecessaryFiles],
 		[
 			"Writing structure",
 			async () => {
-				await writeStructure(options);
+				await writeStructure(options, "migrate");
 			},
 		],
 		[
@@ -31,7 +31,7 @@ export async function migrateWithOptions({
 		[
 			"Updating local files",
 			async () => {
-				await updateLocalFiles(options);
+				await updateLocalFiles(options, "migrate");
 			},
 		],
 		[
@@ -42,16 +42,15 @@ export async function migrateWithOptions({
 		],
 	]);
 
-	if (octokit) {
+	if (github) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await initializeGitHubRepository(octokit, options);
+			await initializeGitHubRepository(github.octokit, options);
 		});
 	}
 
 	if (!options.excludeContributors) {
-		await withSpinner(
-			"Detecting existing contributors",
-			detectExistingContributors,
+		await withSpinner("Detecting existing contributors", async () =>
+			detectExistingContributors(github?.auth, options),
 		);
 	}
 

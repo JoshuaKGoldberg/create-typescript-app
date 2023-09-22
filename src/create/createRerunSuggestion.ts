@@ -12,7 +12,27 @@ export function createRerunSuggestion(
 	mode: Mode,
 	options: Partial<Options>,
 ): string {
-	const args = Object.entries(options)
+	const optionsNormalized = {
+		...options,
+		...(options.email
+			? {
+					email: undefined,
+					emailGitHub: options.email.github,
+					emailNpm: options.email.npm,
+			  }
+			: { email: undefined }),
+		...(options.logo
+			? {
+					logo: options.logo.src,
+					logoAlt: options.logo.alt,
+			  }
+			: { logo: undefined }),
+	};
+
+	const args = Object.entries(optionsNormalized)
+		.sort(([a], [b]) =>
+			a === "base" ? -1 : b === "base" ? 1 : a.localeCompare(b),
+		)
 		.filter(([, value]) => !!value)
 		.map(([key, value]) => {
 			const valueStringified = `${value}`;

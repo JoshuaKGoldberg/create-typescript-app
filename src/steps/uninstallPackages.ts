@@ -2,7 +2,7 @@ import { $ } from "execa";
 
 import { readPackageData, removeDependencies } from "../shared/packages.js";
 
-export async function uninstallPackages(offline: boolean) {
+export async function uninstallPackages(offline: boolean | undefined) {
 	const packageData = await readPackageData();
 
 	await removeDependencies(
@@ -13,12 +13,15 @@ export async function uninstallPackages(offline: boolean) {
 			"execa",
 			"git-remote-origin-url",
 			"git-url-parse",
+			"lazy-value",
 			"js-yaml",
 			"npm-user",
 			"octokit",
 			"prettier",
 			"replace-in-file",
 			"title-case",
+			"zod",
+			"zod-validation-error",
 		],
 		packageData.dependencies,
 	);
@@ -31,6 +34,7 @@ export async function uninstallPackages(offline: boolean) {
 			"@types/prettier",
 			"all-contributors-cli",
 			"c8",
+			"eslint-config-prettier",
 			"globby",
 			"tsx",
 		],

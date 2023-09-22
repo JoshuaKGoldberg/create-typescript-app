@@ -1,5 +1,5 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
-import { OctokitAndOptions } from "../shared/options/readOptions.js";
+import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addOwnerAsAllContributor } from "../steps/addOwnerAsAllContributor.js";
 import { clearChangelog } from "../steps/clearChangelog.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
@@ -12,14 +12,14 @@ import { updateLocalFiles } from "../steps/updateLocalFiles.js";
 import { updateReadme } from "../steps/updateReadme.js";
 
 export async function initializeWithOptions({
-	octokit,
+	github,
 	options,
-}: OctokitAndOptions) {
+}: GitHubAndOptions) {
 	await withSpinners("Initializing local files", [
 		[
 			"Updating local files",
 			async () => {
-				await updateLocalFiles(options);
+				await updateLocalFiles(options, "initialize");
 			},
 		],
 		["Updating README.md", updateReadme],
@@ -39,9 +39,9 @@ export async function initializeWithOptions({
 		});
 	}
 
-	if (octokit) {
+	if (github) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await initializeGitHubRepository(octokit, options);
+			await initializeGitHubRepository(github.octokit, options);
 		});
 	}
 

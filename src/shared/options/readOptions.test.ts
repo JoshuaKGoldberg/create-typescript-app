@@ -5,6 +5,7 @@ import { optionsSchemaShape } from "./optionsSchema.js";
 import { readOptions } from "./readOptions.js";
 
 const emptyOptions = {
+	access: undefined,
 	author: undefined,
 	base: undefined,
 	createRepository: undefined,

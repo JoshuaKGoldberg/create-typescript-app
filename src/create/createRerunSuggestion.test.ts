@@ -4,6 +4,7 @@ import { Options } from "../shared/types.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 
 const options = {
+	access: "public",
 	author: "TestAuthor",
 	base: "everything",
 	createRepository: true,

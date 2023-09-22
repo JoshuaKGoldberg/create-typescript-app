@@ -24,6 +24,7 @@ vi.mock("../../shared/readFileSafe.js", () => ({
 }));
 
 const options = {
+	access: "public",
 	author: "Test Author",
 	base: "everything",
 	createRepository: false,

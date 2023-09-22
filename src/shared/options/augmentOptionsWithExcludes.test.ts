@@ -4,6 +4,7 @@ import { Options } from "../types.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 
 const optionsBase = {
+	access: "public",
 	author: undefined,
 	base: undefined,
 	createRepository: undefined,
@@ -41,7 +42,7 @@ const optionsBase = {
 	skipRestore: undefined,
 	skipUninstall: undefined,
 	title: "",
-};
+} satisfies Options;
 
 describe("augmentOptionsWithExcludes", () => {
 	it("returns options without exclusions and skips prompting when exclusions are provided manually", async () => {

@@ -2,7 +2,7 @@ import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
 import { filterPromptCancel } from "../prompts.js";
-import { InputBase, Options } from "../types.js";
+import { OptionsBase, Options } from "../types.js";
 
 interface ExclusionDescription {
 	hint: string;
@@ -134,9 +134,9 @@ export async function augmentOptionsWithExcludes(
 
 	const base =
 		options.base ??
-		filterPromptCancel<InputBase | symbol>(
+		filterPromptCancel<OptionsBase | symbol>(
 			await prompts.select({
-				initialValue: "common" as InputBase,
+				initialValue: "common" as OptionsBase,
 				message: `How much tooling would you like the template to set up for you?`,
 				options: [
 					{

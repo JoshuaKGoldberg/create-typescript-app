@@ -1,7 +1,7 @@
 import { formatYaml } from "../formatters/formatYaml.js";
 
 interface WorkflowFileConcurrency {
-	"cancel-in-progress": boolean;
+	"cancel-in-progress"?: boolean;
 	group: string;
 }
 
@@ -27,6 +27,7 @@ interface WorkflowFileOn {
 
 interface WorkflowFilePermissions {
 	contents?: string;
+	"id-token"?: string;
 	"pull-requests"?: string;
 }
 
@@ -77,7 +78,7 @@ export function createWorkflowFile({
 					steps:
 						"runs" in options
 							? [
-									{ uses: "actions/checkout@v3" },
+									{ uses: "actions/checkout@v4" },
 									{ uses: "./.github/actions/prepare" },
 									...options.runs.map((run) => ({ run })),
 							  ]

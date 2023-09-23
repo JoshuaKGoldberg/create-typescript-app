@@ -1,5 +1,6 @@
 import replaceInFile from "replace-in-file";
 
+import { Mode } from "../bin/mode.js";
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { Options } from "../shared/types.js";
 
@@ -8,21 +9,21 @@ interface ExistingPackageData {
 	version?: string;
 }
 
-export async function updateLocalFiles(options: Options) {
+export async function updateLocalFiles(options: Options, mode: Mode) {
 	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
 		{}) as ExistingPackageData;
 
 	const replacements = [
-		[/Template TypeScript Node Package/g, options.title],
-		[/JoshuaKGoldberg/g, options.owner],
-		[/template-typescript-node-package/g, options.repository],
+		[/Create TypeScript App/g, options.title],
+		[/JoshuaKGoldberg(?!\/console-fail-test)/g, options.owner],
+		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
-		[/"bin": ".+\n/g, ``, "./package.json"],
-		[/"create:test": ".+\n/g, ``, "./package.json"],
-		[/"initialize:test": ".*/g, ``, "./package.json"],
+		...(mode === "migrate" ? [] : [[/"bin": ".+\n/g, ``, "./package.json"]]),
+		[/"test:create": ".+\n/g, ``, "./package.json"],
+		[/"test:initialize": ".*/g, ``, "./package.json"],
 		[/"initialize": ".*/g, ``, "./package.json"],
-		[/"migrate:test": ".+\n/g, ``, "./package.json"],
+		[/"test:migrate": ".+\n/g, ``, "./package.json"],
 		[/## Getting Started.*## Development/gs, `## Development`, "./README.md"],
 		[/\n## Setup Scripts.*$/gs, "", "./.github/DEVELOPMENT.md"],
 		[`\t\t"src/initialize/index.ts",\n`, ``, "./knip.jsonc"],
@@ -33,16 +34,19 @@ export async function updateLocalFiles(options: Options) {
 			"./knip.jsonc",
 		],
 		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
+		// Edge case: migration scripts will rewrite README.md attribution
+		[
+			`> 💙 This package is based on [@${options.owner}](https://github.com/${options.owner})'s [${options.repository}](https://github.com/JoshuaKGoldberg/${options.repository}).`,
+			`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
+			"./README.md",
+		],
 	];
 
 	if (existingPackage.description) {
-		replacements.push([
-			new RegExp(existingPackage.description, "g"),
-			options.description,
-		]);
+		replacements.push([existingPackage.description, options.description]);
 	}
 
-	if (existingPackage.version) {
+	if (mode === "initialize" && existingPackage.version) {
 		replacements.push([
 			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,

@@ -7,7 +7,7 @@ body:
           required: true
         - label: I have pulled the latest `main` branch of the repository.
           required: true
-        - label: I have [searched for related issues](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues?q=is%3Aissue) and found none that matched my issue.
+        - label: I have [searched for related issues](https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=is%3Aissue) and found none that matched my issue.
           required: true
     type: checkboxes
   - attributes:
@@ -23,5 +23,5 @@ body:
 description: Request that a new feature be added or an existing feature improved
 labels:
   - "type: feature"
-name: 🚀 Request a Feature
+name: 🚀 Feature
 title: "🚀 Feature: <short description of the feature>"

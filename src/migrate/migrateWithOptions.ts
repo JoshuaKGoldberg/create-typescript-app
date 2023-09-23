@@ -1,5 +1,5 @@
-import { withSpinner } from "../shared/cli/spinners.js";
-import { OctokitAndOptions } from "../shared/options/readOptions.js";
+import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
@@ -7,31 +7,50 @@ import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/
 import { runCommands } from "../steps/runCommands.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";
-import { writeReadme } from "../steps/writeReadme.js";
+import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function migrateWithOptions({
-	octokit,
+	github,
 	options,
-}: OctokitAndOptions) {
-	await withSpinner("Migrating repository structure", async () => {
-		await clearUnnecessaryFiles();
-		await writeStructure(options);
-		await writeReadme(options);
-		await updateLocalFiles(options);
-		await updateAllContributorsTable(options);
-	});
+}: GitHubAndOptions) {
+	await withSpinners("Migrating repository structure", [
+		["Clearing unnecessary files", clearUnnecessaryFiles],
+		[
+			"Writing structure",
+			async () => {
+				await writeStructure(options, "migrate");
+			},
+		],
+		[
+			"Writing README.md",
+			async () => {
+				await writeReadme(options);
+			},
+		],
+		[
+			"Updating local files",
+			async () => {
+				await updateLocalFiles(options, "migrate");
+			},
+		],
+		[
+			"Updating all-contributors table",
+			async () => {
+				await updateAllContributorsTable(options);
+			},
+		],
+	]);
 
-	if (octokit) {
+	if (github) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await initializeGitHubRepository(octokit, options);
+			await initializeGitHubRepository(github.octokit, options);
 		});
 	}
 
 	if (!options.excludeContributors) {
-		await withSpinner(
-			"Detecting existing contributors",
-			detectExistingContributors,
+		await withSpinner("Detecting existing contributors", async () =>
+			detectExistingContributors(github?.auth, options),
 		);
 	}
 

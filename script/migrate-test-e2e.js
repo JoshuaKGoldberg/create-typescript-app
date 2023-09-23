@@ -4,12 +4,14 @@ import { $, execaCommand } from "execa";
 import packageData from "../package.json" assert { type: "json" };
 
 const { description, name: repository } = packageData;
+const emailGithub = "github@joshuakgoldberg.com";
+const emailNpm = "npm@joshuakgoldberg.com";
 const owner = "JoshuaKGoldberg";
-const title = "Template TypeScript Node Package";
+const title = "Create TypeScript App";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api --skip-install`;
+})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --owner ${owner} --title ${title} --repository ${repository} --exclude-contributors --skip-github-api --skip-install`;
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
@@ -33,13 +35,11 @@ const filesExpectedToBeChanged = new Set([
 	".eslintignore",
 	".eslintrc.cjs",
 	".github/DEVELOPMENT.md",
-	".github/workflows/release.yml",
 	".github/workflows/lint.yml",
 	".github/workflows/lint-knip.yml",
 	".github/workflows/test.yml",
 	".gitignore",
 	".prettierignore",
-	".release-it.json",
 	"cspell.json",
 ]);
 

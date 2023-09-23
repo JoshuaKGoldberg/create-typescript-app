@@ -2,7 +2,7 @@ jobs:
   post_release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
@@ -14,8 +14,8 @@ jobs:
 
             The release is available on:
 
-            * [GitHub releases](https://github.com/JoshuaKGoldberg/template-typescript-node-package/releases/tag/{release_tag})
-            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/template-typescript-node-package/v/${{ env.npm_version }})
+            * [GitHub releases](https://github.com/JoshuaKGoldberg/create-typescript-app/releases/tag/{release_tag})
+            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/create-typescript-app/v/${{ env.npm_version }})
 
             Cheers! 📦🚀
 

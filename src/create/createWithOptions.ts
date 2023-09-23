@@ -1,24 +1,31 @@
 import * as prompts from "@clack/prompts";
 import { $ } from "execa";
 
-import { withSpinner } from "../shared/cli/spinners.js";
+import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
-import { OctokitAndOptions } from "../shared/options/readOptions.js";
+import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { runCommands } from "../steps/runCommands.js";
-import { writeReadme } from "../steps/writeReadme.js";
+import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
-export async function createWithOptions({
-	octokit,
-	options,
-}: OctokitAndOptions) {
-	await withSpinner("Creating repository structure", async () => {
-		await writeStructure(options);
-		await writeReadme(options);
-	});
+export async function createWithOptions({ github, options }: GitHubAndOptions) {
+	await withSpinners("Creating repository structure", [
+		[
+			"Writing structure",
+			async () => {
+				await writeStructure(options, "create");
+			},
+		],
+		[
+			"Writing README.md",
+			async () => {
+				await writeReadme(options);
+			},
+		],
+	]);
 
 	if (!options.excludeContributors) {
 		await withSpinner("Adding contributors to table", async () => {
@@ -39,8 +46,8 @@ export async function createWithOptions({
 	]);
 
 	const sendToGitHub =
-		octokit &&
-		(await doesRepositoryExist(octokit, options)) &&
+		github &&
+		(await doesRepositoryExist(github.octokit, options)) &&
 		(options.createRepository ??
 			(await prompts.confirm({
 				message:
@@ -51,9 +58,9 @@ export async function createWithOptions({
 		await withSpinner("Initializing GitHub repository", async () => {
 			await $`git remote add origin https://github.com/${options.owner}/${options.repository}`;
 			await $`git add -A`;
-			await $`git commit --message ${"chore: initialized repo ✨"}`;
+			await $`git commit --message ${"feat: initialized repo ✨"}`;
 			await $`git push -u origin main --force`;
-			await initializeGitHubRepository(octokit, options);
+			await initializeGitHubRepository(github.octokit, options);
 		});
 	}
 

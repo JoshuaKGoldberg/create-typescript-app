@@ -10,7 +10,7 @@ vi.mock("all-contributors-for-repository", () => ({
 	},
 }));
 
-const mock$ = vi.fn();
+const mock$ = vi.fn().mockImplementation(() => mock$);
 
 vi.mock("execa", () => ({
 	get $() {
@@ -18,19 +18,31 @@ vi.mock("execa", () => ({
 	},
 }));
 
+const options = {
+	owner: "TestOwner",
+	repository: "test-repository",
+};
+
 describe("detectExistingContributors", () => {
 	it("runs npx all-contributors add for each contributor and contribution type", async () => {
 		mockGetAllContributorsForRepository.mockResolvedValue({
 			username: ["bug", "docs"],
 		});
 
-		await detectExistingContributors();
+		await detectExistingContributors("auth-token", options);
 
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
+			    {
+			      "env": {
+			        "PRIVATE_TOKEN": "auth-token",
+			      },
+			    },
+			  ],
+			  [
 			    [
-			      "npx all-contributors add ",
+			      "npx -y all-contributors-cli add ",
 			      " ",
 			      "",
 			    ],

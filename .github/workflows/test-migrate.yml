@@ -2,10 +2,10 @@ jobs:
   migrate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm run build
-      - run: pnpm run migrate:test
+      - run: pnpm run test:migrate
       - if: always()
         name: Codecov
         uses: codecov/codecov-action@v3

@@ -12,11 +12,15 @@ vi.mock("../../../shared/readFileSafeAsJson.js", () => ({
 }));
 
 const options = {
+	access: "public",
 	author: "test-author",
 	base: "everything",
 	createRepository: undefined,
 	description: "test-description",
-	email: "test-email",
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
 	excludeCompliance: undefined,
 	excludeContributors: undefined,
 	excludeLintJson: undefined,
@@ -31,9 +35,10 @@ const options = {
 	excludeRenovate: undefined,
 	excludeTests: false,
 	funding: undefined,
+	logo: undefined,
 	owner: "test-owner",
 	repository: "test-repository",
-	skipApi: false,
+	skipGitHubApi: false,
 	skipInstall: undefined,
 	skipRemoval: undefined,
 	skipRestore: undefined,
@@ -72,7 +77,7 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": "test-email",
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
 			  "description": "test-description",
@@ -92,7 +97,7 @@ describe("writePackageJson", () => {
 			  },
 			  "main": "./lib/index.js",
 			  "name": "test-repository",
-			  "packageManager": "pnpm@8.5.0",
+			  "packageManager": "pnpm@8.7.0",
 			  "publishConfig": {
 			    "provenance": true,
 			  },
@@ -143,7 +148,7 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": "test-email",
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
 			  "description": "test-description",
@@ -163,7 +168,7 @@ describe("writePackageJson", () => {
 			  },
 			  "main": "./lib/index.js",
 			  "name": "test-repository",
-			  "packageManager": "pnpm@8.5.0",
+			  "packageManager": "pnpm@8.7.0",
 			  "publishConfig": {
 			    "provenance": true,
 			  },

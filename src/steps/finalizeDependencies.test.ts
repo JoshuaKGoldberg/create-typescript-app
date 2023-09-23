@@ -11,21 +11,21 @@ vi.mock("execa", () => ({
 	},
 }));
 
-const mockRemoveDevDependencies = vi.fn();
-
 vi.mock("../shared/packages.js", () => ({
 	readPackageData: () => [],
-	get removeDevDependencies() {
-		return mockRemoveDevDependencies;
-	},
+	removeDependencies: vi.fn(),
 }));
 
 const options = {
+	access: "public",
 	author: undefined,
 	base: "everything",
 	createRepository: undefined,
 	description: "Stub description.",
-	email: undefined,
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
 	excludeCompliance: undefined,
 	excludeContributors: undefined,
 	excludeLintJson: undefined,
@@ -40,9 +40,10 @@ const options = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	logo: undefined,
 	owner: "StubOwner",
 	repository: "stub-repository",
-	skipApi: false,
+	skipGitHubApi: false,
 	skipInstall: undefined,
 	skipRemoval: undefined,
 	skipRestore: undefined,
@@ -57,7 +58,7 @@ describe("finalize", () => {
 		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "pnpm add @types/eslint@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest @vitest/coverage-v8@latest all-contributors-cli@latest console-fail-test@latest cspell@latest eslint@latest eslint-config-prettier@latest eslint-plugin-deprecation@latest eslint-plugin-eslint-comments@latest eslint-plugin-import@latest eslint-plugin-jsdoc@latest eslint-plugin-jsonc@latest eslint-plugin-markdown@latest eslint-plugin-n@latest eslint-plugin-no-only-tests@latest eslint-plugin-perfectionist@latest eslint-plugin-regexp@latest eslint-plugin-vitest@latest eslint-plugin-yml@latest husky@latest jsonc-eslint-parser@latest knip@latest lint-staged@latest markdownlint@latest markdownlint-cli@latest npm-package-json-lint@latest npm-package-json-lint-config-default@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest release-it@latest sentences-per-line@latest should-semantic-release@latest tsup@latest typescript@latest vitest@latest yaml-eslint-parser@latest -D",
+			    "pnpm add @release-it/conventional-changelog@latest @types/eslint@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest @vitest/coverage-v8@latest all-contributors-cli@latest console-fail-test@latest cspell@latest eslint@latest eslint-plugin-deprecation@latest eslint-plugin-eslint-comments@latest eslint-plugin-jsdoc@latest eslint-plugin-jsonc@latest eslint-plugin-markdown@latest eslint-plugin-n@latest eslint-plugin-no-only-tests@latest eslint-plugin-perfectionist@latest eslint-plugin-regexp@latest eslint-plugin-vitest@latest eslint-plugin-yml@latest husky@latest jsonc-eslint-parser@latest knip@latest lint-staged@latest markdownlint@latest markdownlint-cli@latest npm-package-json-lint@latest npm-package-json-lint-config-default@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest release-it@latest sentences-per-line@latest should-semantic-release@latest tsup@latest typescript@latest vitest@latest yaml-eslint-parser@latest -D",
 			  ],
 			  [
 			    "npx all-contributors-cli generate",
@@ -90,7 +91,7 @@ describe("finalize", () => {
 		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "pnpm add @types/eslint@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@latest eslint-config-prettier@latest eslint-plugin-deprecation@latest eslint-plugin-eslint-comments@latest eslint-plugin-import@latest eslint-plugin-jsdoc@latest eslint-plugin-n@latest eslint-plugin-regexp@latest husky@latest lint-staged@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest tsup@latest typescript@latest -D",
+			    "pnpm add @types/eslint@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest eslint@latest eslint-plugin-deprecation@latest eslint-plugin-eslint-comments@latest eslint-plugin-jsdoc@latest eslint-plugin-n@latest eslint-plugin-regexp@latest husky@latest lint-staged@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest tsup@latest typescript@latest -D",
 			  ],
 			  [
 			    "pnpm run format:write",

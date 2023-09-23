@@ -1,9 +1,9 @@
 import * as prompts from "@clack/prompts";
-import { Octokit } from "octokit";
 
 import { doesRepositoryExist } from "../doesRepositoryExist.js";
-import { handleCancel, handlePromptCancel } from "../prompts.js";
+import { filterPromptCancel } from "../prompts.js";
 import { Options } from "../types.js";
+import { GitHub } from "./getGitHub.js";
 
 export type EnsureRepositoryExistsOptions = Pick<
 	Options,
@@ -11,27 +11,27 @@ export type EnsureRepositoryExistsOptions = Pick<
 >;
 
 export interface RepositoryExistsResult {
-	octokit: Octokit | undefined;
+	github: GitHub | undefined;
 	repository: string;
 }
 
 export async function ensureRepositoryExists(
-	octokit: Octokit | undefined,
+	github: GitHub | undefined,
 	options: EnsureRepositoryExistsOptions,
-): Promise<RepositoryExistsResult> {
+): Promise<Partial<RepositoryExistsResult>> {
 	// We'll only respect input options once before prompting for them
 	let { createRepository, repository } = options;
 
 	// We'll continuously pester the user for a repository
 	// until they bail, create a new one, or it exists.
-	while (octokit) {
-		if (await doesRepositoryExist(octokit, options)) {
-			return { octokit, repository };
+	while (github) {
+		if (await doesRepositoryExist(github.octokit, options)) {
+			return { github, repository };
 		}
 
 		const selection = createRepository
 			? "create"
-			: handlePromptCancel(
+			: filterPromptCancel(
 					(await prompts.select({
 						message: `Repository ${options.repository} doesn't seem to exist under ${options.owner}. What would you like to do?`,
 						options: [
@@ -52,34 +52,38 @@ export async function ensureRepositoryExists(
 		createRepository = false;
 
 		switch (selection) {
+			case undefined:
 			case "bail":
-				handleCancel();
-				break;
+				return {};
 
 			case "create":
-				await octokit.rest.repos.createUsingTemplate({
+				await github.octokit.rest.repos.createUsingTemplate({
 					name: repository,
 					owner: options.owner,
 					template_owner: "JoshuaKGoldberg",
-					template_repo: "template-typescript-node-package",
+					template_repo: "create-typescript-app",
 				});
-				return { octokit, repository };
+				return { github: github, repository };
 
 			case "different":
-				const newRepository = handlePromptCancel(
+				const newRepository = filterPromptCancel(
 					await prompts.text({
 						message: `What would you like to call the repository?`,
 					}),
 				);
 
+				if (!newRepository) {
+					return {};
+				}
+
 				repository = newRepository;
 				break;
 
 			case "local":
-				octokit = undefined;
+				github = undefined;
 				break;
 		}
 	}
 
-	return { octokit, repository };
+	return { github: github, repository };
 }

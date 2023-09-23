@@ -26,14 +26,11 @@ const files = await globby(["*.*", "**/*.*"], {
 	ignoreFiles: ["script/initialize-test-e2e.js"],
 });
 
-for (const search of [
-	`/JoshuaKGoldberg/`,
-	"template-typescript-node-package",
-]) {
+for (const search of [`/JoshuaKGoldberg/`, "create-typescript-app"]) {
 	const { stdout } = await $`grep -i ${search} ${files}`;
 	assert.equal(
 		stdout,
-		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`,
+		`README.md:> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
 	);
 }
 
@@ -52,4 +49,4 @@ await $`pnpm i`;
 await $`pnpm run build`;
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-initialize -r html -r lcov --src src node ./bin/index.js --base everything --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api --skip-removal --skip-restore`;
+})`c8 -o ./coverage-initialize -r html -r lcov --src src node ./bin/index.js --base everything --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --exclude-contributors --skip-github-api --skip-removal --skip-restore`;

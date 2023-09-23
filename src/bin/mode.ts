@@ -1,7 +1,18 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
+import z from "zod";
 
-import { handlePromptCancel } from "../shared/prompts.js";
+import { StatusCode } from "../shared/codes.js";
+import { filterPromptCancel } from "../shared/prompts.js";
+import { Options } from "../shared/types.js";
+
+export interface ModeResult {
+	code: StatusCode;
+	error?: string | z.ZodError<object>;
+	options: Partial<Options>;
+}
+
+export type ModeRunner = (args: string[]) => Promise<ModeResult>;
 
 export type Mode = "create" | "initialize" | "migrate";
 
@@ -11,9 +22,7 @@ function isMode(input: boolean | string): input is Mode {
 	return allowedModes.includes(input as Mode);
 }
 
-export async function promptForMode(
-	input: boolean | string | undefined,
-): Promise<Error | Mode> {
+export async function promptForMode(input: boolean | string | undefined) {
 	if (input) {
 		if (!isMode(input)) {
 			return new Error(
@@ -26,20 +35,28 @@ export async function promptForMode(
 		return input;
 	}
 
-	const selection = handlePromptCancel(
+	const label = (base: string, text: string) => `${chalk.bold(base)} ${text}`;
+
+	const selection = filterPromptCancel(
 		(await prompts.select({
 			message: chalk.blue("How would you like to use the template?"),
 			options: [
 				{
-					label: "--create a new repository in a child directory",
+					label: label("create", "a new repository in a child directory"),
 					value: "create",
 				},
 				{
-					label: "--initialize a freshly repository in the current directory",
+					label: label(
+						"initialize",
+						"a freshly repository in the current directory",
+					),
 					value: "initialize",
 				},
 				{
-					label: "--migrate an existing repository in the current directory",
+					label: label(
+						"migrate",
+						"an existing repository in the current directory",
+					),
 					value: "migrate",
 				},
 			],

@@ -1,9 +1,9 @@
 # Creating from the Terminal
 
-You can run `npx template-typescript-node-package` in your terminal to interactively create a new repository:
+You can run `npx create-typescript-app` in your terminal to interactively create a new repository:
 
 ```shell
-npx template-typescript-node-package
+npx create-typescript-app
 ```
 
 Then, go through the following two steps to set up required repository tooling on GitHub:
@@ -26,5 +26,5 @@ See [Options.md](./Options.md).
 For example, running the creation script and skipping all APIs:
 
 ```shell
-npx template-typescript-node-package --mode create --skip-contributors-data --skip-github-api
+npx create-typescript-app --mode create --exclude-contributors --skip-github-api
 ```

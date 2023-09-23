@@ -1,20 +1,20 @@
 import * as prompts from "@clack/prompts";
 
-import { handlePromptCancel } from "../prompts.js";
+import { filterPromptCancel } from "../prompts.js";
 
 export async function getPrefillOrPromptedOption(
 	existingValue: string | undefined,
 	message: string,
-	placeholder?: string,
+	getPlaceholder?: () => Promise<string | undefined>,
 ) {
 	if (existingValue) {
 		return existingValue;
 	}
 
-	const value = handlePromptCancel(
+	return filterPromptCancel(
 		await prompts.text({
 			message,
-			placeholder,
+			placeholder: await getPlaceholder?.(),
 			validate: (val) => {
 				if (val.length === 0) {
 					return "Please enter a value.";
@@ -22,6 +22,4 @@ export async function getPrefillOrPromptedOption(
 			},
 		}),
 	);
-
-	return value;
 }

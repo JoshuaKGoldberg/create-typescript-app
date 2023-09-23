@@ -1,8 +1,8 @@
 # Options
 
-All three of `template-typescript-node-package`'s setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- support a shared set of input options.
+All three of `create-typescript-app`'s setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- support a shared set of input options.
 
-> This page uses `npx template-typescript-node-package` in its code examples, but `pnpm run initialize` works the same.
+> This page uses `npx create-typescript-app` in its code examples, but `pnpm run initialize` works the same.
 
 ## Required Options
 
@@ -25,22 +25,22 @@ These required options determine how the creation script will set up and scaffol
 For example, scaffolding a full new repository in the current directory and also linking it to a new repository on github.com:
 
 ```shell
-npx template-typescript-node-package --base everything --create-repository --mode create
+npx create-typescript-app --base everything --create-repository --mode create
 ```
 
 ### Core Options
 
 These required options determine the options that will be substituted into the template's files:
 
-- `--description` _(`string`)_: Sentence case description of the repository (e.g. `A quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
+- `--description` _(`string`)_: Sentence case description of the repository (e.g. `Quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
-- `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `template-typescript-node-package`)
-- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Template TypeScript Node Package`)
+- `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `create-typescript-app`)
+- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Create TypeScript App`)
 
 For example, pre-populating all core required options and also creating a new repository:
 
 ```shell
-npx template-typescript-node-package --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
+npx create-typescript-app --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
 ```
 
 That script will run completely autonomously, no prompted inputs required. ✨
@@ -49,14 +49,18 @@ That script will run completely autonomously, no prompted inputs required. ✨
 
 The setup scripts also allow for optional overrides of the following inputs whose defaults are based on other options:
 
+- `--access` _(`"public" | "restricted`)_: Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with (by default, `"public"`)
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
+  - Optionally, `--email-github` _(`string`)_ and/or `--email-npm` _(`string`)_ may be provided to use different emails in `.md` files and `package.json`, respectively
 - `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
+- `--logo` _(`string`)_: Local image file in the repository to display near the top of the README.md as a logo
+  - `--logo-alt` _(`string`)_: If `--logo` is provided or detected from an existing README.md, alt text that describes the image will be prompted for if not provided
 
 For example, customizing the ownership and users associated with a new repository:
 
 ```shell
-npx template-typescript-node-package --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
+npx create-typescript-app --author my-npm-username --email example@joshuakgoldberg.com --funding MyGitHubOrganization
 ```
 
 > 💡 You can always manually edit files such as `package.json` after running a setup script.
@@ -76,8 +80,14 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-lint-knip`: Don't add Knip to detect unused files, dependencies, and code exports.
 - `--exclude-lint-md`: Don't apply linting to `*.md` files.
 - `--exclude-lint-package-json`: Don't add npm-package-json-lint to lint for package.json correctness.
+- `--exclude-lint-deprecation`: Don't use eslint-plugin-deprecation to report on usage of code marked as `@deprecated`.
+- `--exclude-lint-eslint`: Don't use eslint-plugin-eslint-comment to enforce good practices around ESLint comment directives.
+- `--exclude-lint-jsdoc`: Don't use eslint-plugin-jsdoc to enforce good practices around JSDoc comments.
 - `--exclude-lint-packages`: Don't add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.
 - `--exclude-lint-perfectionist`: Don't apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.
+- `--exclude-lint-regex`: Don't add eslint-plugin-regex to enforce good practices around regular expressions.
+- `--exclude-lint-strict`: Don't augment the recommended logical lint rules with typescript-eslint's strict config.
+- `--exclude-lint-stylistic`: Don't add stylistic rules such as typescript-eslint's stylistic config.
 - `--exclude-lint-spelling`: Don't add cspell to spell check against dictionaries of known words.
 - `--exclude-lint-yml`: Don't apply linting and sorting to `*.yaml` and `*.yml` files.
 - `--exclude-releases`: Don't add release-it to generate changelogs, package bumps, and publishes based on conventional commits.
@@ -87,7 +97,7 @@ Alternately, you can bypass that prompt by providing any number of the following
 For example, initializing with all tooling except for `package.json` checks and Renovate:
 
 ```shell
-npx template-typescript-node-package --exclude-lint-package-json --exclude-lint-packages --exclude-renovate
+npx create-typescript-app --exclude-lint-package-json --exclude-lint-packages --exclude-renovate
 ```
 
 > **Warning**
@@ -97,7 +107,7 @@ npx template-typescript-node-package --exclude-lint-package-json --exclude-lint-
 
 You can prevent the migration script from making some network-based changes using any or all of the following CLI flags:
 
-- `--skip-contributors-data` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
+- `--exclude-contributors` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
   - This flag does nothing if `--exclude-contributors` was specified.
 - `--skip-github-api` _(`boolean`)_: Skips calling to GitHub APIs.
 - `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`.
@@ -105,7 +115,7 @@ You can prevent the migration script from making some network-based changes usin
 For example, providing all three flags will completely skip all network requests:
 
 ```shell
-npx template-typescript-node-package --skip-contributors-data --skip-github-api --skip-install
+npx create-typescript-app --exclude-contributors --skip-github-api --skip-install
 ```
 
 > 💡 Tip: To temporarily preview what the script would apply, you can run with all `--skip-*` flags, then `git add -A; git reset --hard HEAD` to completely reset all changes.
@@ -121,5 +131,5 @@ You can prevent the migration script from making some changes on disk using any 
 For example, providing all local change skip flags:
 
 ```shell
-npx template-typescript-node-package --skip-removal --skip-restore --skip-uninstall
+npx create-typescript-app --skip-removal --skip-restore --skip-uninstall
 ```

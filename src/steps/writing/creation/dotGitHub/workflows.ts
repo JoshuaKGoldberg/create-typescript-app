@@ -77,7 +77,7 @@ export function createWorkflows(options: Options) {
 					},
 				},
 				steps: [
-					{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },
+					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{ uses: "./.github/actions/prepare" },
 					{
 						env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
@@ -103,9 +103,15 @@ export function createWorkflows(options: Options) {
 			}),
 		}),
 		...(!options.excludeLintPackageJson && {
-			"lint-package.yml": createWorkflowFile({
+			"lint-package-json.yml": createWorkflowFile({
 				name: "Lint Package JSON",
 				runs: ["pnpm lint:package-json"],
+			}),
+		}),
+		...(!options.excludeLintPackages && {
+			"lint-packages.yml": createWorkflowFile({
+				name: "Lint Packages",
+				runs: ["pnpm lint:packages"],
 			}),
 		}),
 		...(!options.excludeLintSpelling && {
@@ -123,7 +129,7 @@ export function createWorkflows(options: Options) {
 					},
 				},
 				steps: [
-					{ uses: "actions/checkout@v3", with: { "fetch-depth": 0 } },
+					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{
 						run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
 					},
@@ -147,7 +153,6 @@ export function createWorkflows(options: Options) {
 			}),
 			"release.yml": createWorkflowFile({
 				concurrency: {
-					"cancel-in-progress": true,
 					group: "${{ github.workflow }}",
 				},
 				name: "Release",
@@ -158,12 +163,14 @@ export function createWorkflows(options: Options) {
 				},
 				permissions: {
 					contents: "write",
+					"id-token": "write",
 				},
 				steps: [
 					{
-						uses: "actions/checkout@v3",
+						uses: "actions/checkout@v4",
 						with: {
 							"fetch-depth": 0,
+							ref: "main",
 						},
 					},
 					{
@@ -207,8 +214,7 @@ export function createWorkflows(options: Options) {
 						},
 						run: `
 						if pnpm run should-semantic-release ; then
-						  pnpm release-it --verbose
-						  gh workflow run post-release.yml
+							pnpm release-it --verbose
 						fi`,
 					},
 					{
@@ -221,34 +227,34 @@ export function createWorkflows(options: Options) {
 							github.request(
 							  \`PUT /repos/${options.owner}/${options.repository}/branches/main/protection\`,
 							  {
-								  allow_deletions: false,
-								  allow_force_pushes: true,
-								  allow_fork_pushes: false,
-								  allow_fork_syncing: true,
-								  block_creations: false,
-								  branch: "main",
-								  enforce_admins: false,
-								  owner: "${options.owner}",
-								  repo: "${options.repository}",
-								  required_conversation_resolution: true,
-								  required_linear_history: false,
-								  required_pull_request_reviews: null,
-								  required_status_checks: {
-									checks: [
-									  { context: "build" },
-									  { context: "compliance" },
-									  { context: "lint" },
-									  { context: "lint_knip" },
-									  { context: "lint_markdown" },
-									  { context: "lint_package" },
-									  { context: "lint_packages" },
-									  { context: "lint_spelling" },
-									  { context: "prettier" },
-									  { context: "test" },
-									],
-									strict: false,
-								  },
-								  restrictions: null,
+							    allow_deletions: false,
+							    allow_force_pushes: true,
+							    allow_fork_pushes: false,
+							    allow_fork_syncing: true,
+							    block_creations: false,
+							    branch: "main",
+							    enforce_admins: false,
+							    owner: "${options.owner}",
+							    repo: "${options.repository}",
+							    required_conversation_resolution: true,
+							    required_linear_history: false,
+							    required_pull_request_reviews: null,
+							    required_status_checks: {
+							      checks: [
+							        { context: "build" },
+							        { context: "compliance" },
+							        { context: "lint" },
+							        { context: "lint_knip" },
+							        { context: "lint_markdown" },
+							        { context: "lint_package_json" },
+							        { context: "lint_packages" },
+							        { context: "lint_spelling" },
+							        { context: "prettier" },
+							        { context: "test" },
+							      ],
+							      strict: false,
+							    },
+							    restrictions: null,
 							  }
 							);
 						`,
@@ -261,7 +267,7 @@ export function createWorkflows(options: Options) {
 			"test.yml": createWorkflowFile({
 				name: "Test",
 				steps: [
-					{ uses: "actions/checkout@v3" },
+					{ uses: "actions/checkout@v4" },
 					{ uses: "./.github/actions/prepare" },
 					{ run: "pnpm run test --coverage" },
 					{

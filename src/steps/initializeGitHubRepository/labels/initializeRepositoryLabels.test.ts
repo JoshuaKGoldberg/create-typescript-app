@@ -10,18 +10,49 @@ vi.mock("execa", () => ({
 	},
 }));
 
+const mockOutcomeLabel = {
+	color: "000000",
+	description: "def ghi",
+	name: "area: abc",
+};
+
 vi.mock("./outcomeLabels.js", () => ({
-	outcomeLabels: [
-		{
-			color: "000000",
-			description: "def ghi",
-			name: "abc",
-		},
-	],
+	get outcomeLabels() {
+		return [mockOutcomeLabel];
+	},
 }));
 
 describe("migrateRepositoryLabels", () => {
-	it("creates a setup label when it doesn't already exist", async () => {
+	it("creates an outcome label when labels stdout is empty", async () => {
+		mock$.mockResolvedValue({
+			stdout: "",
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label create ",
+			      " --color ",
+			      " --description ",
+			      "",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			  ],
+			]
+		`);
+	});
+
+	it("creates an outcome label when it doesn't already exist", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
 				{
@@ -34,37 +65,148 @@ describe("migrateRepositoryLabels", () => {
 
 		await initializeRepositoryLabels();
 
-		expect(mock$).toHaveBeenCalledWith(
-			["gh label create ", " --color ", " --description ", ""],
-			"abc",
-			"000000",
-			"def ghi",
-		);
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label create ",
+			      " --color ",
+			      " --description ",
+			      "",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			  ],
+			]
+		`);
 	});
 
-	it("edits a setup label when it already exists", async () => {
+	it("doesn't edit a outcome label when it already exists with the same information", async () => {
+		mock$.mockResolvedValue({
+			stdout: JSON.stringify([mockOutcomeLabel]),
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			]
+		`);
+	});
+
+	it("edits the outcome label when it already exists with different color", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
 				{
-					color: "000000",
-					description: "def ghi",
-					name: "abc",
+					...mockOutcomeLabel,
+					color: "111111",
 				},
 			]),
 		});
 
 		await initializeRepositoryLabels();
 
-		expect(mock$).toHaveBeenCalledWith(
-			["gh label edit ", " --color ", " --description ", " --name ", ""],
-			"abc",
-			"000000",
-			"def ghi",
-			"abc",
-		);
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label edit ",
+			      " --color ",
+			      " --description ",
+			      " --name ",
+			      "",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			    "area: abc",
+			  ],
+			]
+		`);
 	});
 
-	it("deletes a pre-existing label when it isn't a setup label", async () => {
+	it("edits the outcome label when it already exists with a different description", async () => {
+		mock$.mockResolvedValue({
+			stdout: JSON.stringify([
+				{
+					...mockOutcomeLabel,
+					description: "updated",
+				},
+			]),
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label edit ",
+			      " --color ",
+			      " --description ",
+			      " --name ",
+			      "",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			    "area: abc",
+			  ],
+			]
+		`);
+	});
+
+	it("deletes an existing non-outcome label when the equivalent outcome label already exists", async () => {
+		mock$.mockResolvedValue({
+			stdout: JSON.stringify([
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "area: abc",
+				},
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "area: abc",
+				},
+			]),
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			]
+		`);
+	});
+
+	it("deletes a pre-existing label when it isn't a outcome label", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
 				{
@@ -77,14 +219,29 @@ describe("migrateRepositoryLabels", () => {
 
 		await initializeRepositoryLabels();
 
-		expect(mock$).toHaveBeenCalledWith(
-			["gh label delete ", " --yes"],
-			"unknown",
-		);
-		expect(mock$).toHaveBeenCalledTimes(3);
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label create ",
+			      " --color ",
+			      " --description ",
+			      "",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			  ],
+			]
+		`);
 	});
 
-	it("doesn't delete a pre-existing label when it isn't a setup label", async () => {
+	it("deletes the existing duplicate outcome label and edits the label with the outcome name and different color when both exist", async () => {
 		mock$.mockResolvedValue({
 			stdout: JSON.stringify([
 				{
@@ -92,15 +249,115 @@ describe("migrateRepositoryLabels", () => {
 					description: "def ghi",
 					name: "abc",
 				},
+				{
+					color: "111111",
+					description: "def ghi",
+					name: "area: abc",
+				},
 			]),
 		});
 
 		await initializeRepositoryLabels();
 
-		expect(mock$).not.toHaveBeenCalledWith(
-			["gh label delete ", " --yes"],
-			"abc",
-		);
-		expect(mock$).toHaveBeenCalledTimes(2);
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label delete ",
+			      " --yes",
+			    ],
+			    "abc",
+			  ],
+			  [
+			    [
+			      "gh label edit ",
+			      " --color ",
+			      " --description ",
+			      " --name ",
+			      "",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			    "area: abc",
+			  ],
+			]
+		`);
+	});
+
+	it("deletes the existing duplicate outcome label and does not edit the label with the outcome name and same information when both exist", async () => {
+		mock$.mockResolvedValue({
+			stdout: JSON.stringify([
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "abc",
+				},
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "area: abc",
+				},
+			]),
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label delete ",
+			      " --yes",
+			    ],
+			    "abc",
+			  ],
+			]
+		`);
+	});
+
+	it("doesn't delete a pre-existing label when it isn't a outcome label", async () => {
+		mock$.mockResolvedValue({
+			stdout: JSON.stringify([
+				{
+					color: "000000",
+					description: "def ghi",
+					name: "jkl",
+				},
+			]),
+		});
+
+		await initializeRepositoryLabels();
+
+		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      "gh label list --json color,description,name",
+			    ],
+			  ],
+			  [
+			    [
+			      "gh label create ",
+			      " --color ",
+			      " --description ",
+			      "",
+			    ],
+			    "area: abc",
+			    "000000",
+			    "def ghi",
+			  ],
+			]
+		`);
 	});
 });

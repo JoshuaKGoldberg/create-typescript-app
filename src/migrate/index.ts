@@ -7,7 +7,7 @@ import { runOrRestore } from "../shared/runOrRestore.js";
 import { migrateWithOptions } from "./migrateWithOptions.js";
 
 export const migrate: ModeRunner = async (args) => {
-	const inputs = await readOptions(args);
+	const inputs = await readOptions(args, "migrate");
 	if (inputs.cancelled) {
 		return {
 			code: StatusCodes.Cancelled,

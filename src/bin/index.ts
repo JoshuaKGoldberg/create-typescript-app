@@ -57,7 +57,7 @@ export async function bin(args: string[]) {
 	prompts.log.info(
 		[
 			chalk.italic(`Tip: to run again with the same input values, use:`),
-			chalk.blue(createRerunSuggestion(mode, options)),
+			chalk.blue(createRerunSuggestion(options)),
 		].join(" "),
 	);
 

@@ -44,6 +44,7 @@ const options = {
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "StubOwner",
 	repository: "stub-repository",
 	skipGitHubApi: false,
@@ -62,7 +63,7 @@ describe("updateLocalFiles", () => {
 		mockReplaceInFile.mockRejectedValue(error);
 
 		await expect(async () => {
-			await updateLocalFiles(options, "initialize");
+			await updateLocalFiles({ ...options, mode: "initialize" });
 		}).rejects.toThrowErrorMatchingInlineSnapshot(
 			'"Failed to replace /Create TypeScript App/g with Stub Title in ./.github/**/*,./*.*"',
 		);
@@ -72,7 +73,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue(null);
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "initialize");
+		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -214,7 +215,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "initialize");
+		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -356,7 +357,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "initialize");
+		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
 			files: ["./.github/**/*", "./*.*"],
@@ -372,7 +373,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "initialize");
+		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).toHaveBeenCalledWith({
 			files: ["./.github/**/*", "./*.*"],
@@ -387,7 +388,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "initialize");
+		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).toHaveBeenCalledWith({
 			files: "./package.json",
@@ -402,7 +403,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "migrate");
+		await updateLocalFiles({ ...options, mode: "migrate" });
 
 		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
 			files: "./package.json",
@@ -417,7 +418,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "initialize");
+		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).toHaveBeenCalledWith({
 			files: "./package.json",
@@ -432,7 +433,7 @@ describe("updateLocalFiles", () => {
 		});
 		mockReplaceInFile.mockResolvedValue([]);
 
-		await updateLocalFiles(options, "migrate");
+		await updateLocalFiles({ ...options, mode: "migrate" });
 
 		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
 			files: "./package.json",

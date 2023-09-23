@@ -1,6 +1,5 @@
 import replaceInFile from "replace-in-file";
 
-import { Mode } from "../bin/mode.js";
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { Options } from "../shared/types.js";
 
@@ -9,7 +8,7 @@ interface ExistingPackageData {
 	version?: string;
 }
 
-export async function updateLocalFiles(options: Options, mode: Mode) {
+export async function updateLocalFiles(options: Options) {
 	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
 		{}) as ExistingPackageData;
 
@@ -19,7 +18,9 @@ export async function updateLocalFiles(options: Options, mode: Mode) {
 		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
-		...(mode === "migrate" ? [] : [[/"bin": ".+\n/g, ``, "./package.json"]]),
+		...(options.mode === "migrate"
+			? []
+			: [[/"bin": ".+\n/g, ``, "./package.json"]]),
 		[/"test:create": ".+\n/g, ``, "./package.json"],
 		[/"test:initialize": ".*/g, ``, "./package.json"],
 		[/"initialize": ".*/g, ``, "./package.json"],
@@ -46,7 +47,7 @@ export async function updateLocalFiles(options: Options, mode: Mode) {
 		replacements.push([existingPackage.description, options.description]);
 	}
 
-	if (mode === "initialize" && existingPackage.version) {
+	if (options.mode === "initialize" && existingPackage.version) {
 		replacements.push([
 			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,

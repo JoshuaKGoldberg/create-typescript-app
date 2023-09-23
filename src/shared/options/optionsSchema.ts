@@ -41,6 +41,9 @@ export const optionsSchemaShape = {
 	funding: z.string().optional(),
 	logo: z.string().optional(),
 	logoAlt: z.string().optional(),
+	mode: z
+		.union([z.literal("create"), z.literal("initialize"), z.literal("migrate")])
+		.optional(),
 	owner: z.string().optional(),
 	repository: z.string().optional(),
 	skipGitHubApi: z.boolean().optional(),

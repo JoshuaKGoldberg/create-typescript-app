@@ -29,6 +29,7 @@ export const allArgOptions = {
 	funding: { type: "string" },
 	logo: { type: "string" },
 	"logo-alt": { type: "string" },
+	mode: { type: "string" },
 	owner: { type: "string" },
 	repository: { type: "string" },
 	"skip-github-api": { type: "boolean" },

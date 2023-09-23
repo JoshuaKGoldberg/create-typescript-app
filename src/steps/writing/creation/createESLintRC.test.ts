@@ -38,6 +38,7 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 			].map((key) => [key, getExcludeValue(key)]),
 		),
 		logo: undefined,
+		mode: "create",
 		owner: "TestOwner",
 		repository: "test-repository",
 		skipGitHubApi: true,
@@ -71,6 +72,15 @@ describe("createESLintRC", () => {
 				          { enforceForIfStatements: true },
 				        ],
 				        \\"operator-assignment\\": \\"error\\",
+				      },
+				    },
+				    {
+				      files: \\"**/*.md/*.ts\\",
+				      rules: {
+				        \\"n/no-missing-import\\": [
+				          \\"error\\",
+				          { allowModules: [\\"create-typescript-app\\"] },
+				        ],
 				      },
 				    },
 				    {
@@ -146,6 +156,15 @@ describe("createESLintRC", () => {
 				        \\"jsdoc/require-param\\": \\"off\\",
 				        \\"jsdoc/require-property\\": \\"off\\",
 				        \\"jsdoc/require-returns\\": \\"off\\",
+				      },
+				    },
+				    {
+				      files: \\"**/*.md/*.ts\\",
+				      rules: {
+				        \\"n/no-missing-import\\": [
+				          \\"error\\",
+				          { allowModules: [\\"create-typescript-app\\"] },
+				        ],
 				      },
 				    },
 				    {

@@ -34,6 +34,7 @@ const optionsBase = {
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "",
 	repository: "",
 	skipGitHubApi: false,

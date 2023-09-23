@@ -4,7 +4,7 @@ import { strict as assert } from "node:assert";
 const author = "Test Author";
 const description = "Test description.";
 const email = "test@email.com";
-const repository = "test-repository";
+const repository = "create-typescript-app";
 const owner = "TestOwner";
 const title = "Test Title";
 

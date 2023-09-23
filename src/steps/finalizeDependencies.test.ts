@@ -41,6 +41,7 @@ const options = {
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "StubOwner",
 	repository: "stub-repository",
 	skipGitHubApi: false,

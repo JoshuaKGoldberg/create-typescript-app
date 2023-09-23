@@ -92,7 +92,7 @@ npm i ${options.repository}
 \`\`\`ts
 import { greet } from "${options.repository}";
 
-great("Hello, world! 💖");
+greet("Hello, world! 💖");
 \`\`\``
 	}`;
 }

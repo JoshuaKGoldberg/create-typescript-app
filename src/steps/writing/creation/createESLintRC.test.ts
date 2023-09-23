@@ -75,6 +75,15 @@ describe("createESLintRC", () => {
 				      },
 				    },
 				    {
+				      files: \\"**/*.md/*.ts\\",
+				      rules: {
+				        \\"n/no-missing-import\\": [
+				          \\"error\\",
+				          { allowModules: [\\"create-typescript-app\\"] },
+				        ],
+				      },
+				    },
+				    {
 				      extends: [\\"plugin:@typescript-eslint/recommended-type-checked\\"],
 				      files: [\\"**/*.ts\\"],
 				      parser: \\"@typescript-eslint/parser\\",
@@ -147,6 +156,15 @@ describe("createESLintRC", () => {
 				        \\"jsdoc/require-param\\": \\"off\\",
 				        \\"jsdoc/require-property\\": \\"off\\",
 				        \\"jsdoc/require-returns\\": \\"off\\",
+				      },
+				    },
+				    {
+				      files: \\"**/*.md/*.ts\\",
+				      rules: {
+				        \\"n/no-missing-import\\": [
+				          \\"error\\",
+				          { allowModules: [\\"create-typescript-app\\"] },
+				        ],
 				      },
 				    },
 				    {

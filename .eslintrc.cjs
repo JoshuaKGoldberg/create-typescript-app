@@ -37,7 +37,7 @@ module.exports = {
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			rules: {
-				// These off-by-default rules work well for this repo and we like them on.
+				// These off-/differently-configured-by-default rules work well for this repo and we like them on.
 				"jsdoc/informative-docs": "error",
 				"logical-assignment-operators": [
 					"error",
@@ -51,6 +51,15 @@ module.exports = {
 				"jsdoc/require-param": "off",
 				"jsdoc/require-property": "off",
 				"jsdoc/require-returns": "off",
+			},
+		},
+		{
+			files: "**/*.md/*.ts",
+			rules: {
+				"n/no-missing-import": [
+					"error",
+					{ allowModules: ["create-typescript-app"] },
+				],
 			},
 		},
 		{

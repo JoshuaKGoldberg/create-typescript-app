@@ -32,6 +32,11 @@ export const outcomeLabels = [
 		name: "status: accepting prs",
 	},
 	{
+		color: "eeeeee",
+		description: "Issue is stale and/or no longer valid",
+		name: "status: aged away",
+	},
+	{
 		color: "#ddcccc",
 		description: "Waiting for something else to be resolved",
 		name: "status: blocked",
@@ -80,10 +85,5 @@ export const outcomeLabels = [
 		color: "fde282",
 		description: "Tech debt or other code/repository cleanups",
 		name: "type: cleanup",
-	},
-	{
-		color: "eeeeee",
-		description: "Issue is stale and/or no longer valid",
-		name: "status: aged away",
 	},
 ];

@@ -104,6 +104,8 @@ describe("writeReadme", () => {
 			\`\`\`
 			\`\`\`ts
 			import { greet } from \\"test-repository\\";
+
+			great(\\"Hello, world! 💖\\");
 			\`\`\`
 
 			## Contributors
@@ -173,6 +175,8 @@ describe("writeReadme", () => {
 			\`\`\`
 			\`\`\`ts
 			import { greet } from \\"test-repository\\";
+
+			great(\\"Hello, world! 💖\\");
 			\`\`\`
 
 			## Contributors
@@ -245,6 +249,8 @@ describe("writeReadme", () => {
 			\`\`\`
 			\`\`\`ts
 			import { greet } from \\"test-repository\\";
+
+			great(\\"Hello, world! 💖\\");
 			\`\`\`
 
 			## Contributors
@@ -361,6 +367,8 @@ describe("writeReadme", () => {
 			\`\`\`
 			\`\`\`ts
 			import { greet } from \\"test-repository\\";
+
+			great(\\"Hello, world! 💖\\");
 			\`\`\`
 
 			## Contributors

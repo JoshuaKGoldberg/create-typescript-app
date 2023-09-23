@@ -74,6 +74,8 @@ describe("findExistingBadges", () => {
 			\`\`\`
 			\`\`\`ts
 			import { greet } from \\"\\";
+
+			great(\\"Hello, world! 💖\\");
 			\`\`\`"
 		`);
 	});
@@ -116,6 +118,8 @@ describe("findExistingBadges", () => {
 			\`\`\`
 			\`\`\`ts
 			import { greet } from \\"\\";
+
+			great(\\"Hello, world! 💖\\");
 			\`\`\`"
 		`);
 	});
@@ -159,6 +163,8 @@ describe("findExistingBadges", () => {
 			\`\`\`
 			\`\`\`ts
 			import { greet } from \\"\\";
+
+			great(\\"Hello, world! 💖\\");
 			\`\`\`"
 		`);
 	});

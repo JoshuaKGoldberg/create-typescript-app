@@ -1,4 +1,3 @@
-import { Mode } from "../bin/mode.js";
 import { allArgOptions } from "../shared/options/args.js";
 import { Options } from "../shared/types.js";
 

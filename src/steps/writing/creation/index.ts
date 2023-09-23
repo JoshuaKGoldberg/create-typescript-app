@@ -1,4 +1,3 @@
-import { Mode } from "../../../bin/mode.js";
 import { Options } from "../../../shared/types.js";
 import { Structure } from "../types.js";
 import { createDotGitHub } from "./dotGitHub/index.js";

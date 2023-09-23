@@ -28,6 +28,7 @@ const options = {
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",
 	skipGitHubApi: false,

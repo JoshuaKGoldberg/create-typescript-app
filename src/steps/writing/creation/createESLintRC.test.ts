@@ -38,6 +38,7 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 			].map((key) => [key, getExcludeValue(key)]),
 		),
 		logo: undefined,
+		mode: "create",
 		owner: "TestOwner",
 		repository: "test-repository",
 		skipGitHubApi: true,

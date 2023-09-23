@@ -8,10 +8,7 @@ function getFirstMatchingArg(key: string) {
 	);
 }
 
-export function createRerunSuggestion(
-	mode: Mode,
-	options: Partial<Options>,
-): string {
+export function createRerunSuggestion(options: Partial<Options>): string {
 	const optionsNormalized = {
 		...options,
 		...(options.email
@@ -42,5 +39,5 @@ export function createRerunSuggestion(
 		})
 		.join(" ");
 
-	return `npx create-typescript-app --mode ${mode} ${args}`;
+	return `npx create-typescript-app --mode ${options.mode} ${args}`;
 }

@@ -7,15 +7,12 @@ import { createDotVSCode } from "./dotVSCode.js";
 import { createRootFiles } from "./rootFiles.js";
 import { createSrc } from "./src.js";
 
-export async function createStructure(
-	options: Options,
-	mode: Mode,
-): Promise<Structure> {
+export async function createStructure(options: Options): Promise<Structure> {
 	return {
 		".github": await createDotGitHub(options),
 		".husky": createDotHusky(),
 		".vscode": await createDotVSCode(options),
-		...(mode !== "migrate" && { src: await createSrc(options) }),
+		...(options.mode !== "migrate" && { src: await createSrc(options) }),
 		...(await createRootFiles(options)),
 	};
 }

@@ -79,5 +79,18 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 ${[...badges, ...remainingExistingBadges]
 	.map((badge) => `\t${badge}`)
 	.join("\n")}
-</p>`;
+</p>${
+		options.mode === "migrate"
+			? ""
+			: `
+
+## Usage
+
+\`\`\`shell
+npm i ${options.repository}
+\`\`\`
+\`\`\`ts
+import { greet } from "${options.repository}";
+\`\`\``
+	}`;
 }

@@ -28,6 +28,7 @@ const optionsBase = {
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "",
 	repository: "",
 	skipGitHubApi: false,
@@ -64,7 +65,16 @@ describe("findExistingBadges", () => {
 				</a>
 				<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 				<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
-			</p>"
+			</p>
+
+			## Usage
+
+			\`\`\`shell
+			npm i 
+			\`\`\`
+			\`\`\`ts
+			import { greet } from \\"\\";
+			\`\`\`"
 		`);
 	});
 
@@ -97,7 +107,16 @@ describe("findExistingBadges", () => {
 				</a>
 				<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 				<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
-			</p>"
+			</p>
+
+			## Usage
+
+			\`\`\`shell
+			npm i 
+			\`\`\`
+			\`\`\`ts
+			import { greet } from \\"\\";
+			\`\`\`"
 		`);
 	});
 
@@ -131,7 +150,16 @@ describe("findExistingBadges", () => {
 				<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 				<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
 				<img alt=\\"Unknown Badge\\" src=\\"unknown.svg\\" />
-			</p>"
+			</p>
+
+			## Usage
+
+			\`\`\`shell
+			npm i 
+			\`\`\`
+			\`\`\`ts
+			import { greet } from \\"\\";
+			\`\`\`"
 		`);
 	});
 });

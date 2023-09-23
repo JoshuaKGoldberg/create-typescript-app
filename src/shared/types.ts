@@ -1,3 +1,5 @@
+import { Mode } from "../bin/mode.js";
+
 export interface AllContributorContributor {
 	contributions: string[];
 	login: string;
@@ -59,6 +61,7 @@ export interface Options {
 	excludeTests?: boolean;
 	funding?: string;
 	logo: OptionsLogo | undefined;
+	mode: Mode;
 	owner: string;
 	repository: string;
 	skipGitHubApi?: boolean;

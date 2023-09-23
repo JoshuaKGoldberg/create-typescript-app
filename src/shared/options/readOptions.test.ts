@@ -112,7 +112,7 @@ describe("readOptions", () => {
 			.object({ base: optionsSchemaShape.base })
 			.safeParse({ base: "b" });
 
-		const actual = await readOptions(["--base", "b"]);
+		const actual = await readOptions(["--base", "b"], "create");
 
 		expect(actual).toStrictEqual({
 			cancelled: true,
@@ -126,7 +126,7 @@ describe("readOptions", () => {
 		mockDetectEmailRedundancy.mockReturnValue(error);
 		mockGetPrefillOrPromptedOption.mockImplementation(() => undefined);
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			error,
 			options: {
@@ -139,7 +139,7 @@ describe("readOptions", () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption.mockImplementation(() => undefined);
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -153,7 +153,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementation(() => undefined);
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -170,7 +170,7 @@ describe("readOptions", () => {
 			.mockImplementation(() => undefined);
 		mockEnsureRepositoryExists.mockResolvedValue({});
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -191,7 +191,7 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -213,7 +213,7 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -236,7 +236,7 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions(["--logo", "logo.svg"])).toStrictEqual({
+		expect(await readOptions(["--logo", "logo.svg"], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -260,7 +260,7 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -286,7 +286,7 @@ describe("readOptions", () => {
 		});
 		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
 
-		expect(await readOptions([])).toStrictEqual({
+		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
 			options: {
 				...emptyOptions,
@@ -305,7 +305,9 @@ describe("readOptions", () => {
 		});
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 
-		expect(await readOptions(["--base", mockOptions.base])).toStrictEqual({
+		expect(
+			await readOptions(["--base", mockOptions.base], "create"),
+		).toStrictEqual({
 			cancelled: false,
 			github: mockOptions.github,
 			options: {

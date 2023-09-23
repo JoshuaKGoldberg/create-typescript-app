@@ -19,7 +19,7 @@ export async function migrateWithOptions({
 		[
 			"Writing structure",
 			async () => {
-				await writeStructure(options, "migrate");
+				await writeStructure(options);
 			},
 		],
 		[
@@ -31,7 +31,7 @@ export async function migrateWithOptions({
 		[
 			"Updating local files",
 			async () => {
-				await updateLocalFiles(options, "migrate");
+				await updateLocalFiles(options);
 			},
 		],
 		[

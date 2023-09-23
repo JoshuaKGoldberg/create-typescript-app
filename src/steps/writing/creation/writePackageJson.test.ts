@@ -36,6 +36,7 @@ const options = {
 	excludeTests: false,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "test-owner",
 	repository: "test-repository",
 	skipGitHubApi: false,

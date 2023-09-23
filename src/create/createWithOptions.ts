@@ -16,7 +16,7 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 		[
 			"Writing structure",
 			async () => {
-				await writeStructure(options, "create");
+				await writeStructure(options);
 			},
 		],
 		[

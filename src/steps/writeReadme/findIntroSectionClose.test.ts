@@ -40,7 +40,7 @@ describe("findIntroSectionClose", () => {
 
 Next line.
 `,
-			13,
+			14,
 		],
 	])("%s", (contents, expected) => {
 		expect(findIntroSectionClose(contents)).toEqual(expected);

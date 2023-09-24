@@ -1,3 +1,5 @@
+import { ParseArgsConfig } from "node:util";
+
 export const allArgOptions = {
 	access: { type: "string" },
 	author: { type: "string" },
@@ -27,6 +29,7 @@ export const allArgOptions = {
 	"exclude-renovate": { type: "boolean" },
 	"exclude-tests": { type: "boolean" },
 	funding: { type: "string" },
+	keywords: { type: "string", multiple: true },
 	logo: { type: "string" },
 	"logo-alt": { type: "string" },
 	mode: { type: "string" },
@@ -38,4 +41,4 @@ export const allArgOptions = {
 	"skip-restore": { type: "boolean" },
 	"skip-uninstall": { type: "boolean" },
 	title: { type: "string" },
-} as const;
+} as const satisfies ParseArgsConfig["options"];

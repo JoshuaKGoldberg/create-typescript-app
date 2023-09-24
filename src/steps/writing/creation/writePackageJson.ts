@@ -39,6 +39,9 @@ export async function writePackageJson(options: Options) {
 
 		author: { email: options.email.npm, name: options.author },
 		description: options.description,
+		keywords: options.keywords?.length
+			? options.keywords.flatMap((keyword) => keyword.split(/ /g))
+			: undefined,
 
 		// We copy all existing dev dependencies except those we know are not used anymore
 		devDependencies: copyDevDependencies(existingPackageJson),

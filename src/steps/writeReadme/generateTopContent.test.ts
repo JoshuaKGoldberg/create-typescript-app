@@ -198,6 +198,7 @@ describe("findExistingBadges", () => {
 					</a>
 					<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 					<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
+					<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
 				</p>"
 			`);
 	});

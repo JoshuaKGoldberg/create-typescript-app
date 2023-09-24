@@ -48,6 +48,7 @@ const options = {
 	excludeTests: undefined,
 	funding: "TestFunding",
 	logo: undefined,
+	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",
 	skipGitHubApi: false,
@@ -97,6 +98,17 @@ describe("writeReadme", () => {
 				<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
 			</p>
 
+			## Usage
+
+			\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from \\"test-repository\\";
+
+			greet(\\"Hello, world! 💖\\");
+			\`\`\`
+
 			## Contributors
 			<!-- spellchecker: disable -->
 			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -121,7 +133,7 @@ describe("writeReadme", () => {
 	});
 
 	it("adds sections when the README.md already exists and is sparse", async () => {
-		mockReadFileSafe.mockResolvedValueOnce(`# ${options.title}`);
+		mockReadFileSafe.mockResolvedValueOnce(`# ${options.title}\n`);
 
 		await writeReadme(options);
 
@@ -156,7 +168,18 @@ describe("writeReadme", () => {
 				<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 				<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
 				<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
-			</p>e
+			</p>
+
+			## Usage
+
+			\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from \\"test-repository\\";
+
+			greet(\\"Hello, world! 💖\\");
+			\`\`\`
 
 			## Contributors
 			<!-- spellchecker: disable -->
@@ -182,7 +205,7 @@ describe("writeReadme", () => {
 	});
 
 	it("adds all-contributors content when directed to and the indicator does not yet exist", async () => {
-		mockReadFileSafe.mockResolvedValueOnce(`# ${options.title}`);
+		mockReadFileSafe.mockResolvedValueOnce(`# ${options.title}\n`);
 
 		await writeReadme({
 			...options,
@@ -220,7 +243,18 @@ describe("writeReadme", () => {
 				<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 				<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
 				<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
-			</p>e
+			</p>
+
+			## Usage
+
+			\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from \\"test-repository\\";
+
+			greet(\\"Hello, world! 💖\\");
+			\`\`\`
 
 			## Contributors
 			<!-- spellchecker: disable -->
@@ -326,9 +360,20 @@ describe("writeReadme", () => {
 				</a>
 				<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 				<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
-				<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
 				<img alt=\\"Contributor Covenant\\" src=\\"https://img.shields.io/badge/code_of_conduct-enforced-21bb42\\" />
+				<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
 			</p>
+
+			## Usage
+
+			\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from \\"test-repository\\";
+
+			greet(\\"Hello, world! 💖\\");
+			\`\`\`
 
 			## Contributors
 
@@ -345,12 +390,6 @@ describe("writeReadme", () => {
 
 			<!-- ALL-CONTRIBUTORS-LIST:END -->
 			<!-- spellchecker: enable -->
-
-
-			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-
-			> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
-
 
 
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->

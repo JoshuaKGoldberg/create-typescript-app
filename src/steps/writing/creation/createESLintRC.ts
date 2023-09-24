@@ -76,6 +76,15 @@ module.exports = {
 			},
 		},
 		{
+			files: "**/*.md/*.ts",
+			rules: {
+				"n/no-missing-import": [
+					"error",
+					{ allowModules: ["create-typescript-app"] },
+				],
+			},
+		},
+		{
 			${
 				options.excludeLintMd
 					? ""

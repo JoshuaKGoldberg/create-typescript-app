@@ -7,7 +7,7 @@ import { runOrRestore } from "../shared/runOrRestore.js";
 import { initializeWithOptions } from "./initializeWithOptions.js";
 
 export const initialize: ModeRunner = async (args) => {
-	const inputs = await readOptions(args);
+	const inputs = await readOptions(args, "initialize");
 	if (inputs.cancelled) {
 		return {
 			code: StatusCodes.Cancelled,

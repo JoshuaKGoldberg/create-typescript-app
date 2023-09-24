@@ -54,6 +54,15 @@ module.exports = {
 			},
 		},
 		{
+			files: "**/*.md/*.ts",
+			rules: {
+				"n/no-missing-import": [
+					"error",
+					{ allowModules: ["create-typescript-app"] },
+				],
+			},
+		},
+		{
 			excludedFiles: ["**/*.md/*.ts"],
 			extends: [
 				"plugin:@typescript-eslint/strict-type-checked",

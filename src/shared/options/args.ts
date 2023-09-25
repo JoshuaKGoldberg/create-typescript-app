@@ -29,7 +29,7 @@ export const allArgOptions = {
 	"exclude-renovate": { type: "boolean" },
 	"exclude-tests": { type: "boolean" },
 	funding: { type: "string" },
-	keywords: { type: "string", multiple: true },
+	keywords: { multiple: true, type: "string" },
 	logo: { type: "string" },
 	"logo-alt": { type: "string" },
 	mode: { type: "string" },

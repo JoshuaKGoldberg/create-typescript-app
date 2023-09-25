@@ -41,8 +41,8 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 
 	await runCommands("Cleaning up files", [
 		"pnpm dedupe",
-		"pnpm format --write",
 		"pnpm lint --fix",
+		"pnpm format --write",
 	]);
 
 	const sendToGitHub =

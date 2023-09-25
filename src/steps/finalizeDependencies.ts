@@ -76,6 +76,4 @@ export async function finalizeDependencies(options: Options) {
 			"-D",
 		);
 	}
-
-	await execaCommand("pnpm run format:write");
 }

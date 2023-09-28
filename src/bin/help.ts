@@ -110,8 +110,7 @@ function createHelpTextSections(options: object): HelpTextSection[] {
 		],
 	};
 
-	for (const option of Object.keys(options)) {
-		const data = options[option as keyof object] as unknown as Option;
+	for (const [option, data] of Object.entries(options)) {
 
 		if (data.docsSection === "core") {
 			core.subsections[0].flags.push({

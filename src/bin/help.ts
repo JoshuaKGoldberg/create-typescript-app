@@ -19,7 +19,7 @@ interface Flag {
 
 interface Option {
 	description: string;
-	docsSection: "core" | "optional" | "opt-out" | "skip-net" | "skip-disk";
+	docsSection: "core" | "opt-out" | "optional" | "skip-disk" | "skip-net";
 	type: string;
 }
 
@@ -112,10 +112,10 @@ function createHelpTextSections(
 
 	const subsections = {
 		core: core.subsections[0],
-		optional: optional.subsections[0],
 		"opt-out": optOut.subsections[0],
-		"skip-net": optOut.subsections[1],
+		optional: optional.subsections[0],
 		"skip-disk": optOut.subsections[2],
+		"skip-net": optOut.subsections[1],
 	};
 
 	for (const [option, data] of Object.entries(options)) {

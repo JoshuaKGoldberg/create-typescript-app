@@ -19,7 +19,7 @@ interface Flag {
 
 interface Option {
 	description: string;
-	docsSection: string;
+	docsSection: "core" | "optional" | "opt-out" | "skip-net" | "skip-disk";
 	type: string;
 }
 
@@ -51,9 +51,9 @@ function logHelpTextSection(section: HelpTextSection): void {
 	}
 }
 
-function createHelpTextSections(options: object): HelpTextSection[] {
-	const helpTextSections: HelpTextSection[] = [];
-
+function createHelpTextSections(
+	options: Record<string, Option>,
+): HelpTextSection[] {
 	const core: HelpTextSection = {
 		sectionHeading: "Core options:",
 		subsections: [
@@ -110,56 +110,29 @@ function createHelpTextSections(options: object): HelpTextSection[] {
 		],
 	};
 
+	const subsections = {
+		core: core.subsections[0],
+		optional: optional.subsections[0],
+		"opt-out": optOut.subsections[0],
+		"skip-net": optOut.subsections[1],
+		"skip-disk": optOut.subsections[2],
+	};
+
 	for (const [option, data] of Object.entries(options)) {
-
-		if (data.docsSection === "core") {
-			core.subsections[0].flags.push({
-				description: data.description,
-				flag: option,
-				type: data.type,
-			});
-		}
-
-		if (data.docsSection === "optional") {
-			optional.subsections[0].flags.push({
-				description: data.description,
-				flag: option,
-				type: data.type,
-			});
-		}
-
-		if (data.docsSection === "opt-out") {
-			optOut.subsections[0].flags.push({
-				description: data.description,
-				flag: option,
-				type: data.type,
-			});
-		}
-
-		if (data.docsSection === "skip-net") {
-			optOut.subsections[1].flags.push({
-				description: data.description,
-				flag: option,
-				type: data.type,
-			});
-		}
-
-		if (data.docsSection === "skip-disk") {
-			optOut.subsections[2].flags.push({
-				description: data.description,
-				flag: option,
-				type: data.type,
-			});
-		}
+		subsections[data.docsSection].flags.push({
+			description: data.description,
+			flag: option,
+			type: data.type,
+		});
 	}
 
-	helpTextSections.push(core, optional, optOut);
-
-	return helpTextSections;
+	return [core, optional, optOut];
 }
 
 export function logHelpText(): void {
-	const helpTextSections = createHelpTextSections(allArgOptions);
+	const helpTextSections = createHelpTextSections(
+		allArgOptions as Record<string, Option>,
+	);
 
 	console.log(" ");
 

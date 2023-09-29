@@ -201,7 +201,7 @@ pnpm run test run --coverage
 
 ### "Everything" Base Level
 
-This level is for experienced developers who are eager to get the maximum tooling benefits in a repository.
+This level is for developers who are eager to get the maximum tooling benefits in a repository.
 Using the _"everything"_ level will gain you comprehensive, strict coverage of all sorts of repository issues, including strict ESLint configs and auto-sorting of properties.
 
 #### Compliance
@@ -210,28 +210,62 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 
 #### Lint Deprecation
 
+[`eslint-plugin-deprecation`](https://github.com/gund/eslint-plugin-deprecation): Reports on usage of code marked with `@deprecated`.
+
 #### Lint ESLint
+
+[`eslint-plugin-eslint-comments`](https://github.com/mysticatea/eslint-plugin-eslint-comments): Enforces proper usage of [ESLint configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments).
 
 #### Lint JSDoc
 
+[`eslint-plugin-jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc): Enforces good practices around JSDoc comments.
+
 #### Lint JSON
+
+[`eslint-plugin-jsdoc`](https://github.com/ota-meshi/eslint-plugin-jsonc): Adds linting for `.json` and `.jsonc` files.
 
 #### Lint MD
 
-[**Markdownlint**](https://github.com/DavidAnson/markdownlint): Static analysis for Markdown code.
+[**Markdownlint**](https://github.com/DavidAnson/markdownlint): Linting for Markdown code.
+
+> This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#567](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/567)).
 
 #### Lint Package JSON
 
+[`npm-package-json-lint`](https://github.com/tclindner/npm-package-json-lint): Linting for `package.json` files.
+
+> This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/839)).
+
 #### Lint Packages
+
+Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate
+
+> This is grouped with _"Lint"_ tooling pieces, but will likely eventually be renamed ([#896](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/896)).
 
 #### Lint Perfectionist
 
+[`eslint-plugin-perfectionist`](https://eslint-plugin-perfectionist.azat.io): Lints for sorting properties, imports, etc.
+This plugin is quite particular -perfectionist, even- but all its rules include auto-fixers that can correct complaints for you.
+
 #### Lint Regex
+
+[`eslint-plugin-regex`](https://github.com/gmullerb/eslint-plugin-regex): Detects issues with JavaScript regular expressions, such as potential exponential complexity.
 
 #### Lint Spelling
 
+[**CSpell**](https://cspell.org): Spell checking for code.
+Helps detect typos based on a configurable user dictionary (`cspell.json`).
+
+> This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#897](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/897)).
+
 #### Lint Strict
+
+Enables [typescript-eslint's strict configs](https://typescript-eslint.io/linting/configs/#strict) for increased scrutiny around code logic.
 
 #### Lint Stylistic
 
+Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/linting/configs/#stylistic) for increased scrutiny around consistent code style.
+
 #### Lint YML
+
+[`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yaml` and `.yml` files, such as sorting keys.

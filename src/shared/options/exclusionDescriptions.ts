@@ -79,7 +79,7 @@ export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
 		excludeLintStrict: {
 			hint: "--exclude-lint-strict",
 			label:
-				"Include strict logical lint rules such as typescript-eslint's strict config. ",
+				"Include strict logical lint rules such as typescript-eslint's strict config.",
 			uncommon: true,
 		},
 		excludeLintStylistic: {

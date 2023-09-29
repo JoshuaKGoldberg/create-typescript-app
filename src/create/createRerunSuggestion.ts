@@ -31,12 +31,23 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 		)
 		.filter(([, value]) => !!value)
 		.map(([key, value]) => {
-			const valueStringified = `${value}`;
-			return `--${getFirstMatchingArg(key)} ${
-				valueStringified.includes(" ") ? `"${value}"` : value
-			}`;
+			return `--${getFirstMatchingArg(key)} ${stringifyValue(value)}`;
 		})
 		.join(" ");
 
 	return `npx create-typescript-app --mode ${options.mode} ${args}`;
+}
+
+function stringifyValue(
+	value: boolean | string | string[] | undefined,
+): string {
+	if (Array.isArray(value)) {
+		return stringifyValue(value.join(" "));
+	}
+
+	const valueStringified = `${value}`;
+
+	return valueStringified.includes(" ")
+		? `"${valueStringified}"`
+		: valueStringified;
 }

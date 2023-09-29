@@ -54,6 +54,8 @@ The setup scripts also allow for optional overrides of the following inputs whos
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
   - Optionally, `--email-github` _(`string`)_ and/or `--email-npm` _(`string`)_ may be provided to use different emails in `.md` files and `package.json`, respectively
 - `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
+- `--keywords` _(`string[]`)_: Any number of keywords to include in `package.json` (by default, none)
+  - This can be specified any number of times, like `--keywords apple --keywords "banana cherry"`
 - `--logo` _(`string`)_: Local image file in the repository to display near the top of the README.md as a logo
   - `--logo-alt` _(`string`)_: If `--logo` is provided or detected from an existing README.md, alt text that describes the image will be prompted for if not provided
 

@@ -70,6 +70,19 @@ describe("writePackageJson", () => {
 		);
 	});
 
+	it("includes flattened keywords when they're specified", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({});
+
+		const keywords = ["abc", "def ghi", "jkl mno pqr"];
+		const packageJson = await writePackageJson({ ...options, keywords });
+
+		expect(JSON.parse(packageJson)).toEqual(
+			expect.objectContaining({
+				keywords: ["abc", "def", "ghi", "jkl", "mno", "pqr"],
+			}),
+		);
+	});
+
 	it("includes all optional portions when no exclusions are enabled", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 

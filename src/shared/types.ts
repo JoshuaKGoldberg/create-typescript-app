@@ -60,6 +60,7 @@ export interface Options {
 	excludeRenovate?: boolean;
 	excludeTests?: boolean;
 	funding?: string;
+	keywords?: string[];
 	logo: OptionsLogo | undefined;
 	mode: Mode;
 	offline?: boolean;

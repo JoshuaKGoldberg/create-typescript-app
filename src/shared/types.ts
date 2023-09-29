@@ -40,8 +40,8 @@ export interface Options {
 	createRepository?: boolean;
 	description: string;
 	email: OptionsEmail;
+	excludeAllContributors?: boolean;
 	excludeCompliance?: boolean;
-	excludeContributors?: boolean;
 	excludeLintDeprecation?: boolean;
 	excludeLintESLint?: boolean;
 	excludeLintJSDoc?: boolean;
@@ -64,6 +64,7 @@ export interface Options {
 	mode: Mode;
 	owner: string;
 	repository: string;
+	skipAllContributorsApi?: boolean;
 	skipGitHubApi?: boolean;
 	skipInstall?: boolean;
 	skipRemoval?: boolean;

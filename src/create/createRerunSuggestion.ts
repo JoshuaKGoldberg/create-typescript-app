@@ -41,11 +41,13 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 function stringifyValue(
 	value: boolean | string | string[] | undefined,
 ): string {
-	return Array.isArray(value)
-		? stringifyValue(value.join(" "))
-		: typeof value === "string"
-		? value.includes(" ")
-			? `"${value}"`
-			: value
-		: stringifyValue(`${value}`);
+	if (Array.isArray(value)) {
+		return stringifyValue(value.join(" "));
+	}
+
+	const valueStringified = `${value}`;
+
+	return valueStringified.includes(" ")
+		? `"${valueStringified}"`
+		: valueStringified;
 }

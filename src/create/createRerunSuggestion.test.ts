@@ -28,6 +28,7 @@ const options = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	keywords: ["abc", "def ghi", "jkl mno pqr"],
 	logo: undefined,
 	mode: "create",
 	owner: "TestOwner",
@@ -41,11 +42,11 @@ const options = {
 } satisfies Options;
 
 describe("createRerunSuggestion", () => {
-	it("includes key-value pairs with mixed truthy and falsy values", () => {
+	it.only("includes key-value pairs with mixed truthy and falsy values", () => {
 		const actual = createRerunSuggestion(options);
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode create --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode create --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
@@ -60,7 +61,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --logo test/src.png --logo-alt \\"Test alt.\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --undefined true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --logo test/src.png --logo-alt \\"Test alt.\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
@@ -74,7 +75,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --undefined true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 });

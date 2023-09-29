@@ -3,60 +3,40 @@ import { describe, expect, it } from "vitest";
 import { Options } from "../../../../shared/types.js";
 import { createWorkflows } from "./createWorkflows.js";
 
-const options = {
-	access: "public",
-	author: undefined,
-	base: "everything",
-	createRepository: undefined,
-	description: "Stub description.",
-	email: {
-		github: "github@email.com",
-		npm: "npm@email.com",
-	},
-	excludeAllContributors: undefined,
-	excludeCompliance: undefined,
-	excludeLintJson: undefined,
-	excludeLintKnip: undefined,
-	excludeLintMd: undefined,
-	excludeLintPackageJson: undefined,
-	excludeLintPackages: undefined,
-	excludeLintPerfectionist: undefined,
-	excludeLintSpelling: undefined,
-	excludeLintYml: undefined,
-	excludeReleases: undefined,
-	excludeRenovate: undefined,
-	excludeTests: undefined,
-	funding: undefined,
-	logo: undefined,
-	mode: "create",
-	owner: "StubOwner",
-	repository: "stub-repository",
-	skipGitHubApi: false,
-	skipInstall: undefined,
-	skipRemoval: undefined,
-	skipRestore: undefined,
-	skipUninstall: undefined,
-	title: "Stub Title",
-} satisfies Options;
+const createOptions = (exclude: boolean) =>
+	({
+		access: "public",
+		author: undefined,
+		base: "everything",
+		description: "Stub description.",
+		email: {
+			github: "github@email.com",
+			npm: "npm@email.com",
+		},
+		excludeAllContributors: exclude,
+		excludeCompliance: exclude,
+		excludeLintJson: exclude,
+		excludeLintKnip: exclude,
+		excludeLintMd: exclude,
+		excludeLintPackageJson: exclude,
+		excludeLintPackages: exclude,
+		excludeLintPerfectionist: exclude,
+		excludeLintSpelling: exclude,
+		excludeLintYml: exclude,
+		excludeReleases: exclude,
+		excludeRenovate: exclude,
+		excludeTests: exclude,
+		funding: undefined,
+		logo: undefined,
+		mode: "create",
+		owner: "StubOwner",
+		repository: "stub-repository",
+		title: "Stub Title",
+	}) satisfies Options;
 
 describe("createWorkflows", () => {
 	it("creates a full set of workflows when all excludes are disabled", () => {
-		const workflows = createWorkflows({
-			...options,
-			excludeAllContributors: false,
-			excludeCompliance: false,
-			excludeLintJson: false,
-			excludeLintKnip: false,
-			excludeLintMd: false,
-			excludeLintPackageJson: false,
-			excludeLintPackages: false,
-			excludeLintPerfectionist: false,
-			excludeLintSpelling: false,
-			excludeLintYml: false,
-			excludeReleases: false,
-			excludeRenovate: false,
-			excludeTests: false,
-		});
+		const workflows = createWorkflows(createOptions(false));
 
 		expect(workflows).toMatchInlineSnapshot(`
 			{
@@ -397,22 +377,7 @@ describe("createWorkflows", () => {
 	});
 
 	it("creates a minimal set of workflows when all options are enabled", () => {
-		const workflows = createWorkflows({
-			...options,
-			excludeAllContributors: true,
-			excludeCompliance: true,
-			excludeLintJson: true,
-			excludeLintKnip: true,
-			excludeLintMd: true,
-			excludeLintPackageJson: true,
-			excludeLintPackages: true,
-			excludeLintPerfectionist: true,
-			excludeLintSpelling: true,
-			excludeLintYml: true,
-			excludeReleases: true,
-			excludeRenovate: true,
-			excludeTests: true,
-		});
+		const workflows = createWorkflows(createOptions(true));
 
 		expect(workflows).toMatchInlineSnapshot(`
 			{

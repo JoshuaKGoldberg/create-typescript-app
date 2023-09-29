@@ -1,6 +1,6 @@
 <h1 align="center">Create TypeScript App</h1>
 
-<p align="center">Quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨</p>
+<p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">
@@ -29,6 +29,9 @@
 
 <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./create-typescript-app.png">
 
+`create-typescript-app` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.
+It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.
+
 ## Getting Started
 
 First make sure you have the following installed:
@@ -37,36 +40,30 @@ First make sure you have the following installed:
 - [Node.js](https://nodejs.org)
 - [pnpm](https://pnpm.io)
 
-This repository comes with three script forms to set up an existing or new repository with tooling.
-Use the corresponding docs page to get started:
+Then in a folder of repositories or in an existing repository:
 
-- [Creating from the terminal](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_
-- [Initializing from the template](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
-- [Migrating an existing repository](./docs/Migration.md): adding this template's tooling on top of an existing repository
+```shell
+npx create-typescript-app
+```
 
-Note that this template is early stage, opinionated, and not endorsed by the TypeScript team.
-It can be configured to set up a _lot_ of tooling out of the box.
-Each of the included tools exists for a good reason and provides real value.
+That setup script will walk you through using the template.
+You can read more about the supported setup modes in their docs pages:
 
-If you don't want to use any particular tool, you can always remove it manually.
+- [**Creating from the terminal**](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_
+- [**Initializing from the template**](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
+- [**Migrating an existing repository**](./docs/Migration.md): adding this template's tooling on top of an existing repository
 
-## Explainer
+## Documentation
 
-This template is available for anybody who wants to set up a Node application using TypeScript.
-It can set up the following tooling for you:
+You can read more about `create-typescript-app` and the tooling it supports:
 
-- [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
-- [**ESLint**](https://eslint.org): Static analysis for JavaScript code, configured with [typescript-eslint](https://typescript-eslint.io) for TypeScript code and other general-use plugins.
-- [**Knip**](https://github.com/webpro/knip): Detects unused files, dependencies, and code exports.
-- [**Markdownlint**](https://github.com/DavidAnson/markdownlint): Static analysis for Markdown code.
-- [**pnpm**](https://pnpm.io): Disk-efficient package manager alternative.
-- [**PR Compliance Action**](https://github.com/mtfoley/pr-compliance-action): Checks PRs for compliance such as addressing a linked issue and proper title formatting.
-- [**Prettier**](https://prettier.io): Opinionated formatting for code, run on file save and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
-- [**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
-- [**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
-- [**tsup**](https://tsup.egoist.dev): Builds output definitions and JavaScript files using [esbuild](https://esbuild.github.io).
-- [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript, configured with strict compiler options.
-- [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking and [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test).
+1. [**Tooling**](./docs/Tooling.md): a breakdown of all the pieces this template can set up.
+2. [**Options**](./docs/Options.md): granular options to customize how the template is run.
+3. [**FAQs**](./docs/FAQs.md): frequently asked questions
+
+> Note that this template is early stage, opinionated, and not endorsed by the TypeScript team.
+> It can be configured to set up a _lot_ of tooling out of the box.
+> If you don't want to use any particular tool, you can always remove it manually.
 
 ## Development
 

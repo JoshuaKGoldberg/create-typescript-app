@@ -1,3 +1,5 @@
+import { Mode } from "../bin/mode.js";
+
 export interface AllContributorContributor {
 	contributions: string[];
 	login: string;
@@ -38,8 +40,8 @@ export interface Options {
 	createRepository?: boolean;
 	description: string;
 	email: OptionsEmail;
+	excludeAllContributors?: boolean;
 	excludeCompliance?: boolean;
-	excludeContributors?: boolean;
 	excludeLintDeprecation?: boolean;
 	excludeLintESLint?: boolean;
 	excludeLintJSDoc?: boolean;
@@ -59,9 +61,11 @@ export interface Options {
 	excludeTests?: boolean;
 	funding?: string;
 	logo: OptionsLogo | undefined;
+	mode: Mode;
 	offline?: boolean;
 	owner: string;
 	repository: string;
+	skipAllContributorsApi?: boolean;
 	skipGitHubApi?: boolean;
 	skipInstall?: boolean;
 	skipRemoval?: boolean;

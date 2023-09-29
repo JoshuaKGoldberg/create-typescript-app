@@ -21,7 +21,7 @@ export async function finalizeDependencies(options: Options) {
 		"prettier-plugin-packagejson",
 		"tsup",
 		"typescript",
-		...(options.excludeContributors ? [] : ["all-contributors-cli"]),
+		...(options.excludeAllContributors ? [] : ["all-contributors-cli"]),
 		...(options.excludeLintJson
 			? []
 			: ["eslint-plugin-jsonc", "jsonc-eslint-parser"]),
@@ -70,7 +70,7 @@ export async function finalizeDependencies(options: Options) {
 		`pnpm add ${devDependencies} -D${options.offline ? " --offline" : ""}`,
 	);
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors) {
 		await execaCommand(`npx all-contributors-cli generate`);
 		await removeDependencies(
 			["all-contributors-cli", "all-contributors-for-repository"],
@@ -78,6 +78,4 @@ export async function finalizeDependencies(options: Options) {
 			"-D",
 		);
 	}
-
-	await execaCommand("pnpm run format:write");
 }

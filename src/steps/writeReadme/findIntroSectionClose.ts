@@ -18,5 +18,5 @@ export function findIntroSectionClose(contents: string) {
 	}
 
 	// Lastly, go for the second line altogether
-	return contents.indexOf("\n", 2);
+	return contents.indexOf("\n", 1) + 1;
 }

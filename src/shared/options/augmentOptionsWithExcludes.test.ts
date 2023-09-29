@@ -6,15 +6,15 @@ import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 const optionsBase = {
 	access: "public",
 	author: undefined,
-	base: undefined,
+	base: "everything",
 	createRepository: undefined,
 	description: "",
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintDeprecation: undefined,
 	excludeLintESLint: undefined,
 	excludeLintJSDoc: undefined,
@@ -34,6 +34,7 @@ const optionsBase = {
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	offline: true,
 	owner: "",
 	repository: "",
@@ -94,8 +95,8 @@ describe("augmentOptionsWithExcludes", () => {
 
 		expect(actual).toEqual({
 			...options,
+			excludeAllContributors: true,
 			excludeCompliance: true,
-			excludeContributors: true,
 			excludeLintDeprecation: true,
 			excludeLintESLint: true,
 			excludeLintJSDoc: true,

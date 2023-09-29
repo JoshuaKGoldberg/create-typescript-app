@@ -19,7 +19,7 @@ export async function migrateWithOptions({
 		[
 			"Writing structure",
 			async () => {
-				await writeStructure(options, "migrate");
+				await writeStructure(options);
 			},
 		],
 		[
@@ -31,7 +31,7 @@ export async function migrateWithOptions({
 		[
 			"Updating local files",
 			async () => {
-				await updateLocalFiles(options, "migrate");
+				await updateLocalFiles(options);
 			},
 		],
 		[
@@ -48,7 +48,7 @@ export async function migrateWithOptions({
 		});
 	}
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {
 		await withSpinner("Detecting existing contributors", async () =>
 			detectExistingContributors(github?.auth, options),
 		);

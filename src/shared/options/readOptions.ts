@@ -2,6 +2,7 @@ import { parseArgs } from "node:util";
 import { titleCase } from "title-case";
 import { z } from "zod";
 
+import { Mode } from "../../bin/mode.js";
 import { withSpinner } from "../cli/spinners.js";
 import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
@@ -30,7 +31,10 @@ export interface OptionsParseSuccess extends GitHubAndOptions {
 
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
-export async function readOptions(args: string[]): Promise<OptionsParseResult> {
+export async function readOptions(
+	args: string[],
+	mode: Mode,
+): Promise<OptionsParseResult> {
 	const defaults = readOptionDefaults();
 	const { values } = parseArgs({
 		args,
@@ -52,8 +56,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 						npm: values.email ?? values["email-npm"],
 				  }
 				: undefined,
+		excludeAllContributors: values["exclude-all-contributors"],
 		excludeCompliance: values["exclude-compliance"],
-		excludeContributors: values["exclude-contributors"],
 		excludeLintDeprecation: values["exclude-lint-deprecation"],
 		excludeLintESLint: values["exclude-lint-eslint"],
 		excludeLintJSDoc: values["exclude-lint-jsdoc"],
@@ -74,6 +78,8 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		offline: values.offline,
 		owner: values.owner,
 		repository: values.repository,
+		skipAllContributorsApi:
+			values["skip-all-contributors-api"] ?? values.offline,
 		skipGitHubApi: values["skip-github-api"] ?? values.offline,
 		skipInstall: values["skip-install"],
 		skipRemoval: values["skip-removal"],
@@ -194,6 +200,7 @@ export async function readOptions(args: string[]): Promise<OptionsParseResult> {
 		email: typeof email === "string" ? { github: email, npm: email } : email,
 		funding: options.funding ?? (await defaults.funding()),
 		logo,
+		mode,
 		owner: options.owner,
 		repository,
 		title: options.title,

@@ -21,8 +21,8 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
@@ -36,6 +36,7 @@ const options = {
 	excludeTests: false,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "test-owner",
 	repository: "test-repository",
 	skipGitHubApi: false,
@@ -131,8 +132,8 @@ describe("writePackageJson", () => {
 
 		const packageJson = await writePackageJson({
 			...options,
+			excludeAllContributors: true,
 			excludeCompliance: true,
-			excludeContributors: true,
 			excludeLintJson: true,
 			excludeLintKnip: true,
 			excludeLintMd: true,

@@ -19,7 +19,7 @@ export async function initializeWithOptions({
 		[
 			"Updating local files",
 			async () => {
-				await updateLocalFiles(options, "initialize");
+				await updateLocalFiles(options);
 			},
 		],
 		["Updating README.md", updateReadme],
@@ -33,7 +33,7 @@ export async function initializeWithOptions({
 		["Resetting Git tags", resetGitTags],
 	]);
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors) {
 		await withSpinner("Updating existing contributor details", async () => {
 			await addOwnerAsAllContributor(options);
 		});

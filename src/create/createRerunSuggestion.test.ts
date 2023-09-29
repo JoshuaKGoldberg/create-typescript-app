@@ -13,8 +13,8 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	excludeAllContributors: true,
 	excludeCompliance: true,
-	excludeContributors: true,
 	excludeLintJSDoc: true,
 	excludeLintJson: true,
 	excludeLintKnip: true,
@@ -29,6 +29,7 @@ const options = {
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
+	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",
 	skipGitHubApi: true,
@@ -41,37 +42,39 @@ const options = {
 
 describe("createRerunSuggestion", () => {
 	it("includes key-value pairs with mixed truthy and falsy values", () => {
-		const actual = createRerunSuggestion("initialize", options);
+		const actual = createRerunSuggestion(options);
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode create --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
 	it("includes stringified logo when it exists", () => {
-		const actual = createRerunSuggestion("initialize", {
+		const actual = createRerunSuggestion({
 			...options,
 			logo: {
 				alt: "Test alt.",
 				src: "test/src.png",
 			},
+			mode: "initialize",
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --logo test/src.png --logo-alt \\"Test alt.\\" --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --logo test/src.png --logo-alt \\"Test alt.\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
 	it("includes exclusions when they exist", () => {
-		const actual = createRerunSuggestion("initialize", {
+		const actual = createRerunSuggestion({
 			...options,
 			excludeCompliance: true,
 			excludeLintMd: true,
 			excludeLintSpelling: true,
+			mode: "initialize",
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 });

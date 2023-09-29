@@ -23,7 +23,7 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 
 	for (const [badgeLine, existingMatcher] of [
 		[
-			!options.excludeContributors &&
+			!options.excludeAllContributors &&
 				`<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -67,6 +67,10 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 			`<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
 			/typescript.*strict/i,
 		],
+		[
+			`<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />`,
+			/npm.*v/i,
+		],
 	] as const) {
 		spliceBadge(badgeLine, existingMatcher);
 	}
@@ -79,5 +83,20 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 ${[...badges, ...remainingExistingBadges]
 	.map((badge) => `\t${badge}`)
 	.join("\n")}
-</p>`;
+</p>${
+		options.mode === "migrate"
+			? ""
+			: `
+
+## Usage
+
+\`\`\`shell
+npm i ${options.repository}
+\`\`\`
+\`\`\`ts
+import { greet } from "${options.repository}";
+
+greet("Hello, world! 💖");
+\`\`\``
+	}`;
 }

@@ -13,16 +13,16 @@ interface ExclusionDescription {
 type ExclusionKey = keyof Options & `exclude${string}`;
 
 const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> = {
+	excludeAllContributors: {
+		hint: "--exclude-all-contributors",
+		label:
+			"Add all-contributors to track contributions and display them in a README.md table.",
+	},
 	excludeCompliance: {
 		hint: "--exclude-compliance",
 		label:
 			"Add a GitHub Actions workflow to verify that PRs match an expected format.",
 		uncommon: true,
-	},
-	excludeContributors: {
-		hint: "--exclude-contributors",
-		label:
-			"Add all-contributors to track contributions and display them in a README.md table.",
 	},
 	excludeLintDeprecation: {
 		hint: "--exclude-lint-deprecation",

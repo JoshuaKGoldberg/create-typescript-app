@@ -11,7 +11,7 @@ import { createRerunSuggestion } from "./createRerunSuggestion.js";
 import { createWithOptions } from "./createWithOptions.js";
 
 export async function create(args: string[]): Promise<ModeResult> {
-	const inputs = await readOptions(args);
+	const inputs = await readOptions(args, "create");
 	if (inputs.cancelled) {
 		return {
 			code: StatusCodes.Cancelled,
@@ -49,8 +49,9 @@ export async function create(args: string[]): Promise<ModeResult> {
 										"Consider creating a GitHub repository from the new directory:",
 									lines: [
 										`cd ${inputs.options.repository}`,
-										createRerunSuggestion("initialize", {
+										createRerunSuggestion({
 											...inputs.options,
+											mode: "initialize",
 											skipGitHubApi: false,
 											skipInstall: false,
 										}),

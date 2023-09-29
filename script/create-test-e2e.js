@@ -4,7 +4,7 @@ import { strict as assert } from "node:assert";
 const author = "Test Author";
 const description = "Test description.";
 const email = "test@email.com";
-const repository = "test-repository";
+const repository = "create-typescript-app";
 const owner = "TestOwner";
 const title = "Test Title";
 
@@ -12,7 +12,7 @@ await $`rm -rf ${repository}`;
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-create -r html -r lcov  --src src node ./bin/index.js --base everything --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --exclude-contributors --skip-github-api`;
+})`c8 -o ./coverage-create -r html -r lcov  --src src node ./bin/index.js --base everything --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api`;
 
 process.chdir(repository);
 

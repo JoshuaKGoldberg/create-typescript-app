@@ -24,7 +24,6 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier \"**/*\" --ignore-unknown",
-		"format:write": "pnpm format --write",
 		"initialize": "tsx ./src/bin/index.js --mode initialize",
 		"lint": "eslint . .*js --max-warnings 0",
 		"lint:knip": "knip",

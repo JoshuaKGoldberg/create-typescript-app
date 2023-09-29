@@ -83,9 +83,6 @@ describe("finalize", () => {
 			  [
 			    "npx all-contributors-cli generate",
 			  ],
-			  [
-			    "pnpm run format:write",
-			  ],
 			]
 		`);
 	});

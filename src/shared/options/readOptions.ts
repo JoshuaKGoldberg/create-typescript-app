@@ -56,8 +56,8 @@ export async function readOptions(
 						npm: values.email ?? values["email-npm"],
 				  }
 				: undefined,
+		excludeAllContributors: values["exclude-all-contributors"],
 		excludeCompliance: values["exclude-compliance"],
-		excludeContributors: values["exclude-contributors"],
 		excludeLintDeprecation: values["exclude-lint-deprecation"],
 		excludeLintESLint: values["exclude-lint-eslint"],
 		excludeLintJSDoc: values["exclude-lint-jsdoc"],
@@ -77,6 +77,7 @@ export async function readOptions(
 		funding: values.funding,
 		owner: values.owner,
 		repository: values.repository,
+		skipAllContributorsApi: values["skip-all-contributors-api"],
 		skipGitHubApi: values["skip-github-api"],
 		skipInstall: values["skip-install"],
 		skipRemoval: values["skip-removal"],

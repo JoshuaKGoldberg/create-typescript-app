@@ -26,8 +26,8 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
@@ -71,8 +71,8 @@ describe("finalize", () => {
 	it("installs the base list of commands when all options are enabled", async () => {
 		await finalizeDependencies({
 			...options,
+			excludeAllContributors: true,
 			excludeCompliance: true,
-			excludeContributors: true,
 			excludeLintJson: true,
 			excludeLintKnip: true,
 			excludeLintMd: true,

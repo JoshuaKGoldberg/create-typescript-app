@@ -23,7 +23,7 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 
 	for (const [badgeLine, existingMatcher] of [
 		[
-			!options.excludeContributors &&
+			!options.excludeAllContributors &&
 				`<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->

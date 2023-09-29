@@ -33,7 +33,7 @@ function generateAllContributorsContent(options: Options) {
 
 export async function writeReadme(options: Options) {
 	const allContributorsContent =
-		!options.excludeContributors && generateAllContributorsContent(options);
+		!options.excludeAllContributors && generateAllContributorsContent(options);
 	let contents = await readFileSafe("README.md", "");
 	if (!contents) {
 		await fs.writeFile(

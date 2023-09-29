@@ -33,7 +33,7 @@ export async function initializeWithOptions({
 		["Resetting Git tags", resetGitTags],
 	]);
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors) {
 		await withSpinner("Updating existing contributor details", async () => {
 			await addOwnerAsAllContributor(options.owner);
 		});

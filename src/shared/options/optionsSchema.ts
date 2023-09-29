@@ -19,8 +19,8 @@ export const optionsSchemaShape = {
 			npm: z.string().email(),
 		})
 		.optional(),
+	excludeAllContributors: z.boolean().optional(),
 	excludeCompliance: z.boolean().optional(),
-	excludeContributors: z.boolean().optional(),
 	excludeLintDeprecation: z.boolean().optional(),
 	excludeLintESLint: z.boolean().optional(),
 	excludeLintJSDoc: z.boolean().optional(),
@@ -46,6 +46,7 @@ export const optionsSchemaShape = {
 		.optional(),
 	owner: z.string().optional(),
 	repository: z.string().optional(),
+	skipAllContributorsApi: z.boolean().optional(),
 	skipGitHubApi: z.boolean().optional(),
 	skipInstall: z.boolean().optional(),
 	skipRemoval: z.boolean().optional(),

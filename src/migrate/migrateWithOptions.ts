@@ -48,7 +48,7 @@ export async function migrateWithOptions({
 		});
 	}
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {
 		await withSpinner("Detecting existing contributors", async () =>
 			detectExistingContributors(github?.auth, options),
 		);

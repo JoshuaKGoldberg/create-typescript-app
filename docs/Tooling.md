@@ -1,7 +1,10 @@
 # Tooling
 
-When running `create-typescript-app`, it will prompt for what "base" template level to initialize from.
-You can alternately granularly choose with tools should be enabled or omitted.
+`create-typescript-app` provides over two dozen pieces of tooling, ranging from code building and formatting to various forms of GitHub repository management and linting.
+Most can be individually turned off or on.
+
+The `create-typescript-app` setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- will prompt you to choose a "base" template level to initialize from.
+Those template levels provide common presets of which tooling pieces to enable.
 
 ```plaintext
 ◆  How much tooling would you like the template to set up for you?
@@ -42,9 +45,9 @@ This table summarizes each tooling piece and which base levels they're included 
 | [Testing](#testing)                           | `--exclude-tests`              |         | ☑️     | ✅         |
 | [Type Checking](#type-checking)               |                                | ✔️      | ☑️     | ✅         |
 
-## Pieces
+See also [Options](./Options.md) for how to customize the way template is run.
 
-### "Minimum" Base Level
+## "Minimum" Base Level
 
 These tooling pieces are the ones that most repositories should generally always have enabled.
 Other pieces of tooling are likely to not work as well (or at all) if these are removed.
@@ -53,7 +56,7 @@ The _"minimum"_ base is best suited for projects that are very small and not lik
 However, they'll be missing out on many of the great tooling pieces enabled in more comprehensive bases.
 We strongly recommend using at least the _"common"_ template instead for most repositories.
 
-#### Building
+### Building
 
 [**tsup**](https://tsup.egoist.dev): Builds output definitions and JavaScript files using [esbuild](https://esbuild.github.io).
 Each `*.ts` source file within `src/` is built into `.d.ts`, `.js`, and `.js.map` output files in `lib/`.
@@ -70,7 +73,7 @@ Building in watch mode:
 pnpm run build --watch
 ```
 
-#### Formatting
+### Formatting
 
 [**Prettier**](https://prettier.io): Formats code for developers and enforces a consistent formatting style.
 It's run on file save per [VS Code](TODO) settings and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
@@ -81,7 +84,7 @@ Auto-formatting all files:
 pnpm run format --write
 ```
 
-#### Linting
+### Linting
 
 [**ESLint**](https://eslint.org): Static analysis for JavaScript code that detects likely logical issues and helps enforce consistent code style.
 Uses [**typescript-eslint**](https://typescript-eslint.io) to understand TypeScript syntax and include TypeScript-specific rules.
@@ -98,7 +101,7 @@ Linting all files, auto-fixing fixable rule reports:
 pnpm run lint --fix
 ```
 
-#### Package Management
+### Package Management
 
 [**pnpm**](https://pnpm.io): Disk-efficient package manager alternative to npm.
 It caches packages in a computer-wide registry and symlinks installed packages within that registry.
@@ -109,7 +112,7 @@ Installing packages:
 pnpm run install
 ```
 
-#### Repository Templates
+### Repository Templates
 
 In code, assorted repository documentation files for GitHub are created:
 
@@ -126,7 +129,7 @@ On the GitHub repository, metadata will be populated:
 - [Issue labels](TODO) for issue areas, statuses, and types.
 - [Repository settings](TODO) such as [branch protections](TODO) and [squash merging PRs](TODO)
 
-#### Type Checking
+### Type Checking
 
 [**TypeScript**](https://typescriptlang.org): A typed superset of JavaScript that ensures runtime behavior matches the code's intent.
 Configured with strict compiler options, including [`noImplicitAny`](https://aka.ms#noImplicitAny) and [`strict`](https://aka.ms#strict).
@@ -143,17 +146,17 @@ Type checking in watch mode:
 pnpm run tsc --watch
 ```
 
-### "Common" Base Level
+## "Common" Base Level
 
 These added tooling pieces are those that aren't quite essential for a repository, but are still very commonly useful.
 This is recommended for most users of `create-typescript-app` to start with.
 
-#### Contributors
+### Contributors
 
 [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
 Contributions will be auto-detected when possible using [all-contributors-auto-action](https://github.com/JoshuaKGoldberg/all-contributors-auto-action).
 
-#### Lint Knip
+### Lint Knip
 
 [**Knip**](https://github.com/webpro/knip): Detects unused files, dependencies, and code exports.
 
@@ -163,15 +166,15 @@ Running Knip:
 pnpm run lint:knip
 ```
 
-#### Releases
+### Releases
 
 [**release-it**](https://github.com/release-it/release-it): Generates changelogs, bumps the package version, and publishes to GitHub and npm based on [conventional commits](https://www.conventionalcommits.org).
 
-#### Renovate
+### Renovate
 
 [**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
 
-#### Testing
+### Testing
 
 [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking.
 
@@ -199,73 +202,73 @@ Running tests once with coverage tracking:
 pnpm run test run --coverage
 ```
 
-### "Everything" Base Level
+## "Everything" Base Level
 
 This level is for developers who are eager to get the maximum tooling benefits in a repository.
 Using the _"everything"_ level will gain you comprehensive, strict coverage of all sorts of repository issues, including strict ESLint configs and auto-sorting of properties.
 
-#### Compliance
+### Compliance
 
 [**PR Compliance Action**](https://github.com/mtfoley/pr-compliance-action): Checks PRs for compliance such as addressing a linked issue and proper title formatting.
 
-#### Lint Deprecation
+### Lint Deprecation
 
 [`eslint-plugin-deprecation`](https://github.com/gund/eslint-plugin-deprecation): Reports on usage of code marked with `@deprecated`.
 
-#### Lint ESLint
+### Lint ESLint
 
 [`eslint-plugin-eslint-comments`](https://github.com/mysticatea/eslint-plugin-eslint-comments): Enforces proper usage of [ESLint configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments).
 
-#### Lint JSDoc
+### Lint JSDoc
 
 [`eslint-plugin-jsdoc`](https://github.com/gajus/eslint-plugin-jsdoc): Enforces good practices around JSDoc comments.
 
-#### Lint JSON
+### Lint JSON
 
 [`eslint-plugin-jsdoc`](https://github.com/ota-meshi/eslint-plugin-jsonc): Adds linting for `.json` and `.jsonc` files.
 
-#### Lint MD
+### Lint MD
 
 [**Markdownlint**](https://github.com/DavidAnson/markdownlint): Linting for Markdown code.
 
 > This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#567](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/567)).
 
-#### Lint Package JSON
+### Lint Package JSON
 
 [`npm-package-json-lint`](https://github.com/tclindner/npm-package-json-lint): Linting for `package.json` files.
 
 > This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/839)).
 
-#### Lint Packages
+### Lint Packages
 
 Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate
 
 > This is grouped with _"Lint"_ tooling pieces, but will likely eventually be renamed ([#896](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/896)).
 
-#### Lint Perfectionist
+### Lint Perfectionist
 
 [`eslint-plugin-perfectionist`](https://eslint-plugin-perfectionist.azat.io): Lints for sorting properties, imports, etc.
 This plugin is quite particular -perfectionist, even- but all its rules include auto-fixers that can correct complaints for you.
 
-#### Lint Regex
+### Lint Regex
 
 [`eslint-plugin-regex`](https://github.com/gmullerb/eslint-plugin-regex): Detects issues with JavaScript regular expressions, such as potential exponential complexity.
 
-#### Lint Spelling
+### Lint Spelling
 
 [**CSpell**](https://cspell.org): Spell checking for code.
 Helps detect typos based on a configurable user dictionary (`cspell.json`).
 
 > This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#897](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/897)).
 
-#### Lint Strict
+### Lint Strict
 
 Enables [typescript-eslint's strict configs](https://typescript-eslint.io/linting/configs/#strict) for increased scrutiny around code logic.
 
-#### Lint Stylistic
+### Lint Stylistic
 
 Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/linting/configs/#stylistic) for increased scrutiny around consistent code style.
 
-#### Lint YML
+### Lint YML
 
 [`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yaml` and `.yml` files, such as sorting keys.

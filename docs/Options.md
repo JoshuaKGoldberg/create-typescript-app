@@ -16,14 +16,14 @@ These required options determine how the creation script will set up and scaffol
   - `minimum`: Just the bare starter tooling most repositories should ideally include.
   - `common`: Important additions to the minimum starters such as releases and tests.
   - `everything`: The most thorough tooling imaginable: sorting, spellchecking, and more!
-  - `prompt`: fine-grained control over which tooling pieces to use
+  - `prompt`: Fine-grained control over which tooling pieces to use
 - `--create-repository` _(boolean)_: Whether to create a corresponding repository on github.com (if it doesn't yet exist)
 - `--mode`: Whether to:
   - `create` a new repository in a child directory
   - `initialize` a freshly repository in the current directory
   - `migrate` an existing repository in the current directory
 
-For example, scaffolding a full new repository in the current directory and also linking it to a new repository on github.com:
+For example, scaffolding a full new repository under the current directory and also linking it to a new repository on github.com:
 
 ```shell
 npx create-typescript-app --base everything --create-repository --mode create
@@ -52,7 +52,7 @@ That script will run completely autonomously, no prompted inputs required. ✨
 
 The setup scripts also allow for optional overrides of the following inputs whose defaults are based on other options:
 
-- `--access` _(`"public" | "restricted`)_: Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with (by default, `"public"`)
+- `--access` _(`"public" | "restricted"`)_: Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with (by default, `"public"`)
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
   - Optionally, `--email-github` _(`string`)_ and/or `--email-npm` _(`string`)_ may be provided to use different emails in `.md` files and `package.json`, respectively

@@ -56,8 +56,8 @@ export async function readOptions(
 						npm: values.email ?? values["email-npm"],
 				  }
 				: undefined,
+		excludeAllContributors: values["exclude-all-contributors"],
 		excludeCompliance: values["exclude-compliance"],
-		excludeContributors: values["exclude-contributors"],
 		excludeLintDeprecation: values["exclude-lint-deprecation"],
 		excludeLintESLint: values["exclude-lint-eslint"],
 		excludeLintJSDoc: values["exclude-lint-jsdoc"],
@@ -75,9 +75,12 @@ export async function readOptions(
 		excludeRenovate: values["exclude-renovate"],
 		excludeTests: values["unit-tests"],
 		funding: values.funding,
+		offline: values.offline,
 		owner: values.owner,
 		repository: values.repository,
-		skipGitHubApi: values["skip-github-api"],
+		skipAllContributorsApi:
+			values["skip-all-contributors-api"] ?? values.offline,
+		skipGitHubApi: values["skip-github-api"] ?? values.offline,
 		skipInstall: values["skip-install"],
 		skipRemoval: values["skip-removal"],
 		skipRestore: values["skip-restore"],
@@ -131,7 +134,7 @@ export async function readOptions(
 	}
 
 	const { github, repository } = await ensureRepositoryExists(
-		values["skip-github-api"]
+		options.skipGitHubApi
 			? undefined
 			: await withSpinner("Checking GitHub authentication", getGitHub),
 		{

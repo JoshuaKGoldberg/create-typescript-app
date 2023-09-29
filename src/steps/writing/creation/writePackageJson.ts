@@ -8,6 +8,7 @@ const devDependenciesToRemove = [
 	"@babel/preset-react",
 	"@babel/preset-typescript",
 	"@swc/jest",
+	"@vitest/coverage-istanbul",
 	"ava",
 	"babel-jest",
 	"commitlint",

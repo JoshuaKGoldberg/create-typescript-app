@@ -3,10 +3,12 @@ import prettier from "prettier";
 
 import { getGitHubUserAsAllContributor } from "../shared/getGitHubUserAsAllContributor.js";
 import { readFileAsJson } from "../shared/readFileAsJson.js";
-import { AllContributorsData } from "../shared/types.js";
+import { AllContributorsData, Options } from "../shared/types.js";
 
-export async function addOwnerAsAllContributor(owner: string) {
-	const user = await getGitHubUserAsAllContributor(owner);
+export async function addOwnerAsAllContributor(
+	options: Pick<Options, "offline" | "owner">,
+) {
+	const user = await getGitHubUserAsAllContributor(options);
 
 	const existingContributors = (await readFileAsJson(
 		"./.all-contributorsrc",
@@ -22,7 +24,12 @@ export async function addOwnerAsAllContributor(owner: string) {
 		.map((contributor) =>
 			contributor.login === "JoshuaKGoldberg"
 				? { ...contributor, contributions: ["tool"] }
-				: contributor,
+				: {
+						...contributor,
+						contributions: Array.from(
+							new Set([...contributor.contributions, "tool"]),
+						),
+				  },
 		);
 
 	if (!contributors.some((contributor) => contributor.login === user)) {

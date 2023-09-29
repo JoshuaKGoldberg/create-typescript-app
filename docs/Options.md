@@ -76,8 +76,8 @@ The setup scripts can be directed with CLI flags to opt out tooling portions and
 The setup scripts normally will prompt you to select how much of the tooling you'd like to enable in a new repository.
 Alternately, you can bypass that prompt by providing any number of the following CLI flags:
 
+- `--exclude-all-contributors`: Don't add all-contributors to track contributions and display them in a README.md table.
 - `--exclude-compliance`: Don't add a GitHub Actions workflow to verify that PRs match an expected format.
-- `--exclude-contributors`: Don't add all-contributors to track contributions and display them in a README.md table.
 - `--exclude-lint-json`: Don't apply linting and sorting to `*.json` and `*.jsonc` files.
 - `--exclude-lint-knip`: Don't add Knip to detect unused files, dependencies, and code exports.
 - `--exclude-lint-md`: Don't apply linting to `*.md` files.
@@ -107,20 +107,22 @@ npx create-typescript-app --exclude-lint-package-json --exclude-lint-packages --
 
 ### Skipping API Calls
 
+> Alternately, see [Offline Mode](#offline-mode) to skip API calls without disabling features
+
 You can prevent the migration script from making some network-based changes using any or all of the following CLI flags:
 
-- `--exclude-contributors` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
-  - This flag does nothing if `--exclude-contributors` was specified.
+- `--skip-all-contributors-api` _(`boolean`)_: Skips network calls that fetch all-contributors data from GitHub
+  - This flag does nothing if `--exclude-all-contributors` was specified.
 - `--skip-github-api` _(`boolean`)_: Skips calling to GitHub APIs.
 - `--skip-install` _(`boolean`)_: Skips installing all the new template packages with `pnpm`.
 
 For example, providing all three flags will completely skip all network requests:
 
 ```shell
-npx create-typescript-app --exclude-contributors --skip-github-api --skip-install
+npx create-typescript-app --skip-all-contributors-api --skip-github-api --skip-install
 ```
 
-> 💡 Tip: To temporarily preview what the script would apply, you can run with all `--skip-*` flags, then `git add -A; git reset --hard HEAD` to completely reset all changes.
+> 💡 Tip: To temporarily preview what the script would apply without making changes on GitHub, you can run with all `--skip-*-api` flags, then `git add -A; git reset --hard HEAD` to completely reset all changes.
 
 ### Skipping Local Changes
 
@@ -134,4 +136,17 @@ For example, providing all local change skip flags:
 
 ```shell
 npx create-typescript-app --skip-removal --skip-restore --skip-uninstall
+```
+
+## Offline Mode
+
+You can run `create-typescript-app` in an "offline" mode with `--offline`.
+Doing so will:
+
+- Enable `--exclude-all-contributors-api` and `--skip-github-api`
+- Skip network calls when setting up contributors
+- Run pnpm commands with pnpm's `--offline` mode
+
+```shell
+npx create-typescript-app --offline
 ```

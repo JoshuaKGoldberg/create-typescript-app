@@ -17,7 +17,7 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 		...Object.fromEntries(
 			[
 				"excludeCompliance",
-				"excludeContributors",
+				"excludeAllContributors",
 				"excludeLintDeprecation",
 				"excludeLintESLint",
 				"excludeLintJSDoc",

@@ -24,6 +24,7 @@
     </a>
 	<img alt="Style: Prettier 🧹" src="https://img.shields.io/badge/style-prettier_🧹-21bb42.svg" />
     <img alt="TypeScript: Strict 💪" src="https://img.shields.io/badge/typescript-strict_💪-21bb42.svg" />
+    <img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
 </p>
 
 <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./create-typescript-app.png">

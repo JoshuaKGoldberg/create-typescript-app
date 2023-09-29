@@ -45,6 +45,7 @@ const options = {
 	funding: undefined,
 	logo: undefined,
 	mode: "create",
+	offline: true,
 	owner: "StubOwner",
 	repository: "stub-repository",
 	skipGitHubApi: false,

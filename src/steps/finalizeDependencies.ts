@@ -66,7 +66,9 @@ export async function finalizeDependencies(options: Options) {
 		.map((packageName) => `${packageName}@latest`)
 		.join(" ");
 
-	await execaCommand(`pnpm add ${devDependencies} -D`);
+	await execaCommand(
+		`pnpm add ${devDependencies} -D${options.offline ? " --offline" : ""}`,
+	);
 
 	if (!options.excludeAllContributors) {
 		await execaCommand(`npx all-contributors-cli generate`);

@@ -35,7 +35,7 @@ export async function initializeWithOptions({
 
 	if (!options.excludeAllContributors) {
 		await withSpinner("Updating existing contributor details", async () => {
-			await addOwnerAsAllContributor(options.owner);
+			await addOwnerAsAllContributor(options);
 		});
 	}
 
@@ -50,9 +50,8 @@ export async function initializeWithOptions({
 	}
 
 	if (!options.skipUninstall) {
-		await withSpinner(
-			"Uninstalling initialization-only packages",
-			uninstallPackages,
+		await withSpinner("Uninstalling initialization-only packages", async () =>
+			uninstallPackages(options.offline),
 		);
 	}
 

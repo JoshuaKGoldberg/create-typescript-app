@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import z from "zod";
 
+import { Options } from "../types.js";
 import { optionsSchemaShape } from "./optionsSchema.js";
 import { readOptions } from "./readOptions.js";
 
@@ -30,6 +31,7 @@ const emptyOptions = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	offline: undefined,
 	owner: undefined,
 	repository: undefined,
 	skipAllContributorsApi: undefined,
@@ -59,7 +61,6 @@ vi.mock("./augmentOptionsWithExcludes.js", () => ({
 	get augmentOptionsWithExcludes() {
 		return mockAugmentOptionsWithExcludes;
 	},
-	// return { ...emptyOptions, ...mockOptions };
 }));
 
 const mockDetectEmailRedundancy = vi.fn();
@@ -314,6 +315,43 @@ describe("readOptions", () => {
 			options: {
 				...emptyOptions,
 				...mockOptions,
+			},
+		});
+	});
+
+	it("skips API calls when --offline is true", async () => {
+		mockAugmentOptionsWithExcludes.mockImplementation((options: Options) => ({
+			...emptyOptions,
+			...mockOptions,
+			...options,
+		}));
+		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
+
+		expect(
+			await readOptions(["--base", mockOptions.base, "--offline"], "create"),
+		).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: {
+				...emptyOptions,
+				...mockOptions,
+				access: "public",
+				description: "mock",
+				email: {
+					github: "mock",
+					npm: "mock",
+				},
+				logo: undefined,
+				mode: "create",
+				offline: true,
+				owner: "mock",
+				skipAllContributorsApi: true,
+				skipGitHubApi: true,
+				title: "mock",
 			},
 		});
 	});

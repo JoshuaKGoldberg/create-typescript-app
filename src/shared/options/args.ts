@@ -30,6 +30,7 @@ export const allArgOptions = {
 	logo: { type: "string" },
 	"logo-alt": { type: "string" },
 	mode: { type: "string" },
+	offline: { type: "boolean" },
 	owner: { type: "string" },
 	repository: { type: "string" },
 	"skip-all-contributors-api": { type: "boolean" },

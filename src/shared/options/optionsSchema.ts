@@ -44,6 +44,7 @@ export const optionsSchemaShape = {
 	mode: z
 		.union([z.literal("create"), z.literal("initialize"), z.literal("migrate")])
 		.optional(),
+	offline: z.boolean().optional(),
 	owner: z.string().optional(),
 	repository: z.string().optional(),
 	skipAllContributorsApi: z.boolean().optional(),

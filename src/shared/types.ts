@@ -62,6 +62,7 @@ export interface Options {
 	funding?: string;
 	logo: OptionsLogo | undefined;
 	mode: Mode;
+	offline?: boolean;
 	owner: string;
 	repository: string;
 	skipAllContributorsApi?: boolean;

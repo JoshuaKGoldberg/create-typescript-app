@@ -35,6 +35,7 @@ const optionsBase = {
 	funding: undefined,
 	logo: undefined,
 	mode: "create",
+	offline: true,
 	owner: "",
 	repository: "",
 	skipGitHubApi: false,

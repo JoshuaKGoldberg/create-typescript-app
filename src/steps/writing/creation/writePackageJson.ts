@@ -72,7 +72,6 @@ export async function writePackageJson(options: Options) {
 		scripts: {
 			build: "tsup",
 			format: 'prettier "**/*" --ignore-unknown',
-			"format:write": "pnpm format --write",
 			lint: "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 			...(!options.excludeLintKnip && {
 				"lint:knip": "knip",

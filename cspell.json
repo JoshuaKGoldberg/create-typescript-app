@@ -9,6 +9,8 @@
 		"pnpm-lock.yaml"
 	],
 	"words": [
+		"allcontributors",
+		"apexskier",
 		"Codecov",
 		"codespace",
 		"commitlint",
@@ -20,11 +22,14 @@
 		"knip",
 		"lcov",
 		"markdownlintignore",
+		"mtfoley",
 		"npmignore",
+		"npmjs",
 		"npmpackagejsonlintrc",
 		"outro",
 		"packagejson",
 		"quickstart",
+		"tada",
 		"tsup",
 		"Unstaged",
 		"wontfix"

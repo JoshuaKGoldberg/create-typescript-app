@@ -21,8 +21,8 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
@@ -109,7 +109,6 @@ describe("writePackageJson", () => {
 			  "scripts": {
 			    "build": "tsup",
 			    "format": "prettier \\"**/*\\" --ignore-unknown",
-			    "format:write": "pnpm format --write",
 			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 			    "lint:knip": "knip",
 			    "lint:md": "markdownlint \\"**/*.md\\" \\".github/**/*.md\\" --rules sentences-per-line",
@@ -132,8 +131,8 @@ describe("writePackageJson", () => {
 
 		const packageJson = await writePackageJson({
 			...options,
+			excludeAllContributors: true,
 			excludeCompliance: true,
-			excludeContributors: true,
 			excludeLintJson: true,
 			excludeLintKnip: true,
 			excludeLintMd: true,
@@ -180,7 +179,6 @@ describe("writePackageJson", () => {
 			  "scripts": {
 			    "build": "tsup",
 			    "format": "prettier \\"**/*\\" --ignore-unknown",
-			    "format:write": "pnpm format --write",
 			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 			    "prepare": "husky install",
 			    "tsc": "tsc",

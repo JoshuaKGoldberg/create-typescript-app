@@ -33,8 +33,8 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
@@ -209,7 +209,7 @@ describe("writeReadme", () => {
 
 		await writeReadme({
 			...options,
-			excludeContributors: false,
+			excludeAllContributors: false,
 		});
 
 		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`

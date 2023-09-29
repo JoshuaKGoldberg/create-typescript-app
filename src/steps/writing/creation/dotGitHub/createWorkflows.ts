@@ -56,19 +56,22 @@ export function createWorkflows(options: Options) {
 						uses: "mtfoley/pr-compliance-action@main",
 						with: {
 							"body-auto-close": false,
-							"ignore-authors": [
-								"allcontributors",
-								"allcontributors[bot]",
-								"renovate",
-								"renovate[bot]",
-							].join("\n"),
+							"ignore-authors":
+								[
+									...(options.excludeAllContributors
+										? []
+										: ["allcontributors", "allcontributors[bot]"]),
+									...(options.excludeRenovate
+										? []
+										: ["renovate", "renovate[bot]"]),
+								].join("\n") || undefined,
 							"ignore-team-members": false,
 						},
 					},
 				],
 			}),
 		}),
-		...(!options.excludeContributors && {
+		...(!options.excludeAllContributors && {
 			"contributors.yml": createWorkflowFile({
 				name: "Contributors",
 				on: {

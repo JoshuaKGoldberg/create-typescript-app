@@ -24,7 +24,6 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier \"**/*\" --ignore-unknown",
-		"format:write": "pnpm format --write",
 		"initialize": "tsx ./src/bin/index.js --mode initialize",
 		"lint": "eslint . .*js --max-warnings 0",
 		"lint:knip": "knip",
@@ -89,7 +88,7 @@
 		"globby": "^13.2.2",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
-		"knip": "2.25.2",
+		"knip": "2.29.0",
 		"lint-staged": "^14.0.1",
 		"markdownlint": "^0.31.0",
 		"markdownlint-cli": "^0.37.0",
@@ -106,7 +105,7 @@
 		"vitest": "^0.34.3",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.7.6",
+	"packageManager": "pnpm@8.8.0",
 	"engines": {
 		"node": ">=18"
 	},

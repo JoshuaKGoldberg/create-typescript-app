@@ -1,6 +1,5 @@
-import chalk from "chalk";
 import prettier from "prettier";
-import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { addOwnerAsAllContributor } from "./addOwnerAsAllContributor.js";
 
@@ -32,15 +31,13 @@ vi.mock("../shared/readFileAsJson.js", () => ({
 	},
 }));
 
-let mockConsoleWarn: SpyInstance;
+const mockOwner = "TestOwner";
+
+vi.mock("../shared/getGitHubUserAsAllContributor", () => ({
+	getGitHubUserAsAllContributor: () => mockOwner,
+}));
 
 describe("addOwnerAsAllContributor", () => {
-	beforeEach(() => {
-		mockConsoleWarn = vi
-			.spyOn(console, "warn")
-			.mockImplementation(() => undefined);
-	});
-
 	it("throws an error when the .all-contributorsrc fails to read", async () => {
 		mock$.mockResolvedValueOnce({
 			stdout: JSON.stringify({ login: "user" }),
@@ -48,7 +45,7 @@ describe("addOwnerAsAllContributor", () => {
 		mockReadFileAsJson.mockResolvedValue("invalid");
 
 		await expect(async () => {
-			await addOwnerAsAllContributor("owner");
+			await addOwnerAsAllContributor({ owner: mockOwner });
 		}).rejects.toMatchInlineSnapshot(
 			'[Error: Invalid .all-contributorsrc: "invalid"]',
 		);
@@ -61,78 +58,52 @@ describe("addOwnerAsAllContributor", () => {
 		mockReadFileAsJson.mockResolvedValue({});
 
 		await expect(async () => {
-			await addOwnerAsAllContributor("owner");
+			await addOwnerAsAllContributor({ owner: mockOwner });
 		}).rejects.toMatchInlineSnapshot(
 			"[Error: Invalid .all-contributorsrc: {}]",
 		);
 	});
 
-	it("adds in the user from gh api user when it succeeds and contributors is empty", async () => {
-		const login = "gh-api-user";
-
+	it("sets the running user to tool when no prior contributions exist", async () => {
 		mock$.mockResolvedValueOnce({
-			stdout: JSON.stringify({ login }),
+			stdout: JSON.stringify({ login: mockOwner }),
 		});
-		mockReadFileAsJson.mockResolvedValue({ contributors: [] });
+		mockReadFileAsJson.mockResolvedValue({
+			contributors: [],
+		});
 
-		await addOwnerAsAllContributor("owner");
-
-		expect(mockWriteFile).toHaveBeenCalledWith(
-			"./.all-contributorsrc",
-			await prettier.format(
-				JSON.stringify({
-					contributors: [{ contributions: ["tool"], login }],
-				}),
-				{ parser: "json" },
-			),
-		);
-	});
-
-	it("adds in the provided owner when gh api user fails and contributors is empty", async () => {
-		const owner = "owner";
-
-		mock$.mockRejectedValueOnce({});
-		mockReadFileAsJson.mockResolvedValue({ contributors: [] });
-
-		await addOwnerAsAllContributor(owner);
+		await addOwnerAsAllContributor({ owner: mockOwner });
 
 		expect(mockWriteFile).toHaveBeenCalledWith(
 			"./.all-contributorsrc",
 			await prettier.format(
 				JSON.stringify({
-					contributors: [{ contributions: ["tool"], login: owner }],
+					contributors: [{ contributions: ["tool"], login: mockOwner }],
 				}),
 				{ parser: "json" },
-			),
-		);
-		expect(mockConsoleWarn).toHaveBeenCalledWith(
-			chalk.gray(
-				`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'.`,
 			),
 		);
 	});
 
 	it("resets JoshuaKGoldberg to just tool and adds in the running user when both exist", async () => {
-		const login = "gh-api-user";
-
 		mock$.mockResolvedValueOnce({
-			stdout: JSON.stringify({ login }),
+			stdout: JSON.stringify({ login: mockOwner }),
 		});
 		mockReadFileAsJson.mockResolvedValue({
 			contributors: [
-				{ contributions: ["bug", "fix"], login },
+				{ contributions: ["bug", "fix"], login: mockOwner },
 				{ contributions: ["bug", "fix"], login: "JoshuaKGoldberg" },
 			],
 		});
 
-		await addOwnerAsAllContributor("owner");
+		await addOwnerAsAllContributor({ owner: mockOwner });
 
 		expect(mockWriteFile).toHaveBeenCalledWith(
 			"./.all-contributorsrc",
 			await prettier.format(
 				JSON.stringify({
 					contributors: [
-						{ contributions: ["bug", "fix"], login },
+						{ contributions: ["bug", "fix", "tool"], login: mockOwner },
 						{ contributions: ["tool"], login: "JoshuaKGoldberg" },
 					],
 				}),

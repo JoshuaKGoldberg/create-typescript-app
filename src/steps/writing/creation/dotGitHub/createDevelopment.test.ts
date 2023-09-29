@@ -13,8 +13,8 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
@@ -86,7 +86,7 @@ describe("createDevelopment", () => {
 			To manually reformat all files, you can run:
 
 			\`\`\`shell
-			pnpm format:write
+			pnpm format --write
 			\`\`\`
 
 			## Linting
@@ -197,7 +197,7 @@ describe("createDevelopment", () => {
 			To manually reformat all files, you can run:
 
 			\`\`\`shell
-			pnpm format:write
+			pnpm format --write
 			\`\`\`
 
 			## Linting

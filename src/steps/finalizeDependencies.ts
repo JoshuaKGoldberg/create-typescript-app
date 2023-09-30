@@ -78,4 +78,6 @@ export async function finalizeDependencies(options: Options) {
 			"-D",
 		);
 	}
+
+	await execaCommand(`pnpm dedupe`);
 }

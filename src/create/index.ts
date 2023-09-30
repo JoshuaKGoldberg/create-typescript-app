@@ -4,6 +4,7 @@ import chalk from "chalk";
 import { ModeResult } from "../bin/mode.js";
 import { outro } from "../shared/cli/outro.js";
 import { StatusCodes } from "../shared/codes.js";
+import { generateNextSteps } from "../shared/generateNextSteps.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { createAndEnterRepository } from "./createAndEnterRepository.js";
@@ -34,15 +35,11 @@ export async function create(args: string[]): Promise<ModeResult> {
 		code: await runOrRestore({
 			run: async () => {
 				const { sentToGitHub } = await createWithOptions(inputs);
+				const nextSteps = generateNextSteps(inputs.options);
 
 				outro(
 					sentToGitHub
-						? [
-								{
-									label:
-										"Now all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
-								},
-						  ]
+						? nextSteps
 						: [
 								{
 									label:
@@ -59,11 +56,9 @@ export async function create(args: string[]): Promise<ModeResult> {
 										`git commit -m "feat: initial commit ✨"`,
 										`git push -u origin main`,
 									],
+									variant: "code",
 								},
-								{
-									label:
-										"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
-								},
+								...nextSteps,
 						  ],
 				);
 			},

@@ -1,0 +1,183 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":false,"excludeRenovate":false,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the GitHub apps: 
+   - Codecov (https://github.com/apps/codecov)
+   - Renovate (https://github.com/apps/renovate)",
+      "- populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":false,"excludeRenovate":false,"excludeTests":true} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the Renovate GitHub app (https://github.com/apps/renovate).",
+      "- populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":false,"excludeRenovate":true,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the Codecov GitHub app (https://github.com/apps/codecov).",
+      "- populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":false,"excludeRenovate":true,"excludeTests":true} 1`] = `
+[
+  {
+    "label": "Be sure to populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":true,"excludeRenovate":false,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the GitHub apps: 
+   - Codecov (https://github.com/apps/codecov)
+   - Renovate (https://github.com/apps/renovate)",
+      "- populate the ACCESS_TOKEN secret (a GitHub PAT with repo and workflow permissions).",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":true,"excludeRenovate":false,"excludeTests":true} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the Renovate GitHub app (https://github.com/apps/renovate).",
+      "- populate the ACCESS_TOKEN secret (a GitHub PAT with repo and workflow permissions).",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":true,"excludeRenovate":true,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the Codecov GitHub app (https://github.com/apps/codecov).",
+      "- populate the ACCESS_TOKEN secret (a GitHub PAT with repo and workflow permissions).",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":false,"excludeReleases":true,"excludeRenovate":true,"excludeTests":true} 1`] = `
+[
+  {
+    "label": "Be sure to populate the ACCESS_TOKEN secret (a GitHub PAT with repo and workflow permissions).",
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":false,"excludeRenovate":false,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the GitHub apps: 
+   - Codecov (https://github.com/apps/codecov)
+   - Renovate (https://github.com/apps/renovate)",
+      "- populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":false,"excludeRenovate":false,"excludeTests":true} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the Renovate GitHub app (https://github.com/apps/renovate).",
+      "- populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":false,"excludeRenovate":true,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to:",
+    "lines": [
+      "- enable the Codecov GitHub app (https://github.com/apps/codecov).",
+      "- populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+    ],
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":false,"excludeRenovate":true,"excludeTests":true} 1`] = `
+[
+  {
+    "label": "Be sure to populate the secrets: 
+   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+   - NPM_TOKEN (an npm access token with automation permissions)",
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":true,"excludeRenovate":false,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to enable the GitHub apps: 
+   - Codecov (https://github.com/apps/codecov)
+   - Renovate (https://github.com/apps/renovate)",
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":true,"excludeRenovate":false,"excludeTests":true} 1`] = `
+[
+  {
+    "label": "Be sure to enable the Renovate GitHub app (https://github.com/apps/renovate).",
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":true,"excludeRenovate":true,"excludeTests":false} 1`] = `
+[
+  {
+    "label": "Be sure to enable the Codecov GitHub app (https://github.com/apps/codecov).",
+  },
+]
+`;
+
+exports[`generateNextSteps > {"excludeAllContributors":true,"excludeReleases":true,"excludeRenovate":true,"excludeTests":true} 1`] = `[]`;

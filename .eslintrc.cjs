@@ -84,6 +84,10 @@ module.exports = {
 						allowConstantLoopConditions: true,
 					},
 				],
+				"@typescript-eslint/prefer-nullish-coalescing": [
+					"error",
+					{ ignorePrimitives: true },
+				],
 			},
 		},
 		{

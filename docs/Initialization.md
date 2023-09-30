@@ -42,3 +42,5 @@ For example, running the initialization script and skipping all GitHub APIs:
 ```shell
 pnpm run initialize --skip-all-contributors-api --skip-github-api
 ```
+
+See [Tooling.md](./Tooling.md) for details on the tooling pieces and which bases they're included in.

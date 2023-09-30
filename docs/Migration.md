@@ -6,7 +6,7 @@ If you have an existing repository that you'd like to give the files from this r
 npx create-typescript-app
 ```
 
-> **Warning**
+> [!WARNING]
 > Migration will override many files in your repository.
 > You'll want to review each of the changes.
 > There will almost certainly be some incorrect changes you'll need to fix.
@@ -21,3 +21,5 @@ For example, running the migration script and skipping all GitHub APIs:
 ```shell
 npx create-typescript-app --mode migrate --skip-all-contributors-api --skip-github-api
 ```
+
+See [Tooling.md](./Tooling.md) for details on the tooling pieces and which bases they're included in.

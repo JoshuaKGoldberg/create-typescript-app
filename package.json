@@ -1,7 +1,7 @@
 {
 	"name": "create-typescript-app",
 	"version": "1.30.2",
-	"description": "Quickstart-friendly TypeScript template with comprehensive formatting, linting, releases, testing, and other great tooling built-in. ✨",
+	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/create-typescript-app"

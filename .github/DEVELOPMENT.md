@@ -121,8 +121,11 @@ pnpm run test:create
 
 That end-to-end test executes `script/create-test-e2e.js`, which:
 
-1. Runs the creation script to create a new `test-repository` child directory and repository
+1. Runs the creation script to create a new `test-repository` child directory and repository, capturing code coverage
 2. Asserts that commands such as `build` and `lint` each pass
+
+The `pnpm run test:create` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+See `.github/workflows/test-create.yml`.
 
 ### The Initialization Script
 
@@ -133,8 +136,6 @@ It uses [`tsx`](https://github.com/esbuild-kit/tsx) so you don't need to build f
 ```shell
 pnpm run initialize
 ```
-
-> 💡 Consider running `git add -A` to stage all local changes before running.
 
 #### Testing the Initialization Script
 
@@ -188,7 +189,7 @@ pnpm run test:migrate
 
 That end-to-end test executes `script/migrate-test-e2e.js`, which:
 
-1. Runs the migration script using `--skip-github-api` and other skip flags
+1. Runs the migration script using `--skip-github-api` and other skip flags, capturing code coverage
 2. Checks that only a small list of allowed files were changed
 3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
 

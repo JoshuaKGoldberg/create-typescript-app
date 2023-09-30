@@ -173,14 +173,14 @@ We don't use any kind of issue claiming system.
 We've found in the past that they result in accidental ["licked cookie"](https://devblogs.microsoft.com/oldnewthing/20091201-00/?p=15843) situations where contributors claim an issue but run out of time or energy trying before sending a PR.
 
 If an issue has been marked as \`accepting prs\` and an open PR does not exist, feel free to send a PR.
-You don't need to ask for permission.
+Please don't post comments asking for permission or stating you will work on an issue.
 
 ### Sending a Pull Request
 
 Once you've identified an open issue accepting PRs that doesn't yet have a PR sent, you're free to send a pull request.
 Be sure to fill out the pull request template's requested information -- otherwise your PR will likely be closed.
 
-PRs are also expected to have a title that adheres to [commitlint](https://github.com/conventional-changelog/commitlint).
+PRs are also expected to have a title that adheres to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0).
 Only PR titles need to be in that format, not individual commits.
 Don't worry if you get this wrong: you can always change the PR title after sending it.
 Check [previously merged PRs](https://github.com/${options.owner}/${options.repository}/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.

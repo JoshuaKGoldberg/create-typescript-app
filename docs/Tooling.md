@@ -1,6 +1,6 @@
 # Tooling
 
-`create-typescript-app` provides over two dozen pieces of tooling, ranging from code building and formatting to various forms of GitHub repository management and linting.
+`create-typescript-app` provides over two dozen pieces of tooling, ranging from code building and formatting to various forms of GitHub repository management.
 Most can be individually turned off or on.
 
 The `create-typescript-app` setup scripts -[creation](./Creation.md), [initialization](./Initialization.md), and [migration](./Migration.md)- will prompt you to choose a "base" template level to initialize from.
@@ -8,9 +8,9 @@ Those template levels provide common presets of which tooling pieces to enable.
 
 ```plaintext
 ◆  How much tooling would you like the template to set up for you?
-│  ○ minimum     Just the bare starters most repositories should include for approachable development.
-│  ○ common      Important additions to the starters such as a contributors table, releases, and testing.
-│  ○ everything  The most comprehensive tooling imaginable: sorting, spellchecking, strictness, and more!
+│  ○ minimum     Just the bare starter tooling most repositories should ideally include.
+│  ○ common      Important additions to the minimum starters such as releases and tests.
+│  ○ everything  The most thorough tooling imaginable: sorting, spellchecking, and more!
 │  ○ prompt      (allow me to customize)
 └
 ```
@@ -19,31 +19,31 @@ This table summarizes each tooling piece and which base levels they're included 
 
 | Tooling Piece                                 | Exclusion Flag                 | Minimum | Common | Everything |
 | --------------------------------------------- | ------------------------------ | ------- | ------ | ---------- |
-| [Building](#building)                         |                                | ✔️      | ☑️     | ✅         |
-| [Compliance](#compliance)                     | `--exclude-compliance`         |         |        | ✅         |
-| [Contributors](#contributors)                 | `--exclude-contributors`       |         | ☑️     | ✅         |
-| [Formatting](#formatting)                     |                                | ✔️      | ☑️     | ✅         |
-| [Lint Deprecation](#lint-deprecation)         | `--exclude-lint-deprecation`   |         |        | ✅         |
-| [Lint ESLint](#lint-eslint)                   | `--exclude-lint-eslint`        |         |        | ✅         |
-| [Lint JSDoc](#lint-jsdoc)                     | `--exclude-lint-jsdoc`         |         |        | ✅         |
-| [Lint JSON](#lint-json)                       | `--exclude-lint-json`          |         |        | ✅         |
-| [Lint Knip](#lint-knip)                       | `--exclude-lint-knip`          |         | ☑️     | ✅         |
-| [Lint MD](#lint-md)                           | `--exclude-lint-md`            |         |        | ✅         |
-| [Lint Package JSON](#lint-package-json)       | `--exclude-lint-package-json`  |         |        | ✅         |
-| [Lint Packages](#lint-packages)               | `--exclude-lint-packages`      |         |        | ✅         |
-| [Lint Perfectionist](#lint-perfectionist)     | `--exclude-lint-perfectionist` |         |        | ✅         |
-| [Lint Regex](#lint-regex)                     | `--exclude-lint-regex`         |         |        | ✅         |
-| [Lint Spelling](#lint-spelling)               | `--exclude-lint-spelling`      |         |        | ✅         |
-| [Lint Strict](#lint-strict)                   | `--exclude-lint-strict`        |         |        | ✅         |
-| [Lint Stylistic](#lint-stylistic)             | `--exclude-lint-stylistic`     |         |        | ✅         |
-| [Lint YML](#lint-yml)                         | `--exclude-lint-yml`           |         |        | ✅         |
-| [Linting](#linting)                           |                                | ✔️      | ☑️     | ✅         |
-| [Package Management](#package-management)     |                                | ✔️      | ☑️     | ✅         |
-| [Releases](#releases)                         | `--exclude-releases`           |         | ☑️     | ✅         |
-| [Renovate](#renovate)                         | `--exclude-renovate`           |         | ☑️     | ✅         |
-| [Repository Templates](#repository-templates) |                                | ✔️      | ☑️     | ✅         |
-| [Testing](#testing)                           | `--exclude-tests`              |         | ☑️     | ✅         |
-| [Type Checking](#type-checking)               |                                | ✔️      | ☑️     | ✅         |
+| [Building](#building)                         |                                | ✔️      | ✅     | 💯         |
+| [Compliance](#compliance)                     | `--exclude-compliance`         |         |        | 💯         |
+| [Contributors](#contributors)                 | `--exclude-contributors`       |         | ✅     | 💯         |
+| [Formatting](#formatting)                     |                                | ✔️      | ✅     | 💯         |
+| [Lint Deprecation](#lint-deprecation)         | `--exclude-lint-deprecation`   |         |        | 💯         |
+| [Lint ESLint](#lint-eslint)                   | `--exclude-lint-eslint`        |         |        | 💯         |
+| [Lint JSDoc](#lint-jsdoc)                     | `--exclude-lint-jsdoc`         |         |        | 💯         |
+| [Lint JSON](#lint-json)                       | `--exclude-lint-json`          |         |        | 💯         |
+| [Lint Knip](#lint-knip)                       | `--exclude-lint-knip`          |         | ✅     | 💯         |
+| [Lint MD](#lint-md)                           | `--exclude-lint-md`            |         |        | 💯         |
+| [Lint Package JSON](#lint-package-json)       | `--exclude-lint-package-json`  |         |        | 💯         |
+| [Lint Packages](#lint-packages)               | `--exclude-lint-packages`      |         |        | 💯         |
+| [Lint Perfectionist](#lint-perfectionist)     | `--exclude-lint-perfectionist` |         |        | 💯         |
+| [Lint Regex](#lint-regex)                     | `--exclude-lint-regex`         |         |        | 💯         |
+| [Lint Spelling](#lint-spelling)               | `--exclude-lint-spelling`      |         |        | 💯         |
+| [Lint Strict](#lint-strict)                   | `--exclude-lint-strict`        |         |        | 💯         |
+| [Lint Stylistic](#lint-stylistic)             | `--exclude-lint-stylistic`     |         |        | 💯         |
+| [Lint YML](#lint-yml)                         | `--exclude-lint-yml`           |         |        | 💯         |
+| [Linting](#linting)                           |                                | ✔️      | ✅     | 💯         |
+| [Package Management](#package-management)     |                                | ✔️      | ✅     | 💯         |
+| [Releases](#releases)                         | `--exclude-releases`           |         | ✅     | 💯         |
+| [Renovate](#renovate)                         | `--exclude-renovate`           |         | ✅     | 💯         |
+| [Repository Templates](#repository-templates) |                                | ✔️      | ✅     | 💯         |
+| [Testing](#testing)                           | `--exclude-tests`              |         | ✅     | 💯         |
+| [Type Checking](#type-checking)               |                                | ✔️      | ✅     | 💯         |
 
 See also [Options](./Options.md) for how to customize the way template is run.
 
@@ -54,7 +54,14 @@ Other pieces of tooling are likely to not work as well (or at all) if these are 
 
 The _"minimum"_ base is best suited for projects that are very small and not likely to change very frequently.
 However, they'll be missing out on many of the great tooling pieces enabled in more comprehensive bases.
-We strongly recommend using at least the _"common"_ template instead for most repositories.
+We strongly recommend using at least the [_"common"_ base level](#common-base-level) instead for most repositories.
+
+- [Building](#building)
+- [Formatting](#formatting)
+- [Linting](#linting)
+- [Package Management](#package-management)
+- [Repository Templates](#repository-templates)
+- [Type Checking](#type-checking)
 
 ### Building
 
@@ -151,6 +158,12 @@ pnpm run tsc --watch
 These added tooling pieces are those that aren't quite essential for a repository, but are still very commonly useful.
 This is recommended for most users of `create-typescript-app` to start with.
 
+- [Contributors](#contributors)
+- [Lint Knip](#lint-knip)
+- [Releases](#releases)
+- [Renovate](#renovate)
+- [Testing](#testing)
+
 ### Contributors
 
 [**All Contributors**](https://allcontributors.org): Tracks various kinds of contributions and displays them in a nicely formatted table in the README.md.
@@ -205,7 +218,22 @@ pnpm run test run --coverage
 ## "Everything" Base Level
 
 This level is for developers who are eager to get the maximum tooling benefits in a repository.
-Using the _"everything"_ level will gain you comprehensive, strict coverage of all sorts of repository issues, including strict ESLint configs and auto-sorting of properties.
+Using the _"everything"_ level will gain you comprehensive, strict coverage of all sorts of repository issues, including auto-sorting of properties and strict ESLint configs.
+
+- [Compliance](#compliance)
+- [Lint Deprecation](#lint-deprecation)
+- [Lint ESLint](#lint-eslint)
+- [Lint JSDoc](#lint-jsdoc)
+- [Lint JSON](#lint-json)
+- [Lint MD](#lint-md)
+- [Lint Package JSON](#lint-package-json)
+- [Lint Packages](#lint-packages)
+- [Lint Perfectionist](#lint-perfectionist)
+- [Lint Regex](#lint-regex)
+- [Lint Spelling](#lint-spelling)
+- [Lint Strict](#lint-strict)
+- [Lint Stylistic](#lint-stylistic)
+- [Lint YML](#lint-yml)
 
 ### Compliance
 

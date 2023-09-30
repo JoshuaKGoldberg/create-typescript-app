@@ -20,7 +20,9 @@ module.exports = {
 				? ""
 				: `
 		"plugin:perfectionist/recommended-natural",`
-		}${options.excludeLintRegex ? "" : `"plugin:regexp/recommended",`}
+		}${options.excludeLintRegex ? "" : `"plugin:regexp/recommended",`}${
+			options.excludeTests ? "" : `"plugin:vitest/recommended",`
+		}
 	],
 	overrides: [${
 		options.excludeLintMd

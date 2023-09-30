@@ -126,6 +126,7 @@ describe("createESLintRC", () => {
 				    \\"plugin:n/recommended\\",
 				    \\"plugin:perfectionist/recommended-natural\\",
 				    \\"plugin:regexp/recommended\\",
+				    \\"plugin:vitest/recommended\\",
 				  ],
 				  overrides: [
 				    {

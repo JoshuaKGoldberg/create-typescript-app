@@ -2,6 +2,7 @@ import { ModeRunner } from "../bin/mode.js";
 import { outro } from "../shared/cli/outro.js";
 import { StatusCodes } from "../shared/codes.js";
 import { ensureGitRepository } from "../shared/ensureGitRepository.js";
+import { generateNextSteps } from "../shared/generateNextSteps.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
 import { migrateWithOptions } from "./migrateWithOptions.js";
@@ -31,7 +32,9 @@ export const migrate: ModeRunner = async (args) => {
 							`git commit -m "migrated repo to create-typescript-app ✨`,
 							`git push`,
 						],
+						variant: "code",
 					},
+					...generateNextSteps(inputs.options),
 				]);
 			},
 			skipRestore: inputs.options.skipRestore,

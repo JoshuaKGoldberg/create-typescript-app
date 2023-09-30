@@ -37,6 +37,20 @@ describe("outro", () => {
 		expect(mockConsoleLog.mock.calls).toEqual([
 			[chalk.blue("Abc 123")],
 			[],
+			["one"],
+			["two"],
+			[],
+			[chalk.greenBright(`See ya! 👋`)],
+			[],
+		]);
+	});
+
+	it("logs lines as code when variant is specified", () => {
+		outro([{ label: "Abc 123", lines: ["one", "two"], variant: "code" }]);
+
+		expect(mockConsoleLog.mock.calls).toEqual([
+			[chalk.blue("Abc 123")],
+			[],
 			[chalk.gray("one")],
 			[chalk.gray("two")],
 			[],

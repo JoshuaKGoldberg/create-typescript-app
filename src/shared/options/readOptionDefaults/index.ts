@@ -36,11 +36,11 @@ export function readOptionDefaults() {
 			const npmEmail =
 				(await npmDefaults())?.email ?? (await packageAuthor()).email;
 
-			/* eslint-disable @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/no-non-null-assertion */
+			/* eslint-disable @typescript-eslint/no-non-null-assertion */
 			return gitEmail || npmEmail
 				? { github: (gitEmail || npmEmail)!, npm: (npmEmail || gitEmail)! }
 				: undefined;
-			/* eslint-enable @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/no-non-null-assertion */
+			/* eslint-enable @typescript-eslint/no-non-null-assertion */
 		},
 		funding: async () =>
 			await tryCatchAsync(

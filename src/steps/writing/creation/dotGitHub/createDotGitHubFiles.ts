@@ -163,8 +163,8 @@ There are two steps involved:
 
 ### Finding an Issue
 
-With the exception of very small typos, all changes to this repository generally need to correspond to an [open issue marked as \`accepting prs\` on the issue tracker](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22).
-If this is your first time contributing, consider searching for [unassigned issues that also have the \`good first issue\` label](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aopen+is%3Aissue+label%3A%22accepting+prs%22+label%3A%22good+first+issue%22+no%3Aassignee).
+With the exception of very small typos, all changes to this repository generally need to correspond to an [unassigned open issue marked as \`status: accepting prs\` on the issue tracker](https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=is%3Aissue+is%3Aopen+label%3A%22status%3A+accepting+prs%22+no%3Aassignee+).
+If this is your first time contributing, consider searching for [unassigned issues that also have the \`good first issue\` label](https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22+label%3A%22status%3A+accepting+prs%22+no%3Aassignee+).
 If the issue you'd like to fix isn't found on the issue, see [Reporting Issues](#reporting-issues) for filing your own (please do!).
 
 #### Issue Claiming
@@ -172,7 +172,7 @@ If the issue you'd like to fix isn't found on the issue, see [Reporting Issues](
 We don't use any kind of issue claiming system.
 We've found in the past that they result in accidental ["licked cookie"](https://devblogs.microsoft.com/oldnewthing/20091201-00/?p=15843) situations where contributors claim an issue but run out of time or energy trying before sending a PR.
 
-If an issue has been marked as \`accepting prs\` and an open PR does not exist, feel free to send a PR.
+If an issue has been marked as \`status: accepting prs\` and an open PR does not exist, feel free to send a PR.
 Please don't post comments asking for permission or stating you will work on an issue.
 
 ### Sending a Pull Request

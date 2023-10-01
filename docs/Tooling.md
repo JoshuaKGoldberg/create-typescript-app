@@ -83,7 +83,8 @@ pnpm run build --watch
 ### Formatting
 
 [**Prettier**](https://prettier.io): Formats code for developers and enforces a consistent formatting style.
-It's run on file save per [VS Code](TODO) settings and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
+It's run on file save per [VS Code](https://code.visualstudio.com/docs/getstarted/settings) settings and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
+[prettier-plugin-curly](https://github.com/JoshuaKGoldberg/prettier-plugin-curly) and [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson) add in more formatting as well.
 
 Auto-formatting all files:
 
@@ -123,18 +124,17 @@ pnpm run install
 
 In code, assorted repository documentation files for GitHub are created:
 
-- [Code of conduct](TODO)
-- [Contributing guide](TODO)
-- [Issue templates](TODO)
-- [PR template](TODO)
-- [Security policy](TODO)
+- [Code of conduct](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project)
+- [Contributing guide](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors)
+- [Issue and PR templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates)
+- [Security policy](https://docs.github.com/en/code-security/getting-started/adding-a-security-policy-to-your-repository)
 
-[GitHub Actions workflows](TODO) are added for each of the enabled tooling pieces to run them in CI.
+[GitHub Actions workflows](https://github.com/features/actions) are added for each of the enabled tooling pieces to run them in CI.
 
 On the GitHub repository, metadata will be populated:
 
-- [Issue labels](TODO) for issue areas, statuses, and types.
-- [Repository settings](TODO) such as [branch protections](TODO) and [squash merging PRs](TODO)
+- [Issue labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels) for issue areas, statuses, and types.
+- [Repository settings](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features) such as [branch protections](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) and [squash merging PRs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges)
 
 ### Type Checking
 
@@ -194,8 +194,8 @@ pnpm run lint:knip
 Additionally:
 
 - [`console-fail-test`](https://github.com/JoshuaKGoldberg/console-fail-test) will also be added to ensure tests don't accidentally log to the console.
-- [`eslint-plugin-no-only-tests`](TODO) will be added to the ESLint config to ensure calls to `it.only` or similar are not checked in
-- [`eslint-plugin-vitest`](TODO) will be added to the ESLint config to lint for Vitest-specific issues
+- [`eslint-plugin-no-only-tests`](https://github.com/levibuzolic/eslint-plugin-no-only-tests) will be added to the ESLint config to ensure calls to `it.only` or similar are not checked in
+- [`eslint-plugin-vitest`](https://github.com/veritem/eslint-plugin-vitest) will be added to the ESLint config to lint for Vitest-specific issues
 
 Running tests in watch mode:
 
@@ -203,7 +203,7 @@ Running tests in watch mode:
 pnpm run test
 ```
 
-Running tests in watch mode and auto-updating [Vitest snapshots](TODO):
+Running tests in watch mode and auto-updating [Vitest snapshots](https://vitest.dev/guide/snapshot.html):
 
 ```shell
 pnpm run test -u

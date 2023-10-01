@@ -38,6 +38,7 @@ const createMockOctokit = () =>
 describe("ensureRepositoryExists", () => {
 	it("returns the repository when octokit is undefined", async () => {
 		const actual = await ensureRepositoryExists(undefined, {
+			mode: "initialize",
 			owner,
 			repository,
 		});
@@ -51,6 +52,7 @@ describe("ensureRepositoryExists", () => {
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
 			{
+				mode: "initialize",
 				owner,
 				repository,
 			},
@@ -67,10 +69,7 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({ github: { auth, octokit }, repository });
@@ -80,6 +79,26 @@ describe("ensureRepositoryExists", () => {
 			template_owner: "JoshuaKGoldberg",
 			template_repo: "create-typescript-app",
 		});
+	});
+
+	it("defaults to creating a repository when mode is 'create'", async () => {
+		const octokit = createMockOctokit();
+
+		mockDoesRepositoryExist.mockResolvedValue(false);
+
+		const actual = await ensureRepositoryExists(
+			{ auth, octokit },
+			{ mode: "create", owner, repository },
+		);
+
+		expect(actual).toEqual({ github: { auth, octokit }, repository });
+		expect(octokit.rest.repos.createUsingTemplate).toHaveBeenCalledWith({
+			name: repository,
+			owner,
+			template_owner: "JoshuaKGoldberg",
+			template_repo: "create-typescript-app",
+		});
+		expect(mockSelect).not.toHaveBeenCalled();
 	});
 
 	it("returns the second repository when the prompt is 'different', the first repository does not exist, and the second repository exists", async () => {
@@ -94,10 +113,7 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({
@@ -119,10 +135,7 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({
@@ -145,10 +158,7 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({ octokit: undefined, repository });

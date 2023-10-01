@@ -266,7 +266,7 @@ export function createWorkflows(options: Options) {
 				],
 			}),
 		}),
-		...(options.excludeTests && {
+		...(!options.excludeTests && {
 			"test.yml": createWorkflowFile({
 				name: "Test",
 				steps: [

@@ -356,6 +356,26 @@ describe("createWorkflows", () => {
 			  contents: write
 			  id-token: write
 			",
+			  "test.yml": "jobs:
+			  test:
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm run test --coverage
+			      - name: Codecov
+			        uses: codecov/codecov-action@v3
+			        with:
+			          github-token: \${{ secrets.GITHUB_TOKEN }}
+
+			name: Test
+
+			on:
+			  pull_request: ~
+			  push:
+			    branches:
+			      - main
+			",
 			  "tsc.yml": "jobs:
 			  type_check:
 			    runs-on: ubuntu-latest
@@ -445,26 +465,6 @@ describe("createWorkflows", () => {
 			      - run: pnpm format --list-different
 
 			name: Prettier
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "test.yml": "jobs:
-			  test:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm run test --coverage
-			      - name: Codecov
-			        uses: codecov/codecov-action@v3
-			        with:
-			          github-token: \${{ secrets.GITHUB_TOKEN }}
-
-			name: Test
 
 			on:
 			  pull_request: ~

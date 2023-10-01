@@ -38,7 +38,6 @@ const createMockOctokit = () =>
 describe("ensureRepositoryExists", () => {
 	it("returns the repository when octokit is undefined", async () => {
 		const actual = await ensureRepositoryExists(undefined, {
-			createRepository: false,
 			owner,
 			repository,
 		});
@@ -52,36 +51,12 @@ describe("ensureRepositoryExists", () => {
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
 			{
-				createRepository: false,
 				owner,
 				repository,
 			},
 		);
 
 		expect(actual).toEqual({ github: { auth, octokit }, repository });
-	});
-
-	it("creates a new repository when createRepository is true and the repository does not exist", async () => {
-		const octokit = createMockOctokit();
-
-		mockDoesRepositoryExist.mockResolvedValue(false);
-
-		const actual = await ensureRepositoryExists(
-			{ auth, octokit },
-			{
-				createRepository: true,
-				owner,
-				repository,
-			},
-		);
-
-		expect(actual).toEqual({ github: { auth, octokit }, repository });
-		expect(octokit.rest.repos.createUsingTemplate).toHaveBeenCalledWith({
-			name: repository,
-			owner,
-			template_owner: "JoshuaKGoldberg",
-			template_repo: "create-typescript-app",
-		});
 	});
 
 	it("creates a new repository when the prompt is 'create' and the repository does not exist", async () => {
@@ -93,7 +68,6 @@ describe("ensureRepositoryExists", () => {
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
 			{
-				createRepository: false,
 				owner,
 				repository,
 			},
@@ -121,7 +95,6 @@ describe("ensureRepositoryExists", () => {
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
 			{
-				createRepository: false,
 				owner,
 				repository,
 			},
@@ -147,7 +120,6 @@ describe("ensureRepositoryExists", () => {
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
 			{
-				createRepository: false,
 				owner,
 				repository,
 			},
@@ -174,7 +146,6 @@ describe("ensureRepositoryExists", () => {
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
 			{
-				createRepository: false,
 				owner,
 				repository,
 			},

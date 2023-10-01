@@ -11,7 +11,6 @@ export const optionsSchemaShape = {
 			z.literal("prompt"),
 		])
 		.optional(),
-	createRepository: z.boolean().optional(),
 	description: z.string().optional(),
 	directory: z.string().optional(),
 	email: z

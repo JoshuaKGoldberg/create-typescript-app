@@ -9,7 +9,6 @@ const emptyOptions = {
 	access: undefined,
 	author: undefined,
 	base: undefined,
-	createRepository: undefined,
 	description: undefined,
 	directory: undefined,
 	email: undefined,

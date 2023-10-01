@@ -7,7 +7,6 @@ const options = {
 	access: "public",
 	author: "Test Author",
 	base: "everything",
-	createRepository: false,
 	description: "Test description.",
 	directory: ".",
 	email: {

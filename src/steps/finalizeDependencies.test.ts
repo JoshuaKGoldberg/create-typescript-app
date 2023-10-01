@@ -20,7 +20,6 @@ const options = {
 	access: "public",
 	author: undefined,
 	base: "everything",
-	createRepository: undefined,
 	description: "Stub description.",
 	directory: ".",
 	email: {

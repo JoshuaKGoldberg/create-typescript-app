@@ -1,4 +1,3 @@
-import * as prompts from "@clack/prompts";
 import { $ } from "execa";
 
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
@@ -46,13 +45,7 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 	]);
 
 	const sendToGitHub =
-		github &&
-		(await doesRepositoryExist(github.octokit, options)) &&
-		(options.createRepository ??
-			(await prompts.confirm({
-				message:
-					"Would you like to push the template's tooling up to the repository on GitHub?",
-			})) === true);
+		github && (await doesRepositoryExist(github.octokit, options));
 
 	if (sendToGitHub) {
 		await withSpinner("Initializing GitHub repository", async () => {

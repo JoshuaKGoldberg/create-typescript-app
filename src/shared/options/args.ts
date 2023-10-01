@@ -4,7 +4,6 @@ export const allArgOptions = {
 	access: { type: "string" },
 	author: { type: "string" },
 	base: { type: "string" },
-	"create-repository": { type: "boolean" },
 	description: { type: "string" },
 	directory: { type: "string" },
 	email: { type: "string" },

@@ -8,10 +8,11 @@ import npmUser from "npm-user";
 import { readPackageData } from "../../packages.js";
 import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { tryCatchLazyValueAsync } from "../../tryCatchLazyValueAsync.js";
+import { PromptedOptions } from "../../types.js";
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
 import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
 
-export function readOptionDefaults() {
+export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 	const gitDefaults = tryCatchLazyValueAsync(async () =>
 		gitUrlParse(await gitRemoteOriginUrl()),
 	);
@@ -53,7 +54,9 @@ export function readOptionDefaults() {
 		owner: async () =>
 			(await gitDefaults())?.organization ?? (await packageAuthor()).author,
 		repository: async () =>
-			(await gitDefaults())?.name ?? (await packageData()).name,
+			promptedOptions?.repository ??
+			(await gitDefaults())?.name ??
+			(await packageData()).name,
 		...readDefaultsFromReadme(),
 	};
 }

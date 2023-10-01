@@ -1,4 +1,6 @@
-import { Mode } from "../bin/mode.js";
+import { z } from "zod";
+
+import { StatusCode } from "./codes.js";
 
 export interface AllContributorContributor {
 	contributions: string[];
@@ -33,12 +35,16 @@ export interface OptionsLogo {
 	src: string;
 }
 
+/**
+ * All runtime options that may (or must) be specified for setup.
+ */
 export interface Options {
 	access: OptionsAccess;
 	author?: string;
 	base?: OptionsBase;
 	createRepository?: boolean;
 	description: string;
+	directory: string;
 	email: OptionsEmail;
 	excludeAllContributors?: boolean;
 	excludeCompliance?: boolean;
@@ -74,3 +80,31 @@ export interface Options {
 	skipUninstall?: boolean;
 	title: string;
 }
+
+/**
+ * Options that might be suggested by how the user is running setup.
+ */
+export interface PromptedOptions {
+	/**
+	 * Directory for the repository, if it may differ from the repository name.
+	 */
+	directory?: string;
+
+	/**
+	 * Repository name, if it may differ from the current directory.
+	 */
+	repository?: string;
+}
+
+export interface ModeResult {
+	code: StatusCode;
+	error?: string | z.ZodError<object>;
+	options: Partial<Options>;
+}
+
+export type ModeRunner = (
+	args: string[],
+	promptedOptions?: PromptedOptions,
+) => Promise<ModeResult>;
+
+export type Mode = "create" | "initialize" | "migrate";

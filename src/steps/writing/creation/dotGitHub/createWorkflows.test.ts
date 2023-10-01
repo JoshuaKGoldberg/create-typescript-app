@@ -8,7 +8,8 @@ const createOptions = (exclude: boolean) =>
 		access: "public",
 		author: undefined,
 		base: "everything",
-		description: "Stub description.",
+		description: "Test description.",
+		directory: ".",
 		email: {
 			github: "github@email.com",
 			npm: "npm@email.com",

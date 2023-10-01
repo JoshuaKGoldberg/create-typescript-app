@@ -21,15 +21,16 @@ vi.mock("../shared/options/readOptions.js", () => ({
 	},
 }));
 
-const mockCreateAndEnterRepository = vi.fn();
+const mockCreateAndEnterGitDirectory = vi.fn();
 
-vi.mock("./createAndEnterRepository.js", () => ({
-	get createAndEnterRepository() {
-		return mockCreateAndEnterRepository;
+vi.mock("./createAndEnterGitDirectory.js", () => ({
+	get createAndEnterGitDirectory() {
+		return mockCreateAndEnterGitDirectory;
 	},
 }));
 
 const optionsBase = {
+	directory: "TestDirectory",
 	repository: "TestRepository",
 };
 
@@ -48,13 +49,13 @@ describe("create", () => {
 		});
 	});
 
-	it("returns a failure code when createAndEnterRepository returns false", async () => {
+	it("returns a failure code when createAndEnterGitDirectory returns false", async () => {
 		mockReadOptions.mockResolvedValue({
 			cancelled: false,
 			options: optionsBase,
 		});
 
-		mockCreateAndEnterRepository.mockResolvedValue(false);
+		mockCreateAndEnterGitDirectory.mockResolvedValue(false);
 
 		const result = await create([]);
 
@@ -64,7 +65,7 @@ describe("create", () => {
 		});
 		expect(mockOutro).toHaveBeenCalledWith(
 			chalk.red(
-				"The TestRepository directory already exists. Please remove the directory or try a different name.",
+				"The TestDirectory directory already exists and is not empty. Please clear the directory, run with --mode initialize, or try a different directory.",
 			),
 		);
 	});

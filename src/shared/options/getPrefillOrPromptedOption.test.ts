@@ -1,3 +1,4 @@
+import { TextOptions } from "@clack/prompts";
 import { describe, expect, it, vi } from "vitest";
 
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
@@ -12,28 +13,10 @@ vi.mock("@clack/prompts", () => ({
 }));
 
 describe("getPrefillOrPromptedValue", () => {
-	it("logs a pre-fill message when a first value already exists", async () => {
-		const existing = "existing value";
-
-		const actual = await getPrefillOrPromptedOption(existing, "");
-
-		expect(actual).toEqual(existing);
-	});
-
-	it("prompts for a new value when the value doesn't already exist", async () => {
-		const expected = "expected value";
-
-		mockText.mockResolvedValue(expected);
-
-		const actual = await getPrefillOrPromptedOption(undefined, "");
-
-		expect(actual).toEqual(expected);
-	});
-
 	it("provides no placeholder when one is not provided", async () => {
 		const message = "Test message";
 
-		await getPrefillOrPromptedOption(undefined, message);
+		await getPrefillOrPromptedOption(message);
 
 		expect(mockText).toHaveBeenCalledWith({
 			message,
@@ -47,7 +30,6 @@ describe("getPrefillOrPromptedValue", () => {
 		const placeholder = "Test placeholder";
 
 		await getPrefillOrPromptedOption(
-			undefined,
 			message,
 			vi.fn().mockResolvedValue(placeholder),
 		);
@@ -57,5 +39,25 @@ describe("getPrefillOrPromptedValue", () => {
 			placeholder,
 			validate: expect.any(Function),
 		});
+	});
+
+	it("validates entered text when it's not  blank", async () => {
+		const message = "Test message";
+
+		await getPrefillOrPromptedOption(message);
+
+		const { validate } = (mockText.mock.calls[0] as [Required<TextOptions>])[0];
+
+		expect(validate(message)).toBeUndefined();
+	});
+
+	it("invalidates entered text when it's blank", async () => {
+		const message = "";
+
+		await getPrefillOrPromptedOption(message);
+
+		const { validate } = (mockText.mock.calls[0] as [Required<TextOptions>])[0];
+
+		expect(validate(message)).toBe("Please enter a value.");
 	});
 });

@@ -9,6 +9,7 @@ const optionsBase = {
 	base: "everything",
 	createRepository: undefined,
 	description: "",
+	directory: ".",
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",

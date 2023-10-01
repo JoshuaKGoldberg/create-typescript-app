@@ -25,6 +25,7 @@ const options = {
 	base: "everything",
 	createRepository: undefined,
 	description: "Stub description.",
+	directory: ".",
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",

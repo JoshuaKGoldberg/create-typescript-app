@@ -6,6 +6,7 @@ export const allArgOptions = {
 	base: { type: "string" },
 	"create-repository": { type: "boolean" },
 	description: { type: "string" },
+	directory: { type: "string" },
 	email: { type: "string" },
 	"email-github": { type: "string" },
 	"email-npm": { type: "string" },

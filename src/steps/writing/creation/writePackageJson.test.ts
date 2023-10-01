@@ -16,7 +16,8 @@ const options = {
 	author: "test-author",
 	base: "everything",
 	createRepository: undefined,
-	description: "test-description",
+	description: "Test description.",
+	directory: ".",
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",
@@ -94,7 +95,7 @@ describe("writePackageJson", () => {
 			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
-			  "description": "test-description",
+			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
 			    "node": ">=18",
@@ -164,7 +165,7 @@ describe("writePackageJson", () => {
 			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
-			  "description": "test-description",
+			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
 			    "node": ">=18",

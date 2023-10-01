@@ -9,7 +9,7 @@ import { initialize } from "../initialize/index.js";
 import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
 import { StatusCodes } from "../shared/codes.js";
-import { promptForMode } from "./mode.js";
+import { promptForMode } from "./promptForMode.js";
 
 const operationMessage = (verb: string) =>
 	`Operation ${verb}. Exiting - maybe another time? 👋`;
@@ -45,14 +45,14 @@ export async function bin(args: string[]) {
 		strict: false,
 	});
 
-	const mode = await promptForMode(values.mode);
+	const { mode, options: promptedOptions } = await promptForMode(values.mode);
 	if (typeof mode !== "string") {
 		prompts.outro(chalk.red(mode?.message ?? operationMessage("cancelled")));
 		return 1;
 	}
 
 	const runners = { create, initialize, migrate };
-	const { code, error, options } = await runners[mode](args);
+	const { code, error, options } = await runners[mode](args, promptedOptions);
 
 	prompts.log.info(
 		[

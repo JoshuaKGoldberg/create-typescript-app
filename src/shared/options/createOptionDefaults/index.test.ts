@@ -1,12 +1,20 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readOptionDefaults } from "./index.js";
+import { createOptionDefaults } from "./index.js";
 
 const mock$ = vi.fn();
 
 vi.mock("execa", () => ({
 	get $() {
 		return mock$;
+	},
+}));
+
+const mockGitUrlParse = vi.fn();
+
+vi.mock("git-url-parse", () => ({
+	get default() {
+		return mockGitUrlParse;
 	},
 }));
 
@@ -26,7 +34,7 @@ vi.mock("../../packages.js", () => ({
 	},
 }));
 
-describe("readOptionDefaults", () => {
+describe("createOptionDefaults", () => {
 	describe("email", () => {
 		it("returns the npm whoami email from npm when only an npm exists", async () => {
 			mock$.mockImplementation(([command]: string[]) =>
@@ -36,7 +44,7 @@ describe("readOptionDefaults", () => {
 				email: `test@${username}.com`,
 			}));
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@npm-username.com",
@@ -52,7 +60,7 @@ describe("readOptionDefaults", () => {
 				},
 			});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@package.com",
@@ -68,7 +76,7 @@ describe("readOptionDefaults", () => {
 			);
 			mockReadPackageData.mockResolvedValue({});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@git.com",
@@ -85,7 +93,7 @@ describe("readOptionDefaults", () => {
 			}));
 			mockReadPackageData.mockResolvedValue({});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@git.com",
@@ -97,9 +105,37 @@ describe("readOptionDefaults", () => {
 			mock$.mockResolvedValue({ stdout: "" });
 			mockReadPackageData.mockResolvedValue({});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toBeUndefined();
+		});
+	});
+
+	describe("repository", () => {
+		it("returns promptedOptions.repository when it exists", async () => {
+			const repository = "test-prompted-repository";
+			const promptedOptions = { repository };
+			const actual = await createOptionDefaults(promptedOptions).repository();
+
+			expect(actual).toBe(repository);
+		});
+
+		it("returns the Git name when it exists and promptedOptions.repository doesn't", async () => {
+			const name = "test-git-repository";
+			mockGitUrlParse.mockResolvedValueOnce({ name });
+
+			const actual = await createOptionDefaults().repository();
+
+			expect(actual).toBe(name);
+		});
+
+		it("returns the package name when it exists and promptedOptions.repository a Git name don't", async () => {
+			const name = "test-package-name";
+			mockReadPackageData.mockResolvedValueOnce({ name });
+
+			const actual = await createOptionDefaults().repository();
+
+			expect(actual).toBe(name);
 		});
 	});
 });

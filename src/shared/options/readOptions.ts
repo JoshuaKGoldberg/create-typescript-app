@@ -137,6 +137,7 @@ export async function readOptions(
 			? undefined
 			: await withSpinner("Checking GitHub authentication", getGitHub),
 		{
+			mode,
 			owner: options.owner,
 			repository: options.repository,
 		},

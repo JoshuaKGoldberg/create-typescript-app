@@ -49,10 +49,16 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 
 	if (sendToGitHub) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await $`git remote add origin https://github.com/${options.owner}/${options.repository}`;
-			await $`git add -A`;
-			await $`git commit --message ${"feat: initialized repo ✨"}`;
-			await $`git push -u origin main --force`;
+			console.log(
+				"git remote",
+				await $`git remote add origin https://github.com/${options.owner}/${options.repository}`,
+			);
+			console.log("git add", await $`git add -A`);
+			console.log(
+				"git commit",
+				await $`git commit --message ${"feat: initialized repo ✨"}`,
+			);
+			console.log("git push", await $`git push -u origin main --force`);
 			await initializeGitHubRepository(github.octokit, options);
 		});
 	}

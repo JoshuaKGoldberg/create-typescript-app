@@ -7,6 +7,7 @@ const options = {
 	access: "public",
 	base: "everything",
 	description: "Test description.",
+	directory: ".",
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",

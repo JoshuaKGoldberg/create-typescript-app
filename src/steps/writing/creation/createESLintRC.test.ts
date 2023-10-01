@@ -10,6 +10,7 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 		base: "everything",
 		createRepository: true,
 		description: "Test description.",
+		directory: ".",
 		email: {
 			github: "github@email.com",
 			npm: "npm@email.com",

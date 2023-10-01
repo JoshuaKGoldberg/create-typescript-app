@@ -12,7 +12,7 @@ import { PromptedOptions } from "../../types.js";
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
 import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
 
-export function createOptionDefaults(promptedOptions: PromptedOptions) {
+export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 	const gitDefaults = tryCatchLazyValueAsync(async () =>
 		gitUrlParse(await gitRemoteOriginUrl()),
 	);
@@ -54,7 +54,7 @@ export function createOptionDefaults(promptedOptions: PromptedOptions) {
 		owner: async () =>
 			(await gitDefaults())?.organization ?? (await packageAuthor()).author,
 		repository: async () =>
-			promptedOptions.repository ??
+			promptedOptions?.repository ??
 			(await gitDefaults())?.name ??
 			(await packageData()).name,
 		...readDefaultsFromReadme(),

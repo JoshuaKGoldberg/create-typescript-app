@@ -9,6 +9,7 @@ const options = {
 	base: "everything",
 	createRepository: true,
 	description: "Test description.",
+	directory: ".",
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",
@@ -46,7 +47,7 @@ describe("createRerunSuggestion", () => {
 		const actual = createRerunSuggestion(options);
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode create --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode create --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
@@ -61,7 +62,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --keywords \\"abc def ghi jkl mno pqr\\" --logo test/src.png --logo-alt \\"Test alt.\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --keywords \\"abc def ghi jkl mno pqr\\" --logo test/src.png --logo-alt \\"Test alt.\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 
@@ -75,7 +76,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --keywords \\"abc def ghi jkl mno pqr\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --create-repository true --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --keywords \\"abc def ghi jkl mno pqr\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 });

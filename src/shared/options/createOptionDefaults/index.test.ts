@@ -10,6 +10,14 @@ vi.mock("execa", () => ({
 	},
 }));
 
+const mockGitUrlParse = vi.fn();
+
+vi.mock("git-url-parse", () => ({
+	get default() {
+		return mockGitUrlParse;
+	},
+}));
+
 const mockNpmUser = vi.fn();
 
 vi.mock("npm-user", () => ({
@@ -100,6 +108,34 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toBeUndefined();
+		});
+	});
+
+	describe("repository", () => {
+		it("returns promptedOptions.repository when it exists", async () => {
+			const repository = "test-prompted-repository";
+			const promptedOptions = { repository };
+			const actual = await createOptionDefaults(promptedOptions).repository();
+
+			expect(actual).toBe(repository);
+		});
+
+		it("returns the Git name when it exists and promptedOptions.repository doesn't", async () => {
+			const name = "test-git-repository";
+			mockGitUrlParse.mockResolvedValueOnce({ name });
+
+			const actual = await createOptionDefaults().repository();
+
+			expect(actual).toBe(name);
+		});
+
+		it("returns the package name when it exists and promptedOptions.repository a Git name don't", async () => {
+			const name = "test-package-name";
+			mockReadPackageData.mockResolvedValueOnce({ name });
+
+			const actual = await createOptionDefaults().repository();
+
+			expect(actual).toBe(name);
 		});
 	});
 });

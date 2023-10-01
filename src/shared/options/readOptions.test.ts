@@ -11,6 +11,7 @@ const emptyOptions = {
 	base: undefined,
 	createRepository: undefined,
 	description: undefined,
+	directory: undefined,
 	email: undefined,
 	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
@@ -93,8 +94,8 @@ vi.mock("./getGitHub.js", () => ({
 	},
 }));
 
-vi.mock("./readOptionDefaults/index.js", () => ({
-	readOptionDefaults() {
+vi.mock("./createOptionDefaults/index.js", () => ({
+	createOptionDefaults() {
 		return {
 			author: vi.fn(),
 			description: vi.fn(),
@@ -341,6 +342,7 @@ describe("readOptions", () => {
 				...mockOptions,
 				access: "public",
 				description: "mock",
+				directory: "mock",
 				email: {
 					github: "mock",
 					npm: "mock",

@@ -12,28 +12,10 @@ vi.mock("@clack/prompts", () => ({
 }));
 
 describe("getPrefillOrPromptedValue", () => {
-	it("logs a pre-fill message when a first value already exists", async () => {
-		const existing = "existing value";
-
-		const actual = await getPrefillOrPromptedOption(existing, "");
-
-		expect(actual).toEqual(existing);
-	});
-
-	it("prompts for a new value when the value doesn't already exist", async () => {
-		const expected = "expected value";
-
-		mockText.mockResolvedValue(expected);
-
-		const actual = await getPrefillOrPromptedOption(undefined, "");
-
-		expect(actual).toEqual(expected);
-	});
-
 	it("provides no placeholder when one is not provided", async () => {
 		const message = "Test message";
 
-		await getPrefillOrPromptedOption(undefined, message);
+		await getPrefillOrPromptedOption(message);
 
 		expect(mockText).toHaveBeenCalledWith({
 			message,
@@ -47,7 +29,6 @@ describe("getPrefillOrPromptedValue", () => {
 		const placeholder = "Test placeholder";
 
 		await getPrefillOrPromptedOption(
-			undefined,
 			message,
 			vi.fn().mockResolvedValue(placeholder),
 		);

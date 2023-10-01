@@ -13,6 +13,7 @@ export const optionsSchemaShape = {
 		.optional(),
 	createRepository: z.boolean().optional(),
 	description: z.string().optional(),
+	directory: z.string().optional(),
 	email: z
 		.object({
 			github: z.string().email(),

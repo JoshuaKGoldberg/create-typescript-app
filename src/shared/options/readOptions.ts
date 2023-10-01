@@ -2,17 +2,17 @@ import { parseArgs } from "node:util";
 import { titleCase } from "title-case";
 import { z } from "zod";
 
-import { Mode } from "../../bin/mode.js";
 import { withSpinner } from "../cli/spinners.js";
+import { Mode, PromptedOptions } from "../types.js";
 import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
+import { createOptionDefaults } from "./createOptionDefaults/index.js";
 import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { optionsSchema } from "./optionsSchema.js";
-import { readOptionDefaults } from "./readOptionDefaults/index.js";
 
 export interface GitHubAndOptions {
 	github: GitHub | undefined;
@@ -34,8 +34,9 @@ export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 export async function readOptions(
 	args: string[],
 	mode: Mode,
+	promptedOptions: PromptedOptions = {},
 ): Promise<OptionsParseResult> {
-	const defaults = readOptionDefaults();
+	const defaults = createOptionDefaults(promptedOptions);
 	const { values } = parseArgs({
 		args,
 		options: allArgOptions,
@@ -49,6 +50,7 @@ export async function readOptions(
 		base: values.base,
 		createRepository: values["create-repository"],
 		description: values.description,
+		directory: values.directory,
 		email:
 			values.email ?? values["email-github"] ?? values["email-npm"]
 				? {
@@ -110,7 +112,6 @@ export async function readOptions(
 	const options = optionsParseResult.data;
 
 	options.owner ??= await getPrefillOrPromptedOption(
-		options.owner,
 		"What organization or user will the repository be under?",
 		defaults.owner,
 	);
@@ -122,7 +123,6 @@ export async function readOptions(
 	}
 
 	options.repository ??= await getPrefillOrPromptedOption(
-		options.repository,
 		"What will the kebab-case name of the repository be?",
 		defaults.repository,
 	);
@@ -148,7 +148,6 @@ export async function readOptions(
 	}
 
 	options.description ??= await getPrefillOrPromptedOption(
-		options.description,
 		"How would you describe the new package?",
 		async () =>
 			(await defaults.description()) ?? "A very lovely package. Hooray!",
@@ -158,7 +157,6 @@ export async function readOptions(
 	}
 
 	options.title ??= await getPrefillOrPromptedOption(
-		options.title,
 		"What will the Title Case title of the repository be?",
 		async () =>
 			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
@@ -170,10 +168,11 @@ export async function readOptions(
 	let logo: OptionsLogo | undefined;
 
 	if (options.logo) {
-		const alt = await getPrefillOrPromptedOption(
-			options.logoAlt,
-			"What is the alt text (non-visual description) of the logo?",
-		);
+		const alt =
+			options.logoAlt ??
+			(await getPrefillOrPromptedOption(
+				"What is the alt text (non-visual description) of the logo?",
+			));
 		if (!alt) {
 			return { cancelled: true, options };
 		}
@@ -185,7 +184,6 @@ export async function readOptions(
 		options.email ??
 		(await defaults.email()) ??
 		(await getPrefillOrPromptedOption(
-			undefined,
 			"What email should be used in package.json and .md files?",
 		));
 	if (!email) {
@@ -197,6 +195,8 @@ export async function readOptions(
 		access: options.access ?? "public",
 		author: options.author ?? (await defaults.owner()),
 		description: options.description,
+		directory:
+			options.directory ?? promptedOptions.directory ?? options.repository,
 		email: typeof email === "string" ? { github: email, npm: email } : email,
 		funding: options.funding ?? (await defaults.funding()),
 		logo,

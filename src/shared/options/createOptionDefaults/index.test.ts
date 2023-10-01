@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readOptionDefaults } from "./index.js";
+import { createOptionDefaults } from "./index.js";
 
 const mock$ = vi.fn();
 
@@ -26,7 +26,7 @@ vi.mock("../../packages.js", () => ({
 	},
 }));
 
-describe("readOptionDefaults", () => {
+describe("createOptionDefaults", () => {
 	describe("email", () => {
 		it("returns the npm whoami email from npm when only an npm exists", async () => {
 			mock$.mockImplementation(([command]: string[]) =>
@@ -36,7 +36,7 @@ describe("readOptionDefaults", () => {
 				email: `test@${username}.com`,
 			}));
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@npm-username.com",
@@ -52,7 +52,7 @@ describe("readOptionDefaults", () => {
 				},
 			});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@package.com",
@@ -68,7 +68,7 @@ describe("readOptionDefaults", () => {
 			);
 			mockReadPackageData.mockResolvedValue({});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@git.com",
@@ -85,7 +85,7 @@ describe("readOptionDefaults", () => {
 			}));
 			mockReadPackageData.mockResolvedValue({});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
 				github: "test@git.com",
@@ -97,7 +97,7 @@ describe("readOptionDefaults", () => {
 			mock$.mockResolvedValue({ stdout: "" });
 			mockReadPackageData.mockResolvedValue({});
 
-			const actual = await readOptionDefaults().email();
+			const actual = await createOptionDefaults().email();
 
 			expect(actual).toBeUndefined();
 		});

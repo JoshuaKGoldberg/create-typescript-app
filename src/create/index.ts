@@ -1,18 +1,18 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
-import { ModeResult } from "../bin/mode.js";
 import { outro } from "../shared/cli/outro.js";
 import { StatusCodes } from "../shared/codes.js";
 import { generateNextSteps } from "../shared/generateNextSteps.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
-import { createAndEnterRepository } from "./createAndEnterRepository.js";
+import { ModeRunner } from "../shared/types.js";
+import { createAndEnterGitDirectory } from "./createAndEnterGitDirectory.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 import { createWithOptions } from "./createWithOptions.js";
 
-export async function create(args: string[]): Promise<ModeResult> {
-	const inputs = await readOptions(args, "create");
+export const create: ModeRunner = async (args, promptedOptions) => {
+	const inputs = await readOptions(args, "create", promptedOptions);
 	if (inputs.cancelled) {
 		return {
 			code: StatusCodes.Cancelled,
@@ -21,11 +21,10 @@ export async function create(args: string[]): Promise<ModeResult> {
 		};
 	}
 
-	const wat = await createAndEnterRepository(inputs.options.repository);
-	if (!wat) {
+	if (!(await createAndEnterGitDirectory(inputs.options.directory))) {
 		prompts.outro(
 			chalk.red(
-				`The ${inputs.options.repository} directory already exists. Please remove the directory or try a different name.`,
+				`The ${inputs.options.directory} directory already exists and is not empty. Please clear the directory, run with --mode initialize, or try a different directory.`,
 			),
 		);
 		return { code: StatusCodes.Failure, options: inputs.options };
@@ -66,4 +65,4 @@ export async function create(args: string[]): Promise<ModeResult> {
 		}),
 		options: inputs.options,
 	};
-}
+};

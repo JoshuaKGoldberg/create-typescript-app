@@ -77,10 +77,7 @@ describe("createESLintRC", () => {
 				    {
 				      files: \\"**/*.md/*.ts\\",
 				      rules: {
-				        \\"n/no-missing-import\\": [
-				          \\"error\\",
-				          { allowModules: [\\"create-typescript-app\\"] },
-				        ],
+				        \\"n/no-missing-import\\": [\\"error\\", { allowModules: [\\"test-repository\\"] }],
 				      },
 				    },
 				    {
@@ -162,10 +159,7 @@ describe("createESLintRC", () => {
 				    {
 				      files: \\"**/*.md/*.ts\\",
 				      rules: {
-				        \\"n/no-missing-import\\": [
-				          \\"error\\",
-				          { allowModules: [\\"create-typescript-app\\"] },
-				        ],
+				        \\"n/no-missing-import\\": [\\"error\\", { allowModules: [\\"test-repository\\"] }],
 				      },
 				    },
 				    {

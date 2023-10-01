@@ -42,7 +42,6 @@ export interface Options {
 	access: OptionsAccess;
 	author?: string;
 	base?: OptionsBase;
-	createRepository?: boolean;
 	description: string;
 	directory: string;
 	email: OptionsEmail;

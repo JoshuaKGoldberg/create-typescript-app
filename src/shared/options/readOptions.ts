@@ -48,7 +48,6 @@ export async function readOptions(
 		access: values.access,
 		author: values.author,
 		base: values.base,
-		createRepository: values["create-repository"],
 		description: values.description,
 		directory: values.directory,
 		email:
@@ -138,7 +137,6 @@ export async function readOptions(
 			? undefined
 			: await withSpinner("Checking GitHub authentication", getGitHub),
 		{
-			createRepository: options.createRepository,
 			owner: options.owner,
 			repository: options.repository,
 		},

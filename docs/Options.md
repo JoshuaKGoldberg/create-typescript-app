@@ -17,7 +17,6 @@ These required options determine how the creation script will set up and scaffol
   - `common`: Important additions to the minimum starters such as releases and tests.
   - `everything`: The most thorough tooling imaginable: sorting, spellchecking, and more!
   - `prompt`: Fine-grained control over which tooling pieces to use
-- `--create-repository` _(boolean)_: Whether to create a corresponding repository on github.com (if it doesn't yet exist)
 - `--mode`: Whether to:
   - `create` a new repository in a child directory
   - `initialize` a freshly repository in the current directory
@@ -26,7 +25,7 @@ These required options determine how the creation script will set up and scaffol
 For example, scaffolding a full new repository under the current directory and also linking it to a new repository on github.com:
 
 ```shell
-npx create-typescript-app --base everything --create-repository --mode create
+npx create-typescript-app --base everything --mode create
 ```
 
 See [Tooling.md](./Tooling.md) for details on the tooling pieces and which bases they're included in.
@@ -43,7 +42,7 @@ These required options determine the options that will be substituted into the t
 For example, pre-populating all core required options and also creating a new repository:
 
 ```shell
-npx create-typescript-app --create-repository --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
+npx create-typescript-app --base everything --mode create --repository testing-repository --title "Testing Title" --owner TestingOwner --description "Test Description"
 ```
 
 That script will run completely autonomously, no prompted inputs required. ✨

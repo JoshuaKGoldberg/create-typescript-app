@@ -8,7 +8,6 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 		access: "public",
 		author: "TestAuthor",
 		base: "everything",
-		createRepository: true,
 		description: "Test description.",
 		directory: ".",
 		email: {

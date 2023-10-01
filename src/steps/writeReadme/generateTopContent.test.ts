@@ -7,7 +7,6 @@ const optionsBase = {
 	access: "public",
 	author: undefined,
 	base: undefined,
-	createRepository: undefined,
 	description: "",
 	directory: ".",
 	email: {

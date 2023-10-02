@@ -9,7 +9,7 @@ export async function writeAllContributorsRC(options: Options) {
 
 	return await formatJson({
 		badgeTemplate:
-			'<img alt="All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/all_contributors-<%= contributors.length %>-21bb42.svg" />',
+			'<img alt="All Contributors: <%= contributors.length %> 👪" src="https://img.shields.io/badge/all_contributors-<%= contributors.length %>-21bb42.svg" />',
 		commit: false,
 		commitConvention: "angular",
 		contributors: existing?.contributors ?? [],

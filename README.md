@@ -6,7 +6,7 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 30 🤝" src="https://img.shields.io/badge/all_contributors-30_🤝-21bb42.svg" />
+<img alt="All Contributors: 30 👪" src="https://img.shields.io/badge/all_contributors-30_👪-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>

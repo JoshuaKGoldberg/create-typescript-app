@@ -13,8 +13,6 @@ export async function finalizeDependencies(options: Options) {
 		"eslint-plugin-eslint-comments",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
-		"eslint-plugin-import",
-		"eslint-plugin-prettier",
 		"eslint-plugin-regexp",
 		"husky",
 		"lint-staged",

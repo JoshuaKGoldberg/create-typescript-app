@@ -1,3 +1,9 @@
+## [1.33.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.1...v1.33.2) (2023-10-02)
+
+### Bug Fixes
+
+- two small .json template touchups ([9c45e46](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9c45e4638ccd3426ae492da9c6a5c605abb9c164))
+
 ## [1.33.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.0...v1.33.1) (2023-10-02)
 
 ### Bug Fixes

@@ -284,7 +284,7 @@ describe("createWorkflows", () => {
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.2.1
+			        uses: JoshuaKGoldberg/release-it-action@v0.2.2
 
 			name: Release
 

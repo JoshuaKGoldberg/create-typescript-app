@@ -187,7 +187,7 @@ export function createWorkflows(options: Options) {
 							GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
 							NPM_TOKEN: "${{ secrets.NPM_TOKEN }}",
 						},
-						uses: "JoshuaKGoldberg/release-it-action@v0.2.1",
+						uses: "JoshuaKGoldberg/release-it-action@v0.2.2",
 					},
 				],
 			}),
@@ -202,7 +202,6 @@ export function createWorkflows(options: Options) {
 					{
 						name: "Codecov",
 						uses: "codecov/codecov-action@v3",
-						with: { "github-token": "${{ secrets.GITHUB_TOKEN }}" },
 					},
 				],
 			}),

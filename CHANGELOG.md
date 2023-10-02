@@ -1,3 +1,9 @@
+## [1.33.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.0...v1.33.1) (2023-10-02)
+
+### Bug Fixes
+
+- no, do not install -import and -prettier ([4a3c3f0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4a3c3f0e6a47db4fc1fd4aa5836d801d6378b752))
+
 # [1.33.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.32.0...v1.33.0) (2023-10-02)
 
 ### Features

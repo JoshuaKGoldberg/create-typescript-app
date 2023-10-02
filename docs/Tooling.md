@@ -259,17 +259,29 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 
 [**Markdownlint**](https://github.com/DavidAnson/markdownlint): Linting for Markdown code.
 
+```shell
+pnpm lint:md
+```
+
 > This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#567](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/567)).
 
 ### Lint Package JSON
 
 [`npm-package-json-lint`](https://github.com/tclindner/npm-package-json-lint): Linting for `package.json` files.
 
+```shell
+pnpm lint:package-json
+```
+
 > This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/839)).
 
 ### Lint Packages
 
-Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate
+Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate package dependencies.
+
+```shell
+pnpm lint:packages
+```
 
 > This is grouped with _"Lint"_ tooling pieces, but will likely eventually be renamed ([#896](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/896)).
 
@@ -286,6 +298,10 @@ This plugin is quite particular -perfectionist, even- but all its rules include 
 
 [**CSpell**](https://cspell.org): Spell checking for code.
 Helps detect typos based on a configurable user dictionary (`cspell.json`).
+
+```shell
+pnpm lint:spelling
+```
 
 > This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#897](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/897)).
 

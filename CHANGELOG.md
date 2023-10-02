@@ -1,3 +1,9 @@
+# [1.33.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.32.0...v1.33.0) (2023-10-02)
+
+### Features
+
+- explicit 'unassigned' under issue claiming notice, and snapshot updates ([76e8860](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/76e8860aedc4d2dde2cec439731878d3982fccc2))
+
 # [1.32.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.52...v1.32.0) (2023-10-02)
 
 ### Bug Fixes

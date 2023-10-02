@@ -192,6 +192,7 @@ describe("createWorkflows", () => {
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
+			      - run: pnpm build || true
 			      - run: pnpm lint
 
 			name: Lint
@@ -363,6 +364,7 @@ describe("createWorkflows", () => {
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
+			      - run: pnpm build || true
 			      - run: pnpm lint
 
 			name: Lint

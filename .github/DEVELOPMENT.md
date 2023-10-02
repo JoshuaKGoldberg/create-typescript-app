@@ -56,6 +56,8 @@ For example, ESLint can be run with `--fix` to auto-fix some lint rule complaint
 pnpm run lint --fix
 ```
 
+Note that you'll likely need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
+
 ## Testing
 
 [Vitest](https://vitest.dev) is used for tests.

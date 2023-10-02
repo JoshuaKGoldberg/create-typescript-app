@@ -81,6 +81,8 @@ ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`
 pnpm run lint --fix
 \`\`\`
 
+Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+
 ${
 	!options.excludeTests &&
 	`## Testing

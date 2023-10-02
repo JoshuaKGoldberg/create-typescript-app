@@ -1,3 +1,9 @@
+# [1.34.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.2...v1.34.0) (2023-10-02)
+
+### Features
+
+- always run build || exit 0 before lint in CI ([#936](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/936)) ([827b4b4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/827b4b408bc3f02972be2aa748ca6ddea2351b15)), closes [#935](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/935)
+
 ## [1.33.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.1...v1.33.2) (2023-10-02)
 
 ### Bug Fixes

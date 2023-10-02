@@ -31,7 +31,7 @@ If the issue you'd like to fix isn't found on the issue, see [Reporting Issues](
 We don't use any kind of issue claiming system.
 We've found in the past that they result in accidental ["licked cookie"](https://devblogs.microsoft.com/oldnewthing/20091201-00/?p=15843) situations where contributors claim an issue but run out of time or energy trying before sending a PR.
 
-If an issue has been marked as `status: accepting prs` and an open PR does not exist, feel free to send a PR.
+If an unassigned issue has been marked as `status: accepting prs` and an open PR does not exist, feel free to send a PR.
 Please don't post comments asking for permission or stating you will work on an issue.
 
 ### Sending a Pull Request

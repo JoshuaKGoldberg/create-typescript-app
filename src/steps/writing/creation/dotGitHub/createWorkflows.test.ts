@@ -306,8 +306,6 @@ describe("createWorkflows", () => {
 			      - run: pnpm run test --coverage
 			      - name: Codecov
 			        uses: codecov/codecov-action@v3
-			        with:
-			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
 			name: Test
 

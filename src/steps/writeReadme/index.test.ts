@@ -122,10 +122,9 @@ describe("writeReadme", () => {
 			<!-- ALL-CONTRIBUTORS-LIST:END -->
 			<!-- spellchecker: enable -->
 
-
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
-			> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+			> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 			",
 			  ],
 			]
@@ -194,10 +193,9 @@ describe("writeReadme", () => {
 			<!-- ALL-CONTRIBUTORS-LIST:END -->
 			<!-- spellchecker: enable -->
 
-
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
-			> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+			> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 			",
 			  ],
 			]
@@ -269,10 +267,9 @@ describe("writeReadme", () => {
 			<!-- ALL-CONTRIBUTORS-LIST:END -->
 			<!-- spellchecker: enable -->
 
-
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
-			> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+			> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 			",
 			  ],
 			]
@@ -320,8 +317,6 @@ describe("writeReadme", () => {
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
-
-
 
 <!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
@@ -390,7 +385,6 @@ describe("writeReadme", () => {
 
 			<!-- ALL-CONTRIBUTORS-LIST:END -->
 			<!-- spellchecker: enable -->
-
 
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 

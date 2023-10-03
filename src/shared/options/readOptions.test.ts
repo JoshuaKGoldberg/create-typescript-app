@@ -33,6 +33,7 @@ const emptyOptions = {
 	funding: undefined,
 	offline: undefined,
 	owner: undefined,
+	preserveGeneratedFrom: false,
 	repository: undefined,
 	skipAllContributorsApi: undefined,
 	skipGitHubApi: undefined,
@@ -316,6 +317,76 @@ describe("readOptions", () => {
 				...emptyOptions,
 				...mockOptions,
 			},
+		});
+	});
+
+	it("returns cancelled options when augmentOptionsWithExcludes returns undefined", async () => {
+		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
+		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+
+		expect(
+			await readOptions(["--base", mockOptions.base], "create"),
+		).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				base: mockOptions.base,
+				description: "mock",
+				owner: "mock",
+				repository: "mock",
+				title: "mock",
+			},
+		});
+	});
+
+	it("defaults preserveGeneratedFrom to false when the owner is not JoshuaKGoldberg", async () => {
+		mockAugmentOptionsWithExcludes.mockImplementationOnce(
+			(options: Partial<Options>) => ({
+				...options,
+				...mockOptions,
+			}),
+		);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
+		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+
+		expect(
+			await readOptions(["--base", mockOptions.base], "create"),
+		).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: expect.objectContaining({
+				preserveGeneratedFrom: false,
+			}),
+		});
+	});
+
+	it("defaults preserveGeneratedFrom to true when the owner is JoshuaKGoldberg", async () => {
+		mockAugmentOptionsWithExcludes.mockImplementationOnce(
+			(options: Partial<Options>) => ({
+				...options,
+				...mockOptions,
+			}),
+		);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
+		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+
+		expect(
+			await readOptions(
+				["--base", mockOptions.base, "--owner", "JoshuaKGoldberg"],
+				"create",
+			),
+		).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: expect.objectContaining({
+				preserveGeneratedFrom: true,
+			}),
 		});
 	});
 

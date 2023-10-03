@@ -61,6 +61,7 @@ The setup scripts also allow for optional overrides of the following inputs whos
   - This can be specified any number of times, like `--keywords apple --keywords "banana cherry"`
 - `--logo` _(`string`)_: Local image file in the repository to display near the top of the README.md as a logo
   - `--logo-alt` _(`string`)_: If `--logo` is provided or detected from an existing README.md, alt text that describes the image will be prompted for if not provided
+- `--preserve-generated-from` _(`boolean`)_: Whether to keep the GitHub repository _generated from_ notice (by default, `false`)
 
 For example, customizing the ownership and users associated with a new repository:
 

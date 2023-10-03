@@ -78,6 +78,8 @@ export async function readOptions(
 		funding: values.funding,
 		offline: values.offline,
 		owner: values.owner,
+		preserveGeneratedFrom:
+			values["preserve-generated-from"] ?? values.owner === "JoshuaKGoldberg",
 		repository: values.repository,
 		skipAllContributorsApi:
 			values["skip-all-contributors-api"] ?? values.offline,

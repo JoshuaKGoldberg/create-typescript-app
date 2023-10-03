@@ -33,17 +33,29 @@ describe("updateReadme", () => {
 			    "
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
-			> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+			> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 			",
 			  ],
 			]
 		`);
 	});
 
-	it("doesn't adds a notice when the file contains it already", async () => {
-		mockReadFileSafe.mockResolvedValue(
-			"<!-- You can remove this notice if you don't want it 🙂 no worries! -->",
-		);
+	it("doesn't add a notice when the file contains it already", async () => {
+		mockReadFileSafe.mockResolvedValue(`
+			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+			
+			> 💙 This package was templated using [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+		`);
+
+		await updateReadme();
+
+		expect(mockAppendFile.mock.calls).toMatchInlineSnapshot("[]");
+	});
+
+	it("doesn't add a notice when the file contains an older version of it already", async () => {
+		mockReadFileSafe.mockResolvedValue(`
+			💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+		`);
 
 		await updateReadme();
 

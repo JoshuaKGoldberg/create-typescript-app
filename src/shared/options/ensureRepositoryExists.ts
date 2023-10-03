@@ -3,11 +3,12 @@ import * as prompts from "@clack/prompts";
 import { doesRepositoryExist } from "../doesRepositoryExist.js";
 import { filterPromptCancel } from "../prompts.js";
 import { Options } from "../types.js";
+import { createRepositoryWithApi } from "./createRepositoryWithApi.js";
 import { GitHub } from "./getGitHub.js";
 
 export type EnsureRepositoryExistsOptions = Pick<
 	Options,
-	"mode" | "owner" | "repository"
+	"mode" | "owner" | "preserveGeneratedFrom" | "repository"
 >;
 
 export interface RepositoryExistsResult {
@@ -58,13 +59,12 @@ export async function ensureRepositoryExists(
 				return {};
 
 			case "create":
-				await github.octokit.rest.repos.createUsingTemplate({
-					name: repository,
+				await createRepositoryWithApi(github.octokit, {
 					owner: options.owner,
-					template_owner: "JoshuaKGoldberg",
-					template_repo: "create-typescript-app",
+					preserveGeneratedFrom: options.preserveGeneratedFrom,
+					repository,
 				});
-				return { github: github, repository };
+				return { github, repository };
 
 			case "different":
 				const newRepository = filterPromptCancel(

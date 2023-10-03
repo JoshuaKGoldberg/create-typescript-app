@@ -35,6 +35,7 @@ export const allArgOptions = {
 	mode: { type: "string" },
 	offline: { type: "boolean" },
 	owner: { type: "string" },
+	"preserve-generated-from": { type: "boolean" },
 	repository: { type: "string" },
 	"skip-all-contributors-api": { type: "boolean" },
 	"skip-github-api": { type: "boolean" },

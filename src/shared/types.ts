@@ -70,6 +70,7 @@ export interface Options {
 	mode: Mode;
 	offline?: boolean;
 	owner: string;
+	preserveGeneratedFrom?: boolean;
 	repository: string;
 	skipAllContributorsApi?: boolean;
 	skipGitHubApi?: boolean;

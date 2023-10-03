@@ -47,6 +47,7 @@ export const optionsSchemaShape = {
 		.optional(),
 	offline: z.boolean().optional(),
 	owner: z.string().optional(),
+	preserveGeneratedFrom: z.boolean().optional(),
 	repository: z.string().optional(),
 	skipAllContributorsApi: z.boolean().optional(),
 	skipGitHubApi: z.boolean().optional(),

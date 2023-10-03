@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 
 import { readFileSafe } from "../../shared/readFileSafe.js";
 import { Options } from "../../shared/types.js";
-import { endOfReadmeNotice } from "../updateReadme.js";
+import { endOfReadmeMatcher, endOfReadmeNotice } from "../updateReadme.js";
 import { findExistingBadges } from "./findExistingBadges.js";
 import { findIntroSectionClose } from "./findIntroSectionClose.js";
 import { generateTopContent } from "./generateTopContent.js";
@@ -41,7 +41,7 @@ export async function writeReadme(options: Options) {
 			[
 				generateTopContent(options, []),
 				allContributorsContent,
-				endOfReadmeNotice,
+				endOfReadmeNotice.slice(1),
 			]
 				.filter(Boolean)
 				.join("\n\n"),
@@ -65,8 +65,8 @@ export async function writeReadme(options: Options) {
 		contents = [contents, allContributorsContent].join("\n\n");
 	}
 
-	if (!contents.includes(endOfReadmeNotice)) {
-		contents = [contents, endOfReadmeNotice].join("\n\n");
+	if (!endOfReadmeMatcher.test(contents)) {
+		contents = [contents, endOfReadmeNotice].join("\n");
 	}
 
 	await fs.writeFile("README.md", contents);

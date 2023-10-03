@@ -30,7 +30,7 @@ for (const search of [`/JoshuaKGoldberg/`, "create-typescript-app"]) {
 	const { stdout } = await $`grep -i ${search} ${files}`;
 	assert.equal(
 		stdout,
-		`README.md:> 💙 This package was templated with [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
+		`README.md:> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
 	);
 }
 

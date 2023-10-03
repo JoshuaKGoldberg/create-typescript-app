@@ -1,3 +1,9 @@
+# [1.35.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.34.0...v1.35.0) (2023-10-03)
+
+### Features
+
+- add opt-in --preserve-generated-from option ([#940](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/940)) ([fc1eda7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/fc1eda7097ff2466bef59032a904bc2bfb1652f1)), closes [#913](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/913)
+
 # [1.34.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.2...v1.34.0) (2023-10-02)
 
 ### Features

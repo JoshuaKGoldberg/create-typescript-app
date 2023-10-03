@@ -42,8 +42,8 @@ dependencies:
     specifier: ^7.0.1
     version: 7.0.1
   title-case:
-    specifier: ^3.0.3
-    version: 3.0.3
+    specifier: ^4.0.0
+    version: 4.0.0
   zod:
     specifier: ^3.22.2
     version: 3.22.2
@@ -7004,10 +7004,8 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: true
 
-  /title-case@3.0.3:
-    resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}
-    dependencies:
-      tslib: 2.5.0
+  /title-case@4.0.0:
+    resolution: {integrity: sha512-rz7G0ostABc6D53SU4Wxp+Xz6Ncux2toZ9VuKbocWcE+57GPmAKEQrIh9UHZoES5R0ZIP1zCOto2KkNzaK72aA==}
     dev: false
 
   /titleize@3.0.0:
@@ -7088,6 +7086,7 @@ packages:
 
   /tslib@2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: true
 
   /tsup@7.2.0(typescript@5.2.2):
     resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}

@@ -320,6 +320,25 @@ describe("readOptions", () => {
 		});
 	});
 
+	it("returns cancelled options when augmentOptionsWithExcludes returns undefined", async () => {
+		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
+		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+
+		expect(
+			await readOptions(["--base", mockOptions.base], "create"),
+		).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				base: mockOptions.base,
+				description: "mock",
+				owner: "mock",
+				repository: "mock",
+				title: "mock",
+			},
+		});
+	});
+
 	it("defaults preserveGeneratedFrom to false when the owner is not JoshuaKGoldberg", async () => {
 		mockAugmentOptionsWithExcludes.mockImplementationOnce(
 			(options: Partial<Options>) => ({

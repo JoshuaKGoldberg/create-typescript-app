@@ -46,8 +46,9 @@ export async function createRootFiles(options: Options) {
 				},
 			}),
 		}),
-		".nvmrc": `18.17.1\n`,
+		".nvmrc": `18.18.0\n`,
 		".prettierignore": formatIgnoreFile([
+			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",
@@ -77,6 +78,15 @@ export async function createRootFiles(options: Options) {
 					autoGenerate: true,
 					release: true,
 					releaseName: "v${version}",
+				},
+				npm: {
+					publishArgs: [`--access ${options.access}`, "--provenance"],
+				},
+				plugins: {
+					"@release-it/conventional-changelog": {
+						infile: "CHANGELOG.md",
+						preset: "angular",
+					},
 				},
 			}),
 		}),
@@ -153,6 +163,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				esModuleInterop: true,
 				module: "NodeNext",
 				moduleResolution: "NodeNext",
+				noEmit: true,
 				outDir: "lib",
 				resolveJsonModule: true,
 				skipLibCheck: true,

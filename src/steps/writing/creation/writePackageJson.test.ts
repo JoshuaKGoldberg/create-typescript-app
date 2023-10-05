@@ -12,13 +12,17 @@ vi.mock("../../../shared/readFileSafeAsJson.js", () => ({
 }));
 
 const options = {
+	access: "public",
 	author: "test-author",
 	base: "everything",
-	createRepository: undefined,
-	description: "test-description",
-	email: "test-email",
+	description: "Test description.",
+	directory: ".",
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
@@ -31,6 +35,8 @@ const options = {
 	excludeRenovate: undefined,
 	excludeTests: false,
 	funding: undefined,
+	logo: undefined,
+	mode: "create",
 	owner: "test-owner",
 	repository: "test-repository",
 	skipGitHubApi: false,
@@ -64,6 +70,19 @@ describe("writePackageJson", () => {
 		);
 	});
 
+	it("includes flattened keywords when they're specified", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({});
+
+		const keywords = ["abc", "def ghi", "jkl mno pqr"];
+		const packageJson = await writePackageJson({ ...options, keywords });
+
+		expect(JSON.parse(packageJson)).toEqual(
+			expect.objectContaining({
+				keywords: ["abc", "def", "ghi", "jkl", "mno", "pqr"],
+			}),
+		);
+	});
+
 	it("includes all optional portions when no exclusions are enabled", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 
@@ -72,10 +91,10 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": "test-email",
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
-			  "description": "test-description",
+			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
 			    "node": ">=18",
@@ -103,7 +122,6 @@ describe("writePackageJson", () => {
 			  "scripts": {
 			    "build": "tsup",
 			    "format": "prettier \\"**/*\\" --ignore-unknown",
-			    "format:write": "pnpm format --write",
 			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 			    "lint:knip": "knip",
 			    "lint:md": "markdownlint \\"**/*.md\\" \\".github/**/*.md\\" --rules sentences-per-line",
@@ -126,8 +144,8 @@ describe("writePackageJson", () => {
 
 		const packageJson = await writePackageJson({
 			...options,
+			excludeAllContributors: true,
 			excludeCompliance: true,
-			excludeContributors: true,
 			excludeLintJson: true,
 			excludeLintKnip: true,
 			excludeLintMd: true,
@@ -143,10 +161,10 @@ describe("writePackageJson", () => {
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
 			{
 			  "author": {
-			    "email": "test-email",
+			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
-			  "description": "test-description",
+			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
 			    "node": ">=18",
@@ -174,7 +192,6 @@ describe("writePackageJson", () => {
 			  "scripts": {
 			    "build": "tsup",
 			    "format": "prettier \\"**/*\\" --ignore-unknown",
-			    "format:write": "pnpm format --write",
 			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 			    "prepare": "husky install",
 			    "tsc": "tsc",

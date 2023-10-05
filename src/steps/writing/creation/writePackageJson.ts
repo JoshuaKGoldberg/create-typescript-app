@@ -8,12 +8,14 @@ const devDependenciesToRemove = [
 	"@babel/preset-react",
 	"@babel/preset-typescript",
 	"@swc/jest",
+	"@vitest/coverage-istanbul",
 	"ava",
 	"babel-jest",
 	"commitlint",
 	"cson-parser",
 	"esbuild",
 	"eslint-config-prettier",
+	"eslint-plugin-import",
 	"eslint-plugin-jest",
 	"eslint-plugin-prettier",
 	"eslint-plugin-simple-import-sort",
@@ -38,8 +40,11 @@ export async function writePackageJson(options: Options) {
 		// To start, copy over all existing package fields (e.g. "dependencies")
 		...existingPackageJson,
 
-		author: { email: options.email, name: options.author },
+		author: { email: options.email.npm, name: options.author },
 		description: options.description,
+		keywords: options.keywords?.length
+			? options.keywords.flatMap((keyword) => keyword.split(/ /))
+			: undefined,
 
 		// We copy all existing dev dependencies except those we know are not used anymore
 		devDependencies: copyDevDependencies(existingPackageJson),
@@ -72,7 +77,6 @@ export async function writePackageJson(options: Options) {
 		scripts: {
 			build: "tsup",
 			format: 'prettier "**/*" --ignore-unknown',
-			"format:write": "pnpm format --write",
 			lint: "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 			...(!options.excludeLintKnip && {
 				"lint:knip": "knip",

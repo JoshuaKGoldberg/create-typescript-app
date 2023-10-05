@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import z from "zod";
 
 import { bin } from "./index.js";
 
@@ -53,7 +54,7 @@ vi.mock("../migrate/index.js", () => ({
 
 const mockPromptForMode = vi.fn();
 
-vi.mock("./mode.js", () => ({
+vi.mock("./promptForMode.js", () => ({
 	get promptForMode() {
 		return mockPromptForMode;
 	},
@@ -64,38 +65,39 @@ describe("bin", () => {
 		vi.spyOn(console, "clear").mockImplementation(() => undefined);
 	});
 
-	it("returns 1 when promptForMode returns undefined", async () => {
-		mockPromptForMode.mockResolvedValue(undefined);
+	it("returns 1 when promptForMode returns an undefined mode", async () => {
+		mockPromptForMode.mockResolvedValue({});
 
 		const result = await bin([]);
 
 		expect(mockOutro).toHaveBeenCalledWith(
 			chalk.red("Operation cancelled. Exiting - maybe another time? 👋"),
 		);
-		expect(result).toEqual(1);
+		expect(result).toBe(1);
 	});
 
-	it("returns 1 when promptForMode returns an error", async () => {
+	it("returns 1 when promptForMode returns an error mode", async () => {
 		const error = new Error("Oh no!");
-		mockPromptForMode.mockResolvedValue(error);
+		mockPromptForMode.mockResolvedValue({ mode: error });
 
 		const result = await bin([]);
 
 		expect(mockOutro).toHaveBeenCalledWith(chalk.red(error.message));
-		expect(result).toEqual(1);
+		expect(result).toBe(1);
 	});
 
 	it("returns the success result of the corresponding runner without cancel logging when promptForMode returns a mode that succeeds", async () => {
 		const mode = "create";
 		const args = ["--owner", "abc123"];
 		const code = 0;
+		const promptedOptions = { directory: "." };
 
-		mockPromptForMode.mockResolvedValue(mode);
+		mockPromptForMode.mockResolvedValue({ mode, options: promptedOptions });
 		mockCreate.mockResolvedValue({ code, options: {} });
 
 		const result = await bin(args);
 
-		expect(mockCreate).toHaveBeenCalledWith(args);
+		expect(mockCreate).toHaveBeenCalledWith(args, promptedOptions);
 		expect(mockCancel).not.toHaveBeenCalled();
 		expect(mockInitialize).not.toHaveBeenCalled();
 		expect(mockMigrate).not.toHaveBeenCalled();
@@ -106,13 +108,65 @@ describe("bin", () => {
 		const mode = "create";
 		const args = ["--owner", "abc123"];
 		const code = 2;
+		const promptedOptions = { directory: "." };
 
-		mockPromptForMode.mockResolvedValue(mode);
+		mockPromptForMode.mockResolvedValue({ mode, options: promptedOptions });
 		mockCreate.mockResolvedValue({ code, options: {} });
 
 		const result = await bin(args);
 
-		expect(mockCreate).toHaveBeenCalledWith(args);
+		expect(mockCreate).toHaveBeenCalledWith(args, promptedOptions);
+		expect(mockCancel).toHaveBeenCalledWith(
+			`Operation cancelled. Exiting - maybe another time? 👋`,
+		);
+		expect(result).toEqual(code);
+	});
+
+	it("returns the cancel result containing a zod error of the corresponding runner and output plus cancel logs when promptForMode returns a mode that cancels with a string error", async () => {
+		const mode = "initialize";
+		const args = ["--email", "abc123"];
+		const code = 2;
+		const error = "Oh no!";
+
+		mockPromptForMode.mockResolvedValue({ mode });
+		mockInitialize.mockResolvedValue({
+			code: 2,
+			error,
+			options: {},
+		});
+
+		const result = await bin(args);
+
+		expect(mockInitialize).toHaveBeenCalledWith(args, undefined);
+		expect(mockLogLine).toHaveBeenCalledWith(chalk.red(error));
+		expect(mockCancel).toHaveBeenCalledWith(
+			`Operation cancelled. Exiting - maybe another time? 👋`,
+		);
+		expect(result).toEqual(code);
+	});
+
+	it("returns the cancel result containing a zod error of the corresponding runner and output plus cancel logs when promptForMode returns a mode that cancels with a zod error", async () => {
+		const mode = "initialize";
+		const args = ["--email", "abc123"];
+		const code = 2;
+
+		const validationResult = z
+			.object({ email: z.string().email() })
+			.safeParse({ email: "abc123" });
+
+		mockPromptForMode.mockResolvedValue({ mode });
+		mockInitialize.mockResolvedValue({
+			code: 2,
+			error: (validationResult as z.SafeParseError<{ email: string }>).error,
+			options: {},
+		});
+
+		const result = await bin(args);
+
+		expect(mockInitialize).toHaveBeenCalledWith(args, undefined);
+		expect(mockLogLine).toHaveBeenCalledWith(
+			chalk.red('Validation error: Invalid email at "email"'),
+		);
 		expect(mockCancel).toHaveBeenCalledWith(
 			`Operation cancelled. Exiting - maybe another time? 👋`,
 		);
@@ -123,13 +177,14 @@ describe("bin", () => {
 		const mode = "create";
 		const args = ["--owner", "abc123"];
 		const code = 1;
+		const promptedOptions = { directory: "." };
 
-		mockPromptForMode.mockResolvedValue(mode);
+		mockPromptForMode.mockResolvedValue({ mode, options: promptedOptions });
 		mockCreate.mockResolvedValue({ code, options: {} });
 
 		const result = await bin(args);
 
-		expect(mockCreate).toHaveBeenCalledWith(args);
+		expect(mockCreate).toHaveBeenCalledWith(args, promptedOptions);
 		expect(mockCancel).toHaveBeenCalledWith(
 			`Operation failed. Exiting - maybe another time? 👋`,
 		);

@@ -1,3 +1,76 @@
+# [1.35.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.34.0...v1.35.0) (2023-10-03)
+
+### Features
+
+- add opt-in --preserve-generated-from option ([#940](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/940)) ([fc1eda7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/fc1eda7097ff2466bef59032a904bc2bfb1652f1)), closes [#913](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/913)
+
+# [1.34.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.2...v1.34.0) (2023-10-02)
+
+### Features
+
+- always run build || exit 0 before lint in CI ([#936](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/936)) ([827b4b4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/827b4b408bc3f02972be2aa748ca6ddea2351b15)), closes [#935](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/935)
+
+## [1.33.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.1...v1.33.2) (2023-10-02)
+
+### Bug Fixes
+
+- two small .json template touchups ([9c45e46](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9c45e4638ccd3426ae492da9c6a5c605abb9c164))
+
+## [1.33.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.33.0...v1.33.1) (2023-10-02)
+
+### Bug Fixes
+
+- no, do not install -import and -prettier ([4a3c3f0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4a3c3f0e6a47db4fc1fd4aa5836d801d6378b752))
+
+# [1.33.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.32.0...v1.33.0) (2023-10-02)
+
+### Features
+
+- explicit 'unassigned' under issue claiming notice, and snapshot updates ([76e8860](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/76e8860aedc4d2dde2cec439731878d3982fccc2))
+
+# [1.32.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.52...v1.32.0) (2023-10-02)
+
+### Bug Fixes
+
+- base suggested next steps on options ([#906](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/906)) ([ddf1318](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ddf1318ca0302b458c9dc853d6252c2072fac802)), closes [#903](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/903)
+- correct create-repository-by-default logic ([#922](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/922)) ([ef2e348](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ef2e3483d851c8df2d4fdb2f7847d921a79f29b6)), closes [#920](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/920)
+- invert test.yml excludes logic ([#910](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/910)) ([bbb6760](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bbb67605fa553f151a23128f858c5fc88e57459f)), closes [#909](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/909)
+- release-it-action@v0.2.2 ([250d5fe](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/250d5fe52dd2f4cc479c9d8aecd5c247bd3b0f10))
+- release-it-action@v0.2.2, and a few package removals ([a4e2a45](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a4e2a45858d4f9cfa9b4c724081953ded8995cff))
+- remove cancel-in-progress from release.yml ([#876](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/876)) ([f124518](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f12451821d64b6e3ac00d0d1fdc307d4c992e162)), closes [#862](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/862) [#145](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/145)
+- remove redundant format at end of finalizeDependencies ([#887](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/887)) ([973140d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/973140dae1e0fc24002b04afe4ace8ccda610e3f)), closes [#748](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/748)
+- remove unnecessary gh workflow run ([#868](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/868)) ([cc0cbaf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cc0cbaf3754b0b7a9d8983fffbca3e7c487b8f8c)), closes [#863](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/863)
+- replace existing description with string, not regex ([#861](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/861)) ([dcc6ad4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dcc6ad40ce4b5b5ac2af69f014567c8f9bc26c97)), closes [#803](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/803)
+- set emoji for all-contributors badge to 👪 ([#930](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/930)) ([dc67d1f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dc67d1fbe7859df30da3967879962c085a1bbb63)), closes [#929](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/929)
+- use options.repository for n/no-missing-import's allowedModules ([#924](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/924)) ([0b542be](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0b542be2a2c16dd225b739dbcf987b28ccd04a6f)), closes [#923](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/923)
+
+### Features
+
+- add --offline mode ([#879](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/879)) ([715e79d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/715e79dfb1501797ed2a1ebaea980e1448ca2842)), closes [#878](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/878)
+- Add @vitest/coverage-istanbul to devDependenciesToRemove ([#885](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/885)) ([36e236a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/36e236aab308a3b9154fe2ed4c5c57c0aabbbf77)), closes [#759](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/759) [#759](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/759)
+- add aged away label ([#881](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/881)) ([565b854](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/565b85449c97ad52864a3ad4394cc99cec97fa3f)), closes [#852](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/852)
+- add back Usage example to create and initialize ([#882](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/882)) ([b465f78](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b465f787923437929ebb2b1ce4474b8f0d2ee122)), closes [#785](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/785)
+- add npm badge to readme ([#880](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/880)) ([e199ea9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e199ea95f15c78daa6d3cdaa773d87298b76795e)), closes [#730](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/730)
+- add optional --access option ([#871](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/871)) ([bfcd795](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bfcd795a077a9e4409dce9f99569a5325456bae2)), closes [#665](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/665)
+- added --logo and --logo-alt ([#851](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/851)) ([72c6d99](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/72c6d99633b2298931577ebc6f6990a5600b733a)), closes [#739](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/739)
+- allow specific GitHub and/or npm emails ([#858](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/858)) ([d112a31](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d112a31310c8f6694181ff82ba02efef34a6cad3)), closes [#542](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/542) [#851](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/851)
+- enable noEmit in tsconfig.json ([#888](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/888)) ([617dcc4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/617dcc4bc40c5b346a3be84ae53a4f5f7339f253)), closes [#800](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/800)
+- fix .nvmrc template to 18.18.0 ([b077fbc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b077fbcd549c0ce685cddb27c93ff94956b7fc77))
+- much more ESLint config configurability ([#867](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/867)) ([094b253](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/094b253411168038a2c7585e5172f8b773c18ea2)), closes [#864](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/864) [#866](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/866)
+- remove --create-repository option ([#921](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/921)) ([dd69dd5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dd69dd531ddc769ff0403cd578f38f0bec479315)), closes [#920](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/920)
+- run npm dedupe at end of finalizeDependencies ([#902](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/902)) ([8f7692a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8f7692ad544fad6558ea5daf39fcfd5f2feb27c0)), closes [#770](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/770)
+- smarter initial mode prompt ([#919](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/919)) ([001882b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/001882b7c4224d885d2e03a4da1b8a2d6024502d)), closes [#884](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/884)
+- split contributors option into exclude-all-contributors and --skip-all-contributors-api ([#899](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/899)) ([a51c624](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a51c624da09df2fefe7e2b12615a07f0a2457538)), closes [#875](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/875) [#898](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/898)
+- support package.json keywords ([#886](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/886)) ([1399071](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/139907146150ae4c3589d57148851ec975cb6dd7)), closes [#526](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/526)
+- switch format:write to format --write ([#901](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/901)) ([4486186](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/44861860bc45479800f570b547372c2b0d77c909)), closes [#762](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/762)
+- use release-it-action for release flow ([#927](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/927)) ([58c31de](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/58c31de9c2a8c35fd3feef8956905776a3a5a852)), closes [#145](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/145)
+
+## [1.29.52](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.29.51...v1.29.52) (2023-09-21)
+
+### Bug Fixes
+
+- generate CHANGELOG.md files again ([#854](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/854)) ([88fbfb9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/88fbfb92f2cb16a93fe7f7badbb40c8e069de468)), closes [#842](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/842)
+
 # Changelog
 
 ### [1.27.12](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.27.11...v1.27.12) (2022-12-31)

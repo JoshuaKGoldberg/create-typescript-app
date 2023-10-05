@@ -30,15 +30,20 @@ const auth = "abc123";
 const owner = "StubOwner";
 const repository = "stub-repository";
 
-const createUsingTemplate = vi.fn();
+const mockCreateRepositoryWithApi = vi.fn();
 
-const createMockOctokit = () =>
-	({ rest: { repos: { createUsingTemplate } } }) as unknown as Octokit;
+vi.mock("./createRepositoryWithApi.js", () => ({
+	get createRepositoryWithApi() {
+		return mockCreateRepositoryWithApi;
+	},
+}));
+
+const createMockOctokit = () => ({}) as unknown as Octokit;
 
 describe("ensureRepositoryExists", () => {
 	it("returns the repository when octokit is undefined", async () => {
 		const actual = await ensureRepositoryExists(undefined, {
-			createRepository: false,
+			mode: "initialize",
 			owner,
 			repository,
 		});
@@ -52,36 +57,13 @@ describe("ensureRepositoryExists", () => {
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
 			{
-				createRepository: false,
+				mode: "initialize",
 				owner,
 				repository,
 			},
 		);
 
 		expect(actual).toEqual({ github: { auth, octokit }, repository });
-	});
-
-	it("creates a new repository when createRepository is true and the repository does not exist", async () => {
-		const octokit = createMockOctokit();
-
-		mockDoesRepositoryExist.mockResolvedValue(false);
-
-		const actual = await ensureRepositoryExists(
-			{ auth, octokit },
-			{
-				createRepository: true,
-				owner,
-				repository,
-			},
-		);
-
-		expect(actual).toEqual({ github: { auth, octokit }, repository });
-		expect(octokit.rest.repos.createUsingTemplate).toHaveBeenCalledWith({
-			name: repository,
-			owner,
-			template_owner: "JoshuaKGoldberg",
-			template_repo: "create-typescript-app",
-		});
 	});
 
 	it("creates a new repository when the prompt is 'create' and the repository does not exist", async () => {
@@ -92,20 +74,34 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				createRepository: false,
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({ github: { auth, octokit }, repository });
-		expect(octokit.rest.repos.createUsingTemplate).toHaveBeenCalledWith({
-			name: repository,
+		expect(mockCreateRepositoryWithApi).toHaveBeenCalledWith(octokit, {
 			owner,
-			template_owner: "JoshuaKGoldberg",
-			template_repo: "create-typescript-app",
+			preserveGeneratedFrom: undefined,
+			repository,
 		});
+	});
+
+	it("defaults to creating a repository when mode is 'create'", async () => {
+		const octokit = createMockOctokit();
+
+		mockDoesRepositoryExist.mockResolvedValue(false);
+
+		const actual = await ensureRepositoryExists(
+			{ auth, octokit },
+			{ mode: "create", owner, repository },
+		);
+
+		expect(actual).toEqual({ github: { auth, octokit }, repository });
+		expect(mockCreateRepositoryWithApi).toHaveBeenCalledWith(octokit, {
+			owner,
+			preserveGeneratedFrom: undefined,
+			repository,
+		});
+		expect(mockSelect).not.toHaveBeenCalled();
 	});
 
 	it("returns the second repository when the prompt is 'different', the first repository does not exist, and the second repository exists", async () => {
@@ -120,18 +116,14 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				createRepository: false,
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({
 			github: { auth, octokit },
 			repository: newRepository,
 		});
-		expect(octokit.rest.repos.createUsingTemplate).not.toHaveBeenCalled();
+		expect(mockCreateRepositoryWithApi).not.toHaveBeenCalled();
 	});
 
 	it("creates the second repository when the prompt is 'different', the first repository does not exist, and the second repository does not exist", async () => {
@@ -146,22 +138,17 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				createRepository: false,
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({
 			github: { auth, octokit },
 			repository: newRepository,
 		});
-		expect(octokit.rest.repos.createUsingTemplate).toHaveBeenCalledWith({
-			name: newRepository,
+		expect(mockCreateRepositoryWithApi).toHaveBeenCalledWith(octokit, {
 			owner,
-			template_owner: "JoshuaKGoldberg",
-			template_repo: "create-typescript-app",
+			preserveGeneratedFrom: undefined,
+			repository: newRepository,
 		});
 	});
 
@@ -173,14 +160,10 @@ describe("ensureRepositoryExists", () => {
 
 		const actual = await ensureRepositoryExists(
 			{ auth, octokit },
-			{
-				createRepository: false,
-				owner,
-				repository,
-			},
+			{ mode: "initialize", owner, repository },
 		);
 
 		expect(actual).toEqual({ octokit: undefined, repository });
-		expect(octokit.rest.repos.createUsingTemplate).not.toHaveBeenCalled();
+		expect(mockCreateRepositoryWithApi).not.toHaveBeenCalled();
 	});
 });

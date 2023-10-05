@@ -37,8 +37,10 @@ See [Options.md](./Options.md).
 
 `pnpm run initialize` will set `--mode` to `initialize`.
 
-For example, running the initialization script and skipping all APIs:
+For example, running the initialization script and skipping all GitHub APIs:
 
 ```shell
-pnpm run initialize --exclude-contributors --skip-github-api
+pnpm run initialize --skip-all-contributors-api --skip-github-api
 ```
+
+See [Tooling.md](./Tooling.md) for details on the tooling pieces and which bases they're included in.

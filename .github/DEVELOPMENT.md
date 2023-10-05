@@ -33,7 +33,7 @@ It should be applied automatically when you save files in VS Code or make a Git 
 To manually reformat all files, you can run:
 
 ```shell
-pnpm format:write
+pnpm format --write
 ```
 
 ## Linting
@@ -47,6 +47,16 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 - `pnpm lint:package-json` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the `package.json` file
 - `pnpm lint:packages` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the `pnpm-lock.yml` file
 - `pnpm lint:spelling` ([cspell](https://cspell.org)): Spell checks across all source files
+
+Read the individual documentation for each linter to understand how it can be configured and used best.
+
+For example, ESLint can be run with `--fix` to auto-fix some lint rule complaints:
+
+```shell
+pnpm run lint --fix
+```
+
+Note that you'll likely need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
@@ -93,7 +103,7 @@ As described in the `README.md` file and `docs/`, this template repository comes
 
 Each follows roughly the same general flow:
 
-1. `bin/index.ts` uses `bin/mode.ts` determines which of the three setup scripts to run
+1. `bin/index.ts` uses `bin/mode.ts` to determine which of the three setup scripts to run
 2. `readOptions` parses in options from local files, Git commands, npm APIs, and/or files on disk
 3. `runOrRestore` wraps the setup script's main logic in a friendly prompt wrapper
 4. The setup script wraps each portion of its main logic with `withSpinner`
@@ -121,8 +131,11 @@ pnpm run test:create
 
 That end-to-end test executes `script/create-test-e2e.js`, which:
 
-1. Runs the creation script to create a new `test-repository` child directory and repository
+1. Runs the creation script to create a new `test-repository` child directory and repository, capturing code coverage
 2. Asserts that commands such as `build` and `lint` each pass
+
+The `pnpm run test:create` script is run in CI to ensure that templating changes are in sync with the template's actual files.
+See `.github/workflows/test-create.yml`.
 
 ### The Initialization Script
 
@@ -133,8 +146,6 @@ It uses [`tsx`](https://github.com/esbuild-kit/tsx) so you don't need to build f
 ```shell
 pnpm run initialize
 ```
-
-> 💡 Consider running `git add -A` to stage all local changes before running.
 
 #### Testing the Initialization Script
 
@@ -188,7 +199,7 @@ pnpm run test:migrate
 
 That end-to-end test executes `script/migrate-test-e2e.js`, which:
 
-1. Runs the migration script using `--skip-github-api` and other skip flags
+1. Runs the migration script using `--skip-github-api` and other skip flags, capturing code coverage
 2. Checks that only a small list of allowed files were changed
 3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
 

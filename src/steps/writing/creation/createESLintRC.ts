@@ -2,17 +2,7 @@ import { Options } from "../../../shared/types.js";
 import { formatTypeScript } from "./formatters/formatTypeScript.js";
 
 export async function createESLintRC(options: Options) {
-	return await formatTypeScript(`/*
-👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
-You can read from it to see all sorts of linting goodness, but don't worry -
-it's not something you need to exhaustively understand immediately. 💙
-
-If you're interested in learning more, see the 'getting started' docs on:
-- ESLint: https://eslint.org
-- typescript-eslint: https://typescript-eslint.io
-*/
-
-/** @type {import("@types/eslint").Linter.Config} */
+	return await formatTypeScript(`/** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
 	env: {
 		es2022: true,
@@ -20,15 +10,19 @@ module.exports = {
 	},
 	extends: [
 		"eslint:recommended",
-		"plugin:eslint-comments/recommended",
-		"plugin:n/recommended",${
+		${
+			options.excludeLintESLint
+				? ""
+				: `"plugin:eslint-comments/recommended",
+		`
+		}"plugin:n/recommended",${
 			options.excludeLintPerfectionist
 				? ""
 				: `
 		"plugin:perfectionist/recommended-natural",`
+		}${options.excludeLintRegex ? "" : `"plugin:regexp/recommended",`}${
+			options.excludeTests ? "" : `"plugin:vitest/recommended",`
 		}
-		"plugin:regexp/recommended",
-		"prettier",
 	],
 	overrides: [${
 		options.excludeLintMd
@@ -42,27 +36,54 @@ module.exports = {
 	}
 		{
 			extends: [
-				"plugin:jsdoc/recommended-typescript-error",
-				"plugin:@typescript-eslint/strict",
-				"plugin:@typescript-eslint/stylistic",
+				${
+					options.excludeLintJSDoc
+						? ""
+						: `"plugin:jsdoc/recommended-typescript-error",
+				`
+				}"plugin:@typescript-eslint/${
+					options.excludeLintStrict ? "recommended" : "strict"
+				}",${
+					options.excludeLintStylistic
+						? ""
+						: `
+				"plugin:@typescript-eslint/stylistic",`
+				}
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
-				"jsdoc/informative-docs": "error",
-				"logical-assignment-operators": [
+				${
+					options.excludeLintJSDoc
+						? ""
+						: `"jsdoc/informative-docs": "error",
+				`
+				}"logical-assignment-operators": [
 					"error",
 					"always",
 					{ enforceForIfStatements: true },
 				],
-				"operator-assignment": "error",
+				"operator-assignment": "error",${
+					options.excludeLintJSDoc
+						? ""
+						: `
 
 				// These on-by-default rules don't work well for this repo and we like them off.
 				"jsdoc/require-jsdoc": "off",
 				"jsdoc/require-param": "off",
 				"jsdoc/require-property": "off",
-				"jsdoc/require-returns": "off",
+				"jsdoc/require-returns": "off",`
+				}
+			},
+		},
+		{
+			files: "**/*.md/*.ts",
+			rules: {
+				"n/no-missing-import": [
+					"error",
+					{ allowModules: ["${options.repository}"] },
+				],
 			},
 		},
 		{
@@ -72,20 +93,32 @@ module.exports = {
 					: `excludedFiles: ["**/*.md/*.ts"],
 			`
 			}extends: [
-				"plugin:@typescript-eslint/strict-type-checked",
-				"plugin:@typescript-eslint/stylistic-type-checked",
+				"plugin:@typescript-eslint/${
+					options.excludeLintStrict ? "recommended" : "strict"
+				}-type-checked",${
+					options.excludeLintStylistic
+						? ""
+						: `
+				"plugin:@typescript-eslint/stylistic-type-checked",`
+				}
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			parserOptions: {
 				project: "./tsconfig.eslint.json",
-			},
-			rules: {
+			},${
+				options.excludeLintDeprecation
+					? ""
+					: `rules: {
 				// These off-by-default rules work well for this repo and we like them on.
 				"deprecation/deprecation": "error",
-			},
+			},`
+			}
 		},
-		{
+		${
+			options.excludeLintJson
+				? ""
+				: `{
 			excludedFiles: ["package.json"],
 			extends: ["plugin:jsonc/recommended-with-json"],
 			files: ["*.json", "*.jsonc"],
@@ -99,7 +132,8 @@ module.exports = {
 			rules: {
 				"jsonc/no-comments": "off",
 			},
-		},${
+		},`
+		}${
 			options.excludeTests
 				? ""
 				: `\n{
@@ -113,8 +147,7 @@ module.exports = {
 		}${
 			options.excludeLintYml
 				? ""
-				: `\n
-		{
+				: `\n{
 			extends: ["plugin:yml/standard", "plugin:yml/prettier"],
 			files: ["**/*.{yml,yaml}"],
 			parser: "yaml-eslint-parser",
@@ -141,41 +174,57 @@ module.exports = {
 	parser: "@typescript-eslint/parser",
 	plugins: [
 		"@typescript-eslint",
-		"deprecation",
-		"import",
-		"jsdoc",${options.excludeTests ? "" : `"no-only-tests",`}${
+		${
+			options.excludeLintDeprecation
+				? ""
+				: `"deprecation",
+		`
+		}${
+			options.excludeLintJSDoc
+				? ""
+				: `"jsdoc",
+		`
+		}${options.excludeTests ? "" : `"no-only-tests",`}${
 			options.excludeLintPerfectionist ? "" : `"perfectionist",`
+		}${options.excludeLintRegex ? "" : `"regexp",`}${
+			options.excludeTests ? "" : `\n"vitest",`
 		}
-		"regexp",${options.excludeTests ? "" : `\n"vitest",`}
 	],
 	reportUnusedDisableDirectives: true,
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
-		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-		"import/extensions": ["error", "ignorePackages"],${
+		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],${
 			options.excludeTests ? "" : `\n"no-only-tests/no-only-tests": "error",`
 		}
 
 		// These on-by-default rules don't work well for this repo and we like them off.
-		"n/no-missing-import": "off",
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
+		"no-mixed-spaces-and-tabs": "off",
 
-		// Stylistic concerns that don't interfere with Prettier
+		${
+			options.excludeLintStylistic
+				? ""
+				: `// Stylistic concerns that don't interfere with Prettier
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
-		"perfectionist/sort-objects": [
+		`
+		}${
+			options.excludeLintPerfectionist
+				? ""
+				: `"perfectionist/sort-objects": [
 			"error",
 			{
 				order: "asc",
 				"partition-by-comment": true,
 				type: "natural",
 			},
-		],
+		],`
+		}
 	},
 };
 `);

@@ -1,4 +1,3 @@
-import * as prompts from "@clack/prompts";
 import { $ } from "execa";
 
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
@@ -8,7 +7,7 @@ import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { runCommands } from "../steps/runCommands.js";
-import { writeReadme } from "../steps/writeReadme.js";
+import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function createWithOptions({ github, options }: GitHubAndOptions) {
@@ -27,9 +26,9 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 		],
 	]);
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {
 		await withSpinner("Adding contributors to table", async () => {
-			await addToolAllContributors(options.owner);
+			await addToolAllContributors(options);
 		});
 	}
 
@@ -41,18 +40,12 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 
 	await runCommands("Cleaning up files", [
 		"pnpm dedupe",
-		"pnpm format --write",
 		"pnpm lint --fix",
+		"pnpm format --write",
 	]);
 
 	const sendToGitHub =
-		github &&
-		(await doesRepositoryExist(github.octokit, options)) &&
-		(options.createRepository ??
-			(await prompts.confirm({
-				message:
-					"Would you like to push the template's tooling up to the repository on GitHub?",
-			})) === true);
+		github && (await doesRepositoryExist(github.octokit, options));
 
 	if (sendToGitHub) {
 		await withSpinner("Initializing GitHub repository", async () => {

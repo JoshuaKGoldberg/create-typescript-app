@@ -1,6 +1,6 @@
 # Creating from the Terminal
 
-You can run `npx create-typescript-app` in your terminal to interactively create a new repository:
+You can run `npx create-typescript-app` in your terminal to interactively create a new repository in a child directory:
 
 ```shell
 npx create-typescript-app
@@ -23,8 +23,10 @@ Hooray! 🥳
 You can explicitly provide some or all of the options the script would prompt for as command-line flags.
 See [Options.md](./Options.md).
 
-For example, running the creation script and skipping all APIs:
+For example, running the creation script and skipping all GitHub APIs:
 
 ```shell
-npx create-typescript-app --mode create --exclude-contributors --skip-github-api
+npx create-typescript-app --mode create --skip-all-contributors-api --skip-github-api
 ```
+
+See [Tooling.md](./Tooling.md) for details on the tooling pieces and which bases they're included in.

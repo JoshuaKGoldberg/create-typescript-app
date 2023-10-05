@@ -1,3 +1,7 @@
+import { z } from "zod";
+
+import { StatusCode } from "./codes.js";
+
 export interface AllContributorContributor {
 	contributions: string[];
 	login: string;
@@ -17,34 +21,90 @@ export interface PartialPackageData {
 	repository?: { type: string; url: string } | string;
 }
 
-export type InputBase = "everything" | "minimum" | "prompt";
+export type OptionsAccess = "public" | "restricted";
 
+export type OptionsBase = "common" | "everything" | "minimum" | "prompt";
+
+export interface OptionsEmail {
+	github: string;
+	npm: string;
+}
+
+export interface OptionsLogo {
+	alt: string;
+	src: string;
+}
+
+/**
+ * All runtime options that may (or must) be specified for setup.
+ */
 export interface Options {
-	author: string | undefined;
-	base: InputBase | undefined;
-	createRepository: boolean | undefined;
+	access: OptionsAccess;
+	author?: string;
+	base?: OptionsBase;
 	description: string;
-	email: string | undefined;
-	excludeCompliance: boolean | undefined;
-	excludeContributors: boolean | undefined;
-	excludeLintJson: boolean | undefined;
-	excludeLintKnip: boolean | undefined;
-	excludeLintMd: boolean | undefined;
-	excludeLintPackageJson: boolean | undefined;
-	excludeLintPackages: boolean | undefined;
-	excludeLintPerfectionist: boolean | undefined;
-	excludeLintSpelling: boolean | undefined;
-	excludeLintYml: boolean | undefined;
-	excludeReleases: boolean | undefined;
-	excludeRenovate: boolean | undefined;
-	excludeTests: boolean | undefined;
-	funding: string | undefined;
+	directory: string;
+	email: OptionsEmail;
+	excludeAllContributors?: boolean;
+	excludeCompliance?: boolean;
+	excludeLintDeprecation?: boolean;
+	excludeLintESLint?: boolean;
+	excludeLintJSDoc?: boolean;
+	excludeLintJson?: boolean;
+	excludeLintKnip?: boolean;
+	excludeLintMd?: boolean;
+	excludeLintPackageJson?: boolean;
+	excludeLintPackages?: boolean;
+	excludeLintPerfectionist?: boolean;
+	excludeLintRegex?: boolean;
+	excludeLintSpelling?: boolean;
+	excludeLintStrict?: boolean;
+	excludeLintStylistic?: boolean;
+	excludeLintYml?: boolean;
+	excludeReleases?: boolean;
+	excludeRenovate?: boolean;
+	excludeTests?: boolean;
+	funding?: string;
+	keywords?: string[];
+	logo: OptionsLogo | undefined;
+	mode: Mode;
+	offline?: boolean;
 	owner: string;
+	preserveGeneratedFrom?: boolean;
 	repository: string;
-	skipGitHubApi: boolean;
-	skipInstall: boolean | undefined;
-	skipRemoval: boolean | undefined;
-	skipRestore: boolean | undefined;
-	skipUninstall: boolean | undefined;
+	skipAllContributorsApi?: boolean;
+	skipGitHubApi?: boolean;
+	skipInstall?: boolean;
+	skipRemoval?: boolean;
+	skipRestore?: boolean;
+	skipUninstall?: boolean;
 	title: string;
 }
+
+/**
+ * Options that might be suggested by how the user is running setup.
+ */
+export interface PromptedOptions {
+	/**
+	 * Directory for the repository, if it may differ from the repository name.
+	 */
+	directory?: string;
+
+	/**
+	 * Repository name, if it may differ from the current directory.
+	 */
+	repository?: string;
+}
+
+export interface ModeResult {
+	code: StatusCode;
+	error?: string | z.ZodError<object>;
+	options: Partial<Options>;
+}
+
+export type ModeRunner = (
+	args: string[],
+	promptedOptions?: PromptedOptions,
+) => Promise<ModeResult>;
+
+export type Mode = "create" | "initialize" | "migrate";

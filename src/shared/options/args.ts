@@ -1,6 +1,11 @@
 import chalk from "chalk";
 
 export const allArgOptions = {
+	access: {
+		description: "",
+		docsSection: "optional",
+		type: "string",
+	},
 	author: {
 		description: `Username on npm to publish packages under (by 
 	default, an existing npm author, or the currently logged in npm user, 
@@ -37,15 +42,30 @@ export const allArgOptions = {
 		docsSection: "optional",
 		type: "string",
 	},
+	"email-github": {
+		description: "",
+		docsSection: "optional",
+		type: "string",
+	},
+	"email-npm": {
+		description: "",
+		docsSection: "optional",
+		type: "string",
+	},
+	"exclude-all-contributors": {
+		description: `Don't add all-contributors to track contributions 
+	and display them in a README.md table.`,
+		docsSection: "opt-out",
+		type: "boolean",
+	},
 	"exclude-compliance": {
 		description: `Don't add a GitHub Actions workflow to verify that 
 	PRs match an expected format.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
-	"exclude-contributors": {
-		description: `Don't add all-contributors to track contributions 
-	and display them in a README.md table.`,
+	"exclude-lint-jsdoc": {
+		description: "",
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -86,9 +106,24 @@ export const allArgOptions = {
 		docsSection: "opt-out",
 		type: "boolean",
 	},
+	"exclude-lint-regex": {
+		description: "",
+		docsSection: "opt-out",
+		type: "boolean",
+	},
 	"exclude-lint-spelling": {
 		description: `Don't add cspell to spell check against 
 	dictionaries of known words.`,
+		docsSection: "opt-out",
+		type: "boolean",
+	},
+	"exclude-lint-strict": {
+		description: "",
+		docsSection: "opt-out",
+		type: "boolean",
+	},
+	"exclude-lint-stylistic": {
+		description: "",
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -124,6 +159,22 @@ export const allArgOptions = {
 		docsSection: "optional",
 		type: "string",
 	},
+	keywords: {
+		description: "",
+		docsSection: "optional",
+		multiple: true,
+		type: "string",
+	},
+	logo: {
+		description: "",
+		docsSection: "optional",
+		type: "string",
+	},
+	"logo-alt": {
+		description: "",
+		docsSection: "optional",
+		type: "string",
+	},
 	mode: {
 		description: `Whether to:
 	• create: a new repository in a child directory
@@ -132,17 +183,32 @@ export const allArgOptions = {
 		docsSection: "core",
 		type: "string",
 	},
+	offline: {
+		description: "",
+		docsSection: "offline",
+		type: "boolean",
+	},
 	owner: {
 		description: `GitHub organization or user the repository is 
 	underneath (e.g. JoshuaKGoldberg)`,
 		docsSection: "core",
 		type: "string",
 	},
+	"preserve-generated-form": {
+		description: "",
+		docsSection: "optional",
+		type: "boolean",
+	},
 	repository: {
 		description: `The kebab-case name of the repository 
 	(e.g. create-typescript-app)`,
 		docsSection: "core",
 		type: "string",
+	},
+	"skip-all-contributors-api": {
+		description: "",
+		docsSection: "skip-net",
+		type: "boolean",
 	},
 	"skip-github-api": {
 		description: `Skips calling to GitHub APIs.`,

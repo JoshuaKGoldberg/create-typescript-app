@@ -1,6 +1,7 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 import { parseArgs } from "node:util";
+import { fromZodError } from "zod-validation-error";
 
 import { createRerunSuggestion } from "../create/createRerunSuggestion.js";
 import { create } from "../create/index.js";
@@ -9,8 +10,8 @@ import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
 import { StatusCodes } from "../shared/codes.js";
 import { logHelpText } from "./help.js";
-import { promptForMode } from "./mode.js";
 import { getVersionFromPackageJson } from "./packageJson.js";
+import { promptForMode } from "./promptForMode.js";
 
 const operationMessage = (verb: string) =>
 	`Operation ${verb}. Exiting - maybe another time? 👋`;
@@ -59,23 +60,32 @@ export async function bin(args: string[]) {
 		return 0;
 	}
 
-	const mode = await promptForMode(values.mode);
+	const { mode, options: promptedOptions } = await promptForMode(values.mode);
 	if (typeof mode !== "string") {
 		prompts.outro(chalk.red(mode?.message ?? operationMessage("cancelled")));
 		return 1;
 	}
 
-	const { code, options } = await { create, initialize, migrate }[mode](args);
+	const runners = { create, initialize, migrate };
+	const { code, error, options } = await runners[mode](args, promptedOptions);
 
 	prompts.log.info(
 		[
 			chalk.italic(`Tip: to run again with the same input values, use:`),
-			chalk.blue(createRerunSuggestion(mode, options)),
+			chalk.blue(createRerunSuggestion(options)),
 		].join(" "),
 	);
 
 	if (code) {
 		logLine();
+
+		if (error) {
+			logLine(
+				chalk.red(typeof error === "string" ? error : fromZodError(error)),
+			);
+			logLine();
+		}
+
 		prompts.cancel(
 			code === StatusCodes.Cancelled
 				? operationMessage("cancelled")

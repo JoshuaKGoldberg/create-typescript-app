@@ -2,7 +2,7 @@ import { $ } from "execa";
 
 import { readPackageData, removeDependencies } from "../shared/packages.js";
 
-export async function uninstallPackages() {
+export async function uninstallPackages(offline: boolean | undefined) {
 	const packageData = await readPackageData();
 
 	await removeDependencies(
@@ -20,6 +20,8 @@ export async function uninstallPackages() {
 			"prettier",
 			"replace-in-file",
 			"title-case",
+			"zod",
+			"zod-validation-error",
 		],
 		packageData.dependencies,
 	);
@@ -32,6 +34,7 @@ export async function uninstallPackages() {
 			"@types/prettier",
 			"all-contributors-cli",
 			"c8",
+			"eslint-config-prettier",
 			"globby",
 			"tsx",
 		],
@@ -39,5 +42,5 @@ export async function uninstallPackages() {
 		"-D",
 	);
 
-	await $`pnpm add prettier -D`;
+	await $`pnpm add prettier -D${offline ? " --offline" : ""}`;
 }

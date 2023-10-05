@@ -1,16 +1,18 @@
-import { ModeRunner } from "../bin/mode.js";
 import { outro } from "../shared/cli/outro.js";
 import { StatusCodes } from "../shared/codes.js";
 import { ensureGitRepository } from "../shared/ensureGitRepository.js";
+import { generateNextSteps } from "../shared/generateNextSteps.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
+import { ModeRunner } from "../shared/types.js";
 import { initializeWithOptions } from "./initializeWithOptions.js";
 
 export const initialize: ModeRunner = async (args) => {
-	const inputs = await readOptions(args);
+	const inputs = await readOptions(args, "initialize");
 	if (inputs.cancelled) {
 		return {
 			code: StatusCodes.Cancelled,
+			error: inputs.error,
 			options: inputs.options,
 		};
 	}
@@ -30,11 +32,9 @@ export const initialize: ModeRunner = async (args) => {
 							`git commit -m "feat: initialized repo ✨`,
 							`git push`,
 						],
+						variant: "code",
 					},
-					{
-						label:
-							"Otherwise, all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
-					},
+					...generateNextSteps(inputs.options),
 				]);
 			},
 			skipRestore: inputs.options.skipRestore,

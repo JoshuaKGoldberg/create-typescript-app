@@ -19,8 +19,15 @@ interface Flag {
 
 interface Option {
 	description: string;
-	docsSection: "core" | "opt-out" | "optional" | "skip-disk" | "skip-net";
+	docsSection:
+		| "core"
+		| "offline"
+		| "opt-out"
+		| "optional"
+		| "skip-disk"
+		| "skip-net";
 	type: string;
+	multiple?: boolean;
 }
 
 function logHelpTextSection(section: HelpTextSection): void {
@@ -110,8 +117,20 @@ function createHelpTextSections(
 		],
 	};
 
+	const offline: HelpTextSection = {
+		sectionHeading: "Offline Mode:",
+		subsections: [
+			{
+				flags: [],
+				subheading: undefined,
+				warning: undefined,
+			},
+		],
+	};
+
 	const subsections = {
 		core: core.subsections[0],
+		offline: offline.subsections[0],
 		"opt-out": optOut.subsections[0],
 		optional: optional.subsections[0],
 		"skip-disk": optOut.subsections[2],

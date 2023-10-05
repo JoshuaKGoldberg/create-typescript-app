@@ -18,7 +18,9 @@ export async function updateLocalFiles(options: Options) {
 		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
-		[/"bin": ".+\n/g, ``, "./package.json"],
+		...(options.mode === "migrate"
+			? []
+			: [[/"bin": ".+\n/g, ``, "./package.json"]]),
 		[/"test:create": ".+\n/g, ``, "./package.json"],
 		[/"test:initialize": ".*/g, ``, "./package.json"],
 		[/"initialize": ".*/g, ``, "./package.json"],
@@ -33,16 +35,19 @@ export async function updateLocalFiles(options: Options) {
 			"./knip.jsonc",
 		],
 		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
+		// Edge case: migration scripts will rewrite README.md attribution
+		[
+			`> 💙 This package is based on [@${options.owner}](https://github.com/${options.owner})'s [${options.repository}](https://github.com/JoshuaKGoldberg/${options.repository}).`,
+			`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
+			"./README.md",
+		],
 	];
 
 	if (existingPackage.description) {
-		replacements.push([
-			new RegExp(existingPackage.description, "g"),
-			options.description,
-		]);
+		replacements.push([existingPackage.description, options.description]);
 	}
 
-	if (existingPackage.version) {
+	if (options.mode === "initialize" && existingPackage.version) {
 		replacements.push([
 			new RegExp(`"version": "${existingPackage.version}"`, "g"),
 			`"version": "0.0.0"`,

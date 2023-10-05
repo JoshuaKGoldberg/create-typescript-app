@@ -4,13 +4,17 @@ import { Options } from "../../../../shared/types.js";
 import { createDevelopment } from "./createDevelopment.js";
 
 const options = {
+	access: "public",
 	author: "Test Author",
 	base: "everything",
-	createRepository: false,
 	description: "Test description.",
-	email: "test@test.test",
+	directory: ".",
+	email: {
+		github: "github@email.com",
+		npm: "npm@email.com",
+	},
+	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeContributors: undefined,
 	excludeLintJson: undefined,
 	excludeLintKnip: undefined,
 	excludeLintMd: undefined,
@@ -23,6 +27,8 @@ const options = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	logo: undefined,
+	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",
 	skipGitHubApi: false,
@@ -80,7 +86,7 @@ describe("createDevelopment", () => {
 			To manually reformat all files, you can run:
 
 			\`\`\`shell
-			pnpm format:write
+			pnpm format --write
 			\`\`\`
 
 			## Linting
@@ -102,6 +108,8 @@ describe("createDevelopment", () => {
 			\`\`\`shell
 			pnpm run lint --fix
 			\`\`\`
+
+			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 
@@ -191,7 +199,7 @@ describe("createDevelopment", () => {
 			To manually reformat all files, you can run:
 
 			\`\`\`shell
-			pnpm format:write
+			pnpm format --write
 			\`\`\`
 
 			## Linting
@@ -208,6 +216,8 @@ describe("createDevelopment", () => {
 			\`\`\`shell
 			pnpm run lint --fix
 			\`\`\`
+
+			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 

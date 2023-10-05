@@ -11,7 +11,7 @@ export async function createStructure(options: Options): Promise<Structure> {
 		".github": await createDotGitHub(options),
 		".husky": createDotHusky(),
 		".vscode": await createDotVSCode(options),
-		src: await createSrc(options),
+		...(options.mode !== "migrate" && { src: await createSrc(options) }),
 		...(await createRootFiles(options)),
 	};
 }

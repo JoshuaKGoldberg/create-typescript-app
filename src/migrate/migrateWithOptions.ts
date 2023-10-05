@@ -7,7 +7,7 @@ import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/
 import { runCommands } from "../steps/runCommands.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";
-import { writeReadme } from "../steps/writeReadme.js";
+import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function migrateWithOptions({
@@ -48,7 +48,7 @@ export async function migrateWithOptions({
 		});
 	}
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {
 		await withSpinner("Detecting existing contributors", async () =>
 			detectExistingContributors(github?.auth, options),
 		);

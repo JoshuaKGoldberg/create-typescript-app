@@ -1,29 +1,30 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
 
-import { ModeResult } from "../bin/mode.js";
 import { outro } from "../shared/cli/outro.js";
 import { StatusCodes } from "../shared/codes.js";
+import { generateNextSteps } from "../shared/generateNextSteps.js";
 import { readOptions } from "../shared/options/readOptions.js";
 import { runOrRestore } from "../shared/runOrRestore.js";
-import { createAndEnterRepository } from "./createAndEnterRepository.js";
+import { ModeRunner } from "../shared/types.js";
+import { createAndEnterGitDirectory } from "./createAndEnterGitDirectory.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 import { createWithOptions } from "./createWithOptions.js";
 
-export async function create(args: string[]): Promise<ModeResult> {
-	const inputs = await readOptions(args);
+export const create: ModeRunner = async (args, promptedOptions) => {
+	const inputs = await readOptions(args, "create", promptedOptions);
 	if (inputs.cancelled) {
 		return {
 			code: StatusCodes.Cancelled,
+			error: inputs.error,
 			options: inputs.options,
 		};
 	}
 
-	const wat = await createAndEnterRepository(inputs.options.repository);
-	if (!wat) {
+	if (!(await createAndEnterGitDirectory(inputs.options.directory))) {
 		prompts.outro(
 			chalk.red(
-				`The ${inputs.options.repository} directory already exists. Please remove the directory or try a different name.`,
+				`The ${inputs.options.directory} directory already exists and is not empty. Please clear the directory, run with --mode initialize, or try a different directory.`,
 			),
 		);
 		return { code: StatusCodes.Failure, options: inputs.options };
@@ -33,23 +34,20 @@ export async function create(args: string[]): Promise<ModeResult> {
 		code: await runOrRestore({
 			run: async () => {
 				const { sentToGitHub } = await createWithOptions(inputs);
+				const nextSteps = generateNextSteps(inputs.options);
 
 				outro(
 					sentToGitHub
-						? [
-								{
-									label:
-										"Now all you have to do is populate the repository's ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
-								},
-						  ]
+						? nextSteps
 						: [
 								{
 									label:
 										"Consider creating a GitHub repository from the new directory:",
 									lines: [
 										`cd ${inputs.options.repository}`,
-										createRerunSuggestion("initialize", {
+										createRerunSuggestion({
 											...inputs.options,
+											mode: "initialize",
 											skipGitHubApi: false,
 											skipInstall: false,
 										}),
@@ -57,11 +55,9 @@ export async function create(args: string[]): Promise<ModeResult> {
 										`git commit -m "feat: initial commit ✨"`,
 										`git push -u origin main`,
 									],
+									variant: "code",
 								},
-								{
-									label:
-										"If you do, be sure to populate its ACCESS_TOKEN and NPM_TOKEN secrets, and enable the Codecov and Renovate GitHub apps.",
-								},
+								...nextSteps,
 						  ],
 				);
 			},
@@ -69,4 +65,4 @@ export async function create(args: string[]): Promise<ModeResult> {
 		}),
 		options: inputs.options,
 	};
-}
+};

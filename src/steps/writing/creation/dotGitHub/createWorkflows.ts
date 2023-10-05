@@ -56,19 +56,22 @@ export function createWorkflows(options: Options) {
 						uses: "mtfoley/pr-compliance-action@main",
 						with: {
 							"body-auto-close": false,
-							"ignore-authors": [
-								"allcontributors",
-								"allcontributors[bot]",
-								"renovate",
-								"renovate[bot]",
-							].join("\n"),
+							"ignore-authors":
+								[
+									...(options.excludeAllContributors
+										? []
+										: ["allcontributors", "allcontributors[bot]"]),
+									...(options.excludeRenovate
+										? []
+										: ["renovate", "renovate[bot]"]),
+								].join("\n") || undefined,
 							"ignore-team-members": false,
 						},
 					},
 				],
 			}),
 		}),
-		...(!options.excludeContributors && {
+		...(!options.excludeAllContributors && {
 			"contributors.yml": createWorkflowFile({
 				name: "Contributors",
 				on: {
@@ -88,7 +91,7 @@ export function createWorkflows(options: Options) {
 		}),
 		"lint.yml": createWorkflowFile({
 			name: "Lint",
-			runs: ["pnpm lint"],
+			runs: ["pnpm build || true", "pnpm lint"],
 		}),
 		...(!options.excludeLintKnip && {
 			"lint-knip.yml": createWorkflowFile({
@@ -108,7 +111,7 @@ export function createWorkflows(options: Options) {
 				runs: ["pnpm lint:package-json"],
 			}),
 		}),
-		...(!options.excludeLintPackageJson && {
+		...(!options.excludeLintPackages && {
 			"lint-packages.yml": createWorkflowFile({
 				name: "Lint Packages",
 				runs: ["pnpm lint:packages"],
@@ -153,7 +156,6 @@ export function createWorkflows(options: Options) {
 			}),
 			"release.yml": createWorkflowFile({
 				concurrency: {
-					"cancel-in-progress": true,
 					group: "${{ github.workflow }}",
 				},
 				name: "Release",
@@ -171,6 +173,7 @@ export function createWorkflows(options: Options) {
 						uses: "actions/checkout@v4",
 						with: {
 							"fetch-depth": 0,
+							ref: "main",
 						},
 					},
 					{
@@ -180,91 +183,16 @@ export function createWorkflows(options: Options) {
 						run: "pnpm build",
 					},
 					{
-						run: 'git config user.name "${GITHUB_ACTOR}"',
-					},
-					{
-						run: 'git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"',
-					},
-					{
-						env: {
-							NPM_TOKEN: "${{ secrets.NPM_TOKEN }}",
-						},
-						run: "npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN",
-					},
-					{
-						name: "Delete branch protection on main",
-						uses: "actions/github-script@v6.4.1",
-						with: {
-							"github-token": "${{ secrets.ACCESS_TOKEN }}",
-							script: `
-								try {
-									await github.request(
-									  \`DELETE /repos/${options.owner}/${options.repository}/branches/main/protection\`,
-									);
-								} catch (error) {
-									if (!error.message?.includes?.("Branch not protected")) {
-										throw error;
-									}
-								}`,
-						},
-					},
-					{
 						env: {
 							GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
+							NPM_TOKEN: "${{ secrets.NPM_TOKEN }}",
 						},
-						run: `
-						if pnpm run should-semantic-release ; then
-						  pnpm release-it --verbose
-						  gh workflow run post-release.yml
-						fi`,
-					},
-					{
-						if: "always()",
-						name: "Recreate branch protection on main",
-						uses: "actions/github-script@v6.4.1",
-						with: {
-							"github-token": "${{ secrets.ACCESS_TOKEN }}",
-							script: `
-							github.request(
-							  \`PUT /repos/${options.owner}/${options.repository}/branches/main/protection\`,
-							  {
-								  allow_deletions: false,
-								  allow_force_pushes: true,
-								  allow_fork_pushes: false,
-								  allow_fork_syncing: true,
-								  block_creations: false,
-								  branch: "main",
-								  enforce_admins: false,
-								  owner: "${options.owner}",
-								  repo: "${options.repository}",
-								  required_conversation_resolution: true,
-								  required_linear_history: false,
-								  required_pull_request_reviews: null,
-								  required_status_checks: {
-									checks: [
-									  { context: "build" },
-									  { context: "compliance" },
-									  { context: "lint" },
-									  { context: "lint_knip" },
-									  { context: "lint_markdown" },
-									  { context: "lint_package_json" },
-									  { context: "lint_packages" },
-									  { context: "lint_spelling" },
-									  { context: "prettier" },
-									  { context: "test" },
-									],
-									strict: false,
-								  },
-								  restrictions: null,
-							  }
-							);
-						`,
-						},
+						uses: "JoshuaKGoldberg/release-it-action@v0.2.2",
 					},
 				],
 			}),
 		}),
-		...(options.excludeTests && {
+		...(!options.excludeTests && {
 			"test.yml": createWorkflowFile({
 				name: "Test",
 				steps: [
@@ -274,7 +202,6 @@ export function createWorkflows(options: Options) {
 					{
 						name: "Codecov",
 						uses: "codecov/codecov-action@v3",
-						with: { "github-token": "${{ secrets.GITHUB_TOKEN }}" },
 					},
 				],
 			}),

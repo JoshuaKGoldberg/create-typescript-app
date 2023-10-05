@@ -9,10 +9,8 @@ export async function finalizeDependencies(options: Options) {
 		"@typescript-eslint/eslint-plugin",
 		"@typescript-eslint/parser",
 		"eslint",
-		"eslint-config-prettier",
 		"eslint-plugin-deprecation",
 		"eslint-plugin-eslint-comments",
-		"eslint-plugin-import",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
 		"eslint-plugin-regexp",
@@ -23,7 +21,7 @@ export async function finalizeDependencies(options: Options) {
 		"prettier-plugin-packagejson",
 		"tsup",
 		"typescript",
-		...(options.excludeContributors ? [] : ["all-contributors-cli"]),
+		...(options.excludeAllContributors ? [] : ["all-contributors-cli"]),
 		...(options.excludeLintJson
 			? []
 			: ["eslint-plugin-jsonc", "jsonc-eslint-parser"]),
@@ -48,7 +46,11 @@ export async function finalizeDependencies(options: Options) {
 			: ["eslint-plugin-yml", "yaml-eslint-parser"]),
 		...(options.excludeReleases
 			? []
-			: ["release-it", "should-semantic-release"]),
+			: [
+					"@release-it/conventional-changelog",
+					"release-it",
+					"should-semantic-release",
+			  ]),
 		...(options.excludeTests
 			? []
 			: [
@@ -64,9 +66,11 @@ export async function finalizeDependencies(options: Options) {
 		.map((packageName) => `${packageName}@latest`)
 		.join(" ");
 
-	await execaCommand(`pnpm add ${devDependencies} -D`);
+	await execaCommand(
+		`pnpm add ${devDependencies} -D${options.offline ? " --offline" : ""}`,
+	);
 
-	if (!options.excludeContributors) {
+	if (!options.excludeAllContributors) {
 		await execaCommand(`npx all-contributors-cli generate`);
 		await removeDependencies(
 			["all-contributors-cli", "all-contributors-for-repository"],
@@ -75,5 +79,5 @@ export async function finalizeDependencies(options: Options) {
 		);
 	}
 
-	await execaCommand("pnpm run format:write");
+	await execaCommand(`pnpm dedupe`);
 }

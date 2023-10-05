@@ -24,7 +24,7 @@ export async function bin(args: string[]) {
 		[
 			chalk.greenBright(`✨ Welcome to`),
 			chalk.bgGreenBright.black(`create-typescript-app`),
-			chalk.greenBright(`${version ? `${version}` : ""}! ✨`),
+			chalk.greenBright(`${version}! ✨`),
 		].join(" "),
 	);
 

@@ -4,7 +4,7 @@ interface PackageWithVersion {
 	version?: string;
 }
 
-export async function getVersionFromPackageJson(): Promise<string | undefined> {
+export async function getVersionFromPackageJson(): Promise<string> {
 	const path = new URL("../../package.json", import.meta.url);
 	const data = (await readFileSafeAsJson(path)) as PackageWithVersion;
 
@@ -12,5 +12,5 @@ export async function getVersionFromPackageJson(): Promise<string | undefined> {
 		return data.version;
 	}
 
-	return undefined;
+	throw new Error("Cannot find version number");
 }

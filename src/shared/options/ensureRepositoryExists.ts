@@ -86,5 +86,5 @@ export async function ensureRepositoryExists(
 		}
 	}
 
-	return { github: github, repository };
+	return { github, repository };
 }

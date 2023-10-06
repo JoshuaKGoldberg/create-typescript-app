@@ -16,6 +16,7 @@ export async function createRootFiles(options: Options) {
 				"lib",
 				"node_modules",
 				"pnpm-lock.yaml",
+				"pnpm-workspace.yaml",
 			].filter(Boolean),
 		),
 		".eslintrc.cjs": await createESLintRC(options),
@@ -52,6 +53,7 @@ export async function createRootFiles(options: Options) {
 			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",
+			"pnpm-workspace.yaml",
 		]),
 		".prettierrc": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
@@ -121,6 +123,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					"lib",
 					"node_modules",
 					"pnpm-lock.yaml",
+					"pnpm-workspace.yaml"
 				],
 				words: [
 					"Codecov",

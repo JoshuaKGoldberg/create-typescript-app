@@ -2,3 +2,4 @@
 coverage*/
 lib/
 pnpm-lock.yaml
+pnpm-workspace.yaml

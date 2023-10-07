@@ -39,6 +39,12 @@ export const allArgOptions = {
 		docsSection: "core",
 		type: "string",
 	},
+	directory: {
+		description: `Directory to create the repository in (by default, the same 
+	name as the repository)`,
+		docsSection: "optional",
+		type: "string",
+	},
 	email: {
 		description: `Email address to be listed as the point of contact in 
 	docs and packages (e.g. example@joshuakgoldberg.com)`,

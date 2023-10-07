@@ -26,8 +26,8 @@ interface Option {
 		| "optional"
 		| "skip-disk"
 		| "skip-net";
-	type: string;
 	multiple?: boolean;
+	type: string;
 }
 
 function logHelpTextSection(section: HelpTextSection): void {
@@ -145,7 +145,7 @@ function createHelpTextSections(
 		});
 	}
 
-	return [core, optional, optOut];
+	return [core, optional, optOut, offline];
 }
 
 export function logHelpText(): void {

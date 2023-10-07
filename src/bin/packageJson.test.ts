@@ -8,6 +8,6 @@ describe("getVersionFromPackageJson", () => {
 
 		expect(version).toBeTypeOf("string");
 
-		expect(version.split(".").length).toEqual(3);
+		expect(version.split(".").length).toBe(3);
 	});
 });

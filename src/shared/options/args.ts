@@ -2,7 +2,10 @@ import chalk from "chalk";
 
 export const allArgOptions = {
 	access: {
-		description: "",
+		description: `(${chalk.cyanBright(
+			'"public" | "restricted"',
+		)}): Which ${chalk.cyanBright("npm publish --access")} to 
+	release npm packages with (by default, "public")`,
 		docsSection: "optional",
 		type: "string",
 	},
@@ -43,12 +46,16 @@ export const allArgOptions = {
 		type: "string",
 	},
 	"email-github": {
-		description: "",
+		description: `Optionally, may be provided to use different emails in ${chalk.cyanBright(
+			".md",
+		)} 
+	files`,
 		docsSection: "optional",
 		type: "string",
 	},
 	"email-npm": {
-		description: "",
+		description: `Optionally, may be provided to use different emails in 
+	${chalk.cyanBright("package.json")}`,
 		docsSection: "optional",
 		type: "string",
 	},
@@ -64,8 +71,15 @@ export const allArgOptions = {
 		docsSection: "opt-out",
 		type: "boolean",
 	},
+	"exclude-lint-deprecation": {
+		description: `Don't use eslint-plugin-deprecation to report on usage of 
+	code marked as ${chalk.cyanBright("@deprecated")}.`,
+		docsSection: "opt-out",
+		type: "boolean",
+	},
 	"exclude-lint-jsdoc": {
-		description: "",
+		description: `Don't use eslint-plugin-jsdoc to enforce good practices around 
+	JSDoc comments.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -107,7 +121,8 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"exclude-lint-regex": {
-		description: "",
+		description: `Don't add eslint-plugin-regex to enforce good practices around 
+	regular expressions.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -118,12 +133,14 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"exclude-lint-strict": {
-		description: "",
+		description: `Don't augment the recommended logical lint rules with 
+	typescript-eslint's strict config.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
 	"exclude-lint-stylistic": {
-		description: "",
+		description: `Don't add stylistic rules such as typescript-eslint's 
+	stylistic config.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -160,18 +177,26 @@ export const allArgOptions = {
 		type: "string",
 	},
 	keywords: {
-		description: "",
+		description: `Any number of keywords to include in ${chalk.cyanBright(
+			"package.json",
+		)} (by default, 
+	none). This can be specified any number of times, like 
+	${chalk.cyanBright('--keywords apple --keywords "banana cherry"')}`,
 		docsSection: "optional",
 		multiple: true,
 		type: "string",
 	},
 	logo: {
-		description: "",
+		description: `Local image file in the repository to display near the top of 
+	the README.md as a logo`,
 		docsSection: "optional",
 		type: "string",
 	},
 	"logo-alt": {
-		description: "",
+		description: `If ${chalk.cyanBright(
+			"--logo",
+		)} is provided or detected from an existing README.md, 
+	alt text that describes the image will be prompted for if not provided`,
 		docsSection: "optional",
 		type: "string",
 	},
@@ -184,7 +209,15 @@ export const allArgOptions = {
 		type: "string",
 	},
 	offline: {
-		description: "",
+		description: `You can run ${chalk.cyanBright(
+			"create-typescript-app",
+		)} in an "offline" mode. 
+	Doing so will:
+	• Enable ${chalk.cyanBright(
+		"--exclude-all-contributors-api",
+	)} and ${chalk.cyanBright("--skip-github-api")}
+	• Skip network calls when setting up contributors
+	• Run pnpm commands with pnpm's ${chalk.cyanBright("--offline")} mode`,
 		docsSection: "offline",
 		type: "boolean",
 	},
@@ -195,7 +228,8 @@ export const allArgOptions = {
 		type: "string",
 	},
 	"preserve-generated-form": {
-		description: "",
+		description: `Whether to keep the GitHub repository generated from notice
+	(by default, false)`,
 		docsSection: "optional",
 		type: "boolean",
 	},
@@ -206,7 +240,10 @@ export const allArgOptions = {
 		type: "string",
 	},
 	"skip-all-contributors-api": {
-		description: "",
+		description: `Skips network calls that fetch all-contributors data from
+	GitHub. This flag does nothing if ${chalk.cyanBright(
+		"--exclude-all-contributors",
+	)} was specified.`,
 		docsSection: "skip-net",
 		type: "boolean",
 	},

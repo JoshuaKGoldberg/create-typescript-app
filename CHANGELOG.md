@@ -1,3 +1,9 @@
+# [1.37.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.36.0...v1.37.0) (2023-10-08)
+
+### Features
+
+- replace parsePackageAuthor with npm package ([#904](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/904)) ([d5d8d40](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d5d8d401297714aace7bb344580396a76a2869d3)), closes [#789](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/789) [#789](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/789)
+
 # [1.36.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.35.0...v1.36.0) (2023-10-08)
 
 ### Features

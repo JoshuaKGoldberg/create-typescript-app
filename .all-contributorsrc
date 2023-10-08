@@ -288,6 +288,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "dertimonius",
+      "name": "Timon Jurschitsch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103483059?v=4",
+      "profile": "https://www.linkedin.com/in/timonjurschitsch/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

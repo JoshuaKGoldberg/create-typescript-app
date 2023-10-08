@@ -1,3 +1,9 @@
+# [1.36.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.35.0...v1.36.0) (2023-10-08)
+
+### Features
+
+- **lint:** add `no-useless-rename` and `object-shorthand` ([#944](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/944)) ([4184d1b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4184d1be4834de0b0880aafd30eb5fc6792293e5)), closes [#939](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/939)
+
 # [1.35.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.34.0...v1.35.0) (2023-10-03)
 
 ### Features

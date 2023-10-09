@@ -1,13 +1,12 @@
 import { describe, expect, it } from "vitest";
 
+import packageData from "../../package.json" assert { type: "json" };
 import { getVersionFromPackageJson } from "./packageJson.js";
 
 describe("getVersionFromPackageJson", () => {
-	it("returns a string representing a version number when given a valid package.json URL", async () => {
+	it("returns the current version number when given a valid package.json URL", async () => {
 		const version = await getVersionFromPackageJson();
 
-		expect(version).toBeTypeOf("string");
-
-		expect(version.split(".").length).toBe(3);
+		expect(version).toBe(packageData.version);
 	});
 });

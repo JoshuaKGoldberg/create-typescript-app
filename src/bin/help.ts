@@ -150,7 +150,7 @@ function createHelpTextSections(
 
 export function logHelpText(): void {
 	const helpTextSections = createHelpTextSections(
-		allArgOptions as Record<string, Option>,
+		allArgOptions,
 	);
 
 	console.log(" ");

@@ -1,3 +1,9 @@
+## [1.37.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.37.0...v1.37.1) (2023-10-11)
+
+### Bug Fixes
+
+- also uninstall parse-author packages ([7cc468b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7cc468b3bda03b4be7025e2d9be3038bb0ea6f15))
+
 # [1.37.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.36.0...v1.37.0) (2023-10-08)
 
 ### Features

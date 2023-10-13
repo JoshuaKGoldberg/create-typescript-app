@@ -65,8 +65,6 @@ function createHelpTextSections(
 		subsections: [
 			{
 				flags: [],
-				subheading: undefined,
-				warning: undefined,
 			},
 		],
 	};
@@ -76,8 +74,6 @@ function createHelpTextSections(
 		subsections: [
 			{
 				flags: [],
-				subheading: undefined,
-				warning: undefined,
 			},
 		],
 	};
@@ -87,7 +83,6 @@ function createHelpTextSections(
 		subsections: [
 			{
 				flags: [],
-				subheading: undefined,
 				warning: `
       ⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
       cause the setup script to skip prompting for more excludes. ⚠️`,
@@ -104,14 +99,12 @@ function createHelpTextSections(
 				subheading: `
       You can prevent the migration script from making some network-based 
       changes using any or all of the following CLI flags:`,
-				warning: undefined,
 			},
 			{
 				flags: [],
 				subheading: `
       You can prevent the migration script from making some changes on disk 
       using any or all of the following CLI flags:`,
-				warning: undefined,
 			},
 		],
 	};
@@ -121,8 +114,6 @@ function createHelpTextSections(
 		subsections: [
 			{
 				flags: [],
-				subheading: undefined,
-				warning: undefined,
 			},
 		],
 	};

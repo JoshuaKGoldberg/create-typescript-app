@@ -44,8 +44,7 @@ function logHelpTextSection(section: HelpTextSection): void {
 			console.log(chalk.green(subsection.subheading));
 		}
 
-		for (const option of subsection.flags) {
-			const { description, flag, type } = option;
+		for (const { description, flag, type } of subsection.flags) {
 			console.log(
 				chalk.cyan(
 					`

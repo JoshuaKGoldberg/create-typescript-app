@@ -5,13 +5,13 @@ import { allArgOptions } from "../shared/options/args.js";
 interface HelpTextSection {
 	sectionHeading: string;
 	subsections: {
-		flags: Flag[];
+		flags: SubsectionFlag[];
 		subheading: string | undefined;
 		warning: string | undefined;
 	}[];
 }
 
-interface Flag {
+interface SubsectionFlag {
 	description: string;
 	flag: string;
 	type: string;
@@ -148,9 +148,7 @@ function createHelpTextSections(
 }
 
 export function logHelpText(): void {
-	const helpTextSections = createHelpTextSections(
-		allArgOptions,
-	);
+	const helpTextSections = createHelpTextSections(allArgOptions);
 
 	console.log(" ");
 

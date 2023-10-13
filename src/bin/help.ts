@@ -6,8 +6,8 @@ interface HelpTextSection {
 	sectionHeading: string;
 	subsections: {
 		flags: SubsectionFlag[];
-		subheading: string | undefined;
-		warning: string | undefined;
+		subheading?: string;
+		warning?: string;
 	}[];
 }
 

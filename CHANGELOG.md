@@ -1,3 +1,9 @@
+# [1.38.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.37.1...v1.38.0) (2023-10-14)
+
+### Features
+
+- updated Node version to 20.8.0 ([#957](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/957)) ([981ad21](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/981ad21248dca7bf2bb6d4d88325ae313bd2dad3)), closes [#953](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/953)
+
 ## [1.37.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.37.0...v1.37.1) (2023-10-11)
 
 ### Bug Fixes

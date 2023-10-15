@@ -6,7 +6,7 @@
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 32 🤝" src="https://img.shields.io/badge/all_contributors-32_🤝-21bb42.svg" />
+<img alt="All Contributors: 33 🤝" src="https://img.shields.io/badge/all_contributors-33_🤝-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 	</a>
@@ -116,6 +116,7 @@ Thanks! 💖
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/the-lazy-learner"><img src="https://avatars.githubusercontent.com/u/13695177?v=4?s=100" width="100px;" alt="Sudhansu"/><br /><sub><b>Sudhansu</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=the-lazy-learner" title="Code">💻</a></td>
     </tr>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mrswastik-robot"><img src="https://avatars.githubusercontent.com/u/107865087?v=4?s=100" width="100px;" alt="Swastik Patel"/><br /><sub><b>Swastik Patel</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=mrswastik-robot" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/timonjurschitsch/"><img src="https://avatars.githubusercontent.com/u/103483059?v=4?s=100" width="100px;" alt="Timon Jurschitsch"/><br /><sub><b>Timon Jurschitsch</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=dertimonius" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tungbq"><img src="https://avatars.githubusercontent.com/u/85242618?v=4?s=100" width="100px;" alt="Tung Bui (Leo)"/><br /><sub><b>Tung Bui (Leo)</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=tungbq" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/vasanth9"><img src="https://avatars.githubusercontent.com/u/42891954?v=4?s=100" width="100px;" alt="Vasanth Kumar Cheepurupalli"/><br /><sub><b>Vasanth Kumar Cheepurupalli</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=vasanth9" title="Code">💻</a></td>

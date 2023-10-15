@@ -33,7 +33,7 @@ interface Option {
 function logHelpTextSection(section: HelpTextSection): void {
 	console.log(" ");
 
-	console.log(`   ${chalk.black.bgGreenBright(section.sectionHeading)}`);
+	console.log(`${chalk.black.bgGreenBright(section.sectionHeading)}`);
 
 	for (const subsection of section.subsections) {
 		if (subsection.warning) {
@@ -48,9 +48,9 @@ function logHelpTextSection(section: HelpTextSection): void {
 			console.log(
 				chalk.cyan(
 					`
-      --${flag}${
-				type !== "boolean" ? ` (${chalk.cyanBright(type)})` : ""
-			}: ${description}`,
+--${flag}${
+						type !== "boolean" ? ` (${chalk.cyanBright(type)})` : ""
+					}: ${description}`,
 				),
 			);
 		}
@@ -84,27 +84,27 @@ function createHelpTextSections(
 			{
 				flags: [],
 				warning: `
-      ⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
-      cause the setup script to skip prompting for more excludes. ⚠️`,
+⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
+cause the setup script to skip prompting for more excludes. ⚠️`,
 			},
 			{
 				flags: [
 					{
 						description: `Skips network calls that fetch all-contributors
-        data from GitHub`,
+data from GitHub`,
 						flag: "exclude-contributors",
 						type: "boolean",
 					},
 				],
 				subheading: `
-      You can prevent the migration script from making some network-based 
-      changes using any or all of the following CLI flags:`,
+You can prevent the migration script from making some network-based 
+changes using any or all of the following CLI flags:`,
 			},
 			{
 				flags: [],
 				subheading: `
-      You can prevent the migration script from making some changes on disk 
-      using any or all of the following CLI flags:`,
+You can prevent the migration script from making some changes on disk 
+using any or all of the following CLI flags:`,
 			},
 		],
 	};
@@ -138,16 +138,19 @@ function createHelpTextSections(
 	return [core, optional, optOut, offline];
 }
 
-export function logHelpText(): void {
+export function logHelpText(introLogs: string[]): void {
 	const helpTextSections = createHelpTextSections(allArgOptions);
 
-	console.log(" ");
+	for (const log of introLogs) {
+		console.log(log);
+		console.log(" ");
+	}
 
 	console.log(
 		chalk.cyan(
 			`
-      A quickstart-friendly TypeScript template with comprehensive formatting, 
-      linting, releases, testing, and other great tooling built-in.
+A quickstart-friendly TypeScript template with comprehensive formatting, 
+linting, releases, testing, and other great tooling built-in.
       `,
 		),
 	);

@@ -21,25 +21,20 @@ export async function bin(args: string[]) {
 
 	const version = await getVersionFromPackageJson();
 
-	prompts.intro(
-		[
-			chalk.greenBright(`✨ Welcome to`),
-			chalk.bgGreenBright.black(`create-typescript-app`),
-			chalk.greenBright(`${version}! ✨`),
-		].join(" "),
-	);
+	const introPrompts = [
+		chalk.greenBright(`✨ Welcome to`),
+		chalk.bgGreenBright.black(`create-typescript-app`),
+		chalk.greenBright(`${version}! ✨`),
+	].join(" ");
 
-	logLine();
-	logLine(
+	const introWarnings = [
 		chalk.yellow(
 			"⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️",
 		),
-	);
-	logLine(
 		chalk.yellow(
 			"⚠️ If any tooling it sets displeases you, you can always remove that portion manually. ⚠️",
 		),
-	);
+	];
 
 	const { values } = parseArgs({
 		args,
@@ -56,9 +51,15 @@ export async function bin(args: string[]) {
 	const help = values.help;
 
 	if (help) {
-		logHelpText();
+		logHelpText([introPrompts, ...introWarnings]);
 		return 0;
 	}
+
+	prompts.intro(introPrompts);
+
+	logLine();
+	logLine(introWarnings[0]);
+	logLine(introWarnings[1]);
 
 	const { mode, options: promptedOptions } = await promptForMode(values.mode);
 	if (typeof mode !== "string") {

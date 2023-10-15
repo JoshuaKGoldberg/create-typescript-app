@@ -306,6 +306,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mrswastik-robot",
+      "name": "Swastik Patel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/107865087?v=4",
+      "profile": "https://github.com/mrswastik-robot",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

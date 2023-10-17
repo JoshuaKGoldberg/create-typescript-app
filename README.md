@@ -34,13 +34,13 @@ It includes options not just for building and testing but also GitHub repository
 
 ## Getting Started
 
-First make sure you have the following installed:
+First, make sure you have the following installed:
 
 - [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
 - [Node.js](https://nodejs.org)
 - [pnpm](https://pnpm.io)
 
-Then in an existing repository or in your directory where you'd like to make a new repository:
+Then, in an existing repository or in your directory where you'd like to make a new repository:
 
 ```shell
 npx create-typescript-app

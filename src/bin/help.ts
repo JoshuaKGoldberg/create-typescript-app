@@ -69,8 +69,8 @@ function createHelpTextSections(): HelpTextSection[] {
 			{
 				flags: [],
 				warning: `
-⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
-cause the setup script to skip prompting for more excludes. ⚠️`,
+  ⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
+  cause the setup script to skip prompting for more excludes. ⚠️`,
 			},
 			{
 				flags: [

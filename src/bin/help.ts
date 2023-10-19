@@ -48,9 +48,9 @@ function logHelpTextSection(section: HelpTextSection): void {
 			console.log(
 				chalk.cyan(
 					`
---${flag}${
-						type !== "boolean" ? ` (${chalk.cyanBright(type)})` : ""
-					}: ${description}`,
+  --${flag}${
+		type !== "boolean" ? ` (${chalk.cyanBright(type)})` : ""
+	}: ${description}`,
 				),
 			);
 		}
@@ -91,7 +91,7 @@ cause the setup script to skip prompting for more excludes. ⚠️`,
 				flags: [
 					{
 						description: `Skips network calls that fetch all-contributors
-data from GitHub`,
+  data from GitHub`,
 						flag: "exclude-contributors",
 						type: "boolean",
 					},

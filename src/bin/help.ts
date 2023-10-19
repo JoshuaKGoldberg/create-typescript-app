@@ -17,19 +17,6 @@ interface SubsectionFlag {
 	type: string;
 }
 
-interface Option {
-	description: string;
-	docsSection:
-		| "core"
-		| "offline"
-		| "opt-out"
-		| "optional"
-		| "skip-disk"
-		| "skip-net";
-	multiple?: boolean;
-	type: string;
-}
-
 function logHelpTextSection(section: HelpTextSection): void {
 	console.log(" ");
 
@@ -57,9 +44,7 @@ function logHelpTextSection(section: HelpTextSection): void {
 	}
 }
 
-function createHelpTextSections(
-	options: Record<string, Option>,
-): HelpTextSection[] {
+function createHelpTextSections(): HelpTextSection[] {
 	const core: HelpTextSection = {
 		sectionHeading: "Core options:",
 		subsections: [
@@ -127,7 +112,7 @@ using any or all of the following CLI flags:`,
 		"skip-net": optOut.subsections[1],
 	};
 
-	for (const [option, data] of Object.entries(options)) {
+	for (const [option, data] of Object.entries(allArgOptions)) {
 		subsections[data.docsSection].flags.push({
 			description: data.description,
 			flag: option,
@@ -139,7 +124,7 @@ using any or all of the following CLI flags:`,
 }
 
 export function logHelpText(introLogs: string[]): void {
-	const helpTextSections = createHelpTextSections(allArgOptions);
+	const helpTextSections = createHelpTextSections();
 
 	for (const log of introLogs) {
 		console.log(log);

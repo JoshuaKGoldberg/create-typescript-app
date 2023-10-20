@@ -1,3 +1,9 @@
+# [1.39.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.38.0...v1.39.0) (2023-10-20)
+
+### Features
+
+- skip file cleanup if installation is skipped ([#975](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/975)) ([aef28f2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aef28f2f7c8edb102e650de449a54de61a3913dd)), closes [#706](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/706)
+
 # [1.38.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.37.1...v1.38.0) (2023-10-14)
 
 ### Features

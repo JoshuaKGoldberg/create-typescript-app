@@ -315,6 +315,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "gv14982",
+      "name": "Graham Vasquez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7041175?v=4",
+      "profile": "https://gvasquez.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

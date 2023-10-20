@@ -36,13 +36,13 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 		await withSpinner("Installing packages", async () =>
 			finalizeDependencies(options),
 		);
-	}
 
-	await runCommands("Cleaning up files", [
-		"pnpm dedupe",
-		"pnpm lint --fix",
-		"pnpm format --write",
-	]);
+		await runCommands("Cleaning up files", [
+			"pnpm dedupe",
+			"pnpm lint --fix",
+			"pnpm format --write",
+		]);
+	}
 
 	const sendToGitHub =
 		github && (await doesRepositoryExist(github.octokit, options));

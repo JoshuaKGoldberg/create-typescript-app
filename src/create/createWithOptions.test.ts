@@ -59,15 +59,16 @@ const mockOptions: Options = {
 	title: "Test Title",
 };
 
+const options = mockOptions;
+
 describe("createWithOptions", () => {
+	// test the writeStructure function
 	it("creates a repository structure for GitHub", async () => {
 		// Mock the writeStructure function
 		const mockWriteStructure = vi.fn();
 		vi.mock("../steps/writing/writeStructure.js", () => ({
 			writeStructure: mockWriteStructure,
 		}));
-
-		const options = mockOptions;
 
 		// Call createWithOptions with the mock data
 		const result = await createWithOptions({ github, options });
@@ -79,14 +80,13 @@ describe("createWithOptions", () => {
 		expect(result.sentToGitHub).toBe(true);
 	});
 
+	// test the writeReadme function
 	it("creates a README file", async () => {
 		// Mock the writeReadme function to track if it's called with the correct options
 		const mockWriteReadme = vi.fn();
 		vi.mock("../steps/writeReadme/index.js", () => ({
 			writeReadme: mockWriteReadme,
 		}));
-
-		const options = mockOptions;
 
 		// Call createWithOptions with the test-specific data
 		const readMe = await mockWriteReadme(async () => {

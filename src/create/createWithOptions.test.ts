@@ -99,11 +99,6 @@ const mockOptions: Options = {
 	title: "Test Title",
 };
 
-interface GitHubAndOptions {
-	github: GitHub;
-	options: Options;
-}
-
 describe("createWithOptions", () => {
 	it("creates a repository structure for GitHub", async () => {
 		// Mock the writeStructure function
@@ -117,9 +112,10 @@ describe("createWithOptions", () => {
 		// Call createWithOptions with the mock data
 		const result = await createWithOptions({ github, options });
 
-		// Assert that writeStructure was called with the expected options
+		// Check to make sure that writeStructure was called with the expected options
 		expect(mockWriteStructure).toHaveBeenCalledWith(options);
 
+		// Check to make sure that the options have been sent to GitHub
 		expect(result.sentToGitHub).toBe(true);
 	});
 
@@ -130,11 +126,23 @@ describe("createWithOptions", () => {
 			writeReadme: mockWriteReadme,
 		}));
 
+		const options = mockOptions;
+
 		// Call createWithOptions with the test-specific data
-		const result = await createWithOptions({ github, options });
+		const readMe = await mockWriteReadme(async () => {
+			await createWithOptions({ github, options });
+		});
 
 		// Assert that writeReadme was called with the expected options
 		expect(mockWriteReadme).toHaveBeenCalledWith(options);
+
+		// Check that the generated README content matches the values passed to it
+		expect(readMe).toContain(options.title);
+		expect(readMe).toContain(`Author: ${options.author}`);
+		expect(readMe).toContain(`Description: ${options.description}`);
+		expect(readMe).toContain(`Directory: ${options.directory}`);
+		expect(readMe).toContain(`Title: ${options.title}`);
+		expect(readMe).toContain(`Repository: ${options.repository}`);
 	});
 
 	it("adds contributors to the repository", async () => {

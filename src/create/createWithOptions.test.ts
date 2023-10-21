@@ -1,7 +1,6 @@
 import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
-import { GitHub } from "../shared/options/getGitHub.js";
 import { Options } from "../shared/types.js";
 import { createWithOptions } from "./createWithOptions.js";
 
@@ -15,45 +14,6 @@ const mockOctokit = new Octokit();
 const github = {
 	auth: "auth-token",
 	octokit: mockOctokit,
-};
-
-const emptyOptions = {
-	access: undefined,
-	author: undefined,
-	base: undefined,
-	description: undefined,
-	directory: undefined,
-	email: undefined,
-	excludeAllContributors: undefined,
-	excludeCompliance: undefined,
-	excludeLintDeprecation: undefined,
-	excludeLintESLint: undefined,
-	excludeLintJSDoc: undefined,
-	excludeLintJson: undefined,
-	excludeLintKnip: undefined,
-	excludeLintMd: undefined,
-	excludeLintPackageJson: undefined,
-	excludeLintPackages: undefined,
-	excludeLintPerfectionist: undefined,
-	excludeLintRegex: undefined,
-	excludeLintSpelling: undefined,
-	excludeLintStrict: undefined,
-	excludeLintYml: undefined,
-	excludeReleases: undefined,
-	excludeRenovate: undefined,
-	excludeTests: undefined,
-	funding: undefined,
-	offline: undefined,
-	owner: undefined,
-	preserveGeneratedFrom: false,
-	repository: undefined,
-	skipAllContributorsApi: undefined,
-	skipGitHubApi: undefined,
-	skipInstall: undefined,
-	skipRemoval: undefined,
-	skipRestore: undefined,
-	skipUninstall: undefined,
-	title: undefined,
 };
 
 const mockOptions: Options = {

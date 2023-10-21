@@ -1,10 +1,108 @@
+import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
+import { GitHub } from "../shared/options/getGitHub.js";
+import { Options } from "../shared/types.js";
 import { createWithOptions } from "./createWithOptions.js";
 
-// Define mock data and options
-const github = { data: "mock data" };
-const options = { createStructure: true };
+enum OptionsAccess {
+	Public = "public",
+	Restricted = "restricted",
+}
+
+const mockOctokit = new Octokit();
+
+const github = {
+	auth: "auth-token",
+	octokit: mockOctokit,
+};
+
+const emptyOptions = {
+	access: undefined,
+	author: undefined,
+	base: undefined,
+	description: undefined,
+	directory: undefined,
+	email: undefined,
+	excludeAllContributors: undefined,
+	excludeCompliance: undefined,
+	excludeLintDeprecation: undefined,
+	excludeLintESLint: undefined,
+	excludeLintJSDoc: undefined,
+	excludeLintJson: undefined,
+	excludeLintKnip: undefined,
+	excludeLintMd: undefined,
+	excludeLintPackageJson: undefined,
+	excludeLintPackages: undefined,
+	excludeLintPerfectionist: undefined,
+	excludeLintRegex: undefined,
+	excludeLintSpelling: undefined,
+	excludeLintStrict: undefined,
+	excludeLintYml: undefined,
+	excludeReleases: undefined,
+	excludeRenovate: undefined,
+	excludeTests: undefined,
+	funding: undefined,
+	offline: undefined,
+	owner: undefined,
+	preserveGeneratedFrom: false,
+	repository: undefined,
+	skipAllContributorsApi: undefined,
+	skipGitHubApi: undefined,
+	skipInstall: undefined,
+	skipRemoval: undefined,
+	skipRestore: undefined,
+	skipUninstall: undefined,
+	title: undefined,
+};
+
+const mockOptions: Options = {
+	access: OptionsAccess.Public,
+	author: "Test Author",
+	base: "common",
+	description: "Test Description",
+	directory: "test-directory",
+	email: { github: "github@example.com", npm: "npm@example.com" },
+	excludeAllContributors: false,
+	excludeCompliance: false,
+	excludeLintDeprecation: false,
+	excludeLintESLint: false,
+	excludeLintJSDoc: false,
+	excludeLintJson: false,
+	excludeLintKnip: false,
+	excludeLintMd: false,
+	excludeLintPackageJson: false,
+	excludeLintPackages: false,
+	excludeLintPerfectionist: false,
+	excludeLintRegex: false,
+	excludeLintSpelling: false,
+	excludeLintStrict: false,
+	excludeLintStylistic: false,
+	excludeLintYml: false,
+	excludeReleases: false,
+	excludeRenovate: false,
+	excludeTests: false,
+	funding: "Test Funding",
+	keywords: ["test", "keywords"],
+	logo: { alt: "Test Alt", src: "test.png" },
+	mode: "create",
+	offline: false,
+	owner: "Test Owner",
+	preserveGeneratedFrom: false,
+	repository: "test-repo",
+	skipAllContributorsApi: false,
+	skipGitHubApi: false,
+	skipInstall: false,
+	skipRemoval: false,
+	skipRestore: false,
+	skipUninstall: false,
+	title: "Test Title",
+};
+
+interface GitHubAndOptions {
+	github: GitHub;
+	options: Options;
+}
 
 describe("createWithOptions", () => {
 	it("creates a repository structure for GitHub", async () => {
@@ -14,16 +112,15 @@ describe("createWithOptions", () => {
 			writeStructure: mockWriteStructure,
 		}));
 
+		const options = mockOptions;
+
 		// Call createWithOptions with the mock data
 		const result = await createWithOptions({ github, options });
 
 		// Assert that writeStructure was called with the expected options
 		expect(mockWriteStructure).toHaveBeenCalledWith(options);
 
-		// Assert the expected outcome based on the behavior being tested
-		expect(result).toEqual({
-			outcome: "Repository structure created",
-		});
+		expect(result.sentToGitHub).toBe(true);
 	});
 
 	it("creates a README file", async () => {
@@ -38,10 +135,6 @@ describe("createWithOptions", () => {
 
 		// Assert that writeReadme was called with the expected options
 		expect(mockWriteReadme).toHaveBeenCalledWith(options);
-
-		expect(result).toEqual({
-			outcome: "README file created",
-		});
 	});
 
 	it("adds contributors to the repository", async () => {

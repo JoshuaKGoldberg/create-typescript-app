@@ -2,6 +2,7 @@ import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
 import { Options } from "../shared/types.js";
+import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { createWithOptions } from "./createWithOptions.js";
 
 enum OptionsAccess {
@@ -16,7 +17,7 @@ const github = {
 	octokit: mockOctokit,
 };
 
-const mockOptions: Options = {
+const options: Options = {
 	access: OptionsAccess.Public,
 	author: "Test Author",
 	base: "common",
@@ -59,7 +60,24 @@ const mockOptions: Options = {
 	title: "Test Title",
 };
 
-const options = mockOptions;
+// Mock withSpinner
+vi.mock("../cli/spinners.ts", () => ({
+	withSpinner() {
+		return () => ({});
+	},
+}));
+
+// Mock withSpinners
+vi.mock("../cli/spinners.ts", () => ({
+	withSpinners() {
+		return () => ({});
+	},
+}));
+
+// Mock $
+vi.mock("execa", () => ({
+	$: vi.fn(),
+}));
 
 describe("createWithOptions", () => {
 	// test the writeStructure function
@@ -99,16 +117,30 @@ describe("createWithOptions", () => {
 		// Check that the generated README content matches the values passed to it
 		expect(readMe).toContain(options.title);
 		expect(readMe).toContain(`Author: ${options.author}`);
+		expect(readMe).toContain(`Base: ${options.base}`);
 		expect(readMe).toContain(`Description: ${options.description}`);
 		expect(readMe).toContain(`Directory: ${options.directory}`);
 		expect(readMe).toContain(`Title: ${options.title}`);
 		expect(readMe).toContain(`Repository: ${options.repository}`);
 	});
 
-	it("adds contributors to the repository", async () => {
-		expect(result).toEqual({
-			outcome: "Contributors added",
-		});
+	it("should add the author as a tool contributor if conditions are met", async () => {
+		// Mock addToolAllContributors to track if it's called
+		const mockAddToolAllContributors = vi.fn();
+		vi.mock("../steps/addToolAllContributors.js", () => ({
+			addToolAllContributors: mockAddToolAllContributors,
+		}));
+
+		// Check that addToolAllContributors was called with the provided options
+		expect(mockAddToolAllContributors).toBe(true);
+
+		// Call the function that triggers the behavior you want to test
+		await addToolAllContributors(options);
+
+		// Check that addToolAllContributors was called with the provided options
+		expect(mockAddToolAllContributors).toBeCalledWith(
+			`npx -y all-contributors-cli add ${options.author} tool`,
+		);
 	});
 
 	it("installs packages by calling finalizeDependecies", async () => {

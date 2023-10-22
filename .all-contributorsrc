@@ -288,6 +288,42 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "dertimonius",
+      "name": "Timon Jurschitsch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103483059?v=4",
+      "profile": "https://www.linkedin.com/in/timonjurschitsch/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "biplobsd",
+      "name": "Biplob Sutradhar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43641536?v=4",
+      "profile": "http://biplobsd.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mrswastik-robot",
+      "name": "Swastik Patel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/107865087?v=4",
+      "profile": "https://github.com/mrswastik-robot",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "gv14982",
+      "name": "Graham Vasquez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7041175?v=4",
+      "profile": "https://gvasquez.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -46,7 +46,7 @@ export async function createRootFiles(options: Options) {
 				},
 			}),
 		}),
-		".nvmrc": `18.18.0\n`,
+		".nvmrc": `20.8.1\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),

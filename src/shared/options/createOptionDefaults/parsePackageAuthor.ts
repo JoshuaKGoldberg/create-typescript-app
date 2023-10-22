@@ -1,13 +1,19 @@
+import parse from "parse-author";
+
 import { PartialPackageData } from "../../types.js";
 
 export function parsePackageAuthor(packageData: PartialPackageData) {
-	const [packageAuthor, packageEmail] =
-		typeof packageData.author === "string"
-			? [
-					packageData.author.split("<")[0].trim(),
-					packageData.author.split(/<|>/)[1]?.trim(),
-			  ]
-			: [packageData.author?.name, packageData.author?.email];
+	let packageAuthor: string | undefined;
+	let packageEmail: string | undefined;
+
+	if (typeof packageData.author === "string") {
+		const parsedAuthor = parse(packageData.author);
+		packageAuthor = parsedAuthor.name;
+		packageEmail = parsedAuthor.email;
+	} else if (packageData.author) {
+		packageAuthor = packageData.author.name;
+		packageEmail = packageData.author.email;
+	}
 
 	return {
 		author: packageAuthor,

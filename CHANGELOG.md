@@ -1,3 +1,33 @@
+# [1.39.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.38.0...v1.39.0) (2023-10-20)
+
+### Features
+
+- skip file cleanup if installation is skipped ([#975](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/975)) ([aef28f2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aef28f2f7c8edb102e650de449a54de61a3913dd)), closes [#706](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/706)
+
+# [1.38.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.37.1...v1.38.0) (2023-10-14)
+
+### Features
+
+- updated Node version to 20.8.0 ([#957](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/957)) ([981ad21](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/981ad21248dca7bf2bb6d4d88325ae313bd2dad3)), closes [#953](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/953)
+
+## [1.37.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.37.0...v1.37.1) (2023-10-11)
+
+### Bug Fixes
+
+- also uninstall parse-author packages ([7cc468b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7cc468b3bda03b4be7025e2d9be3038bb0ea6f15))
+
+# [1.37.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.36.0...v1.37.0) (2023-10-08)
+
+### Features
+
+- replace parsePackageAuthor with npm package ([#904](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/904)) ([d5d8d40](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d5d8d401297714aace7bb344580396a76a2869d3)), closes [#789](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/789) [#789](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/789)
+
+# [1.36.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.35.0...v1.36.0) (2023-10-08)
+
+### Features
+
+- **lint:** add `no-useless-rename` and `object-shorthand` ([#944](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/944)) ([4184d1b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4184d1be4834de0b0880aafd30eb5fc6792293e5)), closes [#939](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/939)
+
 # [1.35.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.34.0...v1.35.0) (2023-10-03)
 
 ### Features

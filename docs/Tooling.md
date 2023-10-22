@@ -253,7 +253,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 
 ### Lint JSON
 
-[`eslint-plugin-jsdoc`](https://github.com/ota-meshi/eslint-plugin-jsonc): Adds linting for `.json` and `.jsonc` files.
+[`eslint-plugin-jsonc`](https://github.com/ota-meshi/eslint-plugin-jsonc): Adds linting for `.json` and `.jsonc` files.
 
 ### Lint MD
 

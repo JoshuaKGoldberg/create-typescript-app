@@ -212,6 +212,8 @@ module.exports = {
 			"error",
 			{ blankLine: "always", next: "*", prev: "block-like" },
 		],
+		"no-useless-rename": "error",
+		"object-shorthand": "error",
 		`
 		}${
 			options.excludeLintPerfectionist

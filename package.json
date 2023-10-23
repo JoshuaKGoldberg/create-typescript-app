@@ -58,7 +58,7 @@
 		"replace-in-file": "^7.0.1",
 		"title-case": "^4.0.0",
 		"zod": "^3.22.2",
-		"zod-validation-error": "^1.5.0"
+		"zod-validation-error": "^2.0.0"
 	},
 	"devDependencies": {
 		"@octokit/request-error": "^5.0.0",

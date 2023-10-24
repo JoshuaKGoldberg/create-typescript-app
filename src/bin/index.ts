@@ -10,7 +10,7 @@ import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
 import { StatusCodes } from "../shared/codes.js";
 import { promptForMode } from "./promptForMode.js";
-import { packageJson } from "../../package.json";
+import { version } from "../../package.json";
 
 const operationMessage = (verb: string) =>
 	`Operation ${verb}. Exiting - maybe another time? 👋`;
@@ -48,7 +48,7 @@ export async function bin(args: string[]) {
 	});
 
 	if (values.version) {
-        console.log(packageJson.version);
+        console.log(version);
         return 0;
     }
 

@@ -9,8 +9,9 @@ import { initialize } from "../initialize/index.js";
 import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
 import { StatusCodes } from "../shared/codes.js";
-import { promptForMode } from "./promptForMode.js";
 import { version } from "../../package.json";
+import { promptForMode } from "./promptForMode.js";
+
 
 const operationMessage = (verb: string) =>
 	`Operation ${verb}. Exiting - maybe another time? 👋`;
@@ -42,7 +43,7 @@ export async function bin(args: string[]) {
 		args,
 		options: {
 			mode: { type: "string" },
-			version: { type: "boolean", alias: "v" }, // New version option
+			version: { alias: "v", type: "boolean"}, // New version option
 		},
 		strict: false,
 	});

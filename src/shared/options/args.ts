@@ -29,6 +29,8 @@ export const allArgOptions = {
 	"exclude-renovate": { type: "boolean" },
 	"exclude-tests": { type: "boolean" },
 	funding: { type: "string" },
+	guide: { type: "boolean" },
+	"guide-title": { type: "boolean" },
 	keywords: { multiple: true, type: "string" },
 	logo: { type: "string" },
 	"logo-alt": { type: "string" },

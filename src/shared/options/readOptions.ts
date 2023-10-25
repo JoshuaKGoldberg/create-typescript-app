@@ -3,7 +3,7 @@ import { titleCase } from "title-case";
 import { z } from "zod";
 
 import { withSpinner } from "../cli/spinners.js";
-import { Mode, PromptedOptions } from "../types.js";
+import { Mode, OptionsGuide, PromptedOptions } from "../types.js";
 import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
@@ -166,6 +166,21 @@ export async function readOptions(
 		return { cancelled: true, options };
 	}
 
+	let guide: OptionsGuide | undefined;
+
+	if (options.guide) {
+		const title =
+			options.guideTitle ??
+			(await getPrefillOrPromptedOption(
+				"What is the title text for the guide?",
+			));
+		if (!title) {
+			return { cancelled: true, options };
+		}
+
+		guide = { href: options.guide, title };
+	}
+
 	let logo: OptionsLogo | undefined;
 
 	if (options.logo) {
@@ -200,6 +215,7 @@ export async function readOptions(
 			options.directory ?? promptedOptions.directory ?? options.repository,
 		email: typeof email === "string" ? { github: email, npm: email } : email,
 		funding: options.funding ?? (await defaults.funding()),
+		guide,
 		logo,
 		mode,
 		owner: options.owner,

@@ -39,6 +39,8 @@ export const optionsSchemaShape = {
 	excludeRenovate: z.boolean().optional(),
 	excludeTests: z.boolean().optional(),
 	funding: z.string().optional(),
+	guide: z.string().url().optional(),
+	guideTitle: z.string().optional(),
 	keywords: z.array(z.string()).optional(),
 	logo: z.string().optional(),
 	logoAlt: z.string().optional(),

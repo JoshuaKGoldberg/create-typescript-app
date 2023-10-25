@@ -227,6 +227,31 @@ describe("readOptions", () => {
 		});
 	});
 
+	it("returns a cancellation when the guide title prompt is cancelled", async () => {
+		mockDetectEmailRedundancy.mockReturnValue(false);
+		mockGetPrefillOrPromptedOption
+			.mockImplementationOnce(() => "MockOwner")
+			.mockImplementationOnce(() => "MockRepository")
+			.mockImplementationOnce(() => "Mock description.")
+			.mockImplementation(() => undefined);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
+
+		expect(
+			await readOptions(["--guide", "https://example.com"], "create"),
+		).toStrictEqual({
+			cancelled: true,
+			options: {
+				...emptyOptions,
+				description: "Mock description.",
+				owner: "MockOwner",
+				repository: "MockRepository",
+			},
+		});
+	});
+
 	it("returns a cancellation when the logo alt prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
@@ -417,6 +442,7 @@ describe("readOptions", () => {
 					github: "mock",
 					npm: "mock",
 				},
+				guide: undefined,
 				logo: undefined,
 				mode: "create",
 				offline: true,

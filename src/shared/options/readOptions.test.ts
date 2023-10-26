@@ -235,6 +235,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementationOnce(() => "Mock description.")
+			.mockImplementationOnce(() => "Mock Title")
 			.mockImplementation(() => undefined);
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
@@ -251,6 +252,7 @@ describe("readOptions", () => {
 				guide: "https://example.com",
 				owner: "MockOwner",
 				repository: "MockRepository",
+				title: "Mock Title",
 			},
 		});
 	});
@@ -261,6 +263,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementationOnce(() => "Mock description.")
+			.mockImplementationOnce(() => "Mock Title")
 			.mockImplementation(() => undefined);
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
@@ -277,6 +280,7 @@ describe("readOptions", () => {
 				guide: "https://example.com",
 				owner: "MockOwner",
 				repository: "MockRepository",
+				title: "Mock Title",
 			},
 		});
 	});

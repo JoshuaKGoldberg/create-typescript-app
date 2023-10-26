@@ -1,5 +1,11 @@
 # FAQs
 
+## Do you have a guide to working with a `create-typescript-app` repository?
+
+Yes!
+See [Contributing to a create-typescript-app Repository](https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository).
+It'll walk you through the common activities you'll need to contribute to a repository scaffolded with `create-typescript-app`.
+
 ## Can I use _(insert tool here)_ with this template?
 
 Yes!
@@ -61,13 +67,13 @@ You can always copy & paste them in manually, and/or re-run `npx create-typescri
 
 See [🚀 Feature: Add a script to sync the tooling updates from forked template repo #498](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/498): it will likely eventually be possible.
 
-### What about `eslint-config-prettier`?
+## What about `eslint-config-prettier`?
 
 [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) is an ESLint plugin that serves only to turn off all rules that are unnecessary or might conflict with formatters such as Prettier.
 None of the ESLint configs enabled by this repository's tooling leave any rules enabled that would need to be disabled.
 Using `eslint-config-prettier` would be redundant.
 
-### What determines which "base" a tool goes into?
+## What determines which "base" a tool goes into?
 
 The four bases correspond to what have seemed to be the most common user needs of template consumers:
 
@@ -80,7 +86,7 @@ The four bases correspond to what have seemed to be the most common user needs o
 
 Note that users can always customize exactly with portions are kept in with `--base` **`prompt`**.
 
-### Which tools can't I remove?
+## Which tools can't I remove?
 
 The following pieces of this template's tooling don't have options to be removed:
 
@@ -99,7 +105,7 @@ Each of the included tools exists for a good reason and provides real value.
 
 If you don't want to use any particular tool, you can always remove it manually.
 
-### What tooling does this package use that isn't part of created repositories?
+## What tooling does this package use that isn't part of created repositories?
 
 Glad you asked!
 These are the projects used across many parts of `create-typescript-app`:

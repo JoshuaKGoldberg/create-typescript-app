@@ -13,34 +13,16 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
-	excludeAllContributors: undefined,
-	excludeCompliance: undefined,
-	excludeLintJson: undefined,
-	excludeLintKnip: undefined,
-	excludeLintMd: undefined,
-	excludeLintPackageJson: undefined,
-	excludeLintPackages: undefined,
-	excludeLintPerfectionist: undefined,
-	excludeLintSpelling: undefined,
-	excludeLintYml: undefined,
-	excludeReleases: undefined,
-	excludeRenovate: undefined,
-	excludeTests: undefined,
-	funding: undefined,
 	logo: undefined,
 	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",
-	skipGitHubApi: false,
 	skipInstall: true,
-	skipRemoval: false,
-	skipRestore: false,
-	skipUninstall: false,
 	title: "Test Title",
 } satisfies Options;
 
 describe("createDevelopment", () => {
-	it("creates a file with no extra linters when options exclude them", () => {
+	it("creates a file with extra options turned on when options disable them", () => {
 		const actual = createDevelopment({
 			...options,
 			excludeLintKnip: false,
@@ -153,7 +135,7 @@ describe("createDevelopment", () => {
 		`);
 	});
 
-	it("creates a file with all extra linters when options include them", () => {
+	it("creates a file with extra options turned off when options enable them", () => {
 		const actual = createDevelopment({
 			...options,
 			excludeLintKnip: true,
@@ -161,10 +143,17 @@ describe("createDevelopment", () => {
 			excludeLintPackageJson: true,
 			excludeLintPackages: true,
 			excludeLintSpelling: true,
+			guide: {
+				href: "https://example.com",
+				title: "Example Guide",
+			},
 		});
 
 		expect(actual).toMatchInlineSnapshot(`
 			"# Development
+
+			> If you'd like a more guided walkthrough, see [Example Guide](https://example.com).
+			> It'll walk you through the common activities you'll need to contribute.
 
 			After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 

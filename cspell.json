@@ -11,6 +11,7 @@
 	"words": [
 		"allcontributors",
 		"apexskier",
+		"arethetypeswrong",
 		"Codecov",
 		"codespace",
 		"commitlint",
@@ -32,7 +33,7 @@
 		"tada",
 		"tsup",
 		"Unstaged",
-		"wontfix",
-		"vitest"
+		"vitest",
+		"wontfix"
 	]
 }

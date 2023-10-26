@@ -182,6 +182,18 @@ export const allArgOptions = {
 		docsSection: "optional",
 		type: "string",
 	},
+	guide: {
+		description: `Link to a contribution guide to place at the top of the 
+  development docs`,
+		docsSection: "optional",
+		type: "string",
+	},
+	"guide-title": {
+		description: `If ${chalk.cyanBright(
+			"--guide",
+		)} is provided or detected from an existing 
+  DEVELOPMENT.md, the text title to place in the guide link`,
+	},
 	keywords: {
 		description: `Any number of keywords to include in ${chalk.cyanBright(
 			"package.json",

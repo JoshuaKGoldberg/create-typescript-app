@@ -10,13 +10,17 @@ function getFirstMatchingArg(key: string) {
 export function createRerunSuggestion(options: Partial<Options>): string {
 	const optionsNormalized = {
 		...options,
-		...(options.email
+		email: undefined,
+		...(options.email && {
+			emailGitHub: options.email.github,
+			emailNpm: options.email.npm,
+		}),
+		...(options.guide
 			? {
-					email: undefined,
-					emailGitHub: options.email.github,
-					emailNpm: options.email.npm,
+					guide: options.guide.href,
+					guideTitle: options.guide.title,
 			  }
-			: { email: undefined }),
+			: { guide: undefined }),
 		...(options.logo
 			? {
 					logo: options.logo.src,

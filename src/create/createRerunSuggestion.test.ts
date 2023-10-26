@@ -50,6 +50,21 @@ describe("createRerunSuggestion", () => {
 		);
 	});
 
+	it("includes stringified guide when it exists", () => {
+		const actual = createRerunSuggestion({
+			...options,
+			guide: {
+				href: "https://example.com",
+				title: "Test Title",
+			},
+			mode: "initialize",
+		});
+
+		expect(actual).toMatchInlineSnapshot(
+			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --guide https://example.com --guide-title \\"Test Title\\" --keywords \\"abc def ghi jkl mno pqr\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+		);
+	});
+
 	it("includes stringified logo when it exists", () => {
 		const actual = createRerunSuggestion({
 			...options,

@@ -1,6 +1,6 @@
 import chalk from "chalk";
+import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { describe, expect, it, SpyInstance, vi, beforeEach } from "vitest";
 import { logHelpText } from "./help.js";
 
 let mockConsoleLog: SpyInstance;
@@ -12,7 +12,7 @@ describe("logHelpText", () => {
 			.mockImplementation(() => undefined);
 	});
 
-	it("logs help text when called", async () => {
+	it("logs help text when called", () => {
 		logHelpText([
 			chalk.yellow(
 				"⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️",

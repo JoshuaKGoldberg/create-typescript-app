@@ -58,7 +58,7 @@
 		"replace-in-file": "^7.0.1",
 		"title-case": "^4.0.0",
 		"zod": "^3.22.2",
-		"zod-validation-error": "^1.5.0"
+		"zod-validation-error": "^2.0.0"
 	},
 	"devDependencies": {
 		"@octokit/request-error": "^5.0.0",
@@ -90,7 +90,7 @@
 		"globby": "^13.2.2",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
-		"knip": "2.33.4",
+		"knip": "2.37.0",
 		"lint-staged": "^15.0.0",
 		"markdownlint": "^0.31.0",
 		"markdownlint-cli": "^0.37.0",

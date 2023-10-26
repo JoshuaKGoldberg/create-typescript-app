@@ -76,6 +76,8 @@ export async function readOptions(
 		excludeRenovate: values["exclude-renovate"],
 		excludeTests: values["unit-tests"],
 		funding: values.funding,
+		guide: values.guide,
+		logo: values.logo,
 		offline: values.offline,
 		owner: values.owner,
 		preserveGeneratedFrom:

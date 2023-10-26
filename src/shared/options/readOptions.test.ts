@@ -31,6 +31,8 @@ const emptyOptions = {
 	excludeRenovate: undefined,
 	excludeTests: undefined,
 	funding: undefined,
+	guide: undefined,
+	logo: undefined,
 	offline: undefined,
 	owner: undefined,
 	preserveGeneratedFrom: false,
@@ -246,6 +248,7 @@ describe("readOptions", () => {
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
+				guide: "https://example.com",
 				owner: "MockOwner",
 				repository: "MockRepository",
 			},
@@ -271,6 +274,7 @@ describe("readOptions", () => {
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
+				guide: "https://example.com",
 				owner: "MockOwner",
 				repository: "MockRepository",
 			},
@@ -294,6 +298,7 @@ describe("readOptions", () => {
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
+				logo: "logo.svg",
 				owner: "MockOwner",
 				repository: "MockRepository",
 			},
@@ -357,9 +362,46 @@ describe("readOptions", () => {
 			...mockOptions,
 		});
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
 
 		expect(
 			await readOptions(["--base", mockOptions.base], "create"),
+		).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: {
+				...emptyOptions,
+				...mockOptions,
+			},
+		});
+	});
+
+	it("returns success options when --base is valid with all optional options", async () => {
+		mockAugmentOptionsWithExcludes.mockResolvedValue({
+			...emptyOptions,
+			...mockOptions,
+		});
+		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockEnsureRepositoryExists.mockResolvedValue({
+			github: mockOptions.github,
+			repository: mockOptions.repository,
+		});
+
+		expect(
+			await readOptions(
+				[
+					"--base",
+					mockOptions.base,
+					"--guide",
+					"https://example.com",
+					"--logo",
+					"logo.svg",
+				],
+				"create",
+			),
 		).toStrictEqual({
 			cancelled: false,
 			github: mockOptions.github,

@@ -16,6 +16,8 @@ Then:
 1. In `tsup.config.ts`, change the [tsup `format` option](https://tsup.egoist.dev/#bundle-formats) from `["esm"]` to `["cjs", "esm"]`
 2. Add a [`package.json` `"exports"` entry](https://nodejs.org/api/packages.html#subpath-exports) like:
 
+   <!-- eslint-disable jsonc/sort-keys -->
+
    ```jsonc
    {
    	"exports": {
@@ -24,13 +26,14 @@ Then:
    				"import": "./lib/index.d.ts",
    				"require": "./lib/index.d.cts"
    			},
-   			// eslint-disable-next-line jsonc/sort-keys
    			"import": "./lib/index.js",
    			"require": "./lib/index.cjs"
    		}
    	}
    }
    ```
+
+   <!-- eslint-enable jsonc/sort-keys -->
 
 That should be it!
 

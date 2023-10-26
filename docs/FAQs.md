@@ -7,6 +7,36 @@ After you set up a repository, you can substitute in any tools you'd like.
 
 If you think the tool would be broadly useful to most consumers of this template, feel free to [file a feature request](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/new?assignees=&labels=type%3A+feature&projects=&template=03-feature.yml&title=%F0%9F%9A%80+Feature%3A+%3Cshort+description+of+the+feature%3E) to add it in.
 
+## How can I add dual CommonJS / ECMAScript Modules emit?
+
+First, I'd suggest reading [TypeScript Handbook > Modules - Introduction](https://www.typescriptlang.org/docs/handbook/modules/introduction.html) to understand how CommonJS (CJS) and ECMAScript (ESM) came to be.
+
+Then:
+
+1. In `tsup.config.ts`, change the [tsup `format` option](https://tsup.egoist.dev/#bundle-formats) from `["esm"]` to `["cjs", "esm"]`
+2. Add a [`package.json` `"exports"` entry](https://nodejs.org/api/packages.html#subpath-exports) like:
+
+   ```jsonc
+   "exports": {
+      ".": {
+         "types": {
+            "import": "./lib/index.d.ts",
+            "require": "./lib/index.d.cts"
+         },
+         "import": "./lib/index.js",
+         "require": "./lib/index.cjs"
+      }
+   }
+   ```
+
+That should be it!
+
+To be safe, consider checking with [arethetypeswrong](https://arethetypeswrong.github.io):
+
+1. Run `pnpm build`
+2. Run `npm pack`
+3. Upload that generated `.tgz` file to [arethetypeswrong.github.io](https://arethetypeswrong.github.io)
+
 ## Is there a way to pull in template updates to previously created repositories?
 
 Not directly.

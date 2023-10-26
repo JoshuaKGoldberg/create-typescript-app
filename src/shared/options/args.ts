@@ -193,6 +193,8 @@ export const allArgOptions = {
 			"--guide",
 		)} is provided or detected from an existing 
   DEVELOPMENT.md, the text title to place in the guide link`,
+		docsSection: "optional",
+		type: "string",
 	},
 	keywords: {
 		description: `Any number of keywords to include in ${chalk.cyanBright(

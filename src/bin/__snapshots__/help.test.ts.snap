@@ -111,6 +111,16 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
+[36m  --guide ([96mstring[39m[36m): Link to a contribution guide to place at the top of the [39m
+[36m  development docs[39m",
+  ],
+  [
+    "[36m[39m
+[36m  --guide-title ([96mstring[39m[36m): If [96m--guide[39m[36m is provided or detected from an existing [39m
+[36m  DEVELOPMENT.md, the text title to place in the guide link[39m",
+  ],
+  [
+    "[36m[39m
 [36m  --keywords ([96mstring[39m[36m): Any number of keywords to include in [96mpackage.json[39m[36m (by default, [39m
 [36m  none). This can be specified any number of times, like  [39m
 [36m  [96m--keywords apple --keywords \\"banana cherry\\"[39m[36m[39m",

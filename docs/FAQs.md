@@ -17,15 +17,18 @@ Then:
 2. Add a [`package.json` `"exports"` entry](https://nodejs.org/api/packages.html#subpath-exports) like:
 
    ```jsonc
-   "exports": {
-      ".": {
-         "types": {
-            "import": "./lib/index.d.ts",
-            "require": "./lib/index.d.cts"
-         },
-         "import": "./lib/index.js",
-         "require": "./lib/index.cjs"
-      }
+   {
+   	"exports": {
+   		".": {
+   			"types": {
+   				"import": "./lib/index.d.ts",
+   				"require": "./lib/index.d.cts"
+   			},
+   			// eslint-disable-next-line jsonc/sort-keys
+   			"import": "./lib/index.js",
+   			"require": "./lib/index.cjs"
+   		}
+   	}
    }
    ```
 
@@ -36,6 +39,17 @@ To be safe, consider checking with [arethetypeswrong](https://arethetypeswrong.g
 1. Run `pnpm build`
 2. Run `npm pack`
 3. Upload that generated `.tgz` file to [arethetypeswrong.github.io](https://arethetypeswrong.github.io)
+
+### Why doesn't `create-typescript-app` have an option to dual emit CJS and ESM?
+
+Dual CJS/ESM emit is a stopgap solution while the JavaScript ecosystem migrates towards full ESM support in most-to-all popular user packages.
+Most packages newly created with `create-typescript-app` should target just ESM by default.
+
+Some packages published with `create-typescript` legitimately need dual CJS/ESM output because they're used by frameworks that don't yet fully support ESM.
+That's reasonable.
+
+Unless you know a package needs to support a CJS consumer, please strongly consider keeping it ESM-only (the `create-typescript-app` default).
+ESM-only packages have a smaller footprint by virtue of including fewer files.
 
 ## Is there a way to pull in template updates to previously created repositories?
 

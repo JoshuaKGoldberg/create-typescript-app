@@ -1,4 +1,8 @@
 import { allArgOptions } from "../shared/options/args.js";
+import {
+	ExclusionKey,
+	getExclusions,
+} from "../shared/options/augmentOptionsWithExcludes.js";
 import { Options } from "../shared/types.js";
 
 function getFirstMatchingArg(key: string) {
@@ -30,10 +34,16 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 	};
 
 	const args = Object.entries(optionsNormalized)
+		// Sort so the base is first, then the rest are compared using the `localeCompare` string method
 		.sort(([a], [b]) =>
 			a === "base" ? -1 : b === "base" ? 1 : a.localeCompare(b),
 		)
-		.filter(([, value]) => !!value)
+		// Filter out all entries that have a key in the excluded object or have a falsey value
+		.filter(
+			([key, value]) =>
+				getExclusions(options, optionsNormalized.base)[key as ExclusionKey] ==
+					undefined && !!value,
+		)
 		.map(([key, value]) => {
 			return `--${getFirstMatchingArg(key)} ${stringifyValue(value)}`;
 		})

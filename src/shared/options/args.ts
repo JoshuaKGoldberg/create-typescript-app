@@ -11,8 +11,8 @@ export const allArgOptions = {
 	},
 	author: {
 		description: `Username on npm to publish packages under (by 
-  default, an existing npm author, or the currently logged in npm user, 
-  or ${chalk.cyanBright("owner.toLowerCase()")})`,
+  default, an existing npm author, or the currently logged in npm user, or 
+  ${chalk.cyanBright("owner.toLowerCase()")})`,
 		docsSection: "optional",
 		type: "string",
 	},
@@ -27,8 +27,8 @@ export const allArgOptions = {
 		type: "string",
 	},
 	"create-repository": {
-		description: `Whether to create a corresponding repository on 
-  github.com (if it doesn't yet exist)`,
+		description: `Whether to create a corresponding repository on github.com 
+  (if it doesn't yet exist)`,
 		docsSection: "core",
 		type: "boolean",
 	},
@@ -46,8 +46,8 @@ export const allArgOptions = {
 		type: "string",
 	},
 	email: {
-		description: `Email address to be listed as the point of contact in 
-  docs and packages (e.g. example@joshuakgoldberg.com)`,
+		description: `Email address to be listed as the point of contact in docs 
+  and packages (e.g. example@joshuakgoldberg.com)`,
 		docsSection: "optional",
 		type: "string",
 	},
@@ -72,14 +72,14 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"exclude-compliance": {
-		description: `Don't add a GitHub Actions workflow to verify that 
-  PRs match an expected format.`,
+		description: `Don't add a GitHub Actions workflow to verify that PRs match 
+  an expected format.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
 	"exclude-lint-deprecation": {
-		description: `Don't use eslint-plugin-deprecation to report on usage of 
-  code marked as ${chalk.cyanBright("@deprecated")}.`,
+		description: `Don't use eslint-plugin-deprecation to report on usage 
+  of code marked as ${chalk.cyanBright("@deprecated")}.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -98,8 +98,8 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"exclude-lint-knip": {
-		description: `Don't add Knip to detect unused files, dependencies, 
-  and code exports.`,
+		description: `Don't add Knip to detect unused files, dependencies, and code 
+  exports.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -115,14 +115,14 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"exclude-lint-packages": {
-		description: `Don't add a pnpm dedupe workflow to ensure 
-  packages aren't duplicated unnecessarily.`,
+		description: `Don't add a pnpm dedupe workflow to ensure packages 
+  aren't duplicated unnecessarily.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
 	"exclude-lint-perfectionist": {
-		description: `Don't apply eslint-plugin-perfectionist to 
-  ensure imports, keys, and so on are in sorted order.`,
+		description: `Don't apply eslint-plugin-perfectionist to ensure 
+  imports, keys, and so on are in sorted order.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -133,8 +133,8 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"exclude-lint-spelling": {
-		description: `Don't add cspell to spell check against 
-  dictionaries of known words.`,
+		description: `Don't add cspell to spell check against dictionaries 
+  of known words.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -153,14 +153,13 @@ export const allArgOptions = {
 	"exclude-lint-yml": {
 		description: `Don't apply linting and sorting to ${chalk.cyanBright(
 			"*.yaml",
-		)} 
-  and ${chalk.cyanBright("*.yml")} files.`,
+		)} and ${chalk.cyanBright("*.yml")} files.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
 	"exclude-releases": {
-		description: `Don't add release-it to generate changelogs, package 
-  bumps, and publishes based on conventional commits.`,
+		description: `Don't add release-it to generate changelogs, package bumps, 
+  and publishes based on conventional commits.`,
 		docsSection: "opt-out",
 		type: "boolean",
 	},
@@ -177,8 +176,10 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	funding: {
-		description: `GitHub organization or username to mention in 
-  ${chalk.cyanBright("funding.yml")} (by default, owner)`,
+		description: `GitHub organization or username to mention in ${chalk.cyanBright(
+			"funding.yml",
+		)} 
+  (by default, owner)`,
 		docsSection: "optional",
 		type: "string",
 	},
@@ -242,14 +243,14 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	owner: {
-		description: `GitHub organization or user the repository is 
-  underneath (e.g. JoshuaKGoldberg)`,
+		description: `GitHub organization or user the repository is underneath 
+  (e.g. JoshuaKGoldberg)`,
 		docsSection: "core",
 		type: "string",
 	},
 	"preserve-generated-form": {
-		description: `Whether to keep the GitHub repository generated from notice
-  (by default, false)`,
+		description: `Whether to keep the GitHub repository generated from 
+  notice (by default, false)`,
 		docsSection: "optional",
 		type: "boolean",
 	},
@@ -273,26 +274,26 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"skip-install": {
-		description: `Skips installing all the new template 
-  packages with pnpm.`,
+		description: `Skips installing all the new template packages with pnpm.`,
 		docsSection: "skip-net",
 		type: "boolean",
 	},
 	"skip-removal": {
-		description: `Skips removing setup docs and scripts, 
-  including this ${chalk.cyanBright("docs/")} directory`,
+		description: `Skips removing setup docs and scripts, including this ${chalk.cyanBright(
+			"docs/",
+		)} 
+  directory`,
 		docsSection: "skip-disk",
 		type: "boolean",
 	},
 	"skip-restore": {
-		description: `Skips the prompt offering to restore the 
-  repository if an error occurs during setup`,
+		description: `Skips the prompt offering to restore the repository if an 
+  error occurs during setup`,
 		docsSection: "skip-disk",
 		type: "boolean",
 	},
 	"skip-uninstall": {
-		description: `Skips uninstalling packages only used for 
-  setup scripts`,
+		description: `Skips uninstalling packages only used for setup scripts`,
 		docsSection: "skip-disk",
 		type: "boolean",
 	},

@@ -35,8 +35,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --create-repository: Whether to create a corresponding repository on [39m
-[36m  github.com (if it doesn't yet exist)[39m",
+[36m  --create-repository: Whether to create a corresponding repository on github.com [39m
+[36m  (if it doesn't yet exist)[39m",
   ],
   [
     "[36m[39m
@@ -53,8 +53,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --owner ([96mstring[39m[36m): GitHub organization or user the repository is [39m
-[36m  underneath (e.g. JoshuaKGoldberg)[39m",
+[36m  --owner ([96mstring[39m[36m): GitHub organization or user the repository is underneath [39m
+[36m  (e.g. JoshuaKGoldberg)[39m",
   ],
   [
     "[36m[39m
@@ -81,8 +81,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   [
     "[36m[39m
 [36m  --author ([96mstring[39m[36m): Username on npm to publish packages under (by [39m
-[36m  default, an existing npm author, or the currently logged in npm user, [39m
-[36m  or [96mowner.toLowerCase()[39m[36m)[39m",
+[36m  default, an existing npm author, or the currently logged in npm user, or [39m
+[36m  [96mowner.toLowerCase()[39m[36m)[39m",
   ],
   [
     "[36m[39m
@@ -91,8 +91,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --email ([96mstring[39m[36m): Email address to be listed as the point of contact in [39m
-[36m  docs and packages (e.g. example@joshuakgoldberg.com)[39m",
+[36m  --email ([96mstring[39m[36m): Email address to be listed as the point of contact in docs [39m
+[36m  and packages (e.g. example@joshuakgoldberg.com)[39m",
   ],
   [
     "[36m[39m
@@ -106,8 +106,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --funding ([96mstring[39m[36m): GitHub organization or username to mention in [39m
-[36m  [96mfunding.yml[39m[36m (by default, owner)[39m",
+[36m  --funding ([96mstring[39m[36m): GitHub organization or username to mention in [96mfunding.yml[39m[36m [39m
+[36m  (by default, owner)[39m",
   ],
   [
     "[36m[39m
@@ -137,8 +137,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --preserve-generated-form: Whether to keep the GitHub repository generated from notice[39m
-[36m  (by default, false)[39m",
+[36m  --preserve-generated-form: Whether to keep the GitHub repository generated from [39m
+[36m  notice (by default, false)[39m",
   ],
   [],
   [
@@ -159,13 +159,13 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --exclude-compliance: Don't add a GitHub Actions workflow to verify that [39m
-[36m  PRs match an expected format.[39m",
+[36m  --exclude-compliance: Don't add a GitHub Actions workflow to verify that PRs match [39m
+[36m  an expected format.[39m",
   ],
   [
     "[36m[39m
-[36m  --exclude-lint-deprecation: Don't use eslint-plugin-deprecation to report on usage of [39m
-[36m  code marked as [96m@deprecated[39m[36m.[39m",
+[36m  --exclude-lint-deprecation: Don't use eslint-plugin-deprecation to report on usage [39m
+[36m  of code marked as [96m@deprecated[39m[36m.[39m",
   ],
   [
     "[36m[39m
@@ -179,8 +179,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --exclude-lint-knip: Don't add Knip to detect unused files, dependencies, [39m
-[36m  and code exports.[39m",
+[36m  --exclude-lint-knip: Don't add Knip to detect unused files, dependencies, and code [39m
+[36m  exports.[39m",
   ],
   [
     "[36m[39m
@@ -193,13 +193,13 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --exclude-lint-packages: Don't add a pnpm dedupe workflow to ensure [39m
-[36m  packages aren't duplicated unnecessarily.[39m",
+[36m  --exclude-lint-packages: Don't add a pnpm dedupe workflow to ensure packages [39m
+[36m  aren't duplicated unnecessarily.[39m",
   ],
   [
     "[36m[39m
-[36m  --exclude-lint-perfectionist: Don't apply eslint-plugin-perfectionist to [39m
-[36m  ensure imports, keys, and so on are in sorted order.[39m",
+[36m  --exclude-lint-perfectionist: Don't apply eslint-plugin-perfectionist to ensure [39m
+[36m  imports, keys, and so on are in sorted order.[39m",
   ],
   [
     "[36m[39m
@@ -208,8 +208,8 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --exclude-lint-spelling: Don't add cspell to spell check against [39m
-[36m  dictionaries of known words.[39m",
+[36m  --exclude-lint-spelling: Don't add cspell to spell check against dictionaries [39m
+[36m  of known words.[39m",
   ],
   [
     "[36m[39m
@@ -223,13 +223,12 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --exclude-lint-yml: Don't apply linting and sorting to [96m*.yaml[39m[36m [39m
-[36m  and [96m*.yml[39m[36m files.[39m",
+[36m  --exclude-lint-yml: Don't apply linting and sorting to [96m*.yaml[39m[36m and [96m*.yml[39m[36m files.[39m",
   ],
   [
     "[36m[39m
-[36m  --exclude-releases: Don't add release-it to generate changelogs, package [39m
-[36m  bumps, and publishes based on conventional commits.[39m",
+[36m  --exclude-releases: Don't add release-it to generate changelogs, package bumps, [39m
+[36m  and publishes based on conventional commits.[39m",
   ],
   [
     "[36m[39m
@@ -262,8 +261,7 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --skip-install: Skips installing all the new template [39m
-[36m  packages with pnpm.[39m",
+[36m  --skip-install: Skips installing all the new template packages with pnpm.[39m",
   ],
   [
     "[32m[39m
@@ -272,18 +270,17 @@ exports[`logHelpText > logs help text when called 1`] = `
   ],
   [
     "[36m[39m
-[36m  --skip-removal: Skips removing setup docs and scripts, [39m
-[36m  including this [96mdocs/[39m[36m directory[39m",
+[36m  --skip-removal: Skips removing setup docs and scripts, including this [96mdocs/[39m[36m [39m
+[36m  directory[39m",
   ],
   [
     "[36m[39m
-[36m  --skip-restore: Skips the prompt offering to restore the [39m
-[36m  repository if an error occurs during setup[39m",
+[36m  --skip-restore: Skips the prompt offering to restore the repository if an [39m
+[36m  error occurs during setup[39m",
   ],
   [
     "[36m[39m
-[36m  --skip-uninstall: Skips uninstalling packages only used for [39m
-[36m  setup scripts[39m",
+[36m  --skip-uninstall: Skips uninstalling packages only used for setup scripts[39m",
   ],
   [],
   [

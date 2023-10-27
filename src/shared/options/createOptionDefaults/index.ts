@@ -10,6 +10,7 @@ import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { tryCatchLazyValueAsync } from "../../tryCatchLazyValueAsync.js";
 import { PromptedOptions } from "../../types.js";
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
+import { readDefaultsFromDevelopment } from "./readDefaultsFromDevelopment.js";
 import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
 
 export function createOptionDefaults(promptedOptions?: PromptedOptions) {
@@ -57,6 +58,7 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 			promptedOptions?.repository ??
 			(await gitDefaults())?.name ??
 			(await packageData()).name,
+		...readDefaultsFromDevelopment(),
 		...readDefaultsFromReadme(),
 	};
 }

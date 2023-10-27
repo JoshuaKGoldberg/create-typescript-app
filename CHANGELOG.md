@@ -1,3 +1,9 @@
+# [1.40.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.39.0...v1.40.0) (2023-10-26)
+
+### Features
+
+- add --guide options ([#983](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/983)) ([7f1350e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7f1350e1a00e6a778101335d5cc9ae18474d650f)), closes [#982](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/982)
+
 # [1.39.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.38.0...v1.39.0) (2023-10-20)
 
 ### Features

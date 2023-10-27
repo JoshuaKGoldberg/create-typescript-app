@@ -30,6 +30,11 @@ export interface OptionsEmail {
 	npm: string;
 }
 
+export interface OptionsGuide {
+	href: string;
+	title: string;
+}
+
 export interface OptionsLogo {
 	alt: string;
 	src: string;
@@ -65,6 +70,7 @@ export interface Options {
 	excludeRenovate?: boolean;
 	excludeTests?: boolean;
 	funding?: string;
+	guide?: OptionsGuide;
 	keywords?: string[];
 	logo: OptionsLogo | undefined;
 	mode: Mode;

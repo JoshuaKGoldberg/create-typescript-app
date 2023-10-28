@@ -37,6 +37,7 @@ const filesExpectedToBeChanged = new Set([
 	".github/DEVELOPMENT.md",
 	".github/workflows/lint-knip.yml",
 	".github/workflows/test.yml",
+	".github/workflows/accessibility-alt-text-bot.yml",
 	".gitignore",
 	".prettierignore",
 	"cspell.json",

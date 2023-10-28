@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { getExclusions } from "../shared/options/augmentOptionsWithExcludes.js";
 import { Options } from "../shared/types.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 
@@ -91,6 +92,32 @@ describe("createRerunSuggestion", () => {
 
 		expect(actual).toMatchInlineSnapshot(
 			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --keywords \\"abc def ghi jkl mno pqr\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+		);
+	});
+
+	it("does not list all excludes when using common or minimum base", () => {
+		const opts = {
+			...options,
+			excludeLintKnip: undefined,
+		};
+		const common = createRerunSuggestion({
+			...opts,
+			base: "common",
+			...getExclusions(options, "common"),
+		});
+
+		expect(common).toMatchInlineSnapshot(
+			'"npx create-typescript-app --mode create --base common --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+		);
+
+		const minimum = createRerunSuggestion({
+			...opts,
+			base: "minimum",
+			...getExclusions(options, "minimum"),
+		});
+
+		expect(minimum).toMatchInlineSnapshot(
+			'"npx create-typescript-app --mode create --base minimum --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
 	});
 });

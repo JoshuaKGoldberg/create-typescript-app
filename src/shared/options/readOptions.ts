@@ -49,7 +49,6 @@ export async function readOptions(
 		values.base = await getBase();
 	}
 
-	console.log(values.base);
 	const mappedOptions = {
 		access: values.access,
 		author: values.author,

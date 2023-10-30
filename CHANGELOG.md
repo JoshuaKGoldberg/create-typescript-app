@@ -1,3 +1,9 @@
+# [1.41.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.40.0...v1.41.0) (2023-10-30)
+
+### Features
+
+- add a11y-alt-text bot ([#989](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/989)) ([8050c83](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8050c838078db99b46393af452a5c5408de2641a)), closes [#825](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/825)
+
 # [1.40.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.39.0...v1.40.0) (2023-10-26)
 
 ### Features

@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "1.40.0",
+	"version": "1.41.0",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝",
 	"repository": {
 		"type": "git",
@@ -90,7 +90,7 @@
 		"globby": "^13.2.2",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
-		"knip": "2.38.2",
+		"knip": "2.38.4",
 		"lint-staged": "^15.0.0",
 		"markdownlint": "^0.31.0",
 		"markdownlint-cli": "^0.37.0",
@@ -107,7 +107,7 @@
 		"vitest": "^0.34.3",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.9.2",
+	"packageManager": "pnpm@8.10.0",
 	"engines": {
 		"node": ">=18"
 	},

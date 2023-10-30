@@ -89,6 +89,30 @@ export function createWorkflows(options: Options) {
 				],
 			}),
 		}),
+		"accessibility-alt-text-bot.yml": createWorkflowFile({
+			name: "Accessibility Alt Text Bot",
+			on: {
+				issue: {
+					types: ["created", "edited"],
+				},
+				issue_comment: {
+					types: ["created", "edited"],
+				},
+				pull_request: {
+					types: ["created", "edited"],
+				},
+			},
+			permissions: {
+				issues: "write",
+				"pull-requests": "write",
+			},
+			steps: [
+				{
+					if: "${{ github.event.issue || github.event.pull_request }}",
+					uses: "github/accessibility-alt-text-bot@v1.4.0",
+				},
+			],
+		}),
 		"lint.yml": createWorkflowFile({
 			name: "Lint",
 			runs: ["pnpm build || true", "pnpm lint"],
@@ -144,10 +168,10 @@ export function createWorkflows(options: Options) {
 							:tada: This is included in version {release_link} :tada:
 
 							The release is available on:
-				
+
 							* [GitHub releases](https://github.com/${options.owner}/${options.repository}/releases/tag/{release_tag})
 							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/\${{ env.npm_version }})
-				
+
 							Cheers! 📦🚀
 						`,
 						},

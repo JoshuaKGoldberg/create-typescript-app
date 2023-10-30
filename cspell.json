@@ -6,7 +6,8 @@
 		"CHANGELOG.md",
 		"lib",
 		"node_modules",
-		"pnpm-lock.yaml"
+		"pnpm-lock.yaml",
+		"./src/bin/__snapshots__"
 	],
 	"words": [
 		"allcontributors",

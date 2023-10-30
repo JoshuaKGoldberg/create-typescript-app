@@ -34,11 +34,11 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 	};
 
 	const args = Object.entries(optionsNormalized)
-		// Sort so the base is first, then the rest are compared using the `localeCompare` string method
+		// Sort so the base is first, then the rest are sorted alphabetically
 		.sort(([a], [b]) =>
 			a === "base" ? -1 : b === "base" ? 1 : a.localeCompare(b),
 		)
-		// Filter out all entries that have a key in the excluded object or have a falsey value
+		// Filter out all entries that have a key in the excluded object or have a falsy value
 		.filter(
 			([key, value]) =>
 				getExclusions(options, optionsNormalized.base)[key as ExclusionKey] ==

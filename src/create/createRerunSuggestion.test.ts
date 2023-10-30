@@ -42,6 +42,11 @@ const options = {
 	title: "Test Title",
 } satisfies Options;
 
+const opts = {
+	...options,
+	excludeLintKnip: undefined,
+};
+
 describe("createRerunSuggestion", () => {
 	it("includes key-value pairs with mixed truthy and falsy values", () => {
 		const actual = createRerunSuggestion(options);
@@ -95,11 +100,7 @@ describe("createRerunSuggestion", () => {
 		);
 	});
 
-	it("does not list all excludes when using common or minimum base", () => {
-		const opts = {
-			...options,
-			excludeLintKnip: undefined,
-		};
+	it("does not list all excludes when using common base", () => {
 		const common = createRerunSuggestion({
 			...opts,
 			base: "common",
@@ -109,7 +110,9 @@ describe("createRerunSuggestion", () => {
 		expect(common).toMatchInlineSnapshot(
 			'"npx create-typescript-app --mode create --base common --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
 		);
+	});
 
+	it("does not list all excludes when using minimum base", () => {
 		const minimum = createRerunSuggestion({
 			...opts,
 			base: "minimum",

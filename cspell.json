@@ -34,7 +34,6 @@
 		"tsup",
 		"Unstaged",
 		"vitest",
-		"wontfix",
-		"falsey"
+		"wontfix"
 	]
 }

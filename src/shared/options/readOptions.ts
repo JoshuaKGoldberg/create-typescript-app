@@ -3,14 +3,14 @@ import { titleCase } from "title-case";
 import { z } from "zod";
 
 import { withSpinner } from "../cli/spinners.js";
-import { readPackageData } from "../packages.js";
-import { Mode, OptionsBase, OptionsGuide, PromptedOptions } from "../types.js";
+import { Mode, OptionsGuide, PromptedOptions } from "../types.js";
 import { Options, OptionsLogo } from "../types.js";
 import { allArgOptions } from "./args.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { createOptionDefaults } from "./createOptionDefaults/index.js";
 import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
+import { getBase } from "./getBase.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { optionsSchema } from "./optionsSchema.js";
@@ -242,38 +242,4 @@ export async function readOptions(
 		github,
 		options: augmentedOptions,
 	};
-}
-
-async function getBase(): Promise<OptionsBase> {
-	const commonScripts = ["lint:knip", "should-semantic-release", "test"];
-	const everythingScripts = [
-		"lint:md",
-		"lint:package-json",
-		"lint:packages",
-		"lint:spelling",
-	];
-
-	const scripts = await readPackageData().then((pkg) =>
-		pkg.scripts ? Object.keys(pkg.scripts) : [],
-	);
-
-	if (
-		scripts.reduce(
-			(acc, curr) => (everythingScripts.includes(curr) ? acc + 1 : acc),
-			0,
-		) >= 3
-	) {
-		return "everything";
-	}
-
-	if (
-		scripts.reduce(
-			(acc, curr) => (commonScripts.includes(curr) ? acc + 1 : acc),
-			0,
-		) >= 2
-	) {
-		return "common";
-	}
-
-	return "minimum";
 }

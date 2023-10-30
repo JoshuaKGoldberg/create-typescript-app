@@ -11,7 +11,7 @@ export function createDotGitHubActions() {
 						steps: [
 							{ uses: "pnpm/action-setup@v2" },
 							{
-								uses: "actions/setup-node@v3",
+								uses: "actions/setup-node@v4",
 								with: { cache: "pnpm", "node-version": "18" },
 							},
 							{

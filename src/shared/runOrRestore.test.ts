@@ -56,6 +56,7 @@ describe("runOrRestore", () => {
 				skipRestore: false,
 			},
 		});
+
 		mockConfirm.mockResolvedValue(false);
 
 		const actual = await runOrRestore({
@@ -74,6 +75,7 @@ describe("runOrRestore", () => {
 				skipRestore: false,
 			},
 		});
+
 		mockConfirm.mockResolvedValue(true);
 
 		const actual = await runOrRestore({

@@ -76,6 +76,7 @@ describe("getGitHubUserAsAllContributor", () => {
 				`Couldn't authenticate GitHub user, falling back to the provided owner name '${owner}'.`,
 			),
 		);
+
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [

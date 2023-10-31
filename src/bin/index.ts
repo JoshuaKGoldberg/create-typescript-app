@@ -31,6 +31,7 @@ export async function bin(args: string[]) {
 			"⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️",
 		),
 	);
+
 	logLine(
 		chalk.yellow(
 			"⚠️ If any tooling it sets displeases you, you can always remove that portion manually. ⚠️",
@@ -68,6 +69,7 @@ export async function bin(args: string[]) {
 			logLine(
 				chalk.red(typeof error === "string" ? error : fromZodError(error)),
 			);
+
 			logLine();
 		}
 

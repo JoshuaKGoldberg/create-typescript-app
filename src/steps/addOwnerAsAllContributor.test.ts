@@ -42,6 +42,7 @@ describe("addOwnerAsAllContributor", () => {
 		mock$.mockResolvedValueOnce({
 			stdout: JSON.stringify({ login: "user" }),
 		});
+
 		mockReadFileAsJson.mockResolvedValue("invalid");
 
 		await expect(async () => {
@@ -55,6 +56,7 @@ describe("addOwnerAsAllContributor", () => {
 		mock$.mockResolvedValueOnce({
 			stdout: JSON.stringify({ login: "user" }),
 		});
+
 		mockReadFileAsJson.mockResolvedValue({});
 
 		await expect(async () => {
@@ -68,6 +70,7 @@ describe("addOwnerAsAllContributor", () => {
 		mock$.mockResolvedValueOnce({
 			stdout: JSON.stringify({ login: mockOwner }),
 		});
+
 		mockReadFileAsJson.mockResolvedValue({
 			contributors: [],
 		});
@@ -89,6 +92,7 @@ describe("addOwnerAsAllContributor", () => {
 		mock$.mockResolvedValueOnce({
 			stdout: JSON.stringify({ login: mockOwner }),
 		});
+
 		mockReadFileAsJson.mockResolvedValue({
 			contributors: [
 				{ contributions: ["bug", "fix"], login: mockOwner },

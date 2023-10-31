@@ -33,6 +33,7 @@ export async function runOrRestore({ run, skipRestore }: RunOrRestoreOptions) {
 						chalk.reset`git restore .`,
 					].join(" "),
 				);
+
 				await $`git restore .`;
 			}
 		}

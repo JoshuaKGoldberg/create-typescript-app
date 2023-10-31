@@ -123,6 +123,7 @@ export async function readOptions(
 		"What organization or user will the repository be under?",
 		defaults.owner,
 	);
+
 	if (!options.owner) {
 		return {
 			cancelled: true,
@@ -134,6 +135,7 @@ export async function readOptions(
 		"What will the kebab-case name of the repository be?",
 		defaults.repository,
 	);
+
 	if (!options.repository) {
 		return {
 			cancelled: true,
@@ -160,6 +162,7 @@ export async function readOptions(
 		async () =>
 			(await defaults.description()) ?? "A very lovely package. Hooray!",
 	);
+
 	if (!options.description) {
 		return { cancelled: true, options };
 	}
@@ -169,6 +172,7 @@ export async function readOptions(
 		async () =>
 			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
 	);
+
 	if (!options.title) {
 		return { cancelled: true, options };
 	}

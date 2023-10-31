@@ -16,6 +16,7 @@ export async function doesRepositoryExist(
 			owner: options.owner,
 			repo: options.repository,
 		});
+
 		return true;
 	} catch (error) {
 		if ((error as RequestError).status !== 404) {

@@ -57,6 +57,7 @@ if (unstagedModifiedFiles.length) {
 			(await execaCommand(gitDiffCommand)).stdout
 		}`,
 	);
+
 	console.error(
 		[
 			"",
@@ -72,5 +73,6 @@ if (unstagedModifiedFiles.length) {
 			.map((line) => chalk.red(line))
 			.join("\n"),
 	);
+
 	process.exitCode = 1;
 }

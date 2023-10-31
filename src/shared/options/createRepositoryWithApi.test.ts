@@ -47,11 +47,13 @@ describe("createRepositoryWithApi", () => {
 				login: options.owner,
 			},
 		});
+
 		await createRepositoryWithApi(createMockOctokit(), options);
 
 		expect(mockCreateForAuthenticatedUser).toHaveBeenCalledWith({
 			name: options.repository,
 		});
+
 		expect(mockCreateInOrg).not.toHaveBeenCalled();
 		expect(mockCreateUsingTemplate).not.toHaveBeenCalled();
 	});
@@ -66,6 +68,7 @@ describe("createRepositoryWithApi", () => {
 			name: options.repository,
 			org: options.owner,
 		});
+
 		expect(mockCreateUsingTemplate).not.toHaveBeenCalled();
 	});
 });

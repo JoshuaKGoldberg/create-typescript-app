@@ -40,6 +40,7 @@ describe("createOptionDefaults", () => {
 			mock$.mockImplementation(([command]: string[]) =>
 				command === "npm whoami" ? { stdout: "npm-username" } : undefined,
 			);
+
 			mockNpmUser.mockImplementation((username: string) => ({
 				email: `test@${username}.com`,
 			}));
@@ -74,6 +75,7 @@ describe("createOptionDefaults", () => {
 					? { stdout: "test@git.com" }
 					: undefined,
 			);
+
 			mockReadPackageData.mockResolvedValue({});
 
 			const actual = await createOptionDefaults().email();
@@ -91,6 +93,7 @@ describe("createOptionDefaults", () => {
 						? "test@git.com"
 						: "npm-username",
 			}));
+
 			mockReadPackageData.mockResolvedValue({});
 
 			const actual = await createOptionDefaults().email();

@@ -27,6 +27,7 @@ export const create: ModeRunner = async (args, promptedOptions) => {
 				`The ${inputs.options.directory} directory already exists and is not empty. Please clear the directory, run with --mode initialize, or try a different directory.`,
 			),
 		);
+
 		return { code: StatusCodes.Failure, options: inputs.options };
 	}
 

@@ -23,6 +23,7 @@ describe("getBase", () => {
 
 		expect(await getBase()).toBe("minimum");
 	});
+
 	it("should return common with common scripts", async () => {
 		mockReadPackageData.mockImplementationOnce(() =>
 			Promise.resolve({
@@ -37,6 +38,7 @@ describe("getBase", () => {
 
 		expect(await getBase()).toBe("common");
 	});
+
 	it("should return everything with everything scripts", async () => {
 		mockReadPackageData.mockImplementationOnce(() =>
 			Promise.resolve({

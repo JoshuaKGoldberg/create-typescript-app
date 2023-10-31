@@ -16,6 +16,7 @@ export async function getGitHubUserAsAllContributor(
 				`Skipping populating all-contributors contributions for ${options.owner} because in --offline mode.`,
 			),
 		);
+
 		return options.owner;
 	}
 
@@ -29,6 +30,7 @@ export async function getGitHubUserAsAllContributor(
 				`Couldn't authenticate GitHub user, falling back to the provided owner name '${options.owner}'.`,
 			),
 		);
+
 		user = options.owner;
 	}
 

@@ -101,6 +101,7 @@ describe("ensureRepositoryExists", () => {
 			preserveGeneratedFrom: undefined,
 			repository,
 		});
+
 		expect(mockSelect).not.toHaveBeenCalled();
 	});
 
@@ -111,6 +112,7 @@ describe("ensureRepositoryExists", () => {
 		mockDoesRepositoryExist
 			.mockResolvedValueOnce(false)
 			.mockResolvedValueOnce(true);
+
 		mockSelect.mockResolvedValueOnce("different");
 		mockText.mockResolvedValue(newRepository);
 
@@ -123,6 +125,7 @@ describe("ensureRepositoryExists", () => {
 			github: { auth, octokit },
 			repository: newRepository,
 		});
+
 		expect(mockCreateRepositoryWithApi).not.toHaveBeenCalled();
 	});
 
@@ -134,6 +137,7 @@ describe("ensureRepositoryExists", () => {
 		mockSelect
 			.mockResolvedValueOnce("different")
 			.mockResolvedValueOnce("create");
+
 		mockText.mockResolvedValue(newRepository);
 
 		const actual = await ensureRepositoryExists(
@@ -145,6 +149,7 @@ describe("ensureRepositoryExists", () => {
 			github: { auth, octokit },
 			repository: newRepository,
 		});
+
 		expect(mockCreateRepositoryWithApi).toHaveBeenCalledWith(octokit, {
 			owner,
 			preserveGeneratedFrom: undefined,

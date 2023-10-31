@@ -63,6 +63,7 @@ describe("create", () => {
 			code: StatusCodes.Failure,
 			options: optionsBase,
 		});
+
 		expect(mockOutro).toHaveBeenCalledWith(
 			chalk.red(
 				"The TestDirectory directory already exists and is not empty. Please clear the directory, run with --mode initialize, or try a different directory.",

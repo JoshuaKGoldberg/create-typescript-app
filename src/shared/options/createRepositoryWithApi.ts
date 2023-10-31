@@ -17,6 +17,7 @@ export async function createRepositoryWithApi(
 			template_owner: "JoshuaKGoldberg",
 			template_repo: "create-typescript-app",
 		});
+
 		return;
 	}
 

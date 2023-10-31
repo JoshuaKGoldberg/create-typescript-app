@@ -46,6 +46,7 @@ export async function writeReadme(options: Options) {
 				.filter(Boolean)
 				.join("\n\n"),
 		);
+
 		return;
 	}
 

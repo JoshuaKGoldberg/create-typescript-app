@@ -73,6 +73,7 @@ describe("bin", () => {
 		expect(mockOutro).toHaveBeenCalledWith(
 			chalk.red("Operation cancelled. Exiting - maybe another time? 👋"),
 		);
+
 		expect(result).toBe(1);
 	});
 
@@ -119,6 +120,7 @@ describe("bin", () => {
 		expect(mockCancel).toHaveBeenCalledWith(
 			`Operation cancelled. Exiting - maybe another time? 👋`,
 		);
+
 		expect(result).toEqual(code);
 	});
 
@@ -142,6 +144,7 @@ describe("bin", () => {
 		expect(mockCancel).toHaveBeenCalledWith(
 			`Operation cancelled. Exiting - maybe another time? 👋`,
 		);
+
 		expect(result).toEqual(code);
 	});
 
@@ -167,9 +170,11 @@ describe("bin", () => {
 		expect(mockLogLine).toHaveBeenCalledWith(
 			chalk.red('Validation error: Invalid email at "email"'),
 		);
+
 		expect(mockCancel).toHaveBeenCalledWith(
 			`Operation cancelled. Exiting - maybe another time? 👋`,
 		);
+
 		expect(result).toEqual(code);
 	});
 
@@ -188,6 +193,7 @@ describe("bin", () => {
 		expect(mockCancel).toHaveBeenCalledWith(
 			`Operation failed. Exiting - maybe another time? 👋`,
 		);
+
 		expect(result).toEqual(code);
 	});
 });

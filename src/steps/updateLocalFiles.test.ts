@@ -366,12 +366,14 @@ describe("updateLocalFiles", () => {
 			to: options.description,
 		});
 	});
+
 	it("replaces an existing description when it exists", async () => {
 		const existingDescription = "Existing description.";
 
 		mockReadFileSafeAsJson.mockResolvedValue({
 			description: existingDescription,
 		});
+
 		mockReplaceInFile.mockResolvedValue([]);
 
 		await updateLocalFiles({ ...options, mode: "initialize" });
@@ -387,6 +389,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
 			version: "1.2.3",
 		});
+
 		mockReplaceInFile.mockResolvedValue([]);
 
 		await updateLocalFiles({ ...options, mode: "initialize" });
@@ -402,6 +405,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
 			version: "1.2.3",
 		});
+
 		mockReplaceInFile.mockResolvedValue([]);
 
 		await updateLocalFiles({ ...options, mode: "migrate" });
@@ -417,6 +421,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
 			version: "1.2.3",
 		});
+
 		mockReplaceInFile.mockResolvedValue([]);
 
 		await updateLocalFiles({ ...options, mode: "initialize" });
@@ -432,6 +437,7 @@ describe("updateLocalFiles", () => {
 		mockReadFileSafeAsJson.mockResolvedValue({
 			version: "1.2.3",
 		});
+
 		mockReplaceInFile.mockResolvedValue([]);
 
 		await updateLocalFiles({ ...options, mode: "migrate" });

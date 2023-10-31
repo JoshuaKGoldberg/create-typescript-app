@@ -162,7 +162,11 @@ module.exports = {
 		// Stylistic concerns that don't interfere with Prettier
 		"@typescript-eslint/padding-line-between-statements": [
 			"error",
-			{ blankLine: "always", next: "*", prev: "block-like" },
+			{
+				blankLine: "always",
+				next: "*",
+				prev: ["block-like", "multiline-expression"],
+			},
 		],
 		"no-useless-rename": "error",
 		"object-shorthand": "error",

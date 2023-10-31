@@ -35,6 +35,7 @@ vi.mock("../shared/cli/lines.js", () => ({
 		return mockLogLine;
 	},
 }));
+
 describe("promptForMode", () => {
 	it("returns an error when the input exists and is not a mode", async () => {
 		const mode = await promptForMode("other");
@@ -69,6 +70,7 @@ describe("promptForMode", () => {
 			mode: "create",
 			options: { directory: ".", repository: directory },
 		});
+
 		expect(mockLogLine).not.toHaveBeenCalled();
 	});
 
@@ -84,6 +86,7 @@ describe("promptForMode", () => {
 		expect(actual).toEqual({
 			mode: "create",
 		});
+
 		expect(mockLogLine).not.toHaveBeenCalled();
 	});
 

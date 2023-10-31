@@ -60,6 +60,7 @@ describe("runCommands", () => {
 				chalk.yellow(`\` failed. You should run it and fix its complaints.`),
 			].join(""),
 		);
+
 		expect(mockLogLine).toHaveBeenCalledWith(
 			[
 				chalk.yellow(`🟡 Running \``),

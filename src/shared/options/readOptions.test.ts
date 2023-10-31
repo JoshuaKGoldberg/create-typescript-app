@@ -180,6 +180,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({});
 
 		expect(await readOptions([], "create")).toStrictEqual({
@@ -198,6 +199,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockOwner")
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -220,6 +222,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -244,6 +247,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementationOnce(() => "Mock Title")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -272,6 +276,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementationOnce(() => "Mock Title")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -299,6 +304,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "MockRepository")
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -324,6 +330,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementationOnce(() => "Mock title.")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -349,10 +356,12 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => "Mock description.")
 			.mockImplementationOnce(() => "Mock title.")
 			.mockImplementation(() => undefined);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
 		});
+
 		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
 
 		expect(await readOptions([], "create")).toStrictEqual({
@@ -372,6 +381,7 @@ describe("readOptions", () => {
 			...emptyOptions,
 			...mockOptions,
 		});
+
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
@@ -395,6 +405,7 @@ describe("readOptions", () => {
 			...emptyOptions,
 			...mockOptions,
 		});
+
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
@@ -449,10 +460,12 @@ describe("readOptions", () => {
 				...mockOptions,
 			}),
 		);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
 		});
+
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 
 		expect(
@@ -473,10 +486,12 @@ describe("readOptions", () => {
 				...mockOptions,
 			}),
 		);
+
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
 		});
+
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 
 		expect(
@@ -499,6 +514,7 @@ describe("readOptions", () => {
 			...mockOptions,
 			...options,
 		}));
+
 		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
@@ -542,6 +558,7 @@ describe("readOptions", () => {
 				},
 			}),
 		);
+
 		expect(await readOptions(["--offline"], "migrate")).toStrictEqual({
 			cancelled: false,
 			github: mockOptions.github,

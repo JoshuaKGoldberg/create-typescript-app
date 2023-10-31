@@ -111,9 +111,9 @@ vi.mock("./createOptionDefaults/index.js", () => ({
 	},
 }));
 
-const readPackageData = vi.hoisted(() => vi.fn());
+const mockReadPackageData = vi.fn();
 vi.mock("../packages.js", () => ({
-	readPackageData,
+	readPackageData: mockReadPackageData,
 }));
 
 describe("readOptions", () => {
@@ -531,7 +531,7 @@ describe("readOptions", () => {
 	});
 
 	it("infers base from package scripts during migration", async () => {
-		readPackageData.mockImplementationOnce(() =>
+		mockReadPackageData.mockImplementationOnce(() =>
 			Promise.resolve({
 				scripts: {
 					build: "build",

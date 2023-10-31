@@ -2,14 +2,14 @@ import { describe, expect, it, vi } from "vitest";
 
 import { getBase } from "./getBase.js";
 
-const readPackageData = vi.hoisted(() => vi.fn());
+const mockReadPackageData = vi.fn();
 vi.mock("../packages.js", () => ({
-	readPackageData,
+	readPackageData: mockReadPackageData,
 }));
 
 describe("getBase", () => {
 	it("should return minimum with minimum scripts", async () => {
-		readPackageData.mockImplementationOnce(() =>
+		mockReadPackageData.mockImplementationOnce(() =>
 			Promise.resolve({
 				scripts: {
 					build: "build",
@@ -22,7 +22,7 @@ describe("getBase", () => {
 		expect(await getBase()).toBe("minimum");
 	});
 	it("should return common with common scripts", async () => {
-		readPackageData.mockImplementationOnce(() =>
+		mockReadPackageData.mockImplementationOnce(() =>
 			Promise.resolve({
 				scripts: {
 					build: "build",
@@ -36,7 +36,7 @@ describe("getBase", () => {
 		expect(await getBase()).toBe("common");
 	});
 	it("should return everything with everything scripts", async () => {
-		readPackageData.mockImplementationOnce(() =>
+		mockReadPackageData.mockImplementationOnce(() =>
 			Promise.resolve({
 				scripts: {
 					build: "build",

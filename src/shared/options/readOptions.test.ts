@@ -113,7 +113,9 @@ vi.mock("./createOptionDefaults/index.js", () => ({
 
 const mockReadPackageData = vi.fn();
 vi.mock("../packages.js", () => ({
-	readPackageData: mockReadPackageData,
+	get readPackageData() {
+		return mockReadPackageData;
+	},
 }));
 
 describe("readOptions", () => {

@@ -4,7 +4,9 @@ import { getBase } from "./getBase.js";
 
 const mockReadPackageData = vi.fn();
 vi.mock("../packages.js", () => ({
-	readPackageData: mockReadPackageData,
+	get readPackageData() {
+		return mockReadPackageData;
+	},
 }));
 
 describe("getBase", () => {

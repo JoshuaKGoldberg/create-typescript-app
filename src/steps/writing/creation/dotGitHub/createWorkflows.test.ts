@@ -51,17 +51,17 @@ describe("createWorkflows", () => {
 			name: Accessibility Alt Text Bot
 
 			on:
-			  issue:
-			    types:
-			      - created
-			      - edited
 			  issue_comment:
 			    types:
 			      - created
 			      - edited
+			  issues:
+			    types:
+			      - opened
+			      - edited
 			  pull_request:
 			    types:
-			      - created
+			      - opened
 			      - edited
 
 			permissions:
@@ -378,17 +378,17 @@ describe("createWorkflows", () => {
 			name: Accessibility Alt Text Bot
 
 			on:
-			  issue:
-			    types:
-			      - created
-			      - edited
 			  issue_comment:
 			    types:
 			      - created
 			      - edited
+			  issues:
+			    types:
+			      - opened
+			      - edited
 			  pull_request:
 			    types:
-			      - created
+			      - opened
 			      - edited
 
 			permissions:

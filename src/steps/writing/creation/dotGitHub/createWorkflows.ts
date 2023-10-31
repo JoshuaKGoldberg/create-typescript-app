@@ -96,10 +96,10 @@ export function createWorkflows(options: Options) {
 					types: ["created", "edited"],
 				},
 				issues: {
-					types: ["opened", "edited"],
+					types: ["edited", "opened"],
 				},
 				pull_request: {
-					types: ["opened", "edited"],
+					types: ["edited", "opened"],
 				},
 			},
 			permissions: {

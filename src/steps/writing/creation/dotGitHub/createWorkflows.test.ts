@@ -57,12 +57,12 @@ describe("createWorkflows", () => {
 			      - edited
 			  issues:
 			    types:
-			      - opened
 			      - edited
+			      - opened
 			  pull_request:
 			    types:
-			      - opened
 			      - edited
+			      - opened
 
 			permissions:
 			  issues: write
@@ -384,12 +384,12 @@ describe("createWorkflows", () => {
 			      - edited
 			  issues:
 			    types:
-			      - opened
 			      - edited
+			      - opened
 			  pull_request:
 			    types:
-			      - opened
 			      - edited
+			      - opened
 
 			permissions:
 			  issues: write

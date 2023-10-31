@@ -1,3 +1,9 @@
+## [1.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.42.0...v1.42.1) (2023-10-31)
+
+### Bug Fixes
+
+- typo in a11y bot creation ([#1003](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1003)) ([8918987](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/89189873fd1338461499bc34a69c3d9bd6c36d90)), closes [#999](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/999)
+
 # [1.42.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.41.0...v1.42.0) (2023-10-31)
 
 ### Features

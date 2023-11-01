@@ -19,6 +19,7 @@ export interface PartialPackageData {
 	email?: string;
 	name?: string;
 	repository?: { type: string; url: string } | string;
+	scripts?: Record<string, string>;
 }
 
 export type OptionsAccess = "public" | "restricted";

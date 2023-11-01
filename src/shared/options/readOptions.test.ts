@@ -111,6 +111,13 @@ vi.mock("./createOptionDefaults/index.js", () => ({
 	},
 }));
 
+const mockReadPackageData = vi.fn();
+vi.mock("../packages.js", () => ({
+	get readPackageData() {
+		return mockReadPackageData;
+	},
+}));
+
 describe("readOptions", () => {
 	it("returns a cancellation when an arg is invalid", async () => {
 		const validationResult = z
@@ -516,6 +523,42 @@ describe("readOptions", () => {
 				guide: undefined,
 				logo: undefined,
 				mode: "create",
+				offline: true,
+				owner: "mock",
+				skipAllContributorsApi: true,
+				skipGitHubApi: true,
+				title: "mock",
+			},
+		});
+	});
+
+	it("infers base from package scripts during migration", async () => {
+		mockReadPackageData.mockImplementationOnce(() =>
+			Promise.resolve({
+				scripts: {
+					build: "build",
+					lint: "lint",
+					test: "test",
+				},
+			}),
+		);
+		expect(await readOptions(["--offline"], "migrate")).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: {
+				...emptyOptions,
+				...mockOptions,
+				access: "public",
+				base: "minimum",
+				description: "mock",
+				directory: "mock",
+				email: {
+					github: "mock",
+					npm: "mock",
+				},
+				guide: undefined,
+				logo: undefined,
+				mode: "migrate",
 				offline: true,
 				owner: "mock",
 				skipAllContributorsApi: true,

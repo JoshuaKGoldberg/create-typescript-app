@@ -1,3 +1,15 @@
+## [1.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.42.0...v1.42.1) (2023-10-31)
+
+### Bug Fixes
+
+- typo in a11y bot creation ([#1003](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1003)) ([8918987](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/89189873fd1338461499bc34a69c3d9bd6c36d90)), closes [#999](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/999)
+
+# [1.42.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.41.0...v1.42.0) (2023-10-31)
+
+### Features
+
+- infer base from package json scripts during migration ([#993](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/993)) ([20afaf4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/20afaf4c2be5afcde6f78d16b5d78f9d3227e74d)), closes [#933](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/933)
+
 # [1.41.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.40.0...v1.41.0) (2023-10-30)
 
 ### Features

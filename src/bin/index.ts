@@ -9,7 +9,9 @@ import { initialize } from "../initialize/index.js";
 import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
 import { StatusCodes } from "../shared/codes.js";
+import { version } from "../../package.json";
 import { promptForMode } from "./promptForMode.js";
+
 
 const operationMessage = (verb: string) =>
 	`Operation ${verb}. Exiting - maybe another time? 👋`;
@@ -41,9 +43,15 @@ export async function bin(args: string[]) {
 		args,
 		options: {
 			mode: { type: "string" },
+			version: { alias: "v", type: "boolean"}, // New version option
 		},
 		strict: false,
 	});
+
+	if (values.version) {
+        console.log(version);
+        return 0;
+    }
 
 	const { mode, options: promptedOptions } = await promptForMode(values.mode);
 	if (typeof mode !== "string") {

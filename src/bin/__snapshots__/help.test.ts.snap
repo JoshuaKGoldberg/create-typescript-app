@@ -3,299 +3,299 @@
 exports[`logHelpText > logs help text when called 1`] = `
 [
   [
-    "[33m⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️[39m",
+    "⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️",
   ],
   [
     " ",
   ],
   [
-    "[33m⚠️ If any tooling it sets displeases you, you can always remove that portion manually. ⚠️[39m",
+    "⚠️ If any tooling it sets displeases you, you can always remove that portion manually. ⚠️",
   ],
   [
     " ",
   ],
   [
-    "[36m[39m
-[36mA quickstart-friendly TypeScript template with comprehensive formatting, [39m
-[36mlinting, releases, testing, and other great tooling built-in.[39m
-[36m      [39m",
+    "
+A quickstart-friendly TypeScript template with comprehensive formatting, 
+linting, releases, testing, and other great tooling built-in.
+      ",
   ],
   [
     " ",
   ],
   [
-    "[30m[102mCore options:[49m[39m",
+    "Core options:",
   ],
   [
-    "[36m[39m
-[36m  --base ([96mstring[39m[36m): Whether to scaffold the repository with:[39m
-[36m  • everything: that comes with the template ([96m[1mrecommended[22m[39m[36m)[39m
-[36m  • minimum: amounts of tooling, essentially opting out of everything[39m
-[36m  • prompt: for which portions to exclude[39m",
+    "
+  --base (string): Whether to scaffold the repository with:
+  • everything: that comes with the template (recommended)
+  • minimum: amounts of tooling, essentially opting out of everything
+  • prompt: for which portions to exclude",
   ],
   [
-    "[36m[39m
-[36m  --create-repository: Whether to create a corresponding repository on github.com [39m
-[36m  (if it doesn't yet exist)[39m",
+    "
+  --create-repository: Whether to create a corresponding repository on github.com 
+  (if it doesn't yet exist)",
   ],
   [
-    "[36m[39m
-[36m  --description ([96mstring[39m[36m): Sentence case description of the repository [39m
-[36m  (e.g. A quickstart-friendly TypeScript package with lots of great [39m
-[36m  repository tooling. ✨)[39m",
+    "
+  --description (string): Sentence case description of the repository 
+  (e.g. A quickstart-friendly TypeScript package with lots of great 
+  repository tooling. ✨)",
   ],
   [
-    "[36m[39m
-[36m  --mode ([96mstring[39m[36m): Whether to:[39m
-[36m  • create: a new repository in a child directory[39m
-[36m  • initialize: a freshly repository in the current directory[39m
-[36m  • migrate: an existing repository in the current directory[39m",
+    "
+  --mode (string): Whether to:
+  • create: a new repository in a child directory
+  • initialize: a freshly repository in the current directory
+  • migrate: an existing repository in the current directory",
   ],
   [
-    "[36m[39m
-[36m  --owner ([96mstring[39m[36m): GitHub organization or user the repository is underneath [39m
-[36m  (e.g. JoshuaKGoldberg)[39m",
+    "
+  --owner (string): GitHub organization or user the repository is underneath 
+  (e.g. JoshuaKGoldberg)",
   ],
   [
-    "[36m[39m
-[36m  --repository ([96mstring[39m[36m): The kebab-case name of the repository [39m
-[36m  (e.g. create-typescript-app)[39m",
+    "
+  --repository (string): The kebab-case name of the repository 
+  (e.g. create-typescript-app)",
   ],
   [
-    "[36m[39m
-[36m  --title ([96mstring[39m[36m): Title Case title for the repository to be used in [39m
-[36m  documentation (e.g. Create TypeScript App)[39m",
+    "
+  --title (string): Title Case title for the repository to be used in 
+  documentation (e.g. Create TypeScript App)",
   ],
   [],
   [
     " ",
   ],
   [
-    "[30m[102mOptional options:[49m[39m",
+    "Optional options:",
   ],
   [
-    "[36m[39m
-[36m  --access ([96mstring[39m[36m): ([96m\\"public\\" | \\"restricted\\"[39m[36m): Which [96mnpm publish --access[39m[36m to [39m
-[36m  release npm packages with (by default, \\"public\\")[39m",
+    "
+  --access (string): (\\"public\\" | \\"restricted\\"): Which npm publish --access to 
+  release npm packages with (by default, \\"public\\")",
   ],
   [
-    "[36m[39m
-[36m  --author ([96mstring[39m[36m): Username on npm to publish packages under (by [39m
-[36m  default, an existing npm author, or the currently logged in npm user, or [39m
-[36m  [96mowner.toLowerCase()[39m[36m)[39m",
+    "
+  --author (string): Username on npm to publish packages under (by 
+  default, an existing npm author, or the currently logged in npm user, or 
+  owner.toLowerCase())",
   ],
   [
-    "[36m[39m
-[36m  --directory ([96mstring[39m[36m): Directory to create the repository in (by default, the same [39m
-[36m  name as the repository)[39m",
+    "
+  --directory (string): Directory to create the repository in (by default, the same 
+  name as the repository)",
   ],
   [
-    "[36m[39m
-[36m  --email ([96mstring[39m[36m): Email address to be listed as the point of contact in docs [39m
-[36m  and packages (e.g. example@joshuakgoldberg.com)[39m",
+    "
+  --email (string): Email address to be listed as the point of contact in docs 
+  and packages (e.g. example@joshuakgoldberg.com)",
   ],
   [
-    "[36m[39m
-[36m  --email-github ([96mstring[39m[36m): Optionally, may be provided to use different emails in [96m.md[39m[36m [39m
-[36m  files[39m",
+    "
+  --email-github (string): Optionally, may be provided to use different emails in .md 
+  files",
   ],
   [
-    "[36m[39m
-[36m  --email-npm ([96mstring[39m[36m): Optionally, may be provided to use different emails in [39m
-[36m  [96mpackage.json[39m[36m[39m",
+    "
+  --email-npm (string): Optionally, may be provided to use different emails in 
+  package.json",
   ],
   [
-    "[36m[39m
-[36m  --funding ([96mstring[39m[36m): GitHub organization or username to mention in [96mfunding.yml[39m[36m [39m
-[36m  (by default, owner)[39m",
+    "
+  --funding (string): GitHub organization or username to mention in funding.yml 
+  (by default, owner)",
   ],
   [
-    "[36m[39m
-[36m  --guide ([96mstring[39m[36m): Link to a contribution guide to place at the top of the [39m
-[36m  development docs[39m",
+    "
+  --guide (string): Link to a contribution guide to place at the top of the 
+  development docs",
   ],
   [
-    "[36m[39m
-[36m  --guide-title ([96mstring[39m[36m): If [96m--guide[39m[36m is provided or detected from an existing [39m
-[36m  DEVELOPMENT.md, the text title to place in the guide link[39m",
+    "
+  --guide-title (string): If --guide is provided or detected from an existing 
+  DEVELOPMENT.md, the text title to place in the guide link",
   ],
   [
-    "[36m[39m
-[36m  --keywords ([96mstring[39m[36m): Any number of keywords to include in [96mpackage.json[39m[36m (by default, [39m
-[36m  none). This can be specified any number of times, like  [39m
-[36m  [96m--keywords apple --keywords \\"banana cherry\\"[39m[36m[39m",
+    "
+  --keywords (string): Any number of keywords to include in package.json (by default, 
+  none). This can be specified any number of times, like  
+  --keywords apple --keywords \\"banana cherry\\"",
   ],
   [
-    "[36m[39m
-[36m  --logo ([96mstring[39m[36m): Local image file in the repository to display near the top of [39m
-[36m  the README.md as a logo[39m",
+    "
+  --logo (string): Local image file in the repository to display near the top of 
+  the README.md as a logo",
   ],
   [
-    "[36m[39m
-[36m  --logo-alt ([96mstring[39m[36m): If [96m--logo[39m[36m is provided or detected from an existing README.md, [39m
-[36m  alt text that describes the image will be prompted for if not provided[39m",
+    "
+  --logo-alt (string): If --logo is provided or detected from an existing README.md, 
+  alt text that describes the image will be prompted for if not provided",
   ],
   [
-    "[36m[39m
-[36m  --preserve-generated-form: Whether to keep the GitHub repository generated from [39m
-[36m  notice (by default, false)[39m",
-  ],
-  [],
-  [
-    " ",
-  ],
-  [
-    "[30m[102mOpt-outs:[49m[39m",
-  ],
-  [
-    "[33m[39m
-[33m  ⚠️ Warning: Specifying any --exclude-* flag on the command-line will [39m
-[33m  cause the setup script to skip prompting for more excludes. ⚠️[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-all-contributors: Don't add all-contributors to track contributions [39m
-[36m  and display them in a README.md table.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-compliance: Don't add a GitHub Actions workflow to verify that PRs match [39m
-[36m  an expected format.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-deprecation: Don't use eslint-plugin-deprecation to report on usage [39m
-[36m  of code marked as [96m@deprecated[39m[36m.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-jsdoc: Don't use eslint-plugin-jsdoc to enforce good practices around [39m
-[36m  JSDoc comments.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-json: Don't apply linting and sorting to [96m*.json[39m[36m, and [39m
-[36m  [96m*.jsonc[39m[36m files.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-knip: Don't add Knip to detect unused files, dependencies, and code [39m
-[36m  exports.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-md: Don't apply linting to [96m*.md[39m[36m files.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-package-json: Don't add npm-package-json-lint to lint for [39m
-[36m  package.json correctness.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-packages: Don't add a pnpm dedupe workflow to ensure packages [39m
-[36m  aren't duplicated unnecessarily.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-perfectionist: Don't apply eslint-plugin-perfectionist to ensure [39m
-[36m  imports, keys, and so on are in sorted order.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-regex: Don't add eslint-plugin-regex to enforce good practices around [39m
-[36m  regular expressions.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-spelling: Don't add cspell to spell check against dictionaries [39m
-[36m  of known words.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-strict: Don't augment the recommended logical lint rules with [39m
-[36m  typescript-eslint's strict config.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-stylistic: Don't add stylistic rules such as typescript-eslint's [39m
-[36m  stylistic config.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-lint-yml: Don't apply linting and sorting to [96m*.yaml[39m[36m and [96m*.yml[39m[36m files.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-releases: Don't add release-it to generate changelogs, package bumps, [39m
-[36m  and publishes based on conventional commits.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-renovate: Don't add a Renovate config to dependencies up-to-date with [39m
-[36m  PRs.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-tests: Don't add Vitest tooling for fast unit tests, configured [39m
-[36m  with coverage tracking.[39m",
-  ],
-  [
-    "[32m[39m
-[32mYou can prevent the migration script from making some network-based [39m
-[32mchanges using any or all of the following CLI flags:[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --exclude-contributors: Skips network calls that fetch all-contributors[39m
-[36m  data from GitHub[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --skip-all-contributors-api: Skips network calls that fetch all-contributors data from[39m
-[36m  GitHub. This flag does nothing if [96m--exclude-all-contributors[39m[36m was specified.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --skip-github-api: Skips calling to GitHub APIs.[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --skip-install: Skips installing all the new template packages with pnpm.[39m",
-  ],
-  [
-    "[32m[39m
-[32mYou can prevent the migration script from making some changes on disk [39m
-[32musing any or all of the following CLI flags:[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --skip-removal: Skips removing setup docs and scripts, including this [96mdocs/[39m[36m [39m
-[36m  directory[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --skip-restore: Skips the prompt offering to restore the repository if an [39m
-[36m  error occurs during setup[39m",
-  ],
-  [
-    "[36m[39m
-[36m  --skip-uninstall: Skips uninstalling packages only used for setup scripts[39m",
+    "
+  --preserve-generated-form: Whether to keep the GitHub repository generated from 
+  notice (by default, false)",
   ],
   [],
   [
     " ",
   ],
   [
-    "[30m[102mOffline Mode:[49m[39m",
+    "Opt-outs:",
   ],
   [
-    "[36m[39m
-[36m  --offline: You can run [96mcreate-typescript-app[39m[36m in an \\"offline\\" mode. [39m
-[36m  Doing so will:[39m
-[36m  • Enable [96m--exclude-all-contributors-api[39m[36m and [96m--skip-github-api[39m[36m[39m
-[36m  • Skip network calls when setting up contributors[39m
-[36m  • Run pnpm commands with pnpm's [96m--offline[39m[36m mode[39m",
+    "
+  ⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
+  cause the setup script to skip prompting for more excludes. ⚠️",
+  ],
+  [
+    "
+  --exclude-all-contributors: Don't add all-contributors to track contributions 
+  and display them in a README.md table.",
+  ],
+  [
+    "
+  --exclude-compliance: Don't add a GitHub Actions workflow to verify that PRs match 
+  an expected format.",
+  ],
+  [
+    "
+  --exclude-lint-deprecation: Don't use eslint-plugin-deprecation to report on usage 
+  of code marked as @deprecated.",
+  ],
+  [
+    "
+  --exclude-lint-jsdoc: Don't use eslint-plugin-jsdoc to enforce good practices around 
+  JSDoc comments.",
+  ],
+  [
+    "
+  --exclude-lint-json: Don't apply linting and sorting to *.json, and 
+  *.jsonc files.",
+  ],
+  [
+    "
+  --exclude-lint-knip: Don't add Knip to detect unused files, dependencies, and code 
+  exports.",
+  ],
+  [
+    "
+  --exclude-lint-md: Don't apply linting to *.md files.",
+  ],
+  [
+    "
+  --exclude-lint-package-json: Don't add npm-package-json-lint to lint for 
+  package.json correctness.",
+  ],
+  [
+    "
+  --exclude-lint-packages: Don't add a pnpm dedupe workflow to ensure packages 
+  aren't duplicated unnecessarily.",
+  ],
+  [
+    "
+  --exclude-lint-perfectionist: Don't apply eslint-plugin-perfectionist to ensure 
+  imports, keys, and so on are in sorted order.",
+  ],
+  [
+    "
+  --exclude-lint-regex: Don't add eslint-plugin-regex to enforce good practices around 
+  regular expressions.",
+  ],
+  [
+    "
+  --exclude-lint-spelling: Don't add cspell to spell check against dictionaries 
+  of known words.",
+  ],
+  [
+    "
+  --exclude-lint-strict: Don't augment the recommended logical lint rules with 
+  typescript-eslint's strict config.",
+  ],
+  [
+    "
+  --exclude-lint-stylistic: Don't add stylistic rules such as typescript-eslint's 
+  stylistic config.",
+  ],
+  [
+    "
+  --exclude-lint-yml: Don't apply linting and sorting to *.yaml and *.yml files.",
+  ],
+  [
+    "
+  --exclude-releases: Don't add release-it to generate changelogs, package bumps, 
+  and publishes based on conventional commits.",
+  ],
+  [
+    "
+  --exclude-renovate: Don't add a Renovate config to dependencies up-to-date with 
+  PRs.",
+  ],
+  [
+    "
+  --exclude-tests: Don't add Vitest tooling for fast unit tests, configured 
+  with coverage tracking.",
+  ],
+  [
+    "
+You can prevent the migration script from making some network-based 
+changes using any or all of the following CLI flags:",
+  ],
+  [
+    "
+  --exclude-contributors: Skips network calls that fetch all-contributors
+  data from GitHub",
+  ],
+  [
+    "
+  --skip-all-contributors-api: Skips network calls that fetch all-contributors data from
+  GitHub. This flag does nothing if --exclude-all-contributors was specified.",
+  ],
+  [
+    "
+  --skip-github-api: Skips calling to GitHub APIs.",
+  ],
+  [
+    "
+  --skip-install: Skips installing all the new template packages with pnpm.",
+  ],
+  [
+    "
+You can prevent the migration script from making some changes on disk 
+using any or all of the following CLI flags:",
+  ],
+  [
+    "
+  --skip-removal: Skips removing setup docs and scripts, including this docs/ 
+  directory",
+  ],
+  [
+    "
+  --skip-restore: Skips the prompt offering to restore the repository if an 
+  error occurs during setup",
+  ],
+  [
+    "
+  --skip-uninstall: Skips uninstalling packages only used for setup scripts",
+  ],
+  [],
+  [
+    " ",
+  ],
+  [
+    "Offline Mode:",
+  ],
+  [
+    "
+  --offline: You can run create-typescript-app in an \\"offline\\" mode. 
+  Doing so will:
+  • Enable --exclude-all-contributors-api and --skip-github-api
+  • Skip network calls when setting up contributors
+  • Run pnpm commands with pnpm's --offline mode",
   ],
   [],
 ]

@@ -3,6 +3,16 @@ import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { logHelpText } from "./help.js";
 
+function makeProxy<T extends object>(receiver: T): T {
+	return new Proxy(receiver, {
+		get: () => makeProxy((input: string) => input),
+	});
+}
+
+vi.mock("chalk", () => ({
+	default: makeProxy({}),
+}));
+
 let mockConsoleLog: SpyInstance;
 
 describe("logHelpText", () => {

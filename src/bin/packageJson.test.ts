@@ -10,7 +10,7 @@ Mock the readFileSafeAsJson function that is called in getVersionFromPackageJson
 
 Modeled on readDefaultsFromDevelopment.test.ts line 7
 */
-vi.mock("../shared/readFileSafeAsJson", () => ({
+vi.mock("../shared/readFileSafeAsJson.js", () => ({
 	get readFileSafeAsJson() {
 		return mockReadFileSafeAsJson;
 	},

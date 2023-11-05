@@ -108,7 +108,6 @@ export function createWorkflows(options: Options) {
 			},
 			steps: [
 				{
-					if: "${{ github.event.issue || github.event.pull_request }}",
 					uses: "github/accessibility-alt-text-bot@v1.4.0",
 				},
 			],

@@ -45,8 +45,7 @@ describe("createWorkflows", () => {
 			  accessibility_alt_text_bot:
 			    runs-on: ubuntu-latest
 			    steps:
-			      - if: \${{ github.event.issue || github.event.pull_request }}
-			        uses: github/accessibility-alt-text-bot@v1.4.0
+			      - uses: github/accessibility-alt-text-bot@v1.4.0
 
 			name: Accessibility Alt Text Bot
 
@@ -372,8 +371,7 @@ describe("createWorkflows", () => {
 			  accessibility_alt_text_bot:
 			    runs-on: ubuntu-latest
 			    steps:
-			      - if: \${{ github.event.issue || github.event.pull_request }}
-			        uses: github/accessibility-alt-text-bot@v1.4.0
+			      - uses: github/accessibility-alt-text-bot@v1.4.0
 
 			name: Accessibility Alt Text Bot
 

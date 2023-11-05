@@ -90,7 +90,7 @@
 		"globby": "^13.2.2",
 		"husky": "^8.0.3",
 		"jsonc-eslint-parser": "^2.3.0",
-		"knip": "2.38.4",
+		"knip": "2.38.6",
 		"lint-staged": "^15.0.0",
 		"markdownlint": "^0.31.0",
 		"markdownlint-cli": "^0.37.0",
@@ -107,7 +107,7 @@
 		"vitest": "^0.34.3",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.10.0",
+	"packageManager": "pnpm@8.10.2",
 	"engines": {
 		"node": ">=18"
 	},

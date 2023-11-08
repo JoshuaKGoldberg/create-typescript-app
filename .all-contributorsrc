@@ -324,6 +324,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "dominicduffin1",
+      "name": "Dominic Duffin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26224873?v=4",
+      "profile": "https://dominicduffin.uk",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

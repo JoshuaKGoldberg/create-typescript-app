@@ -1,3 +1,9 @@
+# [1.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.42.1...v1.43.0) (2023-11-08)
+
+### Features
+
+- Add help cli ([#775](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/775)) ([6c15440](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6c15440a23ecdff7b38bc39773fdcd4cccc75e5e)), closes [#703](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/703)
+
 ## [1.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.42.0...v1.42.1) (2023-10-31)
 
 ### Bug Fixes

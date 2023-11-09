@@ -1,3 +1,9 @@
+## [1.43.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.0...v1.43.1) (2023-11-09)
+
+### Bug Fixes
+
+- account for base when suggesting rerun cmd ([#992](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/992)) ([5978879](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5978879260840c175f11bb4537b77234f5d935c0)), closes [#905](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/905)
+
 # [1.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.42.1...v1.43.0) (2023-11-08)
 
 ### Features

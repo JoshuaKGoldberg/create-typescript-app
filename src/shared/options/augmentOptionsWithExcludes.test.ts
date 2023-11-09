@@ -125,6 +125,6 @@ describe("augmentOptionsWithExcludes", () => {
 
 		const actual = await augmentOptionsWithExcludes(options);
 
-		expect(actual).toBe(options);
+		expect(actual).toStrictEqual(options);
 	});
 });

@@ -10,7 +10,7 @@ interface ExclusionDescription {
 	uncommon?: true;
 }
 
-type ExclusionKey = keyof Options & `exclude${string}`;
+export type ExclusionKey = keyof Options & `exclude${string}`;
 
 const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> = {
 	excludeAllContributors: {
@@ -119,6 +119,34 @@ const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> = {
 
 const exclusionKeys = Object.keys(exclusionDescriptions) as ExclusionKey[];
 
+export function getExclusions(
+	options: Partial<Options>,
+	base?: OptionsBase,
+): Partial<Options> {
+	switch (base) {
+		case "common":
+			return {
+				...Object.fromEntries(
+					exclusionKeys
+						.filter((exclusion) => exclusionDescriptions[exclusion].uncommon)
+						.map((exclusion) => [exclusion, options[exclusion] ?? true]),
+				),
+			};
+		case "minimum":
+			return {
+				...Object.fromEntries(
+					exclusionKeys.map((exclusion) => [
+						exclusion,
+						options[exclusion] ?? true,
+					]),
+				),
+			};
+		// We only really care about exclusions on the common and minimum bases
+		default:
+			return {};
+	}
+}
+
 export async function augmentOptionsWithExcludes(
 	options: Options,
 ): Promise<Options | undefined> {
@@ -172,31 +200,13 @@ export async function augmentOptionsWithExcludes(
 	switch (base) {
 		case undefined:
 			return undefined;
-
 		case "common":
-			return {
-				...options,
-				...Object.fromEntries(
-					exclusionKeys
-						.filter((exclusion) => exclusionDescriptions[exclusion].uncommon)
-						.map((exclusion) => [exclusion, options[exclusion] ?? true]),
-				),
-			};
-
-		case "everything":
-			return options;
-
 		case "minimum":
+		case "everything":
 			return {
 				...options,
-				...Object.fromEntries(
-					exclusionKeys.map((exclusion) => [
-						exclusion,
-						options[exclusion] ?? true,
-					]),
-				),
+				...getExclusions(options, base),
 			};
-
 		case "prompt":
 			const exclusionsNotEnabled = new Set(
 				filterPromptCancel(

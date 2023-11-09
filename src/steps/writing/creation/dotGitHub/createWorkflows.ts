@@ -92,14 +92,14 @@ export function createWorkflows(options: Options) {
 		"accessibility-alt-text-bot.yml": createWorkflowFile({
 			name: "Accessibility Alt Text Bot",
 			on: {
-				issue: {
-					types: ["created", "edited"],
-				},
 				issue_comment: {
 					types: ["created", "edited"],
 				},
+				issues: {
+					types: ["edited", "opened"],
+				},
 				pull_request: {
-					types: ["created", "edited"],
+					types: ["edited", "opened"],
 				},
 			},
 			permissions: {
@@ -108,7 +108,6 @@ export function createWorkflows(options: Options) {
 			},
 			steps: [
 				{
-					if: "${{ github.event.issue || github.event.pull_request }}",
 					uses: "github/accessibility-alt-text-bot@v1.4.0",
 				},
 			],

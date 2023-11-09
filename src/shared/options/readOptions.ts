@@ -10,6 +10,7 @@ import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 import { createOptionDefaults } from "./createOptionDefaults/index.js";
 import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
+import { getBase } from "./getBase.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { optionsSchema } from "./optionsSchema.js";
@@ -43,6 +44,10 @@ export async function readOptions(
 		strict: false,
 		tokens: true,
 	});
+
+	if (mode === "migrate" && !values.base) {
+		values.base = await getBase();
+	}
 
 	const mappedOptions = {
 		access: values.access,

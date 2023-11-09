@@ -42,11 +42,6 @@ const options = {
 	title: "Test Title",
 } satisfies Options;
 
-const opts = {
-	...options,
-	excludeLintKnip: undefined,
-};
-
 describe("createRerunSuggestion", () => {
 	it("includes key-value pairs with mixed truthy and falsy values", () => {
 		const actual = createRerunSuggestion(options);
@@ -102,25 +97,25 @@ describe("createRerunSuggestion", () => {
 
 	it("does not list all excludes when using common base", () => {
 		const common = createRerunSuggestion({
-			...opts,
 			base: "common",
 			...getExclusions(options, "common"),
+			excludeLintKnip: undefined,
 		});
 
 		expect(common).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode create --base common --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode undefined --base common"',
 		);
 	});
 
 	it("does not list all excludes when using minimum base", () => {
 		const minimum = createRerunSuggestion({
-			...opts,
 			base: "minimum",
 			...getExclusions(options, "minimum"),
+			excludeLintKnip: undefined,
 		});
 
 		expect(minimum).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode create --base minimum --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --keywords \\"abc def ghi jkl mno pqr\\" --mode create --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+			'"npx create-typescript-app --mode undefined --base minimum"',
 		);
 	});
 });

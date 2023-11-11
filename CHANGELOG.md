@@ -1,3 +1,9 @@
+## [1.43.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.1...v1.43.2) (2023-11-11)
+
+### Bug Fixes
+
+- graceful recovery for failed spinner step ([#1017](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1017)) ([e36f765](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e36f7655c72a67890b4912dc1cb3c533c99c1c88)), closes [#1016](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1016)
+
 ## [1.43.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.0...v1.43.1) (2023-11-09)
 
 ### Bug Fixes

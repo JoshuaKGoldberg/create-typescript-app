@@ -58,7 +58,12 @@ export async function updateLocalFiles(options: Options) {
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of replacements) {
 		try {
 			// @ts-expect-error -- https://github.com/microsoft/TypeScript/issues/54342
-			await replaceInFile({ files, from, to });
+			await replaceInFile({
+				allowEmptyPaths: true,
+				files,
+				from,
+				to,
+			});
 		} catch (error) {
 			throw new Error(
 				`Failed to replace ${from.toString()} with ${to} in ${files.toString()}`,

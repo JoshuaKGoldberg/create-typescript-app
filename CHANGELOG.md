@@ -1,3 +1,9 @@
+## [1.43.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.2...v1.43.3) (2023-11-12)
+
+### Bug Fixes
+
+- allow empty paths for updating local files ([#1022](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1022)) ([b2049ff](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b2049ff49e8d97d4a2e2451d2fed5e785a7bdabf)), closes [#1015](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1015)
+
 ## [1.43.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.1...v1.43.2) (2023-11-11)
 
 ### Bug Fixes

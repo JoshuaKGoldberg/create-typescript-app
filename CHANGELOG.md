@@ -1,3 +1,9 @@
+## [1.43.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.3...v1.43.4) (2023-11-14)
+
+### Bug Fixes
+
+- remove visual underlines on badge links in README.md ([#1030](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1030)) ([e25a47f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e25a47f2e9e4b587bd4db5e35d7f34079f56a99b)), closes [#1027](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1027)
+
 ## [1.43.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.2...v1.43.3) (2023-11-12)
 
 ### Bug Fixes

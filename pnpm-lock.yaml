@@ -59,8 +59,8 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.0
   '@release-it/conventional-changelog':
-    specifier: ^7.0.1
-    version: 7.0.1(release-it@16.1.5)
+    specifier: ^8.0.0
+    version: 8.0.1(release-it@16.1.5)
   '@types/eslint':
     specifier: ^8.44.2
     version: 8.44.2
@@ -1742,15 +1742,15 @@ packages:
       - domexception
     dev: true
 
-  /@release-it/conventional-changelog@7.0.1(release-it@16.1.5):
-    resolution: {integrity: sha512-qvMSzyaTWVCgbAFJ4OYb2HC2S+h47hqua6A/aYe5surdp9dXu47POz22tJUMyKr4z66g+nh2TElFqaWrLmOC3Q==}
-    engines: {node: '>=16'}
+  /@release-it/conventional-changelog@8.0.1(release-it@16.1.5):
+    resolution: {integrity: sha512-pwc9jaBYDaSX5TXw6rEnPfqDkKJN2sFBhYpON1kBi9T3sA9EOBncC4ed0Bv3L1ciNb6eqEJXPfp+tQMqVlv/eg==}
+    engines: {node: '>=18'}
     peerDependencies:
-      release-it: ^16.0.0
+      release-it: ^17.0.0
     dependencies:
       concat-stream: 2.0.0
       conventional-changelog: 5.1.0
-      conventional-recommended-bump: 8.0.0
+      conventional-recommended-bump: 9.0.0
       release-it: 16.1.5
       semver: 7.5.4
     dev: true
@@ -2987,17 +2987,16 @@ packages:
       split2: 4.2.0
     dev: true
 
-  /conventional-recommended-bump@8.0.0:
-    resolution: {integrity: sha512-yvGN+VMy00WIe/pJufpmN+I4B2cM/WFK+CFCmDcjyVLyQR6J1KT2iecmA4NQ58gQAiNkvStEjcZp/W9h1JDM1A==}
+  /conventional-recommended-bump@9.0.0:
+    resolution: {integrity: sha512-HR1yD0G5HgYAu6K0wJjLd7QGRK8MQDqqj6Tn1n/ja1dFwBCE6QmV+iSgQ5F7hkx7OUR/8bHpxJqYtXj2f/opPQ==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      concat-stream: 2.0.0
       conventional-changelog-preset-loader: 4.1.0
       conventional-commits-filter: 4.0.0
       conventional-commits-parser: 5.0.0
       git-raw-commits: 4.0.0
-      git-semver-tags: 6.0.0
+      git-semver-tags: 7.0.1
       meow: 12.1.1
     dev: true
 
@@ -4223,15 +4222,6 @@ packages:
     dependencies:
       gitconfiglocal: 2.1.0
     dev: false
-
-  /git-semver-tags@6.0.0:
-    resolution: {integrity: sha512-v5BL6psuUy+Ftuo99141XlOIDoJtKw5+YyDANS7fknSP0iT4cVIanc3toDsH4K+VpIWc19l2/xkwQmXMfloeUA==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dependencies:
-      meow: 12.1.1
-      semver: 7.5.4
-    dev: true
 
   /git-semver-tags@7.0.1:
     resolution: {integrity: sha512-NY0ZHjJzyyNXHTDZmj+GG7PyuAKtMsyWSwh07CR2hOZFa+/yoTsXci/nF2obzL8UDhakFNkD9gNdt/Ed+cxh2Q==}

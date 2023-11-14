@@ -5,8 +5,8 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="All Contributors: 35 🤝" src="https://img.shields.io/badge/all_contributors-35_🤝-21bb42.svg" /></a>
-	<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<img alt="All Contributors: 36 🤝" src="https://img.shields.io/badge/all_contributors-36_🤝-21bb42.svg" />
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app/branch/main/graph/badge.svg"/></a>
 	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="Code of Conduct: Enforced 🤝" src="https://img.shields.io/badge/code_of_conduct-enforced_🤝-21bb42" /></a>
@@ -107,11 +107,14 @@ Thanks! 💖
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://ryota-murakami.github.io/"><img src="https://avatars.githubusercontent.com/u/5501268?v=4?s=100" width="100px;" alt="Ryota Murakami"/><br /><sub><b>Ryota Murakami</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=ryota-murakami" title="Code">💻</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Aryota-murakami" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.shraddha.tech"><img src="https://avatars.githubusercontent.com/u/27571141?v=4?s=100" width="100px;" alt="Shraddha"/><br /><sub><b>Shraddha</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=5hraddha" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/the-lazy-learner"><img src="https://avatars.githubusercontent.com/u/13695177?v=4?s=100" width="100px;" alt="Sudhansu"/><br /><sub><b>Sudhansu</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=the-lazy-learner" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mrswastik-robot"><img src="https://avatars.githubusercontent.com/u/107865087?v=4?s=100" width="100px;" alt="Swastik Patel"/><br /><sub><b>Swastik Patel</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=mrswastik-robot" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/timonjurschitsch/"><img src="https://avatars.githubusercontent.com/u/103483059?v=4?s=100" width="100px;" alt="Timon Jurschitsch"/><br /><sub><b>Timon Jurschitsch</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=dertimonius" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tungbq"><img src="https://avatars.githubusercontent.com/u/85242618?v=4?s=100" width="100px;" alt="Tung Bui (Leo)"/><br /><sub><b>Tung Bui (Leo)</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=tungbq" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/vasanth9"><img src="https://avatars.githubusercontent.com/u/42891954?v=4?s=100" width="100px;" alt="Vasanth Kumar Cheepurupalli"/><br /><sub><b>Vasanth Kumar Cheepurupalli</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=vasanth9" title="Code">💻</a></td>
+    </tr>
+    <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=TAKANOME-DEV" title="Code">💻</a></td>
     </tr>
   </tbody>

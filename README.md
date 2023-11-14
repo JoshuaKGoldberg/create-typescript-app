@@ -2,7 +2,7 @@
 
 <p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝</p>
 
-<p align="center">
+<p align="center" style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center;">
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->

@@ -1,3 +1,9 @@
+# [1.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.4...v1.44.0) (2023-11-15)
+
+### Features
+
+- add emoji to label descriptions ([#1013](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1013)) ([6371790](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6371790018937969ef42a961210d046a282e44e2)), closes [#1004](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1004)
+
 ## [1.43.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.3...v1.43.4) (2023-11-14)
 
 ### Bug Fixes

@@ -122,8 +122,8 @@ These are the projects used across many parts of `create-typescript-app`:
 This repository template configures `"useTabs": true` in the root-level `.prettierrc`.
 It does so because tabs have been phrased by the community as generally better for accessibility:
 
-- https://github.com/11ty/eleventy/issues/3098
-- https://github.com/prettier/prettier/issues/7475
+- <https://github.com/11ty/eleventy/issues/3098>
+- <https://github.com/prettier/prettier/issues/7475>
 
 Note that those points on tabs over spaces have generally been made by accessibility-experienced _individuals_ rather than accessibility-focused _organizations_.
 If you know of any accessibility organization that's published more formal recommendations or research, please do file an issue here for this FAQ entry to be updated.

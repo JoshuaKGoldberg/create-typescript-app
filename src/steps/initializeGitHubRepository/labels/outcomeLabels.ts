@@ -2,23 +2,23 @@
 export const outcomeLabels = [
 	{
 		color: "0075ca",
-		description: "Improvements or additions to docs",
+		description: "Improvements or additions to docs 📝",
 		name: "area: documentation",
 	},
 	{
 		color: "6009D7",
 		description:
-			"Improving how the repository's tests are run and/or code is tested",
+			"Improving how the repository's tests are run and/or code is tested 🧪",
 		name: "area: testing",
 	},
 	{
 		color: "f9d0c4",
-		description: "Managing the repository's maintenance",
+		description: "Managing the repository's maintenance 🛠️",
 		name: "area: tooling",
 	},
 	{
 		color: "5319E7",
-		description: "Good for newcomers, please hop on!",
+		description: "Good for newcomers, please hop on! 🙌",
 		name: "good first issue",
 	},
 	{
@@ -28,7 +28,7 @@ export const outcomeLabels = [
 	},
 	{
 		color: "0E8A16",
-		description: "Please, send a pull request to resolve this!",
+		description: "Please, send a pull request to resolve this! 🙏",
 		name: "status: accepting prs",
 	},
 	{
@@ -38,7 +38,7 @@ export const outcomeLabels = [
 	},
 	{
 		color: "#ddcccc",
-		description: "Waiting for something else to be resolved",
+		description: "Waiting for something else to be resolved 🙅",
 		name: "status: blocked",
 	},
 	{
@@ -53,7 +53,7 @@ export const outcomeLabels = [
 	},
 	{
 		color: "D3F82D",
-		description: "Further research required...?",
+		description: "Further research required...? 🔎",
 		name: "status: needs investigation",
 	},
 	{
@@ -68,12 +68,12 @@ export const outcomeLabels = [
 	},
 	{
 		color: "d73a4a",
-		description: "Something isn't working :(",
+		description: "Something isn't working :( 🐛",
 		name: "type: bug",
 	},
 	{
 		color: "a2eeef",
-		description: "New enhancement or request",
+		description: "New enhancement or request 🚀",
 		name: "type: feature",
 	},
 	{
@@ -83,7 +83,7 @@ export const outcomeLabels = [
 	},
 	{
 		color: "fde282",
-		description: "Tech debt or other code/repository cleanups",
+		description: "Tech debt or other code/repository cleanups 🧹",
 		name: "type: cleanup",
 	},
 ];

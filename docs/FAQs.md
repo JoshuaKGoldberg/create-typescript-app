@@ -105,7 +105,7 @@ Each of the included tools exists for a good reason and provides real value.
 
 If you don't want to use any particular tool, you can always remove it manually.
 
-## What tooling does this package use that isn't part of created repositories?
+### What tooling does this package use that isn't part of created repositories?
 
 Glad you asked!
 These are the projects used across many parts of `create-typescript-app`:
@@ -116,3 +116,16 @@ These are the projects used across many parts of `create-typescript-app`:
 - [Octokit](https://github.com/octokit/octokit.js#octokitjs):
 - [tsx](https://github.com/esbuild-kit/tsx): Quickly runs TypeScript files with ESBuild.
 - [Zod](https://zod.dev): TypeScript-first schema validation with static type inference.
+
+## Why tabs?
+
+This repository template configures `"useTabs": true` in the root-level `.prettierrc`.
+It does so because tabs have been phrased by the community as generally better for accessibility:
+
+- https://github.com/11ty/eleventy/issues/3098
+- https://github.com/prettier/prettier/issues/7475
+
+Note that those points on tabs over spaces have generally been made by accessibility-experienced _individuals_ rather than accessibility-focused _organizations_.
+If you know of any accessibility organization that's published more formal recommendations or research, please do file an issue here for this FAQ entry to be updated.
+
+If you really want spaces in your project you can always remove the `"useTabs": true`.

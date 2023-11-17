@@ -25,10 +25,10 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 		[
 			!options.excludeAllContributors &&
 				`<!-- prettier-ignore-start -->
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-				<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
-				<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<!-- prettier-ignore-end -->`,
+	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+	<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
+	<!-- ALL-CONTRIBUTORS-BADGE:END -->
+	<!-- prettier-ignore-end -->`,
 			/ALL-CONTRIBUTORS-BADGE:START/,
 		],
 		[

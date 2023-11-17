@@ -75,10 +75,10 @@ describe("writeReadme", () => {
 
 			<p align=\\"center\\">
 				<!-- prettier-ignore-start -->
-							<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-							<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
-							<!-- ALL-CONTRIBUTORS-BADGE:END -->
-							<!-- prettier-ignore-end -->
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
+				<!-- ALL-CONTRIBUTORS-BADGE:END -->
+				<!-- prettier-ignore-end -->
 				<a href=\\"https://codecov.io/gh/TestOwner/test-repository\\" target=\\"_blank\\"><img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/TestOwner/test-repository/branch/main/graph/badge.svg\\"/></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md\\" target=\\"_blank\\"><img alt=\\"Contributor Covenant\\" src=\\"https://img.shields.io/badge/code_of_conduct-enforced-21bb42\\" /></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/LICENSE.md\\" target=\\"_blank\\"><img alt=\\"License: MIT\\" src=\\"https://img.shields.io/github/license/TestOwner/test-repository?color=21bb42\\"></a>
@@ -136,10 +136,10 @@ describe("writeReadme", () => {
 
 			<p align=\\"center\\">
 				<!-- prettier-ignore-start -->
-							<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-							<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
-							<!-- ALL-CONTRIBUTORS-BADGE:END -->
-							<!-- prettier-ignore-end -->
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
+				<!-- ALL-CONTRIBUTORS-BADGE:END -->
+				<!-- prettier-ignore-end -->
 				<a href=\\"https://codecov.io/gh/TestOwner/test-repository\\" target=\\"_blank\\"><img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/TestOwner/test-repository/branch/main/graph/badge.svg\\"/></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md\\" target=\\"_blank\\"><img alt=\\"Contributor Covenant\\" src=\\"https://img.shields.io/badge/code_of_conduct-enforced-21bb42\\" /></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/LICENSE.md\\" target=\\"_blank\\"><img alt=\\"License: MIT\\" src=\\"https://img.shields.io/github/license/TestOwner/test-repository?color=21bb42\\"></a>
@@ -200,10 +200,10 @@ describe("writeReadme", () => {
 
 			<p align=\\"center\\">
 				<!-- prettier-ignore-start -->
-							<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-							<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
-							<!-- ALL-CONTRIBUTORS-BADGE:END -->
-							<!-- prettier-ignore-end -->
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
+				<!-- ALL-CONTRIBUTORS-BADGE:END -->
+				<!-- prettier-ignore-end -->
 				<a href=\\"https://codecov.io/gh/TestOwner/test-repository\\" target=\\"_blank\\"><img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/TestOwner/test-repository/branch/main/graph/badge.svg\\"/></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md\\" target=\\"_blank\\"><img alt=\\"Contributor Covenant\\" src=\\"https://img.shields.io/badge/code_of_conduct-enforced-21bb42\\" /></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/LICENSE.md\\" target=\\"_blank\\"><img alt=\\"License: MIT\\" src=\\"https://img.shields.io/github/license/TestOwner/test-repository?color=21bb42\\"></a>
@@ -298,10 +298,10 @@ describe("writeReadme", () => {
 
 			<p align=\\"center\\">
 				<!-- prettier-ignore-start -->
-							<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-							<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
-							<!-- ALL-CONTRIBUTORS-BADGE:END -->
-							<!-- prettier-ignore-end -->
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 2\\" src=\\"https://img.shields.io/badge/all_contributors-17-21bb42.svg\\" /></a>
+				<!-- ALL-CONTRIBUTORS-BADGE:END -->
+				<!-- prettier-ignore-end -->
 				<a href=\\"https://codecov.io/gh/TestOwner/test-repository\\" target=\\"_blank\\"><img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/TestOwner/test-repository/branch/main/graph/badge.svg\\"/></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md\\" target=\\"_blank\\"><img alt=\\"Contributor Covenant\\" src=\\"https://img.shields.io/badge/code_of_conduct-enforced-21bb42\\" /></a>
 				<a href=\\"https://github.com/TestOwner/test-repository/blob/main/LICENSE.md\\" target=\\"_blank\\"><img alt=\\"License: MIT\\" src=\\"https://img.shields.io/github/license/TestOwner/test-repository?color=21bb42\\"></a>

@@ -1,3 +1,9 @@
+# [1.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.44.0...v1.45.0) (2023-11-17)
+
+### Features
+
+- port README.md badge underlines fix to templates ([#1038](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1038)) ([54e3dee](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/54e3deed307f02556b46d25ef0cc73bdd2cc181e)), closes [#1032](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1032) [#1030](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1030)
+
 # [1.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.4...v1.44.0) (2023-11-15)
 
 ### Features

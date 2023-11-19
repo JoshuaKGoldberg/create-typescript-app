@@ -1,0 +1,40 @@
+{
+	"name": "create-typescript-app",
+	"version": "0.0.0",
+	"description": "A very lovely package. Hooray!",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JoshuaKGoldberg/create-typescript-app"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "JoshuaKGoldberg",
+		"email": "git@joshuakgoldberg.com"
+	},
+	"type": "module",
+	"main": "./lib/index.js",
+	"files": [
+		"lib/",
+		"package.json",
+		"LICENSE.md",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsup",
+		"format": "prettier \"**/*\" --ignore-unknown",
+		"lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
+		"prepare": "husky install",
+		"tsc": "tsc"
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write"
+	},
+	"devDependencies": {},
+	"packageManager": "pnpm@8.7.0",
+	"engines": {
+		"node": ">=18"
+	},
+	"publishConfig": {
+		"provenance": true
+	}
+}

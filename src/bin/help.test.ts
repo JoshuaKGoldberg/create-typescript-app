@@ -118,6 +118,10 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
+			  --auto: Whether to infer all options from files on disk.",
+			  ],
+			  [
+			    "
 			  --directory (string): Directory to create the repository in (by default, the same 
 			  name as the repository)",
 			  ],

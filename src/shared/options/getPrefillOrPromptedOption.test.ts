@@ -13,10 +13,37 @@ vi.mock("@clack/prompts", () => ({
 }));
 
 describe("getPrefillOrPromptedValue", () => {
-	it("provides no placeholder when one is not provided", async () => {
+	it("returns the placeholder when auto is true and it exists", async () => {
+		const value = "Test Value";
+
+		const actual = await getPrefillOrPromptedOption(
+			"field",
+			true,
+			"Input message.",
+			vi.fn().mockResolvedValue(value),
+		);
+
+		expect(actual).toEqual({ error: undefined, value });
+	});
+
+	it("returns an error when auto is true and no placeholder exists", async () => {
+		const actual = await getPrefillOrPromptedOption(
+			"field",
+			true,
+			"Input message.",
+			vi.fn().mockResolvedValue(undefined),
+		);
+
+		expect(actual).toEqual({
+			error: "Could not infer a default value for field.",
+			value: undefined,
+		});
+	});
+
+	it("provides no placeholder when one is not provided and auto is false", async () => {
 		const message = "Test message";
 
-		await getPrefillOrPromptedOption(message);
+		await getPrefillOrPromptedOption("Input message.", false, message);
 
 		expect(mockText).toHaveBeenCalledWith({
 			message,
@@ -25,11 +52,13 @@ describe("getPrefillOrPromptedValue", () => {
 		});
 	});
 
-	it("provides the placeholder's awaited return when a placeholder function is provided", async () => {
+	it("provides the placeholder's awaited return when a placeholder function is provided and auto is false", async () => {
 		const message = "Test message";
 		const placeholder = "Test placeholder";
 
 		await getPrefillOrPromptedOption(
+			"field",
+			false,
 			message,
 			vi.fn().mockResolvedValue(placeholder),
 		);
@@ -41,20 +70,20 @@ describe("getPrefillOrPromptedValue", () => {
 		});
 	});
 
-	it("validates entered text when it's not  blank", async () => {
+	it("validates entered text when it's not  blank and auto is false", async () => {
 		const message = "Test message";
 
-		await getPrefillOrPromptedOption(message);
+		await getPrefillOrPromptedOption("Input message.", false, message);
 
 		const { validate } = (mockText.mock.calls[0] as [Required<TextOptions>])[0];
 
 		expect(validate(message)).toBeUndefined();
 	});
 
-	it("invalidates entered text when it's blank", async () => {
+	it("invalidates entered text when it's blank and auto is false", async () => {
 		const message = "";
 
-		await getPrefillOrPromptedOption(message);
+		await getPrefillOrPromptedOption("Input message.", false, message);
 
 		const { validate } = (mockText.mock.calls[0] as [Required<TextOptions>])[0];
 

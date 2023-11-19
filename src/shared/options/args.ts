@@ -16,6 +16,11 @@ export const allArgOptions = {
 		docsSection: "optional",
 		type: "string",
 	},
+	auto: {
+		description: `Whether to infer all options from files on disk.`,
+		docsSection: "optional",
+		type: "boolean",
+	},
 	base: {
 		description: `Whether to scaffold the repository with:
   • everything: that comes with the template (${chalk.cyanBright.bold(

@@ -1,3 +1,9 @@
+# [1.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.45.0...v1.46.0) (2023-11-21)
+
+### Features
+
+- added --auto mode ([#1046](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1046)) ([082b0d9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/082b0d906cfa0f2237e81c1aef7e7460fac2a75b)), closes [#1042](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1042)
+
 # [1.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.44.0...v1.45.0) (2023-11-17)
 
 ### Features

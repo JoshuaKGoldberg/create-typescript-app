@@ -12,7 +12,6 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
-	logo: undefined,
 	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",

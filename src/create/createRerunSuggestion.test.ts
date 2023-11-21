@@ -30,7 +30,6 @@ const options = {
 	excludeTests: undefined,
 	funding: undefined,
 	keywords: ["abc", "def ghi", "jkl mno pqr"],
-	logo: undefined,
 	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",

@@ -1,9 +1,7 @@
-import chalk from "chalk";
 import { parseArgs } from "node:util";
 import { titleCase } from "title-case";
 import { z } from "zod";
 
-import { logLine } from "../cli/lines.js";
 import { withSpinner } from "../cli/spinners.js";
 import { Mode, OptionsGuide, PromptedOptions } from "../types.js";
 import { Options, OptionsLogo } from "../types.js";
@@ -15,6 +13,7 @@ import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getBase } from "./getBase.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
+import { logInferredOptions } from "./logInferredOptions.js";
 import { optionsSchema } from "./optionsSchema.js";
 
 export interface GitHubAndOptions {
@@ -280,12 +279,7 @@ export async function readOptions(
 	}
 
 	if (options.auto) {
-		logLine();
-		logLine(chalk.gray("--auto inferred the following values:"));
-		logLine(chalk.gray(`- description: ${augmentedOptions.description}`));
-		logLine(chalk.gray(`- owner: ${augmentedOptions.owner}`));
-		logLine(chalk.gray(`- repository: ${augmentedOptions.repository}`));
-		logLine(chalk.gray(`- title: ${augmentedOptions.title}`));
+		logInferredOptions(augmentedOptions);
 	}
 
 	return {

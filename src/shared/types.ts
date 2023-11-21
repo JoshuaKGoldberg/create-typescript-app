@@ -73,7 +73,7 @@ export interface Options {
 	funding?: string;
 	guide?: OptionsGuide;
 	keywords?: string[];
-	logo: OptionsLogo | undefined;
+	logo?: OptionsLogo;
 	mode: Mode;
 	offline?: boolean;
 	owner: string;

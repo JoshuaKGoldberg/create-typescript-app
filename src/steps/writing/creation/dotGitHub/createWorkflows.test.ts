@@ -6,7 +6,6 @@ import { createWorkflows } from "./createWorkflows.js";
 const createOptions = (exclude: boolean) =>
 	({
 		access: "public",
-		author: undefined,
 		base: "everything",
 		description: "Test description.",
 		directory: ".",
@@ -27,8 +26,6 @@ const createOptions = (exclude: boolean) =>
 		excludeReleases: exclude,
 		excludeRenovate: exclude,
 		excludeTests: exclude,
-		funding: undefined,
-		logo: undefined,
 		mode: "create",
 		owner: "StubOwner",
 		repository: "stub-repository",

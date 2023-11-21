@@ -3,6 +3,7 @@ import { z } from "zod";
 export const optionsSchemaShape = {
 	access: z.union([z.literal("public"), z.literal("restricted")]).optional(),
 	author: z.string().optional(),
+	auto: z.boolean().optional(),
 	base: z
 		.union([
 			z.literal("common"),

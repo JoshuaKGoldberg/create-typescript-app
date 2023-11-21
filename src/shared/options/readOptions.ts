@@ -13,6 +13,7 @@ import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getBase } from "./getBase.js";
 import { GitHub, getGitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
+import { logInferredOptions } from "./logInferredOptions.js";
 import { optionsSchema } from "./optionsSchema.js";
 
 export interface GitHubAndOptions {
@@ -52,6 +53,7 @@ export async function readOptions(
 	const mappedOptions = {
 		access: values.access,
 		author: values.author,
+		auto: !!values.auto,
 		base: values.base,
 		description: values.description,
 		directory: values.directory,
@@ -119,24 +121,36 @@ export async function readOptions(
 
 	const options = optionsParseResult.data;
 
-	options.owner ??= await getPrefillOrPromptedOption(
+	const ownerOption = await getPrefillOrPromptedOption(
+		"owner",
+		!!mappedOptions.auto,
 		"What organization or user will the repository be under?",
 		defaults.owner,
 	);
+
+	options.owner ??= ownerOption.value;
+
 	if (!options.owner) {
 		return {
 			cancelled: true,
+			error: ownerOption.error,
 			options,
 		};
 	}
 
-	options.repository ??= await getPrefillOrPromptedOption(
+	const repositoryOption = await getPrefillOrPromptedOption(
+		"repository",
+		!!mappedOptions.auto,
 		"What will the kebab-case name of the repository be?",
 		defaults.repository,
 	);
+
+	options.repository ??= repositoryOption.value;
+
 	if (!options.repository) {
 		return {
 			cancelled: true,
+			error: repositoryOption.error,
 			options,
 		};
 	}
@@ -151,66 +165,93 @@ export async function readOptions(
 			repository: options.repository,
 		},
 	);
+
 	if (!repository) {
-		return { cancelled: true, options };
+		return { cancelled: true, error: repositoryOption.error, options };
 	}
 
-	options.description ??= await getPrefillOrPromptedOption(
+	const descriptionOption = await getPrefillOrPromptedOption(
+		"description",
+		!!mappedOptions.auto,
 		"How would you describe the new package?",
 		async () =>
 			(await defaults.description()) ?? "A very lovely package. Hooray!",
 	);
+
+	options.description ??= descriptionOption.value;
+
 	if (!options.description) {
-		return { cancelled: true, options };
+		return { cancelled: true, error: descriptionOption.error, options };
 	}
 
-	options.title ??= await getPrefillOrPromptedOption(
+	const titleOption = await getPrefillOrPromptedOption(
+		"title",
+		!!mappedOptions.auto,
 		"What will the Title Case title of the repository be?",
 		async () =>
 			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
 	);
+
+	options.title ??= titleOption.value;
+
 	if (!options.title) {
-		return { cancelled: true, options };
+		return { cancelled: true, error: titleOption.error, options };
 	}
 
 	let guide: OptionsGuide | undefined;
 
 	if (options.guide) {
-		const title =
-			options.guideTitle ??
-			(await getPrefillOrPromptedOption(
+		if (options.guideTitle) {
+			guide = { href: options.guide, title: options.guideTitle };
+		} else {
+			const titleOption = await getPrefillOrPromptedOption(
+				"getPrefillOrPromptedOption",
+				!!mappedOptions.auto,
 				"What is the title text for the guide?",
-			));
-		if (!title) {
-			return { cancelled: true, options };
-		}
+			);
 
-		guide = { href: options.guide, title };
+			if (!titleOption.value) {
+				return { cancelled: true, error: titleOption.error, options };
+			}
+
+			guide = { href: options.guide, title: titleOption.value };
+		}
 	}
 
 	let logo: OptionsLogo | undefined;
 
 	if (options.logo) {
-		const alt =
-			options.logoAlt ??
-			(await getPrefillOrPromptedOption(
+		if (options.logoAlt) {
+			logo = { alt: options.logoAlt, src: options.logo };
+		} else {
+			const logoAltOption = await getPrefillOrPromptedOption(
+				"getPrefillOrPromptedOption",
+				!!mappedOptions.auto,
 				"What is the alt text (non-visual description) of the logo?",
-			));
-		if (!alt) {
-			return { cancelled: true, options };
-		}
+			);
 
-		logo = { alt, src: options.logo };
+			if (!logoAltOption.value) {
+				return { cancelled: true, error: logoAltOption.error, options };
+			}
+
+			logo = { alt: logoAltOption.value, src: options.logo };
+		}
 	}
 
-	const email =
-		options.email ??
-		(await defaults.email()) ??
-		(await getPrefillOrPromptedOption(
-			"What email should be used in package.json and .md files?",
-		));
+	let email = options.email ?? (await defaults.email());
+
 	if (!email) {
-		return { cancelled: true, options };
+		const emailOption = await getPrefillOrPromptedOption(
+			"email",
+			!!mappedOptions.auto,
+			"What email should be used in package.json and .md files?",
+		);
+
+		if (!emailOption.value) {
+			return { cancelled: true, error: emailOption.error, options };
+		}
+
+		email = { github: emailOption.value, npm: emailOption.value };
 	}
 
 	const augmentedOptions = await augmentOptionsWithExcludes({
@@ -220,7 +261,7 @@ export async function readOptions(
 		description: options.description,
 		directory:
 			options.directory ?? promptedOptions.directory ?? options.repository,
-		email: typeof email === "string" ? { github: email, npm: email } : email,
+		email,
 		funding: options.funding ?? (await defaults.funding()),
 		guide,
 		logo,
@@ -235,6 +276,10 @@ export async function readOptions(
 			cancelled: true,
 			options,
 		};
+	}
+
+	if (options.auto) {
+		logInferredOptions(augmentedOptions);
 	}
 
 	return {

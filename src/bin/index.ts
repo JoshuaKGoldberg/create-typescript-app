@@ -61,7 +61,10 @@ export async function bin(args: string[]) {
 	logLine(introWarnings[0]);
 	logLine(introWarnings[1]);
 
-	const { mode, options: promptedOptions } = await promptForMode(values.mode);
+	const { mode, options: promptedOptions } = await promptForMode(
+		!!values.auto,
+		values.mode,
+	);
 	if (typeof mode !== "string") {
 		prompts.outro(chalk.red(mode?.message ?? operationMessage("cancelled")));
 		return 1;

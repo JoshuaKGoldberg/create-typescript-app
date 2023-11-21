@@ -4,10 +4,6 @@ import { Octokit } from "octokit";
 
 import { Options } from "./types.js";
 
-interface GhUserOutput {
-	login: string;
-}
-
 export async function getGitHubUserAsAllContributor(
 	octokit: Octokit,
 	options: Pick<Options, "offline" | "owner">,
@@ -24,8 +20,7 @@ export async function getGitHubUserAsAllContributor(
 	let user: string;
 
 	try {
-		// (JSON.parse((await $`gh api user`).stdout) as GhUserOutput).login;
-		user = await octokit.rest.users.current();
+		user = (await octokit.rest.users.getAuthenticated()).data.login;
 	} catch {
 		console.warn(
 			chalk.gray(

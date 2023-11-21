@@ -56,18 +56,18 @@ describe("getPrefillOrPromptedValue", () => {
 		const message = "Test message";
 		const placeholder = "Test placeholder";
 
-		await getPrefillOrPromptedOption(
+		const actual = await getPrefillOrPromptedOption(
 			"field",
 			false,
 			message,
 			vi.fn().mockResolvedValue(placeholder),
 		);
 
-		expect(mockText).toHaveBeenCalledWith({
-			message,
-			placeholder,
-			validate: expect.any(Function),
+		expect(actual).toEqual({
+			error: undefined,
+			value: placeholder,
 		});
+		expect(mockText).not.toHaveBeenCalled();
 	});
 
 	it("validates entered text when it's not  blank and auto is false", async () => {

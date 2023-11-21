@@ -10,7 +10,7 @@ export async function getPrefillOrPromptedOption(
 ) {
 	const defaultValue = await getDefaultValue?.();
 
-	if (auto) {
+	if (auto || defaultValue) {
 		return {
 			error: defaultValue
 				? undefined

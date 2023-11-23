@@ -101,7 +101,7 @@
 		"release-it": "^17.0.0",
 		"sentences-per-line": "^0.2.1",
 		"should-semantic-release": "^0.2.0",
-		"tsup": "^7.2.0",
+		"tsup": "^8.0.0",
 		"tsx": "^4.0.0",
 		"typescript": "^5.1.6",
 		"vitest": "^0.34.3",

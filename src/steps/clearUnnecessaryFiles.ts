@@ -11,6 +11,7 @@ const globPaths = [
 	".circleci/config.yml",
 	".babelrc",
 	".npmignore",
+	".eslintrc",
 	"CODE_OF_CONDUCT.md",
 	"CONTRIBUTING.md",
 	"codecov.yml",

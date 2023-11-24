@@ -1,3 +1,10 @@
+# [1.47.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.46.0...v1.47.0) (2023-11-24)
+
+### Features
+
+- Add .eslintrc to clearUnnecessaryFiles.ts ([#1052](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1052)) ([d785711](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d785711692b0a7b4023c2524af45d3b1206509ef)), closes [#1018](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1018)
+- Add prettier.config to clearUnnecessaryFiles.ts ([#1051](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1051)) ([5559a68](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5559a68f1504cf5f3d6e4e92fa0d5b0eda8b820f)), closes [#1019](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1019)
+
 # [1.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.45.0...v1.46.0) (2023-11-21)
 
 ### Features

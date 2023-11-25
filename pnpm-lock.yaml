@@ -143,8 +143,8 @@ devDependencies:
     specifier: ^2.3.0
     version: 2.3.0
   knip:
-    specifier: 2.41.5
-    version: 2.41.5
+    specifier: 2.41.6
+    version: 2.41.6
   lint-staged:
     specifier: ^15.0.0
     version: 15.0.1
@@ -1786,8 +1786,8 @@ packages:
       validate-npm-package-name: 4.0.0
     dev: true
 
-  /@pnpm/npm-resolver@17.0.0(@pnpm/logger@5.0.0):
-    resolution: {integrity: sha512-XCeFga+Am3rsTO+8IIuIPb6VsZ+iCiv5QJW61YDl4XuiqoyCFzNyGgGfv05n45lIfK0Gg1jA2ewlo0LpGelCUw==}
+  /@pnpm/npm-resolver@18.0.0(@pnpm/logger@5.0.0):
+    resolution: {integrity: sha512-FGHmnRjSf7tQHagk6bMrUtHvZbz3ROUoGRDrpMyqJo///+S7SZt/hSDS77PhZ7T6PRXipkFyUtRkqtHmGKFCAg==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@pnpm/logger': ^5.0.0
@@ -1810,7 +1810,7 @@ packages:
       parse-npm-tarball-url: 3.0.0
       path-temp: 2.1.0
       ramda: /@pnpm/ramda@0.28.1
-      rename-overwrite: 4.0.3
+      rename-overwrite: 4.0.4
       semver: 7.5.4
       ssri: 10.0.5
       version-selector-type: 3.0.0
@@ -1841,12 +1841,12 @@ packages:
     engines: {node: '>=16.14'}
     dev: true
 
-  /@pnpm/workspace.pkgs-graph@2.0.10(@pnpm/logger@5.0.0):
-    resolution: {integrity: sha512-iGZZ23li6Ya68kHx3oaWPCN4JMzJ0njmmmWDRxUcHkc+nxtxTwpEM/FRl7yG1nBo39YwX2XTtou22h2nKipHnw==}
+  /@pnpm/workspace.pkgs-graph@2.0.11(@pnpm/logger@5.0.0):
+    resolution: {integrity: sha512-VRX7E7pX92C0akCMYGzsTqJoOwQS7/8R40pAPK7smgaEpKeEgVThqnIXt+wPdseD5CzS7OzMaIWlT3WXr3O5rQ==}
     engines: {node: '>=16.14'}
     dependencies:
       '@pnpm/npm-package-arg': 1.0.0
-      '@pnpm/npm-resolver': 17.0.0(@pnpm/logger@5.0.0)
+      '@pnpm/npm-resolver': 18.0.0(@pnpm/logger@5.0.0)
       '@pnpm/resolve-workspace-range': 5.0.1
       ramda: /@pnpm/ramda@0.28.1
     transitivePeerDependencies:
@@ -5452,8 +5452,8 @@ packages:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
 
-  /knip@2.41.5:
-    resolution: {integrity: sha512-w6C0/tQvvRAWSRo4Vl3CRqmJujx+vizFD4sGWuhdpmx89micpfMZITiGCc54c6S9phGHvZeMNtYGEOyNwbfcjg==}
+  /knip@2.41.6:
+    resolution: {integrity: sha512-on5VYSTocWbEEaZr2aV8ADxDa+0HtDoJ6fJN7YB4bv7/JKV9cQOeI7tIn+w4JQegSb/bSKXmk+uxQFDym7tT7A==}
     engines: {node: '>=16.17.0 <17 || >=18.6.0'}
     hasBin: true
     dependencies:
@@ -5461,7 +5461,7 @@ packages:
       '@npmcli/map-workspaces': 3.0.4
       '@pkgjs/parseargs': 0.11.0
       '@pnpm/logger': 5.0.0
-      '@pnpm/workspace.pkgs-graph': 2.0.10(@pnpm/logger@5.0.0)
+      '@pnpm/workspace.pkgs-graph': 2.0.11(@pnpm/logger@5.0.0)
       '@snyk/github-codeowners': 1.1.0
       chalk: 5.3.0
       easy-table: 1.2.0
@@ -6945,8 +6945,8 @@ packages:
       - typescript
     dev: true
 
-  /rename-overwrite@4.0.3:
-    resolution: {integrity: sha512-e1zOWZh4Lauz5DcLMC8j4eoOHPIrZkAVpiocE9SkDE1ZrGMW+W88LR1Y2YjD1DFgOYfJWqSsK6JKsRfuRH+tbQ==}
+  /rename-overwrite@4.0.4:
+    resolution: {integrity: sha512-5MC+p5npnyaJlFkwTHb0pqU2mkUkkW65ZWH8qwxcDlv+5nchtalcdzG+gaaianbWWwvwxi7vu7WSg6jdCweKug==}
     engines: {node: '>=12.10'}
     dependencies:
       '@zkochan/rimraf': 2.1.3

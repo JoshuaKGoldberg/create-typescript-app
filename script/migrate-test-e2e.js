@@ -1,5 +1,11 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
+import { createVitest } from "vitest/node";
+
+const vitest = await createVitest("test", {
+	include: [new URL("./verify-changes.test.ts", import.meta.url).pathname],
+	watch: false,
+});
 
 import packageData from "../package.json" assert { type: "json" };
 
@@ -12,6 +18,8 @@ const title = "Create TypeScript App";
 await $({
 	stdio: "inherit",
 })`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
+
+await vitest.start();
 
 const { stdout: gitStatus } = await $`git status`;
 console.log(`Stdout from running \`git status\`:\n${gitStatus}`);

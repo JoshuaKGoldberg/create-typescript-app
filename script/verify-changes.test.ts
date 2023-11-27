@@ -12,5 +12,10 @@ test("knip.jsonc", async () => {
 	expect(knipJSONC.$schema).toMatchInlineSnapshot(
 		'"https://unpkg.com/knip@latest/schema.json"',
 	);
-	expect(knipJSONC.ignoreExportsUsedInFile).toMatchInlineSnapshot();
+	expect(knipJSONC.ignoreExportsUsedInFile).toMatchInlineSnapshot(`
+		{
+		  "interface": true,
+		  "type": true,
+		}
+	`);
 });

@@ -122,6 +122,10 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
+			  --bin (string): package.json bin value to include for npx-style running.",
+			  ],
+			  [
+			    "
 			  --directory (string): Directory to create the repository in (by default, the same 
 			  name as the repository)",
 			  ],

@@ -31,6 +31,11 @@ export const allArgOptions = {
 		docsSection: "core",
 		type: "string",
 	},
+	bin: {
+		description: `package.json bin value to include for npx-style running.`,
+		docsSection: "optional",
+		type: "string",
+	},
 	"create-repository": {
 		description: `Whether to create a corresponding repository on github.com 
   (if it doesn't yet exist)`,

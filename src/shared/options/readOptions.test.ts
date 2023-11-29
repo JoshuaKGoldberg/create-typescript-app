@@ -10,6 +10,7 @@ const emptyOptions = {
 	author: undefined,
 	auto: false,
 	base: undefined,
+	bin: undefined,
 	description: undefined,
 	directory: undefined,
 	email: undefined,

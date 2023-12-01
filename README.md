@@ -5,7 +5,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors" target="_blank"><img alt="All Contributors: 36 🤝" src="https://img.shields.io/badge/all_contributors-36_🤝-21bb42.svg" /></a>
+<a href="#contributors" target="_blank"><img alt="All Contributors: 37 🤝" src="https://img.shields.io/badge/all_contributors-37_🤝-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app/branch/main/graph/badge.svg"/></a>
@@ -115,6 +115,7 @@ Thanks! 💖
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/vasanth9"><img src="https://avatars.githubusercontent.com/u/42891954?v=4?s=100" width="100px;" alt="Vasanth Kumar Cheepurupalli"/><br /><sub><b>Vasanth Kumar Cheepurupalli</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=vasanth9" title="Code">💻</a></td>
     </tr>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/xl4624"><img src="https://avatars.githubusercontent.com/u/116298054?v=4?s=100" width="100px;" alt="Xiaomin Liu"/><br /><sub><b>Xiaomin Liu</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=xl4624" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=TAKANOME-DEV" title="Code">💻</a></td>
     </tr>
   </tbody>

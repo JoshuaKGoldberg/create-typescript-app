@@ -1,3 +1,9 @@
+# [1.48.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.47.0...v1.48.0) (2023-12-01)
+
+### Features
+
+- add --bin option ([#1068](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1068)) ([21c8529](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/21c8529d49c12cbe252fd985086e3207931a83e9)), closes [#938](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/938)
+
 # [1.47.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.46.0...v1.47.0) (2023-11-24)
 
 ### Features

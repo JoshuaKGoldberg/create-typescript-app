@@ -2,8 +2,8 @@ import chalk from "chalk";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import z from "zod";
 
-import { getVersionFromPackageJson } from "./packageJson.js";
 import { bin } from "./index.js";
+import { getVersionFromPackageJson } from "./packageJson.js";
 
 const mockCancel = vi.fn();
 const mockOutro = vi.fn();

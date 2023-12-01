@@ -1,3 +1,9 @@
+# [1.49.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.48.0...v1.49.0) (2023-12-01)
+
+### Features
+
+- add -v flag to display version ([#1063](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1063)) ([a29fc6a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a29fc6a07b5869640c7b27e4e62f020689fc9cc0)), closes [#704](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/704) [#704](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/704)
+
 # [1.48.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.47.0...v1.48.0) (2023-12-01)
 
 ### Features

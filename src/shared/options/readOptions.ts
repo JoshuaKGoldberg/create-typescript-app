@@ -55,6 +55,7 @@ export async function readOptions(
 		author: values.author,
 		auto: !!values.auto,
 		base: values.base,
+		bin: values.bin,
 		description: values.description,
 		directory: values.directory,
 		email:

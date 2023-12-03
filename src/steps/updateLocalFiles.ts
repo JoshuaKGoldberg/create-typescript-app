@@ -12,19 +12,11 @@ export async function updateLocalFiles(options: Options) {
 	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
 		{}) as ExistingPackageData;
 
-	const excludedFromReplacements = [
-		"console-fail-test",
-		"all-contributors-auto-action",
-	];
-
 	const replacements = [
 		[/Create TypeScript App/g, options.title],
 		[
-			/JoshuaKGoldberg/g,
-			(match: string) =>
-				excludedFromReplacements.some((e) => match.includes(e))
-					? options.owner
-					: match,
+			/JoshuaKGoldberg(?!\/console-fail-test)(?!\/all-contributors-auto-action)/g,
+			options.owner,
 		],
 		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
@@ -77,7 +69,7 @@ export async function updateLocalFiles(options: Options) {
 			});
 		} catch (error) {
 			throw new Error(
-				`Failed to replace ${from.toString()} with ${to.toString()} in ${files.toString()}`,
+				`Failed to replace ${from.toString()} with ${to} in ${files.toString()}`,
 				{
 					cause: error,
 				},

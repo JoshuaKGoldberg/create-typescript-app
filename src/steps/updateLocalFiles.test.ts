@@ -75,8 +75,8 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg/g,
-			      "to": [Function],
+			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)\\(\\?!\\\\/all-contributors-auto-action\\)/g,
+			      "to": "StubOwner",
 			    },
 			  ],
 			  [
@@ -234,8 +234,8 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg/g,
-			      "to": [Function],
+			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)\\(\\?!\\\\/all-contributors-auto-action\\)/g,
+			      "to": "StubOwner",
 			    },
 			  ],
 			  [

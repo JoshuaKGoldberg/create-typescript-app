@@ -15,7 +15,7 @@ export async function updateLocalFiles(options: Options) {
 	const replacements = [
 		[/Create TypeScript App/g, options.title],
 		[
-			/JoshuaKGoldberg(?!\/console-fail-test)(?!\/all-contributors-auto-action)/g,
+			/JoshuaKGoldberg(?!\/console-fail-test)(?!\/all-contributors-auto-action)(?!\/release-it-action)/g,
 			options.owner,
 		],
 		[/create-typescript-app/g, options.repository],

@@ -3,11 +3,13 @@ import { EOL } from "node:os";
 
 import { readFileSafe } from "../shared/readFileSafe.js";
 
+export const endOfReadmeTemplateLine = `> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).`;
+
 export const endOfReadmeNotice = [
 	``,
 	`<!-- You can remove this notice if you don't want it 🙂 no worries! -->`,
 	``,
-	`> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
+	endOfReadmeTemplateLine,
 	``,
 ].join(EOL);
 

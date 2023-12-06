@@ -2,6 +2,7 @@ import replaceInFile from "replace-in-file";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { Options } from "../shared/types.js";
+import { createJoshuaKGoldbergReplacement } from "./createJoshuaKGoldbergReplacement.js";
 import { endOfReadmeTemplateLine } from "./updateReadme.js";
 
 interface ExistingPackageData {
@@ -15,19 +16,7 @@ export async function updateLocalFiles(options: Options) {
 
 	const replacements = [
 		[/Create TypeScript App/g, options.title],
-		[
-			/JoshuaKGoldberg(?:\/(.+))?/g,
-			(full: string, capture: string | undefined) =>
-				capture
-					? // If this was a "JoshuaKGoldberg/..." repository link,
-					  // swap the owner if it's the repository being migrated.
-					  capture.startsWith(options.repository)
-						? `${options.owner}/${capture}`
-						: full
-					: // Otherwise it's just "JoshuaKGoldberg" standalone,
-					  // so swap to the new owner.
-					  options.owner,
-		],
+		createJoshuaKGoldbergReplacement(options),
 		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],

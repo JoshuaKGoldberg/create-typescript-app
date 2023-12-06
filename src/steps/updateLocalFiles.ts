@@ -78,8 +78,9 @@ export async function updateLocalFiles(options: Options) {
 				to,
 			});
 		} catch (error) {
+			const toString = typeof to === "function" ? "(function)" : to;
 			throw new Error(
-				`Failed to replace ${from.toString()} with ${to} in ${files.toString()}`,
+				`Failed to replace ${from.toString()} with ${toString} in ${files.toString()}`,
 				{
 					cause: error,
 				},

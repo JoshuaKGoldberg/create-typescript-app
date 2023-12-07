@@ -24,8 +24,15 @@ export interface PromptedMode {
 }
 
 export async function promptForMode(
+	auto: boolean,
 	input: boolean | string | undefined,
 ): Promise<PromptedMode> {
+	if (auto && input !== "migrate") {
+		return {
+			mode: new Error("--auto can only be used with --mode migrate."),
+		};
+	}
+
 	if (input) {
 		if (!isMode(input)) {
 			return {

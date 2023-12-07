@@ -3,6 +3,7 @@ import { z } from "zod";
 export const optionsSchemaShape = {
 	access: z.union([z.literal("public"), z.literal("restricted")]).optional(),
 	author: z.string().optional(),
+	auto: z.boolean().optional(),
 	base: z
 		.union([
 			z.literal("common"),
@@ -11,6 +12,7 @@ export const optionsSchemaShape = {
 			z.literal("prompt"),
 		])
 		.optional(),
+	bin: z.string().optional(),
 	description: z.string().optional(),
 	directory: z.string().optional(),
 	email: z

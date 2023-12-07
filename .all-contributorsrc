@@ -1,5 +1,5 @@
 {
-  "badgeTemplate": "<img alt=\"All Contributors: <%= contributors.length %> 🤝\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\" />",
+  "badgeTemplate": "<a href=\"#contributors\" target=\"_blank\"><img alt=\"All Contributors: <%= contributors.length %> 🤝\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\" /></a>",
   "commit": false,
   "commitConvention": "angular",
   "contributors": [
@@ -277,7 +277,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/30204147?v=4",
       "profile": "https://github.com/jaas666",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -321,6 +322,33 @@
       "name": "Graham Vasquez",
       "avatar_url": "https://avatars.githubusercontent.com/u/7041175?v=4",
       "profile": "https://gvasquez.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "dominicduffin1",
+      "name": "Dominic Duffin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26224873?v=4",
+      "profile": "https://dominicduffin.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "5hraddha",
+      "name": "Shraddha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/27571141?v=4",
+      "profile": "https://www.shraddha.tech",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "xl4624",
+      "name": "Xiaomin Liu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/116298054?v=4",
+      "profile": "https://github.com/xl4624",
       "contributions": [
         "code"
       ]

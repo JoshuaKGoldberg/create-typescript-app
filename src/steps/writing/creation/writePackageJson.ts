@@ -41,6 +41,7 @@ export async function writePackageJson(options: Options) {
 		...existingPackageJson,
 
 		author: { email: options.email.npm, name: options.author },
+		bin: options.bin,
 		description: options.description,
 		keywords: options.keywords?.length
 			? options.keywords.flatMap((keyword) => keyword.split(/ /))

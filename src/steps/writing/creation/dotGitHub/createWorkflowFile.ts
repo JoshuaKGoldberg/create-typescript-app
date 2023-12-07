@@ -6,10 +6,10 @@ interface WorkflowFileConcurrency {
 }
 
 interface WorkflowFileOn {
-	issue?: {
+	issue_comment?: {
 		types?: string[];
 	};
-	issue_comment?: {
+	issues?: {
 		types?: string[];
 	};
 	pull_request?:

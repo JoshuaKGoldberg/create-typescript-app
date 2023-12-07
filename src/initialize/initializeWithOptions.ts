@@ -22,7 +22,12 @@ export async function initializeWithOptions({
 				await updateLocalFiles(options);
 			},
 		],
-		["Updating README.md", updateReadme],
+		[
+			"Updating README.md",
+			async () => {
+				await updateReadme(options);
+			},
+		],
 		["Clearing changelog", clearChangelog],
 		[
 			"Updating all-contributors table",

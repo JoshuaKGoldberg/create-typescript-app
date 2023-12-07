@@ -40,32 +40,33 @@ export async function withSpinners(
 	let currentLabel!: string;
 	let lastLogged!: string;
 
-	try {
-		for (const [label, run] of tasks) {
-			currentLabel = label;
+	for (const [label, run] of tasks) {
+		currentLabel = label;
 
-			const line = makeLine(chalk.gray(` - ${label}`));
-			const stopWriting = startLineWithDots(line);
+		const line = makeLine(chalk.gray(` - ${label}`));
+		const stopWriting = startLineWithDots(line);
 
+		try {
 			await run();
+		} catch (error) {
+			const descriptor = `${lowerFirst(label)} > ${lowerFirst(currentLabel)}`;
 
+			logLine(chalk.red(`❌ Error ${descriptor}.`));
+
+			throw new Error(`Failed ${descriptor}`, { cause: error });
+		} finally {
 			const lineLength = stopWriting();
-			lastLogged = chalk.gray(`${line} ✔️\n`);
-
 			readline.clearLine(process.stdout, -1);
 			readline.moveCursor(process.stdout, -lineLength, 0);
-			process.stdout.write(lastLogged);
 		}
 
-		readline.moveCursor(process.stdout, -lastLogged.length, -tasks.length - 2);
-		readline.clearScreenDown(process.stdout);
+		lastLogged = chalk.gray(`${line} ✔️\n`);
 
-		logNewSection(chalk.green(`✅ Passed ${lowerFirst(label)}.`));
-	} catch (error) {
-		const descriptor = `${lowerFirst(label)} > ${lowerFirst(currentLabel)}`;
-
-		logLine(chalk.red(`❌ Error ${descriptor}.`));
-
-		throw new Error(`Failed ${descriptor}`, { cause: error });
+		process.stdout.write(lastLogged);
 	}
+
+	readline.moveCursor(process.stdout, -lastLogged.length, -tasks.length - 2);
+	readline.clearScreenDown(process.stdout);
+
+	logNewSection(chalk.green(`✅ Passed ${lowerFirst(label)}.`));
 }

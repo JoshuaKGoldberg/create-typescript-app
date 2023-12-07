@@ -36,8 +36,20 @@ vi.mock("../shared/cli/lines.js", () => ({
 	},
 }));
 describe("promptForMode", () => {
+	it("returns an error when auto exists and input is not migrate", async () => {
+		const mode = await promptForMode(true, "create");
+
+		expect(mode).toMatchInlineSnapshot(
+			`
+			{
+			  "mode": [Error: --auto can only be used with --mode migrate.],
+			}
+		`,
+		);
+	});
+
 	it("returns an error when the input exists and is not a mode", async () => {
-		const mode = await promptForMode("other");
+		const mode = await promptForMode(false, "other");
 
 		expect(mode).toMatchInlineSnapshot(
 			`
@@ -51,7 +63,7 @@ describe("promptForMode", () => {
 	it("returns the input when it is a mode", async () => {
 		const input = "create";
 
-		const mode = await promptForMode(input);
+		const mode = await promptForMode(false, input);
 
 		expect(mode).toEqual({ mode: input });
 	});
@@ -63,7 +75,7 @@ describe("promptForMode", () => {
 		mockReaddir.mockResolvedValueOnce([]);
 		mockCwd.mockReturnValueOnce(`/path/to/${directory}`);
 
-		const actual = await promptForMode(undefined);
+		const actual = await promptForMode(false, undefined);
 
 		expect(actual).toEqual({
 			mode: "create",
@@ -79,7 +91,7 @@ describe("promptForMode", () => {
 		mockReaddir.mockResolvedValueOnce([]);
 		mockCwd.mockReturnValueOnce(`/path/to/${directory}`);
 
-		const actual = await promptForMode(undefined);
+		const actual = await promptForMode(false, undefined);
 
 		expect(actual).toEqual({
 			mode: "create",
@@ -93,7 +105,7 @@ describe("promptForMode", () => {
 
 		mockReaddir.mockResolvedValueOnce([".git"]);
 
-		const actual = await promptForMode(undefined);
+		const actual = await promptForMode(false, undefined);
 
 		expect(actual).toEqual({ mode });
 		expect(mockLogLine).not.toHaveBeenCalled();
@@ -104,7 +116,7 @@ describe("promptForMode", () => {
 
 		mockReaddir.mockResolvedValueOnce(["file"]);
 
-		const actual = await promptForMode(undefined);
+		const actual = await promptForMode(false, undefined);
 
 		expect(actual).toEqual({ mode });
 		expect(mockSelect).not.toHaveBeenCalled();

@@ -30,6 +30,7 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 
 	return {
 		author: async () => (await packageAuthor()).author ?? npmDefaults.name,
+		bin: async () => (await packageData()).bin,
 		description: async () => (await packageData()).description,
 		email: async () => {
 			const gitEmail = await tryCatchAsync(

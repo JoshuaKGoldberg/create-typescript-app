@@ -8,7 +8,9 @@ import { readOptions } from "./readOptions.js";
 const emptyOptions = {
 	access: undefined,
 	author: undefined,
+	auto: false,
 	base: undefined,
+	bin: undefined,
 	description: undefined,
 	directory: undefined,
 	email: undefined,
@@ -111,6 +113,13 @@ vi.mock("./createOptionDefaults/index.js", () => ({
 	},
 }));
 
+const mockReadPackageData = vi.fn();
+vi.mock("../packages.js", () => ({
+	get readPackageData() {
+		return mockReadPackageData;
+	},
+}));
+
 describe("readOptions", () => {
 	it("returns a cancellation when an arg is invalid", async () => {
 		const validationResult = z
@@ -129,7 +138,9 @@ describe("readOptions", () => {
 	it("returns a cancellation when an email redundancy is detected", async () => {
 		const error = "Too many emails!";
 		mockDetectEmailRedundancy.mockReturnValue(error);
-		mockGetPrefillOrPromptedOption.mockImplementation(() => undefined);
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: undefined,
+		}));
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
@@ -142,10 +153,13 @@ describe("readOptions", () => {
 
 	it("returns a cancellation when the owner prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
-		mockGetPrefillOrPromptedOption.mockImplementation(() => undefined);
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: undefined,
+		}));
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 			},
@@ -155,11 +169,12 @@ describe("readOptions", () => {
 	it("returns a cancellation when the repository prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementation(() => ({ value: undefined }));
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				owner: "MockOwner",
@@ -170,13 +185,14 @@ describe("readOptions", () => {
 	it("returns a cancellation when ensureRepositoryPrompt does not return a repository", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({});
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				owner: "MockOwner",
@@ -188,9 +204,9 @@ describe("readOptions", () => {
 	it("returns a cancellation when the description prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -198,6 +214,7 @@ describe("readOptions", () => {
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				owner: "MockOwner",
@@ -209,10 +226,10 @@ describe("readOptions", () => {
 	it("returns a cancellation when the title prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementationOnce(() => "Mock description.")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementationOnce(() => ({ value: "Mock description." }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -220,6 +237,7 @@ describe("readOptions", () => {
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
@@ -232,11 +250,11 @@ describe("readOptions", () => {
 	it("returns a cancellation when the guide title prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementationOnce(() => "Mock description.")
-			.mockImplementationOnce(() => "Mock Title")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementationOnce(() => ({ value: "Mock description." }))
+			.mockImplementationOnce(() => ({ value: "Mock Title" }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -246,6 +264,7 @@ describe("readOptions", () => {
 			await readOptions(["--guide", "https://example.com"], "create"),
 		).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
@@ -260,11 +279,11 @@ describe("readOptions", () => {
 	it("returns a cancellation when the guide alt prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementationOnce(() => "Mock description.")
-			.mockImplementationOnce(() => "Mock Title")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementationOnce(() => ({ value: "Mock description." }))
+			.mockImplementationOnce(() => ({ value: "Mock Title" }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -274,6 +293,7 @@ describe("readOptions", () => {
 			await readOptions(["--guide", "https://example.com"], "create"),
 		).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
@@ -288,10 +308,10 @@ describe("readOptions", () => {
 	it("returns a cancellation when the logo alt prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementationOnce(() => "Mock description.")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementationOnce(() => ({ value: "Mock description." }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -299,6 +319,7 @@ describe("readOptions", () => {
 
 		expect(await readOptions(["--logo", "logo.svg"], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
@@ -312,11 +333,11 @@ describe("readOptions", () => {
 	it("returns a cancellation when the email prompt is cancelled", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementationOnce(() => "Mock description.")
-			.mockImplementationOnce(() => "Mock title.")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementationOnce(() => ({ value: "Mock description." }))
+			.mockImplementationOnce(() => ({ value: "Mock title." }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -324,6 +345,7 @@ describe("readOptions", () => {
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
@@ -337,11 +359,11 @@ describe("readOptions", () => {
 	it("returns a cancellation when augmentOptionsWithExcludes returns undefined", async () => {
 		mockDetectEmailRedundancy.mockReturnValue(false);
 		mockGetPrefillOrPromptedOption
-			.mockImplementationOnce(() => "MockOwner")
-			.mockImplementationOnce(() => "MockRepository")
-			.mockImplementationOnce(() => "Mock description.")
-			.mockImplementationOnce(() => "Mock title.")
-			.mockImplementation(() => undefined);
+			.mockImplementationOnce(() => ({ value: "MockOwner" }))
+			.mockImplementationOnce(() => ({ value: "MockRepository" }))
+			.mockImplementationOnce(() => ({ value: "Mock description." }))
+			.mockImplementationOnce(() => ({ value: "Mock title." }))
+			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -350,6 +372,7 @@ describe("readOptions", () => {
 
 		expect(await readOptions([], "create")).toStrictEqual({
 			cancelled: true,
+			error: undefined,
 			options: {
 				...emptyOptions,
 				description: "Mock description.",
@@ -365,7 +388,9 @@ describe("readOptions", () => {
 			...emptyOptions,
 			...mockOptions,
 		});
-		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -388,7 +413,9 @@ describe("readOptions", () => {
 			...emptyOptions,
 			...mockOptions,
 		});
-		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -418,7 +445,9 @@ describe("readOptions", () => {
 
 	it("returns cancelled options when augmentOptionsWithExcludes returns undefined", async () => {
 		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
-		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
 
 		expect(
 			await readOptions(["--base", mockOptions.base], "create"),
@@ -446,7 +475,9 @@ describe("readOptions", () => {
 			github: mockOptions.github,
 			repository: mockOptions.repository,
 		});
-		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
 
 		expect(
 			await readOptions(["--base", mockOptions.base], "create"),
@@ -470,7 +501,9 @@ describe("readOptions", () => {
 			github: mockOptions.github,
 			repository: mockOptions.repository,
 		});
-		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
 
 		expect(
 			await readOptions(
@@ -492,7 +525,9 @@ describe("readOptions", () => {
 			...mockOptions,
 			...options,
 		}));
-		mockGetPrefillOrPromptedOption.mockImplementation(() => "mock");
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
 		mockEnsureRepositoryExists.mockResolvedValue({
 			github: mockOptions.github,
 			repository: mockOptions.repository,
@@ -516,6 +551,42 @@ describe("readOptions", () => {
 				guide: undefined,
 				logo: undefined,
 				mode: "create",
+				offline: true,
+				owner: "mock",
+				skipAllContributorsApi: true,
+				skipGitHubApi: true,
+				title: "mock",
+			},
+		});
+	});
+
+	it("infers base from package scripts during migration", async () => {
+		mockReadPackageData.mockImplementationOnce(() =>
+			Promise.resolve({
+				scripts: {
+					build: "build",
+					lint: "lint",
+					test: "test",
+				},
+			}),
+		);
+		expect(await readOptions(["--offline"], "migrate")).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: {
+				...emptyOptions,
+				...mockOptions,
+				access: "public",
+				base: "minimum",
+				description: "mock",
+				directory: "mock",
+				email: {
+					github: "mock",
+					npm: "mock",
+				},
+				guide: undefined,
+				logo: undefined,
+				mode: "migrate",
 				offline: true,
 				owner: "mock",
 				skipAllContributorsApi: true,

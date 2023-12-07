@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import z from "zod";
 
 import { bin } from "./index.js";
+import { getVersionFromPackageJson } from "./packageJson.js";
 
 const mockCancel = vi.fn();
 const mockOutro = vi.fn();
@@ -63,6 +64,7 @@ vi.mock("./promptForMode.js", () => ({
 describe("bin", () => {
 	beforeEach(() => {
 		vi.spyOn(console, "clear").mockImplementation(() => undefined);
+		vi.spyOn(console, "log").mockImplementation(() => undefined);
 	});
 
 	it("returns 1 when promptForMode returns an undefined mode", async () => {
@@ -189,5 +191,15 @@ describe("bin", () => {
 			`Operation failed. Exiting - maybe another time? 👋`,
 		);
 		expect(result).toEqual(code);
+	});
+
+	it("prints the version when the --version flag is passed", async () => {
+		const args = ["--version"];
+		const version = await getVersionFromPackageJson();
+
+		const result = await bin(args);
+
+		expect(console.log).toHaveBeenCalledWith(version);
+		expect(result).toBe(0);
 	});
 });

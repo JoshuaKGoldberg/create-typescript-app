@@ -13,12 +13,14 @@ export interface AllContributorsData {
 
 export interface PartialPackageData {
 	author?: { email: string; name: string } | string;
+	bin?: string;
 	dependencies?: Record<string, string>;
 	description?: string;
 	devDependencies?: Record<string, string>;
 	email?: string;
 	name?: string;
 	repository?: { type: string; url: string } | string;
+	scripts?: Record<string, string>;
 }
 
 export type OptionsAccess = "public" | "restricted";
@@ -47,6 +49,7 @@ export interface Options {
 	access: OptionsAccess;
 	author?: string;
 	base?: OptionsBase;
+	bin?: string;
 	description: string;
 	directory: string;
 	email: OptionsEmail;
@@ -72,7 +75,7 @@ export interface Options {
 	funding?: string;
 	guide?: OptionsGuide;
 	keywords?: string[];
-	logo: OptionsLogo | undefined;
+	logo?: OptionsLogo;
 	mode: Mode;
 	offline?: boolean;
 	owner: string;

@@ -1,3 +1,82 @@
+# [1.49.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.48.0...v1.49.0) (2023-12-01)
+
+### Features
+
+- add -v flag to display version ([#1063](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1063)) ([a29fc6a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a29fc6a07b5869640c7b27e4e62f020689fc9cc0)), closes [#704](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/704) [#704](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/704)
+
+# [1.48.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.47.0...v1.48.0) (2023-12-01)
+
+### Features
+
+- add --bin option ([#1068](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1068)) ([21c8529](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/21c8529d49c12cbe252fd985086e3207931a83e9)), closes [#938](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/938)
+
+# [1.47.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.46.0...v1.47.0) (2023-11-24)
+
+### Features
+
+- Add .eslintrc to clearUnnecessaryFiles.ts ([#1052](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1052)) ([d785711](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d785711692b0a7b4023c2524af45d3b1206509ef)), closes [#1018](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1018)
+- Add prettier.config to clearUnnecessaryFiles.ts ([#1051](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1051)) ([5559a68](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5559a68f1504cf5f3d6e4e92fa0d5b0eda8b820f)), closes [#1019](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1019)
+
+# [1.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.45.0...v1.46.0) (2023-11-21)
+
+### Features
+
+- added --auto mode ([#1046](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1046)) ([082b0d9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/082b0d906cfa0f2237e81c1aef7e7460fac2a75b)), closes [#1042](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1042)
+
+# [1.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.44.0...v1.45.0) (2023-11-17)
+
+### Features
+
+- port README.md badge underlines fix to templates ([#1038](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1038)) ([54e3dee](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/54e3deed307f02556b46d25ef0cc73bdd2cc181e)), closes [#1032](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1032) [#1030](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1030)
+
+# [1.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.4...v1.44.0) (2023-11-15)
+
+### Features
+
+- add emoji to label descriptions ([#1013](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1013)) ([6371790](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6371790018937969ef42a961210d046a282e44e2)), closes [#1004](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1004)
+
+## [1.43.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.3...v1.43.4) (2023-11-14)
+
+### Bug Fixes
+
+- remove visual underlines on badge links in README.md ([#1030](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1030)) ([e25a47f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e25a47f2e9e4b587bd4db5e35d7f34079f56a99b)), closes [#1027](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1027)
+
+## [1.43.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.2...v1.43.3) (2023-11-12)
+
+### Bug Fixes
+
+- allow empty paths for updating local files ([#1022](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1022)) ([b2049ff](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b2049ff49e8d97d4a2e2451d2fed5e785a7bdabf)), closes [#1015](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1015)
+
+## [1.43.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.1...v1.43.2) (2023-11-11)
+
+### Bug Fixes
+
+- graceful recovery for failed spinner step ([#1017](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1017)) ([e36f765](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e36f7655c72a67890b4912dc1cb3c533c99c1c88)), closes [#1016](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1016)
+
+## [1.43.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.43.0...v1.43.1) (2023-11-09)
+
+### Bug Fixes
+
+- account for base when suggesting rerun cmd ([#992](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/992)) ([5978879](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5978879260840c175f11bb4537b77234f5d935c0)), closes [#905](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/905)
+
+# [1.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.42.1...v1.43.0) (2023-11-08)
+
+### Features
+
+- Add help cli ([#775](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/775)) ([6c15440](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6c15440a23ecdff7b38bc39773fdcd4cccc75e5e)), closes [#703](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/703)
+
+## [1.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.42.0...v1.42.1) (2023-10-31)
+
+### Bug Fixes
+
+- typo in a11y bot creation ([#1003](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1003)) ([8918987](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/89189873fd1338461499bc34a69c3d9bd6c36d90)), closes [#999](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/999)
+
+# [1.42.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.41.0...v1.42.0) (2023-10-31)
+
+### Features
+
+- infer base from package json scripts during migration ([#993](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/993)) ([20afaf4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/20afaf4c2be5afcde6f78d16b5d78f9d3227e74d)), closes [#933](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/933)
+
 # [1.41.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.40.0...v1.41.0) (2023-10-30)
 
 ### Features

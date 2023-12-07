@@ -9,6 +9,8 @@ import { initialize } from "../initialize/index.js";
 import { migrate } from "../migrate/index.js";
 import { logLine } from "../shared/cli/lines.js";
 import { StatusCodes } from "../shared/codes.js";
+import { logHelpText } from "./help.js";
+import { getVersionFromPackageJson } from "./packageJson.js";
 import { promptForMode } from "./promptForMode.js";
 
 const operationMessage = (verb: string) =>
@@ -17,35 +19,59 @@ const operationMessage = (verb: string) =>
 export async function bin(args: string[]) {
 	console.clear();
 
-	prompts.intro(
-		[
-			chalk.greenBright(`Welcome to`),
-			chalk.bgGreenBright.black(`create-typescript-app`),
-			chalk.greenBright(`! 🎉`),
-		].join(" "),
-	);
+	const version = await getVersionFromPackageJson();
 
-	logLine();
-	logLine(
+	const introPrompts = [
+		chalk.greenBright(`✨ Welcome to`),
+		chalk.bgGreenBright.black(`create-typescript-app`),
+		chalk.greenBright(`${version}! ✨`),
+	].join(" ");
+
+	const introWarnings = [
 		chalk.yellow(
 			"⚠️ This template is early stage, opinionated, and not endorsed by the TypeScript team. ⚠️",
 		),
-	);
-	logLine(
 		chalk.yellow(
 			"⚠️ If any tooling it sets displeases you, you can always remove that portion manually. ⚠️",
 		),
-	);
+	];
 
 	const { values } = parseArgs({
 		args,
 		options: {
+			help: {
+				short: "h",
+				type: "boolean",
+			},
 			mode: { type: "string" },
+			version: {
+				short: "v",
+				type: "boolean",
+			},
 		},
 		strict: false,
 	});
 
-	const { mode, options: promptedOptions } = await promptForMode(values.mode);
+	if (values.help) {
+		logHelpText([introPrompts, ...introWarnings]);
+		return 0;
+	}
+
+	if (values.version) {
+		console.log(version);
+		return 0;
+	}
+
+	prompts.intro(introPrompts);
+
+	logLine();
+	logLine(introWarnings[0]);
+	logLine(introWarnings[1]);
+
+	const { mode, options: promptedOptions } = await promptForMode(
+		!!values.auto,
+		values.mode,
+	);
 	if (typeof mode !== "string") {
 		prompts.outro(chalk.red(mode?.message ?? operationMessage("cancelled")));
 		return 1;

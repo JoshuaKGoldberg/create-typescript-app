@@ -6,7 +6,6 @@ import { createWorkflows } from "./createWorkflows.js";
 const createOptions = (exclude: boolean) =>
 	({
 		access: "public",
-		author: undefined,
 		base: "everything",
 		description: "Test description.",
 		directory: ".",
@@ -27,8 +26,6 @@ const createOptions = (exclude: boolean) =>
 		excludeReleases: exclude,
 		excludeRenovate: exclude,
 		excludeTests: exclude,
-		funding: undefined,
-		logo: undefined,
 		mode: "create",
 		owner: "StubOwner",
 		repository: "stub-repository",
@@ -45,24 +42,23 @@ describe("createWorkflows", () => {
 			  accessibility_alt_text_bot:
 			    runs-on: ubuntu-latest
 			    steps:
-			      - if: \${{ github.event.issue || github.event.pull_request }}
-			        uses: github/accessibility-alt-text-bot@v1.4.0
+			      - uses: github/accessibility-alt-text-bot@v1.4.0
 
 			name: Accessibility Alt Text Bot
 
 			on:
-			  issue:
-			    types:
-			      - created
-			      - edited
 			  issue_comment:
 			    types:
 			      - created
 			      - edited
+			  issues:
+			    types:
+			      - edited
+			      - opened
 			  pull_request:
 			    types:
-			      - created
 			      - edited
+			      - opened
 
 			permissions:
 			  issues: write
@@ -372,24 +368,23 @@ describe("createWorkflows", () => {
 			  accessibility_alt_text_bot:
 			    runs-on: ubuntu-latest
 			    steps:
-			      - if: \${{ github.event.issue || github.event.pull_request }}
-			        uses: github/accessibility-alt-text-bot@v1.4.0
+			      - uses: github/accessibility-alt-text-bot@v1.4.0
 
 			name: Accessibility Alt Text Bot
 
 			on:
-			  issue:
-			    types:
-			      - created
-			      - edited
 			  issue_comment:
 			    types:
 			      - created
 			      - edited
+			  issues:
+			    types:
+			      - edited
+			      - opened
 			  pull_request:
 			    types:
-			      - created
 			      - edited
+			      - opened
 
 			permissions:
 			  issues: write

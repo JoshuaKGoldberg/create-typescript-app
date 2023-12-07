@@ -21,7 +21,6 @@ vi.mock("../shared/readFileSafeAsJson.js", () => ({
 
 const options = {
 	access: "public",
-	author: undefined,
 	base: "everything",
 	description: "Stub description.",
 	directory: ".",
@@ -29,30 +28,10 @@ const options = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
-	excludeAllContributors: undefined,
-	excludeCompliance: undefined,
-	excludeLintJson: undefined,
-	excludeLintKnip: undefined,
-	excludeLintMd: undefined,
-	excludeLintPackageJson: undefined,
-	excludeLintPackages: undefined,
-	excludeLintPerfectionist: undefined,
-	excludeLintSpelling: undefined,
-	excludeLintYml: undefined,
-	excludeReleases: undefined,
-	excludeRenovate: undefined,
-	excludeTests: undefined,
-	funding: undefined,
-	logo: undefined,
 	mode: "create",
 	offline: true,
 	owner: "StubOwner",
 	repository: "stub-repository",
-	skipGitHubApi: false,
-	skipInstall: undefined,
-	skipRemoval: undefined,
-	skipRestore: undefined,
-	skipUninstall: undefined,
 	title: "Stub Title",
 } satisfies Options;
 
@@ -80,6 +59,7 @@ describe("updateLocalFiles", () => {
 			[
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
@@ -90,16 +70,26 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
 			      "to": "StubOwner",
 			    },
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
@@ -110,6 +100,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": ".eslintrc.cjs",
 			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
 			      "to": "",
@@ -117,6 +108,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
 			      "to": "\\"author\\": \\"undefined\\"",
@@ -124,6 +116,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"bin": "\\.\\+\\\\n/g,
 			      "to": "",
@@ -131,6 +124,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
@@ -138,6 +132,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
@@ -145,6 +140,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"initialize": "\\.\\*/g,
 			      "to": "",
@@ -152,6 +148,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
@@ -159,6 +156,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./README.md",
 			      "from": /## Getting Started\\.\\*## Development/gs,
 			      "to": "## Development",
@@ -166,6 +164,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./.github/DEVELOPMENT.md",
 			      "from": /\\\\n## Setup Scripts\\.\\*\\$/gs,
 			      "to": "",
@@ -173,6 +172,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "		\\"src/initialize/index.ts\\",
 			",
@@ -181,6 +181,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "		\\"src/migrate/index.ts\\",
 			",
@@ -189,6 +190,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "[\\"src/index.ts!\\", \\"script/initialize*.js\\"]",
 			      "to": "\\"src/index.ts!\\"",
@@ -196,6 +198,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
 			      "to": "\\"src/**/*.ts!\\"",
@@ -203,9 +206,10 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			      "from": /> 💙 This package was templated with \\.\\+\\\\\\./g,
+			      "to": "> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).",
 			    },
 			  ],
 			]
@@ -222,6 +226,7 @@ describe("updateLocalFiles", () => {
 			[
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
@@ -232,16 +237,26 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
 			      "to": "StubOwner",
 			    },
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
@@ -252,6 +267,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": ".eslintrc.cjs",
 			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
 			      "to": "",
@@ -259,6 +275,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
 			      "to": "\\"author\\": \\"undefined\\"",
@@ -266,6 +283,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"bin": "\\.\\+\\\\n/g,
 			      "to": "",
@@ -273,6 +291,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"test:create": "\\.\\+\\\\n/g,
 			      "to": "",
@@ -280,6 +299,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"test:initialize": "\\.\\*/g,
 			      "to": "",
@@ -287,6 +307,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"initialize": "\\.\\*/g,
 			      "to": "",
@@ -294,6 +315,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"test:migrate": "\\.\\+\\\\n/g,
 			      "to": "",
@@ -301,6 +323,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./README.md",
 			      "from": /## Getting Started\\.\\*## Development/gs,
 			      "to": "## Development",
@@ -308,6 +331,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./.github/DEVELOPMENT.md",
 			      "from": /\\\\n## Setup Scripts\\.\\*\\$/gs,
 			      "to": "",
@@ -315,6 +339,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "		\\"src/initialize/index.ts\\",
 			",
@@ -323,6 +348,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "		\\"src/migrate/index.ts\\",
 			",
@@ -331,6 +357,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "[\\"src/index.ts!\\", \\"script/initialize*.js\\"]",
 			      "to": "\\"src/index.ts!\\"",
@@ -338,6 +365,7 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
 			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
 			      "to": "\\"src/**/*.ts!\\"",
@@ -345,9 +373,10 @@ describe("updateLocalFiles", () => {
 			  ],
 			  [
 			    {
+			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			      "from": /> 💙 This package was templated with \\.\\+\\\\\\./g,
+			      "to": "> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).",
 			    },
 			  ],
 			]
@@ -361,6 +390,7 @@ describe("updateLocalFiles", () => {
 		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
+			allowEmptyPaths: true,
 			files: ["./.github/**/*", "./*.*"],
 			from: expect.anything(),
 			to: options.description,
@@ -377,6 +407,7 @@ describe("updateLocalFiles", () => {
 		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).toHaveBeenCalledWith({
+			allowEmptyPaths: true,
 			files: ["./.github/**/*", "./*.*"],
 			from: existingDescription,
 			to: options.description,
@@ -392,6 +423,7 @@ describe("updateLocalFiles", () => {
 		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).toHaveBeenCalledWith({
+			allowEmptyPaths: true,
 			files: "./package.json",
 			from: /"bin": ".+\n/g,
 			to: "",
@@ -407,6 +439,7 @@ describe("updateLocalFiles", () => {
 		await updateLocalFiles({ ...options, mode: "migrate" });
 
 		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
+			allowEmptyPaths: true,
 			files: "./package.json",
 			from: /"bin": ".+\n/g,
 			to: "",
@@ -422,6 +455,7 @@ describe("updateLocalFiles", () => {
 		await updateLocalFiles({ ...options, mode: "initialize" });
 
 		expect(mockReplaceInFile).toHaveBeenCalledWith({
+			allowEmptyPaths: true,
 			files: "./package.json",
 			from: /"version": "1.2.3"/g,
 			to: '"version": "0.0.0"',
@@ -437,6 +471,7 @@ describe("updateLocalFiles", () => {
 		await updateLocalFiles({ ...options, mode: "migrate" });
 
 		expect(mockReplaceInFile).not.toHaveBeenCalledWith({
+			allowEmptyPaths: true,
 			files: "./package.json",
 			from: /"version": "1.2.3"/g,
 			to: '"version": "0.0.0"',

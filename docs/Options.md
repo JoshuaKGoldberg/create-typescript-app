@@ -53,6 +53,7 @@ The setup scripts also allow for optional overrides of the following inputs whos
 
 - `--access` _(`"public" | "restricted"`)_: Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with (by default, `"public"`)
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
+- `--bin` _(`string`)_: `package.json` bin value to include for npx-style running.
 - `--directory` _(`string`)_: Directory to create the repository in (by default, the same name as the repository)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
   - Optionally, `--email-github` _(`string`)_ and/or `--email-npm` _(`string`)_ may be provided to use different emails in `.md` files and `package.json`, respectively

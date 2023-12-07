@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { getExclusions } from "../shared/options/augmentOptionsWithExcludes.js";
 import { Options } from "../shared/types.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 
@@ -29,7 +30,6 @@ const options = {
 	excludeTests: undefined,
 	funding: undefined,
 	keywords: ["abc", "def ghi", "jkl mno pqr"],
-	logo: undefined,
 	mode: "create",
 	owner: "TestOwner",
 	repository: "test-repository",
@@ -91,6 +91,30 @@ describe("createRerunSuggestion", () => {
 
 		expect(actual).toMatchInlineSnapshot(
 			'"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --description \\"Test description.\\" --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors true --exclude-compliance true --exclude-lint-jsdoc true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-md true --exclude-lint-package-json true --exclude-lint-perfectionist true --exclude-lint-spelling true --keywords \\"abc def ghi jkl mno pqr\\" --mode initialize --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+		);
+	});
+
+	it("does not list all excludes when using common base", () => {
+		const common = createRerunSuggestion({
+			base: "common",
+			...getExclusions(options, "common"),
+			excludeLintKnip: undefined,
+		});
+
+		expect(common).toMatchInlineSnapshot(
+			'"npx create-typescript-app --mode undefined --base common"',
+		);
+	});
+
+	it("does not list all excludes when using minimum base", () => {
+		const minimum = createRerunSuggestion({
+			base: "minimum",
+			...getExclusions(options, "minimum"),
+			excludeLintKnip: undefined,
+		});
+
+		expect(minimum).toMatchInlineSnapshot(
+			'"npx create-typescript-app --mode undefined --base minimum"',
 		);
 	});
 });

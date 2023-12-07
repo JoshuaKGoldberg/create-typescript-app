@@ -2,12 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 
 import { updateReadme } from "./updateReadme.js";
 
-const mockAppendFile = vi.fn();
+const mockWriteFile = vi.fn();
 
 vi.mock("node:fs/promises", () => ({
 	default: {
-		get appendFile() {
-			return mockAppendFile;
+		get writeFile() {
+			return mockWriteFile;
 		},
 	},
 }));
@@ -20,17 +20,23 @@ vi.mock("../shared/readFileSafe.js", () => ({
 	},
 }));
 
+const options = {
+	owner: "NewOwner",
+};
+
 describe("updateReadme", () => {
 	it("adds a notice when the file does not contain it already", async () => {
-		mockReadFileSafe.mockResolvedValue("");
+		mockReadFileSafe.mockResolvedValue(
+			"Existing JoshuaKGoldberg/create-typescript-app content.",
+		);
 
-		await updateReadme();
+		await updateReadme(options);
 
-		expect(mockAppendFile.mock.calls).toMatchInlineSnapshot(`
+		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
 			    "./README.md",
-			    "
+			    "Existing NewOwner/create-typescript-app content.
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
 			> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).
@@ -42,23 +48,51 @@ describe("updateReadme", () => {
 
 	it("doesn't add a notice when the file contains it already", async () => {
 		mockReadFileSafe.mockResolvedValue(`
+			Existing JoshuaKGoldberg/create-typescript-app content.
+			
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 			
 			> 💙 This package was templated using [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 		`);
 
-		await updateReadme();
+		await updateReadme(options);
 
-		expect(mockAppendFile.mock.calls).toMatchInlineSnapshot("[]");
+		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    "./README.md",
+			    "
+						Existing NewOwner/create-typescript-app content.
+						
+						<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+						
+						> 💙 This package was templated using [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
+					",
+			  ],
+			]
+		`);
 	});
 
 	it("doesn't add a notice when the file contains an older version of it already", async () => {
 		mockReadFileSafe.mockResolvedValue(`
+			Existing JoshuaKGoldberg/create-typescript-app content.
+
 			💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 		`);
 
-		await updateReadme();
+		await updateReadme(options);
 
-		expect(mockAppendFile.mock.calls).toMatchInlineSnapshot("[]");
+		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    "./README.md",
+			    "
+						Existing NewOwner/create-typescript-app content.
+
+						💙 This package is based on [@NewOwner](https://github.com/NewOwner)'s [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
+					",
+			  ],
+			]
+		`);
 	});
 });

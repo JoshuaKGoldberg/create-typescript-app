@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import { EOL } from "node:os";
 
 import { readFileSafe } from "../shared/readFileSafe.js";
+import { Options } from "../shared/types.js";
 
 export const endOfReadmeTemplateLine = `> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).`;
 
@@ -16,10 +17,14 @@ export const endOfReadmeNotice = [
 export const endOfReadmeMatcher =
 	/💙.+(?:based|built|templated).+(?:from|using|on|with).+create-typescript-app/;
 
-export async function updateReadme() {
-	const contents = await readFileSafe("./README.md", "");
+export async function updateReadme(options: Pick<Options, "owner">) {
+	let contents = await readFileSafe("./README.md", "");
+
+	contents = contents.replaceAll("JoshuaKGoldberg", options.owner);
 
 	if (!endOfReadmeMatcher.test(contents)) {
-		await fs.appendFile("./README.md", endOfReadmeNotice);
+		contents += endOfReadmeNotice;
 	}
+
+	await fs.writeFile("./README.md", contents);
 }

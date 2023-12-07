@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { MockInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { logHelpText } from "./help.js";
 
@@ -13,7 +13,7 @@ vi.mock("chalk", () => ({
 	default: makeProxy({}),
 }));
 
-let mockConsoleLog: SpyInstance;
+let mockConsoleLog: MockInstance;
 
 describe("logHelpText", () => {
 	beforeEach(() => {

@@ -75,7 +75,15 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
 			      "to": "StubOwner",
 			    },
 			  ],
@@ -200,8 +208,8 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			      "from": /> 💙 This package was templated with \\.\\+\\\\\\./g,
+			      "to": "> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).",
 			    },
 			  ],
 			]
@@ -234,7 +242,15 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
 			      "to": "StubOwner",
 			    },
 			  ],
@@ -359,8 +375,8 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			      "from": /> 💙 This package was templated with \\.\\+\\\\\\./g,
+			      "to": "> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).",
 			    },
 			  ],
 			]

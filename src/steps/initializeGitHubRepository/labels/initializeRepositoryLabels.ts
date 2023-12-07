@@ -1,17 +1,21 @@
 import { Octokit } from "octokit";
 
+import { Options } from "../../../shared/types.js";
 import { getExistingEquivalentLabels } from "./getExistingEquivalentLabels.js";
 import { outcomeLabels } from "./outcomeLabels.js";
 
-export async function initializeRepositoryLabels(octokit: Octokit) {
+export async function initializeRepositoryLabels(
+	octokit: Octokit,
+	options: Pick<Options, "owner" | "repository">,
+) {
 	const { data: existingLabels } = await octokit.request(
 		"GET /repos/{owner}/{repo}/labels",
 		{
 			headers: {
 				"X-GitHub-Api-Version": "2022-11-28",
 			},
-			owner: "OWNER",
-			repo: "REPO",
+			owner: options.owner,
+			repo: options.repository,
 		},
 	);
 
@@ -30,8 +34,8 @@ export async function initializeRepositoryLabels(octokit: Octokit) {
 					"X-GitHub-Api-Version": "2022-11-28",
 				},
 				name: outcome.name,
-				owner: "OWNER",
-				repo: "REPO",
+				owner: options.owner,
+				repo: options.repository,
 			});
 			continue;
 		}
@@ -48,8 +52,8 @@ export async function initializeRepositoryLabels(octokit: Octokit) {
 						"X-GitHub-Api-Version": "2022-11-28",
 					},
 					name: existingEquivalent.name,
-					owner: "OWNER",
-					repo: "REPO",
+					owner: options.owner,
+					repo: options.repository,
 				});
 
 				continue;
@@ -71,8 +75,8 @@ export async function initializeRepositoryLabels(octokit: Octokit) {
 					},
 					name: existingEquivalent.name,
 					new_name: outcome.name,
-					owner: "OWNER",
-					repo: "REPO",
+					owner: options.owner,
+					repo: options.repository,
 				});
 			}
 		}

@@ -21,11 +21,16 @@ const createMockOctokit = (existingLabels: GhLabelData[]) =>
 		request: vi.fn().mockResolvedValueOnce({ data: existingLabels }),
 	}) as unknown as Octokit & { request: MockInstance };
 
+const options = {
+	owner: "TestOwner",
+	repository: "test-repository",
+};
+
 describe("migrateRepositoryLabels", () => {
 	it("creates an outcome label when there are no existing labels", async () => {
 		const octokit = createMockOctokit([]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -35,8 +40,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -48,8 +53,8 @@ describe("migrateRepositoryLabels", () => {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
 			      "name": "area: abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -65,7 +70,7 @@ describe("migrateRepositoryLabels", () => {
 			},
 		]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -75,8 +80,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -88,8 +93,8 @@ describe("migrateRepositoryLabels", () => {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
 			      "name": "area: abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -99,7 +104,7 @@ describe("migrateRepositoryLabels", () => {
 	it("doesn't edit a outcome label when it already exists with the same information", async () => {
 		const octokit = createMockOctokit([mockOutcomeLabel]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -109,8 +114,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -125,7 +130,7 @@ describe("migrateRepositoryLabels", () => {
 			},
 		]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -135,8 +140,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -149,8 +154,8 @@ describe("migrateRepositoryLabels", () => {
 			      },
 			      "name": "area: abc",
 			      "new_name": "area: abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -165,7 +170,7 @@ describe("migrateRepositoryLabels", () => {
 			},
 		]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -175,8 +180,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -189,8 +194,8 @@ describe("migrateRepositoryLabels", () => {
 			      },
 			      "name": "area: abc",
 			      "new_name": "area: abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -211,7 +216,7 @@ describe("migrateRepositoryLabels", () => {
 			},
 		]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -221,8 +226,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -232,8 +237,8 @@ describe("migrateRepositoryLabels", () => {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
 			      "name": "abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -249,7 +254,7 @@ describe("migrateRepositoryLabels", () => {
 			},
 		]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -259,8 +264,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -272,8 +277,8 @@ describe("migrateRepositoryLabels", () => {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
 			      "name": "area: abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -294,7 +299,7 @@ describe("migrateRepositoryLabels", () => {
 			},
 		]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -304,8 +309,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -315,8 +320,8 @@ describe("migrateRepositoryLabels", () => {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
 			      "name": "abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -329,8 +334,8 @@ describe("migrateRepositoryLabels", () => {
 			      },
 			      "name": "area: abc",
 			      "new_name": "area: abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]
@@ -351,7 +356,7 @@ describe("migrateRepositoryLabels", () => {
 			},
 		]);
 
-		await initializeRepositoryLabels(octokit);
+		await initializeRepositoryLabels(octokit, options);
 
 		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -361,8 +366,8 @@ describe("migrateRepositoryLabels", () => {
 			      "headers": {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			  [
@@ -372,8 +377,8 @@ describe("migrateRepositoryLabels", () => {
 			        "X-GitHub-Api-Version": "2022-11-28",
 			      },
 			      "name": "abc",
-			      "owner": "OWNER",
-			      "repo": "REPO",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
 			    },
 			  ],
 			]

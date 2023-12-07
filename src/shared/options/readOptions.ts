@@ -126,7 +126,7 @@ export async function readOptions(
 		"owner",
 		!!mappedOptions.auto,
 		"What organization or user will the repository be under?",
-		defaults.owner,
+		async () => options.owner ?? (await defaults.owner()),
 	);
 
 	options.owner ??= ownerOption.value;
@@ -143,7 +143,7 @@ export async function readOptions(
 		"repository",
 		!!mappedOptions.auto,
 		"What will the kebab-case name of the repository be?",
-		defaults.repository,
+		async () => options.repository ?? (await defaults.repository()),
 	);
 
 	options.repository ??= repositoryOption.value;
@@ -176,7 +176,9 @@ export async function readOptions(
 		!!mappedOptions.auto,
 		"How would you describe the new package?",
 		async () =>
-			(await defaults.description()) ?? "A very lovely package. Hooray!",
+			options.description ??
+			(await defaults.description()) ??
+			"A very lovely package. Hooray!",
 	);
 
 	options.description ??= descriptionOption.value;
@@ -190,7 +192,9 @@ export async function readOptions(
 		!!mappedOptions.auto,
 		"What will the Title Case title of the repository be?",
 		async () =>
-			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
+			options.title ??
+			(await defaults.title()) ??
+			titleCase(repository).replaceAll("-", " "),
 	);
 
 	options.title ??= titleOption.value;

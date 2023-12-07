@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import z from "zod";
 
 import { Options } from "../types.js";
+import { GetPrefillOrPromptedOptionOptions } from "./getPrefillOrPromptedOption.js";
 import { optionsSchemaShape } from "./optionsSchema.js";
 import { readOptions } from "./readOptions.js";
 
@@ -60,6 +61,14 @@ vi.mock("../cli/spinners.ts", () => ({
 	},
 }));
 
+const mockReadPackageData = vi.fn();
+
+vi.mock("../packages.js", () => ({
+	get readPackageData() {
+		return mockReadPackageData;
+	},
+}));
+
 const mockAugmentOptionsWithExcludes = vi.fn();
 
 vi.mock("./augmentOptionsWithExcludes.js", () => ({
@@ -113,10 +122,11 @@ vi.mock("./createOptionDefaults/index.js", () => ({
 	},
 }));
 
-const mockReadPackageData = vi.fn();
-vi.mock("../packages.js", () => ({
-	get readPackageData() {
-		return mockReadPackageData;
+const mockLogInferredOptions = vi.fn();
+
+vi.mock("./logInferredOptions.js", () => ({
+	get logInferredOptions() {
+		return mockLogInferredOptions;
 	},
 }));
 
@@ -594,5 +604,171 @@ describe("readOptions", () => {
 				title: "mock",
 			},
 		});
+	});
+
+	it("uses values when provided on the CLI", async () => {
+		mockReadPackageData.mockImplementationOnce(() => ({}));
+		mockGetPrefillOrPromptedOption.mockImplementation(
+			async ({ getDefaultValue }: GetPrefillOrPromptedOptionOptions) => ({
+				value: (await getDefaultValue?.()) ?? "mock",
+			}),
+		);
+
+		const description = "Test description.";
+		const owner = "TestOwner";
+		const repository = "test-repository";
+		const title = "Test Title";
+
+		expect(
+			await readOptions(
+				[
+					"--offline",
+					"--description",
+					description,
+					"--owner",
+					owner,
+					"--repository",
+					repository,
+					"--title",
+					title,
+				],
+				"migrate",
+			),
+		).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: {
+				...emptyOptions,
+				...mockOptions,
+				access: "public",
+				base: "minimum",
+				description,
+				directory: repository,
+				email: {
+					github: "mock",
+					npm: "mock",
+				},
+				guide: undefined,
+				logo: undefined,
+				mode: "migrate",
+				offline: true,
+				owner,
+				skipAllContributorsApi: true,
+				skipGitHubApi: true,
+				title,
+			},
+		});
+
+		expect(mockLogInferredOptions).not.toHaveBeenCalled();
+	});
+
+	it("uses and logs values when provided on the CLI with auto", async () => {
+		mockReadPackageData.mockImplementationOnce(() => ({}));
+		mockGetPrefillOrPromptedOption.mockImplementation(
+			async ({ getDefaultValue }: GetPrefillOrPromptedOptionOptions) => ({
+				value: (await getDefaultValue?.()) ?? "mock",
+			}),
+		);
+
+		const description = "Test description.";
+		const owner = "TestOwner";
+		const repository = "test-repository";
+		const title = "Test Title";
+
+		expect(
+			await readOptions(
+				[
+					"--auto",
+					"--offline",
+					"--description",
+					description,
+					"--owner",
+					owner,
+					"--repository",
+					repository,
+					"--title",
+					title,
+				],
+				"migrate",
+			),
+		).toStrictEqual({
+			cancelled: false,
+			github: mockOptions.github,
+			options: {
+				...emptyOptions,
+				...mockOptions,
+				access: "public",
+				auto: true,
+				base: "minimum",
+				description,
+				directory: repository,
+				email: {
+					github: "mock",
+					npm: "mock",
+				},
+				guide: undefined,
+				logo: undefined,
+				mode: "migrate",
+				offline: true,
+				owner,
+				skipAllContributorsApi: true,
+				skipGitHubApi: true,
+				title,
+			},
+		});
+
+		expect(mockLogInferredOptions.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    {
+			      "access": "public",
+			      "author": undefined,
+			      "auto": true,
+			      "base": "minimum",
+			      "bin": undefined,
+			      "description": "Test description.",
+			      "directory": "test-repository",
+			      "email": {
+			        "github": "mock",
+			        "npm": "mock",
+			      },
+			      "excludeAllContributors": undefined,
+			      "excludeCompliance": undefined,
+			      "excludeLintDeprecation": undefined,
+			      "excludeLintESLint": undefined,
+			      "excludeLintJSDoc": undefined,
+			      "excludeLintJson": undefined,
+			      "excludeLintKnip": undefined,
+			      "excludeLintMd": undefined,
+			      "excludeLintPackageJson": undefined,
+			      "excludeLintPackages": undefined,
+			      "excludeLintPerfectionist": undefined,
+			      "excludeLintRegex": undefined,
+			      "excludeLintSpelling": undefined,
+			      "excludeLintStrict": undefined,
+			      "excludeLintYml": undefined,
+			      "excludeReleases": undefined,
+			      "excludeRenovate": undefined,
+			      "excludeTests": undefined,
+			      "funding": undefined,
+			      "github": "mock.git",
+			      "guide": undefined,
+			      "logo": undefined,
+			      "mode": "migrate",
+			      "offline": true,
+			      "owner": "TestOwner",
+			      "preserveGeneratedFrom": false,
+			      "repository": "mock.repository",
+			      "skipAllContributorsApi": true,
+			      "skipGitHubApi": true,
+			      "skipInstall": undefined,
+			      "skipRemoval": undefined,
+			      "skipRestore": undefined,
+			      "skipUninstall": undefined,
+			      "title": "Test Title",
+			    },
+			  ],
+			]
+		`);
 	});
 });

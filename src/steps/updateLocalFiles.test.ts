@@ -82,6 +82,14 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
+			      "to": "StubOwner",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
 			      "files": [
 			        "./.github/**/*",
 			        "./*.*",
@@ -236,6 +244,14 @@ describe("updateLocalFiles", () => {
 			      ],
 			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
 			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
+			      "to": "StubOwner",
 			    },
 			  ],
 			  [

@@ -25,20 +25,31 @@ vi.mock("octokit", () => ({
 }));
 
 describe("getOctokit", () => {
-	it("throws an error when gh auth status fails", async () => {
-		mock$.mockRejectedValueOnce(new Error("Oh no!"));
-
-		await expect(getGitHub).rejects.toMatchInlineSnapshot(
-			"[Error: GitHub authentication failed.]",
-		);
-	});
-
-	it("returns a new Octokit when gh auth status succeeds", async () => {
+	it("uses gh auth token when available", async () => {
 		const auth = "abc123";
-		mock$.mockResolvedValueOnce({}).mockResolvedValueOnce({ stdout: auth });
+		mock$.mockResolvedValueOnce({ stdout: auth });
 
 		const actual = await getGitHub();
 
 		expect(actual).toEqual({ auth, octokit: new MockOctokit({ auth }) });
+	});
+
+	it("uses process.env.GH_TOKEN when available and gh auth token rejects", async () => {
+		const auth = "abc123";
+		mock$.mockRejectedValueOnce(new Error("Oh no!"));
+		process.env.GH_TOKEN = auth;
+
+		const actual = await getGitHub();
+
+		expect(actual).toEqual({ auth, octokit: new MockOctokit({ auth }) });
+	});
+
+	it("throws an error when both process.env.GH_TOKEN and gh auth token reject", async () => {
+		mock$.mockRejectedValueOnce(new Error("Oh no!"));
+		process.env.GH_TOKEN = "";
+
+		await expect(getGitHub).rejects.toMatchInlineSnapshot(
+			`[Error: Couldn't authenticate with GitHub. Either log in with \`gh auth login\` (https://cli.github.com) or set a GH_TOKEN environment variable.]`,
+		);
 	});
 });

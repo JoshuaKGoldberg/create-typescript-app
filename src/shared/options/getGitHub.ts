@@ -6,16 +6,22 @@ export interface GitHub {
 	octokit: Octokit;
 }
 
-export async function getGitHub(): Promise<GitHub | undefined> {
+async function tryGhAuthToken() {
 	try {
-		await $`gh auth status`;
-	} catch (error) {
-		throw new Error("GitHub authentication failed.", {
-			cause: (error as Error).message,
-		});
+		return (await $`gh auth token`).stdout.trim();
+	} catch {
+		return undefined;
+	}
+}
+
+export async function getGitHub(): Promise<GitHub | undefined> {
+	const auth = (await tryGhAuthToken()) ?? process.env.GH_TOKEN;
+	if (!auth) {
+		throw new Error(
+			"Couldn't authenticate with GitHub. Either log in with `gh auth login` (https://cli.github.com) or set a GH_TOKEN environment variable.",
+		);
 	}
 
-	const auth = (await $`gh auth token`).stdout.trim();
 	const octokit = new Octokit({ auth });
 
 	return { auth, octokit };

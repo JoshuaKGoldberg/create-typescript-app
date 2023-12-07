@@ -40,7 +40,7 @@ export async function initializeWithOptions({
 
 	if (!options.excludeAllContributors) {
 		await withSpinner("Updating existing contributor details", async () => {
-			await addOwnerAsAllContributor(options);
+			await addOwnerAsAllContributor(github?.octokit, options);
 		});
 	}
 

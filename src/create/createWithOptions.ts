@@ -28,7 +28,7 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 
 	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {
 		await withSpinner("Adding contributors to table", async () => {
-			await addToolAllContributors(options);
+			await addToolAllContributors(github?.octokit, options);
 		});
 	}
 

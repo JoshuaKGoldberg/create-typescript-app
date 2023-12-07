@@ -13,5 +13,5 @@ export async function initializeGitHubRepository(
 	await initializeGitRemote(options);
 	await initializeRepositorySettings(octokit, options);
 	await initializeBranchProtectionSettings(octokit, options);
-	await initializeRepositoryLabels();
+	await initializeRepositoryLabels(octokit);
 }

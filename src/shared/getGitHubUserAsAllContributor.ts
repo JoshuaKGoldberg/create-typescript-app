@@ -5,7 +5,7 @@ import { Octokit } from "octokit";
 import { Options } from "./types.js";
 
 export async function getGitHubUserAsAllContributor(
-	octokit: Octokit,
+	octokit: Octokit | undefined,
 	options: Pick<Options, "offline" | "owner">,
 ) {
 	if (options.offline) {
@@ -19,14 +19,18 @@ export async function getGitHubUserAsAllContributor(
 
 	let user: string;
 
-	try {
-		user = (await octokit.rest.users.getAuthenticated()).data.login;
-	} catch {
-		console.warn(
-			chalk.gray(
-				`Couldn't authenticate GitHub user, falling back to the provided owner name '${options.owner}'.`,
-			),
-		);
+	if (octokit) {
+		try {
+			user = (await octokit.rest.users.getAuthenticated()).data.login;
+		} catch {
+			console.warn(
+				chalk.gray(
+					`Couldn't authenticate GitHub user, falling back to the provided owner name '${options.owner}'.`,
+				),
+			);
+			user = options.owner;
+		}
+	} else {
 		user = options.owner;
 	}
 

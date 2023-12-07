@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import { Octokit } from "octokit";
 import { MockInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getGitHubUserAsAllContributor } from "./getGitHubUserAsAllContributor.js";
@@ -13,6 +14,11 @@ vi.mock("execa", () => ({
 
 let mockConsoleWarn: MockInstance;
 
+const createMockOctokit = (getAuthenticated: MockInstance = vi.fn()) =>
+	({
+		rest: { users: { getAuthenticated } },
+	}) as unknown as Octokit;
+
 const owner = "TestOwner";
 
 describe("getGitHubUserAsAllContributor", () => {
@@ -23,7 +29,8 @@ describe("getGitHubUserAsAllContributor", () => {
 	});
 
 	it("defaults to owner with a log when options.offline is true", async () => {
-		const actual = await getGitHubUserAsAllContributor({
+		const octokit = createMockOctokit();
+		const actual = await getGitHubUserAsAllContributor(octokit, {
 			offline: true,
 			owner,
 		});
@@ -36,23 +43,24 @@ describe("getGitHubUserAsAllContributor", () => {
 		);
 	});
 
+	it("defaults to owner without a log when octokit is undefined", async () => {
+		const actual = await getGitHubUserAsAllContributor(undefined, { owner });
+
+		expect(actual).toEqual(owner);
+		expect(mockConsoleWarn).not.toHaveBeenCalled();
+	});
+
 	it("uses the user from gh api user when it succeeds", async () => {
 		const login = "gh-api-user";
+		const octokit = createMockOctokit(
+			vi.fn().mockResolvedValue({ data: { login } }),
+		);
 
-		mock$.mockResolvedValueOnce({
-			stdout: JSON.stringify({ login }),
-		});
-
-		await getGitHubUserAsAllContributor({ owner });
+		await getGitHubUserAsAllContributor(octokit, { owner });
 
 		expect(mockConsoleWarn).not.toHaveBeenCalled();
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
-			  [
-			    [
-			      "gh api user",
-			    ],
-			  ],
 			  [
 			    [
 			      "npx -y all-contributors-cli@6.25 add ",
@@ -67,9 +75,11 @@ describe("getGitHubUserAsAllContributor", () => {
 	});
 
 	it("defaults the user to the owner when gh api user fails", async () => {
-		mock$.mockRejectedValueOnce({});
+		const octokit = createMockOctokit(
+			vi.fn().mockRejectedValue(new Error("Oh no!")),
+		);
 
-		await getGitHubUserAsAllContributor({ owner });
+		await getGitHubUserAsAllContributor(octokit, { owner });
 
 		expect(mockConsoleWarn).toHaveBeenCalledWith(
 			chalk.gray(
@@ -78,11 +88,6 @@ describe("getGitHubUserAsAllContributor", () => {
 		);
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
-			  [
-			    [
-			      "gh api user",
-			    ],
-			  ],
 			  [
 			    [
 			      "npx -y all-contributors-cli@6.25 add ",

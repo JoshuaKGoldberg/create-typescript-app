@@ -1,3 +1,9 @@
+## [1.49.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.1...v1.49.2) (2023-12-07)
+
+### Bug Fixes
+
+- corrected readOptions using provided values ([#1084](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1084)) ([b3c7970](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b3c7970c6fa10f82cf521bbe33276036317e5121)), closes [#1083](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1083)
+
 ## [1.49.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.0...v1.49.1) (2023-12-07)
 
 ### Bug Fixes

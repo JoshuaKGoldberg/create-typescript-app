@@ -1,5 +1,9 @@
 import { Options } from "../shared/types.js";
 
+/**
+ * Creates a replace-in-file replacement for JoshuaKGoldberg/... matches,
+ * keeping repository names not being migrated (e.g. for GitHub actions).
+ */
 export const createJoshuaKGoldbergReplacement = (
 	options: Pick<Options, "owner" | "repository">,
 ) =>

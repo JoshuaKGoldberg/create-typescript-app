@@ -28,7 +28,7 @@ export async function initializeRepositoryLabels(
 		// Case: the repo has neither of the two label types
 		if (!existingEquivalents.length) {
 			await octokit.request("POST /repos/{owner}/{repo}/labels", {
-				color: outcome.color,
+				color: outcome.color.replace("#", ""),
 				description: outcome.description,
 				headers: {
 					"X-GitHub-Api-Version": "2022-11-28",
@@ -68,7 +68,7 @@ export async function initializeRepositoryLabels(
 				outcome.name !== existingEquivalent.name
 			) {
 				await octokit.request("PATCH /repos/{owner}/{repo}/labels/{name}", {
-					color: outcome.color,
+					color: outcome.color.replace("#", ""),
 					description: outcome.description,
 					headers: {
 						"X-GitHub-Api-Version": "2022-11-28",

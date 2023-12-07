@@ -233,7 +233,7 @@ describe("createWorkflows", () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
-			      - run: echo \\"npm_version=$(npm pkg get version | tr -d '\\"')\\" >> \\"$GITHUB_ENV\\"
+			      - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
@@ -263,8 +263,8 @@ describe("createWorkflows", () => {
 			          labels: 'status: waiting for author'
 			      - if: failure()
 			        run: |
-			          echo \\"Don't worry if the previous step failed.\\"
-			          echo \\"See https://github.com/actions-ecosystem/action-remove-labels/issues/221.\\"
+			          echo "Don't worry if the previous step failed."
+			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
 			name: PR Review Requested
 
@@ -433,8 +433,8 @@ describe("createWorkflows", () => {
 			          labels: 'status: waiting for author'
 			      - if: failure()
 			        run: |
-			          echo \\"Don't worry if the previous step failed.\\"
-			          echo \\"See https://github.com/actions-ecosystem/action-remove-labels/issues/221.\\"
+			          echo "Don't worry if the previous step failed."
+			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
 			name: PR Review Requested
 

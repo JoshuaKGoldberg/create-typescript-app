@@ -1,4 +1,3 @@
-import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
 import { getGitHub } from "./getGitHub.js";
@@ -11,7 +10,19 @@ vi.mock("execa", () => ({
 	},
 }));
 
-vi.mock("octokit");
+class MockOctokit {
+	readonly auth: string;
+
+	constructor(options: { auth: string }) {
+		this.auth = options.auth;
+	}
+}
+
+vi.mock("octokit", () => ({
+	get Octokit() {
+		return MockOctokit;
+	},
+}));
 
 describe("getOctokit", () => {
 	it("throws an error when gh auth status fails", async () => {
@@ -28,6 +39,6 @@ describe("getOctokit", () => {
 
 		const actual = await getGitHub();
 
-		expect(actual).toEqual({ auth, octokit: new Octokit({ auth }) });
+		expect(actual).toEqual({ auth, octokit: new MockOctokit({ auth }) });
 	});
 });

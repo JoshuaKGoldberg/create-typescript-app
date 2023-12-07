@@ -1,4 +1,4 @@
-import replaceInFile from "replace-in-file";
+import replaceInFile, { From, To } from "replace-in-file";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { Options } from "../shared/types.js";
@@ -14,16 +14,13 @@ export async function updateLocalFiles(options: Options) {
 	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
 		{}) as ExistingPackageData;
 
-	const replacements = [
+	const replacements: [From, To, (string | string[])?][] = [
 		[/Create TypeScript App/g, options.title],
 		createJoshuaKGoldbergReplacement(options),
 		[/JoshuaKGoldberg/g, options.owner, "package.json"],
 		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
-		...(options.mode === "migrate"
-			? []
-			: [[/"bin": ".+\n/g, ``, "./package.json"]]),
 		[/"test:create": ".+\n/g, ``, "./package.json"],
 		[/"test:initialize": ".*/g, ``, "./package.json"],
 		[/"initialize": ".*/g, ``, "./package.json"],
@@ -50,17 +47,20 @@ export async function updateLocalFiles(options: Options) {
 		replacements.push([existingPackage.description, options.description]);
 	}
 
-	if (options.mode === "initialize" && existingPackage.version) {
-		replacements.push([
-			new RegExp(`"version": "${existingPackage.version}"`, "g"),
-			`"version": "0.0.0"`,
-			"./package.json",
-		]);
+	if (options.mode !== "migrate") {
+		replacements.push([/"bin": ".+\n/g, ``, "./package.json"]);
+
+		if (options.mode === "initialize" && existingPackage.version) {
+			replacements.push([
+				new RegExp(`"version": "${existingPackage.version}"`, "g"),
+				`"version": "0.0.0"`,
+				"./package.json",
+			]);
+		}
 	}
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of replacements) {
 		try {
-			// @ts-expect-error -- https://github.com/microsoft/TypeScript/issues/54342
 			await replaceInFile({
 				allowEmptyPaths: true,
 				files,

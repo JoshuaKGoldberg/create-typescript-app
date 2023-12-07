@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { MockInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { outro } from "./outro.js";
 
@@ -11,7 +11,7 @@ vi.mock("@clack/prompts", () => ({
 	},
 }));
 
-let mockConsoleLog: SpyInstance;
+let mockConsoleLog: MockInstance;
 
 describe("outro", () => {
 	beforeEach(() => {

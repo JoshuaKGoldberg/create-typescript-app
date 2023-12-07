@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { MockInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getGitHubUserAsAllContributor } from "./getGitHubUserAsAllContributor.js";
 
@@ -11,7 +11,7 @@ vi.mock("execa", () => ({
 	},
 }));
 
-let mockConsoleWarn: SpyInstance;
+let mockConsoleWarn: MockInstance;
 
 const owner = "TestOwner";
 

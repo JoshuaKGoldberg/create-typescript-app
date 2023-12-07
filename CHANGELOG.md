@@ -1,3 +1,9 @@
+## [1.49.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.0...v1.49.1) (2023-12-07)
+
+### Bug Fixes
+
+- improve migration owner replacements ([#1078](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1078)) ([4e25327](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4e25327f593c19c640f9adf5411c0676a70d9d5e)), closes [#1043](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1043)
+
 # [1.49.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.48.0...v1.49.0) (2023-12-01)
 
 ### Features

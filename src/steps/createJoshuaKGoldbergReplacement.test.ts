@@ -18,7 +18,8 @@ describe("createJoshuaKGoldbergReplacement", () => {
 	])("%s", (before, expected) => {
 		const [matcher, replacer] = createJoshuaKGoldbergReplacement(options);
 
-		const actual = replacer(before, matcher.exec(before)?.[1]);
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		const actual = replacer(before, matcher.exec(before)![1]);
 
 		expect(actual).toBe(expected);
 	});

@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { SpyInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { MockInstance, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { logHelpText } from "./help.js";
 
@@ -13,7 +13,7 @@ vi.mock("chalk", () => ({
 	default: makeProxy({}),
 }));
 
-let mockConsoleLog: SpyInstance;
+let mockConsoleLog: MockInstance;
 
 describe("logHelpText", () => {
 	beforeEach(() => {
@@ -107,8 +107,8 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
-			  --access (string): (\\"public\\" | \\"restricted\\"): Which npm publish --access to 
-			  release npm packages with (by default, \\"public\\")",
+			  --access (string): ("public" | "restricted"): Which npm publish --access to 
+			  release npm packages with (by default, "public")",
 			  ],
 			  [
 			    "
@@ -163,7 +163,7 @@ describe("logHelpText", () => {
 			    "
 			  --keywords (string): Any number of keywords to include in package.json (by default, 
 			  none). This can be specified any number of times, like  
-			  --keywords apple --keywords \\"banana cherry\\"",
+			  --keywords apple --keywords "banana cherry"",
 			  ],
 			  [
 			    "
@@ -331,7 +331,7 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
-			  --offline: You can run create-typescript-app in an \\"offline\\" mode. 
+			  --offline: You can run create-typescript-app in an "offline" mode. 
 			  Doing so will:
 			  • Enable --exclude-all-contributors-api and --skip-github-api
 			  • Skip network calls when setting up contributors

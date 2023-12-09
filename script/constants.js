@@ -1,0 +1,16 @@
+export const filesExpectedToBeChanged = new Set([
+	".all-contributorsrc",
+	"bin/index.js",
+	"README.md",
+	"knip.jsonc",
+	"package.json",
+	"pnpm-lock.yaml",
+	".eslintignore",
+	".eslintrc.cjs",
+	".github/DEVELOPMENT.md",
+	".github/workflows/lint-knip.yml",
+	".github/workflows/test.yml",
+	".gitignore",
+	".prettierignore",
+	"cspell.json",
+]);

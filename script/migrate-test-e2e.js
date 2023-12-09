@@ -8,6 +8,7 @@ const vitest = await createVitest("test", {
 });
 
 import packageData from "../package.json" assert { type: "json" };
+import { filesExpectedToBeChanged } from "./constants.js";
 
 const { description, name: repository } = packageData;
 const emailGithub = "github@joshuakgoldberg.com";
@@ -32,23 +33,6 @@ if (indexOfUnstagedFilesMessage === -1) {
 		`Looks like migrate didn't cause any file changes? That's ...probably incorrect? 😬`,
 	);
 }
-
-const filesExpectedToBeChanged = new Set([
-	".all-contributorsrc",
-	"bin/index.js",
-	"README.md",
-	"knip.jsonc",
-	"package.json",
-	"pnpm-lock.yaml",
-	".eslintignore",
-	".eslintrc.cjs",
-	".github/DEVELOPMENT.md",
-	".github/workflows/lint-knip.yml",
-	".github/workflows/test.yml",
-	".gitignore",
-	".prettierignore",
-	"cspell.json",
-]);
 
 const unstagedModifiedFiles = gitStatus
 	.slice(indexOfUnstagedFilesMessage)

@@ -45,7 +45,7 @@ describe("updateLocalFiles", () => {
 		await expect(async () => {
 			await updateLocalFiles({ ...options, mode: "initialize" });
 		}).rejects.toThrowErrorMatchingInlineSnapshot(
-			'"Failed to replace /Create TypeScript App/g with Stub Title in ./.github/**/*,./*.*"',
+			`[Error: Failed to replace /Create TypeScript App/g with Stub Title in ./.github/**/*,./*.*]`,
 		);
 	});
 
@@ -75,7 +75,15 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
 			      "to": "StubOwner",
 			    },
 			  ],
@@ -103,15 +111,7 @@ describe("updateLocalFiles", () => {
 			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"undefined\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "allowEmptyPaths": true,
-			      "files": "./package.json",
-			      "from": /"bin": "\\.\\+\\\\n/g,
-			      "to": "",
+			      "to": ""author": "undefined"",
 			    },
 			  ],
 			  [
@@ -166,7 +166,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "		\\"src/initialize/index.ts\\",
+			      "from": "		"src/initialize/index.ts",
 			",
 			      "to": "",
 			    },
@@ -175,7 +175,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "		\\"src/migrate/index.ts\\",
+			      "from": "		"src/migrate/index.ts",
 			",
 			      "to": "",
 			    },
@@ -184,24 +184,32 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "[\\"src/index.ts!\\", \\"script/initialize*.js\\"]",
-			      "to": "\\"src/index.ts!\\"",
+			      "from": "["src/index.ts!", "script/initialize*.js"]",
+			      "to": ""src/index.ts!"",
 			    },
 			  ],
 			  [
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
-			      "to": "\\"src/**/*.ts!\\"",
+			      "from": "["src/**/*.ts!", "script/**/*.js"]",
+			      "to": ""src/**/*.ts!"",
 			    },
 			  ],
 			  [
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			      "from": /> 💙 This package was templated with \\.\\+\\\\\\./g,
+			      "to": "> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "./package.json",
+			      "from": /"bin": "\\.\\+\\\\n/g,
+			      "to": "",
 			    },
 			  ],
 			]
@@ -234,7 +242,15 @@ describe("updateLocalFiles", () => {
 			        "./.github/**/*",
 			        "./*.*",
 			      ],
-			      "from": /JoshuaKGoldberg\\(\\?!\\\\/console-fail-test\\)/g,
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
 			      "to": "StubOwner",
 			    },
 			  ],
@@ -262,15 +278,7 @@ describe("updateLocalFiles", () => {
 			      "allowEmptyPaths": true,
 			      "files": "./package.json",
 			      "from": /"author": "\\.\\+"/g,
-			      "to": "\\"author\\": \\"undefined\\"",
-			    },
-			  ],
-			  [
-			    {
-			      "allowEmptyPaths": true,
-			      "files": "./package.json",
-			      "from": /"bin": "\\.\\+\\\\n/g,
-			      "to": "",
+			      "to": ""author": "undefined"",
 			    },
 			  ],
 			  [
@@ -325,7 +333,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "		\\"src/initialize/index.ts\\",
+			      "from": "		"src/initialize/index.ts",
 			",
 			      "to": "",
 			    },
@@ -334,7 +342,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "		\\"src/migrate/index.ts\\",
+			      "from": "		"src/migrate/index.ts",
 			",
 			      "to": "",
 			    },
@@ -343,24 +351,32 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "[\\"src/index.ts!\\", \\"script/initialize*.js\\"]",
-			      "to": "\\"src/index.ts!\\"",
+			      "from": "["src/index.ts!", "script/initialize*.js"]",
+			      "to": ""src/index.ts!"",
 			    },
 			  ],
 			  [
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./knip.jsonc",
-			      "from": "[\\"src/**/*.ts!\\", \\"script/**/*.js\\"]",
-			      "to": "\\"src/**/*.ts!\\"",
+			      "from": "["src/**/*.ts!", "script/**/*.js"]",
+			      "to": ""src/**/*.ts!"",
 			    },
 			  ],
 			  [
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": "> 💙 This package is based on [@StubOwner](https://github.com/StubOwner)'s [stub-repository](https://github.com/JoshuaKGoldberg/stub-repository).",
-			      "to": "> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			      "from": /> 💙 This package was templated with \\.\\+\\\\\\./g,
+			      "to": "> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "./package.json",
+			      "from": /"bin": "\\.\\+\\\\n/g,
+			      "to": "",
 			    },
 			  ],
 			]

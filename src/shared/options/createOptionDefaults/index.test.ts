@@ -35,6 +35,26 @@ vi.mock("../../packages.js", () => ({
 }));
 
 describe("createOptionDefaults", () => {
+	describe("bin", () => {
+		it("returns undefined when package data does not have a bin", async () => {
+			mockReadPackageData.mockResolvedValue({});
+
+			const actual = await createOptionDefaults().bin();
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns the bin when package data has a bin", async () => {
+			const bin = "./lib/index.js";
+
+			mockReadPackageData.mockResolvedValue({ bin });
+
+			const actual = await createOptionDefaults().bin();
+
+			expect(actual).toBe(bin);
+		});
+	});
+
 	describe("email", () => {
 		it("returns the npm whoami email from npm when only an npm exists", async () => {
 			mock$.mockImplementation(([command]: string[]) =>

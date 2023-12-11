@@ -44,14 +44,21 @@ export async function bin(args: string[]) {
 				type: "boolean",
 			},
 			mode: { type: "string" },
+			version: {
+				short: "v",
+				type: "boolean",
+			},
 		},
 		strict: false,
 	});
 
-	const help = values.help;
-
-	if (help) {
+	if (values.help) {
 		logHelpText([introPrompts, ...introWarnings]);
+		return 0;
+	}
+
+	if (values.version) {
+		console.log(version);
 		return 0;
 	}
 

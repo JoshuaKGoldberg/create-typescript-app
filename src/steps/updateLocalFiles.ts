@@ -1,7 +1,9 @@
-import replaceInFile from "replace-in-file";
+import replaceInFile, { From, To } from "replace-in-file";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { Options } from "../shared/types.js";
+import { createJoshuaKGoldbergReplacement } from "./createJoshuaKGoldbergReplacement.js";
+import { endOfReadmeTemplateLine } from "./updateReadme.js";
 
 interface ExistingPackageData {
 	description?: string;
@@ -12,15 +14,13 @@ export async function updateLocalFiles(options: Options) {
 	const existingPackage = ((await readFileSafeAsJson("./package.json")) ??
 		{}) as ExistingPackageData;
 
-	const replacements = [
+	const replacements: [From, To, (string | string[])?][] = [
 		[/Create TypeScript App/g, options.title],
-		[/JoshuaKGoldberg(?!\/console-fail-test)/g, options.owner],
+		createJoshuaKGoldbergReplacement(options),
+		[/JoshuaKGoldberg/g, options.owner, "package.json"],
 		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
-		...(options.mode === "migrate"
-			? []
-			: [[/"bin": ".+\n/g, ``, "./package.json"]]),
 		[/"test:create": ".+\n/g, ``, "./package.json"],
 		[/"test:initialize": ".*/g, ``, "./package.json"],
 		[/"initialize": ".*/g, ``, "./package.json"],
@@ -37,8 +37,8 @@ export async function updateLocalFiles(options: Options) {
 		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
 		// Edge case: migration scripts will rewrite README.md attribution
 		[
-			`> 💙 This package is based on [@${options.owner}](https://github.com/${options.owner})'s [${options.repository}](https://github.com/JoshuaKGoldberg/${options.repository}).`,
-			`> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).`,
+			/> 💙 This package was templated with .+\./g,
+			endOfReadmeTemplateLine,
 			"./README.md",
 		],
 	];
@@ -47,17 +47,20 @@ export async function updateLocalFiles(options: Options) {
 		replacements.push([existingPackage.description, options.description]);
 	}
 
-	if (options.mode === "initialize" && existingPackage.version) {
-		replacements.push([
-			new RegExp(`"version": "${existingPackage.version}"`, "g"),
-			`"version": "0.0.0"`,
-			"./package.json",
-		]);
+	if (options.mode !== "migrate") {
+		replacements.push([/"bin": ".+\n/g, ``, "./package.json"]);
+
+		if (options.mode === "initialize" && existingPackage.version) {
+			replacements.push([
+				new RegExp(`"version": "${existingPackage.version}"`, "g"),
+				`"version": "0.0.0"`,
+				"./package.json",
+			]);
+		}
 	}
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of replacements) {
 		try {
-			// @ts-expect-error -- https://github.com/microsoft/TypeScript/issues/54342
 			await replaceInFile({
 				allowEmptyPaths: true,
 				files,
@@ -65,8 +68,9 @@ export async function updateLocalFiles(options: Options) {
 				to,
 			});
 		} catch (error) {
+			const toString = typeof to === "function" ? "(function)" : to;
 			throw new Error(
-				`Failed to replace ${from.toString()} with ${to} in ${files.toString()}`,
+				`Failed to replace ${from.toString()} with ${toString} in ${files.toString()}`,
 				{
 					cause: error,
 				},

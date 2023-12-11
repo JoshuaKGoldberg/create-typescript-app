@@ -1,10 +1,10 @@
 import { Octokit } from "octokit";
-import { SpyInstance, describe, expect, it, vi } from "vitest";
+import { MockInstance, describe, expect, it, vi } from "vitest";
 
 import { doesRepositoryExist } from "./doesRepositoryExist.js";
 
 const createMockOctokit = (
-	repos: Partial<Record<keyof Octokit["rest"]["repos"], SpyInstance>>,
+	repos: Partial<Record<keyof Octokit["rest"]["repos"], MockInstance>>,
 ) =>
 	({
 		rest: {

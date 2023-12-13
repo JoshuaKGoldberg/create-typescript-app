@@ -13,6 +13,7 @@ export interface AllContributorsData {
 
 export interface PartialPackageData {
 	author?: { email: string; name: string } | string;
+	bin?: string;
 	dependencies?: Record<string, string>;
 	description?: string;
 	devDependencies?: Record<string, string>;
@@ -48,6 +49,7 @@ export interface Options {
 	access: OptionsAccess;
 	author?: string;
 	base?: OptionsBase;
+	bin?: string;
 	description: string;
 	directory: string;
 	email: OptionsEmail;

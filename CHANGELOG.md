@@ -1,3 +1,27 @@
+## [1.49.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.1...v1.49.2) (2023-12-07)
+
+### Bug Fixes
+
+- corrected readOptions using provided values ([#1084](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1084)) ([b3c7970](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b3c7970c6fa10f82cf521bbe33276036317e5121)), closes [#1083](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1083)
+
+## [1.49.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.0...v1.49.1) (2023-12-07)
+
+### Bug Fixes
+
+- improve migration owner replacements ([#1078](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1078)) ([4e25327](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4e25327f593c19c640f9adf5411c0676a70d9d5e)), closes [#1043](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1043)
+
+# [1.49.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.48.0...v1.49.0) (2023-12-01)
+
+### Features
+
+- add -v flag to display version ([#1063](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1063)) ([a29fc6a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a29fc6a07b5869640c7b27e4e62f020689fc9cc0)), closes [#704](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/704) [#704](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/704)
+
+# [1.48.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.47.0...v1.48.0) (2023-12-01)
+
+### Features
+
+- add --bin option ([#1068](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1068)) ([21c8529](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/21c8529d49c12cbe252fd985086e3207931a83e9)), closes [#938](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/938)
+
 # [1.47.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.46.0...v1.47.0) (2023-11-24)
 
 ### Features

@@ -55,6 +55,7 @@ export async function readOptions(
 		author: values.author,
 		auto: !!values.auto,
 		base: values.base,
+		bin: values.bin,
 		description: values.description,
 		directory: values.directory,
 		email:
@@ -121,12 +122,12 @@ export async function readOptions(
 
 	const options = optionsParseResult.data;
 
-	const ownerOption = await getPrefillOrPromptedOption(
-		"owner",
-		!!mappedOptions.auto,
-		"What organization or user will the repository be under?",
-		defaults.owner,
-	);
+	const ownerOption = await getPrefillOrPromptedOption({
+		auto: !!mappedOptions.auto,
+		getDefaultValue: async () => options.owner ?? (await defaults.owner()),
+		message: "What organization or user will the repository be under?",
+		name: "owner",
+	});
 
 	options.owner ??= ownerOption.value;
 
@@ -138,12 +139,13 @@ export async function readOptions(
 		};
 	}
 
-	const repositoryOption = await getPrefillOrPromptedOption(
-		"repository",
-		!!mappedOptions.auto,
-		"What will the kebab-case name of the repository be?",
-		defaults.repository,
-	);
+	const repositoryOption = await getPrefillOrPromptedOption({
+		auto: !!mappedOptions.auto,
+		getDefaultValue: async () =>
+			options.repository ?? (await defaults.repository()),
+		message: "What will the kebab-case name of the repository be?",
+		name: "repository",
+	});
 
 	options.repository ??= repositoryOption.value;
 
@@ -170,13 +172,15 @@ export async function readOptions(
 		return { cancelled: true, error: repositoryOption.error, options };
 	}
 
-	const descriptionOption = await getPrefillOrPromptedOption(
-		"description",
-		!!mappedOptions.auto,
-		"How would you describe the new package?",
-		async () =>
-			(await defaults.description()) ?? "A very lovely package. Hooray!",
-	);
+	const descriptionOption = await getPrefillOrPromptedOption({
+		auto: !!mappedOptions.auto,
+		getDefaultValue: async () =>
+			options.description ??
+			(await defaults.description()) ??
+			"A very lovely package. Hooray!",
+		message: "How would you describe the new package?",
+		name: "description",
+	});
 
 	options.description ??= descriptionOption.value;
 
@@ -184,13 +188,15 @@ export async function readOptions(
 		return { cancelled: true, error: descriptionOption.error, options };
 	}
 
-	const titleOption = await getPrefillOrPromptedOption(
-		"title",
-		!!mappedOptions.auto,
-		"What will the Title Case title of the repository be?",
-		async () =>
-			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
-	);
+	const titleOption = await getPrefillOrPromptedOption({
+		auto: !!mappedOptions.auto,
+		getDefaultValue: async () =>
+			options.title ??
+			(await defaults.title()) ??
+			titleCase(repository).replaceAll("-", " "),
+		message: "What will the Title Case title of the repository be?",
+		name: "title",
+	});
 
 	options.title ??= titleOption.value;
 
@@ -204,11 +210,11 @@ export async function readOptions(
 		if (options.guideTitle) {
 			guide = { href: options.guide, title: options.guideTitle };
 		} else {
-			const titleOption = await getPrefillOrPromptedOption(
-				"getPrefillOrPromptedOption",
-				!!mappedOptions.auto,
-				"What is the title text for the guide?",
-			);
+			const titleOption = await getPrefillOrPromptedOption({
+				auto: !!mappedOptions.auto,
+				message: "What is the title text for the guide?",
+				name: "getPrefillOrPromptedOption",
+			});
 
 			if (!titleOption.value) {
 				return { cancelled: true, error: titleOption.error, options };
@@ -224,11 +230,11 @@ export async function readOptions(
 		if (options.logoAlt) {
 			logo = { alt: options.logoAlt, src: options.logo };
 		} else {
-			const logoAltOption = await getPrefillOrPromptedOption(
-				"getPrefillOrPromptedOption",
-				!!mappedOptions.auto,
-				"What is the alt text (non-visual description) of the logo?",
-			);
+			const logoAltOption = await getPrefillOrPromptedOption({
+				auto: !!mappedOptions.auto,
+				message: "What is the alt text (non-visual description) of the logo?",
+				name: "getPrefillOrPromptedOption",
+			});
 
 			if (!logoAltOption.value) {
 				return { cancelled: true, error: logoAltOption.error, options };
@@ -241,11 +247,11 @@ export async function readOptions(
 	let email = options.email ?? (await defaults.email());
 
 	if (!email) {
-		const emailOption = await getPrefillOrPromptedOption(
-			"email",
-			!!mappedOptions.auto,
-			"What email should be used in package.json and .md files?",
-		);
+		const emailOption = await getPrefillOrPromptedOption({
+			auto: !!mappedOptions.auto,
+			message: "What email should be used in package.json and .md files?",
+			name: "email",
+		});
 
 		if (!emailOption.value) {
 			return { cancelled: true, error: emailOption.error, options };

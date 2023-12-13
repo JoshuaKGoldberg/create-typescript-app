@@ -12,6 +12,7 @@ export const optionsSchemaShape = {
 			z.literal("prompt"),
 		])
 		.optional(),
+	bin: z.string().optional(),
 	description: z.string().optional(),
 	directory: z.string().optional(),
 	email: z

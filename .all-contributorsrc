@@ -277,7 +277,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/30204147?v=4",
       "profile": "https://github.com/jaas666",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -339,6 +340,15 @@
       "name": "Shraddha",
       "avatar_url": "https://avatars.githubusercontent.com/u/27571141?v=4",
       "profile": "https://www.shraddha.tech",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "xl4624",
+      "name": "Xiaomin Liu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/116298054?v=4",
+      "profile": "https://github.com/xl4624",
       "contributions": [
         "code"
       ]

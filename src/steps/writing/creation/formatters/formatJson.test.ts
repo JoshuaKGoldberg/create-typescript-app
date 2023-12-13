@@ -7,7 +7,7 @@ describe("formatJson", () => {
 		const actual = await formatJson({ empty: undefined, exists: true });
 
 		expect(actual).toMatchInlineSnapshot(`
-			"{ \\"exists\\": true }
+			"{ "exists": true }
 			"
 		`);
 	});

@@ -2,17 +2,17 @@
 
 exports[`verify .all-contributorsrc 1`] = `
 "diff --git a/.all-contributorsrc b/.all-contributorsrc
-index f4d6216..d0fed87 100644
+index 1f1f278..4822422 100644
 --- a/.all-contributorsrc
 +++ b/.all-contributorsrc
 @@ -1,5 +1,5 @@
  {
 -  \\"badgeTemplate\\": \\"<a href=\\\\\\"#contributors\\\\\\" target=\\\\\\"_blank\\\\\\"><img alt=\\\\\\"All Contributors: <%= contributors.length %> 🤝\\\\\\" src=\\\\\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\\\\\\" /></a>\\",
-+  \\"badgeTemplate\\": \\"<a href=\\\\\\"#contributors\\\\\\" target=\\\\\\"_blank\\\\\\"><img alt=\\\\\\"All Contributors: <%= contributors.length %> 👪\\\\\\" src=\\\\\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\\\\\\" /></a>\\",
++  \\"badgeTemplate\\": \\"\\\\t<a href=\\\\\\"#contributors\\\\\\" target=\\\\\\"_blank\\\\\\"><img alt=\\\\\\"All Contributors: <%= contributors.length %> 👪\\\\\\" src=\\\\\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\\\\\\" /></a>\\",
    \\"commit\\": false,
    \\"commitConvention\\": \\"angular\\",
    \\"contributors\\": [
-@@ -24,335 +24,253 @@
+@@ -24,345 +24,260 @@
        \\"name\\": \\"Jeff Wen\\",
        \\"avatar_url\\": \\"https://avatars.githubusercontent.com/u/3297859?v=4\\",
        \\"profile\\": \\"https://sinchang.me\\",
@@ -296,9 +296,10 @@ index f4d6216..d0fed87 100644
        \\"avatar_url\\": \\"https://avatars.githubusercontent.com/u/30204147?v=4\\",
        \\"profile\\": \\"https://github.com/jaas666\\",
 -      \\"contributions\\": [
--        \\"code\\"
+-        \\"code\\",
+-        \\"doc\\"
 -      ]
-+      \\"contributions\\": [\\"code\\"]
++      \\"contributions\\": [\\"code\\", \\"doc\\"]
      },
      {
        \\"login\\": \\"katt\\",
@@ -365,6 +366,16 @@ index f4d6216..d0fed87 100644
        \\"name\\": \\"Shraddha\\",
        \\"avatar_url\\": \\"https://avatars.githubusercontent.com/u/27571141?v=4\\",
        \\"profile\\": \\"https://www.shraddha.tech\\",
+-      \\"contributions\\": [
+-        \\"code\\"
+-      ]
++      \\"contributions\\": [\\"code\\"]
+     },
+     {
+       \\"login\\": \\"xl4624\\",
+       \\"name\\": \\"Xiaomin Liu\\",
+       \\"avatar_url\\": \\"https://avatars.githubusercontent.com/u/116298054?v=4\\",
+       \\"profile\\": \\"https://github.com/xl4624\\",
 -      \\"contributions\\": [
 -        \\"code\\"
 -      ]
@@ -638,15 +649,15 @@ index 613eedd..32ca0f2 100644
 
 exports[`verify README.md 1`] = `
 "diff --git a/README.md b/README.md
-index 04e5c51..5c60b4e 100644
+index fcdab3c..aabb1ae 100644
 --- a/README.md
 +++ b/README.md
 @@ -5,57 +5,20 @@
  <p align=\\"center\\">
  	<!-- prettier-ignore-start -->
  	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
--<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 36 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-36_🤝-21bb42.svg\\" /></a>
-+<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 36 👪\\" src=\\"https://img.shields.io/badge/all_contributors-36_👪-21bb42.svg\\" /></a>
+-<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 37 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-37_🤝-21bb42.svg\\" /></a>
++	<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 37 👪\\" src=\\"https://img.shields.io/badge/all_contributors-37_👪-21bb42.svg\\" /></a>
  <!-- ALL-CONTRIBUTORS-BADGE:END -->
  	<!-- prettier-ignore-end -->
  	<a href=\\"https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app\\" target=\\"_blank\\"><img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app/branch/main/graph/badge.svg\\"/></a>
@@ -661,7 +672,7 @@ index 04e5c51..5c60b4e 100644
 +	<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 +	<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
  	<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
-+	<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 36 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-36_🤝-21bb42.svg\\" /></a>
++	<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 37 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-37_🤝-21bb42.svg\\" /></a>
 +	<img alt=\\"Sponsor: On GitHub 💸\\" src=\\"https://img.shields.io/badge/sponsor-on_github_💸-21bb42.svg\\" />
  </p>
  
@@ -707,17 +718,27 @@ index 04e5c51..5c60b4e 100644
  ## Development
  
  See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-@@ -125,3 +88,7 @@ Thanks! 💖
+@@ -126,3 +89,7 @@ Thanks! 💖
  
  <!-- ALL-CONTRIBUTORS-LIST:END -->
  <!-- spellchecker: enable -->
 +
 +<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 +
-+> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app)."
++> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app)."
 `;
 
-exports[`verify bin/index.js 1`] = `""`;
+exports[`verify bin/index.js 1`] = `
+"diff --git a/bin/index.js b/bin/index.js
+index 1b7a284..c482970 100755
+--- a/bin/index.js
++++ b/bin/index.js
+@@ -1,4 +1,3 @@
+-#!/usr/bin/env node
+ import { bin } from \\"../lib/bin/index.js\\";
+ 
+ process.exitCode = await bin(process.argv.slice(2));"
+`;
 
 exports[`verify cspell.json 1`] = `
 "diff --git a/cspell.json b/cspell.json
@@ -796,10 +817,10 @@ index 83c8537..d73a20f 100644
 
 exports[`verify package.json 1`] = `
 "diff --git a/package.json b/package.json
-index 7a0e08a..0c382e9 100644
+index 006a21c..4e4cea7 100644
 --- a/package.json
 +++ b/package.json
-@@ -8,14 +8,13 @@
+@@ -8,14 +8,12 @@
  	},
  	\\"license\\": \\"MIT\\",
  	\\"author\\": {
@@ -809,23 +830,21 @@ index 7a0e08a..0c382e9 100644
  	},
  	\\"type\\": \\"module\\",
  	\\"main\\": \\"./lib/index.js\\",
- 	\\"bin\\": \\"./bin/index.js\\",
+-	\\"bin\\": \\"./bin/index.js\\",
  	\\"files\\": [
 -		\\"bin/\\",
  		\\"lib/\\",
  		\\"package.json\\",
  		\\"LICENSE.md\\",
-@@ -24,8 +23,7 @@
+@@ -24,7 +22,6 @@
  	\\"scripts\\": {
  		\\"build\\": \\"tsup\\",
  		\\"format\\": \\"prettier \\\\\\"**/*\\\\\\" --ignore-unknown\\",
 -		\\"initialize\\": \\"tsx ./src/bin/index.js --mode initialize\\",
--		\\"lint\\": \\"eslint . .*js --max-warnings 0\\",
-+		\\"lint\\": \\"eslint . .*js --max-warnings 0 --report-unused-disable-directives\\",
+ 		\\"lint\\": \\"eslint . .*js --max-warnings 0\\",
  		\\"lint:knip\\": \\"knip\\",
  		\\"lint:md\\": \\"markdownlint \\\\\\"**/*.md\\\\\\" \\\\\\".github/**/*.md\\\\\\" --rules sentences-per-line\\",
- 		\\"lint:package-json\\": \\"npmPkgJsonLint .\\",
-@@ -34,9 +32,6 @@
+@@ -34,9 +31,6 @@
  		\\"prepare\\": \\"husky install\\",
  		\\"should-semantic-release\\": \\"should-semantic-release --verbose\\",
  		\\"test\\": \\"vitest\\",
@@ -835,11 +854,11 @@ index 7a0e08a..0c382e9 100644
  		\\"tsc\\": \\"tsc\\"
  	},
  	\\"lint-staged\\": {
-@@ -107,7 +102,7 @@
- 		\\"vitest\\": \\"^0.34.3\\",
+@@ -107,7 +101,7 @@
+ 		\\"vitest\\": \\"^1.0.2\\",
  		\\"yaml-eslint-parser\\": \\"^1.2.2\\"
  	},
--	\\"packageManager\\": \\"pnpm@8.10.5\\",
+-	\\"packageManager\\": \\"pnpm@8.12.0\\",
 +	\\"packageManager\\": \\"pnpm@8.7.0\\",
  	\\"engines\\": {
  		\\"node\\": \\">=18\\"

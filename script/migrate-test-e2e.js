@@ -4,6 +4,7 @@ import { createVitest } from "vitest/node";
 
 const vitest = await createVitest("test", {
 	include: [new URL("./verify-changes.test.ts", import.meta.url).pathname],
+	update: process.argv.includes("-u"),
 	watch: false,
 });
 

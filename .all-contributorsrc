@@ -352,6 +352,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jamiemagee",
+      "name": "Jamie Magee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1358764?v=4",
+      "profile": "https://jamiemagee.co.uk",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,

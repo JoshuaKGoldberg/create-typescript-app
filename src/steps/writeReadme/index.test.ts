@@ -66,7 +66,7 @@ describe("writeReadme", () => {
 				<a href="https://github.com/sponsors/TestFunding" target="_blank"><img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" /></a>
 				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 				<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-				<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
+				<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
 			</p>
 
 			## Usage
@@ -127,7 +127,7 @@ describe("writeReadme", () => {
 				<a href="https://github.com/sponsors/TestFunding" target="_blank"><img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" /></a>
 				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 				<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-				<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
+				<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
 			</p>
 
 			## Usage
@@ -191,7 +191,7 @@ describe("writeReadme", () => {
 				<a href="https://github.com/sponsors/TestFunding" target="_blank"><img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" /></a>
 				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 				<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-				<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
+				<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
 			</p>
 
 			## Usage
@@ -289,7 +289,7 @@ describe("writeReadme", () => {
 				<a href="https://github.com/sponsors/TestFunding" target="_blank"><img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" /></a>
 				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 				<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-				<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
+				<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
 				<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
 			</p>
 

@@ -1,3 +1,9 @@
+## [1.49.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.3...v1.49.4) (2023-12-22)
+
+### Bug Fixes
+
+- use repository name in README.md npm package badge ([#1109](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1109)) ([728eb4b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/728eb4b6526f973901cd5fdaea25c8316558f9bd)), closes [#1108](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1108)
+
 ## [1.49.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.2...v1.49.3) (2023-12-22)
 
 ### Bug Fixes

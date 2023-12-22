@@ -1,3 +1,9 @@
+## [1.49.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.2...v1.49.3) (2023-12-22)
+
+### Bug Fixes
+
+- prompt for values when auto is off, regardless of a default value ([#1107](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1107)) ([127108f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/127108f4cde34d2f43e9cf6858b49c17cd8ec183)), closes [#1106](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1106)
+
 ## [1.49.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.1...v1.49.2) (2023-12-07)
 
 ### Bug Fixes

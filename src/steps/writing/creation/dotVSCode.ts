@@ -32,7 +32,7 @@ export async function createDotVSCode(options: Options) {
 		}),
 		"settings.json": await formatJson({
 			"editor.codeActionsOnSave": {
-				"source.fixAll.eslint": true,
+				"source.fixAll.eslint": "explicit",
 			},
 			"editor.defaultFormatter": "esbenp.prettier-vscode",
 			"editor.formatOnSave": true,

@@ -124,9 +124,10 @@ export async function readOptions(
 
 	const ownerOption = await getPrefillOrPromptedOption({
 		auto: !!mappedOptions.auto,
-		getDefaultValue: async () => options.owner ?? (await defaults.owner()),
+		getDefaultValue: defaults.owner,
 		message: "What organization or user will the repository be under?",
 		name: "owner",
+		provided: options.owner,
 	});
 
 	options.owner ??= ownerOption.value;
@@ -141,10 +142,10 @@ export async function readOptions(
 
 	const repositoryOption = await getPrefillOrPromptedOption({
 		auto: !!mappedOptions.auto,
-		getDefaultValue: async () =>
-			options.repository ?? (await defaults.repository()),
+		getDefaultValue: defaults.repository,
 		message: "What will the kebab-case name of the repository be?",
 		name: "repository",
+		provided: options.repository,
 	});
 
 	options.repository ??= repositoryOption.value;
@@ -175,11 +176,10 @@ export async function readOptions(
 	const descriptionOption = await getPrefillOrPromptedOption({
 		auto: !!mappedOptions.auto,
 		getDefaultValue: async () =>
-			options.description ??
-			(await defaults.description()) ??
-			"A very lovely package. Hooray!",
+			(await defaults.description()) ?? "A very lovely package. Hooray!",
 		message: "How would you describe the new package?",
 		name: "description",
+		provided: options.description,
 	});
 
 	options.description ??= descriptionOption.value;
@@ -191,11 +191,10 @@ export async function readOptions(
 	const titleOption = await getPrefillOrPromptedOption({
 		auto: !!mappedOptions.auto,
 		getDefaultValue: async () =>
-			options.title ??
-			(await defaults.title()) ??
-			titleCase(repository).replaceAll("-", " "),
+			(await defaults.title()) ?? titleCase(repository).replaceAll("-", " "),
 		message: "What will the Title Case title of the repository be?",
 		name: "title",
+		provided: options.title,
 	});
 
 	options.title ??= titleOption.value;

@@ -13,7 +13,21 @@ vi.mock("@clack/prompts", () => ({
 }));
 
 describe("getPrefillOrPromptedValue", () => {
-	it("returns the placeholder when auto is true and it exists", async () => {
+	it("returns the provided when it exists", async () => {
+		const value = "Test Value";
+
+		const actual = await getPrefillOrPromptedOption({
+			auto: true,
+			getDefaultValue: vi.fn().mockResolvedValue("default value"),
+			message: "Input message.",
+			name: "field",
+			provided: value,
+		});
+
+		expect(actual).toEqual({ error: undefined, value });
+	});
+
+	it("returns the default value when auto is true and it exists", async () => {
 		const value = "Test Value";
 
 		const actual = await getPrefillOrPromptedOption({
@@ -26,7 +40,7 @@ describe("getPrefillOrPromptedValue", () => {
 		expect(actual).toEqual({ error: undefined, value });
 	});
 
-	it("returns an error when auto is true and no placeholder exists", async () => {
+	it("returns an error when auto is true and no default value exists", async () => {
 		const actual = await getPrefillOrPromptedOption({
 			auto: true,
 			getDefaultValue: vi.fn().mockResolvedValue(undefined),
@@ -52,22 +66,22 @@ describe("getPrefillOrPromptedValue", () => {
 		});
 	});
 
-	it("provides the placeholder's awaited return when a placeholder function is provided and auto is false", async () => {
+	it("prompts with the default value as a placeholder when a placeholder function is provided and auto is false", async () => {
 		const message = "Test message";
 		const placeholder = "Test placeholder";
 
-		const actual = await getPrefillOrPromptedOption({
+		await getPrefillOrPromptedOption({
 			auto: false,
 			getDefaultValue: vi.fn().mockResolvedValue(placeholder),
 			message,
 			name: "field",
 		});
 
-		expect(actual).toEqual({
-			error: undefined,
-			value: placeholder,
+		expect(mockText).toHaveBeenCalledWith({
+			message,
+			placeholder,
+			validate: expect.any(Function),
 		});
-		expect(mockText).not.toHaveBeenCalled();
 	});
 
 	it("validates entered text when it's not  blank and auto is false", async () => {

@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to `create-typescript-app`! 💖
+Thanks for your interest in contributing to `test-repo`! 💖
 
 > After this page, see [DEVELOPMENT.md](./DEVELOPMENT.md) for local development instructions.
 
@@ -10,7 +10,7 @@ This project contains a [Contributor Covenant code of conduct](./CODE_OF_CONDUCT
 
 ## Reporting Issues
 
-Please do [report an issue on the issue tracker](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
+Please do [report an issue on the issue tracker](https://github.com/Test Owner/test-repo/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
 
 ## Sending Contributions
 
@@ -42,7 +42,7 @@ Be sure to fill out the pull request template's requested information -- otherwi
 PRs are also expected to have a title that adheres to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0).
 Only PR titles need to be in that format, not individual commits.
 Don't worry if you get this wrong: you can always change the PR title after sending it.
-Check [previously merged PRs](https://github.com/JoshuaKGoldberg/create-typescript-app/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
+Check [previously merged PRs](https://github.com/Test Owner/test-repo/pulls?q=is%3Apr+is%3Amerged+-label%3Adependencies+) for reference.
 
 #### Draft PRs
 

@@ -1,16 +1,6 @@
 {
 	"$schema": "https://unpkg.com/knip@latest/schema.json",
-	"entry": [
-		"src/index.ts!",
-		"src/guide/index.ts",
-		"src/initialize/index.ts",
-		"src/migrate/index.ts",
-		"script/*e2e.js"
-	],
-	"ignoreBinaries": ["gh"],
-	"ignoreExportsUsedInFile": {
-		"interface": true,
-		"type": true
-	},
-	"project": ["src/**/*.ts!", "script/**/*.js"]
+	"entry": ["src/index.ts!"],
+	"ignoreExportsUsedInFile": { "interface": true, "type": true },
+	"project": ["src/**/*.ts!"]
 }

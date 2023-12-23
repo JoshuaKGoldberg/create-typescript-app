@@ -3,8 +3,8 @@
 After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 
 ```shell
-git clone https://github.com/<your-name-here>/create-typescript-app
-cd create-typescript-app
+git clone https://github.com/<your-name-here>/test-repo
+cd test-repo
 pnpm install
 ```
 
@@ -96,116 +96,3 @@ Add `--watch` to keep the type checker running in a watch mode that updates the 
 ```shell
 pnpm tsc --watch
 ```
-
-## Setup Scripts
-
-As described in the `README.md` file and `docs/`, this template repository comes with three scripts that can set up an existing or new repository.
-
-Each follows roughly the same general flow:
-
-1. `bin/index.ts` uses `bin/mode.ts` to determine which of the three setup scripts to run
-2. `readOptions` parses in options from local files, Git commands, npm APIs, and/or files on disk
-3. `runOrRestore` wraps the setup script's main logic in a friendly prompt wrapper
-4. The setup script wraps each portion of its main logic with `withSpinner`
-   - Each step of setup logic is generally imported from within `src/steps`
-5. A call to `outro` summarizes the results for the user
-
-> **Warning**
-> Each setup script overrides many files in the directory they're run in.
-> Make sure to save any changes you want to preserve before running them.
-
-### The Creation Script
-
-This template's "creation" script is located in `src/create/`.
-You can run it locally with `node bin/index.js --mode create`.
-Note that files need to be built with `pnpm run build` beforehand.
-
-#### Testing the Creation Script
-
-You can run the end-to-end test for creation locally on the command-line.
-Note that the files need to be built with `pnpm run build` beforehand.
-
-```shell
-pnpm run test:create
-```
-
-That end-to-end test executes `script/create-test-e2e.js`, which:
-
-1. Runs the creation script to create a new `test-repository` child directory and repository, capturing code coverage
-2. Asserts that commands such as `build` and `lint` each pass
-
-The `pnpm run test:create` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-create.yml`.
-
-### The Initialization Script
-
-This template's "initialization" script is located in `src/initialize/`.
-You can run it locally with `pnpm run initialize`.
-It uses [`tsx`](https://github.com/esbuild-kit/tsx) so you don't need to build files before running.
-
-```shell
-pnpm run initialize
-```
-
-#### Testing the Initialization Script
-
-You can run the end-to-end test for initializing locally on the command-line.
-Note that files need to be built with `pnpm run build` beforehand.
-
-```shell
-pnpm run test:initialize
-```
-
-That end-to-end test executes `script/initialize-test-e2e.js`, which:
-
-1. Runs the initialization script using `--skip-github-api` and other skip flags
-2. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
-3. Runs `pnpm run lint:knip` to make sure no excess dependencies or files were left over
-4. Resets everything
-5. Runs initialization a second time, capturing test coverage
-
-The `pnpm run test:initialize` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-initialize.yml`.
-
-### The Migration Script
-
-This template's "migration" script is located in `src/migrate/`.
-Note that files need to be built with `pnpm run build` beforehand.
-
-To test out the script locally, run it from a different repository's directory:
-
-```shell
-cd ../other-repo
-node ../create-typescript-app/bin/migrate.js
-```
-
-The migration script will work on any directory.
-You can try it out in a blank directory with scripts like:
-
-```shell
-cd ..
-mkdir temp
-cd temp
-node ../create-typescript-app/bin/migrate.js
-```
-
-#### Testing the Migration Script
-
-You can run the end-to-end test for migrating locally on the command-line:
-
-```shell
-pnpm run test:migrate
-```
-
-That end-to-end test executes `script/migrate-test-e2e.js`, which:
-
-1. Runs the migration script using `--skip-github-api` and other skip flags, capturing code coverage
-2. Checks that only a small list of allowed files were changed
-3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
-
-The `pnpm run test:migrate` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-migrate.yml`.
-
-> Tip: if the migration test is failing in CI and you don't see any errors, try [downloading the full logs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs#downloading-logs).
-> There'll likely be a list of changed files under a message like _`Oh no! Running the migrate script modified some files:`_.
-> You can also try running the test script locally.

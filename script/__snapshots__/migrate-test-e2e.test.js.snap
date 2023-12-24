@@ -728,24 +728,12 @@ index fcdab3c..aabb1ae 100644
 +> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app)."
 `;
 
-exports[`verify bin/index.js 1`] = `
-"diff --git a/bin/index.js b/bin/index.js
-index 1b7a284..c482970 100755
---- a/bin/index.js
-+++ b/bin/index.js
-@@ -1,4 +1,3 @@
--#!/usr/bin/env node
- import { bin } from \\"../lib/bin/index.js\\";
- 
- process.exitCode = await bin(process.argv.slice(2));"
-`;
-
 exports[`verify cspell.json 1`] = `
 "diff --git a/cspell.json b/cspell.json
-index 386ca42..494dd2e 100644
+index 8210d61..494dd2e 100644
 --- a/cspell.json
 +++ b/cspell.json
-@@ -1,39 +1,27 @@
+@@ -1,40 +1,27 @@
  {
  	\\"dictionaries\\": [\\"typescript\\"],
  	\\"ignorePaths\\": [
@@ -755,7 +743,9 @@ index 386ca42..494dd2e 100644
 +		\\"coverage\\",
  		\\"lib\\",
  		\\"node_modules\\",
- 		\\"pnpm-lock.yaml\\"
+-		\\"pnpm-lock.yaml\\",
+-		\\"./script/__snapshots__\\"
++		\\"pnpm-lock.yaml\\"
  	],
  	\\"words\\": [
 -		\\"allcontributors\\",
@@ -817,7 +807,7 @@ index 83c8537..d73a20f 100644
 
 exports[`verify package.json 1`] = `
 "diff --git a/package.json b/package.json
-index 006a21c..4e4cea7 100644
+index a47ac69..4e4cea7 100644
 --- a/package.json
 +++ b/package.json
 @@ -8,14 +8,12 @@
@@ -850,7 +840,7 @@ index 006a21c..4e4cea7 100644
  		\\"test\\": \\"vitest\\",
 -		\\"test:create\\": \\"node script/create-test-e2e.js\\",
 -		\\"test:initialize\\": \\"node script/initialize-test-e2e.js\\",
--		\\"test:migrate\\": \\"node script/migrate-test-e2e.js\\",
+-		\\"test:migrate\\": \\"vitest run script/migrate-test-e2e.test.js\\",
  		\\"tsc\\": \\"tsc\\"
  	},
  	\\"lint-staged\\": {
@@ -864,5 +854,3 @@ index 006a21c..4e4cea7 100644
  		\\"node\\": \\">=18\\"
  	},"
 `;
-
-exports[`verify pnpm-lock.yaml 1`] = `""`;

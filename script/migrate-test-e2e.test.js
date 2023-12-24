@@ -18,7 +18,7 @@ beforeAll(async () => {
 	})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 }, Infinity);
 
-test.each([...filesExpectedToBeChanged])("verify  %s", async (file) => {
+test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
 	const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
 	expect(stdout).toMatchSnapshot();
 });

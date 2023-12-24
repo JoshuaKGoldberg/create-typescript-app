@@ -32,7 +32,7 @@ await $({
 
 test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
 	const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
-	expect(stdout).toMatchSnapshot();
+	expect(stdout.slice(2)).toMatchSnapshot();
 });
 
 test("check for unstagedModifiedFiles", async () => {

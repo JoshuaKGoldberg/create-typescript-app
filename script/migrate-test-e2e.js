@@ -1,22 +1,20 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
 import { test } from "vitest";
-import { assert, beforeAll, expect } from "vitest";
+import { assert, expect } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 import { filesExpectedToBeChanged } from "./constants.js";
 
-beforeAll(async () => {
-	const { description, name: repository } = packageData;
-	const emailGithub = "github@joshuakgoldberg.com";
-	const emailNpm = "npm@joshuakgoldberg.com";
-	const owner = "JoshuaKGoldberg";
-	const title = "Create TypeScript App";
+const { description, name: repository } = packageData;
+const emailGithub = "github@joshuakgoldberg.com";
+const emailNpm = "npm@joshuakgoldberg.com";
+const owner = "JoshuaKGoldberg";
+const title = "Create TypeScript App";
 
-	await $({
-		stdio: "inherit",
-	})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
-}, Infinity);
+await $({
+	stdio: "inherit",
+})`c8 -o ./coverage-migrate -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
 test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
 	const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);

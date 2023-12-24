@@ -36,7 +36,7 @@
 		"test": "vitest",
 		"test:create": "node script/create-test-e2e.js",
 		"test:initialize": "node script/initialize-test-e2e.js",
-		"test:migrate": "vitest run script/migrate-test-e2e.test.js",
+		"test:migrate": "vitest -r script/",
 		"tsc": "tsc"
 	},
 	"lint-staged": {

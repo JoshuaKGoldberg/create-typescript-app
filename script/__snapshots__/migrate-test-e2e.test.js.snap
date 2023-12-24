@@ -2,7 +2,7 @@
 
 exports[`verify .all-contributorsrc 1`] = `
 "diff --git a/.all-contributorsrc b/.all-contributorsrc
-index 1f1f278..4822422 100644
+index 084b7ee..0ed629e 100644
 --- a/.all-contributorsrc
 +++ b/.all-contributorsrc
 @@ -1,5 +1,5 @@
@@ -12,7 +12,7 @@ index 1f1f278..4822422 100644
    \\"commit\\": false,
    \\"commitConvention\\": \\"angular\\",
    \\"contributors\\": [
-@@ -24,345 +24,260 @@
+@@ -24,363 +24,274 @@
        \\"name\\": \\"Jeff Wen\\",
        \\"avatar_url\\": \\"https://avatars.githubusercontent.com/u/3297859?v=4\\",
        \\"profile\\": \\"https://sinchang.me\\",
@@ -380,6 +380,26 @@ index 1f1f278..4822422 100644
 -        \\"code\\"
 -      ]
 +      \\"contributions\\": [\\"code\\"]
+     },
+     {
+       \\"login\\": \\"jamiemagee\\",
+       \\"name\\": \\"Jamie Magee\\",
+       \\"avatar_url\\": \\"https://avatars.githubusercontent.com/u/1358764?v=4\\",
+       \\"profile\\": \\"https://jamiemagee.co.uk\\",
+-      \\"contributions\\": [
+-        \\"ideas\\"
+-      ]
++      \\"contributions\\": [\\"ideas\\"]
+     },
+     {
+       \\"login\\": \\"praveenshinde3\\",
+       \\"name\\": \\"Praveen Shinde\\",
+       \\"avatar_url\\": \\"https://avatars.githubusercontent.com/u/107350270?v=4\\",
+       \\"profile\\": \\"https://praveenshinde.vercel.app/\\",
+-      \\"contributions\\": [
+-        \\"code\\"
+-      ]
++      \\"contributions\\": [\\"code\\"]
      }
    ],
    \\"contributorsPerLine\\": 7,
@@ -602,7 +622,7 @@ index df3f955..781d52e 100644
 
 exports[`verify .github/workflows/test.yml 1`] = `
 "diff --git a/.github/workflows/test.yml b/.github/workflows/test.yml
-index 48af822..0c7400b 100644
+index e2fd6ee..0c7400b 100644
 --- a/.github/workflows/test.yml
 +++ b/.github/workflows/test.yml
 @@ -7,14 +7,6 @@ jobs:
@@ -613,7 +633,7 @@ index 48af822..0c7400b 100644
 -          flags: unit
 -      - if: always()
 -        name: Archive code coverage results
--        uses: actions/upload-artifact@v3
+-        uses: actions/upload-artifact@v4
 -        with:
 -          name: code-coverage-report
 -          path: coverage
@@ -649,15 +669,15 @@ index 613eedd..32ca0f2 100644
 
 exports[`verify README.md 1`] = `
 "diff --git a/README.md b/README.md
-index fcdab3c..aabb1ae 100644
+index 38d676e..4077451 100644
 --- a/README.md
 +++ b/README.md
 @@ -5,57 +5,20 @@
  <p align=\\"center\\">
  	<!-- prettier-ignore-start -->
  	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
--<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 37 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-37_🤝-21bb42.svg\\" /></a>
-+	<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 37 👪\\" src=\\"https://img.shields.io/badge/all_contributors-37_👪-21bb42.svg\\" /></a>
+-<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 39 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-39_🤝-21bb42.svg\\" /></a>
++	<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 39 👪\\" src=\\"https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg\\" /></a>
  <!-- ALL-CONTRIBUTORS-BADGE:END -->
  	<!-- prettier-ignore-end -->
  	<a href=\\"https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app\\" target=\\"_blank\\"><img alt=\\"Codecov Test Coverage\\" src=\\"https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app/branch/main/graph/badge.svg\\"/></a>
@@ -672,7 +692,7 @@ index fcdab3c..aabb1ae 100644
 +	<img alt=\\"Style: Prettier\\" src=\\"https://img.shields.io/badge/style-prettier-21bb42.svg\\" />
 +	<img alt=\\"TypeScript: Strict\\" src=\\"https://img.shields.io/badge/typescript-strict-21bb42.svg\\" />
  	<img alt=\\"npm package version\\" src=\\"https://img.shields.io/npm/v/create-typescript-app?color=21bb42\\" />
-+	<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 37 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-37_🤝-21bb42.svg\\" /></a>
++	<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: 39 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-39_🤝-21bb42.svg\\" /></a>
 +	<img alt=\\"Sponsor: On GitHub 💸\\" src=\\"https://img.shields.io/badge/sponsor-on_github_💸-21bb42.svg\\" />
  </p>
  
@@ -718,7 +738,7 @@ index fcdab3c..aabb1ae 100644
  ## Development
  
  See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-@@ -126,3 +89,7 @@ Thanks! 💖
+@@ -128,3 +91,7 @@ Thanks! 💖
  
  <!-- ALL-CONTRIBUTORS-LIST:END -->
  <!-- spellchecker: enable -->
@@ -807,7 +827,7 @@ index 83c8537..d73a20f 100644
 
 exports[`verify package.json 1`] = `
 "diff --git a/package.json b/package.json
-index a47ac69..4e4cea7 100644
+index 65accab..e2aa424 100644
 --- a/package.json
 +++ b/package.json
 @@ -8,14 +8,12 @@
@@ -848,7 +868,7 @@ index a47ac69..4e4cea7 100644
  		\\"vitest\\": \\"^1.0.2\\",
  		\\"yaml-eslint-parser\\": \\"^1.2.2\\"
  	},
--	\\"packageManager\\": \\"pnpm@8.12.0\\",
+-	\\"packageManager\\": \\"pnpm@8.12.1\\",
 +	\\"packageManager\\": \\"pnpm@8.7.0\\",
  	\\"engines\\": {
  		\\"node\\": \\">=18\\"

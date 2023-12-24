@@ -1,9 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`verify .all-contributorsrc 1`] = `
-"diff --git a/.all-contributorsrc b/.all-contributorsrc
-index 084b7ee..0ed629e 100644
---- a/.all-contributorsrc
+"--- a/.all-contributorsrc
 +++ b/.all-contributorsrc
 @@ -1,5 +1,5 @@
  {
@@ -419,9 +417,7 @@ index 084b7ee..0ed629e 100644
 `;
 
 exports[`verify .eslintignore 1`] = `
-"diff --git a/.eslintignore b/.eslintignore
-index 06a1bea..9425b10 100644
---- a/.eslintignore
+"--- a/.eslintignore
 +++ b/.eslintignore
 @@ -1,5 +1,5 @@
  !.*
@@ -433,9 +429,7 @@ index 06a1bea..9425b10 100644
 `;
 
 exports[`verify .eslintrc.cjs 1`] = `
-"diff --git a/.eslintrc.cjs b/.eslintrc.cjs
-index ede5d35..56ee2c5 100644
---- a/.eslintrc.cjs
+"--- a/.eslintrc.cjs
 +++ b/.eslintrc.cjs
 @@ -1,13 +1,3 @@
 -/*
@@ -473,9 +467,7 @@ index ede5d35..56ee2c5 100644
 `;
 
 exports[`verify .github/DEVELOPMENT.md 1`] = `
-"diff --git a/.github/DEVELOPMENT.md b/.github/DEVELOPMENT.md
-index d85b485..5f7094a 100644
---- a/.github/DEVELOPMENT.md
+"--- a/.github/DEVELOPMENT.md
 +++ b/.github/DEVELOPMENT.md
 @@ -1,8 +1,5 @@
  # Development
@@ -606,9 +598,7 @@ index d85b485..5f7094a 100644
 `;
 
 exports[`verify .github/workflows/lint-knip.yml 1`] = `
-"diff --git a/.github/workflows/lint-knip.yml b/.github/workflows/lint-knip.yml
-index df3f955..781d52e 100644
---- a/.github/workflows/lint-knip.yml
+"--- a/.github/workflows/lint-knip.yml
 +++ b/.github/workflows/lint-knip.yml
 @@ -4,7 +4,6 @@ jobs:
      steps:
@@ -621,9 +611,7 @@ index df3f955..781d52e 100644
 `;
 
 exports[`verify .github/workflows/test.yml 1`] = `
-"diff --git a/.github/workflows/test.yml b/.github/workflows/test.yml
-index e2fd6ee..0c7400b 100644
---- a/.github/workflows/test.yml
+"--- a/.github/workflows/test.yml
 +++ b/.github/workflows/test.yml
 @@ -7,14 +7,6 @@ jobs:
        - run: pnpm run test --coverage
@@ -643,9 +631,7 @@ index e2fd6ee..0c7400b 100644
 `;
 
 exports[`verify .gitignore 1`] = `
-"diff --git a/.gitignore b/.gitignore
-index 32ffbca..a8bff3b 100644
---- a/.gitignore
+"--- a/.gitignore
 +++ b/.gitignore
 @@ -1,3 +1,3 @@
 -coverage*/
@@ -655,9 +641,7 @@ index 32ffbca..a8bff3b 100644
 `;
 
 exports[`verify .prettierignore 1`] = `
-"diff --git a/.prettierignore b/.prettierignore
-index 613eedd..32ca0f2 100644
---- a/.prettierignore
+"--- a/.prettierignore
 +++ b/.prettierignore
 @@ -1,4 +1,4 @@
  .all-contributorsrc
@@ -668,9 +652,7 @@ index 613eedd..32ca0f2 100644
 `;
 
 exports[`verify README.md 1`] = `
-"diff --git a/README.md b/README.md
-index 38d676e..4077451 100644
---- a/README.md
+"--- a/README.md
 +++ b/README.md
 @@ -5,57 +5,20 @@
  <p align="center">
@@ -749,9 +731,7 @@ index 38d676e..4077451 100644
 `;
 
 exports[`verify cspell.json 1`] = `
-"diff --git a/cspell.json b/cspell.json
-index 8210d61..494dd2e 100644
---- a/cspell.json
+"--- a/cspell.json
 +++ b/cspell.json
 @@ -1,40 +1,27 @@
  {
@@ -799,11 +779,9 @@ index 8210d61..494dd2e 100644
 `;
 
 exports[`verify knip.jsonc 1`] = `
-"diff --git a/knip.jsonc b/knip.jsonc
-index 83c8537..d73a20f 100644
---- a/knip.jsonc
+"--- a/knip.jsonc
 +++ b/knip.jsonc
-@@ -1,16 +1,6 @@
+@@ -1,17 +1,6 @@
  {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",
 -	"entry": [
@@ -814,6 +792,7 @@ index 83c8537..d73a20f 100644
 -		"script/*e2e.js"
 -	],
 -	"ignoreBinaries": ["gh"],
+-	"ignoreDependencies": ["script"],
 -	"ignoreExportsUsedInFile": {
 -		"interface": true,
 -		"type": true
@@ -826,9 +805,7 @@ index 83c8537..d73a20f 100644
 `;
 
 exports[`verify package.json 1`] = `
-"diff --git a/package.json b/package.json
-index 516b1bd..e2aa424 100644
---- a/package.json
+"--- a/package.json
 +++ b/package.json
 @@ -8,14 +8,12 @@
  	},

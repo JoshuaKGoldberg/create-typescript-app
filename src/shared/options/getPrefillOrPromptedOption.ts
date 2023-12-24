@@ -7,6 +7,7 @@ export interface GetPrefillOrPromptedOptionOptions {
 	getDefaultValue?: () => Promise<string | undefined>;
 	message: string;
 	name: string;
+	provided?: string | undefined;
 }
 
 export async function getPrefillOrPromptedOption({
@@ -14,10 +15,15 @@ export async function getPrefillOrPromptedOption({
 	getDefaultValue,
 	message,
 	name,
+	provided,
 }: GetPrefillOrPromptedOptionOptions) {
+	if (provided) {
+		return { value: provided };
+	}
+
 	const defaultValue = await getDefaultValue?.();
 
-	if (auto || defaultValue) {
+	if (auto) {
 		return {
 			error: defaultValue
 				? undefined

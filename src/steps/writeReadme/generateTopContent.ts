@@ -58,7 +58,7 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 			/typescript.*strict/i,
 		],
 		[
-			`<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />`,
+			`<img alt="npm package version" src="https://img.shields.io/npm/v/${options.repository}?color=21bb42" />`,
 			/npm.*v/i,
 		],
 	] as const) {

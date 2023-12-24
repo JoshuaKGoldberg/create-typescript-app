@@ -1,3 +1,21 @@
+# [1.50.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.4...v1.50.0) (2023-12-24)
+
+### Features
+
+- Updated source.fixAll.eslint to explicit ([#1110](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1110)) ([274ec71](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/274ec7133b0cd1997b7d12536e17a2aea6612302)), closes [#1105](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1105)
+
+## [1.49.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.3...v1.49.4) (2023-12-22)
+
+### Bug Fixes
+
+- use repository name in README.md npm package badge ([#1109](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1109)) ([728eb4b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/728eb4b6526f973901cd5fdaea25c8316558f9bd)), closes [#1108](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1108)
+
+## [1.49.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.2...v1.49.3) (2023-12-22)
+
+### Bug Fixes
+
+- prompt for values when auto is off, regardless of a default value ([#1107](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1107)) ([127108f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/127108f4cde34d2f43e9cf6858b49c17cd8ec183)), closes [#1106](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1106)
+
 ## [1.49.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.1...v1.49.2) (2023-12-07)
 
 ### Bug Fixes

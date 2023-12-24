@@ -352,6 +352,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jamiemagee",
+      "name": "Jamie Magee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1358764?v=4",
+      "profile": "https://jamiemagee.co.uk",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "praveenshinde3",
+      "name": "Praveen Shinde",
+      "avatar_url": "https://avatars.githubusercontent.com/u/107350270?v=4",
+      "profile": "https://praveenshinde.vercel.app/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

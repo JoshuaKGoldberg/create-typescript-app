@@ -35,6 +35,7 @@ test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
 	expect(stdout.split("\n").slice(2).join("\n")).toMatchSnapshot();
 });
 
+// eslint-disable-next-line vitest/expect-expect
 test("check for unstagedModifiedFiles", async () => {
 	const { stdout: gitStatus } = await $`git status`;
 	console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
@@ -64,7 +65,7 @@ test("check for unstagedModifiedFiles", async () => {
 				(await execaCommand(gitDiffCommand)).stdout
 			}`,
 		);
-		console.error(
+		throw new Error(
 			[
 				"",
 				"Oh no! Running the migrate script modified some files:",
@@ -80,6 +81,4 @@ test("check for unstagedModifiedFiles", async () => {
 				.join("\n"),
 		);
 	}
-
-	expect(unstagedModifiedFiles.length).toBe(0);
 });

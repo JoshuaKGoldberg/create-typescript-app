@@ -4,7 +4,21 @@ import { test } from "vitest";
 import { assert, expect } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
-import { filesExpectedToBeChanged } from "./constants.js";
+
+const filesExpectedToBeChanged = new Set([
+	".all-contributorsrc",
+	"README.md",
+	"knip.jsonc",
+	"package.json",
+	".eslintignore",
+	".eslintrc.cjs",
+	".github/DEVELOPMENT.md",
+	".github/workflows/lint-knip.yml",
+	".github/workflows/test.yml",
+	".gitignore",
+	".prettierignore",
+	"cspell.json",
+]);
 
 const { description, name: repository } = packageData;
 const emailGithub = "github@joshuakgoldberg.com";

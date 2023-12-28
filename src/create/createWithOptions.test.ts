@@ -2,6 +2,7 @@ import { $ } from "execa";
 import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
+import { SpinnerTask } from "../shared/cli/spinners.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
 import { Options } from "../shared/types.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
@@ -66,14 +67,22 @@ const github = {
 };
 
 vi.mock("../shared/cli/spinners.js", () => ({
-	withSpinner: vi.fn().mockImplementation(async (label: string, task) => {
-		return await task();
-	}),
-	withSpinners: vi.fn().mockImplementation(async (label: string, tasks) => {
-		for (const [_, task] of tasks) {
-			await task(); // Ensure each task is awaited
-		}
-	}),
+	withSpinner: vi
+		.fn()
+		.mockImplementation(
+			async <Return>(label: string, task: SpinnerTask<Return>) => {
+				return await task();
+			},
+		),
+	withSpinners: vi
+		.fn()
+		.mockImplementation(
+			async (label: string, tasks: [string, SpinnerTask<unknown>][]) => {
+				for (const [, task] of tasks) {
+					await task();
+				}
+			},
+		),
 }));
 
 vi.mock("../steps/writing/writeStructure.js", () => ({

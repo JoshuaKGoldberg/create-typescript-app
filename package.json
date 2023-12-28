@@ -1,21 +1,24 @@
 {
-	"name": "create-typescript-app",
+	"name": "test-repo",
 	"version": "1.39.0",
-	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝",
+	"description": "Test Description",
+	"keywords": [
+		"test",
+		"keywords"
+	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/create-typescript-app"
+		"url": "https://github.com/Test Owner/test-repo"
 	},
 	"license": "MIT",
 	"author": {
-		"name": "Josh Goldberg",
-		"email": "npm@joshuakgoldberg.com"
+		"name": "Test Author",
+		"email": "npm@example.com"
 	},
 	"type": "module",
 	"main": "./lib/index.js",
 	"bin": "./bin/index.js",
 	"files": [
-		"bin/",
 		"lib/",
 		"package.json",
 		"LICENSE.md",
@@ -24,8 +27,7 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier \"**/*\" --ignore-unknown",
-		"initialize": "tsx ./src/bin/index.js --mode initialize",
-		"lint": "eslint . .*js --max-warnings 0",
+		"lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
 		"lint:package-json": "npmPkgJsonLint .",
@@ -34,9 +36,6 @@
 		"prepare": "husky install",
 		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest",
-		"test:create": "node script/create-test-e2e.js",
-		"test:initialize": "node script/initialize-test-e2e.js",
-		"test:migrate": "node script/migrate-test-e2e.js",
 		"tsc": "tsc"
 	},
 	"lint-staged": {
@@ -107,7 +106,7 @@
 		"vitest": "^0.34.3",
 		"yaml-eslint-parser": "^1.2.2"
 	},
-	"packageManager": "pnpm@8.9.2",
+	"packageManager": "pnpm@8.7.0",
 	"engines": {
 		"node": ">=18"
 	},

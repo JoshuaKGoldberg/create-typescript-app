@@ -14,8 +14,8 @@ jobs:
 
             The release is available on:
 
-            * [GitHub releases](https://github.com/JoshuaKGoldberg/create-typescript-app/releases/tag/{release_tag})
-            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/create-typescript-app/v/${{ env.npm_version }})
+            * [GitHub releases](https://github.com/Test Owner/test-repo/releases/tag/{release_tag})
+            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-repo/v/${{ env.npm_version }})
 
             Cheers! 📦🚀
 

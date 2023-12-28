@@ -1,36 +1,68 @@
-<h1 align="center">Create TypeScript App</h1>
+<h1 align="center">Test Title</h1>
 
-<p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝</p>
+<p align="center">Test Description</p>
 
 <p align="center">
 	<a href="#contributors" target="_blank">
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<img alt="All Contributors: 34 🤝" src="https://img.shields.io/badge/all_contributors-34_🤝-21bb42.svg" />
+<img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
+</a>
+	<a href="https://codecov.io/gh/Test Owner/test-repo" target="_blank">
+		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/Test Owner/test-repo/branch/main/graph/badge.svg"/>
 	</a>
-	<a href="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app" target="_blank">
-		<img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app/branch/main/graph/badge.svg"/>
+	<a href="https://github.com/Test Owner/test-repo/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
+		<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
 	</a>
-	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank">
-		<img alt="Code of Conduct: Enforced 🤝" src="https://img.shields.io/badge/code_of_conduct-enforced_🤝-21bb42" />
+	<a href="https://github.com/Test Owner/test-repo/blob/main/LICENSE.md" target="_blank">
+		<img alt="License: MIT" src="https://img.shields.io/github/license/Test Owner/test-repo?color=21bb42">
 	</a>
-	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/LICENSE.md" target="_blank">
-	    <img alt="License: MIT 📝" src="https://img.shields.io/badge/license-MIT_📝-21bb42.svg">
-    </a>
-	<a href="https://github.com/sponsors/JoshuaKGoldberg" target="_blank">
-    	<img alt="Sponsor: On GitHub 💸" src="https://img.shields.io/badge/sponsor-on_github_💸-21bb42.svg" />
-    </a>
-	<img alt="Style: Prettier 🧹" src="https://img.shields.io/badge/style-prettier_🧹-21bb42.svg" />
-    <img alt="TypeScript: Strict 💪" src="https://img.shields.io/badge/typescript-strict_💪-21bb42.svg" />
-    <img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
+	<a href="https://github.com/sponsors/Test Funding" target="_blank">
+		<img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" />
+	</a>
+	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
+	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
+	<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
+	<img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" />
 </p>
 
-<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./create-typescript-app.png">
+## Usage
 
-`create-typescript-app` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.
-It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.
+```shell
+npm i test-repo
+```
+
+```ts
+import { greet } from "test-repo";
+
+greet("Hello, world! 💖");
+```
+
+## Usage
+
+```shell
+npm i test-repo
+```
+
+```ts
+import { greet } from "test-repo";
+
+greet("Hello, world! 💖");
+```
+
+## Usage
+
+```shell
+npm i test-repo
+```
+
+```ts
+import { greet } from "test-repo";
+
+greet("Hello, world! 💖");
+```
 
 ## Getting Started
 
@@ -131,3 +163,7 @@ Thanks! 💖
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
+
+<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+
+> 💙 This package was templated with [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).

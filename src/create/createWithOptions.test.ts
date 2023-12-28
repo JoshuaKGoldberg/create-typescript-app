@@ -71,7 +71,7 @@ vi.mock("../shared/cli/spinners.js", () => ({
 	}),
 	withSpinners: vi.fn().mockImplementation(async (label: string, tasks) => {
 		for (const [_, task] of tasks) {
-			await task();
+			await task(); // Ensure each task is awaited
 		}
 	}),
 }));

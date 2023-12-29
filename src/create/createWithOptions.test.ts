@@ -1,4 +1,3 @@
-import { $ } from "execa";
 import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
@@ -56,8 +55,12 @@ const options: Options = {
 	title: "Test Title",
 };
 
+const mock$ = vi.fn();
+
 vi.mock("execa", () => ({
-	$: vi.fn().mockResolvedValue({ stdout: "Mocked response" }),
+	get $() {
+		return mock$;
+	},
 }));
 
 const mockOctokit = new Octokit();
@@ -137,7 +140,7 @@ it("calls writeStructure and writeReadme with options", async () => {
 	expect(writeReadme).toHaveBeenCalledWith(options);
 });
 
-it("directly calls addToolAllContributors with options", async () => {
+it("calls addToolAllContributors with options", async () => {
 	await addToolAllContributors(options);
 	expect(addToolAllContributors).toHaveBeenCalledWith(options);
 });
@@ -170,7 +173,7 @@ it("handles GitHub repository initialization", async () => {
 });
 
 describe("createWithOptions", () => {
-	it("calls writeStructure and writeReadme with options", async () => {
+	it("initializes GitHub repository correctly", async () => {
 		await createWithOptions({ github, options });
 
 		expect(writeStructure).toHaveBeenCalledWith(options);

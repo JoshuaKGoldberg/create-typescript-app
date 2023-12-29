@@ -145,12 +145,26 @@ it("calls addToolAllContributors with options", async () => {
 	expect(addToolAllContributors).toHaveBeenCalledWith(options);
 });
 
-it("handles addToolAllContributors logic", async () => {
+it("calls addToolAllContributors with options when excludeAllContributors is false", async () => {
 	options.excludeAllContributors = false;
 	options.skipAllContributorsApi = false;
 
 	await createWithOptions({ github, options });
 	expect(addToolAllContributors).toHaveBeenCalledWith(options);
+});
+
+it("does not call addToolAllContributors when excludeAllContributors is true", async () => {
+	options.excludeAllContributors = true;
+
+	await createWithOptions({ github, options });
+	expect(addToolAllContributors).not.toHaveBeenCalled();
+});
+
+it("does not call addToolAllContributors when skipAllContributorsApi is true", async () => {
+	options.skipAllContributorsApi = true;
+
+	await createWithOptions({ github, options });
+	expect(addToolAllContributors).not.toHaveBeenCalled();
 });
 
 it("handles finalizeDependencies and runCommands logic", async () => {

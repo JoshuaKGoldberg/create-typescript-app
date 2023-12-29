@@ -167,6 +167,14 @@ it("does not call addToolAllContributors when skipAllContributorsApi is true", a
 	expect(addToolAllContributors).not.toHaveBeenCalled();
 });
 
+it("does not call finalizeDependencies or runCommands when skipInstall is true", async () => {
+	options.skipInstall = true;
+
+	await createWithOptions({ github, options });
+	expect(finalizeDependencies).not.toHaveBeenCalled();
+	expect(runCommands).not.toHaveBeenCalled();
+});
+
 it("handles finalizeDependencies and runCommands logic", async () => {
 	options.skipInstall = false;
 
@@ -174,6 +182,49 @@ it("handles finalizeDependencies and runCommands logic", async () => {
 
 	expect(finalizeDependencies).toHaveBeenCalledWith(options);
 	expect(runCommands).toHaveBeenCalled();
+});
+
+it("does not initialize GitHub repository if repository does not exist", async () => {
+	vi.mocked(doesRepositoryExist).mockResolvedValueOnce(false);
+	await createWithOptions({ github, options });
+	expect(initializeGitHubRepository).not.toHaveBeenCalled();
+	expect(mock$).not.toHaveBeenCalled();
+});
+
+it("executes git commands when initializing GitHub repository", async () => {
+	vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
+	await createWithOptions({ github, options });
+
+	expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		[
+		  [
+		    [
+		      "git remote add origin https://github.com/",
+		      "/",
+		      "",
+		    ],
+		    "Test Owner",
+		    "test-repo",
+		  ],
+		  [
+		    [
+		      "git add -A",
+		    ],
+		  ],
+		  [
+		    [
+		      "git commit --message ",
+		      "",
+		    ],
+		    "feat: initialized repo ✨",
+		  ],
+		  [
+		    [
+		      "git push -u origin main --force",
+		    ],
+		  ],
+		]
+	`);
 });
 
 it("handles GitHub repository initialization", async () => {

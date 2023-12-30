@@ -33,6 +33,8 @@ export async function writePackageJson(options: Options) {
 	const existingPackageJson =
 		((await readFileSafeAsJson("./package.json")) as null | object) ?? {};
 
+	const bin = options.bin?.replace(/^\.\//, "");
+
 	return await formatJson({
 		// If we didn't already have a version, set it to 0.0.0
 		version: "0.0.0",
@@ -41,7 +43,7 @@ export async function writePackageJson(options: Options) {
 		...existingPackageJson,
 
 		author: { email: options.email.npm, name: options.author },
-		bin: options.bin,
+		bin,
 		description: options.description,
 		keywords: options.keywords?.length
 			? options.keywords.flatMap((keyword) => keyword.split(/ /))
@@ -60,7 +62,9 @@ export async function writePackageJson(options: Options) {
 		engines: {
 			node: ">=18",
 		},
-		files: ["lib/", "package.json", "LICENSE.md", "README.md"],
+		files: [bin, "lib/", "package.json", "LICENSE.md", "README.md"].filter(
+			Boolean,
+		),
 		license: "MIT",
 		"lint-staged": {
 			"*": "prettier --ignore-unknown --write",

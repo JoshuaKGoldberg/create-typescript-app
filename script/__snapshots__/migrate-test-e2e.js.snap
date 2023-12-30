@@ -186,7 +186,7 @@ exports[`expected file changes > README.md 1`] = `
  ## Development
  
  See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
-@@ -129,3 +92,7 @@ Thanks! 💖
+@@ -128,3 +91,7 @@ Thanks! 💖
  
  <!-- ALL-CONTRIBUTORS-LIST:END -->
  <!-- spellchecker: enable -->

@@ -5,7 +5,7 @@ import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 
-const filesExpectedToBeChanged = new Set([
+const filesExpectedToBeChanged = [
 	"README.md",
 	"knip.jsonc",
 	"package.json",
@@ -17,6 +17,11 @@ const filesExpectedToBeChanged = new Set([
 	".gitignore",
 	".prettierignore",
 	"cspell.json",
+];
+
+const filesThatMightBeChanged = new Set([
+	...filesExpectedToBeChanged,
+	"script/__snapshots__/migrate-test-e2e.js.snap",
 ]);
 
 const {
@@ -78,11 +83,11 @@ await fs.writeFile(
 		.join("")
 		.replaceAll(
 			/All Contributors: \d+/g,
-			originalSnapshots.match(/All Contributors: \d+/)[0],
+			originalReadme.match(/All Contributors: \d+/)[0],
 		)
 		.replaceAll(
 			/all_contributors-\d+/g,
-			originalSnapshots.match(/all_contributors-\d+/)[0],
+			originalReadme.match(/all_contributors-\d+/)[0],
 		),
 );
 
@@ -92,16 +97,16 @@ await fs.writeFile(
 	originalSnapshots
 		.replaceAll(
 			/All Contributors: \d+/g,
-			originalSnapshots.match(/All Contributors: \d+/)[0],
+			originalReadme.match(/All Contributors: \d+/)[0],
 		)
 		.replaceAll(
 			/all_contributors-\d+/g,
-			originalSnapshots.match(/all_contributors-\d+/)[0],
+			originalReadme.match(/all_contributors-\d+/)[0],
 		),
 );
 
 describe("expected file changes", () => {
-	test.each([...filesExpectedToBeChanged])("%s", async (file) => {
+	test.each(filesExpectedToBeChanged)("%s", async (file) => {
 		const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
 		const contentsAfterGitMarkers = stdout.split("\n").slice(2).join("\n");
 
@@ -131,7 +136,7 @@ test("unexpected file changes", async () => {
 		.slice(indexOfUnstagedFilesMessage)
 		.match(/modified: {3}(\S+)\n/g)
 		.map((match) => match.split(/\s+/g)[1])
-		.filter((filePath) => !filesExpectedToBeChanged.has(filePath));
+		.filter((filePath) => !filesThatMightBeChanged.has(filePath));
 
 	console.log("Unexpected modified files are:", unstagedModifiedFiles);
 

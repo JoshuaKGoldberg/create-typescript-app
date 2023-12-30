@@ -1,5 +1,5 @@
-import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addOwnerAsAllContributor } from "../steps/addOwnerAsAllContributor.js";
 import { clearChangelog } from "../steps/clearChangelog.js";

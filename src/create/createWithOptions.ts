@@ -1,7 +1,7 @@
 import { $ } from "execa";
 
-import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";

@@ -1,7 +1,8 @@
 {
-  "badgeTemplate": "<a href=\"#contributors\" target=\"_blank\"><img alt=\"All Contributors: <%= contributors.length %> 🤝\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\" /></a>",
+  "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"All Contributors: <%= contributors.length %> 👪\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\" /></a>",
   "commit": false,
   "commitConvention": "angular",
+  "commitType": "docs",
   "contributors": [
     {
       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
@@ -381,6 +382,5 @@
   "projectName": "create-typescript-app",
   "projectOwner": "JoshuaKGoldberg",
   "repoHost": "https://github.com",
-  "repoType": "github",
-  "commitType": "docs"
+  "repoType": "github"
 }

@@ -3,14 +3,7 @@
 exports[`verify .all-contributorsrc 1`] = `
 "--- a/.all-contributorsrc
 +++ b/.all-contributorsrc
-@@ -1,5 +1,5 @@
- {
--  "badgeTemplate": "<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: <%= contributors.length %> 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\\" /></a>",
-+  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: <%= contributors.length %> 👪\\" src=\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\\" /></a>",
-   "commit": false,
-   "commitConvention": "angular",
-   "contributors": [
-@@ -24,363 +24,274 @@
+@@ -25,359 +25,271 @@
        "name": "Jeff Wen",
        "avatar_url": "https://avatars.githubusercontent.com/u/3297859?v=4",
        "profile": "https://sinchang.me",
@@ -408,12 +401,7 @@ exports[`verify .all-contributorsrc 1`] = `
 +  "files": ["README.md"],
    "imageSize": 100,
    "projectName": "create-typescript-app",
-   "projectOwner": "JoshuaKGoldberg",
-   "repoHost": "https://github.com",
--  "repoType": "github",
--  "commitType": "docs"
-+  "repoType": "github"
- }"
+   "projectOwner": "JoshuaKGoldberg","
 `;
 
 exports[`verify .eslintignore 1`] = `
@@ -649,7 +637,7 @@ exports[`verify README.md 1`] = `
  <p align="center">
  	<!-- prettier-ignore-start -->
  	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
--<a href="#contributors" target="_blank"><img alt="All Contributors: 39 🤝" src="https://img.shields.io/badge/all_contributors-39_🤝-21bb42.svg" /></a>
+-  <a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
 +	<a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
  <!-- ALL-CONTRIBUTORS-BADGE:END -->
  	<!-- prettier-ignore-end -->
@@ -665,7 +653,7 @@ exports[`verify README.md 1`] = `
 +	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 +	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
  	<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
-+	<a href="#contributors" target="_blank"><img alt="All Contributors: 39 🤝" src="https://img.shields.io/badge/all_contributors-39_🤝-21bb42.svg" /></a>
++	<a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
 +	<img alt="Sponsor: On GitHub 💸" src="https://img.shields.io/badge/sponsor-on_github_💸-21bb42.svg" />
  </p>
  

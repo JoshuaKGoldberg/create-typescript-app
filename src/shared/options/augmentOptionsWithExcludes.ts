@@ -213,7 +213,7 @@ export async function augmentOptionsWithExcludes(
 					await prompts.multiselect({
 						initialValues: exclusionKeys,
 						message:
-							"Select the tooling portions you'd like to remove. All are enabled by default. You can press ↑ and ↓ on the keyboard to change the selected item, then space to select.",
+							"Select the tooling portions you'd like to remove. All are enabled by default. Press ↑ or ↓ to change the selected item, then space to select.",
 						options: Object.entries(exclusionDescriptions).map(
 							([value, { hint, label }]) => ({
 								hint,

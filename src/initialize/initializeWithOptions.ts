@@ -1,4 +1,5 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addOwnerAsAllContributor } from "../steps/addOwnerAsAllContributor.js";
 import { clearChangelog } from "../steps/clearChangelog.js";
@@ -60,8 +61,10 @@ export async function initializeWithOptions({
 		);
 	}
 
-	await runCommands("Cleaning up files", [
-		"pnpm lint --fix",
-		"pnpm format --write",
-	]);
+	await runCommands(
+		"Cleaning up files",
+		createCleanUpFilesCommands({
+			bin: !!options.bin,
+		}),
+	);
 }

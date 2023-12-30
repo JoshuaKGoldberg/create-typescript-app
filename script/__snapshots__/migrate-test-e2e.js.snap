@@ -50,19 +50,6 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
  		{"
 `;
 
-exports[`expected file changes > .github/workflows/lint-knip.yml 1`] = `
-"--- a/.github/workflows/lint-knip.yml
-+++ b/.github/workflows/lint-knip.yml
-@@ ... @@ jobs:
-     steps:
-       - uses: actions/checkout@v4
-       - uses: ./.github/actions/prepare
--      - run: pnpm build || true
-       - run: pnpm lint:knip
- 
- name: Lint Knip"
-`;
-
 exports[`expected file changes > .github/workflows/test.yml 1`] = `
 "--- a/.github/workflows/test.yml
 +++ b/.github/workflows/test.yml

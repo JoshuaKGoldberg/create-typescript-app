@@ -1,4 +1,5 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
@@ -60,8 +61,11 @@ export async function migrateWithOptions({
 		);
 	}
 
-	await runCommands("Cleaning up files", [
-		"pnpm lint --fix",
-		"pnpm format --write",
-	]);
+	await runCommands(
+		"Cleaning up files",
+		createCleanUpFilesCommands({
+			bin: !!options.bin,
+			dedupe: true,
+		}),
+	);
 }

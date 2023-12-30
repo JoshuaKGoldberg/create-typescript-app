@@ -11,7 +11,6 @@ const filesExpectedToBeChanged = [
 	"package.json",
 	".eslintignore",
 	".eslintrc.cjs",
-	".github/workflows/lint-knip.yml",
 	".github/workflows/test.yml",
 	".gitignore",
 	".prettierignore",

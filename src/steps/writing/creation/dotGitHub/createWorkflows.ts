@@ -114,7 +114,7 @@ export function createWorkflows(options: Options) {
 		}),
 		"lint.yml": createWorkflowFile({
 			name: "Lint",
-			runs: ["pnpm build || true", "pnpm lint"],
+			runs: [...(options.bin ? ["pnpm build || true"] : []), "pnpm lint"],
 		}),
 		...(!options.excludeLintKnip && {
 			"lint-knip.yml": createWorkflowFile({

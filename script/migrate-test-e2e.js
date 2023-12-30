@@ -63,7 +63,7 @@ await fs.appendFile(
 	originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
 );
 
-// Ignore changes to the all-contributor count and contributors table.
+// Ignore changes to the README.md all-contributor count and contributors table...
 const updatedReadme = (await fs.readFile("README.md")).toString();
 await fs.writeFile(
 	"README.md",
@@ -76,6 +76,20 @@ await fs.writeFile(
 		updatedReadme.slice(updatedReadme.indexOf("<!-- markdownlint-restore -->")),
 	]
 		.join("")
+		.replaceAll(
+			/All Contributors: \d+/g,
+			originalSnapshots.match(/All Contributors: \d+/)[0],
+		)
+		.replaceAll(
+			/all_contributors-\d+/g,
+			originalSnapshots.match(/all_contributors-\d+/)[0],
+		),
+);
+
+// ...and even to the snapshot file, so diffs don't mind it.
+await fs.writeFile(
+	"script/__snapshots__/migrate-test-e2e.js.snap",
+	originalSnapshots
 		.replaceAll(
 			/All Contributors: \d+/g,
 			originalSnapshots.match(/All Contributors: \d+/)[0],

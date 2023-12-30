@@ -1,29 +1,8 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
+import { assert, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
-
-const { description, name: repository } = packageData;
-const emailGithub = "github@joshuakgoldberg.com";
-const emailNpm = "npm@joshuakgoldberg.com";
-const owner = "JoshuaKGoldberg";
-const title = "Create TypeScript App";
-
-await $({
-	stdio: "inherit",
-})`c8 -o ./coverage -r html -r lcov --src src node ./bin/index.js --base everything --mode migrate --bin ./bin/index.js --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository --guide-title "Contributing to a create-typescript-app Repository" --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
-
-const { stdout: gitStatus } = await $`git status`;
-console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
-
-const indexOfUnstagedFilesMessage = gitStatus.indexOf(
-	"Changes not staged for commit:",
-);
-if (indexOfUnstagedFilesMessage === -1) {
-	throw new Error(
-		`Looks like migrate didn't cause any file changes? That's ...probably incorrect? 😬`,
-	);
-}
 
 const filesExpectedToBeChanged = new Set([
 	".all-contributorsrc",
@@ -31,7 +10,6 @@ const filesExpectedToBeChanged = new Set([
 	"README.md",
 	"knip.jsonc",
 	"package.json",
-	"pnpm-lock.yaml",
 	".eslintignore",
 	".eslintrc.cjs",
 	".github/DEVELOPMENT.md",
@@ -42,35 +20,72 @@ const filesExpectedToBeChanged = new Set([
 	"cspell.json",
 ]);
 
-const unstagedModifiedFiles = gitStatus
-	.slice(indexOfUnstagedFilesMessage)
-	.match(/modified: {3}(\S+)\n/g)
-	.map((match) => match.split(/\s+/g)[1])
-	.filter((filePath) => !filesExpectedToBeChanged.has(filePath));
+const {
+	author: { email: emailNpm, name: authorName },
+	description,
+	name: repository,
+} = packageData;
+const emailGithub = "github@joshuakgoldberg.com";
+const bin = "./bin/index.js";
+const guide =
+	"https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository";
+const guideTitle = "Contributing to a create-typescript-app Repository";
+const owner = "JoshuaKGoldberg";
+const title = "Create TypeScript App";
 
-console.log("Unexpected modified files are:", unstagedModifiedFiles);
+await $({
+	stdio: "inherit",
+})`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
-if (unstagedModifiedFiles.length) {
-	const gitDiffCommand = `git diff HEAD -- ${unstagedModifiedFiles.join(" ")}`;
-	console.log(
-		`Stdout from running \`${gitDiffCommand}\`:\n${
-			(await execaCommand(gitDiffCommand)).stdout
-		}`,
+test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
+	const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
+	expect(stdout.split("\n").slice(2).join("\n")).toMatchSnapshot();
+});
+
+// eslint-disable-next-line vitest/expect-expect
+test("check for unstagedModifiedFiles", async () => {
+	const { stdout: gitStatus } = await $`git status`;
+	console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
+
+	const indexOfUnstagedFilesMessage = gitStatus.indexOf(
+		"Changes not staged for commit:",
 	);
-	console.error(
-		[
-			"",
-			"Oh no! Running the migrate script modified some files:",
-			...unstagedModifiedFiles.map((filePath) => ` - ${filePath}`),
-			"",
-			"That likely indicates changes made to the repository without",
-			"corresponding updates to templates in src/.",
-			"",
-			"Please search for those file(s)' name(s) under src/migrate for",
-			"the corresponding template and update those as well.",
-		]
-			.map((line) => chalk.red(line))
-			.join("\n"),
+	assert(
+		indexOfUnstagedFilesMessage !== -1,
+		`Looks like migrate didn't cause any file changes? That's ...probably incorrect? 😬`,
 	);
-	process.exitCode = 1;
-}
+
+	const unstagedModifiedFiles = gitStatus
+		.slice(indexOfUnstagedFilesMessage)
+		.match(/modified: {3}(\S+)\n/g)
+		.map((match) => match.split(/\s+/g)[1])
+		.filter((filePath) => !filesExpectedToBeChanged.has(filePath));
+
+	console.log("Unexpected modified files are:", unstagedModifiedFiles);
+
+	if (unstagedModifiedFiles.length) {
+		const gitDiffCommand = `git diff HEAD -- ${unstagedModifiedFiles.join(
+			" ",
+		)}`;
+		console.log(
+			`Stdout from running \`${gitDiffCommand}\`:\n${
+				(await execaCommand(gitDiffCommand)).stdout
+			}`,
+		);
+		throw new Error(
+			[
+				"",
+				"Oh no! Running the migrate script modified some files:",
+				...unstagedModifiedFiles.map((filePath) => ` - ${filePath}`),
+				"",
+				"That likely indicates changes made to the repository without",
+				"corresponding updates to templates in src/.",
+				"",
+				"Please search for those file(s)' name(s) under src/migrate for",
+				"the corresponding template and update those as well.",
+			]
+				.map((line) => chalk.red(line))
+				.join("\n"),
+		);
+	}
+});

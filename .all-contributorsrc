@@ -1,8 +1,8 @@
 {
   "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"All Contributors: <%= contributors.length %> 👪\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\" /></a>",
   "commit": false,
-  "commitType": "docs",
   "commitConvention": "angular",
+  "commitType": "docs",
   "contributors": [
     {
       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",

@@ -3,14 +3,17 @@
 exports[`verify .all-contributorsrc 1`] = `
 "--- a/.all-contributorsrc
 +++ b/.all-contributorsrc
-@@ -1,5 +1,5 @@
+@@ -1,8 +1,8 @@
  {
--  "badgeTemplate": "<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: <%= contributors.length %> 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\\" /></a>",
-+  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: <%= contributors.length %> 👪\\" src=\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\\" /></a>",
+   "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: <%= contributors.length %> 👪\\" src=\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\\" /></a>",
    "commit": false,
+-  "commitType": "docs",
    "commitConvention": "angular",
++  "commitType": "docs",
    "contributors": [
-@@ -24,363 +24,274 @@
+     {
+       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+@@ -25,359 +25,271 @@
        "name": "Jeff Wen",
        "avatar_url": "https://avatars.githubusercontent.com/u/3297859?v=4",
        "profile": "https://sinchang.me",
@@ -408,12 +411,7 @@ exports[`verify .all-contributorsrc 1`] = `
 +  "files": ["README.md"],
    "imageSize": 100,
    "projectName": "create-typescript-app",
-   "projectOwner": "JoshuaKGoldberg",
-   "repoHost": "https://github.com",
--  "repoType": "github",
--  "commitType": "docs"
-+  "repoType": "github"
- }"
+   "projectOwner": "JoshuaKGoldberg","
 `;
 
 exports[`verify .eslintignore 1`] = `

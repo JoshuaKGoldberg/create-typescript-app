@@ -1,7 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`expected file changes > .eslintignore 1`] = `
-" !.*
+"--- a/.eslintignore
++++ b/.eslintignore
+@@ -1,5 +1,5 @@
+ !.*
 -coverage*
 +coverage
  lib
@@ -10,7 +13,10 @@ exports[`expected file changes > .eslintignore 1`] = `
 `;
 
 exports[`expected file changes > .eslintrc.cjs 1`] = `
-"-/*
+"--- a/.eslintrc.cjs
++++ b/.eslintrc.cjs
+@@ -1,13 +1,3 @@
+-/*
 -👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
 -You can read from it to see all sorts of linting goodness, but don't worry -
 -it's not something you need to exhaustively understand immediately. 💙
@@ -44,21 +50,67 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
  		{"
 `;
 
-exports[`expected file changes > .github/DEVELOPMENT.md 1`] = `undefined`;
+exports[`expected file changes > .github/DEVELOPMENT.md 1`] = `
+"--- a/.github/DEVELOPMENT.md
++++ b/.github/DEVELOPMENT.md
+@@ -99,7 +99,6 @@ Add \`--watch\` to keep the type checker running in a watch mode that updates the
+ \`\`\`shell
+ pnpm tsc --watch
+ \`\`\`
+-
+ ## Setup Scripts
+ 
+ As described in the \`README.md\` file and \`docs/\`, this template repository comes with three scripts that can set up an existing or new repository."
+`;
 
-exports[`expected file changes > .github/workflows/lint-knip.yml 1`] = `undefined`;
+exports[`expected file changes > .github/workflows/lint-knip.yml 1`] = `
+"--- a/.github/workflows/lint-knip.yml
++++ b/.github/workflows/lint-knip.yml
+@@ -4,7 +4,6 @@ jobs:
+     steps:
+       - uses: actions/checkout@v4
+       - uses: ./.github/actions/prepare
+-      - run: pnpm build || true
+       - run: pnpm lint:knip
+ 
+ name: Lint Knip"
+`;
 
-exports[`expected file changes > .github/workflows/test.yml 1`] = `undefined`;
+exports[`expected file changes > .github/workflows/test.yml 1`] = `
+"--- a/.github/workflows/test.yml
++++ b/.github/workflows/test.yml
+@@ -7,14 +7,6 @@ jobs:
+       - run: pnpm run test --coverage
+       - name: Codecov
+         uses: codecov/codecov-action@v3
+-        with:
+-          flags: unit
+-      - if: always()
+-        name: Archive code coverage results
+-        uses: actions/upload-artifact@v4
+-        with:
+-          name: code-coverage-report
+-          path: coverage
+ 
+ name: Test
+ "
+`;
 
 exports[`expected file changes > .gitignore 1`] = `
-"-coverage*/
+"--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,3 @@
+-coverage*/
 +coverage/
  lib/
  node_modules/"
 `;
 
 exports[`expected file changes > .prettierignore 1`] = `
-" .all-contributorsrc
+"--- a/.prettierignore
++++ b/.prettierignore
+@@ -1,4 +1,4 @@
+ .all-contributorsrc
 -coverage*/
 +coverage/
  lib/
@@ -66,7 +118,10 @@ exports[`expected file changes > .prettierignore 1`] = `
 `;
 
 exports[`expected file changes > README.md 1`] = `
-" <p align="center">
+"--- a/README.md
++++ b/README.md
+@@ -5,57 +5,20 @@
+ <p align="center">
  	<!-- prettier-ignore-start -->
  	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 -  <a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
@@ -142,7 +197,10 @@ exports[`expected file changes > README.md 1`] = `
 `;
 
 exports[`expected file changes > cspell.json 1`] = `
-" {
+"--- a/cspell.json
++++ b/cspell.json
+@@ -1,40 +1,27 @@
+ {
  	"dictionaries": ["typescript"],
  	"ignorePaths": [
 -		"./coverage*",
@@ -187,7 +245,10 @@ exports[`expected file changes > cspell.json 1`] = `
 `;
 
 exports[`expected file changes > knip.jsonc 1`] = `
-" {
+"--- a/knip.jsonc
++++ b/knip.jsonc
+@@ -1,17 +1,6 @@
+ {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",
 -	"entry": [
 -		"src/index.ts!",
@@ -210,12 +271,41 @@ exports[`expected file changes > knip.jsonc 1`] = `
 `;
 
 exports[`expected file changes > package.json 1`] = `
-" 	"main": "./lib/index.js",
+"--- a/package.json
++++ b/package.json
+@@ -15,7 +15,6 @@
+ 	"main": "./lib/index.js",
  	"bin": "./bin/index.js",
  	"files": [
 -		"bin/",
  		"lib/",
  		"package.json",
  		"LICENSE.md",
-@@ -24,7 +23,6 "
+@@ -24,7 +23,6 @@
+ 	"scripts": {
+ 		"build": "tsup",
+ 		"format": "prettier \\"**/*\\" --ignore-unknown",
+-		"initialize": "tsx ./src/bin/index.js --mode initialize",
+ 		"lint": "eslint . .*js --max-warnings 0",
+ 		"lint:knip": "knip",
+ 		"lint:md": "markdownlint \\"**/*.md\\" \\".github/**/*.md\\" --rules sentences-per-line",
+@@ -34,9 +32,6 @@
+ 		"prepare": "husky install",
+ 		"should-semantic-release": "should-semantic-release --verbose",
+ 		"test": "vitest",
+-		"test:create": "node script/create-test-e2e.js",
+-		"test:initialize": "node script/initialize-test-e2e.js",
+-		"test:migrate": "vitest run -r script/",
+ 		"tsc": "tsc"
+ 	},
+ 	"lint-staged": {
+@@ -107,7 +102,7 @@
+ 		"vitest": "^1.0.2",
+ 		"yaml-eslint-parser": "^1.2.2"
+ 	},
+-	"packageManager": "pnpm@8.13.1",
++	"packageManager": "pnpm@8.7.0",
+ 	"engines": {
+ 		"node": ">=18"
+ 	},"
 `;

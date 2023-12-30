@@ -1,13 +1,11 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
 import fs from "node:fs/promises";
-import prettier from "prettier";
 import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 
 const filesExpectedToBeChanged = new Set([
-	".all-contributorsrc",
 	"bin/index.js",
 	"README.md",
 	"knip.jsonc",
@@ -35,28 +33,46 @@ const guideTitle = "Contributing to a create-typescript-app Repository";
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";
 
+const originalDevelopment = (
+	await fs.readFile(".github/DEVELOPMENT.md")
+).toString();
+
+// const originalReadme = (await fs.readFile("README.md")).toString();
+
 await $({
 	stdio: "inherit",
 })`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
-// All Contributors seems to be applying different formatting settings...?
+// All Contributors seems to not be using Prettier to format files...
 await fs.writeFile(
 	".all-contributorsrc",
-	await prettier.format((await fs.readFile(".all-contributorsrc")).toString()),
-	{ parser: "json" },
+	JSON.stringify(
+		JSON.parse((await fs.readFile(".all-contributorsrc")).toString()),
+		null,
+		2,
+	) + "\n",
 );
 
-// The README's setup scripts docs can be ignored from snapshots
-const originalReadme = (await fs.readFile("README.md")).toString();
-await fs.writeFile(
-	"README.md",
-	originalReadme.slice(originalReadme.indexOf("-## Setup Scripts") - 1),
+// The development setup scripts docs can be ignored from snapshots.
+// We manually add them back after hydration to clear them from Git diffs.
+await fs.appendFile(
+	".github/DEVELOPMENT.md",
+	originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
 );
+
+// // The Readme docs can be ignored, too, for being unnecessary diff noise.
+// await fs.writeFile(
+// 	"README.md",
+// 	originalReadme.slice(
+// 		0,
+// 		originalReadme.indexOf("`create-typescript-app` is a one-stop"),
+// 	) + originalReadme.slice(originalReadme.indexOf("## Development")),
+// );
 
 describe("expected file changes", () => {
 	test.each([...filesExpectedToBeChanged])("%s", async (file) => {
 		const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
-		const [, contentsAfterGitMarkers] = stdout.split("@@\n");
+		const contentsAfterGitMarkers = stdout.split("\n").slice(2).join("\n");
 
 		assert(
 			stdout,

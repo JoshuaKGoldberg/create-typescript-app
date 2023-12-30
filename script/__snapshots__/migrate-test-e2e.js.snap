@@ -50,19 +50,6 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
  		{"
 `;
 
-exports[`expected file changes > .github/DEVELOPMENT.md 1`] = `
-"--- a/.github/DEVELOPMENT.md
-+++ b/.github/DEVELOPMENT.md
-@@ ... @@ Add \`--watch\` to keep the type checker running in a watch mode that updates the
- \`\`\`shell
- pnpm tsc --watch
- \`\`\`
--
- ## Setup Scripts
- 
- As described in the \`README.md\` file and \`docs/\`, this template repository comes with three scripts that can set up an existing or new repository."
-`;
-
 exports[`expected file changes > .github/workflows/lint-knip.yml 1`] = `
 "--- a/.github/workflows/lint-knip.yml
 +++ b/.github/workflows/lint-knip.yml

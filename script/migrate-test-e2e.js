@@ -23,11 +23,17 @@ const filesExpectedToBeChanged = new Set([
 const fileContentTransforms = new Map([
 	[
 		".all-contributorsrc",
-		(original) =>
-			JSON.stringify({
-				...JSON.parse(original),
-				contributors: undefined,
-			}),
+		(original) => {
+			try {
+				return JSON.stringify({
+					...JSON.parse(original),
+					contributors: undefined,
+				});
+			} catch (error) {
+				console.warn("Original text:", original);
+				throw error;
+			}
+		},
 	],
 	[
 		".github/DEVELOPMENT.md:",
@@ -60,10 +66,11 @@ describe("expected file changes", () => {
 			fileContentTransforms.get(file)?.(contentsAfterGitMarkers) ??
 			contentsAfterGitMarkers;
 
-		assert(
-			stdout,
-			`Looks like there were no changes to ${file} from migration?`,
-		);
+		if (stdout) {
+			throw new Error(
+				`Looks like there were no changes to ${file} from migration: ${stdout}`,
+			);
+		}
 
 		expect(contentsTransformed).toMatchSnapshot();
 	});

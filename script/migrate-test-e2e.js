@@ -67,10 +67,15 @@ await fs.appendFile(
 const updatedReadme = (await fs.readFile("README.md")).toString();
 await fs.writeFile(
 	"README.md",
-	(
+	[
 		updatedReadme.slice(0, updatedReadme.indexOf("## Contributors")) +
-		originalReadme.slice(originalReadme.indexOf("## Contributors"))
-	)
+			originalReadme.slice(
+				originalReadme.indexOf("## Contributors"),
+				originalReadme.indexOf("<!-- markdownlint-restore -->"),
+			),
+		updatedReadme.slice(updatedReadme.indexOf("<!-- markdownlint-restore -->")),
+	]
+		.join("")
 		.replace(
 			/All Contributors: \d+/g,
 			originalSnapshots.match(/All Contributors: \d+/)[0],

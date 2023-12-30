@@ -60,7 +60,13 @@ export async function writePackageJson(options: Options) {
 		engines: {
 			node: ">=18",
 		},
-		files: ["lib/", "package.json", "LICENSE.md", "README.md"],
+		files: [
+			options.bin?.replace(/^\.\//, ""),
+			"lib/",
+			"package.json",
+			"LICENSE.md",
+			"README.md",
+		].filter(Boolean),
 		license: "MIT",
 		"lint-staged": {
 			"*": "prettier --ignore-unknown --write",

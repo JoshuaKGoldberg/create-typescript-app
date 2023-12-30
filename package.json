@@ -15,7 +15,7 @@
 	"main": "./lib/index.js",
 	"bin": "./bin/index.js",
 	"files": [
-		"bin/",
+		"bin/index.js",
 		"lib/",
 		"package.json",
 		"LICENSE.md",

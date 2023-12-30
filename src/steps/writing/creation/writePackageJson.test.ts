@@ -124,6 +124,7 @@ describe("writePackageJson", () => {
 
 		const packageJson = await writePackageJson({
 			...options,
+			bin: "./bin/index.js",
 			excludeAllContributors: true,
 			excludeCompliance: true,
 			excludeLintJson: true,
@@ -144,12 +145,14 @@ describe("writePackageJson", () => {
 			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
+			  "bin": "./bin/index.js",
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
 			    "node": ">=18",
 			  },
 			  "files": [
+			    "bin/index.js",
 			    "lib/",
 			    "package.json",
 			    "LICENSE.md",

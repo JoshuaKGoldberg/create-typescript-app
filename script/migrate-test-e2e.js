@@ -1,12 +1,11 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
-import { assert, expect, test } from "vitest";
+import fs from "node:fs/promises";
+import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 
 const filesExpectedToBeChanged = new Set([
-	".all-contributorsrc",
-	"bin/index.js",
 	"README.md",
 	"knip.jsonc",
 	"package.json",
@@ -33,17 +32,47 @@ const guideTitle = "Contributing to a create-typescript-app Repository";
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";
 
+const originalDevelopment = (
+	await fs.readFile(".github/DEVELOPMENT.md")
+).toString();
+
 await $({
 	stdio: "inherit",
 })`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
-test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
-	const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
-	expect(stdout.split("\n").slice(2).join("\n")).toMatchSnapshot();
+// All Contributors seems to not be using Prettier to format files...
+await fs.writeFile(
+	".all-contributorsrc",
+	JSON.stringify(
+		JSON.parse((await fs.readFile(".all-contributorsrc")).toString()),
+		null,
+		2,
+	) + "\n",
+);
+
+// The development setup scripts docs can be ignored from snapshots.
+// We manually add them back after hydration to clear them from Git diffs.
+await fs.appendFile(
+	".github/DEVELOPMENT.md",
+	originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
+);
+
+describe("expected file changes", () => {
+	test.each([...filesExpectedToBeChanged])("%s", async (file) => {
+		const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
+		const contentsAfterGitMarkers = stdout.split("\n").slice(2).join("\n");
+
+		assert(
+			stdout,
+			`Looks like there were no changes to ${file} from migration?`,
+		);
+
+		expect(contentsAfterGitMarkers).toMatchSnapshot();
+	});
 });
 
 // eslint-disable-next-line vitest/expect-expect
-test("check for unstagedModifiedFiles", async () => {
+test("unexpected file changes", async () => {
 	const { stdout: gitStatus } = await $`git status`;
 	console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
 

@@ -1,422 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`verify .all-contributorsrc 1`] = `
-"--- a/.all-contributorsrc
-+++ b/.all-contributorsrc
-@@ -1,5 +1,5 @@
- {
--  "badgeTemplate": "<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: <%= contributors.length %> 🤝\\" src=\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\\" /></a>",
-+  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"All Contributors: <%= contributors.length %> 👪\\" src=\\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\\" /></a>",
-   "commit": false,
-   "commitConvention": "angular",
-   "contributors": [
-@@ -24,363 +24,274 @@
-       "name": "Jeff Wen",
-       "avatar_url": "https://avatars.githubusercontent.com/u/3297859?v=4",
-       "profile": "https://sinchang.me",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "Pinjasaur",
-       "name": "Paul Esch-Laurent",
-       "avatar_url": "https://avatars.githubusercontent.com/u/6335792?v=4",
-       "profile": "https://paulisaweso.me/",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "NazCodeland",
-       "name": "NazCodeland",
-       "avatar_url": "https://avatars.githubusercontent.com/u/113494366?v=4",
-       "profile": "https://github.com/NazCodeland",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "johnnyreilly",
-       "name": "John Reilly",
-       "avatar_url": "https://avatars.githubusercontent.com/u/1010525?v=4",
-       "profile": "https://blog.johnnyreilly.com/",
--      "contributions": [
--        "code",
--        "ideas"
--      ]
-+      "contributions": ["code", "ideas"]
-     },
-     {
-       "login": "webpro",
-       "name": "Lars Kappert",
-       "avatar_url": "https://avatars.githubusercontent.com/u/456426?v=4",
-       "profile": "https://webpro.nl",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "RebeccaStevens",
-       "name": "Rebecca Stevens",
-       "avatar_url": "https://avatars.githubusercontent.com/u/7224206?v=4",
-       "profile": "https://github.com/RebeccaStevens",
--      "contributions": [
--        "code",
--        "infra"
--      ]
-+      "contributions": ["code", "infra"]
-     },
-     {
-       "login": "ronthetech",
-       "name": "Ron Jean-Francois",
-       "avatar_url": "https://avatars.githubusercontent.com/u/105710107?v=4",
-       "profile": "http://ronjeanfrancois.com",
--      "contributions": [
--        "code",
--        "infra"
--      ]
-+      "contributions": ["code", "infra"]
-     },
-     {
-       "login": "nowyDEV",
-       "name": "Dominik Nowik",
-       "avatar_url": "https://avatars.githubusercontent.com/u/12304307?v=4",
-       "profile": "https://github.com/nowyDEV",
--      "contributions": [
--        "tool",
--        "code"
--      ]
-+      "contributions": ["tool", "code"]
-     },
-     {
-       "login": "TAKANOME-DEV",
-       "name": "takanomedev",
-       "avatar_url": "https://avatars.githubusercontent.com/u/79809121?v=4",
-       "profile": "https://github.com/TAKANOME-DEV",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "emday4prez",
-       "name": "Emerson",
-       "avatar_url": "https://avatars.githubusercontent.com/u/35363144?v=4",
-       "profile": "https://github.com/emday4prez",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "jsjoeio",
-       "name": "Joe Previte",
-       "avatar_url": "https://avatars.githubusercontent.com/u/3806031?v=4",
-       "profile": "https://typescriptcourse.com/tutorials",
--      "contributions": [
--        "bug",
--        "code"
--      ]
-+      "contributions": ["bug", "code"]
-     },
-     {
-       "login": "navin-moorthy",
-       "name": "Navin Moorthy",
-       "avatar_url": "https://avatars.githubusercontent.com/u/39694575?v=4",
-       "profile": "https://navinmoorthy.me/",
--      "contributions": [
--        "bug",
--        "code"
--      ]
-+      "contributions": ["bug", "code"]
-     },
-     {
-       "login": "garuna-m6",
-       "name": "Anurag",
-       "avatar_url": "https://avatars.githubusercontent.com/u/23234342?v=4",
-       "profile": "https://github.com/garuna-m6",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "danielroe",
-       "name": "Daniel Roe",
-       "avatar_url": "https://avatars.githubusercontent.com/u/28706372?v=4",
-       "profile": "https://roe.dev/",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "the-lazy-learner",
-       "name": "Sudhansu",
-       "avatar_url": "https://avatars.githubusercontent.com/u/13695177?v=4",
-       "profile": "https://github.com/the-lazy-learner",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "RNR1",
-       "name": "Ron Braha",
-       "avatar_url": "https://avatars.githubusercontent.com/u/45559220?v=4",
-       "profile": "https://linktr.ee/ronbraha",
--      "contributions": [
--        "code",
--        "design",
--        "test"
--      ]
-+      "contributions": ["code", "design", "test"]
-     },
-     {
-       "login": "tungbq",
-       "name": "Tung Bui (Leo)",
-       "avatar_url": "https://avatars.githubusercontent.com/u/85242618?v=4",
-       "profile": "https://github.com/tungbq",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "orta",
-       "name": "Orta Therox",
-       "avatar_url": "https://avatars.githubusercontent.com/u/49038?v=4",
-       "profile": "https://orta.io",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "promise-dash",
-       "name": "Promise Dash",
-       "avatar_url": "https://avatars.githubusercontent.com/u/86062880?v=4",
-       "profile": "https://github.com/promise-dash",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "jolg42",
-       "name": "Joël Galeran",
-       "avatar_url": "https://avatars.githubusercontent.com/u/1328733?v=4",
-       "profile": "https://twitter.com/Jolg42",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "kristo-baricevic",
-       "name": "Kristo Baricevic",
-       "avatar_url": "https://avatars.githubusercontent.com/u/108290619?v=4",
-       "profile": "https://kristo-baricevic.github.io/",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "ryota-murakami",
-       "name": "Ryota Murakami",
-       "avatar_url": "https://avatars.githubusercontent.com/u/5501268?v=4",
-       "profile": "https://ryota-murakami.github.io/",
--      "contributions": [
--        "code",
--        "bug"
--      ]
-+      "contributions": ["code", "bug"]
-     },
-     {
-       "login": "ruthwikreddy09",
-       "name": "Ruthwik",
-       "avatar_url": "https://avatars.githubusercontent.com/u/126862059?v=4",
-       "profile": "https://github.com/RuthwikReddy09",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "jdwilkin4",
-       "name": "Jessica Wilkins ",
-       "avatar_url": "https://avatars.githubusercontent.com/u/67210629?v=4",
-       "profile": "https://jessicawilkins.dev/",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "vasanth9",
-       "name": "Vasanth Kumar Cheepurupalli",
-       "avatar_url": "https://avatars.githubusercontent.com/u/42891954?v=4",
-       "profile": "https://github.com/vasanth9",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "conrmahr",
-       "name": "Conor Meagher",
-       "avatar_url": "https://avatars.githubusercontent.com/u/363781?v=4",
-       "profile": "https://conormeagher.com/",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "DanexQ",
-       "name": "Daniel",
-       "avatar_url": "https://avatars.githubusercontent.com/u/72567464?v=4",
-       "profile": "https://github.com/DanexQ",
--      "contributions": [
--        "infra"
--      ]
-+      "contributions": ["infra"]
-     },
-     {
-       "login": "jaas666",
-       "name": "Juan A.",
-       "avatar_url": "https://avatars.githubusercontent.com/u/30204147?v=4",
-       "profile": "https://github.com/jaas666",
--      "contributions": [
--        "code",
--        "doc"
--      ]
-+      "contributions": ["code", "doc"]
-     },
-     {
-       "login": "katt",
-       "name": "Alex / KATT",
-       "avatar_url": "https://avatars.githubusercontent.com/u/459267?v=4",
-       "profile": "https://katt.dev",
--      "contributions": [
--        "bug"
--      ]
-+      "contributions": ["bug"]
-     },
-     {
-       "login": "dertimonius",
-       "name": "Timon Jurschitsch",
-       "avatar_url": "https://avatars.githubusercontent.com/u/103483059?v=4",
-       "profile": "https://www.linkedin.com/in/timonjurschitsch/",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "biplobsd",
-       "name": "Biplob Sutradhar",
-       "avatar_url": "https://avatars.githubusercontent.com/u/43641536?v=4",
-       "profile": "http://biplobsd.me",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "mrswastik-robot",
-       "name": "Swastik Patel",
-       "avatar_url": "https://avatars.githubusercontent.com/u/107865087?v=4",
-       "profile": "https://github.com/mrswastik-robot",
--      "contributions": [
--        "doc"
--      ]
-+      "contributions": ["doc"]
-     },
-     {
-       "login": "gv14982",
-       "name": "Graham Vasquez",
-       "avatar_url": "https://avatars.githubusercontent.com/u/7041175?v=4",
-       "profile": "https://gvasquez.dev",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "dominicduffin1",
-       "name": "Dominic Duffin",
-       "avatar_url": "https://avatars.githubusercontent.com/u/26224873?v=4",
-       "profile": "https://dominicduffin.uk",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "5hraddha",
-       "name": "Shraddha",
-       "avatar_url": "https://avatars.githubusercontent.com/u/27571141?v=4",
-       "profile": "https://www.shraddha.tech",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "xl4624",
-       "name": "Xiaomin Liu",
-       "avatar_url": "https://avatars.githubusercontent.com/u/116298054?v=4",
-       "profile": "https://github.com/xl4624",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     },
-     {
-       "login": "jamiemagee",
-       "name": "Jamie Magee",
-       "avatar_url": "https://avatars.githubusercontent.com/u/1358764?v=4",
-       "profile": "https://jamiemagee.co.uk",
--      "contributions": [
--        "ideas"
--      ]
-+      "contributions": ["ideas"]
-     },
-     {
-       "login": "praveenshinde3",
-       "name": "Praveen Shinde",
-       "avatar_url": "https://avatars.githubusercontent.com/u/107350270?v=4",
-       "profile": "https://praveenshinde.vercel.app/",
--      "contributions": [
--        "code"
--      ]
-+      "contributions": ["code"]
-     }
-   ],
-   "contributorsPerLine": 7,
-   "contributorsSortAlphabetically": true,
--  "files": [
--    "README.md"
--  ],
-+  "files": ["README.md"],
-   "imageSize": 100,
-   "projectName": "create-typescript-app",
-   "projectOwner": "JoshuaKGoldberg",
-   "repoHost": "https://github.com",
--  "repoType": "github",
--  "commitType": "docs"
-+  "repoType": "github"
- }"
-`;
-
-exports[`verify .eslintignore 1`] = `
+exports[`expected file changes > .eslintignore 1`] = `
 "--- a/.eslintignore
 +++ b/.eslintignore
 @@ -1,5 +1,5 @@
@@ -428,7 +12,7 @@ exports[`verify .eslintignore 1`] = `
  pnpm-lock.yaml"
 `;
 
-exports[`verify .eslintrc.cjs 1`] = `
+exports[`expected file changes > .eslintrc.cjs 1`] = `
 "--- a/.eslintrc.cjs
 +++ b/.eslintrc.cjs
 @@ -1,13 +1,3 @@
@@ -466,129 +50,20 @@ exports[`verify .eslintrc.cjs 1`] = `
  		{"
 `;
 
-exports[`verify .github/DEVELOPMENT.md 1`] = `
+exports[`expected file changes > .github/DEVELOPMENT.md 1`] = `
 "--- a/.github/DEVELOPMENT.md
 +++ b/.github/DEVELOPMENT.md
-@@ -99,116 +99,3 @@ Add \`--watch\` to keep the type checker running in a watch mode that updates the
+@@ -99,7 +99,6 @@ Add \`--watch\` to keep the type checker running in a watch mode that updates the
  \`\`\`shell
  pnpm tsc --watch
  \`\`\`
 -
--## Setup Scripts
--
--As described in the \`README.md\` file and \`docs/\`, this template repository comes with three scripts that can set up an existing or new repository.
--
--Each follows roughly the same general flow:
--
--1. \`bin/index.ts\` uses \`bin/mode.ts\` to determine which of the three setup scripts to run
--2. \`readOptions\` parses in options from local files, Git commands, npm APIs, and/or files on disk
--3. \`runOrRestore\` wraps the setup script's main logic in a friendly prompt wrapper
--4. The setup script wraps each portion of its main logic with \`withSpinner\`
--   - Each step of setup logic is generally imported from within \`src/steps\`
--5. A call to \`outro\` summarizes the results for the user
--
--> **Warning**
--> Each setup script overrides many files in the directory they're run in.
--> Make sure to save any changes you want to preserve before running them.
--
--### The Creation Script
--
--This template's "creation" script is located in \`src/create/\`.
--You can run it locally with \`node bin/index.js --mode create\`.
--Note that files need to be built with \`pnpm run build\` beforehand.
--
--#### Testing the Creation Script
--
--You can run the end-to-end test for creation locally on the command-line.
--Note that the files need to be built with \`pnpm run build\` beforehand.
--
--\`\`\`shell
--pnpm run test:create
--\`\`\`
--
--That end-to-end test executes \`script/create-test-e2e.js\`, which:
--
--1. Runs the creation script to create a new \`test-repository\` child directory and repository, capturing code coverage
--2. Asserts that commands such as \`build\` and \`lint\` each pass
--
--The \`pnpm run test:create\` script is run in CI to ensure that templating changes are in sync with the template's actual files.
--See \`.github/workflows/test-create.yml\`.
--
--### The Initialization Script
--
--This template's "initialization" script is located in \`src/initialize/\`.
--You can run it locally with \`pnpm run initialize\`.
--It uses [\`tsx\`](https://github.com/esbuild-kit/tsx) so you don't need to build files before running.
--
--\`\`\`shell
--pnpm run initialize
--\`\`\`
--
--#### Testing the Initialization Script
--
--You can run the end-to-end test for initializing locally on the command-line.
--Note that files need to be built with \`pnpm run build\` beforehand.
--
--\`\`\`shell
--pnpm run test:initialize
--\`\`\`
--
--That end-to-end test executes \`script/initialize-test-e2e.js\`, which:
--
--1. Runs the initialization script using \`--skip-github-api\` and other skip flags
--2. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
--3. Runs \`pnpm run lint:knip\` to make sure no excess dependencies or files were left over
--4. Resets everything
--5. Runs initialization a second time, capturing test coverage
--
--The \`pnpm run test:initialize\` script is run in CI to ensure that templating changes are in sync with the template's actual files.
--See \`.github/workflows/test-initialize.yml\`.
--
--### The Migration Script
--
--This template's "migration" script is located in \`src/migrate/\`.
--Note that files need to be built with \`pnpm run build\` beforehand.
--
--To test out the script locally, run it from a different repository's directory:
--
--\`\`\`shell
--cd ../other-repo
--node ../create-typescript-app/bin/migrate.js
--\`\`\`
--
--The migration script will work on any directory.
--You can try it out in a blank directory with scripts like:
--
--\`\`\`shell
--cd ..
--mkdir temp
--cd temp
--node ../create-typescript-app/bin/migrate.js
--\`\`\`
--
--#### Testing the Migration Script
--
--You can run the end-to-end test for migrating locally on the command-line:
--
--\`\`\`shell
--pnpm run test:migrate
--\`\`\`
--
--That end-to-end test executes \`script/migrate-test-e2e.js\`, which:
--
--1. Runs the migration script using \`--skip-github-api\` and other skip flags, capturing code coverage
--2. Checks that only a small list of allowed files were changed
--3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
--
--The \`pnpm run test:migrate\` script is run in CI to ensure that templating changes are in sync with the template's actual files.
--See \`.github/workflows/test-migrate.yml\`.
--
--> Tip: if the migration test is failing in CI and you don't see any errors, try [downloading the full logs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs#downloading-logs).
--> There'll likely be a list of changed files under a message like _\`Oh no! Running the migrate script modified some files:\`_.
--> You can also try running the test script locally."
+ ## Setup Scripts
+ 
+ As described in the \`README.md\` file and \`docs/\`, this template repository comes with three scripts that can set up an existing or new repository."
 `;
 
-exports[`verify .github/workflows/lint-knip.yml 1`] = `
+exports[`expected file changes > .github/workflows/lint-knip.yml 1`] = `
 "--- a/.github/workflows/lint-knip.yml
 +++ b/.github/workflows/lint-knip.yml
 @@ -4,7 +4,6 @@ jobs:
@@ -601,7 +76,7 @@ exports[`verify .github/workflows/lint-knip.yml 1`] = `
  name: Lint Knip"
 `;
 
-exports[`verify .github/workflows/test.yml 1`] = `
+exports[`expected file changes > .github/workflows/test.yml 1`] = `
 "--- a/.github/workflows/test.yml
 +++ b/.github/workflows/test.yml
 @@ -7,14 +7,6 @@ jobs:
@@ -621,7 +96,7 @@ exports[`verify .github/workflows/test.yml 1`] = `
  "
 `;
 
-exports[`verify .gitignore 1`] = `
+exports[`expected file changes > .gitignore 1`] = `
 "--- a/.gitignore
 +++ b/.gitignore
 @@ -1,3 +1,3 @@
@@ -631,7 +106,7 @@ exports[`verify .gitignore 1`] = `
  node_modules/"
 `;
 
-exports[`verify .prettierignore 1`] = `
+exports[`expected file changes > .prettierignore 1`] = `
 "--- a/.prettierignore
 +++ b/.prettierignore
 @@ -1,4 +1,4 @@
@@ -642,14 +117,14 @@ exports[`verify .prettierignore 1`] = `
  pnpm-lock.yaml"
 `;
 
-exports[`verify README.md 1`] = `
+exports[`expected file changes > README.md 1`] = `
 "--- a/README.md
 +++ b/README.md
 @@ -5,57 +5,20 @@
  <p align="center">
  	<!-- prettier-ignore-start -->
  	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
--<a href="#contributors" target="_blank"><img alt="All Contributors: 39 🤝" src="https://img.shields.io/badge/all_contributors-39_🤝-21bb42.svg" /></a>
+-  <a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
 +	<a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
  <!-- ALL-CONTRIBUTORS-BADGE:END -->
  	<!-- prettier-ignore-end -->
@@ -665,7 +140,7 @@ exports[`verify README.md 1`] = `
 +	<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
 +	<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
  	<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />
-+	<a href="#contributors" target="_blank"><img alt="All Contributors: 39 🤝" src="https://img.shields.io/badge/all_contributors-39_🤝-21bb42.svg" /></a>
++	<a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
 +	<img alt="Sponsor: On GitHub 💸" src="https://img.shields.io/badge/sponsor-on_github_💸-21bb42.svg" />
  </p>
  
@@ -721,9 +196,7 @@ exports[`verify README.md 1`] = `
 +> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app)."
 `;
 
-exports[`verify bin/index.js 1`] = `""`;
-
-exports[`verify cspell.json 1`] = `
+exports[`expected file changes > cspell.json 1`] = `
 "--- a/cspell.json
 +++ b/cspell.json
 @@ -1,40 +1,27 @@
@@ -771,7 +244,7 @@ exports[`verify cspell.json 1`] = `
  }"
 `;
 
-exports[`verify knip.jsonc 1`] = `
+exports[`expected file changes > knip.jsonc 1`] = `
 "--- a/knip.jsonc
 +++ b/knip.jsonc
 @@ -1,17 +1,6 @@
@@ -797,7 +270,7 @@ exports[`verify knip.jsonc 1`] = `
  }"
 `;
 
-exports[`verify package.json 1`] = `
+exports[`expected file changes > package.json 1`] = `
 "--- a/package.json
 +++ b/package.json
 @@ -15,7 +15,6 @@

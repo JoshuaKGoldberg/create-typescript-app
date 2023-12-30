@@ -1,3 +1,9 @@
+## [1.51.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.51.0...v1.51.1) (2023-12-30)
+
+### Bug Fixes
+
+- include bin entry in package.json files ([#1149](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1149)) ([206c835](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/206c835753db822106291a4dae0ceaf851749c48)), closes [#1147](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1147)
+
 # [1.51.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.50.2...v1.51.0) (2023-12-30)
 
 ### Features

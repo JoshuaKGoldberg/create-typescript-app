@@ -1,3 +1,9 @@
+## [1.51.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.51.1...v1.51.2) (2023-12-30)
+
+### Bug Fixes
+
+- normalize whether build happens before lint/knip ([#1152](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1152)) ([01704e9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/01704e906969fc3cba8be9618e6e097ec3760cd4)), closes [#1087](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1087)
+
 ## [1.51.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.51.0...v1.51.1) (2023-12-30)
 
 ### Bug Fixes

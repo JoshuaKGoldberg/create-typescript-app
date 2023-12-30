@@ -730,6 +730,8 @@ exports[`verify README.md 1`] = `
 +> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app)."
 `;
 
+exports[`verify bin/index.js 1`] = `""`;
+
 exports[`verify cspell.json 1`] = `
 "--- a/cspell.json
 +++ b/cspell.json
@@ -807,17 +809,15 @@ exports[`verify knip.jsonc 1`] = `
 exports[`verify package.json 1`] = `
 "--- a/package.json
 +++ b/package.json
-@@ -13,9 +13,7 @@
- 	},
- 	"type": "module",
+@@ -15,7 +15,6 @@
  	"main": "./lib/index.js",
--	"bin": "./bin/index.js",
+ 	"bin": "./bin/index.js",
  	"files": [
 -		"bin/",
  		"lib/",
  		"package.json",
  		"LICENSE.md",
-@@ -24,7 +22,6 @@
+@@ -24,7 +23,6 @@
  	"scripts": {
  		"build": "tsup",
  		"format": "prettier \\"**/*\\" --ignore-unknown",
@@ -825,7 +825,7 @@ exports[`verify package.json 1`] = `
  		"lint": "eslint . .*js --max-warnings 0",
  		"lint:knip": "knip",
  		"lint:md": "markdownlint \\"**/*.md\\" \\".github/**/*.md\\" --rules sentences-per-line",
-@@ -34,9 +31,6 @@
+@@ -34,9 +32,6 @@
  		"prepare": "husky install",
  		"should-semantic-release": "should-semantic-release --verbose",
  		"test": "vitest",
@@ -835,7 +835,7 @@ exports[`verify package.json 1`] = `
  		"tsc": "tsc"
  	},
  	"lint-staged": {
-@@ -107,7 +101,7 @@
+@@ -107,7 +102,7 @@
  		"vitest": "^1.0.2",
  		"yaml-eslint-parser": "^1.2.2"
  	},

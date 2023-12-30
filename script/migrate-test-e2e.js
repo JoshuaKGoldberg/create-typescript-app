@@ -76,11 +76,11 @@ await fs.writeFile(
 		updatedReadme.slice(updatedReadme.indexOf("<!-- markdownlint-restore -->")),
 	]
 		.join("")
-		.replace(
+		.replaceAll(
 			/All Contributors: \d+/g,
 			originalSnapshots.match(/All Contributors: \d+/)[0],
 		)
-		.replace(
+		.replaceAll(
 			/all_contributors-\d+/g,
 			originalSnapshots.match(/all_contributors-\d+/)[0],
 		),

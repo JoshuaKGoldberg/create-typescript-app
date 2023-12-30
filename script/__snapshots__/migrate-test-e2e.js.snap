@@ -807,13 +807,7 @@ exports[`verify knip.jsonc 1`] = `
 exports[`verify package.json 1`] = `
 "--- a/package.json
 +++ b/package.json
-@@ -8,14 +8,12 @@
- 	},
- 	"license": "MIT",
- 	"author": {
--		"name": "Josh Goldberg",
-+		"name": "Aslemammad",
- 		"email": "npm@joshuakgoldberg.com"
+@@ -13,9 +13,7 @@
  	},
  	"type": "module",
  	"main": "./lib/index.js",

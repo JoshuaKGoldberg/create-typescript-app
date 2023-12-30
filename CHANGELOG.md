@@ -1,3 +1,9 @@
+## [1.50.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.50.1...v1.50.2) (2023-12-30)
+
+### Bug Fixes
+
+- remove unnecessary boolean values in rerun suggestions ([#1144](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1144)) ([e560bfc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e560bfce287d013c83ce40d118e2ce8c74cc978f)), closes [#1129](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1129)
+
 ## [1.50.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.50.0...v1.50.1) (2023-12-30)
 
 ### Bug Fixes

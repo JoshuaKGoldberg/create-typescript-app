@@ -27,12 +27,16 @@ const {
 	name: repository,
 } = packageData;
 const emailGithub = "github@joshuakgoldberg.com";
+const bin = "./bin/index.js";
+const guide =
+	"https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository";
+const guideTitle = "Contributing to a create-typescript-app Repository";
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage -r html -r lcov --src src node ./bin/index.js --base everything --author ${authorName} --mode migrate --bin ./bin/index.js --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
+})`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
 test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
 	const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);

@@ -1,7 +1,6 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
-import { test } from "vitest";
-import { assert, expect } from "vitest";
+import { assert, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 

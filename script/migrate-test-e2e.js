@@ -1,12 +1,11 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
-import { assert, expect, test } from "vitest";
+import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 
 const filesExpectedToBeChanged = new Set([
 	".all-contributorsrc",
-	"bin/index.js",
 	"README.md",
 	"knip.jsonc",
 	"package.json",
@@ -18,6 +17,21 @@ const filesExpectedToBeChanged = new Set([
 	".gitignore",
 	".prettierignore",
 	"cspell.json",
+]);
+
+const fileContentTransforms = new Map([
+	[
+		".all-contributorsrc",
+		(original) =>
+			JSON.stringify({
+				...JSON.parse(original),
+				contributors: undefined,
+			}),
+	],
+	[
+		".github/DEVELOPMENT.md:",
+		(original) => original.slice(original.indexOf("-## Setup Scripts") - 1),
+	],
 ]);
 
 const {
@@ -37,13 +51,25 @@ await $({
 	stdio: "inherit",
 })`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
-test.each([...filesExpectedToBeChanged])("verify %s", async (file) => {
-	const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
-	expect(stdout.split("\n").slice(2).join("\n")).toMatchSnapshot();
+describe("expected file changes", () => {
+	test.each([...filesExpectedToBeChanged])("%s", async (file) => {
+		const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
+		const contentsAfterGitMarkers = stdout.split("\n").slice(2).join("\n");
+		const contentsTransformed =
+			fileContentTransforms.get(file)?.(contentsAfterGitMarkers) ??
+			contentsAfterGitMarkers;
+
+		assert(
+			stdout,
+			`Looks like there were no changes to ${file} from migration?`,
+		);
+
+		expect(contentsTransformed).toMatchSnapshot();
+	});
 });
 
 // eslint-disable-next-line vitest/expect-expect
-test("check for unstagedModifiedFiles", async () => {
+test("unexpected file changes", async () => {
 	const { stdout: gitStatus } = await $`git status`;
 	console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
 

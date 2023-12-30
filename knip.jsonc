@@ -8,6 +8,7 @@
 		"script/*e2e.js"
 	],
 	"ignoreBinaries": ["gh"],
+	"ignoreDependencies": ["script"],
 	"ignoreExportsUsedInFile": {
 		"interface": true,
 		"type": true

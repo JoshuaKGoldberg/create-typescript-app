@@ -49,4 +49,4 @@ await $`pnpm i`;
 await $`pnpm run build`;
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-initialize -r html -r lcov --src src node ./bin/index.js --base everything --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-removal --skip-restore`;
+})`c8 -o ./coverage -r html -r lcov --src src node ./bin/index.js --base everything --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-removal --skip-restore`;

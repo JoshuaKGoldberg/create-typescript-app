@@ -5,7 +5,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors" target="_blank"><img alt="All Contributors: 39 🤝" src="https://img.shields.io/badge/all_contributors-39_🤝-21bb42.svg" /></a>
+  <a href="#contributors" target="_blank"><img alt="All Contributors: 39 👪" src="https://img.shields.io/badge/all_contributors-39_👪-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/JoshuaKGoldberg/create-typescript-app/branch/main/graph/badge.svg"/></a>

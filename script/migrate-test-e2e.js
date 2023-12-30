@@ -11,7 +11,6 @@ const filesExpectedToBeChanged = [
 	"package.json",
 	".eslintignore",
 	".eslintrc.cjs",
-	".github/DEVELOPMENT.md",
 	".github/workflows/test.yml",
 	".gitignore",
 	".prettierignore",
@@ -64,7 +63,8 @@ await fs.writeFile(
 // We manually add them back after hydration to clear them from Git diffs.
 await fs.appendFile(
 	".github/DEVELOPMENT.md",
-	originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
+	"\n" +
+		originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
 );
 
 // Ignore changes to the README.md all-contributor count and contributors table...

@@ -36,6 +36,8 @@ const originalDevelopment = (
 	await fs.readFile(".github/DEVELOPMENT.md")
 ).toString();
 
+const originalReadme = (await fs.readFile("README.md")).toString();
+
 await $({
 	stdio: "inherit",
 })`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
@@ -55,6 +57,19 @@ await fs.writeFile(
 await fs.appendFile(
 	".github/DEVELOPMENT.md",
 	originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
+);
+
+// Ignore changes to the all-contributor count and contributors table.
+const updatedReadme = (await fs.readFile("README.md")).toString();
+await fs.writeFile(
+	"README.md",
+	(
+		updatedReadme.slice(0, updatedReadme.indexOf("## Contributors")) +
+		originalReadme.slice(originalReadme.indexOf("## Contributors"))
+	).replace(
+		/all.contributors..\d+/,
+		originalReadme.match(/all.contributors..\d+/)[0],
+	),
 );
 
 describe("expected file changes", () => {

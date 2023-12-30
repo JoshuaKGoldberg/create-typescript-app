@@ -145,7 +145,7 @@ describe("writePackageJson", () => {
 			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
-			  "bin": "bin/index.js",
+			  "bin": "./bin/index.js",
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {

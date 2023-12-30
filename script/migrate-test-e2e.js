@@ -6,7 +6,6 @@ import { assert, describe, expect, test } from "vitest";
 import packageData from "../package.json" assert { type: "json" };
 
 const filesExpectedToBeChanged = new Set([
-	"bin/index.js",
 	"README.md",
 	"knip.jsonc",
 	"package.json",

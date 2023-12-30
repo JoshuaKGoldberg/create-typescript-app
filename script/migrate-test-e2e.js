@@ -37,8 +37,6 @@ const originalDevelopment = (
 	await fs.readFile(".github/DEVELOPMENT.md")
 ).toString();
 
-// const originalReadme = (await fs.readFile("README.md")).toString();
-
 await $({
 	stdio: "inherit",
 })`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
@@ -59,15 +57,6 @@ await fs.appendFile(
 	".github/DEVELOPMENT.md",
 	originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
 );
-
-// // The Readme docs can be ignored, too, for being unnecessary diff noise.
-// await fs.writeFile(
-// 	"README.md",
-// 	originalReadme.slice(
-// 		0,
-// 		originalReadme.indexOf("`create-typescript-app` is a one-stop"),
-// 	) + originalReadme.slice(originalReadme.indexOf("## Development")),
-// );
 
 describe("expected file changes", () => {
 	test.each([...filesExpectedToBeChanged])("%s", async (file) => {

@@ -1,3 +1,9 @@
+## [1.50.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.50.0...v1.50.1) (2023-12-30)
+
+### Bug Fixes
+
+- infer --guide-title ([#1138](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1138)) ([d316737](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d316737863cb46c6ff47f36670711221351ea45a)), closes [#1137](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1137)
+
 # [1.50.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.49.4...v1.50.0) (2023-12-24)
 
 ### Features

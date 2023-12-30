@@ -6,6 +6,10 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm run build
       - run: pnpm run test:initialize
+      # The template's .eslintignore only ignores coverage, not coverage-*
+      # https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1131
+      - if: always()
+        run: mv coverage coverage-initialize
       - if: always()
         name: Codecov
         uses: codecov/codecov-action@v3

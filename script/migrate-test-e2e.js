@@ -6,6 +6,7 @@ import packageData from "../package.json" assert { type: "json" };
 
 const filesExpectedToBeChanged = new Set([
 	".all-contributorsrc",
+	"bin/index.js",
 	"README.md",
 	"knip.jsonc",
 	"package.json",

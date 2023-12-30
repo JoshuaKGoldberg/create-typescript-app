@@ -1,5 +1,6 @@
 import { $ } from "execa";
 
+import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
@@ -37,11 +38,13 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 			finalizeDependencies(options),
 		);
 
-		await runCommands("Cleaning up files", [
-			"pnpm dedupe",
-			"pnpm lint --fix",
-			"pnpm format --write",
-		]);
+		await runCommands(
+			"Cleaning up files",
+			createCleanUpFilesCommands({
+				bin: !!options.bin,
+				dedupe: true,
+			}),
+		);
 	}
 
 	const sendToGitHub =

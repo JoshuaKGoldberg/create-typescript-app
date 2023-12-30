@@ -1,3 +1,9 @@
+# [1.51.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.50.2...v1.51.0) (2023-12-30)
+
+### Features
+
+- clarify option selection mechanism ([#1122](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1122)) ([aaad5ae](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aaad5ae41699e7c4e591462aced48fe9c3b07fc6)), closes [#1121](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1121)
+
 ## [1.50.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.50.1...v1.50.2) (2023-12-30)
 
 ### Bug Fixes

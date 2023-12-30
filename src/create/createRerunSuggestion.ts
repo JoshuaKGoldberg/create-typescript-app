@@ -45,7 +45,7 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 					undefined && !!value,
 		)
 		.map(([key, value]) => {
-			return `--${getFirstMatchingArg(key)} ${stringifyValue(value)}`;
+			return `--${getFirstMatchingArg(key)}${stringifyValue(value)}`;
 		})
 		.join(" ");
 
@@ -59,9 +59,13 @@ function stringifyValue(
 		return stringifyValue(value.join(" "));
 	}
 
+	if (typeof value === "boolean" && value) {
+		return "";
+	}
+
 	const valueStringified = `${value}`;
 
 	return valueStringified.includes(" ")
-		? `"${valueStringified}"`
-		: valueStringified;
+		? ` "${valueStringified}"`
+		: ` ${valueStringified}`;
 }

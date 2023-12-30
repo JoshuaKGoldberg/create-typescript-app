@@ -66,10 +66,15 @@ await fs.writeFile(
 	(
 		updatedReadme.slice(0, updatedReadme.indexOf("## Contributors")) +
 		originalReadme.slice(originalReadme.indexOf("## Contributors"))
-	).replace(
-		/all.contributors..\d+/,
-		originalReadme.match(/all.contributors..\d+/)[0],
-	),
+	)
+		.replace(
+			/All Contributors: \d+/,
+			originalReadme.match(/All Contributors: \d+/)[0],
+		)
+		.replace(
+			/all_contributors-\d+/,
+			originalReadme.match(/all_contributors-\d+/)[0],
+		),
 );
 
 describe("expected file changes", () => {

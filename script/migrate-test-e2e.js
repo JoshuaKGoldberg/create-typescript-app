@@ -38,6 +38,10 @@ const originalDevelopment = (
 
 const originalReadme = (await fs.readFile("README.md")).toString();
 
+const originalSnapshots = (
+	await fs.readFile("script/__snapshots__/migrate-test-e2e.js.snap")
+).toString();
+
 await $({
 	stdio: "inherit",
 })`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
@@ -69,11 +73,11 @@ await fs.writeFile(
 	)
 		.replace(
 			/All Contributors: \d+/g,
-			originalReadme.match(/All Contributors: \d+/)[0],
+			originalSnapshots.match(/All Contributors: \d+/)[0],
 		)
 		.replace(
 			/all_contributors-\d+/g,
-			originalReadme.match(/all_contributors-\d+/)[0],
+			originalSnapshots.match(/all_contributors-\d+/)[0],
 		),
 );
 

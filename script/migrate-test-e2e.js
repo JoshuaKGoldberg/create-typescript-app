@@ -112,7 +112,7 @@ describe("expected file changes", () => {
 			.split("\n")
 			.slice(2)
 			.join("\n")
-			.replaceAll(/@@ -.+ @@/, "@@ ... @@");
+			.replaceAll(/@@ -\d+,\d+ \+\d+,\d+ @@/g, "@@ ... @@");
 
 		assert(
 			stdout,

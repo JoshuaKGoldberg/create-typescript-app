@@ -108,7 +108,11 @@ await fs.writeFile(
 describe("expected file changes", () => {
 	test.each(filesExpectedToBeChanged)("%s", async (file) => {
 		const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
-		const contentsAfterGitMarkers = stdout.split("\n").slice(2).join("\n");
+		const contentsAfterGitMarkers = stdout
+			.split("\n")
+			.slice(2)
+			.join("\n")
+			.replaceAll(/@@ -\d+,\d+ \+\d+,\d+ @@/g, "@@ ... @@");
 
 		assert(
 			stdout,

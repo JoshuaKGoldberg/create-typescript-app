@@ -68,11 +68,11 @@ await fs.writeFile(
 		originalReadme.slice(originalReadme.indexOf("## Contributors"))
 	)
 		.replace(
-			/All Contributors: \d+/,
+			/All Contributors: \d+/g,
 			originalReadme.match(/All Contributors: \d+/)[0],
 		)
 		.replace(
-			/all_contributors-\d+/,
+			/all_contributors-\d+/g,
 			originalReadme.match(/all_contributors-\d+/)[0],
 		),
 );

@@ -839,7 +839,7 @@ exports[`verify package.json 1`] = `
  		"vitest": "^1.0.2",
  		"yaml-eslint-parser": "^1.2.2"
  	},
--	"packageManager": "pnpm@8.12.1",
+-	"packageManager": "pnpm@8.13.1",
 +	"packageManager": "pnpm@8.7.0",
  	"engines": {
  		"node": ">=18"

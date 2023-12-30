@@ -1,5 +1,7 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
+import fs from "node:fs/promises";
+import prettier from "prettier";
 import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
@@ -20,27 +22,6 @@ const filesExpectedToBeChanged = new Set([
 	"cspell.json",
 ]);
 
-const fileContentTransforms = new Map([
-	[
-		".all-contributorsrc",
-		(original) => {
-			try {
-				return JSON.stringify({
-					...JSON.parse(original),
-					contributors: undefined,
-				});
-			} catch (error) {
-				console.warn("Original text:", original);
-				throw error;
-			}
-		},
-	],
-	[
-		".github/DEVELOPMENT.md:",
-		(original) => original.slice(original.indexOf("-## Setup Scripts") - 1),
-	],
-]);
-
 const {
 	author: { email: emailNpm, name: authorName },
 	description,
@@ -58,21 +39,31 @@ await $({
 	stdio: "inherit",
 })`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
+// All Contributors seems to be applying different formatting settings...?
+await fs.writeFile(
+	".all-contributorsrc",
+	await prettier.format((await fs.readFile(".all-contributorsrc")).toString()),
+	{ parser: "json" },
+);
+
+// The README's setup scripts docs can be ignored from snapshots
+const originalReadme = (await fs.readFile("README.md")).toString();
+await fs.writeFile(
+	"README.md",
+	originalReadme.slice(originalReadme.indexOf("-## Setup Scripts") - 1),
+);
+
 describe("expected file changes", () => {
 	test.each([...filesExpectedToBeChanged])("%s", async (file) => {
 		const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
 		const [, contentsAfterGitMarkers] = stdout.split("@@\n");
-		const contentsTransformed =
-			fileContentTransforms.get(file)?.(contentsAfterGitMarkers) ??
-			contentsAfterGitMarkers;
 
-		if (stdout) {
-			throw new Error(
-				`Looks like there were no changes to ${file} from migration: ${stdout}`,
-			);
-		}
+		assert(
+			stdout,
+			`Looks like there were no changes to ${file} from migration?`,
+		);
 
-		expect(contentsTransformed).toMatchSnapshot();
+		expect(contentsAfterGitMarkers).toMatchSnapshot();
 	});
 });
 

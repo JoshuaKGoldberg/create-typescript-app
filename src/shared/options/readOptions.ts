@@ -85,6 +85,7 @@ export async function readOptions(
 		excludeTests: values["unit-tests"],
 		funding: values.funding,
 		guide: values.guide,
+		guideTitle: values["guide-title"],
 		logo: values.logo,
 		offline: values.offline,
 		owner: values.owner,

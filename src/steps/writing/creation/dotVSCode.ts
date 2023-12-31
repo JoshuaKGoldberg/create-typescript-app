@@ -65,7 +65,6 @@ export async function createDotVSCode(options: Options) {
 				{
 					detail: "Build the project",
 					label: "build",
-					problemMatcher: [],
 					script: "build",
 					type: "npm",
 				},

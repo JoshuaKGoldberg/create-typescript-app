@@ -3,7 +3,6 @@
 		{
 			"detail": "Build the project",
 			"label": "build",
-			"problemMatcher": [],
 			"script": "build",
 			"type": "npm"
 		}

@@ -58,12 +58,13 @@ ${[...badges, ...remainingExistingBadges]
 	.map((badge) => `\t${badge}`)
 	.join("\n")}
 </p>${
-		options.logo &&
-		`
+		options.logo
+			? `
 
 <img align="right" alt="${options.logo.alt}" src="${options.logo.src}">
 
 `
+			: undefined
 	}${
 		options.mode === "migrate"
 			? ""

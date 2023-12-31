@@ -1,3 +1,9 @@
+## [1.52.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.0...v1.52.1) (2023-12-31)
+
+### Bug Fixes
+
+- encode emojis in README.md badge images ([#1156](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1156)) ([378d1b0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/378d1b0d03d3ce9de68ed1aaeda3575108926960)), closes [#1155](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1155)
+
 # [1.52.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.51.2...v1.52.0) (2023-12-31)
 
 ### Features

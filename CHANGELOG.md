@@ -1,3 +1,9 @@
+## [1.52.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.3...v1.52.4) (2023-12-31)
+
+### Bug Fixes
+
+- removed unnecessary knip.jsonc entries ([#1164](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1164)) ([51a426a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/51a426ac7bbc5d21b9b0fabf8ac5fcf00c090646)), closes [#1163](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1163)
+
 ## [1.52.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.2...v1.52.3) (2023-12-31)
 
 ### Bug Fixes

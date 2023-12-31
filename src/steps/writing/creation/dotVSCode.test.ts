@@ -99,7 +99,6 @@ describe("createDotVSCode", () => {
 				    {
 				      "detail": "Build the project",
 				      "label": "build",
-				      "problemMatcher": [],
 				      "script": "build",
 				      "type": "npm"
 				    }
@@ -173,7 +172,6 @@ describe("createDotVSCode", () => {
 				    {
 				      "detail": "Build the project",
 				      "label": "build",
-				      "problemMatcher": [],
 				      "script": "build",
 				      "type": "npm"
 				    }

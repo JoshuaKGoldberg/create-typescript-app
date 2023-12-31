@@ -10,6 +10,14 @@
 			"skipFiles": ["<node_internals>/**", "**/node_modules/**"],
 			"smartStep": true,
 			"type": "node"
+		},
+		{
+			"name": "Debug Program",
+			"preLaunchTask": "build",
+			"program": "lib/index.js",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "node"
 		}
 	],
 	"version": "0.2.0"

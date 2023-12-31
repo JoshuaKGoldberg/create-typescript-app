@@ -1,3 +1,9 @@
+## [1.52.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.4...v1.52.5) (2023-12-31)
+
+### Bug Fixes
+
+- correct initialize script path ([#1170](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1170)) ([88524d3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/88524d3ebea16d64191ac22110f7afe0094582b7)), closes [#1168](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1168)
+
 ## [1.52.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.3...v1.52.4) (2023-12-31)
 
 ### Bug Fixes

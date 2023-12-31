@@ -17,7 +17,7 @@ describe("createCleanUpFilesCommands", () => {
 
 		expect(actual).toEqual([
 			"pnpm dedupe",
-			"pnpm build || exit 0",
+			"pnpm build",
 			"pnpm lint --fix",
 			"pnpm format --write",
 		]);

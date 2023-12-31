@@ -65,7 +65,7 @@ describe("writeReadme", () => {
 				<a href="https://github.com/TestOwner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
 				<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
+			</p>undefined
 
 			## Usage
 
@@ -124,7 +124,7 @@ describe("writeReadme", () => {
 				<a href="https://github.com/TestOwner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
 				<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
+			</p>undefined
 
 			## Usage
 
@@ -186,7 +186,7 @@ describe("writeReadme", () => {
 				<a href="https://github.com/TestOwner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
 				<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
-			</p>
+			</p>undefined
 
 			## Usage
 
@@ -283,7 +283,7 @@ describe("writeReadme", () => {
 				<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
-			</p>
+			</p>undefined
 
 			## Usage
 

@@ -95,7 +95,7 @@ exports[`expected file changes > README.md 1`] = `
 "--- a/README.md
 +++ b/README.md
 @@ ... @@
- 	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/💪_typescript-strict-21bb42.svg" />
+ 	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
  </p>
  
 -<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./create-typescript-app.png">

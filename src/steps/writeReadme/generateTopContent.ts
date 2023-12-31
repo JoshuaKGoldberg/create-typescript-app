@@ -20,7 +20,7 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 		],
 		[
 			!options.excludeTests &&
-				`<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage"/></a>`,
+				`<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage" /></a>`,
 			/https:\/\/codecov\.io\/gh/,
 		],
 		[

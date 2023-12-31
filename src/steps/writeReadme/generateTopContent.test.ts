@@ -27,15 +27,14 @@ describe("findExistingBadges", () => {
 			<p align="center">
 				<!-- prettier-ignore-start -->
 				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-				<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
+				<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/👪_all_contributors-1-21bb42.svg" /></a>
 				<!-- ALL-CONTRIBUTORS-BADGE:END -->
 				<!-- prettier-ignore-end -->
-				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/test-owner/test-repository/branch/main/graph/badge.svg"/></a>
-				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" /></a>
-				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="License: MIT" src="https://img.shields.io/github/license/test-owner/test-repository?color=21bb42"></a>
-				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
-				<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-				<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
+				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/🤝_code_of_conduct-kept-21bb42" /></a>
+				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=🧪%20coverage"/></a>
+				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/📝_license-MIT-21bb42.svg"></a>
+				<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=📦%20npm" /></a>
+				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/💪_typescript-strict-21bb42.svg" />
 			</p>
 
 			## Usage
@@ -64,15 +63,14 @@ describe("findExistingBadges", () => {
 			<p align="center">
 				<!-- prettier-ignore-start -->
 				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-				<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
+				<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/👪_all_contributors-1-21bb42.svg" /></a>
 				<!-- ALL-CONTRIBUTORS-BADGE:END -->
 				<!-- prettier-ignore-end -->
-				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/test-owner/test-repository/branch/main/graph/badge.svg"/></a>
-				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" /></a>
-				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="License: MIT" src="https://img.shields.io/github/license/test-owner/test-repository?color=21bb42"></a>
-				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
-				<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-				<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
+				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/🤝_code_of_conduct-kept-21bb42" /></a>
+				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=🧪%20coverage"/></a>
+				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/📝_license-MIT-21bb42.svg"></a>
+				<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=📦%20npm" /></a>
+				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/💪_typescript-strict-21bb42.svg" />
 			</p>
 
 			## Usage
@@ -101,15 +99,14 @@ describe("findExistingBadges", () => {
 			<p align="center">
 				<!-- prettier-ignore-start -->
 				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-				<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
+				<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/👪_all_contributors-1-21bb42.svg" /></a>
 				<!-- ALL-CONTRIBUTORS-BADGE:END -->
 				<!-- prettier-ignore-end -->
-				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/test-owner/test-repository/branch/main/graph/badge.svg"/></a>
-				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" /></a>
-				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="License: MIT" src="https://img.shields.io/github/license/test-owner/test-repository?color=21bb42"></a>
-				<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
-				<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-				<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
+				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/🤝_code_of_conduct-kept-21bb42" /></a>
+				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=🧪%20coverage"/></a>
+				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/📝_license-MIT-21bb42.svg"></a>
+				<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=📦%20npm" /></a>
+				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/💪_typescript-strict-21bb42.svg" />
 				<img alt="Unknown Badge" src="unknown.svg" />
 			</p>
 
@@ -136,15 +133,14 @@ describe("findExistingBadges", () => {
 				<p align="center">
 					<!-- prettier-ignore-start -->
 					<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-					<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
+					<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/👪_all_contributors-1-21bb42.svg" /></a>
 					<!-- ALL-CONTRIBUTORS-BADGE:END -->
 					<!-- prettier-ignore-end -->
-					<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/test-owner/test-repository/branch/main/graph/badge.svg"/></a>
-					<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" /></a>
-					<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="License: MIT" src="https://img.shields.io/github/license/test-owner/test-repository?color=21bb42"></a>
-					<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />
-					<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />
-					<img alt="npm package version" src="https://img.shields.io/npm/v/test-repository?color=21bb42" />
+					<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/🤝_code_of_conduct-kept-21bb42" /></a>
+					<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=🧪%20coverage"/></a>
+					<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/📝_license-MIT-21bb42.svg"></a>
+					<a href="http://npmjs.com/package/test-repository"><img alt="📦 npm version" src="https://img.shields.io/npm/v/test-repository?color=21bb42&label=📦%20npm" /></a>
+					<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/💪_typescript-strict-21bb42.svg" />
 				</p>"
 			`);
 	});

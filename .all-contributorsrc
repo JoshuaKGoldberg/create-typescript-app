@@ -1,5 +1,5 @@
 {
-  "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"All Contributors: <%= contributors.length %> 👪\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_👪-21bb42.svg\" /></a>",
+  "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/👪_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
   "commit": false,
   "commitConvention": "angular",
   "commitType": "docs",

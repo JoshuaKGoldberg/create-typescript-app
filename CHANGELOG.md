@@ -1,3 +1,9 @@
+## [1.52.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.2...v1.52.3) (2023-12-31)
+
+### Bug Fixes
+
+- print logo in README.md ([#1166](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1166)) ([8244e06](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8244e0612568c706554cc8869583ac5cfec1d0b1)), closes [#1165](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1165)
+
 ## [1.52.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.1...v1.52.2) (2023-12-31)
 
 ### Bug Fixes

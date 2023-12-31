@@ -1,3 +1,9 @@
+# [1.52.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.51.2...v1.52.0) (2023-12-31)
+
+### Features
+
+- streamlined and unified README.md badges ([#1154](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1154)) ([6daf043](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6daf0433a166de89f995404d0bd9f9811e27b4ee)), closes [#1088](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1088)
+
 ## [1.51.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.51.1...v1.51.2) (2023-12-30)
 
 ### Bug Fixes

@@ -87,6 +87,7 @@ export async function readOptions(
 		guide: values.guide,
 		guideTitle: values["guide-title"],
 		logo: values.logo,
+		logoAlt: values["logo-alt"],
 		offline: values.offline,
 		owner: values.owner,
 		preserveGeneratedFrom:

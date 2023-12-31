@@ -1,3 +1,9 @@
+## [1.52.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.1...v1.52.2) (2023-12-31)
+
+### Bug Fixes
+
+- don't || exit 0 in cleanup build ([#1161](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1161)) ([c5e15e4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c5e15e4f7ebd2ab83dec1d1dc1e9ebeb36489e55)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000)
+
 ## [1.52.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.0...v1.52.1) (2023-12-31)
 
 ### Bug Fixes

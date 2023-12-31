@@ -64,7 +64,7 @@ ${[...badges, ...remainingExistingBadges]
 <img align="right" alt="${options.logo.alt}" src="${options.logo.src}">
 
 `
-			: undefined
+			: ""
 	}${
 		options.mode === "migrate"
 			? ""

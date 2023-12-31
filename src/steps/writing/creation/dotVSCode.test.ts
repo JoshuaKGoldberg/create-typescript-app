@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { Options } from "../../../shared/types.js";
 import { createDotVSCode } from "./dotVSCode.js";
 
+/* spellchecker: disable */
 function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 	return {
 		access: "public",

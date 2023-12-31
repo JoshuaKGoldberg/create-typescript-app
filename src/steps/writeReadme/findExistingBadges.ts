@@ -10,9 +10,8 @@ export function findExistingBadges(contents: string): string[] {
 	let remaining = contents.split(/<\s*h2.*>|##/)[0];
 
 	for (const createMatcher of existingBadgeMatcherCreators) {
-		const matcher = createMatcher();
-
 		while (true) {
+			const matcher = createMatcher();
 			const matched = matcher.exec(remaining);
 
 			if (!matched) {
@@ -22,10 +21,8 @@ export function findExistingBadges(contents: string): string[] {
 			const [badge] = matched;
 
 			badges.push(badge.trim());
-			remaining = [
-				remaining.slice(0, matched.index),
-				remaining.slice(matched.index + badge.length),
-			].join("");
+
+			remaining = remaining.replace(badge, "");
 		}
 	}
 

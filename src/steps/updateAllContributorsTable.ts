@@ -1,5 +1,5 @@
 import { $ } from "execa";
-import fs from "node:fs/promises";
+import * as fs from "node:fs/promises";
 import prettier from "prettier";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";

@@ -14,12 +14,8 @@ vi.mock("execa", () => ({
 const mockWriteFile = vi.fn();
 
 vi.mock("node:fs/promises", () => ({
-	get default() {
-		return {
-			get writeFile() {
-				return mockWriteFile;
-			},
-		};
+	get writeFile() {
+		return mockWriteFile;
 	},
 }));
 

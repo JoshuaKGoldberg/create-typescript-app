@@ -1,3 +1,21 @@
+## [1.52.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.4...v1.52.5) (2023-12-31)
+
+### Bug Fixes
+
+- correct initialize script path ([#1170](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1170)) ([88524d3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/88524d3ebea16d64191ac22110f7afe0094582b7)), closes [#1168](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1168)
+
+## [1.52.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.3...v1.52.4) (2023-12-31)
+
+### Bug Fixes
+
+- removed unnecessary knip.jsonc entries ([#1164](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1164)) ([51a426a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/51a426ac7bbc5d21b9b0fabf8ac5fcf00c090646)), closes [#1163](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1163)
+
+## [1.52.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.2...v1.52.3) (2023-12-31)
+
+### Bug Fixes
+
+- print logo in README.md ([#1166](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1166)) ([8244e06](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8244e0612568c706554cc8869583ac5cfec1d0b1)), closes [#1165](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1165)
+
 ## [1.52.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.1...v1.52.2) (2023-12-31)
 
 ### Bug Fixes

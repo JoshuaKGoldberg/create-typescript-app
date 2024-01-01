@@ -32,6 +32,8 @@ const bin = "./bin/index.js";
 const guide =
 	"https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository";
 const guideTitle = "Contributing to a create-typescript-app Repository";
+const logo = "./create-typescript-app.png";
+const logoAlt = `Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'`;
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";
 
@@ -47,7 +49,7 @@ const originalSnapshots = (
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
+})`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --logo ${logo} --logo-alt ${logoAlt} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
 
 // All Contributors seems to not be using Prettier to format files...
 await fs.writeFile(

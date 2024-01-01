@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "1.52.2",
+	"version": "1.52.5",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝",
 	"repository": {
 		"type": "git",
@@ -24,7 +24,7 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier \"**/*\" --ignore-unknown",
-		"initialize": "tsx ./src/bin/index.js --mode initialize",
+		"initialize": "tsx ./bin/index.js --mode initialize",
 		"lint": "eslint . .*js --max-warnings 0",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",

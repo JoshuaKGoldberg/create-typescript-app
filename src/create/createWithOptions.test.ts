@@ -8,8 +8,6 @@ import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { runCommands } from "../steps/runCommands.js";
-import { writeReadme } from "../steps/writeReadme/index.js";
-import { writeStructure } from "../steps/writing/writeStructure.js";
 import { createWithOptions } from "./createWithOptions.js";
 
 const optionsBase: Options = {
@@ -146,6 +144,7 @@ describe("createWithOptions", () => {
 
 	it("executes git commands when initializing GitHub repository", async () => {
 		const options = optionsBase;
+
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
 		await createWithOptions({ github, options });
 

@@ -180,11 +180,12 @@ describe("createWithOptions", () => {
 		`);
 	});
 
-	it("handles GitHub repository initialization", async () => {
+	it("calls doesRepositoryExist with github and options when doesRepositoryExist is true", async () => {
 		const options = optionsBase;
+		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
+
 		await createWithOptions({ github, options });
 
-		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
 		expect(doesRepositoryExist).toHaveBeenCalledWith(github.octokit, options);
 		expect(initializeGitHubRepository).toHaveBeenCalledWith(
 			github.octokit,

@@ -119,6 +119,8 @@ Each follows roughly the same general flow:
 
 ### The Creation Script
 
+> 📝 See [`docs/Creation.md`](../docs/Creation.md) for user documentation on the creation script.
+
 This template's "creation" script is located in `src/create/`.
 You can run it locally with `node bin/index.js --mode create`.
 Note that files need to be built with `pnpm run build` beforehand.
@@ -141,6 +143,8 @@ The `pnpm run test:create` script is run in CI to ensure that templating changes
 See `.github/workflows/test-create.yml`.
 
 ### The Initialization Script
+
+> 📝 See [`docs/Initialization.md`](../docs/Initialization.md) for user documentation on the initialization script.
 
 This template's "initialization" script is located in `src/initialize/`.
 You can run it locally with `pnpm run initialize`.
@@ -171,6 +175,8 @@ The `pnpm run test:initialize` script is run in CI to ensure that templating cha
 See `.github/workflows/test-initialize.yml`.
 
 ### The Migration Script
+
+> 📝 See [`docs/Migration.md`](../docs/Migration.md) for user documentation on the migration script.
 
 This template's "migration" script is located in `src/migrate/`.
 Note that files need to be built with `pnpm run build` beforehand.

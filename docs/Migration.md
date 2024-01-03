@@ -47,7 +47,7 @@ It also allows specifying `--mode migrate` if that detection misinterprets the c
 npx create-typescript-app --mode migrate
 ```
 
-Additionally, you can explicitly provide some or all of the options the script would prompt for as command-line flags.
+You can explicitly provide some or all of the options the script would prompt for as command-line flags.
 See [Options.md](./Options.md).
 
 For example, running the migration script and skipping all GitHub-related APIs:

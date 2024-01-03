@@ -1,3 +1,9 @@
+## [1.52.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.5...v1.52.6) (2024-01-03)
+
+### Bug Fixes
+
+- markdown typo - the case of the extra ')' ([#1176](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1176)) ([a76cea9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a76cea9838d14fa6502acb8d1a27ec86a4b090d3)), closes [#1174](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1174)
+
 ## [1.52.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.4...v1.52.5) (2023-12-31)
 
 ### Bug Fixes

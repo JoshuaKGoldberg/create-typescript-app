@@ -163,8 +163,16 @@ test("unexpected file changes", async () => {
 				"That likely indicates changes made to the repository without",
 				"corresponding updates to templates in src/.",
 				"",
-				"Please search for those file(s)' name(s) under src/migrate for",
-				"the corresponding template and update those as well.",
+				"Following the steps below should fix the issue:",
+				"",
+				"1. Commit any changes",
+				"2. `pnpm i; pnpm build; pnpm test:migrate -u`",
+				"3. At this point there will be some files changed:",
+				"   - `script/__snapshots__/migrate-test-e2e.js.snap` will have updates if any files mismatched templates",
+				"   - The actual updated files on disk will be there too",
+				`4. Commit ${unstagedModifiedFiles.join(
+					", ",
+				)} and/or \`script/__snapshots__/migrate-test-e2e.js.snap\` and revert the rest`,
 			]
 				.map((line) => chalk.red(line))
 				.join("\n"),

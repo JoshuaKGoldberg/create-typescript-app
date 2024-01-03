@@ -67,14 +67,14 @@ ${
 				`This package includes several forms of linting to enforce consistent code quality and styling.`,
 				`Each should be shown in VS Code, and can be run manually on the command-line:`,
 				``,
-				`- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io): Lints JavaScript and TypeScript source files`,
+				`- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files`,
 				...lintLines,
 				``,
 				`Read the individual documentation for each linter to understand how it can be configured and used best.`,
 				``,
 				`For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`,
 		  ].join("\n")
-		: `[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+		: `[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io) to lint JavaScript and TypeScript source files.
 You can run it locally on the command-line:
 
 \`\`\`shell

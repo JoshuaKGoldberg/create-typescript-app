@@ -210,5 +210,37 @@ The `pnpm run test:migrate` script is run in CI to ensure that templating change
 See `.github/workflows/test-migrate.yml`.
 
 > Tip: if the migration test is failing in CI and you don't see any errors, try [downloading the full logs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs#downloading-logs).
-> There'll likely be a list of changed files under a message like _`Oh no! Running the migrate script modified some files:`_.
-> You can also try running the test script locally.
+
+##### Migration Snapshot Failures
+
+The migration test uses the [Vitest file snapshot](https://vitest.dev/guide/snapshot#file-snapshots) in `script/__snapshots__/migrate-test-e2e.js.snap` to store expected differences to this repository after running the migration script.
+The end-to-end migration test will fail any changes that don't keep the same differences in that snapshot.
+
+You can update the snapshot file by:
+
+1. Committing any changes to your local repository
+2. Running `pnpm i` and `pnpm build` if any updates have been made to the `package.json` or `src/` files, respectively
+3. Running `pnpm run test:migrate -u` to update the snapshot
+
+At this point there will be some files changed:
+
+- `script/__snapshots__/migrate-test-e2e.js.snap` will have updates if any files mismatched templates
+- The actual updated files on disk will be there too
+
+If the snapshot file changes are what you expected, then you can commit them.
+The rest of the file changes can be reverted.
+
+> [🚀 Feature: Add a way to apply known file changes after migration #1184](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1184) tracks turning the test snapshot into a feature.
+
+##### Unexpected File Modifications
+
+The migration test also asserts that no files were unexpectedly changed.
+If you see a failure like:
+
+```plaintext
+Oh no! Running the migrate script unexpectedly modified:
+ - ...
+```
+
+...then that means the file generated from templates differs from what's checked into the repository.
+This is most often caused by changes to templates not being applied to checked-in files too.

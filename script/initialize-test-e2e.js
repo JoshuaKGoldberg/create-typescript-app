@@ -8,10 +8,11 @@ const owner = "RNR1";
 const title = "New Title Test";
 const repository = "new-repository-test";
 
-// First we run initialize to modifies the local repo, so we can test the changes
+// Fist we run with --mode initialize to modify the local repository files,
+// asserting that the created package.json keeps the general description.
 await $({
 	stdio: "inherit",
-})`node ./bin/index.js --description ${description} --base everything --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-restore`;
+})`pnpm run initialize --base everything --mode initialize --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-restore`;
 
 const newPackageJson = JSON.parse(
 	(await fs.readFile("./package.json")).toString(),
@@ -21,6 +22,8 @@ console.log("New package JSON:", newPackageJson);
 assert.equal(newPackageJson.description, description);
 assert.equal(newPackageJson.name, repository);
 
+// Assert that the initialize script used the provided values in files,
+// except for the 'This package was templated with ...' attribution notice.
 const files = await globby(["*.*", "**/*.*"], {
 	gitignore: true,
 	ignoreFiles: ["script/initialize-test-e2e.js"],
@@ -34,11 +37,12 @@ for (const search of [`/JoshuaKGoldberg/`, "create-typescript-app"]) {
 	);
 }
 
+// Use Knip to assert that none of the template-only dependencies remain.
+// They should have been removed as part of initialization.
 try {
 	await $`pnpm run lint:knip`;
 } catch (error) {
-	console.error("Error running lint:knip:", error);
-	process.exitCode = 1;
+	throw new Error("Error running lint:knip:", { cause: error });
 }
 
 // Now that initialize has passed normal steps, we reset everything,
@@ -49,4 +53,4 @@ await $`pnpm i`;
 await $`pnpm run build`;
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage -r html -r lcov --src src node ./bin/index.js --base everything --description ${description} --mode initialize --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-removal --skip-restore`;
+})`c8 -o ./coverage -r html -r lcov --src src node ./bin/index.js --base everything --mode initialize  --description ${description}--owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-removal --skip-restore`;

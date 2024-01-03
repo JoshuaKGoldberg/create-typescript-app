@@ -12,34 +12,43 @@ export async function createDotVSCode(options: Options) {
 				!options.excludeLintSpelling && "streetsidesoftware.code-spell-checker",
 			].filter(Boolean),
 		}),
-		"launch.json": await formatJson({
-			configurations: [
-				...(options.excludeTests
-					? []
-					: [
-							{
-								args: ["run", "${relativeFile}"],
-								autoAttachChildProcesses: true,
-								console: "integratedTerminal",
-								name: "Debug Current Test File",
-								program: "${workspaceRoot}/node_modules/vitest/vitest.mjs",
-								request: "launch",
-								skipFiles: ["<node_internals>/**", "**/node_modules/**"],
-								smartStep: true,
-								type: "node",
-							},
-					  ]),
-				{
-					name: "Debug Program",
-					preLaunchTask: "build",
-					program: "lib/index.js",
-					request: "launch",
-					skipFiles: ["<node_internals>/**"],
-					type: "node",
-				},
-			],
-			version: "0.2.0",
-		}),
+		...(options.excludeTests && !options.bin
+			? {}
+			: {
+					"launch.json": await formatJson({
+						configurations: [
+							...(options.excludeTests
+								? []
+								: [
+										{
+											args: ["run", "${relativeFile}"],
+											autoAttachChildProcesses: true,
+											console: "integratedTerminal",
+											name: "Debug Current Test File",
+											program:
+												"${workspaceRoot}/node_modules/vitest/vitest.mjs",
+											request: "launch",
+											skipFiles: ["<node_internals>/**", "**/node_modules/**"],
+											smartStep: true,
+											type: "node",
+										},
+								  ]),
+							...(options.bin
+								? [
+										{
+											name: "Debug Program",
+											preLaunchTask: "build",
+											program: options.bin,
+											request: "launch",
+											skipFiles: ["<node_internals>/**"],
+											type: "node",
+										},
+								  ]
+								: []),
+						],
+						version: "0.2.0",
+					}),
+			  }),
 		"settings.json": await formatJson({
 			"editor.codeActionsOnSave": {
 				"source.fixAll.eslint": "explicit",

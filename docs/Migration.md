@@ -40,7 +40,7 @@ Hooray! 🥳
 
 ## Options
 
-`create-typescript-app` will detect if it's in an existing repository.
+`create-typescript-app` will detect whether it's being run in an existing repository.
 It also allows specifying `--mode migrate` if that detection misinterprets the current directory:
 
 ```shell

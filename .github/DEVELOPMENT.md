@@ -200,6 +200,9 @@ node ../create-typescript-app/bin/migrate.js
 
 #### Testing the Migration Script
 
+> 💡 Seeing `Oh no! Running the migrate script unexpectedly modified:` errors?
+> _[Unexpected File Modifications](#unexpected-file-modifications)_ covers that below.
+
 You can run the end-to-end test for migrating locally on the command-line:
 
 ```shell
@@ -250,3 +253,12 @@ Oh no! Running the migrate script unexpectedly modified:
 
 ...then that means the file generated from templates differs from what's checked into the repository.
 This is most often caused by changes to templates not being applied to checked-in files too.
+
+Templates for files are generally stored in [`src/steps/writing/creation`] under a path roughly corresponding to the file they describe.
+For example, the template for `tsup.config.ts` is stored in [`src/steps/writing/creation/createTsupConfig.ts`](../src/steps/writing/creation/createTsupConfig.ts).
+If the `createTsupConfig` function were to be modified without an equivalent change to `tsup.config.ts` -or vice-versa- then the migration test would report:
+
+```plaintext
+Oh no! Running the migrate script unexpectedly modified:
+ - tsup.config.ts
+```

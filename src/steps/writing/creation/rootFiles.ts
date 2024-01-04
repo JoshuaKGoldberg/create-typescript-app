@@ -1,29 +1,19 @@
 import { Options } from "../../../shared/types.js";
+import { createDotESLintignore } from "./createDotESLintignore.js";
+import { createDotGitignore } from "./createDotGitignore.js";
 import { createESLintRC } from "./createESLintRC.js";
+import { createTsupConfig } from "./createTsupConfig.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
-import { formatTypeScript } from "./formatters/formatTypeScript.js";
 import { writeAllContributorsRC } from "./writeAllContributorsRC.js";
 import { writePackageJson } from "./writePackageJson.js";
 
 export async function createRootFiles(options: Options) {
 	return {
 		".all-contributorsrc": await writeAllContributorsRC(options),
-		".eslintignore": formatIgnoreFile(
-			[
-				"!.*",
-				...(options.excludeTests ? [] : ["coverage"]),
-				"lib",
-				"node_modules",
-				"pnpm-lock.yaml",
-			].filter(Boolean),
-		),
+		".eslintignore": createDotESLintignore(options),
 		".eslintrc.cjs": await createESLintRC(options),
-		".gitignore": formatIgnoreFile([
-			...(options.excludeTests ? [] : ["coverage/"]),
-			"lib/",
-			"node_modules/",
-		]),
+		".gitignore": createDotGitignore(options),
 		...(!options.excludeLintMd && {
 			".markdownlint.json": await formatJson({
 				extends: "markdownlint/style/prettier",
@@ -173,19 +163,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			},
 			include: ["src"],
 		}),
-		"tsup.config.ts":
-			await formatTypeScript(`import { defineConfig } from "tsup";
-
-		export default defineConfig({
-			bundle: false,
-			clean: true,
-			dts: true,
-			entry: ["src/**/*.ts"${options.excludeTests ? "" : `, "!src/**/*.test.*"`}],
-			format: "esm",
-			outDir: "lib",
-			sourcemap: true,
-		});
-		`),
+		"tsup.config.ts": await createTsupConfig(options),
 		...(!options.excludeTests && {
 			"vitest.config.ts": `import { defineConfig } from "vitest/config";
 

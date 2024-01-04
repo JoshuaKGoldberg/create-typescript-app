@@ -24,9 +24,9 @@ It includes options not just for building and testing but also GitHub repository
 
 First make sure you have the following installed:
 
-- [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
 - [Node.js](https://nodejs.org)
 - [pnpm](https://pnpm.io)
+- _(optional, but helpful)_ [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
 
 Then in an existing repository or in your directory where you'd like to make a new repository:
 

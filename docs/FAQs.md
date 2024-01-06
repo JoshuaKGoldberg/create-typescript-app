@@ -16,35 +16,48 @@ If you think the tool would be broadly useful to most consumers of this template
 ## Can I create a GitHub action with CTA?
 
 Yes! If you want to read in detail about GitHub Actions [try this](https://docs.github.com/en/actions/creating-actions). Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
-1. The GitHub Actions does not cater for tabs well, so you will likely want to set your `README.md` to use spaces, not tabs. 
+
+1. The GitHub Actions does not cater for tabs well, so you will likely want to set your `README.md` to use spaces, not tabs.
 2. GitHub Actions are _not_ like packages published to npm. The output is expected to live in the `dist` folder of a GitHub repo. As a consequence we should:
+
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
    - update `.github/workflows/build.yml`
+
    ```diff
    -      - run: node ./lib/index.js
    ```
+
    - GitHub Actions have a different build mechanism. So you'll be removing `tsup` in favour of [`ncc`](https://github.com/vercel/ncc) which compiles output into a single JS file. So delete `tsup.config.ts` then:
+
    ```bash
    pnpm remove tsup
    pnpm add @vercel/ncc -D
    pnpm add @actions/core -P
    ```
+
    - We also added the [`@actions/core`](https://github.com/actions/toolkit/tree/master/packages/core) package, used for building GitHub Actions. Now we need to update the `build` script in our `package.json`:
+
    ```diff
    -"build": "tsup",
    +"build": "ncc build src/index.ts -o dist --license licenses.txt",
    ```
+
    - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
+
    ```diff
    +dist
    ```
+
    - Rather than having to remember to compile each time, we'll update our precommit hook in `.husky/precommit` to build for us on each commit:
+
    ```diff
    +pnpm run build
    +git add dist
    npx lint-staged
-   ``` 
+   ```
+
    - on the off chance someone isn't running husky, we'll add `.github/workflows/check-dist.yml` ([based on this](https://github.com/actions/typescript-action/blob/main/.github/workflows/check-dist.yml)) to ensure `dist` is up to date:
+
    ```yml
    # In TypeScript actions, `dist/` is a special directory. When you reference
    # an action with the `uses:` property, `dist/index.js` is the code that will be
@@ -55,33 +68,22 @@ Yes! If you want to read in detail about GitHub Actions [try this](https://docs.
    # If this workflow is run from a feature branch, it will act as an additional CI
    # check and fail if the checked-in `dist/` directory does not match what is
    # expected from the build.
-   name: Check transpiled index.js in dist is up to date
-   
-   on:
-     push:
-       branches:
-         - main
-     pull_request:
-   
-   permissions:
-     contents: read
-   
    jobs:
      check-dist:
        name: check dist
        runs-on: ubuntu-latest
-   
+
        steps:
          - uses: actions/checkout@v4
          - uses: ./.github/actions/prepare
-   
-         - name: Build dist directory
-           id: build
+
+         - id: build
+           name: Build dist directory
            run: pnpm run build
-   
+
          # This will fail the workflow if the PR wasn't created by Dependabot.
-         - name: Compare directories
-           id: diff
+         - id: diff
+           name: Compare directories
            run: |
              if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
                echo "Detected uncommitted changes after build."
@@ -96,23 +98,37 @@ Yes! If you want to read in detail about GitHub Actions [try this](https://docs.
                echo ""
                exit 1
              fi
-   
+
          # If `dist/` was different than expected, and this was not a Dependabot
          # PR, upload the expected version as a workflow artifact.
-         - if: ${{ failure() && steps.diff.outcome == 'failure' }}
+         - id: upload
+           if: ${{ failure() && steps.diff.outcome == 'failure' }}
            name: Upload artifact
-           id: upload
            uses: actions/upload-artifact@v4
            with:
              name: dist
              path: dist/
+
+   name: Check transpiled index.js in dist is up to date
+
+   on:
+     pull_request: ~
+
+     push:
+       branches:
+         - main
+   permissions:
+     contents: read
    ```
+
 3. We're going to need an [`action.yml`](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions) file - [here's an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
 4. Our GitHub Action needs Node.js 20 so we'll update `.github/actions/prepare/action.yml`:
+
 ```diff
 -node-version: "18"
 +node-version: "20"
 ```
+
 5. Change the code in your `src` directory to be a GitHub Action. It's worth reading the official documentation [for an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 
 ## How can I add dual CommonJS / ECMAScript Modules emit?

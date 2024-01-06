@@ -21,8 +21,8 @@ dependencies:
     specifier: ^4.0.0
     version: 4.0.0
   git-url-parse:
-    specifier: ^13.1.1
-    version: 13.1.1
+    specifier: ^14.0.0
+    version: 14.0.0
   js-yaml:
     specifier: ^4.1.0
     version: 4.1.0
@@ -107,8 +107,8 @@ devDependencies:
     specifier: ^3.2.0
     version: 3.2.0(eslint@8.55.0)
   eslint-plugin-jsdoc:
-    specifier: ^47.0.0
-    version: 47.0.2(eslint@8.55.0)
+    specifier: ^48.0.0
+    version: 48.0.2(eslint@8.55.0)
   eslint-plugin-jsonc:
     specifier: ^2.10.0
     version: 2.10.0(eslint@8.55.0)
@@ -3623,9 +3623,9 @@ packages:
       ignore: 5.3.0
     dev: true
 
-  /eslint-plugin-jsdoc@47.0.2(eslint@8.55.0):
-    resolution: {integrity: sha512-sIq81Pv+yrhhwY0m1JH79rdZRgDNunehv3S0Yv0UfewpoeJyPkODFn2o4o20nofVoI2tjku9/QBcCYUmmeWFXA==}
-    engines: {node: '>=16'}
+  /eslint-plugin-jsdoc@48.0.2(eslint@8.55.0):
+    resolution: {integrity: sha512-CBFl5Jc7+jlV36RwDm+PQ8Uw5r28pn2/uW/OaB+Gw5bFwn4Py/1eYMZ3hGf9S4meUFZ/sRvS+hVif2mRAp6WqQ==}
+    engines: {node: '>=18'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
     dependencies:
@@ -4251,6 +4251,13 @@ packages:
     resolution: {integrity: sha512-PCFJyeSSdtnbfhSNRw9Wk96dDCNx+sogTe4YNXeXSJxt7xz5hvXekuRn9JX7m+Mf4OscCu8h+mtAl3+h5Fo8lQ==}
     dependencies:
       git-up: 7.0.0
+    dev: true
+
+  /git-url-parse@14.0.0:
+    resolution: {integrity: sha512-NnLweV+2A4nCvn4U/m2AoYu0pPKlsmhK9cknG7IMwsjFY1S2jxM+mAhsDxyxfCIGfGaD+dozsyX4b6vkYc83yQ==}
+    dependencies:
+      git-up: 7.0.0
+    dev: false
 
   /gitconfiglocal@2.1.0:
     resolution: {integrity: sha512-qoerOEliJn3z+Zyn1HW2F6eoYJqKwS6MgC9cztTLUB/xLWX8gD/6T60pKn4+t/d6tP7JlybI7Z3z+I572CR/Vg==}

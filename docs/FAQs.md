@@ -64,15 +64,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    - on the off chance someone isn't running husky, we'll add `.github/workflows/check-dist.yml` ([based on this](https://github.com/actions/typescript-action/blob/main/.github/workflows/check-dist.yml)) to ensure `dist` is up to date:
 
    ```yml
-   # In TypeScript actions, `dist/` is a special directory. When you reference
-   # an action with the `uses:` property, `dist/index.js` is the code that will be
-   # run. For this project, the `dist/index.js` file is transpiled from other
-   # source files. This workflow ensures the `dist/index.js` file contains the
-   # expected transpiled code.
-   #
-   # If this workflow is run from a feature branch, it will act as an additional CI
-   # check and fail if the checked-in `dist/` directory does not match what is
-   # expected from the build.
    jobs:
      check-dist:
        name: check dist

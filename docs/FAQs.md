@@ -15,7 +15,7 @@ If you think the tool would be broadly useful to most consumers of this template
 
 ## How can I create a GitHub action?
 
-Yes! If you want to read in detail about GitHub Actions [try this](https://docs.github.com/en/actions/creating-actions).
+Yes! If you want to read the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions) in detail.
 Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 1. The GitHub Actions does not cater for tabs well, so you will likely want to set your `README.md` to use spaces, not tabs.

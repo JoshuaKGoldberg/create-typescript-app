@@ -383,6 +383,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "lcforbes",
+      "name": "lcforbes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42080532?v=4",
+      "profile": "https://github.com/lcforbes",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

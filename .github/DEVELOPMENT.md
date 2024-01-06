@@ -81,7 +81,8 @@ Calls to `console.log`, `console.warn`, and other console methods will cause a t
 
 ## Debugging
 
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging. Depending upon the type of usage, it can include debugging for unit tests _and_ for executable (or "bin") apps.
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging)
+for debugging. Depending upon the type of usage, it can include debugging for unit tests _and_ for executable (or "bin") apps.
 
 ### Unit Tests
 

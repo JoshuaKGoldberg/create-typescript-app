@@ -25,9 +25,9 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
    - update `.github/workflows/build.yml`
 
-   ```diff
-   -      - run: node ./lib/index.js
-   ```
+     ```diff
+     -      - run: node ./lib/index.js
+     ```
 
    - GitHub Actions have a different build mechanism.
      So you'll be removing `tsup` in favour of [`ncc`](https://github.com/vercel/ncc) which compiles output into a single JS file.

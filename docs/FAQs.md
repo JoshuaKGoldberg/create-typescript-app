@@ -30,7 +30,9 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    -      - run: node ./lib/index.js
    ```
 
-   - GitHub Actions have a different build mechanism. So you'll be removing `tsup` in favour of [`ncc`](https://github.com/vercel/ncc) which compiles output into a single JS file. So delete `tsup.config.ts` then:
+   - GitHub Actions have a different build mechanism.
+     So you'll be removing `tsup` in favour of [`ncc`](https://github.com/vercel/ncc) which compiles output into a single JS file.
+     Delete `tsup.config.ts` then execute the following commands:
 
    ```bash
    pnpm remove tsup
@@ -38,7 +40,8 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    pnpm add @actions/core -P
    ```
 
-   - We also added the [`@actions/core`](https://github.com/actions/toolkit/tree/master/packages/core) package, used for building GitHub Actions. Now we need to update the `build` script in our `package.json`:
+   - We also added the [`@actions/core`](https://github.com/actions/toolkit/tree/master/packages/core) package, used for building GitHub Actions.
+     Now we need to update the `build` script in our `package.json`:
 
    ```diff
    -"build": "tsup",
@@ -132,7 +135,8 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 +node-version: "20"
 ```
 
-5. Change the code in your `src` directory to be a GitHub Action. It's worth reading the official documentation [for an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
+5. Change the code in your `src` directory to be a GitHub Action.
+   It's worth reading the official documentation [for an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 
 ## How can I add dual CommonJS / ECMAScript Modules emit?
 

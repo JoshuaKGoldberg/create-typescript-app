@@ -13,7 +13,7 @@ After you set up a repository, you can substitute in any tools you'd like.
 
 If you think the tool would be broadly useful to most consumers of this template, feel free to [file a feature request](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/new?assignees=&labels=type%3A+feature&projects=&template=03-feature.yml&title=%F0%9F%9A%80+Feature%3A+%3Cshort+description+of+the+feature%3E) to add it in.
 
-## Can I create a GitHub action with CTA?
+## How can I create a GitHub action?
 
 Yes! If you want to read in detail about GitHub Actions [try this](https://docs.github.com/en/actions/creating-actions).
 Here we'll outline the steps required to migrate a CTA app to a GitHub Action:

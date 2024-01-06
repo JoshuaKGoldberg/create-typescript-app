@@ -15,10 +15,13 @@ If you think the tool would be broadly useful to most consumers of this template
 
 ## Can I create a GitHub action with CTA?
 
-Yes! If you want to read in detail about GitHub Actions [try this](https://docs.github.com/en/actions/creating-actions). Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
+Yes! If you want to read in detail about GitHub Actions [try this](https://docs.github.com/en/actions/creating-actions).
+Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 1. The GitHub Actions does not cater for tabs well, so you will likely want to set your `README.md` to use spaces, not tabs.
-2. GitHub Actions are _not_ like packages published to npm. The output is expected to live in the `dist` folder of a GitHub repo. As a consequence we should:
+2. GitHub Actions are _not_ like packages published to npm.
+   The output is expected to live in the `dist` folder of a GitHub repo.
+   As a consequence we should:
 
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
    - update `.github/workflows/build.yml`

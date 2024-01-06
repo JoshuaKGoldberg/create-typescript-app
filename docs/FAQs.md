@@ -19,8 +19,7 @@ Yes! If you want to read the [GitHub Actions documentation](https://docs.github.
 Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 1. The GitHub Actions does not cater for tabs well, so you will likely want to set your `README.md` to use spaces, not tabs.
-2. GitHub Actions are _not_ like packages published to npm.
-   The output is expected to live in the `dist` folder of a GitHub repo.
+2. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
    As a consequence we should:
 
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.

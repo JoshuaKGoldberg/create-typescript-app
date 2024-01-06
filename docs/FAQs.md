@@ -113,6 +113,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
      push:
        branches:
          - main
+
    permissions:
      contents: read
    ```

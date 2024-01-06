@@ -5,7 +5,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 40" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-40-21bb42.svg" /></a>
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 41" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-41-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
@@ -117,6 +117,7 @@ Thanks! 💖
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tungbq"><img src="https://avatars.githubusercontent.com/u/85242618?v=4?s=100" width="100px;" alt="Tung Bui (Leo)"/><br /><sub><b>Tung Bui (Leo)</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=tungbq" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/vasanth9"><img src="https://avatars.githubusercontent.com/u/42891954?v=4?s=100" width="100px;" alt="Vasanth Kumar Cheepurupalli"/><br /><sub><b>Vasanth Kumar Cheepurupalli</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=vasanth9" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/xl4624"><img src="https://avatars.githubusercontent.com/u/116298054?v=4?s=100" width="100px;" alt="Xiaomin Liu"/><br /><sub><b>Xiaomin Liu</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=xl4624" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/lcforbes"><img src="https://avatars.githubusercontent.com/u/42080532?v=4?s=100" width="100px;" alt="lcforbes"/><br /><sub><b>lcforbes</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Alcforbes" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=TAKANOME-DEV" title="Code">💻</a></td>
     </tr>
   </tbody>

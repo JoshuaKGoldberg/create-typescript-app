@@ -1,3 +1,9 @@
+## [1.52.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.6...v1.52.7) (2024-01-06)
+
+### Bug Fixes
+
+- allow chmod to fail in setup ([#1197](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1197)) ([4568cb9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4568cb92e1479a3c61588511254e9101d4098fa5)), closes [#1195](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1195)
+
 ## [1.52.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.5...v1.52.6) (2024-01-03)
 
 ### Bug Fixes

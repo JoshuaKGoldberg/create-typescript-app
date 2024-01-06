@@ -233,14 +233,5 @@ exports[`expected file changes > package.json 1`] = `
 -		"test:migrate": "vitest run -r script/",
  		"tsc": "tsc"
  	},
- 	"lint-staged": {
-@@ ... @@
- 		"vitest": "^1.0.2",
- 		"yaml-eslint-parser": "^1.2.2"
- 	},
--	"packageManager": "pnpm@8.14.0",
-+	"packageManager": "pnpm@8.7.0",
- 	"engines": {
- 		"node": ">=18"
- 	},"
+ 	"lint-staged": {"
 `;

@@ -35,6 +35,7 @@
 		"tsup",
 		"Unstaged",
 		"vitest",
-		"wontfix"
+		"wontfix",
+		"precommit"
 	]
 }

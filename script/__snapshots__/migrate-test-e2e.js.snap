@@ -191,7 +191,9 @@ exports[`expected file changes > cspell.json 1`] = `
  		"tsup",
 -		"Unstaged",
 -		"vitest",
- 		"wontfix"
+-		"wontfix",
+-		"precommit"
++		"wontfix"
  	]
  }"
 `;
@@ -236,7 +238,7 @@ exports[`expected file changes > package.json 1`] = `
  		"vitest": "^1.0.2",
  		"yaml-eslint-parser": "^1.2.2"
  	},
--	"packageManager": "pnpm@8.13.1",
+-	"packageManager": "pnpm@8.14.0",
 +	"packageManager": "pnpm@8.7.0",
  	"engines": {
  		"node": ">=18"

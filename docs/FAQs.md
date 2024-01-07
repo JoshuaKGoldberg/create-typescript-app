@@ -23,11 +23,57 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    As a consequence we should:
 
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
-   - update `.github/workflows/build.yml`
+   - update `.github/workflows/build.yml` to ensure `dist` is up to date:
 
-     ```diff
-     -      - run: node ./lib/index.js
+     <details>
+         <summary><code>.github/workflows/dist.yml</code></summary>
+
+     ```yml
+     jobs:
+       build:
+         runs-on: ubuntu-latest
+         steps:
+           - uses: actions/checkout@v4
+           - uses: ./.github/actions/prepare
+           - run: pnpm build
+
+           - name: Compare dist/index.js
+             run: |
+               if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
+                 echo "Detected uncommitted changes after build."
+                 echo "You may need to run 'pnpm run build' locally and commit the changes."
+                 echo ""
+                 echo "See diff below:"
+                 echo ""
+                 git diff --ignore-space-at-eol --text dist/index.js
+                 echo ""
+                 # say this again in case the diff is long
+                 echo "You may need to run 'pnpm run build' locally and commit the changes."
+                 echo ""
+                 exit 1
+               fi
+
+           - id: upload
+             if: ${{ failure() && steps.diff.outcome == 'failure' }}
+             name: Upload artifact
+             uses: actions/upload-artifact@v4
+             with:
+               name: dist
+               path: dist/
+
+     name: Build
+
+     on:
+       pull_request: ~
+       push:
+         branches:
+           - main
+
+     permissions:
+       contents: read
      ```
+
+      </details>
 
    - GitHub Actions have a different build mechanism.
      So you'll be removing `tsup` in favour of [`ncc`](https://github.com/vercel/ncc) which compiles output into a single JS file.
@@ -60,56 +106,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    +git add dist
    npx lint-staged
    ```
-
-
-    - On the off chance someone isn't running husky, we'll add a workflow to ensure `dist` is up to date:
-
-      <details>
-          <summary><code>.github/workflows/dist.yml</code></summary>
-
-      ```yml
-      jobs:
-        check-dist:
-          name: check dist
-          runs-on: ubuntu-latest
-
-          steps:
-            - uses: actions/checkout@v4
-            - uses: ./.github/actions/prepare
-
-            - name: Build dist directory
-              run: pnpm run build
-
-            - name: Compare directories
-              run: |
-                if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
-                  echo "Detected uncommitted changes after build."
-                  echo "You may need to run 'pnpm run build' locally and commit the changes."
-                  echo ""
-                  echo "See diff below:"
-                  echo ""
-                  git diff --ignore-space-at-eol --text dist/index.js
-                  echo ""
-                  # say this again in case the diff is long
-                  echo "You may need to run 'pnpm run build' locally and commit the changes."
-                  echo ""
-                  exit 1
-                fi
-
-      name: Check built dist/ is up to date
-
-      on:
-        pull_request: ~
-
-        push:
-          branches:
-            - main
-
-      permissions:
-        contents: read
-      ```
-
-       </details>
 
 3. We're going to need an [`action.yml`](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions) file - [here's an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
 4. Our GitHub Action needs Node.js 20 so we'll update `.github/actions/prepare/action.yml`:

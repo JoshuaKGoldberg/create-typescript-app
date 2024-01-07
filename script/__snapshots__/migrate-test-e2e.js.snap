@@ -186,14 +186,13 @@ exports[`expected file changes > cspell.json 1`] = `
  		"npmpackagejsonlintrc",
  		"outro",
  		"packagejson",
+-		"precommit",
  		"quickstart",
 -		"tada",
  		"tsup",
 -		"Unstaged",
 -		"vitest",
--		"wontfix",
--		"precommit"
-+		"wontfix"
+ 		"wontfix"
  	]
  }"
 `;

@@ -30,12 +30,12 @@
 		"npmpackagejsonlintrc",
 		"outro",
 		"packagejson",
+		"precommit",
 		"quickstart",
 		"tada",
 		"tsup",
 		"Unstaged",
 		"vitest",
-		"wontfix",
-		"precommit"
+		"wontfix"
 	]
 }

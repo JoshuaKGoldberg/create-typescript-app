@@ -61,62 +61,55 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    npx lint-staged
    ```
 
-   - on the off chance someone isn't running husky, we'll add `.github/workflows/check-dist.yml` ([based on this](https://github.com/actions/typescript-action/blob/main/.github/workflows/check-dist.yml)) to ensure `dist` is up to date:
 
-   ```yml
-   jobs:
-     check-dist:
-       name: check dist
-       runs-on: ubuntu-latest
+    - On the off chance someone isn't running husky, we'll add a workflow to ensure `dist` is up to date:
 
-       steps:
-         - uses: actions/checkout@v4
-         - uses: ./.github/actions/prepare
+      <details>
+          <summary><code>.github/workflows/dist.yml</code></summary>
 
-         - id: build
-           name: Build dist directory
-           run: pnpm run build
+      ```yml
+      jobs:
+        check-dist:
+          name: check dist
+          runs-on: ubuntu-latest
 
-         # This will fail the workflow if the PR wasn't created by Dependabot.
-         - id: diff
-           name: Compare directories
-           run: |
-             if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
-               echo "Detected uncommitted changes after build."
-               echo "You may need to run 'pnpm run build' locally and commit the changes."
-               echo ""
-               echo "See diff below:"
-               echo ""
-               git diff --ignore-space-at-eol --text dist/index.js
-               echo ""
-               # say this again in case the diff is long
-               echo "You may need to run 'pnpm run build' locally and commit the changes."
-               echo ""
-               exit 1
-             fi
+          steps:
+            - uses: actions/checkout@v4
+            - uses: ./.github/actions/prepare
 
-         # If `dist/` was different than expected, and this was not a Dependabot
-         # PR, upload the expected version as a workflow artifact.
-         - id: upload
-           if: ${{ failure() && steps.diff.outcome == 'failure' }}
-           name: Upload artifact
-           uses: actions/upload-artifact@v4
-           with:
-             name: dist
-             path: dist/
+            - name: Build dist directory
+              run: pnpm run build
 
-   name: Check transpiled index.js in dist is up to date
+            - name: Compare directories
+              run: |
+                if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
+                  echo "Detected uncommitted changes after build."
+                  echo "You may need to run 'pnpm run build' locally and commit the changes."
+                  echo ""
+                  echo "See diff below:"
+                  echo ""
+                  git diff --ignore-space-at-eol --text dist/index.js
+                  echo ""
+                  # say this again in case the diff is long
+                  echo "You may need to run 'pnpm run build' locally and commit the changes."
+                  echo ""
+                  exit 1
+                fi
 
-   on:
-     pull_request: ~
+      name: Check built dist/ is up to date
 
-     push:
-       branches:
-         - main
+      on:
+        pull_request: ~
 
-   permissions:
-     contents: read
-   ```
+        push:
+          branches:
+            - main
+
+      permissions:
+        contents: read
+      ```
+
+       </details>
 
 3. We're going to need an [`action.yml`](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions) file - [here's an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
 4. Our GitHub Action needs Node.js 20 so we'll update `.github/actions/prepare/action.yml`:

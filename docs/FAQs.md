@@ -119,8 +119,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 +node-version: "20"
 ```
 
-5. Change the code in your `src` directory to be a GitHub Action.
-   It's worth reading the official documentation [for an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
+It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 
 ## How can I add dual CommonJS / ECMAScript Modules emit?
 

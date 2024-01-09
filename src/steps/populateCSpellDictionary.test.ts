@@ -63,4 +63,33 @@ describe("populateCSpellDictionary", () => {
 			]
 		`);
 	});
+
+	it("doesn't add an upper-cased word when its lower-case will also be in the dictionary", async () => {
+		const existingWords = ["existing"];
+		const unknownWords = ["abc", "Abc"];
+
+		mock$.mockResolvedValue({
+			stdout: `
+				file-1.ts Unknown word (${unknownWords[0]})
+				file-2.ts Unknown word (${unknownWords[1]})
+			`,
+		});
+
+		mockReadFile.mockResolvedValue(JSON.stringify({ words: existingWords }));
+
+		await populateCSpellDictionary();
+
+		expect(mockFormatJson.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    {
+			      "words": [
+			        "abc",
+			        "existing",
+			      ],
+			    },
+			  ],
+			]
+		`);
+	});
 });

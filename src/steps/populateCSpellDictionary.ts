@@ -24,11 +24,19 @@ export async function populateCSpellDictionary() {
 		"cspell.json",
 	)) as typeof import("../../cspell.json");
 
+	const allWords = [...existing.words, ...unknownWords];
+	const allWordsUnique = new Set(allWords);
+
 	await fs.writeFile(
 		"cspell.json",
 		await formatJson({
 			...existing,
-			words: [...existing.words, ...unknownWords].sort(),
+			words: allWords
+				.filter((word) => {
+					const wordLowerCase = word.toLowerCase();
+					return word === wordLowerCase || !allWordsUnique.has(wordLowerCase);
+				})
+				.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
 		}),
 	);
 }

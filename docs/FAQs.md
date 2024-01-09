@@ -119,7 +119,7 @@ These are the projects used across many parts of `create-typescript-app`:
 
 ## Why tabs?
 
-This repository template configures `"useTabs": true` in the root-level `.prettierrc`.
+This repository template configures `"useTabs": true` in the root-level `.prettierrc.json`.
 It does so because tabs have been phrased by the community as generally better for accessibility:
 
 - <https://github.com/11ty/eleventy/issues/3098>

@@ -43,13 +43,9 @@ export async function createRootFiles(options: Options) {
 			"lib/",
 			"pnpm-lock.yaml",
 		]),
-		".prettierrc": await formatJson({
+		".prettierrc.json": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
 			overrides: [
-				{
-					files: ".*rc",
-					options: { parser: "json" },
-				},
 				{
 					files: ".nvmrc",
 					options: { parser: "yaml" },

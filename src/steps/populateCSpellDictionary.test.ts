@@ -32,8 +32,8 @@ vi.mock("./writing/creation/formatters/formatJson.js", () => ({
 
 describe("populateCSpellDictionary", () => {
 	it("adds unknown words to cspell.json", async () => {
-		const existingWords = ["abc", "ghi"];
-		const unknownWords = ["def", "jkl"];
+		const existingWords = ["abc", "ghi", "casing"];
+		const unknownWords = ["def", "jkl", "Casing"];
 
 		mock$.mockResolvedValue({
 			stdout: `
@@ -53,6 +53,7 @@ describe("populateCSpellDictionary", () => {
 			    {
 			      "words": [
 			        "abc",
+			        "casing",
 			        "def",
 			        "ghi",
 			        "jkl",

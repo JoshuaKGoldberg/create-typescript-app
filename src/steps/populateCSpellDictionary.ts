@@ -6,7 +6,7 @@ import { formatJson } from "./writing/creation/formatters/formatJson.js";
 
 async function getStdout() {
 	try {
-		return await $`pnpm lint:spelling`;
+		return await $`pnpm run lint:spelling`;
 	} catch (error) {
 		return error as { stdout: string };
 	}
@@ -14,7 +14,7 @@ async function getStdout() {
 
 export async function populateCSpellDictionary() {
 	const { stdout } = await getStdout();
-	const unknownWord = new Set(
+	const unknownWords = new Set(
 		Array.from(stdout.matchAll(/Unknown word \((.+)\)/g)).map(
 			([, matched]) => matched,
 		),
@@ -28,7 +28,7 @@ export async function populateCSpellDictionary() {
 		"cspell.json",
 		await formatJson({
 			...existing,
-			words: [...existing.words, ...unknownWord].sort(),
+			words: [...existing.words, ...unknownWords].sort(),
 		}),
 	);
 }

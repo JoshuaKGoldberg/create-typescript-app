@@ -2,11 +2,6 @@
 	"$schema": "https://unpkg.com/knip@latest/schema.json",
 	"entry": ["src/index.ts!", "script/*e2e.js"],
 	"ignoreBinaries": ["gh"],
-	// https://github.com/webpro/knip/issues/417
-	"ignoreDependencies": ["script"],
-	"ignoreExportsUsedInFile": {
-		"interface": true,
-		"type": true
-	},
+	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 	"project": ["src/**/*.ts!", "script/**/*.js"]
 }

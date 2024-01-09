@@ -13,8 +13,8 @@ The following required options will be prompted for interactively if not provide
 These required options determine how the creation script will set up and scaffold the repository:
 
 - `--base`: Whether to scaffold the repository with:
-  - `minimum`: Just the bare starter tooling most repositories should ideally include.
-  - `common`: Important additions to the minimum starters such as releases and tests.
+  - `minimum`: Just the bare starter tooling most repositories should ideally include
+  - `common`: Important additions to the minimum starters such as releases and tests
   - `everything`: The most thorough tooling imaginable: sorting, spellchecking, and more!
   - `prompt`: Fine-grained control over which tooling pieces to use
 - `--mode`: Whether to:

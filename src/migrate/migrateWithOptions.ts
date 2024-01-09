@@ -5,6 +5,7 @@ import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
+import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
 import { runCommands } from "../steps/runCommands.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";
@@ -59,6 +60,10 @@ export async function migrateWithOptions({
 		await withSpinner("Installing packages", async () =>
 			finalizeDependencies(options),
 		);
+	}
+
+	if (!options.excludeLintSpelling) {
+		await withSpinner("Populating CSpell dictionary", populateCSpellDictionary);
 	}
 
 	await runCommands(

@@ -16,7 +16,7 @@ function createLintingSection(options: Options) {
 		!options.excludeLintKnip &&
 			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
 		!options.excludeLintMd &&
-			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files`,
+			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files`,
 		!options.excludeLintPackageJson &&
 			`- \`pnpm lint:package-json\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file`,
 		!options.excludeLintPackages &&
@@ -120,7 +120,7 @@ pnpm tsc --watch
 	]);
 
 	const preservedSections = Object.fromEntries(
-		splitIntoSections(existingContents).filter(([key, value]) => {
+		splitIntoSections(existingContents).filter(([key]) => {
 			const keyText = key.replace(/^#* /, "");
 			return !newSectionHeadings.has(
 				headingAliases.get(keyText.toLowerCase()) ?? keyText,

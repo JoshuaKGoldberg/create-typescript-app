@@ -18,7 +18,7 @@ It will then remove itself and uninstall dependencies only used for initializati
 pnpm run initialize
 ```
 
-Then, go through the following two steps to set up required repository tooling on GitHub:
+You'll then need to manually go through the following two steps to set up tooling on GitHub:
 
 1. Create two tokens in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) _(unless you chose to opt out of releases)_:
    - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
@@ -37,7 +37,7 @@ See [Options.md](./Options.md).
 
 `pnpm run initialize` will set `--mode` to `initialize`.
 
-For example, running the initialization script and skipping all GitHub APIs:
+For example, running the initialization script and skipping all GitHub-related APIs:
 
 ```shell
 pnpm run initialize --skip-all-contributors-api --skip-github-api

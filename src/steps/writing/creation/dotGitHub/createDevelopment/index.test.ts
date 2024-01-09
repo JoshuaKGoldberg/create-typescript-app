@@ -87,7 +87,7 @@ describe("createDevelopment", () => {
 
 			- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 			- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
-			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
+			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files
 			- \`pnpm lint:package-json\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file
 			- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file
 			- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files
@@ -121,6 +121,8 @@ describe("createDevelopment", () => {
 			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
 
 			### Debugging Tests
+
+
 
 			This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
 			To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
@@ -239,6 +241,8 @@ describe("createDevelopment", () => {
 
 			### Debugging Tests
 
+
+
 			This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
 			To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
 
@@ -304,17 +308,7 @@ Def 456.
 
 			## Building
 
-			Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
-
-			\`\`\`shell
-			pnpm build
-			\`\`\`
-
-			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
-
-			\`\`\`shell
-			pnpm build --watch
-			\`\`\`
+			Will be removed.
 
 			## Formatting
 
@@ -334,7 +328,7 @@ Def 456.
 
 			- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 			- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
-			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
+			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files
 			- \`pnpm lint:package-json\` ([npm-package-json-lint](https://npmpackagejsonlint.org/)): Lints the \`package.json\` file
 			- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file
 			- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files
@@ -369,6 +363,8 @@ Def 456.
 
 			### Debugging Tests
 
+
+
 			This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
 			To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
 
@@ -391,6 +387,10 @@ Def 456.
 			## Existing One
 
 			Abc 123.
+
+			## Tests
+
+			Will be removed.
 
 			## Existing Two
 

@@ -31,6 +31,32 @@ vi.mock("./writing/creation/formatters/formatJson.js", () => ({
 }));
 
 describe("populateCSpellDictionary", () => {
+	it("works with no existing words when the existing cspell.json has no words", async () => {
+		const unknownWords = ["abc"];
+
+		mock$.mockResolvedValue({
+			stdout: `
+				file-1.ts Unknown word (${unknownWords[0]})
+			`,
+		});
+
+		mockReadFile.mockResolvedValue(JSON.stringify({}));
+
+		await populateCSpellDictionary();
+
+		expect(mockFormatJson.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    {
+			      "words": [
+			        "abc",
+			      ],
+			    },
+			  ],
+			]
+		`);
+	});
+
 	it("adds unknown words to cspell.json", async () => {
 		const existingWords = ["abc", "ghi", "casing"];
 		const unknownWords = ["def", "jkl", "Casing"];

@@ -20,11 +20,11 @@ export async function populateCSpellDictionary() {
 		),
 	);
 
-	const existing = (await readFileAsJson(
-		"cspell.json",
-	)) as typeof import("../../cspell.json");
+	const existing = (await readFileAsJson("cspell.json")) as Partial<
+		typeof import("../../cspell.json")
+	>;
 
-	const allWords = [...existing.words, ...unknownWords];
+	const allWords = [...(existing.words ?? []), ...unknownWords];
 	const allWordsUnique = new Set(allWords);
 
 	await fs.writeFile(

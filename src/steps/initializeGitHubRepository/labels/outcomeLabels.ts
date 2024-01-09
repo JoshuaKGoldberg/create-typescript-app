@@ -6,7 +6,7 @@ export const outcomeLabels = [
 		name: "area: documentation",
 	},
 	{
-		color: "6009D7",
+		color: "1177aa",
 		description:
 			"Improving how the repository's tests are run and/or code is tested 🧪",
 		name: "area: testing",

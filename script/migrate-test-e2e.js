@@ -11,6 +11,7 @@ const filesExpectedToBeChanged = [
 	"package.json",
 	".eslintignore",
 	".eslintrc.cjs",
+	".github/DEVELOPMENT.md",
 	".github/workflows/test.yml",
 	".gitignore",
 	".prettierignore",

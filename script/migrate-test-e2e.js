@@ -32,7 +32,7 @@ const bin = "./bin/index.js";
 const guide =
 	"https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository";
 const guideTitle = "Contributing to a create-typescript-app Repository";
-const logo = "./create-typescript-app.png";
+const logo = "./docs/create-typescript-app.png";
 const logoAlt = `Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'`;
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";

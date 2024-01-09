@@ -58,42 +58,42 @@ describe("createDotVSCode", () => {
 			.toMatchInlineSnapshot(`
 				{
 				  "extensions.json": "{
-				  "recommendations": [
-				    "DavidAnson.vscode-markdownlint",
-				    "dbaeumer.vscode-eslint",
-				    "esbenp.prettier-vscode"
-				  ]
+					"recommendations": [
+						"DavidAnson.vscode-markdownlint",
+						"dbaeumer.vscode-eslint",
+						"esbenp.prettier-vscode"
+					]
 				}
 				",
 				  "settings.json": "{
-				  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
-				  "editor.defaultFormatter": "esbenp.prettier-vscode",
-				  "editor.formatOnSave": true,
-				  "editor.rulers": [80],
-				  "eslint.probe": [
-				    "javascript",
-				    "javascriptreact",
-				    "json",
-				    "jsonc",
-				    "markdown",
-				    "typescript",
-				    "typescriptreact",
-				    "yaml"
-				  ],
-				  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-				  "typescript.tsdk": "node_modules/typescript/lib"
+					"editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.formatOnSave": true,
+					"editor.rulers": [80],
+					"eslint.probe": [
+						"javascript",
+						"javascriptreact",
+						"json",
+						"jsonc",
+						"markdown",
+						"typescript",
+						"typescriptreact",
+						"yaml"
+					],
+					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
 				  "tasks.json": "{
-				  "tasks": [
-				    {
-				      "detail": "Build the project",
-				      "label": "build",
-				      "script": "build",
-				      "type": "npm"
-				    }
-				  ],
-				  "version": "2.0.0"
+					"tasks": [
+						{
+							"detail": "Build the project",
+							"label": "build",
+							"script": "build",
+							"type": "npm"
+						}
+					],
+					"version": "2.0.0"
 				}
 				",
 				}
@@ -105,68 +105,68 @@ describe("createDotVSCode", () => {
 			.toMatchInlineSnapshot(`
 				{
 				  "extensions.json": "{
-				  "recommendations": [
-				    "DavidAnson.vscode-markdownlint",
-				    "dbaeumer.vscode-eslint",
-				    "esbenp.prettier-vscode",
-				    "streetsidesoftware.code-spell-checker"
-				  ]
+					"recommendations": [
+						"DavidAnson.vscode-markdownlint",
+						"dbaeumer.vscode-eslint",
+						"esbenp.prettier-vscode",
+						"streetsidesoftware.code-spell-checker"
+					]
 				}
 				",
 				  "launch.json": "{
-				  "configurations": [
-				    {
-				      "args": ["run", "\${relativeFile}"],
-				      "autoAttachChildProcesses": true,
-				      "console": "integratedTerminal",
-				      "name": "Debug Current Test File",
-				      "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
-				      "request": "launch",
-				      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
-				      "smartStep": true,
-				      "type": "node"
-				    },
-				    {
-				      "name": "Debug Program",
-				      "preLaunchTask": "build",
-				      "program": "bin/index.js",
-				      "request": "launch",
-				      "skipFiles": ["<node_internals>/**"],
-				      "type": "node"
-				    }
-				  ],
-				  "version": "0.2.0"
+					"configurations": [
+						{
+							"args": ["run", "\${relativeFile}"],
+							"autoAttachChildProcesses": true,
+							"console": "integratedTerminal",
+							"name": "Debug Current Test File",
+							"program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+							"request": "launch",
+							"skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+							"smartStep": true,
+							"type": "node"
+						},
+						{
+							"name": "Debug Program",
+							"preLaunchTask": "build",
+							"program": "bin/index.js",
+							"request": "launch",
+							"skipFiles": ["<node_internals>/**"],
+							"type": "node"
+						}
+					],
+					"version": "0.2.0"
 				}
 				",
 				  "settings.json": "{
-				  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
-				  "editor.defaultFormatter": "esbenp.prettier-vscode",
-				  "editor.formatOnSave": true,
-				  "editor.rulers": [80],
-				  "eslint.probe": [
-				    "javascript",
-				    "javascriptreact",
-				    "json",
-				    "jsonc",
-				    "markdown",
-				    "typescript",
-				    "typescriptreact",
-				    "yaml"
-				  ],
-				  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-				  "typescript.tsdk": "node_modules/typescript/lib"
+					"editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.formatOnSave": true,
+					"editor.rulers": [80],
+					"eslint.probe": [
+						"javascript",
+						"javascriptreact",
+						"json",
+						"jsonc",
+						"markdown",
+						"typescript",
+						"typescriptreact",
+						"yaml"
+					],
+					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
 				  "tasks.json": "{
-				  "tasks": [
-				    {
-				      "detail": "Build the project",
-				      "label": "build",
-				      "script": "build",
-				      "type": "npm"
-				    }
-				  ],
-				  "version": "2.0.0"
+					"tasks": [
+						{
+							"detail": "Build the project",
+							"label": "build",
+							"script": "build",
+							"type": "npm"
+						}
+					],
+					"version": "2.0.0"
 				}
 				",
 				}
@@ -178,60 +178,60 @@ describe("createDotVSCode", () => {
 			.toMatchInlineSnapshot(`
 				{
 				  "extensions.json": "{
-				  "recommendations": [
-				    "DavidAnson.vscode-markdownlint",
-				    "dbaeumer.vscode-eslint",
-				    "esbenp.prettier-vscode",
-				    "streetsidesoftware.code-spell-checker"
-				  ]
+					"recommendations": [
+						"DavidAnson.vscode-markdownlint",
+						"dbaeumer.vscode-eslint",
+						"esbenp.prettier-vscode",
+						"streetsidesoftware.code-spell-checker"
+					]
 				}
 				",
 				  "launch.json": "{
-				  "configurations": [
-				    {
-				      "args": ["run", "\${relativeFile}"],
-				      "autoAttachChildProcesses": true,
-				      "console": "integratedTerminal",
-				      "name": "Debug Current Test File",
-				      "program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
-				      "request": "launch",
-				      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
-				      "smartStep": true,
-				      "type": "node"
-				    }
-				  ],
-				  "version": "0.2.0"
+					"configurations": [
+						{
+							"args": ["run", "\${relativeFile}"],
+							"autoAttachChildProcesses": true,
+							"console": "integratedTerminal",
+							"name": "Debug Current Test File",
+							"program": "\${workspaceRoot}/node_modules/vitest/vitest.mjs",
+							"request": "launch",
+							"skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+							"smartStep": true,
+							"type": "node"
+						}
+					],
+					"version": "0.2.0"
 				}
 				",
 				  "settings.json": "{
-				  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
-				  "editor.defaultFormatter": "esbenp.prettier-vscode",
-				  "editor.formatOnSave": true,
-				  "editor.rulers": [80],
-				  "eslint.probe": [
-				    "javascript",
-				    "javascriptreact",
-				    "json",
-				    "jsonc",
-				    "markdown",
-				    "typescript",
-				    "typescriptreact",
-				    "yaml"
-				  ],
-				  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-				  "typescript.tsdk": "node_modules/typescript/lib"
+					"editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.formatOnSave": true,
+					"editor.rulers": [80],
+					"eslint.probe": [
+						"javascript",
+						"javascriptreact",
+						"json",
+						"jsonc",
+						"markdown",
+						"typescript",
+						"typescriptreact",
+						"yaml"
+					],
+					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
 				  "tasks.json": "{
-				  "tasks": [
-				    {
-				      "detail": "Build the project",
-				      "label": "build",
-				      "script": "build",
-				      "type": "npm"
-				    }
-				  ],
-				  "version": "2.0.0"
+					"tasks": [
+						{
+							"detail": "Build the project",
+							"label": "build",
+							"script": "build",
+							"type": "npm"
+						}
+					],
+					"version": "2.0.0"
 				}
 				",
 				}
@@ -243,56 +243,56 @@ describe("createDotVSCode", () => {
 			.toMatchInlineSnapshot(`
 				{
 				  "extensions.json": "{
-				  "recommendations": [
-				    "DavidAnson.vscode-markdownlint",
-				    "dbaeumer.vscode-eslint",
-				    "esbenp.prettier-vscode"
-				  ]
+					"recommendations": [
+						"DavidAnson.vscode-markdownlint",
+						"dbaeumer.vscode-eslint",
+						"esbenp.prettier-vscode"
+					]
 				}
 				",
 				  "launch.json": "{
-				  "configurations": [
-				    {
-				      "name": "Debug Program",
-				      "preLaunchTask": "build",
-				      "program": "bin/index.js",
-				      "request": "launch",
-				      "skipFiles": ["<node_internals>/**"],
-				      "type": "node"
-				    }
-				  ],
-				  "version": "0.2.0"
+					"configurations": [
+						{
+							"name": "Debug Program",
+							"preLaunchTask": "build",
+							"program": "bin/index.js",
+							"request": "launch",
+							"skipFiles": ["<node_internals>/**"],
+							"type": "node"
+						}
+					],
+					"version": "0.2.0"
 				}
 				",
 				  "settings.json": "{
-				  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
-				  "editor.defaultFormatter": "esbenp.prettier-vscode",
-				  "editor.formatOnSave": true,
-				  "editor.rulers": [80],
-				  "eslint.probe": [
-				    "javascript",
-				    "javascriptreact",
-				    "json",
-				    "jsonc",
-				    "markdown",
-				    "typescript",
-				    "typescriptreact",
-				    "yaml"
-				  ],
-				  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-				  "typescript.tsdk": "node_modules/typescript/lib"
+					"editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"editor.formatOnSave": true,
+					"editor.rulers": [80],
+					"eslint.probe": [
+						"javascript",
+						"javascriptreact",
+						"json",
+						"jsonc",
+						"markdown",
+						"typescript",
+						"typescriptreact",
+						"yaml"
+					],
+					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
 				  "tasks.json": "{
-				  "tasks": [
-				    {
-				      "detail": "Build the project",
-				      "label": "build",
-				      "script": "build",
-				      "type": "npm"
-				    }
-				  ],
-				  "version": "2.0.0"
+					"tasks": [
+						{
+							"detail": "Build the project",
+							"label": "build",
+							"script": "build",
+							"type": "npm"
+						}
+					],
+					"version": "2.0.0"
 				}
 				",
 				}

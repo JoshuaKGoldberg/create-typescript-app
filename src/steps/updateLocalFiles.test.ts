@@ -383,6 +383,75 @@ describe("updateLocalFiles", () => {
 		`);
 	});
 
+	it("doesn't remove existing tooling when mode is migrate", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({});
+		mockReplaceInFile.mockResolvedValue([]);
+
+		await updateLocalFiles({ ...options, mode: "migrate" });
+
+		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /Create TypeScript App/g,
+			      "to": "Stub Title",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
+			      "to": "StubOwner",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /create-typescript-app/g,
+			      "to": "stub-repository",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": ".eslintrc.cjs",
+			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "./package.json",
+			      "from": /"author": "\\.\\+"/g,
+			      "to": ""author": "undefined"",
+			    },
+			  ],
+			]
+		`);
+	});
+
 	it("does not replace an existing description when it does not exist", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
@@ -396,6 +465,7 @@ describe("updateLocalFiles", () => {
 			to: options.description,
 		});
 	});
+
 	it("replaces an existing description when it exists", async () => {
 		const existingDescription = "Existing description.";
 

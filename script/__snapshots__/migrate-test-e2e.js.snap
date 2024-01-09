@@ -101,43 +101,9 @@ exports[`expected file changes > README.md 1`] = `
 -\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.
 -It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.
 -
--## Getting Started
--
--First make sure you have the following installed:
--
--- [GitHub CLI](https://cli.github.com) _(you'll need to be logged in)_
--- [Node.js](https://nodejs.org)
--- [pnpm](https://pnpm.io)
--
--Then in an existing repository or in your directory where you'd like to make a new repository:
--
--\`\`\`shell
--npx create-typescript-app
--\`\`\`
--
--That setup script will walk you through using the template.
--You can read more about the supported setup modes in their docs pages:
--
--- [**Creating from the terminal**](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_
--- [**Initializing from the template**](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
--- [**Migrating an existing repository**](./docs/Migration.md): adding this template's tooling on top of an existing repository
--
--## Documentation
--
--You can read more about \`create-typescript-app\` and the tooling it supports:
--
--1. [**Tooling**](./docs/Tooling.md): a breakdown of all the pieces this template can set up.
--2. [**Options**](./docs/Options.md): granular options to customize how the template is run.
--3. [**FAQs**](./docs/FAQs.md): frequently asked questions
--
--> [!NOTE]  
--> This template is early stage, opinionated, and not endorsed by the TypeScript team.
--> It can be configured to set up a _lot_ of tooling out of the box.
--> If you don't want to use any particular tool, you can always remove it manually.
--
- ## Development
+ ## Getting Started
  
- See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
+ First make sure you have the following installed:
 @@ ... @@ Thanks! 💖
  
  <!-- ALL-CONTRIBUTORS-LIST:END -->

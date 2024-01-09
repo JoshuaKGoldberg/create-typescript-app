@@ -21,26 +21,40 @@ export async function updateLocalFiles(options: Options) {
 		[/create-typescript-app/g, options.repository],
 		[/\/\*\n.+\*\/\n\n/gs, ``, ".eslintrc.cjs"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
-		[/"test:create": ".+\n/g, ``, "./package.json"],
-		[/"test:initialize": ".*/g, ``, "./package.json"],
-		[/"initialize": ".*/g, ``, "./package.json"],
-		[/"test:migrate": ".+\n/g, ``, "./package.json"],
-		[/## Getting Started.*## Development/gs, `## Development`, "./README.md"],
-		[/\n## Setup Scripts.*$/gs, "", "./.github/DEVELOPMENT.md"],
-		[`\t\t"src/initialize/index.ts",\n`, ``, "./knip.jsonc"],
-		[`\t\t"src/migrate/index.ts",\n`, ``, "./knip.jsonc"],
-		[
-			`["src/index.ts!", "script/initialize*.js"]`,
-			`"src/index.ts!"`,
-			"./knip.jsonc",
-		],
-		[`["src/**/*.ts!", "script/**/*.js"]`, `"src/**/*.ts!"`, "./knip.jsonc"],
-		// Edge case: migration scripts will rewrite README.md attribution
-		[
-			/> 💙 This package was templated with .+\./g,
-			endOfReadmeTemplateLine,
-			"./README.md",
-		],
+		...(options.mode === "migrate"
+			? []
+			: ([
+					// Only creating a new repository should remove these parts.
+					// Existing ones might coincidentally have them too.
+					[/"test:create": ".+\n/g, ``, "./package.json"],
+					[/"test:initialize": ".*/g, ``, "./package.json"],
+					[/"initialize": ".*/g, ``, "./package.json"],
+					[/"test:migrate": ".+\n/g, ``, "./package.json"],
+					[
+						/## Getting Started.*## Development/gs,
+						`## Development`,
+						"./README.md",
+					],
+					[/\n## Setup Scripts.*$/gs, "", "./.github/DEVELOPMENT.md"],
+					[`\t\t"src/initialize/index.ts",\n`, ``, "./knip.jsonc"],
+					[`\t\t"src/migrate/index.ts",\n`, ``, "./knip.jsonc"],
+					[
+						`["src/index.ts!", "script/initialize*.js"]`,
+						`"src/index.ts!"`,
+						"./knip.jsonc",
+					],
+					[
+						`["src/**/*.ts!", "script/**/*.js"]`,
+						`"src/**/*.ts!"`,
+						"./knip.jsonc",
+					],
+					// Edge case: migration scripts will rewrite README.md attribution
+					[
+						/> 💙 This package was templated with .+\./g,
+						endOfReadmeTemplateLine,
+						"./README.md",
+					],
+			  ] as typeof replacements)),
 	];
 
 	if (existingPackage.description) {

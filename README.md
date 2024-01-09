@@ -15,7 +15,7 @@
 	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 </p>
 
-<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./create-typescript-app.png">
+<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/create-typescript-app.png">
 
 `create-typescript-app` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.
 It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.

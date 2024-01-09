@@ -9,6 +9,7 @@ const globPaths = [
 	...extensions("jest.config", "cjs", "js", "json", "mjs", "ts"),
 	"./src/**/*.js",
 	".circleci/config.yml",
+	".github/codecov.yml",
 	".babelrc",
 	".npmignore",
 	".eslintrc",

@@ -192,7 +192,7 @@ describe("createDevelopment", () => {
 
 			## Linting
 
-			[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+			[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io) to lint JavaScript and TypeScript source files.
 			You can run it locally on the command-line:
 
 			\`\`\`shell

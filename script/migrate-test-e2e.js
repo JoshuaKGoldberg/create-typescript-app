@@ -120,6 +120,8 @@ describe("expected file changes", () => {
 			`Looks like there were no changes to ${file} from migration?`,
 		);
 
+		// If this fails, see .github/DEVELOPMENT.md > Setup Scripts for context.
+		// Then see .github/DEVELOPMENT.md > Migration Snapshot Failures.
 		expect(contentsAfterGitMarkers).toMatchSnapshot();
 	});
 });
@@ -149,22 +151,18 @@ test("unexpected file changes", async () => {
 		const gitDiffCommand = `git diff HEAD -- ${unstagedModifiedFiles.join(
 			" ",
 		)}`;
-		console.log(
-			`Stdout from running \`${gitDiffCommand}\`:\n${
-				(await execaCommand(gitDiffCommand)).stdout
-			}`,
-		);
+		const { stdout } = await execaCommand(gitDiffCommand);
+
+		console.log(`Stdout from running \`${gitDiffCommand}\`:\n${stdout}`);
+
 		throw new Error(
 			[
 				"",
-				"Oh no! Running the migrate script modified some files:",
+				"Oh no! Running the migrate script unexpectedly modified:",
 				...unstagedModifiedFiles.map((filePath) => ` - ${filePath}`),
 				"",
-				"That likely indicates changes made to the repository without",
-				"corresponding updates to templates in src/.",
-				"",
-				"Please search for those file(s)' name(s) under src/migrate for",
-				"the corresponding template and update those as well.",
+				"See .github/DEVELOPMENT.md > Setup Scripts for context.",
+				"Then see .github/DEVELOPMENT.md > Unexpected File Modifications.",
 			]
 				.map((line) => chalk.red(line))
 				.join("\n"),

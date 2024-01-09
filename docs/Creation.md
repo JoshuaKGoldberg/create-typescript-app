@@ -6,7 +6,15 @@ You can run `npx create-typescript-app` in your terminal to interactively create
 npx create-typescript-app
 ```
 
-Then, go through the following two steps to set up required repository tooling on GitHub:
+The creation script will by default:
+
+1. Create a new directory with the given repository name
+2. Initialize that new directory as a local Git repository
+3. Copy the template's files to that directory
+4. Create a new repository on GitHub and set it as the local repository's upstream
+5. Configure relevant settings on the GitHub repository
+
+You'll then need to manually go through the following two steps to set up tooling on GitHub:
 
 1. Create two tokens in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) _(unless you chose to opt out of releases)_:
    - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
@@ -23,7 +31,7 @@ Hooray! 🥳
 You can explicitly provide some or all of the options the script would prompt for as command-line flags.
 See [Options.md](./Options.md).
 
-For example, running the creation script and skipping all GitHub APIs:
+For example, running the creation script and skipping all GitHub-related APIs:
 
 ```shell
 npx create-typescript-app --mode create --skip-all-contributors-api --skip-github-api

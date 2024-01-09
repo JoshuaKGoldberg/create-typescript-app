@@ -192,15 +192,9 @@ exports[`expected file changes > knip.jsonc 1`] = `
  	"$schema": "https://unpkg.com/knip@latest/schema.json",
 -	"entry": ["src/index.ts!", "script/*e2e.js"],
 -	"ignoreBinaries": ["gh"],
--	// https://github.com/webpro/knip/issues/417
--	"ignoreDependencies": ["script"],
--	"ignoreExportsUsedInFile": {
--		"interface": true,
--		"type": true
--	},
--	"project": ["src/**/*.ts!", "script/**/*.js"]
 +	"entry": ["src/index.ts!"],
-+	"ignoreExportsUsedInFile": { "interface": true, "type": true },
+ 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
+-	"project": ["src/**/*.ts!", "script/**/*.js"]
 +	"project": ["src/**/*.ts!"]
  }"
 `;
@@ -225,14 +219,5 @@ exports[`expected file changes > package.json 1`] = `
 -		"test:migrate": "vitest run -r script/",
  		"tsc": "tsc"
  	},
- 	"lint-staged": {
-@@ ... @@
- 		"vitest": "^1.0.2",
- 		"yaml-eslint-parser": "^1.2.2"
- 	},
--	"packageManager": "pnpm@8.13.1",
-+	"packageManager": "pnpm@8.7.0",
- 	"engines": {
- 		"node": ">=18"
- 	},"
+ 	"lint-staged": {"
 `;

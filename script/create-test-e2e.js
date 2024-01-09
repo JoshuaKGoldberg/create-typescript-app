@@ -10,6 +10,8 @@ const title = "Test Title";
 
 await $`rm -rf ${repository}`;
 
+// Fist we run with --mode create to create a new new local repository,
+// asserting that pnpm i passes in that repository's directory.
 await $({
 	stdio: "inherit",
 })`c8 -o ./coverage-create -r html -r lcov  --src src node ./bin/index.js --base everything --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api`;
@@ -18,6 +20,7 @@ process.chdir(repository);
 
 const failures = [];
 
+// Then we run each of the CI commands to assert that they pass too.
 for (const command of [
 	`pnpm i`,
 	`pnpm run build`,

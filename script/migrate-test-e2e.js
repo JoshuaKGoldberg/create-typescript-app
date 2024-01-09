@@ -37,10 +37,6 @@ const logoAlt = `Project logo: the TypeScript blue square with rounded corners, 
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";
 
-const originalDevelopment = (
-	await fs.readFile(".github/DEVELOPMENT.md")
-).toString();
-
 const originalReadme = (await fs.readFile("README.md")).toString();
 
 const originalSnapshots = (
@@ -59,14 +55,6 @@ await fs.writeFile(
 		null,
 		2,
 	) + "\n",
-);
-
-// The development setup scripts docs can be ignored from snapshots.
-// We manually add them back after hydration to clear them from Git diffs.
-await fs.appendFile(
-	".github/DEVELOPMENT.md",
-	"\n" +
-		originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
 );
 
 // Ignore changes to the README.md all-contributor count and contributors table...

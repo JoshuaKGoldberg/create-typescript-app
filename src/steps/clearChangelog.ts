@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+import * as fs from "node:fs/promises";
 import prettier from "prettier";
 
 export async function clearChangelog() {

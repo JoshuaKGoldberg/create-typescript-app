@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
-import fs from "node:fs/promises";
+import * as fs from "node:fs/promises";
 import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };

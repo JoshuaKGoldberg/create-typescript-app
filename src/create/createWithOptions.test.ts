@@ -7,6 +7,7 @@ import { Options } from "../shared/types.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
+import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
 import { runCommands } from "../steps/runCommands.js";
 import { createWithOptions } from "./createWithOptions.js";
 
@@ -60,6 +61,8 @@ vi.mock("../steps/writeReadme/index.js");
 
 vi.mock("../steps/finalizeDependencies.js");
 
+vi.mock("../steps/populateCSpellDictionary.js");
+
 vi.mock("../steps/runCommands.js");
 
 vi.mock("../shared/doesRepositoryExist.js", () => ({
@@ -111,7 +114,7 @@ describe("createWithOptions", () => {
 		expect(addToolAllContributors).not.toHaveBeenCalled();
 	});
 
-	it("does not call finalizeDependencies or runCommands when skipInstall is true", async () => {
+	it("does not call finalizeDependencies, populateCSpellDictionary, or runCommands when skipInstall is true", async () => {
 		const options = {
 			...optionsBase,
 			skipInstall: true,
@@ -119,10 +122,11 @@ describe("createWithOptions", () => {
 
 		await createWithOptions({ github, options });
 		expect(finalizeDependencies).not.toHaveBeenCalled();
+		expect(populateCSpellDictionary).not.toHaveBeenCalled();
 		expect(runCommands).not.toHaveBeenCalled();
 	});
 
-	it("calls finalizeDependencies and runCommands when skipInstall is false", async () => {
+	it("calls finalizeDependencies, populateCSpellDictionary, and runCommands when skipInstall is false", async () => {
 		const options = {
 			...optionsBase,
 			skipInstall: false,
@@ -131,6 +135,7 @@ describe("createWithOptions", () => {
 		await createWithOptions({ github, options });
 
 		expect(finalizeDependencies).toHaveBeenCalledWith(options);
+		expect(populateCSpellDictionary).toHaveBeenCalled();
 		expect(runCommands).toHaveBeenCalled();
 	});
 

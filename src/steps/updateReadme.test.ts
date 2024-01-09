@@ -5,10 +5,8 @@ import { updateReadme } from "./updateReadme.js";
 const mockWriteFile = vi.fn();
 
 vi.mock("node:fs/promises", () => ({
-	default: {
-		get writeFile() {
-			return mockWriteFile;
-		},
+	get writeFile() {
+		return mockWriteFile;
 	},
 }));
 

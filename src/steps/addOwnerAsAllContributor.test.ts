@@ -1,7 +1,7 @@
-import prettier from "prettier";
 import { describe, expect, it, vi } from "vitest";
 
 import { addOwnerAsAllContributor } from "./addOwnerAsAllContributor.js";
+import { formatJson } from "./writing/creation/formatters/formatJson.js";
 
 const mock$ = vi.fn();
 
@@ -14,12 +14,8 @@ vi.mock("execa", () => ({
 const mockWriteFile = vi.fn();
 
 vi.mock("node:fs/promises", () => ({
-	get default() {
-		return {
-			get writeFile() {
-				return mockWriteFile;
-			},
-		};
+	get writeFile() {
+		return mockWriteFile;
 	},
 }));
 
@@ -76,12 +72,9 @@ describe("addOwnerAsAllContributor", () => {
 
 		expect(mockWriteFile).toHaveBeenCalledWith(
 			"./.all-contributorsrc",
-			await prettier.format(
-				JSON.stringify({
-					contributors: [{ contributions: ["tool"], login: mockOwner }],
-				}),
-				{ parser: "json" },
-			),
+			await formatJson({
+				contributors: [{ contributions: ["tool"], login: mockOwner }],
+			}),
 		);
 	});
 
@@ -100,15 +93,12 @@ describe("addOwnerAsAllContributor", () => {
 
 		expect(mockWriteFile).toHaveBeenCalledWith(
 			"./.all-contributorsrc",
-			await prettier.format(
-				JSON.stringify({
-					contributors: [
-						{ contributions: ["bug", "fix", "tool"], login: mockOwner },
-						{ contributions: ["tool"], login: "JoshuaKGoldberg" },
-					],
-				}),
-				{ parser: "json" },
-			),
+			await formatJson({
+				contributors: [
+					{ contributions: ["bug", "fix", "tool"], login: mockOwner },
+					{ contributions: ["tool"], login: "JoshuaKGoldberg" },
+				],
+			}),
 		);
 	});
 });

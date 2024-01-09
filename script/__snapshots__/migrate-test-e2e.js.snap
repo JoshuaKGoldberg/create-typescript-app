@@ -156,42 +156,30 @@ exports[`expected file changes > cspell.json 1`] = `
  	"dictionaries": ["typescript"],
  	"ignorePaths": [
 -		"./coverage*",
+-		"./script/__snapshots__",
  		".github",
  		"CHANGELOG.md",
 +		"coverage",
  		"lib",
  		"node_modules",
--		"pnpm-lock.yaml",
--		"./script/__snapshots__"
-+		"pnpm-lock.yaml"
- 	],
- 	"words": [
--		"allcontributors",
--		"apexskier",
--		"arethetypeswrong",
- 		"Codecov",
- 		"codespace",
- 		"commitlint",
+ 		"pnpm-lock.yaml"
+@@ ... @@
  		"contributorsrc",
- 		"conventionalcommits",
--		"execa",
--		"infile",
--		"joshuakgoldberg",
+ 		"execa",
+ 		"infile",
++		"joshuakgoldberg",
  		"knip",
- 		"lcov",
++		"markdownlint",
  		"markdownlintignore",
--		"mtfoley",
--		"npmignore",
--		"npmjs",
- 		"npmpackagejsonlintrc",
- 		"outro",
- 		"packagejson",
+ 		"mtfoley",
+ 		"npmignore",
+@@ ... @@
  		"quickstart",
--		"tada",
+ 		"tada",
  		"tsup",
--		"Unstaged",
--		"vitest",
- 		"wontfix"
+-		"vitest"
++		"vitest",
++		"wontfix"
  	]
  }"
 `;

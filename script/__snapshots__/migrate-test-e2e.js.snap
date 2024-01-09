@@ -174,8 +174,10 @@ exports[`expected file changes > cspell.json 1`] = `
  		"mtfoley",
  		"npmignore",
 @@ ... @@
+ 		"packagejson",
  		"quickstart",
  		"tada",
++		"templating",
  		"tsup",
 -		"vitest"
 +		"vitest",

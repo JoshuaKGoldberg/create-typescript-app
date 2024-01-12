@@ -12,7 +12,7 @@ export function createDotGitHubActions() {
 							{ uses: "pnpm/action-setup@v2" },
 							{
 								uses: "actions/setup-node@v4",
-								with: { cache: "pnpm", "node-version": "18" },
+								with: { cache: "pnpm", "node-version": "20" },
 							},
 							{
 								run: "pnpm install --frozen-lockfile",

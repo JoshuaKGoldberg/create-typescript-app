@@ -392,6 +392,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "danvk",
+      "name": "Dan Vanderkam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98301?v=4",
+      "profile": "https://effectivetypescript.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

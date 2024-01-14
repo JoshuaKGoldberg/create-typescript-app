@@ -121,7 +121,7 @@ describe("createWorkflows", () => {
 			      - uses: ./.github/actions/prepare
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.4.2
+			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.4.3
 
 			name: Contributors
 

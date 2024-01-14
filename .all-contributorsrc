@@ -14,7 +14,8 @@
         "tool",
         "doc",
         "infra",
-        "test"
+        "test",
+        "ideas"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",

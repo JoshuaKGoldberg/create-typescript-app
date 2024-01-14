@@ -59,12 +59,6 @@ exports[`expected file changes > .github/workflows/test.yml 1`] = `
          uses: codecov/codecov-action@v3
 -        with:
 -          flags: unit
--      - if: always()
--        name: Archive code coverage results
--        uses: actions/upload-artifact@v4
--        with:
--          name: code-coverage-report
--          path: coverage
  
  name: Test
  "

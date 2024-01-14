@@ -13,6 +13,7 @@ jobs:
 name: Contributors
 
 on:
+  pull_request: ~
   push:
     branches:
       - main

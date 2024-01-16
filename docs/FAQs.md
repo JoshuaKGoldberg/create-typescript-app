@@ -18,8 +18,7 @@ If you think the tool would be broadly useful to most consumers of this template
 Yes! If you want to read the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions) in detail.
 Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
-1. The GitHub Actions does not cater for tabs well, so you will likely want to set your `README.md` to use spaces, not tabs.
-2. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
+1. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
    As a consequence we should:
 
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
@@ -107,8 +106,8 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    npx lint-staged
    ```
 
-3. We're going to need an [`action.yml`](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions) file - [here's an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
-4. Our GitHub Action needs Node.js 20 so we'll update `.github/actions/prepare/action.yml`:
+2. We're going to need an [`action.yml`](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions) file - [here's an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
+3. Our GitHub Action needs Node.js 20 so we'll update `.github/actions/prepare/action.yml`:
 
 ```diff
 -node-version: "18"
@@ -134,12 +133,12 @@ Then:
    		".": {
    			"types": {
    				"import": "./lib/index.d.ts",
-   				"require": "./lib/index.d.cts"
+   				"require": "./lib/index.d.cts",
    			},
    			"import": "./lib/index.js",
-   			"require": "./lib/index.cjs"
-   		}
-   	}
+   			"require": "./lib/index.cjs",
+   		},
+   	},
    }
    ```
 

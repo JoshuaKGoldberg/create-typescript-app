@@ -74,8 +74,8 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
       </details>
 
-   - GitHub Actions have a different build mechanism.
-     So you'll be removing `tsup` in favour of [`ncc`](https://github.com/vercel/ncc) which compiles output into a single JS file.
+   - GitHub Actions run without installing package dependencies.
+     Replace `tsup` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
      Delete `tsup.config.ts` then execute the following commands:
 
    ```bash

@@ -111,7 +111,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			}),
 		}),
 		...(!options.excludeLintKnip && {
-			"knip.jsonc": await formatJson({
+			"knip.json": await formatJson({
 				$schema: "https://unpkg.com/knip@latest/schema.json",
 				entry: ["src/index.ts!"],
 				ignoreExportsUsedInFile: {

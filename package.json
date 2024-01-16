@@ -23,7 +23,7 @@
 	],
 	"scripts": {
 		"build": "tsup",
-		"format": "prettier \"**/*\" --ignore-unknown",
+		"format": "prettier .",
 		"initialize": "tsx ./bin/index.js --mode initialize",
 		"lint": "eslint . .*js --max-warnings 0",
 		"lint:knip": "knip",

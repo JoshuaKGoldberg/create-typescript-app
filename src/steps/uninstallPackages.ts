@@ -38,6 +38,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"c8",
 			"eslint-config-prettier",
 			"globby",
+			"rimraf",
 			"tsx",
 		],
 		packageData.devDependencies,

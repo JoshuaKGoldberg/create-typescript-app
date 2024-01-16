@@ -36,20 +36,16 @@ export async function createRootFiles(options: Options) {
 				},
 			}),
 		}),
-		".nvmrc": `20.10.0\n`,
+		".nvmrc": `20.11.0\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",
 		]),
-		".prettierrc": await formatJson({
+		".prettierrc.json": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
 			overrides: [
-				{
-					files: ".*rc",
-					options: { parser: "json" },
-				},
 				{
 					files: ".nvmrc",
 					options: { parser: "yaml" },
@@ -112,22 +108,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					"node_modules",
 					"pnpm-lock.yaml",
 				],
-				words: [
-					"Codecov",
-					"codespace",
-					"commitlint",
-					"contributorsrc",
-					"conventionalcommits",
-					...(options.excludeLintKnip ? [] : ["knip"]),
-					"lcov",
-					"markdownlintignore",
-					"npmpackagejsonlintrc",
-					"outro",
-					"packagejson",
-					"tsup",
-					"quickstart",
-					"wontfix",
-				].sort(),
 			}),
 		}),
 		...(!options.excludeLintKnip && {

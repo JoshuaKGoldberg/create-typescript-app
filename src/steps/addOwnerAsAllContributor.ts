@@ -1,9 +1,9 @@
-import fs from "node:fs/promises";
-import prettier from "prettier";
+import * as fs from "node:fs/promises";
 
 import { getGitHubUserAsAllContributor } from "../shared/getGitHubUserAsAllContributor.js";
 import { readFileAsJson } from "../shared/readFileAsJson.js";
 import { AllContributorsData, Options } from "../shared/types.js";
+import { formatJson } from "./writing/creation/formatters/formatJson.js";
 
 export async function addOwnerAsAllContributor(
 	options: Pick<Options, "offline" | "owner">,
@@ -41,13 +41,10 @@ export async function addOwnerAsAllContributor(
 
 	await fs.writeFile(
 		"./.all-contributorsrc",
-		await prettier.format(
-			JSON.stringify({
-				...existingContributors,
-				contributors,
-			}),
-			{ parser: "json" },
-		),
+		await formatJson({
+			...existingContributors,
+			contributors,
+		}),
 	);
 }
 

@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
-import fs from "node:fs/promises";
+import * as fs from "node:fs/promises";
 import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
@@ -32,14 +32,10 @@ const bin = "./bin/index.js";
 const guide =
 	"https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository";
 const guideTitle = "Contributing to a create-typescript-app Repository";
-const logo = "./create-typescript-app.png";
+const logo = "./docs/create-typescript-app.png";
 const logoAlt = `Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'`;
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";
-
-const originalDevelopment = (
-	await fs.readFile(".github/DEVELOPMENT.md")
-).toString();
 
 const originalReadme = (await fs.readFile("README.md")).toString();
 
@@ -59,14 +55,6 @@ await fs.writeFile(
 		null,
 		2,
 	) + "\n",
-);
-
-// The development setup scripts docs can be ignored from snapshots.
-// We manually add them back after hydration to clear them from Git diffs.
-await fs.appendFile(
-	".github/DEVELOPMENT.md",
-	"\n" +
-		originalDevelopment.slice(originalDevelopment.indexOf("## Setup Scripts")),
 );
 
 // Ignore changes to the README.md all-contributor count and contributors table...

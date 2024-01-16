@@ -14,7 +14,8 @@
         "tool",
         "doc",
         "infra",
-        "test"
+        "test",
+        "ideas"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -389,6 +390,15 @@
       "name": "lcforbes",
       "avatar_url": "https://avatars.githubusercontent.com/u/42080532?v=4",
       "profile": "https://github.com/lcforbes",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "danvk",
+      "name": "Dan Vanderkam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98301?v=4",
+      "profile": "https://effectivetypescript.com",
       "contributions": [
         "bug"
       ]

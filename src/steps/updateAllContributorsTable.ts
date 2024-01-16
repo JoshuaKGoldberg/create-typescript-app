@@ -1,9 +1,9 @@
 import { $ } from "execa";
-import fs from "node:fs/promises";
-import prettier from "prettier";
+import * as fs from "node:fs/promises";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { AllContributorsData, Options } from "../shared/types.js";
+import { formatJson } from "./writing/creation/formatters/formatJson.js";
 
 export async function updateAllContributorsTable({
 	owner,
@@ -11,16 +11,13 @@ export async function updateAllContributorsTable({
 }: Pick<Options, "owner" | "repository">) {
 	await fs.writeFile(
 		".all-contributorsrc",
-		await prettier.format(
-			JSON.stringify({
-				...((await readFileSafeAsJson(
-					".all-contributorsrc",
-				)) as AllContributorsData),
-				projectName: repository,
-				projectOwner: owner,
-			}),
-			{ parser: "json" },
-		),
+		await formatJson({
+			...((await readFileSafeAsJson(
+				".all-contributorsrc",
+			)) as AllContributorsData),
+			projectName: repository,
+			projectOwner: owner,
+		}),
 	);
 
 	await $`npx -y all-contributors-cli generate`;

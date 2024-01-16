@@ -223,7 +223,7 @@ These are the projects used across many parts of `create-typescript-app`:
 
 ## Why tabs?
 
-This repository template configures `"useTabs": true` in the root-level `.prettierrc`.
+This repository template configures `"useTabs": true` in the root-level `.prettierrc.json`.
 It does so because tabs have been phrased by the community as generally better for accessibility:
 
 - <https://github.com/11ty/eleventy/issues/3098>
@@ -231,5 +231,7 @@ It does so because tabs have been phrased by the community as generally better f
 
 Note that those points on tabs over spaces have generally been made by accessibility-experienced _individuals_ rather than accessibility-focused _organizations_.
 If you know of any accessibility organization that's published more formal recommendations or research, please do file an issue here for this FAQ entry to be updated.
+
+You can adjust the tab size that GitHub uses to display files from your [account settings page](https://github.com/settings/appearance#tab-size-heading) (the default is 8 spaces).
 
 If you really want spaces in your project you can always remove the `"useTabs": true`.

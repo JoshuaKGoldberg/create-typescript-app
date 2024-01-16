@@ -7,6 +7,7 @@ import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
+import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
 import { runCommands } from "../steps/runCommands.js";
 import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
@@ -37,6 +38,13 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 		await withSpinner("Installing packages", async () =>
 			finalizeDependencies(options),
 		);
+
+		if (!options.excludeLintSpelling) {
+			await withSpinner(
+				"Populating CSpell dictionary",
+				populateCSpellDictionary,
+			);
+		}
 
 		await runCommands(
 			"Cleaning up files",

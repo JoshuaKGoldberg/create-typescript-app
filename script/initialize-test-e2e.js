@@ -2,11 +2,14 @@ import { $ } from "execa";
 import { globby } from "globby";
 import { strict as assert } from "node:assert";
 import * as fs from "node:fs/promises";
+import { rimraf } from "rimraf";
 
 const description = "New Description Test";
 const owner = "RNR1";
 const title = "New Title Test";
 const repository = "new-repository-test";
+
+await rimraf("coverage*");
 
 // Fist we run with --mode initialize to modify the local repository files,
 // asserting that the created package.json keeps the general description.

@@ -1,13 +1,14 @@
 import chalk from "chalk";
 import { $, execaCommand } from "execa";
 import * as fs from "node:fs/promises";
+import { rimraf } from "rimraf";
 import { assert, describe, expect, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 
 const filesExpectedToBeChanged = [
 	"README.md",
-	"knip.jsonc",
+	"knip.json",
 	"package.json",
 	".eslintignore",
 	".eslintrc.cjs",
@@ -36,6 +37,8 @@ const logo = "./docs/create-typescript-app.png";
 const logoAlt = `Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'`;
 const owner = "JoshuaKGoldberg";
 const title = "Create TypeScript App";
+
+await rimraf("coverage*");
 
 const originalReadme = (await fs.readFile("README.md")).toString();
 

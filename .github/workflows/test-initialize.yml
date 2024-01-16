@@ -16,11 +16,6 @@ jobs:
         with:
           files: coverage-initialize/lcov.info
           flags: initialize
-      - if: always()
-        name: Archive code coverage results
-        uses: actions/upload-artifact@v4
-        with:
-          path: coverage-initialize
 
 name: Test Initialization Script
 

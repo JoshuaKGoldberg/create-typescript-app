@@ -14,7 +14,8 @@
         "tool",
         "doc",
         "infra",
-        "test"
+        "test",
+        "ideas"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -392,6 +393,24 @@
       "profile": "https://github.com/lcforbes",
       "contributions": [
         "bug"
+      ]
+    },
+    {
+      "login": "danvk",
+      "name": "Dan Vanderkam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98301?v=4",
+      "profile": "https://effectivetypescript.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "nandertga",
+      "name": "nandertga",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65074195?v=4",
+      "profile": "http://nandertga.ddns.net",
+      "contributions": [
+        "code"
       ]
     }
   ],

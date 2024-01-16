@@ -1,3 +1,22 @@
+# [1.54.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.7...v1.54.0) (2024-01-16)
+
+### Bug Fixes
+
+- all-contributors-auto-action@v0.4.3 ([45f4b78](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/45f4b78d8bda658b3a1b5b991c33ca07d4fb0ad8))
+- skip replacing existing tooling in --mode migrate ([#1223](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1223)) ([c4025fa](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c4025fac088a26039d78dab5448c1cec7d97b955)), closes [#1220](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1220)
+
+### Features
+
+- bump CI version of Node to 20 ([#1233](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1233)) ([1f395f5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1f395f5a7cd0f4231386e6add17f4268ed0250a0)), closes [#1204](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1204)
+- debugging in vs code ([#1153](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1153)) ([308d44a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/308d44a4ddde8af2d6153379d96471562f366592)), closes [#1145](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1145)
+- populate existing cspell.json words during migration ([#1208](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1208)) ([dd4fc29](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dd4fc2989f6a441b7e834d9733ff3c26f992b8f1)), closes [#702](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/702)
+- preserve existing unknown .github/DEVELOPMENT.md sections ([#1173](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1173)) ([5cd4a95](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5cd4a95e7dacabfc6c4cc1174d3fd8bf7c15b8dc)), closes [#1167](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1167)
+- rename .prettierrc to .prettierrc.json ([#1215](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1215)) ([07c0abc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/07c0abcee146346ba819ab444ddad298fb698c2a)), closes [#1214](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1214)
+
+### Performance Improvements
+
+- rimraf coverage directories in --mode migrate ([#1248](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1248)) ([6774141](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/67741411d8920021606ce4676c3ff55a3ffa59be)), closes [#1221](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1221)
+
 ## [1.52.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.6...v1.52.7) (2024-01-06)
 
 ### Bug Fixes

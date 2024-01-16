@@ -59,12 +59,6 @@ exports[`expected file changes > .github/workflows/test.yml 1`] = `
          uses: codecov/codecov-action@v3
 -        with:
 -          flags: unit
--      - if: always()
--        name: Archive code coverage results
--        uses: actions/upload-artifact@v4
--        with:
--          name: code-coverage-report
--          path: coverage
  
  name: Test
  "
@@ -152,9 +146,9 @@ exports[`expected file changes > cspell.json 1`] = `
  }"
 `;
 
-exports[`expected file changes > knip.jsonc 1`] = `
-"--- a/knip.jsonc
-+++ b/knip.jsonc
+exports[`expected file changes > knip.json 1`] = `
+"--- a/knip.json
++++ b/knip.json
 @@ ... @@
  {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",

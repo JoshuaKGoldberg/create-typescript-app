@@ -36,7 +36,7 @@ export async function createRootFiles(options: Options) {
 				},
 			}),
 		}),
-		".nvmrc": `20.10.0\n`,
+		".nvmrc": `20.11.0\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),
@@ -111,7 +111,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			}),
 		}),
 		...(!options.excludeLintKnip && {
-			"knip.jsonc": await formatJson({
+			"knip.json": await formatJson({
 				$schema: "https://unpkg.com/knip@latest/schema.json",
 				entry: ["src/index.ts!"],
 				ignoreExportsUsedInFile: {

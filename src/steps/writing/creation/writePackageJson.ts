@@ -1,5 +1,5 @@
 import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
-import { Options } from "../../../shared/types.js";
+import { Options, PartialPackageData } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 const devDependenciesToRemove = [
@@ -31,7 +31,9 @@ const devDependenciesToRemove = [
 
 export async function writePackageJson(options: Options) {
 	const existingPackageJson =
-		((await readFileSafeAsJson("./package.json")) as null | object) ?? {};
+		((await readFileSafeAsJson(
+			"./package.json",
+		)) as PartialPackageData | null) ?? {};
 
 	return await formatJson({
 		// If we didn't already have a version, set it to 0.0.0
@@ -82,6 +84,7 @@ export async function writePackageJson(options: Options) {
 			url: `https://github.com/${options.owner}/${options.repository}`,
 		},
 		scripts: {
+			...existingPackageJson.scripts,
 			build: "tsup",
 			format: "prettier .",
 			lint: "eslint . .*js --max-warnings 0",

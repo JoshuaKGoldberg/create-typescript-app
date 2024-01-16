@@ -26,7 +26,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    - update `.github/workflows/build.yml` to ensure `dist` is up to date:
 
      <details>
-         <summary><code>.github/workflows/dist.yml</code></summary>
+         <summary><code>.github/workflows/build.yml</code></summary>
 
      ```yml
      jobs:

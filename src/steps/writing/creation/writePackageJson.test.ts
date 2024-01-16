@@ -101,7 +101,7 @@ describe("writePackageJson", () => {
 			  },
 			  "scripts": {
 			    "build": "tsup",
-			    "format": "prettier "**/*" --ignore-unknown",
+			    "format": "prettier .",
 			    "lint": "eslint . .*js --max-warnings 0",
 			    "lint:knip": "knip",
 			    "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
@@ -174,7 +174,7 @@ describe("writePackageJson", () => {
 			  },
 			  "scripts": {
 			    "build": "tsup",
-			    "format": "prettier "**/*" --ignore-unknown",
+			    "format": "prettier .",
 			    "lint": "eslint . .*js --max-warnings 0",
 			    "prepare": "husky install",
 			    "tsc": "tsc",

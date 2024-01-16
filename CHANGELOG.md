@@ -1,3 +1,9 @@
+## [1.54.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.0...v1.54.1) (2024-01-16)
+
+### Bug Fixes
+
+- preserve existing package.json scripts ([#1252](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1252)) ([fc4e7e5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/fc4e7e518ffd39706fde670e390711338527ed18)), closes [#1226](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1226)
+
 # [1.54.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.52.7...v1.54.0) (2024-01-16)
 
 ### Bug Fixes

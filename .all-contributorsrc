@@ -402,6 +402,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "nandertga",
+      "name": "nandertga",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65074195?v=4",
+      "profile": "http://nandertga.ddns.net",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

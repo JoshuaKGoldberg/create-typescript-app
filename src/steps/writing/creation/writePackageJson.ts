@@ -73,7 +73,7 @@ export async function writePackageJson(options: Options) {
 		},
 		main: "./lib/index.js",
 		name: options.repository,
-		packageManager: "pnpm@8.14.0",
+		packageManager: "pnpm@8.14.1",
 		publishConfig: {
 			provenance: true,
 		},

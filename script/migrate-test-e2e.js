@@ -8,7 +8,7 @@ import packageData from "../package.json" assert { type: "json" };
 
 const filesExpectedToBeChanged = [
 	"README.md",
-	"knip.jsonc",
+	"knip.json",
 	"package.json",
 	".eslintignore",
 	".eslintrc.cjs",

@@ -1,15 +1,12 @@
-export interface CleanUpFilesOptions {
-	bin?: boolean;
-	dedupe?: boolean;
-}
+import { Options } from "./types.js";
 
-export function createCleanUpFilesCommands({
+export function createCleanupCommands({
 	bin,
-	dedupe,
-}: CleanUpFilesOptions) {
+	mode,
+}: Pick<Options, "bin" | "mode">) {
 	return [
 		// There's no need to dedupe when initializing from the fixed template
-		...(dedupe ? ["pnpm dedupe"] : []),
+		...(mode === "initialize" ? [] : ["pnpm dedupe"]),
 		// n/no-missing-import rightfully reports on a missing the bin .js file
 		...(bin ? ["pnpm build"] : []),
 		"pnpm lint --fix",

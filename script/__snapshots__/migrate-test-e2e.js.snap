@@ -160,26 +160,3 @@ exports[`expected file changes > knip.json 1`] = `
 +	"project": ["src/**/*.ts!"]
  }"
 `;
-
-exports[`expected file changes > package.json 1`] = `
-"--- a/package.json
-+++ b/package.json
-@@ ... @@
- 	"scripts": {
- 		"build": "tsup",
- 		"format": "prettier .",
--		"initialize": "tsx ./bin/index.js --mode initialize",
- 		"lint": "eslint . .*js --max-warnings 0",
- 		"lint:knip": "knip",
- 		"lint:md": "markdownlint \\"**/*.md\\" \\".github/**/*.md\\" --rules sentences-per-line",
-@@ ... @@
- 		"prepare": "husky install",
- 		"should-semantic-release": "should-semantic-release --verbose",
- 		"test": "vitest",
--		"test:create": "node script/create-test-e2e.js",
--		"test:initialize": "node script/initialize-test-e2e.js",
--		"test:migrate": "vitest run -r script/",
- 		"tsc": "tsc"
- 	},
- 	"lint-staged": {"
-`;

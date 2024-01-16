@@ -8,7 +8,7 @@ import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
-import { runCommands } from "../steps/runCommands.js";
+import { runCommands } from "../steps/runCleanup.js";
 import { createWithOptions } from "./createWithOptions.js";
 
 const optionsBase: Options = {

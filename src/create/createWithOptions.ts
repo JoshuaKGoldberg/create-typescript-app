@@ -1,14 +1,13 @@
 import { $ } from "execa";
 
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
-import { createCleanUpFilesCommands } from "../shared/createCleanUpFilesCommands.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
-import { runCommands } from "../steps/runCommands.js";
+import { runCleanup } from "../steps/runCleanup.js";
 import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
@@ -46,13 +45,7 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 			);
 		}
 
-		await runCommands(
-			"Cleaning up files",
-			createCleanUpFilesCommands({
-				bin: !!options.bin,
-				dedupe: true,
-			}),
-		);
+		await runCleanup(options);
 	}
 
 	const sendToGitHub =

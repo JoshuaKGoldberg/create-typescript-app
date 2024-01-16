@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { describe, expect, it, vi } from "vitest";
 
-import { runCommands } from "./runCommands.js";
+import { runCommands } from "./runCleanup.js";
 
 const mockExecaCommand = vi.fn().mockRejectedValue("Oh no!");
 

@@ -1,5 +1,6 @@
 import { $, execaCommand } from "execa";
 import { strict as assert } from "node:assert";
+import { rimraf } from "rimraf";
 
 const author = "Test Author";
 const description = "Test description.";
@@ -8,7 +9,7 @@ const repository = "create-typescript-app";
 const owner = "TestOwner";
 const title = "Test Title";
 
-await $`rm -rf ${repository}`;
+await rimraf(["coverage*", repository]);
 
 // Fist we run with --mode create to create a new new local repository,
 // asserting that pnpm i passes in that repository's directory.

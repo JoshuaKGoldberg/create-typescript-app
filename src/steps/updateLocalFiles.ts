@@ -36,17 +36,17 @@ export async function updateLocalFiles(options: Options) {
 						"./README.md",
 					],
 					[/\n## Setup Scripts.*$/gs, "", "./.github/DEVELOPMENT.md"],
-					[`\t\t"src/initialize/index.ts",\n`, ``, "./knip.jsonc"],
-					[`\t\t"src/migrate/index.ts",\n`, ``, "./knip.jsonc"],
+					[`\t\t"src/initialize/index.ts",\n`, ``, "./knip.json"],
+					[`\t\t"src/migrate/index.ts",\n`, ``, "./knip.json"],
 					[
 						`["src/index.ts!", "script/initialize*.js"]`,
 						`"src/index.ts!"`,
-						"./knip.jsonc",
+						"./knip.json",
 					],
 					[
 						`["src/**/*.ts!", "script/**/*.js"]`,
 						`"src/**/*.ts!"`,
-						"./knip.jsonc",
+						"./knip.json",
 					],
 					// Edge case: migration scripts will rewrite README.md attribution
 					[

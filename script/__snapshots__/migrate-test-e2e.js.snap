@@ -146,9 +146,9 @@ exports[`expected file changes > cspell.json 1`] = `
  }"
 `;
 
-exports[`expected file changes > knip.jsonc 1`] = `
-"--- a/knip.jsonc
-+++ b/knip.jsonc
+exports[`expected file changes > knip.json 1`] = `
+"--- a/knip.json
++++ b/knip.json
 @@ ... @@
  {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",

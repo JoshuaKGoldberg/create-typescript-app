@@ -165,7 +165,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/initialize/index.ts",
 			",
 			      "to": "",
@@ -174,7 +174,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/migrate/index.ts",
 			",
 			      "to": "",
@@ -183,7 +183,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/index.ts!", "script/initialize*.js"]",
 			      "to": ""src/index.ts!"",
 			    },
@@ -191,7 +191,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/**/*.ts!", "script/**/*.js"]",
 			      "to": ""src/**/*.ts!"",
 			    },
@@ -332,7 +332,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/initialize/index.ts",
 			",
 			      "to": "",
@@ -341,7 +341,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/migrate/index.ts",
 			",
 			      "to": "",
@@ -350,7 +350,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/index.ts!", "script/initialize*.js"]",
 			      "to": ""src/index.ts!"",
 			    },
@@ -358,7 +358,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/**/*.ts!", "script/**/*.js"]",
 			      "to": ""src/**/*.ts!"",
 			    },

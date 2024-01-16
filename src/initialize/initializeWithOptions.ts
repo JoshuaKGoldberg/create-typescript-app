@@ -1,4 +1,5 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanupCommands } from "../shared/createCleanupCommands.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addOwnerAsAllContributor } from "../steps/addOwnerAsAllContributor.js";
 import { clearChangelog } from "../steps/clearChangelog.js";
@@ -60,5 +61,5 @@ export async function initializeWithOptions({
 		);
 	}
 
-	await runCleanup(options);
+	await runCleanup(createCleanupCommands(options), options.mode);
 }

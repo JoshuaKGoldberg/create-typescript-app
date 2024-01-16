@@ -1,6 +1,7 @@
 import { $ } from "execa";
 
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanupCommands } from "../shared/createCleanupCommands.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
@@ -45,7 +46,7 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 			);
 		}
 
-		await runCleanup(options);
+		await runCleanup(createCleanupCommands(options), options.mode);
 	}
 
 	const sendToGitHub =

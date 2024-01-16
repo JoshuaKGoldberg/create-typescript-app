@@ -1,4 +1,5 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanupCommands } from "../shared/createCleanupCommands.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
@@ -65,5 +66,5 @@ export async function migrateWithOptions({
 		await withSpinner("Populating CSpell dictionary", populateCSpellDictionary);
 	}
 
-	await runCleanup(options);
+	await runCleanup(createCleanupCommands(options), options.mode);
 }

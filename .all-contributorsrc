@@ -413,6 +413,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "demianparkhomenko",
+      "name": "Demian Parkhomenko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95881717?v=4",
+      "profile": "https://linktr.ee/DemianParkhomenko",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

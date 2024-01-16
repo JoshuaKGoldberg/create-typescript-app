@@ -133,12 +133,12 @@ Then:
    		".": {
    			"types": {
    				"import": "./lib/index.d.ts",
-   				"require": "./lib/index.d.cts",
+   				"require": "./lib/index.d.cts"
    			},
    			"import": "./lib/index.js",
-   			"require": "./lib/index.cjs",
-   		},
-   	},
+   			"require": "./lib/index.cjs"
+   		}
+   	}
    }
    ```
 

@@ -1,3 +1,9 @@
+## [1.54.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.1...v1.54.2) (2024-01-17)
+
+### Performance Improvements
+
+- use --no-dts in cleanup and pre-lint builds ([#1255](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1255)) ([0fffae0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0fffae01a7888b696385d766cf10fc5e0a0c1488)), closes [#1162](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1162)
+
 ## [1.54.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.0...v1.54.1) (2024-01-16)
 
 ### Bug Fixes

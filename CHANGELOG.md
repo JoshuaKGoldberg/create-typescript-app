@@ -1,3 +1,9 @@
+## [1.54.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.3...v1.54.4) (2024-01-17)
+
+### Bug Fixes
+
+- disable jsonc/comma-dangle ([#1258](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1258)) ([ed53de1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ed53de119d71f21a6b957721ce7e8334b0b9b082)), closes [#1257](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1257)
+
 ## [1.54.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.2...v1.54.3) (2024-01-17)
 
 ### Bug Fixes

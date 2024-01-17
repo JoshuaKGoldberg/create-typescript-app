@@ -6,7 +6,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm run build
       - run: pnpm run test:migrate
-      # The template's .eslintignore only ignores coverage, not coverage-*
+      # The template's ESLint ignorePatterns only ignores coverage, not coverage-*
       # https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1131
       - if: always()
         run: mv coverage coverage-migrate

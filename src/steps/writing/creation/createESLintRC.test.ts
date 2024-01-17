@@ -58,6 +58,7 @@ describe("createESLintRC", () => {
 				    node: true,
 				  },
 				  extends: ["eslint:recommended", "plugin:n/recommended"],
+				  ignorePatterns: ["!.*", "lib", "node_modules", "pnpm-lock.yaml"],
 				  overrides: [
 				    {
 				      extends: ["plugin:@typescript-eslint/recommended"],
@@ -124,6 +125,7 @@ describe("createESLintRC", () => {
 				    "plugin:regexp/recommended",
 				    "plugin:vitest/recommended",
 				  ],
+				  ignorePatterns: ["!.*", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
 				  overrides: [
 				    {
 				      extends: ["plugin:markdown/recommended"],

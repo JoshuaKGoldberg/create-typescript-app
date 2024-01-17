@@ -1,5 +1,4 @@
 import { Options } from "../../../shared/types.js";
-import { createDotESLintignore } from "./createDotESLintignore.js";
 import { createDotGitignore } from "./createDotGitignore.js";
 import { createESLintRC } from "./createESLintRC.js";
 import { createTsupConfig } from "./createTsupConfig.js";
@@ -11,7 +10,6 @@ import { writePackageJson } from "./writePackageJson.js";
 export async function createRootFiles(options: Options) {
 	return {
 		".all-contributorsrc": await writeAllContributorsRC(options),
-		".eslintignore": createDotESLintignore(options),
 		".eslintrc.cjs": await createESLintRC(options),
 		".gitignore": createDotGitignore(options),
 		...(!options.excludeLintMd && {

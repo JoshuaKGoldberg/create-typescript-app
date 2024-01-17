@@ -12,6 +12,7 @@ const globPaths = [
 	".github/codecov.yml",
 	".babelrc",
 	".npmignore",
+	".eslintignore",
 	".eslintrc",
 	"CODE_OF_CONDUCT.md",
 	"CONTRIBUTING.md",

@@ -1,3 +1,9 @@
+# [1.55.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.4...v1.55.0) (2024-01-17)
+
+### Features
+
+- move .eslintignore into .eslintrc.cjs ignorePatterns ([#1262](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1262)) ([287bc46](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/287bc462998ee3c073d034c6c01a22fb4b3042e6)), closes [#1261](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1261)
+
 ## [1.54.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.3...v1.54.4) (2024-01-17)
 
 ### Bug Fixes

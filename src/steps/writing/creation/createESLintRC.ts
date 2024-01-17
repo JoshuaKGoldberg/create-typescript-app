@@ -124,6 +124,7 @@ module.exports = {
 			files: ["*.json", "*.jsonc"],
 			parser: "jsonc-eslint-parser",
 			rules: {
+				"jsonc/comma-dangle": "off",
 				"jsonc/sort-keys": "error",
 			},
 		},

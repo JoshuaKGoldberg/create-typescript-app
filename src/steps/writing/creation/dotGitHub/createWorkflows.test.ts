@@ -216,7 +216,7 @@ describe("createWorkflows", () => {
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
-			      - run: pnpm build || true
+			      - run: pnpm build --no-dts
 			      - run: pnpm lint
 
 			name: Lint

@@ -1,17 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`expected file changes > .eslintignore 1`] = `
-"--- a/.eslintignore
-+++ b/.eslintignore
-@@ ... @@
- !.*
--coverage*
-+coverage
- lib
- node_modules
- pnpm-lock.yaml"
-`;
-
 exports[`expected file changes > .eslintrc.cjs 1`] = `
 "--- a/.eslintrc.cjs
 +++ b/.eslintrc.cjs
@@ -29,6 +17,15 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
  /** @type {import("@types/eslint").Linter.Config} */
  module.exports = {
  	env: {
+@@ ... @@ module.exports = {
+ 		"plugin:regexp/recommended",
+ 		"plugin:vitest/recommended",
+ 	],
+-	ignorePatterns: ["!.*", "coverage*", "lib", "node_modules", "pnpm-lock.yaml"],
++	ignorePatterns: ["!.*", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
+ 	overrides: [
+ 		{
+ 			extends: ["plugin:markdown/recommended"],
 @@ ... @@ module.exports = {
  			rules: {
  				// These off-by-default rules work well for this repo and we like them on.

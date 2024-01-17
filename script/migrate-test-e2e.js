@@ -9,7 +9,6 @@ import packageData from "../package.json" assert { type: "json" };
 const filesExpectedToBeChanged = [
 	"README.md",
 	"knip.json",
-	".eslintignore",
 	".eslintrc.cjs",
 	".github/workflows/test.yml",
 	".gitignore",

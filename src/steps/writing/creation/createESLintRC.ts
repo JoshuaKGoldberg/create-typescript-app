@@ -24,6 +24,12 @@ module.exports = {
 			options.excludeTests ? "" : `"plugin:vitest/recommended",`
 		}
 	],
+	ignorePatterns: [
+		"!.*",${options.excludeTests ? "" : `\n		"coverage",`}
+		"lib",
+		"node_modules",
+		"pnpm-lock.yaml",
+	],
 	overrides: [${
 		options.excludeLintMd
 			? ""

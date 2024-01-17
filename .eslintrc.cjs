@@ -22,6 +22,7 @@ module.exports = {
 		"plugin:regexp/recommended",
 		"plugin:vitest/recommended",
 	],
+	ignorePatterns: ["!.*", "coverage*", "lib", "node_modules", "pnpm-lock.yaml"],
 	overrides: [
 		{
 			extends: ["plugin:markdown/recommended"],

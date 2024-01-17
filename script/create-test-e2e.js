@@ -5,7 +5,7 @@ import { rimraf } from "rimraf";
 const author = "Test Author";
 const description = "Test description.";
 const email = "test@email.com";
-const repository = "create-typescript-app";
+const repository = "testing-repository";
 const owner = "TestOwner";
 const title = "Test Title";
 

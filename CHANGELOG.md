@@ -1,3 +1,9 @@
+## [1.54.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.2...v1.54.3) (2024-01-17)
+
+### Bug Fixes
+
+- switch rimraf to full dependency ([#1256](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1256)) ([41ab495](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/41ab4958d227700cc82ff640052da8da8927ac1a)), closes [#1253](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1253)
+
 ## [1.54.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.1...v1.54.2) (2024-01-17)
 
 ### Performance Improvements

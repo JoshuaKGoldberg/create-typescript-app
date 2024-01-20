@@ -21,6 +21,7 @@
 		"markdownlintignore",
 		"mtfoley",
 		"npmignore",
+		"npmpackagejsonlintrc",
 		"outro",
 		"packagejson",
 		"quickstart",

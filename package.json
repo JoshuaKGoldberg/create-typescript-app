@@ -28,7 +28,6 @@
 		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
-		"should-semantic-release": "should-semantic-release --verbose",
 		"test": "vitest",
 		"test:create": "node script/create-test-e2e.js",
 		"test:initialize": "node script/initialize-test-e2e.js",

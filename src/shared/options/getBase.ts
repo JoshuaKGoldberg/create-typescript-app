@@ -1,7 +1,7 @@
 import { readPackageData } from "../packages.js";
 import { OptionsBase } from "../types.js";
 
-const commonScripts = new Set(["lint:knip", "should-semantic-release", "test"]);
+const commonScripts = new Set(["lint:knip", "test"]);
 
 const everythingScripts = new Set([
 	"lint:md",

@@ -267,13 +267,7 @@ pnpm lint:md
 
 ### Lint Package JSON
 
-[`npm-package-json-lint`](https://github.com/tclindner/npm-package-json-lint): Linting for `package.json` files.
-
-```shell
-pnpm lint:package-json
-```
-
-> This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/839)).
+[`eslint-plugin-package-json`](https://github.com/JoshuaKGoldberg/eslint-plugin-package-json): Linting for `package.json` files.
 
 ### Lint Packages
 

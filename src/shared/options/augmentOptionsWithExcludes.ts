@@ -58,7 +58,8 @@ const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> = {
 	},
 	excludeLintPackageJson: {
 		hint: "--exclude-lint-package-json",
-		label: "Add npm-package-json-lint to lint for package.json correctness.",
+		label:
+			"Add eslint-plugin-package-json to lint for package.json correctness.",
 		uncommon: true,
 	},
 	excludeLintPackages: {

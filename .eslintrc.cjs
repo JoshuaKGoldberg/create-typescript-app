@@ -108,6 +108,12 @@ module.exports = {
 			},
 		},
 		{
+			extends: ["plugin:package-json/recommended"],
+			files: ["package.json"],
+			parser: "jsonc-eslint-parser",
+			plugins: ["package-json"],
+		},
+		{
 			files: "**/*.test.ts",
 			rules: {
 				// These on-by-default rules aren't useful in test files.

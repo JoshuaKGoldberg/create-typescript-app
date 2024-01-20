@@ -128,12 +128,6 @@ export function createWorkflows(options: Options) {
 				runs: ["pnpm lint:md"],
 			}),
 		}),
-		...(!options.excludeLintPackageJson && {
-			"lint-package-json.yml": createWorkflowFile({
-				name: "Lint Package JSON",
-				runs: ["pnpm lint:package-json"],
-			}),
-		}),
 		...(!options.excludeLintPackages && {
 			"lint-packages.yml": createWorkflowFile({
 				name: "Lint Packages",

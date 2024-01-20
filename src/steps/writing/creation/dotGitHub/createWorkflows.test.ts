@@ -162,22 +162,6 @@ describe("createWorkflows", () => {
 			    branches:
 			      - main
 			",
-			  "lint-package-json.yml": "jobs:
-			  lint_package_json:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm lint:package-json
-
-			name: Lint Package JSON
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
 			  "lint-packages.yml": "jobs:
 			  lint_packages:
 			    runs-on: ubuntu-latest

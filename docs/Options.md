@@ -88,7 +88,7 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-lint-json`: Don't apply linting and sorting to `*.json` and `*.jsonc` files.
 - `--exclude-lint-knip`: Don't add Knip to detect unused files, dependencies, and code exports.
 - `--exclude-lint-md`: Don't apply linting to `*.md` files.
-- `--exclude-lint-package-json`: Don't add npm-package-json-lint to lint for package.json correctness.
+- `--exclude-lint-package-json`: Don't add eslint-plugin-package-json to lint for package.json correctness.
 - `--exclude-lint-deprecation`: Don't use eslint-plugin-deprecation to report on usage of code marked as `@deprecated`.
 - `--exclude-lint-eslint`: Don't use eslint-plugin-eslint-comment to enforce good practices around ESLint comment directives.
 - `--exclude-lint-jsdoc`: Don't use eslint-plugin-jsdoc to enforce good practices around JSDoc comments.

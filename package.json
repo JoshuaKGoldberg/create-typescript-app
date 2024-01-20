@@ -2,10 +2,7 @@
 	"name": "create-typescript-app",
 	"version": "1.55.0",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/create-typescript-app"
-	},
+	"repository": "JoshuaKGoldberg/create-typescript-app",
 	"license": "MIT",
 	"author": {
 		"name": "Josh Goldberg",
@@ -28,7 +25,6 @@
 		"lint": "eslint . .*js --max-warnings 0",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",
-		"lint:package-json": "npmPkgJsonLint .",
 		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky install",
@@ -84,6 +80,7 @@
 		"eslint-plugin-markdown": "^3.0.1",
 		"eslint-plugin-n": "^16.3.1",
 		"eslint-plugin-no-only-tests": "^3.1.0",
+		"eslint-plugin-package-json": "^0.10.0",
 		"eslint-plugin-perfectionist": "^2.5.0",
 		"eslint-plugin-regexp": "^2.1.2",
 		"eslint-plugin-vitest": "^0.3.10",
@@ -95,8 +92,6 @@
 		"lint-staged": "^15.2.0",
 		"markdownlint": "^0.33.0",
 		"markdownlint-cli": "^0.38.0",
-		"npm-package-json-lint": "^7.1.0",
-		"npm-package-json-lint-config-default": "^6.0.0",
 		"prettier-plugin-curly": "^0.1.3",
 		"prettier-plugin-packagejson": "^2.4.7",
 		"release-it": "^17.0.0",

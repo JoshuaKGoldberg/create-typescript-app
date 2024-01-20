@@ -141,6 +141,15 @@ module.exports = {
 			},
 		},`
 		}${
+			options.excludeLintPackageJson
+				? ""
+				: `{
+			extends: ["plugin:package-json/recommended"],
+			files: ["package.json"],
+			parser: "jsonc-eslint-parser",
+			plugins: ["package-json"],
+		},`
+		}${
 			options.excludeTests
 				? ""
 				: `\n{

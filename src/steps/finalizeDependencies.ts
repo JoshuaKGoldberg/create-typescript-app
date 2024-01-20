@@ -22,9 +22,10 @@ export async function finalizeDependencies(options: Options) {
 		"tsup",
 		"typescript",
 		...(options.excludeAllContributors ? [] : ["all-contributors-cli"]),
-		...(options.excludeLintJson
+		...(options.excludeLintJson ? [] : ["eslint-plugin-jsonc"]),
+		...(options.excludeLintJson && options.excludeLintPackageJson
 			? []
-			: ["eslint-plugin-jsonc", "jsonc-eslint-parser"]),
+			: ["jsonc-eslint-parser"]),
 		...(options.excludeLintKnip ? [] : ["knip"]),
 		...(options.excludeLintMd
 			? []
@@ -34,9 +35,7 @@ export async function finalizeDependencies(options: Options) {
 					"markdownlint-cli",
 					"sentences-per-line",
 			  ]),
-		...(options.excludeLintPackageJson
-			? []
-			: ["npm-package-json-lint", "npm-package-json-lint-config-default"]),
+		...(options.excludeLintPackageJson ? [] : ["eslint-plugin-package-json"]),
 		...(options.excludeLintPerfectionist
 			? []
 			: ["eslint-plugin-perfectionist"]),

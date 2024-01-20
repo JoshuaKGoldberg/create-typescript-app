@@ -28,7 +28,6 @@ for (const command of [
 	`pnpm run format --list-different`,
 	`pnpm run lint`,
 	`pnpm run lint:md`,
-	`pnpm run lint:package-json`,
 	`pnpm run lint:packages`,
 	`pnpm run lint:spelling`,
 	`pnpm run lint:knip`,

@@ -119,7 +119,7 @@ export const allArgOptions = {
 		type: "boolean",
 	},
 	"exclude-lint-package-json": {
-		description: `Don't add npm-package-json-lint to lint for 
+		description: `Don't add eslint-plugin-package-json to lint for 
   package.json correctness.`,
 		docsSection: "opt-out",
 		type: "boolean",

@@ -25,15 +25,6 @@ export async function createRootFiles(options: Options) {
 				"node_modules/",
 			]),
 		}),
-		...(!options.excludeLintPackageJson && {
-			".npmpackagejsonlintrc.json": await formatJson({
-				extends: "npm-package-json-lint-config-default",
-				rules: {
-					"require-description": "error",
-					"require-license": "error",
-				},
-			}),
-		}),
 		".nvmrc": `20.11.0\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),

@@ -105,7 +105,6 @@ describe("writePackageJson", () => {
 			    "lint": "eslint . .*js --max-warnings 0",
 			    "lint:knip": "knip",
 			    "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
-			    "lint:package-json": "npmPkgJsonLint .",
 			    "lint:packages": "pnpm dedupe --check",
 			    "lint:spelling": "cspell "**" ".github/**/*"",
 			    "prepare": "husky install",

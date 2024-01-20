@@ -228,7 +228,7 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
-			  --exclude-lint-package-json: Don't add npm-package-json-lint to lint for 
+			  --exclude-lint-package-json: Don't add eslint-plugin-package-json to lint for 
 			  package.json correctness.",
 			  ],
 			  [

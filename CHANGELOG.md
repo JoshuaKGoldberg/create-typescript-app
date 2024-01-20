@@ -1,3 +1,9 @@
+# [1.56.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.55.0...v1.56.0) (2024-01-20)
+
+### Features
+
+- onboard eslint-plugin-package-json ([#1269](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1269)) ([592b0c8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/592b0c88a11e4cf38c1235614f69e3cbde3dd35a)), closes [#839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/839)
+
 # [1.55.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.54.4...v1.55.0) (2024-01-17)
 
 ### Features

@@ -172,9 +172,6 @@ devDependencies:
   sentences-per-line:
     specifier: ^0.2.1
     version: 0.2.1
-  should-semantic-release:
-    specifier: ^0.2.1
-    version: 0.2.1
   tsup:
     specifier: ^8.0.1
     version: 8.0.1(typescript@5.3.3)
@@ -6919,15 +6916,6 @@ packages:
       glob: 7.2.3
       interpret: 1.4.0
       rechoir: 0.6.2
-    dev: true
-
-  /should-semantic-release@0.2.1:
-    resolution: {integrity: sha512-YZ4woZpk11mIj1Aq4I70w6Rm4oOWqMqROHdZuX08nT2JADuW12vb6S5GFtQd+lUdedYbmI6WInD8dF4zuq1a1Q==}
-    engines: {node: '>=18'}
-    hasBin: true
-    dependencies:
-      '@pkgjs/parseargs': 0.11.0
-      conventional-commits-parser: 5.0.0
     dev: true
 
   /side-channel@1.0.4:

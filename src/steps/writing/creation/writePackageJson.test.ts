@@ -108,7 +108,6 @@ describe("writePackageJson", () => {
 			    "lint:packages": "pnpm dedupe --check",
 			    "lint:spelling": "cspell "**" ".github/**/*"",
 			    "prepare": "husky install",
-			    "should-semantic-release": "should-semantic-release --verbose",
 			    "test": "vitest",
 			    "tsc": "tsc",
 			  },

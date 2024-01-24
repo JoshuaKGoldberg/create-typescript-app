@@ -52,14 +52,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
                  exit 1
                fi
 
-           - id: upload
-             if: ${{ failure() && steps.diff.outcome == 'failure' }}
-             name: Upload artifact
-             uses: actions/upload-artifact@v4
-             with:
-               name: dist
-               path: dist/
-
      name: Build
 
      on:

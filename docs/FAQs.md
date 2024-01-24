@@ -84,8 +84,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    pnpm add @actions/core -P
    ```
 
-   - We also added the [`@actions/core`](https://github.com/actions/toolkit/tree/master/packages/core) package, used for building GitHub Actions.
-     Now we need to update the `build` script in our `package.json`:
+   - Now we need to update the `build` script in our `package.json`:
 
    ```diff
    -"build": "tsup",

@@ -97,7 +97,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    npx lint-staged
    ```
 
-2. We're going to need an [`action.yml`](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions) file - [here's an example](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
+3. Create an [`action.yml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
 3. Our GitHub Action needs Node.js 20 so we'll update `.github/actions/prepare/action.yml`:
 
 ```diff

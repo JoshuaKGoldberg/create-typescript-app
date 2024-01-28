@@ -13,6 +13,93 @@ After you set up a repository, you can substitute in any tools you'd like.
 
 If you think the tool would be broadly useful to most consumers of this template, feel free to [file a feature request](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/new?assignees=&labels=type%3A+feature&projects=&template=03-feature.yml&title=%F0%9F%9A%80+Feature%3A+%3Cshort+description+of+the+feature%3E) to add it in.
 
+## Can I create a GitHub action?
+
+Yes! If you want to read the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions) in detail.
+Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
+
+1. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
+   As a consequence we should:
+
+   - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
+   - update `.github/workflows/build.yml` to ensure `dist` is up to date:
+
+     <details>
+         <summary><code>.github/workflows/build.yml</code></summary>
+
+     ```yml
+     jobs:
+       build:
+         runs-on: ubuntu-latest
+         steps:
+           - uses: actions/checkout@v4
+           - uses: ./.github/actions/prepare
+           - run: pnpm build
+
+           - name: Compare dist/index.js
+             run: |
+               if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
+                 echo "Detected uncommitted changes after build."
+                 echo "You may need to run 'pnpm run build' locally and commit the changes."
+                 echo ""
+                 echo "See diff below:"
+                 echo ""
+                 git diff --ignore-space-at-eol --text dist/index.js
+                 echo ""
+                 # say this again in case the diff is long
+                 echo "You may need to run 'pnpm run build' locally and commit the changes."
+                 echo ""
+                 exit 1
+               fi
+
+     name: Build
+
+     on:
+       pull_request: ~
+       push:
+         branches:
+           - main
+
+     permissions:
+       contents: read
+     ```
+
+      </details>
+
+   - GitHub Actions run without installing package dependencies.
+     Replace `tsup` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
+     Delete `tsup.config.ts` then execute the following commands:
+
+   ```bash
+   pnpm remove tsup
+   pnpm add @vercel/ncc -D
+   ```
+
+   - Now we need to update the `build` script in our `package.json`:
+
+   ```diff
+   -"build": "tsup",
+   +"build": "ncc build src/index.ts -o dist --license licenses.txt",
+   ```
+
+   - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
+
+   ```diff
+   +dist
+   ```
+
+   - Rather than having to remember to compile each time, we'll update our precommit hook in `.husky/precommit` to build for us on each commit:
+
+   ```diff
+   +pnpm run build
+   +git add dist
+   npx lint-staged
+   ```
+
+2. Create an [`action.yml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
+
+It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
+
 ## How can I add dual CommonJS / ECMAScript Modules emit?
 
 First, I'd suggest reading [TypeScript Handbook > Modules - Introduction](https://www.typescriptlang.org/docs/handbook/modules/introduction.html) to understand how CommonJS (CJS) and ECMAScript (ESM) came to be.

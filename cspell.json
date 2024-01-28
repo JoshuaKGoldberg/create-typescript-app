@@ -24,6 +24,7 @@
 		"npmpackagejsonlintrc",
 		"outro",
 		"packagejson",
+		"precommit",
 		"quickstart",
 		"tada",
 		"tsup",

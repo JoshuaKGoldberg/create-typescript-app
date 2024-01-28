@@ -97,12 +97,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    ```
 
 2. Create an [`action.yml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
-3. Our GitHub Action needs Node.js 20 so we'll update `.github/actions/prepare/action.yml`:
-
-```diff
--node-version: "18"
-+node-version: "20"
-```
 
 It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 

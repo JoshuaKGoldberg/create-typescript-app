@@ -73,7 +73,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    ```bash
    pnpm remove tsup
    pnpm add @vercel/ncc -D
-   pnpm add @actions/core -P
    ```
 
    - Now we need to update the `build` script in our `package.json`:

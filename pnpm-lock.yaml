@@ -149,8 +149,8 @@ devDependencies:
     specifier: ^2.4.0
     version: 2.4.0
   knip:
-    specifier: 4.2.1
-    version: 4.2.1(@types/node@20.10.4)(typescript@5.3.3)
+    specifier: 4.2.2
+    version: 4.2.2(@types/node@20.10.4)(typescript@5.3.3)
   lint-staged:
     specifier: ^15.2.0
     version: 15.2.0
@@ -1621,8 +1621,8 @@ packages:
       validate-npm-package-name: 4.0.0
     dev: true
 
-  /@pnpm/npm-resolver@18.0.2(@pnpm/logger@5.0.0):
-    resolution: {integrity: sha512-YfjSHpaFgYvqMomKNLMa49pVabGvaSeEBX3J9j1v7FGtzad7SPZ+BH7ObPLHkIm4rA9K5zvuTJ8gBwMiGQJcQg==}
+  /@pnpm/npm-resolver@18.1.0(@pnpm/logger@5.0.0):
+    resolution: {integrity: sha512-fUYKX/iHiHldL0VRVvkQI35YK2jWhZEkPO6rrGke8309+LKAo12v833nBttMDpQrtHefmqhB4mhCzQq6L2Xqmg==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@pnpm/logger': ^5.0.0
@@ -1633,7 +1633,7 @@ packages:
       '@pnpm/graceful-fs': 3.2.0
       '@pnpm/logger': 5.0.0
       '@pnpm/resolve-workspace-range': 5.0.1
-      '@pnpm/resolver-base': 11.0.2
+      '@pnpm/resolver-base': 11.1.0
       '@pnpm/types': 9.4.2
       '@zkochan/retry': 0.2.0
       encode-registry: 3.0.1
@@ -1664,8 +1664,8 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /@pnpm/resolver-base@11.0.2:
-    resolution: {integrity: sha512-g6VXB/LK7DugXiCPG62qmYtuypVt44nnwyXYkTv86FKudI5d5Wy1FLkYAYKCj+No9h1GG3eSSwGH1NL0y4IbYg==}
+  /@pnpm/resolver-base@11.1.0:
+    resolution: {integrity: sha512-y2qKaj18pwe1VWc3YXEitdYFo+WqOOt60aqTUuOVkJAirUzz0DzuYh3Ifct4znYWPdgUXHaN5DMphNF5iL85rA==}
     engines: {node: '>=16.14'}
     dependencies:
       '@pnpm/types': 9.4.2
@@ -1676,12 +1676,12 @@ packages:
     engines: {node: '>=16.14'}
     dev: true
 
-  /@pnpm/workspace.pkgs-graph@2.0.13(@pnpm/logger@5.0.0):
-    resolution: {integrity: sha512-XwpApD7dGCxL0xAwNANakxq4Ou91WMWZDF/IkMDnVGS1I3Xxh9tpQExpfpuxFPd//WofPJnxOi6AlXQS4D9bFA==}
+  /@pnpm/workspace.pkgs-graph@2.0.14(@pnpm/logger@5.0.0):
+    resolution: {integrity: sha512-SBXXyWDkPEoaLTjLRyQzRHoBYH+P0NLcIjX1yPUxuJiMTvGOMzjpLWTuxYNVe/P0V0VQMrjpJFaJPjlViNLhzg==}
     engines: {node: '>=16.14'}
     dependencies:
       '@pnpm/npm-package-arg': 1.0.0
-      '@pnpm/npm-resolver': 18.0.2(@pnpm/logger@5.0.0)
+      '@pnpm/npm-resolver': 18.1.0(@pnpm/logger@5.0.0)
       '@pnpm/resolve-workspace-range': 5.0.1
       ramda: /@pnpm/ramda@0.28.1
     transitivePeerDependencies:
@@ -5220,8 +5220,8 @@ packages:
     dependencies:
       json-buffer: 3.0.1
 
-  /knip@4.2.1(@types/node@20.10.4)(typescript@5.3.3):
-    resolution: {integrity: sha512-KG++YCus11YyQQeiBxhXxv6NCJzol4AYER9q1kwZGFw+gwDzG/0Q6MN87McYFN74nGRX4O2xM5CA3TTPcbpn5A==}
+  /knip@4.2.2(@types/node@20.10.4)(typescript@5.3.3):
+    resolution: {integrity: sha512-d+aGKO9hLRgxwkBtmykkKHSxAHmr2w6tFvi+vCzE5pw7n5VDEsgINRV4jyDvjKhhuNSBx5UYuzlq2rA5tt8gjg==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -5234,7 +5234,7 @@ packages:
       '@npmcli/package-json': 5.0.0
       '@pkgjs/parseargs': 0.11.0
       '@pnpm/logger': 5.0.0
-      '@pnpm/workspace.pkgs-graph': 2.0.13(@pnpm/logger@5.0.0)
+      '@pnpm/workspace.pkgs-graph': 2.0.14(@pnpm/logger@5.0.0)
       '@snyk/github-codeowners': 1.1.0
       '@types/node': 20.10.4
       '@types/picomatch': 2.3.3
@@ -5246,8 +5246,8 @@ packages:
       minimist: 1.2.8
       picocolors: 1.0.0
       picomatch: 3.0.1
-      pretty-ms: 8.0.0
-      smol-toml: 1.1.3
+      pretty-ms: 9.0.0
+      smol-toml: 1.1.4
       strip-json-comments: 5.0.1
       summary: 2.1.0
       typescript: 5.3.3
@@ -6220,9 +6220,9 @@ packages:
       type-fest: 3.12.0
     dev: true
 
-  /parse-ms@3.0.0:
-    resolution: {integrity: sha512-Tpb8Z7r7XbbtBTrM9UhpkzzaMrqA2VXMT3YChzYltwV3P3pM6t8wl7TvpMnSTosz1aQAdVib7kdoys7vYOPerw==}
-    engines: {node: '>=12'}
+  /parse-ms@4.0.0:
+    resolution: {integrity: sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==}
+    engines: {node: '>=18'}
     dev: true
 
   /parse-npm-tarball-url@3.0.0:
@@ -6403,11 +6403,11 @@ packages:
       react-is: 18.2.0
     dev: true
 
-  /pretty-ms@8.0.0:
-    resolution: {integrity: sha512-ASJqOugUF1bbzI35STMBUpZqdfYKlJugy6JBziGi2EE+AL5JPJGSzvpeVXojxrr0ViUYoToUjb5kjSEGf7Y83Q==}
-    engines: {node: '>=14.16'}
+  /pretty-ms@9.0.0:
+    resolution: {integrity: sha512-E9e9HJ9R9NasGOgPaPE8VMeiPKAyWR5jcFpNnwIejslIhWqdqOrb2wShBsncMPUb+BcCd2OPYfh7p2W6oemTng==}
+    engines: {node: '>=18'}
     dependencies:
-      parse-ms: 3.0.0
+      parse-ms: 4.0.0
     dev: true
 
   /proc-log@3.0.0:
@@ -6944,8 +6944,8 @@ packages:
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
     dev: true
 
-  /smol-toml@1.1.3:
-    resolution: {integrity: sha512-qTyy6Owjho1ISBmxj4HdrFWB2kMQ5RczU6J04OqslSfdSH656OIHuomHS4ZDvhwm37nig/uXyiTMJxlC9zIVfw==}
+  /smol-toml@1.1.4:
+    resolution: {integrity: sha512-Y0OT8HezWsTNeEOSVxDnKOW/AyNXHQ4BwJNbAXlLTF5wWsBvrcHhIkE5Rf8kQMLmgf7nDX3PVOlgC6/Aiggu3Q==}
     engines: {node: '>= 18', pnpm: '>= 8'}
     dev: true
 

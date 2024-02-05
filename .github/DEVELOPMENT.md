@@ -78,10 +78,18 @@ pnpm run test --coverage
 Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
 Calls to `console.log`, `console.warn`, and other console methods will cause a test to fail.
 
-### Debugging Tests
+## Debugging
 
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
+Depending upon the type of usage, it can include debugging for unit tests _and_ for executable (or "bin") apps.
+
+### Unit Tests
+
+To debug a unit test, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
+
+### `bin` Apps
+
+To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
 
 ## Type Checking
 
@@ -98,19 +106,6 @@ Add `--watch` to keep the type checker running in a watch mode that updates the 
 ```shell
 pnpm tsc --watch
 ```
-
-## Debugging
-
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
-Depending upon the type of usage, it can include debugging for unit tests _and_ for executable (or "bin") apps.
-
-### Unit Tests
-
-To debug a unit test, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-
-### `bin` Apps
-
-To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
 
 ## Setup Scripts
 

@@ -85,8 +85,7 @@ Depending upon the type of usage, it can include debugging for unit tests _and_ 
 
 ### Unit Tests
 
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
+To debug a unit test, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
 
 ### `bin` Apps
 

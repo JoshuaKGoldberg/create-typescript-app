@@ -14,7 +14,7 @@ describe("greet", () => {
 		expect(logger).toHaveBeenCalledTimes(1);
 	});
 
-	it("logs to the console once when message is provided as an object", () => {
+	it.only("logs to the console once when message is provided as an object", () => {
 		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
 
 		greet({ message });

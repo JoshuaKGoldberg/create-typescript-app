@@ -95,8 +95,8 @@ describe("createESLintRC", () => {
 				  root: true,
 				  rules: {
 				    // These off/less-strict-by-default rules work well for this repo and we like them on.
-
 				    "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+
 				    // These on-by-default rules don't work well for this repo and we like them off.
 				    "no-case-declarations": "off",
 				    "no-constant-condition": "off",
@@ -245,8 +245,8 @@ describe("createESLintRC", () => {
 				  root: true,
 				  rules: {
 				    // These off/less-strict-by-default rules work well for this repo and we like them on.
-
 				    "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+
 				    // These on-by-default rules don't work well for this repo and we like them off.
 				    "no-case-declarations": "off",
 				    "no-constant-condition": "off",

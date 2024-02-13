@@ -121,9 +121,6 @@ devDependencies:
   eslint-plugin-n:
     specifier: ^16.3.1
     version: 16.3.1(eslint@8.55.0)
-  eslint-plugin-no-only-tests:
-    specifier: ^3.1.0
-    version: 3.1.0
   eslint-plugin-package-json:
     specifier: ^0.10.0
     version: 0.10.0(eslint@8.55.0)(jsonc-eslint-parser@2.4.0)
@@ -3679,11 +3676,6 @@ packages:
       minimatch: 3.1.2
       resolve: 1.22.2
       semver: 7.5.4
-    dev: true
-
-  /eslint-plugin-no-only-tests@3.1.0:
-    resolution: {integrity: sha512-Lf4YW/bL6Un1R6A76pRZyE1dl1vr31G/ev8UzIc/geCgFWyrKil8hVjYqWVKGB/UIGmb6Slzs9T0wNezdSVegw==}
-    engines: {node: '>=5.0.0'}
     dev: true
 
   /eslint-plugin-package-json@0.10.0(eslint@8.55.0)(jsonc-eslint-parser@2.4.0):

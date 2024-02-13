@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "1.56.0",
+	"version": "1.57.0",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝",
 	"repository": "JoshuaKGoldberg/create-typescript-app",
 	"license": "MIT",
@@ -78,7 +78,6 @@
 		"eslint-plugin-jsonc": "^2.10.0",
 		"eslint-plugin-markdown": "^3.0.1",
 		"eslint-plugin-n": "^16.3.1",
-		"eslint-plugin-no-only-tests": "^3.1.0",
 		"eslint-plugin-package-json": "^0.10.0",
 		"eslint-plugin-perfectionist": "^2.5.0",
 		"eslint-plugin-regexp": "^2.1.2",

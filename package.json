@@ -84,7 +84,7 @@
 		"eslint-plugin-vitest": "^0.3.10",
 		"eslint-plugin-yml": "^1.10.0",
 		"globby": "^14.0.0",
-		"husky": "^8.0.3",
+		"husky": "^9.0.0",
 		"jsonc-eslint-parser": "^2.4.0",
 		"knip": "4.3.0",
 		"lint-staged": "^15.2.0",

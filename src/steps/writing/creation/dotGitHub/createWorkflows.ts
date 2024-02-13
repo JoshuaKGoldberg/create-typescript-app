@@ -218,7 +218,7 @@ export function createWorkflows(options: Options) {
 					{ run: "pnpm run test --coverage" },
 					{
 						name: "Codecov",
-						uses: "codecov/codecov-action@v3",
+						uses: "codecov/codecov-action@v4",
 					},
 				],
 			}),

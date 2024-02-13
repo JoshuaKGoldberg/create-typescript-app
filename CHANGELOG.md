@@ -1,3 +1,9 @@
+# [1.57.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.56.0...v1.57.0) (2024-02-13)
+
+### Features
+
+- remove eslint-plugin-no-only-tests ([#1297](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1297)) ([d7b43c3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d7b43c35d0b0917a1548cb207169c8442155ffb3)), closes [#1294](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1294)
+
 # [1.56.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.55.0...v1.56.0) (2024-01-20)
 
 ### Features

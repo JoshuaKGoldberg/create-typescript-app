@@ -53,7 +53,7 @@ exports[`expected file changes > .github/workflows/test.yml 1`] = `
 @@ ... @@ jobs:
        - run: pnpm run test --coverage
        - name: Codecov
-         uses: codecov/codecov-action@v3
+         uses: codecov/codecov-action@v4
 -        with:
 -          flags: unit
  

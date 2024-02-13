@@ -51,7 +51,6 @@ export async function finalizeDependencies(options: Options) {
 			: [
 					"@vitest/coverage-v8",
 					"console-fail-test",
-					"eslint-plugin-no-only-tests",
 					"eslint-plugin-vitest",
 					"vitest",
 			  ]),

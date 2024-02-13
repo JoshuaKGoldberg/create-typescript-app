@@ -200,19 +200,15 @@ module.exports = {
 				? ""
 				: `"jsdoc",
 		`
-		}${options.excludeTests ? "" : `"no-only-tests",`}${
-			options.excludeLintPerfectionist ? "" : `"perfectionist",`
-		}${options.excludeLintRegex ? "" : `"regexp",`}${
-			options.excludeTests ? "" : `\n"vitest",`
-		}
+		}${options.excludeLintPerfectionist ? "" : `"perfectionist",`}${
+			options.excludeLintRegex ? "" : `"regexp",`
+		}${options.excludeTests ? "" : `\n"vitest",`}
 	],
 	reportUnusedDisableDirectives: true,
 	root: true,
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
-		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],${
-			options.excludeTests ? "" : `\n"no-only-tests/no-only-tests": "error",`
-		}
+		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-case-declarations": "off",

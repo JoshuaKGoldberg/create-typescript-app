@@ -206,6 +206,7 @@ export async function augmentOptionsWithExcludes(
 		case "everything":
 			return {
 				...options,
+				base,
 				...getExclusions(options, base),
 			};
 		case "prompt":
@@ -228,6 +229,7 @@ export async function augmentOptionsWithExcludes(
 
 			return {
 				...options,
+				base,
 				...Object.fromEntries(
 					exclusionKeys.map(
 						(exclusionKey) =>

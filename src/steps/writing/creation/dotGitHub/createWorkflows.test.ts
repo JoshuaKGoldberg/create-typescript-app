@@ -314,7 +314,7 @@ describe("createWorkflows", () => {
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm run test --coverage
 			      - name: Codecov
-			        uses: codecov/codecov-action@v4
+			        uses: codecov/codecov-action@v3
 
 			name: Test
 

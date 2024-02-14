@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getExclusions } from "../shared/options/augmentOptionsWithExcludes.js";
+import { getExclusions } from "../shared/options/exclusionKeys.js";
 import { Options } from "../shared/types.js";
 import { createRerunSuggestion } from "./createRerunSuggestion.js";
 

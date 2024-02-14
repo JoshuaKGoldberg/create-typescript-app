@@ -1,3 +1,13 @@
+## [1.57.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.0...v1.57.2) (2024-02-14)
+
+### Bug Fixes
+
+- empty commit to release new version ([ea63b2d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ea63b2d0a811ed61df15544317c4ffe1a7bfe9f1))
+- empty commit to trigger release flow ([acf93cf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/acf93cfbe2cde29a9dc91cd7d84bbd538754f031))
+- pin zod-validation-error version to 3.0.0 ([#1296](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1296)) ([275784d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/275784de3a951319811379cc08ef107de0e16487)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000)
+- update remaining codecov-action references from v3 to v4 ([9736fcf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9736fcf45e10c0a5eac2033589cce1d247e4de2f))
+- update remaining pnpm references from 8.14.1 to 8.15.1 ([c5cac23](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c5cac236ba4fa3ca209a8675bef88e19ac08d417))
+
 # [1.57.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.56.0...v1.57.0) (2024-02-13)
 
 ### Features

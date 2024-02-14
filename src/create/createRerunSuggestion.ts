@@ -1,6 +1,8 @@
 import { allArgOptions } from "../shared/options/args.js";
-import { ExclusionKey } from "../shared/options/augmentOptionsWithExcludes.js";
-import { getExclusions } from "../shared/options/exclusionKeys.js";
+import {
+	ExclusionKey,
+	getExclusions,
+} from "../shared/options/exclusionKeys.js";
 import { Options } from "../shared/types.js";
 
 function getFirstMatchingArg(key: string) {

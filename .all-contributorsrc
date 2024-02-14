@@ -424,6 +424,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "niklas-wortmann",
+      "name": "Jan-Niklas W.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6104311?v=4",
+      "profile": "https://niklas-wortmann.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

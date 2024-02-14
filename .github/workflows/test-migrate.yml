@@ -12,7 +12,7 @@ jobs:
         run: mv coverage coverage-migrate
       - if: always()
         name: Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v3
         with:
           files: coverage-migrate/lcov.info
           flags: migrate

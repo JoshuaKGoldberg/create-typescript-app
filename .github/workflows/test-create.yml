@@ -8,7 +8,7 @@ jobs:
       - run: pnpm run test:create
       - if: always()
         name: Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v3
         with:
           files: coverage-create/lcov.info
           flags: create

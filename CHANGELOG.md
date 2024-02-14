@@ -1,3 +1,9 @@
+## [1.57.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.3...v1.57.4) (2024-02-14)
+
+### Bug Fixes
+
+- reset codecov-action back to v3 ([#1304](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1304)) ([ec238bf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ec238bf8e4a16eb974f3931d79da93c44945d422)), closes [#1303](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1303)
+
 ## [1.57.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.2...v1.57.3) (2024-02-14)
 
 ### Bug Fixes

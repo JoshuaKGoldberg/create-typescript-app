@@ -1,3 +1,9 @@
+## [1.57.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.2...v1.57.3) (2024-02-14)
+
+### Bug Fixes
+
+- include base in rerun commands ([#1301](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1301)) ([2dfb7b5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2dfb7b56a900ae59806cdb09825bf25d42671b29)), closes [#1276](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1276) [#699](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/699)
+
 ## [1.57.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.0...v1.57.2) (2024-02-14)
 
 ### Bug Fixes

@@ -1,12 +1,21 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { Options } from "../types.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 
+const mockSelect = vi.fn();
+
+vi.mock("@clack/prompts", () => ({
+	isCancel: () => false,
+	get select() {
+		return mockSelect;
+	},
+}));
+
 const optionsBase = {
 	access: "public",
 	author: undefined,
-	base: "everything",
+	base: undefined,
 	description: "",
 	directory: ".",
 	email: {
@@ -47,7 +56,20 @@ const optionsBase = {
 } satisfies Options;
 
 describe("augmentOptionsWithExcludes", () => {
-	it("returns options without exclusions and skips prompting when exclusions are provided manually", async () => {
+	it("prompts for base when no exclusions are provided", async () => {
+		const base = "everything";
+
+		mockSelect.mockResolvedValue(base);
+
+		const actual = await augmentOptionsWithExcludes(optionsBase);
+
+		expect(actual).toEqual({
+			...optionsBase,
+			base,
+		});
+	});
+
+	it("skips prompting returns options directly when exclusions are provided manually", async () => {
 		const options = {
 			...optionsBase,
 			excludeCompliance: true,

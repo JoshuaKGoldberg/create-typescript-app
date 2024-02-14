@@ -73,7 +73,7 @@ describe("augmentOptionsWithExcludes", () => {
 		});
 	});
 
-	it.only("returns options based on the select when no exclusions are provided and 'prompt' is provided for the prompt", async () => {
+	it("returns options based on the select when no exclusions are provided and 'prompt' is provided for the prompt", async () => {
 		const base = "prompt";
 
 		mockSelect.mockResolvedValueOnce(base);

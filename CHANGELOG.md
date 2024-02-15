@@ -1,3 +1,9 @@
+## [1.57.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.4...v1.57.5) (2024-02-15)
+
+### Bug Fixes
+
+- omit default --access value in rerun suggestions ([#1307](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1307)) ([150bce6](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/150bce6749aa30598bc42b5898f7efef2e9d9bc3)), closes [#1127](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1127)
+
 ## [1.57.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.3...v1.57.4) (2024-02-14)
 
 ### Bug Fixes

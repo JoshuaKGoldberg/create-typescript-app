@@ -1,3 +1,9 @@
+## [1.57.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.7...v1.57.8) (2024-02-15)
+
+### Bug Fixes
+
+- don't ask to restart IDE in feature template ([#1311](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1311)) ([c61946d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c61946de1525800b424b078a8e2c8ae3766b0489)), closes [#1287](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1287)
+
 ## [1.57.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.6...v1.57.7) (2024-02-15)
 
 ### Bug Fixes

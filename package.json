@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "1.57.7",
+	"version": "1.57.8",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝",
 	"repository": "JoshuaKGoldberg/create-typescript-app",
 	"license": "MIT",

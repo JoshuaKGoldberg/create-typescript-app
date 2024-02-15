@@ -11,6 +11,8 @@ function getFirstMatchingArg(key: string) {
 	);
 }
 
+const defaultValues = new Map([["access", "public"]]);
+
 export function createRerunSuggestion(options: Partial<Options>): string {
 	const optionsNormalized = {
 		...options,
@@ -38,11 +40,13 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 		.sort(([a], [b]) =>
 			a === "base" ? -1 : b === "base" ? 1 : a.localeCompare(b),
 		)
-		// Filter out all entries that have a key in the excluded object or have a falsy value
+		// Filter out entries with an excluded key or a default or falsy value
 		.filter(
 			([key, value]) =>
 				getExclusions(options, optionsNormalized.base)[key as ExclusionKey] ==
-					undefined && !!value,
+					undefined &&
+				!!value &&
+				value !== defaultValues.get(key),
 		)
 		.map(([key, value]) => {
 			return `--${getFirstMatchingArg(key)}${stringifyValue(value)}`;

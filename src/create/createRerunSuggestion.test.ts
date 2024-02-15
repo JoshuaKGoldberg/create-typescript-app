@@ -46,7 +46,18 @@ describe("createRerunSuggestion", () => {
 		const actual = createRerunSuggestion(options);
 
 		expect(actual).toMatchInlineSnapshot(
-			`"npx create-typescript-app --mode create --base everything --access public --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-package-json --exclude-lint-perfectionist --keywords "abc def ghi jkl mno pqr" --mode create --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
+			`"npx create-typescript-app --mode create --base everything --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-package-json --exclude-lint-perfectionist --keywords "abc def ghi jkl mno pqr" --mode create --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
+		);
+	});
+
+	it("includes a non-default value when specified", () => {
+		const actual = createRerunSuggestion({
+			...options,
+			access: "restricted",
+		});
+
+		expect(actual).toMatchInlineSnapshot(
+			`"npx create-typescript-app --mode create --base everything --access restricted --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-package-json --exclude-lint-perfectionist --keywords "abc def ghi jkl mno pqr" --mode create --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
 		);
 	});
 
@@ -61,7 +72,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			`"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-package-json --exclude-lint-perfectionist --guide https://example.com --guide-title "Test Title" --keywords "abc def ghi jkl mno pqr" --mode initialize --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
+			`"npx create-typescript-app --mode initialize --base everything --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-package-json --exclude-lint-perfectionist --guide https://example.com --guide-title "Test Title" --keywords "abc def ghi jkl mno pqr" --mode initialize --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
 		);
 	});
 
@@ -76,7 +87,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			`"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-package-json --exclude-lint-perfectionist --keywords "abc def ghi jkl mno pqr" --logo test/src.png --logo-alt "Test alt." --mode initialize --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
+			`"npx create-typescript-app --mode initialize --base everything --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-package-json --exclude-lint-perfectionist --keywords "abc def ghi jkl mno pqr" --logo test/src.png --logo-alt "Test alt." --mode initialize --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
 		);
 	});
 
@@ -90,7 +101,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(actual).toMatchInlineSnapshot(
-			`"npx create-typescript-app --mode initialize --base everything --access public --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-md --exclude-lint-package-json --exclude-lint-perfectionist --exclude-lint-spelling --keywords "abc def ghi jkl mno pqr" --mode initialize --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
+			`"npx create-typescript-app --mode initialize --base everything --author TestAuthor --description "Test description." --directory . --email-github github@email.com --email-npm npm@email.com --exclude-all-contributors --exclude-compliance --exclude-lint-jsdoc --exclude-lint-json --exclude-lint-knip --exclude-lint-md --exclude-lint-package-json --exclude-lint-perfectionist --exclude-lint-spelling --keywords "abc def ghi jkl mno pqr" --mode initialize --owner TestOwner --repository test-repository --skip-github-api --skip-install --skip-removal --title "Test Title""`,
 		);
 	});
 
@@ -102,7 +113,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(common).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode undefined --base common"',
+			`"npx create-typescript-app --mode undefined --base common"`,
 		);
 	});
 
@@ -114,7 +125,7 @@ describe("createRerunSuggestion", () => {
 		});
 
 		expect(minimum).toMatchInlineSnapshot(
-			'"npx create-typescript-app --mode undefined --base minimum"',
+			`"npx create-typescript-app --mode undefined --base minimum"`,
 		);
 	});
 });

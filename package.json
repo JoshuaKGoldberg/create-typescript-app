@@ -66,7 +66,7 @@
 		"@types/parse-author": "^2.0.3",
 		"@types/prettier": "^2.7.3",
 		"@typescript-eslint/eslint-plugin": "^6.13.2",
-		"@typescript-eslint/parser": "^6.13.2",
+		"@typescript-eslint/parser": "^7.0.0",
 		"@vitest/coverage-v8": "^1.0.2",
 		"c8": "^9.0.0",
 		"console-fail-test": "^0.2.3",

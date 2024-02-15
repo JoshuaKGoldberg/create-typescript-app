@@ -117,10 +117,6 @@ export function createDotGitHubIssueTemplate({
 						label: "Bug Report Checklist",
 						options: [
 							{
-								label: "I have tried restarting my IDE and the issue persists.",
-								required: true,
-							},
-							{
 								label:
 									"I have pulled the latest `main` branch of the repository.",
 								required: true,

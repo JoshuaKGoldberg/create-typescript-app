@@ -9,7 +9,7 @@ const createMockOctokit = (request: MockInstance) =>
 		request,
 	}) as unknown as Octokit;
 
-const stubValues = {
+const stubOptions = {
 	access: "public",
 	description: "",
 	directory: "",
@@ -30,7 +30,7 @@ describe("migrateBranchProtectionSettings", () => {
 		await expect(
 			initializeBranchProtectionSettings(
 				createMockOctokit(mockRequest),
-				stubValues,
+				stubOptions,
 			),
 		).resolves.not.toThrow();
 
@@ -95,7 +95,7 @@ describe("migrateBranchProtectionSettings", () => {
 
 		const actual = await initializeBranchProtectionSettings(
 			createMockOctokit(mockRequest),
-			stubValues,
+			stubOptions,
 		);
 
 		expect(actual).toBe(false);
@@ -108,7 +108,7 @@ describe("migrateBranchProtectionSettings", () => {
 		await expect(() =>
 			initializeBranchProtectionSettings(
 				createMockOctokit(mockRequest),
-				stubValues,
+				stubOptions,
 			),
 		).rejects.toBe(error);
 	});
@@ -117,7 +117,7 @@ describe("migrateBranchProtectionSettings", () => {
 		const mockRequest = vi.fn().mockResolvedValue({ status: 200 });
 
 		await initializeBranchProtectionSettings(createMockOctokit(mockRequest), {
-			...stubValues,
+			...stubOptions,
 			excludeCompliance: true,
 			excludeLintKnip: true,
 			excludeLintMd: true,

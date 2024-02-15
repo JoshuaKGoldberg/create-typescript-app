@@ -33,6 +33,10 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 					logoAlt: options.logo.alt,
 			  }
 			: { logo: undefined }),
+		...(options.offline && {
+			skipAllContributorsApi: undefined,
+			skipGitHubApi: undefined,
+		}),
 	};
 
 	const args = Object.entries(optionsNormalized)
@@ -53,7 +57,7 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 		})
 		.join(" ");
 
-	return `npx create-typescript-app --mode ${options.mode} ${args}`;
+	return ["npx create-typescript-app", args].filter(Boolean).join(" ");
 }
 
 function stringifyValue(

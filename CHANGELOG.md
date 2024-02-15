@@ -1,3 +1,9 @@
+## [1.57.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.6...v1.57.7) (2024-02-15)
+
+### Bug Fixes
+
+- gate branch protection settings on options exclusions ([#1310](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1310)) ([3a8c7c0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3a8c7c03723eca5a50998270b75f15a7998ca69c)), closes [#1171](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1171)
+
 ## [1.57.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.5...v1.57.6) (2024-02-15)
 
 ### Bug Fixes

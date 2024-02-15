@@ -1,3 +1,9 @@
+## [1.57.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.5...v1.57.6) (2024-02-15)
+
+### Bug Fixes
+
+- don't suggest --skip options in rerun if --offline ([#1308](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1308)) ([373e1b7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/373e1b79a3e746c21e6e67a773dd3a4b017cf8e1)), closes [#1128](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1128) [#1130](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1130)
+
 ## [1.57.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.4...v1.57.5) (2024-02-15)
 
 ### Bug Fixes

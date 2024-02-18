@@ -41,7 +41,7 @@ describe("createWorkflows", () => {
 			{
 			  "accessibility-alt-text-bot.yml": "jobs:
 			  accessibility_alt_text_bot:
-					if: \${{ !endsWith(github.actor, '[bot]') }}
+			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: github/accessibility-alt-text-bot@v1.4.0
@@ -352,7 +352,7 @@ describe("createWorkflows", () => {
 			{
 			  "accessibility-alt-text-bot.yml": "jobs:
 			  accessibility_alt_text_bot:
-					if: \${{ !endsWith(github.actor, '[bot]') }}
+			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: github/accessibility-alt-text-bot@v1.4.0

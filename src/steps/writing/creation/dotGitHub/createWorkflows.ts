@@ -108,6 +108,7 @@ export function createWorkflows(options: Options) {
 			},
 			steps: [
 				{
+					if: "${{ !endsWith(github.actor, '[bot]') }}",
 					uses: "github/accessibility-alt-text-bot@v1.4.0",
 				},
 			],

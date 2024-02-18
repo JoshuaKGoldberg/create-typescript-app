@@ -90,6 +90,7 @@ export function createWorkflows(options: Options) {
 			}),
 		}),
 		"accessibility-alt-text-bot.yml": createWorkflowFile({
+			if: "${{ !endsWith(github.actor, '[bot]') }}",
 			name: "Accessibility Alt Text Bot",
 			on: {
 				issue_comment: {

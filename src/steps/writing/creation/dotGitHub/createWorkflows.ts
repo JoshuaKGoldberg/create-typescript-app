@@ -106,9 +106,9 @@ export function createWorkflows(options: Options) {
 				issues: "write",
 				"pull-requests": "write",
 			},
+			if: "${{ !endsWith(github.actor, '[bot]') }}",
 			steps: [
 				{
-					if: "${{ !endsWith(github.actor, '[bot]') }}",
 					uses: "github/accessibility-alt-text-bot@v1.4.0",
 				},
 			],

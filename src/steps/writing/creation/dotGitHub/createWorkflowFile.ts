@@ -49,9 +49,9 @@ interface WorkflowFileStep {
 
 interface WorkflowFileOptionsBase {
 	concurrency?: WorkflowFileConcurrency;
+	if?: string;
 	name: string;
 	on?: WorkflowFileOn;
-	if?: string;
 	permissions?: WorkflowFilePermissions;
 }
 

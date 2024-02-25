@@ -10,7 +10,7 @@ dependencies:
     version: 0.7.0
   all-contributors-for-repository:
     specifier: ^0.2.1
-    version: 0.2.1
+    version: 0.2.2
   chalk:
     specifier: ^5.3.0
     version: 5.3.0
@@ -2226,8 +2226,8 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /all-contributors-for-repository@0.2.1:
-    resolution: {integrity: sha512-D22Eqppu/5ULAwProP4P51KIcuGRmT2/8UHnZpdYzmPvLoCppsx7av1eO7rtKiY218HgWSzKyQ/DJVCsIqDalQ==}
+  /all-contributors-for-repository@0.2.2:
+    resolution: {integrity: sha512-6+CJv+yI7wzPowGdwdIYLO2KNUnQ5eWiRZKTKanxDgg/lB+hBQzxPbXwjTLnlR0MwwPMNJzb8owx1Bo4OtG7hg==}
     engines: {node: '>=18'}
     dependencies:
       co-author-to-username: 0.1.0

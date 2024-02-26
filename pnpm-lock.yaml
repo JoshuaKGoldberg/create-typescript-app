@@ -135,7 +135,7 @@ devDependencies:
     version: 0.3.22(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.0.2)
   eslint-plugin-yml:
     specifier: ^1.10.0
-    version: 1.10.0(eslint@8.56.0)
+    version: 1.12.2(eslint@8.56.0)
   globby:
     specifier: ^14.0.0
     version: 14.0.1
@@ -3890,15 +3890,15 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-yml@1.10.0(eslint@8.56.0):
-    resolution: {integrity: sha512-53SUwuNDna97lVk38hL/5++WXDuugPM9SUQ1T645R0EHMRCdBIIxGye/oOX2qO3FQ7aImxaUZJU/ju+NMUBrLQ==}
+  /eslint-plugin-yml@1.12.2(eslint@8.56.0):
+    resolution: {integrity: sha512-hvS9p08FhPT7i/ynwl7/Wt7ke7Rf4P2D6fT8lZlL43peZDTsHtH2A0SIFQ7Kt7+mJ6if6P+FX3iJhMkdnxQwpg==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
     dependencies:
       debug: 4.3.4
       eslint: 8.56.0
-      eslint-compat-utils: 0.1.2(eslint@8.56.0)
+      eslint-compat-utils: 0.4.1(eslint@8.56.0)
       lodash: 4.17.21
       natural-compare: 1.4.0
       yaml-eslint-parser: 1.2.2

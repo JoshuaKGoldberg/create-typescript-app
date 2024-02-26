@@ -43,7 +43,7 @@ dependencies:
     version: 3.1.0
   replace-in-file:
     specifier: ^7.0.2
-    version: 7.0.2
+    version: 7.1.0
   rimraf:
     specifier: ^5.0.5
     version: 5.0.5
@@ -6736,8 +6736,8 @@ packages:
     engines: {node: '>=0.10'}
     dev: true
 
-  /replace-in-file@7.0.2:
-    resolution: {integrity: sha512-tPG+Qmqf+x2Rf1WVdb/9B5tFIf6KJ5hs3fgxh1OTzPRUugPPvyAva7NvCJtnSpmyq6r+ABYcuUOqZkm6yzGSUw==}
+  /replace-in-file@7.1.0:
+    resolution: {integrity: sha512-1uZmJ78WtqNYCSuPC9IWbweXkGxPOtk2rKuar8diTw7naVIQZiE3Tm8ACx2PCMXDtVH6N+XxwaRY2qZ2xHPqXw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:

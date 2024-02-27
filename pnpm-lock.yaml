@@ -49,7 +49,7 @@ dependencies:
     version: 5.0.5
   title-case:
     specifier: ^4.1.2
-    version: 4.1.2
+    version: 4.3.1
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -7418,8 +7418,8 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: true
 
-  /title-case@4.1.2:
-    resolution: {integrity: sha512-K9Mmf3WWSF0DCAMLk6so4EFyxhh9puTZSnfkpFnp+EGLewLQTYOeYKDXE4PCFU5dUmrqXwSVzZXbpJ6gFIm9Ow==}
+  /title-case@4.3.1:
+    resolution: {integrity: sha512-VnPxQ+/j0X2FZ4ceGq1oLruTLjtN5Ul4sam5ypd4mDZLm1eHwkwip1gLxqhON/j4qyTlUlfPKslE/t4NPSlxhg==}
     dev: false
 
   /tmp@0.0.33:

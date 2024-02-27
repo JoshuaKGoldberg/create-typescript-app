@@ -57,7 +57,7 @@
 		"zod-validation-error": "^3.0.2"
 	},
 	"devDependencies": {
-		"@octokit/request-error": "^5.0.1",
+		"@octokit/request-error": "^6.0.0",
 		"@release-it/conventional-changelog": "^8.0.1",
 		"@types/eslint": "^8.44.8",
 		"@types/git-url-parse": "^9.0.3",

@@ -46,7 +46,7 @@
 		"git-url-parse": "^14.0.0",
 		"js-yaml": "^4.1.0",
 		"lazy-value": "^3.0.0",
-		"npm-user": "^5.0.1",
+		"npm-user": "^6.0.0",
 		"octokit": "^3.1.2",
 		"parse-author": "^2.0.0",
 		"prettier": "^3.1.0",

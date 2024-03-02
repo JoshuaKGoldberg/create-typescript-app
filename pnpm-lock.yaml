@@ -60,7 +60,7 @@ dependencies:
 devDependencies:
   '@octokit/request-error':
     specifier: ^6.0.0
-    version: 6.0.1
+    version: 6.0.2
   '@release-it/conventional-changelog':
     specifier: ^8.0.1
     version: 8.0.1(release-it@17.1.1)
@@ -1290,8 +1290,8 @@ packages:
       deprecation: 2.3.1
       once: 1.4.0
 
-  /@octokit/request-error@6.0.1:
-    resolution: {integrity: sha512-EPeILOAEGqwmEG6g7dYlbvqkjJ5nWNcZvQpgeLEn1MieIcJ0xK0CJtvVcIMXqzIM8DOWzvI6zL5FQAwjTvk/Tg==}
+  /@octokit/request-error@6.0.2:
+    resolution: {integrity: sha512-WtRVpoHcNXs84+s9s/wqfHaxM68NGMg8Av7h59B50OVO0PwwMx+2GgQ/OliUd0iQBSNWgR6N8afi/KjSHbXHWw==}
     engines: {node: '>= 18'}
     dependencies:
       '@octokit/types': 12.6.0

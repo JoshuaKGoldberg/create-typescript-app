@@ -1,3 +1,9 @@
+## [1.57.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.8...v1.57.9) (2024-03-14)
+
+### Bug Fixes
+
+- use plugin:markdown/recommended-legacy ([#1381](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1381)) ([b607c44](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b607c44d11d1ea22dd07e765b5d12e6b24e8aa72)), closes [#1380](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1380)
+
 ## [1.57.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.7...v1.57.8) (2024-02-15)
 
 ### Bug Fixes

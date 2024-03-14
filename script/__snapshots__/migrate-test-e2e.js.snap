@@ -25,7 +25,7 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
 +	ignorePatterns: ["!.*", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
  	overrides: [
  		{
- 			extends: ["plugin:markdown/recommended"],
+ 			extends: ["plugin:markdown/recommended-legacy"],
 @@ ... @@ module.exports = {
  			rules: {
  				// These off-by-default rules work well for this repo and we like them on.

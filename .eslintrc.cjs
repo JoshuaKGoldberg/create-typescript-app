@@ -25,7 +25,7 @@ module.exports = {
 	ignorePatterns: ["!.*", "coverage*", "lib", "node_modules", "pnpm-lock.yaml"],
 	overrides: [
 		{
-			extends: ["plugin:markdown/recommended"],
+			extends: ["plugin:markdown/recommended-legacy"],
 			files: ["**/*.md"],
 			processor: "markdown/markdown",
 		},

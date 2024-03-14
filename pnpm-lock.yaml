@@ -116,8 +116,8 @@ devDependencies:
     specifier: ^2.10.0
     version: 2.13.0(eslint@8.57.0)
   eslint-plugin-markdown:
-    specifier: ^3.0.1
-    version: 3.0.1(eslint@8.57.0)
+    specifier: ^4.0.1
+    version: 4.0.1(eslint@8.57.0)
   eslint-plugin-n:
     specifier: ^16.3.1
     version: 16.6.2(eslint@8.57.0)
@@ -3569,11 +3569,11 @@ packages:
       synckit: 0.6.2
     dev: true
 
-  /eslint-plugin-markdown@3.0.1(eslint@8.57.0):
-    resolution: {integrity: sha512-8rqoc148DWdGdmYF6WSQFT3uQ6PO7zXYgeBpHAOAakX/zpq+NvFYbDA/H7PYzHajwtmaOzAwfxyl++x0g1/N9A==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  /eslint-plugin-markdown@4.0.1(eslint@8.57.0):
+    resolution: {integrity: sha512-5/MnGvYU0i8MbHH5cg8S+Vl3DL+bqRNYshk1xUO86DilNBaxtTkhH+5FD0/yO03AmlI6+lfNFdk2yOw72EPzpA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      eslint: '>=8'
     dependencies:
       eslint: 8.57.0
       mdast-util-from-markdown: 0.8.5

@@ -126,7 +126,7 @@ devDependencies:
     version: 0.10.4(eslint@8.57.0)(jsonc-eslint-parser@2.4.0)
   eslint-plugin-perfectionist:
     specifier: ^2.5.0
-    version: 2.5.0(eslint@8.57.0)(typescript@5.3.3)
+    version: 2.6.0(eslint@8.57.0)(typescript@5.3.3)
   eslint-plugin-regexp:
     specifier: ^2.1.2
     version: 2.2.0(eslint@8.57.0)
@@ -3574,8 +3574,8 @@ packages:
       validate-npm-package-name: 5.0.0
     dev: true
 
-  /eslint-plugin-perfectionist@2.5.0(eslint@8.57.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-F6XXcq4mKKUe/SREoMGQqzgw6cgCgf3pFzkFfQVIGtqD1yXVpQjnhTepzhBeZfxZwgMzR9HO4yH4CUhIQ2WBcQ==}
+  /eslint-plugin-perfectionist@2.6.0(eslint@8.57.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-hee0Fu5825v+WTIhrRIJdWO8biUgm9O+c4Q1AEXIIGsXDHrLv5cdXfVUdnQcYgGtI/4X+tdFu69iVofHCIkvtw==}
     peerDependencies:
       astro-eslint-parser: ^0.16.0
       eslint: '>=8.0.0'

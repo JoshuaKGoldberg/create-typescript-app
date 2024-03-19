@@ -158,8 +158,8 @@ devDependencies:
     specifier: ^0.39.0
     version: 0.39.0
   prettier-plugin-curly:
-    specifier: ^0.1.3
-    version: 0.1.3(prettier@3.1.0)
+    specifier: ^0.2.0
+    version: 0.2.1(prettier@3.1.0)
   prettier-plugin-packagejson:
     specifier: ^2.4.7
     version: 2.4.12(prettier@3.1.0)
@@ -208,8 +208,8 @@ packages:
       chalk: 2.4.2
     dev: true
 
-  /@babel/generator@7.22.5:
-    resolution: {integrity: sha512-+lcUbnTRhd0jOewtFSedLyiPsD5tswKkbgcezOqqWFUVNEwoUTlpPOBmvhG7OXWLR4jMdv0czPGH5XbflnD1EA==}
+  /@babel/generator@7.24.1:
+    resolution: {integrity: sha512-DfCRfZsBcrPEHUfuBMgbJ1Ut01Y/itOs+hY2nFLgqsqXd52/iSiVq5TITtUasIUgm+IIKdY2/1I7auiQOEeC9A==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.24.0
@@ -286,7 +286,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.23.5
-      '@babel/generator': 7.22.5
+      '@babel/generator': 7.24.1
       '@babel/helper-environment-visitor': 7.22.5
       '@babel/helper-function-name': 7.22.5
       '@babel/helper-hoist-variables': 7.22.5
@@ -6191,12 +6191,13 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-curly@0.1.3(prettier@3.1.0):
-    resolution: {integrity: sha512-NYr2BPex/0fFwDbiZZr91kfgBko1tmaorLOrVAkT5rN91mIYYJRiWabRxWGFqzRSO7J0eoEcxakY9NWvJWAh4w==}
+  /prettier-plugin-curly@0.2.1(prettier@3.1.0):
+    resolution: {integrity: sha512-BadJTlVy/nX+4sgCc5htrgej4yLVRWIMa1PwN96BqlRru4tGkj1fo2OqZE446fJWlddx9xxTMJByDKIZYc7F3Q==}
     engines: {node: '>=18'}
     peerDependencies:
       prettier: ^2 || ^3
     dependencies:
+      '@babel/generator': 7.24.1
       '@babel/parser': 7.24.0
       '@babel/traverse': 7.22.5
       prettier: 3.1.0

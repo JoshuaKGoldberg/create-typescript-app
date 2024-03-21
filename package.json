@@ -64,7 +64,7 @@
 		"@types/js-yaml": "^4.0.9",
 		"@types/node": "^20.10.4",
 		"@types/parse-author": "^2.0.3",
-		"@types/prettier": "^2.7.3",
+		"@types/prettier": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^7.2.0",
 		"@typescript-eslint/parser": "^7.2.0",
 		"@vitest/coverage-v8": "^1.0.2",

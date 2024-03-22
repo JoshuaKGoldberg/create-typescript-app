@@ -135,7 +135,7 @@ devDependencies:
     version: 0.3.26(@typescript-eslint/eslint-plugin@7.2.0)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.4.0)
   eslint-plugin-yml:
     specifier: ^1.10.0
-    version: 1.13.0(eslint@8.57.0)
+    version: 1.13.1(eslint@8.57.0)
   globby:
     specifier: ^14.0.0
     version: 14.0.1
@@ -3686,8 +3686,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-yml@1.13.0(eslint@8.57.0):
-    resolution: {integrity: sha512-B87P32E8ugeeUnFxZvPsn72TyeZauA5ZXe6XmWDf0CKwN+9iLaepi6matyvikMWZf1ZeH9xdKggxQvQzLXlfzw==}
+  /eslint-plugin-yml@1.13.1(eslint@8.57.0):
+    resolution: {integrity: sha512-J1gNca5cWUIlo6ilQJBlPwap2ggVuc7gaOxiCdYjmncyWN8aNHErEhk2ICFj6shr8Jz27c3AU1Ie7i6HqVa4Hw==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'

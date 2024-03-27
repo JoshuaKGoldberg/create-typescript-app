@@ -78,7 +78,7 @@
 		"eslint-plugin-jsonc": "^2.10.0",
 		"eslint-plugin-markdown": "^4.0.1",
 		"eslint-plugin-n": "^16.3.1",
-		"eslint-plugin-package-json": "^0.10.0",
+		"eslint-plugin-package-json": "^0.11.0",
 		"eslint-plugin-perfectionist": "^2.5.0",
 		"eslint-plugin-regexp": "^2.1.2",
 		"eslint-plugin-vitest": "^0.3.10",

@@ -81,7 +81,7 @@
 		"eslint-plugin-package-json": "^0.11.0",
 		"eslint-plugin-perfectionist": "^2.5.0",
 		"eslint-plugin-regexp": "^2.1.2",
-		"eslint-plugin-vitest": "^0.3.10",
+		"eslint-plugin-vitest": "^0.4.0",
 		"eslint-plugin-yml": "^1.10.0",
 		"globby": "^14.0.0",
 		"husky": "^9.0.0",

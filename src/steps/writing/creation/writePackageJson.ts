@@ -101,7 +101,7 @@ export async function writePackageJson(options: Options) {
 			...(!options.excludeLintSpelling && {
 				"lint:spelling": 'cspell "**" ".github/**/*"',
 			}),
-			prepare: "husky install",
+			prepare: "husky",
 			...(!options.excludeReleases && { test: "vitest" }),
 			tsc: "tsc",
 		},

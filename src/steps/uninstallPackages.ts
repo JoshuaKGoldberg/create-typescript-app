@@ -34,7 +34,6 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"@types/git-url-parse",
 			"@types/js-yaml",
 			"@types/parse-author",
-			"@types/prettier",
 			"all-contributors-cli",
 			"c8",
 			"eslint-config-prettier",

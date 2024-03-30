@@ -1,3 +1,9 @@
+## [1.57.10](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.9...v1.57.10) (2024-03-30)
+
+### Bug Fixes
+
+- ignore codecov-action in renovate.json ([#1436](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1436)) ([b98f533](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b98f5331e7ccef2c378eb92f10b363ccbe112b3f)), closes [#1435](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1435)
+
 ## [1.57.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.8...v1.57.9) (2024-03-14)
 
 ### Bug Fixes

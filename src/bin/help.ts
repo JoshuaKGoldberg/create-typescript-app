@@ -36,7 +36,7 @@ function logHelpTextSection(section: HelpTextSection): void {
 				chalk.cyan(
 					`
   --${flag}${
-		type !== "boolean" ? ` (${chalk.cyanBright(type)})` : ""
+		type === "boolean" ? "" : ` (${chalk.cyanBright(type)})`
 	}: ${description}`,
 				),
 			);
@@ -69,7 +69,7 @@ function createHelpTextSections(): HelpTextSection[] {
 			{
 				flags: [],
 				warning: `
-  ⚠️ Warning: Specifying any --exclude-* flag on the command-line will 
+  ⚠️ Warning: Specifying any --exclude-* flag on the command-line will
   cause the setup script to skip prompting for more excludes. ⚠️`,
 			},
 			{
@@ -82,13 +82,13 @@ function createHelpTextSections(): HelpTextSection[] {
 					},
 				],
 				subheading: `
-You can prevent the migration script from making some network-based 
+You can prevent the migration script from making some network-based
 changes using any or all of the following CLI flags:`,
 			},
 			{
 				flags: [],
 				subheading: `
-You can prevent the migration script from making some changes on disk 
+You can prevent the migration script from making some changes on disk
 using any or all of the following CLI flags:`,
 			},
 		],
@@ -134,7 +134,7 @@ export function logHelpText(introLogs: string[]): void {
 	console.log(
 		chalk.cyan(
 			`
-A quickstart-friendly TypeScript template with comprehensive formatting, 
+A quickstart-friendly TypeScript template with comprehensive formatting,
 linting, releases, testing, and other great tooling built-in.
       `,
 		),

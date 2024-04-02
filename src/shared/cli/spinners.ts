@@ -1,6 +1,6 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
-import readline from "readline";
+import readline from "node:readline";
 
 import { logLine, logNewSection, makeLine } from "./lines.js";
 import { lowerFirst } from "./lowerFirst.js";

@@ -41,10 +41,10 @@ describe("promptForMode", () => {
 
 		expect(mode).toMatchInlineSnapshot(
 			`
-			{
-			  "mode": [Error: --auto can only be used with --mode migrate.],
-			}
-		`,
+				{
+				  "mode": [Error: --auto can only be used with --mode migrate.],
+				}
+			`,
 		);
 	});
 
@@ -53,10 +53,10 @@ describe("promptForMode", () => {
 
 		expect(mode).toMatchInlineSnapshot(
 			`
-			{
-			  "mode": [Error: Unknown --mode: other. Allowed modes are: create, initialize, migrate.],
-			}
-		`,
+				{
+				  "mode": [Error: Unknown --mode: other. Allowed modes are: create, initialize, migrate.],
+				}
+			`,
 		);
 	});
 

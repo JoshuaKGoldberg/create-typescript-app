@@ -47,9 +47,9 @@ describe("updateReadme", () => {
 	it("doesn't add a notice when the file contains it already", async () => {
 		mockReadFileSafe.mockResolvedValue(`
 			Existing JoshuaKGoldberg/create-typescript-app content.
-			
+
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-			
+
 			> 💙 This package was templated using [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 		`);
 
@@ -61,9 +61,9 @@ describe("updateReadme", () => {
 			    "./README.md",
 			    "
 						Existing NewOwner/create-typescript-app content.
-						
+
 						<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-						
+
 						> 💙 This package was templated using [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
 					",
 			  ],

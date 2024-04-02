@@ -21,6 +21,7 @@ module.exports = {
 		"plugin:perfectionist/recommended-natural",
 		"plugin:regexp/recommended",
 		"plugin:vitest/recommended",
+		"plugin:unicorn/recommended",
 	],
 	ignorePatterns: ["!.*", "coverage*", "lib", "node_modules", "pnpm-lock.yaml"],
 	overrides: [
@@ -158,12 +159,23 @@ module.exports = {
 	rules: {
 		// These off/less-strict-by-default rules work well for this repo and we like them on.
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+		"vitest/consistent-test-it": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
 		"no-mixed-spaces-and-tabs": "off",
+		"unicorn/better-regex": "off",
+		"unicorn/explicit-length-check": "off",
+		"unicorn/filename-case": "off",
+		"unicorn/no-await-expression-member": "off",
+		"unicorn/no-nested-ternary": "off",
+		"unicorn/no-null": "off",
+		"unicorn/no-useless-undefined": "off",
+		"unicorn/prefer-ternary": "off",
+		"unicorn/prevent-abbreviations": "off",
+		"unicorn/switch-case-braces": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
 		"@typescript-eslint/padding-line-between-statements": [
@@ -180,6 +192,5 @@ module.exports = {
 				type: "natural",
 			},
 		],
-		"vitest/consistent-test-it": "error",
 	},
 };

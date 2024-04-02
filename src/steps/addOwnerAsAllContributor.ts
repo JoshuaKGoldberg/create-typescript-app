@@ -26,9 +26,7 @@ export async function addOwnerAsAllContributor(
 				? { ...contributor, contributions: ["tool"] }
 				: {
 						...contributor,
-						contributions: Array.from(
-							new Set([...contributor.contributions, "tool"]),
-						),
+						contributions: [...new Set([...contributor.contributions, "tool"])],
 				  },
 		);
 

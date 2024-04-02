@@ -15,7 +15,7 @@ async function getStdout() {
 export async function populateCSpellDictionary() {
 	const { stdout } = await getStdout();
 	const unknownWords = new Set(
-		Array.from(stdout.matchAll(/Unknown word \((.+)\)/g)).map(
+		[...stdout.matchAll(/Unknown word \((.+)\)/g)].map(
 			([, matched]) => matched,
 		),
 	);

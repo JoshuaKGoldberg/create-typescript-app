@@ -2,7 +2,7 @@ import chalk from "chalk";
 import { $, execaCommand } from "execa";
 import * as fs from "node:fs/promises";
 import { rimraf } from "rimraf";
-import { assert, describe, expect, test } from "vitest";
+import { assert, describe, expect, it, test } from "vitest";
 
 import packageData from "../package.json" assert { type: "json" };
 
@@ -96,7 +96,7 @@ await fs.writeFile(
 );
 
 describe("expected file changes", () => {
-	test.each(filesExpectedToBeChanged)("%s", async (file) => {
+	it.each(filesExpectedToBeChanged)("%s", async (file) => {
 		const { stdout } = await execaCommand(`git diff HEAD -- ${file}`);
 		const contentsAfterGitMarkers = stdout
 			.split("\n")

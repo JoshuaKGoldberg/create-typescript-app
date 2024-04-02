@@ -1,9 +1,9 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { splitIntoSections } from "./splitIntoSections.js";
 
 describe("createDevelopment", () => {
-	test.each([
+	it.each([
 		["", []],
 		["# Development \nabc 123", [["# Development", "abc 123"]]],
 		["# Development \n\nabc 123 ", [["# Development", "abc 123"]]],

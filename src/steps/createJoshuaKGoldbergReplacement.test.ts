@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { createJoshuaKGoldbergReplacement } from "./createJoshuaKGoldbergReplacement.js";
 
@@ -8,7 +8,7 @@ const options = {
 };
 
 describe("createJoshuaKGoldbergReplacement", () => {
-	test.each([
+	it.each([
 		[`JoshuaKGoldberg`, options.owner],
 		[
 			`JoshuaKGoldberg/${options.repository}`,

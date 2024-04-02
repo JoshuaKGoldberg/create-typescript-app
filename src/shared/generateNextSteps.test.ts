@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { generateNextSteps } from "./generateNextSteps.js";
 import { Options } from "./types.js";
@@ -23,7 +23,7 @@ describe("generateNextSteps", () => {
 		for (const excludeReleases of [false, true]) {
 			for (const excludeRenovate of [false, true]) {
 				for (const excludeTests of [false, true]) {
-					test(
+					it(
 						// eslint-disable-next-line vitest/valid-title
 						JSON.stringify({
 							excludeAllContributors,

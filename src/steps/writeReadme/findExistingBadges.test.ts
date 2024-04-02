@@ -1,10 +1,10 @@
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { findExistingBadges } from "./findExistingBadges.js";
 
 describe("findExistingBadges", () => {
 	describe("no result cases", () => {
-		test.each([
+		it.each([
 			"",
 			"abc123",
 			"# Test Title",
@@ -19,7 +19,7 @@ describe("findExistingBadges", () => {
 	});
 
 	describe("single result cases", () => {
-		test.each([
+		it.each([
 			`[![GitHub CI](https://github.com/ExampleOwner/console-fail-test/actions/workflows/compile.yml/badge.svg)](https://github.com/ExampleOwner/console-fail-test/actions/workflows/compile.yml)`,
 			`[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-brightgreen.svg)](https://prettier.io)`,
 			`![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-brightgreen.svg)`,
@@ -61,7 +61,7 @@ describe("findExistingBadges", () => {
 		expect(
 			findExistingBadges(`
 			<img alt="test badge a" src="test-a.jpg" />
-			
+
 			## Usage
 
 			<img alt="test badge b" src="test-b.jpg" />
@@ -73,7 +73,7 @@ describe("findExistingBadges", () => {
 		expect(
 			findExistingBadges(`
 			<img alt="test badge a" src="test-a.jpg" />
-			
+
 			<h2 align="left">Usage</h2>
 
 			<img alt="test badge b" src="test-b.jpg" />
@@ -81,7 +81,7 @@ describe("findExistingBadges", () => {
 		).toEqual([`<img alt="test badge a" src="test-a.jpg" />`]);
 	});
 
-	test("real-world usage", () => {
+	it("real-world usage", () => {
 		expect(
 			findExistingBadges(`
 <p align="center">

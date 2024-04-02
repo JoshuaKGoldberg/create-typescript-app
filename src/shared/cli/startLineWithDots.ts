@@ -1,4 +1,4 @@
-import readline from "readline";
+import readline from "node:readline";
 
 export function startLineWithDots(line: string) {
 	const timer = [setTimeout(tick, 500)];

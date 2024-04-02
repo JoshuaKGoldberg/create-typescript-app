@@ -1,5 +1,5 @@
 import * as fs from "node:fs/promises";
-import * as path from "path";
+import * as path from "node:path";
 import prettier from "prettier";
 
 import { Structure } from "./types.js";
@@ -11,13 +11,11 @@ export async function writeStructureWorker(
 	await fs.mkdir(basePath, { recursive: true });
 
 	for (const [fileName, contents] of Object.entries(structure)) {
+		const filePath = path.join(basePath, fileName);
 		if (typeof contents === "string") {
-			await fs.writeFile(
-				path.join(basePath, fileName),
-				await format(fileName, contents),
-			);
+			await fs.writeFile(filePath, await format(fileName, contents));
 		} else {
-			await writeStructureWorker(contents, path.join(basePath, fileName));
+			await writeStructureWorker(contents, filePath);
 		}
 	}
 }
@@ -41,14 +39,21 @@ function inferParser(fileName: string, text: string) {
 
 	switch (fileName.split(".").at(-1)) {
 		case "cjs":
-		case "js":
+		case "js": {
 			return "babel";
-		case "json":
+		}
+
+		case "json": {
 			return "json";
-		case "md":
+		}
+
+		case "md": {
 			return "markdown";
-		case "yml":
+		}
+
+		case "yml": {
 			return "yaml";
+		}
 	}
 
 	return undefined;

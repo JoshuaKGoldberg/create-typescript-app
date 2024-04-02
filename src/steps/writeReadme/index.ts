@@ -56,8 +56,8 @@ export async function writeReadme(options: Options) {
 		contents.slice(endOfIntroSection),
 	]
 		.join("")
-		.replace(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
-		.replace(/!\[.+\]\(.+\)/g, "")
+		.replaceAll(/\[!\[.+\]\(.+\)\]\(.+\)/g, "")
+		.replaceAll(/!\[.+\]\(.+\)/g, "")
 		.replaceAll("\r", "")
 		.replaceAll("\n\n\n", "\n\n");
 

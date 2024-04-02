@@ -1,6 +1,6 @@
 import * as prompts from "@clack/prompts";
 import chalk from "chalk";
-import * as fs from "fs/promises";
+import * as fs from "node:fs/promises";
 import path from "node:path";
 import * as process from "node:process";
 

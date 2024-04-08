@@ -1,3 +1,9 @@
+## [1.57.11](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.10...v1.57.11) (2024-04-08)
+
+### Bug Fixes
+
+- replace 'husky install' with just 'husky' ([#1439](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1439)) ([4de78e8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4de78e8a4850e53a62c1d82bb01ec250ff6755a9)), closes [#1437](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1437)
+
 ## [1.57.10](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.9...v1.57.10) (2024-03-30)
 
 ### Bug Fixes

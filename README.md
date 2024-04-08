@@ -5,7 +5,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 45" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-45-21bb42.svg" /></a>
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 46" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-46-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
@@ -72,7 +72,7 @@ Thanks! 💖
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/garuna-m6"><img src="https://avatars.githubusercontent.com/u/23234342?v=4?s=100" width="100px;" alt="Anurag"/><br /><sub><b>Anurag</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=garuna-m6" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://biplobsd.me"><img src="https://avatars.githubusercontent.com/u/43641536?v=4?s=100" width="100px;" alt="Biplob Sutradhar"/><br /><sub><b>Biplob Sutradhar</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=biplobsd" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://conormeagher.com/"><img src="https://avatars.githubusercontent.com/u/363781?v=4?s=100" width="100px;" alt="Conor Meagher"/><br /><sub><b>Conor Meagher</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=conrmahr" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://effectivetypescript.com"><img src="https://avatars.githubusercontent.com/u/98301?v=4?s=100" width="100px;" alt="Dan Vanderkam"/><br /><sub><b>Dan Vanderkam</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Adanvk" title="Bug reports">🐛</a> <a href="#ideas-danvk" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-danvk" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://effectivetypescript.com"><img src="https://avatars.githubusercontent.com/u/98301?v=4?s=100" width="100px;" alt="Dan Vanderkam"/><br /><sub><b>Dan Vanderkam</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Adanvk" title="Bug reports">🐛</a> <a href="#ideas-danvk" title="Ideas, Planning, & Feedback">🤔</a> <a href="#tool-danvk" title="Tools">🔧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/DanexQ"><img src="https://avatars.githubusercontent.com/u/72567464?v=4?s=100" width="100px;" alt="Daniel"/><br /><sub><b>Daniel</b></sub></a><br /><a href="#infra-DanexQ" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://roe.dev/"><img src="https://avatars.githubusercontent.com/u/28706372?v=4?s=100" width="100px;" alt="Daniel Roe"/><br /><sub><b>Daniel Roe</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=danielroe" title="Code">💻</a></td>
     </tr>
@@ -124,6 +124,7 @@ Thanks! 💖
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/lcforbes"><img src="https://avatars.githubusercontent.com/u/42080532?v=4?s=100" width="100px;" alt="lcforbes"/><br /><sub><b>lcforbes</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Alcforbes" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://nandertga.ddns.net"><img src="https://avatars.githubusercontent.com/u/65074195?v=4?s=100" width="100px;" alt="nandertga"/><br /><sub><b>nandertga</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=nandertga" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rubiesonthesky"><img src="https://avatars.githubusercontent.com/u/2591240?v=4?s=100" width="100px;" alt="rubiesonthesky"/><br /><sub><b>rubiesonthesky</b></sub></a><br /><a href="#ideas-rubiesonthesky" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=TAKANOME-DEV" title="Code">💻</a></td>
     </tr>
   </tbody>

@@ -70,6 +70,7 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
+					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",
@@ -143,6 +144,7 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
+					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",
@@ -208,6 +210,7 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
+					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",
@@ -269,6 +272,7 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
+					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",

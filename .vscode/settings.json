@@ -1,6 +1,7 @@
 {
 	"editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"eslint.experimental.useFlatConfig": true,
 	"editor.formatOnSave": true,
 	"editor.rulers": [80],
 	"eslint.probe": [
@@ -13,7 +14,6 @@
 		"typescriptreact",
 		"yaml"
 	],
-	"eslint.experimental.useFlatConfig": true,
 	"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
 	"typescript.tsdk": "node_modules/typescript/lib"
 }

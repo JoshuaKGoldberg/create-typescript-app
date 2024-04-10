@@ -102,7 +102,7 @@ describe("writePackageJson", () => {
 			  "scripts": {
 			    "build": "tsup",
 			    "format": "prettier .",
-			    "lint": "eslint . .*js --max-warnings 0",
+			    "lint": "eslint . --max-warnings 0",
 			    "lint:knip": "knip",
 			    "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
 			    "lint:packages": "pnpm dedupe --check",
@@ -173,7 +173,7 @@ describe("writePackageJson", () => {
 			  "scripts": {
 			    "build": "tsup",
 			    "format": "prettier .",
-			    "lint": "eslint . .*js --max-warnings 0",
+			    "lint": "eslint . --max-warnings 0",
 			    "prepare": "husky",
 			    "tsc": "tsc",
 			  },

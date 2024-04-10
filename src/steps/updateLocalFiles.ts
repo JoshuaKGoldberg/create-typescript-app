@@ -19,6 +19,7 @@ export async function updateLocalFiles(options: Options) {
 		createJoshuaKGoldbergReplacement(options),
 		[/JoshuaKGoldberg/g, options.owner, "package.json"],
 		[/create-typescript-app/g, options.repository],
+		[/\/\*\n.+\*\/\n\n/gs, ``, "eslint.config.js"],
 		[/"author": ".+"/g, `"author": "${options.author}"`, "./package.json"],
 		...(options.mode === "migrate"
 			? []

@@ -111,9 +111,7 @@ describe("createESLintConfig", () => {
 				        tsconfigRootDir: import.meta.dirname,
 				      },
 				    },
-				    plugins: {
-				      deprecation,
-				    },
+				    plugins: { deprecation },
 				    rules: {
 				      // These off-by-default rules work well for this repo and we like them on.
 				      "deprecation/deprecation": "error",
@@ -167,6 +165,7 @@ describe("createESLintConfig", () => {
 			.toMatchInlineSnapshot(`
 				"import eslint from "@eslint/js";
 				import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+				import deprecation from "eslint-plugin-deprecation";
 				import jsdoc from "eslint-plugin-jsdoc";
 				import jsonc from "eslint-plugin-jsonc";
 				import markdown from "eslint-plugin-markdown";
@@ -175,7 +174,6 @@ describe("createESLintConfig", () => {
 				import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";
 				import * as regexp from "eslint-plugin-regexp";
 				import vitest from "eslint-plugin-vitest";
-				import deprecation from "eslint-plugin-deprecation";
 				import yml from "eslint-plugin-yml";
 				import tseslint from "typescript-eslint";
 
@@ -257,9 +255,7 @@ describe("createESLintConfig", () => {
 				        tsconfigRootDir: import.meta.dirname,
 				      },
 				    },
-				    plugins: {
-				      deprecation,
-				    },
+				    plugins: { deprecation },
 				    rules: {
 				      // These off-by-default rules work well for this repo and we like them on.
 				      "deprecation/deprecation": "error",

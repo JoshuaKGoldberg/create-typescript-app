@@ -101,7 +101,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": ".eslintrc.cjs",
+			      "files": "eslint.config.js",
 			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
 			      "to": "",
 			    },
@@ -268,7 +268,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": ".eslintrc.cjs",
+			      "files": "eslint.config.js",
 			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
 			      "to": "",
 			    },
@@ -435,7 +435,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": ".eslintrc.cjs",
+			      "files": "eslint.config.js",
 			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
 			      "to": "",
 			    },

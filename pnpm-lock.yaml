@@ -70,9 +70,6 @@ devDependencies:
   '@release-it/conventional-changelog':
     specifier: ^8.0.1
     version: 8.0.1(release-it@17.1.1)
-  '@types/eslint':
-    specifier: ^8.44.8
-    version: 8.56.7
   '@types/git-url-parse':
     specifier: ^9.0.3
     version: 9.0.3
@@ -175,9 +172,6 @@ devDependencies:
   vitest:
     specifier: ^1.0.2
     version: 1.4.0(@types/node@20.12.2)
-  yaml-eslint-parser:
-    specifier: ^1.2.2
-    version: 1.2.2
 
 packages:
 
@@ -1671,13 +1665,6 @@ packages:
   /@types/btoa-lite@1.0.0:
     resolution: {integrity: sha512-wJsiX1tosQ+J5+bY5LrSahHxr2wT+uME5UDwdN1kg4frt40euqA+wzECkmq4t5QbveHiJepfdThgQrPw6KiSlg==}
     dev: false
-
-  /@types/eslint@8.56.7:
-    resolution: {integrity: sha512-SjDvI/x3zsZnOkYZ3lCt9lOZWZLB2jIlNKz+LBgCtDurK0JZcwucxYHn1w2BJkD34dgX9Tjnak0txtq4WTggEA==}
-    dependencies:
-      '@types/estree': 1.0.5
-      '@types/json-schema': 7.0.15
-    dev: true
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}

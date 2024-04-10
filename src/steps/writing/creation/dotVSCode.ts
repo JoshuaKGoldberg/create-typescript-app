@@ -66,6 +66,7 @@ export async function createDotVSCode(options: Options) {
 				"typescriptreact",
 				"yaml",
 			],
+			"eslint.experimental.useFlatConfig": true,
 			"eslint.rules.customizations": [{ rule: "*", severity: "warn" }],
 			"typescript.tsdk": "node_modules/typescript/lib",
 		}),

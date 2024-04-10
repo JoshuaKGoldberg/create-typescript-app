@@ -9,11 +9,11 @@ import packageData from "../package.json" assert { type: "json" };
 const filesExpectedToBeChanged = [
 	"README.md",
 	"knip.json",
-	".eslintrc.cjs",
 	".github/workflows/test.yml",
 	".gitignore",
 	".prettierignore",
 	"cspell.json",
+	"eslint.config.js",
 ];
 
 const filesThatMightBeChanged = new Set([

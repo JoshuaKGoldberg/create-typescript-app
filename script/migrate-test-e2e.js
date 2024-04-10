@@ -115,7 +115,6 @@ describe("expected file changes", () => {
 	});
 });
 
-// eslint-disable-next-line vitest/expect-expect
 test("unexpected file changes", async () => {
 	const { stdout: gitStatus } = await $`git status`;
 	console.log(`Stdout from running \`git status\`:\n${gitStatus}`);

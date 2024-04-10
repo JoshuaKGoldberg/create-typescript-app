@@ -27,6 +27,7 @@
 		"precommit",
 		"quickstart",
 		"tada",
+		"tseslint",
 		"tsup",
 		"vitest"
 	]

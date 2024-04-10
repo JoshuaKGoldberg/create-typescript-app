@@ -10,8 +10,8 @@ import { writePackageJson } from "./writePackageJson.js";
 export async function createRootFiles(options: Options) {
 	return {
 		".all-contributorsrc": await writeAllContributorsRC(options),
-		"eslint.config.js": await createESLintConfig(options),
 		".gitignore": createDotGitignore(options),
+		"eslint.config.js": await createESLintConfig(options),
 		...(!options.excludeLintMd && {
 			".markdownlint.json": await formatJson({
 				extends: "markdownlint/style/prettier",

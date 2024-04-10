@@ -10,6 +10,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 
 import eslint from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+import deprecation from "eslint-plugin-deprecation";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
 import markdown from "eslint-plugin-markdown";
@@ -18,7 +19,6 @@ import packageJson from "eslint-plugin-package-json/configs/recommended";
 import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";
 import * as regexp from "eslint-plugin-regexp";
 import vitest from "eslint-plugin-vitest";
-import deprecation from "eslint-plugin-deprecation";
 import yml from "eslint-plugin-yml";
 import tseslint from "typescript-eslint";
 

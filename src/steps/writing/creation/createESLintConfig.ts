@@ -8,6 +8,8 @@ export async function createESLintConfig(options: Options) {
 		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
+		!options.excludeLintDeprecation &&
+			`import deprecation from "eslint-plugin-deprecation";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,
 		!options.excludeLintMd && `import markdown from "eslint-plugin-markdown";`,
@@ -19,8 +21,6 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintRegex &&
 			`import * as regexp from "eslint-plugin-regexp";`,
 		!options.excludeTests && `import vitest from "eslint-plugin-vitest";`,
-		!options.excludeLintDeprecation &&
-			`import deprecation from "eslint-plugin-deprecation";`,
 		!options.excludeLintYml && `import yml from "eslint-plugin-yml";`,
 		`import tseslint from "typescript-eslint";`,
 	].filter(Boolean);

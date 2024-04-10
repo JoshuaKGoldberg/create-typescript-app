@@ -127,9 +127,7 @@ export default tseslint.config(
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
-		plugins: {
-			deprecation
-		},
+		plugins: { deprecation },
 		rules: {
 			// These off-by-default rules work well for this repo and we like them on.
 			"deprecation/deprecation": "error",

@@ -129,6 +129,7 @@ exports[`expected file changes > cspell.json 1`] = `
  		"execa",
  		"infile",
 +		"joshuakgoldberg",
++		"jsdoc",
  		"knip",
 +		"markdownlint",
  		"markdownlintignore",

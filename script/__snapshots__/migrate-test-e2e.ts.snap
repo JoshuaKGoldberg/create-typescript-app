@@ -114,7 +114,7 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -
  import eslint from "@eslint/js";
  import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
- import deprecation from "eslint-plugin-deprecation";
+ import jsdoc from "eslint-plugin-jsdoc";
 @@ ... @@ export default tseslint.config(
  			"no-constant-condition": "off",
  

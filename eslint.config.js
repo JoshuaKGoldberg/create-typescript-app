@@ -10,7 +10,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 
 import eslint from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-import deprecation from "eslint-plugin-deprecation";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
 import markdown from "eslint-plugin-markdown";
@@ -62,10 +61,8 @@ export default tseslint.config(
 				},
 			},
 		},
-		plugins: { deprecation },
 		rules: {
 			// These off-by-default rules work well for this repo and we like them on.
-			"deprecation/deprecation": "error",
 			"jsdoc/informative-docs": "error",
 			"logical-assignment-operators": [
 				"error",
@@ -122,9 +119,6 @@ export default tseslint.config(
 	{
 		files: ["**/*.md/*.ts"],
 		rules: {
-			// https://github.com/gund/eslint-plugin-deprecation/pull/86
-			"deprecation/deprecation": "off",
-
 			"n/no-missing-import": [
 				"error",
 				{ allowModules: ["create-typescript-app"] },

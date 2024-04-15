@@ -18,7 +18,6 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 			[
 				"excludeCompliance",
 				"excludeAllContributors",
-				"excludeLintDeprecation",
 				"excludeLintESLint",
 				"excludeLintJSDoc",
 				"excludeLintJson",
@@ -77,11 +76,7 @@ describe("createESLintConfig", () => {
 				        },
 				      },
 				    },
-				    plugins: { deprecation },
 				    rules: {
-				      // These off-by-default rules work well for this repo and we like them on.
-				      "deprecation/deprecation": "error",
-
 				      // These on-by-default rules don't work well for this repo and we like them off.
 				      "no-constant-condition": "off",
 
@@ -100,9 +95,6 @@ describe("createESLintConfig", () => {
 				  {
 				    files: ["**/*.md/*.ts"],
 				    rules: {
-				      // https://github.com/gund/eslint-plugin-deprecation/pull/86
-				      "deprecation/deprecation": "off",
-
 				      "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
 				    },
 				  },
@@ -116,7 +108,6 @@ describe("createESLintConfig", () => {
 			.toMatchInlineSnapshot(`
 				"import eslint from "@eslint/js";
 				import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-				import deprecation from "eslint-plugin-deprecation";
 				import jsdoc from "eslint-plugin-jsdoc";
 				import jsonc from "eslint-plugin-jsonc";
 				import markdown from "eslint-plugin-markdown";
@@ -168,10 +159,8 @@ describe("createESLintConfig", () => {
 				        },
 				      },
 				    },
-				    plugins: { deprecation },
 				    rules: {
 				      // These off-by-default rules work well for this repo and we like them on.
-				      "deprecation/deprecation": "error",
 				      "jsdoc/informative-docs": "error",
 				      "logical-assignment-operators": [
 				        "error",
@@ -214,9 +203,6 @@ describe("createESLintConfig", () => {
 				  {
 				    files: ["**/*.md/*.ts"],
 				    rules: {
-				      // https://github.com/gund/eslint-plugin-deprecation/pull/86
-				      "deprecation/deprecation": "off",
-
 				      "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
 				    },
 				  },

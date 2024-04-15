@@ -8,8 +8,6 @@ export async function createESLintConfig(options: Options) {
 		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
-		!options.excludeLintDeprecation &&
-			`import deprecation from "eslint-plugin-deprecation";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,
 		!options.excludeLintMd && `import markdown from "eslint-plugin-markdown";`,
@@ -81,10 +79,12 @@ export default tseslint.config(
 				},
 			},
 		},
-		plugins: { deprecation },
 		rules: {
-			// These off-by-default rules work well for this repo and we like them on.
-			"deprecation/deprecation": "error",${
+			${
+				!options.excludeLintJSDoc || !options.excludeLintStylistic
+					? "// These off-by-default rules work well for this repo and we like them on."
+					: ""
+			}${
 				options.excludeLintJSDoc
 					? ""
 					: `
@@ -147,9 +147,6 @@ export default tseslint.config(
 	{
 		files: ["**/*.md/*.ts"],
 		rules: {
-			// https://github.com/gund/eslint-plugin-deprecation/pull/86
-			"deprecation/deprecation": "off",
-
 			"n/no-missing-import": [
 				"error",
 				{ allowModules: ["${options.repository}"] },

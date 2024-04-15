@@ -18,7 +18,7 @@ const filesExpectedToBeChanged = [
 
 const filesThatMightBeChanged = new Set([
 	...filesExpectedToBeChanged,
-	"script/__snapshots__/migrate-test-e2e.js.snap",
+	"script/__snapshots__/migrate-test-e2e.ts.snap",
 ]);
 
 const {
@@ -41,7 +41,7 @@ await rimraf("coverage*");
 const originalReadme = (await fs.readFile("README.md")).toString();
 
 const originalSnapshots = (
-	await fs.readFile("script/__snapshots__/migrate-test-e2e.js.snap")
+	await fs.readFile("script/__snapshots__/migrate-test-e2e.ts.snap")
 ).toString();
 
 await $({
@@ -85,7 +85,7 @@ await fs.writeFile(
 
 // ...and even to the snapshot file, so diffs don't mind it.
 await fs.writeFile(
-	"script/__snapshots__/migrate-test-e2e.js.snap",
+	"script/__snapshots__/migrate-test-e2e.ts.snap",
 	originalSnapshots
 		.replace(
 			/All Contributors: \d+/g,

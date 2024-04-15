@@ -29,8 +29,8 @@
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky",
 		"test": "vitest",
-		"test:create": "node script/create-test-e2e.js",
-		"test:initialize": "node script/initialize-test-e2e.js",
+		"test:create": "npx tsx script/create-test-e2e.ts",
+		"test:initialize": "npx tsx script/initialize-test-e2e.ts",
 		"test:migrate": "vitest run -r script/",
 		"tsc": "tsc"
 	},

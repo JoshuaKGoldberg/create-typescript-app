@@ -27,10 +27,9 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
  		{
  			extends: ["plugin:markdown/recommended-legacy"],
 @@ ... @@ module.exports = {
- 			rules: {
- 				// These off-by-default rules work well for this repo and we like them on.
- 				"deprecation/deprecation": "error",
--
+ 				],
+ 				"operator-assignment": "error",
+ 
 -				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
 -				"@typescript-eslint/no-unnecessary-condition": [
 -					"error",
@@ -46,9 +45,10 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
 -					"error",
 -					{ allowBoolean: true, allowNullish: true, allowNumber: true },
 -				],
- 			},
- 		},
- 		{"
+-
+ 				// These on-by-default rules don't work well for this repo and we like them off.
+ 				"jsdoc/require-jsdoc": "off",
+ 				"jsdoc/require-param": "off","
 `;
 
 exports[`expected file changes > .github/workflows/test.yml 1`] = `
@@ -129,6 +129,7 @@ exports[`expected file changes > cspell.json 1`] = `
  		"execa",
  		"infile",
 +		"joshuakgoldberg",
++		"jsdoc",
  		"knip",
 +		"markdownlint",
  		"markdownlintignore",

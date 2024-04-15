@@ -49,17 +49,24 @@ module.exports = {
 				`
 				}"plugin:@typescript-eslint/${
 					options.excludeLintStrict ? "recommended" : "strict"
-				}",${
+				}-type-checked",${
 					options.excludeLintStylistic
 						? ""
 						: `
-				"plugin:@typescript-eslint/stylistic",`
+				"plugin:@typescript-eslint/stylistic-type-checked",`
 				}
 			],
-			files: ["**/*.ts"],
+			files: ["**/*.js", "**/*.ts"],
 			parser: "@typescript-eslint/parser",
+			parserOptions: {
+				EXPERIMENTAL_useProjectService: {
+					allowDefaultProjectForFiles: ["./*.*s"],
+					defaultProject: "./tsconfig.json",
+				},
+			},
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
+				"deprecation/deprecation": "error",
 				${
 					options.excludeLintJSDoc
 						? ""
@@ -91,35 +98,6 @@ module.exports = {
 					{ allowModules: ["${options.repository}"] },
 				],
 			},
-		},
-		{
-			${
-				options.excludeLintMd
-					? ""
-					: `excludedFiles: ["**/*.md/*.ts"],
-			`
-			}extends: [
-				"plugin:@typescript-eslint/${
-					options.excludeLintStrict ? "recommended" : "strict"
-				}-type-checked",${
-					options.excludeLintStylistic
-						? ""
-						: `
-				"plugin:@typescript-eslint/stylistic-type-checked",`
-				}
-			],
-			files: ["**/*.ts"],
-			parser: "@typescript-eslint/parser",
-			parserOptions: {
-				project: "./tsconfig.eslint.json",
-			},${
-				options.excludeLintDeprecation
-					? ""
-					: `rules: {
-				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
-			},`
-			}
 		},
 		${
 			options.excludeLintJson

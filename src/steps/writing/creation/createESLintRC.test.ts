@@ -61,11 +61,18 @@ describe("createESLintRC", () => {
 				  ignorePatterns: ["!.*", "lib", "node_modules", "pnpm-lock.yaml"],
 				  overrides: [
 				    {
-				      extends: ["plugin:@typescript-eslint/recommended"],
-				      files: ["**/*.ts"],
+				      extends: ["plugin:@typescript-eslint/recommended-type-checked"],
+				      files: ["**/*.js", "**/*.ts"],
 				      parser: "@typescript-eslint/parser",
+				      parserOptions: {
+				        EXPERIMENTAL_useProjectService: {
+				          allowDefaultProjectForFiles: ["./*.*s"],
+				          defaultProject: "./tsconfig.json",
+				        },
+				      },
 				      rules: {
 				        // These off-by-default rules work well for this repo and we like them on.
+				        "deprecation/deprecation": "error",
 				        "logical-assignment-operators": [
 				          "error",
 				          "always",
@@ -78,14 +85,6 @@ describe("createESLintRC", () => {
 				      files: "**/*.md/*.ts",
 				      rules: {
 				        "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
-				      },
-				    },
-				    {
-				      extends: ["plugin:@typescript-eslint/recommended-type-checked"],
-				      files: ["**/*.ts"],
-				      parser: "@typescript-eslint/parser",
-				      parserOptions: {
-				        project: "./tsconfig.eslint.json",
 				      },
 				    },
 				  ],
@@ -135,13 +134,20 @@ describe("createESLintRC", () => {
 				    {
 				      extends: [
 				        "plugin:jsdoc/recommended-typescript-error",
-				        "plugin:@typescript-eslint/strict",
-				        "plugin:@typescript-eslint/stylistic",
+				        "plugin:@typescript-eslint/strict-type-checked",
+				        "plugin:@typescript-eslint/stylistic-type-checked",
 				      ],
-				      files: ["**/*.ts"],
+				      files: ["**/*.js", "**/*.ts"],
 				      parser: "@typescript-eslint/parser",
+				      parserOptions: {
+				        EXPERIMENTAL_useProjectService: {
+				          allowDefaultProjectForFiles: ["./*.*s"],
+				          defaultProject: "./tsconfig.json",
+				        },
+				      },
 				      rules: {
 				        // These off-by-default rules work well for this repo and we like them on.
+				        "deprecation/deprecation": "error",
 				        "jsdoc/informative-docs": "error",
 				        "logical-assignment-operators": [
 				          "error",
@@ -161,22 +167,6 @@ describe("createESLintRC", () => {
 				      files: "**/*.md/*.ts",
 				      rules: {
 				        "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
-				      },
-				    },
-				    {
-				      excludedFiles: ["**/*.md/*.ts"],
-				      extends: [
-				        "plugin:@typescript-eslint/strict-type-checked",
-				        "plugin:@typescript-eslint/stylistic-type-checked",
-				      ],
-				      files: ["**/*.ts"],
-				      parser: "@typescript-eslint/parser",
-				      parserOptions: {
-				        project: "./tsconfig.eslint.json",
-				      },
-				      rules: {
-				        // These off-by-default rules work well for this repo and we like them on.
-				        "deprecation/deprecation": "error",
 				      },
 				    },
 				    {

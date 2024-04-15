@@ -111,10 +111,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			}),
 		}),
 		"package.json": await writePackageJson(options),
-		"tsconfig.eslint.json": await formatJson({
-			extends: "./tsconfig.json",
-			include: ["."],
-		}),
 		"tsconfig.json": await formatJson({
 			compilerOptions: {
 				declaration: true,

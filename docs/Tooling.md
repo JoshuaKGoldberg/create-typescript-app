@@ -238,7 +238,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 
 ### Lint ESLint
 
-[`eslint-plugin-eslint-comments`](https://github.com/mysticatea/eslint-plugin-eslint-comments): Enforces proper usage of [ESLint configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments).
+[`@eslint-community/eslint-plugin-eslint-comments`](https://eslint-community.github.io/eslint-plugin-eslint-comments): Enforces proper usage of [ESLint configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments).
 
 ### Lint JSDoc
 

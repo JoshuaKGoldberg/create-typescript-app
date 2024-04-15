@@ -67,7 +67,6 @@ export async function readOptions(
 				: undefined,
 		excludeAllContributors: values["exclude-all-contributors"],
 		excludeCompliance: values["exclude-compliance"],
-		excludeLintDeprecation: values["exclude-lint-deprecation"],
 		excludeLintESLint: values["exclude-lint-eslint"],
 		excludeLintJSDoc: values["exclude-lint-jsdoc"],
 		excludeLintJson: values["exclude-lint-json"],

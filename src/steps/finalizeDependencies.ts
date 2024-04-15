@@ -9,7 +9,6 @@ export async function finalizeDependencies(options: Options) {
 		"@typescript-eslint/eslint-plugin",
 		"@typescript-eslint/parser",
 		"eslint",
-		"eslint-plugin-deprecation",
 		"eslint-plugin-eslint-comments",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",

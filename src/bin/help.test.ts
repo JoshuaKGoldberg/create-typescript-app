@@ -204,11 +204,6 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
-			  --exclude-lint-deprecation: Don't use eslint-plugin-deprecation to report on usage 
-			  of code marked as @deprecated.",
-			  ],
-			  [
-			    "
 			  --exclude-lint-jsdoc: Don't use eslint-plugin-jsdoc to enforce good practices around 
 			  JSDoc comments.",
 			  ],

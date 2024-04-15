@@ -18,7 +18,6 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 			[
 				"excludeCompliance",
 				"excludeAllContributors",
-				"excludeLintDeprecation",
 				"excludeLintESLint",
 				"excludeLintJSDoc",
 				"excludeLintJson",
@@ -72,7 +71,6 @@ describe("createESLintRC", () => {
 				      },
 				      rules: {
 				        // These off-by-default rules work well for this repo and we like them on.
-				        "deprecation/deprecation": "error",
 				        "logical-assignment-operators": [
 				          "error",
 				          "always",
@@ -146,7 +144,6 @@ describe("createESLintRC", () => {
 				      },
 				      rules: {
 				        // These off-by-default rules work well for this repo and we like them on.
-				        "deprecation/deprecation": "error",
 				        "jsdoc/informative-docs": "error",
 				        "logical-assignment-operators": [
 				          "error",
@@ -222,14 +219,7 @@ describe("createESLintRC", () => {
 				    },
 				  ],
 				  parser: "@typescript-eslint/parser",
-				  plugins: [
-				    "@typescript-eslint",
-				    "deprecation",
-				    "jsdoc",
-				    "perfectionist",
-				    "regexp",
-				    "vitest",
-				  ],
+				  plugins: ["@typescript-eslint", "jsdoc", "perfectionist", "regexp", "vitest"],
 				  reportUnusedDisableDirectives: true,
 				  root: true,
 				  rules: {

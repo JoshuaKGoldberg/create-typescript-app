@@ -10,7 +10,6 @@ export async function finalizeDependencies(options: Options) {
 		"@types/eslint",
 		"@types/eslint-plugin-markdown",
 		"eslint",
-		"eslint-plugin-deprecation",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
 		"eslint-plugin-regexp",

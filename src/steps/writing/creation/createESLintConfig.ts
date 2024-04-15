@@ -137,6 +137,14 @@ export default tseslint.config(
 		},
 	}),
 	{
+		files: ["*.jsonc"],
+		rules: {
+			"jsonc/comma-dangle": "off",
+			"jsonc/no-comments": "off",
+			"jsonc/sort-keys": "error",
+		},
+	},
+	{
 		files: ["**/*.md/*.ts"],
 		rules: {
 			"n/no-missing-import": [
@@ -151,9 +159,7 @@ export default tseslint.config(
 	{
 		files: ["**/*.test.*"],
 		languageOptions: {
-			globals: {
-				...vitest.environments.env.globals,
-			},
+			globals: vitest.environments.env.globals,
 		},
 		plugins: { vitest, },
 		rules: {

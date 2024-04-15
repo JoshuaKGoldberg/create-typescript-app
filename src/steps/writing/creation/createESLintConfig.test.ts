@@ -201,9 +201,7 @@ describe("createESLintConfig", () => {
 				  {
 				    files: ["**/*.test.*"],
 				    languageOptions: {
-				      globals: {
-				        ...vitest.environments.env.globals,
-				      },
+				      globals: vitest.environments.env.globals,
 				    },
 				    plugins: { vitest },
 				    rules: {

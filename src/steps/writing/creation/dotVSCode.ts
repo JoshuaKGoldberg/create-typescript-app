@@ -56,7 +56,6 @@ export async function createDotVSCode(options: Options) {
 			"editor.defaultFormatter": "esbenp.prettier-vscode",
 			"editor.formatOnSave": true,
 			"editor.rulers": [80],
-			"eslint.experimental.useFlatConfig": true,
 			"eslint.probe": [
 				"javascript",
 				"javascriptreact",
@@ -68,6 +67,7 @@ export async function createDotVSCode(options: Options) {
 				"yaml",
 			],
 			"eslint.rules.customizations": [{ rule: "*", severity: "warn" }],
+			"eslint.useFlatConfig": true,
 			"typescript.tsdk": "node_modules/typescript/lib",
 		}),
 		"tasks.json": await formatJson({

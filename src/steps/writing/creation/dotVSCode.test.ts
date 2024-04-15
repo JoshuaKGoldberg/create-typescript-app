@@ -70,7 +70,6 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
-					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",
@@ -82,6 +81,7 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -144,7 +144,6 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
-					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",
@@ -156,6 +155,7 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -210,7 +210,6 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
-					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",
@@ -222,6 +221,7 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -272,7 +272,6 @@ describe("createDotVSCode", () => {
 					"editor.defaultFormatter": "esbenp.prettier-vscode",
 					"editor.formatOnSave": true,
 					"editor.rulers": [80],
-					"eslint.experimental.useFlatConfig": true,
 					"eslint.probe": [
 						"javascript",
 						"javascriptreact",
@@ -284,6 +283,7 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",

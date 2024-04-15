@@ -90,6 +90,14 @@ describe("createESLintConfig", () => {
 				    },
 				  }),
 				  {
+				    files: ["*.jsonc"],
+				    rules: {
+				      "jsonc/comma-dangle": "off",
+				      "jsonc/no-comments": "off",
+				      "jsonc/sort-keys": "error",
+				    },
+				  },
+				  {
 				    files: ["**/*.md/*.ts"],
 				    rules: {
 				      "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
@@ -192,6 +200,14 @@ describe("createESLintConfig", () => {
 				      "object-shorthand": "error",
 				    },
 				  }),
+				  {
+				    files: ["*.jsonc"],
+				    rules: {
+				      "jsonc/comma-dangle": "off",
+				      "jsonc/no-comments": "off",
+				      "jsonc/sort-keys": "error",
+				    },
+				  },
 				  {
 				    files: ["**/*.md/*.ts"],
 				    rules: {

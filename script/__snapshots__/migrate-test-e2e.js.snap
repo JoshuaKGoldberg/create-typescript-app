@@ -42,6 +42,10 @@ exports[`expected file changes > .eslintrc.cjs 1`] = `
 -					"error",
 -					{ ignorePrimitives: true },
 -				],
+-				"@typescript-eslint/restrict-template-expressions": [
+-					"error",
+-					{ allowBoolean: true, allowNullish: true, allowNumber: true },
+-				],
  			},
  		},
  		{"

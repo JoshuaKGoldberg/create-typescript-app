@@ -89,6 +89,10 @@ module.exports = {
 					"error",
 					{ ignorePrimitives: true },
 				],
+				"@typescript-eslint/restrict-template-expressions": [
+					"error",
+					{ allowBoolean: true, allowNullish: true, allowNumber: true },
+				],
 			},
 		},
 		{

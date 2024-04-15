@@ -71,13 +71,15 @@ await fs.writeFile(
 		updatedReadme.slice(updatedReadme.indexOf("<!-- markdownlint-restore -->")),
 	]
 		.join("")
-		.replaceAll(
+		.replace(
 			/All Contributors: \d+/g,
-			originalReadme.match(/All Contributors: \d+/)[0],
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			originalReadme.match(/All Contributors: \d+/)![0],
 		)
-		.replaceAll(
+		.replace(
 			/all_contributors-\d+/g,
-			originalReadme.match(/all_contributors-\d+/)[0],
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			originalReadme.match(/all_contributors-\d+/)![0],
 		),
 );
 
@@ -85,13 +87,15 @@ await fs.writeFile(
 await fs.writeFile(
 	"script/__snapshots__/migrate-test-e2e.js.snap",
 	originalSnapshots
-		.replaceAll(
+		.replace(
 			/All Contributors: \d+/g,
-			originalReadme.match(/All Contributors: \d+/)[0],
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			originalReadme.match(/All Contributors: \d+/)![0],
 		)
-		.replaceAll(
+		.replace(
 			/all_contributors-\d+/g,
-			originalReadme.match(/all_contributors-\d+/)[0],
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			originalReadme.match(/all_contributors-\d+/)![0],
 		),
 );
 
@@ -102,7 +106,7 @@ describe("expected file changes", () => {
 			.split("\n")
 			.slice(2)
 			.join("\n")
-			.replaceAll(/@@ -\d+,\d+ \+\d+,\d+ @@/g, "@@ ... @@");
+			.replace(/@@ -\d+,\d+ \+\d+,\d+ @@/g, "@@ ... @@");
 
 		assert(
 			stdout,
@@ -130,13 +134,13 @@ test("unexpected file changes", async () => {
 
 	const unstagedModifiedFiles = gitStatus
 		.slice(indexOfUnstagedFilesMessage)
-		.match(/modified: {3}(\S+)\n/g)
-		.map((match) => match.split(/\s+/g)[1])
+		.match(/modified: {3}\S+\n/g)
+		?.map((match) => match.split(/\s+/)[1])
 		.filter((filePath) => !filesThatMightBeChanged.has(filePath));
 
 	console.log("Unexpected modified files are:", unstagedModifiedFiles);
 
-	if (unstagedModifiedFiles.length) {
+	if (unstagedModifiedFiles?.length) {
 		const gitDiffCommand = `git diff HEAD -- ${unstagedModifiedFiles.join(
 			" ",
 		)}`;

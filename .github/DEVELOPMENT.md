@@ -146,7 +146,7 @@ Note that the files need to be built with `pnpm run build` beforehand.
 pnpm run test:create
 ```
 
-That end-to-end test executes `script/create-test-e2e.js`, which:
+That end-to-end test executes `script/create-test-e2e.ts`, which:
 
 1. Runs the creation script to create a new `test-repository` child directory and repository, capturing code coverage
 2. Asserts that commands such as `build` and `lint` each pass
@@ -175,7 +175,7 @@ Note that files need to be built with `pnpm run build` beforehand.
 pnpm run test:initialize
 ```
 
-That end-to-end test executes `script/initialize-test-e2e.js`, which:
+That end-to-end test executes `script/initialize-test-e2e.ts`, which:
 
 1. Runs the initialization script using `--skip-github-api` and other skip flags
 2. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
@@ -221,7 +221,7 @@ You can run the end-to-end test for migrating locally on the command-line:
 pnpm run test:migrate
 ```
 
-That end-to-end test executes `script/migrate-test-e2e.js`, which:
+That end-to-end test executes `script/migrate-test-e2e.ts`, which:
 
 1. Runs the migration script using `--skip-github-api` and other skip flags, capturing code coverage
 2. Checks that only a small list of allowed files were changed
@@ -234,7 +234,7 @@ See `.github/workflows/test-migrate.yml`.
 
 ##### Migration Snapshot Failures
 
-The migration test uses the [Vitest file snapshot](https://vitest.dev/guide/snapshot#file-snapshots) in `script/__snapshots__/migrate-test-e2e.js.snap` to store expected differences to this repository after running the migration script.
+The migration test uses the [Vitest file snapshot](https://vitest.dev/guide/snapshot#file-snapshots) in `script/__snapshots__/migrate-test-e2e.ts.snap` to store expected differences to this repository after running the migration script.
 The end-to-end migration test will fail any changes that don't keep the same differences in that snapshot.
 
 You can update the snapshot file by:
@@ -245,7 +245,7 @@ You can update the snapshot file by:
 
 At this point there will be some files changed:
 
-- `script/__snapshots__/migrate-test-e2e.js.snap` will have updates if any files mismatched templates
+- `script/__snapshots__/migrate-test-e2e.ts.snap` will have updates if any files mismatched templates
 - The actual updated files on disk will be there too
 
 If the snapshot file changes are what you expected, then you can commit them.

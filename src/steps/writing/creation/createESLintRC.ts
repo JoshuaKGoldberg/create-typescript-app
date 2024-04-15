@@ -49,17 +49,24 @@ module.exports = {
 				`
 				}"plugin:@typescript-eslint/${
 					options.excludeLintStrict ? "recommended" : "strict"
-				}",${
+				}-type-checked",${
 					options.excludeLintStylistic
 						? ""
 						: `
-				"plugin:@typescript-eslint/stylistic",`
+				"plugin:@typescript-eslint/stylistic-type-checked",`
 				}
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
+			parserOptions: {
+				EXPERIMENTAL_useProjectService: {
+					allowDefaultProjectForFiles: ["./*.*s"],
+					defaultProject: "./tsconfig.json",
+				},
+			},
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
+				"deprecation/deprecation": "error",
 				${
 					options.excludeLintJSDoc
 						? ""
@@ -70,7 +77,26 @@ module.exports = {
 					"always",
 					{ enforceForIfStatements: true },
 				],
-				"operator-assignment": "error",${
+				"operator-assignment": "error",
+
+				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
+				"@typescript-eslint/no-unnecessary-condition": [
+					"error",
+					{
+						allowConstantLoopConditions: true,
+					},
+				],${
+					options.excludeLintStylistic
+						? ""
+						: `"@typescript-eslint/prefer-nullish-coalescing": [
+					"error",
+					{ ignorePrimitives: true },
+				],
+				`
+				}"@typescript-eslint/restrict-template-expressions": [
+					"error",
+					{ allowBoolean: true, allowNullish: true, allowNumber: true },
+				],${
 					options.excludeLintJSDoc
 						? ""
 						: `
@@ -91,35 +117,6 @@ module.exports = {
 					{ allowModules: ["${options.repository}"] },
 				],
 			},
-		},
-		{
-			${
-				options.excludeLintMd
-					? ""
-					: `excludedFiles: ["**/*.md/*.ts"],
-			`
-			}extends: [
-				"plugin:@typescript-eslint/${
-					options.excludeLintStrict ? "recommended" : "strict"
-				}-type-checked",${
-					options.excludeLintStylistic
-						? ""
-						: `
-				"plugin:@typescript-eslint/stylistic-type-checked",`
-				}
-			],
-			files: ["**/*.ts"],
-			parser: "@typescript-eslint/parser",
-			parserOptions: {
-				project: "./tsconfig.eslint.json",
-			},${
-				options.excludeLintDeprecation
-					? ""
-					: `rules: {
-				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
-			},`
-			}
 		},
 		${
 			options.excludeLintJson

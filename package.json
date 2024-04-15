@@ -32,8 +32,8 @@
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky",
 		"test": "vitest",
-		"test:create": "node script/create-test-e2e.js",
-		"test:initialize": "node script/initialize-test-e2e.js",
+		"test:create": "npx tsx script/create-test-e2e.ts",
+		"test:initialize": "npx tsx script/initialize-test-e2e.ts",
 		"test:migrate": "vitest run -r script/",
 		"tsc": "tsc"
 	},
@@ -64,6 +64,7 @@
 		"@eslint/js": "^9.0.0",
 		"@octokit/request-error": "^6.0.0",
 		"@release-it/conventional-changelog": "^8.0.1",
+		"@types/eslint-plugin-markdown": "^2.0.2",
 		"@types/git-url-parse": "^9.0.3",
 		"@types/js-yaml": "^4.0.9",
 		"@types/node": "^20.10.4",
@@ -97,7 +98,7 @@
 		"tsup": "^8.0.1",
 		"tsx": "^4.6.2",
 		"typescript": "^5.3.3",
-		"typescript-eslint": "^7.6.0",
+		"typescript-eslint": "^7.7.0",
 		"vitest": "^1.0.2"
 	},
 	"packageManager": "pnpm@8.15.4",

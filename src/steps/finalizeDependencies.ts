@@ -6,8 +6,7 @@ import { Options } from "../shared/types.js";
 export async function finalizeDependencies(options: Options) {
 	const devDependencies = [
 		"@types/eslint",
-		"@typescript-eslint/eslint-plugin",
-		"@typescript-eslint/parser",
+		"@types/eslint-plugin-markdown",
 		"eslint",
 		"eslint-plugin-deprecation",
 		"eslint-plugin-eslint-comments",
@@ -21,6 +20,7 @@ export async function finalizeDependencies(options: Options) {
 		"prettier-plugin-packagejson",
 		"tsup",
 		"typescript",
+		"typescript-eslint",
 		...(options.excludeAllContributors ? [] : ["all-contributors-cli"]),
 		...(options.excludeLintJson ? [] : ["eslint-plugin-jsonc"]),
 		...(options.excludeLintJson && options.excludeLintPackageJson

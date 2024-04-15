@@ -48,62 +48,41 @@ export default tseslint.config(
 	packageJson,
 	perfectionistNatural,
 	regexp.configs["flat/recommended"],
-	...[...tseslint.configs.strict, ...tseslint.configs.stylistic].map(
-		(config) => ({
-			...config,
-			files: ["**/*.js", "**/*.ts"],
-			rules: {
-				...config.rules,
-				// These off-by-default rules work well for this repo and we like them on.
-				"jsdoc/informative-docs": "error",
-				"logical-assignment-operators": [
-					"error",
-					"always",
-					{ enforceForIfStatements: true },
-				],
-				"operator-assignment": "error",
-
-				// These on-by-default rules don't work well for this repo and we like them off.
-				"jsdoc/require-jsdoc": "off",
-				"jsdoc/require-param": "off",
-				"jsdoc/require-property": "off",
-				"jsdoc/require-returns": "off",
-				"no-case-declarations": "off",
-				"no-constant-condition": "off",
-
-				// These on-by-default rules work well for this repo if configured
-				"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-				"perfectionist/sort-objects": [
-					"error",
-					{
-						order: "asc",
-						"partition-by-comment": true,
-						type: "natural",
-					},
-				],
-
-				// Stylistic concerns that don't interfere with Prettier
-				"no-useless-rename": "error",
-				"object-shorthand": "error",
-			},
-		}),
-	),
 	...[
 		...tseslint.configs.strictTypeChecked,
 		...tseslint.configs.stylisticTypeChecked,
 	].map((config) => ({
 		...config,
-		files: ["**/*.ts"],
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
+			...config.languageOptions,
 			parserOptions: {
-				project: "./tsconfig.eslint.json",
-				tsconfigRootDir: import.meta.dirname,
+				EXPERIMENTAL_useProjectService: {
+					allowDefaultProjectForFiles: ["./*.*s", "eslint.config.js"],
+					defaultProject: "./tsconfig.json",
+				},
 			},
 		},
-		plugins: { deprecation },
+		plugins: { ...config.plugins, deprecation },
 		rules: {
+			...config.rules,
 			// These off-by-default rules work well for this repo and we like them on.
 			"deprecation/deprecation": "error",
+			"jsdoc/informative-docs": "error",
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
+			"operator-assignment": "error",
+
+			// These on-by-default rules don't work well for this repo and we like them off.
+			"jsdoc/require-jsdoc": "off",
+			"jsdoc/require-param": "off",
+			"jsdoc/require-property": "off",
+			"jsdoc/require-returns": "off",
+			"no-case-declarations": "off",
+			"no-constant-condition": "off",
 
 			// These on-by-default rules work well for this repo if configured
 			"@typescript-eslint/no-unnecessary-condition": [
@@ -112,10 +91,27 @@ export default tseslint.config(
 					allowConstantLoopConditions: true,
 				},
 			],
+			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 			"@typescript-eslint/prefer-nullish-coalescing": [
 				"error",
 				{ ignorePrimitives: true },
 			],
+			"@typescript-eslint/restrict-template-expressions": [
+				"error",
+				{ allowBoolean: true, allowNullish: true, allowNumber: true },
+			],
+			"perfectionist/sort-objects": [
+				"error",
+				{
+					order: "asc",
+					"partition-by-comment": true,
+					type: "natural",
+				},
+			],
+
+			// Stylistic concerns that don't interfere with Prettier
+			"no-useless-rename": "error",
+			"object-shorthand": "error",
 		},
 	})),
 	{

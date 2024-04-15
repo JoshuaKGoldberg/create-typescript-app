@@ -54,9 +54,9 @@ export async function createDotVSCode(options: Options) {
 				"source.fixAll.eslint": "explicit",
 			},
 			"editor.defaultFormatter": "esbenp.prettier-vscode",
-			"eslint.experimental.useFlatConfig": true,
 			"editor.formatOnSave": true,
 			"editor.rulers": [80],
+			"eslint.experimental.useFlatConfig": true,
 			"eslint.probe": [
 				"javascript",
 				"javascriptreact",

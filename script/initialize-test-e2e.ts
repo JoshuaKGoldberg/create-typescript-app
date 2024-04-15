@@ -19,7 +19,7 @@ await $({
 
 const newPackageJson = JSON.parse(
 	(await fs.readFile("./package.json")).toString(),
-);
+) as Record<string, string>;
 console.log("New package JSON:", newPackageJson);
 
 assert.equal(newPackageJson.description, description);
@@ -45,7 +45,9 @@ for (const search of [`/JoshuaKGoldberg/`, "create-typescript-app"]) {
 try {
 	await $`pnpm run lint:knip`;
 } catch (error) {
-	throw new Error("Error running lint:knip:", { cause: error });
+	throw new Error(
+		`Error running lint:knip: ${(error as Error).stack ?? (error as string)}`,
+	);
 }
 
 // Now that initialize has passed normal steps, we reset everything,

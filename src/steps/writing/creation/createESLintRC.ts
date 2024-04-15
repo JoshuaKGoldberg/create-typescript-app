@@ -189,7 +189,6 @@ module.exports = {
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 
 		// These on-by-default rules don't work well for this repo and we like them off.
-		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
 		"no-mixed-spaces-and-tabs": "off",

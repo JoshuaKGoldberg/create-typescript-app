@@ -48,14 +48,13 @@ export default tseslint.config(
 	packageJson,
 	perfectionistNatural,
 	regexp.configs["flat/recommended"],
-	...[
-		...tseslint.configs.strictTypeChecked,
-		...tseslint.configs.stylisticTypeChecked,
-	].map((config) => ({
-		...config,
+	...tseslint.config({
+		extends: [
+			...tseslint.configs.strictTypeChecked,
+			...tseslint.configs.stylisticTypeChecked,
+		],
 		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
-			...config.languageOptions,
 			parserOptions: {
 				EXPERIMENTAL_useProjectService: {
 					allowDefaultProjectForFiles: ["./*.*s", "eslint.config.js"],
@@ -63,9 +62,8 @@ export default tseslint.config(
 				},
 			},
 		},
-		plugins: { ...config.plugins, deprecation },
+		plugins: { deprecation },
 		rules: {
-			...config.rules,
 			// These off-by-default rules work well for this repo and we like them on.
 			"deprecation/deprecation": "error",
 			"jsdoc/informative-docs": "error",
@@ -113,7 +111,7 @@ export default tseslint.config(
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
 		},
-	})),
+	}),
 	{
 		files: ["*.jsonc"],
 		rules: {
@@ -134,13 +132,9 @@ export default tseslint.config(
 	{
 		files: ["**/*.test.*"],
 		languageOptions: {
-			globals: {
-				...vitest.environments.env.globals,
-			},
+			globals: vitest.environments.env.globals,
 		},
-		plugins: {
-			vitest,
-		},
+		plugins: { vitest },
 		rules: {
 			...vitest.configs.recommended.rules,
 

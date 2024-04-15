@@ -63,88 +63,80 @@ export default tseslint.config(
 		},
 	},
 	${elements.join("\n")}
-	...${
-		options.excludeLintStylistic
-			? `tseslint.configs.${tseslintBase}`
-			: `[...tseslint.configs.${tseslintBase}, ...tseslint.configs.stylistic]`
-	}.map(
-		(config) => ({
-			...config,
-			files: ["**/*.js", "**/*.ts"],
-			rules: {
-				...config.rules,
-				// These off-by-default rules work well for this repo and we like them on.${
-					options.excludeLintJSDoc
-						? ""
-						: `
-				"jsdoc/informative-docs": "error",`
-				}
-				"logical-assignment-operators": [
-					"error",
-					"always",
-					{ enforceForIfStatements: true },
-				],
-				"operator-assignment": "error",
-
-				// These on-by-default rules don't work well for this repo and we like them off.${
-					options.excludeLintJSDoc
-						? ""
-						: `
-				"jsdoc/require-jsdoc": "off",
-				"jsdoc/require-param": "off",
-				"jsdoc/require-property": "off",
-				"jsdoc/require-returns": "off",`
-				}
-				"no-case-declarations": "off",
-				"no-constant-condition": "off",
-
-				// These on-by-default rules work well for this repo if configured
-				"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-				"perfectionist/sort-objects": [
-					"error",
-					{
-						order: "asc",
-						"partition-by-comment": true,
-						type: "natural",
-					},
-				],
-
-				// Stylistic concerns that don't interfere with Prettier
-				"no-useless-rename": "error",
-				"object-shorthand": "error",
-			},
-		}),
-	),
-	...[
-		...tseslint.configs.strictTypeChecked,
-		...tseslint.configs.stylisticTypeChecked,
-	].map((config) => ({
-		...config,
-		files: ["**/*.ts"],
+	...tseslint.config({
+		extends: ${
+			options.excludeLintStylistic
+				? `tseslint.configs.${tseslintBase}TypeChecked`
+				: `[
+			...tseslint.configs.${tseslintBase}TypeChecked,
+			...tseslint.configs.stylisticTypeChecked,
+		]`
+		},
+		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
 			parserOptions: {
-				project: "./tsconfig.eslint.json",
-				tsconfigRootDir: import.meta.dirname,
+				EXPERIMENTAL_useProjectService: {
+					allowDefaultProjectForFiles: ["./*.*s", "eslint.config.js"],
+					defaultProject: "./tsconfig.json",
+				},
 			},
 		},
 		plugins: { deprecation },
 		rules: {
 			// These off-by-default rules work well for this repo and we like them on.
-			"deprecation/deprecation": "error",
+			"deprecation/deprecation": "error",${
+				options.excludeLintJSDoc
+					? ""
+					: `
+			"jsdoc/informative-docs": "error",`
+			}${
+				options.excludeLintStylistic
+					? ""
+					: `
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
+			"operator-assignment": "error",`
+			}
+
+			// These on-by-default rules don't work well for this repo and we like them off.${
+				options.excludeLintJSDoc
+					? ""
+					: `
+			"jsdoc/require-jsdoc": "off",
+			"jsdoc/require-param": "off",
+			"jsdoc/require-property": "off",
+			"jsdoc/require-returns": "off",`
+			}
+			"no-case-declarations": "off",
+			"no-constant-condition": "off",
 
 			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/no-unnecessary-condition": [
+			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],${
+				options.excludeLintPerfectionist
+					? ""
+					: `
+			"perfectionist/sort-objects": [
 				"error",
 				{
-					allowConstantLoopConditions: true,
+					order: "asc",
+					"partition-by-comment": true,
+					type: "natural",
 				},
-			],
-			"@typescript-eslint/prefer-nullish-coalescing": [
-				"error",
-				{ ignorePrimitives: true },
-			],
+			],`
+			}${
+				options.excludeLintStylistic
+					? ""
+					: `
+
+			// Stylistic concerns that don't interfere with Prettier
+			"no-useless-rename": "error",
+			"object-shorthand": "error",`
+			}
 		},
-	})),
+	}),
 	{
 		files: ["**/*.md/*.ts"],
 		rules: {
@@ -164,9 +156,7 @@ export default tseslint.config(
 				...vitest.environments.env.globals,
 			},
 		},
-		plugins: {
-			vitest,
-		},
+		plugins: { vitest, },
 		rules: {
 			...vitest.configs.recommended.rules,
 
@@ -175,7 +165,10 @@ export default tseslint.config(
 			"@typescript-eslint/no-unsafe-call": "off",
 		},
 	},`
-	}
+	}${
+		options.excludeLintYml
+			? ""
+			: `
 	{
 		files: ["**/*.{yml,yaml}"],
 		rules: {
@@ -195,7 +188,8 @@ export default tseslint.config(
 				},
 			],
 		},
-	},
+	},`
+	}
 );
 `);
 }

@@ -83,7 +83,6 @@ describe("createESLintConfig", () => {
 				      "deprecation/deprecation": "error",
 
 				      // These on-by-default rules don't work well for this repo and we like them off.
-				      "no-case-declarations": "off",
 				      "no-constant-condition": "off",
 
 				      // These on-by-default rules work well for this repo if configured
@@ -175,7 +174,6 @@ describe("createESLintConfig", () => {
 				      "jsdoc/require-param": "off",
 				      "jsdoc/require-property": "off",
 				      "jsdoc/require-returns": "off",
-				      "no-case-declarations": "off",
 				      "no-constant-condition": "off",
 
 				      // These on-by-default rules work well for this repo if configured

@@ -110,7 +110,6 @@ export default tseslint.config(
 			"jsdoc/require-property": "off",
 			"jsdoc/require-returns": "off",`
 			}
-			"no-case-declarations": "off",
 			"no-constant-condition": "off",
 
 			// These on-by-default rules work well for this repo if configured

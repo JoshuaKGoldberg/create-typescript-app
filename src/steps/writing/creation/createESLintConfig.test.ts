@@ -100,6 +100,9 @@ describe("createESLintConfig", () => {
 				  {
 				    files: ["**/*.md/*.ts"],
 				    rules: {
+				      // https://github.com/gund/eslint-plugin-deprecation/pull/86
+				      "deprecation/deprecation": "off",
+
 				      "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
 				    },
 				  },
@@ -211,6 +214,9 @@ describe("createESLintConfig", () => {
 				  {
 				    files: ["**/*.md/*.ts"],
 				    rules: {
+				      // https://github.com/gund/eslint-plugin-deprecation/pull/86
+				      "deprecation/deprecation": "off",
+
 				      "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
 				    },
 				  },

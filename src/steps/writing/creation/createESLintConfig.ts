@@ -147,6 +147,9 @@ export default tseslint.config(
 	{
 		files: ["**/*.md/*.ts"],
 		rules: {
+			// https://github.com/gund/eslint-plugin-deprecation/pull/86
+			"deprecation/deprecation": "off",
+
 			"n/no-missing-import": [
 				"error",
 				{ allowModules: ["${options.repository}"] },

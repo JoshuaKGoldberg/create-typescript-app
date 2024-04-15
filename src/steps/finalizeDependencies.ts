@@ -5,11 +5,12 @@ import { Options } from "../shared/types.js";
 
 export async function finalizeDependencies(options: Options) {
 	const devDependencies = [
+		"@eslint/js",
+		"@eslint-community/eslint-plugin-eslint-comments",
 		"@types/eslint",
 		"@types/eslint-plugin-markdown",
 		"eslint",
 		"eslint-plugin-deprecation",
-		"eslint-plugin-eslint-comments",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
 		"eslint-plugin-regexp",

@@ -66,7 +66,7 @@ export async function ensureRepositoryExists(
 				});
 				return { github, repository };
 
-			case "different":
+			case "different": {
 				const newRepository = filterPromptCancel(
 					await prompts.text({
 						message: `What would you like to call the repository?`,
@@ -79,6 +79,7 @@ export async function ensureRepositoryExists(
 
 				repository = newRepository;
 				break;
+			}
 
 			case "local":
 				github = undefined;

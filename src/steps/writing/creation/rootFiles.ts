@@ -25,7 +25,7 @@ export async function createRootFiles(options: Options) {
 				"node_modules/",
 			]),
 		}),
-		".nvmrc": `20.11.1\n`,
+		".nvmrc": `20.12.2\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),

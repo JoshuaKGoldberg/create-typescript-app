@@ -62,7 +62,7 @@ describe("createESLintRC", () => {
 				  overrides: [
 				    {
 				      extends: ["plugin:@typescript-eslint/recommended-type-checked"],
-				      files: ["**/*.ts"],
+				      files: ["**/*.js", "**/*.ts"],
 				      parser: "@typescript-eslint/parser",
 				      parserOptions: {
 				        EXPERIMENTAL_useProjectService: {
@@ -79,18 +79,6 @@ describe("createESLintRC", () => {
 				          { enforceForIfStatements: true },
 				        ],
 				        "operator-assignment": "error",
-
-				        // These more-strict-by-default rules don't work well for this repo and we like them less strict.
-				        "@typescript-eslint/no-unnecessary-condition": [
-				          "error",
-				          {
-				            allowConstantLoopConditions: true,
-				          },
-				        ],
-				        "@typescript-eslint/restrict-template-expressions": [
-				          "error",
-				          { allowBoolean: true, allowNullish: true, allowNumber: true },
-				        ],
 				      },
 				    },
 				    {
@@ -149,7 +137,7 @@ describe("createESLintRC", () => {
 				        "plugin:@typescript-eslint/strict-type-checked",
 				        "plugin:@typescript-eslint/stylistic-type-checked",
 				      ],
-				      files: ["**/*.ts"],
+				      files: ["**/*.js", "**/*.ts"],
 				      parser: "@typescript-eslint/parser",
 				      parserOptions: {
 				        EXPERIMENTAL_useProjectService: {
@@ -167,22 +155,6 @@ describe("createESLintRC", () => {
 				          { enforceForIfStatements: true },
 				        ],
 				        "operator-assignment": "error",
-
-				        // These more-strict-by-default rules don't work well for this repo and we like them less strict.
-				        "@typescript-eslint/no-unnecessary-condition": [
-				          "error",
-				          {
-				            allowConstantLoopConditions: true,
-				          },
-				        ],
-				        "@typescript-eslint/prefer-nullish-coalescing": [
-				          "error",
-				          { ignorePrimitives: true },
-				        ],
-				        "@typescript-eslint/restrict-template-expressions": [
-				          "error",
-				          { allowBoolean: true, allowNullish: true, allowNumber: true },
-				        ],
 
 				        // These on-by-default rules don't work well for this repo and we like them off.
 				        "jsdoc/require-jsdoc": "off",

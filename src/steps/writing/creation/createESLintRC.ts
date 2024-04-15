@@ -56,7 +56,7 @@ module.exports = {
 				"plugin:@typescript-eslint/stylistic-type-checked",`
 				}
 			],
-			files: ["**/*.ts"],
+			files: ["**/*.js", "**/*.ts"],
 			parser: "@typescript-eslint/parser",
 			parserOptions: {
 				EXPERIMENTAL_useProjectService: {
@@ -77,26 +77,7 @@ module.exports = {
 					"always",
 					{ enforceForIfStatements: true },
 				],
-				"operator-assignment": "error",
-
-				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
-				"@typescript-eslint/no-unnecessary-condition": [
-					"error",
-					{
-						allowConstantLoopConditions: true,
-					},
-				],${
-					options.excludeLintStylistic
-						? ""
-						: `"@typescript-eslint/prefer-nullish-coalescing": [
-					"error",
-					{ ignorePrimitives: true },
-				],
-				`
-				}"@typescript-eslint/restrict-template-expressions": [
-					"error",
-					{ allowBoolean: true, allowNullish: true, allowNumber: true },
-				],${
+				"operator-assignment": "error",${
 					options.excludeLintJSDoc
 						? ""
 						: `

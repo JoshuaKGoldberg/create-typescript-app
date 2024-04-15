@@ -66,7 +66,6 @@ module.exports = {
 			},
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
 				${
 					options.excludeLintJSDoc
 						? ""
@@ -169,11 +168,6 @@ module.exports = {
 	plugins: [
 		"@typescript-eslint",
 		${
-			options.excludeLintDeprecation
-				? ""
-				: `"deprecation",
-		`
-		}${
 			options.excludeLintJSDoc
 				? ""
 				: `"jsdoc",

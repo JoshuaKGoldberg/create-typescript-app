@@ -45,7 +45,6 @@ module.exports = {
 			},
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
 				"jsdoc/informative-docs": "error",
 				"logical-assignment-operators": [
 					"error",
@@ -140,14 +139,7 @@ module.exports = {
 		},
 	],
 	parser: "@typescript-eslint/parser",
-	plugins: [
-		"@typescript-eslint",
-		"deprecation",
-		"jsdoc",
-		"perfectionist",
-		"regexp",
-		"vitest",
-	],
+	plugins: ["@typescript-eslint", "jsdoc", "perfectionist", "regexp", "vitest"],
 	reportUnusedDisableDirectives: true,
 	root: true,
 	rules: {

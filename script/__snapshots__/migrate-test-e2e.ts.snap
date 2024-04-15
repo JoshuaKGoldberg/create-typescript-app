@@ -136,33 +136,7 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -			],
  			"perfectionist/sort-objects": [
  				"error",
- 				{
-@@ ... @@ export default tseslint.config(
- 			"object-shorthand": "error",
- 		},
- 	}),
--	{
--		files: ["*.jsonc"],
--		rules: {
--			"jsonc/comma-dangle": "off",
--			"jsonc/no-comments": "off",
--			"jsonc/sort-keys": "error",
--		},
--	},
- 	{
- 		files: ["**/*.md/*.ts"],
- 		rules: {
-@@ ... @@ export default tseslint.config(
- 	{
- 		files: ["**/*.test.*"],
- 		languageOptions: {
--			globals: vitest.environments.env.globals,
-+			globals: {
-+				...vitest.environments.env.globals,
-+			},
- 		},
- 		plugins: { vitest },
- 		rules: {"
+ 				{"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

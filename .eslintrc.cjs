@@ -32,11 +32,17 @@ module.exports = {
 		{
 			extends: [
 				"plugin:jsdoc/recommended-typescript-error",
-				"plugin:@typescript-eslint/strict",
-				"plugin:@typescript-eslint/stylistic",
+				"plugin:@typescript-eslint/strict-type-checked",
+				"plugin:@typescript-eslint/stylistic-type-checked",
 			],
-			files: ["**/*.ts"],
+			files: ["**/*.js", "**/*.ts"],
 			parser: "@typescript-eslint/parser",
+			parserOptions: {
+				EXPERIMENTAL_useProjectService: {
+					allowDefaultProjectForFiles: ["./*.*s"],
+					defaultProject: "./tsconfig.json",
+				},
+			},
 			rules: {
 				// These off-by-default rules work well for this repo and we like them on.
 				"jsdoc/informative-docs": "error",
@@ -46,6 +52,22 @@ module.exports = {
 					{ enforceForIfStatements: true },
 				],
 				"operator-assignment": "error",
+
+				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
+				"@typescript-eslint/no-unnecessary-condition": [
+					"error",
+					{
+						allowConstantLoopConditions: true,
+					},
+				],
+				"@typescript-eslint/prefer-nullish-coalescing": [
+					"error",
+					{ ignorePrimitives: true },
+				],
+				"@typescript-eslint/restrict-template-expressions": [
+					"error",
+					{ allowBoolean: true, allowNullish: true, allowNumber: true },
+				],
 
 				// These on-by-default rules don't work well for this repo and we like them off.
 				"jsdoc/require-jsdoc": "off",
@@ -60,34 +82,6 @@ module.exports = {
 				"n/no-missing-import": [
 					"error",
 					{ allowModules: ["create-typescript-app"] },
-				],
-			},
-		},
-		{
-			excludedFiles: ["**/*.md/*.ts"],
-			extends: [
-				"plugin:@typescript-eslint/strict-type-checked",
-				"plugin:@typescript-eslint/stylistic-type-checked",
-			],
-			files: ["**/*.ts"],
-			parser: "@typescript-eslint/parser",
-			parserOptions: {
-				project: "./tsconfig.eslint.json",
-			},
-			rules: {
-				// These off-by-default rules work well for this repo and we like them on.
-				"deprecation/deprecation": "error",
-
-				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
-				"@typescript-eslint/no-unnecessary-condition": [
-					"error",
-					{
-						allowConstantLoopConditions: true,
-					},
-				],
-				"@typescript-eslint/prefer-nullish-coalescing": [
-					"error",
-					{ ignorePrimitives: true },
 				],
 			},
 		},
@@ -145,14 +139,7 @@ module.exports = {
 		},
 	],
 	parser: "@typescript-eslint/parser",
-	plugins: [
-		"@typescript-eslint",
-		"deprecation",
-		"jsdoc",
-		"perfectionist",
-		"regexp",
-		"vitest",
-	],
+	plugins: ["@typescript-eslint", "jsdoc", "perfectionist", "regexp", "vitest"],
 	reportUnusedDisableDirectives: true,
 	root: true,
 	rules: {
@@ -160,7 +147,6 @@ module.exports = {
 		"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 
 		// These on-by-default rules don't work well for this repo and we like them off.
-		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"no-inner-declarations": "off",
 		"no-mixed-spaces-and-tabs": "off",

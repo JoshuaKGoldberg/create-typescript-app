@@ -18,7 +18,6 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 			[
 				"excludeCompliance",
 				"excludeAllContributors",
-				"excludeLintDeprecation",
 				"excludeLintESLint",
 				"excludeLintJSDoc",
 				"excludeLintJson",
@@ -61,9 +60,15 @@ describe("createESLintRC", () => {
 				  ignorePatterns: ["!.*", "lib", "node_modules", "pnpm-lock.yaml"],
 				  overrides: [
 				    {
-				      extends: ["plugin:@typescript-eslint/recommended"],
-				      files: ["**/*.ts"],
+				      extends: ["plugin:@typescript-eslint/recommended-type-checked"],
+				      files: ["**/*.js", "**/*.ts"],
 				      parser: "@typescript-eslint/parser",
+				      parserOptions: {
+				        EXPERIMENTAL_useProjectService: {
+				          allowDefaultProjectForFiles: ["./*.*s"],
+				          defaultProject: "./tsconfig.json",
+				        },
+				      },
 				      rules: {
 				        // These off-by-default rules work well for this repo and we like them on.
 				        "logical-assignment-operators": [
@@ -80,14 +85,6 @@ describe("createESLintRC", () => {
 				        "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
 				      },
 				    },
-				    {
-				      extends: ["plugin:@typescript-eslint/recommended-type-checked"],
-				      files: ["**/*.ts"],
-				      parser: "@typescript-eslint/parser",
-				      parserOptions: {
-				        project: "./tsconfig.eslint.json",
-				      },
-				    },
 				  ],
 				  parser: "@typescript-eslint/parser",
 				  plugins: ["@typescript-eslint"],
@@ -98,7 +95,6 @@ describe("createESLintRC", () => {
 				    "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 
 				    // These on-by-default rules don't work well for this repo and we like them off.
-				    "no-case-declarations": "off",
 				    "no-constant-condition": "off",
 				    "no-inner-declarations": "off",
 				    "no-mixed-spaces-and-tabs": "off",
@@ -135,11 +131,17 @@ describe("createESLintRC", () => {
 				    {
 				      extends: [
 				        "plugin:jsdoc/recommended-typescript-error",
-				        "plugin:@typescript-eslint/strict",
-				        "plugin:@typescript-eslint/stylistic",
+				        "plugin:@typescript-eslint/strict-type-checked",
+				        "plugin:@typescript-eslint/stylistic-type-checked",
 				      ],
-				      files: ["**/*.ts"],
+				      files: ["**/*.js", "**/*.ts"],
 				      parser: "@typescript-eslint/parser",
+				      parserOptions: {
+				        EXPERIMENTAL_useProjectService: {
+				          allowDefaultProjectForFiles: ["./*.*s"],
+				          defaultProject: "./tsconfig.json",
+				        },
+				      },
 				      rules: {
 				        // These off-by-default rules work well for this repo and we like them on.
 				        "jsdoc/informative-docs": "error",
@@ -161,22 +163,6 @@ describe("createESLintRC", () => {
 				      files: "**/*.md/*.ts",
 				      rules: {
 				        "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
-				      },
-				    },
-				    {
-				      excludedFiles: ["**/*.md/*.ts"],
-				      extends: [
-				        "plugin:@typescript-eslint/strict-type-checked",
-				        "plugin:@typescript-eslint/stylistic-type-checked",
-				      ],
-				      files: ["**/*.ts"],
-				      parser: "@typescript-eslint/parser",
-				      parserOptions: {
-				        project: "./tsconfig.eslint.json",
-				      },
-				      rules: {
-				        // These off-by-default rules work well for this repo and we like them on.
-				        "deprecation/deprecation": "error",
 				      },
 				    },
 				    {
@@ -233,14 +219,7 @@ describe("createESLintRC", () => {
 				    },
 				  ],
 				  parser: "@typescript-eslint/parser",
-				  plugins: [
-				    "@typescript-eslint",
-				    "deprecation",
-				    "jsdoc",
-				    "perfectionist",
-				    "regexp",
-				    "vitest",
-				  ],
+				  plugins: ["@typescript-eslint", "jsdoc", "perfectionist", "regexp", "vitest"],
 				  reportUnusedDisableDirectives: true,
 				  root: true,
 				  rules: {
@@ -248,7 +227,6 @@ describe("createESLintRC", () => {
 				    "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 
 				    // These on-by-default rules don't work well for this repo and we like them off.
-				    "no-case-declarations": "off",
 				    "no-constant-condition": "off",
 				    "no-inner-declarations": "off",
 				    "no-mixed-spaces-and-tabs": "off",

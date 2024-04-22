@@ -25,7 +25,7 @@ export async function createRootFiles(options: Options) {
 				"node_modules/",
 			]),
 		}),
-		".nvmrc": `20.11.1\n`,
+		".nvmrc": `20.12.2\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),
@@ -111,10 +111,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			}),
 		}),
 		"package.json": await writePackageJson(options),
-		"tsconfig.eslint.json": await formatJson({
-			extends: "./tsconfig.json",
-			include: ["."],
-		}),
 		"tsconfig.json": await formatJson({
 			compilerOptions: {
 				declaration: true,

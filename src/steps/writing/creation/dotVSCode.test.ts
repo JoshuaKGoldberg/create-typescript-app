@@ -23,7 +23,6 @@ function fakeOptions(
 			[
 				"excludeCompliance",
 				"excludeAllContributors",
-				"excludeLintDeprecation",
 				"excludeLintESLint",
 				"excludeLintJSDoc",
 				"excludeLintJson",

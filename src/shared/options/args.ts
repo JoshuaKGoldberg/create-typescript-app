@@ -87,12 +87,6 @@ export const allArgOptions = {
 		docsSection: "opt-out",
 		type: "boolean",
 	},
-	"exclude-lint-deprecation": {
-		description: `Don't use eslint-plugin-deprecation to report on usage 
-  of code marked as ${chalk.cyanBright("@deprecated")}.`,
-		docsSection: "opt-out",
-		type: "boolean",
-	},
 	"exclude-lint-jsdoc": {
 		description: `Don't use eslint-plugin-jsdoc to enforce good practices around 
   JSDoc comments.`,

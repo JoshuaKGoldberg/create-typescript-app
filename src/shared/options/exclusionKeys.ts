@@ -21,12 +21,6 @@ export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
 				"Add a GitHub Actions workflow to verify that PRs match an expected format.",
 			uncommon: true,
 		},
-		excludeLintDeprecation: {
-			hint: "--exclude-lint-deprecation",
-			label:
-				"Include an eslint-plugin-deprecation to reports on usage of code marked as @deprecated.",
-			uncommon: true,
-		},
 		excludeLintESLint: {
 			hint: "--exclude-lint-eslint",
 			label:

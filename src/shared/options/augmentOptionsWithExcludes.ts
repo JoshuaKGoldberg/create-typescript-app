@@ -71,7 +71,7 @@ export async function augmentOptionsWithExcludes(
 				base,
 				...getExclusions(options, base),
 			};
-		case "prompt":
+		case "prompt": {
 			const exclusionsNotEnabled = new Set(
 				filterPromptCancel(
 					await prompts.multiselect({
@@ -99,6 +99,7 @@ export async function augmentOptionsWithExcludes(
 					),
 				),
 			};
+		}
 	}
 }
 

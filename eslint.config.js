@@ -117,6 +117,7 @@ export default tseslint.config(
 		},
 	},
 	{
+		extends: tseslint.configs.disableTypeChecked,
 		files: ["**/*.md/*.ts"],
 		rules: {
 			"n/no-missing-import": [

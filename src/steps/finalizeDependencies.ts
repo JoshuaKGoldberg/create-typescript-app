@@ -7,7 +7,6 @@ export async function finalizeDependencies(options: Options) {
 	const devDependencies = [
 		"@eslint/js",
 		"@eslint-community/eslint-plugin-eslint-comments",
-		"@types/eslint",
 		"@types/eslint-plugin-markdown",
 		"eslint",
 		"eslint-plugin-jsdoc",
@@ -40,9 +39,7 @@ export async function finalizeDependencies(options: Options) {
 			? []
 			: ["eslint-plugin-perfectionist"]),
 		...(options.excludeLintSpelling ? [] : ["cspell"]),
-		...(options.excludeLintYml
-			? []
-			: ["eslint-plugin-yml", "yaml-eslint-parser"]),
+		...(options.excludeLintYml ? [] : ["eslint-plugin-yml"]),
 		...(options.excludeReleases
 			? []
 			: ["@release-it/conventional-changelog", "release-it"]),

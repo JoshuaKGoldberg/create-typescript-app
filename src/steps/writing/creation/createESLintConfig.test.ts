@@ -93,7 +93,7 @@ describe("createESLintConfig", () => {
 				    },
 				  },
 				  {
-					extends: tseslint.configs.disableTypeChecked,
+				    extends: [tseslint.configs.disableTypeChecked],
 				    files: ["**/*.md/*.ts"],
 				    rules: {
 				      "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
@@ -202,7 +202,7 @@ describe("createESLintConfig", () => {
 				    },
 				  },
 				  {
-					extends: tseslint.configs.disableTypeChecked,
+				    extends: [tseslint.configs.disableTypeChecked],
 				    files: ["**/*.md/*.ts"],
 				    rules: {
 				      "n/no-missing-import": ["error", { allowModules: ["test-repository"] }],

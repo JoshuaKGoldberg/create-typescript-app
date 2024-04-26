@@ -1,6 +1,6 @@
 import { Options } from "../../../shared/types.js";
 import { createDotGitignore } from "./createDotGitignore.js";
-import { createESLintRC } from "./createESLintRC.js";
+import { createESLintConfig } from "./createESLintConfig.js";
 import { createTsupConfig } from "./createTsupConfig.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
@@ -10,8 +10,8 @@ import { writePackageJson } from "./writePackageJson.js";
 export async function createRootFiles(options: Options) {
 	return {
 		".all-contributorsrc": await writeAllContributorsRC(options),
-		".eslintrc.cjs": await createESLintRC(options),
 		".gitignore": createDotGitignore(options),
+		"eslint.config.js": await createESLintConfig(options),
 		...(!options.excludeLintMd && {
 			".markdownlint.json": await formatJson({
 				extends: "markdownlint/style/prettier",

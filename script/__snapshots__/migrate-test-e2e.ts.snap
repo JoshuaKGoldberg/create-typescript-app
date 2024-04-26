@@ -1,56 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`expected file changes > .eslintrc.cjs 1`] = `
-"--- a/.eslintrc.cjs
-+++ b/.eslintrc.cjs
-@@ ... @@
--/*
--👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
--You can read from it to see all sorts of linting goodness, but don't worry -
--it's not something you need to exhaustively understand immediately. 💙
--
--If you're interested in learning more, see the 'getting started' docs on:
--- ESLint: https://eslint.org
--- typescript-eslint: https://typescript-eslint.io
--*/
--
- /** @type {import("@types/eslint").Linter.Config} */
- module.exports = {
- 	env: {
-@@ ... @@ module.exports = {
- 		"plugin:regexp/recommended",
- 		"plugin:vitest/recommended",
- 	],
--	ignorePatterns: ["!.*", "coverage*", "lib", "node_modules", "pnpm-lock.yaml"],
-+	ignorePatterns: ["!.*", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
- 	overrides: [
- 		{
- 			extends: ["plugin:markdown/recommended-legacy"],
-@@ ... @@ module.exports = {
- 				],
- 				"operator-assignment": "error",
- 
--				// These more-strict-by-default rules don't work well for this repo and we like them less strict.
--				"@typescript-eslint/no-unnecessary-condition": [
--					"error",
--					{
--						allowConstantLoopConditions: true,
--					},
--				],
--				"@typescript-eslint/prefer-nullish-coalescing": [
--					"error",
--					{ ignorePrimitives: true },
--				],
--				"@typescript-eslint/restrict-template-expressions": [
--					"error",
--					{ allowBoolean: true, allowNullish: true, allowNumber: true },
--				],
--
- 				// These on-by-default rules don't work well for this repo and we like them off.
- 				"jsdoc/require-jsdoc": "off",
- 				"jsdoc/require-param": "off","
-`;
-
 exports[`expected file changes > .github/workflows/test.yml 1`] = `
 "--- a/.github/workflows/test.yml
 +++ b/.github/workflows/test.yml
@@ -140,12 +89,54 @@ exports[`expected file changes > cspell.json 1`] = `
  		"quickstart",
  		"tada",
 +		"templating",
+ 		"tseslint",
  		"tsup",
 -		"vitest"
 +		"vitest",
 +		"wontfix"
  	]
  }"
+`;
+
+exports[`expected file changes > eslint.config.js 1`] = `
+"--- a/eslint.config.js
++++ b/eslint.config.js
+@@ ... @@
+-/*
+-👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
+-You can read from it to see all sorts of linting goodness, but don't worry -
+-it's not something you need to exhaustively understand immediately. 💙
+-
+-If you're interested in learning more, see the 'getting started' docs on:
+-- ESLint: https://eslint.org
+-- typescript-eslint: https://typescript-eslint.io
+-*/
+-
+ import eslint from "@eslint/js";
+ import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+ import jsdoc from "eslint-plugin-jsdoc";
+@@ ... @@ export default tseslint.config(
+ 			"no-constant-condition": "off",
+ 
+ 			// These on-by-default rules work well for this repo if configured
+-			"@typescript-eslint/no-unnecessary-condition": [
+-				"error",
+-				{
+-					allowConstantLoopConditions: true,
+-				},
+-			],
+ 			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+-			"@typescript-eslint/prefer-nullish-coalescing": [
+-				"error",
+-				{ ignorePrimitives: true },
+-			],
+-			"@typescript-eslint/restrict-template-expressions": [
+-				"error",
+-				{ allowBoolean: true, allowNullish: true, allowNumber: true },
+-			],
+ 			"perfectionist/sort-objects": [
+ 				"error",
+ 				{"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

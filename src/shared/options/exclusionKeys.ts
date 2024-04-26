@@ -1,6 +1,6 @@
 import { Options, OptionsBase } from "../types.js";
 
-export type ExclusionKey = keyof Options & `exclude${string}`;
+export type ExclusionKey = `exclude${string}` & keyof Options;
 
 export interface ExclusionDescription {
 	hint: string;

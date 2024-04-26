@@ -164,7 +164,7 @@ devDependencies:
     specifier: ^8.0.1
     version: 8.0.2(typescript@5.4.3)
   tsx:
-    specifier: ^4.6.2
+    specifier: ^4.7.1
     version: 4.7.1
   typescript:
     specifier: ^5.3.3

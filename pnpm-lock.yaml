@@ -122,7 +122,7 @@ devDependencies:
     specifier: ^2.5.0
     version: 2.5.0(eslint@8.57.0)
   eslint-plugin-vitest:
-    specifier: ^0.5.1
+    specifier: ^0.5.3
     version: 0.5.3(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
   eslint-plugin-yml:
     specifier: ^1.14.0

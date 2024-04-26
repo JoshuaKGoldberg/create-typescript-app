@@ -280,6 +280,7 @@ We appreciate your efforts and responsible disclosure and will make every effort
 			"renovate.json": await formatJson({
 				$schema: "https://docs.renovatebot.com/renovate-schema.json",
 				automerge: true,
+				extends: ["config:best-practices", "replacements:all"],
 				ignoreDeps: ["codecov/codecov-action"],
 				internalChecksFilter: "strict",
 				labels: ["dependencies"],

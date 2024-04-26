@@ -167,7 +167,7 @@ devDependencies:
     specifier: ^4.7.1
     version: 4.7.1
   typescript:
-    specifier: ^5.3.3
+    specifier: ^5.4.3
     version: 5.4.3
   typescript-eslint:
     specifier: ^7.7.0

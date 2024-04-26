@@ -62,7 +62,7 @@
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
 		"@eslint/js": "^9.0.0",
-		"@octokit/request-error": "^6.0.0",
+		"@octokit/request-error": "^6.1.1",
 		"@release-it/conventional-changelog": "^8.0.1",
 		"@types/eslint-plugin-markdown": "^2.0.2",
 		"@types/git-url-parse": "^9.0.3",

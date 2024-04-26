@@ -152,8 +152,8 @@ devDependencies:
     specifier: ^0.2.0
     version: 0.2.1(prettier@3.1.0)
   prettier-plugin-packagejson:
-    specifier: ^2.4.7
-    version: 2.4.14(prettier@3.1.0)
+    specifier: ^2.5.0
+    version: 2.5.0(prettier@3.1.0)
   release-it:
     specifier: ^17.0.0
     version: 17.1.1(typescript@5.4.3)
@@ -6231,8 +6231,8 @@ packages:
       - supports-color
     dev: true
 
-  /prettier-plugin-packagejson@2.4.14(prettier@3.1.0):
-    resolution: {integrity: sha512-sli+gV5tW7uxvzDZQscaBtSfbyAW2ToL6n/HGt51PipwX9vI7M54vefG0mKSfklVkT29TNGO6Mo6g8c6Z79gmw==}
+  /prettier-plugin-packagejson@2.5.0(prettier@3.1.0):
+    resolution: {integrity: sha512-6XkH3rpin5QEQodBSVNg+rBo4r91g/1mCaRwS1YGdQJZ6jwqrg2UchBsIG9tpS1yK1kNBvOt84OILsX8uHzBGg==}
     peerDependencies:
       prettier: '>= 1.16.0'
     peerDependenciesMeta:

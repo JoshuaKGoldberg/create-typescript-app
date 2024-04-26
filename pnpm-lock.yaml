@@ -55,7 +55,7 @@ dependencies:
     version: 3.23.4
   zod-validation-error:
     specifier: ^3.0.2
-    version: 3.0.3(zod@3.23.4)
+    version: 3.2.0(zod@3.23.4)
 
 devDependencies:
   '@eslint-community/eslint-plugin-eslint-comments':
@@ -4842,7 +4842,7 @@ packages:
       summary: 2.1.0
       typescript: 5.4.3
       zod: 3.23.4
-      zod-validation-error: 3.0.3(zod@3.23.4)
+      zod-validation-error: 3.2.0(zod@3.23.4)
     dev: true
 
   /ky@1.2.2:
@@ -7454,8 +7454,8 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /zod-validation-error@3.0.3(zod@3.23.4):
-    resolution: {integrity: sha512-cETTrcMq3Ze58vhdR0zD37uJm/694I6mAxcf/ei5bl89cC++fBNxrC2z8lkFze/8hVMPwrbtrwXHR2LB50fpHw==}
+  /zod-validation-error@3.2.0(zod@3.23.4):
+    resolution: {integrity: sha512-cYlPR6zuyrgmu2wRTdumEAJGuwI7eHVHGT+VyneAQxmRAKtGRL1/7pjz4wfLhz4J05f5qoSZc3rGacswgyTjjw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.18.0

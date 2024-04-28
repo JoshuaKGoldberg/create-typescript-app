@@ -116,7 +116,7 @@ devDependencies:
     specifier: ^0.12.1
     version: 0.12.2(eslint@9.1.1)(jsonc-eslint-parser@2.4.0)
   eslint-plugin-perfectionist:
-    specifier: ^2.8.0
+    specifier: ^2.9.0
     version: 2.9.0(eslint@9.1.1)(typescript@5.4.3)
   eslint-plugin-regexp:
     specifier: ^2.5.0

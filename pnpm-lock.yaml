@@ -113,8 +113,8 @@ devDependencies:
     specifier: ^17.3.0
     version: 17.3.1(eslint@9.1.1)
   eslint-plugin-package-json:
-    specifier: ^0.12.1
-    version: 0.12.2(eslint@9.1.1)(jsonc-eslint-parser@2.4.0)
+    specifier: ^0.13.0
+    version: 0.13.0(eslint@9.1.1)(jsonc-eslint-parser@2.4.0)
   eslint-plugin-perfectionist:
     specifier: ^2.9.0
     version: 2.9.0(eslint@9.1.1)(typescript@5.4.3)
@@ -3320,17 +3320,20 @@ packages:
       semver: 7.6.0
     dev: true
 
-  /eslint-plugin-package-json@0.12.2(eslint@9.1.1)(jsonc-eslint-parser@2.4.0):
-    resolution: {integrity: sha512-saWJz3wcAUg9sHmKycKaut/dmTLtiq56VNh4yQlW6EQd1GhKi1MQ5lCf/aXWCHRCXbWozFhG1Q6FDce7Q5T9bw==}
+  /eslint-plugin-package-json@0.13.0(eslint@9.1.1)(jsonc-eslint-parser@2.4.0):
+    resolution: {integrity: sha512-zQB1KzyZhHcJ45mKVuc0gw+R3zaMBFMTm81YOBgDpQ8c45tYnrFpJUIXofuM+QCB1+iwzD+LVhRM5/+K4F8+2w==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: '>=8.0.0'
       jsonc-eslint-parser: ^2.0.0
     dependencies:
+      detect-indent: 6.1.0
+      detect-newline: 3.1.0
       eslint: 9.1.1
       jsonc-eslint-parser: 2.4.0
       package-json-validator: 0.6.3
       semver: 7.6.0
+      sort-object-keys: 1.1.3
       sort-package-json: 1.57.0
       validate-npm-package-name: 5.0.0
     dev: true

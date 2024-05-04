@@ -82,7 +82,7 @@ importers:
         specifier: ^4.0.9
         version: 4.0.9
       '@types/node':
-        specifier: ^20.10.4
+        specifier: ^20.12.7
         version: 20.12.7
       '@types/parse-author':
         specifier: ^2.0.3

@@ -64,8 +64,8 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(eslint@9.1.1)
       '@eslint/js':
-        specifier: ^9.0.0
-        version: 9.1.1
+        specifier: ^9.2.0
+        version: 9.2.0
       '@octokit/request-error':
         specifier: ^6.1.1
         version: 6.1.1
@@ -737,6 +737,10 @@ packages:
 
   '@eslint/js@9.1.1':
     resolution: {integrity: sha512-5WoDz3Y19Bg2BnErkZTp0en+c/i9PvgFS7MBe1+m60HjFr0hrphlAGp4yzI7pxpt4xShln4ZyYp4neJm8hmOkQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.2.0':
+    resolution: {integrity: sha512-ESiIudvhoYni+MdsI8oD7skpprZ89qKocwRM2KEvhhBJ9nl5MRh7BXU5GTod7Mdygq+AUl+QzId6iWJKR/wABA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@humanwhocodes/config-array@0.13.0':
@@ -4788,6 +4792,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@9.1.1': {}
+
+  '@eslint/js@9.2.0': {}
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:

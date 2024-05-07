@@ -166,7 +166,7 @@ importers:
         specifier: ^8.0.1
         version: 8.0.2(postcss@8.4.36)(typescript@5.4.3)
       tsx:
-        specifier: ^4.8.0
+        specifier: ^4.9.0
         version: 4.9.0
       typescript:
         specifier: ^5.4.3

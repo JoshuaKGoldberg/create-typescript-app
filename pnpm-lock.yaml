@@ -55,10 +55,10 @@ importers:
         version: 4.3.1
       zod:
         specifier: ^3.22.4
-        version: 3.23.7
+        version: 3.23.8
       zod-validation-error:
         specifier: ^3.0.2
-        version: 3.2.0(zod@3.23.7)
+        version: 3.2.0(zod@3.23.8)
     devDependencies:
       '@eslint-community/eslint-plugin-eslint-comments':
         specifier: ^4.3.0
@@ -4444,8 +4444,8 @@ packages:
     peerDependencies:
       zod: ^3.18.0
 
-  zod@3.23.7:
-    resolution: {integrity: sha512-NBeIoqbtOiUMomACV/y+V3Qfs9+Okr18vR5c/5pHClPpufWOrsx8TENboDPe265lFdfewX2yBtNTLPvnmCxwog==}
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
@@ -7502,8 +7502,8 @@ snapshots:
       strip-json-comments: 5.0.1
       summary: 2.1.0
       typescript: 5.4.3
-      zod: 3.23.7
-      zod-validation-error: 3.2.0(zod@3.23.7)
+      zod: 3.23.8
+      zod-validation-error: 3.2.0(zod@3.23.8)
 
   ky@1.2.2: {}
 
@@ -9073,8 +9073,8 @@ snapshots:
 
   yocto-queue@1.0.0: {}
 
-  zod-validation-error@3.2.0(zod@3.23.7):
+  zod-validation-error@3.2.0(zod@3.23.8):
     dependencies:
-      zod: 3.23.7
+      zod: 3.23.8
 
-  zod@3.23.7: {}
+  zod@3.23.8: {}

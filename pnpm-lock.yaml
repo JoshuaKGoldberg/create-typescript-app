@@ -71,7 +71,7 @@ importers:
         version: 6.1.1
       '@release-it/conventional-changelog':
         specifier: ^8.0.1
-        version: 8.0.1(release-it@17.2.1(typescript@5.4.3))
+        version: 8.0.1(release-it@17.3.0(typescript@5.4.3))
       '@types/eslint-plugin-markdown':
         specifier: ^2.0.2
         version: 2.0.2
@@ -157,8 +157,8 @@ importers:
         specifier: ^2.5.0
         version: 2.5.0(prettier@3.1.0)
       release-it:
-        specifier: ^17.2.0
-        version: 17.2.1(typescript@5.4.3)
+        specifier: ^17.3.0
+        version: 17.3.0(typescript@5.4.3)
       sentences-per-line:
         specifier: ^0.2.1
         version: 0.2.1
@@ -761,8 +761,8 @@ packages:
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
 
-  '@inquirer/figures@1.0.1':
-    resolution: {integrity: sha512-mtup3wVKia3ZwULPHcbs4Mor8Voi+iIXEWD7wCNbIO6lYR62oPCTQyrddi5OMYVXHzeCSoneZwJuS8sBvlEwDw==}
+  '@inquirer/figures@1.0.2':
+    resolution: {integrity: sha512-4F1MBwVr3c/m4bAUef6LgkvBfSjzwH+OfldgHqcuacWwSUetFebM2wi58WfG9uk1rR98U6GwLed4asLJbwdV5w==}
     engines: {node: '>=18'}
 
   '@isaacs/cliui@8.0.2':
@@ -966,12 +966,6 @@ packages:
     peerDependencies:
       '@octokit/core': '>=5'
 
-  '@octokit/plugin-rest-endpoint-methods@10.4.1':
-    resolution: {integrity: sha512-xV1b+ceKV9KytQe3zCVqjg+8GTGfDYwaT1ATU5isiUyVtlVAO3HNdzpS4sr4GBx4hxQ46s7ITtZrAsxG22+rVg==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      '@octokit/core': '5'
-
   '@octokit/plugin-rest-endpoint-methods@13.2.2':
     resolution: {integrity: sha512-EI7kXWidkt3Xlok5uN43suK99VWqc8OaIMktY9d9+RNKl69juoTyxmLoWPIZgJYzi41qj/9zU7G/ljnNOJ5AFA==}
     engines: {node: '>= 18'}
@@ -1018,8 +1012,8 @@ packages:
     resolution: {integrity: sha512-pyAguc0p+f+GbQho0uNetNQMmLG1e80WjkIaqqgUkihqUp0boRU6nKItXO4VWnr+nbZiLGEyy4TeKRwqaLvYgw==}
     engines: {node: '>= 18'}
 
-  '@octokit/rest@20.1.0':
-    resolution: {integrity: sha512-STVO3itHQLrp80lvcYB2UIKoeil5Ctsgd2s1AM+du3HqZIR35ZH7WE9HLwUOLXH0myA0y3AGNPo8gZtcgIbw0g==}
+  '@octokit/rest@20.1.1':
+    resolution: {integrity: sha512-MB4AYDsM5jhIHro/dq4ix1iWTLGToIGk6cWF5L6vanFaMble5jTX/UBQyiv05HsWnwUtY8JrfHy2LWfKwihqMw==}
     engines: {node: '>= 18'}
 
   '@octokit/types@12.6.0':
@@ -2635,6 +2629,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -2650,8 +2645,8 @@ packages:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  inquirer@9.2.19:
-    resolution: {integrity: sha512-WpxOT71HGsFya6/mj5PUue0sWwbpbiPfAR+332zLj/siB0QA1PZM8v3GepegFV1Op189UxHUCF6y8AySdtOMVA==}
+  inquirer@9.2.22:
+    resolution: {integrity: sha512-SqLLa/Oe5rZUagTR9z+Zd6izyatHglbmbvVofo1KzuVB54YHleWzeHNLoR7FOICGOeQSqeLh1cordb3MzhGcEw==}
     engines: {node: '>=18'}
 
   internal-slot@1.0.7:
@@ -3127,10 +3122,6 @@ packages:
   lru-cache@10.2.2:
     resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
     engines: {node: 14 || >=16.14}
-
-  lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
-    engines: {node: '>=10'}
 
   lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
@@ -3688,9 +3679,9 @@ packages:
     resolution: {integrity: sha512-+crtS5QjFRqFCoQmvGduwYWEBng99ZvmFvF+cUJkGYF1L1BfU8C6Zp9T7f5vPAwyLkUExpvK+ANVZmGU49qi4Q==}
     engines: {node: '>=12'}
 
-  release-it@17.2.1:
-    resolution: {integrity: sha512-zBOpaHyjrXC3g/9rHyQlvuDw9yCn9AGphrlL+t3gWNEhbZKEQ62WNY45JxllcJMNx9orQUxBZ3o7pVCqkeuTbg==}
-    engines: {node: ^18.18.0 || ^20.8.0 || ^21.0.0}
+  release-it@17.3.0:
+    resolution: {integrity: sha512-7t9a2WEwqQKCdteshZUrO/3RX60plS5CzYAFr5+4Zj8qvRx1pFOFVglJSz4BeFAEd2yejpPxfI60+qRUzLEDZw==}
+    engines: {node: ^18.18.0 || ^20.8.0 || ^22.0.0}
     hasBin: true
 
   repeat-string@1.6.1:
@@ -3804,8 +3795,8 @@ packages:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
     engines: {node: '>=12'}
 
-  semver@7.6.0:
-    resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
+  semver@7.6.2:
+    resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4437,9 +4428,6 @@ packages:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
 
-  yallist@4.0.0:
-    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-
   yaml-eslint-parser@1.2.2:
     resolution: {integrity: sha512-pEwzfsKbTrB8G3xc/sN7aw1v6A6c/pKxLAkjclnAyo5g5qOh6eL9WGu0o3cSDQZKrTNk4KL4lQSwZW+nBkANEg==}
     engines: {node: ^14.17.0 || >=16.0.0}
@@ -4956,7 +4944,7 @@ snapshots:
 
   '@iarna/toml@2.2.5': {}
 
-  '@inquirer/figures@1.0.1': {}
+  '@inquirer/figures@1.0.2': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -5240,11 +5228,6 @@ snapshots:
     dependencies:
       '@octokit/core': 5.2.0
 
-  '@octokit/plugin-rest-endpoint-methods@10.4.1(@octokit/core@5.2.0)':
-    dependencies:
-      '@octokit/core': 5.2.0
-      '@octokit/types': 12.6.0
-
   '@octokit/plugin-rest-endpoint-methods@13.2.2(@octokit/core@5.2.0)':
     dependencies:
       '@octokit/core': 5.2.0
@@ -5305,12 +5288,12 @@ snapshots:
       '@octokit/types': 13.5.0
       universal-user-agent: 7.0.2
 
-  '@octokit/rest@20.1.0':
+  '@octokit/rest@20.1.1':
     dependencies:
       '@octokit/core': 5.2.0
-      '@octokit/plugin-paginate-rest': 9.2.1(@octokit/core@5.2.0)
+      '@octokit/plugin-paginate-rest': 11.3.1(@octokit/core@5.2.0)
       '@octokit/plugin-request-log': 4.0.0(@octokit/core@5.2.0)
-      '@octokit/plugin-rest-endpoint-methods': 10.4.1(@octokit/core@5.2.0)
+      '@octokit/plugin-rest-endpoint-methods': 13.2.2(@octokit/core@5.2.0)
 
   '@octokit/types@12.6.0':
     dependencies:
@@ -5357,13 +5340,13 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@release-it/conventional-changelog@8.0.1(release-it@17.2.1(typescript@5.4.3))':
+  '@release-it/conventional-changelog@8.0.1(release-it@17.3.0(typescript@5.4.3))':
     dependencies:
       concat-stream: 2.0.0
       conventional-changelog: 5.1.0
       conventional-recommended-bump: 9.0.0
-      release-it: 17.2.1(typescript@5.4.3)
-      semver: 7.6.0
+      release-it: 17.3.0(typescript@5.4.3)
+      semver: 7.6.2
 
   '@rollup/rollup-android-arm-eabi@4.13.0':
     optional: true
@@ -5492,7 +5475,7 @@ snapshots:
       graphemer: 1.4.0
       ignore: 5.3.1
       natural-compare: 1.4.0
-      semver: 7.6.0
+      semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.4.3)
     optionalDependencies:
       typescript: 5.4.3
@@ -5546,7 +5529,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.6.0
+      semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.4.3)
     optionalDependencies:
       typescript: 5.4.3
@@ -5561,7 +5544,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.4
-      semver: 7.6.0
+      semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.4.3)
     optionalDependencies:
       typescript: 5.4.3
@@ -5577,7 +5560,7 @@ snapshots:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.4.3)
       eslint: 9.2.0
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -5591,7 +5574,7 @@ snapshots:
       '@typescript-eslint/types': 7.7.0
       '@typescript-eslint/typescript-estree': 7.7.0(typescript@5.4.3)
       eslint: 9.2.0
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -5858,7 +5841,7 @@ snapshots:
 
   builtins@5.0.1:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   bundle-name@4.1.0:
     dependencies:
@@ -6136,7 +6119,7 @@ snapshots:
       handlebars: 4.7.8
       json-stringify-safe: 5.0.1
       meow: 12.1.1
-      semver: 7.6.0
+      semver: 7.6.2
       split2: 4.2.0
 
   conventional-changelog@5.1.0:
@@ -6273,7 +6256,7 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       file-entry-cache: 7.0.2
       get-stdin: 9.0.0
-      semver: 7.6.0
+      semver: 7.6.2
       strip-ansi: 7.1.0
       vscode-uri: 3.0.8
 
@@ -6572,7 +6555,7 @@ snapshots:
   eslint-compat-utils@0.5.0(eslint@9.2.0):
     dependencies:
       eslint: 9.2.0
-      semver: 7.6.0
+      semver: 7.6.2
 
   eslint-plugin-es-x@7.5.0(eslint@9.2.0):
     dependencies:
@@ -6591,7 +6574,7 @@ snapshots:
       eslint: 9.2.0
       esquery: 1.5.0
       is-builtin-module: 3.2.1
-      semver: 7.6.0
+      semver: 7.6.2
       spdx-expression-parse: 4.0.0
     transitivePeerDependencies:
       - supports-color
@@ -6624,7 +6607,7 @@ snapshots:
       globals: 15.0.0
       ignore: 5.3.1
       minimatch: 9.0.4
-      semver: 7.6.0
+      semver: 7.6.2
 
   eslint-plugin-package-json@0.13.0(eslint@9.2.0)(jsonc-eslint-parser@2.4.0):
     dependencies:
@@ -6633,7 +6616,7 @@ snapshots:
       eslint: 9.2.0
       jsonc-eslint-parser: 2.4.0
       package-json-validator: 0.6.3
-      semver: 7.6.0
+      semver: 7.6.2
       sort-object-keys: 1.1.3
       sort-package-json: 1.57.0
       validate-npm-package-name: 5.0.0
@@ -6975,7 +6958,7 @@ snapshots:
   git-semver-tags@7.0.1:
     dependencies:
       meow: 12.1.1
-      semver: 7.6.0
+      semver: 7.6.2
 
   git-up@7.0.0:
     dependencies:
@@ -7231,9 +7214,9 @@ snapshots:
 
   ini@4.1.1: {}
 
-  inquirer@9.2.19:
+  inquirer@9.2.22:
     dependencies:
-      '@inquirer/figures': 1.0.1
+      '@inquirer/figures': 1.0.2
       '@ljharb/through': 2.3.13
       ansi-escapes: 4.3.2
       chalk: 5.3.0
@@ -7507,7 +7490,7 @@ snapshots:
       acorn: 8.11.3
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
-      semver: 7.6.0
+      semver: 7.6.2
 
   jsonc-parser@3.2.1: {}
 
@@ -7532,7 +7515,7 @@ snapshots:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.3
-      semver: 7.6.0
+      semver: 7.6.2
 
   jwa@1.4.1:
     dependencies:
@@ -7694,10 +7677,6 @@ snapshots:
 
   lru-cache@10.2.2: {}
 
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
-
   lru-cache@7.18.3: {}
 
   macos-release@3.2.0: {}
@@ -7718,7 +7697,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   map-obj@2.0.0: {}
 
@@ -7879,7 +7858,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.1
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -8068,7 +8047,7 @@ snapshots:
       got: 12.6.1
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.6.0
+      semver: 7.6.2
 
   parent-module@1.0.1:
     dependencies:
@@ -8311,10 +8290,10 @@ snapshots:
     dependencies:
       rc: 1.2.8
 
-  release-it@17.2.1(typescript@5.4.3):
+  release-it@17.3.0(typescript@5.4.3):
     dependencies:
       '@iarna/toml': 2.2.5
-      '@octokit/rest': 20.1.0
+      '@octokit/rest': 20.1.1
       async-retry: 1.3.3
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.4.3)
@@ -8322,7 +8301,7 @@ snapshots:
       git-url-parse: 14.0.0
       globby: 14.0.1
       got: 13.0.0
-      inquirer: 9.2.19
+      inquirer: 9.2.22
       is-ci: 3.0.1
       issue-parser: 7.0.0
       lodash: 4.17.21
@@ -8334,7 +8313,7 @@ snapshots:
       os-name: 5.1.0
       promise.allsettled: 1.0.7
       proxy-agent: 6.4.0
-      semver: 7.6.0
+      semver: 7.6.2
       shelljs: 0.8.5
       update-notifier: 7.0.0
       url-join: 5.0.0
@@ -8461,11 +8440,9 @@ snapshots:
 
   semver-diff@4.0.0:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
-  semver@7.6.0:
-    dependencies:
-      lru-cache: 6.0.0
+  semver@7.6.2: {}
 
   sentences-per-line@0.2.1:
     dependencies:
@@ -8568,7 +8545,7 @@ snapshots:
       git-hooks-list: 3.1.0
       globby: 13.2.2
       is-plain-obj: 4.1.0
-      semver: 7.6.0
+      semver: 7.6.2
       sort-object-keys: 1.1.3
 
   source-map-js@1.1.0: {}
@@ -8932,7 +8909,7 @@ snapshots:
       is-npm: 6.0.0
       latest-version: 7.0.0
       pupa: 3.1.0
-      semver: 7.6.0
+      semver: 7.6.2
       semver-diff: 4.0.0
       xdg-basedir: 5.1.0
 
@@ -9113,8 +9090,6 @@ snapshots:
   xdg-basedir@5.1.0: {}
 
   y18n@5.0.8: {}
-
-  yallist@4.0.0: {}
 
   yaml-eslint-parser@1.2.2:
     dependencies:

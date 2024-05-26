@@ -11,6 +11,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"all-contributors-for-repository",
 			"chalk",
 			"execa",
+			"get-github-auth-token",
 			"git-remote-origin-url",
 			"git-url-parse",
 			"lazy-value",

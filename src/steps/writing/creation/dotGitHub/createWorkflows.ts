@@ -84,12 +84,13 @@ export function createWorkflows(options: Options) {
 					{ uses: "./.github/actions/prepare" },
 					{
 						env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
-						uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.3.2`,
+						uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.4.3`,
 					},
 				],
 			}),
 		}),
 		"accessibility-alt-text-bot.yml": createWorkflowFile({
+			if: "${{ !endsWith(github.actor, '[bot]') }}",
 			name: "Accessibility Alt Text Bot",
 			on: {
 				issue_comment: {
@@ -114,7 +115,7 @@ export function createWorkflows(options: Options) {
 		}),
 		"lint.yml": createWorkflowFile({
 			name: "Lint",
-			runs: ["pnpm build || true", "pnpm lint"],
+			runs: [...(options.bin ? ["pnpm build"] : []), "pnpm lint"],
 		}),
 		...(!options.excludeLintKnip && {
 			"lint-knip.yml": createWorkflowFile({
@@ -126,12 +127,6 @@ export function createWorkflows(options: Options) {
 			"lint-markdown.yml": createWorkflowFile({
 				name: "Lint Markdown",
 				runs: ["pnpm lint:md"],
-			}),
-		}),
-		...(!options.excludeLintPackageJson && {
-			"lint-package-json.yml": createWorkflowFile({
-				name: "Lint Package JSON",
-				runs: ["pnpm lint:package-json"],
 			}),
 		}),
 		...(!options.excludeLintPackages && {

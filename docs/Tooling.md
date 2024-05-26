@@ -23,7 +23,6 @@ This table summarizes each tooling piece and which base levels they're included 
 | [Compliance](#compliance)                     | `--exclude-compliance`         |         |        | 💯         |
 | [Contributors](#contributors)                 | `--exclude-contributors`       |         | ✅     | 💯         |
 | [Formatting](#formatting)                     |                                | ✔️      | ✅     | 💯         |
-| [Lint Deprecation](#lint-deprecation)         | `--exclude-lint-deprecation`   |         |        | 💯         |
 | [Lint ESLint](#lint-eslint)                   | `--exclude-lint-eslint`        |         |        | 💯         |
 | [Lint JSDoc](#lint-jsdoc)                     | `--exclude-lint-jsdoc`         |         |        | 💯         |
 | [Lint JSON](#lint-json)                       | `--exclude-lint-json`          |         |        | 💯         |
@@ -194,7 +193,6 @@ pnpm run lint:knip
 Additionally:
 
 - [`console-fail-test`](https://github.com/JoshuaKGoldberg/console-fail-test) will also be added to ensure tests don't accidentally log to the console.
-- [`eslint-plugin-no-only-tests`](https://github.com/levibuzolic/eslint-plugin-no-only-tests) will be added to the ESLint config to ensure calls to `it.only` or similar are not checked in
 - [`eslint-plugin-vitest`](https://github.com/veritem/eslint-plugin-vitest) will be added to the ESLint config to lint for Vitest-specific issues
 
 Running tests in watch mode:
@@ -221,7 +219,6 @@ This level is for developers who are eager to get the maximum tooling benefits i
 Using the _"everything"_ level will gain you comprehensive, strict coverage of all sorts of repository issues, including auto-sorting of properties and strict ESLint configs.
 
 - [Compliance](#compliance)
-- [Lint Deprecation](#lint-deprecation)
 - [Lint ESLint](#lint-eslint)
 - [Lint JSDoc](#lint-jsdoc)
 - [Lint JSON](#lint-json)
@@ -239,13 +236,9 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 
 [**PR Compliance Action**](https://github.com/mtfoley/pr-compliance-action): Checks PRs for compliance such as addressing a linked issue and proper title formatting.
 
-### Lint Deprecation
-
-[`eslint-plugin-deprecation`](https://github.com/gund/eslint-plugin-deprecation): Reports on usage of code marked with `@deprecated`.
-
 ### Lint ESLint
 
-[`eslint-plugin-eslint-comments`](https://github.com/mysticatea/eslint-plugin-eslint-comments): Enforces proper usage of [ESLint configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments).
+[`@eslint-community/eslint-plugin-eslint-comments`](https://eslint-community.github.io/eslint-plugin-eslint-comments): Enforces proper usage of [ESLint configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments).
 
 ### Lint JSDoc
 
@@ -267,13 +260,7 @@ pnpm lint:md
 
 ### Lint Package JSON
 
-[`npm-package-json-lint`](https://github.com/tclindner/npm-package-json-lint): Linting for `package.json` files.
-
-```shell
-pnpm lint:package-json
-```
-
-> This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/839)).
+[`eslint-plugin-package-json`](https://github.com/JoshuaKGoldberg/eslint-plugin-package-json): Linting for `package.json` files.
 
 ### Lint Packages
 

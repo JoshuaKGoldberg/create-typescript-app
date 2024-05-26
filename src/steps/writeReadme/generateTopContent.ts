@@ -4,10 +4,38 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 	const remainingExistingBadges = new Set(existingBadges);
 	const badges: string[] = [];
 
-	function spliceBadge(
-		badgeLine: false | string | undefined,
-		existingMatcher: RegExp,
-	) {
+	for (const [badgeLine, existingMatcher] of [
+		[
+			!options.excludeAllContributors &&
+				`<!-- prettier-ignore-start -->
+	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/👪_all_contributors-1-21bb42.svg" /></a>
+	<!-- ALL-CONTRIBUTORS-BADGE:END -->
+	<!-- prettier-ignore-end -->`,
+			/<a\s+href.*contributors.*All\s+Contributors/,
+		],
+		[
+			`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>`,
+			/CODE_OF_CONDUCT\.md/,
+		],
+		[
+			!options.excludeTests &&
+				`<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage" /></a>`,
+			/https:\/\/codecov\.io\/gh/,
+		],
+		[
+			`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>`,
+			/LICENSE\.(md|txt)/,
+		],
+		[
+			`<a href="http://npmjs.com/package/${options.repository}"><img alt="📦 npm version" src="https://img.shields.io/npm/v/${options.repository}?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>`,
+			/npm.*v/i,
+		],
+		[
+			`<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />`,
+			/typescript.*strict/i,
+		],
+	] as const) {
 		const existingMatch = existingBadges.find((existingLine) =>
 			existingMatcher.test(existingLine),
 		);
@@ -21,50 +49,6 @@ export function generateTopContent(options: Options, existingBadges: string[]) {
 		}
 	}
 
-	for (const [badgeLine, existingMatcher] of [
-		[
-			!options.excludeAllContributors &&
-				`<!-- prettier-ignore-start -->
-	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="All Contributors: 2" src="https://img.shields.io/badge/all_contributors-17-21bb42.svg" /></a>
-	<!-- ALL-CONTRIBUTORS-BADGE:END -->
-	<!-- prettier-ignore-end -->`,
-			/ALL-CONTRIBUTORS-BADGE:START/,
-		],
-		[
-			!options.excludeTests &&
-				`<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank"><img alt="Codecov Test Coverage" src="https://codecov.io/gh/${options.owner}/${options.repository}/branch/main/graph/badge.svg"/></a>`,
-			/https:\/\/codecov\.io\/gh/,
-		],
-		[
-			`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="Contributor Covenant" src="https://img.shields.io/badge/code_of_conduct-enforced-21bb42" /></a>`,
-			/CODE_OF_CONDUCT\.md/,
-		],
-		[
-			`<a href="https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md" target="_blank"><img alt="License: MIT" src="https://img.shields.io/github/license/${options.owner}/${options.repository}?color=21bb42"></a>`,
-			/LICENSE\.(md|txt)/,
-		],
-		[
-			options.funding &&
-				`<a href="https://github.com/sponsors/${options.funding}" target="_blank"><img alt="Sponsor: On GitHub" src="https://img.shields.io/badge/sponsor-on_github-21bb42.svg" /></a>`,
-			/github.+sponsors/,
-		],
-		[
-			`<img alt="Style: Prettier" src="https://img.shields.io/badge/style-prettier-21bb42.svg" />`,
-			/style.*prettier/i,
-		],
-		[
-			`<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
-			/typescript.*strict/i,
-		],
-		[
-			`<img alt="npm package version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42" />`,
-			/npm.*v/i,
-		],
-	] as const) {
-		spliceBadge(badgeLine, existingMatcher);
-	}
-
 	return `<h1 align="center">${options.title}</h1>
 
 <p align="center">${options.description}</p>
@@ -74,6 +58,14 @@ ${[...badges, ...remainingExistingBadges]
 	.map((badge) => `\t${badge}`)
 	.join("\n")}
 </p>${
+		options.logo
+			? `
+
+<img align="right" alt="${options.logo.alt}" src="${options.logo.src}">
+
+`
+			: ""
+	}${
 		options.mode === "migrate"
 			? ""
 			: `

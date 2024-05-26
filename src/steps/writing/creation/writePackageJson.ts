@@ -1,5 +1,5 @@
 import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
-import { Options } from "../../../shared/types.js";
+import { Options, PartialPackageData } from "../../../shared/types.js";
 import { formatJson } from "./formatters/formatJson.js";
 
 const devDependenciesToRemove = [
@@ -31,7 +31,9 @@ const devDependenciesToRemove = [
 
 export async function writePackageJson(options: Options) {
 	const existingPackageJson =
-		((await readFileSafeAsJson("./package.json")) as null | object) ?? {};
+		((await readFileSafeAsJson(
+			"./package.json",
+		)) as PartialPackageData | null) ?? {};
 
 	return await formatJson({
 		// If we didn't already have a version, set it to 0.0.0
@@ -60,14 +62,19 @@ export async function writePackageJson(options: Options) {
 		engines: {
 			node: ">=18",
 		},
-		files: ["lib/", "package.json", "LICENSE.md", "README.md"],
+		files: [
+			options.bin?.replace(/^\.\//, ""),
+			"lib/",
+			"package.json",
+			"LICENSE.md",
+			"README.md",
+		].filter(Boolean),
 		license: "MIT",
 		"lint-staged": {
 			"*": "prettier --ignore-unknown --write",
 		},
 		main: "./lib/index.js",
 		name: options.repository,
-		packageManager: "pnpm@8.7.0",
 		publishConfig: {
 			provenance: true,
 		},
@@ -76,9 +83,10 @@ export async function writePackageJson(options: Options) {
 			url: `https://github.com/${options.owner}/${options.repository}`,
 		},
 		scripts: {
+			...existingPackageJson.scripts,
 			build: "tsup",
-			format: 'prettier "**/*" --ignore-unknown',
-			lint: "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
+			format: "prettier .",
+			lint: "eslint . --max-warnings 0",
 			...(!options.excludeLintKnip && {
 				"lint:knip": "knip",
 			}),
@@ -86,19 +94,13 @@ export async function writePackageJson(options: Options) {
 				"lint:md":
 					'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',
 			}),
-			...(!options.excludeLintPackageJson && {
-				"lint:package-json": "npmPkgJsonLint .",
-			}),
 			...(!options.excludeLintPackages && {
 				"lint:packages": "pnpm dedupe --check",
 			}),
 			...(!options.excludeLintSpelling && {
 				"lint:spelling": 'cspell "**" ".github/**/*"',
 			}),
-			prepare: "husky install",
-			...(!options.excludeReleases && {
-				"should-semantic-release": "should-semantic-release --verbose",
-			}),
+			prepare: "husky",
 			...(!options.excludeReleases && { test: "vitest" }),
 			tsc: "tsc",
 		},

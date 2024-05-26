@@ -1,4 +1,4 @@
-import { $ } from "execa";
+import { getGitHubAuthToken } from "get-github-auth-token";
 import { Octokit } from "octokit";
 
 export interface GitHub {
@@ -6,23 +6,17 @@ export interface GitHub {
 	octokit: Octokit;
 }
 
-async function tryGhAuthToken() {
-	try {
-		return (await $`gh auth token`).stdout.trim();
-	} catch {
-		return undefined;
-	}
-}
-
 export async function getGitHub(): Promise<GitHub | undefined> {
-	const auth = (await tryGhAuthToken()) ?? process.env.GH_TOKEN;
-	if (!auth) {
+	const auth = await getGitHubAuthToken();
+
+	if (!auth.succeeded) {
 		throw new Error(
 			"Couldn't authenticate with GitHub. Either log in with `gh auth login` (https://cli.github.com) or set a GH_TOKEN environment variable.",
+			{ cause: auth.error },
 		);
 	}
 
-	const octokit = new Octokit({ auth });
+	const octokit = new Octokit({ auth: auth.token });
 
-	return { auth, octokit };
+	return { auth: auth.token, octokit };
 }

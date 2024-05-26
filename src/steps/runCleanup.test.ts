@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { describe, expect, it, vi } from "vitest";
 
-import { runCommands } from "./runCommands.js";
+import { runCleanup } from "./runCleanup.js";
 
 const mockExecaCommand = vi.fn().mockRejectedValue("Oh no!");
 
@@ -23,11 +23,11 @@ vi.mock("../shared/cli/spinners.js", () => ({
 	withSpinner: vi.fn((_label: string, callback: () => unknown) => callback()),
 }));
 
-describe("runCommands", () => {
+describe("runCleanup", () => {
 	it("does not log when the commands all succeed", async () => {
 		mockExecaCommand.mockResolvedValue(undefined);
 
-		await runCommands("label", ["first", "second"]);
+		await runCleanup(["first", "second"], "create");
 
 		expect(mockLogLine).not.toHaveBeenCalled();
 	});
@@ -37,7 +37,7 @@ describe("runCommands", () => {
 			.mockRejectedValueOnce(new Error("Oh no!"))
 			.mockResolvedValue(undefined);
 
-		await runCommands("label", ["first", "second"]);
+		await runCleanup(["first", "second"], "create");
 
 		expect(mockLogLine).toHaveBeenCalledWith(
 			[
@@ -51,7 +51,7 @@ describe("runCommands", () => {
 	it("logs twice when two commands fail", async () => {
 		mockExecaCommand.mockRejectedValue(new Error("Oh no!"));
 
-		await runCommands("label", ["first", "second"]);
+		await runCleanup(["first", "second"], "create");
 
 		expect(mockLogLine).toHaveBeenCalledWith(
 			[

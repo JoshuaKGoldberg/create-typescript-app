@@ -9,12 +9,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           flags: unit
-      - if: always()
-        name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
-          name: code-coverage-report
-          path: coverage
 
 name: Test
 

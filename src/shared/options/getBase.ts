@@ -1,14 +1,14 @@
 import { readPackageData } from "../packages.js";
 import { OptionsBase } from "../types.js";
 
-const commonScripts = new Set(["lint:knip", "should-semantic-release", "test"]);
+const commonScripts = new Set(["lint:knip", "test"]);
 
 const everythingScripts = new Set([
 	"lint:md",
-	"lint:package-json",
 	"lint:packages",
 	"lint:spelling",
 ]);
+
 export async function getBase(): Promise<OptionsBase> {
 	const scripts = Object.keys((await readPackageData()).scripts ?? {});
 

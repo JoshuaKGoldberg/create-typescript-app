@@ -1,29 +1,17 @@
 import { Options } from "../../../shared/types.js";
-import { createESLintRC } from "./createESLintRC.js";
+import { createDotGitignore } from "./createDotGitignore.js";
+import { createESLintConfig } from "./createESLintConfig.js";
+import { createTsupConfig } from "./createTsupConfig.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
-import { formatTypeScript } from "./formatters/formatTypeScript.js";
 import { writeAllContributorsRC } from "./writeAllContributorsRC.js";
 import { writePackageJson } from "./writePackageJson.js";
 
 export async function createRootFiles(options: Options) {
 	return {
 		".all-contributorsrc": await writeAllContributorsRC(options),
-		".eslintignore": formatIgnoreFile(
-			[
-				"!.*",
-				...(options.excludeTests ? [] : ["coverage"]),
-				"lib",
-				"node_modules",
-				"pnpm-lock.yaml",
-			].filter(Boolean),
-		),
-		".eslintrc.cjs": await createESLintRC(options),
-		".gitignore": formatIgnoreFile([
-			...(options.excludeTests ? [] : ["coverage/"]),
-			"lib/",
-			"node_modules/",
-		]),
+		".gitignore": createDotGitignore(options),
+		"eslint.config.js": await createESLintConfig(options),
 		...(!options.excludeLintMd && {
 			".markdownlint.json": await formatJson({
 				extends: "markdownlint/style/prettier",
@@ -37,29 +25,16 @@ export async function createRootFiles(options: Options) {
 				"node_modules/",
 			]),
 		}),
-		...(!options.excludeLintPackageJson && {
-			".npmpackagejsonlintrc.json": await formatJson({
-				extends: "npm-package-json-lint-config-default",
-				rules: {
-					"require-description": "error",
-					"require-license": "error",
-				},
-			}),
-		}),
-		".nvmrc": `20.10.0\n`,
+		".nvmrc": `20.12.2\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",
 		]),
-		".prettierrc": await formatJson({
+		".prettierrc.json": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
 			overrides: [
-				{
-					files: ".*rc",
-					options: { parser: "json" },
-				},
 				{
 					files: ".nvmrc",
 					options: { parser: "yaml" },
@@ -122,26 +97,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					"node_modules",
 					"pnpm-lock.yaml",
 				],
-				words: [
-					"Codecov",
-					"codespace",
-					"commitlint",
-					"contributorsrc",
-					"conventionalcommits",
-					...(options.excludeLintKnip ? [] : ["knip"]),
-					"lcov",
-					"markdownlintignore",
-					"npmpackagejsonlintrc",
-					"outro",
-					"packagejson",
-					"tsup",
-					"quickstart",
-					"wontfix",
-				].sort(),
 			}),
 		}),
 		...(!options.excludeLintKnip && {
-			"knip.jsonc": await formatJson({
+			"knip.json": await formatJson({
 				$schema: "https://unpkg.com/knip@latest/schema.json",
 				entry: ["src/index.ts!"],
 				ignoreExportsUsedInFile: {
@@ -152,10 +111,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			}),
 		}),
 		"package.json": await writePackageJson(options),
-		"tsconfig.eslint.json": await formatJson({
-			extends: "./tsconfig.json",
-			include: ["."],
-		}),
 		"tsconfig.json": await formatJson({
 			compilerOptions: {
 				declaration: true,
@@ -173,19 +128,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			},
 			include: ["src"],
 		}),
-		"tsup.config.ts":
-			await formatTypeScript(`import { defineConfig } from "tsup";
-
-		export default defineConfig({
-			bundle: false,
-			clean: true,
-			dts: true,
-			entry: ["src/**/*.ts"${options.excludeTests ? "" : `, "!src/**/*.test.*"`}],
-			format: "esm",
-			outDir: "lib",
-			sourcemap: true,
-		});
-		`),
+		"tsup.config.ts": await createTsupConfig(options),
 		...(!options.excludeTests && {
 			"vitest.config.ts": `import { defineConfig } from "vitest/config";
 

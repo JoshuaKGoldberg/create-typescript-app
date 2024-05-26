@@ -1,12 +1,25 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { Options } from "../types.js";
 import { augmentOptionsWithExcludes } from "./augmentOptionsWithExcludes.js";
 
+const mockMultiselect = vi.fn();
+const mockSelect = vi.fn();
+
+vi.mock("@clack/prompts", () => ({
+	isCancel: () => false,
+	get multiselect() {
+		return mockMultiselect;
+	},
+	get select() {
+		return mockSelect;
+	},
+}));
+
 const optionsBase = {
 	access: "public",
 	author: undefined,
-	base: "everything",
+	base: undefined,
 	description: "",
 	directory: ".",
 	email: {
@@ -15,7 +28,6 @@ const optionsBase = {
 	},
 	excludeAllContributors: undefined,
 	excludeCompliance: undefined,
-	excludeLintDeprecation: undefined,
 	excludeLintESLint: undefined,
 	excludeLintJSDoc: undefined,
 	excludeLintJson: undefined,
@@ -47,7 +59,52 @@ const optionsBase = {
 } satisfies Options;
 
 describe("augmentOptionsWithExcludes", () => {
-	it("returns options without exclusions and skips prompting when exclusions are provided manually", async () => {
+	it("returns options directly when no exclusions are provided and 'base' is provided for the prompt", async () => {
+		const base = "everything";
+
+		mockSelect.mockResolvedValueOnce(base);
+
+		const actual = await augmentOptionsWithExcludes(optionsBase);
+
+		expect(actual).toEqual({
+			...optionsBase,
+			base,
+		});
+	});
+
+	it("returns options based on the select when no exclusions are provided and 'prompt' is provided for the prompt", async () => {
+		const base = "prompt";
+
+		mockSelect.mockResolvedValueOnce(base);
+		mockMultiselect.mockResolvedValue([]);
+
+		const actual = await augmentOptionsWithExcludes(optionsBase);
+
+		expect(actual).toEqual({
+			...optionsBase,
+			base,
+			excludeAllContributors: true,
+			excludeCompliance: true,
+			excludeLintESLint: true,
+			excludeLintJSDoc: true,
+			excludeLintJson: true,
+			excludeLintKnip: true,
+			excludeLintMd: true,
+			excludeLintPackageJson: true,
+			excludeLintPackages: true,
+			excludeLintPerfectionist: true,
+			excludeLintRegex: true,
+			excludeLintSpelling: true,
+			excludeLintStrict: true,
+			excludeLintStylistic: true,
+			excludeLintYml: true,
+			excludeReleases: true,
+			excludeRenovate: true,
+			excludeTests: true,
+		});
+	});
+
+	it("skips prompting returns options directly when exclusions are provided manually", async () => {
 		const options = {
 			...optionsBase,
 			excludeCompliance: true,
@@ -69,7 +126,6 @@ describe("augmentOptionsWithExcludes", () => {
 		expect(actual).toEqual({
 			...options,
 			excludeCompliance: true,
-			excludeLintDeprecation: true,
 			excludeLintESLint: true,
 			excludeLintJSDoc: true,
 			excludeLintJson: true,
@@ -97,7 +153,6 @@ describe("augmentOptionsWithExcludes", () => {
 			...options,
 			excludeAllContributors: true,
 			excludeCompliance: true,
-			excludeLintDeprecation: true,
 			excludeLintESLint: true,
 			excludeLintJSDoc: true,
 			excludeLintJson: true,

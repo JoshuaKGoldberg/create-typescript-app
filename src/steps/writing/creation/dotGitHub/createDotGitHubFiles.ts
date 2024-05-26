@@ -2,7 +2,7 @@
 import { Options } from "../../../../shared/types.js";
 import { formatJson } from "../formatters/formatJson.js";
 import { formatYaml } from "../formatters/formatYaml.js";
-import { createDevelopment } from "./createDevelopment.js";
+import { createDevelopment } from "./createDevelopment/index.js";
 
 export async function createDotGitHubFiles(options: Options) {
 	return {
@@ -237,7 +237,7 @@ If you made it all the way to the end, bravo dear user, we love you.
 Please include your favorite emoji in the bottom of your issues and PRs to signal to us that you did in fact read this file and are trying to conform to it as best as possible.
 💖 is a good starter if you're not sure which to use.
 `,
-		"DEVELOPMENT.md": createDevelopment(options),
+		"DEVELOPMENT.md": await createDevelopment(options),
 		...(options.funding && {
 			"FUNDING.yml": formatYaml({ github: options.funding }),
 		}),
@@ -280,6 +280,8 @@ We appreciate your efforts and responsible disclosure and will make every effort
 			"renovate.json": await formatJson({
 				$schema: "https://docs.renovatebot.com/renovate-schema.json",
 				automerge: true,
+				extends: ["config:best-practices", "replacements:all"],
+				ignoreDeps: ["codecov/codecov-action"],
 				internalChecksFilter: "strict",
 				labels: ["dependencies"],
 				minimumReleaseAge: "3 days",

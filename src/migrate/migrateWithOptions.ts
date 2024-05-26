@@ -1,10 +1,12 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanupCommands } from "../shared/createCleanupCommands.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
 import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
-import { runCommands } from "../steps/runCommands.js";
+import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
+import { runCleanup } from "../steps/runCleanup.js";
 import { updateAllContributorsTable } from "../steps/updateAllContributorsTable.js";
 import { updateLocalFiles } from "../steps/updateLocalFiles.js";
 import { writeReadme } from "../steps/writeReadme/index.js";
@@ -60,8 +62,9 @@ export async function migrateWithOptions({
 		);
 	}
 
-	await runCommands("Cleaning up files", [
-		"pnpm lint --fix",
-		"pnpm format --write",
-	]);
+	if (!options.excludeLintSpelling) {
+		await withSpinner("Populating CSpell dictionary", populateCSpellDictionary);
+	}
+
+	await runCleanup(createCleanupCommands(options), options.mode);
 }

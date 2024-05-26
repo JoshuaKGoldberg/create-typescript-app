@@ -91,7 +91,6 @@ describe("writePackageJson", () => {
 			  },
 			  "main": "./lib/index.js",
 			  "name": "test-repository",
-			  "packageManager": "pnpm@8.7.0",
 			  "publishConfig": {
 			    "provenance": true,
 			  },
@@ -101,15 +100,13 @@ describe("writePackageJson", () => {
 			  },
 			  "scripts": {
 			    "build": "tsup",
-			    "format": "prettier "**/*" --ignore-unknown",
-			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
+			    "format": "prettier .",
+			    "lint": "eslint . --max-warnings 0",
 			    "lint:knip": "knip",
 			    "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
-			    "lint:package-json": "npmPkgJsonLint .",
 			    "lint:packages": "pnpm dedupe --check",
 			    "lint:spelling": "cspell "**" ".github/**/*"",
-			    "prepare": "husky install",
-			    "should-semantic-release": "should-semantic-release --verbose",
+			    "prepare": "husky",
 			    "test": "vitest",
 			    "tsc": "tsc",
 			  },
@@ -124,6 +121,7 @@ describe("writePackageJson", () => {
 
 		const packageJson = await writePackageJson({
 			...options,
+			bin: "./bin/index.js",
 			excludeAllContributors: true,
 			excludeCompliance: true,
 			excludeLintJson: true,
@@ -144,12 +142,14 @@ describe("writePackageJson", () => {
 			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
+			  "bin": "./bin/index.js",
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
 			    "node": ">=18",
 			  },
 			  "files": [
+			    "bin/index.js",
 			    "lib/",
 			    "package.json",
 			    "LICENSE.md",
@@ -161,7 +161,6 @@ describe("writePackageJson", () => {
 			  },
 			  "main": "./lib/index.js",
 			  "name": "test-repository",
-			  "packageManager": "pnpm@8.7.0",
 			  "publishConfig": {
 			    "provenance": true,
 			  },
@@ -171,9 +170,9 @@ describe("writePackageJson", () => {
 			  },
 			  "scripts": {
 			    "build": "tsup",
-			    "format": "prettier "**/*" --ignore-unknown",
-			    "lint": "eslint . .*js --max-warnings 0 --report-unused-disable-directives",
-			    "prepare": "husky install",
+			    "format": "prettier .",
+			    "lint": "eslint . --max-warnings 0",
+			    "prepare": "husky",
 			    "tsc": "tsc",
 			  },
 			  "type": "module",

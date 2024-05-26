@@ -49,6 +49,7 @@ interface WorkflowFileStep {
 
 interface WorkflowFileOptionsBase {
 	concurrency?: WorkflowFileConcurrency;
+	if?: string;
 	name: string;
 	on?: WorkflowFileOn;
 	permissions?: WorkflowFilePermissions;
@@ -81,6 +82,7 @@ export function createWorkflowFile({
 			concurrency,
 			jobs: {
 				[name.replaceAll(" ", "_").toLowerCase()]: {
+					...(options.if && { if: options.if }),
 					"runs-on": "ubuntu-latest",
 					steps:
 						"runs" in options

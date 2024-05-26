@@ -101,7 +101,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": ".eslintrc.cjs",
+			      "files": "eslint.config.js",
 			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
 			      "to": "",
 			    },
@@ -165,7 +165,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/initialize/index.ts",
 			",
 			      "to": "",
@@ -174,7 +174,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/migrate/index.ts",
 			",
 			      "to": "",
@@ -183,7 +183,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/index.ts!", "script/initialize*.js"]",
 			      "to": ""src/index.ts!"",
 			    },
@@ -191,7 +191,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/**/*.ts!", "script/**/*.js"]",
 			      "to": ""src/**/*.ts!"",
 			    },
@@ -268,7 +268,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": ".eslintrc.cjs",
+			      "files": "eslint.config.js",
 			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
 			      "to": "",
 			    },
@@ -332,7 +332,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/initialize/index.ts",
 			",
 			      "to": "",
@@ -341,7 +341,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "		"src/migrate/index.ts",
 			",
 			      "to": "",
@@ -350,7 +350,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/index.ts!", "script/initialize*.js"]",
 			      "to": ""src/index.ts!"",
 			    },
@@ -358,7 +358,7 @@ describe("updateLocalFiles", () => {
 			  [
 			    {
 			      "allowEmptyPaths": true,
-			      "files": "./knip.jsonc",
+			      "files": "./knip.json",
 			      "from": "["src/**/*.ts!", "script/**/*.js"]",
 			      "to": ""src/**/*.ts!"",
 			    },
@@ -383,6 +383,75 @@ describe("updateLocalFiles", () => {
 		`);
 	});
 
+	it("doesn't remove existing tooling when mode is migrate", async () => {
+		mockReadFileSafeAsJson.mockResolvedValue({});
+		mockReplaceInFile.mockResolvedValue([]);
+
+		await updateLocalFiles({ ...options, mode: "migrate" });
+
+		expect(mockReplaceInFile.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /Create TypeScript App/g,
+			      "to": "Stub Title",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /JoshuaKGoldberg\\(\\?:\\\\/\\(\\.\\+\\)\\)\\?/g,
+			      "to": [Function],
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "package.json",
+			      "from": /JoshuaKGoldberg/g,
+			      "to": "StubOwner",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": [
+			        "./.github/**/*",
+			        "./*.*",
+			      ],
+			      "from": /create-typescript-app/g,
+			      "to": "stub-repository",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "eslint.config.js",
+			      "from": /\\\\/\\\\\\*\\\\n\\.\\+\\\\\\*\\\\/\\\\n\\\\n/gs,
+			      "to": "",
+			    },
+			  ],
+			  [
+			    {
+			      "allowEmptyPaths": true,
+			      "files": "./package.json",
+			      "from": /"author": "\\.\\+"/g,
+			      "to": ""author": "undefined"",
+			    },
+			  ],
+			]
+		`);
+	});
+
 	it("does not replace an existing description when it does not exist", async () => {
 		mockReadFileSafeAsJson.mockResolvedValue({});
 		mockReplaceInFile.mockResolvedValue([]);
@@ -396,6 +465,7 @@ describe("updateLocalFiles", () => {
 			to: options.description,
 		});
 	});
+
 	it("replaces an existing description when it exists", async () => {
 		const existingDescription = "Existing description.";
 

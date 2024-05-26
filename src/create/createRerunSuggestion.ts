@@ -2,7 +2,7 @@ import { allArgOptions } from "../shared/options/args.js";
 import {
 	ExclusionKey,
 	getExclusions,
-} from "../shared/options/augmentOptionsWithExcludes.js";
+} from "../shared/options/exclusionKeys.js";
 import { Options } from "../shared/types.js";
 
 function getFirstMatchingArg(key: string) {
@@ -10,6 +10,8 @@ function getFirstMatchingArg(key: string) {
 		(arg) => arg.replaceAll("-", "") === key.toLowerCase(),
 	);
 }
+
+const defaultValues = new Map([["access", "public"]]);
 
 export function createRerunSuggestion(options: Partial<Options>): string {
 	const optionsNormalized = {
@@ -31,6 +33,10 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 					logoAlt: options.logo.alt,
 			  }
 			: { logo: undefined }),
+		...(options.offline && {
+			skipAllContributorsApi: undefined,
+			skipGitHubApi: undefined,
+		}),
 	};
 
 	const args = Object.entries(optionsNormalized)
@@ -38,18 +44,20 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 		.sort(([a], [b]) =>
 			a === "base" ? -1 : b === "base" ? 1 : a.localeCompare(b),
 		)
-		// Filter out all entries that have a key in the excluded object or have a falsy value
+		// Filter out entries with an excluded key or a default or falsy value
 		.filter(
 			([key, value]) =>
 				getExclusions(options, optionsNormalized.base)[key as ExclusionKey] ==
-					undefined && !!value,
+					undefined &&
+				!!value &&
+				value !== defaultValues.get(key),
 		)
 		.map(([key, value]) => {
-			return `--${getFirstMatchingArg(key)} ${stringifyValue(value)}`;
+			return `--${getFirstMatchingArg(key)}${stringifyValue(value)}`;
 		})
 		.join(" ");
 
-	return `npx create-typescript-app --mode ${options.mode} ${args}`;
+	return ["npx create-typescript-app", args].filter(Boolean).join(" ");
 }
 
 function stringifyValue(
@@ -59,9 +67,13 @@ function stringifyValue(
 		return stringifyValue(value.join(" "));
 	}
 
+	if (typeof value === "boolean" && value) {
+		return "";
+	}
+
 	const valueStringified = `${value}`;
 
 	return valueStringified.includes(" ")
-		? `"${valueStringified}"`
-		: valueStringified;
+		? ` "${valueStringified}"`
+		: ` ${valueStringified}`;
 }

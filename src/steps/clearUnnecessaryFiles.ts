@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+import * as fs from "node:fs/promises";
 
 const globPaths = [
 	...extensions(".babelrc", "cjs", "cts", "js", "json", "mjs"),
@@ -9,11 +9,14 @@ const globPaths = [
 	...extensions("jest.config", "cjs", "js", "json", "mjs", "ts"),
 	"./src/**/*.js",
 	".circleci/config.yml",
+	".github/codecov.yml",
 	".babelrc",
 	".npmignore",
+	".eslintignore",
 	".eslintrc",
 	"CODE_OF_CONDUCT.md",
 	"CONTRIBUTING.md",
+	".npmpackagejsonlintrc.json",
 	"codecov.yml",
 	"DEVELOPMENT.md",
 	"dist",

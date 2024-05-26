@@ -5,12 +5,10 @@ import { Options } from "../shared/types.js";
 
 export async function finalizeDependencies(options: Options) {
 	const devDependencies = [
-		"@types/eslint",
-		"@typescript-eslint/eslint-plugin",
-		"@typescript-eslint/parser",
+		"@eslint/js",
+		"@eslint-community/eslint-plugin-eslint-comments",
+		"@types/eslint-plugin-markdown",
 		"eslint",
-		"eslint-plugin-deprecation",
-		"eslint-plugin-eslint-comments",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
 		"eslint-plugin-regexp",
@@ -21,10 +19,12 @@ export async function finalizeDependencies(options: Options) {
 		"prettier-plugin-packagejson",
 		"tsup",
 		"typescript",
+		"typescript-eslint",
 		...(options.excludeAllContributors ? [] : ["all-contributors-cli"]),
-		...(options.excludeLintJson
+		...(options.excludeLintJson ? [] : ["eslint-plugin-jsonc"]),
+		...(options.excludeLintJson && options.excludeLintPackageJson
 			? []
-			: ["eslint-plugin-jsonc", "jsonc-eslint-parser"]),
+			: ["jsonc-eslint-parser"]),
 		...(options.excludeLintKnip ? [] : ["knip"]),
 		...(options.excludeLintMd
 			? []
@@ -34,29 +34,20 @@ export async function finalizeDependencies(options: Options) {
 					"markdownlint-cli",
 					"sentences-per-line",
 			  ]),
-		...(options.excludeLintPackageJson
-			? []
-			: ["npm-package-json-lint", "npm-package-json-lint-config-default"]),
+		...(options.excludeLintPackageJson ? [] : ["eslint-plugin-package-json"]),
 		...(options.excludeLintPerfectionist
 			? []
 			: ["eslint-plugin-perfectionist"]),
 		...(options.excludeLintSpelling ? [] : ["cspell"]),
-		...(options.excludeLintYml
-			? []
-			: ["eslint-plugin-yml", "yaml-eslint-parser"]),
+		...(options.excludeLintYml ? [] : ["eslint-plugin-yml"]),
 		...(options.excludeReleases
 			? []
-			: [
-					"@release-it/conventional-changelog",
-					"release-it",
-					"should-semantic-release",
-			  ]),
+			: ["@release-it/conventional-changelog", "release-it"]),
 		...(options.excludeTests
 			? []
 			: [
 					"@vitest/coverage-v8",
 					"console-fail-test",
-					"eslint-plugin-no-only-tests",
 					"eslint-plugin-vitest",
 					"vitest",
 			  ]),

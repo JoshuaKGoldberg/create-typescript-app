@@ -5,11 +5,11 @@ import { Options } from "../../shared/types.js";
 
 export async function initializeBranchProtectionSettings(
 	octokit: Octokit,
-	{ owner, repository }: Pick<Options, "owner" | "repository">,
+	options: Options,
 ) {
 	try {
 		await octokit.request(
-			`PUT /repos/${owner}/${repository}/branches/main/protection`,
+			`PUT /repos/${options.owner}/${options.repository}/branches/main/protection`,
 			{
 				allow_deletions: false,
 				allow_force_pushes: true,
@@ -18,23 +18,26 @@ export async function initializeBranchProtectionSettings(
 				block_creations: false,
 				branch: "main",
 				enforce_admins: false,
-				owner,
-				repo: repository,
+				owner: options.owner,
+				repo: options.repository,
 				required_conversation_resolution: true,
 				required_linear_history: false,
 				required_pull_request_reviews: null,
 				required_status_checks: {
 					checks: [
 						{ context: "build" },
-						{ context: "compliance" },
 						{ context: "lint" },
-						{ context: "lint_knip" },
-						{ context: "lint_markdown" },
-						{ context: "lint_package_json" },
-						{ context: "lint_packages" },
-						{ context: "lint_spelling" },
 						{ context: "prettier" },
-						{ context: "test" },
+						...(options.excludeCompliance ? [] : [{ context: "compliance" }]),
+						...(options.excludeLintKnip ? [] : [{ context: "lint_knip" }]),
+						...(options.excludeLintMd ? [] : [{ context: "lint_markdown" }]),
+						...(options.excludeLintPackages
+							? []
+							: [{ context: "lint_packages" }]),
+						...(options.excludeLintSpelling
+							? []
+							: [{ context: "lint_spelling" }]),
+						...(options.excludeTests ? [] : [{ context: "test" }]),
 					],
 					strict: false,
 				},

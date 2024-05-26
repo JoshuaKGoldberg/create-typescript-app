@@ -9,6 +9,7 @@ export async function formatJson(value: object) {
 		),
 		{
 			parser: "json",
+			useTabs: true,
 		},
 	);
 }

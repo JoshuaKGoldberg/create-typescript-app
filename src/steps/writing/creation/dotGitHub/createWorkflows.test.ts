@@ -7,6 +7,7 @@ const createOptions = (exclude: boolean) =>
 	({
 		access: "public",
 		base: "everything",
+		bin: exclude ? undefined : "./bin/index.js",
 		description: "Test description.",
 		directory: ".",
 		email: {
@@ -40,6 +41,7 @@ describe("createWorkflows", () => {
 			{
 			  "accessibility-alt-text-bot.yml": "jobs:
 			  accessibility_alt_text_bot:
+			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: github/accessibility-alt-text-bot@v1.4.0
@@ -120,7 +122,7 @@ describe("createWorkflows", () => {
 			      - uses: ./.github/actions/prepare
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.3.2
+			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.4.3
 
 			name: Contributors
 
@@ -154,22 +156,6 @@ describe("createWorkflows", () => {
 			      - run: pnpm lint:md
 
 			name: Lint Markdown
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "lint-package-json.yml": "jobs:
-			  lint_package_json:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm lint:package-json
-
-			name: Lint Package JSON
 
 			on:
 			  pull_request: ~
@@ -215,7 +201,7 @@ describe("createWorkflows", () => {
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
-			      - run: pnpm build || true
+			      - run: pnpm build
 			      - run: pnpm lint
 
 			name: Lint
@@ -366,6 +352,7 @@ describe("createWorkflows", () => {
 			{
 			  "accessibility-alt-text-bot.yml": "jobs:
 			  accessibility_alt_text_bot:
+			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: github/accessibility-alt-text-bot@v1.4.0
@@ -413,7 +400,6 @@ describe("createWorkflows", () => {
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
-			      - run: pnpm build || true
 			      - run: pnpm lint
 
 			name: Lint

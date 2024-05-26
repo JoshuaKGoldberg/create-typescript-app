@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+import * as fs from "node:fs/promises";
 
 import { readFileSafe } from "../../shared/readFileSafe.js";
 import { Options } from "../../shared/types.js";

@@ -23,7 +23,6 @@ export const optionsSchemaShape = {
 		.optional(),
 	excludeAllContributors: z.boolean().optional(),
 	excludeCompliance: z.boolean().optional(),
-	excludeLintDeprecation: z.boolean().optional(),
 	excludeLintESLint: z.boolean().optional(),
 	excludeLintJSDoc: z.boolean().optional(),
 	excludeLintJson: z.boolean().optional(),

@@ -18,6 +18,6 @@ export function readDefaultsFromReadme() {
 			(await readme())
 				.match(/^(?:# |<h1\s+align="center">)(.*?)(?:<\/h1>)?$/i)?.[1]
 				?.trim()
-				?.replace(/<[^>]+(?:>|$)/g, ""),
+				.replace(/<[^>]+(?:>|$)/g, ""),
 	};
 }

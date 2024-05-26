@@ -1,7 +1,8 @@
 {
-  "badgeTemplate": "<a href=\"#contributors\" target=\"_blank\"><img alt=\"All Contributors: <%= contributors.length %> 🤝\" src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>_🤝-21bb42.svg\" /></a>",
+  "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
   "commit": false,
   "commitConvention": "angular",
+  "commitType": "docs",
   "contributors": [
     {
       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
@@ -13,7 +14,8 @@
         "tool",
         "doc",
         "infra",
-        "test"
+        "test",
+        "ideas"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",
@@ -53,7 +55,10 @@
       "profile": "https://blog.johnnyreilly.com/",
       "contributions": [
         "code",
-        "ideas"
+        "ideas",
+        "bug",
+        "maintenance",
+        "doc"
       ]
     },
     {
@@ -92,7 +97,8 @@
       "profile": "https://github.com/nowyDEV",
       "contributions": [
         "tool",
-        "code"
+        "code",
+        "ideas"
       ]
     },
     {
@@ -130,7 +136,8 @@
       "profile": "https://navinmoorthy.me/",
       "contributions": [
         "bug",
-        "code"
+        "code",
+        "ideas"
       ]
     },
     {
@@ -352,6 +359,91 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jamiemagee",
+      "name": "Jamie Magee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1358764?v=4",
+      "profile": "https://jamiemagee.co.uk",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "praveenshinde3",
+      "name": "Praveen Shinde",
+      "avatar_url": "https://avatars.githubusercontent.com/u/107350270?v=4",
+      "profile": "https://praveenshinde.vercel.app/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "aslemammad",
+      "name": "Mohammad Bagher Abiyat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37929992?v=4",
+      "profile": "https://github.com/Aslemammad",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lcforbes",
+      "name": "lcforbes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42080532?v=4",
+      "profile": "https://github.com/lcforbes",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "danvk",
+      "name": "Dan Vanderkam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98301?v=4",
+      "profile": "https://effectivetypescript.com",
+      "contributions": [
+        "bug",
+        "ideas",
+        "tool"
+      ]
+    },
+    {
+      "login": "nandertga",
+      "name": "nandertga",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65074195?v=4",
+      "profile": "http://nandertga.ddns.net",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "demianparkhomenko",
+      "name": "Demian Parkhomenko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95881717?v=4",
+      "profile": "https://linktr.ee/DemianParkhomenko",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "niklas-wortmann",
+      "name": "Jan-Niklas W.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6104311?v=4",
+      "profile": "https://niklas-wortmann.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rubiesonthesky",
+      "name": "rubiesonthesky",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2591240?v=4",
+      "profile": "https://github.com/rubiesonthesky",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -363,6 +455,5 @@
   "projectName": "create-typescript-app",
   "projectOwner": "JoshuaKGoldberg",
   "repoHost": "https://github.com",
-  "repoType": "github",
-  "commitType": "docs"
+  "repoType": "github"
 }

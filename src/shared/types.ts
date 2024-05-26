@@ -55,7 +55,6 @@ export interface Options {
 	email: OptionsEmail;
 	excludeAllContributors?: boolean;
 	excludeCompliance?: boolean;
-	excludeLintDeprecation?: boolean;
 	excludeLintESLint?: boolean;
 	excludeLintJSDoc?: boolean;
 	excludeLintJson?: boolean;

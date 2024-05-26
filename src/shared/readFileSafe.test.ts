@@ -5,12 +5,8 @@ import { readFileSafe } from "./readFileSafe.js";
 const mockReadFile = vi.fn();
 
 vi.mock("node:fs/promises", () => ({
-	get default() {
-		return {
-			get readFile() {
-				return mockReadFile;
-			},
-		};
+	get readFile() {
+		return mockReadFile;
 	},
 }));
 

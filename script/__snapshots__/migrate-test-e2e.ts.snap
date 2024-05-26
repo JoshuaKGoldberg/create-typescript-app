@@ -1,0 +1,155 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`expected file changes > .github/workflows/test.yml 1`] = `
+"--- a/.github/workflows/test.yml
++++ b/.github/workflows/test.yml
+@@ ... @@ jobs:
+       - run: pnpm run test --coverage
+       - name: Codecov
+         uses: codecov/codecov-action@v3
+-        with:
+-          flags: unit
+ 
+ name: Test
+ "
+`;
+
+exports[`expected file changes > .gitignore 1`] = `
+"--- a/.gitignore
++++ b/.gitignore
+@@ ... @@
+-coverage*/
++coverage/
+ lib/
+ node_modules/"
+`;
+
+exports[`expected file changes > .prettierignore 1`] = `
+"--- a/.prettierignore
++++ b/.prettierignore
+@@ ... @@
+ .all-contributorsrc
+-coverage*/
++coverage/
+ lib/
+ pnpm-lock.yaml"
+`;
+
+exports[`expected file changes > README.md 1`] = `
+"--- a/README.md
++++ b/README.md
+@@ ... @@
+ 
+ <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/create-typescript-app.png">
+ 
+-\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.
+-It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.
+-
+ ## Getting Started
+ 
+ First make sure you have the following installed:
+@@ ... @@ Thanks! 💖
+ 
+ <!-- ALL-CONTRIBUTORS-LIST:END -->
+ <!-- spellchecker: enable -->
++
++<!-- You can remove this notice if you don't want it 🙂 no worries! -->
++
++> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app)."
+`;
+
+exports[`expected file changes > cspell.json 1`] = `
+"--- a/cspell.json
++++ b/cspell.json
+@@ ... @@
+ {
+ 	"dictionaries": ["typescript"],
+ 	"ignorePaths": [
+-		"./coverage*",
+-		"./script/__snapshots__",
+ 		".github",
+ 		"CHANGELOG.md",
++		"coverage",
+ 		"lib",
+ 		"node_modules",
+ 		"pnpm-lock.yaml"
+@@ ... @@
+ 		"contributorsrc",
+ 		"execa",
+ 		"infile",
++		"joshuakgoldberg",
++		"jsdoc",
+ 		"knip",
++		"markdownlint",
+ 		"markdownlintignore",
+ 		"mtfoley",
+ 		"npmignore",
+@@ ... @@
+ 		"precommit",
+ 		"quickstart",
+ 		"tada",
++		"templating",
+ 		"tseslint",
+ 		"tsup",
+-		"vitest"
++		"vitest",
++		"wontfix"
+ 	]
+ }"
+`;
+
+exports[`expected file changes > eslint.config.js 1`] = `
+"--- a/eslint.config.js
++++ b/eslint.config.js
+@@ ... @@
+-/*
+-👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
+-You can read from it to see all sorts of linting goodness, but don't worry -
+-it's not something you need to exhaustively understand immediately. 💙
+-
+-If you're interested in learning more, see the 'getting started' docs on:
+-- ESLint: https://eslint.org
+-- typescript-eslint: https://typescript-eslint.io
+-*/
+-
+ import eslint from "@eslint/js";
+ import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+ import jsdoc from "eslint-plugin-jsdoc";
+@@ ... @@ export default tseslint.config(
+ 			"no-constant-condition": "off",
+ 
+ 			// These on-by-default rules work well for this repo if configured
+-			"@typescript-eslint/no-unnecessary-condition": [
+-				"error",
+-				{
+-					allowConstantLoopConditions: true,
+-				},
+-			],
+ 			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+-			"@typescript-eslint/prefer-nullish-coalescing": [
+-				"error",
+-				{ ignorePrimitives: true },
+-			],
+-			"@typescript-eslint/restrict-template-expressions": [
+-				"error",
+-				{ allowBoolean: true, allowNullish: true, allowNumber: true },
+-			],
+ 			"perfectionist/sort-objects": [
+ 				"error",
+ 				{"
+`;
+
+exports[`expected file changes > knip.json 1`] = `
+"--- a/knip.json
++++ b/knip.json
+@@ ... @@
+ {
+ 	"$schema": "https://unpkg.com/knip@latest/schema.json",
+-	"entry": ["src/index.ts!", "script/*e2e.js"],
+-	"ignoreBinaries": ["gh"],
++	"entry": ["src/index.ts!"],
+ 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
+-	"project": ["src/**/*.ts!", "script/**/*.js"]
++	"project": ["src/**/*.ts!"]
+ }"
+`;

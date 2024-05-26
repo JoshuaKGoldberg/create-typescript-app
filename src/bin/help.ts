@@ -20,7 +20,7 @@ interface SubsectionFlag {
 function logHelpTextSection(section: HelpTextSection): void {
 	console.log(" ");
 
-	console.log(`${chalk.black.bgGreenBright(section.sectionHeading)}`);
+	console.log(chalk.black.bgGreenBright(section.sectionHeading));
 
 	for (const subsection of section.subsections) {
 		if (subsection.warning) {

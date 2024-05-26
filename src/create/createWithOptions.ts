@@ -1,12 +1,14 @@
 import { $ } from "execa";
 
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import { createCleanupCommands } from "../shared/createCleanupCommands.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
-import { runCommands } from "../steps/runCommands.js";
+import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
+import { runCleanup } from "../steps/runCleanup.js";
 import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
@@ -37,11 +39,14 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 			finalizeDependencies(options),
 		);
 
-		await runCommands("Cleaning up files", [
-			"pnpm dedupe",
-			"pnpm lint --fix",
-			"pnpm format --write",
-		]);
+		if (!options.excludeLintSpelling) {
+			await withSpinner(
+				"Populating CSpell dictionary",
+				populateCSpellDictionary,
+			);
+		}
+
+		await runCleanup(createCleanupCommands(options), options.mode);
 	}
 
 	const sendToGitHub =

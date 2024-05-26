@@ -1,4 +1,4 @@
-import { $ } from "execa";
+import { getGitHubAuthToken } from "get-github-auth-token";
 import { Octokit } from "octokit";
 
 export interface GitHub {
@@ -7,16 +7,15 @@ export interface GitHub {
 }
 
 export async function getGitHub(): Promise<GitHub | undefined> {
-	try {
-		await $`gh auth status`;
-	} catch (error) {
+	const auth = await getGitHubAuthToken();
+
+	if (!auth.succeeded) {
 		throw new Error("GitHub authentication failed.", {
-			cause: (error as Error).message,
+			cause: auth.error,
 		});
 	}
 
-	const auth = (await $`gh auth token`).stdout.trim();
-	const octokit = new Octokit({ auth });
+	const octokit = new Octokit({ auth: auth.token });
 
-	return { auth, octokit };
+	return { auth: auth.token, octokit };
 }

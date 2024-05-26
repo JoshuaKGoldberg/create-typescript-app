@@ -2,11 +2,11 @@ import { describe, expect, it, vi } from "vitest";
 
 import { getGitHub } from "./getGitHub.js";
 
-const mock$ = vi.fn();
+const mockGetGitHubAuthToken = vi.fn();
 
-vi.mock("execa", () => ({
-	get $() {
-		return mock$;
+vi.mock("get-github-auth-token", () => ({
+	get getGitHubAuthToken() {
+		return mockGetGitHubAuthToken;
 	},
 }));
 
@@ -25,17 +25,24 @@ vi.mock("octokit", () => ({
 }));
 
 describe("getOctokit", () => {
-	it("throws an error when gh auth status fails", async () => {
-		mock$.mockRejectedValueOnce(new Error("Oh no!"));
+	it("throws an error when getGitHubAuthToken fails", async () => {
+		mockGetGitHubAuthToken.mockResolvedValue({
+			error: "Oh no!",
+			succeeded: false,
+		});
 
 		await expect(getGitHub).rejects.toMatchInlineSnapshot(
 			"[Error: GitHub authentication failed.]",
 		);
 	});
 
-	it("returns a new Octokit when gh auth status succeeds", async () => {
+	it("returns a new Octokit when getGitHubAuthToken succeeds", async () => {
 		const auth = "abc123";
-		mock$.mockResolvedValueOnce({}).mockResolvedValueOnce({ stdout: auth });
+
+		mockGetGitHubAuthToken.mockResolvedValue({
+			succeeded: true,
+			token: auth,
+		});
 
 		const actual = await getGitHub();
 

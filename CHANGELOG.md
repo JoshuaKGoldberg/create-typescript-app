@@ -1,3 +1,9 @@
+# [1.60.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.59.0...v1.60.0) (2024-05-26)
+
+### Features
+
+- use get-github-auth-token instead of gh auth token ([#1533](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1533)) ([9eef9f6](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9eef9f60676caf4d61d9a1273b2755bcb5c63f76)), closes [#1532](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1532)
+
 # [1.59.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.57.11...v1.59.0) (2024-05-25)
 
 ### Bug Fixes

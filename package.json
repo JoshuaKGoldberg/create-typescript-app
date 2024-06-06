@@ -95,7 +95,7 @@
 		"prettier-plugin-packagejson": "^2.5.0",
 		"release-it": "^17.3.0",
 		"sentences-per-line": "^0.2.1",
-		"tsup": "^8.0.1",
+		"tsup": "^8.1.0",
 		"tsx": "^4.9.0",
 		"typescript": "^5.4.3",
 		"typescript-eslint": "^7.7.0",

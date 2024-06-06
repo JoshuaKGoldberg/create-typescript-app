@@ -40,7 +40,11 @@ export async function createRootFiles(options: Options) {
 					options: { parser: "yaml" },
 				},
 			],
-			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
+			plugins: [
+				"prettier-plugin-curly",
+				"prettier-plugin-sh",
+				"prettier-plugin-packagejson",
+			],
 			useTabs: true,
 		}),
 		...(!options.excludeReleases && {

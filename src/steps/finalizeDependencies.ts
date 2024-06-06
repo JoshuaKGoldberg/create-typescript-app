@@ -16,6 +16,7 @@ export async function finalizeDependencies(options: Options) {
 		"lint-staged",
 		"prettier",
 		"prettier-plugin-curly",
+		"prettier-plugin-sh",
 		"prettier-plugin-packagejson",
 		"tsup",
 		"typescript",

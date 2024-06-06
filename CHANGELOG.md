@@ -1,3 +1,9 @@
+# [1.61.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.60.1...v1.61.0) (2024-06-06)
+
+### Features
+
+- add prettier-plugin-sh ([#1544](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1544)) ([91a3701](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/91a3701025a1c319c40537b319903fa96e375203)), closes [#1263](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1263)
+
 ## [1.60.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.60.0...v1.60.1) (2024-05-29)
 
 ### Bug Fixes

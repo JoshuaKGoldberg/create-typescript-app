@@ -29,6 +29,7 @@ exports[`expected file changes > .prettierignore 1`] = `
 +++ b/.prettierignore
 @@ ... @@
  .all-contributorsrc
+ .husky/
 -coverage*/
 +coverage/
  lib/

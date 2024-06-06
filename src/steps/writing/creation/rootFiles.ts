@@ -28,6 +28,7 @@ export async function createRootFiles(options: Options) {
 		".nvmrc": `20.12.2\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
+			".husky/",
 			...(options.excludeTests ? [] : ["coverage/"]),
 			"lib/",
 			"pnpm-lock.yaml",
@@ -40,7 +41,11 @@ export async function createRootFiles(options: Options) {
 					options: { parser: "yaml" },
 				},
 			],
-			plugins: ["prettier-plugin-curly", "prettier-plugin-packagejson"],
+			plugins: [
+				"prettier-plugin-curly",
+				"prettier-plugin-sh",
+				"prettier-plugin-packagejson",
+			],
 			useTabs: true,
 		}),
 		...(!options.excludeReleases && {

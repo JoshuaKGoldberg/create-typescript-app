@@ -83,7 +83,7 @@ pnpm run build --watch
 
 [**Prettier**](https://prettier.io): Formats code for developers and enforces a consistent formatting style.
 It's run on file save per [VS Code](https://code.visualstudio.com/docs/getstarted/settings) settings and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
-[prettier-plugin-curly](https://github.com/JoshuaKGoldberg/prettier-plugin-curly) and [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson) add in more formatting as well.
+[prettier-plugin-curly](https://github.com/JoshuaKGoldberg/prettier-plugin-curly), [prettier-plugin-sh](https://github.com/un-ts/prettier/tree/master/packages/sh), and [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson) add in more formatting as well.
 
 Auto-formatting all files:
 

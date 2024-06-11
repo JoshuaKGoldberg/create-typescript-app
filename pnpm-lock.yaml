@@ -142,8 +142,8 @@ importers:
         specifier: ^2.4.0
         version: 2.4.0
       knip:
-        specifier: 5.18.0
-        version: 5.18.0(@types/node@20.12.7)(typescript@5.4.3)
+        specifier: 5.18.1
+        version: 5.18.1(@types/node@20.12.7)(typescript@5.4.3)
       lint-staged:
         specifier: ^15.2.2
         version: 15.2.2
@@ -886,6 +886,7 @@ packages:
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -893,6 +894,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@humanwhocodes/retry@0.2.3':
     resolution: {integrity: sha512-X38nUbachlb01YMlvPFojKoiXq+LzZvuSce70KPMPdeM1Rj03k4dR7lDslhbqXn3Ang4EU3+EAmwEAsbrjHW3g==}
@@ -3143,8 +3145,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knip@5.18.0:
-    resolution: {integrity: sha512-V+iJz2490zJQ11J0XCf7FggbiqY4L9HpmwSWS3BvwrH7W+bep9drx+Wj2dCU+8uSUijvwPB2unLbQKFCTuvT5g==}
+  knip@5.18.1:
+    resolution: {integrity: sha512-+EKgZVhlLGPj9tHtRMeW8oVy1tEUelmJ/1xfQyqdzmCYOd03MJA+8GXAtSZ9me4dxj/3qcPcunQhpZOeJ5wpNg==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -4036,10 +4038,6 @@ packages:
   smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
-
-  smol-toml@1.1.4:
-    resolution: {integrity: sha512-Y0OT8HezWsTNeEOSVxDnKOW/AyNXHQ4BwJNbAXlLTF5wWsBvrcHhIkE5Rf8kQMLmgf7nDX3PVOlgC6/Aiggu3Q==}
-    engines: {node: '>= 18', pnpm: '>= 8'}
 
   smol-toml@1.2.0:
     resolution: {integrity: sha512-KObxdQANC/xje3OoatMbSwQf2XAvJ0RbK+4nmQRszFNZptbNRnMWqbLF/zb4sMi9xJ6HNyhWXeuZ9zC/I/XY7w==}
@@ -7799,7 +7797,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knip@5.18.0(@types/node@20.12.7)(typescript@5.4.3):
+  knip@5.18.1(@types/node@20.12.7)(typescript@5.4.3):
     dependencies:
       '@ericcornelissen/bash-parser': 0.5.2
       '@nodelib/fs.walk': 2.0.0
@@ -7815,7 +7813,7 @@ snapshots:
       picomatch: 4.0.1
       pretty-ms: 9.0.0
       resolve: 1.22.8
-      smol-toml: 1.1.4
+      smol-toml: 1.2.0
       strip-json-comments: 5.0.1
       summary: 2.1.0
       typescript: 5.4.3
@@ -8789,8 +8787,6 @@ snapshots:
       is-fullwidth-code-point: 5.0.0
 
   smart-buffer@4.2.0: {}
-
-  smol-toml@1.1.4: {}
 
   smol-toml@1.2.0: {}
 

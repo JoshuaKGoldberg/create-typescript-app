@@ -133,15 +133,15 @@ describe("createRerunSuggestion", () => {
 		);
 	});
 
-	it("does not list all excludes when using minimum base", () => {
-		const minimum = createRerunSuggestion({
-			base: "minimum",
-			...getExclusions(options, "minimum"),
+	it("does not list all excludes when using minimal base", () => {
+		const minimal = createRerunSuggestion({
+			base: "minimal",
+			...getExclusions(options, "minimal"),
 			excludeLintKnip: undefined,
 		});
 
-		expect(minimum).toMatchInlineSnapshot(
-			`"npx create-typescript-app --base minimum"`,
+		expect(minimal).toMatchInlineSnapshot(
+			`"npx create-typescript-app --base minimal"`,
 		);
 	});
 

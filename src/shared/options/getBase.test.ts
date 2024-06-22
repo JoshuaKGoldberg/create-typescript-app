@@ -10,7 +10,7 @@ vi.mock("../packages.js", () => ({
 }));
 
 describe("getBase", () => {
-	it("should return minimum with minimum scripts", async () => {
+	it("should return minimal with minimal scripts", async () => {
 		mockReadPackageData.mockImplementationOnce(() =>
 			Promise.resolve({
 				scripts: {
@@ -21,7 +21,7 @@ describe("getBase", () => {
 			}),
 		);
 
-		expect(await getBase()).toBe("minimum");
+		expect(await getBase()).toBe("minimal");
 	});
 
 	it("should return common with common scripts", async () => {

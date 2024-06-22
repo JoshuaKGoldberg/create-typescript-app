@@ -5,7 +5,7 @@ export type ExclusionKey = `exclude${string}` & keyof Options;
 export interface ExclusionDescription {
 	hint: string;
 	label: string;
-	uncommon?: true;
+	level?: "common" | "minimal";
 }
 
 export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
@@ -15,28 +15,33 @@ export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
 			label:
 				"Add all-contributors to track contributions and display them in a README.md table.",
 		},
+		excludeBuild: {
+			hint: "--exclude-build",
+			label: "Add a tsup build step to generate built output files.",
+			level: "minimal",
+		},
 		excludeCompliance: {
 			hint: "--exclude-compliance",
 			label:
 				"Add a GitHub Actions workflow to verify that PRs match an expected format.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintESLint: {
 			hint: "--exclude-lint-eslint",
 			label:
 				"Include eslint-plugin-eslint-comment to enforce good practices around ESLint comment directives.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintJSDoc: {
 			hint: "--exclude-lint-jsdoc",
 			label:
 				"Include eslint-plugin-jsdoc to enforce good practices around JSDoc comments.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintJson: {
 			hint: "--exclude-lint-json",
 			label: "Apply linting and sorting to *.json and *.jsonc files.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintKnip: {
 			hint: "--exclude-lint-knip",
@@ -45,53 +50,53 @@ export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
 		excludeLintMd: {
 			hint: "--exclude-lint-md",
 			label: "Apply linting to *.md files.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintPackageJson: {
 			hint: "--exclude-lint-package-json",
 			label:
 				"Add eslint-plugin-package-json to lint for package.json correctness.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintPackages: {
 			hint: "--exclude-lint-packages",
 			label:
 				"Add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintPerfectionist: {
 			hint: "--exclude-lint-perfectionist",
 			label:
 				"Apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintRegex: {
 			hint: "--exclude-lint-regex",
 			label:
 				"Include eslint-plugin-regex to enforce good practices around regular expressions.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintSpelling: {
 			hint: "--exclude-lint-spelling",
 			label: "Add cspell to spell check against dictionaries of known words.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintStrict: {
 			hint: "--exclude-lint-strict",
 			label:
 				"Include strict logical lint rules such as typescript-eslint's strict config. ",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintStylistic: {
 			hint: "--exclude-lint-stylistic",
 			label:
 				"Include stylistic lint rules such as typescript-eslint's stylistic config.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeLintYml: {
 			hint: "--exclude-lint-yml",
 			label: "Apply linting and sorting to *.yaml and *.yml files.",
-			uncommon: true,
+			level: "common",
 		},
 		excludeReleases: {
 			hint: "--exclude-releases",
@@ -122,20 +127,25 @@ export function getExclusions(
 			return {
 				...Object.fromEntries(
 					exclusionKeys
-						.filter((exclusion) => exclusionDescriptions[exclusion].uncommon)
+						.filter(
+							(exclusion) =>
+								exclusionDescriptions[exclusion].level === "common",
+						)
 						.map((exclusion) => [exclusion, options[exclusion] ?? true]),
 				),
 			};
-		case "minimum":
+		case "minimal":
 			return {
 				...Object.fromEntries(
-					exclusionKeys.map((exclusion) => [
-						exclusion,
-						options[exclusion] ?? true,
-					]),
+					exclusionKeys
+						.filter(
+							(exclusion) =>
+								exclusionDescriptions[exclusion].level !== "minimal",
+						)
+						.map((exclusion) => [exclusion, options[exclusion] ?? true]),
 				),
 			};
-		// We only really care about exclusions on the common and minimum bases
+		// We only really care about exclusions on the common and minimal bases
 		default:
 			return {};
 	}

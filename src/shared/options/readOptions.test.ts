@@ -588,7 +588,7 @@ describe("readOptions", () => {
 				...emptyOptions,
 				...mockOptions,
 				access: "public",
-				base: "minimum",
+				base: "minimal",
 				description: "mock",
 				directory: "mock",
 				email: {
@@ -642,7 +642,7 @@ describe("readOptions", () => {
 				...emptyOptions,
 				...mockOptions,
 				access: "public",
-				base: "minimum",
+				base: "minimal",
 				description,
 				directory: repository,
 				email: {
@@ -700,7 +700,7 @@ describe("readOptions", () => {
 				...mockOptions,
 				access: "public",
 				auto: true,
-				base: "minimum",
+				base: "minimal",
 				description,
 				directory: repository,
 				email: {
@@ -725,7 +725,7 @@ describe("readOptions", () => {
 			      "access": "public",
 			      "author": undefined,
 			      "auto": true,
-			      "base": "minimum",
+			      "base": "minimal",
 			      "bin": undefined,
 			      "description": "Test description.",
 			      "directory": "test-repository",

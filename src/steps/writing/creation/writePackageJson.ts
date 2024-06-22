@@ -84,7 +84,9 @@ export async function writePackageJson(options: Options) {
 		},
 		scripts: {
 			...existingPackageJson.scripts,
-			build: "tsup",
+			...(!options.excludeBuild && {
+				build: "tsup",
+			}),
 			format: "prettier .",
 			lint: "eslint . --max-warnings 0",
 			...(!options.excludeLintKnip && {

@@ -25,7 +25,7 @@ export interface PartialPackageData {
 
 export type OptionsAccess = "public" | "restricted";
 
-export type OptionsBase = "common" | "everything" | "minimum" | "prompt";
+export type OptionsBase = "common" | "everything" | "minimal" | "prompt";
 
 export interface OptionsEmail {
 	github: string;
@@ -54,6 +54,7 @@ export interface Options {
 	directory: string;
 	email: OptionsEmail;
 	excludeAllContributors?: boolean;
+	excludeBuild?: boolean;
 	excludeCompliance?: boolean;
 	excludeLintESLint?: boolean;
 	excludeLintJSDoc?: boolean;

@@ -62,7 +62,8 @@ describe("logHelpText", () => {
 			    "
 			  --base (string): Whether to scaffold the repository with:
 			  • everything: that comes with the template (recommended)
-			  • minimum: amounts of tooling, essentially opting out of everything
+			  • common: additions to the minimal starters such as releases and tests
+			  • minimal: amounts of tooling, essentially opting out of everything
 			  • prompt: for which portions to exclude",
 			  ],
 			  [

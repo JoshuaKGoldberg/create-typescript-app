@@ -47,10 +47,10 @@ export async function augmentOptionsWithExcludes(
 					},
 					{
 						label: makeLabel(
-							"minimum",
+							"minimal",
 							"Just bare starter tooling: building, formatting, linting, and type checking.",
 						),
-						value: "minimum",
+						value: "minimal",
 					},
 					{
 						label: makeLabel("prompt", "(allow me to customize)"),
@@ -64,8 +64,8 @@ export async function augmentOptionsWithExcludes(
 		case undefined:
 			return undefined;
 		case "common":
-		case "minimum":
 		case "everything":
+		case "minimal":
 			return {
 				...options,
 				base,

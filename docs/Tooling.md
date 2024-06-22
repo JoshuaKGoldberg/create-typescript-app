@@ -8,8 +8,8 @@ Those template levels provide common presets of which tooling pieces to enable.
 
 ```plaintext
 ◆  How much tooling would you like the template to set up for you?
-│  ○ minimum     Just the bare starter tooling most repositories should ideally include.
-│  ○ common      Important additions to the minimum starters such as releases and tests.
+│  ○ minimal     Just the bare starter tooling most repositories should ideally include.
+│  ○ common      Important additions to the minimal starters such as releases and tests.
 │  ○ everything  The most thorough tooling imaginable: sorting, spellchecking, and more!
 │  ○ prompt      (allow me to customize)
 └
@@ -17,7 +17,7 @@ Those template levels provide common presets of which tooling pieces to enable.
 
 This table summarizes each tooling piece and which base levels they're included in:
 
-| Tooling Piece                                 | Exclusion Flag                 | Minimum | Common | Everything |
+| Tooling Piece                                 | Exclusion Flag                 | Minimal | Common | Everything |
 | --------------------------------------------- | ------------------------------ | ------- | ------ | ---------- |
 | [Building](#building)                         |                                | ✔️      | ✅     | 💯         |
 | [Compliance](#compliance)                     | `--exclude-compliance`         |         |        | 💯         |
@@ -46,12 +46,12 @@ This table summarizes each tooling piece and which base levels they're included 
 
 See also [Options](./Options.md) for how to customize the way template is run.
 
-## "Minimum" Base Level
+## "Minimal" Base Level
 
 These tooling pieces are the ones that most repositories should generally always have enabled.
 Other pieces of tooling are likely to not work as well (or at all) if these are removed.
 
-The _"minimum"_ base is best suited for projects that are very small and not likely to change very frequently.
+The _"minimal"_ base is best suited for projects that are very small and not likely to change very frequently.
 However, they'll be missing out on many of the great tooling pieces enabled in more comprehensive bases.
 We strongly recommend using at least the [_"common"_ base level](#common-base-level) instead for most repositories.
 

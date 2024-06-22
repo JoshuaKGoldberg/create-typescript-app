@@ -27,6 +27,7 @@ const optionsBase = {
 		npm: "npm@email.com",
 	},
 	excludeAllContributors: undefined,
+	excludeBuild: undefined,
 	excludeCompliance: undefined,
 	excludeLintESLint: undefined,
 	excludeLintJSDoc: undefined,
@@ -84,6 +85,7 @@ describe("augmentOptionsWithExcludes", () => {
 			...optionsBase,
 			base,
 			excludeAllContributors: true,
+			excludeBuild: true,
 			excludeCompliance: true,
 			excludeLintESLint: true,
 			excludeLintJSDoc: true,
@@ -141,10 +143,10 @@ describe("augmentOptionsWithExcludes", () => {
 		});
 	});
 
-	it("uses the 'minimum' base without prompting when provided manually", async () => {
+	it("uses the 'minimal' base without prompting when provided manually", async () => {
 		const options = {
 			...optionsBase,
-			base: "minimum",
+			base: "minimal",
 		} satisfies Options;
 
 		const actual = await augmentOptionsWithExcludes(options);

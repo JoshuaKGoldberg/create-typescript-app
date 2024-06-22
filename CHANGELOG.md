@@ -1,3 +1,9 @@
+# [1.62.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.61.1...v1.62.0) (2024-06-22)
+
+### Features
+
+- add --exclude-build option ([#1560](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1560)) ([a0a65f5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a0a65f5d18dc22e255f599f10f36a43e25cc6921)), closes [#1559](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1559)
+
 ## [1.61.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.61.0...v1.61.1) (2024-06-09)
 
 ### Bug Fixes

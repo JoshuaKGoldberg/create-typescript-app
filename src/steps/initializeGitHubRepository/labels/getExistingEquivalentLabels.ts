@@ -5,7 +5,7 @@ const aliases = new Map([
 
 export interface GhLabelData {
 	color: string;
-	description: string;
+	description: null | string;
 	name: string;
 }
 

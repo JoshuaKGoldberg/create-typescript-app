@@ -32,7 +32,7 @@ describe("getOctokit", () => {
 		});
 
 		await expect(getGitHub).rejects.toMatchInlineSnapshot(
-			"[Error: GitHub authentication failed.]",
+			`[Error: Couldn't authenticate with GitHub. Either log in with \`gh auth login\` (https://cli.github.com) or set a GH_TOKEN environment variable.]`,
 		);
 	});
 

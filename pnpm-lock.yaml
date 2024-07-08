@@ -106,7 +106,7 @@ importers:
         specifier: ^9.2.0
         version: 9.2.0
       eslint-plugin-jsdoc:
-        specifier: ^48.3.0
+        specifier: ^48.5.0
         version: 48.5.0(eslint@9.2.0)
       eslint-plugin-jsonc:
         specifier: ^2.15.0

@@ -1,3 +1,9 @@
+## [1.62.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.62.1...v1.62.2) (2024-07-09)
+
+### Bug Fixes
+
+- **deps:** update dependency rimraf to v5.0.8 ([#1573](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1573)) ([2d8d031](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2d8d0314f8d3fbd99c39c4798ca72736a5e8bb2e))
+
 ## [1.62.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.62.0...v1.62.1) (2024-06-24)
 
 ### Bug Fixes

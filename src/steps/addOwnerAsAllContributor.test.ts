@@ -41,7 +41,7 @@ describe("addOwnerAsAllContributor", () => {
 		mockReadFileAsJson.mockResolvedValue("invalid");
 
 		await expect(async () => {
-			await addOwnerAsAllContributor({ owner: mockOwner });
+			await addOwnerAsAllContributor(undefined, { owner: mockOwner });
 		}).rejects.toMatchInlineSnapshot(
 			'[Error: Invalid .all-contributorsrc: "invalid"]',
 		);
@@ -54,7 +54,7 @@ describe("addOwnerAsAllContributor", () => {
 		mockReadFileAsJson.mockResolvedValue({});
 
 		await expect(async () => {
-			await addOwnerAsAllContributor({ owner: mockOwner });
+			await addOwnerAsAllContributor(undefined, { owner: mockOwner });
 		}).rejects.toMatchInlineSnapshot(
 			"[Error: Invalid .all-contributorsrc: {}]",
 		);
@@ -68,7 +68,7 @@ describe("addOwnerAsAllContributor", () => {
 			contributors: [],
 		});
 
-		await addOwnerAsAllContributor({ owner: mockOwner });
+		await addOwnerAsAllContributor(undefined, { owner: mockOwner });
 
 		expect(mockWriteFile).toHaveBeenCalledWith(
 			"./.all-contributorsrc",
@@ -89,7 +89,7 @@ describe("addOwnerAsAllContributor", () => {
 			],
 		});
 
-		await addOwnerAsAllContributor({ owner: mockOwner });
+		await addOwnerAsAllContributor(undefined, { owner: mockOwner });
 
 		expect(mockWriteFile).toHaveBeenCalledWith(
 			"./.all-contributorsrc",

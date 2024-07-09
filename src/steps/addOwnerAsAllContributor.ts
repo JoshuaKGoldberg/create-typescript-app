@@ -4,11 +4,13 @@ import { getGitHubUserAsAllContributor } from "../shared/getGitHubUserAsAllContr
 import { readFileAsJson } from "../shared/readFileAsJson.js";
 import { AllContributorsData, Options } from "../shared/types.js";
 import { formatJson } from "./writing/creation/formatters/formatJson.js";
+import { Octokit } from "octokit";
 
 export async function addOwnerAsAllContributor(
+	octokit: Octokit | undefined,
 	options: Pick<Options, "offline" | "owner">,
 ) {
-	const user = await getGitHubUserAsAllContributor(options);
+	const user = await getGitHubUserAsAllContributor(octokit, options);
 
 	const existingContributors = (await readFileAsJson(
 		"./.all-contributorsrc",

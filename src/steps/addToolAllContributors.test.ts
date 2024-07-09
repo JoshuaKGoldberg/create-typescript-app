@@ -22,7 +22,7 @@ describe("addToolAllContributors", () => {
 	it("adds JoshuaKGoldberg when that is not the current github user", async () => {
 		mockGetGitHubUserAsAllContributor.mockResolvedValue("JoshuaKGoldberg");
 
-		await addToolAllContributors({ owner: "owner" });
+		await addToolAllContributors(undefined, { owner: "owner" });
 
 		expect(mock$).not.toHaveBeenCalled();
 	});
@@ -30,7 +30,7 @@ describe("addToolAllContributors", () => {
 	it("does not add JoshuaKGoldberg when that not the current github user", async () => {
 		mockGetGitHubUserAsAllContributor.mockResolvedValue("other");
 
-		await addToolAllContributors({ owner: "owner" });
+		await addToolAllContributors(undefined, { owner: "owner" });
 
 		expect(mock$).toHaveBeenCalledWith([
 			`npx -y all-contributors-cli add JoshuaKGoldberg tool`,

@@ -97,8 +97,8 @@ importers:
         specifier: ^10.0.0
         version: 10.1.2
       console-fail-test:
-        specifier: ^0.2.3
-        version: 0.2.3
+        specifier: ^0.4.4
+        version: 0.4.4
       cspell:
         specifier: ^8.1.3
         version: 8.1.3
@@ -1837,8 +1837,9 @@ packages:
     resolution: {integrity: sha512-cD31W1v3GqUlQvbBCGcXmd2Nj9SvLDOP1oQ0YFuLETufzSPaKp11rYBsSOm7rCsW3OnIRAFM3OxRhceaXNYHkA==}
     engines: {node: '>=12'}
 
-  console-fail-test@0.2.3:
-    resolution: {integrity: sha512-p1xfi9ubVM2X3NpjPH1Gm8Gxc7vXyTwcOIquU8rpUDA+ISSitAOiBDnT/Bti1We5YzZKRxgI0JU+fFvOmOXtvA==}
+  console-fail-test@0.4.4:
+    resolution: {integrity: sha512-wWH0xCDWmy8/3ty8+VYG9+Jvc0QSm2kiN5rs5tjeYDqrcUF+9vfc99gVmimTN4mASkIUgGR7mF4CGVDuWtjvaA==}
+    engines: {node: '>=18'}
 
   conventional-changelog-angular@7.0.0:
     resolution: {integrity: sha512-ROjNchA9LgfNMTTFSIWPzebCwOGFdgkEq45EnvvrmSLvCtAw0HSmrCs7/ty+wAeYUZyNay0YMUNYFTRL72PkBQ==}
@@ -6153,7 +6154,7 @@ snapshots:
       write-file-atomic: 3.0.3
       xdg-basedir: 5.1.0
 
-  console-fail-test@0.2.3: {}
+  console-fail-test@0.4.4: {}
 
   conventional-changelog-angular@7.0.0:
     dependencies:

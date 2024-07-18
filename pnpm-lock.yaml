@@ -28,7 +28,7 @@ importers:
         version: 4.0.0
       git-url-parse:
         specifier: ^14.0.0
-        version: 14.0.0
+        version: 14.1.0
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -2537,6 +2537,9 @@ packages:
 
   git-url-parse@14.0.0:
     resolution: {integrity: sha512-NnLweV+2A4nCvn4U/m2AoYu0pPKlsmhK9cknG7IMwsjFY1S2jxM+mAhsDxyxfCIGfGaD+dozsyX4b6vkYc83yQ==}
+
+  git-url-parse@14.1.0:
+    resolution: {integrity: sha512-8xg65dTxGHST3+zGpycMMFZcoTzAdZ2dOtu4vmgIfkTFnVHBxHMzBC2L1k8To7EmrSiHesT8JgPLT91VKw1B5g==}
 
   gitconfiglocal@2.1.0:
     resolution: {integrity: sha512-qoerOEliJn3z+Zyn1HW2F6eoYJqKwS6MgC9cztTLUB/xLWX8gD/6T60pKn4+t/d6tP7JlybI7Z3z+I572CR/Vg==}
@@ -7073,6 +7076,10 @@ snapshots:
       parse-url: 8.1.0
 
   git-url-parse@14.0.0:
+    dependencies:
+      git-up: 7.0.0
+
+  git-url-parse@14.1.0:
     dependencies:
       git-up: 7.0.0
 

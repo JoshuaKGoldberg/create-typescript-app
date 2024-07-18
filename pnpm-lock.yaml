@@ -91,7 +91,7 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       '@vitest/coverage-v8':
-        specifier: ^2.0.0
+        specifier: ^2.0.2
         version: 2.0.2(vitest@2.0.2(@types/node@20.12.7))
       c8:
         specifier: ^10.0.0
@@ -181,7 +181,7 @@ importers:
         specifier: ^7.7.0
         version: 7.7.0(eslint@9.2.0)(typescript@5.5.2)
       vitest:
-        specifier: ^2.0.0
+        specifier: ^2.0.2
         version: 2.0.2(@types/node@20.12.7)
 
 packages:

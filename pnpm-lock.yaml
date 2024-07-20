@@ -154,7 +154,7 @@ importers:
         specifier: ^0.41.0
         version: 0.41.0
       prettier-plugin-curly:
-        specifier: ^0.2.0
+        specifier: ^0.2.1
         version: 0.2.1(prettier@3.1.0)
       prettier-plugin-packagejson:
         specifier: ^2.5.0

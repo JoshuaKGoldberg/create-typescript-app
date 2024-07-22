@@ -1,3 +1,9 @@
+## [1.62.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.62.5...v1.62.6) (2024-07-22)
+
+### Bug Fixes
+
+- add missing @types/eslint\_\_js ([#1590](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1590)) ([801d57c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/801d57c70be1fe476c6ba7737435c245785b5828)), closes [#1589](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1589)
+
 ## [1.62.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.62.4...v1.62.5) (2024-07-18)
 
 ### Bug Fixes

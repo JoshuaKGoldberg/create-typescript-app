@@ -8,6 +8,7 @@ export async function finalizeDependencies(options: Options) {
 		"@eslint/js",
 		"@eslint-community/eslint-plugin-eslint-comments",
 		"@types/eslint-plugin-markdown",
+		"@types/eslint__js",
 		"eslint",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",

@@ -78,6 +78,9 @@ importers:
       '@types/eslint-plugin-markdown':
         specifier: ^2.0.2
         version: 2.0.2
+      '@types/eslint__js':
+        specifier: ^8.42.3
+        version: 8.42.3
       '@types/git-url-parse':
         specifier: ^9.0.3
         version: 9.0.3
@@ -1296,6 +1299,9 @@ packages:
 
   '@types/eslint@8.56.7':
     resolution: {integrity: sha512-SjDvI/x3zsZnOkYZ3lCt9lOZWZLB2jIlNKz+LBgCtDurK0JZcwucxYHn1w2BJkD34dgX9Tjnak0txtq4WTggEA==}
+
+  '@types/eslint__js@8.42.3':
+    resolution: {integrity: sha512-alfG737uhmPdnvkrLdZLcEKJ/B8s9Y4hrZ+YAdzUeoArBlSUERA2E87ROfOaS4jd/C45fzOoZzidLc1IPwLqOw==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -5523,6 +5529,10 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
+
+  '@types/eslint__js@8.42.3':
+    dependencies:
+      '@types/eslint': 8.56.7
 
   '@types/estree@1.0.5': {}
 

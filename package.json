@@ -66,6 +66,7 @@
 		"@octokit/request-error": "^6.1.1",
 		"@release-it/conventional-changelog": "^8.0.1",
 		"@types/eslint-plugin-markdown": "^2.0.2",
+		"@types/eslint__js": "^8.42.3",
 		"@types/git-url-parse": "^9.0.3",
 		"@types/js-yaml": "^4.0.9",
 		"@types/node": "^20.12.7",

@@ -117,6 +117,15 @@ exports[`expected file changes > eslint.config.js 1`] = `
  import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
  import jsdoc from "eslint-plugin-jsdoc";
 @@ ... @@ export default tseslint.config(
+ 		languageOptions: {
+ 			parserOptions: {
+ 				projectService: {
+-					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
++					allowDefaultProject: ["*.*s", "eslint.config.js"],
+ 					defaultProject: "./tsconfig.json",
+ 				},
+ 				tsconfigRootDir: import.meta.dirname,
+@@ ... @@ export default tseslint.config(
  			"no-constant-condition": "off",
  
  			// These on-by-default rules work well for this repo if configured

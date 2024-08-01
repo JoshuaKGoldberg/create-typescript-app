@@ -55,10 +55,11 @@ export default tseslint.config(
 		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
 			parserOptions: {
-				EXPERIMENTAL_useProjectService: {
-					allowDefaultProjectForFiles: ["./*.*s", "eslint.config.js"],
+				projectService: {
+					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
 					defaultProject: "./tsconfig.json",
 				},
+				tsconfigRootDir: import.meta.dirname,
 			},
 		},
 		rules: {

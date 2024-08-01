@@ -8,8 +8,8 @@ export function readDefaultsFromDevelopment() {
 	);
 
 	const guideTag = lazyValue(async () =>
-		(await development()).match(
-			/> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i,
+		/> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i.exec(
+			await development(),
 		),
 	);
 

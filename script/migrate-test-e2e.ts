@@ -74,12 +74,12 @@ await fs.writeFile(
 		.replace(
 			/All Contributors: \d+/g,
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			originalReadme.match(/All Contributors: \d+/)![0],
+			/All Contributors: \d+/.exec(originalReadme)![0],
 		)
 		.replace(
 			/all_contributors-\d+/g,
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			originalReadme.match(/all_contributors-\d+/)![0],
+			/all_contributors-\d+/.exec(originalReadme)![0],
 		),
 );
 
@@ -90,12 +90,12 @@ await fs.writeFile(
 		.replace(
 			/All Contributors: \d+/g,
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			originalReadme.match(/All Contributors: \d+/)![0],
+			/All Contributors: \d+/.exec(originalReadme)![0],
 		)
 		.replace(
 			/all_contributors-\d+/g,
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			originalReadme.match(/all_contributors-\d+/)![0],
+			/all_contributors-\d+/.exec(originalReadme)![0],
 		),
 );
 

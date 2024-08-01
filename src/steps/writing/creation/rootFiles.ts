@@ -124,7 +124,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				module: "NodeNext",
 				moduleResolution: "NodeNext",
 				noEmit: true,
-				outDir: "lib",
 				resolveJsonModule: true,
 				skipLibCheck: true,
 				sourceMap: true,

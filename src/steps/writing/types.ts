@@ -1,3 +1,3 @@
 export interface Structure {
-	[i: string]: Structure | string;
+	[i: string]: string | Structure;
 }

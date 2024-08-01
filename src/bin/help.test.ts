@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { MockInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, MockInstance, vi } from "vitest";
 
 import { logHelpText } from "./help.js";
 

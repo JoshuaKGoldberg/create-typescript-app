@@ -11,7 +11,7 @@ import { createOptionDefaults } from "./createOptionDefaults/index.js";
 import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getBase } from "./getBase.js";
-import { GitHub, getGitHub } from "./getGitHub.js";
+import { getGitHub, GitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { logInferredOptions } from "./logInferredOptions.js";
 import { optionsSchema } from "./optionsSchema.js";

@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
-import { MockInstance, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, MockInstance, vi } from "vitest";
 
 import { Options } from "../shared/types.js";
 import { initializeBranchProtectionSettings } from "./initializeGitHubRepository/initializeBranchProtectionSettings.js";

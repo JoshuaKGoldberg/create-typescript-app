@@ -15,7 +15,7 @@ import jsonc from "eslint-plugin-jsonc";
 import markdown from "eslint-plugin-markdown";
 import n from "eslint-plugin-n";
 import packageJson from "eslint-plugin-package-json/configs/recommended";
-import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";
+import perfectionist from "eslint-plugin-perfectionist";
 import * as regexp from "eslint-plugin-regexp";
 import vitest from "eslint-plugin-vitest";
 import yml from "eslint-plugin-yml";
@@ -45,7 +45,7 @@ export default tseslint.config(
 	jsdoc.configs["flat/recommended-typescript-error"],
 	n.configs["flat/recommended"],
 	packageJson,
-	perfectionistNatural,
+	perfectionist.configs["recommended-natural"],
 	regexp.configs["flat/recommended"],
 	...tseslint.config({
 		extends: [
@@ -99,7 +99,7 @@ export default tseslint.config(
 				"error",
 				{
 					order: "asc",
-					"partition-by-comment": true,
+					partitionByComment: true,
 					type: "natural",
 				},
 			],

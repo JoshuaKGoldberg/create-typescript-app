@@ -282,7 +282,6 @@ We appreciate your efforts and responsible disclosure and will make every effort
 				automerge: true,
 				extends: ["config:best-practices", "replacements:all"],
 				ignoreDeps: ["codecov/codecov-action"],
-				internalChecksFilter: "strict",
 				patch: {
 					enabled: false,
 				},

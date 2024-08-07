@@ -587,7 +587,6 @@ describe("createDotGitHubFiles", () => {
 					"automerge": true,
 					"extends": ["config:best-practices", "replacements:all"],
 					"ignoreDeps": ["codecov/codecov-action"],
-					"internalChecksFilter": "strict",
 					"patch": { "enabled": false },
 					"labels": ["dependencies"],
 					"minimumReleaseAge": "3 days",

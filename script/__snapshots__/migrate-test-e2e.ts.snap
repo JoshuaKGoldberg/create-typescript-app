@@ -144,9 +144,8 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -				"error",
 -				{ allowBoolean: true, allowNullish: true, allowNumber: true },
 -			],
- 			"perfectionist/sort-objects": [
- 				"error",
- 				{"
+			"n/no-unsupported-features/node-builtins": [
+				"error",
 `;
 
 exports[`expected file changes > knip.json 1`] = `

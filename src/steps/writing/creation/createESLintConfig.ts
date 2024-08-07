@@ -107,6 +107,7 @@ export default tseslint.config(
 				options.excludeLintJSDoc
 					? ""
 					: `
+			"jsdoc/lines-before-block": "off",
 			"jsdoc/require-jsdoc": "off",
 			"jsdoc/require-param": "off",
 			"jsdoc/require-property": "off",
@@ -119,6 +120,10 @@ export default tseslint.config(
 				options.excludeLintPerfectionist
 					? ""
 					: `
+			"n/no-unsupported-features/node-builtins": [
+				"error",
+				{ allowExperimental: true },
+			],
 			"perfectionist/sort-objects": [
 				"error",
 				{

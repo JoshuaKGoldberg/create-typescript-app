@@ -73,6 +73,7 @@ export default tseslint.config(
 			"operator-assignment": "error",
 
 			// These on-by-default rules don't work well for this repo and we like them off.
+			"jsdoc/lines-before-block": "off",
 			"jsdoc/require-jsdoc": "off",
 			"jsdoc/require-param": "off",
 			"jsdoc/require-property": "off",
@@ -94,6 +95,10 @@ export default tseslint.config(
 			"@typescript-eslint/restrict-template-expressions": [
 				"error",
 				{ allowBoolean: true, allowNullish: true, allowNumber: true },
+			],
+			"n/no-unsupported-features/node-builtins": [
+				"error",
+				{ allowExperimental: true },
 			],
 			"perfectionist/sort-objects": [
 				"error",

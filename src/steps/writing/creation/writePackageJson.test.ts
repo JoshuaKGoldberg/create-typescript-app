@@ -77,7 +77,7 @@ describe("writePackageJson", () => {
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
-			    "node": ">=18",
+			    "node": ">=18.3.0",
 			  },
 			  "files": [
 			    "lib/",
@@ -147,7 +147,7 @@ describe("writePackageJson", () => {
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
-			    "node": ">=18",
+			    "node": ">=18.3.0",
 			  },
 			  "files": [
 			    "bin/index.js",

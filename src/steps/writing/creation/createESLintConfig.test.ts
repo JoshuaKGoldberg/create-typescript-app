@@ -173,6 +173,7 @@ describe("createESLintConfig", () => {
 				      "operator-assignment": "error",
 
 				      // These on-by-default rules don't work well for this repo and we like them off.
+				      "jsdoc/lines-before-block": "off",
 				      "jsdoc/require-jsdoc": "off",
 				      "jsdoc/require-param": "off",
 				      "jsdoc/require-property": "off",
@@ -181,6 +182,10 @@ describe("createESLintConfig", () => {
 
 				      // These on-by-default rules work well for this repo if configured
 				      "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+				      "n/no-unsupported-features/node-builtins": [
+				        "error",
+				        { allowExperimental: true },
+				      ],
 				      "perfectionist/sort-objects": [
 				        "error",
 				        {

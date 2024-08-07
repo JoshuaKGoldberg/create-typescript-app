@@ -184,7 +184,7 @@ pnpm run lint:knip
 
 ### Renovate
 
-[**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
+[**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a week after each update for safety.
 
 ### Testing
 

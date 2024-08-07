@@ -283,7 +283,7 @@ We appreciate your efforts and responsible disclosure and will make every effort
 				extends: ["config:best-practices", "replacements:all"],
 				ignoreDeps: ["codecov/codecov-action"],
 				labels: ["dependencies"],
-				minimumReleaseAge: "3 days",
+				minimumReleaseAge: "7 days",
 				patch: { enabled: false },
 				postUpdateOptions: ["pnpmDedupe"],
 			}),

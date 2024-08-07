@@ -111,18 +111,18 @@ Then:
 
    <!-- eslint-disable jsonc/sort-keys -->
 
-   ```jsonc package.json
+   ```json package.json
    {
    	"exports": {
    		".": {
    			"types": {
    				"import": "./lib/index.d.ts",
-   				"require": "./lib/index.d.cts",
+   				"require": "./lib/index.d.cts"
    			},
    			"import": "./lib/index.js",
-   			"require": "./lib/index.cjs",
-   		},
-   	},
+   			"require": "./lib/index.cjs"
+   		}
+   	}
    }
    ```
 

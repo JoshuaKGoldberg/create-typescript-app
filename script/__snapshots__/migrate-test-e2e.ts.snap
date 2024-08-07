@@ -79,17 +79,17 @@ exports[`expected file changes > cspell.json 1`] = `
  		"execa",
  		"infile",
 +		"joshuakgoldberg",
-+		"jsdoc",
  		"knip",
 +		"markdownlint",
  		"markdownlintignore",
  		"mtfoley",
  		"npmignore",
-@@ ... @@
- 		"precommit",
+-		"npmpackagejsonlintrc",
+ 		"outro",
+ 		"packagejson",
+-		"precommit",
  		"quickstart",
  		"tada",
-+		"templating",
  		"tseslint",
  		"tsup",
 -		"vitest"
@@ -144,9 +144,9 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -				"error",
 -				{ allowBoolean: true, allowNullish: true, allowNumber: true },
 -			],
-			"n/no-unsupported-features/node-builtins": [
-				"error",
-				{ allowExperimental: true },
+ 			"n/no-unsupported-features/node-builtins": [
+ 				"error",
+ 				{ allowExperimental: true },"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

@@ -59,11 +59,11 @@ export async function readOptions(
 		description: values.description,
 		directory: values.directory,
 		email:
-			values.email ?? values["email-github"] ?? values["email-npm"]
+			(values.email ?? values["email-github"] ?? values["email-npm"])
 				? {
 						github: values.email ?? values["email-github"],
 						npm: values.email ?? values["email-npm"],
-				  }
+					}
 				: undefined,
 		excludeAllContributors: values["exclude-all-contributors"],
 		excludeCompliance: values["exclude-compliance"],

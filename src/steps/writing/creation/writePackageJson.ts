@@ -60,7 +60,7 @@ export async function writePackageJson(options: Options) {
 
 		// The rest of the fields are ones we know from our template
 		engines: {
-			node: ">=18",
+			node: ">=18.3.0",
 		},
 		files: [
 			options.bin?.replace(/^\.\//, ""),

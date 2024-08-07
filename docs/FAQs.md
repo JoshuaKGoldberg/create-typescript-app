@@ -111,7 +111,7 @@ Then:
 
    <!-- eslint-disable jsonc/sort-keys -->
 
-   ```jsonc package.json
+   ```json package.json
    {
    	"exports": {
    		".": {

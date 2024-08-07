@@ -6,7 +6,7 @@ import { updateLocalFiles } from "./updateLocalFiles.js";
 const mockReplaceInFile = vi.fn();
 
 vi.mock("replace-in-file", () => ({
-	get default() {
+	get replaceInFile() {
 		return mockReplaceInFile;
 	},
 }));

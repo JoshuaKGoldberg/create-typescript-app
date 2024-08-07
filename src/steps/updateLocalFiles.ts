@@ -1,4 +1,4 @@
-import replaceInFile, { From, To } from "replace-in-file";
+import { From, replaceInFile, To } from "replace-in-file";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { Options } from "../shared/types.js";
@@ -54,7 +54,7 @@ export async function updateLocalFiles(options: Options) {
 						endOfReadmeTemplateLine,
 						"./README.md",
 					],
-			  ] as typeof replacements)),
+				] as typeof replacements)),
 	];
 
 	if (existingPackage.description) {

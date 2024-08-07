@@ -1,3 +1,15 @@
+# [1.66.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.64.0...v1.66.0) (2024-08-07)
+
+### Bug Fixes
+
+- **deps:** update dependency replace-in-file to v8 ([#1565](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1565)) ([212b5f7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/212b5f7f767dd59473ec175408a6aa0e898fd0e5))
+
+### Features
+
+- bump Renovate wait up to 7 days ([#1604](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1604)) ([aeeed46](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aeeed462a1f6d0e42d8a9ed4afea3327f127e75f)), closes [#1463](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1463)
+- bumped deps to latest with Node.js >=18.3.0 minimum ([#1605](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1605)) ([13b6a96](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/13b6a962a55bc62c944726eb94b429203061ebae)), closes [/github.com/gajus/eslint-plugin-jsdoc/issues/1175#issuecomment-2272630574](https://github.com//github.com/gajus/eslint-plugin-jsdoc/issues/1175/issues/issuecomment-2272630574)
+- clear more Mocha and Jest remnants ([#1607](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1607)) ([95443bc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/95443bcfa3170c4ce0e5c734e12d1bf366c370e8)), closes [#1372](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1372) [#1373](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1373) [#1374](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1374)
+
 # [1.64.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.63.2...v1.64.0) (2024-08-07)
 
 ### Features

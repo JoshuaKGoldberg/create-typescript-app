@@ -7,7 +7,7 @@ runs:
     - uses: pnpm/action-setup@v2
       with:
         version: 9
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
       with:
         cache: pnpm
         node-version: "20"

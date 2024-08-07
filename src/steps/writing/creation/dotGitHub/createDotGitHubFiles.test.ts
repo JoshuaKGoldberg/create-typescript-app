@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { createDotGitHubFiles } from "./createDotGitHubFiles.js";
 import { Options } from "../../../../shared/types.js";
+import { createDotGitHubFiles } from "./createDotGitHubFiles.js";
 
 vi.mock("./createDevelopment/index.js", () => ({
 	createDevelopment: () => "# Development!",

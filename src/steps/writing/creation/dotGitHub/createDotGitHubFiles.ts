@@ -282,11 +282,11 @@ We appreciate your efforts and responsible disclosure and will make every effort
 				automerge: true,
 				extends: ["config:best-practices", "replacements:all"],
 				ignoreDeps: ["codecov/codecov-action"],
+				labels: ["dependencies"],
+				minimumReleaseAge: "3 days",
 				patch: {
 					enabled: false,
 				},
-				labels: ["dependencies"],
-				minimumReleaseAge: "3 days",
 				postUpdateOptions: ["pnpmDedupe"],
 			}),
 		}),

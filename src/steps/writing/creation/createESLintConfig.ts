@@ -122,8 +122,8 @@ export default tseslint.config(
 			"perfectionist/sort-objects": [
 				"error",
 				{
-					opartitionByComment
-					"partition-by-comment": true,
+					order: "asc",
+					partitionByComment: true,
 					type: "natural",
 				},
 			],`

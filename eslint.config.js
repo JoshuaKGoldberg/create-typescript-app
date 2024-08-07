@@ -99,7 +99,7 @@ export default tseslint.config(
 				"error",
 				{
 					order: "asc",
-					ppartitionByCommentrue,
+					partitionByComment: true,
 					type: "natural",
 				},
 			],

@@ -1,4 +1,4 @@
-import replaceInFile, { From, To } from "replace-in-file";
+import { From, replaceInFile, To } from "replace-in-file";
 
 import { readFileSafeAsJson } from "../shared/readFileSafeAsJson.js";
 import { Options } from "../shared/types.js";

@@ -453,6 +453,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "fb55",
+      "name": "Felix Boehm",
+      "avatar_url": "https://avatars.githubusercontent.com/u/188768?v=4",
+      "profile": "https://feedic.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

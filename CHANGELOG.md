@@ -1,3 +1,9 @@
+## [1.63.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.63.0...v1.63.1) (2024-08-07)
+
+### Bug Fixes
+
+- also install @types/node in created projects ([#1599](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1599)) ([e60808c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e60808c637394a7a75b6a0a1eab914e118b1b15e)), closes [#1598](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1598)
+
 # [1.63.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.62.6...v1.63.0) (2024-08-01)
 
 ### Features

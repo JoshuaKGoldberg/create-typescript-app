@@ -38,7 +38,7 @@ describe("finalize", () => {
 		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "pnpm add @eslint-community/eslint-plugin-eslint-comments@latest @eslint/js@latest @release-it/conventional-changelog@latest @types/eslint-plugin-markdown@latest @types/eslint__js@latest @vitest/coverage-v8@latest all-contributors-cli@latest console-fail-test@latest cspell@latest eslint@latest eslint-plugin-jsdoc@latest eslint-plugin-jsonc@latest eslint-plugin-markdown@latest eslint-plugin-n@latest eslint-plugin-package-json@latest eslint-plugin-perfectionist@latest eslint-plugin-regexp@latest eslint-plugin-vitest@latest eslint-plugin-yml@latest husky@latest jsonc-eslint-parser@latest knip@latest lint-staged@latest markdownlint@latest markdownlint-cli@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest prettier-plugin-sh@latest release-it@latest sentences-per-line@latest tsup@latest typescript@latest typescript-eslint@latest vitest@latest -D",
+			    "pnpm add @eslint-community/eslint-plugin-eslint-comments@latest @eslint/js@latest @release-it/conventional-changelog@latest @types/eslint-plugin-markdown@latest @types/eslint__js@latest @types/node@latest @vitest/coverage-v8@latest all-contributors-cli@latest console-fail-test@latest cspell@latest eslint@latest eslint-plugin-jsdoc@latest eslint-plugin-jsonc@latest eslint-plugin-markdown@latest eslint-plugin-n@latest eslint-plugin-package-json@latest eslint-plugin-perfectionist@latest eslint-plugin-regexp@latest eslint-plugin-vitest@latest eslint-plugin-yml@latest husky@latest jsonc-eslint-parser@latest knip@latest lint-staged@latest markdownlint@latest markdownlint-cli@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest prettier-plugin-sh@latest release-it@latest sentences-per-line@latest tsup@latest typescript@latest typescript-eslint@latest vitest@latest -D",
 			  ],
 			  [
 			    "npx all-contributors-cli generate",
@@ -59,7 +59,7 @@ describe("finalize", () => {
 		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "pnpm add @eslint-community/eslint-plugin-eslint-comments@latest @eslint/js@latest @release-it/conventional-changelog@latest @types/eslint-plugin-markdown@latest @types/eslint__js@latest @vitest/coverage-v8@latest all-contributors-cli@latest console-fail-test@latest cspell@latest eslint@latest eslint-plugin-jsdoc@latest eslint-plugin-jsonc@latest eslint-plugin-markdown@latest eslint-plugin-n@latest eslint-plugin-package-json@latest eslint-plugin-perfectionist@latest eslint-plugin-regexp@latest eslint-plugin-vitest@latest eslint-plugin-yml@latest husky@latest jsonc-eslint-parser@latest knip@latest lint-staged@latest markdownlint@latest markdownlint-cli@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest prettier-plugin-sh@latest release-it@latest sentences-per-line@latest tsup@latest typescript@latest typescript-eslint@latest vitest@latest -D --offline",
+			    "pnpm add @eslint-community/eslint-plugin-eslint-comments@latest @eslint/js@latest @release-it/conventional-changelog@latest @types/eslint-plugin-markdown@latest @types/eslint__js@latest @types/node@latest @vitest/coverage-v8@latest all-contributors-cli@latest console-fail-test@latest cspell@latest eslint@latest eslint-plugin-jsdoc@latest eslint-plugin-jsonc@latest eslint-plugin-markdown@latest eslint-plugin-n@latest eslint-plugin-package-json@latest eslint-plugin-perfectionist@latest eslint-plugin-regexp@latest eslint-plugin-vitest@latest eslint-plugin-yml@latest husky@latest jsonc-eslint-parser@latest knip@latest lint-staged@latest markdownlint@latest markdownlint-cli@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest prettier-plugin-sh@latest release-it@latest sentences-per-line@latest tsup@latest typescript@latest typescript-eslint@latest vitest@latest -D --offline",
 			  ],
 			  [
 			    "npx all-contributors-cli generate",
@@ -92,7 +92,7 @@ describe("finalize", () => {
 		expect(mockExecaCommand.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "pnpm add @eslint-community/eslint-plugin-eslint-comments@latest @eslint/js@latest @types/eslint-plugin-markdown@latest @types/eslint__js@latest eslint@latest eslint-plugin-jsdoc@latest eslint-plugin-n@latest eslint-plugin-regexp@latest husky@latest lint-staged@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest prettier-plugin-sh@latest tsup@latest typescript@latest typescript-eslint@latest -D",
+			    "pnpm add @eslint-community/eslint-plugin-eslint-comments@latest @eslint/js@latest @types/eslint-plugin-markdown@latest @types/eslint__js@latest @types/node@latest eslint@latest eslint-plugin-jsdoc@latest eslint-plugin-n@latest eslint-plugin-regexp@latest husky@latest lint-staged@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest prettier-plugin-sh@latest tsup@latest typescript@latest typescript-eslint@latest -D",
 			  ],
 			  [
 			    "pnpm dedupe",

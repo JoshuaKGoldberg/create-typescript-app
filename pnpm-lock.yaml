@@ -46,7 +46,7 @@ importers:
         version: 2.0.0
       prettier:
         specifier: ^3.1.0
-        version: 3.1.0
+        version: 3.3.3
       replace-in-file:
         specifier: ^8.0.0
         version: 8.1.0
@@ -158,13 +158,13 @@ importers:
         version: 0.41.0
       prettier-plugin-curly:
         specifier: ^0.2.1
-        version: 0.2.1(prettier@3.1.0)
+        version: 0.2.1(prettier@3.3.3)
       prettier-plugin-packagejson:
         specifier: ^2.5.0
-        version: 2.5.0(prettier@3.1.0)
+        version: 2.5.0(prettier@3.3.3)
       prettier-plugin-sh:
         specifier: ^0.14.0
-        version: 0.14.0(prettier@3.1.0)
+        version: 0.14.0(prettier@3.3.3)
       release-it:
         specifier: ^17.3.0
         version: 17.3.0(typescript@5.5.2)
@@ -3677,8 +3677,8 @@ packages:
     peerDependencies:
       prettier: ^3.0.3
 
-  prettier@3.1.0:
-    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -8238,29 +8238,29 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-curly@0.2.1(prettier@3.1.0):
+  prettier-plugin-curly@0.2.1(prettier@3.3.3):
     dependencies:
       '@babel/generator': 7.24.1
       '@babel/parser': 7.24.7
       '@babel/traverse': 7.22.5
-      prettier: 3.1.0
+      prettier: 3.3.3
     transitivePeerDependencies:
       - supports-color
 
-  prettier-plugin-packagejson@2.5.0(prettier@3.1.0):
+  prettier-plugin-packagejson@2.5.0(prettier@3.3.3):
     dependencies:
       sort-package-json: 2.10.0
       synckit: 0.9.0
     optionalDependencies:
-      prettier: 3.1.0
+      prettier: 3.3.3
 
-  prettier-plugin-sh@0.14.0(prettier@3.1.0):
+  prettier-plugin-sh@0.14.0(prettier@3.3.3):
     dependencies:
       mvdan-sh: 0.10.1
-      prettier: 3.1.0
+      prettier: 3.3.3
       sh-syntax: 0.4.2
 
-  prettier@3.1.0: {}
+  prettier@3.3.3: {}
 
   pretty-ms@9.0.0:
     dependencies:

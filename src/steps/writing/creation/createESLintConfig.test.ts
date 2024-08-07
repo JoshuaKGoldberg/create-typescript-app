@@ -185,7 +185,7 @@ describe("createESLintConfig", () => {
 				        "error",
 				        {
 				          order: "asc",
-				          "partition-by-comment": true,
+				          "partitionByComment": true,
 				          type: "natural",
 				        },
 				      ],

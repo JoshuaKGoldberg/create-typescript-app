@@ -1,3 +1,9 @@
+# [1.64.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.63.2...v1.64.0) (2024-08-07)
+
+### Features
+
+- configure Renovate to skip patch updates ([#1601](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1601)) ([e622974](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e622974d4258bedf9a15e7ce660bb9aeb5b17c98)), closes [#1541](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1541)
+
 ## [1.63.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.63.1...v1.63.2) (2024-08-07)
 
 ### Bug Fixes

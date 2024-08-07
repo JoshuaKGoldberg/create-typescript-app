@@ -3,6 +3,7 @@ import * as fs from "node:fs/promises";
 const globPaths = [
 	...extensions(".babelrc", "cjs", "cts", "js", "json", "mjs"),
 	...extensions(".eslintrc", "js", "json", "yml"),
+	...extensions(".mocha", "cjs", "js", "json", "jsonc", "yaml", "yml"),
 	...extensions(".prettierrc", "json", "json5", "yaml", "yml"),
 	...extensions("prettier.config", "js", "mjs", "cjs"),
 	...extensions("babel.config", "cjs", "cts", "js", "json", "mjs"),

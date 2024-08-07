@@ -55,6 +55,8 @@ export async function writePackageJson(options: Options) {
 		// Remove fields we know we don't want, such as old or redundant configs
 		eslintConfig: undefined,
 		husky: undefined,
+		jest: undefined,
+		mocha: undefined,
 		prettierConfig: undefined,
 		types: undefined,
 

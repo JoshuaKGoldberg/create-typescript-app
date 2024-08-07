@@ -1,3 +1,9 @@
+## [1.63.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.63.1...v1.63.2) (2024-08-07)
+
+### Bug Fixes
+
+- support eslint-plugin-perfectionist@3 ([#1596](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1596)) ([bf22d50](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bf22d50d24e8e6b30488d41c40feefbfbe4dc64e)), closes [#1588](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1588)
+
 ## [1.63.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.63.0...v1.63.1) (2024-08-07)
 
 ### Bug Fixes

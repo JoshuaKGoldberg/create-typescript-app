@@ -4,9 +4,7 @@
 	"extends": ["config:best-practices", "replacements:all"],
 	"ignoreDeps": ["codecov/codecov-action"],
 	"labels": ["dependencies"],
-	"patch": {
-		"enabled": false
-	},
 	"minimumReleaseAge": "3 days",
+	"patch": { "enabled": false },
 	"postUpdateOptions": ["pnpmDedupe"]
 }

@@ -284,9 +284,7 @@ We appreciate your efforts and responsible disclosure and will make every effort
 				ignoreDeps: ["codecov/codecov-action"],
 				labels: ["dependencies"],
 				minimumReleaseAge: "3 days",
-				patch: {
-					enabled: false,
-				},
+				patch: { enabled: false },
 				postUpdateOptions: ["pnpmDedupe"],
 			}),
 		}),

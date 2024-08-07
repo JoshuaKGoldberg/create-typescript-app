@@ -34,7 +34,7 @@ function createLintingSection(options: Options) {
 				`Read the individual documentation for each linter to understand how it can be configured and used best.`,
 				``,
 				`For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`,
-		  ].join("\n")
+			].join("\n")
 		: `[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
 You can run it locally on the command-line:
 

@@ -36,7 +36,7 @@ export async function finalizeDependencies(options: Options) {
 					"markdownlint",
 					"markdownlint-cli",
 					"sentences-per-line",
-			  ]),
+				]),
 		...(options.excludeLintPackageJson ? [] : ["eslint-plugin-package-json"]),
 		...(options.excludeLintPerfectionist
 			? []
@@ -53,7 +53,7 @@ export async function finalizeDependencies(options: Options) {
 					"console-fail-test",
 					"eslint-plugin-vitest",
 					"vitest",
-			  ]),
+				]),
 	]
 		.filter(Boolean)
 		.sort()

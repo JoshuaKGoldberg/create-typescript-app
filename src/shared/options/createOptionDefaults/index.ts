@@ -46,12 +46,11 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 			/* eslint-enable @typescript-eslint/no-non-null-assertion */
 		},
 		funding: async () =>
-			await tryCatchAsync(
-				async () =>
-					(await fs.readFile(".github/FUNDING.yml"))
-						.toString()
-						.split(":")[1]
-						?.trim(),
+			await tryCatchAsync(async () =>
+				(await fs.readFile(".github/FUNDING.yml"))
+					.toString()
+					.split(":")[1]
+					?.trim(),
 			),
 		owner: async () =>
 			(await gitDefaults())?.organization ?? (await packageAuthor()).author,

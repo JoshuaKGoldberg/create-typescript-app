@@ -25,13 +25,13 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 			? {
 					guide: options.guide.href,
 					guideTitle: options.guide.title,
-			  }
+				}
 			: { guide: undefined }),
 		...(options.logo
 			? {
 					logo: options.logo.src,
 					logoAlt: options.logo.alt,
-			  }
+				}
 			: { logo: undefined }),
 		...(options.offline && {
 			skipAllContributorsApi: undefined,

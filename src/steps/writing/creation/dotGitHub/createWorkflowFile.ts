@@ -90,7 +90,7 @@ export function createWorkflowFile({
 									{ uses: "actions/checkout@v4" },
 									{ uses: "./.github/actions/prepare" },
 									...options.runs.map((run) => ({ run })),
-							  ]
+								]
 							: options.steps,
 				},
 			},

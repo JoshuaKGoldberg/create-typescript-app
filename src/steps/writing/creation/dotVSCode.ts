@@ -32,7 +32,7 @@ export async function createDotVSCode(options: Options) {
 											smartStep: true,
 											type: "node",
 										},
-								  ]),
+									]),
 							...(options.bin
 								? [
 										{
@@ -43,12 +43,12 @@ export async function createDotVSCode(options: Options) {
 											skipFiles: ["<node_internals>/**"],
 											type: "node",
 										},
-								  ]
+									]
 								: []),
 						],
 						version: "0.2.0",
 					}),
-			  }),
+				}),
 		"settings.json": await formatJson({
 			"editor.codeActionsOnSave": {
 				"source.fixAll.eslint": "explicit",

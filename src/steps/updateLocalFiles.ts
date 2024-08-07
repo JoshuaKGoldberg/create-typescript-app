@@ -54,7 +54,7 @@ export async function updateLocalFiles(options: Options) {
 						endOfReadmeTemplateLine,
 						"./README.md",
 					],
-			  ] as typeof replacements)),
+				] as typeof replacements)),
 	];
 
 	if (existingPackage.description) {

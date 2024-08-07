@@ -15,7 +15,7 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintPackageJson &&
 			`import packageJson from "eslint-plugin-package-json/configs/recommended";`,
 		!options.excludeLintPerfectionist &&
-			`import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";`,
+			`import perfectionist from "eslint-plugin-perfectionist";`,
 		!options.excludeLintRegex &&
 			`import * as regexp from "eslint-plugin-regexp";`,
 		!options.excludeTests && `import vitest from "eslint-plugin-vitest";`,
@@ -35,7 +35,8 @@ export async function createESLintConfig(options: Options) {
 			`	jsdoc.configs["flat/recommended-typescript-error"],`,
 		`	n.configs["flat/recommended"],`,
 		!options.excludeLintPackageJson && `	packageJson,`,
-		!options.excludeLintPerfectionist && `	perfectionistNatural,`,
+		!options.excludeLintPerfectionist &&
+			`	perfectionist.configs["recommended-natural"],`,
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
 
@@ -122,7 +123,7 @@ export default tseslint.config(
 				"error",
 				{
 					order: "asc",
-					"partition-by-comment": true,
+					partitionByComment: true,
 					type: "natural",
 				},
 			],`

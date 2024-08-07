@@ -146,6 +146,7 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -			],
 			"n/no-unsupported-features/node-builtins": [
 				"error",
+				{ allowExperimental: true },
 `;
 
 exports[`expected file changes > knip.json 1`] = `

@@ -1,3 +1,9 @@
+# [1.67.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.66.0...v1.67.0) (2024-08-10)
+
+### Features
+
+- unified CI jobs into one ci.yml ([#1608](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1608)) ([a10362c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a10362cf0afc250e9874d885654784bd99607c72)), closes [#1099](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1099)
+
 # [1.66.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.64.0...v1.66.0) (2024-08-07)
 
 ### Bug Fixes

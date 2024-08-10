@@ -1,6 +1,8 @@
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
-export type MultiWorkflowJobStep = { run: string } | { uses: string };
+export type MultiWorkflowJobStep =
+	| { run: string }
+	| { uses: string; with?: Record<string, string> };
 
 export interface MultiWorkflowJobOptions {
 	name: string;
@@ -29,7 +31,6 @@ export function createMultiWorkflowFile({
 						{ uses: "./.github/actions/prepare" },
 						...job.steps,
 					],
-					with: job.with,
 				},
 			]),
 		),

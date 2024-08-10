@@ -77,7 +77,7 @@ export function createWorkflows(options: Options) {
 					? []
 					: [
 							{
-								name: "Lint spelling",
+								name: "Lint Spelling",
 								steps: [{ run: "pnpm lint:spelling" }],
 							},
 						]),
@@ -88,11 +88,13 @@ export function createWorkflows(options: Options) {
 								name: "Test",
 								steps: [
 									{ run: "pnpm run test --coverage" },
-									{ uses: "codecov/codecov-action@v3" },
+									{
+										uses: "codecov/codecov-action@v3",
+										with: {
+											flags: "unit",
+										},
+									},
 								],
-								with: {
-									flags: "unit",
-								},
 							},
 						]),
 			],

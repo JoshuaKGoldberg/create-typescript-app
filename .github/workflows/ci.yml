@@ -16,7 +16,7 @@ jobs:
       - run: pnpm build
       - run: pnpm lint
   lint_knip:
-    name: Lint_knip
+    name: Lint Knip
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

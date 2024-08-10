@@ -90,6 +90,9 @@ export function createWorkflows(options: Options) {
 									{ run: "pnpm run test --coverage" },
 									{ uses: "codecov/codecov-action@v3" },
 								],
+								with: {
+									flags: "unit",
+								},
 							},
 						]),
 			],

@@ -5,6 +5,7 @@ export type MultiWorkflowJobStep = { run: string } | { uses: string };
 export interface MultiWorkflowJobOptions {
 	name: string;
 	steps: MultiWorkflowJobStep[];
+	with?: Record<string, string>;
 }
 
 export interface MultiWorkflowFileOptions {
@@ -23,7 +24,12 @@ export function createMultiWorkflowFile({
 				{
 					name: job.name,
 					"runs-on": "ubuntu-latest",
-					steps: job.steps,
+					steps: [
+						{ uses: "actions/checkout@v4" },
+						{ uses: "./.github/actions/prepare" },
+						...job.steps,
+					],
+					with: job.with,
 				},
 			]),
 		),

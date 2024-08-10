@@ -24,11 +24,15 @@ describe("createMultiWorkflowFile", () => {
 			    name: Job A
 			    runs-on: ubuntu-latest
 			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
 			      - run: task-a
 			  job_b:
 			    name: Job B
 			    runs-on: ubuntu-latest
 			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
 			      - uses: task-b
 
 			name: Test Name

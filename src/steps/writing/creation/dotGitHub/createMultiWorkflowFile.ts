@@ -1,13 +1,10 @@
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
-export type MultiWorkflowJobStep =
-	| { run: string }
-	| { uses: string; with?: Record<string, string> };
+export type MultiWorkflowJobStep = { run: string } | { uses: string };
 
 export interface MultiWorkflowJobOptions {
 	name: string;
 	steps: MultiWorkflowJobStep[];
-	with?: Record<string, string>;
 }
 
 export interface MultiWorkflowFileOptions {

@@ -1833,6 +1833,7 @@ packages:
   commit-to-co-authors@0.1.0:
     resolution: {integrity: sha512-5v1M+gBD0H7G2++D1L3z8ekVkTsIYNTuUFmL8KgIumuJdZ1CFjRulgUvYA7dFDmZNENu0G//yp+krWGcXb2WYA==}
     engines: {node: '>=18'}
+    deprecated: Renamed to description-to-co-authors. This will work for GitHub issue bodies too.
 
   compare-func@2.0.0:
     resolution: {integrity: sha512-zHig5N+tPWARooBnb0Zx1MFcdfpyJrfTJ3Y5L+IFvUm8rM74hHz66z0gw0x4tijh5CorKkKUCnW82R2vmpeCRA==}

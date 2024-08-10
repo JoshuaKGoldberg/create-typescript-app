@@ -7,11 +7,11 @@ describe("createMultiWorkflowFile", () => {
 		const actual = createMultiWorkflowFile({
 			jobs: [
 				{
-					name: "job_a",
+					name: "Job A",
 					steps: [{ run: "task-a" }],
 				},
 				{
-					name: "job_b",
+					name: "Job B",
 					steps: [{ uses: "task-b" }],
 				},
 			],
@@ -21,15 +21,15 @@ describe("createMultiWorkflowFile", () => {
 		expect(actual).toMatchInlineSnapshot(`
 			"jobs:
 			  job_a:
+			    name: Job A
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: task-a
+			      - run: task-a
 			  job_b:
+			    name: Job B
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          uses: task-b
+			      - uses: task-b
 
 			name: Test Name
 

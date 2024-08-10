@@ -1,5 +1,6 @@
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -7,6 +8,7 @@ jobs:
       - run: pnpm build
       - run: node ./lib/index.js
   lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,36 +16,42 @@ jobs:
       - run: pnpm build
       - run: pnpm lint
   lint_knip:
+    name: Lint_knip
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm lint:knip
   lint_markdown:
+    name: Lint Markdown
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm lint:md
   lint_packages:
+    name: Lint Packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm lint:packages
   lint_spelling:
+    name: Lint Spelling
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm lint:spelling
   prettier:
+    name: Prettier
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm format --list-different
   test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -54,6 +62,7 @@ jobs:
         with:
           flags: unit
   type_check:
+    name: Type_check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

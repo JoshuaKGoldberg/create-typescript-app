@@ -67,57 +67,54 @@ describe("createWorkflows", () => {
 			  pull-requests: write
 			",
 			  "ci.yml": "jobs:
-			  Build:
+			  build:
+			    name: Build
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm build
-			      - run:
-			          run: node ./lib/index.js
-			  Lint:
+			      - run: pnpm build
+			      - run: node ./lib/index.js
+			  lint:
+			    name: Lint
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm build
-			      - run:
-			          run: pnpm lint
-			  Lint Knip:
+			      - run: pnpm build
+			      - run: pnpm lint
+			  lint_knip:
+			    name: Lint Knip
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm lint:knip
-			  Lint Markdown:
+			      - run: pnpm lint:knip
+			  lint_markdown:
+			    name: Lint Markdown
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm lint:md
-			  Lint Packages:
+			      - run: pnpm lint:md
+			  lint_packages:
+			    name: Lint Packages
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm lint:packages
-			  Lint spelling:
+			      - run: pnpm lint:packages
+			  lint_spelling:
+			    name: Lint spelling
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm lint:spelling
-			  Prettier:
+			      - run: pnpm lint:spelling
+			  prettier:
+			    name: Prettier
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm format --list-different
-			  Test:
+			      - run: pnpm format --list-different
+			  test:
+			    name: Test
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm run test --coverage
-			      - run:
-			          uses: codecov/codecov-action@v3
-			  Type Check:
+			      - run: pnpm run test --coverage
+			      - uses: codecov/codecov-action@v3
+			  type_check:
+			    name: Type Check
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm tsc
+			      - run: pnpm tsc
 
 			name: CI
 
@@ -291,28 +288,27 @@ describe("createWorkflows", () => {
 			  pull-requests: write
 			",
 			  "ci.yml": "jobs:
-			  Build:
+			  build:
+			    name: Build
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm build
-			      - run:
-			          run: node ./lib/index.js
-			  Lint:
+			      - run: pnpm build
+			      - run: node ./lib/index.js
+			  lint:
+			    name: Lint
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm lint
-			  Prettier:
+			      - run: pnpm lint
+			  prettier:
+			    name: Prettier
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm format --list-different
-			  Type Check:
+			      - run: pnpm format --list-different
+			  type_check:
+			    name: Type Check
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run:
-			          run: pnpm tsc
+			      - run: pnpm tsc
 
 			name: CI
 

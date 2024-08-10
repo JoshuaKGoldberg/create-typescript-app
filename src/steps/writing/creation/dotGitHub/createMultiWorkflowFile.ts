@@ -19,10 +19,11 @@ export function createMultiWorkflowFile({
 	return formatWorkflowYaml({
 		jobs: Object.fromEntries(
 			jobs.map((job) => [
-				job.name,
+				job.name.toLowerCase().replaceAll(" ", "_"),
 				{
+					name: job.name,
 					"runs-on": "ubuntu-latest",
-					steps: job.steps.map((step) => ({ run: step })),
+					steps: job.steps,
 				},
 			]),
 		),

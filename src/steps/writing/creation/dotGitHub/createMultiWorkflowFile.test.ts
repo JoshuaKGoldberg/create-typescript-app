@@ -8,11 +8,11 @@ describe("createMultiWorkflowFile", () => {
 			jobs: [
 				{
 					name: "job_a",
-					steps: ["task-a"],
+					steps: [{ run: "task-a" }],
 				},
 				{
 					name: "job_b",
-					steps: ["task-b"],
+					steps: [{ uses: "task-b" }],
 				},
 			],
 			name: "Test Name",
@@ -23,11 +23,13 @@ describe("createMultiWorkflowFile", () => {
 			  job_a:
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run: task-a
+			      - run:
+			          run: task-a
 			  job_b:
 			    runs-on: ubuntu-latest
 			    steps:
-			      - run: task-b
+			      - run:
+			          uses: task-b
 
 			name: Test Name
 

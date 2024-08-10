@@ -1,46 +1,102 @@
-/* spellchecker: disable */
 import { Options } from "../../../../shared/types.js";
-import { createWorkflowFile } from "./createWorkflowFile.js";
+import { createMultiWorkflowFile } from "./createMultiWorkflowFile.js";
+import { createSoloWorkflowFile } from "./createSoloWorkflowFile.js";
 
 export function createWorkflows(options: Options) {
 	return {
-		"build.yml": createWorkflowFile({
-			name: "Build",
-			runs: ["pnpm build", "node ./lib/index.js"],
-		}),
-		"pr-review-requested.yml": createWorkflowFile({
-			name: "PR Review Requested",
+		"accessibility-alt-text-bot.yml": createSoloWorkflowFile({
+			if: "${{ !endsWith(github.actor, '[bot]') }}",
+			name: "Accessibility Alt Text Bot",
 			on: {
-				pull_request_target: {
-					types: ["review_requested"],
+				issue_comment: {
+					types: ["created", "edited"],
+				},
+				issues: {
+					types: ["edited", "opened"],
+				},
+				pull_request: {
+					types: ["edited", "opened"],
 				},
 			},
 			permissions: {
+				issues: "write",
 				"pull-requests": "write",
 			},
 			steps: [
 				{
-					uses: "actions-ecosystem/action-remove-labels@v1",
-					with: {
-						labels: "status: waiting for author",
-					},
-				},
-				{
-					if: "failure()",
-					run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
+					uses: "github/accessibility-alt-text-bot@v1.4.0",
 				},
 			],
 		}),
-		"prettier.yml": createWorkflowFile({
-			name: "Prettier",
-			runs: ["pnpm format --list-different"],
-		}),
-		"tsc.yml": createWorkflowFile({
-			name: "Type Check",
-			runs: ["pnpm tsc"],
+		"ci.yml": createMultiWorkflowFile({
+			jobs: [
+				{
+					name: "Build",
+					steps: [{ run: "pnpm build" }, { run: "node ./lib/index.js" }],
+				},
+				{
+					name: "Prettier",
+					steps: [{ run: "pnpm format --list-different" }],
+				},
+				{
+					name: "Type Check",
+					steps: [{ run: "pnpm tsc" }],
+				},
+				{
+					name: "Lint",
+					steps: [
+						...(options.bin ? [{ run: "pnpm build" }] : []),
+						{ run: "pnpm lint" },
+					],
+				},
+				...(options.excludeLintKnip
+					? []
+					: [
+							{
+								name: "Lint Knip",
+								steps: [{ run: "pnpm lint:knip" }],
+							},
+						]),
+				...(options.excludeLintMd
+					? []
+					: [
+							{
+								name: "Lint Markdown",
+								steps: [{ run: "pnpm lint:md" }],
+							},
+						]),
+				...(options.excludeLintPackages
+					? []
+					: [
+							{
+								name: "Lint Packages",
+								steps: [{ run: "pnpm lint:packages" }],
+							},
+						]),
+				...(options.excludeLintSpelling
+					? []
+					: [
+							{
+								name: "Lint Spelling",
+								steps: [{ run: "pnpm lint:spelling" }],
+							},
+						]),
+				...(options.excludeTests
+					? []
+					: [
+							{
+								name: "Test",
+								steps: [
+									{ run: "pnpm run test --coverage" },
+									{ uses: "codecov/codecov-action@v3" },
+								],
+							},
+						]),
+			],
+			name: "CI",
 		}),
 		...(!options.excludeCompliance && {
-			"compliance.yml": createWorkflowFile({
+			"compliance.yml": createSoloWorkflowFile({
 				name: "Compliance",
 				on: {
 					pull_request: {
@@ -72,7 +128,7 @@ export function createWorkflows(options: Options) {
 			}),
 		}),
 		...(!options.excludeAllContributors && {
-			"contributors.yml": createWorkflowFile({
+			"contributors.yml": createSoloWorkflowFile({
 				name: "Contributors",
 				on: {
 					push: {
@@ -89,60 +145,8 @@ export function createWorkflows(options: Options) {
 				],
 			}),
 		}),
-		"accessibility-alt-text-bot.yml": createWorkflowFile({
-			if: "${{ !endsWith(github.actor, '[bot]') }}",
-			name: "Accessibility Alt Text Bot",
-			on: {
-				issue_comment: {
-					types: ["created", "edited"],
-				},
-				issues: {
-					types: ["edited", "opened"],
-				},
-				pull_request: {
-					types: ["edited", "opened"],
-				},
-			},
-			permissions: {
-				issues: "write",
-				"pull-requests": "write",
-			},
-			steps: [
-				{
-					uses: "github/accessibility-alt-text-bot@v1.4.0",
-				},
-			],
-		}),
-		"lint.yml": createWorkflowFile({
-			name: "Lint",
-			runs: [...(options.bin ? ["pnpm build"] : []), "pnpm lint"],
-		}),
-		...(!options.excludeLintKnip && {
-			"lint-knip.yml": createWorkflowFile({
-				name: "Lint Knip",
-				runs: ["pnpm lint:knip"],
-			}),
-		}),
-		...(!options.excludeLintMd && {
-			"lint-markdown.yml": createWorkflowFile({
-				name: "Lint Markdown",
-				runs: ["pnpm lint:md"],
-			}),
-		}),
-		...(!options.excludeLintPackages && {
-			"lint-packages.yml": createWorkflowFile({
-				name: "Lint Packages",
-				runs: ["pnpm lint:packages"],
-			}),
-		}),
-		...(!options.excludeLintSpelling && {
-			"lint-spelling.yml": createWorkflowFile({
-				name: "Lint spelling",
-				runs: ["pnpm lint:spelling"],
-			}),
-		}),
 		...(!options.excludeReleases && {
-			"post-release.yml": createWorkflowFile({
+			"post-release.yml": createSoloWorkflowFile({
 				name: "Post Release",
 				on: {
 					release: {
@@ -172,7 +176,32 @@ export function createWorkflows(options: Options) {
 					},
 				],
 			}),
-			"release.yml": createWorkflowFile({
+		}),
+		"pr-review-requested.yml": createSoloWorkflowFile({
+			name: "PR Review Requested",
+			on: {
+				pull_request_target: {
+					types: ["review_requested"],
+				},
+			},
+			permissions: {
+				"pull-requests": "write",
+			},
+			steps: [
+				{
+					uses: "actions-ecosystem/action-remove-labels@v1",
+					with: {
+						labels: "status: waiting for author",
+					},
+				},
+				{
+					if: "failure()",
+					run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
+				},
+			],
+		}),
+		...(!options.excludeReleases && {
+			"release.yml": createSoloWorkflowFile({
 				concurrency: {
 					group: "${{ github.workflow }}",
 				},
@@ -206,20 +235,6 @@ export function createWorkflows(options: Options) {
 							NPM_TOKEN: "${{ secrets.NPM_TOKEN }}",
 						},
 						uses: "JoshuaKGoldberg/release-it-action@v0.2.2",
-					},
-				],
-			}),
-		}),
-		...(!options.excludeTests && {
-			"test.yml": createWorkflowFile({
-				name: "Test",
-				steps: [
-					{ uses: "actions/checkout@v4" },
-					{ uses: "./.github/actions/prepare" },
-					{ run: "pnpm run test --coverage" },
-					{
-						name: "Codecov",
-						uses: "codecov/codecov-action@v3",
 					},
 				],
 			}),

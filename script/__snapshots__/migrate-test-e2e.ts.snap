@@ -1,17 +1,17 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`expected file changes > .github/workflows/test.yml 1`] = `
-"--- a/.github/workflows/test.yml
-+++ b/.github/workflows/test.yml
+exports[`expected file changes > .github/workflows/ci.yml 1`] = `
+"--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
 @@ ... @@ jobs:
+       - uses: ./.github/actions/prepare
        - run: pnpm run test --coverage
-       - name: Codecov
-         uses: codecov/codecov-action@v3
+       - uses: codecov/codecov-action@v3
 -        with:
 -          flags: unit
- 
- name: Test
- "
+   type_check:
+     name: Type Check
+     runs-on: ubuntu-latest"
 `;
 
 exports[`expected file changes > .gitignore 1`] = `
@@ -75,6 +75,11 @@ exports[`expected file changes > cspell.json 1`] = `
  		"node_modules",
  		"pnpm-lock.yaml"
 @@ ... @@
+ 		"apexskier",
+ 		"arethetypeswrong",
+ 		"automerge",
+-		"codecov",
+ 		"codespace",
  		"contributorsrc",
  		"execa",
  		"infile",

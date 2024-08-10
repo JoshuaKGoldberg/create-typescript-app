@@ -1,4 +1,4 @@
-import { formatYaml } from "../formatters/formatYaml.js";
+import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
 interface WorkflowFileConcurrency {
 	"cancel-in-progress"?: boolean;
@@ -65,43 +65,31 @@ interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {
 
 type WorkflowFileOptions = WorkflowFileOptionsRuns | WorkflowFileOptionsSteps;
 
-export function createWorkflowFile({
+export function createSoloWorkflowFile({
 	concurrency,
 	name,
-	on = {
-		pull_request: null,
-		push: {
-			branches: ["main"],
-		},
-	},
+	on,
 	permissions,
 	...options
 }: WorkflowFileOptions) {
-	return (
-		formatYaml({
-			concurrency,
-			jobs: {
-				[name.replaceAll(" ", "_").toLowerCase()]: {
-					...(options.if && { if: options.if }),
-					"runs-on": "ubuntu-latest",
-					steps:
-						"runs" in options
-							? [
-									{ uses: "actions/checkout@v4" },
-									{ uses: "./.github/actions/prepare" },
-									...options.runs.map((run) => ({ run })),
-								]
-							: options.steps,
-				},
+	return formatWorkflowYaml({
+		concurrency,
+		jobs: {
+			[name.replaceAll(" ", "_").toLowerCase()]: {
+				...(options.if && { if: options.if }),
+				"runs-on": "ubuntu-latest",
+				steps:
+					"runs" in options
+						? [
+								{ uses: "actions/checkout@v4" },
+								{ uses: "./.github/actions/prepare" },
+								...options.runs.map((run) => ({ run })),
+							]
+						: options.steps,
 			},
-			name,
-			on,
-			permissions,
-		})
-			.replaceAll(/\n(\S)/g, "\n\n$1")
-			// https://github.com/nodeca/js-yaml/pull/515
-			.replaceAll(/: "\\n(.+)"/g, ": |\n$1")
-			.replaceAll("\\n", "\n")
-			.replaceAll("\\t", "  ")
-	);
+		},
+		name,
+		on,
+		permissions,
+	});
 }

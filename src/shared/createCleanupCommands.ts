@@ -6,7 +6,7 @@ export function createCleanupCommands({
 }: Pick<Options, "bin" | "mode">) {
 	return [
 		// There's no need to dedupe when initializing from the fixed template
-		...(mode === "initialize" ? [] : ["pnpm dedupe"]),
+		...(mode === "initialize" ? [] : ["pnpm dedupe --offline"]),
 		// n/no-missing-import rightfully reports on a missing the bin .js file
 		...(bin ? ["pnpm build"] : []),
 		"pnpm lint --fix",

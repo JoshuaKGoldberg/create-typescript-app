@@ -19,7 +19,7 @@ describe("createCleanupCommands", () => {
 		});
 
 		expect(actual).toEqual([
-			"pnpm dedupe",
+			"pnpm dedupe --offline",
 			"pnpm build",
 			"pnpm lint --fix",
 			"pnpm format --write",

@@ -1,40 +1,23 @@
 export interface EmailValues {
 	email?: boolean | string;
-	"email-git"?: boolean | string;
 	"email-github"?: boolean | string;
 	"email-npm"?: boolean | string;
 }
 
-const specificKeys = ["email-git", "email-github", "email-npm"] as const;
-
 export function detectEmailRedundancy(values: EmailValues) {
-	const present = specificKeys
-		.filter((key) => !!values[key])
-		.map((key) => `--${key}`);
-
 	if (values.email) {
-		return present.length === 3
-			? "If --email-git, --email-github, and --email-npm are specified, --email should not be."
+		return values["email-github"] && values["email-npm"]
+			? "--email should not be specified if both --email-github and --email-npm are specified."
 			: undefined;
 	}
 
-	if (!values.email && !present.length) {
-		return undefined;
+	if (values["email-github"] && !values["email-npm"]) {
+		return "If --email-github is specified, either --email or --email-npm should be.";
 	}
 
-	if (present.length === specificKeys.length) {
-		return undefined;
+	if (values["email-npm"] && !values["email-github"]) {
+		return "If --email-npm is specified, either --email or --email-github should be.";
 	}
 
-	const specified =
-		present.length === 1 ? `${present[0]} is` : `${present.join(" and ")} are`;
-
-	const missing = specificKeys
-		.filter((key) => !values[key])
-		.map((key) => `--${key}`);
-
-	const required =
-		missing.length === 1 ? missing[0] : `both ${missing.join(" and ")}`;
-
-	return `If ${specified} specified, either --email or ${required} should be.`;
+	return undefined;
 }

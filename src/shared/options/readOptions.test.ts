@@ -558,7 +558,6 @@ describe("readOptions", () => {
 				description: "mock",
 				directory: "mock",
 				email: {
-					git: "mock",
 					github: "mock",
 					npm: "mock",
 				},
@@ -595,7 +594,6 @@ describe("readOptions", () => {
 				description: "mock",
 				directory: "mock",
 				email: {
-					git: "mock",
 					github: "mock",
 					npm: "mock",
 				},
@@ -650,7 +648,6 @@ describe("readOptions", () => {
 				description,
 				directory: repository,
 				email: {
-					git: "mock",
 					github: "mock",
 					npm: "mock",
 				},
@@ -709,7 +706,6 @@ describe("readOptions", () => {
 				description,
 				directory: repository,
 				email: {
-					git: "mock",
 					github: "mock",
 					npm: "mock",
 				},
@@ -736,7 +732,6 @@ describe("readOptions", () => {
 			      "description": "Test description.",
 			      "directory": "test-repository",
 			      "email": {
-			        "git": "mock",
 			        "github": "mock",
 			        "npm": "mock",
 			      },

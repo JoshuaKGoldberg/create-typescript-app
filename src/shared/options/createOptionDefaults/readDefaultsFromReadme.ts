@@ -10,10 +10,25 @@ export function readDefaultsFromReadme() {
 	);
 
 	return {
-		logo: async () =>
-			(await imageTag())
-				?.match(/src\s*=(.+)?\/>/)?.[1]
-				?.replaceAll(/^['"]|['"]$/g, ""),
+		logo: async () => {
+			const tag = await imageTag();
+			if (!tag) {
+				return undefined;
+			}
+
+			const src = /src\s*=(.+)?\/>/
+				.exec(tag)?.[1]
+				?.replaceAll(/^['"]|['"]$/g, "");
+
+			if (!src) {
+				return undefined;
+			}
+
+			return {
+				alt: /alt=['"](.+)['"] src=['"].+['"]/.exec(tag)?.[1] ?? "Project logo",
+				src,
+			};
+		},
 		title: async () =>
 			(/^<h1\s+align="center">(.+)<\/h1>/.exec(await readme()) ??
 				/^# (.+)/.exec(await readme()))?.[1],

@@ -272,7 +272,7 @@ export async function readOptions(
 		email,
 		funding: options.funding ?? (await defaults.funding()),
 		guide: guide ?? (await defaults.guide()),
-		logo,
+		logo: logo ?? (await defaults.logo()),
 		mode,
 		owner: options.owner,
 		repository,

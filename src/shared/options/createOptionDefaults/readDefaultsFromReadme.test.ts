@@ -25,7 +25,10 @@ describe("readDefaultsFromReadme", () => {
 
 			const logo = await readDefaultsFromReadme().logo();
 
-			expect(logo).toBe("abc/def.jpg");
+			expect(logo).toEqual({
+				alt: "Project logo",
+				src: "abc/def.jpg",
+			});
 		});
 
 		it("parses when found in a single quoted string", async () => {
@@ -33,7 +36,10 @@ describe("readDefaultsFromReadme", () => {
 
 			const logo = await readDefaultsFromReadme().logo();
 
-			expect(logo).toBe("abc/def.jpg");
+			expect(logo).toEqual({
+				alt: "Project logo",
+				src: "abc/def.jpg",
+			});
 		});
 
 		it("parses when found in a double quoted string", async () => {
@@ -41,7 +47,36 @@ describe("readDefaultsFromReadme", () => {
 
 			const logo = await readDefaultsFromReadme().logo();
 
-			expect(logo).toBe("abc/def.jpg");
+			expect(logo).toEqual({
+				alt: "Project logo",
+				src: "abc/def.jpg",
+			});
+		});
+
+		it("includes alt text when it exists in double quotes", async () => {
+			mockReadFileSafe.mockResolvedValue(
+				'<img alt="Project logo: a fancy circle" src="abc/def.jpg"/>',
+			);
+
+			const logo = await readDefaultsFromReadme().logo();
+
+			expect(logo).toEqual({
+				alt: "Project logo: a fancy circle",
+				src: "abc/def.jpg",
+			});
+		});
+
+		it("includes alt text when it exists in single quotes", async () => {
+			mockReadFileSafe.mockResolvedValue(
+				"<img alt='Project logo: a fancy circle' src='abc/def.jpg'/>",
+			);
+
+			const logo = await readDefaultsFromReadme().logo();
+
+			expect(logo).toEqual({
+				alt: "Project logo: a fancy circle",
+				src: "abc/def.jpg",
+			});
 		});
 	});
 

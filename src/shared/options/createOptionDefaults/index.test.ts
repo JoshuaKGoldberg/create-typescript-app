@@ -79,7 +79,6 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				git: "npm-username@test.com",
 				github: "npm-username@test.com",
 				npm: "npm-username@test.com",
 			});
@@ -97,7 +96,6 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				git: "test@package.com",
 				github: "test@package.com",
 				npm: "test@package.com",
 			});
@@ -111,7 +109,6 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				git: "github@test.com",
 				github: "github@test.com",
 				npm: "github@test.com",
 			});
@@ -129,7 +126,6 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				git: "git@test.com",
 				github: "git@test.com",
 				npm: "git@test.com",
 			});
@@ -148,7 +144,6 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				git: "git@test.com",
 				github: "git@test.com",
 				npm: "npm-username@test.com",
 			});
@@ -167,7 +162,6 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				git: "git@test.com",
 				github: "github@test.com",
 				npm: "npm-username@test.com",
 			});

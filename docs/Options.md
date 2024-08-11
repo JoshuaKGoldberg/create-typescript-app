@@ -56,7 +56,7 @@ The setup scripts also allow for optional overrides of the following inputs whos
 - `--bin` _(`string`)_: `package.json` bin value to include for npx-style running.
 - `--directory` _(`string`)_: Directory to create the repository in (by default, the same name as the repository)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
-  - Optionally, `--email-github` _(`string`)_ and/or `--email-npm` _(`string`)_ may be provided to use different emails in `.md` files and `package.json`, respectively
+  - Optionally, `--email-` _(`string`)_, `--email-github` _(`string`)_, and/or `--email-npm` _(`string`)_ may be provided to use different emails in Git operations, `.md` files, and `package.json`, respectively
 - `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
 - `--guide` _(`string`)_: Link to a contribution guide to place at the top of the development docs
   - `--guide-title` _(`string`)_: If `--guide` is provided or detected from an existing DEVELOPMENT.md, the text title to place in the guide link

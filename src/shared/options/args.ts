@@ -62,6 +62,11 @@ export const allArgOptions = {
 		docsSection: "optional",
 		type: "string",
 	},
+	"email-git": {
+		description: `Optionally, may be provided to use different emails in Git operations`,
+		docsSection: "optional",
+		type: "string",
+	},
 	"email-github": {
 		description: `Optionally, may be provided to use different emails in ${chalk.cyanBright(
 			".md",

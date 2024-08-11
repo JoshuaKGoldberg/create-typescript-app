@@ -137,6 +137,10 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
+			  --email-git (string): Optionally, may be provided to use different emails in Git operations",
+			  ],
+			  [
+			    "
 			  --email-github (string): Optionally, may be provided to use different emails in .md 
 			  files",
 			  ],

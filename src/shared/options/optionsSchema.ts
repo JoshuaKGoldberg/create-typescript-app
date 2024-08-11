@@ -17,6 +17,7 @@ export const optionsSchemaShape = {
 	directory: z.string().optional(),
 	email: z
 		.object({
+			git: z.string().email(),
 			github: z.string().email(),
 			npm: z.string().email(),
 		})

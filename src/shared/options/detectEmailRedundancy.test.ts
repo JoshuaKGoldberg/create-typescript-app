@@ -1,38 +1,50 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, test } from "vitest";
 
-import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
+import { detectEmailRedundancy, EmailValues } from "./detectEmailRedundancy.js";
 
 describe("detectEmailRedundancy", () => {
-	it("returns undefined when only email is specified", () => {
-		expect(detectEmailRedundancy({ email: "test@email.com" })).toBeUndefined();
-	});
-
-	it("returns undefined when email-github and email-npm are specified while email is not", () => {
+	test.each<[(keyof EmailValues)[], string | undefined]>([
+		[[], undefined],
+		[["email"], undefined],
+		[["email", "email-git"], undefined],
+		[["email", "email-github"], undefined],
+		[["email", "email-npm"], undefined],
+		[["email", "email-git", "email-github"], undefined],
+		[["email", "email-git", "email-npm"], undefined],
+		[["email", "email-github", "email-npm"], undefined],
+		[
+			["email", "email-git", "email-github", "email-npm"],
+			"If --email-git, --email-github, and --email-npm are specified, --email should not be.",
+		],
+		[
+			["email-git"],
+			"If --email-git is specified, either --email or both --email-github and --email-npm should be.",
+		],
+		[
+			["email-github"],
+			"If --email-github is specified, either --email or both --email-git and --email-npm should be.",
+		],
+		[
+			["email-npm"],
+			"If --email-npm is specified, either --email or both --email-git and --email-github should be.",
+		],
+		[
+			["email-git", "email-github"],
+			"If --email-git and --email-github are specified, either --email or --email-npm should be.",
+		],
+		[
+			["email-git", "email-npm"],
+			"If --email-git and --email-npm are specified, either --email or --email-github should be.",
+		],
+		[
+			["email-github", "email-npm"],
+			"If --email-github and --email-npm are specified, either --email or --email-git should be.",
+		],
+	])("%o", (keys, expected) => {
 		expect(
-			detectEmailRedundancy({
-				"email-github": "test@email.com",
-				"email-npm": "test@email.com",
-			}),
-		).toBeUndefined();
-	});
-
-	it("returns a complaint when email-github is specified while email and email-npm are not", () => {
-		expect(
-			detectEmailRedundancy({
-				"email-github": "test@email.com",
-			}),
-		).toBe(
-			"If --email-github is specified, either --email or --email-npm should be.",
-		);
-	});
-
-	it("returns a complaint when email-npm is specified while email and email-github are not", () => {
-		expect(
-			detectEmailRedundancy({
-				"email-npm": "test@email.com",
-			}),
-		).toBe(
-			"If --email-npm is specified, either --email or --email-github should be.",
-		);
+			detectEmailRedundancy(
+				Object.fromEntries(keys.map((key) => [key, `${key}@test.com`])),
+			),
+		).toBe(expected);
 	});
 });

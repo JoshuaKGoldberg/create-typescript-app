@@ -59,8 +59,12 @@ export async function readOptions(
 		description: values.description,
 		directory: values.directory,
 		email:
-			(values.email ?? values["email-github"] ?? values["email-npm"])
+			(values.email ??
+			values["email-git"] ??
+			values["email-github"] ??
+			values["email-npm"])
 				? {
+						git: values.email ?? values["email-git"],
 						github: values.email ?? values["email-github"],
 						npm: values.email ?? values["email-npm"],
 					}
@@ -257,7 +261,11 @@ export async function readOptions(
 			return { cancelled: true, error: emailOption.error, options };
 		}
 
-		email = { github: emailOption.value, npm: emailOption.value };
+		email = {
+			git: emailOption.value,
+			github: emailOption.value,
+			npm: emailOption.value,
+		};
 	}
 
 	const augmentedOptions = await augmentOptionsWithExcludes({

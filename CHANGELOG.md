@@ -1,3 +1,9 @@
+## [1.67.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.4...v1.67.5) (2024-08-11)
+
+### Bug Fixes
+
+- disable gpg signing on initial commit ([#1615](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1615)) ([d6262a2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d6262a29837a61ae856ec0efbcf3285fc4a66e80)), closes [#1275](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1275)
+
 ## [1.67.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.3...v1.67.4) (2024-08-11)
 
 ### Bug Fixes

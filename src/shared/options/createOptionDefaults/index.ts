@@ -30,7 +30,8 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 	);
 
 	return {
-		author: async () => (await packageAuthor()).author ?? npmDefaults.name,
+		author: async () =>
+			(await packageAuthor()).author ?? (await npmDefaults())?.name,
 		bin: async () => (await packageData()).bin,
 		description: async () => (await packageData()).description,
 		email: async () => {

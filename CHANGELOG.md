@@ -1,3 +1,9 @@
+## [1.67.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.2...v1.67.3) (2024-08-11)
+
+### Bug Fixes
+
+- correct remaining --auto mismatches ([#1612](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1612)) ([551737a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/551737ae436683d86d51fe89140aa59e23e13708)), closes [#934](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/934) [#1157](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1157) [#1613](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1613)
+
 ## [1.67.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.1...v1.67.2) (2024-08-11)
 
 ### Bug Fixes

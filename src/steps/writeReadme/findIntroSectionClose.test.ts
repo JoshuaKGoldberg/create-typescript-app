@@ -42,7 +42,24 @@ Next line.
 `,
 			14,
 		],
-	])("%s", (contents, expected) => {
+		[
+			`<h1 align="center">Title</h1>
+
+<p align="center">Description.</p>
+
+<p align="center">
+	(existing badges)
+</p>
+
+<img align="right" alt="Project logo: ..." src="./logo.png">
+
+First intro text.
+
+## Getting Started
+`,
+			173,
+		],
+	])("%o", (contents, expected) => {
 		expect(findIntroSectionClose(contents)).toEqual(expected);
 	});
 });

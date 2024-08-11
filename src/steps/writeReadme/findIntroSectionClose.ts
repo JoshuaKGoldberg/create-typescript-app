@@ -2,9 +2,8 @@ import { existingBadgeMatcherCreators } from "./findExistingBadges.js";
 
 export function findIntroSectionClose(contents: string) {
 	// Highest priority: after an existing create-typescript-app-style logo
-	const projectLogoMatch = /<img align="right" alt=".+" src=".+">/.exec(
-		contents,
-	);
+	const projectLogoMatch =
+		/<img align="right" alt="Project logo.+" src=".+">/.exec(contents);
 	if (projectLogoMatch) {
 		return contents.indexOf("\n", projectLogoMatch.index) + 2;
 	}

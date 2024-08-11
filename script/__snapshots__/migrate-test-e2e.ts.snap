@@ -72,7 +72,6 @@ exports[`expected file changes > cspell.json 1`] = `
  		"codespace",
  		"contributorsrc",
  		"execa",
--		"gpgsign",
  		"infile",
 +		"joshuakgoldberg",
  		"knip",

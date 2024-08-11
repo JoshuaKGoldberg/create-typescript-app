@@ -18,6 +18,7 @@
 		"codespace",
 		"contributorsrc",
 		"execa",
+		"gpgsign",
 		"infile",
 		"knip",
 		"markdownlintignore",

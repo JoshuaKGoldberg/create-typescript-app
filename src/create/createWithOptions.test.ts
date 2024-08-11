@@ -174,7 +174,7 @@ describe("createWithOptions", () => {
 			  [
 			    [
 			      "git commit --message ",
-			      "",
+			      " --no-gpgsign",
 			    ],
 			    "feat: initialized repo ✨",
 			  ],

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { createOptionDefaults } from "./index.js";
 
@@ -34,6 +34,14 @@ vi.mock("../../packages.js", () => ({
 	},
 }));
 
+const mockReadGitHubEmail = vi.fn();
+
+vi.mock("./readGitHubEmail.js", () => ({
+	get readGitHubEmail() {
+		return mockReadGitHubEmail;
+	},
+}));
+
 describe("createOptionDefaults", () => {
 	describe("bin", () => {
 		it("returns undefined when package data does not have a bin", async () => {
@@ -56,24 +64,30 @@ describe("createOptionDefaults", () => {
 	});
 
 	describe("email", () => {
+		beforeEach(() => {
+			mockNpmUser.mockImplementation((username: string) => ({
+				email: `npm-${username}@test.com`,
+			}));
+		});
+
 		it("returns the npm whoami email from npm when only an npm exists", async () => {
 			mock$.mockImplementation(([command]: string[]) =>
-				command === "npm whoami" ? { stdout: "npm-username" } : undefined,
+				command === "npm whoami" ? { stdout: "username" } : undefined,
 			);
-			mockNpmUser.mockImplementation((username: string) => ({
-				email: `test@${username}.com`,
-			}));
+			mockReadGitHubEmail.mockResolvedValueOnce(undefined);
 
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				github: "test@npm-username.com",
-				npm: "test@npm-username.com",
+				git: "npm-username@test.com",
+				github: "npm-username@test.com",
+				npm: "npm-username@test.com",
 			});
 		});
 
 		it("returns the npm whoami email from npm when only a package author email exists", async () => {
 			mock$.mockResolvedValue({ stdout: "" });
+			mockReadGitHubEmail.mockResolvedValueOnce(undefined);
 			mockReadPackageData.mockResolvedValue({
 				author: {
 					email: "test@package.com",
@@ -83,46 +97,85 @@ describe("createOptionDefaults", () => {
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
+				git: "test@package.com",
 				github: "test@package.com",
 				npm: "test@package.com",
+			});
+		});
+
+		it("returns the github email when only a github email exists", async () => {
+			mock$.mockResolvedValue({ stdout: "" });
+			mockReadPackageData.mockResolvedValueOnce({});
+			mockReadGitHubEmail.mockResolvedValueOnce("github@test.com");
+
+			const actual = await createOptionDefaults().email();
+
+			expect(actual).toEqual({
+				git: "github@test.com",
+				github: "github@test.com",
+				npm: "github@test.com",
 			});
 		});
 
 		it("returns the git user email when only a git user email exists", async () => {
 			mock$.mockImplementation(([command]: string[]) =>
 				command === "git config --get user.email"
-					? { stdout: "test@git.com" }
+					? { stdout: "git@test.com" }
 					: undefined,
 			);
+			mockReadGitHubEmail.mockResolvedValueOnce(undefined);
 			mockReadPackageData.mockResolvedValue({});
 
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				github: "test@git.com",
-				npm: "test@git.com",
+				git: "git@test.com",
+				github: "git@test.com",
+				npm: "git@test.com",
 			});
 		});
 
-		it("returns both the git user email and the npm user email when both exist", async () => {
+		it("returns both the git user email and the npm user email when only those two exist", async () => {
 			mock$.mockImplementation(([command]: string[]) => ({
 				stdout:
 					command === "git config --get user.email"
-						? "test@git.com"
-						: "npm-username",
+						? "git@test.com"
+						: "username",
 			}));
+			mockReadGitHubEmail.mockResolvedValueOnce(undefined);
 			mockReadPackageData.mockResolvedValue({});
 
 			const actual = await createOptionDefaults().email();
 
 			expect(actual).toEqual({
-				github: "test@git.com",
-				npm: "test@npm-username.com",
+				git: "git@test.com",
+				github: "git@test.com",
+				npm: "npm-username@test.com",
 			});
 		});
 
-		it("returns undefined when neither git nor npm emails exist", async () => {
+		it("returns all three emails when they all exist", async () => {
+			mock$.mockImplementation(([command]: string[]) => ({
+				stdout:
+					command === "git config --get user.email"
+						? "git@test.com"
+						: "username",
+			}));
+			mockReadGitHubEmail.mockResolvedValueOnce("github@test.com");
+			mockReadPackageData.mockResolvedValue({});
+
+			const actual = await createOptionDefaults().email();
+
+			expect(actual).toEqual({
+				git: "git@test.com",
+				github: "github@test.com",
+				npm: "npm-username@test.com",
+			});
+		});
+
+		it("returns undefined when none of the emails exist", async () => {
 			mock$.mockResolvedValue({ stdout: "" });
+			mockReadGitHubEmail.mockResolvedValueOnce(undefined);
 			mockReadPackageData.mockResolvedValue({});
 
 			const actual = await createOptionDefaults().email();

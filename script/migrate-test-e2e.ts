@@ -4,8 +4,6 @@ import * as fs from "node:fs/promises";
 import { rimraf } from "rimraf";
 import { assert, describe, expect, test } from "vitest";
 
-import packageData from "../package.json" assert { type: "json" };
-
 const filesExpectedToBeChanged = [
 	"README.md",
 	"knip.json",
@@ -21,21 +19,6 @@ const filesThatMightBeChanged = new Set([
 	"script/__snapshots__/migrate-test-e2e.ts.snap",
 ]);
 
-const {
-	author: { email: emailNpm, name: authorName },
-	description,
-	name: repository,
-} = packageData;
-const emailGithub = "github@joshuakgoldberg.com";
-const bin = "./bin/index.js";
-const guide =
-	"https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository";
-const guideTitle = "Contributing to a create-typescript-app Repository";
-const logo = "./docs/create-typescript-app.png";
-const logoAlt = `Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'`;
-const owner = "JoshuaKGoldberg";
-const title = "Create TypeScript App";
-
 await rimraf("coverage*");
 
 const originalReadme = (await fs.readFile("README.md")).toString();
@@ -46,7 +29,7 @@ const originalSnapshots = (
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage -r html -r lcov --src src node ${bin} --base everything --author ${authorName} --mode migrate --bin ${bin} --description ${description} --email-github ${emailGithub} --email-npm ${emailNpm} --guide ${guide} --guide-title ${guideTitle} --logo ${logo} --logo-alt ${logoAlt} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api --skip-install`;
+})`c8 -o ./coverage -r html -r lcov --src src node ./bin/index.js --auto --mode migrate --skip-all-contributors-api --skip-github-api --skip-install`;
 
 // All Contributors seems to not be using Prettier to format files...
 await fs.writeFile(

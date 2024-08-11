@@ -1,3 +1,13 @@
+/*
+👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
+You can read from it to see all sorts of linting goodness, but don't worry -
+it's not something you need to exhaustively understand immediately. 💙
+
+If you're interested in learning more, see the 'getting started' docs on:
+- ESLint: https://eslint.org
+- typescript-eslint: https://typescript-eslint.io
+*/
+
 import eslint from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import jsdoc from "eslint-plugin-jsdoc";
@@ -46,7 +56,7 @@ export default tseslint.config(
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ["*.*s", "eslint.config.js"],
+					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
 					defaultProject: "./tsconfig.json",
 				},
 				tsconfigRootDir: import.meta.dirname,
@@ -71,7 +81,21 @@ export default tseslint.config(
 			"no-constant-condition": "off",
 
 			// These on-by-default rules work well for this repo if configured
+			"@typescript-eslint/no-unnecessary-condition": [
+				"error",
+				{
+					allowConstantLoopConditions: true,
+				},
+			],
 			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+			"@typescript-eslint/prefer-nullish-coalescing": [
+				"error",
+				{ ignorePrimitives: true },
+			],
+			"@typescript-eslint/restrict-template-expressions": [
+				"error",
+				{ allowBoolean: true, allowNullish: true, allowNumber: true },
+			],
 			"n/no-unsupported-features/node-builtins": [
 				"error",
 				{ allowExperimental: true },

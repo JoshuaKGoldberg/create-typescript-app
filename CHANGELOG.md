@@ -1,3 +1,9 @@
+## [1.67.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.0...v1.67.1) (2024-08-11)
+
+### Bug Fixes
+
+- preserve post-badge paragraph in README.md migration ([#1609](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1609)) ([c967173](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c967173aa97eb8f9064f74f1e29949078550cdbb)), closes [#1159](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1159)
+
 # [1.67.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.66.0...v1.67.0) (2024-08-10)
 
 ### Features

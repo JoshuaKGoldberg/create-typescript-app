@@ -61,5 +61,8 @@ export async function initializeWithOptions({
 		);
 	}
 
-	await runCleanup(createCleanupCommands(options), options.mode);
+	await runCleanup(
+		createCleanupCommands(options.bin, "pnpm dedupe --offline"),
+		options.mode,
+	);
 }

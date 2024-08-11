@@ -112,9 +112,11 @@ vi.mock("./createOptionDefaults/index.js", () => ({
 	createOptionDefaults() {
 		return {
 			author: vi.fn(),
+			bin: vi.fn(),
 			description: vi.fn(),
 			email: vi.fn(),
 			funding: vi.fn(),
+			guide: vi.fn(),
 			logo: vi.fn(),
 			owner: vi.fn(),
 			repository: vi.fn(),

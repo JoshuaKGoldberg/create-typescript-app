@@ -12,6 +12,7 @@ import { PromptedOptions } from "../../types.js";
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
 import { readDefaultsFromDevelopment } from "./readDefaultsFromDevelopment.js";
 import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
+import { readGitHubEmail } from "./readGitHubEmail.js";
 
 export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 	const gitDefaults = tryCatchLazyValueAsync(async () =>
@@ -29,19 +30,25 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 	);
 
 	return {
-		author: async () => (await packageAuthor()).author ?? npmDefaults.name,
+		author: async () =>
+			(await packageAuthor()).author ?? (await npmDefaults())?.name,
 		bin: async () => (await packageData()).bin,
 		description: async () => (await packageData()).description,
 		email: async () => {
-			const gitEmail = await tryCatchAsync(
-				async () => (await $`git config --get user.email`).stdout,
-			);
+			const githubEmail =
+				(await readGitHubEmail()) ??
+				(await tryCatchAsync(
+					async () => (await $`git config --get user.email`).stdout,
+				));
 			const npmEmail =
 				(await npmDefaults())?.email ?? (await packageAuthor()).email;
 
 			/* eslint-disable @typescript-eslint/no-non-null-assertion */
-			return gitEmail || npmEmail
-				? { github: (gitEmail || npmEmail)!, npm: (npmEmail || gitEmail)! }
+			return githubEmail || npmEmail
+				? {
+						github: (githubEmail || npmEmail)!,
+						npm: (npmEmail || githubEmail)!,
+					}
 				: undefined;
 			/* eslint-enable @typescript-eslint/no-non-null-assertion */
 		},

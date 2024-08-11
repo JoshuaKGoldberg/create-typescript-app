@@ -263,14 +263,16 @@ export async function readOptions(
 	const augmentedOptions = await augmentOptionsWithExcludes({
 		...options,
 		access: options.access ?? "public",
-		author: options.author ?? (await defaults.owner()),
+		author:
+			options.author ?? (await defaults.author()) ?? (await defaults.owner()),
+		bin: options.bin ?? (await defaults.bin()),
 		description: options.description,
 		directory:
 			options.directory ?? promptedOptions.directory ?? options.repository,
 		email,
 		funding: options.funding ?? (await defaults.funding()),
-		guide,
-		logo,
+		guide: guide ?? (await defaults.guide()),
+		logo: logo ?? (await defaults.logo()),
 		mode,
 		owner: options.owner,
 		repository,

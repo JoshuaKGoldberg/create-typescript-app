@@ -1,3 +1,9 @@
+## [1.67.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.1...v1.67.2) (2024-08-11)
+
+### Bug Fixes
+
+- run pnpm dedupe --offline in cleanups ([#1611](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1611)) ([e680691](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e68069108ea3a3c7779399946e373b203bd91e8a)), closes [#1610](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1610)
+
 ## [1.67.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.0...v1.67.1) (2024-08-11)
 
 ### Bug Fixes

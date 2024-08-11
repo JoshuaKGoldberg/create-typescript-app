@@ -6,17 +6,18 @@ export function readDefaultsFromReadme() {
 	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
 
 	const imageTag = lazyValue(
-		async () => /(?:^|\n)<img.+src.+\/>/.exec(await readme())?.[0],
+		async () => /\n<img.+src=.+>/.exec(await readme())?.[0],
 	);
 
 	return {
 		logo: async () => {
 			const tag = await imageTag();
+
 			if (!tag) {
 				return undefined;
 			}
 
-			const src = /src\s*=(.+)?\/>/
+			const src = /src\s*=(.+)['"/]>/
 				.exec(tag)?.[1]
 				?.replaceAll(/^['"]|['"]$/g, "");
 
@@ -25,7 +26,7 @@ export function readDefaultsFromReadme() {
 			}
 
 			return {
-				alt: /alt=['"](.+)['"] src=['"].+['"]/.exec(tag)?.[1] ?? "Project logo",
+				alt: /alt=['"](.+)['"]\s*src=/.exec(tag)?.[1] ?? "Project logo",
 				src,
 			};
 		},

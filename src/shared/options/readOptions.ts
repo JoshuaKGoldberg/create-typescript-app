@@ -270,7 +270,7 @@ export async function readOptions(
 			options.directory ?? promptedOptions.directory ?? options.repository,
 		email,
 		funding: options.funding ?? (await defaults.funding()),
-		guide,
+		guide: guide ?? (await defaults.guide()),
 		logo,
 		mode,
 		owner: options.owner,

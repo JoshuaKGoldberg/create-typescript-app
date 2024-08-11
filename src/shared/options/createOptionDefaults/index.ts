@@ -34,19 +34,19 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 		bin: async () => (await packageData()).bin,
 		description: async () => (await packageData()).description,
 		email: async () => {
-			const githubEmail = await readGitHubEmail();
-			const gitEmail = await tryCatchAsync(
-				async () => (await $`git config --get user.email`).stdout,
-			);
+			const githubEmail =
+				(await readGitHubEmail()) ??
+				(await tryCatchAsync(
+					async () => (await $`git config --get user.email`).stdout,
+				));
 			const npmEmail =
 				(await npmDefaults())?.email ?? (await packageAuthor()).email;
 
 			/* eslint-disable @typescript-eslint/no-non-null-assertion */
-			return gitEmail || githubEmail || npmEmail
+			return githubEmail || npmEmail
 				? {
-						git: (gitEmail || githubEmail || npmEmail)!,
-						github: (githubEmail || gitEmail || npmEmail)!,
-						npm: (npmEmail || gitEmail || githubEmail)!,
+						github: (githubEmail || npmEmail)!,
+						npm: (npmEmail || githubEmail)!,
 					}
 				: undefined;
 			/* eslint-enable @typescript-eslint/no-non-null-assertion */

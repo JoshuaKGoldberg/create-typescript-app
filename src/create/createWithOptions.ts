@@ -46,7 +46,10 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 			);
 		}
 
-		await runCleanup(createCleanupCommands(options), options.mode);
+		await runCleanup(
+			createCleanupCommands(options.bin, "git tag -d $(git tag -l)"),
+			options.mode,
+		);
 	}
 
 	const sendToGitHub =

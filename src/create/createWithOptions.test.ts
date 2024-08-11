@@ -63,6 +63,8 @@ vi.mock("../steps/finalizeDependencies.js");
 
 vi.mock("../steps/populateCSpellDictionary.js");
 
+vi.mock("../steps/clearLocalGitTags.js");
+
 vi.mock("../steps/runCleanup.js");
 
 vi.mock("../shared/doesRepositoryExist.js", () => ({

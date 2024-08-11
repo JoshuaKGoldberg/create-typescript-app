@@ -264,6 +264,7 @@ export async function readOptions(
 		...options,
 		access: options.access ?? "public",
 		author: options.author ?? (await defaults.owner()),
+		bin: options.bin ?? (await defaults.bin()),
 		description: options.description,
 		directory:
 			options.directory ?? promptedOptions.directory ?? options.repository,

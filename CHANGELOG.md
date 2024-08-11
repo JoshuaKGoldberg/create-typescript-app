@@ -1,3 +1,9 @@
+## [1.67.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.3...v1.67.4) (2024-08-11)
+
+### Bug Fixes
+
+- delete any existing Git tags in --mode create ([#1614](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1614)) ([95cebe1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/95cebe1bdcae3b4fcc80b2ff0cb0445e513f1189)), closes [#926](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/926)
+
 ## [1.67.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.2...v1.67.3) (2024-08-11)
 
 ### Bug Fixes

@@ -20,6 +20,20 @@ describe("readDefaultsFromReadme", () => {
 			expect(logo).toBeUndefined();
 		});
 
+		it("parses when found after a badge image", async () => {
+			mockReadFileSafe.mockResolvedValue(`
+		<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 48" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-48-21bb42.svg" /></a>
+<img src=abc/def.jpg/>
+`);
+
+			const logo = await readDefaultsFromReadme().logo();
+
+			expect(logo).toEqual({
+				alt: "Project logo",
+				src: "abc/def.jpg",
+			});
+		});
+
 		it("parses when found in an unquoted string", async () => {
 			mockReadFileSafe.mockResolvedValue("<img src=abc/def.jpg/>");
 

@@ -6,7 +6,7 @@ export function readDefaultsFromReadme() {
 	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
 
 	const imageTag = lazyValue(
-		async () => /<img.+src.+\/>/.exec(await readme())?.[0],
+		async () => /(?:^|\n)<img.+src.+\/>/.exec(await readme())?.[0],
 	);
 
 	return {

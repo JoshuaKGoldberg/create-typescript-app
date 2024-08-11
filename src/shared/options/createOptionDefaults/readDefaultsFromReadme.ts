@@ -15,9 +15,7 @@ export function readDefaultsFromReadme() {
 				?.match(/src\s*=(.+)?\/>/)?.[1]
 				?.replaceAll(/^['"]|['"]$/g, ""),
 		title: async () =>
-			/^(?:# |<h1\s+align="center">)(.*?)(?:<\/h1>)?$/i
-				.exec(await readme())?.[1]
-				?.trim()
-				.replace(/<[^>]+(?:>|$)/g, ""),
+			(/^<h1\s+align="center">(.+)<\/h1>/.exec(await readme()) ||
+				/^# (.+)/.exec(await readme()))?.[1],
 	};
 }

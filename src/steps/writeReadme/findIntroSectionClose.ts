@@ -5,7 +5,7 @@ export function findIntroSectionClose(contents: string) {
 	const projectLogoMatch =
 		/<img align="right" alt="Project logo.+" src=".+">/.exec(contents);
 	if (projectLogoMatch) {
-		return contents.indexOf("\n", projectLogoMatch.index) + 2;
+		return contents.indexOf("\n", projectLogoMatch.index + 2) + 2;
 	}
 
 	// Next: before a first code block or h2, presumably following badges

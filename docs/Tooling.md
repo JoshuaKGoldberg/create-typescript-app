@@ -192,8 +192,8 @@ pnpm run lint:knip
 
 Additionally:
 
-- [`console-fail-test`](https://github.com/JoshuaKGoldberg/console-fail-test) will also be added to ensure tests don't accidentally log to the console.
 - [`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) will be added to the ESLint config to lint for Vitest-specific issues
+- [`console-fail-test`](https://github.com/JoshuaKGoldberg/console-fail-test) will also be added to ensure tests don't accidentally log to the console.
 
 Running tests in watch mode:
 

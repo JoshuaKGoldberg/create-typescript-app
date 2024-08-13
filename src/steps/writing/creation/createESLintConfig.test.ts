@@ -166,7 +166,6 @@ describe("createESLintConfig", () => {
 				    },
 				    rules: {
 				      // These off-by-default rules work well for this repo and we like them on.
-				      "jsdoc/informative-docs": "error",
 				      "logical-assignment-operators": [
 				        "error",
 				        "always",

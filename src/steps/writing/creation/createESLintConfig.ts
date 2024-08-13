@@ -89,11 +89,6 @@ export default tseslint.config(
 					? "// These off-by-default rules work well for this repo and we like them on."
 					: ""
 			}${
-				options.excludeLintJSDoc
-					? ""
-					: `
-			"jsdoc/informative-docs": "error",`
-			}${
 				options.excludeLintStylistic
 					? ""
 					: `

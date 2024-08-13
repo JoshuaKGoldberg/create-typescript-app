@@ -1,3 +1,9 @@
+## [1.67.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.5...v1.67.6) (2024-08-13)
+
+### Bug Fixes
+
+- upgrade pnpm/action-setup to v4 ([#1620](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1620)) ([9431f86](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9431f868314d35ec127d770815c7fe7545ab735b)), closes [#1619](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1619)
+
 ## [1.67.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.4...v1.67.5) (2024-08-11)
 
 ### Bug Fixes

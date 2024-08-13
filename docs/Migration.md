@@ -18,7 +18,7 @@ For example, if the repository previously using Jest for testing:
 
 - `eslint-plugin-jest`, `jest`, and other Jest-related packages will be uninstalled
 - Any Jest config file like `jest.config.js` will be deleted
-- `eslint-plugin-vitest`, `vitest`, and other Vitest-related packages will be installed
+- `@vitest/eslint-plugin`, `vitest`, and other Vitest-related packages will be installed
 - A `vitest.config.ts` file will be created
 
 You'll then need to manually go through the following two steps to set up tooling on GitHub:

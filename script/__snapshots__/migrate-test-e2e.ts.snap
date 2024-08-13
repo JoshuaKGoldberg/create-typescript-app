@@ -110,7 +110,7 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -
  import eslint from "@eslint/js";
  import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
- import jsdoc from "eslint-plugin-jsdoc";
+ import vitest from "@vitest/eslint-plugin";
 @@ ... @@ export default tseslint.config(
  		languageOptions: {
  			parserOptions: {

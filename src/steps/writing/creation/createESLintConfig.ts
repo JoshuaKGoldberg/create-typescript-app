@@ -32,7 +32,9 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintYml && `	...yml.configs["flat/prettier"],`,
 		!options.excludeLintESLint && `	comments.recommended,`,
 		!options.excludeLintJSDoc &&
-			`	jsdoc.configs["flat/recommended-typescript-error"],`,
+			`	jsdoc.configs["flat/contents-typescript-error"],
+	jsdoc.configs["flat/logical-typescript-error"],
+	jsdoc.configs["flat/stylistic-typescript-error"],`,
 		`	n.configs["flat/recommended"],`,
 		!options.excludeLintPackageJson && `	packageJson,`,
 		!options.excludeLintPerfectionist &&
@@ -87,11 +89,6 @@ export default tseslint.config(
 					? "// These off-by-default rules work well for this repo and we like them on."
 					: ""
 			}${
-				options.excludeLintJSDoc
-					? ""
-					: `
-			"jsdoc/informative-docs": "error",`
-			}${
 				options.excludeLintStylistic
 					? ""
 					: `
@@ -107,11 +104,7 @@ export default tseslint.config(
 				options.excludeLintJSDoc
 					? ""
 					: `
-			"jsdoc/lines-before-block": "off",
-			"jsdoc/require-jsdoc": "off",
-			"jsdoc/require-param": "off",
-			"jsdoc/require-property": "off",
-			"jsdoc/require-returns": "off",`
+			"jsdoc/lines-before-block": "off",`
 			}
 			"no-constant-condition": "off",
 

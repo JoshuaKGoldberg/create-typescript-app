@@ -142,7 +142,9 @@ describe("createESLintConfig", () => {
 				  ...yml.configs["flat/recommended"],
 				  ...yml.configs["flat/prettier"],
 				  comments.recommended,
-				  jsdoc.configs["flat/recommended-typescript-error"],
+				  jsdoc.configs["flat/contents-typescript-error"],
+				  jsdoc.configs["flat/logical-typescript-error"],
+				  jsdoc.configs["flat/stylistic-typescript-error"],
 				  n.configs["flat/recommended"],
 				  packageJson,
 				  perfectionist.configs["recommended-natural"],
@@ -164,7 +166,6 @@ describe("createESLintConfig", () => {
 				    },
 				    rules: {
 				      // These off-by-default rules work well for this repo and we like them on.
-				      "jsdoc/informative-docs": "error",
 				      "logical-assignment-operators": [
 				        "error",
 				        "always",
@@ -174,10 +175,6 @@ describe("createESLintConfig", () => {
 
 				      // These on-by-default rules don't work well for this repo and we like them off.
 				      "jsdoc/lines-before-block": "off",
-				      "jsdoc/require-jsdoc": "off",
-				      "jsdoc/require-param": "off",
-				      "jsdoc/require-property": "off",
-				      "jsdoc/require-returns": "off",
 				      "no-constant-condition": "off",
 
 				      // These on-by-default rules work well for this repo if configured

@@ -1,3 +1,9 @@
+## [1.67.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.6...v1.67.7) (2024-08-13)
+
+### Bug Fixes
+
+- should not include extensions for markdown when excluded ([#1625](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1625)) ([6fa6698](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6fa6698937a2d3abc78966efe039d4ed8235b992)), closes [#1622](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1622)
+
 ## [1.67.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.5...v1.67.6) (2024-08-13)
 
 ### Bug Fixes

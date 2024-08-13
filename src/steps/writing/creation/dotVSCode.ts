@@ -6,7 +6,7 @@ export async function createDotVSCode(options: Options) {
 	return {
 		"extensions.json": await formatJson({
 			recommendations: [
-				"DavidAnson.vscode-markdownlint",
+				!options.excludeLintMd && "DavidAnson.vscode-markdownlint",
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
 				!options.excludeLintSpelling && "streetsidesoftware.code-spell-checker",

@@ -56,13 +56,7 @@ describe("createDotVSCode", () => {
 		expect(await createDotVSCode(fakeOptions(() => true)))
 			.toMatchInlineSnapshot(`
 				{
-				  "extensions.json": "{
-					"recommendations": [
-						"DavidAnson.vscode-markdownlint",
-						"dbaeumer.vscode-eslint",
-						"esbenp.prettier-vscode"
-					]
-				}
+				  "extensions.json": "{ "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"] }
 				",
 				  "settings.json": "{
 					"editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
@@ -244,13 +238,7 @@ describe("createDotVSCode", () => {
 		expect(await createDotVSCode(fakeOptions(() => true, "bin/index.js")))
 			.toMatchInlineSnapshot(`
 				{
-				  "extensions.json": "{
-					"recommendations": [
-						"DavidAnson.vscode-markdownlint",
-						"dbaeumer.vscode-eslint",
-						"esbenp.prettier-vscode"
-					]
-				}
+				  "extensions.json": "{ "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"] }
 				",
 				  "launch.json": "{
 					"configurations": [

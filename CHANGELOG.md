@@ -1,3 +1,9 @@
+# [1.68.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.7...v1.68.0) (2024-08-13)
+
+### Features
+
+- adopt granular eslint-plugin-jsdoc configs ([#1624](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1624)) ([41d1cac](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/41d1cacb52369fb4b2aaf3782b59a744b3633131)), closes [#1623](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1623)
+
 ## [1.67.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.6...v1.67.7) (2024-08-13)
 
 ### Bug Fixes

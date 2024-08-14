@@ -103,7 +103,8 @@ describe("createDotVSCode", () => {
 						"DavidAnson.vscode-markdownlint",
 						"dbaeumer.vscode-eslint",
 						"esbenp.prettier-vscode",
-						"streetsidesoftware.code-spell-checker"
+						"streetsidesoftware.code-spell-checker",
+						"vitest.explorer"
 					]
 				}
 				",
@@ -177,7 +178,8 @@ describe("createDotVSCode", () => {
 						"DavidAnson.vscode-markdownlint",
 						"dbaeumer.vscode-eslint",
 						"esbenp.prettier-vscode",
-						"streetsidesoftware.code-spell-checker"
+						"streetsidesoftware.code-spell-checker",
+						"vitest.explorer"
 					]
 				}
 				",

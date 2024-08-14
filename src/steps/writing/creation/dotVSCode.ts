@@ -10,6 +10,7 @@ export async function createDotVSCode(options: Options) {
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
 				!options.excludeLintSpelling && "streetsidesoftware.code-spell-checker",
+				!options.excludeTests && "vitest.explorer",
 			].filter(Boolean),
 		}),
 		...(options.excludeTests && !options.bin

@@ -1,3 +1,9 @@
+# [1.69.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.68.0...v1.69.0) (2024-08-14)
+
+### Features
+
+- switch eslint-plugin-vitest to @vitest/eslint-plugin ([#1627](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1627)) ([41ccded](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/41ccded28362e218f125e5be22b9c5697b62a1d1)), closes [#1626](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1626)
+
 # [1.68.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.67.7...v1.68.0) (2024-08-13)
 
 ### Features

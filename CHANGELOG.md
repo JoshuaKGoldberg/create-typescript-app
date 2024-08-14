@@ -1,3 +1,9 @@
+# [1.70.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.69.0...v1.70.0) (2024-08-14)
+
+### Features
+
+- include vitest.explorer VS Code extension ([#1630](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1630)) ([f9267aa](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f9267aaeae29c59ba47b19bbd375bc7f83e8e648)), closes [#1628](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1628)
+
 # [1.69.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.68.0...v1.69.0) (2024-08-14)
 
 ### Features

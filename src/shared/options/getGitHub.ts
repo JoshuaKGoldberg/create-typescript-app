@@ -7,15 +7,21 @@ export interface GitHub {
 }
 
 export async function getGitHub(): Promise<GitHub | undefined> {
-	const auth = await getGitHubAuthToken();
+	try {
+		const auth = await getGitHubAuthToken();
 
-	if (!auth.succeeded) {
-		throw new Error("GitHub authentication failed.", {
-			cause: auth.error,
+		if (!auth.succeeded) {
+			throw new Error("GitHub authentication failed.", {
+				cause: auth.error,
+			});
+		}
+	
+		const octokit = new Octokit({ auth: auth.token });
+	
+		return { auth: auth.token, octokit };	
+	} catch (error) {
+		throw new Error("GitHub authentication failed - is the GitHub CLI installed and are you logged in?", {
+			cause: error
 		});
 	}
-
-	const octokit = new Octokit({ auth: auth.token });
-
-	return { auth: auth.token, octokit };
 }

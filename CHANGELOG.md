@@ -1,3 +1,9 @@
+# [1.71.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.70.0...v1.71.0) (2024-08-15)
+
+### Features
+
+- drop dependency on gh ([#1000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1000)) ([063346e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/063346e3383a4cff91761725dad2c0e60927b8c9)), closes [#667](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/667)
+
 # [1.70.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.69.0...v1.70.0) (2024-08-14)
 
 ### Features

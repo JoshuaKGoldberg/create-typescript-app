@@ -253,7 +253,7 @@ export const allArgOptions = {
 		docsSection: "core",
 		type: "string",
 	},
-	"preserve-generated-form": {
+	"preserve-generated-from": {
 		description: `Whether to keep the GitHub repository generated from 
   notice (by default, false)`,
 		docsSection: "optional",

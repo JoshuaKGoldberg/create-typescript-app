@@ -1,3 +1,9 @@
+## [1.71.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.1...v1.71.2) (2024-08-15)
+
+### Bug Fixes
+
+- small preserve-generated-form/from typo ([8e27fa1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8e27fa14d4c21db60c0e463c801fc0538c58880f))
+
 ## [1.71.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.0...v1.71.1) (2024-08-15)
 
 ### Bug Fixes

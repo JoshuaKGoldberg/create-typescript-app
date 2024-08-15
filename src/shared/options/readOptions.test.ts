@@ -112,9 +112,11 @@ vi.mock("./createOptionDefaults/index.js", () => ({
 	createOptionDefaults() {
 		return {
 			author: vi.fn(),
+			bin: vi.fn(),
 			description: vi.fn(),
 			email: vi.fn(),
 			funding: vi.fn(),
+			guide: vi.fn(),
 			logo: vi.fn(),
 			owner: vi.fn(),
 			repository: vi.fn(),
@@ -588,7 +590,7 @@ describe("readOptions", () => {
 				...emptyOptions,
 				...mockOptions,
 				access: "public",
-				base: "minimum",
+				base: "minimal",
 				description: "mock",
 				directory: "mock",
 				email: {
@@ -642,7 +644,7 @@ describe("readOptions", () => {
 				...emptyOptions,
 				...mockOptions,
 				access: "public",
-				base: "minimum",
+				base: "minimal",
 				description,
 				directory: repository,
 				email: {
@@ -700,7 +702,7 @@ describe("readOptions", () => {
 				...mockOptions,
 				access: "public",
 				auto: true,
-				base: "minimum",
+				base: "minimal",
 				description,
 				directory: repository,
 				email: {
@@ -725,7 +727,7 @@ describe("readOptions", () => {
 			      "access": "public",
 			      "author": undefined,
 			      "auto": true,
-			      "base": "minimum",
+			      "base": "minimal",
 			      "bin": undefined,
 			      "description": "Test description.",
 			      "directory": "test-repository",

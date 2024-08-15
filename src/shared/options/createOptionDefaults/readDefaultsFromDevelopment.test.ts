@@ -20,7 +20,7 @@ describe("readDefaultsFromDevelopment", () => {
 			expect(guide).toBeUndefined();
 		});
 
-		it("reads guide when it exists", async () => {
+		it("reads the href and title when the tag exists", async () => {
 			mockReadFileSafe.mockResolvedValue(`# Development
 
 > If you'd like a more guided walkthrough, see [Contributing to a create-typescript-app Repository](https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository).
@@ -29,33 +29,10 @@ describe("readDefaultsFromDevelopment", () => {
 
 			const guide = await readDefaultsFromDevelopment().guide();
 
-			expect(guide).toBe(
-				"https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",
-			);
-		});
-	});
-
-	describe("guideTitle", () => {
-		it("defaults to undefined when .github/DEVELOPMENT.md cannot be found", async () => {
-			mockReadFileSafe.mockResolvedValue("");
-
-			const guideTitle = await readDefaultsFromDevelopment().guideTitle();
-
-			expect(guideTitle).toBeUndefined();
-		});
-
-		it("reads guideTitle when it exists", async () => {
-			mockReadFileSafe.mockResolvedValue(`# Development
-
-> If you'd like a more guided walkthrough, see [Contributing to a create-typescript-app Repository](https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository).
-> It'll walk you through the common activities you'll need to contribute.
-`);
-
-			const guideTitle = await readDefaultsFromDevelopment().guideTitle();
-
-			expect(guideTitle).toBe(
-				"Contributing to a create-typescript-app Repository",
-			);
+			expect(guide).toEqual({
+				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",
+				title: "Contributing to a create-typescript-app Repository",
+			});
 		});
 	});
 });

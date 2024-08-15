@@ -8,6 +8,7 @@ export async function createESLintConfig(options: Options) {
 		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
+		!options.excludeTests && `import vitest from "@vitest/eslint-plugin";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,
 		!options.excludeLintMd && `import markdown from "eslint-plugin-markdown";`,
@@ -15,10 +16,9 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintPackageJson &&
 			`import packageJson from "eslint-plugin-package-json/configs/recommended";`,
 		!options.excludeLintPerfectionist &&
-			`import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";`,
+			`import perfectionist from "eslint-plugin-perfectionist";`,
 		!options.excludeLintRegex &&
 			`import * as regexp from "eslint-plugin-regexp";`,
-		!options.excludeTests && `import vitest from "eslint-plugin-vitest";`,
 		!options.excludeLintYml && `import yml from "eslint-plugin-yml";`,
 		`import tseslint from "typescript-eslint";`,
 	].filter(Boolean);
@@ -32,10 +32,13 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintYml && `	...yml.configs["flat/prettier"],`,
 		!options.excludeLintESLint && `	comments.recommended,`,
 		!options.excludeLintJSDoc &&
-			`	jsdoc.configs["flat/recommended-typescript-error"],`,
+			`	jsdoc.configs["flat/contents-typescript-error"],
+	jsdoc.configs["flat/logical-typescript-error"],
+	jsdoc.configs["flat/stylistic-typescript-error"],`,
 		`	n.configs["flat/recommended"],`,
 		!options.excludeLintPackageJson && `	packageJson,`,
-		!options.excludeLintPerfectionist && `	perfectionistNatural,`,
+		!options.excludeLintPerfectionist &&
+			`	perfectionist.configs["recommended-natural"],`,
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
 
@@ -73,10 +76,11 @@ export default tseslint.config(
 		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
 			parserOptions: {
-				EXPERIMENTAL_useProjectService: {
-					allowDefaultProjectForFiles: ["./*.*s", "eslint.config.js"],
+				projectService: {
+					allowDefaultProject: ["*.*s", "eslint.config.js"],
 					defaultProject: "./tsconfig.json",
 				},
+				tsconfigRootDir: import.meta.dirname
 			},
 		},
 		rules: {
@@ -84,11 +88,6 @@ export default tseslint.config(
 				!options.excludeLintJSDoc || !options.excludeLintStylistic
 					? "// These off-by-default rules work well for this repo and we like them on."
 					: ""
-			}${
-				options.excludeLintJSDoc
-					? ""
-					: `
-			"jsdoc/informative-docs": "error",`
 			}${
 				options.excludeLintStylistic
 					? ""
@@ -105,10 +104,7 @@ export default tseslint.config(
 				options.excludeLintJSDoc
 					? ""
 					: `
-			"jsdoc/require-jsdoc": "off",
-			"jsdoc/require-param": "off",
-			"jsdoc/require-property": "off",
-			"jsdoc/require-returns": "off",`
+			"jsdoc/lines-before-block": "off",`
 			}
 			"no-constant-condition": "off",
 
@@ -117,11 +113,15 @@ export default tseslint.config(
 				options.excludeLintPerfectionist
 					? ""
 					: `
+			"n/no-unsupported-features/node-builtins": [
+				"error",
+				{ allowExperimental: true },
+			],
 			"perfectionist/sort-objects": [
 				"error",
 				{
 					order: "asc",
-					"partition-by-comment": true,
+					partitionByComment: true,
 					type: "natural",
 				},
 			],`

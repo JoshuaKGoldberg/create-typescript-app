@@ -66,5 +66,5 @@ export async function migrateWithOptions({
 		await withSpinner("Populating CSpell dictionary", populateCSpellDictionary);
 	}
 
-	await runCleanup(createCleanupCommands(options), options.mode);
+	await runCleanup(createCleanupCommands(options.bin), options.mode);
 }

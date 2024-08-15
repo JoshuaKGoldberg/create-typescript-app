@@ -26,7 +26,8 @@ export const allArgOptions = {
   • everything: that comes with the template (${chalk.cyanBright.bold(
 		"recommended",
 	)})
-  • minimum: amounts of tooling, essentially opting out of everything
+  • common: additions to the minimal starters such as releases and tests
+  • minimal: amounts of tooling, essentially opting out of everything
   • prompt: for which portions to exclude`,
 		docsSection: "core",
 		type: "string",

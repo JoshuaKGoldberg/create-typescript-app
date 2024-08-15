@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
-import { MockInstance, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, MockInstance, vi } from "vitest";
 
 import { Options } from "../shared/types.js";
 import { initializeBranchProtectionSettings } from "./initializeGitHubRepository/initializeBranchProtectionSettings.js";
@@ -54,31 +54,31 @@ describe("migrateBranchProtectionSettings", () => {
 			      "required_status_checks": {
 			        "checks": [
 			          {
-			            "context": "build",
+			            "context": "Build",
 			          },
 			          {
-			            "context": "lint",
+			            "context": "Compliance",
 			          },
 			          {
-			            "context": "prettier",
+			            "context": "Lint",
 			          },
 			          {
-			            "context": "compliance",
+			            "context": "Lint Knip",
 			          },
 			          {
-			            "context": "lint_knip",
+			            "context": "Lint Markdown",
 			          },
 			          {
-			            "context": "lint_markdown",
+			            "context": "Lint Packages",
 			          },
 			          {
-			            "context": "lint_packages",
+			            "context": "Lint Spelling",
 			          },
 			          {
-			            "context": "lint_spelling",
+			            "context": "Prettier",
 			          },
 			          {
-			            "context": "test",
+			            "context": "Test",
 			          },
 			        ],
 			        "strict": false,
@@ -146,13 +146,13 @@ describe("migrateBranchProtectionSettings", () => {
 			      "required_status_checks": {
 			        "checks": [
 			          {
-			            "context": "build",
+			            "context": "Build",
 			          },
 			          {
-			            "context": "lint",
+			            "context": "Lint",
 			          },
 			          {
-			            "context": "prettier",
+			            "context": "Prettier",
 			          },
 			        ],
 			        "strict": false,

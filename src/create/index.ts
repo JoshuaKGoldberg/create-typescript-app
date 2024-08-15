@@ -58,7 +58,7 @@ export const create: ModeRunner = async (args, promptedOptions) => {
 									variant: "code",
 								},
 								...nextSteps,
-						  ],
+							],
 				);
 			},
 			skipRestore: inputs.options.skipRestore,

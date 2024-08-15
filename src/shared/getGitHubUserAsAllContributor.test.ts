@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { Octokit } from "octokit";
-import { MockInstance, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, MockInstance, vi } from "vitest";
 
 import { getGitHubUserAsAllContributor } from "./getGitHubUserAsAllContributor.js";
 

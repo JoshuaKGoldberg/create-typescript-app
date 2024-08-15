@@ -70,10 +70,11 @@ describe("createESLintConfig", () => {
 				    files: ["**/*.js", "**/*.ts"],
 				    languageOptions: {
 				      parserOptions: {
-				        EXPERIMENTAL_useProjectService: {
-				          allowDefaultProjectForFiles: ["./*.*s", "eslint.config.js"],
+				        projectService: {
+				          allowDefaultProject: ["*.*s", "eslint.config.js"],
 				          defaultProject: "./tsconfig.json",
 				        },
+				        tsconfigRootDir: import.meta.dirname,
 				      },
 				    },
 				    rules: {
@@ -109,14 +110,14 @@ describe("createESLintConfig", () => {
 			.toMatchInlineSnapshot(`
 				"import eslint from "@eslint/js";
 				import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+				import vitest from "@vitest/eslint-plugin";
 				import jsdoc from "eslint-plugin-jsdoc";
 				import jsonc from "eslint-plugin-jsonc";
 				import markdown from "eslint-plugin-markdown";
 				import n from "eslint-plugin-n";
 				import packageJson from "eslint-plugin-package-json/configs/recommended";
-				import perfectionistNatural from "eslint-plugin-perfectionist/configs/recommended-natural";
+				import perfectionist from "eslint-plugin-perfectionist";
 				import * as regexp from "eslint-plugin-regexp";
-				import vitest from "eslint-plugin-vitest";
 				import yml from "eslint-plugin-yml";
 				import tseslint from "typescript-eslint";
 
@@ -141,10 +142,12 @@ describe("createESLintConfig", () => {
 				  ...yml.configs["flat/recommended"],
 				  ...yml.configs["flat/prettier"],
 				  comments.recommended,
-				  jsdoc.configs["flat/recommended-typescript-error"],
+				  jsdoc.configs["flat/contents-typescript-error"],
+				  jsdoc.configs["flat/logical-typescript-error"],
+				  jsdoc.configs["flat/stylistic-typescript-error"],
 				  n.configs["flat/recommended"],
 				  packageJson,
-				  perfectionistNatural,
+				  perfectionist.configs["recommended-natural"],
 				  regexp.configs["flat/recommended"],
 				  ...tseslint.config({
 				    extends: [
@@ -154,15 +157,15 @@ describe("createESLintConfig", () => {
 				    files: ["**/*.js", "**/*.ts"],
 				    languageOptions: {
 				      parserOptions: {
-				        EXPERIMENTAL_useProjectService: {
-				          allowDefaultProjectForFiles: ["./*.*s", "eslint.config.js"],
+				        projectService: {
+				          allowDefaultProject: ["*.*s", "eslint.config.js"],
 				          defaultProject: "./tsconfig.json",
 				        },
+				        tsconfigRootDir: import.meta.dirname,
 				      },
 				    },
 				    rules: {
 				      // These off-by-default rules work well for this repo and we like them on.
-				      "jsdoc/informative-docs": "error",
 				      "logical-assignment-operators": [
 				        "error",
 				        "always",
@@ -171,19 +174,20 @@ describe("createESLintConfig", () => {
 				      "operator-assignment": "error",
 
 				      // These on-by-default rules don't work well for this repo and we like them off.
-				      "jsdoc/require-jsdoc": "off",
-				      "jsdoc/require-param": "off",
-				      "jsdoc/require-property": "off",
-				      "jsdoc/require-returns": "off",
+				      "jsdoc/lines-before-block": "off",
 				      "no-constant-condition": "off",
 
 				      // These on-by-default rules work well for this repo if configured
 				      "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+				      "n/no-unsupported-features/node-builtins": [
+				        "error",
+				        { allowExperimental: true },
+				      ],
 				      "perfectionist/sort-objects": [
 				        "error",
 				        {
 				          order: "asc",
-				          "partition-by-comment": true,
+				          partitionByComment: true,
 				          type: "natural",
 				        },
 				      ],

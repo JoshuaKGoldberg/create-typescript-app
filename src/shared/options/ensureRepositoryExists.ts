@@ -49,7 +49,7 @@ export async function ensureRepositoryExists(
 							{ label: "Bail out and maybe try again later", value: "bail" },
 						],
 					})) as "bail" | "create" | "different" | "local",
-			  );
+				);
 
 		createRepository = false;
 

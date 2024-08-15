@@ -8,8 +8,8 @@ Those template levels provide common presets of which tooling pieces to enable.
 
 ```plaintext
 ◆  How much tooling would you like the template to set up for you?
-│  ○ minimum     Just the bare starter tooling most repositories should ideally include.
-│  ○ common      Important additions to the minimum starters such as releases and tests.
+│  ○ minimal     Just the bare starter tooling most repositories should ideally include.
+│  ○ common      Important additions to the minimal starters such as releases and tests.
 │  ○ everything  The most thorough tooling imaginable: sorting, spellchecking, and more!
 │  ○ prompt      (allow me to customize)
 └
@@ -17,7 +17,7 @@ Those template levels provide common presets of which tooling pieces to enable.
 
 This table summarizes each tooling piece and which base levels they're included in:
 
-| Tooling Piece                                 | Exclusion Flag                 | Minimum | Common | Everything |
+| Tooling Piece                                 | Exclusion Flag                 | Minimal | Common | Everything |
 | --------------------------------------------- | ------------------------------ | ------- | ------ | ---------- |
 | [Building](#building)                         |                                | ✔️      | ✅     | 💯         |
 | [Compliance](#compliance)                     | `--exclude-compliance`         |         |        | 💯         |
@@ -46,12 +46,12 @@ This table summarizes each tooling piece and which base levels they're included 
 
 See also [Options](./Options.md) for how to customize the way template is run.
 
-## "Minimum" Base Level
+## "Minimal" Base Level
 
 These tooling pieces are the ones that most repositories should generally always have enabled.
 Other pieces of tooling are likely to not work as well (or at all) if these are removed.
 
-The _"minimum"_ base is best suited for projects that are very small and not likely to change very frequently.
+The _"minimal"_ base is best suited for projects that are very small and not likely to change very frequently.
 However, they'll be missing out on many of the great tooling pieces enabled in more comprehensive bases.
 We strongly recommend using at least the [_"common"_ base level](#common-base-level) instead for most repositories.
 
@@ -83,7 +83,7 @@ pnpm run build --watch
 
 [**Prettier**](https://prettier.io): Formats code for developers and enforces a consistent formatting style.
 It's run on file save per [VS Code](https://code.visualstudio.com/docs/getstarted/settings) settings and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
-[prettier-plugin-curly](https://github.com/JoshuaKGoldberg/prettier-plugin-curly) and [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson) add in more formatting as well.
+[prettier-plugin-curly](https://github.com/JoshuaKGoldberg/prettier-plugin-curly), [prettier-plugin-sh](https://github.com/un-ts/prettier/tree/master/packages/sh), and [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson) add in more formatting as well.
 
 Auto-formatting all files:
 
@@ -184,7 +184,7 @@ pnpm run lint:knip
 
 ### Renovate
 
-[**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a few days after each update for safety.
+[**Renovate**](https://docs.renovatebot.com): Keeps dependencies up-to-date with PRs, configured to wait a week after each update for safety.
 
 ### Testing
 
@@ -192,8 +192,8 @@ pnpm run lint:knip
 
 Additionally:
 
+- [`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) will be added to the ESLint config to lint for Vitest-specific issues
 - [`console-fail-test`](https://github.com/JoshuaKGoldberg/console-fail-test) will also be added to ensure tests don't accidentally log to the console.
-- [`eslint-plugin-vitest`](https://github.com/veritem/eslint-plugin-vitest) will be added to the ESLint config to lint for Vitest-specific issues
 
 Running tests in watch mode:
 

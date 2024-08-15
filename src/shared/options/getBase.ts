@@ -30,5 +30,5 @@ export async function getBase(): Promise<OptionsBase> {
 		return "common";
 	}
 
-	return "minimum";
+	return "minimal";
 }

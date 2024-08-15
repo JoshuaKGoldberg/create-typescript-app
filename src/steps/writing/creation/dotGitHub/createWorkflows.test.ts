@@ -66,16 +66,75 @@ describe("createWorkflows", () => {
 			  issues: write
 			  pull-requests: write
 			",
-			  "build.yml": "jobs:
+			  "ci.yml": "jobs:
 			  build:
+			    name: Build
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm build
 			      - run: node ./lib/index.js
+			  lint:
+			    name: Lint
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm build
+			      - run: pnpm lint
+			  lint_knip:
+			    name: Lint Knip
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm lint:knip
+			  lint_markdown:
+			    name: Lint Markdown
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm lint:md
+			  lint_packages:
+			    name: Lint Packages
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm lint:packages
+			  lint_spelling:
+			    name: Lint Spelling
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm lint:spelling
+			  prettier:
+			    name: Prettier
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm format --list-different
+			  test:
+			    name: Test
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm run test --coverage
+			      - uses: codecov/codecov-action@v3
+			  type_check:
+			    name: Type Check
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm tsc
 
-			name: Build
+			name: CI
 
 			on:
 			  pull_request: ~
@@ -131,87 +190,6 @@ describe("createWorkflows", () => {
 			    branches:
 			      - main
 			",
-			  "lint-knip.yml": "jobs:
-			  lint_knip:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm lint:knip
-
-			name: Lint Knip
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "lint-markdown.yml": "jobs:
-			  lint_markdown:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm lint:md
-
-			name: Lint Markdown
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "lint-packages.yml": "jobs:
-			  lint_packages:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm lint:packages
-
-			name: Lint Packages
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "lint-spelling.yml": "jobs:
-			  lint_spelling:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm lint:spelling
-
-			name: Lint spelling
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "lint.yml": "jobs:
-			  lint:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm build
-			      - run: pnpm lint
-
-			name: Lint
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
 			  "post-release.yml": "jobs:
 			  post_release:
 			    runs-on: ubuntu-latest
@@ -262,22 +240,6 @@ describe("createWorkflows", () => {
 			permissions:
 			  pull-requests: write
 			",
-			  "prettier.yml": "jobs:
-			  prettier:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm format --list-different
-
-			name: Prettier
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
 			  "release.yml": "concurrency:
 			  group: \${{ github.workflow }}
 
@@ -306,40 +268,6 @@ describe("createWorkflows", () => {
 			permissions:
 			  contents: write
 			  id-token: write
-			",
-			  "test.yml": "jobs:
-			  test:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm run test --coverage
-			      - name: Codecov
-			        uses: codecov/codecov-action@v3
-
-			name: Test
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "tsc.yml": "jobs:
-			  type_check:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm tsc
-
-			name: Type Check
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
 			",
 			}
 		`);
@@ -377,32 +305,38 @@ describe("createWorkflows", () => {
 			  issues: write
 			  pull-requests: write
 			",
-			  "build.yml": "jobs:
+			  "ci.yml": "jobs:
 			  build:
+			    name: Build
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm build
 			      - run: node ./lib/index.js
-
-			name: Build
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "lint.yml": "jobs:
 			  lint:
+			    name: Lint
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm lint
+			  prettier:
+			    name: Prettier
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm format --list-different
+			  type_check:
+			    name: Type Check
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm tsc
 
-			name: Lint
+			name: CI
 
 			on:
 			  pull_request: ~
@@ -431,38 +365,6 @@ describe("createWorkflows", () => {
 
 			permissions:
 			  pull-requests: write
-			",
-			  "prettier.yml": "jobs:
-			  prettier:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm format --list-different
-
-			name: Prettier
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
-			",
-			  "tsc.yml": "jobs:
-			  type_check:
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions/checkout@v4
-			      - uses: ./.github/actions/prepare
-			      - run: pnpm tsc
-
-			name: Type Check
-
-			on:
-			  pull_request: ~
-			  push:
-			    branches:
-			      - main
 			",
 			}
 		`);

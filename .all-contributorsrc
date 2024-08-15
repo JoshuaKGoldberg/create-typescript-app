@@ -444,6 +444,24 @@
         "ideas",
         "code"
       ]
+    },
+    {
+      "login": "FarazPatankar",
+      "name": "Faraz Patankar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10681116?v=4",
+      "profile": "https://farazpatankar.com/",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "fb55",
+      "name": "Felix Boehm",
+      "avatar_url": "https://avatars.githubusercontent.com/u/188768?v=4",
+      "profile": "https://feedic.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

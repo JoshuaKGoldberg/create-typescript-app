@@ -33,7 +33,7 @@ export async function writePackageJson(options: Options) {
 	const existingPackageJson =
 		((await readFileSafeAsJson(
 			"./package.json",
-		)) as PartialPackageData | null) ?? {};
+		)) as null | PartialPackageData) ?? {};
 
 	return await formatJson({
 		// If we didn't already have a version, set it to 0.0.0
@@ -55,12 +55,14 @@ export async function writePackageJson(options: Options) {
 		// Remove fields we know we don't want, such as old or redundant configs
 		eslintConfig: undefined,
 		husky: undefined,
+		jest: undefined,
+		mocha: undefined,
 		prettierConfig: undefined,
 		types: undefined,
 
 		// The rest of the fields are ones we know from our template
 		engines: {
-			node: ">=18",
+			node: ">=18.3.0",
 		},
 		files: [
 			options.bin?.replace(/^\.\//, ""),
@@ -84,7 +86,9 @@ export async function writePackageJson(options: Options) {
 		},
 		scripts: {
 			...existingPackageJson.scripts,
-			build: "tsup",
+			...(!options.excludeBuild && {
+				build: "tsup",
+			}),
 			format: "prettier .",
 			lint: "eslint . --max-warnings 0",
 			...(!options.excludeLintKnip && {

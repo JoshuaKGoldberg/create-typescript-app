@@ -31,7 +31,7 @@ export async function addOwnerAsAllContributor(
 						contributions: Array.from(
 							new Set([...contributor.contributions, "tool"]),
 						),
-				  },
+					},
 		);
 
 	if (!contributors.some((contributor) => contributor.login === user)) {

@@ -77,7 +77,7 @@ describe("writePackageJson", () => {
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
-			    "node": ">=18",
+			    "node": ">=18.3.0",
 			  },
 			  "files": [
 			    "lib/",
@@ -123,6 +123,7 @@ describe("writePackageJson", () => {
 			...options,
 			bin: "./bin/index.js",
 			excludeAllContributors: true,
+			excludeBuild: true,
 			excludeCompliance: true,
 			excludeLintJson: true,
 			excludeLintKnip: true,
@@ -146,7 +147,7 @@ describe("writePackageJson", () => {
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
-			    "node": ">=18",
+			    "node": ">=18.3.0",
 			  },
 			  "files": [
 			    "bin/index.js",
@@ -169,7 +170,6 @@ describe("writePackageJson", () => {
 			    "url": "https://github.com/test-owner/test-repository",
 			  },
 			  "scripts": {
-			    "build": "tsup",
 			    "format": "prettier .",
 			    "lint": "eslint . --max-warnings 0",
 			    "prepare": "husky",

@@ -10,7 +10,7 @@ export function createDotGitHubActions() {
 					runs: {
 						steps: [
 							{
-								uses: "pnpm/action-setup@v2",
+								uses: "pnpm/action-setup@v4",
 								with: { version: 9 },
 							},
 							{

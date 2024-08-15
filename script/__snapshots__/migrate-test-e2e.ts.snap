@@ -1,17 +1,17 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`expected file changes > .github/workflows/test.yml 1`] = `
-"--- a/.github/workflows/test.yml
-+++ b/.github/workflows/test.yml
+exports[`expected file changes > .github/workflows/ci.yml 1`] = `
+"--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
 @@ ... @@ jobs:
+       - uses: ./.github/actions/prepare
        - run: pnpm run test --coverage
-       - name: Codecov
-         uses: codecov/codecov-action@v3
+       - uses: codecov/codecov-action@v3
 -        with:
 -          flags: unit
- 
- name: Test
- "
+   type_check:
+     name: Type Check
+     runs-on: ubuntu-latest"
 `;
 
 exports[`expected file changes > .gitignore 1`] = `
@@ -29,6 +29,7 @@ exports[`expected file changes > .prettierignore 1`] = `
 +++ b/.prettierignore
 @@ ... @@
  .all-contributorsrc
+ .husky/
 -coverage*/
 +coverage/
  lib/
@@ -38,16 +39,6 @@ exports[`expected file changes > .prettierignore 1`] = `
 exports[`expected file changes > README.md 1`] = `
 "--- a/README.md
 +++ b/README.md
-@@ ... @@
- 
- <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/create-typescript-app.png">
- 
--\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.
--It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.
--
- ## Getting Started
- 
- First make sure you have the following installed:
 @@ ... @@ Thanks! 💖
  
  <!-- ALL-CONTRIBUTORS-LIST:END -->
@@ -74,21 +65,26 @@ exports[`expected file changes > cspell.json 1`] = `
  		"node_modules",
  		"pnpm-lock.yaml"
 @@ ... @@
+ 		"apexskier",
+ 		"arethetypeswrong",
+ 		"automerge",
+-		"codecov",
+ 		"codespace",
  		"contributorsrc",
  		"execa",
  		"infile",
 +		"joshuakgoldberg",
-+		"jsdoc",
  		"knip",
 +		"markdownlint",
  		"markdownlintignore",
  		"mtfoley",
  		"npmignore",
-@@ ... @@
- 		"precommit",
+ 		"npmpackagejsonlintrc",
+ 		"outro",
+ 		"packagejson",
+-		"precommit",
  		"quickstart",
  		"tada",
-+		"templating",
  		"tseslint",
  		"tsup",
 -		"vitest"
@@ -114,7 +110,16 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -
  import eslint from "@eslint/js";
  import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
- import jsdoc from "eslint-plugin-jsdoc";
+ import vitest from "@vitest/eslint-plugin";
+@@ ... @@ export default tseslint.config(
+ 		languageOptions: {
+ 			parserOptions: {
+ 				projectService: {
+-					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
++					allowDefaultProject: ["*.*s", "eslint.config.js"],
+ 					defaultProject: "./tsconfig.json",
+ 				},
+ 				tsconfigRootDir: import.meta.dirname,
 @@ ... @@ export default tseslint.config(
  			"no-constant-condition": "off",
  
@@ -134,9 +139,9 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -				"error",
 -				{ allowBoolean: true, allowNullish: true, allowNumber: true },
 -			],
- 			"perfectionist/sort-objects": [
+ 			"n/no-unsupported-features/node-builtins": [
  				"error",
- 				{"
+ 				{ allowExperimental: true },"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

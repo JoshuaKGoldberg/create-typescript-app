@@ -111,7 +111,7 @@ Then:
 
    <!-- eslint-disable jsonc/sort-keys -->
 
-   ```jsonc package.json
+   ```json package.json
    {
    	"exports": {
    		".": {
@@ -164,10 +164,10 @@ Using `eslint-config-prettier` would be redundant.
 
 The four bases correspond to what have seemed to be the most common user needs of template consumers:
 
-1. **Minimum**: Developers who just want the barest of starting templates.
+1. **Minimal**: Developers who just want the barest of starting templates.
    - They may be very new to TypeScript tooling, or they may have made an informed decision that the additional tooling isn't worth the complexity and/or time investment.
    - Tooling in this base is only what would be essential for a small TypeScript package that can be built, formatted, linted, and released.
-2. **Common**: The common case of users who want the minimum tooling along with common repository management.
+2. **Common**: The common case of users who want the minimal tooling along with common repository management.
    - Tooling added in this base should be essential for a TypeScript repository that additionally automates useful GitHub tasks: contributor recognition, release management, and testing.
 3. **Everything**: Power users (including this repository) who want as much of the latest and greatest safety checks and standardization as possible.
 

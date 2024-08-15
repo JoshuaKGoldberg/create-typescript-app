@@ -25,19 +25,19 @@ export async function initializeBranchProtectionSettings(
 				required_pull_request_reviews: null,
 				required_status_checks: {
 					checks: [
-						{ context: "build" },
-						{ context: "lint" },
-						{ context: "prettier" },
-						...(options.excludeCompliance ? [] : [{ context: "compliance" }]),
-						...(options.excludeLintKnip ? [] : [{ context: "lint_knip" }]),
-						...(options.excludeLintMd ? [] : [{ context: "lint_markdown" }]),
+						{ context: "Build" },
+						...(options.excludeCompliance ? [] : [{ context: "Compliance" }]),
+						{ context: "Lint" },
+						...(options.excludeLintKnip ? [] : [{ context: "Lint Knip" }]),
+						...(options.excludeLintMd ? [] : [{ context: "Lint Markdown" }]),
 						...(options.excludeLintPackages
 							? []
-							: [{ context: "lint_packages" }]),
+							: [{ context: "Lint Packages" }]),
 						...(options.excludeLintSpelling
 							? []
-							: [{ context: "lint_spelling" }]),
-						...(options.excludeTests ? [] : [{ context: "test" }]),
+							: [{ context: "Lint Spelling" }]),
+						{ context: "Prettier" },
+						...(options.excludeTests ? [] : [{ context: "Test" }]),
 					],
 					strict: false,
 				},

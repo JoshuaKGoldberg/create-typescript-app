@@ -8,6 +8,8 @@ export async function finalizeDependencies(options: Options) {
 		"@eslint/js",
 		"@eslint-community/eslint-plugin-eslint-comments",
 		"@types/eslint-plugin-markdown",
+		"@types/eslint__js",
+		"@types/node",
 		"eslint",
 		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
@@ -16,6 +18,7 @@ export async function finalizeDependencies(options: Options) {
 		"lint-staged",
 		"prettier",
 		"prettier-plugin-curly",
+		"prettier-plugin-sh",
 		"prettier-plugin-packagejson",
 		"tsup",
 		"typescript",
@@ -33,7 +36,7 @@ export async function finalizeDependencies(options: Options) {
 					"markdownlint",
 					"markdownlint-cli",
 					"sentences-per-line",
-			  ]),
+				]),
 		...(options.excludeLintPackageJson ? [] : ["eslint-plugin-package-json"]),
 		...(options.excludeLintPerfectionist
 			? []
@@ -47,10 +50,10 @@ export async function finalizeDependencies(options: Options) {
 			? []
 			: [
 					"@vitest/coverage-v8",
+					"@vitest/eslint-plugin",
 					"console-fail-test",
-					"eslint-plugin-vitest",
 					"vitest",
-			  ]),
+				]),
 	]
 		.filter(Boolean)
 		.sort()
@@ -70,5 +73,5 @@ export async function finalizeDependencies(options: Options) {
 		);
 	}
 
-	await execaCommand(`pnpm dedupe`);
+	await execaCommand(`pnpm dedupe --offline`);
 }

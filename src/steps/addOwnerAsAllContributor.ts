@@ -1,10 +1,10 @@
 import * as fs from "node:fs/promises";
+import { Octokit } from "octokit";
 
 import { getGitHubUserAsAllContributor } from "../shared/getGitHubUserAsAllContributor.js";
 import { readFileAsJson } from "../shared/readFileAsJson.js";
 import { AllContributorsData, Options } from "../shared/types.js";
 import { formatJson } from "./writing/creation/formatters/formatJson.js";
-import { Octokit } from "octokit";
 
 export async function addOwnerAsAllContributor(
 	octokit: Octokit | undefined,

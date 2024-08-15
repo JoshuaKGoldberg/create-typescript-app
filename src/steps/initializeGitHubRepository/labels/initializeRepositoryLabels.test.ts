@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
-import { MockInstance, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, MockInstance, vi } from "vitest";
 
 import { GhLabelData } from "./getExistingEquivalentLabels.js";
 import { initializeRepositoryLabels } from "./initializeRepositoryLabels.js";
@@ -19,7 +19,7 @@ vi.mock("./outcomeLabels.js", () => ({
 const createMockOctokit = (existingLabels: GhLabelData[]) =>
 	({
 		request: vi.fn().mockResolvedValueOnce({ data: existingLabels }),
-	}) as unknown as Octokit & { request: MockInstance };
+	}) as unknown as { request: MockInstance } & Octokit;
 
 const options = {
 	owner: "TestOwner",

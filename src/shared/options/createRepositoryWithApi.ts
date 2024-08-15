@@ -22,14 +22,20 @@ export async function createRepositoryWithApi(
 
 	const currentUser = await octokit.rest.users.getAuthenticated();
 
-	if (currentUser.data.login === options.owner) {
-		await octokit.rest.repos.createForAuthenticatedUser({
-			name: options.repository,
-		});
-	} else {
-		await octokit.rest.repos.createInOrg({
-			name: options.repository,
-			org: options.owner,
+	try {
+		if (currentUser.data.login === options.owner) {
+			await octokit.rest.repos.createForAuthenticatedUser({
+				name: options.repository,
+			});
+		} else {
+			await octokit.rest.repos.createInOrg({
+				name: options.repository,
+				org: options.owner,
+			});
+		}
+	} catch (error) {
+		throw new Error("Failed to create new repository on GitHub.", {
+			cause: error,
 		});
 	}
 }

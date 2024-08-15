@@ -81,7 +81,10 @@ describe("initializeWithOptions", () => {
 			options,
 		});
 
-		expect(mockAddOwnerAsAllContributor).toHaveBeenCalledWith(options);
+		expect(mockAddOwnerAsAllContributor).toHaveBeenCalledWith(
+			undefined,
+			options,
+		);
 	});
 
 	it("does not run addOwnerAsAllContributor when excludeAllContributors is true", async () => {

@@ -1,3 +1,9 @@
+## [1.71.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.0...v1.71.1) (2024-08-15)
+
+### Bug Fixes
+
+- remove unnecessary devDependencies for --base common ([#1636](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1636)) ([a556755](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a55675543a9f8cb314eaa27e25760551aa68845e)), closes [#1635](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1635)
+
 # [1.71.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.70.0...v1.71.0) (2024-08-15)
 
 ### Features

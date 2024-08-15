@@ -93,7 +93,10 @@ describe("createWithOptions", () => {
 		};
 
 		await createWithOptions({ github, options });
-		expect(addToolAllContributors).toHaveBeenCalledWith(options);
+		expect(addToolAllContributors).toHaveBeenCalledWith(
+			github.octokit,
+			options,
+		);
 	});
 
 	it("does not call addToolAllContributors when excludeAllContributors is true", async () => {

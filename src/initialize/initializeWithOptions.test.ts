@@ -67,30 +67,6 @@ vi.mock("../steps/uninstallPackages.js", () => ({
 	},
 }));
 
-const mockUpdateAllContributorsTable = vi.fn();
-
-vi.mock("../steps/updateAllContributorsTable.js", () => ({
-	get updateAllContributorsTable() {
-		return mockUpdateAllContributorsTable;
-	},
-}));
-
-const mockUpdateLocalFiles = vi.fn();
-
-vi.mock("../steps/updateLocalFiles.js", () => ({
-	get updateLocalFiles() {
-		return mockUpdateLocalFiles;
-	},
-}));
-
-const mockUpdateReadme = vi.fn();
-
-vi.mock("../steps/updateReadme.js", () => ({
-	get updateReadme() {
-		return mockUpdateReadme;
-	},
-}));
-
 const optionsBase = {} as Options;
 
 describe("initializeWithOptions", () => {

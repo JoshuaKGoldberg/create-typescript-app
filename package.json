@@ -98,7 +98,7 @@
 		"release-it": "^17.6.0",
 		"sentences-per-line": "^0.2.1",
 		"tsup": "^8.2.4",
-		"tsx": "^4.16.5",
+		"tsx": "^4.17.0",
 		"typescript": "^5.5.4",
 		"typescript-eslint": "^8.0.1",
 		"vitest": "^2.0.5"

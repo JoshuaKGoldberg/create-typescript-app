@@ -11,22 +11,6 @@ vi.mock("../shared/cli/spinners.js", () => ({
 	withSpinners: vi.fn(),
 }));
 
-const mockCreateCleanupCommands = vi.fn();
-
-vi.mock("../shared/createCleanupCommands.js", () => ({
-	get createCleanupCommands() {
-		return mockCreateCleanupCommands;
-	},
-}));
-
-const mockClearUnnecessaryFiles = vi.fn();
-
-vi.mock("../steps/clearUnnecessaryFiles.js", () => ({
-	get clearUnnecessaryFiles() {
-		return mockClearUnnecessaryFiles;
-	},
-}));
-
 const mockDetectExistingContributors = vi.fn();
 
 vi.mock("../steps/detectExistingContributors.js", () => ({
@@ -59,12 +43,8 @@ vi.mock("../steps/populateCSpellDictionary.js", () => ({
 	},
 }));
 
-const mockRunCleanup = vi.fn();
-
 vi.mock("../steps/runCleanup.js", () => ({
-	get runCleanup() {
-		return mockRunCleanup;
-	},
+	runCleanup: vi.fn(),
 }));
 
 vi.mock("../shared/cli/spinners.js", () => ({

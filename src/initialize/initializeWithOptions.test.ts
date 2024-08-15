@@ -11,14 +11,6 @@ vi.mock("../shared/cli/spinners.js", () => ({
 	withSpinners: vi.fn(),
 }));
 
-const mockGitHubAndOptions = vi.fn();
-
-vi.mock("../shared/options/readOptions.js", () => ({
-	get GitHubAndOptions() {
-		return mockGitHubAndOptions;
-	},
-}));
-
 const mockAddOwnerAsAllContributor = vi.fn();
 
 vi.mock("../steps/addOwnerAsAllContributor.js", () => ({

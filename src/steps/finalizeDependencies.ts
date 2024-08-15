@@ -6,14 +6,10 @@ import { Options } from "../shared/types.js";
 export async function finalizeDependencies(options: Options) {
 	const devDependencies = [
 		"@eslint/js",
-		"@eslint-community/eslint-plugin-eslint-comments",
-		"@types/eslint-plugin-markdown",
 		"@types/eslint__js",
 		"@types/node",
 		"eslint",
-		"eslint-plugin-jsdoc",
 		"eslint-plugin-n",
-		"eslint-plugin-regexp",
 		"husky",
 		"lint-staged",
 		"prettier",
@@ -24,6 +20,10 @@ export async function finalizeDependencies(options: Options) {
 		"typescript",
 		"typescript-eslint",
 		...(options.excludeAllContributors ? [] : ["all-contributors-cli"]),
+		...(options.excludeLintESLint
+			? []
+			: ["@eslint-community/eslint-plugin-eslint-comments"]),
+		...(options.excludeLintJSDoc ? [] : ["eslint-plugin-jsdoc"]),
 		...(options.excludeLintJson ? [] : ["eslint-plugin-jsonc"]),
 		...(options.excludeLintJson && options.excludeLintPackageJson
 			? []
@@ -32,6 +32,7 @@ export async function finalizeDependencies(options: Options) {
 		...(options.excludeLintMd
 			? []
 			: [
+					"@types/eslint-plugin-markdown",
 					"eslint-plugin-markdown",
 					"markdownlint",
 					"markdownlint-cli",
@@ -41,6 +42,7 @@ export async function finalizeDependencies(options: Options) {
 		...(options.excludeLintPerfectionist
 			? []
 			: ["eslint-plugin-perfectionist"]),
+		...(options.excludeLintRegex ? [] : ["eslint-plugin-regexp"]),
 		...(options.excludeLintSpelling ? [] : ["cspell"]),
 		...(options.excludeLintYml ? [] : ["eslint-plugin-yml"]),
 		...(options.excludeReleases

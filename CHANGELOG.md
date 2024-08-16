@@ -1,3 +1,9 @@
+## [1.71.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.2...v1.71.3) (2024-08-16)
+
+### Bug Fixes
+
+- generally bump dependencies to latest ([#1639](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1639)) ([dee91eb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dee91eb5f0552968e0214b3a6bf3c6586f61f769))
+
 ## [1.71.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.1...v1.71.2) (2024-08-15)
 
 ### Bug Fixes

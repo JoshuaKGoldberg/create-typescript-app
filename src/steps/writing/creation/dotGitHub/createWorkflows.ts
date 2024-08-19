@@ -140,7 +140,7 @@ export function createWorkflows(options: Options) {
 					{ uses: "./.github/actions/prepare" },
 					{
 						env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
-						uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.4.3`,
+						uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.5.0`,
 					},
 				],
 			}),

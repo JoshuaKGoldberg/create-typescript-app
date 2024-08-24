@@ -1,3 +1,9 @@
+## [1.71.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.3...v1.71.4) (2024-08-24)
+
+### Bug Fixes
+
+- exclude tests with.npmignore ([#1637](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1637)) ([2c14c2d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2c14c2d5798068b1f49fc1aad9eb5b9ab23441e6)), closes [#1629](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1629)
+
 ## [1.71.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.2...v1.71.3) (2024-08-16)
 
 ### Bug Fixes

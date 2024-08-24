@@ -1,3 +1,9 @@
+# [1.72.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.4...v1.72.0) (2024-08-24)
+
+### Features
+
+- revert add .npmignore to rootfiles ([#1642](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1642)) ([50f1133](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/50f11335edad17707a1ff33b167af9d29c46ca72)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000)
+
 ## [1.71.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.3...v1.71.4) (2024-08-24)
 
 ### Bug Fixes

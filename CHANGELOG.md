@@ -1,3 +1,45 @@
+# [1.72.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.4...v1.72.0) (2024-08-24)
+
+### Features
+
+- revert add .npmignore to rootfiles ([#1642](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1642)) ([50f1133](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/50f11335edad17707a1ff33b167af9d29c46ca72)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000)
+
+## [1.71.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.3...v1.71.4) (2024-08-24)
+
+### Bug Fixes
+
+- exclude tests with.npmignore ([#1637](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1637)) ([2c14c2d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2c14c2d5798068b1f49fc1aad9eb5b9ab23441e6)), closes [#1629](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1629)
+
+## [1.71.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.2...v1.71.3) (2024-08-16)
+
+### Bug Fixes
+
+- generally bump dependencies to latest ([#1639](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1639)) ([dee91eb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dee91eb5f0552968e0214b3a6bf3c6586f61f769))
+
+## [1.71.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.1...v1.71.2) (2024-08-15)
+
+### Bug Fixes
+
+- small preserve-generated-form/from typo ([8e27fa1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8e27fa14d4c21db60c0e463c801fc0538c58880f))
+
+## [1.71.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.0...v1.71.1) (2024-08-15)
+
+### Bug Fixes
+
+- remove unnecessary devDependencies for --base common ([#1636](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1636)) ([a556755](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a55675543a9f8cb314eaa27e25760551aa68845e)), closes [#1635](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1635)
+
+# [1.71.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.70.0...v1.71.0) (2024-08-15)
+
+### Features
+
+- drop dependency on gh ([#1000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1000)) ([063346e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/063346e3383a4cff91761725dad2c0e60927b8c9)), closes [#667](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/667)
+
+# [1.70.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.69.0...v1.70.0) (2024-08-14)
+
+### Features
+
+- include vitest.explorer VS Code extension ([#1630](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1630)) ([f9267aa](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f9267aaeae29c59ba47b19bbd375bc7f83e8e648)), closes [#1628](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1628)
+
 # [1.69.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.68.0...v1.69.0) (2024-08-14)
 
 ### Features

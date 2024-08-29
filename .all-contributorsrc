@@ -462,6 +462,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "atilafassina",
+      "name": "Atila Fassina",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2382552?v=4",
+      "profile": "https://atila.io",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

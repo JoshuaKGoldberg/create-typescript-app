@@ -178,7 +178,7 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
-			  --preserve-generated-form: Whether to keep the GitHub repository generated from 
+			  --preserve-generated-from: Whether to keep the GitHub repository generated from 
 			  notice (by default, false)",
 			  ],
 			  [],

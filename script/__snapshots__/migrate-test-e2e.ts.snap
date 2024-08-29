@@ -151,7 +151,6 @@ exports[`expected file changes > knip.json 1`] = `
  {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",
 -	"entry": ["src/index.ts!", "script/*e2e.js"],
--	"ignoreBinaries": ["gh"],
 +	"entry": ["src/index.ts!"],
  	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 -	"project": ["src/**/*.ts!", "script/**/*.js"]

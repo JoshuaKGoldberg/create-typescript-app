@@ -1,15 +1,23 @@
-import { $ } from "execa";
+import { Octokit } from "octokit";
 
-import {
-	getExistingEquivalentLabels,
-	GhLabelData,
-} from "./getExistingEquivalentLabels.js";
+import { Options } from "../../../shared/types.js";
+import { getExistingEquivalentLabels } from "./getExistingEquivalentLabels.js";
 import { outcomeLabels } from "./outcomeLabels.js";
 
-export async function initializeRepositoryLabels() {
-	const existingLabels = JSON.parse(
-		(await $`gh label list --json color,description,name`).stdout || "[]",
-	) as GhLabelData[];
+export async function initializeRepositoryLabels(
+	octokit: Octokit,
+	options: Pick<Options, "owner" | "repository">,
+) {
+	const { data: existingLabels } = await octokit.request(
+		"GET /repos/{owner}/{repo}/labels",
+		{
+			headers: {
+				"X-GitHub-Api-Version": "2022-11-28",
+			},
+			owner: options.owner,
+			repo: options.repository,
+		},
+	);
 
 	for (const outcome of outcomeLabels) {
 		const existingEquivalents = getExistingEquivalentLabels(
@@ -19,7 +27,16 @@ export async function initializeRepositoryLabels() {
 
 		// Case: the repo has neither of the two label types
 		if (!existingEquivalents.length) {
-			await $`gh label create ${outcome.name} --color ${outcome.color} --description ${outcome.description}`;
+			await octokit.request("POST /repos/{owner}/{repo}/labels", {
+				color: outcome.color.replace("#", ""),
+				description: outcome.description,
+				headers: {
+					"X-GitHub-Api-Version": "2022-11-28",
+				},
+				name: outcome.name,
+				owner: options.owner,
+				repo: options.repository,
+			});
 			continue;
 		}
 
@@ -30,7 +47,15 @@ export async function initializeRepositoryLabels() {
 				existingEquivalent.name !== outcome.name &&
 				existingLabels.some((existing) => existing.name === outcome.name)
 			) {
-				await $`gh label delete ${existingEquivalent.name} --yes`;
+				await octokit.request("DELETE /repos/{owner}/{repo}/labels/{name}", {
+					headers: {
+						"X-GitHub-Api-Version": "2022-11-28",
+					},
+					name: existingEquivalent.name,
+					owner: options.owner,
+					repo: options.repository,
+				});
+
 				continue;
 			}
 
@@ -42,7 +67,17 @@ export async function initializeRepositoryLabels() {
 				outcome.description !== existingEquivalent.description ||
 				outcome.name !== existingEquivalent.name
 			) {
-				await $`gh label edit ${existingEquivalent.name} --color ${outcome.color} --description ${outcome.description} --name ${outcome.name}`;
+				await octokit.request("PATCH /repos/{owner}/{repo}/labels/{name}", {
+					color: outcome.color.replace("#", ""),
+					description: outcome.description,
+					headers: {
+						"X-GitHub-Api-Version": "2022-11-28",
+					},
+					name: existingEquivalent.name,
+					new_name: outcome.name,
+					owner: options.owner,
+					repo: options.repository,
+				});
 			}
 		}
 	}

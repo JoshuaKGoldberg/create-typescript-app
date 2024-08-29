@@ -1,4 +1,12 @@
 jobs:
+  are_the_types_wrong:
+    name: Are the types wrong?
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: pnpm build
+      - run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -67,14 +75,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm tsc
-  are_the_types_wrong:
-    name: Are the types wrong?
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/prepare
-      - run: pnpm build
-      - run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm
 
 name: CI
 

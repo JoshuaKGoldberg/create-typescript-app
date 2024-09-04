@@ -72,7 +72,7 @@
 		"@types/node": "^22.3.0",
 		"@types/parse-author": "^2.0.3",
 		"@vitest/coverage-v8": "^2.0.5",
-		"@vitest/eslint-plugin": "^1.0.3",
+		"@vitest/eslint-plugin": "^1.1.0",
 		"c8": "^10.1.2",
 		"console-fail-test": "^0.5.0",
 		"cspell": "^8.14.1",

@@ -71,7 +71,7 @@
 		"@types/js-yaml": "^4.0.9",
 		"@types/node": "^22.3.0",
 		"@types/parse-author": "^2.0.3",
-		"@vitest/coverage-v8": "^2.0.5",
+		"@vitest/coverage-v8": "^2.1.0",
 		"@vitest/eslint-plugin": "^1.1.0",
 		"c8": "^10.1.2",
 		"console-fail-test": "^0.5.0",
@@ -101,7 +101,7 @@
 		"tsx": "^4.17.0",
 		"typescript": "^5.6.2",
 		"typescript-eslint": "^8.1.0",
-		"vitest": "^2.0.5"
+		"vitest": "^2.1.0"
 	},
 	"engines": {
 		"node": ">=18.3.0"

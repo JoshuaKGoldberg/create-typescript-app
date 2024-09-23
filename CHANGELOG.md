@@ -1,3 +1,9 @@
+## [1.72.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.1...v1.72.2) (2024-09-23)
+
+### Bug Fixes
+
+- **deps:** update dependency zod-validation-error to v3.4.0 ([#1653](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1653)) ([7399198](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7399198d36dde1752586c1688fe25ac80ef8118e))
+
 ## [1.72.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.0...v1.72.1) (2024-08-29)
 
 ### Bug Fixes

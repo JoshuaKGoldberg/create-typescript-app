@@ -1,3 +1,9 @@
+## [1.72.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.2...v1.72.3) (2024-09-23)
+
+### Bug Fixes
+
+- **deps:** update dependency execa to v9.4.0 ([#1654](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1654)) ([2cf2c00](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2cf2c00bd59456e6091066a6e7a06618036ee72e))
+
 ## [1.72.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.1...v1.72.2) (2024-09-23)
 
 ### Bug Fixes

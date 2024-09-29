@@ -1,3 +1,9 @@
+## [1.72.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.3...v1.72.4) (2024-09-29)
+
+### Bug Fixes
+
+- **deps:** update dependency replace-in-file to v8.2.0 ([#1656](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1656)) ([857dd77](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/857dd77bfb523d5b88bfa50caee0750be6dd42d2))
+
 ## [1.72.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.2...v1.72.3) (2024-09-23)
 
 ### Bug Fixes

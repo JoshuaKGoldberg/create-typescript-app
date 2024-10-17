@@ -1,3 +1,9 @@
+## [1.73.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.1...v1.73.2) (2024-10-17)
+
+### Bug Fixes
+
+- use payload.release.tag_name for npm package release ([#1665](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1665)) ([96bf717](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/96bf7172de215c9ed12e8fdaeed75e3338c69962)), closes [#1115](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1115)
+
 ## [1.73.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.0...v1.73.1) (2024-10-17)
 
 ### Bug Fixes

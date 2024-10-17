@@ -164,7 +164,7 @@ export function createWorkflows(options: Options) {
 							The release is available on:
 
 							* [GitHub releases](https://github.com/${options.owner}/${options.repository}/releases/tag/{release_tag})
-							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/{release_tag})
+							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/{\${{ payload.release.tag_name }}})
 
 							Cheers! 📦🚀
 						`,

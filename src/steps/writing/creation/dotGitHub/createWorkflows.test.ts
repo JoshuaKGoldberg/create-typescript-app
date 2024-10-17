@@ -206,7 +206,7 @@ describe("createWorkflows", () => {
 			              The release is available on:
 
 			              * [GitHub releases](https://github.com/StubOwner/stub-repository/releases/tag/{release_tag})
-			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/stub-repository/v/{release_tag})
+			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/stub-repository/v/{\${{ payload.release.tag_name }}})
 
 			              Cheers! 📦🚀
 

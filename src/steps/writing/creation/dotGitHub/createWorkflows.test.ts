@@ -197,7 +197,6 @@ describe("createWorkflows", () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
-			      - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
@@ -207,7 +206,7 @@ describe("createWorkflows", () => {
 			              The release is available on:
 
 			              * [GitHub releases](https://github.com/StubOwner/stub-repository/releases/tag/{release_tag})
-			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/stub-repository/v/\${{ env.npm_version }})
+			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/stub-repository/v/{release_tag})
 
 			              Cheers! 📦🚀
 

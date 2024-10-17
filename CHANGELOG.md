@@ -1,3 +1,9 @@
+## [1.73.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.0...v1.73.1) (2024-10-17)
+
+### Bug Fixes
+
+- simplify post-release.yml with release_tag instead of npm pkg get ([#1663](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1663)) ([d42e699](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d42e6994973e3575d83dd7640b534da2c97a3983)), closes [#1115](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1115)
+
 # [1.73.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.4...v1.73.0) (2024-10-10)
 
 ### Features

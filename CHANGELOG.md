@@ -1,3 +1,9 @@
+## [1.73.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.2...v1.73.3) (2024-10-18)
+
+### Bug Fixes
+
+- reset post-release back to npm pkg get again ([#1666](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1666)) ([e7921ee](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e7921eec45e1aaccafbfa57fa8f045ae1760f842)), closes [#1663](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1663) [#1665](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1665)
+
 ## [1.73.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.1...v1.73.2) (2024-10-17)
 
 ### Bug Fixes

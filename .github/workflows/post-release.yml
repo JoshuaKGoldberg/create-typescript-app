@@ -5,6 +5,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
       - uses: apexskier/github-release-commenter@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -14,7 +15,7 @@ jobs:
             The release is available on:
 
             * [GitHub releases](https://github.com/JoshuaKGoldberg/create-typescript-app/releases/tag/{release_tag})
-            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/create-typescript-app/v/{${{ payload.release.tag_name }}})
+            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/create-typescript-app/v/${{ env.npm_version }})
 
             Cheers! 📦🚀
 

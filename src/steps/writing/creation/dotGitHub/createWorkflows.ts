@@ -156,6 +156,9 @@ export function createWorkflows(options: Options) {
 				steps: [
 					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{
+						run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
+					},
+					{
 						uses: "apexskier/github-release-commenter@v1",
 						with: {
 							"comment-template": `
@@ -164,7 +167,7 @@ export function createWorkflows(options: Options) {
 							The release is available on:
 
 							* [GitHub releases](https://github.com/${options.owner}/${options.repository}/releases/tag/{release_tag})
-							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/{\${{ payload.release.tag_name }}})
+							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/\${{ env.npm_version }})
 
 							Cheers! 📦🚀
 						`,

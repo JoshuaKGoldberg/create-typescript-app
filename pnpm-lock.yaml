@@ -106,7 +106,7 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       cspell:
-        specifier: ^8.14.1
+        specifier: ^8.14.2
         version: 8.14.2
       eslint:
         specifier: ^9.9.0

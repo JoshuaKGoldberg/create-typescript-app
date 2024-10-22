@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readDefaultsFromDevelopment } from "./readDefaultsFromDevelopment.js";
+import { readDefaultsFromDevelopment } from "./readGuide.js";
 
 const mockReadFileSafe = vi.fn();
 

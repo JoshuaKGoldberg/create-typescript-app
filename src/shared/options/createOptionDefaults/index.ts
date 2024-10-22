@@ -10,9 +10,9 @@ import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { tryCatchLazyValueAsync } from "../../tryCatchLazyValueAsync.js";
 import { PromptedOptions } from "../../types.js";
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
-import { readDefaultsFromDevelopment } from "./readDefaultsFromDevelopment.js";
 import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
-import { readGitHubEmail } from "./readGitHubEmail.js";
+import { readEmails } from "./readEmails.js";
+import { readGuide } from "./readGuide.js";
 
 export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 	const gitDefaults = tryCatchLazyValueAsync(async () =>
@@ -34,24 +34,7 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 			(await packageAuthor()).author ?? (await npmDefaults())?.name,
 		bin: async () => (await packageData()).bin,
 		description: async () => (await packageData()).description,
-		email: async () => {
-			const githubEmail =
-				(await readGitHubEmail()) ??
-				(await tryCatchAsync(
-					async () => (await $`git config --get user.email`).stdout,
-				));
-			const npmEmail =
-				(await npmDefaults())?.email ?? (await packageAuthor()).email;
-
-			/* eslint-disable @typescript-eslint/no-non-null-assertion */
-			return githubEmail || npmEmail
-				? {
-						github: (githubEmail || npmEmail)!,
-						npm: (npmEmail || githubEmail)!,
-					}
-				: undefined;
-			/* eslint-enable @typescript-eslint/no-non-null-assertion */
-		},
+		email: async () => readEmails(npmDefaults, packageAuthor),
 		funding: async () =>
 			await tryCatchAsync(async () =>
 				(await fs.readFile(".github/FUNDING.yml"))
@@ -59,13 +42,13 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 					.split(":")[1]
 					?.trim(),
 			),
+		guide: readGuide,
 		owner: async () =>
 			(await gitDefaults())?.organization ?? (await packageAuthor()).author,
 		repository: async () =>
 			promptedOptions?.repository ??
 			(await gitDefaults())?.name ??
 			(await packageData()).name,
-		...readDefaultsFromDevelopment(),
 		...readDefaultsFromReadme(),
 	};
 }

@@ -30,8 +30,10 @@ export function readDefaultsFromReadme() {
 				src,
 			};
 		},
-		title: async () =>
-			(/^<h1\s+align="center">(.+)<\/h1>/.exec(await readme()) ??
-				/^# (.+)/.exec(await readme()))?.[1],
+		title: async () => {
+			const text = await readme();
+			return (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ??
+				/^# (.+)/.exec(text))?.[1];
+		},
 	};
 }

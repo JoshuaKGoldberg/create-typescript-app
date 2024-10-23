@@ -39,17 +39,19 @@ export const schema = createSchema({
 			})
 			.optional(),
 		keywords: z.array(z.string()).optional(),
-		login: z.string(),
+		login: z.string().optional(),
 		logo: z
 			.object({
 				alt: z.string(),
 				src: z.string(),
 			})
 			.optional(),
-		node: z.object({
-			minimum: z.string(),
-			pinned: z.string().optional(),
-		}),
+		node: z
+			.object({
+				minimum: z.string(),
+				pinned: z.string().optional(),
+			})
+			.optional(),
 		owner: z.string(),
 		preserveGeneratedFrom: z.boolean().optional(),
 		repository: z.string(),

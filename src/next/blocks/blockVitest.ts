@@ -68,11 +68,11 @@ export default defineConfig({
 		clearMocks: true,
 		coverage: {
 			all: true,
-			exclude: ${exclude}
-			include: ${include}
+			exclude: ${exclude},
+			include: ${include},
 			reporter: ["html", "lcov"],
 		},
-		exclude: [${exclude}, "node_modules"],
+		exclude: [${exclude.slice(1, exclude.length - 1)}, "node_modules"],
 		setupFiles: ["console-fail-test/setup"],
 	},
 });

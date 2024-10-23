@@ -173,6 +173,7 @@ describe("writePackageJson", () => {
 			    "format": "prettier .",
 			    "lint": "eslint . --max-warnings 0",
 			    "prepare": "husky",
+			    "test": "vitest",
 			    "tsc": "tsc",
 			  },
 			  "type": "module",

@@ -33,16 +33,16 @@ pnpm format --write
 			},
 			files: {
 				".husky": {
-					".gitignore": "_\n",
-					"pre-commit": "npx lint-staged\n",
+					".gitignore": "_",
+					"pre-commit": "npx lint-staged",
 				},
 				".prettierignore": [
 					".husky/",
 					"lib/",
 					"pnpm-lock.yaml",
-					...created.metadata.filter(
-						(value) => value.type === MetadataFileType.Ignored,
-					),
+					...created.metadata
+						.filter((value) => value.type === MetadataFileType.Ignored)
+						.map((value) => value.glob),
 				]
 					.sort()
 					.join("\n"),

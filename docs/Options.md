@@ -19,7 +19,7 @@ These required options determine how the creation script will set up and scaffol
   - `prompt`: Fine-grained control over which tooling pieces to use
 - `--mode`: Whether to:
   - `create` a new repository in a child directory
-  - `initialize` a freshly repository in the current directory
+  - `initialize` a newly created repository in the current directory
   - `migrate` an existing repository in the current directory
 
 For example, scaffolding a full new repository under the current directory and also linking it to a new repository on github.com:

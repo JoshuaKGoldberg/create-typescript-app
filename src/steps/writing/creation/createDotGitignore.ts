@@ -6,6 +6,5 @@ export function createDotGitignore(options: Pick<Options, "excludeTests">) {
 		...(options.excludeTests ? [] : ["/coverage"]),
 		"/lib",
 		"/node_modules",
-		"/pnpm-lock.yaml",
 	]);
 }

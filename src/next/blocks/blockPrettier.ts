@@ -1,6 +1,5 @@
 import { BlockPhase, MetadataFileType } from "create";
 import { z } from "zod";
-// import { prettierSchema } from "zod-prettier-schema"; // todo: make package
 
 import { schema } from "../schema.js";
 
@@ -9,7 +8,6 @@ export const blockPrettier = schema.createBlock({
 		name: "Prettier",
 	},
 	args: {
-		// config: prettierSchema.optional(),
 		plugins: z.array(z.string()).optional(),
 	},
 	phase: BlockPhase.Format,
@@ -37,8 +35,8 @@ pnpm format --write
 					"pre-commit": "npx lint-staged",
 				},
 				".prettierignore": [
-					".husky/",
-					"lib/",
+					".husky",
+					"lib",
 					"pnpm-lock.yaml",
 					...created.metadata
 						.filter((value) => value.type === MetadataFileType.Ignored)
@@ -53,14 +51,17 @@ pnpm format --write
 							(value) =>
 								value.type === MetadataFileType.Config && value.language,
 						)
-						.map((value) => value.glob),
+						.map((value) => ({
+							files: value.glob,
+							options: { parser: value.language },
+						})),
 					...(args.plugins && { plugins: args.plugins }),
 					useTabs: true,
 				}),
 			},
 			jobs: [
 				{
-					name: "Format",
+					name: "Prettier",
 					steps: [{ run: "pnpm format --list-different" }],
 				},
 			],

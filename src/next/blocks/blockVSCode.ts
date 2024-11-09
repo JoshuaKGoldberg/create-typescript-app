@@ -1,6 +1,7 @@
 import { BlockPhase } from "create";
 
 import { schema } from "../schema.js";
+import { sortObject } from "../utils/sortObject.js";
 
 export const blockVSCode = schema.createBlock({
 	about: {
@@ -24,10 +25,13 @@ export const blockVSCode = schema.createBlock({
 							),
 							version: "0.2.0",
 						}),
-					"settings.json": JSON.stringify({
-						"editor.formatOnSave": true,
-						"editor.rulers": [80],
-					}),
+					"settings.json": JSON.stringify(
+						sortObject({
+							"editor.formatOnSave": true,
+							"editor.rulers": [80],
+							...created.editor.settings,
+						}),
+					),
 					"tasks.json":
 						created.editor.tasks &&
 						JSON.stringify({

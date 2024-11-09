@@ -12,9 +12,11 @@ export const blockNvmrc = schema.createBlock({
 				{ glob: ".nvmrc", parser: "yaml", type: MetadataFileType.Config },
 			],
 			...(options.node && {
-				files: {
-					".nvmrc": `${options.node.pinned}\n`,
-				},
+				...(options.node.pinned && {
+					files: {
+						".nvmrc": `${options.node.pinned}\n`,
+					},
+				}),
 				package: {
 					engines: {
 						node: `>=${options.node.minimum}`,

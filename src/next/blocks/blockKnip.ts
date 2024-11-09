@@ -6,6 +6,18 @@ export const blockKnip = schema.createBlock({
 	},
 	produce() {
 		return {
+			documentation: {
+				"Linting With Knip": {
+					level: 3,
+					text: `[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.
+You can run it with \`pnpm lint:knip\`:
+
+\`\`\`shell
+pnpm lint:knip
+\`\`\`
+`,
+				},
+			},
 			files: {
 				"knip.json": JSON.stringify({
 					$schema: "https://unpkg.com/knip@latest/schema.json",

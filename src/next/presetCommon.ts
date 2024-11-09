@@ -1,6 +1,7 @@
 import { blockContributorCovenant } from "./blocks/blockContributorCovenant.js";
 import { blockDevelopmentDocs } from "./blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "./blocks/blockESLint.js";
+import { blockFunding } from "./blocks/blockFunding.js";
 import { blockGitHubActions } from "./blocks/blockGitHubActions.js";
 import { blockGitignore } from "./blocks/blockGitignore.js";
 import { blockPrettier } from "./blocks/blockPrettier.js";
@@ -20,6 +21,7 @@ export const presetCommon = schema.createPreset({
 		blockESLint({
 			// todo: get rid of need
 		}),
+		blockFunding(),
 		blockGitHubActions(),
 		blockGitignore(),
 		blockPrettier(),

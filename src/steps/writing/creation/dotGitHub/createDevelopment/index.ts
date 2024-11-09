@@ -11,38 +11,41 @@ const headingAliases = new Map([
 	["tests", "Testing"],
 ]);
 
-function createLintingSection(options: Options) {
-	const lintLines = [
-		!options.excludeLintKnip &&
-			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
-		!options.excludeLintMd &&
-			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files`,
-		!options.excludeLintPackages &&
-			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
-		!options.excludeLintSpelling &&
-			`- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
-	].filter(Boolean);
-
-	return lintLines.length
-		? [
-				`This package includes several forms of linting to enforce consistent code quality and styling.`,
-				`Each should be shown in VS Code, and can be run manually on the command-line:`,
-				``,
-				`- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files`,
-				...lintLines,
-				``,
-				`Read the individual documentation for each linter to understand how it can be configured and used best.`,
-				``,
-				`For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`,
-			].join("\n")
-		: `[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
-You can run it locally on the command-line:
+function createLintingSections(options: Options) {
+	return Object.fromEntries(
+		[
+			!options.excludeLintPackages && {
+				command: "pnpm lint:packages",
+				heading: "Linting Duplicate Packages",
+				text: `[pnpm dedupe --check](https://pnpm.io/cli/dedupe) is used to check for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file.`,
+			},
+			!options.excludeLintSpelling && {
+				command: "pnpm lint:spelling",
+				heading: "Linting With CSpell",
+				text: `[cspell](https://cspell.org) is used to spell check across all source files.`,
+			},
+			!options.excludeLintKnip && {
+				command: "pnpm lint:knip",
+				heading: "Linting With Knip",
+				text: `[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.`,
+			},
+			!options.excludeLintMd && {
+				command: "pnpm lint:md",
+				heading: "Linting With Markdownlint",
+				text: `[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.`,
+			},
+		]
+			.filter((linter) => !!linter)
+			.map((linter) => [
+				`### ${linter.heading}`,
+				`${linter.text}
+You can run it with \`${linter.command}\`:
 
 \`\`\`shell
-pnpm run lint
-\`\`\`
-
-ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`;
+${linter.command}
+\`\`\``,
+			]),
+	);
 }
 
 export async function createDevelopment(options: Options) {
@@ -68,13 +71,21 @@ To manually reformat all files, you can run:
 \`\`\`shell
 pnpm format --write
 \`\`\``,
-		"## Linting": `${createLintingSection(options)}
+		"## Linting": `[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+You can run it locally on the command-line:
+
+\`\`\`shell
+pnpm run lint
+\`\`\`
+
+ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
 
 \`\`\`shell
 pnpm run lint --fix
 \`\`\`
 
-Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
+Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
+		...createLintingSections(options),
 		...(!options.excludeTests && {
 			"## Testing": `[Vitest](https://vitest.dev) is used for tests.
 You can run it locally on the command-line:
@@ -112,7 +123,7 @@ pnpm tsc --watch
 
 	const newSectionHeadings = new Set([
 		"Development",
-		Object.keys(newSections).map((key) => key.replace(/^#* /, "")),
+		...Object.keys(newSections).map((key) => key.replace(/^#* /, "")),
 	]);
 
 	const preservedSections = Object.fromEntries(

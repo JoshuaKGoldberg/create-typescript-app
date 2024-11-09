@@ -1,4 +1,4 @@
-import { createSchema } from "create";
+import { createSchema, SchemaOptionsFor } from "create";
 import { $ } from "execa";
 import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
@@ -89,9 +89,7 @@ export const schema = createSchema({
 			funding: readFunding,
 			guide: readGuide,
 			login: author,
-			node: () => ({
-				minimum: "18.3.0",
-			}),
+			node: () => ({ minimum: "18.3.0" }),
 			owner: async () =>
 				(await gitDefaults())?.organization ?? (await packageAuthor()).author,
 			repository: async () =>
@@ -102,3 +100,5 @@ export const schema = createSchema({
 		};
 	},
 });
+
+export type SchemaOptions = SchemaOptionsFor<typeof schema>;

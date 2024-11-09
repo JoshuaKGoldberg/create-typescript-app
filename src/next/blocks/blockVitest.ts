@@ -1,6 +1,11 @@
-import { BlockPhase, MetadataFileType } from "create";
+import { BlockPhase, CreatedMetadata, MetadataFileType } from "create";
 
 import { schema } from "../schema.js";
+import { removeTrailingSlash } from "../utils/removeTrailingSlash.js";
+
+function removeTrailingSlashFromGlob(value: CreatedMetadata) {
+	return removeTrailingSlash(value.glob);
+}
 
 export const blockVitest = schema.createBlock({
 	about: {
@@ -11,12 +16,12 @@ export const blockVitest = schema.createBlock({
 		const exclude = JSON.stringify(
 			created.metadata
 				.filter((value) => value.type === MetadataFileType.Built)
-				.map((value) => value.glob),
+				.map(removeTrailingSlashFromGlob),
 		);
 		const include = JSON.stringify(
 			created.metadata
 				.filter((value) => value.type === MetadataFileType.Source)
-				.map((value) => value.glob),
+				.map(removeTrailingSlashFromGlob),
 		);
 
 		return {
@@ -89,12 +94,16 @@ export default defineConfig({
 			],
 			metadata: [
 				{
-					glob: "coverage/",
+					glob: "coverage",
 					type: MetadataFileType.Ignored,
 				},
 				{
 					glob: "**/*.snap",
 					type: MetadataFileType.Snapshot,
+				},
+				{
+					glob: "src/**/*.test.*",
+					type: MetadataFileType.Test,
 				},
 			],
 		};

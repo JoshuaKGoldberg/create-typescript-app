@@ -1,53 +1,58 @@
-import { MetadataFileType } from "create";
+import { BlockPhase, MetadataFileType } from "create";
 import { z } from "zod";
 
 import { schema } from "../schema.js";
+
+const zRuleOptions = z.union([
+	z.literal("error"),
+	z.literal("off"),
+	z.literal("warn"),
+	z.union([
+		z.tuple([z.union([z.literal("error"), z.literal("warn")]), z.unknown()]),
+		z.tuple([
+			z.union([z.literal("error"), z.literal("warn")]),
+			z.unknown(),
+			z.unknown(),
+		]),
+	]),
+]);
+
+const zExtensionRules = z.union([
+	z.record(z.string(), zRuleOptions),
+	z.array(
+		z.object({
+			comment: z.string().optional(),
+			entries: z.record(z.string(), zRuleOptions),
+		}),
+	),
+]);
+
+const zExtension = z.object({
+	extends: z.array(z.string()).optional(),
+	files: z.array(z.string()).optional(),
+	languageOptions: z.unknown().optional(),
+	plugins: z.record(z.string(), z.string()).optional(),
+	rules: zExtensionRules.optional(),
+});
 
 export const blockESLint = schema.createBlock({
 	about: {
 		name: "ESLint",
 	},
 	args: {
-		extensions: z
-			.record(
-				z.string(),
-				z.union([
-					z.object({
-						extends: z.array(z.string()).default([]),
-						languageOptions: z.unknown().optional(),
-						rules: z
-							.array(
-								z.object({
-									comment: z.string().optional(),
-									entries: z.record(
-										z.string(),
-										z.union([
-											z.literal("error"),
-											z.literal("off"),
-											z.literal("warn"),
-											z.tuple([
-												z.union([z.literal("error"), z.literal("warn")]),
-												z.unknown(),
-											]),
-										]),
-									),
-								}),
-							)
-							.optional(),
-					}),
-					z.undefined(),
-				]),
-			)
-			.default({}),
-		ignores: z.array(z.string()).default([]),
+		configs: z.array(z.string()).default([]),
+		extensions: z.array(z.union([z.string(), zExtension])).default([]),
 		imports: z.array(z.string()).default([]),
 	},
+	phase: BlockPhase.Lint,
 	produce({ args, created, options }) {
 		const imports = [
 			`import eslint from "@eslint/js";`,
 			`import tseslint from "typescript-eslint";`,
 			...args.imports,
-		];
+		].sort((a, b) =>
+			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
+		);
 
 		const ignores = [
 			"lib",
@@ -56,31 +61,21 @@ export const blockESLint = schema.createBlock({
 			...created.metadata
 				.filter(
 					(value) =>
-						value.type === MetadataFileType.Ignored ||
-						value.type === MetadataFileType.Snapshot,
+						!value.glob.endsWith("rc") &&
+						(value.type === MetadataFileType.Ignored ||
+							value.type === MetadataFileType.Snapshot),
 				)
 				.map((value) => value.glob),
-			...args.ignores,
 		].sort();
 
-		const extensions = Object.entries(args.extensions).map(
-			([files, settings]) =>
-				`...tseslint.config(${JSON.stringify({
-					...settings,
-					files: [files],
-					...(settings?.rules && {
-						rules: settings.rules.map(
-							({ comment, entries }) => `${comment ? `// ${comment}\n` : ""}
-						${JSON.stringify(entries)}`,
-						),
-					}),
-				})})`,
+		const extensions = args.extensions.map((extension) =>
+			typeof extension === "string" ? extension : printExtension(extension),
 		);
 
 		return {
 			documentation: {
 				Linting: `
-[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
 You can run it locally on the command-line:
 
 \`\`\`shell
@@ -93,7 +88,7 @@ ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
 pnpm run lint --fix
 \`\`\`
 
-Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 `,
 			},
 			editor: {
@@ -120,7 +115,7 @@ Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that 
 
 export default tseslint.config(
 	{
-		ignores: [${ignores.join(", ")}]
+		ignores: [${ignores.map((ignore) => JSON.stringify(ignore)).join(", ")}]
 	},
 	{
 		linterOptions: {
@@ -147,3 +142,36 @@ export default tseslint.config(
 		};
 	},
 });
+
+function printExtension(extension: z.infer<typeof zExtension>) {
+	return [
+		"\t\t{",
+		extension.extends && `\t\textends: [${extension.extends.join(", ")}],`,
+		extension.files &&
+			`\t\tfiles: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
+		extension.languageOptions &&
+			`\t\tlanguageOptions: ${JSON.stringify(extension.languageOptions)},`,
+		extension.rules && `\t\trules: ${printExtensionRules(extension.rules)},`,
+		"\t\t}",
+	]
+		.filter(Boolean)
+		.join("\n");
+}
+
+function printExtensionRules(rules: z.infer<typeof zExtensionRules>) {
+	if (!Array.isArray(rules)) {
+		return JSON.stringify(rules);
+	}
+
+	return [
+		"{\n",
+		...rules.flatMap((group, i) => [
+			`${i === 0 ? "" : "\n"}\t\t\t// ${group.comment}\n`,
+			...Object.entries(group.entries).map(
+				([ruleName, options]) =>
+					`\t\t\t"${ruleName}": ${JSON.stringify(options, null, 4)},\n`,
+			),
+		]),
+		"\t\t}\n",
+	].join("");
+}

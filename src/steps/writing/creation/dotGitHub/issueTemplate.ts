@@ -1,12 +1,12 @@
 import { Options } from "../../../../shared/types.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 
-export function createDotGitHubIssueTemplate({
+export async function createDotGitHubIssueTemplate({
 	owner,
 	repository,
 }: Pick<Options, "owner" | "repository">) {
 	return {
-		"01-bug.yml": formatYaml({
+		"01-bug.yml": await formatYaml({
 			body: [
 				{
 					attributes: {
@@ -64,7 +64,7 @@ export function createDotGitHubIssueTemplate({
 			name: "🐛 Bug",
 			title: "🐛 Bug: <short description of the bug>",
 		}),
-		"02-documentation.yml": formatYaml({
+		"02-documentation.yml": await formatYaml({
 			body: [
 				{
 					attributes: {
@@ -108,7 +108,7 @@ export function createDotGitHubIssueTemplate({
 			name: "📝 Documentation",
 			title: "📝 Documentation: <short description of the request>",
 		}),
-		"03-feature.yml": formatYaml({
+		"03-feature.yml": await formatYaml({
 			body: [
 				{
 					attributes: {
@@ -153,7 +153,7 @@ export function createDotGitHubIssueTemplate({
 			name: "🚀 Feature",
 			title: "🚀 Feature: <short description of the feature>",
 		}),
-		"04-tooling.yml": formatYaml({
+		"04-tooling.yml": await formatYaml({
 			body: [
 				{
 					attributes: {

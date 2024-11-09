@@ -5,9 +5,9 @@ export async function createESLintConfig(options: Options) {
 	const tseslintBase = options.excludeLintStrict ? "recommended" : "strict";
 
 	const imports = [
-		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
+		`import eslint from "@eslint/js";`,
 		!options.excludeTests && `import vitest from "@vitest/eslint-plugin";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,
@@ -46,16 +46,16 @@ export async function createESLintConfig(options: Options) {
 
 export default tseslint.config(
 	{
-		ignores: [${
-			options.excludeTests
-				? ""
-				: `
-			"coverage*",`
-		}
+		ignores: [
+			"**/*.snap",${
+				options.excludeTests
+					? ""
+					: `
+			"coverage",`
+			}
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",
-			"**/*.snap",
 		],
 	},
 	{
@@ -64,7 +64,7 @@ export default tseslint.config(
 		},
 	},
 	${elements.join("\n")}
-	...tseslint.config({
+	{
 		extends: ${
 			options.excludeLintStylistic
 				? `tseslint.configs.${tseslintBase}TypeChecked`
@@ -76,11 +76,7 @@ export default tseslint.config(
 		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
 			parserOptions: {
-				projectService: {
-					allowDefaultProject: ["*.*s", "eslint.config.js"],
-					defaultProject: "./tsconfig.json",
-				},
-				tsconfigRootDir: import.meta.dirname
+				projectService: { allowDefaultProject: ["*.*s", "eslint.config.js"], },
 			},
 		},
 		rules: {
@@ -95,7 +91,9 @@ export default tseslint.config(
 			"logical-assignment-operators": [
 				"error",
 				"always",
-				{ enforceForIfStatements: true },
+				{
+					enforceForIfStatements: true
+				},
 			],
 			"operator-assignment": "error",`
 			}
@@ -108,15 +106,10 @@ export default tseslint.config(
 			}
 			"no-constant-condition": "off",
 
-			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],${
+			// These on-by-default rules work well for this repo if configured.${
 				options.excludeLintPerfectionist
 					? ""
 					: `
-			"n/no-unsupported-features/node-builtins": [
-				"error",
-				{ allowExperimental: true },
-			],
 			"perfectionist/sort-objects": [
 				"error",
 				{
@@ -135,7 +128,7 @@ export default tseslint.config(
 			"object-shorthand": "error",`
 			}
 		},
-	}),
+	},
 	{
 		files: ["*.jsonc"],
 		rules: {
@@ -147,26 +140,14 @@ export default tseslint.config(
 	{
 		extends: [tseslint.configs.disableTypeChecked],
 		files: ["**/*.md/*.ts"],
-		rules: {
-			"n/no-missing-import": [
-				"error",
-				{ allowModules: ["${options.repository}"] },
-			],
-		},
 	},${
 		options.excludeTests
 			? ""
 			: `
 	{
+		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
-		languageOptions: {
-			globals: vitest.environments.env.globals,
-		},
-		plugins: { vitest, },
 		rules: {
-			...vitest.configs.recommended.rules,
-
-			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
 		},
@@ -181,17 +162,11 @@ export default tseslint.config(
 			"yml/file-extension": ["error", { extension: "yml" }],
 			"yml/sort-keys": [
 				"error",
-				{
-					order: { type: "asc" },
-					pathPattern: "^.*$",
-				},
+				{ order: { type: "asc" }, pathPattern: "^.*$" },
 			],
 			"yml/sort-sequence-values": [
 				"error",
-				{
-					order: { type: "asc" },
-					pathPattern: "^.*$",
-				},
+				{ order: { type: "asc" }, pathPattern: "^.*$" },
 			],
 		},
 	},`

@@ -65,14 +65,14 @@ interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {
 
 type WorkflowFileOptions = WorkflowFileOptionsRuns | WorkflowFileOptionsSteps;
 
-export function createSoloWorkflowFile({
+export async function createSoloWorkflowFile({
 	concurrency,
 	name,
 	on,
 	permissions,
 	...options
 }: WorkflowFileOptions) {
-	return formatWorkflowYaml({
+	return await formatWorkflowYaml({
 		concurrency,
 		jobs: {
 			[name.replaceAll(" ", "_").toLowerCase()]: {

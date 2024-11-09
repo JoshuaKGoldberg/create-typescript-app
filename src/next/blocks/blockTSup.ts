@@ -1,4 +1,4 @@
-import { MetadataFileType } from "create";
+import { BlockPhase, MetadataFileType } from "create";
 
 import { schema } from "../schema.js";
 
@@ -6,6 +6,7 @@ export const blockTSup = schema.createBlock({
 	about: {
 		name: "tsup",
 	},
+	phase: BlockPhase.Build,
 	produce({ created }) {
 		return {
 			documentation: {
@@ -26,23 +27,21 @@ pnpm build --watch
 			files: {
 				"tsup.config.ts": `import { defineConfig } from "tsup";
 
-		export default defineConfig({
-			bundle: false,
-			clean: true,
-			dts: true,
-			entry: ${JSON.stringify(
-				[
-					"src/**/*.ts",
-					...created.metadata
-						.filter(({ type }) => type === MetadataFileType.Test)
-						.map((file) => `!${file.glob}`),
-				].sort(),
-			)},
-			format: "esm",
-			outDir: "lib",
-			sourcemap: true,
-		});
-	`,
+export default defineConfig({
+	bundle: false,
+	clean: true,
+	dts: true,
+	entry: ${JSON.stringify([
+		"src/**/*.ts",
+		...created.metadata
+			.filter(({ type }) => type === MetadataFileType.Test)
+			.map((file) => `!${file.glob}`),
+	])},
+	format: "esm",
+	outDir: "lib",
+	sourcemap: true,
+});
+`,
 			},
 			jobs: [
 				{

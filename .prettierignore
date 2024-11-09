@@ -1,5 +1,4 @@
-.all-contributorsrc
-.husky/
-coverage*/
-lib/
-pnpm-lock.yaml
+/.husky
+/coverage*
+/lib
+/pnpm-lock.yaml

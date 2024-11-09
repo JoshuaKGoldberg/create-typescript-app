@@ -5,12 +5,12 @@ export const blockPRCompliance = schema.createBlock({
 	about: {
 		name: "PR Compliance",
 	},
-	produce() {
+	async produce() {
 		return {
 			files: {
 				".github": {
 					workflows: {
-						"compliance.yml": createSoloWorkflowFile({
+						"compliance.yml": await createSoloWorkflowFile({
 							name: "Compliance",
 							on: {
 								pull_request: {
@@ -31,7 +31,7 @@ export const blockPRCompliance = schema.createBlock({
 											"allcontributors[bot]",
 											"renovate",
 											"renovate[bot]",
-										],
+										].join("\n"),
 										"ignore-team-members": false,
 									},
 								},

@@ -68,7 +68,6 @@ export async function createDotVSCode(options: Options) {
 				"yaml",
 			],
 			"eslint.rules.customizations": [{ rule: "*", severity: "warn" }],
-			"eslint.useFlatConfig": true,
 			"typescript.tsdk": "node_modules/typescript/lib",
 		}),
 		"tasks.json": await formatJson({

@@ -12,11 +12,11 @@ export interface MultiWorkflowFileOptions {
 	name: string;
 }
 
-export function createMultiWorkflowFile({
+export async function createMultiWorkflowFile({
 	jobs,
 	name,
 }: MultiWorkflowFileOptions) {
-	return formatWorkflowYaml({
+	return await formatWorkflowYaml({
 		jobs: Object.fromEntries(
 			jobs.map((job) => [
 				job.name.toLowerCase().replaceAll(" ", "_"),

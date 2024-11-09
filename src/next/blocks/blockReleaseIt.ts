@@ -5,12 +5,12 @@ export const blockReleaseIt = schema.createBlock({
 	about: {
 		name: "release-it",
 	},
-	produce({ options }) {
+	async produce({ options }) {
 		return {
 			files: {
 				".github": {
 					workflows: {
-						"post-release.yml": createSoloWorkflowFile({
+						"post-release.yml": await createSoloWorkflowFile({
 							name: "Post Release",
 							on: {
 								release: {
@@ -40,7 +40,7 @@ export const blockReleaseIt = schema.createBlock({
 								},
 							],
 						}),
-						"release.yml": createSoloWorkflowFile({
+						"release.yml": await createSoloWorkflowFile({
 							concurrency: {
 								group: "${{ github.workflow }}",
 							},

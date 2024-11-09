@@ -1,6 +1,7 @@
 {
 	"dictionaries": ["typescript"],
 	"ignorePaths": [
+		".all-contributorsrc",
 		"./coverage*",
 		"./script/__snapshots__",
 		".github",
@@ -17,6 +18,8 @@
 		"codecov",
 		"codespace",
 		"contributorsrc",
+		"DavidAnson",
+		"dbaeumer",
 		"execa",
 		"infile",
 		"knip",

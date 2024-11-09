@@ -99,7 +99,7 @@ describe("createDevelopment", () => {
 			pnpm run lint --fix
 			\`\`\`
 
-			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 
@@ -203,7 +203,7 @@ describe("createDevelopment", () => {
 
 			## Linting
 
-			[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+			[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
 			You can run it locally on the command-line:
 
 			\`\`\`shell
@@ -216,7 +216,7 @@ describe("createDevelopment", () => {
 			pnpm run lint --fix
 			\`\`\`
 
-			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 
@@ -335,7 +335,7 @@ Def 456.
 			pnpm run lint --fix
 			\`\`\`
 
-			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 

@@ -1,3 +1,5 @@
+import { MetadataFileType } from "create";
+
 import { AllContributorsData } from "../../shared/types.js";
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { inputJSONFile } from "../inputs/inputJSONFile.js";
@@ -36,7 +38,7 @@ export const blockAllContributors = schema.createBlock({
 				}),
 				".github": {
 					workflows: {
-						"contributors.yml": createSoloWorkflowFile({
+						"contributors.yml": await createSoloWorkflowFile({
 							name: "Contributors",
 							on: {
 								push: {
@@ -55,6 +57,12 @@ export const blockAllContributors = schema.createBlock({
 					},
 				},
 			},
+			metadata: [
+				{
+					glob: ".all-contributorsrc",
+					type: MetadataFileType.Config,
+				},
+			],
 		};
 	},
 });

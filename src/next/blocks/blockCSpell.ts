@@ -9,6 +9,18 @@ export const blockCSpell = schema.createBlock({
 	phase: BlockPhase.Lint,
 	produce({ created }) {
 		return {
+			documentation: {
+				"Linting With CSpell": {
+					level: 3,
+					text: `[cspell](https://cspell.org) is used to spell check across all source files.
+You can run it with \`pnpm lint:spelling\`:
+
+\`\`\`shell
+pnpm lint:spelling
+\`\`\`
+`,
+				},
+			},
 			editor: { extensions: ["streetsidesoftware.code-spell-checker"] },
 			files: {
 				"cspell.json": JSON.stringify({
@@ -19,9 +31,9 @@ export const blockCSpell = schema.createBlock({
 						"lib",
 						"node_modules",
 						"pnpm-lock.yaml",
-						...created.metadata.filter(
-							(value) => value.type === MetadataFileType.Ignored,
-						),
+						...created.metadata
+							.filter((value) => value.type === MetadataFileType.Ignored)
+							.map((value) => value.glob),
 					].sort(),
 				}),
 			},

@@ -24,11 +24,11 @@ import tseslint from "typescript-eslint";
 export default tseslint.config(
 	{
 		ignores: [
+			"**/*.snap",
 			"coverage*",
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",
-			"**/*.snap",
 		],
 	},
 	{
@@ -49,7 +49,7 @@ export default tseslint.config(
 	packageJson,
 	perfectionist.configs["recommended-natural"],
 	regexp.configs["flat/recommended"],
-	...tseslint.config({
+	{
 		extends: [
 			...tseslint.configs.strictTypeChecked,
 			...tseslint.configs.stylisticTypeChecked,
@@ -110,7 +110,7 @@ export default tseslint.config(
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
 		},
-	}),
+	},
 	{
 		files: ["*.jsonc"],
 		rules: {
@@ -122,23 +122,11 @@ export default tseslint.config(
 	{
 		extends: [tseslint.configs.disableTypeChecked],
 		files: ["**/*.md/*.ts"],
-		rules: {
-			"n/no-missing-import": [
-				"error",
-				{ allowModules: ["create-typescript-app"] },
-			],
-		},
 	},
 	{
+		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
-		languageOptions: {
-			globals: vitest.environments.env.globals,
-		},
-		plugins: { vitest },
 		rules: {
-			...vitest.configs.recommended.rules,
-
-			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
 		},

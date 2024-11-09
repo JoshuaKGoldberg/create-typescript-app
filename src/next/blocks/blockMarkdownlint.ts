@@ -9,6 +9,18 @@ export const blockMarkdownlint = schema.createBlock({
 	phase: BlockPhase.Lint,
 	produce({ created }) {
 		return {
+			documentation: {
+				"Linting With Markdownlint": {
+					level: 3,
+					text: `[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.
+You can run it with \`pnpm lint:md\`:
+
+\`\`\`shell
+pnpm lint:md
+\`\`\`
+`,
+				},
+			},
 			editor: { extensions: ["DavidAnson.vscode-markdownlint"] },
 			files: {
 				".markdownlint.json": JSON.stringify({

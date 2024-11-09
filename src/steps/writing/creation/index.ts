@@ -6,6 +6,7 @@ import { presetEverything } from "../../../next/presetEverything.js";
 import { presetMinimal } from "../../../next/presetMinimal.js";
 import { Options } from "../../../shared/types.js";
 import { Structure } from "../types.js";
+import { convertOptionsToSchemaOptions } from "./convertOptionsToSchemaOptions.js";
 import { createDotGitHub } from "./dotGitHub/index.js";
 import { createDotHusky } from "./dotHusky.js";
 import { createDotVSCode } from "./dotVSCode.js";
@@ -29,7 +30,9 @@ export async function createStructure(
 		presets[options.base];
 
 	if (preset) {
-		const creation = await producePreset(preset, { options });
+		const creation = await producePreset(preset, {
+			options: convertOptionsToSchemaOptions(options),
+		});
 		return await recursivelyFormat(creation.files);
 	}
 
@@ -68,8 +71,13 @@ const asYaml = new Set([
 ]);
 
 async function formatCreatedFile(filepath: string, entry: string) {
-	return await prettier.format(
-		entry,
-		asYaml.has(filepath) ? { parser: "yaml" } : { filepath },
-	);
+	// For now, explicit yml files internally already have formatting applied
+	if (filepath.endsWith(".yml")) {
+		return entry;
+	}
+
+	return await prettier.format(entry, {
+		useTabs: true,
+		...(asYaml.has(filepath) ? { parser: "yaml" } : { filepath }),
+	});
 }

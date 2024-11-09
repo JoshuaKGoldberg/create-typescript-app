@@ -10,37 +10,39 @@ export const blockGitHubActions = schema.createBlock({
 		name: "GitHub Actions",
 	},
 	phase: BlockPhase.CI,
-	produce({ created }) {
+	async produce({ created }) {
 		return {
 			files: {
 				".github": {
-					prepare: {
-						"action.yml": jsYaml
-							.dump({
-								description: "Prepares the repo for a typical CI job",
-								name: "Prepare",
-								runs: {
-									steps: [
-										{
-											uses: "pnpm/action-setup@v4",
-											with: { version: 9 },
-										},
-										{
-											uses: "actions/setup-node@v4",
-											with: { cache: "pnpm", "node-version": "20" },
-										},
-										{
-											run: "pnpm install --frozen-lockfile",
-											shell: "bash",
-										},
-									],
-									using: "composite",
-								},
-							})
-							.replaceAll(/\n(\S)/g, "\n\n$1"),
+					actions: {
+						prepare: {
+							"action.yml": jsYaml
+								.dump({
+									description: "Prepares the repo for a typical CI job",
+									name: "Prepare",
+									runs: {
+										steps: [
+											{
+												uses: "pnpm/action-setup@v4",
+												with: { version: 9 },
+											},
+											{
+												uses: "actions/setup-node@v4",
+												with: { cache: "pnpm", "node-version": "20" },
+											},
+											{
+												run: "pnpm install --frozen-lockfile",
+												shell: "bash",
+											},
+										],
+										using: "composite",
+									},
+								})
+								.replaceAll(/\n(\S)/g, "\n\n$1"),
+						},
 					},
 					workflows: {
-						"accessibility-alt-text-bot.yml": createSoloWorkflowFile({
+						"accessibility-alt-text-bot.yml": await createSoloWorkflowFile({
 							if: "${{ !endsWith(github.actor, '[bot]') }}",
 							name: "Accessibility Alt Text Bot",
 							on: {
@@ -64,11 +66,11 @@ export const blockGitHubActions = schema.createBlock({
 								},
 							],
 						}),
-						"ci.yml": createMultiWorkflowFile({
+						"ci.yml": await createMultiWorkflowFile({
 							jobs: created.jobs.sort((a, b) => a.name.localeCompare(b.name)),
 							name: "CI",
 						}),
-						"pr-review-requested.yml": createSoloWorkflowFile({
+						"pr-review-requested.yml": await createSoloWorkflowFile({
 							name: "PR Review Requested",
 							on: {
 								pull_request_target: {

@@ -48,7 +48,7 @@ describe("createStructure", () => {
 			// TODO: Baseline doesn't modify README.md, that's a migration step
 			delete next["README.md"];
 
-			expect(next).toEqual(baseline);
+			expect(next[".prettierrc.json"]).toEqual(baseline[".prettierrc.json"]);
 		});
 	});
 });

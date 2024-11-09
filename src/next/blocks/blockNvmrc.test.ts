@@ -11,7 +11,7 @@ describe("blockNvmrc", () => {
 
 		expect(creation).toEqual({
 			metadata: [
-				{ glob: ".nvmrc", parser: "yaml", type: MetadataFileType.Config },
+				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
 			],
 		});
 	});
@@ -23,7 +23,7 @@ describe("blockNvmrc", () => {
 
 		expect(creation).toEqual({
 			metadata: [
-				{ glob: ".nvmrc", parser: "yaml", type: MetadataFileType.Config },
+				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
 			],
 			package: {
 				engines: {
@@ -46,7 +46,7 @@ describe("blockNvmrc", () => {
 				".nvmrc": `20.12.2\n`,
 			},
 			metadata: [
-				{ glob: ".nvmrc", parser: "yaml", type: MetadataFileType.Config },
+				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
 			],
 			package: {
 				engines: {

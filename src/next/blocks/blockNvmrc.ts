@@ -9,7 +9,7 @@ export const blockNvmrc = schema.createBlock({
 	produce({ options }) {
 		return {
 			metadata: [
-				{ glob: ".nvmrc", parser: "yaml", type: MetadataFileType.Config },
+				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
 			],
 			...(options.node && {
 				...(options.node.pinned && {

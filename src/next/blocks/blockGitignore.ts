@@ -15,7 +15,6 @@ export const blockGitignore = schema.createBlock({
 				".gitignore": formatIgnoreFile(
 					[
 						"/node_modules",
-						"/pnpm-lock.yaml",
 						...created.metadata
 							.filter(
 								(value) =>

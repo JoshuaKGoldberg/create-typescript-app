@@ -1,4 +1,6 @@
 import { BlockPhase, MetadataFileType } from "create";
+// @ts-expect-error -- https://github.com/egoist/parse-package-name/issues/30
+import { parse as parsePackageName } from "parse-package-name";
 import { z } from "zod";
 
 import { schema } from "../schema.js";
@@ -35,6 +37,12 @@ const zExtension = z.object({
 	rules: zExtensionRules.optional(),
 });
 
+const zPackageImport = z.object({
+	source: z.string(),
+	specifier: z.string(),
+	types: z.boolean().optional(),
+});
+
 export const blockESLint = schema.createBlock({
 	about: {
 		name: "ESLint",
@@ -42,14 +50,18 @@ export const blockESLint = schema.createBlock({
 	args: {
 		configs: z.array(z.string()).default([]),
 		extensions: z.array(z.union([z.string(), zExtension])).default([]),
-		imports: z.array(z.string()).default([]),
+		imports: z.array(zPackageImport).default([]),
+		rules: zExtensionRules.optional(),
 	},
 	phase: BlockPhase.Lint,
 	produce({ args, created, options }) {
 		const imports = [
 			`import eslint from "@eslint/js";`,
 			`import tseslint from "typescript-eslint";`,
-			...args.imports,
+			...args.imports.map(
+				(packageImport) =>
+					`import ${packageImport.specifier} from "${packageImport.source}"`,
+			),
 		].sort((a, b) =>
 			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
 		);
@@ -68,9 +80,30 @@ export const blockESLint = schema.createBlock({
 				.map((value) => value.glob),
 		].sort();
 
-		const extensions = args.extensions.map((extension) =>
-			typeof extension === "string" ? extension : printExtension(extension),
-		);
+		const extensions = [
+			"eslint.configs.recommended",
+			printExtension({
+				extends: [
+					"...tseslint.configs.strictTypeChecked",
+					"...tseslint.configs.stylisticTypeChecked",
+				],
+				files: ["**/*.js", "**/*.ts"],
+				languageOptions: {
+					parserOptions: {
+						projectService: {
+							allowDefaultProject: ["*.config.*s"],
+						},
+						tsconfigRootDir: "import.meta.dirname",
+					},
+				},
+				...(args.rules && {
+					rules: args.rules,
+				}),
+			}),
+			...args.extensions.map((extension) =>
+				typeof extension === "string" ? extension : printExtension(extension),
+			),
+		];
 
 		return {
 			documentation: {
@@ -135,6 +168,24 @@ export default tseslint.config(
 				},
 			],
 			package: {
+				devDependencies: {
+					"@eslint/js": "latest",
+					"@types/node": "latest",
+					eslint: "latest",
+					"typescript-eslint": "latest",
+					...Object.fromEntries(
+						args.imports.flatMap(({ source, types }): [string, string][] => {
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
+							const { name } = parsePackageName(source) as { name: string };
+							return types
+								? [
+										[name, "latest"],
+										[`@types/${name}`, "latest"],
+									]
+								: [[name, "latest"]];
+						}),
+					),
+				},
 				scripts: {
 					lint: "eslint . --max-warnings 0",
 				},
@@ -150,7 +201,7 @@ function printExtension(extension: z.infer<typeof zExtension>) {
 		extension.files &&
 			`\t\tfiles: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
 		extension.languageOptions &&
-			`\t\tlanguageOptions: ${JSON.stringify(extension.languageOptions)},`,
+			`\t\tlanguageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
 		extension.rules && `\t\trules: ${printExtensionRules(extension.rules)},`,
 		"\t\t}",
 	]

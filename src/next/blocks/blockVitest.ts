@@ -106,6 +106,17 @@ export default defineConfig({
 					type: MetadataFileType.Test,
 				},
 			],
+			package: {
+				devDependencies: {
+					"@vitest/coverage-v8": "latest",
+					"@vitest/eslint-plugin": "latest",
+					"console-fail-test": "latest",
+					vitest: "latest",
+				},
+				scripts: {
+					test: "vitest",
+				},
+			},
 		};
 	},
 });

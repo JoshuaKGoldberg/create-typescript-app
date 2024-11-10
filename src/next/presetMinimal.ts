@@ -4,6 +4,7 @@ import { blockESLint } from "./blocks/blockESLint.js";
 import { blockFunding } from "./blocks/blockFunding.js";
 import { blockGitHubActions } from "./blocks/blockGitHubActions.js";
 import { blockGitignore } from "./blocks/blockGitignore.js";
+import { blockPackageJson } from "./blocks/blockPackageJson.js";
 import { blockPrettier } from "./blocks/blockPrettier.js";
 import { blockTSup } from "./blocks/blockTSup.js";
 import { blockTypeScript } from "./blocks/blockTypeScript.js";
@@ -24,6 +25,7 @@ export const presetMinimal = schema.createPreset({
 		blockFunding(),
 		blockGitHubActions(),
 		blockGitignore(),
+		blockPackageJson(),
 		blockPrettier(),
 		blockTSup(),
 		blockTypeScript(),

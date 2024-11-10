@@ -71,6 +71,8 @@ pnpm format --write
 						Object.fromEntries(
 							args.plugins.map((plugin) => [plugin, "latest"]),
 						)),
+					husky: "latest",
+					"lint-staged": "latest",
 					prettier: "latest",
 				},
 				"lint-staged": {

@@ -44,8 +44,11 @@ pnpm lint:spelling
 				},
 			],
 			package: {
+				devDependencies: {
+					cspell: "latest",
+				},
 				scripts: {
-					test: "vitest",
+					"lint:spelling": 'cspell "**" ".github/**/*"',
 				},
 			},
 		};

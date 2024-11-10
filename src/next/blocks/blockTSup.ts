@@ -50,6 +50,9 @@ export default defineConfig({
 				},
 			],
 			package: {
+				devDependencies: {
+					tsup: "latest",
+				},
 				scripts: {
 					build: "tsup",
 				},

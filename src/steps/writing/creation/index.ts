@@ -4,6 +4,7 @@ import prettier from "prettier";
 import { presetCommon } from "../../../next/presetCommon.js";
 import { presetEverything } from "../../../next/presetEverything.js";
 import { presetMinimal } from "../../../next/presetMinimal.js";
+import { isUsingNextCreateEngine } from "../../../shared/isUsingNextCreateEngine.js";
 import { Options } from "../../../shared/types.js";
 import { Structure } from "../types.js";
 import { convertOptionsToSchemaOptions } from "./convertOptionsToSchemaOptions.js";
@@ -19,12 +20,9 @@ const presets = {
 	minimal: presetMinimal,
 };
 
-export async function createStructure(
-	options: Options,
-	useNext?: boolean,
-): Promise<Structure> {
+export async function createStructure(options: Options): Promise<Structure> {
 	const preset =
-		useNext &&
+		isUsingNextCreateEngine() &&
 		options.base &&
 		options.base !== "prompt" &&
 		presets[options.base];
@@ -33,7 +31,12 @@ export async function createStructure(
 		const creation = await producePreset(preset, {
 			options: convertOptionsToSchemaOptions(options),
 		});
-		return await recursivelyFormat(creation.files);
+
+		return await recursivelyFormat({
+			...creation.files,
+			// TODO: Add a "starting files" option in create Presets/Templates?
+			src: await createSrc(options),
+		});
 	}
 
 	return {

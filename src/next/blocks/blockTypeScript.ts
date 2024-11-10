@@ -80,6 +80,7 @@ pnpm tsc --watch
 				},
 			],
 			package: {
+				devDependencies: { typescript: "latest" },
 				main: "./lib/index.js",
 				scripts: {
 					tsc: "tsc",

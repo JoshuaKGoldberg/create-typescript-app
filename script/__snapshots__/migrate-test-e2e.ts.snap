@@ -117,9 +117,9 @@ exports[`expected file changes > eslint.config.js 1`] = `
  				projectService: {
 -					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
 +					allowDefaultProject: ["*.*s", "eslint.config.js"],
- 					defaultProject: "./tsconfig.json",
  				},
  				tsconfigRootDir: import.meta.dirname,
+			},
 @@ ... @@ export default tseslint.config(
  			"no-constant-condition": "off",
  

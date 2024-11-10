@@ -33,7 +33,7 @@ export const presetEverything = schema.createPreset({
 			"The most comprehensive tooling imaginable: sorting, spellchecking, and more!",
 		name: "Everything",
 	},
-	blocks: [
+	blocks: (options) => [
 		blockAllContributors(),
 		blockContributingDocs(),
 		blockContributorCovenant(),
@@ -41,7 +41,6 @@ export const presetEverything = schema.createPreset({
 		blockDevelopmentDocs(),
 		blockESLint({
 			extensions: [
-				`eslint.configs.recommended`,
 				`...jsonc.configs["flat/recommended-with-json"]`,
 				`...markdown.configs.recommended`,
 				`...yml.configs["flat/recommended"]`,
@@ -55,63 +54,6 @@ export const presetEverything = schema.createPreset({
 				`perfectionist.configs["recommended-natural"]`,
 				`regexp.configs["flat/recommended"]`,
 				{
-					extends: [
-						"...tseslint.configs.strictTypeChecked",
-						"...tseslint.configs.stylisticTypeChecked",
-					],
-					files: ["**/*.js", "**/*.ts"],
-					languageOptions: {
-						parserOptions: {
-							projectService: {
-								allowDefaultProject: ["*.*s", "eslint.config.js"],
-							},
-						},
-					},
-					rules: [
-						{
-							comment:
-								"These off-by-default rules work well for this repo and we like them on.",
-							entries: {
-								"logical-assignment-operators": [
-									"error",
-									"always",
-									{ enforceForIfStatements: true },
-								],
-								"operator-assignment": "error",
-							},
-						},
-						{
-							comment:
-								"These on-by-default rules don't work well for this repo and we like them off.",
-							entries: {
-								"jsdoc/lines-before-block": "off",
-								"no-constant-condition": "off",
-							},
-						},
-						{
-							comment:
-								"These on-by-default rules work well for this repo if configured.",
-							entries: {
-								"perfectionist/sort-objects": [
-									"error",
-									{
-										order: "asc",
-										partitionByComment: true,
-										type: "natural",
-									},
-								],
-							},
-						},
-						{
-							comment: "Stylistic concerns that don't interfere with Prettier",
-							entries: {
-								"no-useless-rename": "error",
-								"object-shorthand": "error",
-							},
-						},
-					],
-				},
-				{
 					files: ["*.jsonc"],
 					rules: {
 						"jsonc/comma-dangle": "off",
@@ -122,6 +64,12 @@ export const presetEverything = schema.createPreset({
 				{
 					extends: ["tseslint.configs.disableTypeChecked"],
 					files: ["**/*.md/*.ts"],
+					rules: {
+						"n/no-missing-import": [
+							"error",
+							{ allowModules: [options.repository] },
+						],
+					},
 				},
 				{
 					extends: ["vitest.configs.recommended"],
@@ -153,16 +101,69 @@ export const presetEverything = schema.createPreset({
 				},
 			],
 			imports: [
-				'import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";',
-				'import vitest from "@vitest/eslint-plugin";',
-				'import jsdoc from "eslint-plugin-jsdoc";',
-				'import jsonc from "eslint-plugin-jsonc";',
-				'import markdown from "eslint-plugin-markdown";',
-				'import n from "eslint-plugin-n";',
-				'import packageJson from "eslint-plugin-package-json/configs/recommended";',
-				'import perfectionist from "eslint-plugin-perfectionist";',
-				'import * as regexp from "eslint-plugin-regexp";',
-				'import yml from "eslint-plugin-yml";',
+				{
+					source: "@eslint-community/eslint-plugin-eslint-comments/configs",
+					specifier: "comments",
+				},
+				{ source: "@vitest/eslint-plugin", specifier: "vitest" },
+				{ source: "eslint-plugin-jsdoc", specifier: "jsdoc" },
+				{ source: "eslint-plugin-jsonc", specifier: "jsonc" },
+				{
+					source: "eslint-plugin-markdown",
+					specifier: "markdown",
+					types: true,
+				},
+				{ source: "eslint-plugin-n", specifier: "n" },
+				{
+					source: "eslint-plugin-package-json/configs/recommended",
+					specifier: "packageJson",
+				},
+				{ source: "eslint-plugin-perfectionist", specifier: "perfectionist" },
+				{ source: "eslint-plugin-regexp", specifier: "* as regexp" },
+				{ source: "eslint-plugin-yml", specifier: "yml" },
+			],
+			rules: [
+				{
+					comment:
+						"These off-by-default rules work well for this repo and we like them on.",
+					entries: {
+						"logical-assignment-operators": [
+							"error",
+							"always",
+							{ enforceForIfStatements: true },
+						],
+						"operator-assignment": "error",
+					},
+				},
+				{
+					comment:
+						"These on-by-default rules don't work well for this repo and we like them off.",
+					entries: {
+						"jsdoc/lines-before-block": "off",
+						"no-constant-condition": "off",
+					},
+				},
+				{
+					comment:
+						"These on-by-default rules work well for this repo if configured.",
+					entries: {
+						"perfectionist/sort-objects": [
+							"error",
+							{
+								order: "asc",
+								partitionByComment: true,
+								type: "natural",
+							},
+						],
+					},
+				},
+				{
+					comment: "Stylistic concerns that don't interfere with Prettier",
+					entries: {
+						"no-useless-rename": "error",
+						"object-shorthand": "error",
+					},
+				},
 			],
 		}),
 		blockFunding(),

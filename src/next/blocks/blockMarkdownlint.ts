@@ -44,6 +44,11 @@ pnpm lint:md
 				},
 			],
 			package: {
+				devDependencies: {
+					markdownlint: "latest",
+					"markdownlint-cli": "latest",
+					"sentences-per-line": "latest",
+				},
 				scripts: {
 					"lint:md":
 						'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',

@@ -7,7 +7,6 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { MetadataFileType } from "./metadata.js";
 
 const zRuleOptions = z.union([
 	z.literal("error"),
@@ -53,11 +52,12 @@ export const blockESLint = schema.createBlock({
 	},
 	args: {
 		extensions: z.array(z.union([z.string(), zExtension])).optional(),
+		ignores: z.array(z.string()).optional(),
 		imports: z.array(zPackageImport).optional(),
 		rules: zExtensionRules.optional(),
 	},
-	produce({ args, created, options }) {
-		const { extensions = [], imports = [], rules } = args;
+	produce({ args, options }) {
+		const { extensions = [], ignores = [], imports = [], rules } = args;
 
 		const importLines = [
 			'import eslint from "@eslint/js";',
@@ -74,14 +74,7 @@ export const blockESLint = schema.createBlock({
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",
-			...created.metadata.files
-				.filter(
-					(value) =>
-						!value.glob.endsWith("rc") &&
-						(value.type === MetadataFileType.Ignored ||
-							value.type === MetadataFileType.Snapshot),
-				)
-				.map((value) => value.glob),
+			...ignores,
 		].sort();
 
 		const extensionLines = [

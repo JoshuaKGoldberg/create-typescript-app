@@ -1,13 +1,18 @@
+import { z } from "zod";
+
 import { schema } from "../schema.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { MetadataFileType } from "./metadata.js";
 
 export const blockCSpell = schema.createBlock({
 	about: {
 		name: "CSpell",
 	},
-	produce({ created }) {
+	args: {
+		ignores: z.array(z.string()).optional(),
+	},
+	produce({ args }) {
+		const { ignores = [] } = args;
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -37,9 +42,7 @@ pnpm lint:spelling
 						"lib",
 						"node_modules",
 						"pnpm-lock.yaml",
-						...created.metadata.files
-							.filter((value) => value.type === MetadataFileType.Ignored)
-							.map((value) => value.glob),
+						...ignores,
 					].sort(),
 				}),
 			},

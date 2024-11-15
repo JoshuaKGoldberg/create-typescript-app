@@ -1,34 +1,33 @@
+import { z } from "zod";
+
 import { schema } from "../schema.js";
-import { removeTrailingSlash } from "../utils/removeTrailingSlash.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { MetadataFileType } from "./metadata.js";
-
-function removeTrailingSlashFromGlob(value: { glob: string }) {
-	return removeTrailingSlash(value.glob);
-}
 
 export const blockVitest = schema.createBlock({
 	about: {
 		name: "Vitest",
 	},
-	produce({ created }) {
-		const exclude = JSON.stringify(
-			created.metadata.files
-				.filter((value) => value.type === MetadataFileType.Built)
-				.map(removeTrailingSlashFromGlob),
-		);
-		const include = JSON.stringify(
-			created.metadata.files
-				.filter((value) => value.type === MetadataFileType.Source)
-				.map(removeTrailingSlashFromGlob),
-		);
+	args: {
+		exclude: z.array(z.string()).optional(),
+		include: z.array(z.string()).optional(),
+	},
+	produce({ args }) {
+		const { exclude = [], include = [] } = args;
+		const excludeText = JSON.stringify(exclude);
+		const includeText = JSON.stringify(include);
 
 		return {
 			addons: [
+				blockCSpell({
+					ignores: ["coverage"],
+				}),
 				blockESLint({
 					extensions: [
 						{
@@ -40,6 +39,7 @@ export const blockVitest = schema.createBlock({
 							},
 						},
 					],
+					ignores: ["coverage", "**/*.snap"],
 					imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
 				}),
 				blockDevelopmentDocs({
@@ -68,6 +68,9 @@ export const blockVitest = schema.createBlock({
 		`,
 					},
 				}),
+				blockGitignore({
+					ignores: ["coverage"],
+				}),
 				blockGitHubActionsCI({
 					jobs: [
 						{
@@ -91,6 +94,9 @@ export const blockVitest = schema.createBlock({
 							test: "vitest",
 						},
 					},
+				}),
+				blockTSup({
+					entry: ["!src/**/*.test.*"],
 				}),
 				blockVSCode({
 					debuggers: [
@@ -117,31 +123,15 @@ export default defineConfig({
 		clearMocks: true,
 		coverage: {
 			all: true,
-			exclude: ${exclude},
-			include: ${include},
+			exclude: ${excludeText},
+			include: ${includeText},
 			reporter: ["html", "lcov"],
 		},
-		exclude: [${exclude.slice(1, exclude.length - 1)}, "node_modules"],
+		exclude: [${excludeText.slice(1, excludeText.length - 1)}, "node_modules"],
 		setupFiles: ["console-fail-test/setup"],
 	},
 });
 	`,
-			},
-			metadata: {
-				files: [
-					{
-						glob: "coverage",
-						type: MetadataFileType.Ignored,
-					},
-					{
-						glob: "**/*.snap",
-						type: MetadataFileType.Snapshot,
-					},
-					{
-						glob: "src/**/*.test.*",
-						type: MetadataFileType.Test,
-					},
-				],
 			},
 		};
 	},

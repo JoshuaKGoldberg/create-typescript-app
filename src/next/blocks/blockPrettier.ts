@@ -4,16 +4,28 @@ import { schema } from "../schema.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { MetadataFileType } from "./metadata.js";
 
 export const blockPrettier = schema.createBlock({
 	about: {
 		name: "Prettier",
 	},
 	args: {
+		ignores: z.array(z.string()).optional(),
+		overrides: z
+			.array(
+				z.object({
+					files: z.string(),
+					options: z.object({
+						parser: z.string(),
+					}),
+				}),
+			)
+			.optional(),
 		plugins: z.array(z.string()).optional(),
 	},
-	produce({ args, created }) {
+	produce({ args }) {
+		const { ignores = [], overrides = [], plugins = [] } = args;
+
 		return {
 			addons: [
 				blockGitHubActionsCI({
@@ -27,10 +39,9 @@ export const blockPrettier = schema.createBlock({
 				blockPackageJson({
 					properties: {
 						devDependencies: {
-							...(args.plugins &&
-								Object.fromEntries(
-									args.plugins.map((plugin) => [plugin, "latest"]),
-								)),
+							...Object.fromEntries(
+								plugins.map((plugin) => [plugin, "latest"]),
+							),
 							husky: "latest",
 							"lint-staged": "latest",
 							prettier: "latest",
@@ -66,28 +77,13 @@ pnpm format --write
 					".gitignore": "_",
 					"pre-commit": "npx lint-staged",
 				},
-				".prettierignore": [
-					".husky",
-					"lib",
-					"pnpm-lock.yaml",
-					...created.metadata.files
-						.filter((value) => value.type === MetadataFileType.Ignored)
-						.map((value) => value.glob),
-				]
+				".prettierignore": [".husky", "lib", "pnpm-lock.yaml", ...ignores]
 					.sort()
 					.join("\n"),
 				".prettierrc.json": JSON.stringify({
 					$schema: "http://json.schemastore.org/prettierrc",
-					overrides: created.metadata.files
-						.filter(
-							(value) =>
-								value.type === MetadataFileType.Config && value.language,
-						)
-						.map((value) => ({
-							files: value.glob,
-							options: { parser: value.language },
-						})),
-					...(args.plugins && { plugins: args.plugins }),
+					...(overrides.length && { overrides }),
+					...(plugins.length && { plugins }),
 					useTabs: true,
 				}),
 			},

@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import { schema } from "../schema.js";
 import { sortObject } from "../utils/sortObject.js";
-import { MetadataFileType } from "./metadata.js";
 
 export const blockPackageJson = schema.createBlock({
 	about: {
@@ -15,6 +14,7 @@ export const blockPackageJson = schema.createBlock({
 				z.object({
 					dependencies: z.record(z.string(), z.string()).optional(),
 					devDependencies: z.record(z.string(), z.string()).optional(),
+					files: z.array(z.string()).optional(),
 					peerDependencies: z.record(z.string(), z.string()).optional(),
 					scripts: z.record(z.string(), z.string()).optional(),
 				}),
@@ -22,7 +22,7 @@ export const blockPackageJson = schema.createBlock({
 			)
 			.optional(),
 	},
-	produce({ args, created, options }) {
+	produce({ args, options }) {
 		return {
 			commands: [
 				{
@@ -47,13 +47,7 @@ export const blockPackageJson = schema.createBlock({
 							"package.json",
 							"README.md",
 							options.bin?.replace(/^\.\//, ""),
-							...created.metadata.files
-								.filter(
-									(value) =>
-										value.type === MetadataFileType.Built ||
-										value.type === MetadataFileType.License,
-								)
-								.map((value) => value.glob),
+							...(args.properties?.files ?? []),
 						]
 							.filter(Boolean)
 							.sort(),

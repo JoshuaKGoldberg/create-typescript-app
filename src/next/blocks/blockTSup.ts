@@ -1,14 +1,20 @@
+import { z } from "zod";
+
 import { schema } from "../schema.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
-import { MetadataFileType } from "./metadata.js";
 
 export const blockTSup = schema.createBlock({
 	about: {
 		name: "tsup",
 	},
-	produce({ created }) {
+	args: {
+		entry: z.array(z.string()).optional(),
+	},
+	produce({ args }) {
+		const { entry = [] } = args;
+
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -54,12 +60,7 @@ export default defineConfig({
 	bundle: false,
 	clean: true,
 	dts: true,
-	entry: ${JSON.stringify([
-		"src/**/*.ts",
-		...created.metadata.files
-			.filter(({ type }) => type === MetadataFileType.Test)
-			.map((file) => `!${file.glob}`),
-	])},
+	entry: ${JSON.stringify(["src/**/*.ts", ...entry])},
 	format: "esm",
 	outDir: "lib",
 	sourcemap: true,

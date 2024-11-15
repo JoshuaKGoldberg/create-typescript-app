@@ -1,15 +1,21 @@
+import { z } from "zod";
+
 import { schema } from "../schema.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { MetadataFileType } from "./metadata.js";
 
 export const blockMarkdownlint = schema.createBlock({
 	about: {
 		name: "Markdownlint",
 	},
-	produce({ created }) {
+	args: {
+		ignores: z.array(z.string()).optional(),
+	},
+	produce({ args }) {
+		const { ignores = [] } = args;
+
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -60,11 +66,11 @@ export const blockMarkdownlint = schema.createBlock({
 				".markdownlintignore": [
 					".github/CODE_OF_CONDUCT.md",
 					"CHANGELOG.md",
-					...created.metadata.files
-						.filter((value) => value.type === MetadataFileType.Built)
-						.map((value) => value.glob),
 					"node_modules/",
-				].join("\n"),
+					...ignores,
+				]
+					.sort()
+					.join("\n"),
 			},
 		};
 	},

@@ -14,20 +14,10 @@ import { readGuide } from "../shared/options/createOptionDefaults/readGuide.js";
 import { readPackageData } from "../shared/packages.js";
 import { tryCatchLazyValueAsync } from "../shared/tryCatchLazyValueAsync.js";
 import { AllContributorsData } from "../shared/types.js";
-import { MetadataFileType } from "./blocks/metadata.js";
 import { inputJSONFile } from "./inputs/inputJSONFile.js";
 import { inputTextFile } from "./inputs/inputTextFile.js";
 
 export const schema = createSchema({
-	metadata: {
-		files: z.array(
-			z.object({
-				glob: z.string(),
-				language: z.string().optional(),
-				type: z.nativeEnum(MetadataFileType),
-			}),
-		),
-	},
 	options: {
 		access: z.union([z.literal("public"), z.literal("restricted")]).optional(),
 		author: z.string().optional(),

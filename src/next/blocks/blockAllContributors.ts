@@ -1,19 +1,11 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { schema } from "../schema.js";
-import { MetadataFileType } from "./metadata.js";
 
 export const blockAllContributors = schema.createBlock({
 	about: {
 		name: "AllContributors",
 	},
 	produce({ options }) {
-		// import { AllContributorsData } from "../../shared/types.js";
-		// import { inputJSONFile } from "../inputs/inputJSONFile.js";
-		const { contributors = [] } = options;
-		// const contributions = (await take(inputJSONFile, {
-		// 	filePath: ".all-contributorsrc",
-		// })) as AllContributorsData | undefined;
-
 		return {
 			commands:
 				options.login === "JoshuaKGoldberg"
@@ -26,7 +18,7 @@ export const blockAllContributors = schema.createBlock({
 					commit: false,
 					commitConvention: "angular",
 					commitType: "docs",
-					contributors,
+					contributors: options.contributors ?? [],
 					contributorsPerLine: 7,
 					contributorsSortAlphabetically: true,
 					files: ["README.md"],
@@ -56,14 +48,6 @@ export const blockAllContributors = schema.createBlock({
 						}),
 					},
 				},
-			},
-			metadata: {
-				files: [
-					{
-						glob: ".all-contributorsrc",
-						type: MetadataFileType.Config,
-					},
-				],
 			},
 		};
 	},

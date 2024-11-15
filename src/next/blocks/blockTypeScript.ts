@@ -1,9 +1,11 @@
 import { schema } from "../schema.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockGitignore } from "./blockGitignore.js";
+import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { MetadataFileType } from "./metadata.js";
 
 export const blockTypeScript = schema.createBlock({
 	about: {
@@ -31,17 +33,28 @@ export const blockTypeScript = schema.createBlock({
 		`,
 					},
 				}),
+				blockGitignore({
+					ignores: ["lib/"],
+				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+				}),
+				blockMarkdownlint({
+					ignores: ["lib/"],
 				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: { typescript: "latest" },
+						files: ["lib/"],
 						main: "./lib/index.js",
 						scripts: {
 							tsc: "tsc",
 						},
 					},
+				}),
+				blockVitest({
+					exclude: ["lib"],
+					include: ["src"],
 				}),
 				blockVSCode({
 					debuggers: options.bin
@@ -86,18 +99,6 @@ export const blockTypeScript = schema.createBlock({
 					},
 					include: ["src"],
 				}),
-			},
-			metadata: {
-				files: [
-					{
-						glob: "lib/",
-						type: MetadataFileType.Built,
-					},
-					{
-						glob: "src/",
-						type: MetadataFileType.Source,
-					},
-				],
 			},
 		};
 	},

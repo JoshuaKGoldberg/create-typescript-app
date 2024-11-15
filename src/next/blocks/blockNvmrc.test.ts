@@ -1,4 +1,3 @@
-import { MetadataFileType } from "./metadata.js";
 import { testBlock } from "create-testers";
 import { describe, expect, it } from "vitest";
 
@@ -7,18 +6,16 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockNvmrc", () => {
-	it("only includes metadata when options.node does not exist", async () => {
-		const creation = await testBlock(blockNvmrc, { options: optionsBase });
+	it("only includes metadata when options.node does not exist", () => {
+		const creation = testBlock(blockNvmrc, { options: optionsBase });
 
 		expect(creation).toEqual({
-			metadata: [
-				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
-			],
+			metadata: [{ glob: ".nvmrc", language: "yaml" }],
 		});
 	});
 
-	it("also includes package when options.node exists without pinned", async () => {
-		const creation = await testBlock(blockNvmrc, {
+	it("also includes package when options.node exists without pinned", () => {
+		const creation = testBlock(blockNvmrc, {
 			options: { ...optionsBase, node: { minimum: "18.3.0" } },
 		});
 
@@ -32,14 +29,12 @@ describe("blockNvmrc", () => {
 					},
 				}),
 			],
-			metadata: [
-				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
-			],
+			metadata: [{ glob: ".nvmrc", language: "yaml" }],
 		});
 	});
 
-	it("also includes files when options.node exists with pinned", async () => {
-		const creation = await testBlock(blockNvmrc, {
+	it("also includes files when options.node exists with pinned", () => {
+		const creation = testBlock(blockNvmrc, {
 			options: {
 				...optionsBase,
 				node: { minimum: "18.3.0", pinned: "20.12.2" },
@@ -59,9 +54,7 @@ describe("blockNvmrc", () => {
 			files: {
 				".nvmrc": `20.12.2\n`,
 			},
-			metadata: [
-				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
-			],
+			metadata: [{ glob: ".nvmrc", language: "yaml" }],
 		});
 	});
 });

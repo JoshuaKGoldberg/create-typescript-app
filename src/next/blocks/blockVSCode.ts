@@ -1,4 +1,4 @@
-import { BlockPhase } from "create";
+import { z } from "zod";
 
 import { schema } from "../schema.js";
 import { sortObject } from "../utils/sortObject.js";
@@ -7,20 +7,39 @@ export const blockVSCode = schema.createBlock({
 	about: {
 		name: "VS Code",
 	},
-	phase: BlockPhase.Editor,
-	produce({ created }) {
+	args: {
+		debuggers: z
+			.array(
+				z.intersection(
+					z.object({ name: z.string() }),
+					z.record(z.string(), z.unknown()),
+				),
+			)
+			.optional(),
+		extensions: z.array(z.string()).optional(),
+		settings: z.record(z.string(), z.unknown()).optional(),
+		tasks: z
+			.array(
+				z.intersection(
+					z.object({ detail: z.string() }),
+					z.record(z.string(), z.unknown()),
+				),
+			)
+			.optional(),
+	},
+	produce({ args }) {
 		return {
 			files: {
 				".vscode": {
 					"extensions.json":
-						created.editor.extensions &&
+						args.extensions &&
 						JSON.stringify({
-							recommendations: [...created.editor.extensions].sort(),
+							recommendations: [...args.extensions].sort(),
 						}),
 					"launch.json":
-						created.editor.debuggers &&
+						args.debuggers &&
 						JSON.stringify({
-							configurations: [...created.editor.debuggers].sort((a, b) =>
+							configurations: [...args.debuggers].sort((a, b) =>
 								a.name.localeCompare(b.name),
 							),
 							version: "0.2.0",
@@ -29,13 +48,13 @@ export const blockVSCode = schema.createBlock({
 						sortObject({
 							"editor.formatOnSave": true,
 							"editor.rulers": [80],
-							...created.editor.settings,
+							...args.settings,
 						}),
 					),
 					"tasks.json":
-						created.editor.tasks &&
+						args.tasks &&
 						JSON.stringify({
-							tasks: created.editor.tasks.sort((a, b) =>
+							tasks: args.tasks.sort((a, b) =>
 								a.detail.localeCompare(b.detail),
 							),
 							version: "2.0.0",

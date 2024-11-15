@@ -1,6 +1,6 @@
-import { MetadataFileType } from "create";
-
 import { schema } from "../schema.js";
+import { blockPackageJson } from "./blockPackageJson.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockMITLicense = schema.createBlock({
 	about: {
@@ -8,6 +8,13 @@ export const blockMITLicense = schema.createBlock({
 	},
 	produce() {
 		return {
+			addons: [
+				blockPackageJson({
+					properties: {
+						license: "MIT",
+					},
+				}),
+			],
 			files: {
 				"LICENSE.md": `# MIT License
 
@@ -31,9 +38,8 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 `,
 			},
-			metadata: [{ glob: "LICENSE.md", type: MetadataFileType.License }],
-			package: {
-				license: "MIT",
+			metadata: {
+				files: [{ glob: "LICENSE.md", type: MetadataFileType.License }],
 			},
 		};
 	},

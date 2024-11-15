@@ -2,9 +2,9 @@ import { Options } from "../../../../shared/types.js";
 import { createMultiWorkflowFile } from "./createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./createSoloWorkflowFile.js";
 
-export async function createWorkflows(options: Options) {
+export function createWorkflows(options: Options) {
 	return {
-		"accessibility-alt-text-bot.yml": await createSoloWorkflowFile({
+		"accessibility-alt-text-bot.yml": createSoloWorkflowFile({
 			if: "${{ !endsWith(github.actor, '[bot]') }}",
 			name: "Accessibility Alt Text Bot",
 			on: {
@@ -28,7 +28,7 @@ export async function createWorkflows(options: Options) {
 				},
 			],
 		}),
-		"ci.yml": await createMultiWorkflowFile({
+		"ci.yml": createMultiWorkflowFile({
 			jobs: [
 				{
 					name: "Build",
@@ -96,7 +96,7 @@ export async function createWorkflows(options: Options) {
 			name: "CI",
 		}),
 		...(!options.excludeCompliance && {
-			"compliance.yml": await createSoloWorkflowFile({
+			"compliance.yml": createSoloWorkflowFile({
 				name: "Compliance",
 				on: {
 					pull_request: {
@@ -128,7 +128,7 @@ export async function createWorkflows(options: Options) {
 			}),
 		}),
 		...(!options.excludeAllContributors && {
-			"contributors.yml": await createSoloWorkflowFile({
+			"contributors.yml": createSoloWorkflowFile({
 				name: "Contributors",
 				on: {
 					push: {
@@ -146,7 +146,7 @@ export async function createWorkflows(options: Options) {
 			}),
 		}),
 		...(!options.excludeReleases && {
-			"post-release.yml": await createSoloWorkflowFile({
+			"post-release.yml": createSoloWorkflowFile({
 				name: "Post Release",
 				on: {
 					release: {
@@ -177,7 +177,7 @@ export async function createWorkflows(options: Options) {
 				],
 			}),
 		}),
-		"pr-review-requested.yml": await createSoloWorkflowFile({
+		"pr-review-requested.yml": createSoloWorkflowFile({
 			name: "PR Review Requested",
 			on: {
 				pull_request_target: {
@@ -201,7 +201,7 @@ export async function createWorkflows(options: Options) {
 			],
 		}),
 		...(!options.excludeReleases && {
-			"release.yml": await createSoloWorkflowFile({
+			"release.yml": createSoloWorkflowFile({
 				concurrency: {
 					group: "${{ github.workflow }}",
 				},

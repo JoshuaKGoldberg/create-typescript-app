@@ -4,7 +4,6 @@ import prettier from "prettier";
 import { presetCommon } from "../../../next/presetCommon.js";
 import { presetEverything } from "../../../next/presetEverything.js";
 import { presetMinimal } from "../../../next/presetMinimal.js";
-import { isUsingNextCreateEngine } from "../../../shared/isUsingNextCreateEngine.js";
 import { Options } from "../../../shared/types.js";
 import { Structure } from "../types.js";
 import { convertOptionsToSchemaOptions } from "./convertOptionsToSchemaOptions.js";
@@ -20,9 +19,12 @@ const presets = {
 	minimal: presetMinimal,
 };
 
-export async function createStructure(options: Options): Promise<Structure> {
+export async function createStructure(
+	options: Options,
+	useNextEngine: boolean,
+): Promise<Structure> {
 	const preset =
-		isUsingNextCreateEngine() &&
+		useNextEngine &&
 		options.base &&
 		options.base !== "prompt" &&
 		presets[options.base];

@@ -1,16 +1,26 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { schema } from "../schema.js";
+import { blockPackageJson } from "./blockPackageJson.js";
 
 export const blockReleaseIt = schema.createBlock({
 	about: {
 		name: "release-it",
 	},
-	async produce({ options }) {
+	produce({ options }) {
 		return {
+			addons: [
+				blockPackageJson({
+					properties: {
+						publishConfig: {
+							provenance: true,
+						},
+					},
+				}),
+			],
 			files: {
 				".github": {
 					workflows: {
-						"post-release.yml": await createSoloWorkflowFile({
+						"post-release.yml": createSoloWorkflowFile({
 							name: "Post Release",
 							on: {
 								release: {
@@ -40,7 +50,7 @@ export const blockReleaseIt = schema.createBlock({
 								},
 							],
 						}),
-						"release.yml": await createSoloWorkflowFile({
+						"release.yml": createSoloWorkflowFile({
 							concurrency: {
 								group: "${{ github.workflow }}",
 							},
@@ -99,11 +109,6 @@ export const blockReleaseIt = schema.createBlock({
 						},
 					},
 				}),
-			},
-			package: {
-				publishConfig: {
-					provenance: true,
-				},
 			},
 		};
 	},

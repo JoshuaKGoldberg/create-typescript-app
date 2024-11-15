@@ -121,7 +121,7 @@ exports[`expected file changes > eslint.config.js 1`] = `
  				tsconfigRootDir: import.meta.dirname,
 			},
 @@ ... @@ export default tseslint.config(
- 			"no-constant-condition": "off",
+ 			"jsdoc/lines-before-block": "off",
  
  			// These on-by-default rules work well for this repo if configured
 -			"@typescript-eslint/no-unnecessary-condition": [

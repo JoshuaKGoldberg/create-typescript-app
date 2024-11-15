@@ -5,12 +5,12 @@ export const blockFunding = schema.createBlock({
 	about: {
 		name: "Funding",
 	},
-	async produce({ options }) {
+	produce({ options }) {
 		return {
 			files: {
 				".github": {
 					"FUNDING.yml":
-						options.funding && (await formatYaml({ github: options.funding })),
+						options.funding && formatYaml({ github: options.funding }),
 				},
 			},
 		};

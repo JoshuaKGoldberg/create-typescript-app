@@ -1,6 +1,9 @@
-import { MetadataFileType } from "create";
-
 import { schema } from "../schema.js";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockPackageJson } from "./blockPackageJson.js";
+import { blockVSCode } from "./blockVSCode.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockTypeScript = schema.createBlock({
 	about: {
@@ -8,48 +11,64 @@ export const blockTypeScript = schema.createBlock({
 	},
 	produce({ options }) {
 		return {
-			documentation: {
-				"Type Checking": `
-You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
-
-However, it can be useful to run the TypeScript command-line (\`tsc\`) to type check all files in \`src/\`:
-
-\`\`\`shell
-pnpm tsc
-\`\`\`
-
-Add \`--watch\` to keep the type checker running in a watch mode that updates the display as you save files:
-
-\`\`\`shell
-pnpm tsc --watch
-\`\`\`
-`,
-			},
-			editor: {
-				debuggers: options.bin
-					? [
-							{
-								name: "Debug Program",
-								preLaunchTask: "build",
-								program: options.bin,
-								request: "launch",
-								skipFiles: ["<node_internals>/**"],
-								type: "node",
-							},
-						]
-					: [],
-				settings: {
-					"typescript.tsdk": "node_modules/typescript/lib",
-				},
-				tasks: [
-					{
-						detail: "Build the project",
-						label: "build",
-						script: "build",
-						type: "npm",
+			addons: [
+				blockDevelopmentDocs({
+					sections: {
+						"Type Checking": `
+		You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
+		
+		However, it can be useful to run the TypeScript command-line (\`tsc\`) to type check all files in \`src/\`:
+		
+		\`\`\`shell
+		pnpm tsc
+		\`\`\`
+		
+		Add \`--watch\` to keep the type checker running in a watch mode that updates the display as you save files:
+		
+		\`\`\`shell
+		pnpm tsc --watch
+		\`\`\`
+		`,
 					},
-				],
-			},
+				}),
+				blockGitHubActionsCI({
+					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+				}),
+				blockPackageJson({
+					properties: {
+						devDependencies: { typescript: "latest" },
+						main: "./lib/index.js",
+						scripts: {
+							tsc: "tsc",
+						},
+					},
+				}),
+				blockVSCode({
+					debuggers: options.bin
+						? [
+								{
+									name: "Debug Program",
+									preLaunchTask: "build",
+									program: options.bin,
+									request: "launch",
+									skipFiles: ["<node_internals>/**"],
+									type: "node",
+								},
+							]
+						: [],
+					settings: {
+						"typescript.tsdk": "node_modules/typescript/lib",
+					},
+					tasks: [
+						{
+							detail: "Build the project",
+							label: "build",
+							script: "build",
+							type: "npm",
+						},
+					],
+				}),
+			],
 			files: {
 				"tsconfig.json": JSON.stringify({
 					compilerOptions: {
@@ -68,23 +87,17 @@ pnpm tsc --watch
 					include: ["src"],
 				}),
 			},
-			jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
-			metadata: [
-				{
-					glob: "lib/",
-					type: MetadataFileType.Built,
-				},
-				{
-					glob: "src/",
-					type: MetadataFileType.Source,
-				},
-			],
-			package: {
-				devDependencies: { typescript: "latest" },
-				main: "./lib/index.js",
-				scripts: {
-					tsc: "tsc",
-				},
+			metadata: {
+				files: [
+					{
+						glob: "lib/",
+						type: MetadataFileType.Built,
+					},
+					{
+						glob: "src/",
+						type: MetadataFileType.Source,
+					},
+				],
 			},
 		};
 	},

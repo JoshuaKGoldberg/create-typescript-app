@@ -2,7 +2,7 @@ import { blockContributorCovenant } from "./blocks/blockContributorCovenant.js";
 import { blockDevelopmentDocs } from "./blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "./blocks/blockESLint.js";
 import { blockFunding } from "./blocks/blockFunding.js";
-import { blockGitHubActions } from "./blocks/blockGitHubActions.js";
+import { blockGitHubActionsCI } from "./blocks/blockGitHubActionsCI.js";
 import { blockGitignore } from "./blocks/blockGitignore.js";
 import { blockPackageJson } from "./blocks/blockPackageJson.js";
 import { blockPrettier } from "./blocks/blockPrettier.js";
@@ -23,7 +23,7 @@ export const presetMinimal = schema.createPreset({
 			// todo: get rid of need
 		}),
 		blockFunding(),
-		blockGitHubActions(),
+		blockGitHubActionsCI(),
 		blockGitignore(),
 		blockPackageJson(),
 		blockPrettier(),

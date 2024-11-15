@@ -5,12 +5,12 @@ export const blockGitHubIssueTemplates = schema.createBlock({
 	about: {
 		name: "GitHub Issue Templates",
 	},
-	async produce({ options }) {
+	produce({ options }) {
 		return {
 			files: {
 				".github": {
 					ISSUE_TEMPLATE: {
-						"01-bug.yml": await formatYaml({
+						"01-bug.yml": formatYaml({
 							body: [
 								{
 									attributes: {
@@ -69,7 +69,7 @@ export const blockGitHubIssueTemplates = schema.createBlock({
 							name: "🐛 Bug",
 							title: "🐛 Bug: <short description of the bug>",
 						}),
-						"02-documentation.yml": await formatYaml({
+						"02-documentation.yml": formatYaml({
 							body: [
 								{
 									attributes: {
@@ -113,7 +113,7 @@ export const blockGitHubIssueTemplates = schema.createBlock({
 							name: "📝 Documentation",
 							title: "📝 Documentation: <short description of the request>",
 						}),
-						"03-feature.yml": await formatYaml({
+						"03-feature.yml": formatYaml({
 							body: [
 								{
 									attributes: {
@@ -158,7 +158,7 @@ export const blockGitHubIssueTemplates = schema.createBlock({
 							name: "🚀 Feature",
 							title: "🚀 Feature: <short description of the feature>",
 						}),
-						"04-tooling.yml": await formatYaml({
+						"04-tooling.yml": formatYaml({
 							body: [
 								{
 									attributes: {

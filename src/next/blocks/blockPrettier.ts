@@ -1,7 +1,10 @@
-import { BlockPhase, MetadataFileType } from "create";
 import { z } from "zod";
 
 import { schema } from "../schema.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockPackageJson } from "./blockPackageJson.js";
+import { blockVSCode } from "./blockVSCode.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockPrettier = schema.createBlock({
 	about: {
@@ -10,9 +13,42 @@ export const blockPrettier = schema.createBlock({
 	args: {
 		plugins: z.array(z.string()).optional(),
 	},
-	phase: BlockPhase.Format,
 	produce({ args, created }) {
 		return {
+			addons: [
+				blockGitHubActionsCI({
+					jobs: [
+						{
+							name: "Prettier",
+							steps: [{ run: "pnpm format --list-different" }],
+						},
+					],
+				}),
+				blockPackageJson({
+					properties: {
+						devDependencies: {
+							...(args.plugins &&
+								Object.fromEntries(
+									args.plugins.map((plugin) => [plugin, "latest"]),
+								)),
+							husky: "latest",
+							"lint-staged": "latest",
+							prettier: "latest",
+						},
+						"lint-staged": {
+							"*": "prettier --ignore-unknown --write",
+						},
+						scripts: {
+							format: "prettier .",
+							prepare: "husky",
+						},
+					},
+				}),
+				blockVSCode({
+					extensions: ["esbenp.prettier-vscode"],
+					settings: { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+				}),
+			],
 			documentation: {
 				Formatting: `
 [Prettier](https://prettier.io) is used to format code.
@@ -25,10 +61,6 @@ pnpm format --write
 \`\`\`
 `,
 			},
-			editor: {
-				extensions: ["esbenp.prettier-vscode"],
-				settings: { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-			},
 			files: {
 				".husky": {
 					".gitignore": "_",
@@ -38,7 +70,7 @@ pnpm format --write
 					".husky",
 					"lib",
 					"pnpm-lock.yaml",
-					...created.metadata
+					...created.metadata.files
 						.filter((value) => value.type === MetadataFileType.Ignored)
 						.map((value) => value.glob),
 				]
@@ -46,7 +78,7 @@ pnpm format --write
 					.join("\n"),
 				".prettierrc.json": JSON.stringify({
 					$schema: "http://json.schemastore.org/prettierrc",
-					overrides: created.metadata
+					overrides: created.metadata.files
 						.filter(
 							(value) =>
 								value.type === MetadataFileType.Config && value.language,
@@ -58,30 +90,6 @@ pnpm format --write
 					...(args.plugins && { plugins: args.plugins }),
 					useTabs: true,
 				}),
-			},
-			jobs: [
-				{
-					name: "Prettier",
-					steps: [{ run: "pnpm format --list-different" }],
-				},
-			],
-			package: {
-				devDependencies: {
-					...(args.plugins &&
-						Object.fromEntries(
-							args.plugins.map((plugin) => [plugin, "latest"]),
-						)),
-					husky: "latest",
-					"lint-staged": "latest",
-					prettier: "latest",
-				},
-				"lint-staged": {
-					"*": "prettier --ignore-unknown --write",
-				},
-				scripts: {
-					format: "prettier .",
-					prepare: "husky",
-				},
 			},
 		};
 	},

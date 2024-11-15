@@ -1,11 +1,15 @@
 import { $ } from "execa";
 
+import { isUsingNextCreateEngine } from "../../shared/isUsingNextCreateEngine.js";
 import { Options } from "../../shared/types.js";
 import { createStructure } from "./creation/index.js";
 import { writeStructureWorker } from "./writeStructureWorker.js";
 
 export async function writeStructure(options: Options) {
-	await writeStructureWorker(await createStructure(options), ".");
+	await writeStructureWorker(
+		await createStructure(options, isUsingNextCreateEngine()),
+		".",
+	);
 
 	try {
 		// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/718

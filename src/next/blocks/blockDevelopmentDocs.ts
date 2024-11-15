@@ -1,18 +1,29 @@
-import { BlockPhase } from "create";
+import { z } from "zod";
 
 import { splitIntoSections } from "../../steps/writing/creation/dotGitHub/createDevelopment/splitIntoSections.js";
-import { inputTextFile } from "../inputs/inputTextFile.js";
 import { schema } from "../schema.js";
 
 export const blockDevelopmentDocs = schema.createBlock({
 	about: {
 		name: "Development Docs",
 	},
-	phase: BlockPhase.Documentation,
-	async produce({ created, options, take }) {
-		const existingContents = await take(inputTextFile, {
-			filePath: ".github/DEVELOPMENT.md",
-		});
+	args: {
+		hints: z.array(z.array(z.string())).optional(),
+		sections: z
+			.record(
+				z.string(),
+				z.union([
+					z.string(),
+					z.object({
+						level: z.union([z.literal(2), z.literal(3), z.literal(4)]),
+						text: z.string(),
+					}),
+				]),
+			)
+			.optional(),
+	},
+	produce({ args, options }) {
+		const { documentation = "" } = options;
 
 		const createdDocs = `# Development
 ${
@@ -31,10 +42,10 @@ cd ${options.repository}
 pnpm install
 \`\`\`
 
+${args.hints?.map((hint) => hint.map((line) => `> ${line}\n`).join("")).join("\n\n") ?? ""}
 > This repository includes a list of suggested VS Code extensions.
 > It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.
-
-${Object.entries(created.documentation)
+${Object.entries(args.sections ?? {})
 	.sort(([a], [b]) => a.localeCompare(b))
 	.flatMap(([heading, content]) =>
 		typeof content === "string"
@@ -44,13 +55,8 @@ ${Object.entries(created.documentation)
 	.join("\n\n")}
 `;
 
-		const createdSectionHeadings = new Set([
-			"Development",
-			...Object.keys(created.documentation),
-		]);
-
 		const customSections = Object.fromEntries(
-			splitIntoSections(existingContents ?? "").filter(([key]) => {
+			splitIntoSections(documentation).filter(([key]) => {
 				return !createdDocs.includes(`\n${key}`) && key !== "# Development";
 			}),
 		);

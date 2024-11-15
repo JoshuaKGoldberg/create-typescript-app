@@ -239,7 +239,7 @@ Please include your favorite emoji in the bottom of your issues and PRs to signa
 `,
 		"DEVELOPMENT.md": await createDevelopment(options),
 		...(options.funding && {
-			"FUNDING.yml": await formatYaml({ github: options.funding }),
+			"FUNDING.yml": formatYaml({ github: options.funding }),
 		}),
 
 		"ISSUE_TEMPLATE.md": `<!-- Note: Please must use one of our issue templates to file an issue! 🛑 -->

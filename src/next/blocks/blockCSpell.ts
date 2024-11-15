@@ -1,27 +1,33 @@
-import { BlockPhase, MetadataFileType } from "create";
-
 import { schema } from "../schema.js";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
+import { blockVSCode } from "./blockVSCode.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockCSpell = schema.createBlock({
 	about: {
 		name: "CSpell",
 	},
-	phase: BlockPhase.Lint,
 	produce({ created }) {
 		return {
-			documentation: {
-				"Linting With CSpell": {
-					level: 3,
-					text: `[cspell](https://cspell.org) is used to spell check across all source files.
+			addons: [
+				blockDevelopmentDocs({
+					sections: {
+						"Linting With CSpell": {
+							level: 3,
+							text: `[cspell](https://cspell.org) is used to spell check across all source files.
 You can run it with \`pnpm lint:spelling\`:
 
 \`\`\`shell
 pnpm lint:spelling
 \`\`\`
 `,
-				},
-			},
-			editor: { extensions: ["streetsidesoftware.code-spell-checker"] },
+						},
+					},
+				}),
+				blockVSCode({
+					extensions: ["streetsidesoftware.code-spell-checker"],
+				}),
+			],
 			files: {
 				"cspell.json": JSON.stringify({
 					dictionaries: ["typescript"],
@@ -31,7 +37,7 @@ pnpm lint:spelling
 						"lib",
 						"node_modules",
 						"pnpm-lock.yaml",
-						...created.metadata
+						...created.metadata.files
 							.filter((value) => value.type === MetadataFileType.Ignored)
 							.map((value) => value.glob),
 					].sort(),

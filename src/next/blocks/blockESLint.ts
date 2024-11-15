@@ -1,9 +1,13 @@
-import { BlockPhase, MetadataFileType } from "create";
 // @ts-expect-error -- https://github.com/egoist/parse-package-name/issues/30
 import { parse as parsePackageName } from "parse-package-name";
 import { z } from "zod";
 
 import { schema } from "../schema.js";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockPackageJson } from "./blockPackageJson.js";
+import { blockVSCode } from "./blockVSCode.js";
+import { MetadataFileType } from "./metadata.js";
 
 const zRuleOptions = z.union([
 	z.literal("error"),
@@ -48,17 +52,17 @@ export const blockESLint = schema.createBlock({
 		name: "ESLint",
 	},
 	args: {
-		configs: z.array(z.string()).default([]),
-		extensions: z.array(z.union([z.string(), zExtension])).default([]),
-		imports: z.array(zPackageImport).default([]),
+		extensions: z.array(z.union([z.string(), zExtension])).optional(),
+		imports: z.array(zPackageImport).optional(),
 		rules: zExtensionRules.optional(),
 	},
-	phase: BlockPhase.Lint,
 	produce({ args, created, options }) {
-		const imports = [
-			`import eslint from "@eslint/js";`,
-			`import tseslint from "typescript-eslint";`,
-			...args.imports.map(
+		const { extensions = [], imports = [], rules } = args;
+
+		const importLines = [
+			'import eslint from "@eslint/js";',
+			'import tseslint from "typescript-eslint";',
+			...imports.map(
 				(packageImport) =>
 					`import ${packageImport.specifier} from "${packageImport.source}"`,
 			),
@@ -66,11 +70,11 @@ export const blockESLint = schema.createBlock({
 			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
 		);
 
-		const ignores = [
+		const ignoreLines = [
 			"lib",
 			"node_modules",
 			"pnpm-lock.yaml",
-			...created.metadata
+			...created.metadata.files
 				.filter(
 					(value) =>
 						!value.glob.endsWith("rc") &&
@@ -80,7 +84,7 @@ export const blockESLint = schema.createBlock({
 				.map((value) => value.glob),
 		].sort();
 
-		const extensions = [
+		const extensionLines = [
 			"eslint.configs.recommended",
 			printExtension({
 				extends: [
@@ -96,18 +100,18 @@ export const blockESLint = schema.createBlock({
 						tsconfigRootDir: "import.meta.dirname",
 					},
 				},
-				...(args.rules && {
-					rules: args.rules,
-				}),
+				...(rules && { rules }),
 			}),
-			...args.extensions.map((extension) =>
+			...extensions.map((extension) =>
 				typeof extension === "string" ? extension : printExtension(extension),
 			),
 		];
 
 		return {
-			documentation: {
-				Linting: `
+			addons: [
+				blockDevelopmentDocs({
+					sections: {
+						Linting: `
 [ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
 You can run it locally on the command-line:
 
@@ -123,72 +127,78 @@ pnpm run lint --fix
 
 Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 `,
-			},
-			editor: {
-				extensions: ["dbaeumer.vscode-eslint"],
-				settings: {
-					"editor.codeActionsOnSave": {
-						"source.fixAll.eslint": "explicit",
 					},
-					"eslint.probe": [
-						"javascript",
-						"javascriptreact",
-						"json",
-						"jsonc",
-						"markdown",
-						"typescript",
-						"typescriptreact",
-						"yaml",
+				}),
+				blockGitHubActionsCI({
+					jobs: [
+						{
+							name: "Lint",
+							steps: [
+								...(options.bin ? [{ run: "pnpm build" }] : []),
+								{ run: "pnpm lint" },
+							],
+						},
 					],
-					"eslint.rules.customizations": [{ rule: "*", severity: "warn" }],
-				},
-			},
+				}),
+				blockPackageJson({
+					properties: {
+						devDependencies: {
+							"@eslint/js": "latest",
+							"@types/node": "latest",
+							eslint: "latest",
+							"typescript-eslint": "latest",
+							...Object.fromEntries(
+								imports.flatMap(({ source, types }): [string, string][] => {
+									// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
+									const { name } = parsePackageName(source) as { name: string };
+									return types
+										? [
+												[name, "latest"],
+												[`@types/${name}`, "latest"],
+											]
+										: [[name, "latest"]];
+								}),
+							),
+						},
+						scripts: {
+							lint: "eslint . --max-warnings 0",
+						},
+					},
+				}),
+				blockVSCode({
+					extensions: ["dbaeumer.vscode-eslint"],
+					settings: {
+						"editor.codeActionsOnSave": {
+							"source.fixAll.eslint": "explicit",
+						},
+						"eslint.probe": [
+							"javascript",
+							"javascriptreact",
+							"json",
+							"jsonc",
+							"markdown",
+							"typescript",
+							"typescriptreact",
+							"yaml",
+						],
+						"eslint.rules.customizations": [{ rule: "*", severity: "warn" }],
+					},
+				}),
+			],
 			files: {
-				"eslint.config.js": `${imports.join("\n")}
+				"eslint.config.js": `${importLines.join("\n")}
 
 export default tseslint.config(
 	{
-		ignores: [${ignores.map((ignore) => JSON.stringify(ignore)).join(", ")}]
+		ignores: [${ignoreLines.map((ignore) => JSON.stringify(ignore)).join(", ")}]
 	},
 	{
 		linterOptions: {
 			reportUnusedDisableDirectives: "error",
 		}
 	},
-	${extensions.join(",		")}
+	${extensionLines.join(",		")}
 );`,
-			},
-			jobs: [
-				{
-					name: "Lint",
-					steps: [
-						...(options.bin ? [{ run: "pnpm build" }] : []),
-						{ run: "pnpm lint" },
-					],
-				},
-			],
-			package: {
-				devDependencies: {
-					"@eslint/js": "latest",
-					"@types/node": "latest",
-					eslint: "latest",
-					"typescript-eslint": "latest",
-					...Object.fromEntries(
-						args.imports.flatMap(({ source, types }): [string, string][] => {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
-							const { name } = parsePackageName(source) as { name: string };
-							return types
-								? [
-										[name, "latest"],
-										[`@types/${name}`, "latest"],
-									]
-								: [[name, "latest"]];
-						}),
-					),
-				},
-				scripts: {
-					lint: "eslint . --max-warnings 0",
-				},
 			},
 		};
 	},

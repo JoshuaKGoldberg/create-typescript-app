@@ -3,7 +3,11 @@ import { Octokit } from "octokit";
 
 import { getGitHubUserAsAllContributor } from "../shared/getGitHubUserAsAllContributor.js";
 import { readFileAsJson } from "../shared/readFileAsJson.js";
-import { AllContributorsData, Options } from "../shared/types.js";
+import {
+	AllContributorContributor,
+	AllContributorsData,
+	Options,
+} from "../shared/types.js";
 import { formatJson } from "./writing/creation/formatters/formatJson.js";
 
 export async function addOwnerAsAllContributor(
@@ -38,7 +42,7 @@ export async function addOwnerAsAllContributor(
 		contributors.push({
 			contributions: ["tool"],
 			login: user,
-		});
+		} as AllContributorContributor);
 	}
 
 	await fs.writeFile(

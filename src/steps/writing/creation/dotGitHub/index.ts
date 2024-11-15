@@ -8,7 +8,7 @@ export async function createDotGitHub(options: Options) {
 	return {
 		actions: createDotGitHubActions(),
 		ISSUE_TEMPLATE: await createDotGitHubIssueTemplate(options),
-		workflows: await createWorkflows(options),
+		workflows: createWorkflows(options),
 		...(await createDotGitHubFiles(options)),
 	};
 }

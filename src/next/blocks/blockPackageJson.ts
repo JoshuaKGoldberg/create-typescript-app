@@ -1,20 +1,40 @@
-import { BlockPhase, MetadataFileType } from "create";
+import { z } from "zod";
 
 import { schema } from "../schema.js";
 import { sortObject } from "../utils/sortObject.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockPackageJson = schema.createBlock({
 	about: {
 		name: "Package JSON",
 	},
-	phase: BlockPhase.Package,
-	produce({ created, options }) {
+	args: {
+		// TODO: Find a zod package for this?
+		properties: z
+			.intersection(
+				z.object({
+					dependencies: z.record(z.string(), z.string()).optional(),
+					devDependencies: z.record(z.string(), z.string()).optional(),
+					peerDependencies: z.record(z.string(), z.string()).optional(),
+					scripts: z.record(z.string(), z.string()).optional(),
+				}),
+				z.record(z.string(), z.unknown()),
+			)
+			.optional(),
+	},
+	produce({ args, created, options }) {
 		return {
+			commands: [
+				{
+					phase: 0, // TODO: ???
+					script: "pnpm i",
+				},
+			],
 			files: {
 				"package.json": JSON.stringify(
 					sortObject({
 						...Object.fromEntries(
-							Object.entries(created.package).map(([key, value]) =>
+							Object.entries(args.properties ?? {}).map(([key, value]) =>
 								typeof value === "object" && value
 									? [key, sortObject(value)]
 									: [key, value],
@@ -27,7 +47,7 @@ export const blockPackageJson = schema.createBlock({
 							"package.json",
 							"README.md",
 							options.bin?.replace(/^\.\//, ""),
-							...created.metadata
+							...created.metadata.files
 								.filter(
 									(value) =>
 										value.type === MetadataFileType.Built ||

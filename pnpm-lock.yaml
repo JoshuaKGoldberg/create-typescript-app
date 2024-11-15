@@ -11,6 +11,9 @@ importers:
       '@clack/prompts':
         specifier: ^0.7.0
         version: 0.7.0
+      '@prettier/sync':
+        specifier: ^0.5.2
+        version: 0.5.2(prettier@3.3.3)
       all-contributors-for-repository:
         specifier: ^0.3.0
         version: 0.3.0
@@ -147,9 +150,6 @@ importers:
       husky:
         specifier: ^9.1.4
         version: 9.1.4
-      jsonc-eslint-parser:
-        specifier: ^2.4.0
-        version: 2.4.0
       knip:
         specifier: 5.27.2
         version: 5.27.2(@types/node@22.3.0)(typescript@5.5.4)
@@ -1001,6 +1001,11 @@ packages:
   '@pnpm/npm-conf@2.2.2':
     resolution: {integrity: sha512-UA91GwWPhFExt3IizW6bOeY/pQ0BkuNwKjk9iQW9KqxluGCrg4VenZ0/L+2Y0+ZOtme72EVvg6v0zo3AMQRCeA==}
     engines: {node: '>=12'}
+
+  '@prettier/sync@0.5.2':
+    resolution: {integrity: sha512-Yb569su456XNx5BsH/Vyem7xD6g/y9iLmLUzRKM1a/dhU/D7HqqvkAG72znulXlMXztbV0iiu9O5AL8K98TzZQ==}
+    peerDependencies:
+      prettier: '*'
 
   '@release-it/conventional-changelog@8.0.1':
     resolution: {integrity: sha512-pwc9jaBYDaSX5TXw6rEnPfqDkKJN2sFBhYpON1kBi9T3sA9EOBncC4ed0Bv3L1ciNb6eqEJXPfp+tQMqVlv/eg==}
@@ -2855,6 +2860,9 @@ packages:
   make-dir@4.0.0:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
+
+  make-synchronized@0.2.9:
+    resolution: {integrity: sha512-4wczOs8SLuEdpEvp3vGo83wh8rjJ78UsIk7DIX5fxdfmfMJGog4bQzxfvOwq7Q3yCHLC4jp1urPHIxRS/A93gA==}
 
   markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
@@ -4809,6 +4817,11 @@ snapshots:
       '@pnpm/config.env-replace': 1.1.0
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
+
+  '@prettier/sync@0.5.2(prettier@3.3.3)':
+    dependencies:
+      make-synchronized: 0.2.9
+      prettier: 3.3.3
 
   '@release-it/conventional-changelog@8.0.1(release-it@17.6.0(typescript@5.5.4))':
     dependencies:
@@ -6837,6 +6850,8 @@ snapshots:
   make-dir@4.0.0:
     dependencies:
       semver: 7.6.3
+
+  make-synchronized@0.2.9: {}
 
   markdown-it@14.1.0:
     dependencies:

@@ -74,7 +74,6 @@ export default tseslint.config(
 
 			// These on-by-default rules don't work well for this repo and we like them off.
 			"jsdoc/lines-before-block": "off",
-			"no-constant-condition": "off",
 
 			// These on-by-default rules work well for this repo if configured
 			"@typescript-eslint/no-unnecessary-condition": [

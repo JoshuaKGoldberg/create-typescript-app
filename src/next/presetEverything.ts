@@ -4,8 +4,17 @@ import { blockContributorCovenant } from "./blocks/blockContributorCovenant.js";
 import { blockCSpell } from "./blocks/blockCSpell.js";
 import { blockDevelopmentDocs } from "./blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "./blocks/blockESLint.js";
+import { blockESLintComments } from "./blocks/blockESLintComments.js";
+import { blockESLintJSDoc } from "./blocks/blockESLintJSDoc.js";
+import { blockESLintJSONC } from "./blocks/blockESLintJSONC.js";
+import { blockESLintMarkdown } from "./blocks/blockESLintMarkdown.js";
+import { blockESLintNode } from "./blocks/blockESLintNode.js";
+import { blockESLintPackageJson } from "./blocks/blockESLintPackageJson.js";
+import { blockESLintPerfectionist } from "./blocks/blockESLintPerfectionist.js";
+import { blockESLintRegexp } from "./blocks/blockESLintRegexp.js";
+import { blockESLintYML } from "./blocks/blockESLintYML.js";
 import { blockFunding } from "./blocks/blockFunding.js";
-import { blockGitHubActions } from "./blocks/blockGitHubActions.js";
+import { blockGitHubActionsCI } from "./blocks/blockGitHubActionsCI.js";
 import { blockGitHubIssueTemplates } from "./blocks/blockGitHubIssueTemplates.js";
 import { blockGitHubPRTemplate } from "./blocks/blockGitHubPRTemplate.js";
 import { blockGitignore } from "./blocks/blockGitignore.js";
@@ -33,95 +42,13 @@ export const presetEverything = schema.createPreset({
 			"The most comprehensive tooling imaginable: sorting, spellchecking, and more!",
 		name: "Everything",
 	},
-	blocks: (options) => [
+	blocks: [
 		blockAllContributors(),
 		blockContributingDocs(),
 		blockContributorCovenant(),
 		blockCSpell(),
 		blockDevelopmentDocs(),
 		blockESLint({
-			extensions: [
-				`...jsonc.configs["flat/recommended-with-json"]`,
-				`...markdown.configs.recommended`,
-				`...yml.configs["flat/recommended"]`,
-				`...yml.configs["flat/prettier"]`,
-				`comments.recommended`,
-				`jsdoc.configs["flat/contents-typescript-error"]`,
-				`jsdoc.configs["flat/logical-typescript-error"]`,
-				`jsdoc.configs["flat/stylistic-typescript-error"]`,
-				`n.configs["flat/recommended"]`,
-				`packageJson`,
-				`perfectionist.configs["recommended-natural"]`,
-				`regexp.configs["flat/recommended"]`,
-				{
-					files: ["*.jsonc"],
-					rules: {
-						"jsonc/comma-dangle": "off",
-						"jsonc/no-comments": "off",
-						"jsonc/sort-keys": "error",
-					},
-				},
-				{
-					extends: ["tseslint.configs.disableTypeChecked"],
-					files: ["**/*.md/*.ts"],
-					rules: {
-						"n/no-missing-import": [
-							"error",
-							{ allowModules: [options.repository] },
-						],
-					},
-				},
-				{
-					extends: ["vitest.configs.recommended"],
-					files: ["**/*.test.*"],
-					rules: {
-						"@typescript-eslint/no-unsafe-assignment": "off",
-						"@typescript-eslint/no-unsafe-call": "off",
-					},
-				},
-				{
-					files: ["**/*.{yml,yaml}"],
-					rules: {
-						"yml/file-extension": ["error", { extension: "yml" }],
-						"yml/sort-keys": [
-							"error",
-							{
-								order: { type: "asc" },
-								pathPattern: "^.*$",
-							},
-						],
-						"yml/sort-sequence-values": [
-							"error",
-							{
-								order: { type: "asc" },
-								pathPattern: "^.*$",
-							},
-						],
-					},
-				},
-			],
-			imports: [
-				{
-					source: "@eslint-community/eslint-plugin-eslint-comments/configs",
-					specifier: "comments",
-				},
-				{ source: "@vitest/eslint-plugin", specifier: "vitest" },
-				{ source: "eslint-plugin-jsdoc", specifier: "jsdoc" },
-				{ source: "eslint-plugin-jsonc", specifier: "jsonc" },
-				{
-					source: "eslint-plugin-markdown",
-					specifier: "markdown",
-					types: true,
-				},
-				{ source: "eslint-plugin-n", specifier: "n" },
-				{
-					source: "eslint-plugin-package-json/configs/recommended",
-					specifier: "packageJson",
-				},
-				{ source: "eslint-plugin-perfectionist", specifier: "perfectionist" },
-				{ source: "eslint-plugin-regexp", specifier: "* as regexp" },
-				{ source: "eslint-plugin-yml", specifier: "yml" },
-			],
 			rules: [
 				{
 					comment:
@@ -136,28 +63,6 @@ export const presetEverything = schema.createPreset({
 					},
 				},
 				{
-					comment:
-						"These on-by-default rules don't work well for this repo and we like them off.",
-					entries: {
-						"jsdoc/lines-before-block": "off",
-						"no-constant-condition": "off",
-					},
-				},
-				{
-					comment:
-						"These on-by-default rules work well for this repo if configured.",
-					entries: {
-						"perfectionist/sort-objects": [
-							"error",
-							{
-								order: "asc",
-								partitionByComment: true,
-								type: "natural",
-							},
-						],
-					},
-				},
-				{
 					comment: "Stylistic concerns that don't interfere with Prettier",
 					entries: {
 						"no-useless-rename": "error",
@@ -166,8 +71,17 @@ export const presetEverything = schema.createPreset({
 				},
 			],
 		}),
+		blockESLintComments(),
+		blockESLintJSDoc(),
+		blockESLintJSONC(),
+		blockESLintMarkdown(),
+		blockESLintNode(),
+		blockESLintPackageJson(),
+		blockESLintPerfectionist(),
+		blockESLintRegexp(),
+		blockESLintYML(),
 		blockFunding(),
-		blockGitHubActions(),
+		blockGitHubActionsCI(),
 		blockGitHubIssueTemplates(),
 		blockGitHubPRTemplate(),
 		blockGitignore(),

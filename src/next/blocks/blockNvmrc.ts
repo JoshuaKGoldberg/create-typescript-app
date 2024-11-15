@@ -1,6 +1,6 @@
-import { MetadataFileType } from "create";
-
 import { schema } from "../schema.js";
+import { blockPackageJson } from "./blockPackageJson.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockNvmrc = schema.createBlock({
 	about: {
@@ -8,21 +8,27 @@ export const blockNvmrc = schema.createBlock({
 	},
 	produce({ options }) {
 		return {
-			metadata: [
-				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
-			],
 			...(options.node && {
+				addons: [
+					blockPackageJson({
+						properties: {
+							engine: {
+								node: `>=${options.node.minimum}`,
+							},
+						},
+					}),
+				],
 				...(options.node.pinned && {
 					files: {
 						".nvmrc": `${options.node.pinned}\n`,
 					},
 				}),
-				package: {
-					engines: {
-						node: `>=${options.node.minimum}`,
-					},
-				},
 			}),
+			metadata: {
+				files: [
+					{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
+				],
+			},
 		};
 	},
 });

@@ -13,13 +13,38 @@ import { readFunding } from "../shared/options/createOptionDefaults/readFunding.
 import { readGuide } from "../shared/options/createOptionDefaults/readGuide.js";
 import { readPackageData } from "../shared/packages.js";
 import { tryCatchLazyValueAsync } from "../shared/tryCatchLazyValueAsync.js";
+import { AllContributorsData } from "../shared/types.js";
+import { MetadataFileType } from "./blocks/metadata.js";
+import { inputJSONFile } from "./inputs/inputJSONFile.js";
+import { inputTextFile } from "./inputs/inputTextFile.js";
 
 export const schema = createSchema({
+	metadata: {
+		files: z.array(
+			z.object({
+				glob: z.string(),
+				language: z.string().optional(),
+				type: z.nativeEnum(MetadataFileType),
+			}),
+		),
+	},
 	options: {
 		access: z.union([z.literal("public"), z.literal("restricted")]).optional(),
 		author: z.string().optional(),
 		bin: z.string().optional(),
+		contributors: z
+			.array(
+				z.object({
+					avatar_url: z.string(),
+					contributions: z.array(z.string()),
+					login: z.string(),
+					name: z.string(),
+					profile: z.string(),
+				}),
+			)
+			.optional(),
 		description: z.string(),
+		documentation: z.string().optional(),
 		email: z
 			.union([
 				z.string(),
@@ -58,7 +83,23 @@ export const schema = createSchema({
 		title: z.string(),
 		version: z.string().optional(),
 	},
-	produce({ options }) {
+	produce({ options, take }) {
+		const allContributors = lazyValue(async () => {
+			const contributions = (await take(inputJSONFile, {
+				filePath: ".all-contributorsrc",
+			})) as AllContributorsData | undefined;
+
+			return contributions?.contributors;
+		});
+
+		const documentation = lazyValue(async () => {
+			return await take(inputTextFile, {
+				filePath: ".github/DEVELOPMENT.md",
+			});
+		});
+
+		// TODO: Make these all use take
+
 		const gitDefaults = tryCatchLazyValueAsync(async () =>
 			gitUrlParse(await gitRemoteOriginUrl()),
 		);
@@ -80,11 +121,12 @@ export const schema = createSchema({
 				options.owner
 			)?.toLowerCase(),
 		);
-
 		return {
 			author,
 			bin: async () => (await packageData()).bin,
+			contributors: allContributors,
 			description: async () => (await packageData()).description,
+			documentation,
 			email: async () => readEmails(npmDefaults, packageAuthor),
 			funding: readFunding,
 			guide: readGuide,
@@ -102,3 +144,4 @@ export const schema = createSchema({
 });
 
 export type SchemaOptions = SchemaOptionsFor<typeof schema>;
+//          ^?

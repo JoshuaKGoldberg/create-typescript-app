@@ -1,8 +1,9 @@
-import { MetadataFileType } from "create";
+import { MetadataFileType } from "./metadata.js";
 import { testBlock } from "create-testers";
 import { describe, expect, it } from "vitest";
 
 import { blockNvmrc } from "./blockNvmrc.js";
+import { blockPackageJson } from "./blockPackageJson.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockNvmrc", () => {
@@ -22,14 +23,18 @@ describe("blockNvmrc", () => {
 		});
 
 		expect(creation).toEqual({
+			augmentations: [
+				blockPackageJson({
+					properties: {
+						engine: {
+							node: ">=18.3.0",
+						},
+					},
+				}),
+			],
 			metadata: [
 				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
 			],
-			package: {
-				engines: {
-					node: `>=18.3.0`,
-				},
-			},
 		});
 	});
 
@@ -42,17 +47,21 @@ describe("blockNvmrc", () => {
 		});
 
 		expect(creation).toEqual({
+			augmentations: [
+				blockPackageJson({
+					properties: {
+						engine: {
+							node: ">=18.3.0",
+						},
+					},
+				}),
+			],
 			files: {
 				".nvmrc": `20.12.2\n`,
 			},
 			metadata: [
 				{ glob: ".nvmrc", language: "yaml", type: MetadataFileType.Config },
 			],
-			package: {
-				engines: {
-					node: `>=18.3.0`,
-				},
-			},
 		});
 	});
 });

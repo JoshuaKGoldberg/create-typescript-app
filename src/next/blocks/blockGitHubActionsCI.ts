@@ -1,16 +1,30 @@
-import { BlockPhase } from "create";
 import jsYaml from "js-yaml";
+import { z } from "zod";
 
 import { createMultiWorkflowFile } from "../../steps/writing/creation/dotGitHub/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { schema } from "../schema.js";
 
-export const blockGitHubActions = schema.createBlock({
+export const blockGitHubActionsCI = schema.createBlock({
 	about: {
-		name: "GitHub Actions",
+		name: "GitHub Actions CI",
 	},
-	phase: BlockPhase.CI,
-	async produce({ created }) {
+	args: {
+		jobs: z
+			.array(
+				z.object({
+					name: z.string(),
+					steps: z.array(
+						z.union([
+							z.object({ run: z.string() }),
+							z.object({ uses: z.string() }),
+						]),
+					),
+				}),
+			)
+			.optional(),
+	},
+	produce({ args }) {
 		return {
 			files: {
 				".github": {
@@ -42,7 +56,7 @@ export const blockGitHubActions = schema.createBlock({
 						},
 					},
 					workflows: {
-						"accessibility-alt-text-bot.yml": await createSoloWorkflowFile({
+						"accessibility-alt-text-bot.yml": createSoloWorkflowFile({
 							if: "${{ !endsWith(github.actor, '[bot]') }}",
 							name: "Accessibility Alt Text Bot",
 							on: {
@@ -66,11 +80,13 @@ export const blockGitHubActions = schema.createBlock({
 								},
 							],
 						}),
-						"ci.yml": await createMultiWorkflowFile({
-							jobs: created.jobs.sort((a, b) => a.name.localeCompare(b.name)),
-							name: "CI",
-						}),
-						"pr-review-requested.yml": await createSoloWorkflowFile({
+						"ci.yml":
+							args.jobs &&
+							createMultiWorkflowFile({
+								jobs: args.jobs.sort((a, b) => a.name.localeCompare(b.name)),
+								name: "CI",
+							}),
+						"pr-review-requested.yml": createSoloWorkflowFile({
 							name: "PR Review Requested",
 							on: {
 								pull_request_target: {

@@ -1,18 +1,18 @@
-import { MetadataFileType } from "create";
-
-import { AllContributorsData } from "../../shared/types.js";
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
-import { inputJSONFile } from "../inputs/inputJSONFile.js";
 import { schema } from "../schema.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockAllContributors = schema.createBlock({
 	about: {
 		name: "AllContributors",
 	},
-	async produce({ options, take }) {
-		const existing = (await take(inputJSONFile, {
-			filePath: ".all-contributorsrc",
-		})) as AllContributorsData | undefined;
+	produce({ options }) {
+		// import { AllContributorsData } from "../../shared/types.js";
+		// import { inputJSONFile } from "../inputs/inputJSONFile.js";
+		const { contributors = [] } = options;
+		// const contributions = (await take(inputJSONFile, {
+		// 	filePath: ".all-contributorsrc",
+		// })) as AllContributorsData | undefined;
 
 		return {
 			commands:
@@ -26,7 +26,7 @@ export const blockAllContributors = schema.createBlock({
 					commit: false,
 					commitConvention: "angular",
 					commitType: "docs",
-					contributors: existing?.contributors ?? [],
+					contributors,
 					contributorsPerLine: 7,
 					contributorsSortAlphabetically: true,
 					files: ["README.md"],
@@ -38,7 +38,7 @@ export const blockAllContributors = schema.createBlock({
 				}),
 				".github": {
 					workflows: {
-						"contributors.yml": await createSoloWorkflowFile({
+						"contributors.yml": createSoloWorkflowFile({
 							name: "Contributors",
 							on: {
 								push: {
@@ -57,12 +57,14 @@ export const blockAllContributors = schema.createBlock({
 					},
 				},
 			},
-			metadata: [
-				{
-					glob: ".all-contributorsrc",
-					type: MetadataFileType.Config,
-				},
-			],
+			metadata: {
+				files: [
+					{
+						glob: ".all-contributorsrc",
+						type: MetadataFileType.Config,
+					},
+				],
+			},
 		};
 	},
 });

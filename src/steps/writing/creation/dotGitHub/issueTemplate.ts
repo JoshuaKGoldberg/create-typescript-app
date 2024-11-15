@@ -6,7 +6,7 @@ export async function createDotGitHubIssueTemplate({
 	repository,
 }: Pick<Options, "owner" | "repository">) {
 	return {
-		"01-bug.yml": await formatYaml({
+		"01-bug.yml": formatYaml({
 			body: [
 				{
 					attributes: {
@@ -64,7 +64,7 @@ export async function createDotGitHubIssueTemplate({
 			name: "🐛 Bug",
 			title: "🐛 Bug: <short description of the bug>",
 		}),
-		"02-documentation.yml": await formatYaml({
+		"02-documentation.yml": formatYaml({
 			body: [
 				{
 					attributes: {
@@ -108,7 +108,7 @@ export async function createDotGitHubIssueTemplate({
 			name: "📝 Documentation",
 			title: "📝 Documentation: <short description of the request>",
 		}),
-		"03-feature.yml": await formatYaml({
+		"03-feature.yml": formatYaml({
 			body: [
 				{
 					attributes: {
@@ -153,7 +153,7 @@ export async function createDotGitHubIssueTemplate({
 			name: "🚀 Feature",
 			title: "🚀 Feature: <short description of the feature>",
 		}),
-		"04-tooling.yml": await formatYaml({
+		"04-tooling.yml": formatYaml({
 			body: [
 				{
 					attributes: {

@@ -3,7 +3,7 @@ import { blockContributorCovenant } from "./blocks/blockContributorCovenant.js";
 import { blockDevelopmentDocs } from "./blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "./blocks/blockESLint.js";
 import { blockFunding } from "./blocks/blockFunding.js";
-import { blockGitHubActions } from "./blocks/blockGitHubActions.js";
+import { blockGitHubActionsCI } from "./blocks/blockGitHubActionsCI.js";
 import { blockGitignore } from "./blocks/blockGitignore.js";
 import { blockPackageJson } from "./blocks/blockPackageJson.js";
 import { blockPrettier } from "./blocks/blockPrettier.js";
@@ -24,20 +24,10 @@ export const presetCommon = schema.createPreset({
 		blockContributorCovenant(),
 		blockDevelopmentDocs(),
 		blockESLint({
-			extensions: [
-				{
-					extends: ["vitest.configs.recommended"],
-					files: ["**/*.test.*"],
-					rules: {
-						"@typescript-eslint/no-unsafe-assignment": "off",
-						"@typescript-eslint/no-unsafe-call": "off",
-					},
-				},
-			],
-			imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
+			// todo: get rid of need
 		}),
 		blockFunding(),
-		blockGitHubActions(),
+		blockGitHubActionsCI(),
 		blockGitignore(),
 		blockPackageJson(),
 		blockPrettier(),

@@ -1,21 +1,19 @@
-import { BlockPhase, MetadataFileType } from "create";
-
 import { formatIgnoreFile } from "../../steps/writing/creation/formatters/formatIgnoreFile.js";
 import { schema } from "../schema.js";
 import { removeTrailingSlash } from "../utils/removeTrailingSlash.js";
+import { MetadataFileType } from "./metadata.js";
 
 export const blockGitignore = schema.createBlock({
 	about: {
 		name: "Gitignore",
 	},
-	phase: BlockPhase.Git,
 	produce({ created }) {
 		return {
 			files: {
 				".gitignore": formatIgnoreFile(
 					[
 						"/node_modules",
-						...created.metadata
+						...created.metadata.files
 							.filter(
 								(value) =>
 									value.type === MetadataFileType.Built ||

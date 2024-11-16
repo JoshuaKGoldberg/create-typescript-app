@@ -3,14 +3,22 @@ import { describe, expect, it } from "vitest";
 
 import { blockNvmrc } from "./blockNvmrc.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockPrettier } from "./blockPrettier.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockNvmrc", () => {
-	it("only includes metadata when options.node does not exist", () => {
+	it("only includes blockPackageJson addons when options.node does not exist", () => {
 		const creation = testBlock(blockNvmrc, { options: optionsBase });
 
 		expect(creation).toEqual({
-			metadata: [{ glob: ".nvmrc", language: "yaml" }],
+			addons: [
+				[
+					blockPrettier,
+					{
+						overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+					},
+				],
+			],
 		});
 	});
 
@@ -20,16 +28,24 @@ describe("blockNvmrc", () => {
 		});
 
 		expect(creation).toEqual({
-			augmentations: [
-				blockPackageJson({
-					properties: {
-						engine: {
-							node: ">=18.3.0",
+			addons: [
+				[
+					blockPrettier,
+					{
+						overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+					},
+				],
+				[
+					blockPackageJson,
+					{
+						properties: {
+							engine: {
+								node: ">=18.3.0",
+							},
 						},
 					},
-				}),
+				],
 			],
-			metadata: [{ glob: ".nvmrc", language: "yaml" }],
 		});
 	});
 
@@ -42,19 +58,27 @@ describe("blockNvmrc", () => {
 		});
 
 		expect(creation).toEqual({
-			augmentations: [
-				blockPackageJson({
-					properties: {
-						engine: {
-							node: ">=18.3.0",
+			addons: [
+				[
+					blockPrettier,
+					{
+						overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+					},
+				],
+				[
+					blockPackageJson,
+					{
+						properties: {
+							engine: {
+								node: ">=18.3.0",
+							},
 						},
 					},
-				}),
+				],
 			],
 			files: {
 				".nvmrc": `20.12.2\n`,
 			},
-			metadata: [{ glob: ".nvmrc", language: "yaml" }],
 		});
 	});
 });

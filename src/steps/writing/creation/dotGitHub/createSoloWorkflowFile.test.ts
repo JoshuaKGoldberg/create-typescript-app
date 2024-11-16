@@ -9,6 +9,17 @@ describe("createSoloWorkflowFile", () => {
 			runs: ["pnpm build"],
 		});
 
-		expect(actual).toMatchInlineSnapshot(`Promise {}`);
+		expect(actual).toMatchInlineSnapshot(`
+			"jobs:
+			  test_name:
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm build
+
+			name: Test Name
+			"
+		`);
 	});
 });

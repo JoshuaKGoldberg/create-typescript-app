@@ -1,8 +1,8 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 
-export const blockNvmrc = schema.createBlock({
+export const blockNvmrc = base.createBlock({
 	about: {
 		name: "Nvmrc",
 	},

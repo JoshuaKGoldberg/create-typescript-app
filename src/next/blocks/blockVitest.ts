@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
@@ -10,7 +10,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
 
-export const blockVitest = schema.createBlock({
+export const blockVitest = base.createBlock({
 	about: {
 		name: "Vitest",
 	},

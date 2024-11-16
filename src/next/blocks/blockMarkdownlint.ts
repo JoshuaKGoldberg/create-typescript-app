@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
 
-export const blockMarkdownlint = schema.createBlock({
+export const blockMarkdownlint = base.createBlock({
 	about: {
 		name: "Markdownlint",
 	},

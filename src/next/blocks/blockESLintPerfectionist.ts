@@ -1,7 +1,7 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
 
-export const blockESLintPerfectionist = schema.createBlock({
+export const blockESLintPerfectionist = base.createBlock({
 	about: {
 		name: "ESLint Perfectionist Plugin",
 	},

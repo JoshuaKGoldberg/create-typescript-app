@@ -1,3 +1,4 @@
+import { base } from "./base.js";
 import { blockAllContributors } from "./blocks/blockAllContributors.js";
 import { blockContributingDocs } from "./blocks/blockContributingDocs.js";
 import { blockContributorCovenant } from "./blocks/blockContributorCovenant.js";
@@ -34,9 +35,8 @@ import { blockTSup } from "./blocks/blockTSup.js";
 import { blockTypeScript } from "./blocks/blockTypeScript.js";
 import { blockVitest } from "./blocks/blockVitest.js";
 import { blockVSCode } from "./blocks/blockVSCode.js";
-import { schema } from "./schema.js";
 
-export const presetEverything = schema.createPreset({
+export const presetEverything = base.createPreset({
 	about: {
 		description:
 			"The most comprehensive tooling imaginable: sorting, spellchecking, and more!",

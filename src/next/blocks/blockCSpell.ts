@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockVSCode } from "./blockVSCode.js";
 
-export const blockCSpell = schema.createBlock({
+export const blockCSpell = base.createBlock({
 	about: {
 		name: "CSpell",
 	},

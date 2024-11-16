@@ -1,4 +1,4 @@
-import { createSchema, SchemaOptionsFor } from "create";
+import { BaseOptionsFor, createBase } from "create";
 import { $ } from "execa";
 import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
@@ -17,7 +17,7 @@ import { AllContributorsData } from "../shared/types.js";
 import { inputJSONFile } from "./inputs/inputJSONFile.js";
 import { inputTextFile } from "./inputs/inputTextFile.js";
 
-export const schema = createSchema({
+export const base = createBase({
 	options: {
 		access: z.union([z.literal("public"), z.literal("restricted")]).optional(),
 		author: z.string().optional(),
@@ -133,5 +133,4 @@ export const schema = createSchema({
 	},
 });
 
-export type SchemaOptions = SchemaOptionsFor<typeof schema>;
-//          ^?
+export type BaseOptions = BaseOptionsFor<typeof base>;

@@ -1,3 +1,4 @@
+import { base } from "./base.js";
 import { blockAllContributors } from "./blocks/blockAllContributors.js";
 import { blockContributorCovenant } from "./blocks/blockContributorCovenant.js";
 import { blockDevelopmentDocs } from "./blocks/blockDevelopmentDocs.js";
@@ -11,9 +12,8 @@ import { blockReleaseIt } from "./blocks/blockReleaseIt.js";
 import { blockTSup } from "./blocks/blockTSup.js";
 import { blockTypeScript } from "./blocks/blockTypeScript.js";
 import { blockVitest } from "./blocks/blockVitest.js";
-import { schema } from "./schema.js";
 
-export const presetCommon = schema.createPreset({
+export const presetCommon = base.createPreset({
 	about: {
 		description:
 			"Bare starters plus testing and automation for all-contributors and releases.",

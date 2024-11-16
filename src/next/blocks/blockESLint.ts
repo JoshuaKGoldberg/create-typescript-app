@@ -2,7 +2,7 @@
 import { parse as parsePackageName } from "parse-package-name";
 import { z } from "zod";
 
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
@@ -46,7 +46,7 @@ const zPackageImport = z.object({
 	types: z.boolean().optional(),
 });
 
-export const blockESLint = schema.createBlock({
+export const blockESLint = base.createBlock({
 	about: {
 		name: "ESLint",
 	},

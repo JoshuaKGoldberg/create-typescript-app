@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
 
-export const blockPrettier = schema.createBlock({
+export const blockPrettier = base.createBlock({
 	about: {
 		name: "Prettier",
 	},

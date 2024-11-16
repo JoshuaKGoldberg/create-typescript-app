@@ -1,7 +1,7 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
 
-export const blockESLintPackageJson = schema.createBlock({
+export const blockESLintPackageJson = base.createBlock({
 	about: {
 		name: "ESLint package.json Plugin",
 	},

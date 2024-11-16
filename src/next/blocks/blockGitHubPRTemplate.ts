@@ -1,6 +1,6 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockGitHubPRTemplate = schema.createBlock({
+export const blockGitHubPRTemplate = base.createBlock({
 	about: {
 		name: "GitHub Issue Templates",
 	},

@@ -3,9 +3,9 @@ import { z } from "zod";
 
 import { createMultiWorkflowFile } from "../../steps/writing/creation/dotGitHub/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockGitHubActionsCI = schema.createBlock({
+export const blockGitHubActionsCI = base.createBlock({
 	about: {
 		name: "GitHub Actions CI",
 	},

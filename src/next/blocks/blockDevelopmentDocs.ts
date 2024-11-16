@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 import { splitIntoSections } from "../../steps/writing/creation/dotGitHub/createDevelopment/splitIntoSections.js";
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockDevelopmentDocs = schema.createBlock({
+export const blockDevelopmentDocs = base.createBlock({
 	about: {
 		name: "Development Docs",
 	},

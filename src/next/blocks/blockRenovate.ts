@@ -1,6 +1,6 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockRenovate = schema.createBlock({
+export const blockRenovate = base.createBlock({
 	about: {
 		name: "Renovate",
 	},

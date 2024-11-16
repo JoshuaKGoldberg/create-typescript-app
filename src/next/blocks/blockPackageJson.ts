@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { sortObject } from "../utils/sortObject.js";
 
-export const blockPackageJson = schema.createBlock({
+export const blockPackageJson = base.createBlock({
 	about: {
 		name: "Package JSON",
 	},

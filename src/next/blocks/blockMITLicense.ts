@@ -1,7 +1,7 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 
-export const blockMITLicense = schema.createBlock({
+export const blockMITLicense = base.createBlock({
 	about: {
 		name: "MIT License",
 	},

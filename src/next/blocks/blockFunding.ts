@@ -1,7 +1,7 @@
 import { formatYaml } from "../../steps/writing/creation/formatters/formatYaml.js";
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockFunding = schema.createBlock({
+export const blockFunding = base.createBlock({
 	about: {
 		name: "Funding",
 	},

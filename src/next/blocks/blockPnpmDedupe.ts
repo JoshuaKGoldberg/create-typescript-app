@@ -1,9 +1,9 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 
-export const blockPnpmDedupe = schema.createBlock({
+export const blockPnpmDedupe = base.createBlock({
 	about: {
 		name: "pnpm Dedupe",
 	},

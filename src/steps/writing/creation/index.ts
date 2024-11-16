@@ -6,7 +6,7 @@ import { presetEverything } from "../../../next/presetEverything.js";
 import { presetMinimal } from "../../../next/presetMinimal.js";
 import { Options } from "../../../shared/types.js";
 import { Structure } from "../types.js";
-import { convertOptionsToSchemaOptions } from "./convertOptionsToSchemaOptions.js";
+import { convertOptionsToBaseOptions } from "./convertOptionsToBaseOptions.js";
 import { createDotGitHub } from "./dotGitHub/index.js";
 import { createDotHusky } from "./dotHusky.js";
 import { createDotVSCode } from "./dotVSCode.js";
@@ -31,7 +31,7 @@ export async function createStructure(
 
 	if (preset) {
 		const creation = await producePreset(preset, {
-			options: convertOptionsToSchemaOptions(options),
+			options: convertOptionsToBaseOptions(options),
 		});
 
 		return await recursivelyFormat({

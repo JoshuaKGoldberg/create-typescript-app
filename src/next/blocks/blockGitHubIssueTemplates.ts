@@ -1,7 +1,7 @@
 import { formatYaml } from "../../steps/writing/creation/formatters/formatYaml.js";
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockGitHubIssueTemplates = schema.createBlock({
+export const blockGitHubIssueTemplates = base.createBlock({
 	about: {
 		name: "GitHub Issue Templates",
 	},

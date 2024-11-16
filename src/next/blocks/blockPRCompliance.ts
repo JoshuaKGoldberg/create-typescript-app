@@ -1,7 +1,7 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockPRCompliance = schema.createBlock({
+export const blockPRCompliance = base.createBlock({
 	about: {
 		name: "PR Compliance",
 	},

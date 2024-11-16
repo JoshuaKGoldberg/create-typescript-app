@@ -1,9 +1,9 @@
 import { z } from "zod";
 
 import { formatIgnoreFile } from "../../steps/writing/creation/formatters/formatIgnoreFile.js";
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockGitignore = schema.createBlock({
+export const blockGitignore = base.createBlock({
 	about: {
 		name: "Gitignore",
 	},

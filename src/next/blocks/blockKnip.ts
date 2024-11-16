@@ -1,9 +1,9 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 
-export const blockKnip = schema.createBlock({
+export const blockKnip = base.createBlock({
 	about: {
 		name: "Knip",
 	},

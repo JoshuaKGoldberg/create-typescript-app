@@ -1,8 +1,8 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 
-export const blockReleaseIt = schema.createBlock({
+export const blockReleaseIt = base.createBlock({
 	about: {
 		name: "release-it",
 	},

@@ -1,7 +1,7 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
 
-export const blockESLintYML = schema.createBlock({
+export const blockESLintYML = base.createBlock({
 	about: {
 		name: "ESLint YML Plugin",
 	},

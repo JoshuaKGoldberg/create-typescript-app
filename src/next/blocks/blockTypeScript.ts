@@ -1,4 +1,4 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
@@ -7,7 +7,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
 
-export const blockTypeScript = schema.createBlock({
+export const blockTypeScript = base.createBlock({
 	about: {
 		name: "TypeScript",
 	},

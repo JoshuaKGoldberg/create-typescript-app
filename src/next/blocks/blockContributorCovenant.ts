@@ -1,6 +1,6 @@
-import { schema } from "../schema.js";
+import { base } from "../base.js";
 
-export const blockContributorCovenant = schema.createBlock({
+export const blockContributorCovenant = base.createBlock({
 	about: {
 		name: "Contributor Covenant",
 	},

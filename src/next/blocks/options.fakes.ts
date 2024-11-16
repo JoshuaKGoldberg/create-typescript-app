@@ -1,4 +1,4 @@
-import { SchemaOptions } from "../schema.js";
+import { BaseOptions } from "../base.js";
 
 export const optionsBase = {
 	access: "public",
@@ -10,4 +10,4 @@ export const optionsBase = {
 	owner: "test-owner",
 	repository: "test-repository",
 	title: "Test Title",
-} satisfies SchemaOptions;
+} satisfies BaseOptions;

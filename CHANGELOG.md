@@ -1,3 +1,9 @@
+## [1.73.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.4...v1.73.5) (2024-11-22)
+
+### Bug Fixes
+
+- **deps:** update dependency @clack/prompts to ^0.8.0 ([#1688](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1688)) ([056b748](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/056b7480f8040bfd4c4bd8145ee4e3dbcd277125))
+
 ## [1.73.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.3...v1.73.4) (2024-11-03)
 
 ### Bug Fixes

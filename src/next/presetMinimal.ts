@@ -19,9 +19,7 @@ export const presetMinimal = base.createPreset({
 	blocks: [
 		blockContributorCovenant(),
 		blockDevelopmentDocs(),
-		blockESLint({
-			// todo: get rid of need
-		}),
+		blockESLint(),
 		blockFunding(),
 		blockGitHubActionsCI(),
 		blockGitignore(),

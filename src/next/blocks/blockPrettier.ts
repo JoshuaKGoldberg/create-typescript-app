@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
@@ -28,6 +29,20 @@ export const blockPrettier = base.createBlock({
 
 		return {
 			addons: [
+				blockDevelopmentDocs({
+					sections: {
+						Formatting: `
+[Prettier](https://prettier.io) is used to format code.
+It should be applied automatically when you save files in VS Code or make a Git commit.
+
+To manually reformat all files, you can run:
+
+\`\`\`shell
+pnpm format --write
+\`\`\`
+`,
+					},
+				}),
 				blockGitHubActionsCI({
 					jobs: [
 						{
@@ -60,18 +75,12 @@ export const blockPrettier = base.createBlock({
 					settings: { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 				}),
 			],
-			documentation: {
-				Formatting: `
-[Prettier](https://prettier.io) is used to format code.
-It should be applied automatically when you save files in VS Code or make a Git commit.
-
-To manually reformat all files, you can run:
-
-\`\`\`shell
-pnpm format --write
-\`\`\`
-`,
-			},
+			commands: [
+				{
+					phase: 2, // TODO: ???
+					script: "pnpm format --write",
+				},
+			],
 			files: {
 				".husky": {
 					".gitignore": "_",

@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
-import { sortObject } from "../utils/sortObject.js";
 
 export const blockPackageJson = base.createBlock({
 	about: {
@@ -31,38 +30,28 @@ export const blockPackageJson = base.createBlock({
 				},
 			],
 			files: {
-				"package.json": JSON.stringify(
-					sortObject({
-						...Object.fromEntries(
-							Object.entries(args.properties ?? {}).map(([key, value]) =>
-								typeof value === "object" && value
-									? [key, sortObject(value)]
-									: [key, value],
-							),
-						),
-						author: { email: options.email.npm, name: options.author },
-						bin: options.bin,
-						description: options.description,
-						files: [
-							"package.json",
-							"README.md",
-							options.bin?.replace(/^\.\//, ""),
-							...(args.properties?.files ?? []),
-						]
-							.filter(Boolean)
-							.sort(),
-						keywords: options.keywords?.flatMap((keyword) =>
-							keyword.split(/ /),
-						),
-						name: options.repository,
-						repository: {
-							type: "git",
-							url: `https://github.com/${options.owner}/${options.repository}`,
-						},
-						type: "module",
-						version: options.version ?? "0.0.0",
-					}),
-				),
+				"package.json": JSON.stringify({
+					...Object.fromEntries(Object.entries(args.properties ?? {})),
+					author: { email: options.email.npm, name: options.author },
+					bin: options.bin,
+					description: options.description,
+					files: [
+						"package.json",
+						"README.md",
+						options.bin?.replace(/^\.\//, ""),
+						...(args.properties?.files ?? []),
+					]
+						.filter(Boolean)
+						.sort(),
+					keywords: options.keywords?.flatMap((keyword) => keyword.split(/ /)),
+					name: options.repository,
+					repository: {
+						type: "git",
+						url: `https://github.com/${options.owner}/${options.repository}`,
+					},
+					type: "module",
+					version: options.version ?? "0.0.0",
+				}),
 			},
 		};
 	},

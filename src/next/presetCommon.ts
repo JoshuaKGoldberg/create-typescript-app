@@ -23,9 +23,7 @@ export const presetCommon = base.createPreset({
 		blockAllContributors(),
 		blockContributorCovenant(),
 		blockDevelopmentDocs(),
-		blockESLint({
-			// todo: get rid of need
-		}),
+		blockESLint(),
 		blockFunding(),
 		blockGitHubActionsCI(),
 		blockGitignore(),

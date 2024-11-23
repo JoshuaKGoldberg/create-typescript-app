@@ -17,24 +17,24 @@ export const blockTypeScript = base.createBlock({
 				blockDevelopmentDocs({
 					sections: {
 						"Type Checking": `
-		You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
-		
-		However, it can be useful to run the TypeScript command-line (\`tsc\`) to type check all files in \`src/\`:
-		
-		\`\`\`shell
-		pnpm tsc
-		\`\`\`
-		
-		Add \`--watch\` to keep the type checker running in a watch mode that updates the display as you save files:
-		
-		\`\`\`shell
-		pnpm tsc --watch
-		\`\`\`
-		`,
+You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
+
+However, it can be useful to run the TypeScript command-line (\`tsc\`) to type check all files in \`src/\`:
+
+\`\`\`shell
+pnpm tsc
+\`\`\`
+
+Add \`--watch\` to keep the type checker running in a watch mode that updates the display as you save files:
+
+\`\`\`shell
+pnpm tsc --watch
+\`\`\`
+`,
 					},
 				}),
 				blockGitignore({
-					ignores: ["lib/"],
+					ignores: ["/lib"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],

@@ -76,7 +76,7 @@ export default tseslint.config(
 		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
 			parserOptions: {
-				projectService: { allowDefaultProject: ["*.*s", "eslint.config.js"], },
+				projectService: { allowDefaultProject: ["*.config.*s"], },
 			},
 		},
 		rules: {

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { Options } from "../../../shared/types.js";
+import { readFileSafeAsJson } from "../../../shared/readFileSafeAsJson.js";
+import { Options, PartialPackageData } from "../../../shared/types.js";
 import { createStructure } from "./index.js";
 
 const optionsBaseline: Options = {
@@ -24,11 +25,6 @@ const optionsBaseline: Options = {
 	title: "Test Title",
 };
 
-const optionsNext = {
-	...optionsBaseline,
-	node: { pinned: "20.12.2" },
-};
-
 describe("createStructure", () => {
 	describe.each([
 		// "common",
@@ -36,19 +32,56 @@ describe("createStructure", () => {
 		// "minimal",
 	])("base %s", () => {
 		it("matches current and next", async () => {
+			const packageData =
+				((await readFileSafeAsJson(
+					"./package.json",
+				)) as null | PartialPackageData) ?? {};
+
+			const optionsNext = {
+				...optionsBaseline,
+				node: { pinned: "20.12.2" },
+				version: packageData.version,
+			};
+
 			const baseline = await createStructure(optionsBaseline, false);
 			const next = await createStructure(optionsNext, true);
 
-			// TODO: What to do about pre-seeding files?
-			delete baseline.src;
+			// Test display cleaning: just don't show values that are the same
+			deleteEqualValuesDeep(baseline, next);
 
-			// TODO: How should package.json be written?
-			delete baseline["package.json"];
+			// Expected: eslint.config.js has different orders for now
+			delete baseline["eslint.config.js"];
+			delete next["eslint.config.js"];
 
-			// TODO: Baseline doesn't modify README.md, that's a migration step
-			delete next["README.md"];
-
-			expect(next[".prettierrc.json"]).toEqual(baseline[".prettierrc.json"]);
+			expect(next).toEqual(baseline);
 		});
 	});
 });
+
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
+
+function deleteEqualValues<T extends object>(a: T, b: T) {
+	for (const i in a) {
+		if (a[i] === b[i]) {
+			delete b[i];
+			delete a[i];
+		}
+	}
+}
+
+function deleteEqualValuesDeep<T extends object>(a: T, b: T) {
+	deleteEqualValues(a, b);
+
+	for (const i in a) {
+		if (a[i] && typeof a[i] === "object" && b[i] && typeof b[i] === "object") {
+			deleteEqualValuesDeep(a[i], b[i]);
+
+			if (Object.keys(a[i]).length === 0 && Object.keys(b[i]).length === 0) {
+				delete a[i];
+				delete b[i];
+			}
+		}
+	}
+}
+
+/* eslint-enable @typescript-eslint/no-dynamic-delete */

@@ -15,12 +15,12 @@ export const blockKnip = base.createBlock({
 						"Linting With Knip": {
 							level: 3,
 							text: `[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.
-		You can run it with \`pnpm lint:knip\`:
-		
-		\`\`\`shell
-		pnpm lint:knip
-		\`\`\`
-		`,
+You can run it with \`pnpm lint:knip\`:
+
+\`\`\`shell
+pnpm lint:knip
+\`\`\`
+`,
 						},
 					},
 				}),

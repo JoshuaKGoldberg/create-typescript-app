@@ -23,12 +23,12 @@ export const blockMarkdownlint = base.createBlock({
 						"Linting With Markdownlint": {
 							level: 3,
 							text: `[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.
-		You can run it with \`pnpm lint:md\`:
-		
-		\`\`\`shell
-		pnpm lint:md
-		\`\`\`
-		`,
+You can run it with \`pnpm lint:md\`:
+
+\`\`\`shell
+pnpm lint:md
+\`\`\`
+`,
 						},
 					},
 				}),

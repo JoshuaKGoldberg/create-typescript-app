@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockVSCode } from "./blockVSCode.js";
 
 export const blockCSpell = base.createBlock({
@@ -13,6 +14,7 @@ export const blockCSpell = base.createBlock({
 	},
 	produce({ args }) {
 		const { ignores = [] } = args;
+
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -32,6 +34,14 @@ pnpm lint:spelling
 				blockVSCode({
 					extensions: ["streetsidesoftware.code-spell-checker"],
 				}),
+				blockGitHubActionsCI({
+					jobs: [
+						{
+							name: "Lint Spelling",
+							steps: [{ run: "pnpm lint:spelling" }],
+						},
+					],
+				}),
 			],
 			files: {
 				"cspell.json": JSON.stringify({
@@ -46,12 +56,6 @@ pnpm lint:spelling
 					].sort(),
 				}),
 			},
-			jobs: [
-				{
-					name: "Lint Spelling",
-					steps: [{ run: "pnpm lint:spelling" }],
-				},
-			],
 			package: {
 				devDependencies: {
 					cspell: "latest",

@@ -12,12 +12,9 @@ describe("blockNvmrc", () => {
 
 		expect(creation).toEqual({
 			addons: [
-				[
-					blockPrettier,
-					{
-						overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
-					},
-				],
+				blockPrettier({
+					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+				}),
 			],
 		});
 	});
@@ -29,22 +26,16 @@ describe("blockNvmrc", () => {
 
 		expect(creation).toEqual({
 			addons: [
-				[
-					blockPrettier,
-					{
-						overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
-					},
-				],
-				[
-					blockPackageJson,
-					{
-						properties: {
-							engine: {
-								node: ">=18.3.0",
-							},
+				blockPrettier({
+					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+				}),
+				blockPackageJson({
+					properties: {
+						engine: {
+							node: ">=18.3.0",
 						},
 					},
-				],
+				}),
 			],
 		});
 	});
@@ -59,22 +50,16 @@ describe("blockNvmrc", () => {
 
 		expect(creation).toEqual({
 			addons: [
-				[
-					blockPrettier,
-					{
-						overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
-					},
-				],
-				[
-					blockPackageJson,
-					{
-						properties: {
-							engine: {
-								node: ">=18.3.0",
-							},
+				blockPrettier({
+					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+				}),
+				blockPackageJson({
+					properties: {
+						engine: {
+							node: ">=18.3.0",
 						},
 					},
-				],
+				}),
 			],
 			files: {
 				".nvmrc": `20.12.2\n`,

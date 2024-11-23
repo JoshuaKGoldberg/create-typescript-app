@@ -24,6 +24,7 @@ export interface PartialPackageData {
 	name?: string;
 	repository?: { type: string; url: string } | string;
 	scripts?: Record<string, string>;
+	version?: string;
 }
 
 export type OptionsAccess = "public" | "restricted";

@@ -7,6 +7,7 @@ import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockPrettier } from "./blockPrettier.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
 
@@ -45,31 +46,31 @@ export const blockVitest = base.createBlock({
 				blockDevelopmentDocs({
 					sections: {
 						Testing: `
-		[Vitest](https://vitest.dev) is used for tests.
-		You can run it locally on the command-line:
-		
-		\`\`\`shell
-		pnpm run test
-		\`\`\`
-		
-		Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-		
-		\`\`\`shell
-		pnpm run test --coverage
-		\`\`\`
-		
-		Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-		Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-		
-		### Debugging Tests
-		
-		This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-		To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
+[Vitest](https://vitest.dev) is used for tests.
+You can run it locally on the command-line:
+
+\`\`\`shell
+pnpm run test
+\`\`\`
+
+Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+\`\`\`shell
+pnpm run test --coverage
+\`\`\`
+
+Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+### Debugging Tests
+
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
+To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
 		`,
 					},
 				}),
 				blockGitignore({
-					ignores: ["coverage"],
+					ignores: ["/coverage"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [
@@ -94,6 +95,9 @@ export const blockVitest = base.createBlock({
 							test: "vitest",
 						},
 					},
+				}),
+				blockPrettier({
+					ignores: ["coverage"],
 				}),
 				blockTSup({
 					entry: ["!src/**/*.test.*"],

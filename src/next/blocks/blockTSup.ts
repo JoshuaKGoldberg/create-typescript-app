@@ -9,11 +9,11 @@ export const blockTSup = base.createBlock({
 	about: {
 		name: "tsup",
 	},
-	args: {
-		entry: z.array(z.string()).optional(),
+	addons: {
+		entry: z.array(z.string()).default([]),
 	},
-	produce({ args }) {
-		const { entry = [] } = args;
+	produce({ addons }) {
+		const { entry } = addons;
 
 		return {
 			addons: [

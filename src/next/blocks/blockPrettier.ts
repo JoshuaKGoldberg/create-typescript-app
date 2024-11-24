@@ -10,8 +10,8 @@ export const blockPrettier = base.createBlock({
 	about: {
 		name: "Prettier",
 	},
-	args: {
-		ignores: z.array(z.string()).optional(),
+	addons: {
+		ignores: z.array(z.string()).default([]),
 		overrides: z
 			.array(
 				z.object({
@@ -21,11 +21,11 @@ export const blockPrettier = base.createBlock({
 					}),
 				}),
 			)
-			.optional(),
-		plugins: z.array(z.string()).optional(),
+			.default([]),
+		plugins: z.array(z.string()).default([]),
 	},
-	produce({ args }) {
-		const { ignores = [], overrides = [], plugins = [] } = args;
+	produce({ addons }) {
+		const { ignores, overrides, plugins } = addons;
 
 		return {
 			addons: [

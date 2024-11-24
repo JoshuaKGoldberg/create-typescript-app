@@ -44,8 +44,8 @@ export async function createRootFiles(options: Options) {
 			],
 			plugins: [
 				"prettier-plugin-curly",
-				"prettier-plugin-sh",
 				"prettier-plugin-packagejson",
+				"prettier-plugin-sh",
 			],
 			useTabs: true,
 		}),

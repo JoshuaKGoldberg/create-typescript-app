@@ -15,12 +15,12 @@ export const blockVitest = base.createBlock({
 	about: {
 		name: "Vitest",
 	},
-	args: {
-		exclude: z.array(z.string()).optional(),
-		include: z.array(z.string()).optional(),
+	addons: {
+		exclude: z.array(z.string()).default([]),
+		include: z.array(z.string()).default([]),
 	},
-	produce({ args }) {
-		const { exclude = [], include = [] } = args;
+	produce({ addons }) {
+		const { exclude = [], include = [] } = addons;
 		const excludeText = JSON.stringify(exclude);
 		const includeText = JSON.stringify(include);
 

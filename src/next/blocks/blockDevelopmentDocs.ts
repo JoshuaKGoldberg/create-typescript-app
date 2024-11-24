@@ -7,8 +7,8 @@ export const blockDevelopmentDocs = base.createBlock({
 	about: {
 		name: "Development Docs",
 	},
-	args: {
-		hints: z.array(z.array(z.string())).optional(),
+	addons: {
+		hints: z.array(z.array(z.string())).default([]),
 		sections: z
 			.record(
 				z.string(),
@@ -20,9 +20,10 @@ export const blockDevelopmentDocs = base.createBlock({
 					}),
 				]),
 			)
-			.optional(),
+			.default({}),
 	},
-	produce({ args, options }) {
+	produce({ addons, options }) {
+		const { hints, sections } = addons;
 		const { documentation = "" } = options;
 
 		const createdDocs = `# Development
@@ -42,10 +43,10 @@ cd ${options.repository}
 pnpm install
 \`\`\`
 
-${args.hints?.map((hint) => hint.map((line) => `> ${line}\n`).join("")).join("\n\n") ?? ""}
+${hints.map((hint) => hint.map((line) => `> ${line}\n`).join("")).join("\n\n")}
 > This repository includes a list of suggested VS Code extensions.
 > It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.
-${Object.entries(args.sections ?? {})
+${Object.entries(sections)
 	.sort(([a], [b]) => a.localeCompare(b))
 	.flatMap(([heading, content]) =>
 		typeof content === "string"

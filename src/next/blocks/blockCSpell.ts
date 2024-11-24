@@ -9,11 +9,11 @@ export const blockCSpell = base.createBlock({
 	about: {
 		name: "CSpell",
 	},
-	args: {
-		ignores: z.array(z.string()).optional(),
+	addons: {
+		ignores: z.array(z.string()).default([]),
 	},
-	produce({ args }) {
-		const { ignores = [] } = args;
+	produce({ addons }) {
+		const { ignores } = addons;
 
 		return {
 			addons: [

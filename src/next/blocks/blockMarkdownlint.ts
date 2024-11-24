@@ -10,11 +10,11 @@ export const blockMarkdownlint = base.createBlock({
 	about: {
 		name: "Markdownlint",
 	},
-	args: {
-		ignores: z.array(z.string()).optional(),
+	addons: {
+		ignores: z.array(z.string()).default([]),
 	},
-	produce({ args }) {
-		const { ignores = [] } = args;
+	produce({ addons }) {
+		const { ignores } = addons;
 
 		return {
 			addons: [

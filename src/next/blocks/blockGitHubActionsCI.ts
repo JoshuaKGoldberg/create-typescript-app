@@ -9,7 +9,7 @@ export const blockGitHubActionsCI = base.createBlock({
 	about: {
 		name: "GitHub Actions CI",
 	},
-	args: {
+	addons: {
 		jobs: z
 			.array(
 				z.object({
@@ -24,7 +24,9 @@ export const blockGitHubActionsCI = base.createBlock({
 			)
 			.optional(),
 	},
-	produce({ args }) {
+	produce({ addons }) {
+		const { jobs } = addons;
+
 		return {
 			files: {
 				".github": {
@@ -81,9 +83,9 @@ export const blockGitHubActionsCI = base.createBlock({
 							],
 						}),
 						"ci.yml":
-							args.jobs &&
+							jobs &&
 							createMultiWorkflowFile({
-								jobs: args.jobs.sort((a, b) => a.name.localeCompare(b.name)),
+								jobs: jobs.sort((a, b) => a.name.localeCompare(b.name)),
 								name: "CI",
 							}),
 						"pr-review-requested.yml": createSoloWorkflowFile({

@@ -6,7 +6,7 @@ export const blockPackageJson = base.createBlock({
 	about: {
 		name: "Package JSON",
 	},
-	args: {
+	addons: {
 		// TODO: Find a zod package for this?
 		properties: z
 			.intersection(
@@ -19,9 +19,9 @@ export const blockPackageJson = base.createBlock({
 				}),
 				z.record(z.string(), z.unknown()),
 			)
-			.optional(),
+			.default({}),
 	},
-	produce({ args, options }) {
+	produce({ addons, options }) {
 		return {
 			commands: [
 				{
@@ -31,7 +31,7 @@ export const blockPackageJson = base.createBlock({
 			],
 			files: {
 				"package.json": JSON.stringify({
-					...Object.fromEntries(Object.entries(args.properties ?? {})),
+					...Object.fromEntries(Object.entries(addons.properties)),
 					author: { email: options.email.npm, name: options.author },
 					bin: options.bin,
 					description: options.description,
@@ -39,7 +39,7 @@ export const blockPackageJson = base.createBlock({
 						"package.json",
 						"README.md",
 						options.bin?.replace(/^\.\//, ""),
-						...(args.properties?.files ?? []),
+						...(addons.properties.files ?? []),
 					]
 						.filter(Boolean)
 						.sort(),

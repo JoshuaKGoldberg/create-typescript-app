@@ -7,17 +7,17 @@ export const blockVSCode = base.createBlock({
 	about: {
 		name: "VS Code",
 	},
-	args: {
+	addons: {
 		debuggers: z
 			.array(
 				z.intersection(
-					z.object({ name: z.string() }),
 					z.record(z.string(), z.unknown()),
+					z.object({ name: z.string() }),
 				),
 			)
 			.optional(),
 		extensions: z.array(z.string()).optional(),
-		settings: z.record(z.string(), z.unknown()).optional(),
+		settings: z.record(z.string(), z.unknown()).default({}),
 		tasks: z
 			.array(
 				z.intersection(
@@ -27,19 +27,21 @@ export const blockVSCode = base.createBlock({
 			)
 			.optional(),
 	},
-	produce({ args }) {
+	produce({ addons }) {
+		const { debuggers, extensions, settings, tasks } = addons;
+
 		return {
 			files: {
 				".vscode": {
 					"extensions.json":
-						args.extensions &&
+						extensions &&
 						JSON.stringify({
-							recommendations: [...args.extensions].sort(),
+							recommendations: [...extensions].sort(),
 						}),
 					"launch.json":
-						args.debuggers &&
+						debuggers &&
 						JSON.stringify({
-							configurations: [...args.debuggers].sort((a, b) =>
+							configurations: [...debuggers].sort((a, b) =>
 								a.name.localeCompare(b.name),
 							),
 							version: "0.2.0",
@@ -48,15 +50,13 @@ export const blockVSCode = base.createBlock({
 						sortObject({
 							"editor.formatOnSave": true,
 							"editor.rulers": [80],
-							...args.settings,
+							...settings,
 						}),
 					),
 					"tasks.json":
-						args.tasks &&
+						tasks &&
 						JSON.stringify({
-							tasks: args.tasks.sort((a, b) =>
-								a.detail.localeCompare(b.detail),
-							),
+							tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
 							version: "2.0.0",
 						}),
 				},

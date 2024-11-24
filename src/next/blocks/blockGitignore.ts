@@ -7,11 +7,11 @@ export const blockGitignore = base.createBlock({
 	about: {
 		name: "Gitignore",
 	},
-	args: {
-		ignores: z.array(z.string()).optional(),
+	addons: {
+		ignores: z.array(z.string()).default([]),
 	},
-	produce({ args }) {
-		const { ignores = [] } = args;
+	produce({ addons }) {
+		const { ignores } = addons;
 
 		return {
 			files: {

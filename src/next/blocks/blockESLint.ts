@@ -50,14 +50,14 @@ export const blockESLint = base.createBlock({
 	about: {
 		name: "ESLint",
 	},
-	args: {
-		extensions: z.array(z.union([z.string(), zExtension])).optional(),
-		ignores: z.array(z.string()).optional(),
-		imports: z.array(zPackageImport).optional(),
+	addons: {
+		extensions: z.array(z.union([z.string(), zExtension])).default([]),
+		ignores: z.array(z.string()).default([]),
+		imports: z.array(zPackageImport).default([]),
 		rules: zExtensionRules.optional(),
 	},
-	produce({ args, options }) {
-		const { extensions = [], ignores = [], imports = [], rules } = args;
+	produce({ addons, options }) {
+		const { extensions, ignores, imports, rules } = addons;
 
 		const importLines = [
 			'import eslint from "@eslint/js";',

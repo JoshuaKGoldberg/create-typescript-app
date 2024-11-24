@@ -1,3 +1,9 @@
+## [1.73.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.5...v1.73.6) (2024-11-24)
+
+### Bug Fixes
+
+- **deps:** update dependency git-url-parse to v16 ([#1689](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1689)) ([ec44594](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ec445949ea51f8250ac21ccf29ef70bf1a88badb))
+
 ## [1.73.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.4...v1.73.5) (2024-11-22)
 
 ### Bug Fixes

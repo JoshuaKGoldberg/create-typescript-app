@@ -16,22 +16,12 @@ export const blockESLintPerfectionist = base.createBlock({
 							specifier: "perfectionist",
 						},
 					],
-					rules: [
-						{
-							comment:
-								"These on-by-default rules work well for this repo if configured.",
-							entries: {
-								"perfectionist/sort-objects": [
-									"error",
-									{
-										order: "asc",
-										partitionByComment: true,
-										type: "natural",
-									},
-								],
-							},
+					settings: {
+						perfectionist: {
+							partitionByComment: true,
+							type: "natural",
 						},
-					],
+					},
 				}),
 			],
 		};

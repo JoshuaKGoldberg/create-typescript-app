@@ -95,18 +95,16 @@ export default tseslint.config(
 				"error",
 				{ allowExperimental: true },
 			],
-			"perfectionist/sort-objects": [
-				"error",
-				{
-					order: "asc",
-					partitionByComment: true,
-					type: "natural",
-				},
-			],
 
 			// Stylistic concerns that don't interfere with Prettier
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
+		},
+		settings: {
+			perfectionist: {
+				partitionByComment: true,
+				type: "natural",
+			},
 		},
 	},
 	{

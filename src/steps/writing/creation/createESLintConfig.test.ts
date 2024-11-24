@@ -73,9 +73,7 @@ describe("createESLintConfig", () => {
 								projectService: { allowDefaultProject: ["*.config.*s"] },
 							},
 						},
-						rules: {
-							// These on-by-default rules work well for this repo if configured.
-						},
+						rules: {},
 					},
 					{
 						files: ["*.jsonc"],
@@ -157,19 +155,15 @@ describe("createESLintConfig", () => {
 							// These on-by-default rules don't work well for this repo and we like them off.
 							"jsdoc/lines-before-block": "off",
 
-							// These on-by-default rules work well for this repo if configured.
-							"perfectionist/sort-objects": [
-								"error",
-								{
-									order: "asc",
-									partitionByComment: true,
-									type: "natural",
-								},
-							],
-
 							// Stylistic concerns that don't interfere with Prettier
 							"no-useless-rename": "error",
 							"object-shorthand": "error",
+						},
+						settings: {
+							perfectionist: {
+								partitionByComment: true,
+								type: "natural",
+							},
 						},
 					},
 					{

@@ -103,20 +103,6 @@ export default tseslint.config(
 
 			// These on-by-default rules don't work well for this repo and we like them off.
 			"jsdoc/lines-before-block": "off",`
-			}
-
-			// These on-by-default rules work well for this repo if configured.${
-				options.excludeLintPerfectionist
-					? ""
-					: `
-			"perfectionist/sort-objects": [
-				"error",
-				{
-					order: "asc",
-					partitionByComment: true,
-					type: "natural",
-				},
-			],`
 			}${
 				options.excludeLintStylistic
 					? ""
@@ -126,7 +112,17 @@ export default tseslint.config(
 			"no-useless-rename": "error",
 			"object-shorthand": "error",`
 			}
-		},
+		},${
+			options.excludeLintPerfectionist
+				? ""
+				: `
+		settings: {
+			perfectionist: {
+				partitionByComment: true,
+				type: "natural",
+			}
+		}`
+		}
 	},
 	{
 		files: ["*.jsonc"],

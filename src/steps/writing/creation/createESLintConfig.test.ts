@@ -70,7 +70,7 @@ describe("createESLintConfig", () => {
 						files: ["**/*.js", "**/*.ts"],
 						languageOptions: {
 							parserOptions: {
-								projectService: { allowDefaultProject: ["*.*s", "eslint.config.js"] },
+								projectService: { allowDefaultProject: ["*.config.*s"] },
 							},
 						},
 						rules: {
@@ -140,7 +140,7 @@ describe("createESLintConfig", () => {
 						files: ["**/*.js", "**/*.ts"],
 						languageOptions: {
 							parserOptions: {
-								projectService: { allowDefaultProject: ["*.*s", "eslint.config.js"] },
+								projectService: { allowDefaultProject: ["*.config.*s"] },
 							},
 						},
 						rules: {

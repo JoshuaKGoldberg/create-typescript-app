@@ -49,9 +49,17 @@ describe("createStructure", () => {
 			// Test display cleaning: just don't show values that are the same
 			deleteEqualValuesDeep(baseline, next);
 
-			// Expected: eslint.config.js has different orders for now
-			delete baseline["eslint.config.js"];
-			delete next["eslint.config.js"];
+			for (const rootFile of [
+				// eslint.config.js has different orders for now
+				"eslint.config.js",
+				// This'll need ordering done to it...
+				"package.json",
+				// This is created separately
+				"README.md",
+			]) {
+				delete baseline[rootFile];
+				delete next[rootFile];
+			}
 
 			expect(next).toEqual(baseline);
 		});

@@ -39,6 +39,7 @@ const zExtension = z.object({
 	linterOptions: z.unknown().optional(),
 	plugins: z.record(z.string(), z.string()).optional(),
 	rules: zExtensionRules.optional(),
+	settings: z.record(z.string(), z.unknown()).optional(),
 });
 
 const zPackageImport = z.object({
@@ -211,6 +212,8 @@ function printExtension(extension: z.infer<typeof zExtension>) {
 		extension.linterOptions &&
 			`\t\tlinterOptions: ${JSON.stringify(extension.linterOptions)}`,
 		extension.rules && `\t\trules: ${printExtensionRules(extension.rules)},`,
+		extension.settings &&
+			`\t\tsettings: ${JSON.stringify(extension.settings)},`,
 		"\t\t}",
 	]
 		.filter(Boolean)

@@ -1,5 +1,5 @@
 import { BaseOptionsFor, createBase } from "create";
-import { $ } from "execa";
+import { execaCommand } from "execa";
 import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
 import lazyValue from "lazy-value";
@@ -95,7 +95,7 @@ export const base = createBase({
 		);
 
 		const npmDefaults = tryCatchLazyValueAsync(async () => {
-			const whoami = (await $(`npm whoami`)).stdout;
+			const whoami = (await execaCommand(`npm whoami`)).stdout;
 			return whoami ? await npmUser(whoami) : undefined;
 		});
 

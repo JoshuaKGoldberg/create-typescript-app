@@ -36,6 +36,7 @@ const zExtension = z.object({
 	extends: z.array(z.string()).optional(),
 	files: z.array(z.string()).optional(),
 	languageOptions: z.unknown().optional(),
+	linterOptions: z.unknown().optional(),
 	plugins: z.record(z.string(), z.string()).optional(),
 	rules: zExtensionRules.optional(),
 });
@@ -78,7 +79,12 @@ export const blockESLint = base.createBlock({
 		].sort();
 
 		const extensionLines = [
-			"eslint.configs.recommended",
+			printExtension({
+				extends: ["eslint.configs.recommended"],
+				linterOptions: {
+					reportUnusedDisableDirectives: "error",
+				},
+			}),
 			printExtension({
 				extends: [
 					"...tseslint.configs.strictTypeChecked",
@@ -185,11 +191,6 @@ export default tseslint.config(
 	{
 		ignores: [${ignoreLines.map((ignore) => JSON.stringify(ignore)).join(", ")}]
 	},
-	{
-		linterOptions: {
-			reportUnusedDisableDirectives: "error",
-		}
-	},
 	${extensionLines.join(",		")}
 );`,
 			},
@@ -205,6 +206,8 @@ function printExtension(extension: z.infer<typeof zExtension>) {
 			`\t\tfiles: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
 		extension.languageOptions &&
 			`\t\tlanguageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
+		extension.linterOptions &&
+			`\t\tlinterOptions: ${JSON.stringify(extension.linterOptions)}`,
 		extension.rules && `\t\trules: ${printExtensionRules(extension.rules)},`,
 		"\t\t}",
 	]

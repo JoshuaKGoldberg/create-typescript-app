@@ -35,7 +35,7 @@ pnpm lint:knip
 				blockPackageJson({
 					properties: {
 						devDependencies: {
-							knip: "5.27.2",
+							knip: "latest",
 						},
 						scripts: {
 							"lint:knip": "knip",

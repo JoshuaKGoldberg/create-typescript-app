@@ -47,7 +47,7 @@
 		"execa": "^9.3.1",
 		"get-github-auth-token": "^0.1.0",
 		"git-remote-origin-url": "^4.0.0",
-		"git-url-parse": "^15.0.0",
+		"git-url-parse": "^16.0.0",
 		"js-yaml": "^4.1.0",
 		"lazy-value": "^3.0.0",
 		"npm-user": "^6.1.1",

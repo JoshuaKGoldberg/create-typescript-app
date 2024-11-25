@@ -77,6 +77,10 @@ describe("createESLintConfig", () => {
 				      },
 				    },
 				  },
+				  {
+				    extends: [tseslint.configs.disableTypeChecked],
+				    files: ["**/*.md/*.ts"],
+				  },
 				);
 				"
 			`);
@@ -160,6 +164,10 @@ describe("createESLintConfig", () => {
 				        type: "natural",
 				      },
 				    },
+				  },
+				  {
+				    extends: [tseslint.configs.disableTypeChecked],
+				    files: ["**/*.md/*.ts"],
 				  },
 				  {
 				    files: ["**/*.test.*"],

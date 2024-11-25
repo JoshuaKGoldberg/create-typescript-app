@@ -126,6 +126,10 @@ export default tseslint.config(
 			},
 		},`
 		}
+	},
+	{
+		extends: [tseslint.configs.disableTypeChecked],
+		files: ["**/*.md/*.ts"],
 	},${
 		options.excludeTests
 			? ""

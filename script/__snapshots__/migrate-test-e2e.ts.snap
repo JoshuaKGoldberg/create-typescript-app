@@ -71,6 +71,7 @@ exports[`expected file changes > cspell.json 1`] = `
  	"ignorePaths": [
 -		"./coverage*",
 -		"./script/__snapshots__",
+ 		".all-contributorsrc",
  		".github",
  		"CHANGELOG.md",
 +		"coverage",

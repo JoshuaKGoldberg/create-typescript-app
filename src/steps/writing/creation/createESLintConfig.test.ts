@@ -80,6 +80,12 @@ describe("createESLintConfig", () => {
 				  {
 				    extends: [tseslint.configs.disableTypeChecked],
 				    files: ["**/*.md/*.ts"],
+				    rules: {
+				      "n/no-missing-import": [
+				        "error",
+				        { allowModules: ["create-typescript-app"] },
+				      ],
+				    },
 				  },
 				);
 				"
@@ -168,6 +174,12 @@ describe("createESLintConfig", () => {
 				  {
 				    extends: [tseslint.configs.disableTypeChecked],
 				    files: ["**/*.md/*.ts"],
+				    rules: {
+				      "n/no-missing-import": [
+				        "error",
+				        { allowModules: ["create-typescript-app"] },
+				      ],
+				    },
 				  },
 				  {
 				    files: ["**/*.test.*"],

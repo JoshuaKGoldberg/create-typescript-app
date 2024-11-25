@@ -6,7 +6,7 @@ import { createDotVSCode } from "./dotVSCode.js";
 /* spellchecker: disable */
 function fakeOptions(
 	getExcludeValue: (exclusionName: string) => boolean,
-	bin?: string | undefined,
+	bin?: string,
 ) {
 	return {
 		access: "public",

@@ -42,6 +42,31 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
 
+	const rules = `{
+			${
+				options.excludeLintJSDoc
+					? ""
+					: `
+
+			// These on-by-default rules don't work well for this repo and we like them off.
+			"jsdoc/lines-before-block": "off",`
+			}${
+				options.excludeLintStylistic
+					? ""
+					: `
+
+			// Stylistic concerns that don't interfere with Prettier
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
+			"no-useless-rename": "error",
+			"object-shorthand": "error",
+			"operator-assignment": "error",`
+			}
+		}`;
+
 	return await formatTypeScript(`${imports.join("\n")}
 
 export default tseslint.config(
@@ -54,8 +79,12 @@ export default tseslint.config(
 		}
 			"lib",
 			"node_modules",
-			"pnpm-lock.yaml",
-			"**/*.snap",
+			"pnpm-lock.yaml",${
+				options.excludeTests
+					? ""
+					: `
+				"**/*.snap",`
+			}
 		],
 	},
 	{
@@ -64,7 +93,7 @@ export default tseslint.config(
 		},
 	},
 	${elements.join("\n")}
-	...tseslint.config({
+	{
 		extends: ${
 			options.excludeLintStylistic
 				? `tseslint.configs.${tseslintBase}TypeChecked`
@@ -77,72 +106,26 @@ export default tseslint.config(
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ["*.*s", "eslint.config.js"],
-					defaultProject: "./tsconfig.json",
+					allowDefaultProject: ["*.config.*s"],
 				},
 				tsconfigRootDir: import.meta.dirname
 			},
-		},
-		rules: {
-			${
-				!options.excludeLintJSDoc || !options.excludeLintStylistic
-					? "// These off-by-default rules work well for this repo and we like them on."
-					: ""
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-			"logical-assignment-operators": [
-				"error",
-				"always",
-				{ enforceForIfStatements: true },
-			],
-			"operator-assignment": "error",`
-			}
-
-			// These on-by-default rules don't work well for this repo and we like them off.${
-				options.excludeLintJSDoc
-					? ""
-					: `
-			"jsdoc/lines-before-block": "off",`
-			}
-			"no-constant-condition": "off",
-
-			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],${
-				options.excludeLintPerfectionist
-					? ""
-					: `
-			"n/no-unsupported-features/node-builtins": [
-				"error",
-				{ allowExperimental: true },
-			],
-			"perfectionist/sort-objects": [
-				"error",
-				{
-					order: "asc",
-					partitionByComment: true,
-					type: "natural",
-				},
-			],`
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-
-			// Stylistic concerns that don't interfere with Prettier
-			"no-useless-rename": "error",
-			"object-shorthand": "error",`
-			}
-		},
-	}),
-	{
-		files: ["*.jsonc"],
-		rules: {
-			"jsonc/comma-dangle": "off",
-			"jsonc/no-comments": "off",
-			"jsonc/sort-keys": "error",
-		},
+		},${
+			rules.replaceAll(/\s+/g, "") === "{}"
+				? ""
+				: `
+		rules: ${rules},`
+		}${
+			options.excludeLintPerfectionist
+				? ""
+				: `
+		settings: {
+			perfectionist: {
+				partitionByComment: true,
+				type: "natural",
+			},
+		},`
+		}
 	},
 	{
 		extends: [tseslint.configs.disableTypeChecked],
@@ -159,13 +142,8 @@ export default tseslint.config(
 			: `
 	{
 		files: ["**/*.test.*"],
-		languageOptions: {
-			globals: vitest.environments.env.globals,
-		},
-		plugins: { vitest, },
+		extends: [vitest.configs.recommended],
 		rules: {
-			...vitest.configs.recommended.rules,
-
 			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",

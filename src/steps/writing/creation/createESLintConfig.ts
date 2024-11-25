@@ -88,16 +88,6 @@ export default tseslint.config(
 				!options.excludeLintJSDoc || !options.excludeLintStylistic
 					? "// These off-by-default rules work well for this repo and we like them on."
 					: ""
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-			"logical-assignment-operators": [
-				"error",
-				"always",
-				{ enforceForIfStatements: true },
-			],
-			"operator-assignment": "error",`
 			}
 
 			// These on-by-default rules don't work well for this repo and we like them off.${
@@ -131,8 +121,14 @@ export default tseslint.config(
 					: `
 
 			// Stylistic concerns that don't interfere with Prettier
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
 			"no-useless-rename": "error",
-			"object-shorthand": "error",`
+			"object-shorthand": "error",
+			"operator-assignment": "error",`
 			}
 		},
 	}),

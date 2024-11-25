@@ -166,12 +166,6 @@ describe("createESLintConfig", () => {
 				    },
 				    rules: {
 				      // These off-by-default rules work well for this repo and we like them on.
-				      "logical-assignment-operators": [
-				        "error",
-				        "always",
-				        { enforceForIfStatements: true },
-				      ],
-				      "operator-assignment": "error",
 
 				      // These on-by-default rules don't work well for this repo and we like them off.
 				      "jsdoc/lines-before-block": "off",
@@ -193,8 +187,14 @@ describe("createESLintConfig", () => {
 				      ],
 
 				      // Stylistic concerns that don't interfere with Prettier
+				      "logical-assignment-operators": [
+				        "error",
+				        "always",
+				        { enforceForIfStatements: true },
+				      ],
 				      "no-useless-rename": "error",
 				      "object-shorthand": "error",
+				      "operator-assignment": "error",
 				    },
 				  }),
 				  {

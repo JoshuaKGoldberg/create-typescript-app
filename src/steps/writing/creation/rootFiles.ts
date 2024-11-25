@@ -95,6 +95,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			"cspell.json": await formatJson({
 				dictionaries: ["typescript"],
 				ignorePaths: [
+					...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 					".github",
 					"CHANGELOG.md",
 					...(options.excludeTests ? [] : ["coverage"]),

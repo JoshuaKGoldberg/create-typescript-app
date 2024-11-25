@@ -1,3 +1,9 @@
+## [1.73.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.6...v1.73.7) (2024-11-25)
+
+### Bug Fixes
+
+- remove outdated vscode-eslint eslint.useFlatConfig setting ([#1695](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1695)) ([531142d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/531142d3e4f82715358b2692fe53dddc662b20a9)), closes [#1692](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1692)
+
 ## [1.73.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.5...v1.73.6) (2024-11-24)
 
 ### Bug Fixes

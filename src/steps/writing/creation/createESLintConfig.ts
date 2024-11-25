@@ -42,79 +42,14 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
 
-	return await formatTypeScript(`${imports.join("\n")}
-
-export default tseslint.config(
-	{
-		ignores: [${
-			options.excludeTests
-				? ""
-				: `
-			"coverage*",`
-		}
-			"lib",
-			"node_modules",
-			"pnpm-lock.yaml",
-			"**/*.snap",
-		],
-	},
-	{
-		linterOptions: {
-			reportUnusedDisableDirectives: "error",
-		},
-	},
-	${elements.join("\n")}
-	...tseslint.config({
-		extends: ${
-			options.excludeLintStylistic
-				? `tseslint.configs.${tseslintBase}TypeChecked`
-				: `[
-			...tseslint.configs.${tseslintBase}TypeChecked,
-			...tseslint.configs.stylisticTypeChecked,
-		]`
-		},
-		files: ["**/*.js", "**/*.ts"],
-		languageOptions: {
-			parserOptions: {
-				projectService: {
-					allowDefaultProject: ["*.*s", "eslint.config.js"],
-					defaultProject: "./tsconfig.json",
-				},
-				tsconfigRootDir: import.meta.dirname
-			},
-		},
-		rules: {
+	const rules = `{
 			${
-				!options.excludeLintJSDoc || !options.excludeLintStylistic
-					? "// These off-by-default rules work well for this repo and we like them on."
-					: ""
-			}
-
-			// These on-by-default rules don't work well for this repo and we like them off.${
 				options.excludeLintJSDoc
 					? ""
 					: `
-			"jsdoc/lines-before-block": "off",`
-			}
-			"no-constant-condition": "off",
 
-			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],${
-				options.excludeLintPerfectionist
-					? ""
-					: `
-			"n/no-unsupported-features/node-builtins": [
-				"error",
-				{ allowExperimental: true },
-			],
-			"perfectionist/sort-objects": [
-				"error",
-				{
-					order: "asc",
-					partitionByComment: true,
-					type: "natural",
-				},
-			],`
+			// These on-by-default rules don't work well for this repo and we like them off.
+			"jsdoc/lines-before-block": "off",`
 			}${
 				options.excludeLintStylistic
 					? ""
@@ -130,38 +65,75 @@ export default tseslint.config(
 			"object-shorthand": "error",
 			"operator-assignment": "error",`
 			}
-		},
-	}),
+		}`;
+
+	return await formatTypeScript(`${imports.join("\n")}
+
+export default tseslint.config(
 	{
-		files: ["*.jsonc"],
-		rules: {
-			"jsonc/comma-dangle": "off",
-			"jsonc/no-comments": "off",
-			"jsonc/sort-keys": "error",
-		},
+		ignores: [${
+			options.excludeTests
+				? ""
+				: `
+			"coverage*",`
+		}
+			"lib",
+			"node_modules",
+			"pnpm-lock.yaml",${
+				options.excludeTests
+					? ""
+					: `
+				"**/*.snap",`
+			}
+		],
 	},
 	{
-		extends: [tseslint.configs.disableTypeChecked],
-		files: ["**/*.md/*.ts"],
-		rules: {
-			"n/no-missing-import": [
-				"error",
-				{ allowModules: ["${options.repository}"] },
-			],
+		linterOptions: {
+			reportUnusedDisableDirectives: "error",
 		},
+	},
+	${elements.join("\n")}
+	{
+		extends: ${
+			options.excludeLintStylistic
+				? `tseslint.configs.${tseslintBase}TypeChecked`
+				: `[
+			...tseslint.configs.${tseslintBase}TypeChecked,
+			...tseslint.configs.stylisticTypeChecked,
+		]`
+		},
+		files: ["**/*.js", "**/*.ts"],
+		languageOptions: {
+			parserOptions: {
+				projectService: {
+					allowDefaultProject: ["*.config.*s"],
+				},
+				tsconfigRootDir: import.meta.dirname
+			},
+		},${
+			rules.replaceAll(/\s+/g, "") === "{}"
+				? ""
+				: `
+		rules: ${rules},`
+		}${
+			options.excludeLintPerfectionist
+				? ""
+				: `
+		settings: {
+			perfectionist: {
+				partitionByComment: true,
+				type: "natural",
+			},
+		},`
+		}
 	},${
 		options.excludeTests
 			? ""
 			: `
 	{
 		files: ["**/*.test.*"],
-		languageOptions: {
-			globals: vitest.environments.env.globals,
-		},
-		plugins: { vitest, },
+		extends: [vitest.configs.recommended],
 		rules: {
-			...vitest.configs.recommended.rules,
-
 			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",

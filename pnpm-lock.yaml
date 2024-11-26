@@ -130,8 +130,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(eslint@9.9.0(jiti@2.4.0))(typescript@5.6.2)
       eslint-plugin-regexp:
-        specifier: 2.6.0
-        version: 2.6.0(eslint@9.9.0(jiti@2.4.0))
+        specifier: 2.7.0
+        version: 2.7.0(eslint@9.9.0(jiti@2.4.0))
       eslint-plugin-yml:
         specifier: 1.14.0
         version: 1.14.0(eslint@9.9.0(jiti@2.4.0))
@@ -2019,8 +2019,8 @@ packages:
       vue-eslint-parser:
         optional: true
 
-  eslint-plugin-regexp@2.6.0:
-    resolution: {integrity: sha512-FCL851+kislsTEQEMioAlpDuK5+E5vs0hi1bF8cFlPlHcEjeRhuAzEsGikXRreE+0j4WhW2uO54MqTjXtYOi3A==}
+  eslint-plugin-regexp@2.7.0:
+    resolution: {integrity: sha512-U8oZI77SBtH8U3ulZ05iu0qEzIizyEDXd+BWHvyVxTOjGwcDcvy/kEpgFG4DYca2ByRLiVPFZ2GeH7j1pdvZTA==}
     engines: {node: ^18 || >=20}
     peerDependencies:
       eslint: '>=8.44.0'
@@ -5869,7 +5869,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-regexp@2.6.0(eslint@9.9.0(jiti@2.4.0)):
+  eslint-plugin-regexp@2.7.0(eslint@9.9.0(jiti@2.4.0)):
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.9.0(jiti@2.4.0))
       '@eslint-community/regexpp': 4.11.0

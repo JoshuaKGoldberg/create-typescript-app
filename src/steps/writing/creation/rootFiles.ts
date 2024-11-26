@@ -27,11 +27,11 @@ export async function createRootFiles(options: Options) {
 		}),
 		".nvmrc": `20.12.2\n`,
 		".prettierignore": formatIgnoreFile([
-			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
-			".husky/",
-			...(options.excludeTests ? [] : ["coverage/"]),
-			"lib/",
-			"pnpm-lock.yaml",
+			...(options.excludeAllContributors ? [] : ["/.all-contributorsrc"]),
+			"/.husky",
+			...(options.excludeTests ? [] : ["/coverage"]),
+			"/lib",
+			"/pnpm-lock.yaml",
 		]),
 		".prettierrc.json": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",

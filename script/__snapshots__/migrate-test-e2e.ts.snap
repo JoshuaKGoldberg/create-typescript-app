@@ -31,22 +31,22 @@ exports[`expected file changes > .gitignore 1`] = `
 "--- a/.gitignore
 +++ b/.gitignore
 @@ ... @@
--coverage*/
-+coverage/
- lib/
- node_modules/"
+-/coverage*
++/coverage
+ /lib
+ /node_modules"
 `;
 
 exports[`expected file changes > .prettierignore 1`] = `
 "--- a/.prettierignore
 +++ b/.prettierignore
 @@ ... @@
- .all-contributorsrc
- .husky/
--coverage*/
-+coverage/
- lib/
- pnpm-lock.yaml"
+ /.all-contributorsrc
+ /.husky
+-/coverage*
++/coverage
+ /lib
+ /pnpm-lock.yaml"
 `;
 
 exports[`expected file changes > README.md 1`] = `

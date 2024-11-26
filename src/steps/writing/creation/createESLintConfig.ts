@@ -42,19 +42,9 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
 
-	const rules = `{
-			${
-				options.excludeLintJSDoc
-					? ""
-					: `
-
-			// These on-by-default rules don't work well for this repo and we like them off.
-			"jsdoc/lines-before-block": "off",`
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-
+	const rules =
+		!options.excludeLintStylistic &&
+		`{
 			// Stylistic concerns that don't interfere with Prettier
 			"logical-assignment-operators": [
 				"error",
@@ -63,8 +53,7 @@ export async function createESLintConfig(options: Options) {
 			],
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
-			"operator-assignment": "error",`
-			}
+			"operator-assignment": "error",
 		}`;
 
 	return await formatTypeScript(`${imports.join("\n")}
@@ -111,10 +100,10 @@ export default tseslint.config(
 				tsconfigRootDir: import.meta.dirname
 			},
 		},${
-			rules.replaceAll(/\s+/g, "") === "{}"
-				? ""
-				: `
+			rules
+				? `
 		rules: ${rules},`
+				: ""
 		}${
 			options.excludeLintPerfectionist
 				? ""

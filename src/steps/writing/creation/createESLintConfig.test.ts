@@ -148,9 +148,6 @@ describe("createESLintConfig", () => {
 				      },
 				    },
 				    rules: {
-				      // These on-by-default rules don't work well for this repo and we like them off.
-				      "jsdoc/lines-before-block": "off",
-
 				      // Stylistic concerns that don't interfere with Prettier
 				      "logical-assignment-operators": [
 				        "error",

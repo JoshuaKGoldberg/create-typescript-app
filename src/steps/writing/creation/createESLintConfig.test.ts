@@ -56,7 +56,7 @@ describe("createESLintConfig", () => {
 
 				export default tseslint.config(
 				  {
-				    ignores: ["lib", "node_modules", "pnpm-lock.yaml", "**/*.snap"],
+				    ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 				  },
 				  {
 				    linterOptions: {
@@ -65,32 +65,16 @@ describe("createESLintConfig", () => {
 				  },
 				  eslint.configs.recommended,
 				  n.configs["flat/recommended"],
-				  ...tseslint.config({
+				  {
 				    extends: tseslint.configs.recommendedTypeChecked,
 				    files: ["**/*.js", "**/*.ts"],
 				    languageOptions: {
 				      parserOptions: {
 				        projectService: {
-				          allowDefaultProject: ["*.*s", "eslint.config.js"],
-				          defaultProject: "./tsconfig.json",
+				          allowDefaultProject: ["*.config.*s"],
 				        },
 				        tsconfigRootDir: import.meta.dirname,
 				      },
-				    },
-				    rules: {
-				      // These on-by-default rules don't work well for this repo and we like them off.
-				      "no-constant-condition": "off",
-
-				      // These on-by-default rules work well for this repo if configured
-				      "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-				    },
-				  }),
-				  {
-				    files: ["*.jsonc"],
-				    rules: {
-				      "jsonc/comma-dangle": "off",
-				      "jsonc/no-comments": "off",
-				      "jsonc/sort-keys": "error",
 				    },
 				  },
 				  {
@@ -149,7 +133,7 @@ describe("createESLintConfig", () => {
 				  packageJson,
 				  perfectionist.configs["recommended-natural"],
 				  regexp.configs["flat/recommended"],
-				  ...tseslint.config({
+				  {
 				    extends: [
 				      ...tseslint.configs.strictTypeChecked,
 				      ...tseslint.configs.stylisticTypeChecked,
@@ -158,51 +142,27 @@ describe("createESLintConfig", () => {
 				    languageOptions: {
 				      parserOptions: {
 				        projectService: {
-				          allowDefaultProject: ["*.*s", "eslint.config.js"],
-				          defaultProject: "./tsconfig.json",
+				          allowDefaultProject: ["*.config.*s"],
 				        },
 				        tsconfigRootDir: import.meta.dirname,
 				      },
 				    },
 				    rules: {
-				      // These off-by-default rules work well for this repo and we like them on.
+				      // Stylistic concerns that don't interfere with Prettier
 				      "logical-assignment-operators": [
 				        "error",
 				        "always",
 				        { enforceForIfStatements: true },
 				      ],
-				      "operator-assignment": "error",
-
-				      // These on-by-default rules don't work well for this repo and we like them off.
-				      "jsdoc/lines-before-block": "off",
-				      "no-constant-condition": "off",
-
-				      // These on-by-default rules work well for this repo if configured
-				      "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
-				      "n/no-unsupported-features/node-builtins": [
-				        "error",
-				        { allowExperimental: true },
-				      ],
-				      "perfectionist/sort-objects": [
-				        "error",
-				        {
-				          order: "asc",
-				          partitionByComment: true,
-				          type: "natural",
-				        },
-				      ],
-
-				      // Stylistic concerns that don't interfere with Prettier
 				      "no-useless-rename": "error",
 				      "object-shorthand": "error",
+				      "operator-assignment": "error",
 				    },
-				  }),
-				  {
-				    files: ["*.jsonc"],
-				    rules: {
-				      "jsonc/comma-dangle": "off",
-				      "jsonc/no-comments": "off",
-				      "jsonc/sort-keys": "error",
+				    settings: {
+				      perfectionist: {
+				        partitionByComment: true,
+				        type: "natural",
+				      },
 				    },
 				  },
 				  {
@@ -214,13 +174,8 @@ describe("createESLintConfig", () => {
 				  },
 				  {
 				    files: ["**/*.test.*"],
-				    languageOptions: {
-				      globals: vitest.environments.env.globals,
-				    },
-				    plugins: { vitest },
+				    extends: [vitest.configs.recommended],
 				    rules: {
-				      ...vitest.configs.recommended.rules,
-
 				      // These on-by-default rules aren't useful in test files.
 				      "@typescript-eslint/no-unsafe-assignment": "off",
 				      "@typescript-eslint/no-unsafe-call": "off",

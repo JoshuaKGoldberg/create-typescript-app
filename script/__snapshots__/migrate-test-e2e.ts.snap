@@ -71,6 +71,7 @@ exports[`expected file changes > cspell.json 1`] = `
  	"ignorePaths": [
 -		"./coverage*",
 -		"./script/__snapshots__",
+ 		".all-contributorsrc",
  		".github",
  		"CHANGELOG.md",
 +		"coverage",
@@ -129,21 +130,19 @@ exports[`expected file changes > eslint.config.js 1`] = `
  			parserOptions: {
  				projectService: {
 -					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
-+					allowDefaultProject: ["*.*s", "eslint.config.js"],
- 					defaultProject: "./tsconfig.json",
++					allowDefaultProject: ["*.config.*s"],
  				},
  				tsconfigRootDir: import.meta.dirname,
-@@ ... @@ export default tseslint.config(
- 			"no-constant-condition": "off",
- 
- 			// These on-by-default rules work well for this repo if configured
+ 			},
+ 		},
+ 		rules: {
+-			// These on-by-default rules work well for this repo if configured
 -			"@typescript-eslint/no-unnecessary-condition": [
 -				"error",
 -				{
 -					allowConstantLoopConditions: true,
 -				},
 -			],
- 			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 -			"@typescript-eslint/prefer-nullish-coalescing": [
 -				"error",
 -				{ ignorePrimitives: true },
@@ -152,9 +151,31 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -				"error",
 -				{ allowBoolean: true, allowNullish: true, allowNumber: true },
 -			],
- 			"n/no-unsupported-features/node-builtins": [
+-			"n/no-unsupported-features/node-builtins": [
+-				"error",
+-				{ allowExperimental: true },
+-			],
+-
+ 			// Stylistic concerns that don't interfere with Prettier
+ 			"logical-assignment-operators": [
  				"error",
- 				{ allowExperimental: true },"
+@@ ... @@ export default tseslint.config(
+ 			},
+ 		},
+ 	},
++	{
++		extends: [tseslint.configs.disableTypeChecked],
++		files: ["**/*.md/*.ts"],
++		rules: {
++			"n/no-missing-import": [
++				"error",
++				{ allowModules: ["create-typescript-app"] },
++			],
++		},
++	},
+ 	{
+ 		extends: [vitest.configs.recommended],
+ 		files: ["**/*.test.*"],"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

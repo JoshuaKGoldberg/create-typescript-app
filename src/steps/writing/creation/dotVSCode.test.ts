@@ -6,7 +6,7 @@ import { createDotVSCode } from "./dotVSCode.js";
 /* spellchecker: disable */
 function fakeOptions(
 	getExcludeValue: (exclusionName: string) => boolean,
-	bin?: string | undefined,
+	bin?: string,
 ) {
 	return {
 		access: "public",
@@ -74,7 +74,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -149,7 +148,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -216,7 +214,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -272,7 +269,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",

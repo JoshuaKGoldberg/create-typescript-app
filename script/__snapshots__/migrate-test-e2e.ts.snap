@@ -162,18 +162,22 @@ exports[`expected file changes > eslint.config.js 1`] = `
  			"logical-assignment-operators": [
  				"error",
 @@ ... @@ export default tseslint.config(
- 	{
- 		extends: [tseslint.configs.disableTypeChecked],
- 		files: ["**/*.md/*.ts"],
+ 			},
+ 		},
+ 	},
++	{
++		extends: [tseslint.configs.disableTypeChecked],
++		files: ["**/*.md/*.ts"],
 +		rules: {
 +			"n/no-missing-import": [
 +				"error",
 +				{ allowModules: ["create-typescript-app"] },
 +			],
 +		},
- 	},
++	},
  	{
- 		extends: [vitest.configs.recommended],"
+ 		extends: [vitest.configs.recommended],
+ 		files: ["**/*.test.*"],"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

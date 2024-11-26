@@ -1,3 +1,9 @@
+# [1.75.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.74.1...v1.75.0) (2024-11-26)
+
+### Features
+
+- remove now-unnecessary disable of jsdoc/lines-before-block ([#1701](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1701)) ([6ea503c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6ea503c81be19f1696a9efcb840b9e9f05a2c9a2)), closes [#1698](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1698)
+
 ## [1.74.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.74.0...v1.74.1) (2024-11-26)
 
 ### Bug Fixes

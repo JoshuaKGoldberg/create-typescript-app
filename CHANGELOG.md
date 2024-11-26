@@ -1,3 +1,9 @@
+## [1.74.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.74.0...v1.74.1) (2024-11-26)
+
+### Bug Fixes
+
+- finish removing \*_/_.md/\*.ts eslint.config.js overrides ([#1699](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1699)) ([f27f90c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f27f90c6264dafb97776a8d7766f56e85db51076)), closes [#1690](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1690)
+
 # [1.74.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.7...v1.74.0) (2024-11-25)
 
 ### Features

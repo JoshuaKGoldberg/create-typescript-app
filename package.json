@@ -84,7 +84,7 @@
 		"eslint-plugin-package-json": "0.15.2",
 		"eslint-plugin-perfectionist": "3.2.0",
 		"eslint-plugin-regexp": "2.6.0",
-		"eslint-plugin-yml": "1.14.0",
+		"eslint-plugin-yml": "1.15.0",
 		"globby": "14.0.2",
 		"husky": "9.1.4",
 		"jsonc-eslint-parser": "2.4.0",

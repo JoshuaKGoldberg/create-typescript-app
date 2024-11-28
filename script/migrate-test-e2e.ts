@@ -102,7 +102,7 @@ describe("expected file changes", () => {
 	});
 });
 
-test("unexpected file changes", () => {
+test("unexpected file changes", async () => {
 	const { stdout: gitStatus } = await $`git status`;
 	console.log(`Stdout from running \`git status\`:\n${gitStatus}`);
 

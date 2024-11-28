@@ -1,7 +1,6 @@
 {
 	"dictionaries": ["typescript"],
 	"ignorePaths": [
-		".all-contributorsrc",
 		"./coverage*",
 		"./script/__snapshots__",
 		".all-contributorsrc",

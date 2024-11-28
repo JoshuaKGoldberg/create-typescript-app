@@ -64,17 +64,6 @@ export default tseslint.config(
 			},
 		},
 		rules: {
-			// These off-by-default rules work well for this repo and we like them on.
-			"logical-assignment-operators": [
-				"error",
-				"always",
-				{ enforceForIfStatements: true },
-			],
-			"operator-assignment": "error",
-
-			// These on-by-default rules don't work well for this repo and we like them off.
-			"jsdoc/lines-before-block": "off",
-
 			// These on-by-default rules work well for this repo if configured
 			"@typescript-eslint/no-unnecessary-condition": [
 				"error",
@@ -82,7 +71,6 @@ export default tseslint.config(
 					allowConstantLoopConditions: true,
 				},
 			],
-			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 			"@typescript-eslint/prefer-nullish-coalescing": [
 				"error",
 				{ ignorePrimitives: true },
@@ -97,22 +85,20 @@ export default tseslint.config(
 			],
 
 			// Stylistic concerns that don't interfere with Prettier
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
+			"operator-assignment": "error",
 		},
 		settings: {
 			perfectionist: {
 				partitionByComment: true,
 				type: "natural",
 			},
-		},
-	},
-	{
-		files: ["*.jsonc"],
-		rules: {
-			"jsonc/comma-dangle": "off",
-			"jsonc/no-comments": "off",
-			"jsonc/sort-keys": "error",
 		},
 	},
 	{
@@ -123,6 +109,7 @@ export default tseslint.config(
 		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
 		rules: {
+			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
 		},

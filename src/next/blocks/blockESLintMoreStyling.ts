@@ -11,22 +11,16 @@ export const blockESLintMoreStyling = base.createBlock({
 				blockESLint({
 					rules: [
 						{
-							comment:
-								"These off-by-default rules work well for this repo and we like them on.",
+							comment: "Stylistic concerns that don't interfere with Prettier",
 							entries: {
 								"logical-assignment-operators": [
 									"error",
 									"always",
 									{ enforceForIfStatements: true },
 								],
-								"operator-assignment": "error",
-							},
-						},
-						{
-							comment: "Stylistic concerns that don't interfere with Prettier",
-							entries: {
 								"no-useless-rename": "error",
 								"object-shorthand": "error",
+								"operator-assignment": "error",
 							},
 						},
 					],

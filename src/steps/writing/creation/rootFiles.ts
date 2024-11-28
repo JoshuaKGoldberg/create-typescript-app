@@ -26,14 +26,13 @@ export async function createRootFiles(options: Options) {
 			]),
 		}),
 		".nvmrc": `20.12.2\n`,
-		".prettierignore": formatIgnoreFile(
-			[
-				".husky",
-				...(options.excludeTests ? [] : ["coverage"]),
-				"lib",
-				"pnpm-lock.yaml",
-			].sort(),
-		),
+		".prettierignore": formatIgnoreFile([
+			...(options.excludeAllContributors ? [] : ["/.all-contributorsrc"]),
+			"/.husky",
+			...(options.excludeTests ? [] : ["/coverage"]),
+			"/lib",
+			"/pnpm-lock.yaml",
+		]),
 		".prettierrc.json": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
 			overrides: [
@@ -44,8 +43,8 @@ export async function createRootFiles(options: Options) {
 			],
 			plugins: [
 				"prettier-plugin-curly",
-				"prettier-plugin-packagejson",
 				"prettier-plugin-sh",
+				"prettier-plugin-packagejson",
 			],
 			useTabs: true,
 		}),
@@ -96,13 +95,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			"cspell.json": await formatJson({
 				dictionaries: ["typescript"],
 				ignorePaths: [
+					...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 					".github",
 					"CHANGELOG.md",
 					...(options.excludeTests ? [] : ["coverage"]),
 					"lib",
 					"node_modules",
 					"pnpm-lock.yaml",
-				].filter(Boolean),
+				],
 			}),
 		}),
 		...(!options.excludeLintKnip && {

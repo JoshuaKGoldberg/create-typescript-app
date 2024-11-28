@@ -1,3 +1,93 @@
+# [1.75.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.74.1...v1.75.0) (2024-11-26)
+
+### Features
+
+- remove now-unnecessary disable of jsdoc/lines-before-block ([#1701](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1701)) ([6ea503c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6ea503c81be19f1696a9efcb840b9e9f05a2c9a2)), closes [#1698](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1698)
+
+## [1.74.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.74.0...v1.74.1) (2024-11-26)
+
+### Bug Fixes
+
+- finish removing \*_/_.md/\*.ts eslint.config.js overrides ([#1699](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1699)) ([f27f90c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f27f90c6264dafb97776a8d7766f56e85db51076)), closes [#1690](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1690)
+
+# [1.74.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.7...v1.74.0) (2024-11-25)
+
+### Features
+
+- streamlined eslint.config.js with better tseslint.config usage ([#1697](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1697)) ([f43d17f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f43d17ffe9e13575e6c7116259025d14790b47a9)), closes [#1690](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1690)
+
+## [1.73.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.6...v1.73.7) (2024-11-25)
+
+### Bug Fixes
+
+- remove outdated vscode-eslint eslint.useFlatConfig setting ([#1695](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1695)) ([531142d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/531142d3e4f82715358b2692fe53dddc662b20a9)), closes [#1692](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1692)
+
+## [1.73.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.5...v1.73.6) (2024-11-24)
+
+### Bug Fixes
+
+- **deps:** update dependency git-url-parse to v16 ([#1689](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1689)) ([ec44594](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ec445949ea51f8250ac21ccf29ef70bf1a88badb))
+
+## [1.73.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.4...v1.73.5) (2024-11-22)
+
+### Bug Fixes
+
+- **deps:** update dependency @clack/prompts to ^0.8.0 ([#1688](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1688)) ([056b748](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/056b7480f8040bfd4c4bd8145ee4e3dbcd277125))
+
+## [1.73.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.3...v1.73.4) (2024-11-03)
+
+### Bug Fixes
+
+- **deps:** update dependency execa to v9.5.0 ([#1676](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1676)) ([aaae70d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aaae70d8b65cb9030887719b3b6c1204da6cebbd))
+
+## [1.73.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.2...v1.73.3) (2024-10-18)
+
+### Bug Fixes
+
+- reset post-release back to npm pkg get again ([#1666](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1666)) ([e7921ee](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e7921eec45e1aaccafbfa57fa8f045ae1760f842)), closes [#1663](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1663) [#1665](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1665)
+
+## [1.73.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.1...v1.73.2) (2024-10-17)
+
+### Bug Fixes
+
+- use payload.release.tag_name for npm package release ([#1665](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1665)) ([96bf717](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/96bf7172de215c9ed12e8fdaeed75e3338c69962)), closes [#1115](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1115)
+
+## [1.73.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.73.0...v1.73.1) (2024-10-17)
+
+### Bug Fixes
+
+- simplify post-release.yml with release_tag instead of npm pkg get ([#1663](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1663)) ([d42e699](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d42e6994973e3575d83dd7640b534da2c97a3983)), closes [#1115](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1115)
+
+# [1.73.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.4...v1.73.0) (2024-10-10)
+
+### Features
+
+- are the types wrong workflow ([#1644](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1644)) ([3d30a68](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3d30a688d24f07d680c3c49d66e4b42915f6a7c5)), closes [#1633](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1633) [#1633](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1633) [/github.com/JoshuaKGoldberg/create-typescript-app/issues/1633#issuecomment-2290681567](https://github.com//github.com/JoshuaKGoldberg/create-typescript-app/issues/1633/issues/issuecomment-2290681567)
+
+## [1.72.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.3...v1.72.4) (2024-09-29)
+
+### Bug Fixes
+
+- **deps:** update dependency replace-in-file to v8.2.0 ([#1656](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1656)) ([857dd77](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/857dd77bfb523d5b88bfa50caee0750be6dd42d2))
+
+## [1.72.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.2...v1.72.3) (2024-09-23)
+
+### Bug Fixes
+
+- **deps:** update dependency execa to v9.4.0 ([#1654](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1654)) ([2cf2c00](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2cf2c00bd59456e6091066a6e7a06618036ee72e))
+
+## [1.72.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.1...v1.72.2) (2024-09-23)
+
+### Bug Fixes
+
+- **deps:** update dependency zod-validation-error to v3.4.0 ([#1653](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1653)) ([7399198](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7399198d36dde1752586c1688fe25ac80ef8118e))
+
+## [1.72.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.0...v1.72.1) (2024-08-29)
+
+### Bug Fixes
+
+- **deps:** update dependency git-url-parse to v15 ([#1645](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1645)) ([c98618f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c98618f756b9b9806e38467d0fc32c210912d75f))
+
 # [1.72.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.71.4...v1.72.0) (2024-08-24)
 
 ### Features

@@ -58,7 +58,8 @@
         "ideas",
         "bug",
         "maintenance",
-        "doc"
+        "doc",
+        "tool"
       ]
     },
     {
@@ -470,6 +471,15 @@
       "profile": "https://atila.io",
       "contributions": [
         "bug"
+      ]
+    },
+    {
+      "login": "valon-loshaj",
+      "name": "Valon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73202963?v=4",
+      "profile": "https://github.com/valon-loshaj",
+      "contributions": [
+        "doc"
       ]
     }
   ],

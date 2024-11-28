@@ -4,6 +4,7 @@
 		".all-contributorsrc",
 		"./coverage*",
 		"./script/__snapshots__",
+		".all-contributorsrc",
 		".github",
 		"CHANGELOG.md",
 		"lib",

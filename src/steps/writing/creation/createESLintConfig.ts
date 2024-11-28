@@ -5,9 +5,9 @@ export async function createESLintConfig(options: Options) {
 	const tseslintBase = options.excludeLintStrict ? "recommended" : "strict";
 
 	const imports = [
+		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
-		`import eslint from "@eslint/js";`,
 		!options.excludeTests && `import vitest from "@vitest/eslint-plugin";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,
@@ -42,20 +42,38 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
 
+	const rules =
+		!options.excludeLintStylistic &&
+		`{
+			// Stylistic concerns that don't interfere with Prettier
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
+			"no-useless-rename": "error",
+			"object-shorthand": "error",
+			"operator-assignment": "error",
+		}`;
+
 	return await formatTypeScript(`${imports.join("\n")}
 
 export default tseslint.config(
 	{
-		ignores: [
-			"**/*.snap",${
+		ignores: [${
+			options.excludeTests
+				? ""
+				: `
+			"coverage*",`
+		}
+			"lib",
+			"node_modules",
+			"pnpm-lock.yaml",${
 				options.excludeTests
 					? ""
 					: `
-			"coverage",`
+				"**/*.snap",`
 			}
-			"lib",
-			"node_modules",
-			"pnpm-lock.yaml",
 		],
 	},
 	{
@@ -76,43 +94,17 @@ export default tseslint.config(
 		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
 			parserOptions: {
-				projectService: { allowDefaultProject: ["*.config.*s"], },
-			},
-		},
-		rules: {
-			${
-				!options.excludeLintJSDoc || !options.excludeLintStylistic
-					? "// These off-by-default rules work well for this repo and we like them on."
-					: ""
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-			"logical-assignment-operators": [
-				"error",
-				"always",
-				{
-					enforceForIfStatements: true
+				projectService: {
+					allowDefaultProject: ["*.config.*s"],
 				},
-			],
-			"operator-assignment": "error",`
-			}${
-				options.excludeLintJSDoc
-					? ""
-					: `
-
-			// These on-by-default rules don't work well for this repo and we like them off.
-			"jsdoc/lines-before-block": "off",`
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-
-			// Stylistic concerns that don't interfere with Prettier
-			"no-useless-rename": "error",
-			"object-shorthand": "error",`
-			}
+				tsconfigRootDir: import.meta.dirname
+			},
 		},${
+			rules
+				? `
+		rules: ${rules},`
+				: ""
+		}${
 			options.excludeLintPerfectionist
 				? ""
 				: `
@@ -120,29 +112,28 @@ export default tseslint.config(
 			perfectionist: {
 				partitionByComment: true,
 				type: "natural",
-			}
-		}`
+			},
+		},`
 		}
-	},
-	{
-		files: ["*.jsonc"],
-		rules: {
-			"jsonc/comma-dangle": "off",
-			"jsonc/no-comments": "off",
-			"jsonc/sort-keys": "error",
-		},
 	},
 	{
 		extends: [tseslint.configs.disableTypeChecked],
 		files: ["**/*.md/*.ts"],
+		rules: {
+			"n/no-missing-import": [
+				"error",
+				{ allowModules: ["${options.repository}"] },
+			],
+		},
 	},${
 		options.excludeTests
 			? ""
 			: `
 	{
-		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
+		extends: [vitest.configs.recommended],
 		rules: {
+			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",
 		},
@@ -157,11 +148,17 @@ export default tseslint.config(
 			"yml/file-extension": ["error", { extension: "yml" }],
 			"yml/sort-keys": [
 				"error",
-				{ order: { type: "asc" }, pathPattern: "^.*$" },
+				{
+					order: { type: "asc" },
+					pathPattern: "^.*$",
+				},
 			],
 			"yml/sort-sequence-values": [
 				"error",
-				{ order: { type: "asc" }, pathPattern: "^.*$" },
+				{
+					order: { type: "asc" },
+					pathPattern: "^.*$",
+				},
 			],
 		},
 	},`

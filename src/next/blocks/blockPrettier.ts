@@ -86,7 +86,7 @@ pnpm format --write
 					".gitignore": "_",
 					"pre-commit": "npx lint-staged",
 				},
-				".prettierignore": [".husky", "lib", "pnpm-lock.yaml", ...ignores]
+				".prettierignore": ["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores]
 					.sort()
 					.join("\n"),
 				".prettierrc.json": JSON.stringify({

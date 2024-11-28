@@ -56,7 +56,7 @@ describe("createESLintConfig", () => {
 
 				export default tseslint.config(
 					{
-						ignores: ["**/*.snap", "lib", "node_modules", "pnpm-lock.yaml"],
+						ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 					},
 					{
 						linterOptions: {
@@ -70,22 +70,19 @@ describe("createESLintConfig", () => {
 						files: ["**/*.js", "**/*.ts"],
 						languageOptions: {
 							parserOptions: {
-								projectService: { allowDefaultProject: ["*.config.*s"] },
+								projectService: {
+									allowDefaultProject: ["*.config.*s"],
+								},
+								tsconfigRootDir: import.meta.dirname,
 							},
-						},
-						rules: {},
-					},
-					{
-						files: ["*.jsonc"],
-						rules: {
-							"jsonc/comma-dangle": "off",
-							"jsonc/no-comments": "off",
-							"jsonc/sort-keys": "error",
 						},
 					},
 					{
 						extends: [tseslint.configs.disableTypeChecked],
 						files: ["**/*.md/*.ts"],
+						rules: {
+							"n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
+						},
 					},
 				);
 				"
@@ -95,8 +92,8 @@ describe("createESLintConfig", () => {
 	it("creates a full config when all exclusions are disabled", async () => {
 		expect(await createESLintConfig(fakeOptions(() => false)))
 			.toMatchInlineSnapshot(`
-				"import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-				import eslint from "@eslint/js";
+				"import eslint from "@eslint/js";
+				import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 				import vitest from "@vitest/eslint-plugin";
 				import jsdoc from "eslint-plugin-jsdoc";
 				import jsonc from "eslint-plugin-jsonc";
@@ -110,7 +107,13 @@ describe("createESLintConfig", () => {
 
 				export default tseslint.config(
 					{
-						ignores: ["**/*.snap", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
+						ignores: [
+							"coverage*",
+							"lib",
+							"node_modules",
+							"pnpm-lock.yaml",
+							"**/*.snap",
+						],
 					},
 					{
 						linterOptions: {
@@ -138,26 +141,22 @@ describe("createESLintConfig", () => {
 						files: ["**/*.js", "**/*.ts"],
 						languageOptions: {
 							parserOptions: {
-								projectService: { allowDefaultProject: ["*.config.*s"] },
+								projectService: {
+									allowDefaultProject: ["*.config.*s"],
+								},
+								tsconfigRootDir: import.meta.dirname,
 							},
 						},
 						rules: {
-							// These off-by-default rules work well for this repo and we like them on.
+							// Stylistic concerns that don't interfere with Prettier
 							"logical-assignment-operators": [
 								"error",
 								"always",
-								{
-									enforceForIfStatements: true,
-								},
+								{ enforceForIfStatements: true },
 							],
-							"operator-assignment": "error",
-
-							// These on-by-default rules don't work well for this repo and we like them off.
-							"jsdoc/lines-before-block": "off",
-
-							// Stylistic concerns that don't interfere with Prettier
 							"no-useless-rename": "error",
 							"object-shorthand": "error",
+							"operator-assignment": "error",
 						},
 						settings: {
 							perfectionist: {
@@ -167,21 +166,17 @@ describe("createESLintConfig", () => {
 						},
 					},
 					{
-						files: ["*.jsonc"],
+						extends: [tseslint.configs.disableTypeChecked],
+						files: ["**/*.md/*.ts"],
 						rules: {
-							"jsonc/comma-dangle": "off",
-							"jsonc/no-comments": "off",
-							"jsonc/sort-keys": "error",
+							"n/no-missing-import": ["error", { allowModules: ["test-repository"] }],
 						},
 					},
 					{
-						extends: [tseslint.configs.disableTypeChecked],
-						files: ["**/*.md/*.ts"],
-					},
-					{
-						extends: [vitest.configs.recommended],
 						files: ["**/*.test.*"],
+						extends: [vitest.configs.recommended],
 						rules: {
+							// These on-by-default rules aren't useful in test files.
 							"@typescript-eslint/no-unsafe-assignment": "off",
 							"@typescript-eslint/no-unsafe-call": "off",
 						},
@@ -192,11 +187,17 @@ describe("createESLintConfig", () => {
 							"yml/file-extension": ["error", { extension: "yml" }],
 							"yml/sort-keys": [
 								"error",
-								{ order: { type: "asc" }, pathPattern: "^.*$" },
+								{
+									order: { type: "asc" },
+									pathPattern: "^.*$",
+								},
 							],
 							"yml/sort-sequence-values": [
 								"error",
-								{ order: { type: "asc" }, pathPattern: "^.*$" },
+								{
+									order: { type: "asc" },
+									pathPattern: "^.*$",
+								},
 							],
 						},
 					},

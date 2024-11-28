@@ -34,10 +34,16 @@ export const blockVitest = base.createBlock({
 						{
 							extends: ["vitest.configs.recommended"],
 							files: ["**/*.test.*"],
-							rules: {
-								"@typescript-eslint/no-unsafe-assignment": "off",
-								"@typescript-eslint/no-unsafe-call": "off",
-							},
+							rules: [
+								{
+									comment:
+										"// These on-by-default rules aren't useful in test files.",
+									entries: {
+										"@typescript-eslint/no-unsafe-assignment": "off",
+										"@typescript-eslint/no-unsafe-call": "off",
+									},
+								},
+							],
 						},
 					],
 					ignores: ["coverage", "**/*.snap"],

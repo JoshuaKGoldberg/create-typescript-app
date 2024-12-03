@@ -80,10 +80,10 @@ describe("writePackageJson", () => {
 			    "node": ">=18.3.0",
 			  },
 			  "files": [
-			    "lib/",
-			    "package.json",
 			    "LICENSE.md",
 			    "README.md",
+			    "lib/",
+			    "package.json",
 			  ],
 			  "license": "MIT",
 			  "lint-staged": {
@@ -135,6 +135,7 @@ describe("writePackageJson", () => {
 			excludeLintYml: true,
 			excludeReleases: true,
 			excludeRenovate: true,
+			excludeTests: true,
 		});
 
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
@@ -150,11 +151,11 @@ describe("writePackageJson", () => {
 			    "node": ">=18.3.0",
 			  },
 			  "files": [
+			    "LICENSE.md",
+			    "README.md",
 			    "bin/index.js",
 			    "lib/",
 			    "package.json",
-			    "LICENSE.md",
-			    "README.md",
 			  ],
 			  "license": "MIT",
 			  "lint-staged": {

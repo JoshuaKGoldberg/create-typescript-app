@@ -97,7 +97,6 @@ exports[`expected file changes > cspell.json 1`] = `
  		"outro",
  		"packagejson",
 -		"precommit",
- 		"quickstart",
  		"tada",
  		"tseslint",
  		"tsup",

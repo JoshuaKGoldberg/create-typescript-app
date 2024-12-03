@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { sortObject } from "../utils/sortObject.js";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 
 export const blockVSCode = base.createBlock({
 	about: {
@@ -27,10 +28,41 @@ export const blockVSCode = base.createBlock({
 			)
 			.optional(),
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { debuggers, extensions, settings, tasks } = addons;
 
 		return {
+			addons: [
+				blockDevelopmentDocs({
+					sections: {
+						Building: {
+							innerSections: options.bin
+								? [
+										{
+											contents: `
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
+To debug a \`bin\` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
+VS Code will automatically run the \`build\` task in the background before running \`${options.bin}\`.
+`,
+											heading: "Built App Debugging",
+										},
+									]
+								: [],
+						},
+						Testing: {
+							innerSections: [
+								{
+									contents: `
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
+To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
+`,
+									heading: "Debugging Tests",
+								},
+							],
+						},
+					},
+				}),
+			],
 			files: {
 				".vscode": {
 					"extensions.json":

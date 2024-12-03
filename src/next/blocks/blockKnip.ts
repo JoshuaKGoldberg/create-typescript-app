@@ -2,6 +2,7 @@ import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { getPackageDependencies } from "./packageData.js";
 
 export const blockKnip = base.createBlock({
 	about: {
@@ -12,15 +13,12 @@ export const blockKnip = base.createBlock({
 			addons: [
 				blockDevelopmentDocs({
 					sections: {
-						"Linting With Knip": {
-							level: 3,
-							text: `[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.
-You can run it with \`pnpm lint:knip\`:
-
-\`\`\`shell
-pnpm lint:knip
-\`\`\`
-`,
+						Linting: {
+							contents: {
+								items: [
+									`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
+								],
+							},
 						},
 					},
 				}),
@@ -34,9 +32,7 @@ pnpm lint:knip
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							knip: "latest",
-						},
+						devDependencies: getPackageDependencies("knip"),
 						scripts: {
 							"lint:knip": "knip",
 						},

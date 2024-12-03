@@ -25,7 +25,7 @@ export async function createRootFiles(options: Options) {
 				"node_modules/",
 			]),
 		}),
-		".nvmrc": `20.12.2\n`,
+		".nvmrc": `20.18.0\n`,
 		".prettierignore": formatIgnoreFile([
 			...(options.excludeAllContributors ? [] : ["/.all-contributorsrc"]),
 			"/.husky",
@@ -43,8 +43,8 @@ export async function createRootFiles(options: Options) {
 			],
 			plugins: [
 				"prettier-plugin-curly",
-				"prettier-plugin-sh",
 				"prettier-plugin-packagejson",
+				"prettier-plugin-sh",
 			],
 			useTabs: true,
 		}),
@@ -103,6 +103,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 					"node_modules",
 					"pnpm-lock.yaml",
 				],
+				words: [
+					...(options.excludeTests ? [] : ["codecov", "vitest"]),
+					...(options.excludeLintMd ? [] : ["markdownlint"]),
+				].sort(),
 			}),
 		}),
 		...(!options.excludeLintKnip && {

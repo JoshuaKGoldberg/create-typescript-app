@@ -16,8 +16,8 @@ export const blockNvmrc = base.createBlock({
 					? [
 							blockPackageJson({
 								properties: {
-									engine: {
-										node: `>=${options.node.minimum}`,
+									engines: {
+										node: options.node.minimum,
 									},
 								},
 							}),

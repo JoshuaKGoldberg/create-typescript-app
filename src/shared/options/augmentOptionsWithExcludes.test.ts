@@ -102,6 +102,7 @@ describe("augmentOptionsWithExcludes", () => {
 			excludeLintYml: true,
 			excludeReleases: true,
 			excludeRenovate: true,
+			excludeTemplatedBy: true,
 			excludeTests: true,
 		});
 	});

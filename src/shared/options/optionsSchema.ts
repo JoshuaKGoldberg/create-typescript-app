@@ -13,6 +13,7 @@ export const optionsSchemaShape = {
 		])
 		.optional(),
 	bin: z.string().optional(),
+	coverage: z.string().optional(),
 	description: z.string().optional(),
 	directory: z.string().optional(),
 	email: z
@@ -39,6 +40,7 @@ export const optionsSchemaShape = {
 	excludeLintYml: z.boolean().optional(),
 	excludeReleases: z.boolean().optional(),
 	excludeRenovate: z.boolean().optional(),
+	excludeTemplatedBy: z.boolean().optional(),
 	excludeTests: z.boolean().optional(),
 	funding: z.string().optional(),
 	guide: z.string().url().optional(),

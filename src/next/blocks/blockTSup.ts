@@ -2,8 +2,10 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
+import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { getPackageDependencies } from "./packageData.js";
 
 export const blockTSup = base.createBlock({
 	about: {
@@ -19,7 +21,8 @@ export const blockTSup = base.createBlock({
 			addons: [
 				blockDevelopmentDocs({
 					sections: {
-						Building: `
+						Building: {
+							contents: `
 Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
 
 \`\`\`shell
@@ -32,7 +35,11 @@ Add \`--watch\` to run the builder in a watch mode that continuously cleans and 
 pnpm build --watch
 \`\`\`
 `,
+						},
 					},
+				}),
+				blockESLint({
+					beforeLint: `Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
 				}),
 				blockGitHubActionsCI({
 					jobs: [
@@ -44,9 +51,7 @@ pnpm build --watch
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							tsup: "latest",
-						},
+						devDependencies: getPackageDependencies("tsup"),
 						scripts: {
 							build: "tsup",
 						},

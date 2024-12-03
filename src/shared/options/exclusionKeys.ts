@@ -107,6 +107,12 @@ export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
 			hint: "--exclude-renovate",
 			label: "Add a Renovate config to keep dependencies up-to-date with PRs.",
 		},
+		excludeTemplatedBy: {
+			hint: "--exclude-templated-by",
+			label:
+				'Add a _"This package was templated with create-typescript-app"_ notice at the end of the README.md.',
+			level: "minimal",
+		},
 		excludeTests: {
 			hint: "--exclude-tests",
 			label:

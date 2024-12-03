@@ -11,41 +11,38 @@ const headingAliases = new Map([
 	["tests", "Testing"],
 ]);
 
-function createLintingSections(options: Options) {
-	return Object.fromEntries(
-		[
-			!options.excludeLintPackages && {
-				command: "pnpm lint:packages",
-				heading: "Linting Duplicate Packages",
-				text: `[pnpm dedupe --check](https://pnpm.io/cli/dedupe) is used to check for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file.`,
-			},
-			!options.excludeLintSpelling && {
-				command: "pnpm lint:spelling",
-				heading: "Linting With CSpell",
-				text: `[cspell](https://cspell.org) is used to spell check across all source files.`,
-			},
-			!options.excludeLintKnip && {
-				command: "pnpm lint:knip",
-				heading: "Linting With Knip",
-				text: `[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.`,
-			},
-			!options.excludeLintMd && {
-				command: "pnpm lint:md",
-				heading: "Linting With Markdownlint",
-				text: `[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.`,
-			},
-		]
-			.filter((linter) => !!linter)
-			.map((linter) => [
-				`### ${linter.heading}`,
-				`${linter.text}
-You can run it with \`${linter.command}\`:
+function createLintingSection(options: Options) {
+	const lintLines = [
+		!options.excludeLintKnip &&
+			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
+		!options.excludeLintMd &&
+			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files`,
+		!options.excludeLintPackages &&
+			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
+		!options.excludeLintSpelling &&
+			`- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
+	].filter(Boolean);
+
+	return lintLines.length
+		? [
+				`This package includes several forms of linting to enforce consistent code quality and styling.`,
+				`Each should be shown in VS Code, and can be run manually on the command-line:`,
+				``,
+				`- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files`,
+				...lintLines,
+				``,
+				`Read the individual documentation for each linter to understand how it can be configured and used best.`,
+				``,
+				`For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`,
+			].join("\n")
+		: `[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+You can run it locally on the command-line:
 
 \`\`\`shell
-${linter.command}
-\`\`\``,
-			]),
-	);
+pnpm run lint
+\`\`\`
+
+ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`;
 }
 
 export async function createDevelopment(options: Options) {
@@ -63,6 +60,11 @@ Add \`--watch\` to run the builder in a watch mode that continuously cleans and 
 \`\`\`shell
 pnpm build --watch
 \`\`\``,
+		...(options.bin && {
+			"### Built App Debugging": `This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
+To debug a \`bin\` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
+VS Code will automatically run the \`build\` task in the background before running \`${options.bin}\`.`,
+		}),
 		"## Formatting": `[Prettier](https://prettier.io) is used to format code.
 It should be applied automatically when you save files in VS Code or make a Git commit.
 
@@ -71,21 +73,13 @@ To manually reformat all files, you can run:
 \`\`\`shell
 pnpm format --write
 \`\`\``,
-		"## Linting": `[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run lint
-\`\`\`
-
-ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+		"## Linting": `${createLintingSection(options)}
 
 \`\`\`shell
 pnpm run lint --fix
 \`\`\`
 
 Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
-		...createLintingSections(options),
 		...(!options.excludeTests && {
 			"## Testing": `[Vitest](https://vitest.dev) is used for tests.
 You can run it locally on the command-line:
@@ -126,14 +120,36 @@ pnpm tsc --watch
 		...Object.keys(newSections).map((key) => key.replace(/^#* /, "")),
 	]);
 
-	const preservedSections = Object.fromEntries(
-		splitIntoSections(existingContents).filter(([key]) => {
-			const keyText = key.replace(/^#* /, "");
-			return !newSectionHeadings.has(
-				headingAliases.get(keyText.toLowerCase()) ?? keyText,
-			);
-		}),
-	);
+	const existingSectionsSplit = splitIntoSections(existingContents);
+	const preservedSectionsSplit = existingSectionsSplit.filter(([key]) => {
+		const keyText = key.replace(/^#* /, "");
+		return !newSectionHeadings.has(
+			headingAliases.get(keyText.toLowerCase()) ?? keyText,
+		);
+	});
+	const preservedSections = Object.fromEntries(preservedSectionsSplit);
+
+	const sectionLines: string[] = [];
+	const seen = new Set<string>();
+
+	for (const sections of [newSections, preservedSections]) {
+		for (const heading in sections) {
+			if (seen.has(heading)) {
+				console.log("Already seen.");
+				continue;
+			}
+
+			seen.add(heading);
+
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			const contents = sections[heading as keyof typeof sections]!;
+
+			sectionLines.push("");
+			sectionLines.push(heading);
+			sectionLines.push("");
+			sectionLines.push(contents);
+		}
+	}
 
 	const result = `# Development
 ${
@@ -154,14 +170,7 @@ pnpm install
 
 > This repository includes a list of suggested VS Code extensions.
 > It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.
-
-${Object.entries({ ...newSections, ...preservedSections })
-	.map(
-		([heading, content]) => `${heading}
-
-${content}`,
-	)
-	.join("\n\n")}
+${sectionLines.join("\n")}
 `;
 
 	return result;

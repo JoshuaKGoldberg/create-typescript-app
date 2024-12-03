@@ -32,19 +32,15 @@ export default tseslint.config(
 		],
 	},
 	{
-		linterOptions: {
-			reportUnusedDisableDirectives: "error",
-		},
+		linterOptions: { reportUnusedDisableDirectives: "error" },
 	},
 	eslint.configs.recommended,
-	...jsonc.configs["flat/recommended-with-json"],
-	...markdown.configs.recommended,
-	...yml.configs["flat/recommended"],
-	...yml.configs["flat/prettier"],
 	comments.recommended,
 	jsdoc.configs["flat/contents-typescript-error"],
 	jsdoc.configs["flat/logical-typescript-error"],
 	jsdoc.configs["flat/stylistic-typescript-error"],
+	...jsonc.configs["flat/recommended-with-json"],
+	...markdown.configs.recommended,
 	n.configs["flat/recommended"],
 	packageJson,
 	perfectionist.configs["recommended-natural"],
@@ -103,7 +99,7 @@ export default tseslint.config(
 	},
 	{
 		extends: [tseslint.configs.disableTypeChecked],
-		files: ["**/*.md/*.ts"],
+		files: ["**/*.md/*.ts "],
 	},
 	{
 		extends: [vitest.configs.recommended],
@@ -115,6 +111,10 @@ export default tseslint.config(
 		},
 	},
 	{
+		extends: [
+			...yml.configs["flat/recommended"],
+			...yml.configs["flat/prettier"],
+		],
 		files: ["**/*.{yml,yaml}"],
 		rules: {
 			"yml/file-extension": ["error", { extension: "yml" }],

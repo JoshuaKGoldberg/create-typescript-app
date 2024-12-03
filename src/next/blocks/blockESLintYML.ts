@@ -10,9 +10,11 @@ export const blockESLintYML = base.createBlock({
 			addons: [
 				blockESLint({
 					extensions: [
-						'...yml.configs["flat/recommended"]',
-						'...yml.configs["flat/prettier"]',
 						{
+							extends: [
+								'...yml.configs["flat/recommended"]',
+								'...yml.configs["flat/prettier"]',
+							],
 							files: ["**/*.{yml,yaml}"],
 							rules: {
 								"yml/file-extension": ["error", { extension: "yml" }],

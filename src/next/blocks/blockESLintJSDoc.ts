@@ -15,15 +15,6 @@ export const blockESLintJSDoc = base.createBlock({
 						'jsdoc.configs["flat/stylistic-typescript-error"]',
 					],
 					imports: [{ source: "eslint-plugin-jsdoc", specifier: "jsdoc" }],
-					rules: [
-						{
-							comment:
-								"These on-by-default rules don't work well for this repo and we like them off.",
-							entries: {
-								"jsdoc/lines-before-block": "off",
-							},
-						},
-					],
 				}),
 			],
 		};

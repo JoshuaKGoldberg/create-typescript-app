@@ -88,7 +88,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    +dist
    ```
 
-   - Rather than having to remember to compile each time, we'll update our precommit hook in `.husky/precommit` to build for us on each commit:
+   - Rather than having to remember to compile each time, we'll update our pre-commit hook in `.husky/pre-commit` to build for us on each commit:
 
    ```diff
    +pnpm run build

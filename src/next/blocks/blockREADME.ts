@@ -1,10 +1,17 @@
+import { z } from "zod";
+
 import { base } from "../base.js";
 
 export const blockREADME = base.createBlock({
 	about: {
 		name: "README.md",
 	},
-	produce({ options }) {
+	addons: {
+		notices: z.array(z.string()).default([]),
+	},
+	produce({ addons, options }) {
+		const { notices } = addons;
+
 		return {
 			files: {
 				"README.md": `<h1 align="center">${options.title}</h1>
@@ -47,7 +54,7 @@ Thanks! 💖
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
-`,
+${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : ""}`,
 			},
 		};
 	},

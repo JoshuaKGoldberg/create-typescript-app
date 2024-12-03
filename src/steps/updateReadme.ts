@@ -17,12 +17,14 @@ export const endOfReadmeNotice = [
 export const endOfReadmeMatcher =
 	/💙.+(?:based|built|templated).+(?:from|using|on|with).+create-typescript-app/;
 
-export async function updateReadme(options: Pick<Options, "owner">) {
+export async function updateReadme(
+	options: Pick<Options, "excludeTemplatedBy" | "owner">,
+) {
 	let contents = await readFileSafe("./README.md", "");
 
 	contents = contents.replaceAll("JoshuaKGoldberg", options.owner);
 
-	if (!endOfReadmeMatcher.test(contents)) {
+	if (!options.excludeTemplatedBy && !endOfReadmeMatcher.test(contents)) {
 		contents += endOfReadmeNotice;
 	}
 

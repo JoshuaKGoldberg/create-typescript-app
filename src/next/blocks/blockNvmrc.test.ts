@@ -21,7 +21,7 @@ describe("blockNvmrc", () => {
 
 	it("also includes package when options.node exists without pinned", () => {
 		const creation = testBlock(blockNvmrc, {
-			options: { ...optionsBase, node: { minimum: "18.3.0" } },
+			options: { ...optionsBase, node: { minimum: ">=18.3.0" } },
 		});
 
 		expect(creation).toEqual({
@@ -31,7 +31,7 @@ describe("blockNvmrc", () => {
 				}),
 				blockPackageJson({
 					properties: {
-						engine: {
+						engines: {
 							node: ">=18.3.0",
 						},
 					},
@@ -44,7 +44,7 @@ describe("blockNvmrc", () => {
 		const creation = testBlock(blockNvmrc, {
 			options: {
 				...optionsBase,
-				node: { minimum: "18.3.0", pinned: "20.12.2" },
+				node: { minimum: ">=18.3.0", pinned: "20.18.0" },
 			},
 		});
 
@@ -55,14 +55,14 @@ describe("blockNvmrc", () => {
 				}),
 				blockPackageJson({
 					properties: {
-						engine: {
+						engines: {
 							node: ">=18.3.0",
 						},
 					},
 				}),
 			],
 			files: {
-				".nvmrc": `20.12.2\n`,
+				".nvmrc": `20.18.0\n`,
 			},
 		});
 	});

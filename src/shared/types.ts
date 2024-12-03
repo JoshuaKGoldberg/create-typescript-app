@@ -21,6 +21,7 @@ export interface PartialPackageData {
 	description?: string;
 	devDependencies?: Record<string, string>;
 	email?: string;
+	engines?: { node?: string };
 	name?: string;
 	repository?: { type: string; url: string } | string;
 	scripts?: Record<string, string>;
@@ -75,6 +76,7 @@ export interface Options {
 	excludeLintYml?: boolean;
 	excludeReleases?: boolean;
 	excludeRenovate?: boolean;
+	excludeTemplatedBy?: boolean;
 	excludeTests?: boolean;
 	funding?: string;
 	guide?: OptionsGuide;

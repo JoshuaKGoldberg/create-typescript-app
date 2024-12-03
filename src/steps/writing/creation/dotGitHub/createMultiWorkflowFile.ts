@@ -1,6 +1,9 @@
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
-export type MultiWorkflowJobStep = { run: string } | { uses: string };
+export type MultiWorkflowJobStep = { if?: string } & (
+	| { run: string }
+	| { uses: string }
+);
 
 export interface MultiWorkflowJobOptions {
 	name: string;

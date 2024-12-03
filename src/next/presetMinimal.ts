@@ -12,6 +12,7 @@ import { blockMITLicense } from "./blocks/blockMITLicense.js";
 import { blockPackageJson } from "./blocks/blockPackageJson.js";
 import { blockPrettier } from "./blocks/blockPrettier.js";
 import { blockREADME } from "./blocks/blockREADME.js";
+import { blockTemplatedBy } from "./blocks/blockTemplatedBy.js";
 import { blockTSup } from "./blocks/blockTSup.js";
 import { blockTypeScript } from "./blocks/blockTypeScript.js";
 
@@ -35,6 +36,7 @@ export const presetMinimal = base.createPreset({
 		blockPackageJson,
 		blockPrettier,
 		blockREADME,
+		blockTemplatedBy,
 		blockTSup,
 		blockTypeScript,
 	],

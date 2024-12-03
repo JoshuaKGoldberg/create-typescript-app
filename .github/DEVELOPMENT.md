@@ -28,6 +28,12 @@ Add `--watch` to run the builder in a watch mode that continuously cleans and re
 pnpm build --watch
 ```
 
+### Built App Debugging
+
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
+To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
+VS Code will automatically run the `build` task in the background before running `./bin/index.js`.
+
 ## Formatting
 
 [Prettier](https://prettier.io) is used to format code.
@@ -41,56 +47,24 @@ pnpm format --write
 
 ## Linting
 
-[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
-You can run it locally on the command-line:
+This package includes several forms of linting to enforce consistent code quality and styling.
+Each should be shown in VS Code, and can be run manually on the command-line:
 
-```shell
-pnpm run lint
-```
+- `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
+- `pnpm lint:knip` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
+- `pnpm lint:md` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
+- `pnpm lint:packages` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the `pnpm-lock.yml` file
+- `pnpm lint:spelling` ([cspell](https://cspell.org)): Spell checks across all source files
 
-ESLint can be run with `--fix` to auto-fix some lint rule complaints:
+Read the individual documentation for each linter to understand how it can be configured and used best.
+
+For example, ESLint can be run with `--fix` to auto-fix some lint rule complaints:
 
 ```shell
 pnpm run lint --fix
 ```
 
 Note that you'll need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
-
-### Linting Duplicate Packages
-
-[pnpm dedupe --check](https://pnpm.io/cli/dedupe)) is used to check for unnecessarily duplicated packages in the `pnpm-lock.yml` file.
-You can run it with `lint:packages`:
-
-```shell
-pnpm run lint:packages
-```
-
-### Linting With CSpell
-
-[cspell](https://cspell.org) is used to spell check across all source files.
-You can run it with `lint:spelling`:
-
-```shell
-pnpm lint:spelling
-```
-
-### Linting With Knip
-
-[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.
-You can run it with `lint:knip`:
-
-```shell
-pnpm lint:knip
-```
-
-### Linting With Markdownlint
-
-[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.
-You can run it with `lint:md`:
-
-```shell
-pnpm lint:md
-```
 
 ## Testing
 
@@ -130,19 +104,6 @@ Add `--watch` to keep the type checker running in a watch mode that updates the 
 ```shell
 pnpm tsc --watch
 ```
-
-## Debugging
-
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
-Depending upon the type of usage, it can include debugging for unit tests _and_ for executable (or "bin") apps.
-
-### Unit Tests
-
-To debug a unit test, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-
-### `bin` Apps
-
-To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
 
 ## Setup Scripts
 

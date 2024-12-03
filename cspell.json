@@ -20,6 +20,7 @@
 		"contributorsrc",
 		"execa",
 		"infile",
+		"joshuakgoldberg",
 		"knip",
 		"markdownlintignore",
 		"mtfoley",
@@ -27,11 +28,11 @@
 		"npmpackagejsonlintrc",
 		"outro",
 		"packagejson",
-		"precommit",
 		"quickstart",
 		"tada",
 		"tseslint",
 		"tsup",
-		"vitest"
+		"vitest",
+		"wontfix"
 	]
 }

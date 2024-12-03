@@ -81,6 +81,7 @@ export async function readOptions(
 		excludeLintYml: values["exclude-lint-yml"],
 		excludeReleases: values["exclude-releases"],
 		excludeRenovate: values["exclude-renovate"],
+		excludeTemplatedBy: values["exclude-templated-by"],
 		excludeTests: values["unit-tests"],
 		funding: values.funding,
 		guide: values.guide,

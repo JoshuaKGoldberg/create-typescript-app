@@ -53,6 +53,7 @@ export const base = createBase({
 				title: z.string(),
 			})
 			.optional(),
+		hideTemplatedBy: z.boolean().optional(),
 		keywords: z.array(z.string()).optional(),
 		login: z.string().optional(),
 		logo: z
@@ -68,6 +69,13 @@ export const base = createBase({
 			})
 			.optional(),
 		owner: z.string(),
+		packageData: z
+			.object({
+				dependencies: z.record(z.string(), z.string()).optional(),
+				devDependencies: z.record(z.string(), z.string()).optional(),
+				scripts: z.record(z.string(), z.string()).optional(),
+			})
+			.optional(),
 		preserveGeneratedFrom: z.boolean().optional(),
 		repository: z.string(),
 		title: z.string(),
@@ -82,11 +90,19 @@ export const base = createBase({
 			return contributions?.contributors;
 		});
 
-		const documentation = lazyValue(async () => {
-			return await take(inputTextFile, {
-				filePath: ".github/DEVELOPMENT.md",
-			});
-		});
+		const documentation = lazyValue(
+			async () =>
+				await take(inputTextFile, {
+					filePath: ".github/DEVELOPMENT.md",
+				}),
+		);
+
+		const nvmrc = lazyValue(
+			async () =>
+				await take(inputTextFile, {
+					filePath: ".nvmrc",
+				}),
+		);
 
 		// TODO: Make these all use take
 
@@ -111,6 +127,9 @@ export const base = createBase({
 				options.owner
 			)?.toLowerCase(),
 		);
+
+		const version = lazyValue(async () => (await packageData()).version);
+
 		return {
 			author,
 			bin: async () => (await packageData()).bin,
@@ -121,14 +140,27 @@ export const base = createBase({
 			funding: readFunding,
 			guide: readGuide,
 			login: author,
-			node: () => ({ minimum: "18.3.0" }),
+			node: async () => ({
+				minimum: (await packageData()).engines?.node ?? "18.3.0",
+				pinned: (await nvmrc()) ?? "20.18.0",
+			}),
 			owner: async () =>
 				(await gitDefaults())?.organization ?? (await packageAuthor()).author,
+			packageData: async () => {
+				const original = await packageData();
+
+				return {
+					dependencies: original.dependencies,
+					devDependencies: original.devDependencies,
+					scripts: original.scripts,
+				};
+			},
 			repository: async () =>
 				options.repository ??
 				(await gitDefaults())?.name ??
 				(await packageData()).name,
 			...readDefaultsFromReadme(),
+			version,
 		};
 	},
 });

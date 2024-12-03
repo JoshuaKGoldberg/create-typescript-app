@@ -1,3 +1,4 @@
+import sortPackageJson from "sort-package-json";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -22,6 +23,7 @@ export const blockPackageJson = base.createBlock({
 			.default({}),
 	},
 	produce({ addons, options }) {
+		// console.log({ "options.packageData": options.packageData });
 		return {
 			commands: [
 				{
@@ -30,28 +32,46 @@ export const blockPackageJson = base.createBlock({
 				},
 			],
 			files: {
-				"package.json": JSON.stringify({
-					...Object.fromEntries(Object.entries(addons.properties)),
-					author: { email: options.email.npm, name: options.author },
-					bin: options.bin,
-					description: options.description,
-					files: [
-						"package.json",
-						"README.md",
-						options.bin?.replace(/^\.\//, ""),
-						...(addons.properties.files ?? []),
-					]
-						.filter(Boolean)
-						.sort(),
-					keywords: options.keywords?.flatMap((keyword) => keyword.split(/ /)),
-					name: options.repository,
-					repository: {
-						type: "git",
-						url: `https://github.com/${options.owner}/${options.repository}`,
-					},
-					type: "module",
-					version: options.version ?? "0.0.0",
-				}),
+				"package.json": sortPackageJson(
+					JSON.stringify({
+						...addons.properties,
+						author: { email: options.email.npm, name: options.author },
+						bin: options.bin,
+						dependencies: {
+							...options.packageData?.dependencies,
+							...addons.properties.dependencies,
+						},
+						description: options.description,
+						devDependencies: {
+							...options.packageData?.devDependencies,
+							...addons.properties.devDependencies,
+						},
+						files: [
+							"package.json",
+							"README.md",
+							options.bin?.replace(/^\.\//, ""),
+							...(addons.properties.files ?? []),
+						]
+							.filter(Boolean)
+							.sort(),
+						keywords: options.keywords?.flatMap((keyword) =>
+							keyword.split(/ /),
+						),
+						license: "MIT",
+						main: "./lib/index.js",
+						name: options.repository,
+						repository: {
+							type: "git",
+							url: `https://github.com/${options.owner}/${options.repository}`,
+						},
+						scripts: {
+							...options.packageData?.scripts,
+							...addons.properties.scripts,
+						},
+						type: "module",
+						version: options.version ?? "0.0.0",
+					}),
+				),
 			},
 		};
 	},

@@ -1,10 +1,12 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { getPackageDependencies } from "./packageData.js";
 
 export const blockMarkdownlint = base.createBlock({
 	about: {
@@ -18,17 +20,17 @@ export const blockMarkdownlint = base.createBlock({
 
 		return {
 			addons: [
+				blockCSpell({
+					words: ["markdownlint"],
+				}),
 				blockDevelopmentDocs({
 					sections: {
-						"Linting With Markdownlint": {
-							level: 3,
-							text: `[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.
-You can run it with \`pnpm lint:md\`:
-
-\`\`\`shell
-pnpm lint:md
-\`\`\`
-`,
+						Linting: {
+							contents: {
+								items: [
+									`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files`,
+								],
+							},
 						},
 					},
 				}),
@@ -42,11 +44,11 @@ pnpm lint:md
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							markdownlint: "latest",
-							"markdownlint-cli": "latest",
-							"sentences-per-line": "latest",
-						},
+						devDependencies: getPackageDependencies(
+							"markdownlint",
+							"markdownlint-cli",
+							"sentences-per-line",
+						),
 						scripts: {
 							"lint:md":
 								'markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line',

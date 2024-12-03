@@ -5,9 +5,9 @@ export async function createESLintConfig(options: Options) {
 	const tseslintBase = options.excludeLintStrict ? "recommended" : "strict";
 
 	const imports = [
-		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
+		`import eslint from "@eslint/js";`,
 		!options.excludeTests && `import vitest from "@vitest/eslint-plugin";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,
@@ -25,22 +25,29 @@ export async function createESLintConfig(options: Options) {
 
 	const elements = [
 		`eslint.configs.recommended,`,
-		!options.excludeLintJson &&
-			`	...jsonc.configs["flat/recommended-with-json"],`,
-		!options.excludeLintMd && `	...markdown.configs.recommended,`,
-		!options.excludeLintYml && `	...yml.configs["flat/recommended"],`,
-		!options.excludeLintYml && `	...yml.configs["flat/prettier"],`,
 		!options.excludeLintESLint && `	comments.recommended,`,
 		!options.excludeLintJSDoc &&
 			`	jsdoc.configs["flat/contents-typescript-error"],
-	jsdoc.configs["flat/logical-typescript-error"],
-	jsdoc.configs["flat/stylistic-typescript-error"],`,
+		jsdoc.configs["flat/logical-typescript-error"],
+		jsdoc.configs["flat/stylistic-typescript-error"],`,
+		!options.excludeLintJson &&
+			`	...jsonc.configs["flat/recommended-with-json"],`,
+		!options.excludeLintMd && `	...markdown.configs.recommended,`,
 		`	n.configs["flat/recommended"],`,
 		!options.excludeLintPackageJson && `	packageJson,`,
 		!options.excludeLintPerfectionist &&
 			`	perfectionist.configs["recommended-natural"],`,
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
+
+	const ignores = [
+		...(options.excludeTests ? [] : ["**/*.snap", "coverage"]),
+		"lib",
+		"node_modules",
+		"pnpm-lock.yaml",
+	]
+		.map((ignore) => JSON.stringify(ignore))
+		.sort();
 
 	const rules =
 		!options.excludeLintStylistic &&
@@ -49,7 +56,9 @@ export async function createESLintConfig(options: Options) {
 			"logical-assignment-operators": [
 				"error",
 				"always",
-				{ enforceForIfStatements: true },
+				{
+					enforceForIfStatements: true,
+				},
 			],
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
@@ -59,27 +68,9 @@ export async function createESLintConfig(options: Options) {
 	return await formatTypeScript(`${imports.join("\n")}
 
 export default tseslint.config(
+	{ ignores: [${ignores.join(", ")}], },
 	{
-		ignores: [${
-			options.excludeTests
-				? ""
-				: `
-			"coverage*",`
-		}
-			"lib",
-			"node_modules",
-			"pnpm-lock.yaml",${
-				options.excludeTests
-					? ""
-					: `
-				"**/*.snap",`
-			}
-		],
-	},
-	{
-		linterOptions: {
-			reportUnusedDisableDirectives: "error",
-		},
+		linterOptions: { reportUnusedDisableDirectives: "error" }
 	},
 	${elements.join("\n")}
 	{
@@ -94,9 +85,7 @@ export default tseslint.config(
 		files: ["**/*.js", "**/*.ts"],
 		languageOptions: {
 			parserOptions: {
-				projectService: {
-					allowDefaultProject: ["*.config.*s"],
-				},
+				projectService: { allowDefaultProject: ["*.config.*s"] },
 				tsconfigRootDir: import.meta.dirname
 			},
 		},${
@@ -108,12 +97,7 @@ export default tseslint.config(
 			options.excludeLintPerfectionist
 				? ""
 				: `
-		settings: {
-			perfectionist: {
-				partitionByComment: true,
-				type: "natural",
-			},
-		},`
+		settings: { perfectionist: { partitionByComment: true, type: "natural" } },`
 		}
 	},
 	{
@@ -130,8 +114,8 @@ export default tseslint.config(
 			? ""
 			: `
 	{
-		files: ["**/*.test.*"],
 		extends: [vitest.configs.recommended],
+		files: ["**/*.test.*"],
 		rules: {
 			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
@@ -143,22 +127,20 @@ export default tseslint.config(
 			? ""
 			: `
 	{
+		extends: [
+			...yml.configs["flat/recommended"],
+			...yml.configs["flat/prettier"],
+		],
 		files: ["**/*.{yml,yaml}"],
 		rules: {
 			"yml/file-extension": ["error", { extension: "yml" }],
 			"yml/sort-keys": [
 				"error",
-				{
-					order: { type: "asc" },
-					pathPattern: "^.*$",
-				},
+				{ order: { type: "asc" }, pathPattern: "^.*$" },
 			],
 			"yml/sort-sequence-values": [
 				"error",
-				{
-					order: { type: "asc" },
-					pathPattern: "^.*$",
-				},
+				{ order: { type: "asc" }, pathPattern: "^.*$" },
 			],
 		},
 	},`

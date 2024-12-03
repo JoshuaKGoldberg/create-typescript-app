@@ -125,7 +125,8 @@ describe("createWorkflows", () => {
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm run test --coverage
-			      - uses: codecov/codecov-action@v3
+			      - if: always()
+			        uses: codecov/codecov-action@v3
 			  type_check:
 			    name: Type Check
 			    runs-on: ubuntu-latest

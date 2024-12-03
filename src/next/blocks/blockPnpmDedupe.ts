@@ -12,15 +12,12 @@ export const blockPnpmDedupe = base.createBlock({
 			addons: [
 				blockDevelopmentDocs({
 					sections: {
-						"Linting Duplicate Packages": {
-							level: 3,
-							text: `[pnpm dedupe --check](https://pnpm.io/cli/dedupe) is used to check for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file.
-You can run it with \`pnpm lint:packages\`:
-
-\`\`\`shell
-pnpm lint:packages
-\`\`\`
-`,
+						Linting: {
+							contents: {
+								items: [
+									`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
+								],
+							},
 						},
 					},
 				}),

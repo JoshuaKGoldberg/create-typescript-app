@@ -9,17 +9,7 @@ export const blockESLintJSONC = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					extensions: [
-						`...jsonc.configs["flat/recommended-with-json"]`,
-						{
-							files: ["*.jsonc"],
-							rules: {
-								"jsonc/comma-dangle": "off",
-								"jsonc/no-comments": "off",
-								"jsonc/sort-keys": "error",
-							},
-						},
-					],
+					extensions: [`...jsonc.configs["flat/recommended-with-json"]`],
 					imports: [{ source: "eslint-plugin-jsonc", specifier: "jsonc" }],
 				}),
 			],

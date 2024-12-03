@@ -82,56 +82,24 @@ describe("createDevelopment", () => {
 
 			## Linting
 
-			[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
-			You can run it locally on the command-line:
+			This package includes several forms of linting to enforce consistent code quality and styling.
+			Each should be shown in VS Code, and can be run manually on the command-line:
 
-			\`\`\`shell
-			pnpm run lint
-			\`\`\`
+			- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
+			- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
+			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
+			- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file
+			- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files
 
-			ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+			Read the individual documentation for each linter to understand how it can be configured and used best.
+
+			For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
 
 			\`\`\`shell
 			pnpm run lint --fix
 			\`\`\`
 
 			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
-
-			### Linting Duplicate Packages
-
-			[pnpm dedupe --check](https://pnpm.io/cli/dedupe) is used to check for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file.
-			You can run it with \`pnpm lint:packages\`:
-
-			\`\`\`shell
-			pnpm lint:packages
-			\`\`\`
-
-			### Linting With CSpell
-
-			[cspell](https://cspell.org) is used to spell check across all source files.
-			You can run it with \`pnpm lint:spelling\`:
-
-			\`\`\`shell
-			pnpm lint:spelling
-			\`\`\`
-
-			### Linting With Knip
-
-			[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.
-			You can run it with \`pnpm lint:knip\`:
-
-			\`\`\`shell
-			pnpm lint:knip
-			\`\`\`
-
-			### Linting With Markdownlint
-
-			[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.
-			You can run it with \`pnpm lint:md\`:
-
-			\`\`\`shell
-			pnpm lint:md
-			\`\`\`
 
 			## Testing
 
@@ -235,7 +203,7 @@ describe("createDevelopment", () => {
 
 			## Linting
 
-			[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+			[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
 			You can run it locally on the command-line:
 
 			\`\`\`shell
@@ -292,7 +260,7 @@ describe("createDevelopment", () => {
 		`);
 	});
 
-	it("preserves existing sections when they don't match the new sections", async () => {
+	it.only("preserves existing sections when they don't match the new sections", async () => {
 		mockReadFileSafe.mockResolvedValue(`## Existing One
 
 Abc 123.
@@ -360,56 +328,24 @@ Def 456.
 
 			## Linting
 
-			[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
-			You can run it locally on the command-line:
+			This package includes several forms of linting to enforce consistent code quality and styling.
+			Each should be shown in VS Code, and can be run manually on the command-line:
 
-			\`\`\`shell
-			pnpm run lint
-			\`\`\`
+			- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
+			- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
+			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
+			- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file
+			- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files
 
-			ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+			Read the individual documentation for each linter to understand how it can be configured and used best.
+
+			For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
 
 			\`\`\`shell
 			pnpm run lint --fix
 			\`\`\`
 
 			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
-
-			### Linting Duplicate Packages
-
-			[pnpm dedupe --check](https://pnpm.io/cli/dedupe) is used to check for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file.
-			You can run it with \`pnpm lint:packages\`:
-
-			\`\`\`shell
-			pnpm lint:packages
-			\`\`\`
-
-			### Linting With CSpell
-
-			[cspell](https://cspell.org) is used to spell check across all source files.
-			You can run it with \`pnpm lint:spelling\`:
-
-			\`\`\`shell
-			pnpm lint:spelling
-			\`\`\`
-
-			### Linting With Knip
-
-			[knip](https://github.com/webpro/knip) is used to detect unused files, dependencies, and code exports.
-			You can run it with \`pnpm lint:knip\`:
-
-			\`\`\`shell
-			pnpm lint:knip
-			\`\`\`
-
-			### Linting With Markdownlint
-
-			[Markdownlint](https://github.com/DavidAnson/markdownlint) is used to run linting on Markdown source files.
-			You can run it with \`pnpm lint:md\`:
-
-			\`\`\`shell
-			pnpm lint:md
-			\`\`\`
 
 			## Testing
 

@@ -15,10 +15,16 @@ export const blockGitHubActionsCI = base.createBlock({
 				z.object({
 					name: z.string(),
 					steps: z.array(
-						z.union([
-							z.object({ run: z.string() }),
-							z.object({ uses: z.string() }),
-						]),
+						z.intersection(
+							z.object({
+								if: z.string().optional(),
+								with: z.record(z.string(), z.string()).optional(),
+							}),
+							z.union([
+								z.object({ run: z.string() }),
+								z.object({ uses: z.string() }),
+							]),
+						),
 					),
 				}),
 			)

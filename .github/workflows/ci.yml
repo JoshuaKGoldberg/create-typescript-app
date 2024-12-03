@@ -1,6 +1,6 @@
 jobs:
   are_the_types_wrong:
-    name: Are the types wrong?
+    name: Are The Types Wrong?
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -65,9 +65,49 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: ./.github/actions/prepare
       - run: pnpm run test --coverage
-      - uses: codecov/codecov-action@v3
+      - if: always()
+        uses: codecov/codecov-action@v3
         with:
           flags: unit
+  test_creation_script:
+    name: Test Creation Script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: ./.github/actions/prepare
+      - run: pnpm run build
+      - run: pnpm run test:create
+      - if: always()
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage-create/lcov.info
+          flags: create
+  test_initialization_script:
+    name: Test Initialization Script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: ./.github/actions/prepare
+      - run: pnpm run build
+      - run: pnpm run test:initialize
+      - if: always()
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage-initialize/lcov.info
+          flags: initialize
+  test_migration_script:
+    name: Test Migration Script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: ./.github/actions/prepare
+      - run: pnpm run build
+      - run: pnpm run test:migrate
+      - if: always()
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage-migrate/lcov.info
+          flags: migrate
   type_check:
     name: Type Check
     runs-on: ubuntu-latest

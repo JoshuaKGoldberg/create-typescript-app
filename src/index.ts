@@ -1,6 +1,8 @@
 export * from "./greet.js";
-export * from "./types.js";
 
-// If you're using create-typescript-app as a template, ignore this.
-// It's plumbing for the create engine. :)
+// If you're using create-typescript-app as a template, ignore these.
+// They're plumbing for the create engine. :)
+export * from "./next/blocks/index.js";
 export { default } from "./next/template.js";
+
+export * from "./types.js";

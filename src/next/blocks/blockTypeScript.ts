@@ -6,6 +6,7 @@ import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { getPackageDependencies } from "./packageData.js";
 
 export const blockTypeScript = base.createBlock({
 	about: {
@@ -16,7 +17,8 @@ export const blockTypeScript = base.createBlock({
 			addons: [
 				blockDevelopmentDocs({
 					sections: {
-						"Type Checking": `
+						"Type Checking": {
+							contents: `
 You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
 
 However, it can be useful to run the TypeScript command-line (\`tsc\`) to type check all files in \`src/\`:
@@ -31,6 +33,7 @@ Add \`--watch\` to keep the type checker running in a watch mode that updates th
 pnpm tsc --watch
 \`\`\`
 `,
+						},
 					},
 				}),
 				blockGitignore({
@@ -44,7 +47,7 @@ pnpm tsc --watch
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: { typescript: "latest" },
+						devDependencies: getPackageDependencies("typescript"),
 						files: ["lib/"],
 						main: "./lib/index.js",
 						scripts: {

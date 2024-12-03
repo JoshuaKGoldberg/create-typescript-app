@@ -1,10 +1,12 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { getPackageDependencies } from "./packageData.js";
 
 export const blockPrettier = base.createBlock({
 	about: {
@@ -29,9 +31,13 @@ export const blockPrettier = base.createBlock({
 
 		return {
 			addons: [
+				blockCSpell({
+					ignores: [".all-contributorsrc"],
+				}),
 				blockDevelopmentDocs({
 					sections: {
-						Formatting: `
+						Formatting: {
+							contents: `
 [Prettier](https://prettier.io) is used to format code.
 It should be applied automatically when you save files in VS Code or make a Git commit.
 
@@ -41,6 +47,7 @@ To manually reformat all files, you can run:
 pnpm format --write
 \`\`\`
 `,
+						},
 					},
 				}),
 				blockGitHubActionsCI({
@@ -53,14 +60,11 @@ pnpm format --write
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							...Object.fromEntries(
-								plugins.map((plugin) => [plugin, "latest"]),
-							),
-							husky: "latest",
-							"lint-staged": "latest",
-							prettier: "latest",
-						},
+						devDependencies: getPackageDependencies(
+							...plugins,
+							"husky",
+							"lint-staged",
+						),
 						"lint-staged": {
 							"*": "prettier --ignore-unknown --write",
 						},
@@ -91,8 +95,8 @@ pnpm format --write
 					.join("\n"),
 				".prettierrc.json": JSON.stringify({
 					$schema: "http://json.schemastore.org/prettierrc",
-					...(overrides.length && { overrides }),
-					...(plugins.length && { plugins }),
+					...(overrides.length && { overrides: overrides.sort() }),
+					...(plugins.length && { plugins: plugins.sort() }),
 					useTabs: true,
 				}),
 			},

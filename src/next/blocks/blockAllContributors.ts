@@ -1,5 +1,6 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base } from "../base.js";
+import { blockPrettier } from "./blockPrettier.js";
 
 export const blockAllContributors = base.createBlock({
 	about: {
@@ -7,6 +8,11 @@ export const blockAllContributors = base.createBlock({
 	},
 	produce({ options }) {
 		return {
+			addons: [
+				blockPrettier({
+					ignores: ["/.all-contributorsrc"],
+				}),
+			],
 			commands:
 				options.login === "JoshuaKGoldberg"
 					? [`npx -y all-contributors-cli add JoshuaKGoldberg tool`]

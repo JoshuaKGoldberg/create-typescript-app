@@ -7,6 +7,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { getPackageDependencies } from "./packageData.js";
 
 const zRuleOptions = z.union([
 	z.literal("error"),
@@ -53,6 +54,7 @@ export const blockESLint = base.createBlock({
 		name: "ESLint",
 	},
 	addons: {
+		beforeLint: z.string().optional(),
 		extensions: z.array(z.union([z.string(), zExtension])).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
@@ -73,20 +75,11 @@ export const blockESLint = base.createBlock({
 			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
 		);
 
-		const ignoreLines = [
-			"lib",
-			"node_modules",
-			"pnpm-lock.yaml",
-			...ignores,
-		].sort();
+		const ignoreLines = ["lib", "node_modules", "pnpm-lock.yaml", ...ignores]
+			.map((ignore) => JSON.stringify(ignore))
+			.sort();
 
 		const extensionLines = [
-			printExtension({
-				extends: ["eslint.configs.recommended"],
-				linterOptions: {
-					reportUnusedDisableDirectives: "error",
-				},
-			}),
 			printExtension({
 				extends: [
 					"...tseslint.configs.strictTypeChecked",
@@ -107,28 +100,44 @@ export const blockESLint = base.createBlock({
 			...extensions.map((extension) =>
 				typeof extension === "string" ? extension : printExtension(extension),
 			),
-		];
+		]
+			.sort((a, b) => processForSort(a).localeCompare(processForSort(b)))
+			.map((t) => t);
+
+		function processForSort(line: string) {
+			if (line.startsWith("...") || /\w+/.test(line[0])) {
+				return `A\n${line.replaceAll(/\W+/g, "")}`;
+			}
+
+			return `B\n${(/files: (.+)/.exec(line)?.[1] ?? line).replaceAll(/\W+/g, "")}`;
+		}
 
 		return {
 			addons: [
 				blockDevelopmentDocs({
 					sections: {
-						Linting: `
-[ESLint](https://eslint.org) is used with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run lint
-\`\`\`
-
-ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+						Linting: {
+							contents: {
+								after: [
+									`
+For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
 
 \`\`\`shell
 pnpm run lint --fix
 \`\`\`
-
-Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 `,
+									...(addons.beforeLint ? [addons.beforeLint] : []),
+								],
+								before: `
+This package includes several forms of linting to enforce consistent code quality and styling.
+Each should be shown in VS Code, and can be run manually on the command-line:
+`,
+								items: [
+									`- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files`,
+								],
+								plural: `Read the individual documentation for each linter to understand how it can be configured and used best.`,
+							},
+						},
 					},
 				}),
 				blockGitHubActionsCI({
@@ -144,24 +153,17 @@ Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint ru
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							"@eslint/js": "latest",
-							"@types/node": "latest",
-							eslint: "latest",
-							"typescript-eslint": "latest",
-							...Object.fromEntries(
-								imports.flatMap(({ source, types }): [string, string][] => {
-									// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
-									const { name } = parsePackageName(source) as { name: string };
-									return types
-										? [
-												[name, "latest"],
-												[`@types/${name}`, "latest"],
-											]
-										: [[name, "latest"]];
-								}),
-							),
-						},
+						devDependencies: getPackageDependencies(
+							"@eslint/js",
+							"@types/node",
+							"eslint",
+							"typescript-eslint",
+							...imports.flatMap(({ source, types }) => {
+								// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
+								const { name } = parsePackageName(source) as { name: string };
+								return types ? [name, `@types/${name}`] : [name];
+							}),
+						),
 						scripts: {
 							lint: "eslint . --max-warnings 0",
 						},
@@ -192,8 +194,12 @@ Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint ru
 
 export default tseslint.config(
 	{
-		ignores: [${ignoreLines.map((ignore) => JSON.stringify(ignore)).join(", ")}]
+		ignores: [${ignoreLines.join(", ")}]
 	},
+	${printExtension({
+		linterOptions: { reportUnusedDisableDirectives: "error" },
+	})},
+	eslint.configs.recommended,
 	${extensionLines.join(",		")}
 );`,
 			},

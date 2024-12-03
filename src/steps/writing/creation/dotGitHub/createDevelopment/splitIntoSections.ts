@@ -16,7 +16,7 @@ export function splitIntoSections(text: string) {
 		const heading = remaining.slice(0, indexOfNewline).trim();
 		const contents = remaining
 			.slice(indexOfNewline, nextStart)
-			.trimEnd()
+			.trim()
 			.replace(/^\n+/, "");
 
 		sections.push([heading, contents]);

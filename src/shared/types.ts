@@ -71,6 +71,7 @@ export interface Options {
 	excludeLintYml?: boolean;
 	excludeReleases?: boolean;
 	excludeRenovate?: boolean;
+	excludeTemplatedBy?: boolean;
 	excludeTests?: boolean;
 	funding?: string;
 	guide?: OptionsGuide;

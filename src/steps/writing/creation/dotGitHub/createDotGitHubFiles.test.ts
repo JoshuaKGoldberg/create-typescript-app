@@ -30,6 +30,7 @@ const createOptions = (exclude: boolean) =>
 		excludeLintYml: exclude,
 		excludeReleases: exclude,
 		excludeRenovate: exclude,
+		excludeTemplatedBy: exclude,
 		excludeTests: exclude,
 		mode: "create",
 		owner: "StubOwner",

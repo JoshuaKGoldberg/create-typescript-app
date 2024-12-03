@@ -27,6 +27,7 @@ const options = {
 	excludeLintYml: false,
 	excludeReleases: false,
 	excludeRenovate: undefined,
+	excludeTemplatedBy: undefined,
 	excludeTests: undefined,
 	funding: undefined,
 	keywords: ["abc", "def ghi", "jkl mno pqr"],

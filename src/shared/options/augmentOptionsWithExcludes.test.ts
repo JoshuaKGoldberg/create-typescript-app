@@ -44,6 +44,7 @@ const optionsBase = {
 	excludeLintYml: undefined,
 	excludeReleases: undefined,
 	excludeRenovate: undefined,
+	excludeTemplatedBy: undefined,
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,
@@ -102,6 +103,7 @@ describe("augmentOptionsWithExcludes", () => {
 			excludeLintYml: true,
 			excludeReleases: true,
 			excludeRenovate: true,
+			excludeTemplatedBy: true,
 			excludeTests: true,
 		});
 	});

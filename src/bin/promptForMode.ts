@@ -10,14 +10,6 @@ import { Mode, PromptedOptions } from "../shared/types.js";
 
 const allowedModes = ["create", "initialize", "migrate"] satisfies Mode[];
 
-function isMode(input: boolean | string): input is Mode {
-	return allowedModes.includes(input as Mode);
-}
-
-function label(base: string, text: string) {
-	return `${chalk.bold(base)} ${text}`;
-}
-
 export interface PromptedMode {
 	mode: Error | Mode | undefined;
 	options?: PromptedOptions;
@@ -123,4 +115,12 @@ export async function promptForMode(
 	return {
 		mode: "create",
 	};
+}
+
+function isMode(input: boolean | string): input is Mode {
+	return allowedModes.includes(input as Mode);
+}
+
+function label(base: string, text: string) {
+	return `${chalk.bold(base)} ${text}`;
 }

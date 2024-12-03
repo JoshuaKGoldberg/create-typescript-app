@@ -29,7 +29,7 @@ export async function addOwnerAsAllContributor(
 				: {
 						...contributor,
 						contributions: Array.from(
-							new Set([...contributor.contributions, "tool"]),
+							new Set(["tool", ...contributor.contributions]),
 						),
 					},
 		);

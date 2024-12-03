@@ -15,8 +15,8 @@ const filesExpectedToBeChanged = [
 ];
 
 const filesThatMightBeChanged = new Set([
-	...filesExpectedToBeChanged,
 	"script/__snapshots__/migrate-test-e2e.ts.snap",
+	...filesExpectedToBeChanged,
 ]);
 
 await rimraf("coverage*");

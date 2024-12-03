@@ -11,40 +11,6 @@ const headingAliases = new Map([
 	["tests", "Testing"],
 ]);
 
-function createLintingSection(options: Options) {
-	const lintLines = [
-		!options.excludeLintKnip &&
-			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
-		!options.excludeLintMd &&
-			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files`,
-		!options.excludeLintPackages &&
-			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
-		!options.excludeLintSpelling &&
-			`- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
-	].filter(Boolean);
-
-	return lintLines.length
-		? [
-				`This package includes several forms of linting to enforce consistent code quality and styling.`,
-				`Each should be shown in VS Code, and can be run manually on the command-line:`,
-				``,
-				`- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files`,
-				...lintLines,
-				``,
-				`Read the individual documentation for each linter to understand how it can be configured and used best.`,
-				``,
-				`For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`,
-			].join("\n")
-		: `[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
-You can run it locally on the command-line:
-
-\`\`\`shell
-pnpm run lint
-\`\`\`
-
-ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`;
-}
-
 export async function createDevelopment(options: Options) {
 	const existingContents = await readFileSafe(".github/DEVELOPMENT.md", "");
 
@@ -76,6 +42,9 @@ pnpm run lint --fix
 
 Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
 		...(!options.excludeTests && {
+			"### Debugging Tests": `This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
+To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).`,
+
 			"## Testing": `[Vitest](https://vitest.dev) is used for tests.
 You can run it locally on the command-line:
 
@@ -91,9 +60,6 @@ pnpm run test --coverage
 
 Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
 Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.`,
-
-			"### Debugging Tests": `This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).`,
 		}),
 		"## Type Checking": `You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
 
@@ -154,4 +120,38 @@ ${content}`,
 `;
 
 	return result;
+}
+
+function createLintingSection(options: Options) {
+	const lintLines = [
+		!options.excludeLintKnip &&
+			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
+		!options.excludeLintMd &&
+			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files`,
+		!options.excludeLintPackages &&
+			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
+		!options.excludeLintSpelling &&
+			`- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files`,
+	].filter(Boolean);
+
+	return lintLines.length
+		? [
+				`This package includes several forms of linting to enforce consistent code quality and styling.`,
+				`Each should be shown in VS Code, and can be run manually on the command-line:`,
+				``,
+				`- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files`,
+				...lintLines,
+				``,
+				`Read the individual documentation for each linter to understand how it can be configured and used best.`,
+				``,
+				`For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`,
+			].join("\n")
+		: `[ESLint](https://eslint.org) is used with with [typescript-eslint](https://typescript-eslint.io)) to lint JavaScript and TypeScript source files.
+You can run it locally on the command-line:
+
+\`\`\`shell
+pnpm run lint
+\`\`\`
+
+ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:`;
 }

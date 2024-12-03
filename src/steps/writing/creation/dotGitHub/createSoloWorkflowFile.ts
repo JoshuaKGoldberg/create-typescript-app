@@ -13,12 +13,12 @@ interface WorkflowFileOn {
 		types?: string[];
 	};
 	pull_request?:
+		| null
+		| string
 		| {
 				branches?: string | string[];
 				types?: string[];
-		  }
-		| null
-		| string;
+		  };
 	pull_request_target?: {
 		types: string[];
 	};
@@ -31,21 +31,7 @@ interface WorkflowFileOn {
 	workflow_dispatch?: null | string;
 }
 
-interface WorkflowFilePermissions {
-	contents?: string;
-	"id-token"?: string;
-	issues?: string;
-	"pull-requests"?: string;
-}
-
-interface WorkflowFileStep {
-	env?: Record<string, string>;
-	if?: string;
-	name?: string;
-	run?: string;
-	uses?: string;
-	with?: Record<string, unknown>;
-}
+type WorkflowFileOptions = WorkflowFileOptionsRuns | WorkflowFileOptionsSteps;
 
 interface WorkflowFileOptionsBase {
 	concurrency?: WorkflowFileConcurrency;
@@ -63,7 +49,21 @@ interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {
 	steps: WorkflowFileStep[];
 }
 
-type WorkflowFileOptions = WorkflowFileOptionsRuns | WorkflowFileOptionsSteps;
+interface WorkflowFilePermissions {
+	contents?: string;
+	"id-token"?: string;
+	issues?: string;
+	"pull-requests"?: string;
+}
+
+interface WorkflowFileStep {
+	env?: Record<string, string>;
+	if?: string;
+	name?: string;
+	run?: string;
+	uses?: string;
+	with?: Record<string, unknown>;
+}
 
 export function createSoloWorkflowFile({
 	concurrency,

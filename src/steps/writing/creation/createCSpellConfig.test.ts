@@ -18,7 +18,7 @@ describe("createCSpellConfig", () => {
 					"node_modules",
 					"pnpm-lock.yaml"
 				],
-				"words": ["joshuakgoldberg", "markdownlint", "tseslint", "vitest"]
+				"words": ["joshuakgoldberg", "markdownlint", "tseslint"]
 			}
 			"
 		`);

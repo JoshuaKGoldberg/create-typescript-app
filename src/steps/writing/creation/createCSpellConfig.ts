@@ -14,7 +14,6 @@ export async function createCSpellConfig(
 		"tseslint",
 		!options.excludeLintMd && "markdownlint",
 		!options.excludeTemplatedBy && "joshuakgoldberg",
-		!options.excludeTests && "vitest",
 	]
 		.filter(Boolean)
 		.sort();

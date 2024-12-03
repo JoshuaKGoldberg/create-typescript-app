@@ -21,7 +21,7 @@ export async function createCSpellConfig(
 		.sort();
 
 	return await formatJson({
-		dictionaries: ["typescript"],
+		dictionaries: ["npm", "node", "typescript"],
 		ignorePaths: [
 			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 			".github",

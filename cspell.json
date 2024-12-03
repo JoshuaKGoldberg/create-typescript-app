@@ -1,5 +1,5 @@
 {
-	"dictionaries": ["typescript"],
+	"dictionaries": ["npm", "node", "typescript"],
 	"ignorePaths": [
 		"./coverage*",
 		"./script/__snapshots__",
@@ -16,7 +16,6 @@
 		"arethetypeswrong",
 		"automerge",
 		"codespace",
-		"contributorsrc",
 		"execa",
 		"infile",
 		"joshuakgoldberg",

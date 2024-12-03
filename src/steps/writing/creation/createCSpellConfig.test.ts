@@ -8,7 +8,7 @@ describe("createCSpellConfig", () => {
 
 		expect(actual).toMatchInlineSnapshot(`
 			"{
-				"dictionaries": ["typescript"],
+				"dictionaries": ["npm", "node", "typescript"],
 				"ignorePaths": [
 					".all-contributorsrc",
 					".github",
@@ -40,7 +40,7 @@ describe("createCSpellConfig", () => {
 
 		expect(actual).toMatchInlineSnapshot(`
 			"{
-				"dictionaries": ["typescript"],
+				"dictionaries": ["npm", "node", "typescript"],
 				"ignorePaths": [
 					".github",
 					"CHANGELOG.md",

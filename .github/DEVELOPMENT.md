@@ -28,6 +28,12 @@ Add `--watch` to run the builder in a watch mode that continuously cleans and re
 pnpm build --watch
 ```
 
+### Built App Debugging
+
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
+To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
+VS Code will automatically run the `build` task in the background before running `./bin/index.js`.
+
 ## Formatting
 
 [Prettier](https://prettier.io) is used to format code.
@@ -58,7 +64,7 @@ For example, ESLint can be run with `--fix` to auto-fix some lint rule complaint
 pnpm run lint --fix
 ```
 
-Note that you'll likely need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
+Note that you'll need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
@@ -98,19 +104,6 @@ Add `--watch` to keep the type checker running in a watch mode that updates the 
 ```shell
 pnpm tsc --watch
 ```
-
-## Debugging
-
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
-Depending upon the type of usage, it can include debugging for unit tests _and_ for executable (or "bin") apps.
-
-### Unit Tests
-
-To debug a unit test, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-
-### `bin` Apps
-
-To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
 
 ## Setup Scripts
 
@@ -152,7 +145,7 @@ That end-to-end test executes `script/create-test-e2e.ts`, which:
 2. Asserts that commands such as `build` and `lint` each pass
 
 The `pnpm run test:create` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-create.yml`.
+See `.github/workflows/ci.yml`'s `test_creation_script` job.
 
 ### The Initialization Script
 
@@ -184,7 +177,7 @@ That end-to-end test executes `script/initialize-test-e2e.ts`, which:
 5. Runs initialization a second time, capturing test coverage
 
 The `pnpm run test:initialize` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-initialize.yml`.
+See `.github/workflows/ci.yml`'s `test_initialization_script` job.
 
 ### The Migration Script
 
@@ -228,7 +221,7 @@ That end-to-end test executes `script/migrate-test-e2e.ts`, which:
 3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
 
 The `pnpm run test:migrate` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-migrate.yml`.
+See `.github/workflows/ci.yml`'s `test_migration_script` job.
 
 > Tip: if the migration test is failing in CI and you don't see any errors, try [downloading the full logs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs#downloading-logs).
 

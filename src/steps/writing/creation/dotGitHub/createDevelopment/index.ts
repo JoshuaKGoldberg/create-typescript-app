@@ -26,6 +26,11 @@ Add \`--watch\` to run the builder in a watch mode that continuously cleans and 
 \`\`\`shell
 pnpm build --watch
 \`\`\``,
+		...(options.bin && {
+			"### Built App Debugging": `This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
+To debug a \`bin\` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
+VS Code will automatically run the \`build\` task in the background before running \`${options.bin}\`.`,
+		}),
 		"## Formatting": `[Prettier](https://prettier.io) is used to format code.
 It should be applied automatically when you save files in VS Code or make a Git commit.
 
@@ -40,8 +45,7 @@ pnpm format --write
 pnpm run lint --fix
 \`\`\`
 
-Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
-
+Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
 		...(!options.excludeTests && {
 			"## Testing": `[Vitest](https://vitest.dev) is used for tests.
 You can run it locally on the command-line:
@@ -83,14 +87,35 @@ pnpm tsc --watch
 		Object.keys(newSections).map((key) => key.replace(/^#* /, "")),
 	]);
 
-	const preservedSections = Object.fromEntries(
-		splitIntoSections(existingContents).filter(([key]) => {
-			const keyText = key.replace(/^#* /, "");
-			return !newSectionHeadings.has(
-				headingAliases.get(keyText.toLowerCase()) ?? keyText,
-			);
-		}),
-	);
+	const existingSectionsSplit = splitIntoSections(existingContents);
+	const preservedSectionsSplit = existingSectionsSplit.filter(([key]) => {
+		const keyText = key.replace(/^#* /, "");
+		return !newSectionHeadings.has(
+			headingAliases.get(keyText.toLowerCase()) ?? keyText,
+		);
+	});
+	const preservedSections = Object.fromEntries(preservedSectionsSplit);
+
+	const sectionLines: string[] = [];
+	const seen = new Set<string>();
+
+	for (const sections of [newSections, preservedSections]) {
+		for (const heading in sections) {
+			if (seen.has(heading)) {
+				continue;
+			}
+
+			seen.add(heading);
+
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			const contents = sections[heading as keyof typeof sections]!;
+
+			sectionLines.push("");
+			sectionLines.push(heading);
+			sectionLines.push("");
+			sectionLines.push(contents);
+		}
+	}
 
 	const result = `# Development
 ${
@@ -111,14 +136,7 @@ pnpm install
 
 > This repository includes a list of suggested VS Code extensions.
 > It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.
-
-${Object.entries({ ...newSections, ...preservedSections })
-	.map(
-		([heading, content]) => `${heading}
-
-${content}`,
-	)
-	.join("\n\n")}
+${sectionLines.join("\n")}
 `;
 
 	return result;
@@ -129,7 +147,7 @@ function createLintingSection(options: Options) {
 		!options.excludeLintKnip &&
 			`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
 		!options.excludeLintMd &&
-			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files`,
+			`- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files`,
 		!options.excludeLintPackages &&
 			`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
 		!options.excludeLintSpelling &&

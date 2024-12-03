@@ -87,7 +87,7 @@ describe("createDevelopment", () => {
 
 			- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 			- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
-			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files
+			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
 			- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file
 			- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files
 
@@ -99,7 +99,7 @@ describe("createDevelopment", () => {
 			pnpm run lint --fix
 			\`\`\`
 
-			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 
@@ -216,7 +216,7 @@ describe("createDevelopment", () => {
 			pnpm run lint --fix
 			\`\`\`
 
-			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 
@@ -303,7 +303,17 @@ Def 456.
 
 			## Building
 
-			Will be removed.
+			Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+
+			\`\`\`shell
+			pnpm build
+			\`\`\`
+
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+
+			\`\`\`shell
+			pnpm build --watch
+			\`\`\`
 
 			## Formatting
 
@@ -323,7 +333,7 @@ Def 456.
 
 			- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
 			- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports
-			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint): Checks Markdown source files
+			- \`pnpm lint:md\` ([Markdownlint](https://github.com/DavidAnson/markdownlint)): Checks Markdown source files
 			- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file
 			- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files
 
@@ -335,7 +345,7 @@ Def 456.
 			pnpm run lint --fix
 			\`\`\`
 
-			Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
+			Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.
 
 			## Testing
 

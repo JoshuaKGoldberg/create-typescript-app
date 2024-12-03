@@ -79,6 +79,11 @@ exports[`expected file changes > cspell.json 1`] = `
  		"node_modules",
  		"pnpm-lock.yaml"
 @@ ... @@
+ 		"arethetypeswrong",
+ 		"automerge",
+ 		"codespace",
+-		"contributorsrc",
+-		"execa",
  		"infile",
  		"joshuakgoldberg",
  		"knip",

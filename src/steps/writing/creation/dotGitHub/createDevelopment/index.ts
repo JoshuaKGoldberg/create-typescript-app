@@ -41,10 +41,8 @@ pnpm run lint --fix
 \`\`\`
 
 Note that you'll likely need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.`,
-		...(!options.excludeTests && {
-			"### Debugging Tests": `This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).`,
 
+		...(!options.excludeTests && {
 			"## Testing": `[Vitest](https://vitest.dev) is used for tests.
 You can run it locally on the command-line:
 
@@ -60,6 +58,10 @@ pnpm run test --coverage
 
 Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
 Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.`,
+
+			// Debugging tests are intentionally put second
+			"### Debugging Tests": `This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
+To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).`,
 		}),
 		"## Type Checking": `You should be able to see suggestions from [TypeScript](https://typescriptlang.org) in your editor for all open files.
 

@@ -31,6 +31,6 @@ export async function createCSpellConfig(
 			"node_modules",
 			"pnpm-lock.yaml",
 		],
-		...(words.length && { words }),
+		words,
 	});
 }

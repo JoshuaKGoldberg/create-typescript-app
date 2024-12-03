@@ -18,7 +18,14 @@ describe("createCSpellConfig", () => {
 					"node_modules",
 					"pnpm-lock.yaml"
 				],
-				"words": ["joshuakgoldberg", "markdownlint", "tseslint"]
+				"words": [
+					"apexskier",
+					"automerge",
+					"joshuakgoldberg",
+					"markdownlint",
+					"tseslint",
+					"tsup"
+				]
 			}
 			"
 		`);
@@ -28,6 +35,8 @@ describe("createCSpellConfig", () => {
 		const actual = await createCSpellConfig({
 			excludeAllContributors: true,
 			excludeLintMd: true,
+			excludeReleases: true,
+			excludeRenovate: true,
 			excludeTemplatedBy: true,
 			excludeTests: true,
 		});
@@ -42,7 +51,7 @@ describe("createCSpellConfig", () => {
 					"node_modules",
 					"pnpm-lock.yaml"
 				],
-				"words": ["tseslint"]
+				"words": ["tseslint", "tsup"]
 			}
 			"
 		`);

@@ -6,12 +6,17 @@ export async function createCSpellConfig(
 		Options,
 		| "excludeAllContributors"
 		| "excludeLintMd"
+		| "excludeReleases"
+		| "excludeRenovate"
 		| "excludeTemplatedBy"
 		| "excludeTests"
 	>,
 ) {
 	const words = [
 		"tseslint",
+		"tsup",
+		!options.excludeReleases && "apexskier",
+		!options.excludeRenovate && "automerge",
 		!options.excludeLintMd && "markdownlint",
 		!options.excludeTemplatedBy && "joshuakgoldberg",
 	]

@@ -106,7 +106,7 @@ exports[`expected file changes > cspell.json 1`] = `
 +++ b/cspell.json
 @@ ... @@
  {
- 	"dictionaries": ["typescript"],
+ 	"dictionaries": ["npm", "node", "typescript"],
  	"ignorePaths": [
 -		"./coverage*",
 -		"./script/__snapshots__",
@@ -118,24 +118,23 @@ exports[`expected file changes > cspell.json 1`] = `
  		"node_modules",
  		"pnpm-lock.yaml"
 @@ ... @@
- 		"apexskier",
  		"arethetypeswrong",
  		"automerge",
--		"codecov",
  		"codespace",
- 		"contributorsrc",
- 		"execa",
+-		"execa",
++		"contributorsrc",
  		"infile",
-+		"joshuakgoldberg",
- 		"knip",
+ 		"joshuakgoldberg",
+-		"knip",
 +		"markdownlint",
  		"markdownlintignore",
  		"mtfoley",
- 		"npmignore",
-@@ ... @@
+-		"npmignore",
+ 		"outro",
+ 		"packagejson",
  		"tada",
  		"tseslint",
- 		"tsup",
+-		"tsup",
 -		"vitest"
 +		"vitest",
 +		"wontfix"

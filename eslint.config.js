@@ -92,7 +92,7 @@ export default tseslint.config(
 	},
 	{
 		extends: [tseslint.configs.disableTypeChecked],
-		files: ["**/*.md/*.ts "],
+		files: ["**/*.md/*.ts"],
 	},
 	{
 		extends: [vitest.configs.recommended],

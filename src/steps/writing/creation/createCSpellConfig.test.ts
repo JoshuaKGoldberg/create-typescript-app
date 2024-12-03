@@ -19,7 +19,6 @@ describe("createCSpellConfig", () => {
 					"pnpm-lock.yaml"
 				],
 				"words": [
-					"codecov",
 					"joshuakgoldberg",
 					"markdownlint",
 					"packagejson",

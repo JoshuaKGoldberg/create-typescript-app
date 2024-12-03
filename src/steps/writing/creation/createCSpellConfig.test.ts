@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { createCSpellConfig } from "./createCSpellConfig.js";
 
 describe("createCSpellConfig", () => {
-	it("creates an ignore file with words when exclusions are disabled", async () => {
+	it("creates an ignore file with all words when exclusions are disabled", async () => {
 		const actual = await createCSpellConfig({});
 
 		expect(actual).toMatchInlineSnapshot(`
@@ -18,13 +18,13 @@ describe("createCSpellConfig", () => {
 					"node_modules",
 					"pnpm-lock.yaml"
 				],
-				"words": ["codecov", "joshuakgoldberg", "markdownlint", "vitest"]
+				"words": ["codecov", "joshuakgoldberg", "markdownlint", "tseslint", "vitest"]
 			}
 			"
 		`);
 	});
 
-	it("creates an ignore file without words when exclusions are enabled", async () => {
+	it("creates an ignore file with minimal words when exclusions are enabled", async () => {
 		const actual = await createCSpellConfig({
 			excludeAllContributors: true,
 			excludeLintMd: true,
@@ -41,7 +41,8 @@ describe("createCSpellConfig", () => {
 					"lib",
 					"node_modules",
 					"pnpm-lock.yaml"
-				]
+				],
+				"words": ["tseslint"]
 			}
 			"
 		`);

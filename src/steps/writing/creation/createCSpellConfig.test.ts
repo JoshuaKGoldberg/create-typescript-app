@@ -18,7 +18,14 @@ describe("createCSpellConfig", () => {
 					"node_modules",
 					"pnpm-lock.yaml"
 				],
-				"words": ["codecov", "joshuakgoldberg", "markdownlint", "tseslint", "vitest"]
+				"words": [
+					"codecov",
+					"joshuakgoldberg",
+					"markdownlint",
+					"packagejson",
+					"tseslint",
+					"vitest"
+				]
 			}
 			"
 		`);
@@ -42,7 +49,7 @@ describe("createCSpellConfig", () => {
 					"node_modules",
 					"pnpm-lock.yaml"
 				],
-				"words": ["tseslint"]
+				"words": ["packagejson", "tseslint"]
 			}
 			"
 		`);

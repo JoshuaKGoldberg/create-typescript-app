@@ -6,10 +6,11 @@ export async function createDotVSCode(options: Options) {
 	return {
 		"extensions.json": await formatJson({
 			recommendations: [
-				"DavidAnson.vscode-markdownlint",
+				!options.excludeLintMd && "DavidAnson.vscode-markdownlint",
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
 				!options.excludeLintSpelling && "streetsidesoftware.code-spell-checker",
+				!options.excludeTests && "vitest.explorer",
 			].filter(Boolean),
 		}),
 		...(options.excludeTests && !options.bin
@@ -67,7 +68,6 @@ export async function createDotVSCode(options: Options) {
 				"yaml",
 			],
 			"eslint.rules.customizations": [{ rule: "*", severity: "warn" }],
-			"eslint.useFlatConfig": true,
 			"typescript.tsdk": "node_modules/typescript/lib",
 		}),
 		"tasks.json": await formatJson({

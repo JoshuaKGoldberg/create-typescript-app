@@ -15,13 +15,16 @@ export async function getGitHub(): Promise<GitHub | undefined> {
 				cause: auth.error,
 			});
 		}
-	
+
 		const octokit = new Octokit({ auth: auth.token });
-	
-		return { auth: auth.token, octokit };	
+
+		return { auth: auth.token, octokit };
 	} catch (error) {
-		throw new Error("GitHub authentication failed - is the GitHub CLI installed and are you logged in?", {
-			cause: error
-		});
+		throw new Error(
+			"Couldn't authenticate with GitHub. Either log in with `gh auth login` (https://cli.github.com) or set a GH_TOKEN environment variable.",
+			{
+				cause: error,
+			},
+		);
 	}
 }

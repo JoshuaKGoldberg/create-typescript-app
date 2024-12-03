@@ -6,7 +6,7 @@ import { createDotVSCode } from "./dotVSCode.js";
 /* spellchecker: disable */
 function fakeOptions(
 	getExcludeValue: (exclusionName: string) => boolean,
-	bin?: string | undefined,
+	bin?: string,
 ) {
 	return {
 		access: "public",
@@ -56,13 +56,7 @@ describe("createDotVSCode", () => {
 		expect(await createDotVSCode(fakeOptions(() => true)))
 			.toMatchInlineSnapshot(`
 				{
-				  "extensions.json": "{
-					"recommendations": [
-						"DavidAnson.vscode-markdownlint",
-						"dbaeumer.vscode-eslint",
-						"esbenp.prettier-vscode"
-					]
-				}
+				  "extensions.json": "{ "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"] }
 				",
 				  "settings.json": "{
 					"editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
@@ -80,7 +74,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -109,7 +102,8 @@ describe("createDotVSCode", () => {
 						"DavidAnson.vscode-markdownlint",
 						"dbaeumer.vscode-eslint",
 						"esbenp.prettier-vscode",
-						"streetsidesoftware.code-spell-checker"
+						"streetsidesoftware.code-spell-checker",
+						"vitest.explorer"
 					]
 				}
 				",
@@ -154,7 +148,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -183,7 +176,8 @@ describe("createDotVSCode", () => {
 						"DavidAnson.vscode-markdownlint",
 						"dbaeumer.vscode-eslint",
 						"esbenp.prettier-vscode",
-						"streetsidesoftware.code-spell-checker"
+						"streetsidesoftware.code-spell-checker",
+						"vitest.explorer"
 					]
 				}
 				",
@@ -220,7 +214,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",
@@ -244,13 +237,7 @@ describe("createDotVSCode", () => {
 		expect(await createDotVSCode(fakeOptions(() => true, "bin/index.js")))
 			.toMatchInlineSnapshot(`
 				{
-				  "extensions.json": "{
-					"recommendations": [
-						"DavidAnson.vscode-markdownlint",
-						"dbaeumer.vscode-eslint",
-						"esbenp.prettier-vscode"
-					]
-				}
+				  "extensions.json": "{ "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"] }
 				",
 				  "launch.json": "{
 					"configurations": [
@@ -282,7 +269,6 @@ describe("createDotVSCode", () => {
 						"yaml"
 					],
 					"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-					"eslint.useFlatConfig": true,
 					"typescript.tsdk": "node_modules/typescript/lib"
 				}
 				",

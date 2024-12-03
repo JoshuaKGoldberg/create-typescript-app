@@ -7,9 +7,9 @@ describe("createDotGitignore", () => {
 		const actual = createDotGitignore({ excludeTests: false });
 
 		expect(actual).toMatchInlineSnapshot(`
-			"coverage/
-			lib/
-			node_modules/
+			"/coverage
+			/lib
+			/node_modules
 			"
 		`);
 	});
@@ -18,8 +18,8 @@ describe("createDotGitignore", () => {
 		const actual = createDotGitignore({ excludeTests: true });
 
 		expect(actual).toMatchInlineSnapshot(`
-			"lib/
-			node_modules/
+			"/lib
+			/node_modules
 			"
 		`);
 	});

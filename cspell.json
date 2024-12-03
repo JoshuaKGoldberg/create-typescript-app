@@ -3,6 +3,7 @@
 	"ignorePaths": [
 		"./coverage*",
 		"./script/__snapshots__",
+		".all-contributorsrc",
 		".github",
 		"CHANGELOG.md",
 		"lib",
@@ -27,7 +28,6 @@
 		"outro",
 		"packagejson",
 		"precommit",
-		"quickstart",
 		"tada",
 		"tseslint",
 		"tsup",

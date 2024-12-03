@@ -3,6 +3,7 @@ import chalk from "chalk";
 import { $ } from "execa";
 
 import { logLine } from "./cli/lines.js";
+import { StatusCodes } from "./codes.js";
 
 export interface RunOrRestoreOptions {
 	run: () => Promise<void>;
@@ -12,7 +13,7 @@ export interface RunOrRestoreOptions {
 export async function runOrRestore({ run, skipRestore }: RunOrRestoreOptions) {
 	try {
 		await run();
-		return 0;
+		return StatusCodes.Success;
 	} catch (error) {
 		logLine();
 		console.log(error);

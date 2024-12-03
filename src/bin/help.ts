@@ -17,30 +17,27 @@ interface SubsectionFlag {
 	type: string;
 }
 
-function logHelpTextSection(section: HelpTextSection): void {
-	console.log(" ");
+export function logHelpText(introLogs: string[]): void {
+	const helpTextSections = createHelpTextSections();
 
-	console.log(chalk.black.bgGreenBright(section.sectionHeading));
+	for (const log of introLogs) {
+		console.log(log);
+		console.log(" ");
+	}
 
-	for (const subsection of section.subsections) {
-		if (subsection.warning) {
-			console.log(chalk.yellow(subsection.warning));
-		}
+	console.log(
+		chalk.cyan(
+			`
+A quickstart-friendly TypeScript template with comprehensive formatting, 
+linting, releases, testing, and other great tooling built-in.
+      `,
+		),
+	);
 
-		if (subsection.subheading) {
-			console.log(chalk.green(subsection.subheading));
-		}
+	for (const section of helpTextSections) {
+		logHelpTextSection(section);
 
-		for (const { description, flag, type } of subsection.flags) {
-			console.log(
-				chalk.cyan(
-					`
-  --${flag}${
-		type !== "boolean" ? ` (${chalk.cyanBright(type)})` : ""
-	}: ${description}`,
-				),
-			);
-		}
+		console.log();
 	}
 }
 
@@ -123,26 +120,29 @@ using any or all of the following CLI flags:`,
 	return [core, optional, optOut, offline];
 }
 
-export function logHelpText(introLogs: string[]): void {
-	const helpTextSections = createHelpTextSections();
+function logHelpTextSection(section: HelpTextSection): void {
+	console.log(" ");
 
-	for (const log of introLogs) {
-		console.log(log);
-		console.log(" ");
-	}
+	console.log(chalk.black.bgGreenBright(section.sectionHeading));
 
-	console.log(
-		chalk.cyan(
-			`
-A quickstart-friendly TypeScript template with comprehensive formatting, 
-linting, releases, testing, and other great tooling built-in.
-      `,
-		),
-	);
+	for (const subsection of section.subsections) {
+		if (subsection.warning) {
+			console.log(chalk.yellow(subsection.warning));
+		}
 
-	for (const section of helpTextSections) {
-		logHelpTextSection(section);
+		if (subsection.subheading) {
+			console.log(chalk.green(subsection.subheading));
+		}
 
-		console.log();
+		for (const { description, flag, type } of subsection.flags) {
+			console.log(
+				chalk.cyan(
+					`
+  --${flag}${
+		type !== "boolean" ? ` (${chalk.cyanBright(type)})` : ""
+	}: ${description}`,
+				),
+			);
+		}
 	}
 }

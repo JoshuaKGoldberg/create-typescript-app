@@ -1,15 +1,23 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { StatusCodes } from "../shared/codes.js";
+import { RunOrRestoreOptions } from "../shared/runOrRestore.js";
 import { initialize } from "./index.js";
 
 const mockOutro = vi.fn();
 
-vi.mock("@clack/prompts", () => ({
+vi.mock("../shared/cli/outro.js", () => ({
 	get outro() {
 		return mockOutro;
 	},
-	spinner: vi.fn(),
+}));
+
+const mockEnsureGitRepository = vi.fn();
+
+vi.mock("../shared/ensureGitRepository.js", () => ({
+	get ensureGitRepository() {
+		return mockEnsureGitRepository;
+	},
 }));
 
 const mockReadOptions = vi.fn();
@@ -20,11 +28,18 @@ vi.mock("../shared/options/readOptions.js", () => ({
 	},
 }));
 
-const mockInitializeAndEnterRepository = vi.fn();
+vi.mock("../shared/runOrRestore.js", () => ({
+	async runOrRestore({ run }: RunOrRestoreOptions) {
+		await run();
+		return StatusCodes.Success;
+	},
+}));
 
-vi.mock("./initializeAndEnterRepository.js", () => ({
-	get initializeAndEnterRepository() {
-		return mockInitializeAndEnterRepository;
+const mockInitializeWithOptions = vi.fn();
+
+vi.mock("./initializeWithOptions.js", () => ({
+	get initializeWithOptions() {
+		return mockInitializeWithOptions;
 	},
 }));
 
@@ -45,5 +60,49 @@ describe("initialize", () => {
 			code: StatusCodes.Cancelled,
 			options: optionsBase,
 		});
+		expect(mockEnsureGitRepository).not.toHaveBeenCalled();
+	});
+
+	it("runs initializeWithOptions when readOptions returns inputs", async () => {
+		mockReadOptions.mockResolvedValue({
+			cancelled: false,
+			options: optionsBase,
+		});
+
+		const result = await initialize([]);
+
+		expect(result).toEqual({
+			code: StatusCodes.Success,
+			options: optionsBase,
+		});
+		expect(mockEnsureGitRepository).toHaveBeenCalled();
+		expect(mockOutro.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    [
+			      {
+			        "label": "You may consider committing these changes:",
+			        "lines": [
+			          "git add -A",
+			          "git commit -m "feat: initialized repo ✨",
+			          "git push",
+			        ],
+			        "variant": "code",
+			      },
+			      {
+			        "label": "Be sure to:",
+			        "lines": [
+			          "- enable the GitHub apps: 
+			   - Codecov (https://github.com/apps/codecov)
+			   - Renovate (https://github.com/apps/renovate)",
+			          "- populate the secrets: 
+			   - ACCESS_TOKEN (a GitHub PAT with repo and workflow permissions)
+			   - NPM_TOKEN (an npm access token with automation permissions)",
+			        ],
+			      },
+			    ],
+			  ],
+			]
+		`);
 	});
 });

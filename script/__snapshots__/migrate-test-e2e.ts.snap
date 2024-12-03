@@ -3,6 +3,19 @@
 exports[`expected file changes > .github/workflows/ci.yml 1`] = `
 "--- a/.github/workflows/ci.yml
 +++ b/.github/workflows/ci.yml
+@@ ... @@
+ jobs:
+-  are_the_types_wrong:
+-    name: Are the types wrong?
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@v4
+-      - uses: ./.github/actions/prepare
+-      - run: pnpm build
+-      - run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm
+   build:
+     name: Build
+     runs-on: ubuntu-latest
 @@ ... @@ jobs:
        - uses: ./.github/actions/prepare
        - run: pnpm run test --coverage
@@ -18,22 +31,22 @@ exports[`expected file changes > .gitignore 1`] = `
 "--- a/.gitignore
 +++ b/.gitignore
 @@ ... @@
--coverage*/
-+coverage/
- lib/
- node_modules/"
+-/coverage*
++/coverage
+ /lib
+ /node_modules"
 `;
 
 exports[`expected file changes > .prettierignore 1`] = `
 "--- a/.prettierignore
 +++ b/.prettierignore
 @@ ... @@
- .all-contributorsrc
- .husky/
--coverage*/
-+coverage/
- lib/
- pnpm-lock.yaml"
+ /.all-contributorsrc
+ /.husky
+-/coverage*
++/coverage
+ /lib
+ /pnpm-lock.yaml"
 `;
 
 exports[`expected file changes > README.md 1`] = `
@@ -58,6 +71,7 @@ exports[`expected file changes > cspell.json 1`] = `
  	"ignorePaths": [
 -		"./coverage*",
 -		"./script/__snapshots__",
+ 		".all-contributorsrc",
  		".github",
  		"CHANGELOG.md",
 +		"coverage",
@@ -83,7 +97,6 @@ exports[`expected file changes > cspell.json 1`] = `
  		"outro",
  		"packagejson",
 -		"precommit",
- 		"quickstart",
  		"tada",
  		"tseslint",
  		"tsup",
@@ -108,29 +121,27 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -- typescript-eslint: https://typescript-eslint.io
 -*/
 -
- import eslint from "@eslint/js";
  import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
- import jsdoc from "eslint-plugin-jsdoc";
+ import eslint from "@eslint/js";
+ import vitest from "@vitest/eslint-plugin";
 @@ ... @@ export default tseslint.config(
  		languageOptions: {
  			parserOptions: {
  				projectService: {
 -					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
-+					allowDefaultProject: ["*.*s", "eslint.config.js"],
- 					defaultProject: "./tsconfig.json",
++					allowDefaultProject: ["*.config.*s"],
  				},
  				tsconfigRootDir: import.meta.dirname,
-@@ ... @@ export default tseslint.config(
- 			"no-constant-condition": "off",
- 
- 			// These on-by-default rules work well for this repo if configured
+ 			},
+ 		},
+ 		rules: {
+-			// These on-by-default rules work well for this repo if configured
 -			"@typescript-eslint/no-unnecessary-condition": [
 -				"error",
 -				{
 -					allowConstantLoopConditions: true,
 -				},
 -			],
- 			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
 -			"@typescript-eslint/prefer-nullish-coalescing": [
 -				"error",
 -				{ ignorePrimitives: true },
@@ -139,9 +150,31 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -				"error",
 -				{ allowBoolean: true, allowNullish: true, allowNumber: true },
 -			],
- 			"n/no-unsupported-features/node-builtins": [
+-			"n/no-unsupported-features/node-builtins": [
+-				"error",
+-				{ allowExperimental: true },
+-			],
+-
+ 			// Stylistic concerns that don't interfere with Prettier
+ 			"logical-assignment-operators": [
  				"error",
- 				{ allowExperimental: true },"
+@@ ... @@ export default tseslint.config(
+ 			},
+ 		},
+ 	},
++	{
++		extends: [tseslint.configs.disableTypeChecked],
++		files: ["**/*.md/*.ts"],
++		rules: {
++			"n/no-missing-import": [
++				"error",
++				{ allowModules: ["create-typescript-app"] },
++			],
++		},
++	},
+ 	{
+ 		extends: [vitest.configs.recommended],
+ 		files: ["**/*.test.*"],"
 `;
 
 exports[`expected file changes > knip.json 1`] = `
@@ -151,7 +184,6 @@ exports[`expected file changes > knip.json 1`] = `
  {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",
 -	"entry": ["src/index.ts!", "script/*e2e.js"],
--	"ignoreBinaries": ["gh"],
 +	"entry": ["src/index.ts!"],
  	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 -	"project": ["src/**/*.ts!", "script/**/*.js"]

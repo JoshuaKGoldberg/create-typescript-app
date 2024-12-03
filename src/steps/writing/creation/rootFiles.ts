@@ -25,13 +25,13 @@ export async function createRootFiles(options: Options) {
 				"node_modules/",
 			]),
 		}),
-		".nvmrc": `20.12.2\n`,
+		".nvmrc": `20.18.0\n`,
 		".prettierignore": formatIgnoreFile([
-			...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
-			".husky/",
-			...(options.excludeTests ? [] : ["coverage/"]),
-			"lib/",
-			"pnpm-lock.yaml",
+			...(options.excludeAllContributors ? [] : ["/.all-contributorsrc"]),
+			"/.husky",
+			...(options.excludeTests ? [] : ["/coverage"]),
+			"/lib",
+			"/pnpm-lock.yaml",
 		]),
 		".prettierrc.json": await formatJson({
 			$schema: "http://json.schemastore.org/prettierrc",
@@ -95,6 +95,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			"cspell.json": await formatJson({
 				dictionaries: ["typescript"],
 				ignorePaths: [
+					...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
 					".github",
 					"CHANGELOG.md",
 					...(options.excludeTests ? [] : ["coverage"]),

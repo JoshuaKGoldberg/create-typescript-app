@@ -5,9 +5,10 @@ export async function createESLintConfig(options: Options) {
 	const tseslintBase = options.excludeLintStrict ? "recommended" : "strict";
 
 	const imports = [
-		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
+		`import eslint from "@eslint/js";`,
+		!options.excludeTests && `import vitest from "@vitest/eslint-plugin";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,
 		!options.excludeLintMd && `import markdown from "eslint-plugin-markdown";`,
@@ -18,7 +19,6 @@ export async function createESLintConfig(options: Options) {
 			`import perfectionist from "eslint-plugin-perfectionist";`,
 		!options.excludeLintRegex &&
 			`import * as regexp from "eslint-plugin-regexp";`,
-		!options.excludeTests && `import vitest from "eslint-plugin-vitest";`,
 		!options.excludeLintYml && `import yml from "eslint-plugin-yml";`,
 		`import tseslint from "typescript-eslint";`,
 	].filter(Boolean);
@@ -32,13 +32,29 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintYml && `	...yml.configs["flat/prettier"],`,
 		!options.excludeLintESLint && `	comments.recommended,`,
 		!options.excludeLintJSDoc &&
-			`	jsdoc.configs["flat/recommended-typescript-error"],`,
+			`	jsdoc.configs["flat/contents-typescript-error"],
+	jsdoc.configs["flat/logical-typescript-error"],
+	jsdoc.configs["flat/stylistic-typescript-error"],`,
 		`	n.configs["flat/recommended"],`,
 		!options.excludeLintPackageJson && `	packageJson,`,
 		!options.excludeLintPerfectionist &&
 			`	perfectionist.configs["recommended-natural"],`,
 		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
+
+	const rules =
+		!options.excludeLintStylistic &&
+		`{
+			// Stylistic concerns that don't interfere with Prettier
+			"logical-assignment-operators": [
+				"error",
+				"always",
+				{ enforceForIfStatements: true },
+			],
+			"no-useless-rename": "error",
+			"object-shorthand": "error",
+			"operator-assignment": "error",
+		}`;
 
 	return await formatTypeScript(`${imports.join("\n")}
 
@@ -52,8 +68,12 @@ export default tseslint.config(
 		}
 			"lib",
 			"node_modules",
-			"pnpm-lock.yaml",
-			"**/*.snap",
+			"pnpm-lock.yaml",${
+				options.excludeTests
+					? ""
+					: `
+				"**/*.snap",`
+			}
 		],
 	},
 	{
@@ -62,7 +82,7 @@ export default tseslint.config(
 		},
 	},
 	${elements.join("\n")}
-	...tseslint.config({
+	{
 		extends: ${
 			options.excludeLintStylistic
 				? `tseslint.configs.${tseslintBase}TypeChecked`
@@ -75,81 +95,26 @@ export default tseslint.config(
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ["*.*s", "eslint.config.js"],
-					defaultProject: "./tsconfig.json",
+					allowDefaultProject: ["*.config.*s"],
 				},
 				tsconfigRootDir: import.meta.dirname
 			},
-		},
-		rules: {
-			${
-				!options.excludeLintJSDoc || !options.excludeLintStylistic
-					? "// These off-by-default rules work well for this repo and we like them on."
-					: ""
-			}${
-				options.excludeLintJSDoc
-					? ""
-					: `
-			"jsdoc/informative-docs": "error",`
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-			"logical-assignment-operators": [
-				"error",
-				"always",
-				{ enforceForIfStatements: true },
-			],
-			"operator-assignment": "error",`
-			}
-
-			// These on-by-default rules don't work well for this repo and we like them off.${
-				options.excludeLintJSDoc
-					? ""
-					: `
-			"jsdoc/lines-before-block": "off",
-			"jsdoc/require-jsdoc": "off",
-			"jsdoc/require-param": "off",
-			"jsdoc/require-property": "off",
-			"jsdoc/require-returns": "off",`
-			}
-			"no-constant-condition": "off",
-
-			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],${
-				options.excludeLintPerfectionist
-					? ""
-					: `
-			"n/no-unsupported-features/node-builtins": [
-				"error",
-				{ allowExperimental: true },
-			],
-			"perfectionist/sort-objects": [
-				"error",
-				{
-					order: "asc",
-					partitionByComment: true,
-					type: "natural",
-				},
-			],`
-			}${
-				options.excludeLintStylistic
-					? ""
-					: `
-
-			// Stylistic concerns that don't interfere with Prettier
-			"no-useless-rename": "error",
-			"object-shorthand": "error",`
-			}
-		},
-	}),
-	{
-		files: ["*.jsonc"],
-		rules: {
-			"jsonc/comma-dangle": "off",
-			"jsonc/no-comments": "off",
-			"jsonc/sort-keys": "error",
-		},
+		},${
+			rules
+				? `
+		rules: ${rules},`
+				: ""
+		}${
+			options.excludeLintPerfectionist
+				? ""
+				: `
+		settings: {
+			perfectionist: {
+				partitionByComment: true,
+				type: "natural",
+			},
+		},`
+		}
 	},
 	{
 		extends: [tseslint.configs.disableTypeChecked],
@@ -166,13 +131,8 @@ export default tseslint.config(
 			: `
 	{
 		files: ["**/*.test.*"],
-		languageOptions: {
-			globals: vitest.environments.env.globals,
-		},
-		plugins: { vitest, },
+		extends: [vitest.configs.recommended],
 		rules: {
-			...vitest.configs.recommended.rules,
-
 			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
 			"@typescript-eslint/no-unsafe-call": "off",

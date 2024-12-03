@@ -61,8 +61,6 @@ export async function augmentOptionsWithExcludes(
 		);
 
 	switch (base) {
-		case undefined:
-			return undefined;
 		case "common":
 		case "everything":
 		case "minimal":
@@ -100,6 +98,8 @@ export async function augmentOptionsWithExcludes(
 				),
 			};
 		}
+		case undefined:
+			return undefined;
 	}
 }
 

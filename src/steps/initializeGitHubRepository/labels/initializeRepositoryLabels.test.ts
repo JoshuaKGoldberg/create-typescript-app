@@ -1,14 +1,8 @@
-import { describe, expect, it, vi } from "vitest";
+import { Octokit } from "octokit";
+import { describe, expect, it, MockInstance, vi } from "vitest";
 
+import { GhLabelData } from "./getExistingEquivalentLabels.js";
 import { initializeRepositoryLabels } from "./initializeRepositoryLabels.js";
-
-const mock$ = vi.fn();
-
-vi.mock("execa", () => ({
-	get $() {
-		return mock$;
-	},
-}));
 
 const mockOutcomeLabel = {
 	color: "000000",
@@ -22,340 +16,370 @@ vi.mock("./outcomeLabels.js", () => ({
 	},
 }));
 
+const createMockOctokit = (existingLabels: GhLabelData[]) =>
+	({
+		request: vi.fn().mockResolvedValueOnce({ data: existingLabels }),
+	}) as unknown as Octokit & { request: MockInstance };
+
+const options = {
+	owner: "TestOwner",
+	repository: "test-repository",
+};
+
 describe("migrateRepositoryLabels", () => {
-	it("creates an outcome label when labels stdout is empty", async () => {
-		mock$.mockResolvedValue({
-			stdout: "",
-		});
+	it("creates an outcome label when there are no existing labels", async () => {
+		const octokit = createMockOctokit([]);
 
-		await initializeRepositoryLabels();
+		await initializeRepositoryLabels(octokit, options);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			  [
-			    [
-			      "gh label create ",
-			      " --color ",
-			      " --description ",
-			      "",
-			    ],
-			    "area: abc",
-			    "000000",
-			    "def ghi",
+			    "POST /repos/{owner}/{repo}/labels",
+			    {
+			      "color": "000000",
+			      "description": "def ghi",
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "area: abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			]
 		`);
 	});
 
-	it("creates an outcome label when it doesn't already exist", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "other",
-				},
-			]),
-		});
+	it("creates a new outcome label when an existing label doesn't have an equivalent", async () => {
+		const octokit = createMockOctokit([
+			{
+				color: "111111",
+				description: "jkl mno",
+				name: "other",
+			},
+		]);
 
-		await initializeRepositoryLabels();
+		await initializeRepositoryLabels(octokit, options);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			  [
-			    [
-			      "gh label create ",
-			      " --color ",
-			      " --description ",
-			      "",
-			    ],
-			    "area: abc",
-			    "000000",
-			    "def ghi",
+			    "POST /repos/{owner}/{repo}/labels",
+			    {
+			      "color": "000000",
+			      "description": "def ghi",
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "area: abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			]
 		`);
 	});
 
 	it("doesn't edit a outcome label when it already exists with the same information", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([mockOutcomeLabel]),
-		});
+		const octokit = createMockOctokit([mockOutcomeLabel]);
 
-		await initializeRepositoryLabels();
+		await initializeRepositoryLabels(octokit, options);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			]
 		`);
 	});
 
 	it("edits the outcome label when it already exists with different color", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					...mockOutcomeLabel,
-					color: "111111",
-				},
-			]),
-		});
+		const octokit = createMockOctokit([
+			{
+				...mockOutcomeLabel,
+				color: "111111",
+			},
+		]);
 
-		await initializeRepositoryLabels();
+		await initializeRepositoryLabels(octokit, options);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			  [
-			    [
-			      "gh label edit ",
-			      " --color ",
-			      " --description ",
-			      " --name ",
-			      "",
-			    ],
-			    "area: abc",
-			    "000000",
-			    "def ghi",
-			    "area: abc",
+			    "PATCH /repos/{owner}/{repo}/labels/{name}",
+			    {
+			      "color": "000000",
+			      "description": "def ghi",
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "area: abc",
+			      "new_name": "area: abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			]
 		`);
 	});
 
 	it("edits the outcome label when it already exists with a different description", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					...mockOutcomeLabel,
-					description: "updated",
-				},
-			]),
-		});
+		const octokit = createMockOctokit([
+			{
+				...mockOutcomeLabel,
+				description: "updated",
+			},
+		]);
 
-		await initializeRepositoryLabels();
+		await initializeRepositoryLabels(octokit, options);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			  [
-			    [
-			      "gh label edit ",
-			      " --color ",
-			      " --description ",
-			      " --name ",
-			      "",
-			    ],
-			    "area: abc",
-			    "000000",
-			    "def ghi",
-			    "area: abc",
+			    "PATCH /repos/{owner}/{repo}/labels/{name}",
+			    {
+			      "color": "000000",
+			      "description": "def ghi",
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "area: abc",
+			      "new_name": "area: abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			]
 		`);
 	});
 
 	it("deletes an existing non-outcome label when the equivalent outcome label already exists", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "area: abc",
-				},
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "area: abc",
-				},
-			]),
-		});
+		const octokit = createMockOctokit([
+			{
+				color: "000000",
+				description: "def ghi",
+				name: "abc",
+			},
+			{
+				color: "000000",
+				description: "def ghi",
+				name: "area: abc",
+			},
+		]);
 
-		await initializeRepositoryLabels();
+		await initializeRepositoryLabels(octokit, options);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
-			  ],
-			]
-		`);
-	});
-
-	it("deletes a pre-existing label when it isn't a outcome label", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "unknown",
-				},
-			]),
-		});
-
-		await initializeRepositoryLabels();
-
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			  [
-			    [
-			      "gh label create ",
-			      " --color ",
-			      " --description ",
-			      "",
-			    ],
-			    "area: abc",
-			    "000000",
-			    "def ghi",
-			  ],
-			]
-		`);
-	});
-
-	it("deletes the existing duplicate outcome label and edits the label with the outcome name and different color when both exist", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "abc",
-				},
-				{
-					color: "111111",
-					description: "def ghi",
-					name: "area: abc",
-				},
-			]),
-		});
-
-		await initializeRepositoryLabels();
-
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
-			  ],
-			  [
-			    [
-			      "gh label delete ",
-			      " --yes",
-			    ],
-			    "abc",
-			  ],
-			  [
-			    [
-			      "gh label edit ",
-			      " --color ",
-			      " --description ",
-			      " --name ",
-			      "",
-			    ],
-			    "area: abc",
-			    "000000",
-			    "def ghi",
-			    "area: abc",
-			  ],
-			]
-		`);
-	});
-
-	it("deletes the existing duplicate outcome label and does not edit the label with the outcome name and same information when both exist", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "abc",
-				},
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "area: abc",
-				},
-			]),
-		});
-
-		await initializeRepositoryLabels();
-
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
-			[
-			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
-			  ],
-			  [
-			    [
-			      "gh label delete ",
-			      " --yes",
-			    ],
-			    "abc",
+			    "DELETE /repos/{owner}/{repo}/labels/{name}",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			]
 		`);
 	});
 
 	it("doesn't delete a pre-existing label when it isn't a outcome label", async () => {
-		mock$.mockResolvedValue({
-			stdout: JSON.stringify([
-				{
-					color: "000000",
-					description: "def ghi",
-					name: "jkl",
-				},
-			]),
-		});
+		const octokit = createMockOctokit([
+			{
+				color: "000000",
+				description: "def ghi",
+				name: "unknown",
+			},
+		]);
 
-		await initializeRepositoryLabels();
+		await initializeRepositoryLabels(octokit, options);
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    [
-			      "gh label list --json color,description,name",
-			    ],
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			  [
-			    [
-			      "gh label create ",
-			      " --color ",
-			      " --description ",
-			      "",
-			    ],
-			    "area: abc",
-			    "000000",
-			    "def ghi",
+			    "POST /repos/{owner}/{repo}/labels",
+			    {
+			      "color": "000000",
+			      "description": "def ghi",
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "area: abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
+			  ],
+			]
+		`);
+	});
+
+	it("deletes the existing duplicate outcome label and edits the label with the outcome name and different color when both exist", async () => {
+		const octokit = createMockOctokit([
+			{
+				color: "000000",
+				description: "def ghi",
+				name: "abc",
+			},
+			{
+				color: "111111",
+				description: "def ghi",
+				name: "area: abc",
+			},
+		]);
+
+		await initializeRepositoryLabels(octokit, options);
+
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
+			  ],
+			  [
+			    "DELETE /repos/{owner}/{repo}/labels/{name}",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
+			  ],
+			  [
+			    "PATCH /repos/{owner}/{repo}/labels/{name}",
+			    {
+			      "color": "000000",
+			      "description": "def ghi",
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "area: abc",
+			      "new_name": "area: abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
+			  ],
+			]
+		`);
+	});
+
+	it("deletes the existing duplicate outcome label and does not edit the label with the outcome name and same information when both exist", async () => {
+		const octokit = createMockOctokit([
+			{
+				color: "000000",
+				description: "def ghi",
+				name: "abc",
+			},
+			{
+				color: "000000",
+				description: "def ghi",
+				name: "area: abc",
+			},
+		]);
+
+		await initializeRepositoryLabels(octokit, options);
+
+		expect(octokit.request.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    "GET /repos/{owner}/{repo}/labels",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
+			  ],
+			  [
+			    "DELETE /repos/{owner}/{repo}/labels/{name}",
+			    {
+			      "headers": {
+			        "X-GitHub-Api-Version": "2022-11-28",
+			      },
+			      "name": "abc",
+			      "owner": "TestOwner",
+			      "repo": "test-repository",
+			    },
 			  ],
 			]
 		`);

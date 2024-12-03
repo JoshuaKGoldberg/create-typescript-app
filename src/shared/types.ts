@@ -11,18 +11,6 @@ export interface AllContributorsData {
 	contributors: AllContributorContributor[];
 }
 
-export interface PartialPackageData {
-	author?: { email: string; name: string } | string;
-	bin?: string;
-	dependencies?: Record<string, string>;
-	description?: string;
-	devDependencies?: Record<string, string>;
-	email?: string;
-	name?: string;
-	repository?: { type: string; url: string } | string;
-	scripts?: Record<string, string>;
-}
-
 export type OptionsAccess = "public" | "restricted";
 
 export type OptionsBase = "common" | "everything" | "minimal" | "prompt";
@@ -40,6 +28,18 @@ export interface OptionsGuide {
 export interface OptionsLogo {
 	alt: string;
 	src: string;
+}
+
+export interface PartialPackageData {
+	author?: string | { email: string; name: string };
+	bin?: string;
+	dependencies?: Record<string, string>;
+	description?: string;
+	devDependencies?: Record<string, string>;
+	email?: string;
+	name?: string;
+	repository?: string | { type: string; url: string };
+	scripts?: Record<string, string>;
 }
 
 /**
@@ -93,17 +93,7 @@ export interface Options {
 /**
  * Options that might be suggested by how the user is running setup.
  */
-export interface PromptedOptions {
-	/**
-	 * Directory for the repository, if it may differ from the repository name.
-	 */
-	directory?: string;
-
-	/**
-	 * Repository name, if it may differ from the current directory.
-	 */
-	repository?: string;
-}
+export type Mode = "create" | "initialize" | "migrate";
 
 export interface ModeResult {
 	code: StatusCode;
@@ -116,4 +106,14 @@ export type ModeRunner = (
 	promptedOptions?: PromptedOptions,
 ) => Promise<ModeResult>;
 
-export type Mode = "create" | "initialize" | "migrate";
+export interface PromptedOptions {
+	/**
+	 * Directory for the repository, if it may differ from the repository name.
+	 */
+	directory?: string;
+
+	/**
+	 * Repository name, if it may differ from the current directory.
+	 */
+	repository?: string;
+}

@@ -88,7 +88,7 @@ export function createWorkflows(options: Options) {
 								name: "Test",
 								steps: [
 									{ run: "pnpm run test --coverage" },
-									{ uses: "codecov/codecov-action@v3" },
+									{ if: "always()", uses: "codecov/codecov-action@v3" },
 								],
 							},
 						]),

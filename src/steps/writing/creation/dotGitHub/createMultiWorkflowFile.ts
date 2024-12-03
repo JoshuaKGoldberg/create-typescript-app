@@ -10,7 +10,10 @@ export interface MultiWorkflowJobOptions {
 	steps: MultiWorkflowJobStep[];
 }
 
-export type MultiWorkflowJobStep = { run: string } | { uses: string };
+export type MultiWorkflowJobStep = { if?: string } & (
+	| { run: string }
+	| { uses: string }
+);
 
 export function createMultiWorkflowFile({
 	jobs,

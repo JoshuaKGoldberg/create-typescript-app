@@ -115,7 +115,6 @@ export default tseslint.config(
 		files: ["**/*.test.*"],
 		rules: {
 			"@typescript-eslint/no-unsafe-assignment": "off",
-			"@typescript-eslint/no-unsafe-call": "off",
 		},
 	},`
 	}${

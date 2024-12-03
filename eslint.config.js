@@ -88,12 +88,7 @@ export default tseslint.config(
 			"object-shorthand": "error",
 			"operator-assignment": "error",
 		},
-		settings: {
-			perfectionist: {
-				partitionByComment: true,
-				type: "natural",
-			},
-		},
+		settings: { perfectionist: { partitionByComment: true, type: "natural" } },
 	},
 	{
 		extends: [tseslint.configs.disableTypeChecked],

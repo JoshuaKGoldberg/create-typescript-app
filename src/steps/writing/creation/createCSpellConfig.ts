@@ -11,7 +11,6 @@ export async function createCSpellConfig(
 	>,
 ) {
 	const words = [
-		"packagejson",
 		"tseslint",
 		!options.excludeLintMd && "markdownlint",
 		!options.excludeTemplatedBy && "joshuakgoldberg",

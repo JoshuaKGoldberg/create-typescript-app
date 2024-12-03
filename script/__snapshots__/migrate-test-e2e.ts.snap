@@ -120,7 +120,6 @@ exports[`expected file changes > cspell.json 1`] = `
 @@ ... @@
  		"arethetypeswrong",
  		"automerge",
- 		"codespace",
 -		"execa",
 +		"contributorsrc",
  		"infile",
@@ -131,12 +130,8 @@ exports[`expected file changes > cspell.json 1`] = `
  		"mtfoley",
 -		"npmignore",
  		"outro",
- 		"packagejson",
  		"tada",
  		"tseslint",
--		"tsup",
--		"vitest"
-+		"vitest",
 +		"wontfix"
  	]
  }"

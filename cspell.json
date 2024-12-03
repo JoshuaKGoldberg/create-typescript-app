@@ -1,14 +1,14 @@
 {
 	"dictionaries": ["npm", "node", "typescript"],
 	"ignorePaths": [
-		"./coverage*",
-		"./script/__snapshots__",
 		".all-contributorsrc",
 		".github",
 		"CHANGELOG.md",
+		"coverage*",
 		"lib",
 		"node_modules",
-		"pnpm-lock.yaml"
+		"pnpm-lock.yaml",
+		"script/__snapshots__"
 	],
 	"words": [
 		"allcontributors",
@@ -24,10 +24,8 @@
 		"mtfoley",
 		"npmignore",
 		"outro",
-		"packagejson",
 		"tada",
 		"tseslint",
-		"tsup",
-		"vitest"
+		"tsup"
 	]
 }

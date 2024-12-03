@@ -6,7 +6,7 @@ exports[`expected file changes > .github/workflows/ci.yml 1`] = `
 @@ ... @@
  jobs:
 -  are_the_types_wrong:
--    name: Are the types wrong?
+-    name: Are The Types Wrong?
 -    runs-on: ubuntu-latest
 -    steps:
 -      - uses: actions/checkout@v4

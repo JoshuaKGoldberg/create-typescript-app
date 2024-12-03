@@ -92,8 +92,8 @@ describe("createESLintConfig", () => {
 	it("creates a full config when all exclusions are disabled", async () => {
 		expect(await createESLintConfig(fakeOptions(() => false)))
 			.toMatchInlineSnapshot(`
-				"import eslint from "@eslint/js";
-				import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+				"import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+				import eslint from "@eslint/js";
 				import vitest from "@vitest/eslint-plugin";
 				import jsdoc from "eslint-plugin-jsdoc";
 				import jsonc from "eslint-plugin-jsonc";

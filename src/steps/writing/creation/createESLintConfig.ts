@@ -5,9 +5,9 @@ export async function createESLintConfig(options: Options) {
 	const tseslintBase = options.excludeLintStrict ? "recommended" : "strict";
 
 	const imports = [
-		`import eslint from "@eslint/js";`,
 		!options.excludeLintESLint &&
 			`import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";`,
+		`import eslint from "@eslint/js";`,
 		!options.excludeTests && `import vitest from "@vitest/eslint-plugin";`,
 		!options.excludeLintJSDoc && `import jsdoc from "eslint-plugin-jsdoc";`,
 		!options.excludeLintJson && `import jsonc from "eslint-plugin-jsonc";`,

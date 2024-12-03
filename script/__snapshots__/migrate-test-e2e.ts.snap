@@ -105,21 +105,23 @@ exports[`expected file changes > cspell.json 1`] = `
 "--- a/cspell.json
 +++ b/cspell.json
 @@ ... @@
- {
- 	"dictionaries": ["npm", "node", "typescript"],
- 	"ignorePaths": [
--		"./coverage*",
--		"./script/__snapshots__",
  		".all-contributorsrc",
  		".github",
  		"CHANGELOG.md",
+-		"coverage*",
 +		"coverage",
  		"lib",
  		"node_modules",
- 		"pnpm-lock.yaml"
+-		"pnpm-lock.yaml",
+-		"script/__snapshots__"
++		"pnpm-lock.yaml"
+ 	],
+ 	"words": [
+ 		"allcontributors",
 @@ ... @@
  		"arethetypeswrong",
  		"automerge",
+ 		"codespace",
 -		"execa",
 +		"contributorsrc",
  		"infile",
@@ -132,6 +134,7 @@ exports[`expected file changes > cspell.json 1`] = `
  		"outro",
  		"tada",
  		"tseslint",
+-		"tsup"
 +		"wontfix"
  	]
  }"

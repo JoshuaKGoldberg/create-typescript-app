@@ -55,9 +55,7 @@ export async function createESLintConfig(options: Options) {
 			"logical-assignment-operators": [
 				"error",
 				"always",
-				{
-					enforceForIfStatements: true,
-				},
+				{ enforceForIfStatements: true },
 			],
 			"no-useless-rename": "error",
 			"object-shorthand": "error",

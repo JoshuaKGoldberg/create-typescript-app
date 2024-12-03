@@ -23,7 +23,7 @@ const options = {
 };
 
 describe("updateReadme", () => {
-	it("adds a notice when the file does not contain it already", async () => {
+	it("adds a notice when the file does not contain it already and excludeTemplatedBy is not enabled", async () => {
 		mockReadFileSafe.mockResolvedValue(
 			"Existing JoshuaKGoldberg/create-typescript-app content.",
 		);
@@ -39,6 +39,23 @@ describe("updateReadme", () => {
 
 			> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app).
 			",
+			  ],
+			]
+		`);
+	});
+
+	it("doesn't add a notice when excludeTemplatedBy is enabled", async () => {
+		mockReadFileSafe.mockResolvedValue(
+			"Existing JoshuaKGoldberg/create-typescript-app content.",
+		);
+
+		await updateReadme({ ...options, excludeTemplatedBy: true });
+
+		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    "./README.md",
+			    "Existing NewOwner/create-typescript-app content.",
 			  ],
 			]
 		`);

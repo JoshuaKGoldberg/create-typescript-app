@@ -39,6 +39,7 @@ export const optionsSchemaShape = {
 	excludeLintYml: z.boolean().optional(),
 	excludeReleases: z.boolean().optional(),
 	excludeRenovate: z.boolean().optional(),
+	excludeTemplatedBy: z.boolean().optional(),
 	excludeTests: z.boolean().optional(),
 	funding: z.string().optional(),
 	guide: z.string().url().optional(),

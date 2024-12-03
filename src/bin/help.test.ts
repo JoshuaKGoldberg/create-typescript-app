@@ -273,6 +273,10 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
+			  --exclude-templated-by: Don't add a _"This package was templated with create-typescript-app"_ notice at the end of the README.md.",
+			  ],
+			  [
+			    "
 			  --exclude-tests: Don't add Vitest tooling for fast unit tests, configured 
 			  with coverage tracking.",
 			  ],

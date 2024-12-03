@@ -174,6 +174,11 @@ export const allArgOptions = {
 		docsSection: "opt-out",
 		type: "boolean",
 	},
+	"exclude-templated-by": {
+		description: `Don't add a _"This package was templated with create-typescript-app"_ notice at the end of the README.md.`,
+		docsSection: "opt-out",
+		type: "boolean",
+	},
 	"exclude-tests": {
 		description: `Don't add Vitest tooling for fast unit tests, configured 
   with coverage tracking.`,

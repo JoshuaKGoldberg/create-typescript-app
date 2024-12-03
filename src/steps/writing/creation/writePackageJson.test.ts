@@ -135,6 +135,7 @@ describe("writePackageJson", () => {
 			excludeLintYml: true,
 			excludeReleases: true,
 			excludeRenovate: true,
+			excludeTests: true,
 		});
 
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`

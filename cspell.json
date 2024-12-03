@@ -27,7 +27,6 @@
 		"npmpackagejsonlintrc",
 		"outro",
 		"packagejson",
-		"precommit",
 		"tada",
 		"tseslint",
 		"tsup",

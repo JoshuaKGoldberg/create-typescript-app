@@ -9,28 +9,6 @@ import { generateTopContent } from "./generateTopContent.js";
 
 const contributorsIndicator = `<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`;
 
-function generateAllContributorsContent(options: Options) {
-	return [
-		`## Contributors`,
-		``,
-		`<!-- spellchecker: disable -->`,
-		contributorsIndicator,
-		`<!-- prettier-ignore-start -->`,
-		!options.excludeLintMd && `<!-- markdownlint-disable -->`,
-		`<table>`,
-		`<!-- (this will be filled in by all-contributors) -->`,
-		`</table>`,
-		``,
-		!options.excludeLintMd && `<!-- markdownlint-restore -->`,
-		`<!-- prettier-ignore-end -->`,
-		``,
-		`<!-- ALL-CONTRIBUTORS-LIST:END -->`,
-		`<!-- spellchecker: enable -->`,
-	]
-		.filter(Boolean)
-		.join("\n");
-}
-
 export async function writeReadme(options: Options) {
 	const allContributorsContent =
 		!options.excludeAllContributors && generateAllContributorsContent(options);
@@ -70,4 +48,26 @@ export async function writeReadme(options: Options) {
 	}
 
 	await fs.writeFile("README.md", contents);
+}
+
+function generateAllContributorsContent(options: Options) {
+	return [
+		`## Contributors`,
+		``,
+		`<!-- spellchecker: disable -->`,
+		contributorsIndicator,
+		`<!-- prettier-ignore-start -->`,
+		!options.excludeLintMd && `<!-- markdownlint-disable -->`,
+		`<table>`,
+		`<!-- (this will be filled in by all-contributors) -->`,
+		`</table>`,
+		``,
+		!options.excludeLintMd && `<!-- markdownlint-restore -->`,
+		`<!-- prettier-ignore-end -->`,
+		``,
+		`<!-- ALL-CONTRIBUTORS-LIST:END -->`,
+		`<!-- spellchecker: enable -->`,
+	]
+		.filter(Boolean)
+		.join("\n");
 }

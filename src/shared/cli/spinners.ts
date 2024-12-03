@@ -8,9 +8,9 @@ import { startLineWithDots } from "./startLineWithDots.js";
 
 const s = prompts.spinner();
 
-export type SpinnerTask<Return> = () => Promise<Return>;
-
 export type LabeledSpinnerTask<Return> = [string, SpinnerTask<Return>];
+
+export type SpinnerTask<Return> = () => Promise<Return>;
 
 export async function withSpinner<Return>(
 	label: string,

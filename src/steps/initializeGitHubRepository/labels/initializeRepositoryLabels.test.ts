@@ -19,7 +19,7 @@ vi.mock("./outcomeLabels.js", () => ({
 const createMockOctokit = (existingLabels: GhLabelData[]) =>
 	({
 		request: vi.fn().mockResolvedValueOnce({ data: existingLabels }),
-	}) as unknown as { request: MockInstance } & Octokit;
+	}) as unknown as Octokit & { request: MockInstance };
 
 const options = {
 	owner: "TestOwner",

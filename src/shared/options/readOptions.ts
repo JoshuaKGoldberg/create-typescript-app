@@ -27,11 +27,11 @@ export interface OptionsParseCancelled {
 	options: object;
 }
 
+export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
+
 export interface OptionsParseSuccess extends GitHubAndOptions {
 	cancelled: false;
 }
-
-export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
 export async function readOptions(
 	args: string[],

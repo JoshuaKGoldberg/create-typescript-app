@@ -97,7 +97,6 @@ exports[`expected file changes > cspell.json 1`] = `
  		"outro",
  		"packagejson",
 -		"precommit",
- 		"quickstart",
  		"tada",
  		"tseslint",
  		"tsup",
@@ -122,8 +121,8 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -- typescript-eslint: https://typescript-eslint.io
 -*/
 -
- import eslint from "@eslint/js";
  import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+ import eslint from "@eslint/js";
  import vitest from "@vitest/eslint-plugin";
 @@ ... @@ export default tseslint.config(
  		languageOptions: {

@@ -4,14 +4,6 @@ import * as fs from "node:fs/promises";
 import { readFileAsJson } from "../shared/readFileAsJson.js";
 import { formatJson } from "./writing/creation/formatters/formatJson.js";
 
-async function getStdout() {
-	try {
-		return await $`pnpm run lint:spelling`;
-	} catch (error) {
-		return error as { stdout: string };
-	}
-}
-
 export async function populateCSpellDictionary() {
 	const { stdout } = await getStdout();
 	const unknownWords = new Set(
@@ -39,4 +31,12 @@ export async function populateCSpellDictionary() {
 				.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())),
 		}),
 	);
+}
+
+async function getStdout() {
+	try {
+		return await $`pnpm run lint:spelling`;
+	} catch (error) {
+		return error as { stdout: string };
+	}
 }

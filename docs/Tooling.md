@@ -250,7 +250,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 
 ### Lint MD
 
-[**Markdownlint**](https://github.com/DavidAnson/markdownlint)): Linting for Markdown code.
+[**Markdownlint**](https://github.com/DavidAnson/markdownlint): Linting for Markdown code.
 
 ```shell
 pnpm lint:md

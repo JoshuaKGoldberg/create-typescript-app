@@ -132,9 +132,7 @@ exports[`expected file changes > cspell.json 1`] = `
  		"markdownlintignore",
  		"mtfoley",
  		"npmignore",
--		"npmpackagejsonlintrc",
- 		"outro",
--		"packagejson",
+@@ ... @@
  		"tada",
  		"tseslint",
  		"tsup",

@@ -28,6 +28,12 @@ Add `--watch` to run the builder in a watch mode that continuously cleans and re
 pnpm build --watch
 ```
 
+### Built App Debugging
+
+This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
+To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
+VS Code will automatically run the `build` task in the background before running `./bin/index.js`.
+
 ## Formatting
 
 [Prettier](https://prettier.io) is used to format code.
@@ -58,7 +64,7 @@ For example, ESLint can be run with `--fix` to auto-fix some lint rule complaint
 pnpm run lint --fix
 ```
 
-Note that you'll likely need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
+Note that you'll need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
@@ -98,19 +104,6 @@ Add `--watch` to keep the type checker running in a watch mode that updates the 
 ```shell
 pnpm tsc --watch
 ```
-
-## Debugging
-
-This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
-Depending upon the type of usage, it can include debugging for unit tests _and_ for executable (or "bin") apps.
-
-### Unit Tests
-
-To debug a unit test, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-
-### `bin` Apps
-
-To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
 
 ## Setup Scripts
 

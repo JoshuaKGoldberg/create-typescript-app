@@ -67,7 +67,7 @@ exports[`expected file changes > cspell.json 1`] = `
 +++ b/cspell.json
 @@ ... @@
  {
- 	"dictionaries": ["typescript"],
+ 	"dictionaries": ["npm", "node", "typescript"],
  	"ignorePaths": [
 -		"./coverage*",
 -		"./script/__snapshots__",
@@ -85,15 +85,16 @@ exports[`expected file changes > cspell.json 1`] = `
 -		"execa",
  		"infile",
  		"joshuakgoldberg",
- 		"knip",
+-		"knip",
 +		"markdownlint",
  		"markdownlintignore",
  		"mtfoley",
- 		"npmignore",
-@@ ... @@
+-		"npmignore",
+ 		"outro",
+ 		"packagejson",
  		"tada",
  		"tseslint",
- 		"tsup",
+-		"tsup",
 -		"vitest"
 +		"vitest",
 +		"wontfix"

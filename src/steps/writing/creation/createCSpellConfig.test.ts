@@ -22,9 +22,8 @@ describe("createCSpellConfig", () => {
 					"apexskier",
 					"automerge",
 					"joshuakgoldberg",
-					"markdownlint",
-					"tseslint",
-					"tsup"
+					"markdownlintignore",
+					"tseslint"
 				]
 			}
 			"
@@ -51,7 +50,7 @@ describe("createCSpellConfig", () => {
 					"node_modules",
 					"pnpm-lock.yaml"
 				],
-				"words": ["tseslint", "tsup"]
+				"words": ["tseslint"]
 			}
 			"
 		`);

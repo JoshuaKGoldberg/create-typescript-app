@@ -14,10 +14,9 @@ export async function createCSpellConfig(
 ) {
 	const words = [
 		"tseslint",
-		"tsup",
 		!options.excludeReleases && "apexskier",
 		!options.excludeRenovate && "automerge",
-		!options.excludeLintMd && "markdownlint",
+		!options.excludeLintMd && "markdownlintignore",
 		!options.excludeTemplatedBy && "joshuakgoldberg",
 	]
 		.filter(Boolean)

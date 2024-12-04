@@ -24,7 +24,6 @@
 		"npmignore",
 		"outro",
 		"tada",
-		"tseslint",
-		"tsup"
+		"tseslint"
 	]
 }

@@ -126,14 +126,13 @@ exports[`expected file changes > cspell.json 1`] = `
 +		"contributorsrc",
  		"infile",
  		"joshuakgoldberg",
-+		"markdownlint",
  		"markdownlintignore",
  		"mtfoley",
 -		"npmignore",
  		"outro",
  		"tada",
- 		"tseslint",
--		"tsup"
+-		"tseslint"
++		"tseslint",
 +		"wontfix"
  	]
  }"

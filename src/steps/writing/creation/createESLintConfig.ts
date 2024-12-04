@@ -30,9 +30,8 @@ export async function createESLintConfig(options: Options) {
 			`	jsdoc.configs["flat/contents-typescript-error"],
 		jsdoc.configs["flat/logical-typescript-error"],
 		jsdoc.configs["flat/stylistic-typescript-error"],`,
-		!options.excludeLintJson &&
-			`	...jsonc.configs["flat/recommended-with-json"],`,
-		!options.excludeLintMd && `	...markdown.configs.recommended,`,
+		!options.excludeLintJson && `	jsonc.configs["flat/recommended-with-json"],`,
+		!options.excludeLintMd && `	markdown.configs.recommended,`,
 		`	n.configs["flat/recommended"],`,
 		!options.excludeLintPackageJson && `	packageJson,`,
 		!options.excludeLintPerfectionist &&
@@ -69,17 +68,15 @@ export async function createESLintConfig(options: Options) {
 
 export default tseslint.config(
 	{ ignores: [${ignores.join(", ")}], },
-	{
-		linterOptions: { reportUnusedDisableDirectives: "error" }
-	},
+	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	${elements.join("\n")}
 	{
 		extends: ${
 			options.excludeLintStylistic
 				? `tseslint.configs.${tseslintBase}TypeChecked`
 				: `[
-			...tseslint.configs.${tseslintBase}TypeChecked,
-			...tseslint.configs.stylisticTypeChecked,
+			tseslint.configs.${tseslintBase}TypeChecked,
+			tseslint.configs.stylisticTypeChecked,
 		]`
 		},
 		files: ["**/*.js", "**/*.ts"],
@@ -117,9 +114,7 @@ export default tseslint.config(
 		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
 		rules: {
-			// These on-by-default rules aren't useful in test files.
 			"@typescript-eslint/no-unsafe-assignment": "off",
-			"@typescript-eslint/no-unsafe-call": "off",
 		},
 	},`
 	}${
@@ -127,10 +122,7 @@ export default tseslint.config(
 			? ""
 			: `
 	{
-		extends: [
-			...yml.configs["flat/recommended"],
-			...yml.configs["flat/prettier"],
-		],
+		extends: [yml.configs["flat/recommended"], yml.configs["flat/prettier"]],
 		files: ["**/*.{yml,yaml}"],
 		rules: {
 			"yml/file-extension": ["error", { extension: "yml" }],

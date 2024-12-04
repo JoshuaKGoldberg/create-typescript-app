@@ -1,5 +1,6 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base } from "../base.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 
 export const blockReleaseIt = base.createBlock({
@@ -9,6 +10,9 @@ export const blockReleaseIt = base.createBlock({
 	produce({ options }) {
 		return {
 			addons: [
+				blockCSpell({
+					words: ["apexskier"],
+				}),
 				blockPackageJson({
 					properties: {
 						publishConfig: {

@@ -1,12 +1,12 @@
 import { Options, OptionsBase } from "../types.js";
 
-export type ExclusionKey = `exclude${string}` & keyof Options;
-
 export interface ExclusionDescription {
 	hint: string;
 	label: string;
 	level?: "common" | "minimal";
 }
+
+export type ExclusionKey = `exclude${string}` & keyof Options;
 
 export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
 	{

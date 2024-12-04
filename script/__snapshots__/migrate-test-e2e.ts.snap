@@ -17,11 +17,50 @@ exports[`expected file changes > .github/workflows/ci.yml 1`] = `
      name: Build
      runs-on: ubuntu-latest
 @@ ... @@ jobs:
-       - uses: ./.github/actions/prepare
        - run: pnpm run test --coverage
-       - uses: codecov/codecov-action@v3
+       - if: always()
+         uses: codecov/codecov-action@v3
 -        with:
 -          flags: unit
+-  test_creation_script:
+-    name: Test Creation Script
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+-      - uses: ./.github/actions/prepare
+-      - run: pnpm run build
+-      - run: pnpm run test:create
+-      - if: always()
+-        uses: codecov/codecov-action@v3
+-        with:
+-          files: coverage-create/lcov.info
+-          flags: create
+-  test_initialization_script:
+-    name: Test Initialization Script
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+-      - uses: ./.github/actions/prepare
+-      - run: pnpm run build
+-      - run: pnpm run test:initialize
+-      - if: always()
+-        uses: codecov/codecov-action@v3
+-        with:
+-          files: coverage-initialize/lcov.info
+-          flags: initialize
+-  test_migration_script:
+-    name: Test Migration Script
+-    runs-on: ubuntu-latest
+-    steps:
+-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+-      - uses: ./.github/actions/prepare
+-      - run: pnpm run build
+-      - run: pnpm run test:migrate
+-      - if: always()
+-        uses: codecov/codecov-action@v3
+-        with:
+-          files: coverage-migrate/lcov.info
+-          flags: migrate
    type_check:
      name: Type Check
      runs-on: ubuntu-latest"
@@ -66,43 +105,33 @@ exports[`expected file changes > cspell.json 1`] = `
 "--- a/cspell.json
 +++ b/cspell.json
 @@ ... @@
- {
- 	"dictionaries": ["typescript"],
- 	"ignorePaths": [
--		"./coverage*",
--		"./script/__snapshots__",
  		".all-contributorsrc",
  		".github",
  		"CHANGELOG.md",
+-		"coverage*",
 +		"coverage",
  		"lib",
  		"node_modules",
- 		"pnpm-lock.yaml"
+-		"pnpm-lock.yaml",
+-		"script/__snapshots__"
++		"pnpm-lock.yaml"
+ 	],
+ 	"words": [
+ 		"allcontributors",
 @@ ... @@
- 		"apexskier",
  		"arethetypeswrong",
  		"automerge",
--		"codecov",
  		"codespace",
- 		"contributorsrc",
- 		"execa",
+-		"execa",
++		"contributorsrc",
  		"infile",
-+		"joshuakgoldberg",
- 		"knip",
-+		"markdownlint",
+ 		"joshuakgoldberg",
  		"markdownlintignore",
  		"mtfoley",
- 		"npmignore",
- 		"npmpackagejsonlintrc",
  		"outro",
- 		"packagejson",
--		"(TODO: update snapshot, remove this)",
- 		"quickstart",
  		"tada",
- 		"tseslint",
- 		"tsup",
--		"vitest"
-+		"vitest",
+-		"tseslint"
++		"tseslint",
 +		"wontfix"
  	]
  }"
@@ -122,16 +151,32 @@ exports[`expected file changes > eslint.config.js 1`] = `
 -- typescript-eslint: https://typescript-eslint.io
 -*/
 -
- import eslint from "@eslint/js";
  import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+ import eslint from "@eslint/js";
  import vitest from "@vitest/eslint-plugin";
+@@ ... @@ import tseslint from "typescript-eslint";
+ 
+ export default tseslint.config(
+ 	{
+-		ignores: [
+-			"**/*.snap",
+-			"coverage*",
+-			"lib",
+-			"node_modules",
+-			"pnpm-lock.yaml",
+-		],
++		ignores: ["**/*.snap", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
+ 	},
+ 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
+ 	eslint.configs.recommended,
 @@ ... @@ export default tseslint.config(
+ 		files: ["**/*.js", "**/*.ts"],
  		languageOptions: {
  			parserOptions: {
- 				projectService: {
+-				projectService: {
 -					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
-+					allowDefaultProject: ["*.config.*s"],
- 				},
+-				},
++				projectService: { allowDefaultProject: ["*.config.*s"] },
  				tsconfigRootDir: import.meta.dirname,
  			},
  		},
@@ -160,22 +205,18 @@ exports[`expected file changes > eslint.config.js 1`] = `
  			"logical-assignment-operators": [
  				"error",
 @@ ... @@ export default tseslint.config(
- 			},
- 		},
- 	},
-+	{
-+		extends: [tseslint.configs.disableTypeChecked],
-+		files: ["**/*.md/*.ts"],
+ 	{
+ 		extends: [tseslint.configs.disableTypeChecked],
+ 		files: ["**/*.md/*.ts"],
 +		rules: {
 +			"n/no-missing-import": [
 +				"error",
 +				{ allowModules: ["create-typescript-app"] },
 +			],
 +		},
-+	},
+ 	},
  	{
- 		extends: [vitest.configs.recommended],
- 		files: ["**/*.test.*"],"
+ 		extends: [vitest.configs.recommended],"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

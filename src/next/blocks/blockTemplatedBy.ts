@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockREADME } from "./blockREADME.js";
 
 export const blockTemplatedBy = base.createBlock({
@@ -13,6 +14,9 @@ export const blockTemplatedBy = base.createBlock({
 	produce() {
 		return {
 			addons: [
+				blockCSpell({
+					words: ["joshuakgoldberg"],
+				}),
 				blockREADME({
 					notices: [
 						`

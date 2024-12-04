@@ -9,7 +9,7 @@ export const blockESLintJSONC = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					extensions: [`...jsonc.configs["flat/recommended-with-json"]`],
+					extensions: [`jsonc.configs["flat/recommended-with-json"]`],
 					imports: [{ source: "eslint-plugin-jsonc", specifier: "jsonc" }],
 				}),
 			],

@@ -3,6 +3,7 @@ import { parse as parsePackageName } from "parse-package-name";
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
@@ -82,8 +83,8 @@ export const blockESLint = base.createBlock({
 		const extensionLines = [
 			printExtension({
 				extends: [
-					"...tseslint.configs.strictTypeChecked",
-					"...tseslint.configs.stylisticTypeChecked",
+					"tseslint.configs.strictTypeChecked",
+					"tseslint.configs.stylisticTypeChecked",
 				],
 				files: ["**/*.js", "**/*.ts"],
 				languageOptions: {
@@ -114,6 +115,9 @@ export const blockESLint = base.createBlock({
 
 		return {
 			addons: [
+				blockCSpell({
+					words: ["tseslint"],
+				}),
 				blockDevelopmentDocs({
 					sections: {
 						Linting: {
@@ -170,6 +174,11 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 					},
 				}),
 				blockVSCode({
+					addons: [
+						blockCSpell({
+							words: ["dbaeumer"],
+						}),
+					],
 					extensions: ["dbaeumer.vscode-eslint"],
 					settings: {
 						"editor.codeActionsOnSave": {
@@ -209,21 +218,20 @@ export default tseslint.config(
 
 function printExtension(extension: z.infer<typeof zExtension>) {
 	return [
-		"\t\t{",
-		extension.extends && `\t\textends: [${extension.extends.join(", ")}],`,
+		"{",
+		extension.extends && `extends: [${extension.extends.join(", ")}],`,
 		extension.files &&
-			`\t\tfiles: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
+			`files: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
 		extension.languageOptions &&
-			`\t\tlanguageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
+			`languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
 		extension.linterOptions &&
-			`\t\tlinterOptions: ${JSON.stringify(extension.linterOptions)}`,
-		extension.rules && `\t\trules: ${printExtensionRules(extension.rules)},`,
-		extension.settings &&
-			`\t\tsettings: ${JSON.stringify(extension.settings)},`,
-		"\t\t}",
+			`linterOptions: ${JSON.stringify(extension.linterOptions)}`,
+		extension.rules && `rules: ${printExtensionRules(extension.rules)},`,
+		extension.settings && `settings: ${JSON.stringify(extension.settings)},`,
+		"}",
 	]
 		.filter(Boolean)
-		.join("\n");
+		.join(" ");
 }
 
 function printExtensionRules(rules: z.infer<typeof zExtensionRules>) {
@@ -234,7 +242,7 @@ function printExtensionRules(rules: z.infer<typeof zExtensionRules>) {
 	return [
 		"{\n",
 		...rules.flatMap((group, i) => [
-			`${i === 0 ? "" : "\n"}\t\t\t// ${group.comment}\n`,
+			`${i === 0 ? "" : "\n"}${group.comment ? `// ${group.comment}\n` : ""}`,
 			...Object.entries(group.entries).map(
 				([ruleName, options]) =>
 					`\t\t\t"${ruleName}": ${JSON.stringify(options, null, 4)},\n`,

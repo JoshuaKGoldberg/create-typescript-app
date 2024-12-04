@@ -44,6 +44,7 @@ const optionsBase = {
 	excludeLintYml: undefined,
 	excludeReleases: undefined,
 	excludeRenovate: undefined,
+	excludeTemplatedBy: undefined,
 	excludeTests: undefined,
 	funding: undefined,
 	logo: undefined,

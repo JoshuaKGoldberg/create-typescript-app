@@ -45,9 +45,7 @@ export async function writePackageJson(options: Options) {
 			// To start, copy over all existing package fields (e.g. "dependencies")
 			...existingPackageJson,
 
-			// If we didn't already have a version, set it to 0.0.0
 			author: { email: options.email.npm, name: options.author },
-
 			bin: options.bin,
 			description: options.description,
 			keywords: options.keywords?.length
@@ -76,8 +74,8 @@ export async function writePackageJson(options: Options) {
 				"LICENSE.md",
 				"README.md",
 			]
-				.sort()
-				.filter(Boolean),
+				.filter(Boolean)
+				.sort(),
 			license: "MIT",
 			"lint-staged": {
 				"*": "prettier --ignore-unknown --write",

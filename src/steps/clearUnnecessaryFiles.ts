@@ -17,7 +17,6 @@ const globPaths = [
 	".eslintrc",
 	"CODE_OF_CONDUCT.md",
 	"CONTRIBUTING.md",
-	".npmpackagejsonlintrc.json",
 	"codecov.yml",
 	"DEVELOPMENT.md",
 	"dist",
@@ -27,12 +26,12 @@ const globPaths = [
 	"yarn.lock",
 ];
 
-function extensions(base: string, ...extensions: string[]) {
-	return extensions.map((extension) => [base, extension].join("."));
-}
-
 export async function clearUnnecessaryFiles() {
 	for (const globPath of globPaths) {
 		await fs.rm(globPath, { force: true, recursive: true });
 	}
+}
+
+function extensions(base: string, ...extensions: string[]) {
+	return extensions.map((extension) => [base, extension].join("."));
 }

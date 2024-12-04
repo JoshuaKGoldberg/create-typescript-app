@@ -35,7 +35,6 @@ export const blockVitest = base.createBlock({
 			addons: [
 				blockCSpell({
 					ignores: [coverage.directory],
-					words: ["codecov", "vitest"],
 				}),
 				blockESLint({
 					extensions: [
@@ -44,11 +43,8 @@ export const blockVitest = base.createBlock({
 							files: ["**/*.test.*"],
 							rules: [
 								{
-									comment:
-										"These on-by-default rules aren't useful in test files.",
 									entries: {
 										"@typescript-eslint/no-unsafe-assignment": "off",
-										"@typescript-eslint/no-unsafe-call": "off",
 									},
 								},
 							],

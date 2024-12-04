@@ -1,0 +1,27 @@
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: pnpm run build
+      - run: pnpm run test:migrate
+      # The template's ESLint ignorePatterns only ignores coverage, not coverage-*
+      # https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1131
+      - if: always()
+        run: mv coverage coverage-migrate
+      - if: always()
+        name: Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage-migrate/lcov.info
+          flags: migrate
+
+name: Test Migration Script
+
+on:
+  pull_request: ~
+
+  push:
+    branches:
+      - main

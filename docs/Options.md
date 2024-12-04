@@ -101,6 +101,7 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-lint-yml`: Don't apply linting and sorting to `*.yaml` and `*.yml` files.
 - `--exclude-releases`: Don't add release-it to generate changelogs, package bumps, and publishes based on conventional commits.
 - `--exclude-renovate`: Don't add a Renovate config to dependencies up-to-date with PRs.
+- `--exclude-templated-by`: Don't add a _"This package was templated with create-typescript-app"_ notice at the end of the README.md.
 - `--exclude-tests`: Don't add Vitest tooling for fast unit tests, configured with coverage tracking.
 - `--exclude-templated-by`: Don't add a _"This package was templated with create-typescript-app"_ notice at the end of the README.md.
 

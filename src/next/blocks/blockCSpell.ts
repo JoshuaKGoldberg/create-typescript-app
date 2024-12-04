@@ -52,7 +52,7 @@ export const blockCSpell = base.createBlock({
 			],
 			files: {
 				"cspell.json": JSON.stringify({
-					dictionaries: ["typescript"],
+					dictionaries: ["npm", "node", "typescript"],
 					ignorePaths: [
 						".github",
 						"CHANGELOG.md",

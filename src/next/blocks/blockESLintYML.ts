@@ -12,8 +12,8 @@ export const blockESLintYML = base.createBlock({
 					extensions: [
 						{
 							extends: [
-								'...yml.configs["flat/recommended"]',
-								'...yml.configs["flat/prettier"]',
+								'yml.configs["flat/recommended"]',
+								'yml.configs["flat/prettier"]',
 							],
 							files: ["**/*.{yml,yaml}"],
 							rules: {

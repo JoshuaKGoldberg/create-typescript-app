@@ -1,4 +1,5 @@
 import { base } from "../base.js";
+import { blockCSpell } from "./blockCSpell.js";
 
 export const blockRenovate = base.createBlock({
 	about: {
@@ -6,6 +7,11 @@ export const blockRenovate = base.createBlock({
 	},
 	produce() {
 		return {
+			addons: [
+				blockCSpell({
+					words: ["automerge"],
+				}),
+			],
 			files: {
 				".github": {
 					"renovate.json": JSON.stringify({

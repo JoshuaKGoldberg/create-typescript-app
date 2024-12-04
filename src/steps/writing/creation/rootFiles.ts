@@ -1,4 +1,5 @@
 import { Options } from "../../../shared/types.js";
+import { createCSpellConfig } from "./createCSpellConfig.js";
 import { createDotGitignore } from "./createDotGitignore.js";
 import { createESLintConfig } from "./createESLintConfig.js";
 import { createTsupConfig } from "./createTsupConfig.js";
@@ -92,22 +93,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 `,
 		...(!options.excludeLintSpelling && {
-			"cspell.json": await formatJson({
-				dictionaries: ["typescript"],
-				ignorePaths: [
-					...(options.excludeAllContributors ? [] : [".all-contributorsrc"]),
-					".github",
-					"CHANGELOG.md",
-					...(options.excludeTests ? [] : ["coverage"]),
-					"lib",
-					"node_modules",
-					"pnpm-lock.yaml",
-				],
-				words: [
-					...(options.excludeTests ? [] : ["codecov", "vitest"]),
-					...(options.excludeLintMd ? [] : ["markdownlint"]),
-				].sort(),
-			}),
+			"cspell.json": await createCSpellConfig(options),
 		}),
 		...(!options.excludeLintKnip && {
 			"knip.json": await formatJson({

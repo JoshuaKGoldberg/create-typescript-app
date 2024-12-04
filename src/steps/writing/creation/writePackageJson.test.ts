@@ -135,6 +135,7 @@ describe("writePackageJson", () => {
 			excludeLintYml: true,
 			excludeReleases: true,
 			excludeRenovate: true,
+			excludeTests: true,
 		});
 
 		expect(JSON.parse(packageJson)).toMatchInlineSnapshot(`
@@ -173,7 +174,6 @@ describe("writePackageJson", () => {
 			    "format": "prettier .",
 			    "lint": "eslint . --max-warnings 0",
 			    "prepare": "husky",
-			    "test": "vitest",
 			    "tsc": "tsc",
 			  },
 			  "type": "module",

@@ -145,7 +145,7 @@ That end-to-end test executes `script/create-test-e2e.ts`, which:
 2. Asserts that commands such as `build` and `lint` each pass
 
 The `pnpm run test:create` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-create.yml`.
+See `.github/workflows/ci.yml`'s `test_creation_script` job.
 
 ### The Initialization Script
 
@@ -177,7 +177,7 @@ That end-to-end test executes `script/initialize-test-e2e.ts`, which:
 5. Runs initialization a second time, capturing test coverage
 
 The `pnpm run test:initialize` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-initialize.yml`.
+See `.github/workflows/ci.yml`'s `test_initialization_script` job.
 
 ### The Migration Script
 
@@ -221,7 +221,7 @@ That end-to-end test executes `script/migrate-test-e2e.ts`, which:
 3. Checks that the local repository's files were changed correctly (e.g. removed initialization-only files)
 
 The `pnpm run test:migrate` script is run in CI to ensure that templating changes are in sync with the template's actual files.
-See `.github/workflows/test-migrate.yml`.
+See `.github/workflows/ci.yml`'s `test_migration_script` job.
 
 > Tip: if the migration test is failing in CI and you don't see any errors, try [downloading the full logs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/using-workflow-run-logs#downloading-logs).
 

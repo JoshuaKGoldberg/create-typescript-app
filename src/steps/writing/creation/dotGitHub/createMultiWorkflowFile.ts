@@ -1,19 +1,19 @@
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
-export type MultiWorkflowJobStep = { if?: string } & (
-	| { run: string }
-	| { uses: string }
-);
+export interface MultiWorkflowFileOptions {
+	jobs: MultiWorkflowJobOptions[];
+	name: string;
+}
 
 export interface MultiWorkflowJobOptions {
 	name: string;
 	steps: MultiWorkflowJobStep[];
 }
 
-export interface MultiWorkflowFileOptions {
-	jobs: MultiWorkflowJobOptions[];
-	name: string;
-}
+export type MultiWorkflowJobStep = { if?: string } & (
+	| { run: string }
+	| { uses: string }
+);
 
 export function createMultiWorkflowFile({
 	jobs,

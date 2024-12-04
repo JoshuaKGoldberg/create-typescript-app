@@ -1,0 +1,23 @@
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: pnpm run build
+      - run: pnpm run test:create
+      - if: always()
+        name: Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage-create/lcov.info
+          flags: create
+
+name: Test Creation Script
+
+on:
+  pull_request: ~
+
+  push:
+    branches:
+      - main

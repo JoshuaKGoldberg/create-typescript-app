@@ -23,7 +23,6 @@ export const blockPackageJson = base.createBlock({
 			.default({}),
 	},
 	produce({ addons, options }) {
-		// console.log({ "options.packageData": options.packageData });
 		return {
 			commands: [
 				{
@@ -47,10 +46,10 @@ export const blockPackageJson = base.createBlock({
 							...addons.properties.devDependencies,
 						},
 						files: [
-							"package.json",
-							"README.md",
 							options.bin?.replace(/^\.\//, ""),
 							...(addons.properties.files ?? []),
+							"package.json",
+							"README.md",
 						]
 							.filter(Boolean)
 							.sort(),

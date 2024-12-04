@@ -1,7 +1,7 @@
 import { Options } from "../../../../shared/types.js";
 import { formatYaml } from "../formatters/formatYaml.js";
 
-export async function createDotGitHubIssueTemplate({
+export function createDotGitHubIssueTemplate({
 	owner,
 	repository,
 }: Pick<Options, "owner" | "repository">) {

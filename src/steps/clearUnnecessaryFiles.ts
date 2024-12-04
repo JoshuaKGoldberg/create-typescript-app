@@ -17,7 +17,6 @@ const globPaths = [
 	".eslintrc",
 	"CODE_OF_CONDUCT.md",
 	"CONTRIBUTING.md",
-	".npmpackagejsonlintrc.json",
 	"codecov.yml",
 	"DEVELOPMENT.md",
 	"dist",

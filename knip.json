@@ -1,6 +1,6 @@
 {
 	"$schema": "https://unpkg.com/knip@latest/schema.json",
-	"entry": ["src/index.ts!", "script/*e2e.js"],
+	"entry": ["script/*e2e.js", "src/index.ts!", "src/**/*.test.*"],
 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 	"project": ["src/**/*.ts!", "script/**/*.js"]
 }

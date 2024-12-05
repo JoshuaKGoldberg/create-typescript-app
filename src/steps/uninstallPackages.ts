@@ -21,6 +21,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"npm-user",
 			"octokit",
 			"parse-author",
+			"parse-package-name",
 			"prettier",
 			"replace-in-file",
 			"rimraf",

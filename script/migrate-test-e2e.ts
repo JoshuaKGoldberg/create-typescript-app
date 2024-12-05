@@ -11,12 +11,14 @@ const filesExpectedToBeChanged = [
 	".github/workflows/ci.yml",
 	".gitignore",
 	".prettierignore",
-	"cspell.json",
 	"eslint.config.js",
 	"tsconfig.json",
 ];
 
 const filesThatMightBeChanged = new Set([
+	// For now, ignore typos cspell is picking up from migration snapshots.
+	"cspell.json",
+
 	"script/__snapshots__/migrate-test-e2e.ts.snap",
 	...filesExpectedToBeChanged,
 ]);

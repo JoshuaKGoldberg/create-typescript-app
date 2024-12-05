@@ -174,7 +174,7 @@ exports[`expected file changes > eslint.config.js 1`] = `
  		languageOptions: {
  			parserOptions: {
 -				projectService: {
--					allowDefaultProject: ["*.config.*s", "bin/*.js", "script/*.ts"],
+-					allowDefaultProject: ["*.config.*s", "bin/*.js"],
 -				},
 +				projectService: { allowDefaultProject: ["*.config.*s"] },
  				tsconfigRootDir: import.meta.dirname,
@@ -230,5 +230,17 @@ exports[`expected file changes > knip.json 1`] = `
  	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 -	"project": ["src/**/*.ts!", "script/**/*.js"]
 +	"project": ["src/**/*.ts!"]
+ }"
+`;
+
+exports[`expected file changes > tsconfig.json 1`] = `
+"--- a/tsconfig.json
++++ b/tsconfig.json
+@@ ... @@
+ 		"strict": true,
+ 		"target": "ES2022"
+ 	},
+-	"include": ["src", "script"]
++	"include": ["src"]
  }"
 `;

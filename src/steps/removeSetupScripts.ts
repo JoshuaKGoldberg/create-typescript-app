@@ -8,6 +8,7 @@ const globPaths = [
 	"./src/create",
 	"./src/initialize",
 	"./src/migrate",
+	"./src/next",
 	"./src/shared",
 	"./src/steps",
 ];

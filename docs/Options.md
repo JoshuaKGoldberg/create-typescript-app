@@ -103,7 +103,6 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-renovate`: Don't add a Renovate config to dependencies up-to-date with PRs.
 - `--exclude-templated-by`: Don't add a _"This package was templated with create-typescript-app"_ notice at the end of the README.md.
 - `--exclude-tests`: Don't add Vitest tooling for fast unit tests, configured with coverage tracking.
-- `--exclude-templated-by`: Don't add a _"This package was templated with create-typescript-app"_ notice at the end of the README.md.
 
 For example, initializing with all tooling except for `package.json` checks and Renovate:
 

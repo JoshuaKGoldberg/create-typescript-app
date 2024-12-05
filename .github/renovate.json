@@ -2,9 +2,7 @@
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"automerge": true,
 	"extends": ["config:best-practices", "replacements:all"],
-	"github-actions": {
-		"enabled": false
-	},
+	"github-actions": { "enabled": false },
 	"ignoreDeps": ["codecov/codecov-action"],
 	"labels": ["dependencies"],
 	"minimumReleaseAge": "7 days",

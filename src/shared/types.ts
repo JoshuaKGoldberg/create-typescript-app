@@ -38,7 +38,7 @@ export interface PartialPackageData {
 	description?: string;
 	devDependencies?: Record<string, string>;
 	email?: string;
-	engine?: { node?: string };
+	engines?: { node?: string };
 	name?: string;
 	repository?: string | { type: string; url: string };
 	scripts?: Record<string, string>;

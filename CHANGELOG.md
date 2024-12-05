@@ -62,7 +62,7 @@
 
 ### Features
 
-- Are The Types Wrong workflow ([#1644](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1644)) ([3d30a68](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3d30a688d24f07d680c3c49d66e4b42915f6a7c5)), closes [#1633](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1633) [#1633](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1633) [/github.com/JoshuaKGoldberg/create-typescript-app/issues/1633#issuecomment-2290681567](https://github.com//github.com/JoshuaKGoldberg/create-typescript-app/issues/1633/issues/issuecomment-2290681567)
+- are the types wrong workflow ([#1644](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1644)) ([3d30a68](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3d30a688d24f07d680c3c49d66e4b42915f6a7c5)), closes [#1633](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1633) [#1633](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1633) [/github.com/JoshuaKGoldberg/create-typescript-app/issues/1633#issuecomment-2290681567](https://github.com//github.com/JoshuaKGoldberg/create-typescript-app/issues/1633/issues/issuecomment-2290681567)
 
 ## [1.72.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.72.3...v1.72.4) (2024-09-29)
 

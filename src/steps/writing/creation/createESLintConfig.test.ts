@@ -148,9 +148,7 @@ describe("createESLintConfig", () => {
 					{
 						extends: [vitest.configs.recommended],
 						files: ["**/*.test.*"],
-						rules: {
-							"@typescript-eslint/no-unsafe-assignment": "off",
-						},
+						rules: { "@typescript-eslint/no-unsafe-assignment": "off" },
 					},
 					{
 						extends: [yml.configs["flat/recommended"], yml.configs["flat/prettier"]],

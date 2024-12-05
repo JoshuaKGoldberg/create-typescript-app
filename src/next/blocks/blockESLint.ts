@@ -105,14 +105,6 @@ export const blockESLint = base.createBlock({
 			.sort((a, b) => processForSort(a).localeCompare(processForSort(b)))
 			.map((t) => t);
 
-		function processForSort(line: string) {
-			if (line.startsWith("...") || /\w+/.test(line[0])) {
-				return `A\n${line.replaceAll(/\W+/g, "")}`;
-			}
-
-			return `B\n${(/files: (.+)/.exec(line)?.[1] ?? line).replaceAll(/\W+/g, "")}`;
-		}
-
 		return {
 			addons: [
 				blockCSpell({
@@ -197,14 +189,12 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				"eslint.config.js": `${importLines.join("\n")}
 
 export default tseslint.config(
-	{
-		ignores: [${ignoreLines.join(", ")}]
-	},
+	{ ignores: [${ignoreLines.join(", ")}] },
 	${printExtension({
 		linterOptions: { reportUnusedDisableDirectives: "error" },
 	})},
 	eslint.configs.recommended,
-	${extensionLines.join(",		")}
+	${extensionLines.join(",")}
 );`,
 			},
 		};
@@ -235,14 +225,21 @@ function printExtensionRules(rules: z.infer<typeof zExtensionRules>) {
 	}
 
 	return [
-		"{\n",
-		...rules.flatMap((group, i) => [
-			`${i === 0 ? "" : "\n"}${group.comment ? `// ${group.comment}\n` : ""}`,
+		"{",
+		...rules.flatMap((group) => [
+			group.comment ? `// ${group.comment}\n` : "",
 			...Object.entries(group.entries).map(
-				([ruleName, options]) =>
-					`\t\t\t"${ruleName}": ${JSON.stringify(options, null, 4)},\n`,
+				([ruleName, options]) => `"${ruleName}": ${JSON.stringify(options)},`,
 			),
 		]),
-		"\t\t}\n",
+		"}",
 	].join("");
+}
+
+function processForSort(line: string) {
+	if (line.startsWith("...") || /\w+/.test(line[0])) {
+		return `A\n${line.replaceAll(/\W+/g, "")}`;
+	}
+
+	return `B\n${(/files: (.+)/.exec(line)?.[1] ?? line).replaceAll(/\W+/g, "")}`;
 }

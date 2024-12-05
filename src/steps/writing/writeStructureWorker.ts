@@ -16,7 +16,7 @@ export async function writeStructureWorker(
 				path.join(basePath, fileName),
 				await format(fileName, contents),
 			);
-		} else {
+		} else if (contents) {
 			await writeStructureWorker(contents, path.join(basePath, fileName));
 		}
 	}

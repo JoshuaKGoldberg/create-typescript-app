@@ -130,9 +130,7 @@ describe("createESLintConfig", () => {
 							"logical-assignment-operators": [
 								"error",
 								"always",
-								{
-									enforceForIfStatements: true,
-								},
+								{ enforceForIfStatements: true },
 							],
 							"no-useless-rename": "error",
 							"object-shorthand": "error",

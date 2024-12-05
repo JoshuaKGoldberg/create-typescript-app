@@ -22,6 +22,6 @@ const options: jsYaml.DumpOptions = {
 };
 
 export function formatYaml(value: unknown) {
-	const dumped = jsYaml.dump(value, options); // .replaceAll(`\\"`, `"`);
+	const dumped = jsYaml.dump(value, options);
 	return prettier.format(dumped, { parser: "yaml" });
 }

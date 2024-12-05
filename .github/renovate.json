@@ -3,6 +3,9 @@
 	"automerge": true,
 	"digest": { "enabled": false },
 	"extends": ["config:best-practices", "replacements:all"],
+	"github-actions": {
+		"enabled": false
+	},
 	"ignoreDeps": ["codecov/codecov-action"],
 	"labels": ["dependencies"],
 	"minimumReleaseAge": "7 days",

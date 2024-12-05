@@ -13,7 +13,6 @@ export const optionsSchemaShape = {
 		])
 		.optional(),
 	bin: z.string().optional(),
-	coverage: z.string().optional(),
 	description: z.string().optional(),
 	directory: z.string().optional(),
 	email: z

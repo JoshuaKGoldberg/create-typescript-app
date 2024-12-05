@@ -260,7 +260,7 @@ describe("createDevelopment", () => {
 		`);
 	});
 
-	it.only("preserves existing sections when they don't match the new sections", async () => {
+	it("preserves existing sections when they don't match the new sections", async () => {
 		mockReadFileSafe.mockResolvedValue(`## Existing One
 
 Abc 123.

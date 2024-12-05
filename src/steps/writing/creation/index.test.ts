@@ -226,7 +226,6 @@ describe("createStructure", () => {
 					devDependencies: getPackageDependencies(
 						"@octokit/request-error",
 						"@release-it/conventional-changelog",
-						"@types/eslint__js",
 						"@types/git-url-parse",
 						"@types/js-yaml",
 						"@types/parse-author",

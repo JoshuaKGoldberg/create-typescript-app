@@ -135,19 +135,12 @@ exports[`expected file changes > cspell.json 1`] = `
  		"arethetypeswrong",
  		"automerge",
  		"codespace",
--		"execa",
 +		"contributorsrc",
+ 		"dbaeumer",
+-		"execa",
  		"infile",
  		"joshuakgoldberg",
- 		"markdownlintignore",
- 		"mtfoley",
- 		"outro",
- 		"tada",
--		"tseslint"
-+		"tseslint",
-+		"wontfix"
- 	]
- }"
+ 		"markdownlintignore","
 `;
 
 exports[`expected file changes > eslint.config.js 1`] = `
@@ -238,7 +231,7 @@ exports[`expected file changes > knip.json 1`] = `
 @@ ... @@
  {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",
--	"entry": ["src/index.ts!", "script/*e2e.js"],
+-	"entry": ["script/*e2e.js", "src/index.ts!", "src/**/*.test.*"],
 +	"entry": ["src/index.ts!"],
  	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 -	"project": ["src/**/*.ts!", "script/**/*.js"]

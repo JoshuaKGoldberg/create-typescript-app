@@ -13,6 +13,7 @@ const filesExpectedToBeChanged = [
 	"cspell.json",
 	"eslint.config.js",
 	"tsconfig.json",
+	"renovate.json",
 ];
 
 const filesThatMightBeChanged = new Set([

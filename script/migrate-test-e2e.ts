@@ -12,6 +12,7 @@ const filesExpectedToBeChanged = [
 	".prettierignore",
 	"cspell.json",
 	"eslint.config.js",
+	"tsconfig.json",
 ];
 
 const filesThatMightBeChanged = new Set([

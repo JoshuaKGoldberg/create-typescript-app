@@ -7,7 +7,7 @@ import {
 } from "../shared/cli/spinners.js";
 import { createCleanupCommands } from "../shared/createCleanupCommands.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
-import { isUsingNextCreateEngine } from "../shared/isUsingNextCreateEngine.js";
+import { isUsingCreateEngine } from "../shared/isUsingCreateEngine.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { clearLocalGitTags } from "../steps/clearLocalGitTags.js";
@@ -25,7 +25,7 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 				await writeStructure(options);
 			},
 		],
-		...(isUsingNextCreateEngine()
+		...(isUsingCreateEngine()
 			? []
 			: [
 					[

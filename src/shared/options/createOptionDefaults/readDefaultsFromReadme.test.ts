@@ -104,7 +104,7 @@ nothing.
 		it("parses when found after an h1 and many badge images", async () => {
 			mockReadFileSafe.mockResolvedValue(`<h1 align="center">Create TypeScript App</h1>
 
-<p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 💝</p>
+<p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. ❤️‍🔥</p>
 
 <p align="center">
 	<!-- prettier-ignore-start -->

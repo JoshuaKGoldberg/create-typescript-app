@@ -1,13 +1,13 @@
 import { $ } from "execa";
 
-import { isUsingNextCreateEngine } from "../../shared/isUsingNextCreateEngine.js";
+import { isUsingCreateEngine } from "../../shared/isUsingCreateEngine.js";
 import { Options } from "../../shared/types.js";
 import { createStructure } from "./creation/index.js";
 import { writeStructureWorker } from "./writeStructureWorker.js";
 
 export async function writeStructure(options: Options) {
 	await writeStructureWorker(
-		await createStructure(options, isUsingNextCreateEngine()),
+		await createStructure(options, isUsingCreateEngine()),
 		".",
 	);
 

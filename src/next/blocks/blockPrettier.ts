@@ -64,6 +64,7 @@ pnpm format --write
 							...plugins,
 							"husky",
 							"lint-staged",
+							"prettier",
 						),
 						"lint-staged": {
 							"*": "prettier --ignore-unknown --write",

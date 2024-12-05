@@ -1,11 +1,11 @@
 import { execaCommand } from "execa";
 
-import { isUsingNextCreateEngine } from "../shared/isUsingNextCreateEngine.js";
+import { isUsingCreateEngine } from "../shared/isUsingCreateEngine.js";
 import { readPackageData, removeDependencies } from "../shared/packages.js";
 import { Options } from "../shared/types.js";
 
 export async function finalizeDependencies(options: Options) {
-	if (isUsingNextCreateEngine()) {
+	if (isUsingCreateEngine()) {
 		// TODO: How to switch from "latest" to the actual versions?
 		// Maybe an eslint-plugin-package-json lint rule?
 		await execaCommand("pnpm install");
@@ -13,17 +13,17 @@ export async function finalizeDependencies(options: Options) {
 		const devDependencies = [
 			"@eslint/js",
 			"@types/node",
+			"eslint-plugin-n",
 			"eslint",
 			"husky",
 			"lint-staged",
+			"prettier-plugin-curly",
+			"prettier-plugin-packagejson",
+			"prettier-plugin-sh",
 			"prettier",
 			"tsup",
-			"typescript",
 			"typescript-eslint",
-			"eslint-plugin-n",
-			"prettier-plugin-curly",
-			"prettier-plugin-sh",
-			"prettier-plugin-packagejson",
+			"typescript",
 			...(options.excludeAllContributors ? [] : ["all-contributors-cli"]),
 			...(options.excludeLintESLint
 				? []

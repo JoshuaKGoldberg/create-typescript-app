@@ -44,6 +44,7 @@ export const blockCSpell = base.createBlock({
 				}),
 				blockPackageJson({
 					properties: {
+						devDependencies: getPackageDependencies("cspell"),
 						scripts: {
 							"lint:spelling": 'cspell "**" ".github/**/*"',
 						},

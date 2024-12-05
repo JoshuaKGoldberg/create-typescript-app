@@ -140,15 +140,7 @@ exports[`expected file changes > cspell.json 1`] = `
 -		"execa",
  		"infile",
  		"joshuakgoldberg",
- 		"markdownlintignore",
- 		"mtfoley",
- 		"outro",
- 		"tada",
--		"tseslint",
--		"wontfix"
-+		"tseslint"
- 	]
- }"
+ 		"markdownlintignore","
 `;
 
 exports[`expected file changes > eslint.config.js 1`] = `

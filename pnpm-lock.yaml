@@ -23,9 +23,6 @@ importers:
       create:
         specifier: 0.1.0-alpha.0
         version: 0.1.0-alpha.0
-      create-testers:
-        specifier: 0.1.0-alpha.0
-        version: 0.1.0-alpha.0(create@0.1.0-alpha.0)
       execa:
         specifier: ^9.5.1
         version: 9.5.1
@@ -117,6 +114,9 @@ importers:
       console-fail-test:
         specifier: 0.5.0
         version: 0.5.0
+      create-testers:
+        specifier: 0.1.0-alpha.0
+        version: 0.1.0-alpha.0(create@0.1.0-alpha.0)
       cspell:
         specifier: 8.16.1
         version: 8.16.1

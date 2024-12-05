@@ -7,13 +7,13 @@ import { assert, describe, expect, test } from "vitest";
 const filesExpectedToBeChanged = [
 	"README.md",
 	"knip.json",
+	".github/renovate.json",
 	".github/workflows/ci.yml",
 	".gitignore",
 	".prettierignore",
 	"cspell.json",
 	"eslint.config.js",
 	"tsconfig.json",
-	"renovate.json",
 ];
 
 const filesThatMightBeChanged = new Set([

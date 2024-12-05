@@ -10,8 +10,6 @@ const globPaths = [
 	"./src/migrate",
 	"./src/shared",
 	"./src/steps",
-	".github/workflows/test-initialize.yml",
-	".github/workflows/test-migrate.yml",
 ];
 
 export async function removeSetupScripts() {

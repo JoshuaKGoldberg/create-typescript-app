@@ -7,9 +7,9 @@ describe("createDevelopment", () => {
 		["", []],
 		["# Development \nabc 123", [["# Development", "abc 123"]]],
 		["# Development \n\nabc 123 ", [["# Development", "abc 123"]]],
-		["# Development \n  Indented. ", [["# Development", "  Indented."]]],
-		["# Development \n    Indented. ", [["# Development", "    Indented."]]],
-		["# Development \n\tIndented. ", [["# Development", "\tIndented."]]],
+		["# Development \n  Indented. ", [["# Development", "Indented."]]],
+		["# Development \n    Indented. ", [["# Development", "Indented."]]],
+		["# Development \n\tIndented. ", [["# Development", "Indented."]]],
 		[
 			`# Development
 

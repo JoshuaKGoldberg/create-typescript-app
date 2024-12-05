@@ -6,7 +6,6 @@ import { Options } from "../shared/types.js";
 export async function finalizeDependencies(options: Options) {
 	const devDependencies = [
 		"@eslint/js",
-		"@types/eslint__js",
 		"@types/node",
 		"eslint",
 		"eslint-plugin-n",
@@ -25,9 +24,6 @@ export async function finalizeDependencies(options: Options) {
 			: ["@eslint-community/eslint-plugin-eslint-comments"]),
 		...(options.excludeLintJSDoc ? [] : ["eslint-plugin-jsdoc"]),
 		...(options.excludeLintJson ? [] : ["eslint-plugin-jsonc"]),
-		...(options.excludeLintJson && options.excludeLintPackageJson
-			? []
-			: ["jsonc-eslint-parser"]),
 		...(options.excludeLintKnip ? [] : ["knip"]),
 		...(options.excludeLintMd
 			? []

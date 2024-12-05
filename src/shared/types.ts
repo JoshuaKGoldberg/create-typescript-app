@@ -3,6 +3,7 @@ import { z } from "zod";
 import { StatusCode } from "./codes.js";
 
 export interface AllContributorContributor {
+	avatar_url: string;
 	contributions: string[];
 	login: string;
 }
@@ -37,9 +38,11 @@ export interface PartialPackageData {
 	description?: string;
 	devDependencies?: Record<string, string>;
 	email?: string;
+	engine?: { node?: string };
 	name?: string;
 	repository?: string | { type: string; url: string };
 	scripts?: Record<string, string>;
+	version?: string;
 }
 
 /**

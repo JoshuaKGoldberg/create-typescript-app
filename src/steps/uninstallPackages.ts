@@ -8,6 +8,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 	await removeDependencies(
 		[
 			"@clack/prompts",
+			"@prettier/sync",
 			"all-contributors-for-repository",
 			"chalk",
 			"execa",

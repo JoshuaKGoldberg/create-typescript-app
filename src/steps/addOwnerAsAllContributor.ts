@@ -3,7 +3,11 @@ import { Octokit } from "octokit";
 
 import { getGitHubUserAsAllContributor } from "../shared/getGitHubUserAsAllContributor.js";
 import { readFileAsJson } from "../shared/readFileAsJson.js";
-import { AllContributorsData, Options } from "../shared/types.js";
+import {
+	AllContributorContributor,
+	AllContributorsData,
+	Options,
+} from "../shared/types.js";
 import { formatJson } from "./writing/creation/formatters/formatJson.js";
 
 export async function addOwnerAsAllContributor(
@@ -21,18 +25,19 @@ export async function addOwnerAsAllContributor(
 		);
 	}
 
-	const contributors = existingContributors.contributors
-		.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
-		.map((contributor) =>
-			contributor.login === "JoshuaKGoldberg"
-				? { ...contributor, contributions: ["tool"] }
-				: {
-						...contributor,
-						contributions: Array.from(
-							new Set(["tool", ...contributor.contributions]),
-						).sort(),
-					},
-		);
+	const contributors: AllContributorContributor[] =
+		existingContributors.contributors
+			.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
+			.map((contributor) =>
+				contributor.login === "JoshuaKGoldberg"
+					? { ...contributor, contributions: ["tool"] }
+					: {
+							...contributor,
+							contributions: Array.from(
+								new Set(["tool", ...contributor.contributions]),
+							).sort(),
+						},
+			);
 
 	if (!contributors.some((contributor) => contributor.login === user)) {
 		contributors.push({

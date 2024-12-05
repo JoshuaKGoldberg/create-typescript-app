@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readDefaultsFromDevelopment } from "./readDefaultsFromDevelopment.js";
+import { readGuide } from "./readGuide.js";
 
 const mockReadFileSafe = vi.fn();
 
@@ -10,12 +10,12 @@ vi.mock("../../readFileSafe.js", () => ({
 	},
 }));
 
-describe("readDefaultsFromDevelopment", () => {
+describe("readGuide", () => {
 	describe("guide", () => {
 		it("defaults to undefined when .github/DEVELOPMENT.md cannot be found", async () => {
 			mockReadFileSafe.mockResolvedValue("");
 
-			const guide = await readDefaultsFromDevelopment().guide();
+			const guide = await readGuide();
 
 			expect(guide).toBeUndefined();
 		});
@@ -27,7 +27,7 @@ describe("readDefaultsFromDevelopment", () => {
 > It'll walk you through the common activities you'll need to contribute.
 `);
 
-			const guide = await readDefaultsFromDevelopment().guide();
+			const guide = await readGuide();
 
 			expect(guide).toEqual({
 				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",

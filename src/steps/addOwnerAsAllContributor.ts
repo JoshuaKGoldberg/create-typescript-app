@@ -25,25 +25,24 @@ export async function addOwnerAsAllContributor(
 		);
 	}
 
-	const contributors: AllContributorContributor[] =
-		existingContributors.contributors
-			.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
-			.map((contributor) =>
-				contributor.login === "JoshuaKGoldberg"
-					? { ...contributor, contributions: ["tool"] }
-					: {
-							...contributor,
-							contributions: Array.from(
-								new Set(["tool", ...contributor.contributions]),
-							).sort(),
-						},
-			);
+	const contributors = existingContributors.contributors
+		.filter(({ login }) => ["JoshuaKGoldberg", user].includes(login))
+		.map((contributor) =>
+			contributor.login === "JoshuaKGoldberg"
+				? { ...contributor, contributions: ["tool"] }
+				: {
+						...contributor,
+						contributions: Array.from(
+							new Set(["tool", ...contributor.contributions]),
+						).sort(),
+					},
+		);
 
 	if (!contributors.some((contributor) => contributor.login === user)) {
 		contributors.push({
 			contributions: ["tool"],
 			login: user,
-		});
+		} as AllContributorContributor);
 	}
 
 	await fs.writeFile(

@@ -1,6 +1,10 @@
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+
 const packageData =
 	// Importing from above src/ would expand the TS build rootDir
-	// eslint-disable-next-line @typescript-eslint/no-require-imports
+
 	require("../../../package.json") as typeof import("../../../package.json");
 
 const getPackageInner = (

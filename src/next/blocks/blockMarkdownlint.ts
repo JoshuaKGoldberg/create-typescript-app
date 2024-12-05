@@ -56,11 +56,6 @@ export const blockMarkdownlint = base.createBlock({
 					},
 				}),
 				blockVSCode({
-					addons: [
-						blockCSpell({
-							words: ["Anson"],
-						}),
-					],
 					extensions: ["DavidAnson.vscode-markdownlint"],
 				}),
 			],

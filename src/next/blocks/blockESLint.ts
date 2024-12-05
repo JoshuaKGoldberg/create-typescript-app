@@ -174,11 +174,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 					},
 				}),
 				blockVSCode({
-					addons: [
-						blockCSpell({
-							words: ["dbaeumer"],
-						}),
-					],
 					extensions: ["dbaeumer.vscode-eslint"],
 					settings: {
 						"editor.codeActionsOnSave": {

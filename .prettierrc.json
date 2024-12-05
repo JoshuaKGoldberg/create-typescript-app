@@ -3,8 +3,8 @@
 	"overrides": [{ "files": ".nvmrc", "options": { "parser": "yaml" } }],
 	"plugins": [
 		"prettier-plugin-curly",
-		"prettier-plugin-sh",
-		"prettier-plugin-packagejson"
+		"prettier-plugin-packagejson",
+		"prettier-plugin-sh"
 	],
 	"useTabs": true
 }

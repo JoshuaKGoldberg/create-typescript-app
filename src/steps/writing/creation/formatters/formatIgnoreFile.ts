@@ -1,3 +1,3 @@
-export function formatIgnoreFile(lines: string[]) {
-	return [...lines, ""].join("\n");
+export function formatIgnoreFile(lines: (string | undefined)[]) {
+	return [...lines.filter(Boolean), ""].join("\n");
 }

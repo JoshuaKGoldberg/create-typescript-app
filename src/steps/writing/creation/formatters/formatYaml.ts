@@ -1,3 +1,4 @@
+import prettier from "@prettier/sync";
 import jsYaml from "js-yaml";
 
 const options: jsYaml.DumpOptions = {
@@ -12,7 +13,6 @@ const options: jsYaml.DumpOptions = {
 		return value
 			.replaceAll(": |-\n", ": |\n")
 			.replaceAll("\n\t  \t\t\t", "")
-
 			.replaceAll(/\n\t\t\t\t\t\t$/g, "");
 	},
 	sortKeys: true,
@@ -22,5 +22,6 @@ const options: jsYaml.DumpOptions = {
 };
 
 export function formatYaml(value: unknown) {
-	return jsYaml.dump(value, options).replaceAll(`\\"`, `"`);
+	const dumped = jsYaml.dump(value, options);
+	return prettier.format(dumped, { parser: "yaml" });
 }

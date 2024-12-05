@@ -226,7 +226,7 @@ describe("createWorkflows", () => {
 			    steps:
 			      - uses: actions-ecosystem/action-remove-labels@v1
 			        with:
-			          labels: 'status: waiting for author'
+			          labels: "status: waiting for author"
 			      - if: failure()
 			        run: |
 			          echo "Don't worry if the previous step failed."
@@ -352,7 +352,7 @@ describe("createWorkflows", () => {
 			    steps:
 			      - uses: actions-ecosystem/action-remove-labels@v1
 			        with:
-			          labels: 'status: waiting for author'
+			          labels: "status: waiting for author"
 			      - if: failure()
 			        run: |
 			          echo "Don't worry if the previous step failed."

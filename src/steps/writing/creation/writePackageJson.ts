@@ -73,7 +73,9 @@ export async function writePackageJson(options: Options) {
 				"package.json",
 				"LICENSE.md",
 				"README.md",
-			].filter(Boolean),
+			]
+				.filter(Boolean)
+				.sort(),
 			license: "MIT",
 			"lint-staged": {
 				"*": "prettier --ignore-unknown --write",

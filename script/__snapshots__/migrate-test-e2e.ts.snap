@@ -114,35 +114,6 @@ exports[`expected file changes > README.md 1`] = `
 +> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app)."
 `;
 
-exports[`expected file changes > cspell.json 1`] = `
-"--- a/cspell.json
-+++ b/cspell.json
-@@ ... @@
- 		".all-contributorsrc",
- 		".github",
- 		"CHANGELOG.md",
--		"coverage*",
-+		"coverage",
- 		"lib",
- 		"node_modules",
--		"pnpm-lock.yaml",
--		"script/__snapshots__"
-+		"pnpm-lock.yaml"
- 	],
- 	"words": [
- 		"allcontributors",
-@@ ... @@
- 		"arethetypeswrong",
- 		"automerge",
- 		"codespace",
-+		"contributorsrc",
- 		"dbaeumer",
--		"execa",
- 		"infile",
- 		"joshuakgoldberg",
- 		"markdownlintignore","
-`;
-
 exports[`expected file changes > eslint.config.js 1`] = `
 "--- a/eslint.config.js
 +++ b/eslint.config.js

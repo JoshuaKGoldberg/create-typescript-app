@@ -17,8 +17,8 @@
 	"files": [
 		"bin/index.js",
 		"lib/",
-		"package.json",
 		"LICENSE.md",
+		"package.json",
 		"README.md"
 	],
 	"scripts": {

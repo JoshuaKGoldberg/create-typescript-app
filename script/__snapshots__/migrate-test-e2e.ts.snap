@@ -26,7 +26,7 @@ exports[`expected file changes > .github/workflows/ci.yml 1`] = `
 -    name: Test Creation Script
 -    runs-on: ubuntu-latest
 -    steps:
--      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+-      - uses: actions/checkout@v4
 -      - uses: ./.github/actions/prepare
 -      - run: pnpm run build
 -      - run: pnpm run test:create
@@ -39,7 +39,7 @@ exports[`expected file changes > .github/workflows/ci.yml 1`] = `
 -    name: Test Initialization Script
 -    runs-on: ubuntu-latest
 -    steps:
--      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+-      - uses: actions/checkout@v4
 -      - uses: ./.github/actions/prepare
 -      - run: pnpm run build
 -      - run: pnpm run test:initialize
@@ -52,7 +52,7 @@ exports[`expected file changes > .github/workflows/ci.yml 1`] = `
 -    name: Test Migration Script
 -    runs-on: ubuntu-latest
 -    steps:
--      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+-      - uses: actions/checkout@v4
 -      - uses: ./.github/actions/prepare
 -      - run: pnpm run build
 -      - run: pnpm run test:migrate

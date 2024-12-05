@@ -128,6 +128,16 @@ export const base = createBase({
 			)?.toLowerCase(),
 		);
 
+		const node = lazyValue(async () => {
+			const { engines } = await packageData();
+
+			return {
+				minimum:
+					(engines?.node && /[\d+.]+/.exec(engines.node))?.[0] ?? "18.3.0",
+				pinned: (await nvmrc()) ?? "20.18.0",
+			};
+		});
+
 		const version = lazyValue(async () => (await packageData()).version);
 
 		return {
@@ -140,10 +150,7 @@ export const base = createBase({
 			funding: readFunding,
 			guide: readGuide,
 			login: author,
-			node: async () => ({
-				minimum: (await packageData()).engines?.node ?? "18.3.0",
-				pinned: (await nvmrc()) ?? "20.18.0",
-			}),
+			node,
 			owner: async () =>
 				(await gitDefaults())?.organization ?? (await packageAuthor()).author,
 			packageData: async () => {

@@ -1,5 +1,4 @@
 import { base } from "../base.js";
-import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 
 export const blockNvmrc = base.createBlock({
@@ -12,17 +11,6 @@ export const blockNvmrc = base.createBlock({
 				blockPrettier({
 					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				}),
-				...(options.node
-					? [
-							blockPackageJson({
-								properties: {
-									engines: {
-										node: options.node.minimum,
-									},
-								},
-							}),
-						]
-					: []),
 			],
 			...(options.node?.pinned && {
 				files: {

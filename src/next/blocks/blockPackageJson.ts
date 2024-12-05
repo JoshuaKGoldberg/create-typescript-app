@@ -45,6 +45,11 @@ export const blockPackageJson = base.createBlock({
 							...options.packageData?.devDependencies,
 							...addons.properties.devDependencies,
 						},
+						...(options.node && {
+							engines: {
+								node: `>=${options.node.minimum}`,
+							},
+						}),
 						files: [
 							options.bin?.replace(/^\.\//, ""),
 							...(addons.properties.files ?? []),

@@ -7,6 +7,7 @@ import { assert, describe, expect, test } from "vitest";
 const filesExpectedToBeChanged = [
 	"README.md",
 	"knip.json",
+	".github/renovate.json",
 	".github/workflows/ci.yml",
 	".gitignore",
 	".prettierignore",

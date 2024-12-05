@@ -1,5 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`expected file changes > .github/renovate.json 1`] = `
+"--- a/.github/renovate.json
++++ b/.github/renovate.json
+@@ ... @@
+ {
+ 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+ 	"automerge": true,
+-	"digest": { "enabled": false },
+ 	"extends": ["config:best-practices", "replacements:all"],
+ 	"ignoreDeps": ["codecov/codecov-action"],
+ 	"labels": ["dependencies"],"
+`;
+
 exports[`expected file changes > .github/workflows/ci.yml 1`] = `
 "--- a/.github/workflows/ci.yml
 +++ b/.github/workflows/ci.yml

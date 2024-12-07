@@ -65,7 +65,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/prepare
       - run: pnpm run test --coverage
-      - if: always()
+      - env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: always()
         uses: codecov/codecov-action@v3
         with:
           flags: unit
@@ -77,7 +79,9 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm run build
       - run: pnpm run test:create
-      - if: always()
+      - env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: always()
         uses: codecov/codecov-action@v3
         with:
           files: coverage-create/lcov.info
@@ -90,7 +94,9 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm run build
       - run: pnpm run test:initialize
-      - if: always()
+      - env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: always()
         uses: codecov/codecov-action@v3
         with:
           files: coverage-initialize/lcov.info
@@ -103,7 +109,9 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm run build
       - run: pnpm run test:migrate
-      - if: always()
+      - env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: always()
         uses: codecov/codecov-action@v3
         with:
           files: coverage-migrate/lcov.info

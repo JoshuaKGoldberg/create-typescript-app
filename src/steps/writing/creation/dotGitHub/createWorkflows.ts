@@ -153,6 +153,10 @@ export function createWorkflows(options: Options) {
 						types: ["published"],
 					},
 				},
+				permissions: {
+					issues: "write",
+					"pull-requests": "write",
+				},
 				steps: [
 					{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 					{

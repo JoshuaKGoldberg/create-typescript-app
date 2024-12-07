@@ -31,6 +31,10 @@ export const blockReleaseIt = base.createBlock({
 									types: ["published"],
 								},
 							},
+							permissions: {
+								issues: "write",
+								"pull-requests": "write",
+							},
 							steps: [
 								{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
 								{

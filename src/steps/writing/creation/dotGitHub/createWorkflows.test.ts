@@ -219,6 +219,7 @@ describe("createWorkflows", () => {
 			  release:
 			    types:
 			      - published
+
 			permissions:
 			  issues: write
 			  pull-requests: write

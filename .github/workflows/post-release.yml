@@ -19,13 +19,13 @@ jobs:
 
             Cheers! 📦🚀
 
-permissions:
-  issues: write
-  pull-requests: write
-
 name: Post Release
 
 on:
   release:
     types:
       - published
+
+permissions:
+  issues: write
+  pull-requests: write

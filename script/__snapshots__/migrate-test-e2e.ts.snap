@@ -114,42 +114,6 @@ exports[`expected file changes > README.md 1`] = `
 +> 💙 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app)."
 `;
 
-exports[`expected file changes > cspell.json 1`] = `
-"--- a/cspell.json
-+++ b/cspell.json
-@@ ... @@
- 		".all-contributorsrc",
- 		".github",
- 		"CHANGELOG.md",
--		"coverage*",
-+		"coverage",
- 		"lib",
- 		"node_modules",
--		"pnpm-lock.yaml",
--		"script/__snapshots__"
-+		"pnpm-lock.yaml"
- 	],
- 	"words": [
- 		"allcontributors",
-@@ ... @@
- 		"arethetypeswrong",
- 		"automerge",
- 		"codespace",
--		"execa",
-+		"contributorsrc",
- 		"infile",
- 		"joshuakgoldberg",
- 		"markdownlintignore",
- 		"mtfoley",
- 		"outro",
- 		"tada",
--		"tseslint"
-+		"tseslint",
-+		"wontfix"
- 	]
- }"
-`;
-
 exports[`expected file changes > eslint.config.js 1`] = `
 "--- a/eslint.config.js
 +++ b/eslint.config.js
@@ -238,12 +202,25 @@ exports[`expected file changes > knip.json 1`] = `
 @@ ... @@
  {
  	"$schema": "https://unpkg.com/knip@latest/schema.json",
--	"entry": ["src/index.ts!", "script/*e2e.js"],
+-	"entry": ["script/*e2e.js", "src/index.ts!", "src/**/*.test.*"],
 +	"entry": ["src/index.ts!"],
  	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 -	"project": ["src/**/*.ts!", "script/**/*.js"]
 +	"project": ["src/**/*.ts!"]
  }"
+`;
+
+exports[`expected file changes > package.json 1`] = `
+"--- a/package.json
++++ b/package.json
+@@ ... @@
+ 		"lint-staged": "15.2.10",
+ 		"markdownlint": "0.36.1",
+ 		"markdownlint-cli": "0.43.0",
++		"prettier": "^3.4.1",
+ 		"prettier-plugin-curly": "0.3.1",
+ 		"prettier-plugin-packagejson": "2.5.6",
+ 		"prettier-plugin-sh": "0.14.0","
 `;
 
 exports[`expected file changes > tsconfig.json 1`] = `

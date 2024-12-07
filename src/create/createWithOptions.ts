@@ -1,8 +1,13 @@
 import { $ } from "execa";
 
-import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
+import {
+	LabeledSpinnerTask,
+	withSpinner,
+	withSpinners,
+} from "../shared/cli/spinners.js";
 import { createCleanupCommands } from "../shared/createCleanupCommands.js";
 import { doesRepositoryExist } from "../shared/doesRepositoryExist.js";
+import { isUsingCreateEngine } from "../shared/isUsingCreateEngine.js";
 import { GitHubAndOptions } from "../shared/options/readOptions.js";
 import { addToolAllContributors } from "../steps/addToolAllContributors.js";
 import { clearLocalGitTags } from "../steps/clearLocalGitTags.js";
@@ -20,12 +25,16 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 				await writeStructure(options);
 			},
 		],
-		[
-			"Writing README.md",
-			async () => {
-				await writeReadme(options);
-			},
-		],
+		...(isUsingCreateEngine()
+			? []
+			: [
+					[
+						"Writing README.md",
+						async () => {
+							await writeReadme(options);
+						},
+					] satisfies LabeledSpinnerTask<void>,
+				]),
 	]);
 
 	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {

@@ -12,10 +12,12 @@
 	],
 	"words": [
 		"allcontributors",
+		"Anson",
 		"apexskier",
 		"arethetypeswrong",
 		"automerge",
 		"codespace",
+		"dbaeumer",
 		"execa",
 		"infile",
 		"joshuakgoldberg",
@@ -23,6 +25,7 @@
 		"mtfoley",
 		"outro",
 		"tada",
-		"tseslint"
+		"tseslint",
+		"wontfix"
 	]
 }

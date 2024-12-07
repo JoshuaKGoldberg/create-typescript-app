@@ -20,6 +20,9 @@ importers:
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
+      create:
+        specifier: 0.1.0-alpha.0
+        version: 0.1.0-alpha.0
       execa:
         specifier: ^9.5.1
         version: 9.5.1
@@ -47,6 +50,9 @@ importers:
       parse-author:
         specifier: ^2.0.0
         version: 2.0.0
+      parse-package-name:
+        specifier: ^1.0.0
+        version: 1.0.0
       prettier:
         specifier: ^3.4.1
         version: 3.4.1
@@ -108,6 +114,9 @@ importers:
       console-fail-test:
         specifier: 0.5.0
         version: 0.5.0
+      create-testers:
+        specifier: 0.1.0-alpha.0
+        version: 0.1.0-alpha.0(create@0.1.0-alpha.0)
       cspell:
         specifier: 8.16.1
         version: 8.16.1
@@ -1868,6 +1877,17 @@ packages:
       typescript:
         optional: true
 
+  create-testers@0.1.0-alpha.0:
+    resolution: {integrity: sha512-SZdBwCHlBCoOkBGh6NLpNiFAQipphQb7a4CvYPdpDxSoBHv3w99W2NNQMSZjFIdGma9qgBeMthMHW6Z0u/+5vA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      create: 0.1.0-alpha.0
+
+  create@0.1.0-alpha.0:
+    resolution: {integrity: sha512-OqEAIZHN6P53uufGrm8Vmxe0rWghvAAI+6bhpL5fOG2pQ+jfvwHUulyKOpdzxHee4J40zu2KzG0hb14au5dFZw==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
@@ -3158,6 +3178,9 @@ packages:
   parse-ms@4.0.0:
     resolution: {integrity: sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==}
     engines: {node: '>=18'}
+
+  parse-package-name@1.0.0:
+    resolution: {integrity: sha512-kBeTUtcj+SkyfaW4+KBe0HtsloBJ/mKTPoxpVdA57GZiPerREsUWJOhVj9anXweFiJkm5y8FG1sxFZkZ0SN6wg==}
 
   parse-path@7.0.0:
     resolution: {integrity: sha512-Euf9GG8WT9CdqwuWJGdf3RkUcTBArppHABkO7Lm8IzRQp0e2r/kkFnmhu4TSK30Wcu5rVAZLmfPKSBBi9tWFog==}
@@ -5540,6 +5563,15 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
+  create-testers@0.1.0-alpha.0(create@0.1.0-alpha.0):
+    dependencies:
+      create: 0.1.0-alpha.0
+
+  create@0.1.0-alpha.0:
+    dependencies:
+      execa: 9.5.1
+      zod: 3.23.8
+
   cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
@@ -7057,6 +7089,8 @@ snapshots:
       type-fest: 4.30.0
 
   parse-ms@4.0.0: {}
+
+  parse-package-name@1.0.0: {}
 
   parse-path@7.0.0:
     dependencies:

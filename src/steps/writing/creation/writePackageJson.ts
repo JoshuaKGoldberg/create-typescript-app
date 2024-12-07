@@ -53,7 +53,11 @@ export async function writePackageJson(options: Options) {
 				: undefined,
 
 			// We copy all existing dev dependencies except those we know are not used anymore
-			devDependencies: copyDevDependencies(existingPackageJson),
+			devDependencies: {
+				...copyDevDependencies(existingPackageJson),
+				// prettier is a special case of being switched to a devDependency
+				prettier: existingPackageJson.dependencies?.prettier,
+			},
 
 			// Remove fields we know we don't want, such as old or redundant configs
 			eslintConfig: undefined,

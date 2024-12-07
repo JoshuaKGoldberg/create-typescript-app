@@ -6,6 +6,8 @@ export interface AllContributorContributor {
 	avatar_url: string;
 	contributions: string[];
 	login: string;
+	name: string;
+	profile: string;
 }
 
 export interface AllContributorsData {

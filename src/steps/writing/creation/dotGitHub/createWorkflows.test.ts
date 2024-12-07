@@ -192,7 +192,11 @@ describe("createWorkflows", () => {
 			    branches:
 			      - main
 			",
-			  "post-release.yml": "jobs:
+			  "post-release.yml": "permissions:
+			  issues: write
+			  pull-requests: write
+			
+			jobs:
 			  post_release:
 			    runs-on: ubuntu-latest
 			    steps:

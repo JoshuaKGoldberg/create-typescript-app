@@ -219,6 +219,10 @@ describe("createWorkflows", () => {
 			  release:
 			    types:
 			      - published
+
+			permissions:
+			  issues: write
+			  pull-requests: write
 			",
 			  "pr-review-requested.yml": "jobs:
 			  pr_review_requested:

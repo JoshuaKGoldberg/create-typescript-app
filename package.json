@@ -50,6 +50,8 @@
 		"get-github-auth-token": "^0.1.0",
 		"git-remote-origin-url": "^4.0.0",
 		"git-url-parse": "^16.0.0",
+		"input-from-file": "0.1.0-alpha.0",
+		"input-from-file-json": "0.1.0-alpha.1",
 		"js-yaml": "^4.1.0",
 		"lazy-value": "^3.0.0",
 		"npm-user": "^6.1.1",

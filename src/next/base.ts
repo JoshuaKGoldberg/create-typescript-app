@@ -2,6 +2,8 @@ import { BaseOptionsFor, createBase } from "create";
 import { execaCommand } from "execa";
 import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
+import { inputFromFile } from "input-from-file";
+import { inputFromFileJSON } from "input-from-file-json";
 import lazyValue from "lazy-value";
 import npmUser from "npm-user";
 import { z } from "zod";
@@ -14,8 +16,7 @@ import { readGuide } from "../shared/options/createOptionDefaults/readGuide.js";
 import { readPackageData } from "../shared/packages.js";
 import { tryCatchLazyValueAsync } from "../shared/tryCatchLazyValueAsync.js";
 import { AllContributorsData } from "../shared/types.js";
-import { inputJSONFile } from "./inputs/inputJSONFile.js";
-import { inputTextFile } from "./inputs/inputTextFile.js";
+import { swallowError } from "./utils/swallowError.js";
 
 export const base = createBase({
 	options: {
@@ -83,23 +84,24 @@ export const base = createBase({
 	},
 	produce({ options, take }) {
 		const allContributors = lazyValue(async () => {
-			const contributions = (await take(inputJSONFile, {
+			const contributions = (await take(inputFromFileJSON, {
 				filePath: ".all-contributorsrc",
-			})) as AllContributorsData | undefined;
+			})) as AllContributorsData;
 
-			return contributions?.contributors;
+			return contributions.contributors;
 		});
 
-		const documentation = lazyValue(
-			async () =>
-				await take(inputTextFile, {
+		const documentation = lazyValue(async () =>
+			swallowError(
+				await take(inputFromFile, {
 					filePath: ".github/DEVELOPMENT.md",
 				}),
+			),
 		);
 
 		const nvmrc = lazyValue(
 			async () =>
-				await take(inputTextFile, {
+				await take(inputFromFile, {
 					filePath: ".nvmrc",
 				}),
 		);
@@ -134,7 +136,7 @@ export const base = createBase({
 			return {
 				minimum:
 					(engines?.node && /[\d+.]+/.exec(engines.node))?.[0] ?? "18.3.0",
-				pinned: (await nvmrc()) ?? "20.18.0",
+				pinned: swallowError(await nvmrc()) ?? "20.18.0",
 			};
 		});
 

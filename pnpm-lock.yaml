@@ -35,6 +35,12 @@ importers:
       git-url-parse:
         specifier: ^16.0.0
         version: 16.0.0
+      input-from-file:
+        specifier: 0.1.0-alpha.0
+        version: 0.1.0-alpha.0(create@0.1.0-alpha.0)
+      input-from-file-json:
+        specifier: 0.1.0-alpha.1
+        version: 0.1.0-alpha.1(create@0.1.0-alpha.0)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -2578,6 +2584,18 @@ packages:
   ini@4.1.1:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  input-from-file-json@0.1.0-alpha.1:
+    resolution: {integrity: sha512-fkB4Y8dwplNkaiRe2O9IX1hYYz1efUxFX5bCKiiqUmrB67yTnUoDeDg+LlKJr/py6L7aPkCObZ6MrF5WH+PDiQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      create: 0.1.0-alpha.0
+
+  input-from-file@0.1.0-alpha.0:
+    resolution: {integrity: sha512-XcGuSxpNEMN2tlMV+TfMNK21KrUN8T6RNWeIUIyIukJ7TzNbf+lgSTl9rxjAXWmNfFA59puMQk6qsa+HJ76X+g==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      create: 0.1.0-alpha.0
 
   inquirer@9.3.2:
     resolution: {integrity: sha512-+ynEbhWKhyomnaX0n2aLIMSkgSlGB5RrWbNXnEqj6mdaIydu6y40MdBjL38SAB0JcdmOaIaMua1azdjLEr3sdw==}
@@ -6440,6 +6458,17 @@ snapshots:
   ini@1.3.8: {}
 
   ini@4.1.1: {}
+
+  input-from-file-json@0.1.0-alpha.1(create@0.1.0-alpha.0):
+    dependencies:
+      create: 0.1.0-alpha.0
+      input-from-file: 0.1.0-alpha.0(create@0.1.0-alpha.0)
+      zod: 3.23.8
+
+  input-from-file@0.1.0-alpha.0(create@0.1.0-alpha.0):
+    dependencies:
+      create: 0.1.0-alpha.0
+      zod: 3.23.8
 
   inquirer@9.3.2:
     dependencies:

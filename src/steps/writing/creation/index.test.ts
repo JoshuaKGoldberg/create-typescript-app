@@ -209,6 +209,8 @@ describe("createStructure", () => {
 						"get-github-auth-token",
 						"git-remote-origin-url",
 						"git-url-parse",
+						"input-from-file",
+						"input-from-file-json",
 						"js-yaml",
 						"lazy-value",
 						"npm-user",

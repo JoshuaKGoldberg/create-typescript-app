@@ -89,7 +89,7 @@ pnpm format --write
 			files: {
 				".husky": {
 					".gitignore": "_",
-					"pre-commit": "npx lint-staged",
+					"pre-commit": ["npx lint-staged", { mode: 0x777 }],
 				},
 				".prettierignore": ["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores]
 					.sort()

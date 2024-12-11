@@ -1,3 +1,21 @@
+# [1.77.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.75.0...v1.77.0) (2024-12-11)
+
+### Bug Fixes
+
+- assorted createOptionDefaults fixes and cleanups ([#1741](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1741)) ([bfe0542](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bfe0542480e8556780dcbb199437c5cc98be6dbe)), closes [#1740](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1740) [#1670](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1670)
+- empty commit to trigger CI release ([d69e279](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d69e27983a530120b8882786436b74d8c30b7c8f))
+- normalized eslint.config.js ordering and trimming ([#1723](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1723)) ([b10aa13](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b10aa1385f53778099d144351f6da774928756d9)), closes [#1715](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1715) [#1670](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1670)
+- post release permissions error ([#1750](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1750)) ([85c53e7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/85c53e7fe5d152a2c66f7d439afe207b53b02a3e)), closes [#1682](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1682) [/github.com/apexskier/github-release-commenter/issues/545#issuecomment-2513388057](https://github.com//github.com/apexskier/github-release-commenter/issues/545/issues/issuecomment-2513388057)
+- remaining `create` branch cleanups ([#1746](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1746)) ([2fd8829](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2fd882977c9f935218af00bdf86fb89655c93d0b)), closes [#1745](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1745)
+- remove .github/workflows/test-\* from removeSetupScripts ([d485623](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d485623b5d933518ed50ba5c86860d3d07f0d38f))
+- use root-level slashes in .gitignore and .prettierignore ([#1696](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1696)) ([9e1c008](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9e1c008932adb76cd71c53dd49f9aa1bb25dcd2c)), closes [#1693](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1693)
+
+### Features
+
+- add --exclude-templated-by option ([#1724](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1724)) ([53618c4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/53618c43e59c53cb3d1c4168e2f006135fb8231a)), closes [#1714](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1714)
+- add opt-in usage of `create` as underlying files engine ([#1670](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1670)) ([e6e1575](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e6e1575333ba3cc59a1e7e919e02f81035c19280)), closes [#1181](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1181)
+- pre-fill cspell.json words ([#1734](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1734)) ([8bcd8f6](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8bcd8f6e5d49bfb92761be2e2d01a81690a81d65)), closes [#1716](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1716) [#1737](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1737)
+
 # [1.75.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.74.1...v1.75.0) (2024-11-26)
 
 ### Features

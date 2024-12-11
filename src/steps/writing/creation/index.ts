@@ -51,13 +51,12 @@ async function recursivelyFormat(files: CreatedFiles): Promise<Structure> {
 	const result: Structure = {};
 
 	for (const [key, value] of Object.entries(files)) {
-		switch (typeof value) {
-			case "object":
-				result[key] = await recursivelyFormat(value);
-				break;
-			case "string":
-				result[key] = await formatCreatedFile(key, value);
-				break;
+		if (Array.isArray(value)) {
+			result[key] = await formatCreatedFile(key, value[0]);
+		} else if (typeof value === "string") {
+			result[key] = await formatCreatedFile(key, value);
+		} else if (typeof value === "object") {
+			result[key] = await recursivelyFormat(value);
 		}
 	}
 

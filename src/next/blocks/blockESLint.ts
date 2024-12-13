@@ -9,6 +9,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { getPackageDependencies } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
 
 const zRuleOptions = z.union([
 	z.literal("error"),
@@ -197,6 +198,12 @@ export default tseslint.config(
 	${extensionLines.join(",")}
 );`,
 			},
+			scripts: [
+				{
+					commands: ["pnpm lint --fix"],
+					phase: CommandPhase.Process,
+				},
+			],
 		};
 	},
 });

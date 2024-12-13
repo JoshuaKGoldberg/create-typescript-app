@@ -5,6 +5,7 @@ import path from "node:path";
 import * as process from "node:process";
 
 import { logLine } from "../shared/cli/lines.js";
+import { isUsingCreateEngine } from "../shared/isUsingCreateEngine.js";
 import { filterPromptCancel } from "../shared/prompts.js";
 import { Mode, PromptedOptions } from "../shared/types.js";
 
@@ -41,7 +42,7 @@ export async function promptForMode(
 
 	const dir = await fs.readdir(".");
 
-	if (dir.length === 0) {
+	if (dir.length === 0 && !isUsingCreateEngine()) {
 		const mode = filterPromptCancel(
 			(await prompts.select({
 				message: chalk.blue("How would you like to use the template?"),

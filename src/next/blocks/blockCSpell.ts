@@ -7,6 +7,8 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { getPackageDependencies } from "./packageData.js";
 
+const filesGlob = `"**" ".github/**/*"`;
+
 export const blockCSpell = base.createBlock({
 	about: {
 		name: "CSpell",
@@ -46,7 +48,7 @@ export const blockCSpell = base.createBlock({
 					properties: {
 						devDependencies: getPackageDependencies("cspell"),
 						scripts: {
-							"lint:spelling": 'cspell "**" ".github/**/*"',
+							"lint:spelling": `cspell ${filesGlob}`,
 						},
 					},
 				}),
@@ -64,12 +66,6 @@ export const blockCSpell = base.createBlock({
 					].sort(),
 					...(words.length && { words: words.sort() }),
 				}),
-			},
-			package: {
-				devDependencies: getPackageDependencies("cspell"),
-				scripts: {
-					"lint:spelling": 'cspell "**" ".github/**/*"',
-				},
 			},
 		};
 	},

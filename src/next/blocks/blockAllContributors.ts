@@ -1,6 +1,7 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base } from "../base.js";
 import { blockPrettier } from "./blockPrettier.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockAllContributors = base.createBlock({
 	about: {
@@ -13,10 +14,6 @@ export const blockAllContributors = base.createBlock({
 					ignores: ["/.all-contributorsrc"],
 				}),
 			],
-			commands:
-				options.login === "JoshuaKGoldberg"
-					? [`npx -y all-contributors-cli add JoshuaKGoldberg tool`]
-					: undefined,
 			files: {
 				".all-contributorsrc": JSON.stringify({
 					badgeTemplate:
@@ -55,6 +52,15 @@ export const blockAllContributors = base.createBlock({
 					},
 				},
 			},
+			scripts: [
+				{
+					commands: [
+						`npx -y all-contributors-cli generate`,
+						`npx -y all-contributors-cli add ${options.owner} code,content,docs,ideas,infra,maintenance,projectManagement,tool`,
+					],
+					phase: CommandPhase.Process,
+				},
+			],
 		};
 	},
 });

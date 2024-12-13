@@ -10,6 +10,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"@clack/prompts",
 			"@prettier/sync",
 			"all-contributors-for-repository",
+			"all-contributors-cli",
 			"chalk",
 			"create",
 			"execa",

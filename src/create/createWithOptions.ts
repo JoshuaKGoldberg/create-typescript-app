@@ -1,5 +1,6 @@
 import { $ } from "execa";
 
+import { runCreateEnginePreset } from "../next/runCreateEnginePreset.js";
 import {
 	LabeledSpinnerTask,
 	withSpinner,
@@ -18,6 +19,13 @@ import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function createWithOptions({ github, options }: GitHubAndOptions) {
+	if (isUsingCreateEngine()) {
+		await withSpinner("Creating repository", async () => {
+			await runCreateEnginePreset(options);
+		});
+		return { sentToGitHub: false };
+	}
+
 	await withSpinners("Creating repository structure", [
 		[
 			"Writing structure",
@@ -25,16 +33,12 @@ export async function createWithOptions({ github, options }: GitHubAndOptions) {
 				await writeStructure(options);
 			},
 		],
-		...(isUsingCreateEngine()
-			? []
-			: [
-					[
-						"Writing README.md",
-						async () => {
-							await writeReadme(options);
-						},
-					] satisfies LabeledSpinnerTask<void>,
-				]),
+		[
+			"Writing README.md",
+			async () => {
+				await writeReadme(options);
+			},
+		] satisfies LabeledSpinnerTask<void>,
 	]);
 
 	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {

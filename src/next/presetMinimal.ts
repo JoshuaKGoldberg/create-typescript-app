@@ -3,6 +3,7 @@ import { blockContributingDocs } from "./blocks/blockContributingDocs.js";
 import { blockContributorCovenant } from "./blocks/blockContributorCovenant.js";
 import { blockDevelopmentDocs } from "./blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "./blocks/blockESLint.js";
+import { blockExampleFiles } from "./blocks/blockExampleFiles.js";
 import { blockFunding } from "./blocks/blockFunding.js";
 import { blockGitHubActionsCI } from "./blocks/blockGitHubActionsCI.js";
 import { blockGitHubIssueTemplates } from "./blocks/blockGitHubIssueTemplates.js";
@@ -27,6 +28,7 @@ export const presetMinimal = base.createPreset({
 		blockContributorCovenant,
 		blockDevelopmentDocs,
 		blockESLint,
+		blockExampleFiles,
 		blockFunding,
 		blockGitHubActionsCI,
 		blockGitHubIssueTemplates,

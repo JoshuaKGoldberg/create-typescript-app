@@ -1,6 +1,7 @@
 import * as prompts from "@clack/prompts";
 
 import { doesRepositoryExist } from "../doesRepositoryExist.js";
+import { isUsingCreateEngine } from "../isUsingCreateEngine.js";
 import { filterPromptCancel } from "../prompts.js";
 import { Options } from "../types.js";
 import { createRepositoryWithApi } from "./createRepositoryWithApi.js";
@@ -27,7 +28,10 @@ export async function ensureRepositoryExists(
 	// We'll continuously pester the user for a repository
 	// until they bail, create a new one, or it exists.
 	while (github) {
-		if (await doesRepositoryExist(github.octokit, options)) {
+		if (
+			isUsingCreateEngine() ||
+			(await doesRepositoryExist(github.octokit, options))
+		) {
 			return { github, repository };
 		}
 

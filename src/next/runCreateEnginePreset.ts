@@ -19,5 +19,5 @@ export async function runCreateEnginePreset(options: Options) {
 		throw new Error(`Cannot yet use create engine with base ${options.base}.`);
 	}
 
-	await runPreset(preset, { options });
+	await runPreset(preset, { mode: "new", options });
 }

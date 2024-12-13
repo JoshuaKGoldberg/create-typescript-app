@@ -1,6 +1,5 @@
 import { execaCommand } from "execa";
 
-import { isUsingCreateEngine } from "../shared/isUsingCreateEngine.js";
 import { readPackageData, removeDependencies } from "../shared/packages.js";
 import { Options } from "../shared/types.js";
 

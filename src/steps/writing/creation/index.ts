@@ -29,14 +29,12 @@ export async function createStructure(
 		presets[options.base];
 
 	if (preset) {
-		const { creation } = await producePreset(preset, { options });
-
-		return await recursivelyFormat({
-			...creation.files,
-			// TODO: Add a "starting files" option in create Presets/Templates
-			// https://github.com/JoshuaKGoldberg/create/issues/25
-			src: await createSrc(options),
+		const { creation } = await producePreset(preset, {
+			mode: "new",
+			options,
 		});
+
+		return await recursivelyFormat(creation.files);
 	}
 
 	return {

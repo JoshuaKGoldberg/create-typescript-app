@@ -172,6 +172,10 @@ export const base = createBase({
 			version,
 		};
 	},
+	template: {
+		owner: "JoshuaKGoldberg",
+		repository: "create-typescript-app",
+	},
 });
 
 export type BaseOptions = BaseOptionsFor<typeof base>;

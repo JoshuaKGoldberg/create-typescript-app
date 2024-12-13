@@ -30,18 +30,13 @@ export const blockPnpmDedupe = base.createBlock({
 					],
 				}),
 				blockPackageJson({
+					cleanupCommands: ["pnpm dedupe --offline"],
 					properties: {
 						scripts: {
 							"lint:packages": "pnpm dedupe --check",
 						},
 					},
 				}),
-			],
-			commands: [
-				{
-					phase: 1,
-					script: "pnpm dedupe",
-				},
 			],
 		};
 	},

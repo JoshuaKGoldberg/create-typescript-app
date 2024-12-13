@@ -7,6 +7,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { getPackageDependencies } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockPrettier = base.createBlock({
 	about: {
@@ -80,12 +81,6 @@ pnpm format --write
 					settings: { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 				}),
 			],
-			commands: [
-				{
-					phase: 2, // TODO: ???
-					script: "pnpm format --write",
-				},
-			],
 			files: {
 				".husky": {
 					".gitignore": "_",
@@ -101,6 +96,12 @@ pnpm format --write
 					useTabs: true,
 				}),
 			},
+			scripts: [
+				{
+					commands: ["pnpm format --write"],
+					phase: CommandPhase.Format,
+				},
+			],
 		};
 	},
 });

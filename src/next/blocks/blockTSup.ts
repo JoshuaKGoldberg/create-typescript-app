@@ -6,6 +6,7 @@ import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { getPackageDependencies } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockTSup = base.createBlock({
 	about: {
@@ -14,7 +15,7 @@ export const blockTSup = base.createBlock({
 	addons: {
 		entry: z.array(z.string()).default([]),
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { entry } = addons;
 
 		return {
@@ -72,6 +73,14 @@ export default defineConfig({
 });
 `,
 			},
+			scripts: options.bin
+				? [
+						{
+							commands: ["pnpm build"],
+							phase: CommandPhase.Build,
+						},
+					]
+				: undefined,
 		};
 	},
 });

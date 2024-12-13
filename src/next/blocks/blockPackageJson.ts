@@ -2,12 +2,14 @@ import sortPackageJson from "sort-package-json";
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockPackageJson = base.createBlock({
 	about: {
 		name: "Package JSON",
 	},
 	addons: {
+		cleanupCommands: z.array(z.string()).default([]),
 		// TODO: Find a zod package for this?
 		properties: z
 			.intersection(
@@ -24,12 +26,6 @@ export const blockPackageJson = base.createBlock({
 	},
 	produce({ addons, options }) {
 		return {
-			commands: [
-				{
-					phase: 0, // TODO: ???
-					script: "pnpm i",
-				},
-			],
 			files: {
 				"package.json": sortPackageJson(
 					JSON.stringify({
@@ -77,6 +73,12 @@ export const blockPackageJson = base.createBlock({
 					}),
 				),
 			},
+			scripts: [
+				{
+					commands: ["pnpm install", ...addons.cleanupCommands],
+					phase: CommandPhase.Install,
+				},
+			],
 		};
 	},
 });

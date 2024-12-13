@@ -5,7 +5,11 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { getResolvedFile } from "./getResolvedFile.js";
 import { getPackageDependencies } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
+
+const filesGlob = `"**" ".github/**/*"`;
 
 export const blockCSpell = base.createBlock({
 	about: {
@@ -17,6 +21,7 @@ export const blockCSpell = base.createBlock({
 	},
 	produce({ addons }) {
 		const { ignores, words } = addons;
+		const populateWords = getResolvedFile("cspell-populate-words");
 
 		return {
 			addons: [
@@ -46,7 +51,7 @@ export const blockCSpell = base.createBlock({
 					properties: {
 						devDependencies: getPackageDependencies("cspell"),
 						scripts: {
-							"lint:spelling": 'cspell "**" ".github/**/*"',
+							"lint:spelling": `cspell ${filesGlob}`,
 						},
 					},
 				}),
@@ -64,12 +69,6 @@ export const blockCSpell = base.createBlock({
 					].sort(),
 					...(words.length && { words: words.sort() }),
 				}),
-			},
-			package: {
-				devDependencies: getPackageDependencies("cspell"),
-				scripts: {
-					"lint:spelling": 'cspell "**" ".github/**/*"',
-				},
 			},
 		};
 	},

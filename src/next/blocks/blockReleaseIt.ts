@@ -2,6 +2,7 @@ import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/c
 import { base } from "../base.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { getPackageDependencies } from "./packageData.js";
 
 export const blockReleaseIt = base.createBlock({
 	about: {
@@ -15,6 +16,10 @@ export const blockReleaseIt = base.createBlock({
 				}),
 				blockPackageJson({
 					properties: {
+						devDependencies: getPackageDependencies(
+							"@release-it/conventional-changelog",
+							"release-it",
+						),
 						publishConfig: {
 							provenance: true,
 						},

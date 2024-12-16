@@ -232,6 +232,7 @@ describe("createStructure", () => {
 						"@types/git-url-parse",
 						"@types/js-yaml",
 						"@types/parse-author",
+						"all-contributors-cli",
 						"c8",
 						"create-testers",
 						"cspell",

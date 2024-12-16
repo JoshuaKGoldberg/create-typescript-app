@@ -202,11 +202,9 @@ describe("createStructure", () => {
 					dependencies: getPackageDependencies(
 						"@clack/prompts",
 						"@prettier/sync",
-						"all-contributors-for-repository",
 						"chalk",
 						"create",
 						"execa",
-						"get-github-auth-token",
 						"git-remote-origin-url",
 						"git-url-parse",
 						"input-from-file",

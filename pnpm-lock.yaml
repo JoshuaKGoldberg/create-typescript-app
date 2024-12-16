@@ -14,9 +14,6 @@ importers:
       '@prettier/sync':
         specifier: ^0.5.2
         version: 0.5.2(prettier@3.4.1)
-      all-contributors-for-repository:
-        specifier: ^0.3.0
-        version: 0.3.1
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -26,9 +23,6 @@ importers:
       execa:
         specifier: ^9.5.1
         version: 9.5.2
-      get-github-auth-token:
-        specifier: ^0.1.0
-        version: 0.1.0
       git-remote-origin-url:
         specifier: ^4.0.0
         version: 4.0.0

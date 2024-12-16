@@ -9,12 +9,10 @@ export async function uninstallPackages(offline: boolean | undefined) {
 		[
 			"@clack/prompts",
 			"@prettier/sync",
-			"all-contributors-for-repository",
 			"all-contributors-cli",
 			"chalk",
 			"create",
 			"execa",
-			"get-github-auth-token",
 			"git-remote-origin-url",
 			"git-url-parse",
 			"input-from-file",

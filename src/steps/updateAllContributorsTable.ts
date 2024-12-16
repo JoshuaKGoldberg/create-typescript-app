@@ -20,6 +20,5 @@ export async function updateAllContributorsTable({
 		}),
 	);
 
-	await $`pnpm add all-contributors-cli -D`;
 	await $`npx -y all-contributors-cli generate`;
 }

@@ -16,7 +16,7 @@ importers:
         version: 0.5.2(prettier@3.4.1)
       all-contributors-for-repository:
         specifier: ^0.3.0
-        version: 0.3.0
+        version: 0.3.1
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -25,7 +25,7 @@ importers:
         version: 0.1.0-alpha.4
       execa:
         specifier: ^9.5.1
-        version: 9.5.1
+        version: 9.5.2
       get-github-auth-token:
         specifier: ^0.1.0
         version: 0.1.0
@@ -1510,10 +1510,6 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  all-contributors-for-repository@0.3.0:
-    resolution: {integrity: sha512-McUwhFuxTOLMzX5oQeZLd+kQB8ZumhkF482qbZQ7dSPkAxfUyW5xG6Qzzpcz/vKFbQjF4/nIvaOOBNBWMmL6HA==}
-    engines: {node: '>=18'}
-
   all-contributors-for-repository@0.3.1:
     resolution: {integrity: sha512-f8//rD53WO2HNq1BpR7jJSUGGHw8iMFL3jLHJ1lV3UT+Wlr+ogh1w4lq2UZgMnXWN17WzaZ9P3NfFTzgV90sZQ==}
     engines: {node: '>=18'}
@@ -2304,10 +2300,6 @@ packages:
   execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
-
-  execa@9.5.1:
-    resolution: {integrity: sha512-QY5PPtSonnGwhhHDNI7+3RvY285c7iuJFFB+lU+oEzMY/gEGJ808owqJsrr8Otd1E/x07po1LkUBmdAc5duPAg==}
-    engines: {node: ^18.19.0 || >=20.5.0}
 
   execa@9.5.2:
     resolution: {integrity: sha512-EHlpxMCpHWSAh1dgS6bVeoLAXGnJNdR93aabr4QCGbzOM73o5XmRfM/e5FUqsw3aagP8S8XEWUWFAxnRBnAF0Q==}
@@ -5371,13 +5363,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  all-contributors-for-repository@0.3.0:
-    dependencies:
-      co-author-to-username: 0.1.1
-      conventional-commits-parser: 6.0.0
-      description-to-co-authors: 0.3.0
-      octokit: 4.0.2
-
   all-contributors-for-repository@0.3.1:
     dependencies:
       co-author-to-username: 0.1.1
@@ -5795,7 +5780,7 @@ snapshots:
 
   create@0.1.0-alpha.4:
     dependencies:
-      execa: 9.5.1
+      execa: 9.5.2
       octokit-from-auth: 0.2.0
       zod: 3.24.1
 
@@ -6345,21 +6330,6 @@ snapshots:
       onetime: 6.0.0
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
-
-  execa@9.5.1:
-    dependencies:
-      '@sindresorhus/merge-streams': 4.0.0
-      cross-spawn: 7.0.6
-      figures: 6.1.0
-      get-stream: 9.0.1
-      human-signals: 8.0.0
-      is-plain-obj: 4.1.0
-      is-stream: 4.0.1
-      npm-run-path: 6.0.0
-      pretty-ms: 9.1.0
-      signal-exit: 4.1.0
-      strip-final-newline: 4.0.0
-      yoctocolors: 2.1.1
 
   execa@9.5.2:
     dependencies:

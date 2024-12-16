@@ -35,10 +35,6 @@ vi.mock("execa", () => ({
 }));
 
 const mockOctokit = new Octokit();
-const github = {
-	auth: "auth-token",
-	octokit: mockOctokit,
-};
 
 vi.mock("../shared/cli/spinners.js", () => ({
 	withSpinner: async <Return>(label: string, task: SpinnerTask<Return>) => {
@@ -89,11 +85,8 @@ describe("createWithOptions", () => {
 			skipAllContributorsApi: false,
 		};
 
-		await createWithOptions({ github, options });
-		expect(addToolAllContributors).toHaveBeenCalledWith(
-			github.octokit,
-			options,
-		);
+		await createWithOptions({ octokit: mockOctokit, options });
+		expect(addToolAllContributors).toHaveBeenCalledWith(mockOctokit, options);
 	});
 
 	it("does not call addToolAllContributors when excludeAllContributors is true", async () => {
@@ -102,7 +95,7 @@ describe("createWithOptions", () => {
 			excludeAllContributors: true,
 		};
 
-		await createWithOptions({ github, options });
+		await createWithOptions({ octokit: mockOctokit, options });
 		expect(addToolAllContributors).not.toHaveBeenCalled();
 	});
 
@@ -112,7 +105,7 @@ describe("createWithOptions", () => {
 			skipAllContributorsApi: true,
 		};
 
-		await createWithOptions({ github, options });
+		await createWithOptions({ octokit: mockOctokit, options });
 		expect(addToolAllContributors).not.toHaveBeenCalled();
 	});
 
@@ -122,7 +115,7 @@ describe("createWithOptions", () => {
 			skipInstall: true,
 		};
 
-		await createWithOptions({ github, options });
+		await createWithOptions({ octokit: mockOctokit, options });
 		expect(finalizeDependencies).not.toHaveBeenCalled();
 		expect(runCleanup).not.toHaveBeenCalled();
 	});
@@ -133,7 +126,7 @@ describe("createWithOptions", () => {
 			skipInstall: false,
 		};
 
-		await createWithOptions({ github, options });
+		await createWithOptions({ octokit: mockOctokit, options });
 
 		expect(finalizeDependencies).toHaveBeenCalledWith(options);
 		expect(runCleanup).toHaveBeenCalled();
@@ -142,7 +135,7 @@ describe("createWithOptions", () => {
 	it("does not initialize GitHub repository if repository does not exist", async () => {
 		const options = optionsBase;
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(false);
-		await createWithOptions({ github, options });
+		await createWithOptions({ octokit: mockOctokit, options });
 		expect(initializeGitHubRepository).not.toHaveBeenCalled();
 		expect(mock$).not.toHaveBeenCalled();
 	});
@@ -151,7 +144,7 @@ describe("createWithOptions", () => {
 		const options = optionsBase;
 
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
-		await createWithOptions({ github, options });
+		await createWithOptions({ octokit: mockOctokit, options });
 
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -189,11 +182,11 @@ describe("createWithOptions", () => {
 		const options = optionsBase;
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
 
-		await createWithOptions({ github, options });
+		await createWithOptions({ octokit: mockOctokit, options });
 
-		expect(doesRepositoryExist).toHaveBeenCalledWith(github.octokit, options);
+		expect(doesRepositoryExist).toHaveBeenCalledWith(mockOctokit, options);
 		expect(initializeGitHubRepository).toHaveBeenCalledWith(
-			github.octokit,
+			mockOctokit,
 			options,
 		);
 	});

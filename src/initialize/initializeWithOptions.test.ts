@@ -1,6 +1,6 @@
+import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
-import { GitHub } from "../shared/options/getGitHub.js";
 import { Options } from "../shared/types.js";
 import { initializeWithOptions } from "./initializeWithOptions.js";
 
@@ -77,7 +77,7 @@ describe("initializeWithOptions", () => {
 		};
 
 		await initializeWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -94,7 +94,7 @@ describe("initializeWithOptions", () => {
 		};
 
 		await initializeWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -102,17 +102,15 @@ describe("initializeWithOptions", () => {
 	});
 
 	it("runs initializeGitHubRepository when github is truthy", async () => {
-		const github = {
-			octokit: {},
-		} as GitHub;
+		const octokit = {} as Octokit;
 
 		await initializeWithOptions({
-			github,
+			octokit,
 			options: optionsBase,
 		});
 
 		expect(mockInitializeGitHubRepository).toHaveBeenCalledWith(
-			github.octokit,
+			octokit,
 			optionsBase,
 		);
 	});
@@ -124,7 +122,7 @@ describe("initializeWithOptions", () => {
 		};
 
 		await initializeWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -138,7 +136,7 @@ describe("initializeWithOptions", () => {
 		};
 
 		await initializeWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -152,7 +150,7 @@ describe("initializeWithOptions", () => {
 		};
 
 		await initializeWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -167,7 +165,7 @@ describe("initializeWithOptions", () => {
 		};
 
 		await initializeWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -181,7 +179,7 @@ describe("initializeWithOptions", () => {
 		};
 
 		await initializeWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 

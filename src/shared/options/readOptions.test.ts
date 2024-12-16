@@ -222,7 +222,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "MockRepository" }))
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -245,7 +245,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "Mock description." }))
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -270,7 +270,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "Mock Title" }))
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -299,7 +299,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "Mock Title" }))
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -327,7 +327,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "Mock description." }))
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -353,7 +353,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "Mock title." }))
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -379,7 +379,7 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "Mock title." }))
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
@@ -406,7 +406,7 @@ describe("readOptions", () => {
 			value: "mock",
 		}));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -414,7 +414,7 @@ describe("readOptions", () => {
 			await readOptions(["--base", mockOptions.base], "create"),
 		).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: {
 				...emptyOptions,
 				...mockOptions,
@@ -431,7 +431,7 @@ describe("readOptions", () => {
 			value: "mock",
 		}));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -449,7 +449,7 @@ describe("readOptions", () => {
 			),
 		).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: {
 				...emptyOptions,
 				...mockOptions,
@@ -486,7 +486,7 @@ describe("readOptions", () => {
 			}),
 		);
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
@@ -497,7 +497,7 @@ describe("readOptions", () => {
 			await readOptions(["--base", mockOptions.base], "create"),
 		).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: expect.objectContaining({
 				preserveGeneratedFrom: false,
 			}),
@@ -512,7 +512,7 @@ describe("readOptions", () => {
 			}),
 		);
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
@@ -526,7 +526,7 @@ describe("readOptions", () => {
 			),
 		).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: expect.objectContaining({
 				preserveGeneratedFrom: true,
 			}),
@@ -543,7 +543,7 @@ describe("readOptions", () => {
 			value: "mock",
 		}));
 		mockEnsureRepositoryExists.mockResolvedValue({
-			github: mockOptions.github,
+			octokit: undefined,
 			repository: mockOptions.repository,
 		});
 
@@ -551,7 +551,7 @@ describe("readOptions", () => {
 			await readOptions(["--base", mockOptions.base, "--offline"], "create"),
 		).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: {
 				...emptyOptions,
 				...mockOptions,
@@ -586,7 +586,7 @@ describe("readOptions", () => {
 		);
 		expect(await readOptions(["--offline"], "migrate")).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: {
 				...emptyOptions,
 				...mockOptions,
@@ -640,7 +640,7 @@ describe("readOptions", () => {
 			),
 		).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: {
 				...emptyOptions,
 				...mockOptions,
@@ -697,7 +697,7 @@ describe("readOptions", () => {
 			),
 		).toStrictEqual({
 			cancelled: false,
-			github: mockOptions.github,
+			octokit: undefined,
 			options: {
 				...emptyOptions,
 				...mockOptions,

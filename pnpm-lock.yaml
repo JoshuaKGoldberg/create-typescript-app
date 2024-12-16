@@ -118,7 +118,7 @@ importers:
         specifier: 1.1.14
         version: 1.1.14(@typescript-eslint/utils@8.18.0(eslint@9.16.0(jiti@2.4.0))(typescript@5.7.2))(eslint@9.16.0(jiti@2.4.0))(typescript@5.7.2)(vitest@2.1.8(@types/node@22.10.1))
       all-contributors-cli:
-        specifier: ^6.26.1
+        specifier: 6.26.1
         version: 6.26.1
       c8:
         specifier: 10.1.2

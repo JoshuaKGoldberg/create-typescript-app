@@ -1,11 +1,11 @@
 import * as prompts from "@clack/prompts";
+import { Octokit } from "octokit";
 
 import { doesRepositoryExist } from "../doesRepositoryExist.js";
 import { isUsingCreateEngine } from "../isUsingCreateEngine.js";
 import { filterPromptCancel } from "../prompts.js";
 import { Options } from "../types.js";
 import { createRepositoryWithApi } from "./createRepositoryWithApi.js";
-import { GitHub } from "./getGitHub.js";
 
 export type EnsureRepositoryExistsOptions = Pick<
 	Options,
@@ -13,12 +13,12 @@ export type EnsureRepositoryExistsOptions = Pick<
 >;
 
 export interface RepositoryExistsResult {
-	github: GitHub | undefined;
+	octokit: Octokit | undefined;
 	repository: string;
 }
 
 export async function ensureRepositoryExists(
-	github: GitHub | undefined,
+	octokit: Octokit | undefined,
 	options: EnsureRepositoryExistsOptions,
 ): Promise<Partial<RepositoryExistsResult>> {
 	// We'll only respect input options once before prompting for them
@@ -27,12 +27,12 @@ export async function ensureRepositoryExists(
 
 	// We'll continuously pester the user for a repository
 	// until they bail, create a new one, or it exists.
-	while (github) {
+	while (octokit) {
 		if (
 			isUsingCreateEngine() ||
-			(await doesRepositoryExist(github.octokit, options))
+			(await doesRepositoryExist(octokit, options))
 		) {
-			return { github, repository };
+			return { octokit, repository };
 		}
 
 		const selection = createRepository
@@ -63,12 +63,12 @@ export async function ensureRepositoryExists(
 				return {};
 
 			case "create":
-				await createRepositoryWithApi(github.octokit, {
+				await createRepositoryWithApi(octokit, {
 					owner: options.owner,
 					preserveGeneratedFrom: options.preserveGeneratedFrom,
 					repository,
 				});
-				return { github, repository };
+				return { octokit, repository };
 
 			case "different": {
 				const newRepository = filterPromptCancel(
@@ -86,10 +86,10 @@ export async function ensureRepositoryExists(
 			}
 
 			case "local":
-				github = undefined;
+				octokit = undefined;
 				break;
 		}
 	}
 
-	return { github, repository };
+	return { octokit, repository };
 }

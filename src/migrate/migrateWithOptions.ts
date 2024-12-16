@@ -1,8 +1,9 @@
+import { populateAllContributorsForRepository } from "populate-all-contributors-for-repository";
+
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { createCleanupCommands } from "../shared/createCleanupCommands.js";
-import { GitHubAndOptions } from "../shared/options/readOptions.js";
+import { OctokitAndOptions } from "../shared/options/readOptions.js";
 import { clearUnnecessaryFiles } from "../steps/clearUnnecessaryFiles.js";
-import { detectExistingContributors } from "../steps/detectExistingContributors.js";
 import { finalizeDependencies } from "../steps/finalizeDependencies.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
 import { populateCSpellDictionary } from "../steps/populateCSpellDictionary.js";
@@ -13,9 +14,9 @@ import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
 export async function migrateWithOptions({
-	github,
+	octokit,
 	options,
-}: GitHubAndOptions) {
+}: OctokitAndOptions) {
 	await withSpinners("Migrating repository structure", [
 		["Clearing unnecessary files", clearUnnecessaryFiles],
 		[
@@ -44,15 +45,18 @@ export async function migrateWithOptions({
 		],
 	]);
 
-	if (github) {
+	if (octokit) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await initializeGitHubRepository(github.octokit, options);
+			await initializeGitHubRepository(octokit, options);
 		});
 	}
 
 	if (!options.excludeAllContributors && !options.skipAllContributorsApi) {
 		await withSpinner("Detecting existing contributors", async () =>
-			detectExistingContributors(github?.auth, options),
+			populateAllContributorsForRepository({
+				owner: options.owner,
+				repo: options.repository,
+			}),
 		);
 	}
 

@@ -1,4 +1,6 @@
 import { parseArgs } from "node:util";
+import { Octokit } from "octokit";
+import { octokitFromAuth } from "octokit-from-auth";
 import { titleCase } from "title-case";
 import { z } from "zod";
 
@@ -11,13 +13,12 @@ import { createOptionDefaults } from "./createOptionDefaults/index.js";
 import { detectEmailRedundancy } from "./detectEmailRedundancy.js";
 import { ensureRepositoryExists } from "./ensureRepositoryExists.js";
 import { getBase } from "./getBase.js";
-import { getGitHub, GitHub } from "./getGitHub.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { logInferredOptions } from "./logInferredOptions.js";
 import { optionsSchema } from "./optionsSchema.js";
 
-export interface GitHubAndOptions {
-	github: GitHub | undefined;
+export interface OctokitAndOptions {
+	octokit: Octokit | undefined;
 	options: Options;
 }
 
@@ -29,7 +30,7 @@ export interface OptionsParseCancelled {
 
 export type OptionsParseResult = OptionsParseCancelled | OptionsParseSuccess;
 
-export interface OptionsParseSuccess extends GitHubAndOptions {
+export interface OptionsParseSuccess extends OctokitAndOptions {
 	cancelled: false;
 }
 
@@ -160,10 +161,12 @@ export async function readOptions(
 		};
 	}
 
-	const { github, repository } = await ensureRepositoryExists(
+	const { octokit, repository } = await ensureRepositoryExists(
 		options.skipGitHubApi
 			? undefined
-			: await withSpinner("Checking GitHub authentication", getGitHub),
+			: await withSpinner("Checking GitHub authentication", async () =>
+					octokitFromAuth(),
+				),
 		{
 			mode,
 			owner: options.owner,
@@ -293,7 +296,7 @@ export async function readOptions(
 
 	return {
 		cancelled: false,
-		github,
+		octokit,
 		options: augmentedOptions,
 	};
 }

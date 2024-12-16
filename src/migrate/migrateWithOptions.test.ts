@@ -1,6 +1,6 @@
+import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
-import { GitHub } from "../shared/options/getGitHub.js";
 import { Options } from "../shared/types.js";
 import { migrateWithOptions } from "./migrateWithOptions.js";
 
@@ -11,11 +11,11 @@ vi.mock("../shared/cli/spinners.js", () => ({
 	withSpinners: vi.fn(),
 }));
 
-const mockDetectExistingContributors = vi.fn();
+const mockPopulateAllContributorsForRepository = vi.fn();
 
-vi.mock("../steps/detectExistingContributors.js", () => ({
-	get detectExistingContributors() {
-		return mockDetectExistingContributors;
+vi.mock("populate-all-contributors-for-repository", () => ({
+	get populateAllContributorsForRepository() {
+		return mockPopulateAllContributorsForRepository;
 	},
 }));
 
@@ -65,18 +65,16 @@ vi.mock("../shared/options/readOptions.js", () => ({
 const optionsBase = {} as Options;
 
 describe("migrateWithOptions", () => {
-	it("runs initializeGitHubRepository when github is truthy", async () => {
-		const github = {
-			octokit: {},
-		} as GitHub;
+	it("runs initializeGitHubRepository when octokit is truthy", async () => {
+		const octokit = {} as Octokit;
 
 		await migrateWithOptions({
-			github,
+			octokit,
 			options: optionsBase,
 		});
 
 		expect(mockInitializeGitHubRepository).toHaveBeenCalledWith(
-			github.octokit,
+			octokit,
 			optionsBase,
 		);
 	});
@@ -88,14 +86,14 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
 		expect(mockInitializeGitHubRepository).not.toHaveBeenCalled();
 	});
 
-	it("does not run detectExistingContributors when excludeAllContributors is true", async () => {
+	it("does not run populateAllContributorsForRepository excludeAllContributors is true", async () => {
 		const options = {
 			...optionsBase,
 			excludeAllContributors: true,
@@ -103,14 +101,14 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
-		expect(mockDetectExistingContributors).not.toHaveBeenCalled();
+		expect(mockPopulateAllContributorsForRepository).not.toHaveBeenCalled();
 	});
 
-	it("does not run detectExistingContributors when skipAllContributorsApi is true", async () => {
+	it("does not run populateAllContributorsForRepository skipAllContributorsApi is true", async () => {
 		const options = {
 			...optionsBase,
 			excludeAllContributors: false,
@@ -118,14 +116,14 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
-		expect(mockDetectExistingContributors).not.toHaveBeenCalled();
+		expect(mockPopulateAllContributorsForRepository).not.toHaveBeenCalled();
 	});
 
-	it("runs detectExistingContributors when excludeAllContributors and skipAllContributorsApi are false", async () => {
+	it("runs populateAllContributorsForRepository excludeAllContributors and skipAllContributorsApi are false", async () => {
 		const options = {
 			...optionsBase,
 			excludeAllContributors: false,
@@ -133,14 +131,14 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
-		expect(mockDetectExistingContributors).toHaveBeenCalledWith(
-			undefined,
-			options,
-		);
+		expect(mockPopulateAllContributorsForRepository).toHaveBeenCalledWith({
+			owner: options.owner,
+			repo: options.repository,
+		});
 	});
 
 	it("runs finalizeDependencies when skipInstall is false", async () => {
@@ -150,7 +148,7 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -164,7 +162,7 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -178,7 +176,7 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 
@@ -192,7 +190,7 @@ describe("migrateWithOptions", () => {
 		};
 
 		await migrateWithOptions({
-			github: undefined,
+			octokit: undefined,
 			options,
 		});
 

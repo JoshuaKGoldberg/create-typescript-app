@@ -1,6 +1,7 @@
 /* spellchecker: disable */
 export const outcomeLabels = [
 	{
+		aliases: ["docs"],
 		color: "0075ca",
 		description: "Improvements or additions to docs 📝",
 		name: "area: documentation",
@@ -27,6 +28,7 @@ export const outcomeLabels = [
 		name: "invalid",
 	},
 	{
+		aliases: ["help wanted"],
 		color: "0E8A16",
 		description: "Please, send a pull request to resolve this! 🙏",
 		name: "status: accepting prs",
@@ -68,10 +70,11 @@ export const outcomeLabels = [
 	},
 	{
 		color: "d73a4a",
-		description: "Something isn't working :( 🐛",
+		description: "Something isn't working 🐛",
 		name: "type: bug",
 	},
 	{
+		aliases: ["enhancement"],
 		color: "a2eeef",
 		description: "New enhancement or request 🚀",
 		name: "type: feature",

@@ -1,6 +1,6 @@
 import { withSpinner, withSpinners } from "../shared/cli/spinners.js";
 import { createCleanupCommands } from "../shared/createCleanupCommands.js";
-import { GitHubAndOptions } from "../shared/options/readOptions.js";
+import { OctokitAndOptions } from "../shared/options/readOptions.js";
 import { addOwnerAsAllContributor } from "../steps/addOwnerAsAllContributor.js";
 import { clearChangelog } from "../steps/clearChangelog.js";
 import { initializeGitHubRepository } from "../steps/initializeGitHubRepository/index.js";
@@ -13,9 +13,9 @@ import { updateLocalFiles } from "../steps/updateLocalFiles.js";
 import { updateReadme } from "../steps/updateReadme.js";
 
 export async function initializeWithOptions({
-	github,
+	octokit,
 	options,
-}: GitHubAndOptions) {
+}: OctokitAndOptions) {
 	await withSpinners("Initializing local files", [
 		[
 			"Updating local files",
@@ -41,13 +41,13 @@ export async function initializeWithOptions({
 
 	if (!options.excludeAllContributors) {
 		await withSpinner("Updating existing contributor details", async () => {
-			await addOwnerAsAllContributor(github?.octokit, options);
+			await addOwnerAsAllContributor(octokit, options);
 		});
 	}
 
-	if (github) {
+	if (octokit) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await initializeGitHubRepository(github.octokit, options);
+			await initializeGitHubRepository(octokit, options);
 		});
 	}
 

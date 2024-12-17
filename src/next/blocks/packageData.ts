@@ -4,7 +4,6 @@ const require = createRequire(import.meta.url);
 
 const packageData =
 	// Importing from above src/ would expand the TS build rootDir
-
 	require("../../../package.json") as typeof import("../../../package.json");
 
 const getPackageInner = (

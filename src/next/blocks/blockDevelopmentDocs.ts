@@ -25,16 +25,12 @@ const zSection = z.object({
 			}),
 		])
 		.optional(),
-	innerSections: z.array(zInnerSection).default([]).optional(),
+	innerSections: z.array(zInnerSection).optional(),
 });
 
 type Section = z.infer<typeof zSection>;
 
 function printSection(heading: string, section: Section) {
-	if (typeof section === "string") {
-		return section;
-	}
-
 	const innerSections = section.innerSections?.flatMap(printInnerSection) ?? [];
 
 	if (section.contents === undefined) {
@@ -75,9 +71,9 @@ export const blockDevelopmentDocs = base.createBlock({
 				? [
 						`> If you'd like a more guided walkthrough, see [${options.guide.title}](${options.guide.href}).`,
 						`> It'll walk you through the common activities you'll need to contribute.`,
+						``,
 					]
 				: []),
-			``,
 			`After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):`,
 			``,
 			`\`\`\`shell`,
@@ -86,9 +82,7 @@ export const blockDevelopmentDocs = base.createBlock({
 			`pnpm install`,
 			`\`\`\``,
 			``,
-			`> This repository includes a list of suggested VS Code extensions.`,
-			`> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.`,
-			``,
+			...(addons.hints.length ? [...addons.hints, ``] : []),
 			...Object.entries(addons.sections)
 				.sort(([a], [b]) => a.localeCompare(b))
 				.flatMap(([heading, section]) => printSection(heading, section)),

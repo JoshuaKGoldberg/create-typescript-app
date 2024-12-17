@@ -18,8 +18,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       create:
-        specifier: 0.1.0-alpha.5
-        version: 0.1.0-alpha.5
+        specifier: 0.1.0-alpha.6
+        version: 0.1.0-alpha.6
       execa:
         specifier: ^9.5.1
         version: 9.5.2
@@ -30,11 +30,11 @@ importers:
         specifier: ^16.0.0
         version: 16.0.0
       input-from-file:
-        specifier: 0.1.0-alpha.0
-        version: 0.1.0-alpha.0(create@0.1.0-alpha.5)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(create@0.1.0-alpha.6)
       input-from-file-json:
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(create@0.1.0-alpha.5)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(create@0.1.0-alpha.6)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -127,8 +127,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0
       create-testers:
-        specifier: 0.1.0-alpha.5
-        version: 0.1.0-alpha.5(create@0.1.0-alpha.5)
+        specifier: 0.1.0-alpha.6
+        version: 0.1.0-alpha.6(create@0.1.0-alpha.6)
       cspell:
         specifier: 8.16.1
         version: 8.16.1
@@ -1897,14 +1897,14 @@ packages:
       typescript:
         optional: true
 
-  create-testers@0.1.0-alpha.5:
-    resolution: {integrity: sha512-0Wgn9P6zi0Gn89yI3NqB7Qxx+jn2/v5P+VvQTTCWgnh/qkc/DqlKs7t2FZNJdMiSDfokWFpbBCiJmkDzcK8HHQ==}
+  create-testers@0.1.0-alpha.6:
+    resolution: {integrity: sha512-WF5D+6fhZmtR8+wTDXml//HdO4tzwrmo8sjpKBwYGtZXLl8VCkoqYAtKqe2TjUBNXrRTfISAKWbEYQykcD1ukw==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.5
+      create: 0.1.0-alpha.6
 
-  create@0.1.0-alpha.5:
-    resolution: {integrity: sha512-pHbkdn8a6FTI9Mo09mETR9WyX9I9tka4lQDHNUHEUZuatKP+j4qyStFrktOGXV0hoSg2mTqGV+s4cktbOegdYg==}
+  create@0.1.0-alpha.6:
+    resolution: {integrity: sha512-XWaBK+NMK+LTeT7cod96e4sXQ9K8FGRK05tF9oQIhD5p/zWEfdoGUKQZoEW0WsBHZBiiuP1Y0W0uTPC0LoTBVQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2622,17 +2622,23 @@ packages:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  input-from-file-json@0.1.0-alpha.1:
-    resolution: {integrity: sha512-fkB4Y8dwplNkaiRe2O9IX1hYYz1efUxFX5bCKiiqUmrB67yTnUoDeDg+LlKJr/py6L7aPkCObZ6MrF5WH+PDiQ==}
+  input-from-file-json@0.1.0-alpha.2:
+    resolution: {integrity: sha512-YjH+2/nc2SNM/iHmc8EOTyYSwJJeffvoxCdNxVqIwlNmENB/jPh1wu5ffd1VFZKsg878jFG7OEFEmm4YHY9PUg==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.0
+      create: 0.1.0-alpha.6
 
-  input-from-file@0.1.0-alpha.0:
-    resolution: {integrity: sha512-XcGuSxpNEMN2tlMV+TfMNK21KrUN8T6RNWeIUIyIukJ7TzNbf+lgSTl9rxjAXWmNfFA59puMQk6qsa+HJ76X+g==}
+  input-from-file@0.1.0-alpha.1:
+    resolution: {integrity: sha512-O4BrmU5E8HYNuS8Yqc68N60zSf3rUGCtBcEcYf9DBjMhuLDhNF2XHNjuuOuZTPtNkSZuYk0N+ix2Op+FjWnEHw==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.0
+      create: 0.1.0-alpha.6
+
+  input-from-file@0.1.0-alpha.2:
+    resolution: {integrity: sha512-R2YwGgdVIGJJP6/XkFYR3KQaFTGTz5RsEdoGDGWc9D+5yeVVWLdBtcfqIY4IGknXlquVOSORxmVfAiwnZ80sgg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      create: 0.1.0-alpha.6
 
   inquirer@7.3.3:
     resolution: {integrity: sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==}
@@ -5769,12 +5775,12 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
-  create-testers@0.1.0-alpha.5(create@0.1.0-alpha.5):
+  create-testers@0.1.0-alpha.6(create@0.1.0-alpha.6):
     dependencies:
-      create: 0.1.0-alpha.5
+      create: 0.1.0-alpha.6
       octokit: 4.0.2
 
-  create@0.1.0-alpha.5:
+  create@0.1.0-alpha.6:
     dependencies:
       execa: 9.5.2
       hash-object: 5.0.1
@@ -6673,15 +6679,20 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.1.0-alpha.1(create@0.1.0-alpha.5):
+  input-from-file-json@0.1.0-alpha.2(create@0.1.0-alpha.6):
     dependencies:
-      create: 0.1.0-alpha.5
-      input-from-file: 0.1.0-alpha.0(create@0.1.0-alpha.5)
+      create: 0.1.0-alpha.6
+      input-from-file: 0.1.0-alpha.1(create@0.1.0-alpha.6)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.0(create@0.1.0-alpha.5):
+  input-from-file@0.1.0-alpha.1(create@0.1.0-alpha.6):
     dependencies:
-      create: 0.1.0-alpha.5
+      create: 0.1.0-alpha.6
+      zod: 3.24.1
+
+  input-from-file@0.1.0-alpha.2(create@0.1.0-alpha.6):
+    dependencies:
+      create: 0.1.0-alpha.6
       zod: 3.24.1
 
   inquirer@7.3.3:

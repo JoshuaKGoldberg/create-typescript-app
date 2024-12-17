@@ -18,8 +18,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       create:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4
+        specifier: 0.1.0-alpha.5
+        version: 0.1.0-alpha.5
       execa:
         specifier: ^9.5.1
         version: 9.5.2
@@ -31,10 +31,10 @@ importers:
         version: 16.0.0
       input-from-file:
         specifier: 0.1.0-alpha.0
-        version: 0.1.0-alpha.0(create@0.1.0-alpha.4)
+        version: 0.1.0-alpha.0(create@0.1.0-alpha.5)
       input-from-file-json:
         specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(create@0.1.0-alpha.4)
+        version: 0.1.0-alpha.1(create@0.1.0-alpha.5)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -127,8 +127,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0
       create-testers:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.4)
+        specifier: 0.1.0-alpha.5
+        version: 0.1.0-alpha.5(create@0.1.0-alpha.5)
       cspell:
         specifier: 8.16.1
         version: 8.16.1
@@ -1897,14 +1897,14 @@ packages:
       typescript:
         optional: true
 
-  create-testers@0.1.0-alpha.4:
-    resolution: {integrity: sha512-ortGiKsmlzb1Mqt4PWwP5rEw3Wt/j18OCbbsc6t0qHB596Bu3Ckx9/GELKa4w02KthOsI1CcZmRNS/OoZHLIqQ==}
+  create-testers@0.1.0-alpha.5:
+    resolution: {integrity: sha512-0Wgn9P6zi0Gn89yI3NqB7Qxx+jn2/v5P+VvQTTCWgnh/qkc/DqlKs7t2FZNJdMiSDfokWFpbBCiJmkDzcK8HHQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.4
+      create: 0.1.0-alpha.5
 
-  create@0.1.0-alpha.4:
-    resolution: {integrity: sha512-h8p8ZFD+lObrfQx3HFYyy//3m3n5MwEEnTuGa3xA1RkaP8QGdaFanwlEuBnrd87zH4aIyyjE+koQWdk7CJ3YsQ==}
+  create@0.1.0-alpha.5:
+    resolution: {integrity: sha512-pHbkdn8a6FTI9Mo09mETR9WyX9I9tka4lQDHNUHEUZuatKP+j4qyStFrktOGXV0hoSg2mTqGV+s4cktbOegdYg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1974,6 +1974,10 @@ packages:
   decamelize@1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
     engines: {node: '>=0.10.0'}
+
+  decircular@0.1.1:
+    resolution: {integrity: sha512-V2Vy+QYSXdgxRPmOZKQWCDf1KQNTUP/Eqswv/3W20gz7+6GB1HTosNrWqK3PqstVpFw/Dd/cGTmXSTKPeOiGVg==}
+    engines: {node: '>=18'}
 
   deep-eql@5.0.2:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
@@ -2523,6 +2527,10 @@ packages:
     resolution: {integrity: sha512-Pq0h+hvsVm6dDEa8x82GnLSYHOzNDt7f0ddFa3FqcQlgzEiptPqL+XrOJNavjOzSYiYWIrgeVYYgGlLmnxwilQ==}
     engines: {node: '>=8'}
 
+  hash-object@5.0.1:
+    resolution: {integrity: sha512-iaRY4jYOow1caHkXW7wotYRjZDQk2nq4U7904anGJj8l4x1SLId+vuR8RpGoywZz9puD769hNFVFLFH9t+baJw==}
+    engines: {node: '>=18'}
+
   hasown@2.0.1:
     resolution: {integrity: sha512-1/th4MHjnwncwXsIW6QMzlvYL9kG5e/CpVvLRZe4XPa8TOUNbCELqmvhDmnkNsAjwaG4+I8gJJL0JBvTTLO9qA==}
     engines: {node: '>= 0.4'}
@@ -2718,6 +2726,10 @@ packages:
   is-obj@2.0.0:
     resolution: {integrity: sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==}
     engines: {node: '>=8'}
+
+  is-obj@3.0.0:
+    resolution: {integrity: sha512-IlsXEHOjtKhpN8r/tRFj2nDyTmHvcfNeu/nrRIcXE17ROeatXchkojffa1SpdqW4cr/Fj6QkEf/Gn4zf6KKvEQ==}
+    engines: {node: '>=12'}
 
   is-path-inside@4.0.0:
     resolution: {integrity: sha512-lJJV/5dYS+RcL8uQdBDW9c9uWFLLBNRyFhnAKXw5tVqLlKZ4RMGZKv+YQ/IA3OhD+RpbJa1LLFM1FQPGyIXvOA==}
@@ -3669,6 +3681,10 @@ packages:
   socks@2.8.1:
     resolution: {integrity: sha512-B6w7tkwNid7ToxjZ08rQMT8M9BJAf8DKx8Ft4NivzH0zBUfd6jldGcisJn/RLgxcX3FPNDdNQCUEMMT79b+oCQ==}
     engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
+
+  sort-keys@5.1.0:
+    resolution: {integrity: sha512-aSbHV0DaBcr7u0PVHXzM6NbZNAtrr9sF6+Qfs9UUVG7Ll3jQ6hHi8F/xqIIcn2rvIVbr0v/2zyjSdwSV47AgLQ==}
+    engines: {node: '>=12'}
 
   sort-object-keys@1.1.3:
     resolution: {integrity: sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==}
@@ -5753,14 +5769,17 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
-  create-testers@0.1.0-alpha.4(create@0.1.0-alpha.4):
+  create-testers@0.1.0-alpha.5(create@0.1.0-alpha.5):
     dependencies:
-      create: 0.1.0-alpha.4
+      create: 0.1.0-alpha.5
+      octokit: 4.0.2
 
-  create@0.1.0-alpha.4:
+  create@0.1.0-alpha.5:
     dependencies:
       execa: 9.5.2
-      octokit-from-auth: 0.2.0
+      hash-object: 5.0.1
+      octokit: 4.0.2
+      octokit-from-auth: 0.3.0
       zod: 3.24.1
 
   cross-spawn@7.0.6:
@@ -5875,6 +5894,8 @@ snapshots:
       ms: 2.1.3
 
   decamelize@1.2.0: {}
+
+  decircular@0.1.1: {}
 
   deep-eql@5.0.2: {}
 
@@ -6570,6 +6591,13 @@ snapshots:
 
   has-own-prop@2.0.0: {}
 
+  hash-object@5.0.1:
+    dependencies:
+      decircular: 0.1.1
+      is-obj: 3.0.0
+      sort-keys: 5.1.0
+      type-fest: 4.30.0
+
   hasown@2.0.1:
     dependencies:
       function-bind: 1.1.2
@@ -6645,15 +6673,15 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.1.0-alpha.1(create@0.1.0-alpha.4):
+  input-from-file-json@0.1.0-alpha.1(create@0.1.0-alpha.5):
     dependencies:
-      create: 0.1.0-alpha.4
-      input-from-file: 0.1.0-alpha.0(create@0.1.0-alpha.4)
+      create: 0.1.0-alpha.5
+      input-from-file: 0.1.0-alpha.0(create@0.1.0-alpha.5)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.0(create@0.1.0-alpha.4):
+  input-from-file@0.1.0-alpha.0(create@0.1.0-alpha.5):
     dependencies:
-      create: 0.1.0-alpha.4
+      create: 0.1.0-alpha.5
       zod: 3.24.1
 
   inquirer@7.3.3:
@@ -6747,6 +6775,8 @@ snapshots:
   is-number@7.0.0: {}
 
   is-obj@2.0.0: {}
+
+  is-obj@3.0.0: {}
 
   is-path-inside@4.0.0: {}
 
@@ -7760,6 +7790,10 @@ snapshots:
     dependencies:
       ip-address: 9.0.5
       smart-buffer: 4.2.0
+
+  sort-keys@5.1.0:
+    dependencies:
+      is-plain-obj: 4.1.0
 
   sort-object-keys@1.1.3: {}
 

@@ -8,7 +8,7 @@ export const blockRepositoryLabels = base.createBlock({
 	produce({ options }) {
 		return {
 			scripts: [
-				`npx set-github-repository-labels --outcomes ${JSON.stringify(outcomeLabels)} --owner "${options.owner}" --repository "${options.repository}"`,
+				`npx set-github-repository-labels --labels ${JSON.stringify(outcomeLabels)} --owner "${options.owner}" --repository "${options.repository}"`,
 			],
 		};
 	},

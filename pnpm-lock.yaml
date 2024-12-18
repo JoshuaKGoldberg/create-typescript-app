@@ -13,13 +13,13 @@ importers:
         version: 0.8.2
       '@prettier/sync':
         specifier: ^0.5.2
-        version: 0.5.2(prettier@3.4.1)
+        version: 0.5.2(prettier@3.4.2)
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
       create:
-        specifier: 0.1.0-alpha.6
-        version: 0.1.0-alpha.6
+        specifier: 0.1.0-alpha.7
+        version: 0.1.0-alpha.7
       execa:
         specifier: ^9.5.1
         version: 9.5.2
@@ -31,10 +31,10 @@ importers:
         version: 16.0.0
       input-from-file:
         specifier: 0.1.0-alpha.2
-        version: 0.1.0-alpha.2(create@0.1.0-alpha.6)
+        version: 0.1.0-alpha.2(create@0.1.0-alpha.7)
       input-from-file-json:
         specifier: 0.1.0-alpha.2
-        version: 0.1.0-alpha.2(create@0.1.0-alpha.6)
+        version: 0.1.0-alpha.2(create@0.1.0-alpha.7)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -61,7 +61,7 @@ importers:
         version: 0.1.2
       prettier:
         specifier: ^3.4.1
-        version: 3.4.1
+        version: 3.4.2
       replace-in-file:
         specifier: ^8.2.0
         version: 8.2.0
@@ -127,8 +127,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0
       create-testers:
-        specifier: 0.1.0-alpha.6
-        version: 0.1.0-alpha.6(create@0.1.0-alpha.6)
+        specifier: 0.1.0-alpha.7
+        version: 0.1.0-alpha.7(create@0.1.0-alpha.7)
       cspell:
         specifier: 8.16.1
         version: 8.16.1
@@ -179,13 +179,13 @@ importers:
         version: 0.43.0
       prettier-plugin-curly:
         specifier: 0.3.1
-        version: 0.3.1(prettier@3.4.1)
+        version: 0.3.1(prettier@3.4.2)
       prettier-plugin-packagejson:
         specifier: 2.5.6
-        version: 2.5.6(prettier@3.4.1)
+        version: 2.5.6(prettier@3.4.2)
       prettier-plugin-sh:
         specifier: 0.14.0
-        version: 0.14.0(prettier@3.4.1)
+        version: 0.14.0(prettier@3.4.2)
       release-it:
         specifier: 17.10.0
         version: 17.10.0(typescript@5.7.2)
@@ -1897,14 +1897,14 @@ packages:
       typescript:
         optional: true
 
-  create-testers@0.1.0-alpha.6:
-    resolution: {integrity: sha512-WF5D+6fhZmtR8+wTDXml//HdO4tzwrmo8sjpKBwYGtZXLl8VCkoqYAtKqe2TjUBNXrRTfISAKWbEYQykcD1ukw==}
+  create-testers@0.1.0-alpha.7:
+    resolution: {integrity: sha512-AVVUyvUFw0CaoiuvIlIPmTYK9TcYgupfYbhBRfW4B/fsCZGWeH9oHNt2WbGkDXOJumY5cFf/ZudLQhBSkq0wbQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.6
+      create: 0.1.0-alpha.7
 
-  create@0.1.0-alpha.6:
-    resolution: {integrity: sha512-XWaBK+NMK+LTeT7cod96e4sXQ9K8FGRK05tF9oQIhD5p/zWEfdoGUKQZoEW0WsBHZBiiuP1Y0W0uTPC0LoTBVQ==}
+  create@0.1.0-alpha.7:
+    resolution: {integrity: sha512-CKgXEv7629HX+gz2aaO3K2EJ48LLtJu4/5RZOWYeIvzOiA05Ih+ykS0G3J0dQfdXsLYDEsnQ7OT6C/8448NtGw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3430,8 +3430,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.4.1:
-    resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
+  prettier@3.4.2:
+    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5047,10 +5047,10 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@prettier/sync@0.5.2(prettier@3.4.1)':
+  '@prettier/sync@0.5.2(prettier@3.4.2)':
     dependencies:
       make-synchronized: 0.2.9
-      prettier: 3.4.1
+      prettier: 3.4.2
 
   '@release-it/conventional-changelog@9.0.3(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.7.2))':
     dependencies:
@@ -5775,17 +5775,18 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
-  create-testers@0.1.0-alpha.6(create@0.1.0-alpha.6):
+  create-testers@0.1.0-alpha.7(create@0.1.0-alpha.7):
     dependencies:
-      create: 0.1.0-alpha.6
+      create: 0.1.0-alpha.7
       octokit: 4.0.2
 
-  create@0.1.0-alpha.6:
+  create@0.1.0-alpha.7:
     dependencies:
       execa: 9.5.2
       hash-object: 5.0.1
       octokit: 4.0.2
       octokit-from-auth: 0.3.0
+      prettier: 3.4.2
       zod: 3.24.1
 
   cross-spawn@7.0.6:
@@ -6679,20 +6680,20 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.1.0-alpha.2(create@0.1.0-alpha.6):
+  input-from-file-json@0.1.0-alpha.2(create@0.1.0-alpha.7):
     dependencies:
-      create: 0.1.0-alpha.6
-      input-from-file: 0.1.0-alpha.1(create@0.1.0-alpha.6)
+      create: 0.1.0-alpha.7
+      input-from-file: 0.1.0-alpha.1(create@0.1.0-alpha.7)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.1(create@0.1.0-alpha.6):
+  input-from-file@0.1.0-alpha.1(create@0.1.0-alpha.7):
     dependencies:
-      create: 0.1.0-alpha.6
+      create: 0.1.0-alpha.7
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.2(create@0.1.0-alpha.6):
+  input-from-file@0.1.0-alpha.2(create@0.1.0-alpha.7):
     dependencies:
-      create: 0.1.0-alpha.6
+      create: 0.1.0-alpha.7
       zod: 3.24.1
 
   inquirer@7.3.3:
@@ -7487,32 +7488,32 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-curly@0.3.1(prettier@3.4.1):
+  prettier-plugin-curly@0.3.1(prettier@3.4.2):
     dependencies:
       '@babel/generator': 7.25.7
       '@babel/parser': 7.25.8
       '@babel/traverse': 7.25.7
-      prettier: 3.4.1
+      prettier: 3.4.2
     transitivePeerDependencies:
       - supports-color
 
-  prettier-plugin-packagejson@2.5.6(prettier@3.4.1):
+  prettier-plugin-packagejson@2.5.6(prettier@3.4.2):
     dependencies:
       sort-package-json: 2.12.0
       synckit: 0.9.2
     optionalDependencies:
-      prettier: 3.4.1
+      prettier: 3.4.2
 
-  prettier-plugin-sh@0.14.0(prettier@3.4.1):
+  prettier-plugin-sh@0.14.0(prettier@3.4.2):
     dependencies:
       mvdan-sh: 0.10.1
-      prettier: 3.4.1
+      prettier: 3.4.2
       sh-syntax: 0.4.2
 
   prettier@2.8.8:
     optional: true
 
-  prettier@3.4.1: {}
+  prettier@3.4.2: {}
 
   pretty-ms@9.1.0:
     dependencies:

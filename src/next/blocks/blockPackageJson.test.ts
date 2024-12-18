@@ -5,7 +5,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockPackageJson", () => {
-	test("without addons", () => {
+	test("without addons or mode", () => {
 		const creation = testBlock(blockPackageJson, {
 			options: optionsBase,
 		});
@@ -19,6 +19,35 @@ describe("blockPackageJson", () => {
 			    {
 			      "commands": [
 			        "pnpm install",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("migration mode", () => {
+		const creation = testBlock(blockPackageJson, {
+			mode: "migrate",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"scripts":{},"dependencies":{},"devDependencies":{}}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install",
+			      ],
+			      "phase": 1,
+			    },
+			    {
+			      "commands": [
+			        "rm package-lock.json yarn.lock",
 			      ],
 			      "phase": 0,
 			    },
@@ -52,7 +81,7 @@ describe("blockPackageJson", () => {
 			        "pnpm install",
 			        "pnpm dedupe",
 			      ],
-			      "phase": 0,
+			      "phase": 1,
 			    },
 			  ],
 			}

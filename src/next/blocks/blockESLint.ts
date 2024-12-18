@@ -63,6 +63,16 @@ export const blockESLint = base.createBlock({
 		rules: zExtensionRules.optional(),
 		settings: z.record(z.string(), z.unknown()).optional(),
 	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm .eslintrc* .eslintignore"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
+	},
 	produce({ addons, options }) {
 		const { extensions, ignores, imports, rules, settings } = addons;
 

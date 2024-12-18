@@ -1,8 +1,19 @@
 import { base } from "../base.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockContributorCovenant = base.createBlock({
 	about: {
 		name: "Contributor Covenant",
+	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm CODE_OF_CONDUCT.md"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
 	},
 	produce({ options }) {
 		return {

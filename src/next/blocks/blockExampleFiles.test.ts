@@ -33,7 +33,7 @@ describe("blockExampleFiles", () => {
 					"index.ts": "console.log('Hello, world!');",
 				},
 			},
-			mode: "new",
+			mode: "initialize",
 			options: optionsBase,
 		});
 

@@ -30,7 +30,7 @@ export async function createStructure(
 
 	if (preset) {
 		const { creation } = await producePreset(preset, {
-			mode: "new",
+			mode: "initialize",
 			options,
 		});
 

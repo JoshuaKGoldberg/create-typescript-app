@@ -5,7 +5,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockDevelopmentDocs", () => {
-	test("without addons", () => {
+	test("without addons or mode", () => {
 		const creation = testBlock(blockDevelopmentDocs, {
 			options: optionsBase,
 		});
@@ -26,6 +26,40 @@ describe("blockDevelopmentDocs", () => {
 			",
 			    },
 			  },
+			}
+		`);
+	});
+
+	test("migration mode", () => {
+		const creation = testBlock(blockDevelopmentDocs, {
+			mode: "migrate",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    ".github": {
+			      "DEVELOPMENT.md": "# Development
+
+			After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
+
+			\`\`\`shell
+			git clone https://github.com/<your-name-here>/test-repository
+			cd test-repository
+			pnpm install
+			\`\`\`
+			",
+			    },
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "rm DEVELOPMENT.md",
+			      ],
+			      "phase": 0,
+			    },
+			  ],
 			}
 		`);
 	});

@@ -169,8 +169,8 @@ describe("blockPrettier", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "9.1.7",
-			            "lint-staged": "15.2.10",
-			            "prettier": "^3.4.1",
+			            "lint-staged": "15.2.11",
+			            "prettier": "^3.4.2",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",

@@ -54,9 +54,9 @@ describe("blockMarkdownlint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "markdownlint": "0.36.1",
+			            "markdownlint": "0.37.1",
 			            "markdownlint-cli": "0.43.0",
-			            "sentences-per-line": "0.2.1",
+			            "sentences-per-line": "0.3.0",
 			          },
 			          "scripts": {
 			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
@@ -136,9 +136,9 @@ describe("blockMarkdownlint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "markdownlint": "0.36.1",
+			            "markdownlint": "0.37.1",
 			            "markdownlint-cli": "0.43.0",
-			            "sentences-per-line": "0.2.1",
+			            "sentences-per-line": "0.3.0",
 			          },
 			          "scripts": {
 			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",

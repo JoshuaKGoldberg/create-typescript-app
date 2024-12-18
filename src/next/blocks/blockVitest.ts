@@ -12,6 +12,7 @@ import { blockPrettier } from "./blockPrettier.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { getPackageDependencies } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockVitest = base.createBlock({
 	about: {
@@ -26,6 +27,18 @@ export const blockVitest = base.createBlock({
 			.default({ directory: "coverage" }),
 		exclude: z.array(z.string()).default([]),
 		include: z.array(z.string()).default([]),
+	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: [
+						"rm .github/codecov.yml .mocha* codecov.yml jest.config.*",
+					],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
 	},
 	produce({ addons }) {
 		const { coverage, exclude = [], include = [] } = addons;

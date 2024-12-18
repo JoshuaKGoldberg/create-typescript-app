@@ -15,6 +15,16 @@ export const blockTSup = base.createBlock({
 	addons: {
 		entry: z.array(z.string()).default([]),
 	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm -rf .babelrc* babel.config.* dist lib"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
+	},
 	produce({ addons, options }) {
 		const { entry } = addons;
 

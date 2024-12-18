@@ -12,7 +12,6 @@ const filesExpectedToBeChanged = [
 	".gitignore",
 	".prettierignore",
 	"eslint.config.js",
-	"package.json",
 	"tsconfig.json",
 ];
 

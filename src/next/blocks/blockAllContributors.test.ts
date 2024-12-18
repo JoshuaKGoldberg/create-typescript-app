@@ -52,7 +52,7 @@ describe("blockAllContributors", () => {
 			        "npx -y all-contributors-cli generate",
 			        "npx -y all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
 			      ],
-			      "phase": 2,
+			      "phase": 3,
 			    },
 			  ],
 			}
@@ -119,7 +119,7 @@ describe("blockAllContributors", () => {
 			        "npx -y all-contributors-cli generate",
 			        "npx -y all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
 			      ],
-			      "phase": 2,
+			      "phase": 3,
 			    },
 			  ],
 			}

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { createMultiWorkflowFile } from "../../steps/writing/creation/dotGitHub/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base } from "../base.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
@@ -29,6 +30,16 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
+	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm -rf .circleci travis.yml"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
 	},
 	produce({ addons }) {
 		const { jobs } = addons;

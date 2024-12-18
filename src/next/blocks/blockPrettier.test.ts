@@ -5,7 +5,7 @@ import { blockPrettier } from "./blockPrettier.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockPrettier", () => {
-	test("without addons", () => {
+	test("without addons or mode", () => {
 		const creation = testBlock(blockPrettier, {
 			options: optionsBase,
 		});
@@ -106,7 +106,122 @@ describe("blockPrettier", () => {
 			      "commands": [
 			        "pnpm format --write",
 			      ],
-			      "phase": 3,
+			      "phase": 4,
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("migration mode", () => {
+		const creation = testBlock(blockPrettier, {
+			mode: "migrate",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "ignores": [
+			          ".all-contributorsrc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "sections": {
+			          "Formatting": {
+			            "contents": "
+			[Prettier](https://prettier.io) is used to format code.
+			It should be applied automatically when you save files in VS Code or make a Git commit.
+
+			To manually reformat all files, you can run:
+
+			\`\`\`shell
+			pnpm format --write
+			\`\`\`
+			",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "jobs": [
+			          {
+			            "name": "Prettier",
+			            "steps": [
+			              {
+			                "run": "pnpm format --list-different",
+			              },
+			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "devDependencies": {
+			            "husky": "9.1.7",
+			            "lint-staged": "15.2.10",
+			            "prettier": "^3.4.1",
+			          },
+			          "lint-staged": {
+			            "*": "prettier --ignore-unknown --write",
+			          },
+			          "scripts": {
+			            "format": "prettier .",
+			            "prepare": "husky",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          "esbenp.prettier-vscode",
+			        ],
+			        "settings": {
+			          "editor.defaultFormatter": "esbenp.prettier-vscode",
+			        },
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    ".husky": {
+			      ".gitignore": "_",
+			      "pre-commit": [
+			        "npx lint-staged",
+			        {
+			          "mode": 1911,
+			        },
+			      ],
+			    },
+			    ".prettierignore": "/.husky
+			/lib
+			/pnpm-lock.yaml",
+			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","useTabs":true}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm format --write",
+			      ],
+			      "phase": 4,
+			    },
+			    {
+			      "commands": [
+			        "rm .prettierrc* prettier.config*",
+			      ],
+			      "phase": 0,
 			    },
 			  ],
 			}
@@ -227,7 +342,7 @@ describe("blockPrettier", () => {
 			      "commands": [
 			        "pnpm format --write",
 			      ],
-			      "phase": 3,
+			      "phase": 4,
 			    },
 			  ],
 			}

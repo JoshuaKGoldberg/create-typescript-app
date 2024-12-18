@@ -1,8 +1,19 @@
 import { base } from "../base.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockContributingDocs = base.createBlock({
 	about: {
 		name: "Contributing Docs",
+	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm CONTRIBUTING.md"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
 	},
 	produce({ options }) {
 		return {

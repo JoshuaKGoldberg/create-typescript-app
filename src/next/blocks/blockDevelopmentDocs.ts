@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { CommandPhase } from "./phases.js";
 
 const zInnerSection = z.object({
 	contents: z.string(),
@@ -62,6 +63,16 @@ export const blockDevelopmentDocs = base.createBlock({
 	addons: {
 		hints: z.array(z.string()).default([]),
 		sections: z.record(z.string(), zSection).default({}),
+	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm DEVELOPMENT.md"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
 	},
 	produce({ addons, options }) {
 		const lines = [

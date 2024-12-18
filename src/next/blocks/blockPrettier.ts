@@ -27,6 +27,16 @@ export const blockPrettier = base.createBlock({
 			.default([]),
 		plugins: z.array(z.string()).default([]),
 	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm .prettierrc* prettier.config*"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
+	},
 	produce({ addons }) {
 		const { ignores, overrides, plugins } = addons;
 

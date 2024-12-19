@@ -24,7 +24,7 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 		return whoami ? await npmUser(whoami) : undefined;
 	});
 
-	const packageData = lazyValue(readPackageData);
+	const packageData = lazyValue(async () => readPackageData("."));
 	const packageAuthor = lazyValue(async () =>
 		parsePackageAuthor(await packageData()),
 	);
@@ -42,13 +42,13 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 					.split(":")[1]
 					?.trim(),
 			),
-		guide: readGuide,
+		guide: async () => readGuide("."),
 		owner: async () =>
 			(await gitDefaults())?.organization ?? (await packageAuthor()).author,
 		repository: async () =>
 			promptedOptions?.repository ??
 			(await gitDefaults())?.name ??
 			(await packageData()).name,
-		...readDefaultsFromReadme(),
+		...readDefaultsFromReadme("."),
 	};
 }

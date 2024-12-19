@@ -66,7 +66,7 @@ export async function finalizeDependencies(options: Options) {
 		await execaCommand(`npx all-contributors-cli generate`);
 		await removeDependencies(
 			["all-contributors-cli"],
-			(await readPackageData()).devDependencies,
+			(await readPackageData(".")).devDependencies,
 			"-D",
 		);
 	}

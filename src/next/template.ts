@@ -9,11 +9,11 @@ export const template = createTemplate({
 		name: "TypeScript App",
 	},
 	default: "common",
-	presets: [
-		{ label: "common", preset: presetCommon },
-		{ label: "everything", preset: presetEverything },
-		{ label: "minimal", preset: presetMinimal },
-	],
+	presets: {
+		common: { label: "Common", preset: presetCommon },
+		everything: { label: "Everything", preset: presetEverything },
+		minimal: { label: "Minimal", preset: presetMinimal },
+	},
 });
 
 export default template;

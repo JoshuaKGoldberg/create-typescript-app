@@ -14,7 +14,6 @@ export const blockRepositorySettings = base.createBlock({
 							allow_auto_merge: true,
 							allow_rebase_merge: false,
 							allow_squash_merge: true,
-							// default_branch: "main",
 							delete_branch_on_merge: true,
 							description: options.description,
 							has_wiki: false,

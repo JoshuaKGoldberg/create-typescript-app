@@ -3,7 +3,7 @@ import { $ } from "execa";
 import { readPackageData, removeDependencies } from "../shared/packages.js";
 
 export async function uninstallPackages(offline: boolean | undefined) {
-	const packageData = await readPackageData();
+	const packageData = await readPackageData(".");
 
 	await removeDependencies(
 		[

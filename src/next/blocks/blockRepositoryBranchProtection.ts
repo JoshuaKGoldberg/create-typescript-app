@@ -16,7 +16,7 @@ export const blockRepositoryBranchProtection = base.createBlock({
 					id: "branch-protection",
 					async send({ octokit }) {
 						await octokit.request(
-							`PUT /repos/{owner}/{repository}/branches/{main}/protection`,
+							`PUT /repos/{owner}/{repo}/branches/{branch}/protection`,
 							{
 								allow_deletions: false,
 								allow_force_pushes: true,
@@ -31,10 +31,12 @@ export const blockRepositoryBranchProtection = base.createBlock({
 								required_linear_history: false,
 								required_pull_request_reviews: null,
 								required_status_checks: {
-									checks: addons.requiredStatusChecks.map((context) => ({
-										context,
-									})),
-									strict: false,
+									contexts: addons.requiredStatusChecks,
+									strict: true,
+									// checks: addons.requiredStatusChecks.map((context) => ({
+									// 	context,
+									// })),
+									// strict: false,
 								},
 								restrictions: null,
 							},

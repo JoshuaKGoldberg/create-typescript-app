@@ -1,9 +1,12 @@
 import lazyValue from "lazy-value";
+import path from "node:path";
 
 import { readFileSafe } from "../../readFileSafe.js";
 
-export function readDefaultsFromReadme() {
-	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
+export function readDefaultsFromReadme(directory: string) {
+	const readme = lazyValue(
+		async () => await readFileSafe(path.join(directory, "README.md"), ""),
+	);
 
 	const imageTag = lazyValue(
 		async () => /\n<img.+src=.+>/.exec(await readme())?.[0],

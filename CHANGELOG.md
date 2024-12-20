@@ -1,3 +1,9 @@
+## [1.77.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.77.0...v1.77.1) (2024-12-20)
+
+### Bug Fixes
+
+- remove unnecessary default values from .all-contributorsrc ([#1784](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1784)) ([a4257e5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a4257e5950d42898535c5997d9fca9ab39e7c670)), closes [#1783](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1783)
+
 # [1.77.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.75.0...v1.77.0) (2024-12-11)
 
 ### Bug Fixes

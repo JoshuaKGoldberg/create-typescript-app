@@ -30,11 +30,14 @@ importers:
         specifier: ^16.0.0
         version: 16.0.0
       input-from-file:
-        specifier: 0.1.0-alpha.2
-        version: 0.1.0-alpha.2(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2))
+        specifier: 0.1.0-alpha.4
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2))
       input-from-file-json:
-        specifier: 0.1.0-alpha.2
-        version: 0.1.0-alpha.2(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2))
+        specifier: 0.1.0-alpha.4
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2))
+      input-from-script:
+        specifier: 0.1.0-alpha.4
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2))
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -2679,23 +2682,23 @@ packages:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  input-from-file-json@0.1.0-alpha.2:
-    resolution: {integrity: sha512-YjH+2/nc2SNM/iHmc8EOTyYSwJJeffvoxCdNxVqIwlNmENB/jPh1wu5ffd1VFZKsg878jFG7OEFEmm4YHY9PUg==}
+  input-from-file-json@0.1.0-alpha.4:
+    resolution: {integrity: sha512-GhZIAuAQGtcYJYh4yInk/Lp3ktwWnXSRGuM3FWjUYaMTSkW3UTqsDcgeMYxhT1nusnrvillyqux3HzaDJuUEsQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.6
+      create: ^0.1.0-alpha.8
 
-  input-from-file@0.1.0-alpha.1:
-    resolution: {integrity: sha512-O4BrmU5E8HYNuS8Yqc68N60zSf3rUGCtBcEcYf9DBjMhuLDhNF2XHNjuuOuZTPtNkSZuYk0N+ix2Op+FjWnEHw==}
+  input-from-file@0.1.0-alpha.4:
+    resolution: {integrity: sha512-DRXzTjeTtq+MfesNnLNwjJgWB4mmWwEXi4WTlJrSGv8Ij/15/6W+DXeNgEoI9jRsFH5u+ZC0ffW5v7EalObKqA==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.6
+      create: ^0.1.0-alpha.8
 
-  input-from-file@0.1.0-alpha.2:
-    resolution: {integrity: sha512-R2YwGgdVIGJJP6/XkFYR3KQaFTGTz5RsEdoGDGWc9D+5yeVVWLdBtcfqIY4IGknXlquVOSORxmVfAiwnZ80sgg==}
+  input-from-script@0.1.0-alpha.4:
+    resolution: {integrity: sha512-vHGeI/1ukGRDYkRRCnLLGnNO7Jy8/tOq+fteAqgTNpmyEdSUZTfqetDHKdhBwfwSCPK934ic60qO5iRCXxXmmw==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: 0.1.0-alpha.6
+      create: ^0.1.0-alpha.8
 
   inquirer@7.3.3:
     resolution: {integrity: sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==}
@@ -6898,18 +6901,18 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.1.0-alpha.2(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)):
+  input-from-file-json@0.1.0-alpha.4(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)):
     dependencies:
       create: 0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)
-      input-from-file: 0.1.0-alpha.1(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2))
+      input-from-file: 0.1.0-alpha.4(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2))
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.1(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)):
+  input-from-file@0.1.0-alpha.4(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)):
     dependencies:
       create: 0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.2(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)):
+  input-from-script@0.1.0-alpha.4(create@0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)):
     dependencies:
       create: 0.1.0-alpha.8(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(typescript@5.7.2)
       zod: 3.24.1

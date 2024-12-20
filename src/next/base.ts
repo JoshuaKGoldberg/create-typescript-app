@@ -4,6 +4,7 @@ import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
 import { inputFromFile } from "input-from-file";
 import { inputFromFileJSON } from "input-from-file-json";
+import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
 import path from "node:path";
 import npmUser from "npm-user";
@@ -17,7 +18,6 @@ import { readGuide } from "../shared/options/createOptionDefaults/readGuide.js";
 import { readPackageData } from "../shared/packages.js";
 import { tryCatchLazyValueAsync } from "../shared/tryCatchLazyValueAsync.js";
 import { AllContributorsData } from "../shared/types.js";
-import { inputFromScript } from "./inputs/inputFromScript.js";
 import { swallowError } from "./utils/swallowError.js";
 
 export const base = createBase({
@@ -128,7 +128,7 @@ export const base = createBase({
 			.describe("package version to publish as and store in `package.json`"),
 	},
 	produce({ options, take }) {
-		const directory = options.directory!;
+		const directory = options.directory ?? ".";
 
 		const allContributors = lazyValue(async () => {
 			const contributions = (await take(inputFromFileJSON, {

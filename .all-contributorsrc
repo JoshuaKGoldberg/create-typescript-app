@@ -1,8 +1,5 @@
 {
   "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
-  "commit": false,
-  "commitConvention": "angular",
-  "commitType": "docs",
   "contributors": [
     {
       "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
@@ -483,14 +480,7 @@
       ]
     }
   ],
-  "contributorsPerLine": 7,
   "contributorsSortAlphabetically": true,
-  "files": [
-    "README.md"
-  ],
-  "imageSize": 100,
   "projectName": "create-typescript-app",
-  "projectOwner": "JoshuaKGoldberg",
-  "repoHost": "https://github.com",
-  "repoType": "github"
+  "projectOwner": "JoshuaKGoldberg"
 }

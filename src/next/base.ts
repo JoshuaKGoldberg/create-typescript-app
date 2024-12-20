@@ -20,8 +20,6 @@ import { AllContributorsData } from "../shared/types.js";
 import { inputFromScript } from "./inputs/inputFromScript.js";
 import { swallowError } from "./utils/swallowError.js";
 
-// TODO: Add a concept of Block-specific Options...
-
 export const base = createBase({
 	options: {
 		access: z
@@ -130,8 +128,6 @@ export const base = createBase({
 			.describe("package version to publish as and store in `package.json`"),
 	},
 	produce({ options, take }) {
-		// TODO: Make directory required at the create level
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 		const directory = options.directory!;
 
 		const allContributors = lazyValue(async () => {

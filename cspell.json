@@ -11,21 +11,12 @@
 		"script/__snapshots__"
 	],
 	"words": [
-		"allcontributors",
 		"Anson",
 		"apexskier",
-		"arethetypeswrong",
-		"automerge",
-		"codespace",
 		"dbaeumer",
-		"execa",
 		"infile",
 		"joshuakgoldberg",
 		"markdownlintignore",
-		"mtfoley",
-		"outro",
-		"tada",
-		"tseslint",
-		"wontfix"
+		"mtfoley"
 	]
 }

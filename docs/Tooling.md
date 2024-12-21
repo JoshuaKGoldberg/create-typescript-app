@@ -133,7 +133,7 @@ In code, assorted repository documentation files for GitHub are created:
 On the GitHub repository, metadata will be populated:
 
 - [Issue labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels) for issue areas, statuses, and types.
-- [Repository settings](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features) such as [branch protections](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) and [squash merging PRs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges)
+- [Repository settings](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features) such as [branch rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository) and [squash merging PRs](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges)
 
 ### Type Checking
 

@@ -13,7 +13,7 @@ import { blockMITLicense } from "./blocks/blockMITLicense.js";
 import { blockPackageJson } from "./blocks/blockPackageJson.js";
 import { blockPrettier } from "./blocks/blockPrettier.js";
 import { blockREADME } from "./blocks/blockREADME.js";
-import { blockRepositoryBranchProtection } from "./blocks/blockRepositoryBranchProtection.js";
+import { blockRepositoryBranchRuleset } from "./blocks/blockRepositoryBranchRuleset.js";
 import { blockRepositoryLabels } from "./blocks/blockRepositoryLabels.js";
 import { blockRepositorySettings } from "./blocks/blockRepositorySettings.js";
 import { blockTemplatedBy } from "./blocks/blockTemplatedBy.js";
@@ -41,7 +41,7 @@ export const presetMinimal = base.createPreset({
 		blockPackageJson,
 		blockPrettier,
 		blockREADME,
-		blockRepositoryBranchProtection,
+		blockRepositoryBranchRuleset,
 		blockRepositoryLabels,
 		blockRepositorySettings,
 		blockTemplatedBy,

@@ -8,42 +8,54 @@ export async function initializeBranchProtectionSettings(
 	options: Options,
 ) {
 	try {
-		await octokit.request(
-			`PUT /repos/${options.owner}/${options.repository}/branches/main/protection`,
-			{
-				allow_deletions: false,
-				allow_force_pushes: true,
-				allow_fork_pushes: false,
-				allow_fork_syncing: true,
-				block_creations: false,
-				branch: "main",
-				enforce_admins: false,
-				owner: options.owner,
-				repo: options.repository,
-				required_conversation_resolution: true,
-				required_linear_history: false,
-				required_pull_request_reviews: null,
-				required_status_checks: {
-					checks: [
-						{ context: "Build" },
-						...(options.excludeCompliance ? [] : [{ context: "Compliance" }]),
-						{ context: "Lint" },
-						...(options.excludeLintKnip ? [] : [{ context: "Lint Knip" }]),
-						...(options.excludeLintMd ? [] : [{ context: "Lint Markdown" }]),
-						...(options.excludeLintPackages
-							? []
-							: [{ context: "Lint Packages" }]),
-						...(options.excludeLintSpelling
-							? []
-							: [{ context: "Lint Spelling" }]),
-						{ context: "Prettier" },
-						...(options.excludeTests ? [] : [{ context: "Test" }]),
-					],
-					strict: false,
+		await octokit.request("POST /repos/{owner}/{repo}/rulesets", {
+			conditions: {
+				ref_name: {
+					include: ["refs/heads/main"],
 				},
-				restrictions: null,
 			},
-		);
+			enforcement: "active",
+			name: "Branch protection for main",
+			owner: options.owner,
+			repo: options.repository,
+			rules: [
+				{ type: "deletion" },
+				{
+					parameters: {
+						// @ts-expect-error -- https://github.com/github/rest-api-description/issues/4405
+						allowed_merge_methods: ["squash"],
+						dismiss_stale_reviews_on_push: false,
+						require_code_owner_review: false,
+						require_last_push_approval: false,
+						required_approving_review_count: 0,
+						required_review_thread_resolution: false,
+					},
+					type: "pull_request",
+				},
+				{
+					parameters: {
+						required_status_checks: [
+							{ context: "Build" },
+							...(options.excludeCompliance ? [] : [{ context: "Compliance" }]),
+							{ context: "Lint" },
+							...(options.excludeLintKnip ? [] : [{ context: "Lint Knip" }]),
+							...(options.excludeLintMd ? [] : [{ context: "Lint Markdown" }]),
+							...(options.excludeLintPackages
+								? []
+								: [{ context: "Lint Packages" }]),
+							...(options.excludeLintSpelling
+								? []
+								: [{ context: "Lint Spelling" }]),
+							{ context: "Prettier" },
+							...(options.excludeTests ? [] : [{ context: "Test" }]),
+						],
+						strict_required_status_checks_policy: false,
+					},
+					type: "required_status_checks",
+				},
+			],
+			target: "branch",
+		});
 	} catch (error) {
 		if ((error as RequestError).status === 403) {
 			return false;

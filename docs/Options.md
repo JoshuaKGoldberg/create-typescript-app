@@ -148,9 +148,21 @@ For example, providing all local change skip flags:
 npx create-typescript-app --skip-removal --skip-restore --skip-uninstall
 ```
 
+## Automatic Mode
+
+You can run `create-typescript-app` in an "automatic" manner with `--auto` and `--mode migrate`.
+Doing so will:
+
+- Use the default inference for all options
+- Bail out if any required [core options](#core-options) are missing
+
+```shell
+npx create-typescript-app --auto --mode migrate
+```
+
 ## Offline Mode
 
-You can run `create-typescript-app` in an "offline" mode with `--offline`.
+You can run `create-typescript-app` in an "offline" manner with `--offline`.
 Doing so will:
 
 - Enable `--exclude-all-contributors-api` and `--skip-github-api`

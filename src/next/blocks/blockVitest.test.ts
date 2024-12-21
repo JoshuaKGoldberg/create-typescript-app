@@ -23,6 +23,34 @@ describe("blockVitest", () => {
 			    },
 			    {
 			      "addons": {
+			        "sections": {
+			          "Testing": {
+			            "contents": "
+			[Vitest](https://vitest.dev) is used for tests.
+			You can run it locally on the command-line:
+
+			\`\`\`shell
+			pnpm run test
+			\`\`\`
+
+			Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+			\`\`\`shell
+			pnpm run test --coverage
+			\`\`\`
+
+			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+					",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -50,34 +78,6 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "sections": {
-			          "Testing": {
-			            "contents": "
-			[Vitest](https://vitest.dev) is used for tests.
-			You can run it locally on the command-line:
-
-			\`\`\`shell
-			pnpm run test
-			\`\`\`
-
-			Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-
-			\`\`\`shell
-			pnpm run test --coverage
-			\`\`\`
-
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-					",
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },
@@ -155,6 +155,17 @@ describe("blockVitest", () => {
 			                "uses": "codecov/codecov-action@v3",
 			              },
 			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "apps": [
+			          {
+			            "name": "Codecov",
+			            "url": "https://github.com/apps/codecov",
 			          },
 			        ],
 			      },
@@ -261,6 +272,34 @@ describe("blockVitest", () => {
 			    },
 			    {
 			      "addons": {
+			        "sections": {
+			          "Testing": {
+			            "contents": "
+			[Vitest](https://vitest.dev) is used for tests.
+			You can run it locally on the command-line:
+
+			\`\`\`shell
+			pnpm run test
+			\`\`\`
+
+			Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+			\`\`\`shell
+			pnpm run test --coverage
+			\`\`\`
+
+			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+					",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -288,34 +327,6 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "sections": {
-			          "Testing": {
-			            "contents": "
-			[Vitest](https://vitest.dev) is used for tests.
-			You can run it locally on the command-line:
-
-			\`\`\`shell
-			pnpm run test
-			\`\`\`
-
-			Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-
-			\`\`\`shell
-			pnpm run test --coverage
-			\`\`\`
-
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-					",
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },
@@ -393,6 +404,17 @@ describe("blockVitest", () => {
 			                "uses": "codecov/codecov-action@v3",
 			              },
 			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "apps": [
+			          {
+			            "name": "Codecov",
+			            "url": "https://github.com/apps/codecov",
 			          },
 			        ],
 			      },
@@ -514,6 +536,34 @@ describe("blockVitest", () => {
 			    },
 			    {
 			      "addons": {
+			        "sections": {
+			          "Testing": {
+			            "contents": "
+			[Vitest](https://vitest.dev) is used for tests.
+			You can run it locally on the command-line:
+
+			\`\`\`shell
+			pnpm run test
+			\`\`\`
+
+			Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
+
+			\`\`\`shell
+			pnpm run test --coverage
+			\`\`\`
+
+			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
+			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+
+
+					",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -541,34 +591,6 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "sections": {
-			          "Testing": {
-			            "contents": "
-			[Vitest](https://vitest.dev) is used for tests.
-			You can run it locally on the command-line:
-
-			\`\`\`shell
-			pnpm run test
-			\`\`\`
-
-			Add the \`--coverage\` flag to compute test coverage and place reports in the \`coverage/\` directory:
-
-			\`\`\`shell
-			pnpm run test --coverage
-			\`\`\`
-
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-					",
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },
@@ -649,6 +671,17 @@ describe("blockVitest", () => {
 			                },
 			              },
 			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "apps": [
+			          {
+			            "name": "Codecov",
+			            "url": "https://github.com/apps/codecov",
 			          },
 			        ],
 			      },

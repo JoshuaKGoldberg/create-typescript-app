@@ -1,13 +1,14 @@
 import { execaCommand } from "execa";
+import path from "node:path";
 
 import { readFileSafe } from "./readFileSafe.js";
 import { PartialPackageData } from "./types.js";
 
-export async function readPackageData() {
+export async function readPackageData(directory: string) {
 	return (
-		(JSON.parse(await readFileSafe("./package.json", "{}")) as
-			| PartialPackageData
-			| undefined) ?? {}
+		(JSON.parse(
+			await readFileSafe(path.join(directory, "package.json"), "{}"),
+		) as PartialPackageData | undefined) ?? {}
 	);
 }
 

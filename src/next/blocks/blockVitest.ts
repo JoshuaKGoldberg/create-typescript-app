@@ -6,6 +6,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockGitHubApps } from "./blockGitHubApps.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
@@ -50,23 +51,6 @@ export const blockVitest = base.createBlock({
 				blockCSpell({
 					ignores: [coverage.directory],
 				}),
-				blockESLint({
-					extensions: [
-						{
-							extends: ["vitest.configs.recommended"],
-							files: ["**/*.test.*"],
-							rules: [
-								{
-									entries: {
-										"@typescript-eslint/no-unsafe-assignment": "off",
-									},
-								},
-							],
-						},
-					],
-					ignores: [coverage.directory, "**/*.snap"],
-					imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
-				}),
 				blockDevelopmentDocs({
 					sections: {
 						Testing: {
@@ -91,6 +75,23 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 		`,
 						},
 					},
+				}),
+				blockESLint({
+					extensions: [
+						{
+							extends: ["vitest.configs.recommended"],
+							files: ["**/*.test.*"],
+							rules: [
+								{
+									entries: {
+										"@typescript-eslint/no-unsafe-assignment": "off",
+									},
+								},
+							],
+						},
+					],
+					ignores: [coverage.directory, "**/*.snap"],
+					imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
 				}),
 				blockExampleFiles({
 					files: {
@@ -156,6 +157,14 @@ describe("greet", () => {
 									...(coverage.flags && { with: { flags: coverage.flags } }),
 								},
 							],
+						},
+					],
+				}),
+				blockGitHubApps({
+					apps: [
+						{
+							name: "Codecov",
+							url: "https://github.com/apps/codecov",
 						},
 					],
 				}),

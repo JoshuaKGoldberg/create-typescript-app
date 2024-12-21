@@ -8,12 +8,8 @@ export const template = createTemplate({
 	about: {
 		name: "TypeScript App",
 	},
-	default: "common",
-	presets: [
-		{ label: "common", preset: presetCommon },
-		{ label: "everything", preset: presetEverything },
-		{ label: "minimal", preset: presetMinimal },
-	],
+	presets: [presetMinimal, presetCommon, presetEverything],
+	suggested: presetCommon,
 });
 
 export default template;

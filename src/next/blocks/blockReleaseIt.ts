@@ -2,6 +2,7 @@ import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/c
 import { base } from "../base.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { getPackageDependencies } from "./packageData.js";
 
 export const blockReleaseIt = base.createBlock({
@@ -24,6 +25,18 @@ export const blockReleaseIt = base.createBlock({
 							provenance: true,
 						},
 					},
+				}),
+				blockRepositorySecrets({
+					secrets: [
+						{
+							description: "a GitHub PAT with repo and workflow permissions",
+							name: "ACCESS_TOKEN",
+						},
+						{
+							description: "an npm access token with automation permissions",
+							name: "NPM_TOKEN",
+						},
+					],
 				}),
 			],
 			files: {

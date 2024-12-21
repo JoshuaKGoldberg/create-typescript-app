@@ -1,6 +1,7 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base } from "../base.js";
 import { blockPrettier } from "./blockPrettier.js";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockAllContributors = base.createBlock({
@@ -12,6 +13,14 @@ export const blockAllContributors = base.createBlock({
 			addons: [
 				blockPrettier({
 					ignores: ["/.all-contributorsrc"],
+				}),
+				blockRepositorySecrets({
+					secrets: [
+						{
+							description: "a GitHub PAT with repo and workflow permissions",
+							name: "ACCESS_TOKEN",
+						},
+					],
 				}),
 			],
 			files: {

@@ -1,7 +1,5 @@
 import { CreatedFiles, produceBase, producePreset } from "create";
-import { Octokit } from "octokit";
 import prettier from "prettier";
-import { vi } from "vitest";
 
 import { presetCommon } from "../../../next/presetCommon.js";
 import { presetEverything } from "../../../next/presetEverything.js";
@@ -31,19 +29,13 @@ export async function createStructure(
 		presets[providedOptions.base];
 
 	if (preset) {
-		const fetchers = {
-			fetch: vi.fn(),
-			octokit: {} as Octokit,
-		};
 		const options = {
 			...(await produceBase(preset.base, {
-				fetchers,
 				options: providedOptions,
 			})),
 			...providedOptions,
 		};
 		const creation = await producePreset(preset, {
-			fetchers,
 			mode: "initialize",
 			options,
 		});

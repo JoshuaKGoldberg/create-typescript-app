@@ -99,7 +99,7 @@ export async function readOptions(
 		skipGitHubApi: values["skip-github-api"] ?? values.offline,
 		skipInstall: values["skip-install"],
 		skipRemoval: values["skip-removal"],
-		skipRestore: values["skip-restore"],
+		skipRestore: values["skip-restore"] ?? mode === "create",
 		skipUninstall: values["skip-uninstall"],
 		title: values.title,
 	};

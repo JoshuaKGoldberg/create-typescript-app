@@ -2,7 +2,7 @@ import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
-import { getPackageDependencies } from "./packageData.js";
+import { getPackageDependencies, getPackageDependency } from "./packageData.js";
 
 export const blockKnip = base.createBlock({
 	about: {
@@ -41,7 +41,7 @@ export const blockKnip = base.createBlock({
 			],
 			files: {
 				"knip.json": JSON.stringify({
-					$schema: "https://unpkg.com/knip@latest/schema.json",
+					$schema: `https://unpkg.com/knip@${getPackageDependency("knip")}/schema.json`,
 					entry: ["src/index.ts!"],
 					ignoreExportsUsedInFile: {
 						interface: true,

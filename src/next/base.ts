@@ -45,7 +45,7 @@ export const base = createBase({
 				}),
 			)
 			.optional()
-			.describe("allcontributors contributors to store in .all-contributorsrc"),
+			.describe("AllContributors contributors to store in .all-contributorsrc"),
 		description: z
 			.string()
 			.describe("sentence case description of the repository"),

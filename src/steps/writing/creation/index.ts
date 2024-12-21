@@ -1,5 +1,7 @@
-import { CreatedFiles, producePreset } from "create";
+import { CreatedFiles, produceBase, producePreset } from "create";
+import { Octokit } from "octokit";
 import prettier from "prettier";
+import { vi } from "vitest";
 
 import { presetCommon } from "../../../next/presetCommon.js";
 import { presetEverything } from "../../../next/presetEverything.js";
@@ -19,17 +21,29 @@ const presets = {
 };
 
 export async function createStructure(
-	options: Options,
+	providedOptions: Options,
 	useNextEngine: boolean,
 ): Promise<Structure> {
 	const preset =
 		useNextEngine &&
-		options.base &&
-		options.base !== "prompt" &&
-		presets[options.base];
+		providedOptions.base &&
+		providedOptions.base !== "prompt" &&
+		presets[providedOptions.base];
 
 	if (preset) {
+		const fetchers = {
+			fetch: vi.fn(),
+			octokit: {} as Octokit,
+		};
+		const options = {
+			...(await produceBase(preset.base, {
+				fetchers,
+				options: providedOptions,
+			})),
+			...providedOptions,
+		};
 		const creation = await producePreset(preset, {
+			fetchers,
 			mode: "initialize",
 			options,
 		});
@@ -38,11 +52,13 @@ export async function createStructure(
 	}
 
 	return {
-		".github": await createDotGitHub(options),
+		".github": await createDotGitHub(providedOptions),
 		".husky": createDotHusky(),
-		".vscode": await createDotVSCode(options),
-		...(options.mode !== "migrate" && { src: await createSrc(options) }),
-		...(await createRootFiles(options)),
+		".vscode": await createDotVSCode(providedOptions),
+		...(providedOptions.mode !== "migrate" && {
+			src: await createSrc(providedOptions),
+		}),
+		...(await createRootFiles(providedOptions)),
 	};
 }
 

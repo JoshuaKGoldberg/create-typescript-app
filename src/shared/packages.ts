@@ -4,9 +4,11 @@ import { readFileSafe } from "./readFileSafe.js";
 import { PartialPackageData } from "./types.js";
 
 export async function readPackageData() {
-	return JSON.parse(
-		await readFileSafe("./package.json", "{}"),
-	) as PartialPackageData;
+	return (
+		(JSON.parse(await readFileSafe("./package.json", "{}")) as
+			| PartialPackageData
+			| undefined) ?? {}
+	);
 }
 
 export async function removeDependencies(

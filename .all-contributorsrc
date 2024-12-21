@@ -191,7 +191,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/49038?v=4",
       "profile": "https://orta.io",
       "contributions": [
-        "code"
+        "code",
+        "ideas"
       ]
     },
     {
@@ -491,5 +492,11 @@
   ],
   "contributorsSortAlphabetically": true,
   "projectName": "create-typescript-app",
-  "projectOwner": "JoshuaKGoldberg"
+  "projectOwner": "JoshuaKGoldberg",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7
 }

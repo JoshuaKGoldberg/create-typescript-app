@@ -1,11 +1,14 @@
+import { getObjectStringsDeep } from "object-strings-deep";
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { resolveBin } from "../utils/resolveBin.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { getPackageDependencies } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
 
 const filesGlob = `"**" ".github/**/*"`;
 
@@ -16,6 +19,22 @@ export const blockCSpell = base.createBlock({
 	addons: {
 		ignores: z.array(z.string()).default([]),
 		words: z.array(z.string()).default([]),
+	},
+	initialize({ options }) {
+		const wordArgs = getObjectStringsDeep(options)
+			.map((word) => `--words "${word.replaceAll(`"`, " ")}"`)
+			.join(" ");
+
+		return {
+			scripts: [
+				{
+					commands: [
+						`node ${resolveBin("cspell-populate-words/bin/index.mjs")} ${wordArgs}`,
+					],
+					phase: CommandPhase.Process,
+				},
+			],
+		};
 	},
 	produce({ addons }) {
 		const { ignores, words } = addons;

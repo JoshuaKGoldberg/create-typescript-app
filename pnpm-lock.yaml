@@ -20,6 +20,9 @@ importers:
       create:
         specifier: 0.1.0-alpha.7
         version: 0.1.0-alpha.7
+      cspell-populate-words:
+        specifier: ^0.2.2
+        version: 0.2.2
       execa:
         specifier: ^9.5.2
         version: 9.5.2
@@ -44,6 +47,9 @@ importers:
       npm-user:
         specifier: ^6.1.1
         version: 6.1.1
+      object-strings-deep:
+        specifier: ^0.1.1
+        version: 0.1.1
       octokit:
         specifier: ^4.0.2
         version: 4.0.2
@@ -1965,6 +1971,11 @@ packages:
     resolution: {integrity: sha512-66n83Q7bK5tnvkDH7869/pBY/65AKmZVfCOAlsbhJn3YMDbNHFCHR0d1oNMlqG+n65Aco89VGwYfXxImZY+/mA==}
     engines: {node: '>=18'}
 
+  cspell-populate-words@0.2.2:
+    resolution: {integrity: sha512-F0RBfW96Ce/bWJiP2U6MpN31gOtDrUC4SGMJ52sV7UVbhz4WyPp6oqQEWN/ij7cAIfgMpYn9lvqcM/9iMNOWeg==}
+    engines: {node: '>=18.3.0'}
+    hasBin: true
+
   cspell-trie-lib@8.17.1:
     resolution: {integrity: sha512-13WNa5s75VwOjlGzWprmfNbBFIfXyA7tYYrbV+LugKkznyNZJeJPojHouEudcLq3SYb2Q6tJ7qyWcuT5bR9qPA==}
     engines: {node: '>=18'}
@@ -3277,6 +3288,10 @@ packages:
   object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+
+  object-strings-deep@0.1.1:
+    resolution: {integrity: sha512-5ypgv3IIlt7v2pybSIcn1OcAQvJBtB2GrOXf1MAVNsMyQ/CYV9P5ZQPAsVrKTbZ0EMUHHMsSLbMc9SBHB57MxA==}
+    engines: {node: '>=18.3.0'}
 
   octokit-from-auth@0.2.0:
     resolution: {integrity: sha512-UMo+WQkWi1PS/HZ15SMM1sgPhhXykqPJKCCAi6R0+JAhTbLBcfeKCJ3AwUVdJBJQKSQ37BUqPpME4iGAjZQtkw==}
@@ -5980,6 +5995,10 @@ snapshots:
       vscode-uri: 3.0.8
       xdg-basedir: 5.1.0
 
+  cspell-populate-words@0.2.2:
+    dependencies:
+      cspell: 8.17.1
+
   cspell-trie-lib@8.17.1:
     dependencies:
       '@cspell/cspell-pipe': 8.17.1
@@ -7533,6 +7552,8 @@ snapshots:
       boolbase: 1.0.0
 
   object-assign@4.1.1: {}
+
+  object-strings-deep@0.1.1: {}
 
   octokit-from-auth@0.2.0:
     dependencies:

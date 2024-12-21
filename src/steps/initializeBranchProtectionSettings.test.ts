@@ -39,6 +39,13 @@ describe("migrateBranchProtectionSettings", () => {
 			  [
 			    "POST /repos/{owner}/{repo}/rulesets",
 			    {
+			      "bypass_actors": [
+			        {
+			          "actor_id": 5,
+			          "actor_type": "RepositoryRole",
+			          "bypass_mode": "always",
+			        },
+			      ],
 			      "conditions": {
 			        "ref_name": {
 			          "exclude": [],
@@ -152,6 +159,13 @@ describe("migrateBranchProtectionSettings", () => {
 			  [
 			    "POST /repos/{owner}/{repo}/rulesets",
 			    {
+			      "bypass_actors": [
+			        {
+			          "actor_id": 5,
+			          "actor_type": "RepositoryRole",
+			          "bypass_mode": "always",
+			        },
+			      ],
 			      "conditions": {
 			        "ref_name": {
 			          "exclude": [],

@@ -41,6 +41,7 @@ describe("migrateBranchProtectionSettings", () => {
 			    {
 			      "conditions": {
 			        "ref_name": {
+			          "exclude": [],
 			          "include": [
 			            "refs/heads/main",
 			          ],
@@ -153,6 +154,7 @@ describe("migrateBranchProtectionSettings", () => {
 			    {
 			      "conditions": {
 			        "ref_name": {
+			          "exclude": [],
 			          "include": [
 			            "refs/heads/main",
 			          ],

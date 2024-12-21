@@ -11,6 +11,7 @@ export async function initializeBranchProtectionSettings(
 		await octokit.request("POST /repos/{owner}/{repo}/rulesets", {
 			conditions: {
 				ref_name: {
+					exclude: [],
 					include: ["refs/heads/main"],
 				},
 			},

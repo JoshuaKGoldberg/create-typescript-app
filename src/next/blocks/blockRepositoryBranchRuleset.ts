@@ -18,6 +18,7 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 						await octokit.request("POST /repos/{owner}/{repo}/rulesets", {
 							conditions: {
 								ref_name: {
+									exclude: [],
 									include: ["refs/heads/main"],
 								},
 							},

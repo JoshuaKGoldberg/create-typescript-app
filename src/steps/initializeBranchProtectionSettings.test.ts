@@ -37,53 +37,74 @@ describe("migrateBranchProtectionSettings", () => {
 		expect(mockRequest.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "PUT /repos///branches/main/protection",
+			    "POST /repos/{owner}/{repo}/rulesets",
 			    {
-			      "allow_deletions": false,
-			      "allow_force_pushes": true,
-			      "allow_fork_pushes": false,
-			      "allow_fork_syncing": true,
-			      "block_creations": false,
-			      "branch": "main",
-			      "enforce_admins": false,
+			      "conditions": {
+			        "ref_name": {
+			          "exclude": [],
+			          "include": [
+			            "refs/heads/main",
+			          ],
+			        },
+			      },
+			      "enforcement": "active",
+			      "name": "Branch protection for main",
 			      "owner": "",
 			      "repo": "",
-			      "required_conversation_resolution": true,
-			      "required_linear_history": false,
-			      "required_pull_request_reviews": null,
-			      "required_status_checks": {
-			        "checks": [
-			          {
-			            "context": "Build",
+			      "rules": [
+			        {
+			          "type": "deletion",
+			        },
+			        {
+			          "parameters": {
+			            "allowed_merge_methods": [
+			              "squash",
+			            ],
+			            "dismiss_stale_reviews_on_push": false,
+			            "require_code_owner_review": false,
+			            "require_last_push_approval": false,
+			            "required_approving_review_count": 0,
+			            "required_review_thread_resolution": false,
 			          },
-			          {
-			            "context": "Compliance",
+			          "type": "pull_request",
+			        },
+			        {
+			          "parameters": {
+			            "required_status_checks": [
+			              {
+			                "context": "Build",
+			              },
+			              {
+			                "context": "Compliance",
+			              },
+			              {
+			                "context": "Lint",
+			              },
+			              {
+			                "context": "Lint Knip",
+			              },
+			              {
+			                "context": "Lint Markdown",
+			              },
+			              {
+			                "context": "Lint Packages",
+			              },
+			              {
+			                "context": "Lint Spelling",
+			              },
+			              {
+			                "context": "Prettier",
+			              },
+			              {
+			                "context": "Test",
+			              },
+			            ],
+			            "strict_required_status_checks_policy": false,
 			          },
-			          {
-			            "context": "Lint",
-			          },
-			          {
-			            "context": "Lint Knip",
-			          },
-			          {
-			            "context": "Lint Markdown",
-			          },
-			          {
-			            "context": "Lint Packages",
-			          },
-			          {
-			            "context": "Lint Spelling",
-			          },
-			          {
-			            "context": "Prettier",
-			          },
-			          {
-			            "context": "Test",
-			          },
-			        ],
-			        "strict": false,
-			      },
-			      "restrictions": null,
+			          "type": "required_status_checks",
+			        },
+			      ],
+			      "target": "branch",
 			    },
 			  ],
 			]
@@ -129,35 +150,56 @@ describe("migrateBranchProtectionSettings", () => {
 		expect(mockRequest.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "PUT /repos///branches/main/protection",
+			    "POST /repos/{owner}/{repo}/rulesets",
 			    {
-			      "allow_deletions": false,
-			      "allow_force_pushes": true,
-			      "allow_fork_pushes": false,
-			      "allow_fork_syncing": true,
-			      "block_creations": false,
-			      "branch": "main",
-			      "enforce_admins": false,
+			      "conditions": {
+			        "ref_name": {
+			          "exclude": [],
+			          "include": [
+			            "refs/heads/main",
+			          ],
+			        },
+			      },
+			      "enforcement": "active",
+			      "name": "Branch protection for main",
 			      "owner": "",
 			      "repo": "",
-			      "required_conversation_resolution": true,
-			      "required_linear_history": false,
-			      "required_pull_request_reviews": null,
-			      "required_status_checks": {
-			        "checks": [
-			          {
-			            "context": "Build",
+			      "rules": [
+			        {
+			          "type": "deletion",
+			        },
+			        {
+			          "parameters": {
+			            "allowed_merge_methods": [
+			              "squash",
+			            ],
+			            "dismiss_stale_reviews_on_push": false,
+			            "require_code_owner_review": false,
+			            "require_last_push_approval": false,
+			            "required_approving_review_count": 0,
+			            "required_review_thread_resolution": false,
 			          },
-			          {
-			            "context": "Lint",
+			          "type": "pull_request",
+			        },
+			        {
+			          "parameters": {
+			            "required_status_checks": [
+			              {
+			                "context": "Build",
+			              },
+			              {
+			                "context": "Lint",
+			              },
+			              {
+			                "context": "Prettier",
+			              },
+			            ],
+			            "strict_required_status_checks_policy": false,
 			          },
-			          {
-			            "context": "Prettier",
-			          },
-			        ],
-			        "strict": false,
-			      },
-			      "restrictions": null,
+			          "type": "required_status_checks",
+			        },
+			      ],
+			      "target": "branch",
 			    },
 			  ],
 			]

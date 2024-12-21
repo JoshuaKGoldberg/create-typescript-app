@@ -1,3 +1,4 @@
+import { Octokit } from "octokit";
 import { describe, expect, it, vi } from "vitest";
 
 import { getPackageDependencies } from "../../../next/blocks/packageData.js";
@@ -257,7 +258,10 @@ describe("createStructure", () => {
 			};
 
 			const baseline = await createStructure(optionsBaseline, false);
-			const next = await createStructure(optionsNext, true);
+			const next = await createStructure(optionsNext, true, {
+				fetch: vi.fn(),
+				octokit: {} as Octokit,
+			});
 
 			// Test display cleaning: just don't show values that are the same
 			deleteEqualValuesDeep(baseline, next);

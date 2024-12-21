@@ -1,4 +1,9 @@
-import { CreatedFiles, produceBase, producePreset } from "create";
+import {
+	CreatedFiles,
+	produceBase,
+	producePreset,
+	SystemFetchers,
+} from "create";
 import prettier from "prettier";
 
 import { presetCommon } from "../../../next/presetCommon.js";
@@ -21,6 +26,7 @@ const presets = {
 export async function createStructure(
 	providedOptions: Options,
 	useNextEngine: boolean,
+	fetchers?: SystemFetchers,
 ): Promise<Structure> {
 	const preset =
 		useNextEngine &&
@@ -31,6 +37,7 @@ export async function createStructure(
 	if (preset) {
 		const options = {
 			...(await produceBase(preset.base, {
+				fetchers,
 				options: providedOptions,
 			})),
 			...providedOptions,

@@ -16,6 +16,15 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 					id: "branch-ruleset",
 					async send({ octokit }) {
 						await octokit.request("POST /repos/{owner}/{repo}/rulesets", {
+							bypass_actors: [
+								{
+									// This *seems* to be the Repository Admin role always?
+									// https://github.com/github/rest-api-description/issues/4406
+									actor_id: 5,
+									actor_type: "RepositoryRole",
+									bypass_mode: "always",
+								},
+							],
 							conditions: {
 								ref_name: {
 									exclude: [],

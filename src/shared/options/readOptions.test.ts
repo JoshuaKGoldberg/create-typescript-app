@@ -46,7 +46,7 @@ const emptyOptions = {
 	skipGitHubApi: undefined,
 	skipInstall: undefined,
 	skipRemoval: undefined,
-	skipRestore: undefined,
+	skipRestore: false,
 	skipUninstall: undefined,
 	title: undefined,
 };
@@ -63,7 +63,7 @@ vi.mock("../cli/spinners.ts", () => ({
 	},
 }));
 
-const mockReadPackageData = vi.fn();
+const mockReadPackageData = vi.fn().mockResolvedValue({});
 
 vi.mock("../packages.js", () => ({
 	get readPackageData() {
@@ -140,7 +140,7 @@ describe("readOptions", () => {
 			.object({ base: optionsSchemaShape.base })
 			.safeParse({ base: "b" });
 
-		const actual = await readOptions(["--base", "b"], "create");
+		const actual = await readOptions(["--base", "b"], "migrate");
 
 		expect(actual).toStrictEqual({
 			cancelled: true,
@@ -156,11 +156,12 @@ describe("readOptions", () => {
 			value: undefined,
 		}));
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 			},
 		});
 	});
@@ -171,11 +172,12 @@ describe("readOptions", () => {
 			value: undefined,
 		}));
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 			},
 		});
 	});
@@ -186,11 +188,12 @@ describe("readOptions", () => {
 			.mockImplementationOnce(() => ({ value: "MockOwner" }))
 			.mockImplementation(() => ({ value: undefined }));
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				owner: "MockOwner",
 			},
 		});
@@ -204,11 +207,12 @@ describe("readOptions", () => {
 			.mockImplementation(() => ({ value: undefined }));
 		mockEnsureRepositoryExists.mockResolvedValue({});
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				owner: "MockOwner",
 				repository: "MockRepository",
 			},
@@ -226,11 +230,12 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				owner: "MockOwner",
 				repository: "MockRepository",
 			},
@@ -249,11 +254,12 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				description: "Mock description.",
 				owner: "MockOwner",
 				repository: "MockRepository",
@@ -275,12 +281,13 @@ describe("readOptions", () => {
 		});
 
 		expect(
-			await readOptions(["--guide", "https://example.com"], "create"),
+			await readOptions(["--guide", "https://example.com"], "migrate"),
 		).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				description: "Mock description.",
 				guide: "https://example.com",
 				owner: "MockOwner",
@@ -304,12 +311,13 @@ describe("readOptions", () => {
 		});
 
 		expect(
-			await readOptions(["--guide", "https://example.com"], "create"),
+			await readOptions(["--guide", "https://example.com"], "migrate"),
 		).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				description: "Mock description.",
 				guide: "https://example.com",
 				owner: "MockOwner",
@@ -331,11 +339,12 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions(["--logo", "logo.svg"], "create")).toStrictEqual({
+		expect(await readOptions(["--logo", "logo.svg"], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				description: "Mock description.",
 				logo: "logo.svg",
 				owner: "MockOwner",
@@ -357,11 +366,12 @@ describe("readOptions", () => {
 			repository: mockOptions.repository,
 		});
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				description: "Mock description.",
 				owner: "MockOwner",
 				repository: "MockRepository",
@@ -384,11 +394,12 @@ describe("readOptions", () => {
 		});
 		mockAugmentOptionsWithExcludes.mockResolvedValue(undefined);
 
-		expect(await readOptions([], "create")).toStrictEqual({
+		expect(await readOptions([], "migrate")).toStrictEqual({
 			cancelled: true,
 			error: undefined,
 			options: {
 				...emptyOptions,
+				base: "minimal",
 				description: "Mock description.",
 				owner: "MockOwner",
 				repository: "MockRepository",
@@ -411,7 +422,7 @@ describe("readOptions", () => {
 		});
 
 		expect(
-			await readOptions(["--base", mockOptions.base], "create"),
+			await readOptions(["--base", mockOptions.base], "migrate"),
 		).toStrictEqual({
 			cancelled: false,
 			octokit: undefined,
@@ -445,7 +456,7 @@ describe("readOptions", () => {
 					"--logo",
 					"logo.svg",
 				],
-				"create",
+				"migrate",
 			),
 		).toStrictEqual({
 			cancelled: false,
@@ -464,7 +475,7 @@ describe("readOptions", () => {
 		}));
 
 		expect(
-			await readOptions(["--base", mockOptions.base], "create"),
+			await readOptions(["--base", mockOptions.base], "migrate"),
 		).toStrictEqual({
 			cancelled: true,
 			options: {
@@ -494,7 +505,7 @@ describe("readOptions", () => {
 		}));
 
 		expect(
-			await readOptions(["--base", mockOptions.base], "create"),
+			await readOptions(["--base", mockOptions.base], "migrate"),
 		).toStrictEqual({
 			cancelled: false,
 			octokit: undefined,
@@ -522,13 +533,65 @@ describe("readOptions", () => {
 		expect(
 			await readOptions(
 				["--base", mockOptions.base, "--owner", "JoshuaKGoldberg"],
-				"create",
+				"migrate",
 			),
 		).toStrictEqual({
 			cancelled: false,
 			octokit: undefined,
 			options: expect.objectContaining({
 				preserveGeneratedFrom: true,
+			}),
+		});
+	});
+
+	it("defaults skipRestore to false when the mode is not create", async () => {
+		mockAugmentOptionsWithExcludes.mockImplementationOnce(
+			(options: Partial<Options>) => ({
+				...options,
+				...mockOptions,
+			}),
+		);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			octokit: undefined,
+			repository: mockOptions.repository,
+		});
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
+
+		expect(
+			await readOptions(["--base", mockOptions.base], "migrate"),
+		).toStrictEqual({
+			cancelled: false,
+			octokit: undefined,
+			options: expect.objectContaining({
+				skipRestore: false,
+			}),
+		});
+	});
+
+	it("defaults skipRestore to true when the mode is create", async () => {
+		mockAugmentOptionsWithExcludes.mockImplementationOnce(
+			(options: Partial<Options>) => ({
+				...options,
+				...mockOptions,
+			}),
+		);
+		mockEnsureRepositoryExists.mockResolvedValue({
+			octokit: undefined,
+			repository: mockOptions.repository,
+		});
+		mockGetPrefillOrPromptedOption.mockImplementation(() => ({
+			value: "mock",
+		}));
+
+		expect(
+			await readOptions(["--base", mockOptions.base], "create"),
+		).toStrictEqual({
+			cancelled: false,
+			octokit: undefined,
+			options: expect.objectContaining({
+				skipRestore: true,
 			}),
 		});
 	});
@@ -548,7 +611,7 @@ describe("readOptions", () => {
 		});
 
 		expect(
-			await readOptions(["--base", mockOptions.base, "--offline"], "create"),
+			await readOptions(["--base", mockOptions.base, "--offline"], "migrate"),
 		).toStrictEqual({
 			cancelled: false,
 			octokit: undefined,
@@ -564,7 +627,7 @@ describe("readOptions", () => {
 				},
 				guide: undefined,
 				logo: undefined,
-				mode: "create",
+				mode: "migrate",
 				offline: true,
 				owner: "mock",
 				skipAllContributorsApi: true,
@@ -769,7 +832,7 @@ describe("readOptions", () => {
 			      "skipGitHubApi": true,
 			      "skipInstall": undefined,
 			      "skipRemoval": undefined,
-			      "skipRestore": undefined,
+			      "skipRestore": false,
 			      "skipUninstall": undefined,
 			      "title": "Test Title",
 			    },

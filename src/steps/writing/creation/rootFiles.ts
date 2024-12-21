@@ -2,6 +2,7 @@ import { Options } from "../../../shared/types.js";
 import { createCSpellConfig } from "./createCSpellConfig.js";
 import { createDotGitignore } from "./createDotGitignore.js";
 import { createESLintConfig } from "./createESLintConfig.js";
+import { createKnipConfig } from "./createKnipConfig.js";
 import { createTsupConfig } from "./createTsupConfig.js";
 import { formatIgnoreFile } from "./formatters/formatIgnoreFile.js";
 import { formatJson } from "./formatters/formatJson.js";
@@ -96,15 +97,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			"cspell.json": await createCSpellConfig(options),
 		}),
 		...(!options.excludeLintKnip && {
-			"knip.json": await formatJson({
-				$schema: "https://unpkg.com/knip@latest/schema.json",
-				entry: ["src/index.ts!"],
-				ignoreExportsUsedInFile: {
-					interface: true,
-					type: true,
-				},
-				project: ["src/**/*.ts!"],
-			}),
+			"knip.json": await createKnipConfig(),
 		}),
 		"package.json": await writePackageJson(options),
 		"tsconfig.json": await formatJson({

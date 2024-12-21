@@ -212,7 +212,7 @@ exports[`expected file changes > knip.json 1`] = `
 +++ b/knip.json
 @@ ... @@
  {
- 	"$schema": "https://unpkg.com/knip@latest/schema.json",
+ 	"$schema": "https://unpkg.com/knip@5.41.0/schema.json",
 -	"entry": ["script/*e2e.js", "src/index.ts!", "src/**/*.test.*"],
 -	"ignoreDependencies": ["all-contributors-cli"],
 +	"entry": ["src/index.ts!"],

@@ -1,12 +1,12 @@
 import { testBlock } from "create-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockRepositoryBranchProtection } from "./blockRepositoryBranchProtection.js";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockRepositoryBranchProtection", () => {
+describe("blockRepositoryBranchRuleset", () => {
 	test("without addons", () => {
-		const creation = testBlock(blockRepositoryBranchProtection, {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
 			options: optionsBase,
 		});
 
@@ -14,7 +14,7 @@ describe("blockRepositoryBranchProtection", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-protection",
+			      "id": "branch-ruleset",
 			      "send": [Function],
 			    },
 			  ],
@@ -26,7 +26,7 @@ describe("blockRepositoryBranchProtection", () => {
 	// https://github.com/JoshuaKGoldberg/create/issues/65
 
 	test("with addons", () => {
-		const creation = testBlock(blockRepositoryBranchProtection, {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
 			addons: {
 				requiredStatusChecks: ["build", "test"],
 			},
@@ -37,7 +37,7 @@ describe("blockRepositoryBranchProtection", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-protection",
+			      "id": "branch-ruleset",
 			      "send": [Function],
 			    },
 			  ],

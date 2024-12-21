@@ -1,8 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { getPackageDependencies } from "../../../next/blocks/packageData.js";
 import { Options } from "../../../shared/types.js";
 import { createStructure } from "./index.js";
+
+vi.mock("../../../next/utils/resolveBin.ts", () => ({
+	resolveBin: (bin: string) => `path/to/${bin}`,
+}));
 
 /* eslint-disable @typescript-eslint/no-dynamic-delete */
 
@@ -204,6 +208,7 @@ describe("createStructure", () => {
 						"@prettier/sync",
 						"chalk",
 						"create",
+						"cspell-populate-words",
 						"execa",
 						"git-remote-origin-url",
 						"git-url-parse",
@@ -212,6 +217,7 @@ describe("createStructure", () => {
 						"js-yaml",
 						"lazy-value",
 						"npm-user",
+						"object-strings-deep",
 						"octokit",
 						"octokit-from-auth",
 						"parse-author",

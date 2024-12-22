@@ -43,6 +43,7 @@ export async function createStructure(
 			...providedOptions,
 		};
 		const creation = await producePreset(preset, {
+			fetchers,
 			mode: "initialize",
 			options,
 		});

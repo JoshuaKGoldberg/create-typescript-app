@@ -71,5 +71,5 @@ export async function finalizeDependencies(options: Options) {
 		);
 	}
 
-	await execaCommand(`pnpm dedupe --offline`);
+	await execaCommand(`pnpm dedupe`);
 }

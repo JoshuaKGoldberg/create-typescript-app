@@ -44,7 +44,7 @@ describe("finalize", () => {
 			    "npx all-contributors-cli generate",
 			  ],
 			  [
-			    "pnpm dedupe --offline",
+			    "pnpm dedupe",
 			  ],
 			]
 		`);
@@ -65,7 +65,7 @@ describe("finalize", () => {
 			    "npx all-contributors-cli generate",
 			  ],
 			  [
-			    "pnpm dedupe --offline",
+			    "pnpm dedupe",
 			  ],
 			]
 		`);
@@ -95,7 +95,7 @@ describe("finalize", () => {
 			    "pnpm add @eslint-community/eslint-plugin-eslint-comments@latest @eslint/js@latest @types/node@latest eslint@latest eslint-plugin-jsdoc@latest eslint-plugin-n@latest eslint-plugin-regexp@latest husky@latest lint-staged@latest prettier@latest prettier-plugin-curly@latest prettier-plugin-packagejson@latest prettier-plugin-sh@latest tsup@latest typescript@latest typescript-eslint@latest -D",
 			  ],
 			  [
-			    "pnpm dedupe --offline",
+			    "pnpm dedupe",
 			  ],
 			]
 		`);

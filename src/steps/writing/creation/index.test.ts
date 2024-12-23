@@ -182,7 +182,7 @@ const optionsBaseline: Options = {
 	base: "everything",
 	bin: "bin/test.js",
 	description: "Test Description",
-	directory: ".",
+	directory: "test-directory",
 	email: { github: "github@example.com", npm: "npm@example.com" },
 	funding: "Test Funding",
 	guide: {

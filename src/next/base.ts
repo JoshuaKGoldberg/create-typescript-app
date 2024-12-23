@@ -169,7 +169,7 @@ export const base = createBase({
 			return whoami ? await npmUser(whoami) : undefined;
 		});
 
-		const packageData = lazyValue(async () => readPackageData());
+		const packageData = lazyValue(readPackageData);
 		const packageAuthor = lazyValue(async () =>
 			parsePackageAuthor(await packageData()),
 		);

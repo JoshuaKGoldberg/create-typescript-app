@@ -6,7 +6,6 @@ import { inputFromFile } from "input-from-file";
 import { inputFromFileJSON } from "input-from-file-json";
 import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
-import path from "node:path";
 import npmUser from "npm-user";
 import { z } from "zod";
 
@@ -128,8 +127,6 @@ export const base = createBase({
 			.describe("package version to publish as and store in `package.json`"),
 	},
 	produce({ options, take }) {
-		const directory = options.directory ?? ".";
-
 		const allContributors = lazyValue(async () => {
 			const contributions = (await take(inputFromFileJSON, {
 				filePath: ".all-contributorsrc",

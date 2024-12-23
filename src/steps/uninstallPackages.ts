@@ -1,13 +1,9 @@
 import { $ } from "execa";
 
 import { readPackageData, removeDependencies } from "../shared/packages.js";
-import { Options } from "../shared/types.js";
 
-export async function uninstallPackages({
-	directory,
-	offline,
-}: Pick<Options, "directory" | "offline">) {
-	const packageData = await readPackageData(directory);
+export async function uninstallPackages(offline: boolean | undefined) {
+	const packageData = await readPackageData();
 
 	await removeDependencies(
 		[

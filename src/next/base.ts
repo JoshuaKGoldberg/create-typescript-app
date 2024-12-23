@@ -132,7 +132,7 @@ export const base = createBase({
 
 		const allContributors = lazyValue(async () => {
 			const contributions = (await take(inputFromFileJSON, {
-				filePath: path.join(directory, ".all-contributorsrc"),
+				filePath: ".all-contributorsrc",
 			})) as AllContributorsData;
 
 			return contributions.contributors;
@@ -141,7 +141,7 @@ export const base = createBase({
 		const documentation = lazyValue(async () =>
 			swallowError(
 				await take(inputFromFile, {
-					filePath: path.join(directory, ".github/DEVELOPMENT.md"),
+					filePath: ".github/DEVELOPMENT.md",
 				}),
 			),
 		);
@@ -149,7 +149,7 @@ export const base = createBase({
 		const nvmrc = lazyValue(
 			async () =>
 				await take(inputFromFile, {
-					filePath: path.join(directory, ".nvmrc"),
+					filePath: ".nvmrc",
 				}),
 		);
 
@@ -164,7 +164,7 @@ export const base = createBase({
 		// TODO: Make these all use take
 
 		const gitDefaults = tryCatchLazyValueAsync(async () =>
-			gitUrlParse(await gitRemoteOriginUrl({ cwd: options.directory })),
+			gitUrlParse(await gitRemoteOriginUrl()),
 		);
 
 		const npmDefaults = tryCatchLazyValueAsync(async () => {
@@ -172,7 +172,7 @@ export const base = createBase({
 			return whoami ? await npmUser(whoami) : undefined;
 		});
 
-		const packageData = lazyValue(async () => readPackageData(directory));
+		const packageData = lazyValue(async () => readPackageData());
 		const packageAuthor = lazyValue(async () =>
 			parsePackageAuthor(await packageData()),
 		);
@@ -204,8 +204,8 @@ export const base = createBase({
 			description: async () => (await packageData()).description,
 			documentation,
 			email: async () => readEmails(npmDefaults, packageAuthor),
-			funding: async () => readFunding(directory),
-			guide: async () => readGuide(directory),
+			funding: readFunding,
+			guide: readGuide,
 			login: author,
 			node,
 			owner: async () =>
@@ -225,7 +225,7 @@ export const base = createBase({
 				options.repository ??
 				(await gitDefaults())?.name ??
 				(await packageData()).name,
-			...readDefaultsFromReadme(directory),
+			...readDefaultsFromReadme(),
 			version,
 		};
 	},

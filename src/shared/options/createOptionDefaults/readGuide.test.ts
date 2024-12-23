@@ -15,7 +15,7 @@ describe("readGuide", () => {
 		it("defaults to undefined when .github/DEVELOPMENT.md cannot be found", async () => {
 			mockReadFileSafe.mockResolvedValue("");
 
-			const guide = await readGuide(".");
+			const guide = await readGuide();
 
 			expect(guide).toBeUndefined();
 		});
@@ -27,7 +27,7 @@ describe("readGuide", () => {
 > It'll walk you through the common activities you'll need to contribute.
 `);
 
-			const guide = await readGuide(".");
+			const guide = await readGuide();
 
 			expect(guide).toEqual({
 				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",

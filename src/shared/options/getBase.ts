@@ -10,7 +10,7 @@ const everythingScripts = new Set([
 ]);
 
 export async function getBase(): Promise<OptionsBase> {
-	const scripts = Object.keys((await readPackageData(".")).scripts ?? {});
+	const scripts = Object.keys((await readPackageData()).scripts ?? {});
 
 	if (
 		scripts.reduce(

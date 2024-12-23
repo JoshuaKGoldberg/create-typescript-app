@@ -17,7 +17,7 @@ describe("readDefaultsFromReadme", () => {
 nothing.
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toBeUndefined();
 		});
@@ -27,7 +27,7 @@ nothing.
 <img src=abc/def.jpg/>
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -40,7 +40,7 @@ nothing.
 <img src='abc/def.jpg'/>
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -53,7 +53,7 @@ nothing.
 <img src="abc/def.jpg"/>
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -66,7 +66,7 @@ nothing.
 <img alt="Project logo: a fancy circle" src="abc/def.jpg"/>
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo: a fancy circle",
@@ -79,7 +79,7 @@ nothing.
 <img alt='Project logo: a fancy circle' src='abc/def.jpg'/>,
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo: a fancy circle",
@@ -93,7 +93,7 @@ nothing.
 <img src=abc/def.jpg/>
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -122,7 +122,7 @@ nothing.
 <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/create-typescript-app.png">
 `);
 
-			const logo = await readDefaultsFromReadme(".").logo();
+			const logo = await readDefaultsFromReadme().logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
@@ -137,7 +137,7 @@ nothing.
 nothing.
 `);
 
-			const title = await readDefaultsFromReadme(".").title();
+			const title = await readDefaultsFromReadme().title();
 
 			expect(title).toBeUndefined();
 		});
@@ -145,7 +145,7 @@ nothing.
 		it('reads title as markdown from "README.md" when it exists', async () => {
 			mockReadFileSafe.mockResolvedValue(`# My Awesome Package`);
 
-			const title = await readDefaultsFromReadme(".").title();
+			const title = await readDefaultsFromReadme().title();
 
 			expect(title).toBe("My Awesome Package");
 		});
@@ -155,7 +155,7 @@ nothing.
 				'<h1 align="center">My Awesome Package</h1>',
 			);
 
-			const title = await readDefaultsFromReadme(".").title();
+			const title = await readDefaultsFromReadme().title();
 
 			expect(title).toBe("My Awesome Package");
 		});
@@ -163,7 +163,7 @@ nothing.
 		it("returns undefined when title does not exist", async () => {
 			mockReadFileSafe.mockResolvedValue(`Other text.`);
 
-			const title = await readDefaultsFromReadme(".").title();
+			const title = await readDefaultsFromReadme().title();
 
 			expect(title).toBeUndefined();
 		});

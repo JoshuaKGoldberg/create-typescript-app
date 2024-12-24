@@ -38,7 +38,7 @@ export async function finalizeDependencies(options: Options) {
 		...(options.excludeLintPerfectionist
 			? []
 			: ["eslint-plugin-perfectionist"]),
-		...(options.excludeLintRegex ? [] : ["eslint-plugin-regexp"]),
+		...(options.excludeLintRegexp ? [] : ["eslint-plugin-regexp"]),
 		...(options.excludeLintSpelling ? [] : ["cspell"]),
 		...(options.excludeLintYml ? [] : ["eslint-plugin-yml"]),
 		...(options.excludeReleases

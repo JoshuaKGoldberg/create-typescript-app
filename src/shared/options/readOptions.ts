@@ -77,7 +77,7 @@ export async function readOptions(
 		excludeLintPackageJson: values["exclude-lint-package-json"],
 		excludeLintPackages: values["exclude-lint-packages"],
 		excludeLintPerfectionist: values["exclude-lint-perfectionist"],
-		excludeLintRegex: values["exclude-lint-regex"],
+		excludeLintRegexp: values["exclude-lint-regexp"],
 		excludeLintSpelling: values["exclude-lint-spelling"],
 		excludeLintStrict: values["exclude-lint-strict"],
 		excludeLintYml: values["exclude-lint-yml"],

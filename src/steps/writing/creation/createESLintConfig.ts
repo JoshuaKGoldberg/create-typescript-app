@@ -17,7 +17,7 @@ export async function createESLintConfig(options: Options) {
 			`import packageJson from "eslint-plugin-package-json/configs/recommended";`,
 		!options.excludeLintPerfectionist &&
 			`import perfectionist from "eslint-plugin-perfectionist";`,
-		!options.excludeLintRegex &&
+		!options.excludeLintRegexp &&
 			`import * as regexp from "eslint-plugin-regexp";`,
 		!options.excludeLintYml && `import yml from "eslint-plugin-yml";`,
 		`import tseslint from "typescript-eslint";`,
@@ -36,7 +36,7 @@ export async function createESLintConfig(options: Options) {
 		!options.excludeLintPackageJson && `	packageJson,`,
 		!options.excludeLintPerfectionist &&
 			`	perfectionist.configs["recommended-natural"],`,
-		!options.excludeLintRegex && `	regexp.configs["flat/recommended"],`,
+		!options.excludeLintRegexp && `	regexp.configs["flat/recommended"],`,
 	].filter(Boolean);
 
 	const ignores = [

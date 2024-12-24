@@ -71,7 +71,7 @@ export interface Options {
 	excludeLintPackageJson?: boolean;
 	excludeLintPackages?: boolean;
 	excludeLintPerfectionist?: boolean;
-	excludeLintRegex?: boolean;
+	excludeLintRegexp?: boolean;
 	excludeLintSpelling?: boolean;
 	excludeLintStrict?: boolean;
 	excludeLintStylistic?: boolean;

@@ -31,7 +31,7 @@ function fakeOptions(
 				"excludeLintPackageJson",
 				"excludeLintPackages",
 				"excludeLintPerfectionist",
-				"excludeLintRegex",
+				"excludeLintRegexp",
 				"excludeLintSpelling",
 				"excludeLintStrict",
 				"excludeLintStylistic",

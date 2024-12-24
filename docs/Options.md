@@ -96,7 +96,7 @@ Alternately, you can bypass that prompt by providing any number of the following
 - `--exclude-lint-jsdoc`: Don't use eslint-plugin-jsdoc to enforce good practices around JSDoc comments.
 - `--exclude-lint-packages`: Don't add a pnpm dedupe workflow to ensure packages aren't duplicated unnecessarily.
 - `--exclude-lint-perfectionist`: Don't apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.
-- `--exclude-lint-regex`: Don't add eslint-plugin-regex to enforce good practices around regular expressions.
+- `--exclude-lint-regexp`: Don't add eslint-plugin-regexp to enforce good practices around regular expressions.
 - `--exclude-lint-strict`: Don't augment the recommended logical lint rules with typescript-eslint's strict config.
 - `--exclude-lint-stylistic`: Don't add stylistic rules such as typescript-eslint's stylistic config.
 - `--exclude-lint-spelling`: Don't add cspell to spell check against dictionaries of known words.

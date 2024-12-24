@@ -70,10 +70,10 @@ export const exclusionDescriptions: Record<ExclusionKey, ExclusionDescription> =
 				"Apply eslint-plugin-perfectionist to ensure imports, keys, and so on are in sorted order.",
 			level: "common",
 		},
-		excludeLintRegex: {
-			hint: "--exclude-lint-regex",
+		excludeLintRegexp: {
+			hint: "--exclude-lint-regexp",
 			label:
-				"Include eslint-plugin-regex to enforce good practices around regular expressions.",
+				"Include eslint-plugin-regexp to enforce good practices around regular expressions.",
 			level: "common",
 		},
 		excludeLintSpelling: {

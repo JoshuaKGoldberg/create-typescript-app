@@ -32,7 +32,7 @@ export const optionsSchemaShape = {
 	excludeLintPackageJson: z.boolean().optional(),
 	excludeLintPackages: z.boolean().optional(),
 	excludeLintPerfectionist: z.boolean().optional(),
-	excludeLintRegex: z.boolean().optional(),
+	excludeLintRegexp: z.boolean().optional(),
 	excludeLintSpelling: z.boolean().optional(),
 	excludeLintStrict: z.boolean().optional(),
 	excludeLintStylistic: z.boolean().optional(),

@@ -249,7 +249,7 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
-			  --exclude-lint-regex: Don't add eslint-plugin-regex to enforce good practices around 
+			  --exclude-lint-regexp: Don't add eslint-plugin-regexp to enforce good practices around 
 			  regular expressions.",
 			  ],
 			  [

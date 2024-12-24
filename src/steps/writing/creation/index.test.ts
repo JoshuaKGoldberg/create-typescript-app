@@ -251,7 +251,8 @@ describe("createStructure", () => {
 						"tsx",
 					),
 					scripts: {
-						initialize: "tsx ./bin/index.js --mode initialize",
+						initialize:
+							"pnpm build --no-dts && tsx ./bin/index.js --mode initialize",
 						"test:create": "npx tsx script/create-test-e2e.ts",
 						"test:initialize": "npx tsx script/initialize-test-e2e.ts",
 						"test:migrate": "vitest run -r script/",

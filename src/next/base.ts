@@ -194,7 +194,7 @@ export const base = createBase({
 			author,
 			bin: async () => (await packageData()).bin,
 			contributors: allContributors,
-			description: async () => readDescription(packageData),
+			description: async () => await readDescription(packageData),
 			documentation,
 			email: async () => readEmails(npmDefaults, packageAuthor),
 			funding: readFunding,

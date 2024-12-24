@@ -17,6 +17,7 @@ import { readGuide } from "../shared/options/createOptionDefaults/readGuide.js";
 import { readPackageData } from "../shared/packages.js";
 import { tryCatchLazyValueAsync } from "../shared/tryCatchLazyValueAsync.js";
 import { AllContributorsData } from "../shared/types.js";
+import { readDocumentation } from "./readDocumentation.js";
 import { swallowError } from "./utils/swallowError.js";
 
 export const base = createBase({
@@ -135,13 +136,7 @@ export const base = createBase({
 			return contributions.contributors;
 		});
 
-		const documentation = lazyValue(async () =>
-			swallowError(
-				await take(inputFromFile, {
-					filePath: ".github/DEVELOPMENT.md",
-				}),
-			),
-		);
+		const documentation = lazyValue(async () => readDocumentation(take));
 
 		const nvmrc = lazyValue(
 			async () =>

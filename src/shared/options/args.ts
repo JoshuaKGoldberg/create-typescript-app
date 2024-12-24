@@ -237,7 +237,7 @@ export const allArgOptions = {
 		)} is provided or detected from an existing README.md, 
   an explicit height style`,
 		docsSection: "optional",
-		type: "number",
+		type: "string",
 	},
 	"logo-width": {
 		description: `If ${chalk.cyanBright(
@@ -245,7 +245,7 @@ export const allArgOptions = {
 		)} is provided or detected from an existing README.md, 
   an explicit width style`,
 		docsSection: "optional",
-		type: "number",
+		type: "string",
 	},
 	mode: {
 		description: `Whether to:

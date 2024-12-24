@@ -178,6 +178,16 @@ describe("logHelpText", () => {
 			  ],
 			  [
 			    "
+			  --logo-height (string): If --logo is provided or detected from an existing README.md, 
+			  an explicit height style",
+			  ],
+			  [
+			    "
+			  --logo-width (string): If --logo is provided or detected from an existing README.md, 
+			  an explicit width style",
+			  ],
+			  [
+			    "
 			  --preserve-generated-from: Whether to keep the GitHub repository generated from 
 			  notice (by default, false)",
 			  ],

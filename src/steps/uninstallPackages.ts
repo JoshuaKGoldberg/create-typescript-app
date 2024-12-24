@@ -16,6 +16,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"execa",
 			"git-remote-origin-url",
 			"git-url-parse",
+			"image-size",
 			"input-from-file",
 			"input-from-file-json",
 			"input-from-script",

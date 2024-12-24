@@ -1,6 +1,7 @@
 import lazyValue from "lazy-value";
 
 import { readFileSafe } from "../../readFileSafe.js";
+import { readLogoSizing } from "../readLogoSizing.js";
 
 export function readDefaultsFromReadme() {
 	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
@@ -28,6 +29,7 @@ export function readDefaultsFromReadme() {
 			return {
 				alt: /alt=['"](.+)['"]\s*src=/.exec(tag)?.[1] ?? "Project logo",
 				src,
+				...readLogoSizing(src),
 			};
 		},
 		title: async () => {

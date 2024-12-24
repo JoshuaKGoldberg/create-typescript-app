@@ -10,6 +10,14 @@ vi.mock("../../readFileSafe.js", () => ({
 	},
 }));
 
+const mockReadLogoSizing = vi.fn().mockResolvedValue({});
+
+vi.mock("../readLogoSizing.js", () => ({
+	get readLogoSizing() {
+		return mockReadLogoSizing;
+	},
+}));
+
 describe("readDefaultsFromReadme", () => {
 	describe("logo", () => {
 		it("defaults to undefined when it cannot be found", async () => {
@@ -84,6 +92,24 @@ nothing.
 			expect(logo).toEqual({
 				alt: "Project logo: a fancy circle",
 				src: "abc/def.jpg",
+			});
+		});
+
+		it("includes sizing when readLogoSizing returns sizing", async () => {
+			const sizing = { height: 117, width: 128 };
+
+			mockReadFileSafe.mockResolvedValue(`
+<img alt='Project logo: a fancy circle' src='abc/def.jpg'/>,
+`);
+
+			mockReadLogoSizing.mockReturnValueOnce(sizing);
+
+			const logo = await readDefaultsFromReadme().logo();
+
+			expect(logo).toEqual({
+				alt: "Project logo: a fancy circle",
+				src: "abc/def.jpg",
+				...sizing,
 			});
 		});
 

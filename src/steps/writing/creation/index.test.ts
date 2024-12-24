@@ -213,6 +213,7 @@ describe("createStructure", () => {
 						"execa",
 						"git-remote-origin-url",
 						"git-url-parse",
+						"image-size",
 						"input-from-file",
 						"input-from-file-json",
 						"input-from-script",

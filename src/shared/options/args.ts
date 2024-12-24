@@ -231,6 +231,22 @@ export const allArgOptions = {
 		docsSection: "optional",
 		type: "string",
 	},
+	"logo-height": {
+		description: `If ${chalk.cyanBright(
+			"--logo",
+		)} is provided or detected from an existing README.md, 
+  an explicit height style`,
+		docsSection: "optional",
+		type: "string",
+	},
+	"logo-width": {
+		description: `If ${chalk.cyanBright(
+			"--logo",
+		)} is provided or detected from an existing README.md, 
+  an explicit width style`,
+		docsSection: "optional",
+		type: "string",
+	},
 	mode: {
 		description: `Whether to:
   • create: a new repository in a child directory

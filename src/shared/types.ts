@@ -30,7 +30,9 @@ export interface OptionsGuide {
 
 export interface OptionsLogo {
 	alt: string;
+	height?: number;
 	src: string;
+	width?: number;
 }
 
 export interface PartialPackageData {

@@ -23,6 +23,14 @@ export function logInferredOptions(augmentedOptions: InferredOptions) {
 	if (augmentedOptions.logo) {
 		logLine(chalk.gray(`- logo: ${augmentedOptions.logo.src}`));
 		logLine(chalk.gray(`- logo-alt: ${augmentedOptions.logo.alt}`));
+
+		if (augmentedOptions.logo.height) {
+			logLine(chalk.gray(`- logo-height: ${augmentedOptions.logo.height}`));
+		}
+
+		if (augmentedOptions.logo.width) {
+			logLine(chalk.gray(`- logo-width: ${augmentedOptions.logo.width}`));
+		}
 	}
 
 	logLine(chalk.gray(`- owner: ${augmentedOptions.owner}`));

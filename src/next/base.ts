@@ -17,6 +17,7 @@ import { readGuide } from "../shared/options/createOptionDefaults/readGuide.js";
 import { readPackageData } from "../shared/packages.js";
 import { tryCatchLazyValueAsync } from "../shared/tryCatchLazyValueAsync.js";
 import { AllContributorsData } from "../shared/types.js";
+import { readDescription } from "./readDescription.js";
 import { readDocumentation } from "./readDocumentation.js";
 import { swallowError } from "./utils/swallowError.js";
 
@@ -193,7 +194,7 @@ export const base = createBase({
 			author,
 			bin: async () => (await packageData()).bin,
 			contributors: allContributors,
-			description: async () => (await packageData()).description,
+			description: async () => await readDescription(packageData),
 			documentation,
 			email: async () => readEmails(npmDefaults, packageAuthor),
 			funding: readFunding,

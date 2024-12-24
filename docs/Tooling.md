@@ -31,7 +31,7 @@ This table summarizes each tooling piece and which base levels they're included 
 | [Lint Package JSON](#lint-package-json)       | `--exclude-lint-package-json`  |         |        | 💯         |
 | [Lint Packages](#lint-packages)               | `--exclude-lint-packages`      |         |        | 💯         |
 | [Lint Perfectionist](#lint-perfectionist)     | `--exclude-lint-perfectionist` |         |        | 💯         |
-| [Lint Regex](#lint-regex)                     | `--exclude-lint-regex`         |         |        | 💯         |
+| [Lint Regexp](#lint-regexp)                   | `--exclude-lint-regexp`        |         |        | 💯         |
 | [Lint Spelling](#lint-spelling)               | `--exclude-lint-spelling`      |         |        | 💯         |
 | [Lint Strict](#lint-strict)                   | `--exclude-lint-strict`        |         |        | 💯         |
 | [Lint Stylistic](#lint-stylistic)             | `--exclude-lint-stylistic`     |         |        | 💯         |
@@ -226,7 +226,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 - [Lint Package JSON](#lint-package-json)
 - [Lint Packages](#lint-packages)
 - [Lint Perfectionist](#lint-perfectionist)
-- [Lint Regex](#lint-regex)
+- [Lint Regexp](#lint-regexp)
 - [Lint Spelling](#lint-spelling)
 - [Lint Strict](#lint-strict)
 - [Lint Stylistic](#lint-stylistic)
@@ -277,9 +277,9 @@ pnpm lint:packages
 [`eslint-plugin-perfectionist`](https://eslint-plugin-perfectionist.azat.io): Lints for sorting properties, imports, etc.
 This plugin is quite particular -perfectionist, even- but all its rules include auto-fixers that can correct complaints for you.
 
-### Lint Regex
+### Lint Regexp
 
-[`eslint-plugin-regex`](https://github.com/gmullerb/eslint-plugin-regex): Detects issues with JavaScript regular expressions, such as potential exponential complexity.
+[`eslint-plugin-regexp`](https://github.com/ota-meshi/eslint-plugin-regexp): Detects issues with JavaScript regular expressions, such as potential exponential complexity.
 
 ### Lint Spelling
 

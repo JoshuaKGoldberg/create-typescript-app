@@ -26,7 +26,7 @@ function fakeOptions(getExcludeValue: (exclusionName: string) => boolean) {
 				"excludeLintPackageJson",
 				"excludeLintPackages",
 				"excludeLintPerfectionist",
-				"excludeLintRegex",
+				"excludeLintRegexp",
 				"excludeLintSpelling",
 				"excludeLintStrict",
 				"excludeLintStylistic",

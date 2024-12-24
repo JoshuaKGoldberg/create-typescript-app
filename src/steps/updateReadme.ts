@@ -22,7 +22,9 @@ export async function updateReadme(
 ) {
 	let contents = await readFileSafe("./README.md", "");
 
-	contents = contents.replaceAll("JoshuaKGoldberg", options.owner);
+	contents = contents
+		.replaceAll("JoshuaKGoldberg", options.owner)
+		.replaceAll(/\n<img .+ alt="Project logo.+>\n/gs, "");
 
 	if (!options.excludeTemplatedBy && !endOfReadmeMatcher.test(contents)) {
 		contents += endOfReadmeNotice;

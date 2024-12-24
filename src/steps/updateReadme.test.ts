@@ -63,12 +63,12 @@ describe("updateReadme", () => {
 
 	it("doesn't add a notice when the file contains it already", async () => {
 		mockReadFileSafe.mockResolvedValue(`
-			Existing JoshuaKGoldberg/create-typescript-app content.
-			
-			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-			
-			> 💙 This package was templated using [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
-		`);
+Existing JoshuaKGoldberg/create-typescript-app content.
+
+<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+
+> 💙 This package was templated using [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+`);
 
 		await updateReadme(options);
 
@@ -77,12 +77,12 @@ describe("updateReadme", () => {
 			  [
 			    "./README.md",
 			    "
-						Existing NewOwner/create-typescript-app content.
-						
-						<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-						
-						> 💙 This package was templated using [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
-					",
+			Existing NewOwner/create-typescript-app content.
+
+			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+
+			> 💙 This package was templated using [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
+			",
 			  ],
 			]
 		`);
@@ -90,9 +90,34 @@ describe("updateReadme", () => {
 
 	it("doesn't add a notice when the file contains an older version of it already", async () => {
 		mockReadFileSafe.mockResolvedValue(`
-			Existing JoshuaKGoldberg/create-typescript-app content.
+Existing JoshuaKGoldberg/create-typescript-app content.
 
-			💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
+`);
+
+		await updateReadme(options);
+
+		expect(mockWriteFile.mock.calls).toMatchInlineSnapshot(`
+			[
+			  [
+			    "./README.md",
+			    "
+			Existing NewOwner/create-typescript-app content.
+
+			💙 This package is based on [@NewOwner](https://github.com/NewOwner)'s [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
+			",
+			  ],
+			]
+		`);
+	});
+
+	it("removes the project logo when it exists", async () => {
+		mockReadFileSafe.mockResolvedValue(`
+Existing JoshuaKGoldberg/create-typescript-app content.
+
+<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" height="128" src="./docs/create-typescript-app.png" width="128">
+
+💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
 		`);
 
 		await updateReadme(options);
@@ -102,9 +127,9 @@ describe("updateReadme", () => {
 			  [
 			    "./README.md",
 			    "
-						Existing NewOwner/create-typescript-app content.
+			Existing NewOwner/create-typescript-app content.
 
-						💙 This package is based on [@NewOwner](https://github.com/NewOwner)'s [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
+			💙 This package is based on [@NewOwner](https://github.com/NewOwner)'s [create-typescript-app](https://github.com/NewOwner/create-typescript-app).
 					",
 			  ],
 			]

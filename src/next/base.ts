@@ -95,7 +95,9 @@ export const base = createBase({
 		logo: z
 			.object({
 				alt: z.string(),
+				height: z.number().optional(),
 				src: z.string(),
+				width: z.number().optional(),
 			})
 			.optional()
 			.describe(

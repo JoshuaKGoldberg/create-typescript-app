@@ -2,6 +2,12 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 
+function printAttributes(attributes: Record<string, number | string>) {
+	return Object.entries(attributes)
+		.map(([key, value]) => `${key}="${value}"`)
+		.join(" ");
+}
+
 export const blockREADME = base.createBlock({
 	about: {
 		name: "README.md",
@@ -11,6 +17,10 @@ export const blockREADME = base.createBlock({
 	},
 	produce({ addons, options }) {
 		const { notices } = addons;
+
+		const logo = options.logo
+			? `<img ${printAttributes({ align: "right", ...options.logo })}>`
+			: "";
 
 		return {
 			files: {
@@ -30,7 +40,7 @@ export const blockREADME = base.createBlock({
 	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 </p>
 
-${options.logo ? `<img align="right" alt="${options.logo.alt}" src="${options.logo.src}">` : ""}
+${logo}
 
 ## Usage
 

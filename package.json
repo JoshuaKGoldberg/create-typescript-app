@@ -49,6 +49,7 @@
 		"execa": "^9.5.2",
 		"git-remote-origin-url": "^4.0.0",
 		"git-url-parse": "^16.0.0",
+		"image-size": "^1.2.0",
 		"input-from-file": "0.1.0-alpha.4",
 		"input-from-file-json": "0.1.0-alpha.4",
 		"input-from-script": "0.1.0-alpha.4",

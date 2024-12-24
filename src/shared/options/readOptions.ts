@@ -16,6 +16,7 @@ import { getBase } from "./getBase.js";
 import { getPrefillOrPromptedOption } from "./getPrefillOrPromptedOption.js";
 import { logInferredOptions } from "./logInferredOptions.js";
 import { optionsSchema } from "./optionsSchema.js";
+import { readLogoSizing } from "./readLogoSizing.js";
 
 export interface OctokitAndOptions {
 	octokit: Octokit | undefined;
@@ -246,6 +247,8 @@ export async function readOptions(
 
 			logo = { alt: logoAltOption.value, src: options.logo };
 		}
+
+		Object.assign(logo, readLogoSizing(logo.src));
 	}
 
 	let email = options.email ?? (await defaults.email());

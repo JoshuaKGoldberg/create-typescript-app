@@ -24,7 +24,7 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier .",
-		"initialize": "tsx ./bin/index.js --mode initialize",
+		"initialize": "pnpm build --no-dts && tsx ./bin/index.js --mode initialize",
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",

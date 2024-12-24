@@ -60,8 +60,8 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "npx -y all-contributors-cli generate",
-			        "npx -y all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx -y all-contributors-cli generate",
+			        "pnpx -y all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },
@@ -138,8 +138,8 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "npx -y all-contributors-cli generate",
-			        "npx -y all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx -y all-contributors-cli generate",
+			        "pnpx -y all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },

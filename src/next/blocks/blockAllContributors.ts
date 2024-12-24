@@ -56,8 +56,8 @@ export const blockAllContributors = base.createBlock({
 			scripts: [
 				{
 					commands: [
-						`pnpx -y all-contributors-cli generate`,
-						`pnpx -y all-contributors-cli add ${options.owner} code,content,docs,ideas,infra,maintenance,projectManagement,tool`,
+						`pnpx all-contributors-cli generate`,
+						`pnpx all-contributors-cli add ${options.owner} code,content,docs,ideas,infra,maintenance,projectManagement,tool`,
 					],
 					phase: CommandPhase.Process,
 				},

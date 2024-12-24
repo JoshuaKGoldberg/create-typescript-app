@@ -63,7 +63,7 @@ describe("getGitHubUserAsAllContributor", () => {
 			[
 			  [
 			    [
-			      "pnpx -y all-contributors-cli@6.25 add ",
+			      "pnpx all-contributors-cli@6.25 add ",
 			      " ",
 			      "",
 			    ],
@@ -90,7 +90,7 @@ describe("getGitHubUserAsAllContributor", () => {
 			[
 			  [
 			    [
-			      "pnpx -y all-contributors-cli@6.25 add ",
+			      "pnpx all-contributors-cli@6.25 add ",
 			      " ",
 			      "",
 			    ],

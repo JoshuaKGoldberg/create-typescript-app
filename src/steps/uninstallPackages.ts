@@ -29,6 +29,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"parse-package-name",
 			"populate-all-contributors-for-repository",
 			"prettier",
+			"remove-undefined-objects",
 			"replace-in-file",
 			"rimraf",
 			"set-github-repository-labels",

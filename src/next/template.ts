@@ -1,8 +1,8 @@
 import { createTemplate } from "create";
 
-import { presetCommon } from "./presetCommon.js";
-import { presetEverything } from "./presetEverything.js";
-import { presetMinimal } from "./presetMinimal.js";
+import { presetCommon } from "./presets/presetCommon.js";
+import { presetEverything } from "./presets/presetEverything.js";
+import { presetMinimal } from "./presets/presetMinimal.js";
 
 export const template = createTemplate({
 	about: {

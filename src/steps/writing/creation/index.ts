@@ -6,9 +6,9 @@ import {
 } from "create";
 import prettier from "prettier";
 
-import { presetCommon } from "../../../next/presetCommon.js";
-import { presetEverything } from "../../../next/presetEverything.js";
-import { presetMinimal } from "../../../next/presetMinimal.js";
+import { presetCommon } from "../../../next/presets/presetCommon.js";
+import { presetEverything } from "../../../next/presets/presetEverything.js";
+import { presetMinimal } from "../../../next/presets/presetMinimal.js";
 import { Options } from "../../../shared/types.js";
 import { Structure } from "../types.js";
 import { createDotGitHub } from "./dotGitHub/index.js";

@@ -1,9 +1,9 @@
 import { runPreset } from "create";
 
 import { Options } from "../shared/types.js";
-import { presetCommon } from "./presetCommon.js";
-import { presetEverything } from "./presetEverything.js";
-import { presetMinimal } from "./presetMinimal.js";
+import { presetCommon } from "./presets/presetCommon.js";
+import { presetEverything } from "./presets/presetEverything.js";
+import { presetMinimal } from "./presets/presetMinimal.js";
 
 const presets = {
 	common: presetCommon,

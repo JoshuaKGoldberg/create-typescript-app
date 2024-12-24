@@ -18,10 +18,14 @@ import { runCleanup } from "../steps/runCleanup.js";
 import { writeReadme } from "../steps/writeReadme/index.js";
 import { writeStructure } from "../steps/writing/writeStructure.js";
 
-export async function createWithOptions({
-	octokit,
-	options,
-}: OctokitAndOptions) {
+export async function createWithOptions(
+	{ octokit, options }: OctokitAndOptions,
+	repositoryDirectory: string,
+) {
+	// https://github.com/JoshuaKGoldberg/create-typescript-app/pull/1781
+	// I don't know why the chdir wasn't sticking from createAndEnterGitDirectory
+	process.chdir(repositoryDirectory);
+
 	if (isUsingCreateEngine()) {
 		await withSpinner("Creating repository", async () => {
 			await runCreateEnginePreset(options);

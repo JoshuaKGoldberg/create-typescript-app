@@ -15,10 +15,14 @@ vi.mock("node:fs/promises", () => ({
 }));
 
 const mockChdir = vi.fn();
+const mockCwd = "/path/to/cwd";
 
 vi.mock("node:process", () => ({
 	get chdir() {
 		return mockChdir;
+	},
+	cwd() {
+		return mockCwd;
 	},
 }));
 
@@ -28,7 +32,7 @@ describe("createAndEnterGitDirectory", () => {
 
 		const actual = await createAndEnterGitDirectory(".");
 
-		expect(actual).toBe(false);
+		expect(actual).toBeUndefined();
 		expect(mockMkdir).not.toHaveBeenCalled();
 	});
 
@@ -37,7 +41,7 @@ describe("createAndEnterGitDirectory", () => {
 
 		const actual = await createAndEnterGitDirectory(".");
 
-		expect(actual).toBe(true);
+		expect(actual).toBe(mockCwd);
 		expect(mockMkdir).not.toHaveBeenCalled();
 	});
 
@@ -49,7 +53,7 @@ describe("createAndEnterGitDirectory", () => {
 
 		const actual = await createAndEnterGitDirectory(directory);
 
-		expect(actual).toBe(false);
+		expect(actual).toBeUndefined();
 		expect(mockChdir).not.toHaveBeenCalled();
 	});
 
@@ -59,7 +63,7 @@ describe("createAndEnterGitDirectory", () => {
 
 		const actual = await createAndEnterGitDirectory(directory);
 
-		expect(actual).toBe(true);
+		expect(actual).toBe(mockCwd);
 		expect(mockChdir).toHaveBeenCalledWith(directory);
 	});
 });

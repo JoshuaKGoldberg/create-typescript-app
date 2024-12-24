@@ -21,7 +21,10 @@ export const create: ModeRunner = async (args, promptedOptions) => {
 		};
 	}
 
-	if (!(await createAndEnterGitDirectory(inputs.options.directory))) {
+	const repositoryDirectory = await createAndEnterGitDirectory(
+		inputs.options.directory,
+	);
+	if (!repositoryDirectory) {
 		prompts.outro(
 			chalk.red(
 				`The ${inputs.options.directory} directory already exists and is not empty. Please clear the directory, run with --mode initialize, or try a different directory.`,
@@ -33,7 +36,10 @@ export const create: ModeRunner = async (args, promptedOptions) => {
 	return {
 		code: await runOrRestore({
 			run: async () => {
-				const { sentToGitHub } = await createWithOptions(inputs);
+				const { sentToGitHub } = await createWithOptions(
+					inputs,
+					repositoryDirectory,
+				);
 				const nextSteps = generateNextSteps(inputs.options);
 
 				outro(

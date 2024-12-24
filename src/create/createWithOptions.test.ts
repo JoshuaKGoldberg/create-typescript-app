@@ -85,7 +85,7 @@ describe("createWithOptions", () => {
 			skipAllContributorsApi: false,
 		};
 
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 		expect(addToolAllContributors).toHaveBeenCalledWith(mockOctokit, options);
 	});
 
@@ -95,7 +95,7 @@ describe("createWithOptions", () => {
 			excludeAllContributors: true,
 		};
 
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 		expect(addToolAllContributors).not.toHaveBeenCalled();
 	});
 
@@ -105,7 +105,7 @@ describe("createWithOptions", () => {
 			skipAllContributorsApi: true,
 		};
 
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 		expect(addToolAllContributors).not.toHaveBeenCalled();
 	});
 
@@ -115,7 +115,7 @@ describe("createWithOptions", () => {
 			skipInstall: true,
 		};
 
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 		expect(finalizeDependencies).not.toHaveBeenCalled();
 		expect(runCleanup).not.toHaveBeenCalled();
 	});
@@ -126,7 +126,7 @@ describe("createWithOptions", () => {
 			skipInstall: false,
 		};
 
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 
 		expect(finalizeDependencies).toHaveBeenCalledWith(options);
 		expect(runCleanup).toHaveBeenCalled();
@@ -135,7 +135,7 @@ describe("createWithOptions", () => {
 	it("does not initialize GitHub repository if repository does not exist", async () => {
 		const options = optionsBase;
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(false);
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 		expect(initializeGitHubRepository).not.toHaveBeenCalled();
 		expect(mock$).not.toHaveBeenCalled();
 	});
@@ -144,7 +144,7 @@ describe("createWithOptions", () => {
 		const options = optionsBase;
 
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 
 		expect(mock$.mock.calls).toMatchInlineSnapshot(`
 			[
@@ -182,7 +182,7 @@ describe("createWithOptions", () => {
 		const options = optionsBase;
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
 
-		await createWithOptions({ octokit: mockOctokit, options });
+		await createWithOptions({ octokit: mockOctokit, options }, ".");
 
 		expect(doesRepositoryExist).toHaveBeenCalledWith(mockOctokit, options);
 		expect(initializeGitHubRepository).toHaveBeenCalledWith(

@@ -44,7 +44,7 @@ export async function getGitHubUserAsAllContributor(
 		"projectManagement",
 		"tool",
 	].join(",");
-	await $`npx -y all-contributors-cli@6.25 add ${user} ${contributions}`;
+	await $`pnpx all-contributors-cli@6.25 add ${user} ${contributions}`;
 
 	return user;
 }

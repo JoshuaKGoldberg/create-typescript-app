@@ -33,7 +33,7 @@ describe("addToolAllContributors", () => {
 		await addToolAllContributors(undefined, { owner: "owner" });
 
 		expect(mock$).toHaveBeenCalledWith([
-			`npx -y all-contributors-cli add JoshuaKGoldberg tool`,
+			`pnpx all-contributors-cli add JoshuaKGoldberg tool`,
 		]);
 	});
 });

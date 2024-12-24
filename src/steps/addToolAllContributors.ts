@@ -11,6 +11,6 @@ export async function addToolAllContributors(
 	const login = await getGitHubUserAsAllContributor(octokit, options);
 
 	if (login !== "JoshuaKGoldberg") {
-		await $`npx -y all-contributors-cli add JoshuaKGoldberg tool`;
+		await $`pnpx all-contributors-cli add JoshuaKGoldberg tool`;
 	}
 }

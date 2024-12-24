@@ -26,7 +26,9 @@ const optionsBase: Options = {
 	title: "Test Title",
 };
 
-const mock$ = vi.fn();
+const mock$$ = vi.fn();
+
+const mock$ = vi.fn().mockReturnValue(mock$$);
 
 vi.mock("execa", () => ({
 	get $() {
@@ -137,7 +139,7 @@ describe("createWithOptions", () => {
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(false);
 		await createWithOptions({ octokit: mockOctokit, options }, ".");
 		expect(initializeGitHubRepository).not.toHaveBeenCalled();
-		expect(mock$).not.toHaveBeenCalled();
+		expect(mock$$).not.toHaveBeenCalled();
 	});
 
 	it("executes git commands when initializing GitHub repository when doesRepositoryExist is true", async () => {
@@ -146,7 +148,7 @@ describe("createWithOptions", () => {
 		vi.mocked(doesRepositoryExist).mockResolvedValueOnce(true);
 		await createWithOptions({ octokit: mockOctokit, options }, ".");
 
-		expect(mock$.mock.calls).toMatchInlineSnapshot(`
+		expect(mock$$.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
 			    [

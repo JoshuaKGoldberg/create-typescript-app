@@ -26,6 +26,16 @@ vi.mock("node:process", () => ({
 	},
 }));
 
+const mock$$ = vi.fn();
+
+const mock$ = vi.fn().mockReturnValue(mock$$);
+
+vi.mock("execa", () => ({
+	get $() {
+		return mock$;
+	},
+}));
+
 describe("createAndEnterGitDirectory", () => {
 	it("returns false and doesn't run fs.mkdir when the directory is '.' and has children", async () => {
 		mockReaddir.mockResolvedValueOnce(["file"]);
@@ -45,7 +55,7 @@ describe("createAndEnterGitDirectory", () => {
 		expect(mockMkdir).not.toHaveBeenCalled();
 	});
 
-	it("returns false and doesn't run fs.chdir when the directory is a child directory with children", async () => {
+	it("returns false and doesn't run process.chdir when the directory is a child directory with children", async () => {
 		const directory = "dir";
 		mockReaddir
 			.mockResolvedValueOnce([directory])
@@ -55,9 +65,10 @@ describe("createAndEnterGitDirectory", () => {
 
 		expect(actual).toBeUndefined();
 		expect(mockChdir).not.toHaveBeenCalled();
+		expect(mock$).not.toHaveBeenCalled();
 	});
 
-	it("returns true and runs fs.chdir when the directory is a child directory that doesn't exist", async () => {
+	it("returns true and runs process.chdir when the directory is a child directory that doesn't exist", async () => {
 		const directory = "dir";
 		mockReaddir.mockResolvedValueOnce([directory]).mockResolvedValueOnce([]);
 
@@ -65,5 +76,7 @@ describe("createAndEnterGitDirectory", () => {
 
 		expect(actual).toBe(mockCwd);
 		expect(mockChdir).toHaveBeenCalledWith(directory);
+		expect(mock$).toHaveBeenCalledWith({ cwd: mockCwd });
+		expect(mock$$).toHaveBeenCalledWith(["git init -b main"]);
 	});
 });

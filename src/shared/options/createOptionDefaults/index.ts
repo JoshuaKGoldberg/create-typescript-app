@@ -34,7 +34,7 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 		author: async () =>
 			(await packageAuthor()).author ?? (await npmDefaults())?.name,
 		bin: async () => (await packageData()).bin,
-		description: async () => readDescription(packageData),
+		description: async () => await readDescription(packageData),
 		email: async () => readEmails(npmDefaults, packageAuthor),
 		funding: async () =>
 			await tryCatchAsync(async () =>

@@ -25,6 +25,7 @@ export async function createWithOptions(
 	// https://github.com/JoshuaKGoldberg/create-typescript-app/pull/1781
 	// I don't know why the chdir wasn't sticking from createAndEnterGitDirectory
 	process.chdir(repositoryDirectory);
+	const $$ = $({ cwd: repositoryDirectory });
 
 	if (isUsingCreateEngine()) {
 		await withSpinner("Creating repository", async () => {
@@ -68,10 +69,10 @@ export async function createWithOptions(
 
 	if (sendToGitHub) {
 		await withSpinner("Initializing GitHub repository", async () => {
-			await $`git remote add origin https://github.com/${options.owner}/${options.repository}`;
-			await $`git add -A`;
-			await $`git commit --message ${"feat: initialized repo ✨"} --no-gpg-sign`;
-			await $`git push -u origin main --force`;
+			await $$`git remote add origin https://github.com/${options.owner}/${options.repository}`;
+			await $$`git add -A`;
+			await $$`git commit --message ${"feat: initialized repo ✨"} --no-gpg-sign`;
+			await $$`git push -u origin main --force`;
 			await initializeGitHubRepository(octokit, options);
 		});
 	}

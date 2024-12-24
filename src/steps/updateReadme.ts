@@ -24,7 +24,7 @@ export async function updateReadme(
 
 	contents = contents
 		.replaceAll("JoshuaKGoldberg", options.owner)
-		.replaceAll(/\n<img .+ alt="Project logo.+>\n/gs, "");
+		.replace(/\n<img .+ alt="Project logo.+>\n/gs, "");
 
 	if (!options.excludeTemplatedBy && !endOfReadmeMatcher.test(contents)) {
 		contents += endOfReadmeNotice;

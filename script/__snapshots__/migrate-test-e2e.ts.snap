@@ -32,6 +32,15 @@ exports[`expected file changes > .github/workflows/ci.yml 1`] = `
 @@ ... @@ jobs:
        - uses: actions/checkout@v4
        - uses: ./.github/actions/prepare
+       - run: pnpm build
+-      - run: node ./lib/index.js --version
++      - run: node ./lib/index.js
+   lint:
+     name: Lint
+     runs-on: ubuntu-latest
+@@ ... @@ jobs:
+       - uses: actions/checkout@v4
+       - uses: ./.github/actions/prepare
        - run: pnpm run test --coverage
 -      - env:
 -          CODECOV_TOKEN: \${{ secrets.CODECOV_TOKEN }}

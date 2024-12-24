@@ -1,10 +1,4 @@
-import { createRequire } from "node:module";
-
-const require = createRequire(import.meta.url);
-
-const packageData =
-	// Importing from above src/ would expand the TS build rootDir
-	require("../../../package.json") as typeof import("../../../package.json");
+import { sourcePackageJson } from "./sourcePackageJson.js";
 
 export function getPackageDependencies(...names: string[]) {
 	return Object.fromEntries(
@@ -32,7 +26,7 @@ function getPackageInner(
 	key: "dependencies" | "devDependencies",
 	name: string,
 ) {
-	const inner = packageData[key];
+	const inner = sourcePackageJson[key];
 
 	return inner[name as keyof typeof inner] as string | undefined;
 }

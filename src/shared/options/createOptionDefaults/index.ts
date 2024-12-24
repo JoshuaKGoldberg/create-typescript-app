@@ -5,6 +5,7 @@ import lazyValue from "lazy-value";
 import * as fs from "node:fs/promises";
 import npmUser from "npm-user";
 
+import { readDescription } from "../../../next/readDescription.js";
 import { readPackageData } from "../../packages.js";
 import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { tryCatchLazyValueAsync } from "../../tryCatchLazyValueAsync.js";
@@ -33,7 +34,7 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 		author: async () =>
 			(await packageAuthor()).author ?? (await npmDefaults())?.name,
 		bin: async () => (await packageData()).bin,
-		description: async () => (await packageData()).description,
+		description: async () => readDescription(packageData),
 		email: async () => readEmails(npmDefaults, packageAuthor),
 		funding: async () =>
 			await tryCatchAsync(async () =>

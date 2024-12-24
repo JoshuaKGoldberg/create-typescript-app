@@ -13,7 +13,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"scripts":{},"dependencies":{},"devDependencies":{}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"]}",
 			  },
 			  "scripts": [
 			    {
@@ -36,7 +36,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"scripts":{},"dependencies":{},"devDependencies":{}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"]}",
 			  },
 			  "scripts": [
 			    {
@@ -62,7 +62,7 @@ describe("blockPackageJson", () => {
 				cleanupCommands: ["pnpm dedupe"],
 				properties: {
 					dependencies: {
-						"is-odd": "3.0.1",
+						"is-odd": "1.2.3",
 					},
 					other: true,
 				},
@@ -73,7 +73,42 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"scripts":{},"dependencies":{"is-odd":"3.0.1"},"devDependencies":{},"other":true}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"other":true}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install",
+			        "pnpm dedupe",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("with addons adding devDependencies", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				cleanupCommands: ["pnpm dedupe"],
+				properties: {
+					dependencies: {
+						"is-odd": "1.2.3",
+					},
+					devDependencies: {
+						"is-even": "4.5.6",
+					},
+					other: true,
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"https://github.com/test-owner/test-repository"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"other":true}",
 			  },
 			  "scripts": [
 			    {

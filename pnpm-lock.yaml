@@ -71,6 +71,9 @@ importers:
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
+      remove-undefined-objects:
+        specifier: ^5.0.0
+        version: 5.0.0
       replace-in-file:
         specifier: ^8.3.0
         version: 8.3.0
@@ -3682,6 +3685,10 @@ packages:
     resolution: {integrity: sha512-00cXYEl7RFD5NnjXpwaH9JFjpwe8w3NcfUd4XPxrKQkszp1xppPo42zK9eSbxStKyPA5CVk2KmKPDPDiAKVJTA==}
     engines: {node: ^18.18.0 || ^20.9.0 || ^22.0.0}
     hasBin: true
+
+  remove-undefined-objects@5.0.0:
+    resolution: {integrity: sha512-DE8C17uIWeHaY4SqIkpQpHXm0MIdYHtIqjieWuh0I2PG8YcZRxFE6pqeEhnRetsrQ7Lu9uvSNQkDbg95NLpvnQ==}
+    engines: {node: '>=18'}
 
   repeat-string@1.6.1:
     resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
@@ -8080,6 +8087,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
+
+  remove-undefined-objects@5.0.0: {}
 
   repeat-string@1.6.1: {}
 

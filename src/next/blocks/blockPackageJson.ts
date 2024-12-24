@@ -1,3 +1,4 @@
+import removeUndefinedObjects from "remove-undefined-objects";
 import sortPackageJson from "sort-package-json";
 import { z } from "zod";
 
@@ -35,52 +36,61 @@ export const blockPackageJson = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
+		const dependencies = {
+			...options.packageData?.dependencies,
+			...addons.properties.dependencies,
+		};
+		const devDependencies = {
+			...options.packageData?.devDependencies,
+			...addons.properties.devDependencies,
+		};
+
 		return {
 			files: {
 				"package.json": sortPackageJson(
-					JSON.stringify({
-						...addons.properties,
-						author: { email: options.email.npm, name: options.author },
-						bin: options.bin,
-						dependencies: {
-							...options.packageData?.dependencies,
-							...addons.properties.dependencies,
-						},
-						description: options.description,
-						devDependencies: {
-							...options.packageData?.devDependencies,
-							...addons.properties.devDependencies,
-						},
-						...(options.node && {
-							engines: {
-								node: `>=${options.node.minimum}`,
+					JSON.stringify(
+						removeUndefinedObjects({
+							...addons.properties,
+							author: { email: options.email.npm, name: options.author },
+							bin: options.bin,
+							dependencies: Object.keys(dependencies).length
+								? dependencies
+								: undefined,
+							description: options.description,
+							devDependencies: Object.keys(devDependencies).length
+								? devDependencies
+								: undefined,
+							...(options.node && {
+								engines: {
+									node: `>=${options.node.minimum}`,
+								},
+							}),
+							files: [
+								options.bin?.replace(/^\.\//, ""),
+								...(addons.properties.files ?? []),
+								"package.json",
+								"README.md",
+							]
+								.filter(Boolean)
+								.sort(),
+							keywords: options.keywords?.flatMap((keyword) =>
+								keyword.split(/ /),
+							),
+							license: "MIT",
+							main: "./lib/index.js",
+							name: options.repository,
+							repository: {
+								type: "git",
+								url: `https://github.com/${options.owner}/${options.repository}`,
 							},
+							scripts: {
+								...options.packageData?.scripts,
+								...addons.properties.scripts,
+							},
+							type: "module",
+							version: options.version ?? "0.0.0",
 						}),
-						files: [
-							options.bin?.replace(/^\.\//, ""),
-							...(addons.properties.files ?? []),
-							"package.json",
-							"README.md",
-						]
-							.filter(Boolean)
-							.sort(),
-						keywords: options.keywords?.flatMap((keyword) =>
-							keyword.split(/ /),
-						),
-						license: "MIT",
-						main: "./lib/index.js",
-						name: options.repository,
-						repository: {
-							type: "git",
-							url: `https://github.com/${options.owner}/${options.repository}`,
-						},
-						scripts: {
-							...options.packageData?.scripts,
-							...addons.properties.scripts,
-						},
-						type: "module",
-						version: options.version ?? "0.0.0",
-					}),
+					),
 				),
 			},
 			scripts: [

@@ -4,6 +4,7 @@ import {
 	getExclusions,
 } from "../shared/options/exclusionKeys.js";
 import { Options } from "../shared/types.js";
+import { createRerunDirectorySuggestion } from "./createRerunDirectorySuggestion.js";
 
 function getFirstMatchingArg(key: string) {
 	return Object.keys(allArgOptions).find(
@@ -37,6 +38,7 @@ export function createRerunSuggestion(options: Partial<Options>): string {
 			skipAllContributorsApi: undefined,
 			skipGitHubApi: undefined,
 		}),
+		directory: createRerunDirectorySuggestion(options),
 	};
 
 	const args = Object.entries(optionsNormalized)

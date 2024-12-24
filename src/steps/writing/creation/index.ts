@@ -1,4 +1,9 @@
-import { CreatedFiles, producePreset } from "create";
+import {
+	CreatedFiles,
+	produceBase,
+	producePreset,
+	SystemFetchers,
+} from "create";
 import prettier from "prettier";
 
 import { presetCommon } from "../../../next/presetCommon.js";
@@ -19,17 +24,26 @@ const presets = {
 };
 
 export async function createStructure(
-	options: Options,
+	providedOptions: Options,
 	useNextEngine: boolean,
+	fetchers?: SystemFetchers,
 ): Promise<Structure> {
 	const preset =
 		useNextEngine &&
-		options.base &&
-		options.base !== "prompt" &&
-		presets[options.base];
+		providedOptions.base &&
+		providedOptions.base !== "prompt" &&
+		presets[providedOptions.base];
 
 	if (preset) {
-		const { creation } = await producePreset(preset, {
+		const options = {
+			...(await produceBase(preset.base, {
+				fetchers,
+				options: providedOptions,
+			})),
+			...providedOptions,
+		};
+		const creation = await producePreset(preset, {
+			fetchers,
 			mode: "initialize",
 			options,
 		});
@@ -38,11 +52,13 @@ export async function createStructure(
 	}
 
 	return {
-		".github": await createDotGitHub(options),
+		".github": await createDotGitHub(providedOptions),
 		".husky": createDotHusky(),
-		".vscode": await createDotVSCode(options),
-		...(options.mode !== "migrate" && { src: await createSrc(options) }),
-		...(await createRootFiles(options)),
+		".vscode": await createDotVSCode(providedOptions),
+		...(providedOptions.mode !== "migrate" && {
+			src: await createSrc(providedOptions),
+		}),
+		...(await createRootFiles(providedOptions)),
 	};
 }
 

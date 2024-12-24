@@ -4,6 +4,7 @@ import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
 import { inputFromFile } from "input-from-file";
 import { inputFromFileJSON } from "input-from-file-json";
+import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
 import npmUser from "npm-user";
 import { z } from "zod";
@@ -20,9 +21,18 @@ import { swallowError } from "./utils/swallowError.js";
 
 export const base = createBase({
 	options: {
-		access: z.union([z.literal("public"), z.literal("restricted")]).optional(),
-		author: z.string().optional(),
-		bin: z.string().optional(),
+		access: z
+			.union([z.literal("public"), z.literal("restricted")])
+			.optional()
+			.describe("which `npm publish --access` to release npm packages with"),
+		author: z
+			.string()
+			.optional()
+			.describe("username on npm to publish packages under"),
+		bin: z
+			.string()
+			.optional()
+			.describe('value to set in `package.json`\'s `"bin"` property.'),
 		contributors: z
 			.array(
 				z.object({
@@ -33,9 +43,16 @@ export const base = createBase({
 					profile: z.string(),
 				}),
 			)
-			.optional(),
-		description: z.string(),
-		documentation: z.string().optional(),
+			.optional()
+			.describe("AllContributors contributors to store in .all-contributorsrc"),
+		description: z
+			.string()
+			.describe("sentence case description of the repository"),
+		directory: z.string(),
+		documentation: z
+			.string()
+			.optional()
+			.describe("any additional docs to add to .github/DEVELOPMENT.md"),
 		email: z
 			.union([
 				z.string(),
@@ -46,41 +63,68 @@ export const base = createBase({
 			])
 			.transform((email) =>
 				typeof email === "string" ? { github: email, npm: email } : email,
+			)
+			.describe(
+				"email address to be listed as the point of contact in docs and packages",
 			),
-		funding: z.string().optional(),
+		funding: z
+			.string()
+			.optional()
+			.describe("GitHub organization or username to mention in `funding.yml`"),
 		guide: z
 			.object({
 				href: z.string(),
 				title: z.string(),
 			})
-			.optional(),
-		hideTemplatedBy: z.boolean().optional(),
-		keywords: z.array(z.string()).optional(),
-		login: z.string().optional(),
+			.optional()
+			.describe(
+				"link to a contribution guide to place at the top of development docs",
+			),
+		hideTemplatedBy: z
+			.boolean()
+			.optional()
+			.describe(
+				"whether to hide the 'created by ...' notice at the bottom of the README.md",
+			),
+		keywords: z
+			.array(z.string())
+			.optional()
+			.describe("any number of keywords to include in `package.json`"),
 		logo: z
 			.object({
 				alt: z.string(),
 				src: z.string(),
 			})
-			.optional(),
+			.optional()
+			.describe(
+				"local image file in the repository to display near the top of the README.md",
+			),
 		node: z
 			.object({
 				minimum: z.string(),
 				pinned: z.string().optional(),
 			})
-			.optional(),
-		owner: z.string(),
+			.optional()
+			.describe("node.js engine version(s) to pin and require a minimum of"),
+		owner: z
+			.string()
+			.describe("GitHub organization or user the repository is underneath"),
 		packageData: z
 			.object({
 				dependencies: z.record(z.string(), z.string()).optional(),
 				devDependencies: z.record(z.string(), z.string()).optional(),
 				scripts: z.record(z.string(), z.string()).optional(),
 			})
-			.optional(),
-		preserveGeneratedFrom: z.boolean().optional(),
-		repository: z.string(),
-		title: z.string(),
-		version: z.string().optional(),
+			.optional()
+			.describe("additional properties to include in `package.json`"),
+		repository: z
+			.string()
+			.describe("'Sentence case.' description of the repository"),
+		title: z.string().describe("'Title Case' title for the repository"),
+		version: z
+			.string()
+			.optional()
+			.describe("package version to publish as and store in `package.json`"),
 	},
 	produce({ options, take }) {
 		const allContributors = lazyValue(async () => {
@@ -105,6 +149,14 @@ export const base = createBase({
 					filePath: ".nvmrc",
 				}),
 		);
+
+		const githubCliUser = lazyValue(async () => {
+			return swallowError(
+				await take(inputFromScript, {
+					command: "gh config get user -h github.com",
+				}),
+			)?.stdout?.toString();
+		});
 
 		// TODO: Make these all use take
 
@@ -154,7 +206,9 @@ export const base = createBase({
 			login: author,
 			node,
 			owner: async () =>
-				(await gitDefaults())?.organization ?? (await packageAuthor()).author,
+				(await gitDefaults())?.organization ??
+				(await packageAuthor()).author ??
+				(await githubCliUser()),
 			packageData: async () => {
 				const original = await packageData();
 

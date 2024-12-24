@@ -3,6 +3,7 @@ import { BaseOptions } from "../base.js";
 export const optionsBase = {
 	access: "public",
 	description: "Test description",
+	directory: ".",
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",

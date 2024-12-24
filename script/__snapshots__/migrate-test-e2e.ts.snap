@@ -227,7 +227,7 @@ exports[`expected file changes > package.json 1`] = `
 +++ b/package.json
 @@ ... @@
  		"lint-staged": "15.2.11",
- 		"markdownlint": "0.37.1",
+ 		"markdownlint": "0.37.2",
  		"markdownlint-cli": "0.43.0",
 +		"prettier": "^3.4.2",
  		"prettier-plugin-curly": "0.3.1",

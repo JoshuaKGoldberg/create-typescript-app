@@ -15,10 +15,24 @@ vi.mock("node:fs/promises", () => ({
 }));
 
 const mockChdir = vi.fn();
+const mockCwd = "/path/to/cwd";
 
 vi.mock("node:process", () => ({
 	get chdir() {
 		return mockChdir;
+	},
+	cwd() {
+		return mockCwd;
+	},
+}));
+
+const mock$$ = vi.fn();
+
+const mock$ = vi.fn().mockReturnValue(mock$$);
+
+vi.mock("execa", () => ({
+	get $() {
+		return mock$;
 	},
 }));
 
@@ -28,7 +42,7 @@ describe("createAndEnterGitDirectory", () => {
 
 		const actual = await createAndEnterGitDirectory(".");
 
-		expect(actual).toBe(false);
+		expect(actual).toBeUndefined();
 		expect(mockMkdir).not.toHaveBeenCalled();
 	});
 
@@ -37,11 +51,11 @@ describe("createAndEnterGitDirectory", () => {
 
 		const actual = await createAndEnterGitDirectory(".");
 
-		expect(actual).toBe(true);
+		expect(actual).toBe(mockCwd);
 		expect(mockMkdir).not.toHaveBeenCalled();
 	});
 
-	it("returns false and doesn't run fs.chdir when the directory is a child directory with children", async () => {
+	it("returns false and doesn't run process.chdir when the directory is a child directory with children", async () => {
 		const directory = "dir";
 		mockReaddir
 			.mockResolvedValueOnce([directory])
@@ -49,17 +63,20 @@ describe("createAndEnterGitDirectory", () => {
 
 		const actual = await createAndEnterGitDirectory(directory);
 
-		expect(actual).toBe(false);
+		expect(actual).toBeUndefined();
 		expect(mockChdir).not.toHaveBeenCalled();
+		expect(mock$).not.toHaveBeenCalled();
 	});
 
-	it("returns true and runs fs.chdir when the directory is a child directory that doesn't exist", async () => {
+	it("returns true and runs process.chdir when the directory is a child directory that doesn't exist", async () => {
 		const directory = "dir";
 		mockReaddir.mockResolvedValueOnce([directory]).mockResolvedValueOnce([]);
 
 		const actual = await createAndEnterGitDirectory(directory);
 
-		expect(actual).toBe(true);
+		expect(actual).toBe(mockCwd);
 		expect(mockChdir).toHaveBeenCalledWith(directory);
+		expect(mock$).toHaveBeenCalledWith({ cwd: mockCwd });
+		expect(mock$$).toHaveBeenCalledWith(["git init -b main"]);
 	});
 });

@@ -37,7 +37,7 @@ These required options determine the options that will be substituted into the t
 - `--description` _(`string`)_: Sentence case description of the repository (e.g. `Quickstart-friendly TypeScript package with lots of great repository tooling. ✨`)
 - `--owner` _(`string`)_: GitHub organization or user the repository is underneath (e.g. `JoshuaKGoldberg`)
 - `--repository` _(`string`)_: The kebab-case name of the repository (e.g. `create-typescript-app`)
-- `--title` _(`string`)_: Title Case title for the repository to be used in documentation (e.g. `Create TypeScript App`)
+- `--title` _(`string`)_: Title Case title for the repository (e.g. `Create TypeScript App`)
 
 For example, pre-populating all core required options and also creating a new repository:
 
@@ -53,16 +53,16 @@ The setup scripts also allow for optional overrides of the following inputs whos
 
 - `--access` _(`"public" | "restricted"`)_: Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with (by default, `"public"`)
 - `--author` _(`string`)_: Username on npm to publish packages under (by default, an existing npm author, or the currently logged in npm user, or `owner.toLowerCase()`)
-- `--bin` _(`string`)_: value to set in `package.json`'s `"bin"` property, per [FAQs > How can I use `bin`?](./FAQs.md#how-can-i-use-bin)
+- `--bin` _(`string`)_: Value to set in `package.json`'s `"bin"` property, per [FAQs > How can I use `bin`?](./FAQs.md#how-can-i-use-bin)
 - `--directory` _(`string`)_: Directory to create the repository in (by default, the same name as the repository)
 - `--email` _(`string`)_: Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)
   - Optionally, `--email-github` _(`string`)_ and/or `--email-npm` _(`string`)_ may be provided to use different emails in `.md` files and `package.json`, respectively
 - `--funding` _(`string`)_: GitHub organization or username to mention in `funding.yml` (by default, `owner`)
-- `--guide` _(`string`)_: Link to a contribution guide to place at the top of the development docs
+- `--guide` _(`string`)_: Link to a contribution guide to place at the top of development docs
   - `--guide-title` _(`string`)_: If `--guide` is provided or detected from an existing DEVELOPMENT.md, the text title to place in the guide link
 - `--keywords` _(`string[]`)_: Any number of keywords to include in `package.json` (by default, none)
   - This can be specified any number of times, like `--keywords apple --keywords "banana cherry"`
-- `--logo` _(`string`)_: Local image file in the repository to display near the top of the README.md as a logo
+- `--logo` _(`string`)_: Local image file in the repository to display near the top of the README.md
   - `--logo-alt` _(`string`)_: If `--logo` is provided or detected from an existing README.md, alt text that describes the image (will be prompted for if not provided)
 - `--preserve-generated-from` _(`boolean`)_: Whether to keep the GitHub repository _generated from_ notice (by default, `false`)
 

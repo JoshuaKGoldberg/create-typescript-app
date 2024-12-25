@@ -68,6 +68,18 @@ export async function createRootFiles(options: Options) {
 					"@release-it/conventional-changelog": {
 						infile: "CHANGELOG.md",
 						preset: "angular",
+						types: [
+							{ section: "Features", type: "feat" },
+							{ section: "Bug Fixes", type: "fix" },
+							{ section: "Performance Improvements", type: "perf" },
+							{ hidden: true, type: "build" },
+							{ hidden: true, type: "chore" },
+							{ hidden: true, type: "ci" },
+							{ hidden: true, type: "docs" },
+							{ hidden: true, type: "refactor" },
+							{ hidden: true, type: "style" },
+							{ hidden: true, type: "test" },
+						],
 					},
 				},
 			}),

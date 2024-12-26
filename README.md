@@ -5,7 +5,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 51" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-51-21bb42.svg" /></a>
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 52" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-52-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
@@ -128,9 +128,10 @@ Thanks! 💖
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/vasanth9"><img src="https://avatars.githubusercontent.com/u/42891954?v=4?s=100" width="100px;" alt="Vasanth Kumar Cheepurupalli"/><br /><sub><b>Vasanth Kumar Cheepurupalli</b></sub></a><br /><a href="#code-vasanth9" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/xl4624"><img src="https://avatars.githubusercontent.com/u/116298054?v=4?s=100" width="100px;" alt="Xiaomin Liu"/><br /><sub><b>Xiaomin Liu</b></sub></a><br /><a href="#code-xl4624" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/lcforbes"><img src="https://avatars.githubusercontent.com/u/42080532?v=4?s=100" width="100px;" alt="lcforbes"/><br /><sub><b>lcforbes</b></sub></a><br /><a href="#bug-lcforbes" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://nandertga.ddns.net"><img src="https://avatars.githubusercontent.com/u/65074195?v=4?s=100" width="100px;" alt="nandertga"/><br /><sub><b>nandertga</b></sub></a><br /><a href="#code-nandertga" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/michaelfaith"><img src="https://avatars.githubusercontent.com/u/8071845?v=4?s=100" width="100px;" alt="michael faith"/><br /><sub><b>michael faith</b></sub></a><br /><a href="#code-michaelfaith" title="Code">💻</a></td>
     </tr>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://nandertga.ddns.net"><img src="https://avatars.githubusercontent.com/u/65074195?v=4?s=100" width="100px;" alt="nandertga"/><br /><sub><b>nandertga</b></sub></a><br /><a href="#code-nandertga" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rubiesonthesky"><img src="https://avatars.githubusercontent.com/u/2591240?v=4?s=100" width="100px;" alt="rubiesonthesky"/><br /><sub><b>rubiesonthesky</b></sub></a><br /><a href="#ideas-rubiesonthesky" title="Ideas, Planning, & Feedback">🤔</a> <a href="#code-rubiesonthesky" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TAKANOME-DEV"><img src="https://avatars.githubusercontent.com/u/79809121?v=4?s=100" width="100px;" alt="takanomedev"/><br /><sub><b>takanomedev</b></sub></a><br /><a href="#code-TAKANOME-DEV" title="Code">💻</a></td>
     </tr>

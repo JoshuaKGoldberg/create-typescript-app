@@ -27,7 +27,7 @@ describe("finalize", () => {
 		expect(documentation).toBeUndefined();
 	});
 
-	it("filters known headings when .github/DEVELOPMENT.md exists", async () => {
+	it("returns the updated description when neither description nor name match the current package.json", async () => {
 		const updated = "Updated description.";
 
 		mockSourcePackageJsonDescription.mockReturnValueOnce(

@@ -25,7 +25,7 @@ export const base = createBase({
 	options: {
 		access: z
 			.union([z.literal("public"), z.literal("restricted")])
-			.optional()
+			.default("public")
 			.describe("which `npm publish --access` to release npm packages with"),
 		author: z
 			.string()

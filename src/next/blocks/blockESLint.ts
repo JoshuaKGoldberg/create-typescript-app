@@ -244,7 +244,7 @@ function printExtensionRules(rules: z.infer<typeof zExtensionRules>) {
 	return [
 		"{",
 		...rules.flatMap((group) => [
-			group.comment ? `// ${group.comment}\n` : "",
+			group.comment ? `\n\n// ${group.comment}\n` : "",
 			...Object.entries(group.entries).map(
 				([ruleName, options]) => `"${ruleName}": ${JSON.stringify(options)},`,
 			),

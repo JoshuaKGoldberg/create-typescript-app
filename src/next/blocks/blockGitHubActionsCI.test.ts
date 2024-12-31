@@ -198,9 +198,10 @@ describe("blockGitHubActionsCI", () => {
 						name: "Validate",
 						steps: [
 							{
+								env: { VAR_ENV: "true" },
 								if: "always()",
 								run: "pnpm validate",
-								with: { ENV_VAR: "true" },
+								with: { VAR_WITH: "true" },
 							},
 						],
 					},
@@ -269,10 +270,12 @@ describe("blockGitHubActionsCI", () => {
 			    steps:
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
-			      - if: always()
+			      - env:
+			          VAR_ENV: "true"
+			        if: always()
 			        run: pnpm validate
 			        with:
-			          ENV_VAR: "true"
+			          VAR_WITH: "true"
 
 			name: CI
 

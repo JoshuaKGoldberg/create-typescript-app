@@ -18,6 +18,7 @@ export const blockGitHubActionsCI = base.createBlock({
 					steps: z.array(
 						z.intersection(
 							z.object({
+								env: z.record(z.string(), z.string()).optional(),
 								if: z.string().optional(),
 								with: z.record(z.string(), z.string()).optional(),
 							}),

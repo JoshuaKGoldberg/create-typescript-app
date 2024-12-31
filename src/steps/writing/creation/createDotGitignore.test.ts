@@ -10,7 +10,6 @@ describe("createDotGitignore", () => {
 			"/coverage
 			/lib
 			/node_modules
-
 			"
 		`);
 	});
@@ -21,7 +20,6 @@ describe("createDotGitignore", () => {
 		expect(actual).toMatchInlineSnapshot(`
 			"/lib
 			/node_modules
-
 			"
 		`);
 	});

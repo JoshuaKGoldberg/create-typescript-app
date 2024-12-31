@@ -1,6 +1,5 @@
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base } from "../base.js";
-import { blockPrettier } from "./blockPrettier.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { CommandPhase } from "./phases.js";
 
@@ -11,9 +10,6 @@ export const blockAllContributors = base.createBlock({
 	produce({ options }) {
 		return {
 			addons: [
-				blockPrettier({
-					ignores: ["/.all-contributorsrc"],
-				}),
 				blockRepositorySecrets({
 					secrets: [
 						{
@@ -57,7 +53,7 @@ export const blockAllContributors = base.createBlock({
 				{
 					commands: [
 						`pnpx all-contributors-cli generate`,
-						`pnpx all-contributors-cli add ${options.owner} code,content,docs,ideas,infra,maintenance,projectManagement,tool`,
+						`pnpx all-contributors-cli add ${options.owner} code,content,doc,ideas,infra,maintenance,projectManagement,tool`,
 					],
 					phase: CommandPhase.Process,
 				},

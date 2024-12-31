@@ -29,7 +29,6 @@ export async function createRootFiles(options: Options) {
 		}),
 		".nvmrc": `20.18.0\n`,
 		".prettierignore": formatIgnoreFile([
-			...(options.excludeAllContributors ? [] : ["/.all-contributorsrc"]),
 			"/.husky",
 			...(options.excludeTests ? [] : ["/coverage"]),
 			"/lib",

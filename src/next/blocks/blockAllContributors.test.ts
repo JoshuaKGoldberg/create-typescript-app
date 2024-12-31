@@ -13,14 +13,6 @@ describe("blockAllContributors", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
-			          "/.all-contributorsrc",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "secrets": [
 			          {
 			            "description": "a GitHub PAT with repo and workflow permissions",
@@ -61,7 +53,7 @@ describe("blockAllContributors", () => {
 			    {
 			      "commands": [
 			        "pnpx all-contributors-cli generate",
-			        "pnpx all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx all-contributors-cli add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },
@@ -89,14 +81,6 @@ describe("blockAllContributors", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/.all-contributorsrc",
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			    {
 			      "addons": {
 			        "secrets": [
@@ -139,7 +123,7 @@ describe("blockAllContributors", () => {
 			    {
 			      "commands": [
 			        "pnpx all-contributors-cli generate",
-			        "pnpx all-contributors-cli add test-owner code,content,docs,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx all-contributors-cli add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },

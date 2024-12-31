@@ -26,7 +26,6 @@ export const base = createBase({
 	options: {
 		access: z
 			.union([z.literal("public"), z.literal("restricted")])
-			.default("public")
 			.describe("which `npm publish --access` to release npm packages with"),
 		author: z
 			.string()
@@ -179,12 +178,11 @@ export const base = createBase({
 			parsePackageAuthor(await packageData()),
 		);
 
-		const author = lazyValue(async () =>
-			(
+		const author = lazyValue(
+			async () =>
 				(await packageAuthor()).author ??
 				(await npmDefaults())?.name ??
-				options.owner
-			)?.toLowerCase(),
+				options.owner,
 		);
 
 		const node = lazyValue(async () => {
@@ -200,6 +198,7 @@ export const base = createBase({
 		const version = lazyValue(async () => (await packageData()).version);
 
 		return {
+			access: "public" as const,
 			author,
 			bin: async () => (await packageData()).bin,
 			contributors: allContributors,

@@ -13,6 +13,7 @@ describe("blockREADME", () => {
 					alt: "My logo",
 					src: "img.jpg",
 				},
+				usage: "Use it.",
 			},
 		});
 
@@ -39,14 +40,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			Use it.
 
 			## Development
 
@@ -101,14 +95,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			undefined
 
 			## Development
 
@@ -155,14 +142,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			undefined
 
 			## Development
 
@@ -212,14 +192,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			undefined
 
 			## Development
 

@@ -259,7 +259,7 @@ describe("blockESLint", () => {
 			    },
 			    {
 			      "commands": [
-			        "rm .eslintrc* .eslintignore",
+			        "rm .eslintrc* .eslintignore eslint.config.*",
 			      ],
 			      "phase": 0,
 			    },

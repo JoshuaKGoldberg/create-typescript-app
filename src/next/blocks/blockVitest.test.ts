@@ -499,7 +499,7 @@ describe("blockVitest", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "rm .github/codecov.yml .mocha* codecov.yml jest.config.*",
+			        "rm .github/codecov.yml .mocha* codecov.yml jest.config.* vitest.config.*",
 			      ],
 			      "phase": 0,
 			    },

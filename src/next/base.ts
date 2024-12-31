@@ -15,6 +15,7 @@ import { readEmails } from "../shared/options/createOptionDefaults/readEmails.js
 import { readFunding } from "../shared/options/createOptionDefaults/readFunding.js";
 import { readGuide } from "../shared/options/createOptionDefaults/readGuide.js";
 import { readPackageData } from "../shared/packages.js";
+import { readFileSafe } from "../shared/readFileSafe.js";
 import { tryCatchLazyValueAsync } from "../shared/tryCatchLazyValueAsync.js";
 import { AllContributorsData } from "../shared/types.js";
 import { readDescription } from "./readDescription.js";
@@ -222,7 +223,7 @@ export const base = createBase({
 				options.repository ??
 				(await gitDefaults())?.name ??
 				(await packageData()).name,
-			...readDefaultsFromReadme(readme, options.repository),
+			...readDefaultsFromReadme(readme),
 			version,
 		};
 	},

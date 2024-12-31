@@ -39,14 +39,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			undefined
 
 			## Development
 
@@ -101,14 +94,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			undefined
 
 			## Development
 
@@ -155,14 +141,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			undefined
 
 			## Development
 
@@ -212,14 +191,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			undefined
 
 			## Development
 

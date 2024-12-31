@@ -156,6 +156,8 @@ export const base = createBase({
 			)?.stdout?.toString();
 		});
 
+		const readme = lazyValue(async () => await readFileSafe("README.md", ""));
+
 		// TODO: Make these all use take
 
 		const gitDefaults = tryCatchLazyValueAsync(async () =>
@@ -196,7 +198,7 @@ export const base = createBase({
 			author,
 			bin: async () => (await packageData()).bin,
 			contributors: allContributors,
-			description: async () => await readDescription(packageData),
+			description: async () => await readDescription(packageData, readme),
 			documentation,
 			email: async () => readEmails(npmDefaults, packageAuthor),
 			funding: readFunding,
@@ -220,7 +222,7 @@ export const base = createBase({
 				options.repository ??
 				(await gitDefaults())?.name ??
 				(await packageData()).name,
-			...readDefaultsFromReadme(),
+			...readDefaultsFromReadme(readme, options.repository),
 			version,
 		};
 	},

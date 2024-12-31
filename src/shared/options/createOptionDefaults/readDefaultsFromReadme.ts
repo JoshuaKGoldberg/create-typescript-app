@@ -1,11 +1,12 @@
 import lazyValue from "lazy-value";
 
-import { readFileSafe } from "../../readFileSafe.js";
 import { readLogoSizing } from "../readLogoSizing.js";
+import { getUsageFromReadme } from "./getUsageFromReadme.js";
 
-export function readDefaultsFromReadme() {
-	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
-
+export function readDefaultsFromReadme(
+	readme: () => Promise<string>,
+	repository: string | undefined,
+) {
 	const imageTag = lazyValue(
 		async () => /\n<img.+src=.+>/.exec(await readme())?.[0],
 	);
@@ -36,6 +37,19 @@ export function readDefaultsFromReadme() {
 			const text = await readme();
 			return (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ??
 				/^# (.+)/.exec(text))?.[1];
+		},
+		usage: async () => {
+			return (
+				getUsageFromReadme(await readme()) ??
+				`\`\`\`shell
+npm i ${repository}
+\`\`\`
+\`\`\`ts
+import { greet } from "${repository}";
+
+greet("Hello, world! 💖");
+\`\`\``
+			);
 		},
 	};
 }

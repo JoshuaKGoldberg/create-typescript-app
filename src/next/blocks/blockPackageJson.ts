@@ -1,3 +1,4 @@
+import * as htmlToText from "html-to-text";
 import removeUndefinedObjects from "remove-undefined-objects";
 import sortPackageJson from "sort-package-json";
 import { z } from "zod";
@@ -44,6 +45,7 @@ export const blockPackageJson = base.createBlock({
 			...options.packageData?.devDependencies,
 			...addons.properties.devDependencies,
 		};
+		const description = htmlToText.convert(options.description);
 
 		return {
 			files: {
@@ -56,7 +58,7 @@ export const blockPackageJson = base.createBlock({
 							dependencies: Object.keys(dependencies).length
 								? dependencies
 								: undefined,
-							description: options.description,
+							description,
 							devDependencies: Object.keys(devDependencies).length
 								? devDependencies
 								: undefined,

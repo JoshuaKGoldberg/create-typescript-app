@@ -12,19 +12,18 @@ vi.mock("./blocks/sourcePackageJson", () => ({
 	},
 }));
 
-describe("finalize", () => {
+describe("readDescription", () => {
 	it("returns undefined when the description matches the current package.json description", async () => {
 		const existing = "Same description.";
 
 		mockSourcePackageJsonDescription.mockReturnValueOnce(existing);
 
-		const documentation = await readDescription(() =>
-			Promise.resolve({
-				description: existing,
-			}),
+		const description = await readDescription(
+			() => Promise.resolve({ description: existing }),
+			() => Promise.resolve(""),
 		);
 
-		expect(documentation).toBeUndefined();
+		expect(description).toBeUndefined();
 	});
 
 	it("returns the updated description when neither description nor name match the current package.json", async () => {
@@ -34,12 +33,27 @@ describe("finalize", () => {
 			"Existing description",
 		);
 
-		const documentation = await readDescription(() =>
-			Promise.resolve({
-				description: updated,
-			}),
+		const description = await readDescription(
+			() => Promise.resolve({ description: updated }),
+			() => Promise.resolve(""),
 		);
 
-		expect(documentation).toBe(updated);
+		expect(description).toBe(updated);
+	});
+
+	it("uses the README.md HTML description when it matches what's inferred from package.json plus HTML tags", async () => {
+		const plaintext = "Updated description.";
+		const encoded = "Updated <code>description</code>.";
+
+		mockSourcePackageJsonDescription.mockReturnValueOnce(
+			"Existing description",
+		);
+
+		const description = await readDescription(
+			() => Promise.resolve({ description: plaintext }),
+			() => Promise.resolve(`<p align="center">${encoded}</p>`),
+		);
+
+		expect(description).toBe(encoded);
 	});
 });

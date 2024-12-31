@@ -1,7 +1,6 @@
 import { PartialPackageData } from "../shared/types.js";
 import { sourcePackageJson } from "./blocks/sourcePackageJson.js";
-
-const paragraphStarter = `<p align="center">`;
+import { readDescriptionFromReadme } from "./readDescriptionFromReadme.js";
 
 export async function readDescription(
 	getPackageData: () => Promise<PartialPackageData>,
@@ -20,25 +19,4 @@ export async function readDescription(
 	}
 
 	return existing === inferred ? undefined : inferred;
-}
-
-export async function readDescriptionFromReadme(
-	getReadme: () => Promise<string>,
-) {
-	const readme = await getReadme();
-
-	const paragraphStart = readme.indexOf(paragraphStarter);
-	if (paragraphStart === -1) {
-		return undefined;
-	}
-
-	const paragraphEnd = readme.indexOf("</p>");
-	if (paragraphEnd < paragraphStart + paragraphStarter.length + 2) {
-		return undefined;
-	}
-
-	return readme
-		.slice(paragraphStart + paragraphStarter.length, paragraphEnd)
-		.replaceAll(/\s+/gu, " ")
-		.trim();
 }

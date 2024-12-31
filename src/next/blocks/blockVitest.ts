@@ -37,7 +37,7 @@ export const blockVitest = base.createBlock({
 			scripts: [
 				{
 					commands: [
-						"rm .github/codecov.yml .mocha* codecov.yml jest.config.*",
+						"rm .github/codecov.yml .mocha* codecov.yml jest.config.* vitest.config.*",
 					],
 					phase: CommandPhase.Migrations,
 				},

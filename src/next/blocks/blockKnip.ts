@@ -3,10 +3,21 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { getPackageDependencies, getPackageDependency } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockKnip = base.createBlock({
 	about: {
 		name: "Knip",
+	},
+	migrate() {
+		return {
+			scripts: [
+				{
+					commands: ["rm .knip* knip.*"],
+					phase: CommandPhase.Migrations,
+				},
+			],
+		};
 	},
 	produce() {
 		return {

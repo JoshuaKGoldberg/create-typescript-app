@@ -22,12 +22,15 @@ export const blockVitest = base.createBlock({
 	addons: {
 		coverage: z
 			.object({
-				directory: z.string(),
+				directory: z.string().optional(),
+				exclude: z.array(z.string()).optional(),
 				flags: z.string().optional(),
+				include: z.array(z.string()).optional(),
 			})
-			.default({ directory: "coverage" }),
+			.default({}),
+		env: z.record(z.string(), z.string()).default({}),
 		exclude: z.array(z.string()).default([]),
-		include: z.array(z.string()).default([]),
+		flags: z.array(z.string()).default([]),
 	},
 	migrate() {
 		return {
@@ -42,14 +45,14 @@ export const blockVitest = base.createBlock({
 		};
 	},
 	produce({ addons }) {
-		const { coverage, exclude = [], include = [] } = addons;
+		const { coverage, env, exclude = [], flags } = addons;
+		const coverageDirectory = coverage.directory ?? "coverage";
 		const excludeText = JSON.stringify(exclude);
-		const includeText = JSON.stringify(include);
 
 		return {
 			addons: [
 				blockCSpell({
-					ignores: [coverage.directory],
+					ignores: [coverageDirectory],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -90,7 +93,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 							],
 						},
 					],
-					ignores: [coverage.directory, "**/*.snap"],
+					ignores: [coverageDirectory, "**/*.snap"],
 					imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
 				}),
 				blockExampleFiles({
@@ -143,7 +146,7 @@ describe("greet", () => {
 					},
 				}),
 				blockGitignore({
-					ignores: [`/${coverage.directory}`],
+					ignores: [`/${coverageDirectory}`],
 				}),
 				blockGitHubActionsCI({
 					jobs: [
@@ -152,6 +155,7 @@ describe("greet", () => {
 							steps: [
 								{ run: "pnpm run test --coverage" },
 								{
+									...(Object.keys(env).length && { env }),
 									if: "always()",
 									uses: "codecov/codecov-action@v3",
 									...(coverage.flags && { with: { flags: coverage.flags } }),
@@ -177,12 +181,12 @@ describe("greet", () => {
 							"vitest",
 						),
 						scripts: {
-							test: "vitest",
+							test: `vitest ${flags.join(" ")}`.trim(),
 						},
 					},
 				}),
 				blockPrettier({
-					ignores: [`/${coverage.directory}`],
+					ignores: [`/${coverageDirectory}`],
 				}),
 				blockTSup({
 					entry: ["!src/**/*.test.*"],
@@ -212,8 +216,12 @@ export default defineConfig({
 		clearMocks: true,
 		coverage: {
 			all: true,
-			exclude: ${excludeText},
-			include: ${includeText},
+			${
+				coverage.exclude?.length
+					? `exclude: ${JSON.stringify(coverage.exclude)},
+			`
+					: ""
+			}include: ${JSON.stringify(coverage.include)},
 			reporter: ["html", "lcov"],
 		},
 		exclude: [${excludeText.slice(1, excludeText.length - 1)}, "node_modules"],

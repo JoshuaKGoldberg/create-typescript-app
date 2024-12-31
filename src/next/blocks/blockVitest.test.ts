@@ -239,8 +239,7 @@ describe("blockVitest", () => {
 					clearMocks: true,
 					coverage: {
 						all: true,
-						exclude: [],
-						include: [],
+						include: undefined,
 						reporter: ["html", "lcov"],
 					},
 					exclude: [, "node_modules"],
@@ -488,8 +487,7 @@ describe("blockVitest", () => {
 					clearMocks: true,
 					coverage: {
 						all: true,
-						exclude: [],
-						include: [],
+						include: undefined,
 						reporter: ["html", "lcov"],
 					},
 					exclude: [, "node_modules"],
@@ -515,10 +513,11 @@ describe("blockVitest", () => {
 			addons: {
 				coverage: {
 					directory: "coverage*",
+					exclude: ["other"],
 					flags: "unit",
+					include: ["src/"],
 				},
 				exclude: ["lib/"],
-				include: ["src/"],
 			},
 			options: optionsBase,
 		});
@@ -755,7 +754,7 @@ describe("blockVitest", () => {
 					clearMocks: true,
 					coverage: {
 						all: true,
-						exclude: ["lib/"],
+						exclude: ["other"],
 						include: ["src/"],
 						reporter: ["html", "lcov"],
 					},

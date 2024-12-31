@@ -16,6 +16,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"execa",
 			"git-remote-origin-url",
 			"git-url-parse",
+			"html-to-text",
 			"image-size",
 			"input-from-file",
 			"input-from-file-json",
@@ -46,6 +47,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 		[
 			"@octokit/request-error",
 			"@types/git-url-parse",
+			"@types/html-to-text",
 			"@types/js-yaml",
 			"@types/parse-author",
 			"all-contributors-cli",

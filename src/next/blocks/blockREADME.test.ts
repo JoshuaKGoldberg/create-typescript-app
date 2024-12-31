@@ -4,11 +4,16 @@ import { describe, expect, test } from "vitest";
 import { blockREADME } from "./blockREADME.js";
 import { optionsBase } from "./options.fakes.js";
 
+const options = {
+	...optionsBase,
+	usage: "Use it.",
+};
+
 describe("blockREADME", () => {
 	test("options.logo without sizing", () => {
 		const creation = testBlock(blockREADME, {
 			options: {
-				...optionsBase,
+				...options,
 				logo: {
 					alt: "My logo",
 					src: "img.jpg",
@@ -39,14 +44,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			Use it.
 
 			## Development
 
@@ -68,7 +66,7 @@ describe("blockREADME", () => {
 	test("options.logo with sizing", () => {
 		const creation = testBlock(blockREADME, {
 			options: {
-				...optionsBase,
+				...options,
 				logo: {
 					alt: "My logo",
 					height: 100,
@@ -101,14 +99,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			Use it.
 
 			## Development
 
@@ -129,7 +120,7 @@ describe("blockREADME", () => {
 
 	test("without addons", () => {
 		const creation = testBlock(blockREADME, {
-			options: optionsBase,
+			options,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -155,14 +146,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			Use it.
 
 			## Development
 
@@ -186,7 +170,7 @@ describe("blockREADME", () => {
 			addons: {
 				notices: ["> Hello, world! 💖"],
 			},
-			options: optionsBase,
+			options,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -212,14 +196,7 @@ describe("blockREADME", () => {
 
 			## Usage
 
-			\`\`\`shell
-			npm i test-repository
-			\`\`\`
-			\`\`\`ts
-			import { greet } from "test-repository";
-
-			greet("Hello, world! 💖");
-			\`\`\`
+			Use it.
 
 			## Development
 

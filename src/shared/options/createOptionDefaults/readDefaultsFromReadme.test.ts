@@ -13,17 +13,20 @@ vi.mock("../readLogoSizing.js", () => ({
 describe("readDefaultsFromReadme", () => {
 	describe("logo", () => {
 		it("defaults to undefined when it cannot be found", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`nothing.`),
+			const logo = await readDefaultsFromReadme(
+				() => Promise.resolve(`nothing.`),
+				undefined,
 			).logo();
 
 			expect(logo).toBeUndefined();
 		});
 
 		it("parses when found in an unquoted string", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 <img src=abc/def.jpg/>`),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -33,9 +36,11 @@ describe("readDefaultsFromReadme", () => {
 		});
 
 		it("parses when found in a single quoted string", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 <img src='abc/def.jpg'/>`),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -45,9 +50,11 @@ describe("readDefaultsFromReadme", () => {
 		});
 
 		it("parses when found in a double quoted string", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 <img src="abc/def.jpg"/>`),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -57,9 +64,11 @@ describe("readDefaultsFromReadme", () => {
 		});
 
 		it("includes alt text when it exists in double quotes", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 <img alt="Project logo: a fancy circle" src="abc/def.jpg"/>`),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -69,9 +78,11 @@ describe("readDefaultsFromReadme", () => {
 		});
 
 		it("includes alt text when it exists in single quotes", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 <img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -85,9 +96,11 @@ describe("readDefaultsFromReadme", () => {
 
 			mockReadLogoSizing.mockReturnValueOnce(sizing);
 
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 <img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -98,11 +111,13 @@ describe("readDefaultsFromReadme", () => {
 		});
 
 		it("parses when found after a badge image", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 		<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 48" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-48-21bb42.svg" /></a>
 <img src=abc/def.jpg/>
 `),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -112,8 +127,9 @@ describe("readDefaultsFromReadme", () => {
 		});
 
 		it("parses when found after an h1 and many badge images", async () => {
-			const logo = await readDefaultsFromReadme(() =>
-				Promise.resolve(`
+			const logo = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
 <h1 align="center">Create TypeScript App</h1>
 
 <p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. ❤️‍🔥</p>
@@ -133,6 +149,7 @@ describe("readDefaultsFromReadme", () => {
 
 <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/create-typescript-app.png">
 `),
+				undefined,
 			).logo();
 
 			expect(logo).toEqual({
@@ -144,32 +161,36 @@ describe("readDefaultsFromReadme", () => {
 
 	describe("title", () => {
 		it("defaults to undefined when it cannot be found", async () => {
-			const title = await readDefaultsFromReadme(() =>
-				Promise.resolve(`nothing`),
+			const title = await readDefaultsFromReadme(
+				() => Promise.resolve(`nothing`),
+				undefined,
 			).title();
 
 			expect(title).toBeUndefined();
 		});
 
 		it('reads title as markdown from "README.md" when it exists', async () => {
-			const title = await readDefaultsFromReadme(() =>
-				Promise.resolve(`# My Awesome Package`),
+			const title = await readDefaultsFromReadme(
+				() => Promise.resolve(`# My Awesome Package`),
+				undefined,
 			).title();
 
 			expect(title).toBe("My Awesome Package");
 		});
 
 		it('reads title as HTML from "README.md" when it exists', async () => {
-			const title = await readDefaultsFromReadme(() =>
-				Promise.resolve('<h1 align="center">My Awesome Package</h1>'),
+			const title = await readDefaultsFromReadme(
+				() => Promise.resolve('<h1 align="center">My Awesome Package</h1>'),
+				undefined,
 			).title();
 
 			expect(title).toBe("My Awesome Package");
 		});
 
 		it("returns undefined when title does not exist", async () => {
-			const title = await readDefaultsFromReadme(() =>
-				Promise.resolve(`Other text.`),
+			const title = await readDefaultsFromReadme(
+				() => Promise.resolve(`Other text.`),
+				undefined,
 			).title();
 
 			expect(title).toBeUndefined();

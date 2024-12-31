@@ -1,3 +1,5 @@
+import * as htmlToText from "html-to-text";
+
 import { base } from "../base.js";
 
 export const blockRepositorySettings = base.createBlock({
@@ -5,6 +7,8 @@ export const blockRepositorySettings = base.createBlock({
 		name: "Repository Settings",
 	},
 	produce({ options }) {
+		const description = htmlToText.convert(options.description);
+
 		return {
 			requests: [
 				{
@@ -16,7 +20,7 @@ export const blockRepositorySettings = base.createBlock({
 							allow_rebase_merge: false,
 							allow_squash_merge: true,
 							delete_branch_on_merge: true,
-							description: options.description,
+							description,
 							has_wiki: false,
 							owner: options.owner,
 							repo: options.repository,

@@ -7,6 +7,7 @@ import npmUser from "npm-user";
 
 import { readDescription } from "../../../next/readDescription.js";
 import { readPackageData } from "../../packages.js";
+import { readFileSafe } from "../../readFileSafe.js";
 import { tryCatchAsync } from "../../tryCatchAsync.js";
 import { tryCatchLazyValueAsync } from "../../tryCatchLazyValueAsync.js";
 import { PromptedOptions } from "../../types.js";
@@ -30,11 +31,13 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 		parsePackageAuthor(await packageData()),
 	);
 
+	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
+
 	return {
 		author: async () =>
 			(await packageAuthor()).author ?? (await npmDefaults())?.name,
 		bin: async () => (await packageData()).bin,
-		description: async () => await readDescription(packageData),
+		description: async () => await readDescription(packageData, readme),
 		email: async () => readEmails(npmDefaults, packageAuthor),
 		funding: async () =>
 			await tryCatchAsync(async () =>
@@ -50,6 +53,6 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 			promptedOptions?.repository ??
 			(await gitDefaults())?.name ??
 			(await packageData()).name,
-		...readDefaultsFromReadme(),
+		...readDefaultsFromReadme(readme),
 	};
 }

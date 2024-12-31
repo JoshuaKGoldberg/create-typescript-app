@@ -1,11 +1,8 @@
 import lazyValue from "lazy-value";
 
-import { readFileSafe } from "../../readFileSafe.js";
 import { readLogoSizing } from "../readLogoSizing.js";
 
-export function readDefaultsFromReadme() {
-	const readme = lazyValue(async () => await readFileSafe("README.md", ""));
-
+export function readDefaultsFromReadme(readme: () => Promise<string>) {
 	const imageTag = lazyValue(
 		async () => /\n<img.+src=.+>/.exec(await readme())?.[0],
 	);

@@ -2,14 +2,6 @@ import { describe, expect, it, vi } from "vitest";
 
 import { readDefaultsFromReadme } from "./readDefaultsFromReadme.js";
 
-const mockReadFileSafe = vi.fn();
-
-vi.mock("../../readFileSafe.js", () => ({
-	get readFileSafe() {
-		return mockReadFileSafe;
-	},
-}));
-
 const mockReadLogoSizing = vi.fn().mockResolvedValue({});
 
 vi.mock("../readLogoSizing.js", () => ({
@@ -21,21 +13,18 @@ vi.mock("../readLogoSizing.js", () => ({
 describe("readDefaultsFromReadme", () => {
 	describe("logo", () => {
 		it("defaults to undefined when it cannot be found", async () => {
-			mockReadFileSafe.mockResolvedValue(`
-nothing.
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`nothing.`),
+			).logo();
 
 			expect(logo).toBeUndefined();
 		});
 
 		it("parses when found in an unquoted string", async () => {
-			mockReadFileSafe.mockResolvedValue(`
-<img src=abc/def.jpg/>
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
+<img src=abc/def.jpg/>`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -44,11 +33,10 @@ nothing.
 		});
 
 		it("parses when found in a single quoted string", async () => {
-			mockReadFileSafe.mockResolvedValue(`
-<img src='abc/def.jpg'/>
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
+<img src='abc/def.jpg'/>`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -57,11 +45,10 @@ nothing.
 		});
 
 		it("parses when found in a double quoted string", async () => {
-			mockReadFileSafe.mockResolvedValue(`
-<img src="abc/def.jpg"/>
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
+<img src="abc/def.jpg"/>`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -70,11 +57,10 @@ nothing.
 		});
 
 		it("includes alt text when it exists in double quotes", async () => {
-			mockReadFileSafe.mockResolvedValue(`
-<img alt="Project logo: a fancy circle" src="abc/def.jpg"/>
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
+<img alt="Project logo: a fancy circle" src="abc/def.jpg"/>`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo: a fancy circle",
@@ -83,11 +69,10 @@ nothing.
 		});
 
 		it("includes alt text when it exists in single quotes", async () => {
-			mockReadFileSafe.mockResolvedValue(`
-<img alt='Project logo: a fancy circle' src='abc/def.jpg'/>,
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
+<img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo: a fancy circle",
@@ -98,13 +83,12 @@ nothing.
 		it("includes sizing when readLogoSizing returns sizing", async () => {
 			const sizing = { height: 117, width: 128 };
 
-			mockReadFileSafe.mockResolvedValue(`
-<img alt='Project logo: a fancy circle' src='abc/def.jpg'/>,
-`);
-
 			mockReadLogoSizing.mockReturnValueOnce(sizing);
 
-			const logo = await readDefaultsFromReadme().logo();
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
+<img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo: a fancy circle",
@@ -114,12 +98,12 @@ nothing.
 		});
 
 		it("parses when found after a badge image", async () => {
-			mockReadFileSafe.mockResolvedValue(`
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
 		<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 48" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-48-21bb42.svg" /></a>
 <img src=abc/def.jpg/>
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo",
@@ -128,7 +112,9 @@ nothing.
 		});
 
 		it("parses when found after an h1 and many badge images", async () => {
-			mockReadFileSafe.mockResolvedValue(`<h1 align="center">Create TypeScript App</h1>
+			const logo = await readDefaultsFromReadme(() =>
+				Promise.resolve(`
+<h1 align="center">Create TypeScript App</h1>
 
 <p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. ❤️‍🔥</p>
 
@@ -146,9 +132,8 @@ nothing.
 </p>
 
 <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/create-typescript-app.png">
-`);
-
-			const logo = await readDefaultsFromReadme().logo();
+`),
+			).logo();
 
 			expect(logo).toEqual({
 				alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
@@ -159,37 +144,33 @@ nothing.
 
 	describe("title", () => {
 		it("defaults to undefined when it cannot be found", async () => {
-			mockReadFileSafe.mockResolvedValue(`
-nothing.
-`);
-
-			const title = await readDefaultsFromReadme().title();
+			const title = await readDefaultsFromReadme(() =>
+				Promise.resolve(`nothing`),
+			).title();
 
 			expect(title).toBeUndefined();
 		});
 
 		it('reads title as markdown from "README.md" when it exists', async () => {
-			mockReadFileSafe.mockResolvedValue(`# My Awesome Package`);
-
-			const title = await readDefaultsFromReadme().title();
+			const title = await readDefaultsFromReadme(() =>
+				Promise.resolve(`# My Awesome Package`),
+			).title();
 
 			expect(title).toBe("My Awesome Package");
 		});
 
 		it('reads title as HTML from "README.md" when it exists', async () => {
-			mockReadFileSafe.mockResolvedValue(
-				'<h1 align="center">My Awesome Package</h1>',
-			);
-
-			const title = await readDefaultsFromReadme().title();
+			const title = await readDefaultsFromReadme(() =>
+				Promise.resolve('<h1 align="center">My Awesome Package</h1>'),
+			).title();
 
 			expect(title).toBe("My Awesome Package");
 		});
 
 		it("returns undefined when title does not exist", async () => {
-			mockReadFileSafe.mockResolvedValue(`Other text.`);
-
-			const title = await readDefaultsFromReadme().title();
+			const title = await readDefaultsFromReadme(() =>
+				Promise.resolve(`Other text.`),
+			).title();
 
 			expect(title).toBeUndefined();
 		});

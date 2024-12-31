@@ -49,7 +49,7 @@ export const base = createBase({
 			.describe("AllContributors contributors to store in .all-contributorsrc"),
 		description: z
 			.string()
-			.describe("sentence case description of the repository"),
+			.describe("'Sentence case.' description of the repository"),
 		directory: z.string(),
 		documentation: z
 			.string()
@@ -123,7 +123,7 @@ export const base = createBase({
 			.describe("additional properties to include in `package.json`"),
 		repository: z
 			.string()
-			.describe("'Sentence case.' description of the repository"),
+			.describe("'kebab-case' or 'PascalCase' title of the repository"),
 		title: z.string().describe("'Title Case' title for the repository"),
 		usage: z
 			.string()

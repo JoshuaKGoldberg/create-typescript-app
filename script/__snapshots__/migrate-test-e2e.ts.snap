@@ -113,7 +113,6 @@ exports[`expected file changes > .prettierignore 1`] = `
 "--- a/.prettierignore
 +++ b/.prettierignore
 @@ ... @@
- /.all-contributorsrc
  /.husky
 -/coverage*
 +/coverage

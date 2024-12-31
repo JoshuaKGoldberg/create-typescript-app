@@ -44,7 +44,14 @@ ${logo}
 
 ## Usage
 
-${options.usage}
+\`\`\`shell
+npm i ${options.repository}
+\`\`\`
+\`\`\`ts
+import { greet } from "${options.repository}";
+
+greet("Hello, world! 💖");
+\`\`\`
 
 ## Development
 

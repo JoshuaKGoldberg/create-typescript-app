@@ -126,6 +126,10 @@ export const base = createBase({
 			.string()
 			.describe("'Sentence case.' description of the repository"),
 		title: z.string().describe("'Title Case' title for the repository"),
+		usage: z
+			.string()
+			.optional()
+			.describe("markdown docs to put in README.md under the ## Usage heading"),
 		version: z
 			.string()
 			.optional()
@@ -223,7 +227,7 @@ export const base = createBase({
 				options.repository ??
 				(await gitDefaults())?.name ??
 				(await packageData()).name,
-			...readDefaultsFromReadme(readme),
+			...readDefaultsFromReadme(readme, options.repository),
 			version,
 		};
 	},

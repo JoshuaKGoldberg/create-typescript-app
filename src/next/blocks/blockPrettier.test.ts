@@ -88,9 +88,11 @@ describe("blockPrettier", () => {
 			  ],
 			  "files": {
 			    ".husky": {
-			      ".gitignore": "_",
+			      ".gitignore": "_
+			",
 			      "pre-commit": [
-			        "npx lint-staged",
+			        "npx lint-staged
+			",
 			        {
 			          "mode": 1911,
 			        },
@@ -197,9 +199,11 @@ describe("blockPrettier", () => {
 			  ],
 			  "files": {
 			    ".husky": {
-			      ".gitignore": "_",
+			      ".gitignore": "_
+			",
 			      "pre-commit": [
-			        "npx lint-staged",
+			        "npx lint-staged
+			",
 			        {
 			          "mode": 1911,
 			        },
@@ -323,9 +327,11 @@ describe("blockPrettier", () => {
 			  ],
 			  "files": {
 			    ".husky": {
-			      ".gitignore": "_",
+			      ".gitignore": "_
+			",
 			      "pre-commit": [
-			        "npx lint-staged",
+			        "npx lint-staged
+			",
 			        {
 			          "mode": 1911,
 			        },

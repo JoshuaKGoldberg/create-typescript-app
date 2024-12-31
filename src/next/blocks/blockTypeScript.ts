@@ -83,10 +83,7 @@ export * from "./types.js";
 						},
 					},
 				}),
-				blockVitest({
-					exclude: ["lib"],
-					include: ["src"],
-				}),
+				blockVitest({ coverage: { include: ["src"] }, exclude: ["lib"] }),
 				blockVSCode({
 					debuggers: options.bin
 						? [

@@ -117,11 +117,13 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
+			        "coverage": {
+			          "include": [
+			            "src",
+			          ],
+			        },
 			        "exclude": [
 			          "lib",
-			        ],
-			        "include": [
-			          "src",
 			        ],
 			      },
 			      "block": [Function],
@@ -266,11 +268,13 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
+			        "coverage": {
+			          "include": [
+			            "src",
+			          ],
+			        },
 			        "exclude": [
 			          "lib",
-			        ],
-			        "include": [
-			          "src",
 			        ],
 			      },
 			      "block": [Function],

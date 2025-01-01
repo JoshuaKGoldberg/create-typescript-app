@@ -5,7 +5,7 @@ import { getUsageFromReadme } from "./getUsageFromReadme.js";
 
 export function readDefaultsFromReadme(
 	readme: () => Promise<string>,
-	repository: string | undefined,
+	repository: () => Promise<string | undefined>,
 ) {
 	const imageTag = lazyValue(
 		async () => /\n<img.+src=.+>/.exec(await readme())?.[0],
@@ -43,10 +43,10 @@ export function readDefaultsFromReadme(
 			return (
 				getUsageFromReadme(await readme()) ??
 				`\`\`\`shell
-npm i ${repository}
+npm i ${await repository()}
 \`\`\`
 \`\`\`ts
-import { greet } from "${repository}";
+import { greet } from "${await repository()}";
 
 greet("Hello, world! 💖");
 \`\`\``

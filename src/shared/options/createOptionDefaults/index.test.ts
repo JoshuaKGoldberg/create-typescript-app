@@ -196,13 +196,23 @@ describe("createOptionDefaults", () => {
 			expect(actual).toBe(name);
 		});
 
-		it("returns the package name when it exists and promptedOptions.repository a Git name don't", async () => {
+		it("returns the package name when it exists and promptedOptions.repository and Git name don't", async () => {
 			const name = "test-package-name";
 			mockReadPackageData.mockResolvedValueOnce({ name });
 
 			const actual = await createOptionDefaults().repository();
 
 			expect(actual).toBe(name);
+		});
+
+		it("returns the directory when it exists and promptedOptions.repository, Git name, and package name don't", async () => {
+			mockReadPackageData.mockResolvedValueOnce({});
+			const directory = "test-prompted-directory";
+			const promptedOptions = { directory };
+
+			const actual = await createOptionDefaults(promptedOptions).repository();
+
+			expect(actual).toBe(directory);
 		});
 	});
 });

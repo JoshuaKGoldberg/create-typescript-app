@@ -52,7 +52,10 @@ export function createOptionDefaults(promptedOptions?: PromptedOptions) {
 		repository: async () =>
 			promptedOptions?.repository ??
 			(await gitDefaults())?.name ??
-			(await packageData()).name,
-		...readDefaultsFromReadme(readme, promptedOptions?.repository),
+			(await packageData()).name ??
+			promptedOptions?.directory,
+		...readDefaultsFromReadme(readme, () =>
+			Promise.resolve(promptedOptions?.repository),
+		),
 	};
 }

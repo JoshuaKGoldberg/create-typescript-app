@@ -10,12 +10,20 @@ vi.mock("../readLogoSizing.js", () => ({
 	},
 }));
 
+const mockGetUsageFromReadme = vi.fn().mockResolvedValue({});
+
+vi.mock("./getUsageFromReadme.js", () => ({
+	get getUsageFromReadme() {
+		return mockGetUsageFromReadme;
+	},
+}));
+
 describe("readDefaultsFromReadme", () => {
 	describe("logo", () => {
 		it("defaults to undefined when it cannot be found", async () => {
 			const logo = await readDefaultsFromReadme(
 				() => Promise.resolve(`nothing.`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toBeUndefined();
@@ -26,7 +34,7 @@ describe("readDefaultsFromReadme", () => {
 				() =>
 					Promise.resolve(`
 <img src=abc/def.jpg/>`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -40,7 +48,7 @@ describe("readDefaultsFromReadme", () => {
 				() =>
 					Promise.resolve(`
 <img src='abc/def.jpg'/>`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -54,7 +62,7 @@ describe("readDefaultsFromReadme", () => {
 				() =>
 					Promise.resolve(`
 <img src="abc/def.jpg"/>`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -68,7 +76,7 @@ describe("readDefaultsFromReadme", () => {
 				() =>
 					Promise.resolve(`
 <img alt="Project logo: a fancy circle" src="abc/def.jpg"/>`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -82,7 +90,7 @@ describe("readDefaultsFromReadme", () => {
 				() =>
 					Promise.resolve(`
 <img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -100,7 +108,7 @@ describe("readDefaultsFromReadme", () => {
 				() =>
 					Promise.resolve(`
 <img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -117,7 +125,7 @@ describe("readDefaultsFromReadme", () => {
 		<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 48" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-48-21bb42.svg" /></a>
 <img src=abc/def.jpg/>
 `),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -149,7 +157,7 @@ describe("readDefaultsFromReadme", () => {
 
 <img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" src="./docs/create-typescript-app.png">
 `),
-				undefined,
+				() => Promise.resolve(undefined),
 			).logo();
 
 			expect(logo).toEqual({
@@ -163,7 +171,7 @@ describe("readDefaultsFromReadme", () => {
 		it("defaults to undefined when it cannot be found", async () => {
 			const title = await readDefaultsFromReadme(
 				() => Promise.resolve(`nothing`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).title();
 
 			expect(title).toBeUndefined();
@@ -172,7 +180,7 @@ describe("readDefaultsFromReadme", () => {
 		it('reads title as markdown from "README.md" when it exists', async () => {
 			const title = await readDefaultsFromReadme(
 				() => Promise.resolve(`# My Awesome Package`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).title();
 
 			expect(title).toBe("My Awesome Package");
@@ -181,7 +189,7 @@ describe("readDefaultsFromReadme", () => {
 		it('reads title as HTML from "README.md" when it exists', async () => {
 			const title = await readDefaultsFromReadme(
 				() => Promise.resolve('<h1 align="center">My Awesome Package</h1>'),
-				undefined,
+				() => Promise.resolve(undefined),
 			).title();
 
 			expect(title).toBe("My Awesome Package");
@@ -190,10 +198,43 @@ describe("readDefaultsFromReadme", () => {
 		it("returns undefined when title does not exist", async () => {
 			const title = await readDefaultsFromReadme(
 				() => Promise.resolve(`Other text.`),
-				undefined,
+				() => Promise.resolve(undefined),
 			).title();
 
 			expect(title).toBeUndefined();
+		});
+	});
+
+	describe("usage", () => {
+		it("returns the existing usage when getUsageFromReadme provides one", async () => {
+			const existing = "Use it.";
+
+			mockGetUsageFromReadme.mockReturnValueOnce(existing);
+
+			const usage = await readDefaultsFromReadme(
+				() => Promise.resolve(""),
+				() => Promise.resolve(undefined),
+			).usage();
+
+			expect(usage).toBe(existing);
+		});
+
+		it("returns sample usage when getUsageFromReadme doesn't provide usage", async () => {
+			mockGetUsageFromReadme.mockReturnValueOnce(undefined);
+
+			const usage = await readDefaultsFromReadme(
+				() => Promise.resolve(""),
+				() => Promise.resolve("test-repository"),
+			).usage();
+
+			expect(usage).toBe(`\`\`\`shell
+npm i test-repository
+\`\`\`
+\`\`\`ts
+import { greet } from "test-repository";
+
+greet("Hello, world! 💖");
+\`\`\``);
 		});
 	});
 });

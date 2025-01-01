@@ -197,6 +197,14 @@ export const base = createBase({
 
 		const version = lazyValue(async () => (await packageData()).version);
 
+		const repository = lazyValue(
+			async () =>
+				options.repository ??
+				(await gitDefaults())?.name ??
+				(await packageData()).name ??
+				options.directory,
+		);
+
 		return {
 			access: "public" as const,
 			author,
@@ -222,11 +230,8 @@ export const base = createBase({
 					scripts: original.scripts,
 				};
 			},
-			repository: async () =>
-				options.repository ??
-				(await gitDefaults())?.name ??
-				(await packageData()).name,
-			...readDefaultsFromReadme(readme, options.repository),
+			repository,
+			...readDefaultsFromReadme(readme, repository),
 			version,
 		};
 	},

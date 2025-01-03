@@ -4,7 +4,7 @@
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. ❤️‍🔥",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/create-typescript-app"
+		"url": "git+https://github.com/JoshuaKGoldberg/create-typescript-app.git"
 	},
 	"license": "MIT",
 	"author": {

@@ -91,7 +91,7 @@ export async function writePackageJson(options: Options) {
 			},
 			repository: {
 				type: "git",
-				url: `https://github.com/${options.owner}/${options.repository}`,
+				url: `git+https://github.com/${options.owner}/${options.repository}.git`,
 			},
 			scripts: {
 				...existingPackageJson.scripts,

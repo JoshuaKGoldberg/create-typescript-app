@@ -96,7 +96,7 @@ describe("writePackageJson", () => {
 			  },
 			  "repository": {
 			    "type": "git",
-			    "url": "https://github.com/test-owner/test-repository.git",
+			    "url": "git+https://github.com/test-owner/test-repository.git",
 			  },
 			  "scripts": {
 			    "build": "tsup",
@@ -168,7 +168,7 @@ describe("writePackageJson", () => {
 			  },
 			  "repository": {
 			    "type": "git",
-			    "url": "https://github.com/test-owner/test-repository.git",
+			    "url": "git+https://github.com/test-owner/test-repository.git",
 			  },
 			  "scripts": {
 			    "format": "prettier .",

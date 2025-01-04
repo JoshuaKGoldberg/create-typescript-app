@@ -36,7 +36,7 @@ export const blockPackageJson = base.createBlock({
 			],
 		};
 	},
-	produce({ addons, options }) {
+	produce({ addons, offline, options }) {
 		const dependencies = {
 			...options.packageData?.dependencies,
 			...addons.properties.dependencies,
@@ -97,7 +97,10 @@ export const blockPackageJson = base.createBlock({
 			},
 			scripts: [
 				{
-					commands: ["pnpm install", ...addons.cleanupCommands],
+					commands: [
+						offline ? "pnpm install" : "pnpm install --offline",
+						...addons.cleanupCommands,
+					],
 					phase: CommandPhase.Install,
 				},
 			],

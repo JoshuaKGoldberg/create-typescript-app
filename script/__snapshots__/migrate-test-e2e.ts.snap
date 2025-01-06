@@ -126,7 +126,7 @@ exports[`expected file changes > README.md 1`] = `
 @@ ... @@
  <h1 align="center">Create TypeScript App</h1>
  
--<p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. ❤️‍🔥</p>
+-<p align="center">Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁</p>
 +<p align="center">A very lovely package. Hooray!</p>
  
  <p align="center">
@@ -245,7 +245,7 @@ exports[`expected file changes > package.json 1`] = `
  {
  	"name": "create-typescript-app",
  	"version": "1.79.0",
--	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. ❤️‍🔥",
+-	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 +	"description": "A very lovely package. Hooray! 💖",
  	"repository": {
  		"type": "git",

@@ -80,6 +80,14 @@ describe("blockMarkdownlint", () => {
 			CHANGELOG.md
 			node_modules/",
 			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm lint:md --fix",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
 			}
 		`);
 	});
@@ -163,6 +171,14 @@ describe("blockMarkdownlint", () => {
 			lib/
 			node_modules/",
 			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm lint:md --fix",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
 			}
 		`);
 	});

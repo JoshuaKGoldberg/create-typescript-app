@@ -19,14 +19,14 @@ export const blockREADME = base.createBlock({
 		const { notices } = addons;
 
 		const logo = options.logo
-			? `<img ${printAttributes({ align: "right", ...options.logo })}>`
+			? `\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`
 			: "";
 
 		return {
 			files: {
 				"README.md": `<h1 align="center">${options.title}</h1>
 
-<p align="center">${options.description}</p>
+<p align="center">${formatDescription(options.description)}</p>
 
 <p align="center">
 	<!-- prettier-ignore-start -->
@@ -39,9 +39,7 @@ export const blockREADME = base.createBlock({
 	<a href="http://npmjs.com/package/${options.repository}"><img alt="📦 npm version" src="https://img.shields.io/npm/v/${options.repository}?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 </p>
-
 ${logo}
-
 ## Usage
 
 ${options.usage}
@@ -62,3 +60,11 @@ ${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : 
 		};
 	},
 });
+
+function formatDescription(description: string) {
+	if (!description.includes(". ")) {
+		return description;
+	}
+
+	return "\n\t" + description.replaceAll(". ", ". \n\t") + "\n";
+}

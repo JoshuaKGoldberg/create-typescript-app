@@ -1,10 +1,9 @@
-import { createTemplate } from "create";
-
+import { base } from "./base.js";
 import { presetCommon } from "./presets/presetCommon.js";
 import { presetEverything } from "./presets/presetEverything.js";
 import { presetMinimal } from "./presets/presetMinimal.js";
 
-export const template = createTemplate({
+export const template = base.createTemplate({
 	about: {
 		name: "TypeScript App",
 	},

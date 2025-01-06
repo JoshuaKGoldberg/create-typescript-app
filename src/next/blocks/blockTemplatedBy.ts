@@ -17,7 +17,7 @@ export const blockTemplatedBy = base.createBlock({
 						`
 <!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
-> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [\`create\` engine](https://github.com/JoshuaKGoldberg/create).
+> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [\`create\` engine](https://create.bingo).
 `,
 					],
 				}),

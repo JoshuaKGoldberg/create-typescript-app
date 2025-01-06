@@ -34,7 +34,7 @@ export const base = createBase({
 		bin: z
 			.string()
 			.optional()
-			.describe('value to set in `package.json`\'s `"bin"` property.'),
+			.describe('value to set in `package.json`\'s `"bin"` property'),
 		contributors: z
 			.array(
 				z.object({
@@ -49,8 +49,9 @@ export const base = createBase({
 			.describe("AllContributors contributors to store in .all-contributorsrc"),
 		description: z
 			.string()
+			.default("A very lovely package. Hooray! 💖")
 			.describe("'Sentence case.' description of the repository"),
-		directory: z.string(),
+		directory: z.string().describe("Directory to create the repository in"),
 		documentation: z
 			.string()
 			.optional()
@@ -191,7 +192,7 @@ export const base = createBase({
 			return {
 				minimum:
 					(engines?.node && /[\d+.]+/.exec(engines.node))?.[0] ?? "18.3.0",
-				pinned: swallowError(await nvmrc()) ?? "20.18.0",
+				pinned: swallowError(await nvmrc())?.trim() ?? "20.18.0",
 			};
 		});
 

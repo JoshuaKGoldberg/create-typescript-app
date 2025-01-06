@@ -182,7 +182,7 @@ export async function readOptions(
 	const descriptionOption = await getPrefillOrPromptedOption({
 		auto: !!mappedOptions.auto,
 		getDefaultValue: async () =>
-			(await defaults.description()) ?? "A very lovely package. Hooray!",
+			(await defaults.description()) ?? "A very lovely package. Hooray! 💖",
 		message: "How would you describe the new package?",
 		name: "description",
 		provided: options.description,

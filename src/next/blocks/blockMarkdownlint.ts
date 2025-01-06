@@ -7,6 +7,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { getPackageDependencies } from "./packageData.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockMarkdownlint = base.createBlock({
 	about: {
@@ -74,6 +75,12 @@ export const blockMarkdownlint = base.createBlock({
 					.sort()
 					.join("\n"),
 			},
+			scripts: [
+				{
+					commands: ["pnpm lint:md --fix"],
+					phase: CommandPhase.Process,
+				},
+			],
 		};
 	},
 });

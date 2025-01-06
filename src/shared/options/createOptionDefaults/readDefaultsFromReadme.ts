@@ -1,4 +1,5 @@
 import lazyValue from "lazy-value";
+import { titleCase } from "title-case";
 
 import { readLogoSizing } from "../readLogoSizing.js";
 import { getUsageFromReadme } from "./getUsageFromReadme.js";
@@ -35,8 +36,20 @@ export function readDefaultsFromReadme(
 		},
 		title: async () => {
 			const text = await readme();
-			return (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ??
+			const fromText = (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ??
 				/^# (.+)/.exec(text))?.[1];
+			if (fromText) {
+				return fromText;
+			}
+
+			const repositoryValue = await repository();
+
+			return (
+				repositoryValue &&
+				titleCase(repositoryValue)
+					.replaceAll("Typescript", "TypeScript")
+					.replaceAll("-", " ")
+			);
 		},
 
 		usage: async () => {

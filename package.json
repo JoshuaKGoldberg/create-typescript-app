@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "1.83.1",
+	"version": "1.84.0-beta.0",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 	"repository": {
 		"type": "git",

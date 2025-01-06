@@ -1,3 +1,30 @@
+# [1.84.0-beta.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.77.1...v1.84.0-beta.0) (2025-01-06)
+
+### Bug Fixes
+
+- always refer to eslint-plugin-regexp ([#1808](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1808)) ([aaf2d65](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aaf2d6536de8a2ff862c132cad5e2351a9ebe923)), closes [#1597](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1597)
+- build in initialize script ([#1807](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1807)) ([768b37a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/768b37a8a976f1493b7e77871760c9544c66ab09)), closes [#1362](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1362)
+- bypass repository admin (id 5) in branch ruleset ([#1791](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1791)) ([480c75d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/480c75d12a238f3e918c5efa881bb983192cf321)), closes [#1790](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1790)
+- ci commit for --preRelease=beta ([511049d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/511049d3f9b5496c43fa2abb45fe4b3e49bb164e))
+- default skipRestore to true when mode is create ([#1793](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1793)) ([33e235b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/33e235b9b59918d7523b996324225df6b6d52347)), closes [#1085](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1085)
+- don't include chore PRs in changelog ([#1810](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1810)) ([ee8166c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ee8166ca99117dc95e37452b6169621620541d12)), closes [#1493](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1493) [#1493](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1493)
+- don't infer --description if it's the source default ([#1803](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1803)) ([442cb3b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/442cb3b3c2b25398d0317baa7aef2f57216ac705)), closes [#1363](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1363)
+- don't suggest redundant --directory ([#1805](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1805)) ([42c6ebd](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/42c6ebd4866c36884c34a439553a736008964a62)), closes [#1126](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1126)
+- include .git in repository.url ([98c1226](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/98c1226a6d90a64e5ed0b96988d6f9e2b432346a))
+- lazily evaluate options.repository for options.usage ([#1827](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1827)) ([777d413](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/777d413a88dca66dd57ea09440ae136e06b0113c)), closes [#1826](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1826)
+- remove .all-contributorsrc from .prettierignore ([#1815](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1815)) ([65315f4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/65315f45efe3af3ad41659ee8cc533ee13b68f5a)), closes [#1814](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1814)
+- remove project logo in initialization ([#1809](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1809)) ([6e81c74](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6e81c7437dc0b5b071439da9b41790a08b07715d)), closes [#1366](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1366)
+- remove redundant coverage.exclude: lib from vitest.config.ts ([#1818](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1818)) ([1fb4791](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1fb4791842a10a15209975383620023c557be0e8)), closes [#1816](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1816) [#1817](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1817)
+- use Knip version from installed dependency ([#1792](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1792)) ([b39d65f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b39d65fa19d10f233dce47d791b3cb45a3d5bc77)), closes [#1638](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1638)
+- use pnpx, not npx ([#1800](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1800)) ([a082b99](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a082b99fae8b9102eb689ce3500d47752d8756fe)), closes [#1799](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1799)
+
+### Features
+
+- add logo.height and logo.width ([#1806](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1806)) ([398e947](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/398e947b2906a58adb2f86e067f6387fb3b25227)), closes [#1203](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1203)
+- allow description to safely include HTML tags ([#1820](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1820)) ([9bc3f69](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9bc3f69ab0e602f7cd00dcac0f1f78911828521b)), closes [#1819](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1819)
+- empty commit to trigger release ([ff5c1b1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ff5c1b18a692990ff3e0cdc2108d82f0c47eb080))
+- use GitHub repository rulesets instead of branch protection ([#1788](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1788)) ([f773195](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f773195e1e31e6a5e1d4185f1af9389b050461a3)), closes [#1309](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1309)
+
 ## [1.77.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.77.0...v1.77.1) (2024-12-20)
 
 ### Bug Fixes

@@ -1,3 +1,5 @@
+# [2.0.0-beta.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.87.0-beta.0...v2.0.0-beta.1) (2025-01-07)
+
 # [1.87.0-beta.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.77.1...v1.87.0-beta.0) (2025-01-07)
 
 ### Bug Fixes

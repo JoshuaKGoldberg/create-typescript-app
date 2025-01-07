@@ -114,7 +114,7 @@
 		"tsup": "8.3.5",
 		"tsx": "4.19.2",
 		"typescript": "5.7.2",
-		"typescript-eslint": "8.18.1",
+		"typescript-eslint": "8.19.0",
 		"vitest": "2.1.8"
 	},
 	"engines": {

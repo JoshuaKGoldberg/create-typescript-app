@@ -11,6 +11,9 @@ jobs:
           ref: main
       - uses: ./.github/actions/prepare
       - run: pnpm build
+      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

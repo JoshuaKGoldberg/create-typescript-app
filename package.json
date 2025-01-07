@@ -80,7 +80,7 @@
 		"@release-it/conventional-changelog": "9.0.3",
 		"@types/eslint-plugin-markdown": "2.0.2",
 		"@types/git-url-parse": "9.0.3",
-		"@types/html-to-text": "^9.0.4",
+		"@types/html-to-text": "9.0.4",
 		"@types/js-yaml": "4.0.9",
 		"@types/node": "22.10.2",
 		"@types/parse-author": "2.0.3",

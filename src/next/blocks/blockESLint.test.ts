@@ -71,7 +71,7 @@ describe("blockESLint", () => {
 			            "@eslint/js": "9.17.0",
 			            "@types/node": "22.10.2",
 			            "eslint": "9.17.0",
-			            "typescript-eslint": "8.18.1",
+			            "typescript-eslint": "8.19.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -200,7 +200,7 @@ describe("blockESLint", () => {
 			            "@eslint/js": "9.17.0",
 			            "@types/node": "22.10.2",
 			            "eslint": "9.17.0",
-			            "typescript-eslint": "8.18.1",
+			            "typescript-eslint": "8.19.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -366,7 +366,7 @@ describe("blockESLint", () => {
 			            "eslint": "9.17.0",
 			            "eslint-plugin-markdown": "5.1.0",
 			            "eslint-plugin-regexp": "2.7.0",
-			            "typescript-eslint": "8.18.1",
+			            "typescript-eslint": "8.19.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",

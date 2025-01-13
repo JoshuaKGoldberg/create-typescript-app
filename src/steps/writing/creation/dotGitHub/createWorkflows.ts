@@ -225,6 +225,7 @@ export function createWorkflows(options: Options) {
 						with: {
 							"fetch-depth": 0,
 							ref: "main",
+							token: "${{ secrets.ACCESS_TOKEN }}",
 						},
 					},
 					{

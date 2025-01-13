@@ -257,6 +257,7 @@ describe("createWorkflows", () => {
 			        with:
 			          fetch-depth: 0
 			          ref: main
+			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm build
 			      - env:

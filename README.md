@@ -31,10 +31,11 @@ First make sure you have the following installed:
 Then in an existing repository or in your directory where you'd like to make a new repository:
 
 ```shell
-npx create-typescript-app
+npx create typescript-app
 ```
 
-That setup script will walk you through using the template.
+That will launch `create-typescript-app` using the [`create` runner](https://create.bingo).
+
 You can read more about the supported setup modes in their docs pages:
 
 - [**Creating from the terminal**](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_

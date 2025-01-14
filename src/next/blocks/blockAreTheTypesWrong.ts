@@ -3,7 +3,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 
 export const blockAreTheTypesWrong = base.createBlock({
 	about: {
-		name: "README.md",
+		name: "Are The Types Wrong",
 	},
 	produce() {
 		return {
@@ -13,6 +13,7 @@ export const blockAreTheTypesWrong = base.createBlock({
 						{
 							name: "Are The Types Wrong?",
 							steps: [
+								{ run: "pnpm build" },
 								{
 									run: "npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm",
 								},

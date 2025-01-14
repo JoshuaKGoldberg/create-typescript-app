@@ -512,7 +512,6 @@ describe("blockVitest", () => {
 		const creation = testBlock(blockVitest, {
 			addons: {
 				coverage: {
-					directory: "coverage*",
 					exclude: ["other"],
 					flags: "unit",
 					include: ["src/"],
@@ -528,7 +527,7 @@ describe("blockVitest", () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "coverage*",
+			          "coverage",
 			        ],
 			      },
 			      "block": [Function],
@@ -581,7 +580,7 @@ describe("blockVitest", () => {
 			          },
 			        ],
 			        "ignores": [
-			          "coverage*",
+			          "coverage",
 			          "**/*.snap",
 			        ],
 			        "imports": [
@@ -648,7 +647,7 @@ describe("blockVitest", () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/coverage*",
+			          "/coverage",
 			        ],
 			      },
 			      "block": [Function],
@@ -705,7 +704,7 @@ describe("blockVitest", () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/coverage*",
+			          "/coverage",
 			        ],
 			      },
 			      "block": [Function],

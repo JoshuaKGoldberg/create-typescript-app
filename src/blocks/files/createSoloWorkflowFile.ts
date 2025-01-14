@@ -75,7 +75,7 @@ export function createSoloWorkflowFile({
 	return formatWorkflowYaml({
 		concurrency,
 		jobs: {
-			[name.replaceAll(" ", "_").toLowerCase()]: {
+			[name.replaceAll(" ", "_").toLowerCase().replaceAll("?", "")]: {
 				...(options.if && { if: options.if }),
 				"runs-on": "ubuntu-latest",
 				steps:

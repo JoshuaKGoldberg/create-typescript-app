@@ -22,13 +22,12 @@ export const blockVitest = base.createBlock({
 	addons: {
 		coverage: z
 			.object({
-				directory: z.string().optional(),
+				env: z.record(z.string(), z.string()).optional(),
 				exclude: z.array(z.string()).optional(),
 				flags: z.string().optional(),
 				include: z.array(z.string()).optional(),
 			})
 			.default({}),
-		env: z.record(z.string(), z.string()).default({}),
 		exclude: z.array(z.string()).default([]),
 		flags: z.array(z.string()).default([]),
 	},
@@ -45,14 +44,14 @@ export const blockVitest = base.createBlock({
 		};
 	},
 	produce({ addons }) {
-		const { coverage, env, exclude = [], flags } = addons;
-		const coverageDirectory = coverage.directory ?? "coverage";
+		const { coverage, exclude = [], flags } = addons;
+		const { env = {} } = coverage;
 		const excludeText = JSON.stringify(exclude);
 
 		return {
 			addons: [
 				blockCSpell({
-					ignores: [coverageDirectory],
+					ignores: ["coverage"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -93,7 +92,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 							],
 						},
 					],
-					ignores: [coverageDirectory, "**/*.snap"],
+					ignores: ["coverage", "**/*.snap"],
 					imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
 				}),
 				blockExampleFiles({
@@ -146,7 +145,7 @@ describe("greet", () => {
 					},
 				}),
 				blockGitignore({
-					ignores: [`/${coverageDirectory}`],
+					ignores: ["/coverage"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [
@@ -186,7 +185,7 @@ describe("greet", () => {
 					},
 				}),
 				blockPrettier({
-					ignores: [`/${coverageDirectory}`],
+					ignores: ["/coverage"],
 				}),
 				blockTSup({
 					entry: ["!src/**/*.test.*"],

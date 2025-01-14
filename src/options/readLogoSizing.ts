@@ -24,7 +24,7 @@ export function readLogoSizing(
 	}
 
 	if (size.height <= maximum && size.width <= maximum) {
-		return size;
+		return { height: size.height, width: size.height };
 	}
 
 	return size.height > size.width

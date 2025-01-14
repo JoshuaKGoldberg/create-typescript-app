@@ -13,6 +13,7 @@ export const blockAreTheTypesWrong = base.createBlock({
 						{
 							name: "Are The Types Wrong?",
 							steps: [
+								{ run: "pnpm build" },
 								{
 									run: "npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm",
 								},

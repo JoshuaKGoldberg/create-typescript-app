@@ -13,6 +13,11 @@ export function readDefaultsFromReadme(
 	);
 
 	return {
+		explainer: () => [
+			`\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.`,
+			`It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.`,
+		],
+
 		logo: async () => {
 			const tag = await imageTag();
 
@@ -37,6 +42,7 @@ export function readDefaultsFromReadme(
 				...readLogoSizing(src),
 			};
 		},
+
 		title: async () => {
 			const text = await readme();
 			const fromText = (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ??

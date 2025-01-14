@@ -8,13 +8,29 @@ import { blocks, presets } from "./index.js";
 const actualLines = await createActualLines();
 const expectedLines = await createExpectedLines();
 
-describe("Blocks.md", () => {
+// This test ensures ensures docs/Blocks.md has a row for each of CTA's options.
+// Each row should include emojis describing which preset(s) include the option.
+//
+// If this fails, it's likely due to adding, removing, or renaming a block.
+// You may need to manually change docs/Blocks.md to match to those changes.
+//
+// For example, if you add a blockExample to the Common and Everything presets,
+// you'll need to add a row like:
+//
+// ```md
+// | Example | `--exclude-example` | | ✅ | 💯 |
+// ```
+//
+// Rows are kept sorted by alphabetical order of name.
+describe("docs/Blocks.md", () => {
 	for (const [i, line] of expectedLines.entries()) {
 		const name = line.split(" | ")[0].replace("| ", "").trim();
 		if (!name) {
 			continue;
 		}
 
+		// TODO: Enable vitest/eslint-plugin type-checking:
+		// https://github.com/vitest-dev/eslint-plugin-vitest?tab=readme-ov-file#enabling-with-type-testing
 		// eslint-disable-next-line vitest/valid-title
 		test(name, () => {
 			const actualLine = actualLines.find((line) => line.includes(`| ${name}`));

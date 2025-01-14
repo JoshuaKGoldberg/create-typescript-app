@@ -22,7 +22,7 @@ export function createMultiWorkflowFile({
 	return formatWorkflowYaml({
 		jobs: Object.fromEntries(
 			jobs.map((job) => [
-				job.name.toLowerCase().replaceAll(" ", "_"),
+				job.name.toLowerCase().replaceAll(" ", "_").replaceAll("?", ""),
 				{
 					name: job.name,
 					"runs-on": "ubuntu-latest",

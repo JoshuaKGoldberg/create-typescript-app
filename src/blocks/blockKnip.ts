@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import { base } from "../base.js";
 import {
 	getPackageDependencies,
@@ -12,6 +14,9 @@ export const blockKnip = base.createBlock({
 	about: {
 		name: "Knip",
 	},
+	addons: {
+		ignoreDependencies: z.array(z.string()).optional(),
+	},
 	migrate() {
 		return {
 			scripts: [
@@ -22,7 +27,8 @@ export const blockKnip = base.createBlock({
 			],
 		};
 	},
-	produce() {
+	produce({ addons }) {
+		const { ignoreDependencies } = addons;
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -56,12 +62,13 @@ export const blockKnip = base.createBlock({
 			files: {
 				"knip.json": JSON.stringify({
 					$schema: `https://unpkg.com/knip@${getPackageDependency("knip")}/schema.json`,
-					entry: ["src/index.ts!"],
+					entry: ["src/index.ts", "src/**/*.test.*"],
+					ignoreDependencies,
 					ignoreExportsUsedInFile: {
 						interface: true,
 						type: true,
 					},
-					project: ["src/**/*.ts!"],
+					project: ["src/**/*.ts"],
 				}),
 			},
 		};

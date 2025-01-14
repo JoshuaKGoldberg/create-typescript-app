@@ -7,6 +7,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { formatIgnoreFile } from "./files/formatIgnoreFile.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockMarkdownlint = base.createBlock({
@@ -66,14 +67,14 @@ export const blockMarkdownlint = base.createBlock({
 					"first-line-h1": false,
 					"no-inline-html": false,
 				}),
-				".markdownlintignore": [
-					".github/CODE_OF_CONDUCT.md",
-					"CHANGELOG.md",
-					"node_modules/",
-					...ignores,
-				]
-					.sort()
-					.join("\n"),
+				".markdownlintignore": formatIgnoreFile(
+					[
+						".github/CODE_OF_CONDUCT.md",
+						"CHANGELOG.md",
+						"node_modules/",
+						...ignores,
+					].sort(),
+				),
 			},
 			scripts: [
 				{

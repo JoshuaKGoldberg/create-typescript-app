@@ -7,6 +7,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { formatIgnoreFile } from "./files/formatIgnoreFile.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockPrettier = base.createBlock({
@@ -94,11 +95,11 @@ pnpm format --write
 			files: {
 				".husky": {
 					".gitignore": "_\n",
-					"pre-commit": ["npx lint-staged\n", { mode: 0x777 }],
+					"pre-commit": ["npx lint-staged\n", { mode: 33279 }],
 				},
-				".prettierignore": ["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores]
-					.sort()
-					.join("\n"),
+				".prettierignore": formatIgnoreFile(
+					["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores].sort(),
+				),
 				".prettierrc.json": JSON.stringify({
 					$schema: "http://json.schemastore.org/prettierrc",
 					...(overrides.length && { overrides: overrides.sort() }),

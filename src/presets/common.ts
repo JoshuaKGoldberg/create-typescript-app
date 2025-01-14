@@ -1,5 +1,6 @@
 import { base } from "../base.js";
 import { blockAllContributors } from "../blocks/blockAllContributors.js";
+import { blockCodecov } from "../blocks/blockCodecov.js";
 import { blockReleaseIt } from "../blocks/blockReleaseIt.js";
 import { blockVitest } from "../blocks/blockVitest.js";
 import { presetMinimal } from "./minimal.js";
@@ -13,6 +14,7 @@ export const presetCommon = base.createPreset({
 	blocks: [
 		...presetMinimal.blocks,
 		blockAllContributors,
+		blockCodecov,
 		blockReleaseIt,
 		blockVitest,
 	],

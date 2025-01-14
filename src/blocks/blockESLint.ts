@@ -56,7 +56,9 @@ export const blockESLint = base.createBlock({
 		name: "ESLint",
 	},
 	addons: {
+		allowDefaultProject: z.array(z.string()).default([]),
 		beforeLint: z.string().optional(),
+		explanations: z.array(z.string()).default([]),
 		extensions: z.array(z.union([z.string(), zExtension])).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
@@ -74,7 +76,14 @@ export const blockESLint = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { extensions, ignores, imports, rules, settings } = addons;
+		const {
+			allowDefaultProject,
+			extensions,
+			ignores,
+			imports,
+			rules,
+			settings,
+		} = addons;
 
 		const importLines = [
 			'import eslint from "@eslint/js";',
@@ -101,7 +110,13 @@ export const blockESLint = base.createBlock({
 				languageOptions: {
 					parserOptions: {
 						projectService: {
-							allowDefaultProject: ["*.config.*s"],
+							allowDefaultProject: Array.from(
+								new Set(
+									["*.config.*s", ...allowDefaultProject, options.bin]
+										.filter(Boolean)
+										.sort(),
+								),
+							),
 						},
 						tsconfigRootDir: "import.meta.dirname",
 					},
@@ -197,7 +212,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 			],
 			files: {
-				"eslint.config.js": `${importLines.join("\n")}
+				"eslint.config.js": `${addons.explanations.map((explanation) => `/*\n${explanation}\n*/\n\n`).join("\n")}${importLines.join("\n")}
 
 export default tseslint.config(
 	{ ignores: [${ignoreLines.join(", ")}] },

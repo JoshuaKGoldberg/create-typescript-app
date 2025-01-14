@@ -1,3 +1,5 @@
+# [2.0.0-beta.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2025-01-14)
+
 # [2.0.0-beta.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2025-01-14)
 
 # [2.0.0-beta.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2025-01-14)

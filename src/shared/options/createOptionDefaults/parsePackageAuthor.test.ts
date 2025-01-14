@@ -2,14 +2,6 @@ import { describe, expect, it, vi } from "vitest";
 
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
 
-const mockReadFileSafe = vi.fn();
-
-vi.mock("../../shared/readFileSafe.js", () => ({
-	get readFileSafe() {
-		return mockReadFileSafe;
-	},
-}));
-
 describe("parsePackageAuthor", () => {
 	it.each([
 		[{}, {}],

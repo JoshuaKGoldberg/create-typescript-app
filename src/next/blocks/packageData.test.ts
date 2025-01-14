@@ -13,7 +13,7 @@ vi.mock("node:module", () => ({
 	}),
 }));
 
-describe("packageData", () => {
+describe("getPackageDependencies", () => {
 	it("returns a devDependency when it exists", () => {
 		const actual = getPackageDependencies("package-dev-dep");
 

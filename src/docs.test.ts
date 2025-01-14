@@ -54,8 +54,8 @@ async function createActualLines() {
 
 async function createExpectedLines() {
 	const lines = [
-		"| Block                        | Exclusion Flag                           | Minimal | Common | Everything |",
-		"| ---------------------------- | ---------------------------------------- | ------- | ------ | ---------- |",
+		"| Block | Exclusion Flag | Minimal | Common | Everything |",
+		"| ----- | -------------- | ------- | ------ | ---------- |",
 	];
 
 	for (const block of Object.values(blocks) as Block[]) {

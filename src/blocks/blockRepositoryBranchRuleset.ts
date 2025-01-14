@@ -39,7 +39,6 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 								{ type: "deletion" },
 								{
 									parameters: {
-										// @ts-expect-error -- https://github.com/github/rest-api-description/issues/4405
 										allowed_merge_methods: ["squash"],
 										dismiss_stale_reviews_on_push: false,
 										require_code_owner_review: false,

@@ -1,3 +1,13 @@
+# [2.0.0-beta.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2025-01-13)
+
+### Bug Fixes
+
+- add missing access token to release actions/checkout ([#1840](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1840)) ([23d3547](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/23d3547efa9bdd16e1583061db711f4024847a9d)), closes [#1838](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1838) [/github.com/JoshuaKGoldberg/create-typescript-app/issues/1838#issuecomment-2588351313](https://github.com//github.com/JoshuaKGoldberg/create-typescript-app/issues/1838/issues/issuecomment-2588351313)
+
+# [2.0.0-beta.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2025-01-13)
+
+# [2.0.0-beta.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.87.0-beta.0...v2.0.0-beta.1) (2025-01-07)
+
 # [1.87.0-beta.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.77.1...v1.87.0-beta.0) (2025-01-07)
 
 ### Bug Fixes

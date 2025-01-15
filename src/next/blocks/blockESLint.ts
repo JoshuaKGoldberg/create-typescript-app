@@ -103,7 +103,9 @@ export const blockESLint = base.createBlock({
 				languageOptions: {
 					parserOptions: {
 						projectService: {
-							allowDefaultProject: ["*.config.*s"],
+							allowDefaultProject: Array.from(
+								new Set(["*.config.*s", options.bin].filter(Boolean).sort()),
+							),
 						},
 						tsconfigRootDir: "import.meta.dirname",
 					},

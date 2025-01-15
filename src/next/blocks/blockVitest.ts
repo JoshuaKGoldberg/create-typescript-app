@@ -5,8 +5,7 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockGitHubApps } from "./blockGitHubApps.js";
+import { blockGitHubActionsCI, zActionStep } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
@@ -20,32 +19,28 @@ export const blockVitest = base.createBlock({
 		name: "Vitest",
 	},
 	addons: {
+		actionSteps: z.array(zActionStep).default([]),
 		coverage: z
 			.object({
 				directory: z.string().optional(),
 				exclude: z.array(z.string()).optional(),
-				flags: z.string().optional(),
 				include: z.array(z.string()).optional(),
 			})
 			.default({}),
-		env: z.record(z.string(), z.string()).default({}),
 		exclude: z.array(z.string()).default([]),
-		flags: z.array(z.string()).default([]),
 	},
 	migrate() {
 		return {
 			scripts: [
 				{
-					commands: [
-						"rm .github/codecov.yml .mocha* codecov.yml jest.config.* vitest.config.*",
-					],
+					commands: ["rm .mocha* jest.config.* vitest.config.*"],
 					phase: CommandPhase.Migrations,
 				},
 			],
 		};
 	},
 	produce({ addons }) {
-		const { coverage, env, exclude = [], flags } = addons;
+		const { actionSteps, coverage, exclude = [] } = addons;
 		const coverageDirectory = coverage.directory ?? "coverage";
 		const excludeText = JSON.stringify(exclude);
 
@@ -152,23 +147,7 @@ describe("greet", () => {
 					jobs: [
 						{
 							name: "Test",
-							steps: [
-								{ run: "pnpm run test --coverage" },
-								{
-									...(Object.keys(env).length && { env }),
-									if: "always()",
-									uses: "codecov/codecov-action@v3",
-									...(coverage.flags && { with: { flags: coverage.flags } }),
-								},
-							],
-						},
-					],
-				}),
-				blockGitHubApps({
-					apps: [
-						{
-							name: "Codecov",
-							url: "https://github.com/apps/codecov",
+							steps: [{ run: "pnpm run test --coverage" }, ...actionSteps],
 						},
 					],
 				}),
@@ -181,7 +160,7 @@ describe("greet", () => {
 							"vitest",
 						),
 						scripts: {
-							test: `vitest ${flags.join(" ")}`.trim(),
+							test: "vitest",
 						},
 					},
 				}),

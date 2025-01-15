@@ -150,22 +150,7 @@ describe("blockVitest", () => {
 			              {
 			                "run": "pnpm run test --coverage",
 			              },
-			              {
-			                "if": "always()",
-			                "uses": "codecov/codecov-action@v3",
-			              },
 			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "apps": [
-			          {
-			            "name": "Codecov",
-			            "url": "https://github.com/apps/codecov",
 			          },
 			        ],
 			      },
@@ -398,22 +383,7 @@ describe("blockVitest", () => {
 			              {
 			                "run": "pnpm run test --coverage",
 			              },
-			              {
-			                "if": "always()",
-			                "uses": "codecov/codecov-action@v3",
-			              },
 			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "apps": [
-			          {
-			            "name": "Codecov",
-			            "url": "https://github.com/apps/codecov",
 			          },
 			        ],
 			      },
@@ -499,7 +469,7 @@ describe("blockVitest", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "rm .github/codecov.yml .mocha* codecov.yml jest.config.* vitest.config.*",
+			        "rm .mocha* jest.config.* vitest.config.*",
 			      ],
 			      "phase": 0,
 			    },
@@ -514,7 +484,6 @@ describe("blockVitest", () => {
 				coverage: {
 					directory: "coverage*",
 					exclude: ["other"],
-					flags: "unit",
 					include: ["src/"],
 				},
 				exclude: ["lib/"],
@@ -662,25 +631,7 @@ describe("blockVitest", () => {
 			              {
 			                "run": "pnpm run test --coverage",
 			              },
-			              {
-			                "if": "always()",
-			                "uses": "codecov/codecov-action@v3",
-			                "with": {
-			                  "flags": "unit",
-			                },
-			              },
 			            ],
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "apps": [
-			          {
-			            "name": "Codecov",
-			            "url": "https://github.com/apps/codecov",
 			          },
 			        ],
 			      },

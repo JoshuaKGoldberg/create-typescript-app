@@ -35,7 +35,7 @@ export const blockVitest = base.createBlock({
 			scripts: [
 				{
 					commands: [
-						`node ${resolveBin("remove-dependencies/bin/index.mjs")} eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha`,
+						`node ${resolveBin("remove-dependencies/bin/index.js")} eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha`,
 					],
 					phase: CommandPhase.Process,
 					silent: true,

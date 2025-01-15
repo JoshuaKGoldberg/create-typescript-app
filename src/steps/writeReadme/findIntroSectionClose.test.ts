@@ -55,7 +55,7 @@ Next line.
 
 First intro text.
 
-## Getting Started
+## Usage
 `,
 			173,
 		],

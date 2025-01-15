@@ -47,7 +47,7 @@ describe("createDevelopment", () => {
 			After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 
 			\`\`\`shell
-			git clone https://github.com/<your-name-here>/test-repository
+			git clone https://github.com/(your-name-here)/test-repository
 			cd test-repository
 			pnpm install
 			\`\`\`
@@ -168,7 +168,7 @@ describe("createDevelopment", () => {
 			After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 
 			\`\`\`shell
-			git clone https://github.com/<your-name-here>/test-repository
+			git clone https://github.com/(your-name-here)/test-repository
 			cd test-repository
 			pnpm install
 			\`\`\`
@@ -293,7 +293,7 @@ Def 456.
 			After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
 
 			\`\`\`shell
-			git clone https://github.com/<your-name-here>/test-repository
+			git clone https://github.com/(your-name-here)/test-repository
 			cd test-repository
 			pnpm install
 			\`\`\`

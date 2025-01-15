@@ -41,7 +41,7 @@ export const blockREADME = base.createBlock({
 	<a href="http://npmjs.com/package/${options.repository}"><img alt="📦 npm version" src="https://img.shields.io/npm/v/${options.repository}?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
 	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 </p>
-${[logo, explainer].filter(Boolean).join("\n\n")}
+${[logo, explainer].filter(Boolean).join("")}
 ## Usage
 
 ${options.usage}

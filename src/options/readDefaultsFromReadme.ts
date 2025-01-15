@@ -13,10 +13,22 @@ export function readDefaultsFromReadme(
 	);
 
 	return {
-		explainer: () => [
-			`\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.`,
-			`It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.`,
-		],
+		explainer: async () => {
+			const readmeText = await readme();
+
+			const indexOfH2 = readmeText.indexOf("##");
+			if (indexOfH2 === -1) {
+				return undefined;
+			}
+
+			const lastTag = readmeText.slice(0, indexOfH2).lastIndexOf(">");
+
+			return readmeText
+				.slice(lastTag + 1, indexOfH2)
+				.split("\n")
+				.map((line) => line.trim())
+				.filter(Boolean);
+		},
 
 		logo: async () => {
 			const tag = await imageTag();

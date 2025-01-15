@@ -137,35 +137,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 			",
 			    },
 			  },
-			  "README.md": "@@ -1,9 +1,9 @@
-			 <h1 align="center">Create TypeScript App</h1>
-			 
-			 <p align="center">
-			-  Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling.
-			-  🎁
-			+	Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling.
-			+	🎁
-			 </p>
-			 
-			 <p align="center">
-			 	<!-- prettier-ignore-start -->
-			@@ -64,9 +64,8 @@
-			 Thanks! 💖
-			 
-			 ## Contributors
-			 
-			-<!-- spellchecker: disable -->
-			 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			 <!-- prettier-ignore-start -->
-			 <!-- markdownlint-disable -->
-			 <table>
-			@@ -145,5 +144,4 @@
-			 <!-- markdownlint-restore -->
-			 <!-- prettier-ignore-end -->
-			 
-			 <!-- ALL-CONTRIBUTORS-LIST:END -->
-			-<!-- spellchecker: enable -->
-			",
 			}
 		`);
 });

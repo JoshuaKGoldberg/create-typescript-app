@@ -81,6 +81,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
 	return [
 		`## Contributors`,
 		``,
+		`<!-- spellchecker: disable -->`,
 		`<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->`,
 		`<!-- prettier-ignore-start -->`,
 		`<!-- markdownlint-disable -->`,
@@ -102,6 +103,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
 		`<!-- prettier-ignore-end -->`,
 		``,
 		`<!-- ALL-CONTRIBUTORS-LIST:END -->`,
+		`<!-- spellchecker: enable -->`,
 	].join("\n");
 }
 

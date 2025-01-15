@@ -199,7 +199,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 			],
 			files: {
-				"eslint.config.js": `${addons.explanations.map((explanation) => `/*\n${explanation}\n*/\n`).join("")}${importLines.join("\n")}
+				"eslint.config.js": `${explanations.map((explanation) => `/*\n${explanation}\n*/\n`).join("")}${importLines.join("\n")}
 
 export default tseslint.config(
 	{ ignores: [${ignoreLines.join(", ")}] },

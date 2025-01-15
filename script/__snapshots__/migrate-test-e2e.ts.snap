@@ -195,19 +195,6 @@ exports[`expected file changes > eslint.config.js 1`] = `
  			// Stylistic concerns that don't interfere with Prettier
  			"logical-assignment-operators": [
  				"error",
-@@ ... @@ export default tseslint.config(
- 	{
- 		extends: [tseslint.configs.disableTypeChecked],
- 		files: ["**/*.md/*.ts"],
-+		rules: {
-+			"n/no-missing-import": [
-+				"error",
-+				{ allowModules: ["create-typescript-app"] },
-+			],
-+		},
- 	},
- 	{
- 		extends: [vitest.configs.recommended],"
 `;
 
 exports[`expected file changes > knip.json 1`] = `

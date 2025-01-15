@@ -14,12 +14,14 @@ export const blockESLintNode = base.createBlock({
 						{
 							extends: ["tseslint.configs.disableTypeChecked"],
 							files: ["**/*.md/*.ts"],
-							rules: {
-								"n/no-missing-import": [
-									"error",
-									{ allowModules: [options.repository] },
-								],
-							},
+							...(options.usage?.includes(`from "${options.repository}`) && {
+								rules: {
+									"n/no-missing-import": [
+										"error",
+										{ allowModules: [options.repository] },
+									],
+								},
+							}),
 						},
 					],
 					imports: [{ source: "eslint-plugin-n", specifier: "n" }],

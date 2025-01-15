@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { formatIgnoreFile } from "../../steps/writing/creation/formatters/formatIgnoreFile.js";
 import { base } from "../base.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
@@ -66,14 +67,14 @@ export const blockMarkdownlint = base.createBlock({
 					"first-line-h1": false,
 					"no-inline-html": false,
 				}),
-				".markdownlintignore": [
-					".github/CODE_OF_CONDUCT.md",
-					"CHANGELOG.md",
-					"node_modules/",
-					...ignores,
-				]
-					.sort()
-					.join("\n"),
+				".markdownlintignore": formatIgnoreFile(
+					[
+						".github/CODE_OF_CONDUCT.md",
+						"CHANGELOG.md",
+						"node_modules/",
+						...ignores,
+					].sort(),
+				),
 			},
 			scripts: [
 				{

@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { formatIgnoreFile } from "../../steps/writing/creation/formatters/formatIgnoreFile.js";
 import { base } from "../base.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
@@ -96,9 +97,9 @@ pnpm format --write
 					".gitignore": "_\n",
 					"pre-commit": ["npx lint-staged\n", { mode: 0x777 }],
 				},
-				".prettierignore": ["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores]
-					.sort()
-					.join("\n"),
+				".prettierignore": formatIgnoreFile(
+					["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores].sort(),
+				),
 				".prettierrc.json": JSON.stringify({
 					$schema: "http://json.schemastore.org/prettierrc",
 					...(overrides.length && { overrides: overrides.sort() }),

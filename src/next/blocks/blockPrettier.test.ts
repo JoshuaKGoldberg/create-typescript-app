@@ -100,7 +100,8 @@ describe("blockPrettier", () => {
 			    },
 			    ".prettierignore": "/.husky
 			/lib
-			/pnpm-lock.yaml",
+			/pnpm-lock.yaml
+			",
 			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","useTabs":true}",
 			  },
 			  "scripts": [
@@ -211,7 +212,8 @@ describe("blockPrettier", () => {
 			    },
 			    ".prettierignore": "/.husky
 			/lib
-			/pnpm-lock.yaml",
+			/pnpm-lock.yaml
+			",
 			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","useTabs":true}",
 			  },
 			  "scripts": [
@@ -340,7 +342,8 @@ describe("blockPrettier", () => {
 			    ".prettierignore": "/.husky
 			/lib
 			/pnpm-lock.yaml
-			generated",
+			generated
+			",
 			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
 			  },
 			  "scripts": [

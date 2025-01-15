@@ -1,8 +1,8 @@
 <h1 align="center">Create TypeScript App</h1>
 
 <p align="center">
-  Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling.
-  🎁
+	Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling.
+	🎁
 </p>
 
 <p align="center">

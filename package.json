@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "2.0.0-beta.4",
+	"version": "2.0.0-beta.6",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 	"repository": {
 		"type": "git",
@@ -13,7 +13,7 @@
 	},
 	"type": "module",
 	"main": "./lib/index.js",
-	"bin": "./bin/index.js",
+	"bin": "bin/index.js",
 	"files": [
 		"LICENSE.md",
 		"README.md",
@@ -51,6 +51,7 @@
 		"input-from-script": "0.1.0-alpha.4",
 		"js-yaml": "^4.1.0",
 		"lazy-value": "^3.0.0",
+		"lodash": "^4.17.21",
 		"npm-user": "^6.1.1",
 		"object-strings-deep": "^0.1.1",
 		"parse-author": "^2.0.0",

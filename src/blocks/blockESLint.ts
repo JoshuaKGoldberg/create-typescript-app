@@ -76,14 +76,8 @@ export const blockESLint = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const {
-			allowDefaultProject,
-			extensions,
-			ignores,
-			imports,
-			rules,
-			settings,
-		} = addons;
+		const { explanations, extensions, ignores, imports, rules, settings } =
+			addons;
 
 		const importLines = [
 			'import eslint from "@eslint/js";',
@@ -111,11 +105,7 @@ export const blockESLint = base.createBlock({
 					parserOptions: {
 						projectService: {
 							allowDefaultProject: Array.from(
-								new Set(
-									["*.config.*s", ...allowDefaultProject, options.bin]
-										.filter(Boolean)
-										.sort(),
-								),
+								new Set(["*.config.*s", options.bin].filter(Boolean).sort()),
 							),
 						},
 						tsconfigRootDir: "import.meta.dirname",
@@ -212,7 +202,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 			],
 			files: {
-				"eslint.config.js": `${addons.explanations.map((explanation) => `/*\n${explanation}\n*/\n\n`).join("\n")}${importLines.join("\n")}
+				"eslint.config.js": `${explanations.map((explanation) => `/*\n${explanation}\n*/\n`).join("")}${importLines.join("\n")}
 
 export default tseslint.config(
 	{ ignores: [${ignoreLines.join(", ")}] },

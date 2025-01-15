@@ -105,17 +105,31 @@ If you're interested in learning more, see the 'getting started' docs on:
 			{
 			  ".github": {
 			    "workflows": {
-			      "release.yml": "@@ -13,9 +13,13 @@
+			      "ci.yml": "@@ -64,11 +64,9 @@
+			     steps:
+			       - uses: actions/checkout@v4
+			       - uses: ./.github/actions/prepare
+			       - run: pnpm run test --coverage
+			-      - env:
+			-          CODECOV_TOKEN: \${{ secrets.CODECOV_TOKEN }}
+			-        if: always()
+			+      - if: always()
+			         uses: codecov/codecov-action@v3
+			   type_check:
+			     name: Type Check
+			     runs-on: ubuntu-latest
+			",
+			      "release.yml": "@@ -14,13 +14,9 @@
 			       - run: pnpm build
 			       - env:
 			           GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			           NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			-        uses: JoshuaKGoldberg/release-it-action@v0.2.2
-			+        run: |
-			+          git config --global user.email "git@joshuakgoldberg.com"
-			+          git config --global user.name "Josh Goldberg"
-			+          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-			+      - run: npx release-it --preRelease=beta
+			-        run: |
+			-          git config --global user.email "git@joshuakgoldberg.com"
+			-          git config --global user.name "Josh Goldberg"
+			-          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+			-      - run: npx release-it --preRelease=beta
+			+        uses: JoshuaKGoldberg/release-it-action@v0.2.2
 			 
 			 name: Release
 			 
@@ -123,6 +137,70 @@ If you're interested in learning more, see the 'getting started' docs on:
 			",
 			    },
 			  },
+			  ".vscode": {
+			    "launch.json": "@@ -13,9 +13,9 @@
+			 		},
+			 		{
+			 			"name": "Debug Program",
+			 			"preLaunchTask": "build",
+			-			"program": "./bin/index.js",
+			+			"program": "bin/index.js",
+			 			"request": "launch",
+			 			"skipFiles": ["<node_internals>/**"],
+			 			"type": "node"
+			 		}
+			",
+			  },
+			  "README.md": "@@ -1,9 +1,9 @@
+			 <h1 align="center">Create TypeScript App</h1>
+			 
+			 <p align="center">
+			-  Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling.
+			-  🎁
+			+	Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling.
+			+	🎁
+			 </p>
+			 
+			 <p align="center">
+			 	<!-- prettier-ignore-start -->
+			@@ -64,9 +64,8 @@
+			 Thanks! 💖
+			 
+			 ## Contributors
+			 
+			-<!-- spellchecker: disable -->
+			 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+			 <!-- prettier-ignore-start -->
+			 <!-- markdownlint-disable -->
+			 <table>
+			@@ -145,5 +144,4 @@
+			 <!-- markdownlint-restore -->
+			 <!-- prettier-ignore-end -->
+			 
+			 <!-- ALL-CONTRIBUTORS-LIST:END -->
+			-<!-- spellchecker: enable -->
+			",
+			  "eslint.config.js": "@@ -6,9 +6,8 @@
+			 If you're interested in learning more, see the 'getting started' docs on:
+			 - ESLint: https://eslint.org
+			 - typescript-eslint: https://typescript-eslint.io
+			 */
+			-
+			 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
+			 import eslint from "@eslint/js";
+			 import vitest from "@vitest/eslint-plugin";
+			 import jsdoc from "eslint-plugin-jsdoc";
+			",
+			  "knip.json": "@@ -1,7 +1,7 @@
+			 {
+			 	"$schema": "https://unpkg.com/knip@5.41.1/schema.json",
+			-	"entry": ["src/index.ts", "src/**/*.test.*"],
+			+	"entry": ["src/index.ts"],
+			 	"ignoreDependencies": ["all-contributors-cli", "cspell-populate-words"],
+			 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
+			 	"project": ["src/**/*.ts"]
+			 }
+			",
 			}
 		`);
 });

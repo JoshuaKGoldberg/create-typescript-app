@@ -6,6 +6,15 @@ import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { CommandPhase } from "./phases.js";
 
+export const zActionStep = z.intersection(
+	z.object({
+		env: z.record(z.string(), z.string()).optional(),
+		if: z.string().optional(),
+		with: z.record(z.string(), z.string()).optional(),
+	}),
+	z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),
+);
+
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
 		name: "GitHub Actions CI",
@@ -15,19 +24,7 @@ export const blockGitHubActionsCI = base.createBlock({
 			.array(
 				z.object({
 					name: z.string(),
-					steps: z.array(
-						z.intersection(
-							z.object({
-								env: z.record(z.string(), z.string()).optional(),
-								if: z.string().optional(),
-								with: z.record(z.string(), z.string()).optional(),
-							}),
-							z.union([
-								z.object({ run: z.string() }),
-								z.object({ uses: z.string() }),
-							]),
-						),
-					),
+					steps: z.array(zActionStep),
 				}),
 			)
 			.optional(),

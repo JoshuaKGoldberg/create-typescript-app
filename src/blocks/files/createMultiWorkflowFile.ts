@@ -1,3 +1,4 @@
+import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
 export interface MultiWorkflowFileOptions {
@@ -22,7 +23,7 @@ export function createMultiWorkflowFile({
 	return formatWorkflowYaml({
 		jobs: Object.fromEntries(
 			jobs.map((job) => [
-				job.name.toLowerCase().replaceAll(" ", "_").replaceAll("?", ""),
+				createJobName(job.name),
 				{
 					name: job.name,
 					"runs-on": "ubuntu-latest",

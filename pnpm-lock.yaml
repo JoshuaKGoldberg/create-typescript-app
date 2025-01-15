@@ -50,6 +50,9 @@ importers:
       lazy-value:
         specifier: ^3.0.0
         version: 3.0.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       npm-user:
         specifier: ^6.1.1
         version: 6.1.1
@@ -165,9 +168,6 @@ importers:
       lint-staged:
         specifier: 15.3.0
         version: 15.3.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       markdownlint:
         specifier: 0.37.2
         version: 0.37.2

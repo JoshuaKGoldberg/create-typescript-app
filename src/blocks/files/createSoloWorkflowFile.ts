@@ -1,3 +1,4 @@
+import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
 interface WorkflowFileConcurrency {
@@ -75,7 +76,7 @@ export function createSoloWorkflowFile({
 	return formatWorkflowYaml({
 		concurrency,
 		jobs: {
-			[name.replaceAll(" ", "_").toLowerCase().replaceAll("?", "")]: {
+			[createJobName(name)]: {
 				...(options.if && { if: options.if }),
 				"runs-on": "ubuntu-latest",
 				steps:

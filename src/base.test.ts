@@ -12,7 +12,7 @@ describe("base", () => {
 		expect(options).toEqual({
 			access: "public",
 			author: "Josh Goldberg ✨",
-			bin: "./bin/index.js",
+			bin: "bin/index.js",
 			contributors: (
 				JSON.parse(
 					(await readFile(".all-contributorsrc")).toString(),
@@ -25,6 +25,10 @@ describe("base", () => {
 				github: "github@joshuakgoldberg.com",
 				npm: "npm@joshuakgoldberg.com",
 			},
+			explainer: [
+				`\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.`,
+				`It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.`,
+			],
 			funding: "JoshuaKGoldberg",
 			guide: {
 				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",
@@ -35,7 +39,6 @@ describe("base", () => {
 				alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
 				height: 128,
 				src: "./docs/create-typescript-app.png",
-				type: "png",
 				width: 128,
 			},
 			node: {

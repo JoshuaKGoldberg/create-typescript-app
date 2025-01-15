@@ -78,7 +78,8 @@ describe("blockMarkdownlint", () => {
 			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false}",
 			    ".markdownlintignore": ".github/CODE_OF_CONDUCT.md
 			CHANGELOG.md
-			node_modules/",
+			node_modules/
+			",
 			  },
 			  "scripts": [
 			    {
@@ -169,7 +170,8 @@ describe("blockMarkdownlint", () => {
 			    ".markdownlintignore": ".github/CODE_OF_CONDUCT.md
 			CHANGELOG.md
 			lib/
-			node_modules/",
+			node_modules/
+			",
 			  },
 			  "scripts": [
 			    {

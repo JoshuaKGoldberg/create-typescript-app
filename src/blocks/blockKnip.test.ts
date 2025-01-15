@@ -1,16 +1,16 @@
 import { testBlock } from "create-testers";
 import { describe, expect, test, vi } from "vitest";
 
-import { blockCSpell } from "./blockCSpell.js";
+import { blockKnip } from "./blockKnip.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockCSpell", () => {
+describe("blockKnip", () => {
 	test("without addons", () => {
-		const creation = testBlock(blockCSpell, {
+		const creation = testBlock(blockKnip, {
 			options: optionsBase,
 		});
 
@@ -23,7 +23,7 @@ describe("blockCSpell", () => {
 			          "Linting": {
 			            "contents": {
 			              "items": [
-			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
 			              ],
 			            },
 			          },
@@ -33,20 +33,12 @@ describe("blockCSpell", () => {
 			    },
 			    {
 			      "addons": {
-			        "extensions": [
-			          "streetsidesoftware.code-spell-checker",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
-			            "name": "Lint Spelling",
+			            "name": "Lint Knip",
 			            "steps": [
 			              {
-			                "run": "pnpm lint:spelling",
+			                "run": "pnpm lint:knip",
 			              },
 			            ],
 			          },
@@ -58,10 +50,10 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "^8.17.2",
+			            "knip": "5.41.1",
 			          },
 			          "scripts": {
-			            "lint:spelling": "cspell "**" ".github/**/*"",
+			            "lint:knip": "knip",
 			          },
 			        },
 			      },
@@ -69,17 +61,16 @@ describe("blockCSpell", () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.41.1/schema.json","entry":["src/index.ts"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
 			  },
 			}
 		`);
 	});
 
 	test("with addons", () => {
-		const creation = testBlock(blockCSpell, {
+		const creation = testBlock(blockKnip, {
 			addons: {
-				ignores: ["lib/"],
-				words: ["joshuakgoldberg"],
+				ignoreDependencies: ["abc", "def"],
 			},
 			options: optionsBase,
 		});
@@ -93,7 +84,7 @@ describe("blockCSpell", () => {
 			          "Linting": {
 			            "contents": {
 			              "items": [
-			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
 			              ],
 			            },
 			          },
@@ -103,20 +94,12 @@ describe("blockCSpell", () => {
 			    },
 			    {
 			      "addons": {
-			        "extensions": [
-			          "streetsidesoftware.code-spell-checker",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
-			            "name": "Lint Spelling",
+			            "name": "Lint Knip",
 			            "steps": [
 			              {
-			                "run": "pnpm lint:spelling",
+			                "run": "pnpm lint:knip",
 			              },
 			            ],
 			          },
@@ -128,10 +111,10 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "^8.17.2",
+			            "knip": "5.41.1",
 			          },
 			          "scripts": {
-			            "lint:spelling": "cspell "**" ".github/**/*"",
+			            "lint:knip": "knip",
 			          },
 			        },
 			      },
@@ -139,7 +122,7 @@ describe("blockCSpell", () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","lib/","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.41.1/schema.json","entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
 			  },
 			}
 		`);

@@ -17,7 +17,6 @@ The migration script will:
 For example, if the repository previously using Jest for testing:
 
 - `eslint-plugin-jest`, `jest`, and other Jest-related packages will be uninstalled
-  - 🛑 TODO: Missing in `blockVitest`
 - Any Jest config file like `jest.config.js` will be deleted
 - `@vitest/eslint-plugin`, `vitest`, and other Vitest-related packages will be installed
 - A `vitest.config.ts` file will be created

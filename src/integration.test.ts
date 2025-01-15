@@ -85,7 +85,11 @@ If you're interested in learning more, see the 'getting started' docs on:
 				],
 			}),
 			blockKnip({
-				ignoreDependencies: ["all-contributors-cli", "cspell-populate-words"],
+				ignoreDependencies: [
+					"all-contributors-cli",
+					"cspell-populate-words",
+					"remove-dependencies",
+				],
 			}),
 			blockTSup({
 				runArgs: ["--version"],

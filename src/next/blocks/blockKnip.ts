@@ -59,7 +59,7 @@ export const blockKnip = base.createBlock({
 			files: {
 				"knip.json": JSON.stringify({
 					$schema: `https://unpkg.com/knip@${getPackageDependency("knip")}/schema.json`,
-					entry: ["src/index.ts"],
+					entry: ["src/index.ts", "src/**/*.test.*"],
 					ignoreDependencies,
 					ignoreExportsUsedInFile: {
 						interface: true,

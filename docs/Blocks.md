@@ -12,6 +12,7 @@ This table summarizes each block and which base levels they're included in:
 | Contributing Docs            | `--exclude-contributing-docs`            | ✔️      | ✅     | 💯         |
 | Contributor Covenant         | `--exclude-contributor-covenant`         | ✔️      | ✅     | 💯         |
 | CSpell                       | `--exclude-cspell`                       |         |        | 💯         |
+| Codecov                      | `--exclude-codecov`                      |         | ✅     | 💯         |
 | Development Docs             | `--exclude-development-docs`             | ✔️      | ✅     | 💯         |
 | ESLint                       | `--exclude-eslint`                       | ✔️      | ✅     | 💯         |
 | ESLint Comments Plugin       | `--exclude-eslint-comments-plugin`       |         |        | 💯         |

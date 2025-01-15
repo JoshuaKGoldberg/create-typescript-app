@@ -23,13 +23,7 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
 	{
-		ignores: [
-			"**/*.snap",
-			"coverage*",
-			"lib",
-			"node_modules",
-			"pnpm-lock.yaml",
-		],
+		ignores: ["**/*.snap", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
 	},
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	eslint.configs.recommended,
@@ -59,12 +53,6 @@ export default tseslint.config(
 		},
 		rules: {
 			// These on-by-default rules work well for this repo if configured
-			"@typescript-eslint/no-unnecessary-condition": [
-				"error",
-				{
-					allowConstantLoopConditions: true,
-				},
-			],
 			"@typescript-eslint/prefer-nullish-coalescing": [
 				"error",
 				{ ignorePrimitives: true },
@@ -72,10 +60,6 @@ export default tseslint.config(
 			"@typescript-eslint/restrict-template-expressions": [
 				"error",
 				{ allowBoolean: true, allowNullish: true, allowNumber: true },
-			],
-			"n/no-unsupported-features/node-builtins": [
-				"error",
-				{ allowExperimental: true },
 			],
 
 			// Stylistic concerns that don't interfere with Prettier
@@ -90,10 +74,7 @@ export default tseslint.config(
 		},
 		settings: { perfectionist: { partitionByComment: true, type: "natural" } },
 	},
-	{
-		extends: [tseslint.configs.disableTypeChecked],
-		files: ["**/*.md/*.ts"],
-	},
+	{ extends: [tseslint.configs.disableTypeChecked], files: ["**/*.md/*.ts"] },
 	{
 		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],

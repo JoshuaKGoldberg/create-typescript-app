@@ -69,53 +69,6 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         if: always()
         uses: codecov/codecov-action@v3
-        with:
-          flags: unit
-  test_creation_script:
-    name: Test Creation Script
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/prepare
-      - run: pnpm run build
-      - run: pnpm run test:create
-      - env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        if: always()
-        uses: codecov/codecov-action@v3
-        with:
-          files: coverage-create/lcov.info
-          flags: create
-  test_initialization_script:
-    name: Test Initialization Script
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/prepare
-      - run: pnpm run build
-      - run: pnpm run test:initialize
-      - env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        if: always()
-        uses: codecov/codecov-action@v3
-        with:
-          files: coverage-initialize/lcov.info
-          flags: initialize
-  test_migration_script:
-    name: Test Migration Script
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/prepare
-      - run: pnpm run build
-      - run: pnpm run test:migrate
-      - env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        if: always()
-        uses: codecov/codecov-action@v3
-        with:
-          files: coverage-migrate/lcov.info
-          flags: migrate
   type_check:
     name: Type Check
     runs-on: ubuntu-latest

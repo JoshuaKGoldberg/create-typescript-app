@@ -60,7 +60,7 @@ pnpm build --watch
 							steps: [
 								{ run: "pnpm build" },
 								{
-									run: `node ./lib/index.js${addons.runArgs.map((arg) => ` ${arg}`).join("")}`,
+									run: `node lib/index.js${addons.runArgs.map((arg) => ` ${arg}`).join("")}`,
 								},
 							],
 						},

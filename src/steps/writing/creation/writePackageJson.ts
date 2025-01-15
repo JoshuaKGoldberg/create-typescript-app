@@ -84,7 +84,7 @@ export async function writePackageJson(options: Options) {
 			"lint-staged": {
 				"*": "prettier --ignore-unknown --write",
 			},
-			main: "./lib/index.js",
+			main: "lib/index.js",
 			name: options.repository,
 			publishConfig: {
 				provenance: true,

@@ -32,7 +32,7 @@ pnpm build --watch
 
 This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
 To debug a `bin` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
-VS Code will automatically run the `build` task in the background before running `./bin/index.js`.
+VS Code will automatically run the `build` task in the background before running `bin/index.js`.
 
 ## Formatting
 

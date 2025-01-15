@@ -33,7 +33,7 @@ const originalSnapshots = (
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage -r html -r lcov --src src node ./bin/index.js --auto --mode migrate --skip-all-contributors-api --skip-github-api --skip-install`;
+})`c8 -o ./coverage -r html -r lcov --src src node bin/index.js --auto --mode migrate --skip-all-contributors-api --skip-github-api --skip-install`;
 
 // All Contributors seems to not be using Prettier to format files...
 await fs.writeFile(

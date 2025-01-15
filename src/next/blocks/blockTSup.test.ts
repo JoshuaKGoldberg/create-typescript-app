@@ -51,7 +51,7 @@ describe("blockTSup", () => {
 			                "run": "pnpm build",
 			              },
 			              {
-			                "run": "node ./lib/index.js",
+			                "run": "node lib/index.js",
 			              },
 			            ],
 			          },
@@ -139,7 +139,7 @@ describe("blockTSup", () => {
 			                "run": "pnpm build",
 			              },
 			              {
-			                "run": "node ./lib/index.js",
+			                "run": "node lib/index.js",
 			              },
 			            ],
 			          },
@@ -236,7 +236,7 @@ describe("blockTSup", () => {
 			                "run": "pnpm build",
 			              },
 			              {
-			                "run": "node ./lib/index.js",
+			                "run": "node lib/index.js",
 			              },
 			            ],
 			          },

@@ -20,8 +20,8 @@ exports[`expected file changes > .github/workflows/ci.yml 1`] = `
        - uses: actions/checkout@v4
        - uses: ./.github/actions/prepare
        - run: pnpm build
--      - run: node ./lib/index.js --version
-+      - run: node ./lib/index.js
+-      - run: node lib/index.js --version
++      - run: node lib/index.js
    lint:
      name: Lint
      runs-on: ubuntu-latest

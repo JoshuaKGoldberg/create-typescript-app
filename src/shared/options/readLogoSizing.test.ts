@@ -34,7 +34,7 @@ describe("readLogoSizing", () => {
 	it("returns the height when imageSize returns only a height smaller than the maximum", () => {
 		const height = 100;
 
-		mockImageSize.mockReturnValueOnce({ height });
+		mockImageSize.mockReturnValueOnce({ height, type: "png" });
 
 		const actual = readLogoSizing(src);
 
@@ -44,7 +44,7 @@ describe("readLogoSizing", () => {
 	it("returns maximum height when imageSize returns only a height greater than the maximum", () => {
 		const height = 129;
 
-		mockImageSize.mockReturnValueOnce({ height });
+		mockImageSize.mockReturnValueOnce({ height, type: "png" });
 
 		const actual = readLogoSizing(src);
 
@@ -54,7 +54,7 @@ describe("readLogoSizing", () => {
 	it("returns the width when imageSize returns only a width smaller than the maximum", () => {
 		const width = 100;
 
-		mockImageSize.mockReturnValueOnce({ width });
+		mockImageSize.mockReturnValueOnce({ type: "png", width });
 
 		const actual = readLogoSizing(src);
 
@@ -64,7 +64,7 @@ describe("readLogoSizing", () => {
 	it("returns maximum width when imageSize returns only a width greater than the maximum", () => {
 		const width = 129;
 
-		mockImageSize.mockReturnValueOnce({ width });
+		mockImageSize.mockReturnValueOnce({ type: "png", width });
 
 		const actual = readLogoSizing(src);
 
@@ -75,7 +75,7 @@ describe("readLogoSizing", () => {
 		const height = 101;
 		const width = 102;
 
-		mockImageSize.mockReturnValueOnce({ height, width });
+		mockImageSize.mockReturnValueOnce({ height, type: "png", width });
 
 		const actual = readLogoSizing(src);
 
@@ -86,7 +86,7 @@ describe("readLogoSizing", () => {
 		const height = 1280;
 		const width = 1000;
 
-		mockImageSize.mockReturnValueOnce({ height, width });
+		mockImageSize.mockReturnValueOnce({ height, type: "png", width });
 
 		const actual = readLogoSizing(src);
 
@@ -97,7 +97,7 @@ describe("readLogoSizing", () => {
 		const height = 1000;
 		const width = 1280;
 
-		mockImageSize.mockReturnValueOnce({ height, width });
+		mockImageSize.mockReturnValueOnce({ height, type: "png", width });
 
 		const actual = readLogoSizing(src);
 

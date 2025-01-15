@@ -32,7 +32,7 @@ export function createWorkflows(options: Options) {
 			jobs: [
 				{
 					name: "Build",
-					steps: [{ run: "pnpm build" }, { run: "node ./lib/index.js" }],
+					steps: [{ run: "pnpm build" }, { run: "node lib/index.js" }],
 				},
 				{
 					name: "Prettier",

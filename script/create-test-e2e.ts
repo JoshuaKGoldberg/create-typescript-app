@@ -15,7 +15,7 @@ await rimraf(["coverage*", repository]);
 // asserting that pnpm i passes in that repository's directory.
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-create -r html -r lcov  --src src node ./bin/index.js --base everything --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api`;
+})`c8 -o ./coverage-create -r html -r lcov  --src src node bin/index.js --base everything --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-all-contributors-api --skip-github-api`;
 
 process.chdir(repository);
 

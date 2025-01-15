@@ -12,8 +12,8 @@
 		"email": "npm@joshuakgoldberg.com"
 	},
 	"type": "module",
-	"main": "./lib/index.js",
-	"bin": "./bin/index.js",
+	"main": "lib/index.js",
+	"bin": "bin/index.js",
 	"files": [
 		"LICENSE.md",
 		"README.md",
@@ -24,7 +24,7 @@
 	"scripts": {
 		"build": "tsup",
 		"format": "prettier .",
-		"initialize": "pnpm build --no-dts && tsx ./bin/index.js --mode initialize",
+		"initialize": "pnpm build --no-dts && tsx bin/index.js --mode initialize",
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
 		"lint:md": "markdownlint \"**/*.md\" \".github/**/*.md\" --rules sentences-per-line",

@@ -13,7 +13,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"]}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","files":["README.md","package.json"]}",
 			  },
 			  "scripts": [
 			    {
@@ -36,7 +36,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"]}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","files":["README.md","package.json"]}",
 			  },
 			  "scripts": [
 			    {
@@ -73,7 +73,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"other":true}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"other":true}",
 			  },
 			  "scripts": [
 			    {
@@ -108,7 +108,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"./lib/index.js","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"other":true}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"Test description","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"other":true}",
 			  },
 			  "scripts": [
 			    {

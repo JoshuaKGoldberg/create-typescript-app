@@ -7,7 +7,7 @@ const createOptions = (exclude: boolean) =>
 	({
 		access: "public",
 		base: "everything",
-		bin: exclude ? undefined : "./bin/index.js",
+		bin: exclude ? undefined : "bin/index.js",
 		description: "Test description.",
 		directory: ".",
 		email: {
@@ -75,7 +75,7 @@ describe("createWorkflows", () => {
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm build
-			      - run: node ./lib/index.js
+			      - run: node lib/index.js
 			  lint:
 			    name: Lint
 			    runs-on: ubuntu-latest
@@ -320,7 +320,7 @@ describe("createWorkflows", () => {
 			      - uses: actions/checkout@v4
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm build
-			      - run: node ./lib/index.js
+			      - run: node lib/index.js
 			  lint:
 			    name: Lint
 			    runs-on: ubuntu-latest

@@ -11,7 +11,7 @@ const createOptions = (exclude: boolean) =>
 	({
 		access: "public",
 		base: "everything",
-		bin: exclude ? undefined : "./bin/index.js",
+		bin: exclude ? undefined : "bin/index.js",
 		description: "Test description.",
 		directory: ".",
 		email: {

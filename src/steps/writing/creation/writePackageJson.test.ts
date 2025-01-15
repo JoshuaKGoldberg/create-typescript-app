@@ -89,7 +89,7 @@ describe("writePackageJson", () => {
 			  "lint-staged": {
 			    "*": "prettier --ignore-unknown --write",
 			  },
-			  "main": "./lib/index.js",
+			  "main": "lib/index.js",
 			  "name": "test-repository",
 			  "publishConfig": {
 			    "provenance": true,
@@ -121,7 +121,7 @@ describe("writePackageJson", () => {
 
 		const packageJson = await writePackageJson({
 			...options,
-			bin: "./bin/index.js",
+			bin: "bin/index.js",
 			excludeAllContributors: true,
 			excludeBuild: true,
 			excludeCompliance: true,
@@ -144,7 +144,7 @@ describe("writePackageJson", () => {
 			    "email": "npm@email.com",
 			    "name": "test-author",
 			  },
-			  "bin": "./bin/index.js",
+			  "bin": "bin/index.js",
 			  "description": "Test description.",
 			  "devDependencies": {},
 			  "engines": {
@@ -161,7 +161,7 @@ describe("writePackageJson", () => {
 			  "lint-staged": {
 			    "*": "prettier --ignore-unknown --write",
 			  },
-			  "main": "./lib/index.js",
+			  "main": "lib/index.js",
 			  "name": "test-repository",
 			  "publishConfig": {
 			    "provenance": true,

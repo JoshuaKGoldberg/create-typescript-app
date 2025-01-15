@@ -53,7 +53,7 @@ describe("createOptionDefaults", () => {
 		});
 
 		it("returns the bin when package data has a bin", async () => {
-			const bin = "./lib/index.js";
+			const bin = "lib/index.js";
 
 			mockReadPackageData.mockResolvedValue({ bin });
 

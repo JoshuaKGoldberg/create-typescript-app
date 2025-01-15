@@ -23,9 +23,10 @@ export const blockREADME = base.createBlock({
 
 		const logo =
 			options.logo &&
-			`\n<img ${printAttributes({ align: "right", ...options.logo })}>`;
+			`\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`;
 
-		const explainer = options.explainer && `\n${options.explainer.join("\n")}`;
+		const explainer =
+			options.explainer && `\n${options.explainer.join("\n")}\n`;
 
 		return {
 			files: {

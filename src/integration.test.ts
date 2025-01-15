@@ -137,20 +137,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 			",
 			    },
 			  },
-			  ".vscode": {
-			    "launch.json": "@@ -13,9 +13,9 @@
-			 		},
-			 		{
-			 			"name": "Debug Program",
-			 			"preLaunchTask": "build",
-			-			"program": "./bin/index.js",
-			+			"program": "bin/index.js",
-			 			"request": "launch",
-			 			"skipFiles": ["<node_internals>/**"],
-			 			"type": "node"
-			 		}
-			",
-			  },
 			  "README.md": "@@ -1,9 +1,9 @@
 			 <h1 align="center">Create TypeScript App</h1>
 			 

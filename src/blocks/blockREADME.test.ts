@@ -116,6 +116,7 @@ describe("blockREADME", () => {
 			</p>
 
 			<img align="right" alt="My logo" src="img.jpg">
+
 			## Usage
 
 			Use it.
@@ -160,6 +161,7 @@ describe("blockREADME", () => {
 			</p>
 
 			<img align="right" alt="My logo" height="100" src="img.jpg" width="128">
+
 			## Usage
 
 			Use it.

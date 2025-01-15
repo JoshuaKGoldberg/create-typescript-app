@@ -56,7 +56,6 @@ export const blockESLint = base.createBlock({
 		name: "ESLint",
 	},
 	addons: {
-		allowDefaultProject: z.array(z.string()).default([]),
 		beforeLint: z.string().optional(),
 		explanations: z.array(z.string()).default([]),
 		extensions: z.array(z.union([z.string(), zExtension])).default([]),

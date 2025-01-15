@@ -22,6 +22,16 @@ import { readDescription } from "./readDescription.js";
 import { readDocumentation } from "./readDocumentation.js";
 import { swallowError } from "./utils/swallowError.js";
 
+const zContributor = z.object({
+	avatar_url: z.string(),
+	contributions: z.array(z.string()),
+	login: z.string(),
+	name: z.string(),
+	profile: z.string(),
+});
+
+export type Contributor = z.infer<typeof zContributor>;
+
 export const base = createBase({
 	options: {
 		access: z
@@ -36,15 +46,7 @@ export const base = createBase({
 			.optional()
 			.describe('value to set in `package.json`\'s `"bin"` property'),
 		contributors: z
-			.array(
-				z.object({
-					avatar_url: z.string(),
-					contributions: z.array(z.string()),
-					login: z.string(),
-					name: z.string(),
-					profile: z.string(),
-				}),
-			)
+			.array(zContributor)
 			.optional()
 			.describe("AllContributors contributors to store in .all-contributorsrc"),
 		description: z

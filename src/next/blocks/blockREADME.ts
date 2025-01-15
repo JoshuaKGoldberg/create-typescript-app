@@ -14,9 +14,10 @@ export const blockREADME = base.createBlock({
 	},
 	addons: {
 		notices: z.array(z.string()).default([]),
+		sections: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
-		const { notices } = addons;
+		const { notices, sections } = addons;
 
 		const logo = options.logo
 			? `\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`
@@ -48,13 +49,7 @@ ${options.usage}
 
 See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 Thanks! 💖
-
-## Contributors
-
-<!-- spellchecker: disable -->
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<!-- spellchecker: enable -->
+${sections.map((section) => `\n${section}\n`).join("")}
 ${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : ""}`,
 			},
 		};

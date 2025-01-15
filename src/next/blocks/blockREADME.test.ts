@@ -46,12 +46,6 @@ describe("blockREADME", () => {
 			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 			Thanks! 💖
 
-			## Contributors
-
-			<!-- spellchecker: disable -->
-			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-LIST:END -->
-			<!-- spellchecker: enable -->
 			",
 			  },
 			}
@@ -97,12 +91,6 @@ describe("blockREADME", () => {
 			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 			Thanks! 💖
 
-			## Contributors
-
-			<!-- spellchecker: disable -->
-			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-LIST:END -->
-			<!-- spellchecker: enable -->
 			",
 			  },
 			}
@@ -150,12 +138,6 @@ describe("blockREADME", () => {
 			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 			Thanks! 💖
 
-			## Contributors
-
-			<!-- spellchecker: disable -->
-			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-LIST:END -->
-			<!-- spellchecker: enable -->
 			",
 			  },
 			}
@@ -205,12 +187,6 @@ describe("blockREADME", () => {
 			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 			Thanks! 💖
 
-			## Contributors
-
-			<!-- spellchecker: disable -->
-			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-LIST:END -->
-			<!-- spellchecker: enable -->
 			",
 			  },
 			}
@@ -250,12 +226,6 @@ describe("blockREADME", () => {
 			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 			Thanks! 💖
 
-			## Contributors
-
-			<!-- spellchecker: disable -->
-			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-LIST:END -->
-			<!-- spellchecker: enable -->
 			",
 			  },
 			}
@@ -298,12 +268,6 @@ describe("blockREADME", () => {
 			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 			Thanks! 💖
 
-			## Contributors
-
-			<!-- spellchecker: disable -->
-			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-LIST:END -->
-			<!-- spellchecker: enable -->
 
 			> Hello, world! 💖",
 			  },

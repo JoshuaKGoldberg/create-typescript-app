@@ -13,6 +13,12 @@ describe("blockAllContributors", () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "sections": undefined,
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "secrets": [
 			          {
 			            "description": "a GitHub PAT with repo and workflow permissions",
@@ -52,7 +58,6 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli generate",
 			        "pnpx all-contributors-cli add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
@@ -62,7 +67,7 @@ describe("blockAllContributors", () => {
 		`);
 	});
 
-	it("includes contributors when not provided", () => {
+	it("includes contributors when provided", () => {
 		const creation = testBlock(blockAllContributors, {
 			options: {
 				...optionsBase,
@@ -81,6 +86,30 @@ describe("blockAllContributors", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
+			    {
+			      "addons": {
+			        "sections": [
+			          "## Contributors
+
+			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+			<!-- prettier-ignore-start -->
+			<!-- markdownlint-disable -->
+			<table>
+			  <tbody>
+			    <tr>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a></td>
+			    </tr>
+			  </tbody>
+			</table>
+
+			<!-- markdownlint-restore -->
+			<!-- prettier-ignore-end -->
+
+			<!-- ALL-CONTRIBUTORS-LIST:END -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			    {
 			      "addons": {
 			        "secrets": [
@@ -122,7 +151,6 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli generate",
 			        "pnpx all-contributors-cli add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,

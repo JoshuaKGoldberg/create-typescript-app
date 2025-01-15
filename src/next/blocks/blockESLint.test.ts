@@ -272,6 +272,7 @@ describe("blockESLint", () => {
 		const creation = testBlock(blockESLint, {
 			addons: {
 				beforeLint: "Before lint.",
+				explanations: ["This is a great config!", "You should use it!"],
 				extensions: [
 					"a.configs.recommended",
 					{
@@ -406,7 +407,13 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.js": "/*
+			This is a great config!
+			*/
+			/*
+			You should use it!
+			*/
+			import eslint from "@eslint/js";
 			import a from "eslint-plugin-markdown"
 			import b from "eslint-plugin-regexp"
 			import tseslint from "typescript-eslint";

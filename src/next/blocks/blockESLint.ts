@@ -57,6 +57,7 @@ export const blockESLint = base.createBlock({
 	},
 	addons: {
 		beforeLint: z.string().optional(),
+		explanations: z.array(z.string()).default([]),
 		extensions: z.array(z.union([z.string(), zExtension])).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
@@ -74,7 +75,8 @@ export const blockESLint = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { extensions, ignores, imports, rules, settings } = addons;
+		const { explanations, extensions, ignores, imports, rules, settings } =
+			addons;
 
 		const importLines = [
 			'import eslint from "@eslint/js";',
@@ -197,7 +199,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 			],
 			files: {
-				"eslint.config.js": `${importLines.join("\n")}
+				"eslint.config.js": `${explanations.map((explanation) => `/*\n${explanation}\n*/\n`).join("")}${importLines.join("\n")}
 
 export default tseslint.config(
 	{ ignores: [${ignoreLines.join(", ")}] },

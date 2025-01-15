@@ -8,6 +8,7 @@ import {
 	base,
 	BaseOptions,
 	blockAreTheTypesWrong,
+	blockCodecov,
 	blockCSpell,
 	blockESLint,
 	blockKnip,
@@ -39,6 +40,11 @@ test("Producing the everything preset matches the files in this repository", asy
 
 	const created = await producePreset(presets.everything, {
 		addons: [
+			blockCodecov({
+				env: {
+					CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
+				},
+			}),
 			blockCSpell({
 				words: [
 					"Anson",
@@ -105,20 +111,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 			{
 			  ".github": {
 			    "workflows": {
-			      "ci.yml": "@@ -64,11 +64,9 @@
-			     steps:
-			       - uses: actions/checkout@v4
-			       - uses: ./.github/actions/prepare
-			       - run: pnpm run test --coverage
-			-      - env:
-			-          CODECOV_TOKEN: \${{ secrets.CODECOV_TOKEN }}
-			-        if: always()
-			+      - if: always()
-			         uses: codecov/codecov-action@v3
-			   type_check:
-			     name: Type Check
-			     runs-on: ubuntu-latest
-			",
 			      "release.yml": "@@ -14,13 +14,9 @@
 			       - run: pnpm build
 			       - env:

@@ -12,8 +12,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       create:
-        specifier: 0.1.0-alpha.14
-        version: 0.1.0-alpha.14
+        specifier: 0.1.0-alpha.15
+        version: 0.1.0-alpha.15
       create-fs:
         specifier: ^0.1.1
         version: 0.1.1
@@ -37,13 +37,13 @@ importers:
         version: 1.2.0
       input-from-file:
         specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.14)
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
       input-from-file-json:
         specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.14)
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
       input-from-script:
         specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.14)
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -131,7 +131,7 @@ importers:
         version: 0.5.0
       create-testers:
         specifier: 0.1.0-alpha.14
-        version: 0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.14)
+        version: 0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.15)
       cspell:
         specifier: ^8.17.2
         version: 8.17.2
@@ -1933,8 +1933,8 @@ packages:
       create: ^0.1.0-alpha.14
       create-fs: ^0.1.0
 
-  create@0.1.0-alpha.14:
-    resolution: {integrity: sha512-OExXy9Tn7Nugayz/eKMJV1/oM7J/p2SOi3HK/zEyMXNwF2IwnPiHli6rjyvl5hggU7618cumdD6D5ptJK1Zixw==}
+  create@0.1.0-alpha.15:
+    resolution: {integrity: sha512-iTBTuTIv+f+nD9mr7hyKrKuPyw46UDDBVz0iU7mCnq5MW/0OUqwm7oTFrQ6GTggDiYiS+7Yz3/AZ92EKKZVadA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5945,15 +5945,15 @@ snapshots:
 
   create-fs@0.1.1: {}
 
-  create-testers@0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.14):
+  create-testers@0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.15):
     dependencies:
-      create: 0.1.0-alpha.14
+      create: 0.1.0-alpha.15
       create-fs: 0.1.1
       diff: 7.0.0
       octokit: 4.1.0
       without-undefined-properties: 0.1.1
 
-  create@0.1.0-alpha.14:
+  create@0.1.0-alpha.15:
     dependencies:
       '@clack/prompts': 0.9.1
       cached-factory: 0.1.0
@@ -6909,20 +6909,20 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.1.0-alpha.4(create@0.1.0-alpha.14):
+  input-from-file-json@0.1.0-alpha.4(create@0.1.0-alpha.15):
     dependencies:
-      create: 0.1.0-alpha.14
-      input-from-file: 0.1.0-alpha.4(create@0.1.0-alpha.14)
+      create: 0.1.0-alpha.15
+      input-from-file: 0.1.0-alpha.4(create@0.1.0-alpha.15)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.4(create@0.1.0-alpha.14):
+  input-from-file@0.1.0-alpha.4(create@0.1.0-alpha.15):
     dependencies:
-      create: 0.1.0-alpha.14
+      create: 0.1.0-alpha.15
       zod: 3.24.1
 
-  input-from-script@0.1.0-alpha.4(create@0.1.0-alpha.14):
+  input-from-script@0.1.0-alpha.4(create@0.1.0-alpha.15):
     dependencies:
-      create: 0.1.0-alpha.14
+      create: 0.1.0-alpha.15
       zod: 3.24.1
 
   inquirer@7.3.3:

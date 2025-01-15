@@ -200,6 +200,7 @@ describe("blockGitHubActionsCI", () => {
 			        "rm -rf .circleci travis.yml",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

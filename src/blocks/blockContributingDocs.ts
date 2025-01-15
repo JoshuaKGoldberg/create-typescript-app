@@ -11,6 +11,7 @@ export const blockContributingDocs = base.createBlock({
 				{
 					commands: ["rm CONTRIBUTING.md"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

@@ -234,6 +234,7 @@ describe("blockContributingDocs", () => {
 			        "rm CONTRIBUTING.md",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

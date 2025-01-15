@@ -9,11 +9,11 @@ export async function createKnipConfig() {
 
 	return await formatJson({
 		$schema: `https://unpkg.com/knip@${existingPackageJson?.devDependencies?.knip ?? "latest"}/schema.json`,
-		entry: ["src/index.ts!"],
+		entry: ["src/index.ts"],
 		ignoreExportsUsedInFile: {
 			interface: true,
 			type: true,
 		},
-		project: ["src/**/*.ts!"],
+		project: ["src/**/*.ts"],
 	});
 }

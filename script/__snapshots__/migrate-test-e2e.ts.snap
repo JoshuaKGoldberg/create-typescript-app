@@ -216,12 +216,12 @@ exports[`expected file changes > knip.json 1`] = `
 @@ ... @@
  {
  	"$schema": "https://unpkg.com/knip@5.41.1/schema.json",
--	"entry": ["script/*e2e.js", "src/index.ts!", "src/**/*.test.*"],
+-	"entry": ["script/*e2e.js", "src/index.ts", "src/**/*.test.*"],
 -	"ignoreDependencies": ["all-contributors-cli", "cspell-populate-words"],
-+	"entry": ["src/index.ts!"],
++	"entry": ["src/index.ts"],
  	"ignoreExportsUsedInFile": { "interface": true, "type": true },
--	"project": ["src/**/*.ts!", "script/**/*.js"]
-+	"project": ["src/**/*.ts!"]
+-	"project": ["src/**/*.ts", "script/**/*.js"]
++	"project": ["src/**/*.ts"]
  }"
 `;
 

@@ -150,7 +150,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": /## Getting Started\\.\\*## Development/gs,
+			      "from": /## Usage\\.\\*## Development/gs,
 			      "to": "## Development",
 			    },
 			  ],
@@ -317,7 +317,7 @@ describe("updateLocalFiles", () => {
 			    {
 			      "allowEmptyPaths": true,
 			      "files": "./README.md",
-			      "from": /## Getting Started\\.\\*## Development/gs,
+			      "from": /## Usage\\.\\*## Development/gs,
 			      "to": "## Development",
 			    },
 			  ],

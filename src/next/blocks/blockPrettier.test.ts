@@ -94,7 +94,7 @@ describe("blockPrettier", () => {
 			        "npx lint-staged
 			",
 			        {
-			          "mode": 1911,
+			          "mode": 33279,
 			        },
 			      ],
 			    },
@@ -206,7 +206,7 @@ describe("blockPrettier", () => {
 			        "npx lint-staged
 			",
 			        {
-			          "mode": 1911,
+			          "mode": 33279,
 			        },
 			      ],
 			    },
@@ -335,7 +335,7 @@ describe("blockPrettier", () => {
 			        "npx lint-staged
 			",
 			        {
-			          "mode": 1911,
+			          "mode": 33279,
 			        },
 			      ],
 			    },

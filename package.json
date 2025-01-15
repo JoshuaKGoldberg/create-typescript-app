@@ -83,7 +83,7 @@
 		"@types/git-url-parse": "9.0.3",
 		"@types/html-to-text": "9.0.4",
 		"@types/js-yaml": "4.0.9",
-		"@types/lodash": "^4.17.14",
+		"@types/lodash": "4.17.14",
 		"@types/node": "22.10.2",
 		"@types/parse-author": "2.0.3",
 		"@vitest/coverage-v8": "2.1.8",

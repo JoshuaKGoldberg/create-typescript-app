@@ -72,6 +72,10 @@ export const base = createBase({
 			.describe(
 				"email address to be listed as the point of contact in docs and packages",
 			),
+		explainer: z
+			.array(z.string())
+			.optional()
+			.describe("additional README.md sentence(s) describing the package"),
 		funding: z
 			.string()
 			.optional()

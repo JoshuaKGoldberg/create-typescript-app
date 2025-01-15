@@ -165,7 +165,7 @@ exports[`expected file changes > eslint.config.js 1`] = `
  		languageOptions: {
  			parserOptions: {
 -				projectService: {
--					allowDefaultProject: ["*.config.*s", "bin/*.js"],
+-					allowDefaultProject: ["*.config.*s", "bin/index.js"],
 -				},
 +				projectService: { allowDefaultProject: ["*.config.*s"] },
  				tsconfigRootDir: import.meta.dirname,

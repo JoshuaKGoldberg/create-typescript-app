@@ -45,7 +45,9 @@ export const blockPackageJson = base.createBlock({
 			...options.packageData?.devDependencies,
 			...addons.properties.devDependencies,
 		};
-		const description = htmlToText.convert(options.description);
+		const description = htmlToText.convert(options.description, {
+			wordwrap: false,
+		});
 
 		return {
 			files: {

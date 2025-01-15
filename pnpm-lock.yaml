@@ -12,11 +12,11 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       create:
-        specifier: 0.1.0-alpha.13
-        version: 0.1.0-alpha.13
+        specifier: 0.1.0-alpha.14
+        version: 0.1.0-alpha.14
       create-fs:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
       cspell-populate-words:
         specifier: ^0.3.0
         version: 0.3.0
@@ -37,13 +37,13 @@ importers:
         version: 1.2.0
       input-from-file:
         specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.13)
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.14)
       input-from-file-json:
         specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.13)
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.14)
       input-from-script:
         specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.13)
+        version: 0.1.0-alpha.4(create@0.1.0-alpha.14)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -127,8 +127,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0
       create-testers:
-        specifier: 0.1.0-alpha.13
-        version: 0.1.0-alpha.13(create-fs@0.1.0)(create@0.1.0-alpha.13)
+        specifier: 0.1.0-alpha.14
+        version: 0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.14)
       cspell:
         specifier: ^8.17.2
         version: 8.17.2
@@ -1919,19 +1919,19 @@ packages:
       typescript:
         optional: true
 
-  create-fs@0.1.0:
-    resolution: {integrity: sha512-IxoO6aFIPs+loAGrBn/Hg8UzQ5pRfjtsNqSW8o/RMtjh0RShZcuKbDYWvepnjTqDAaHdbkaXFY7y86WXqQnzpA==}
+  create-fs@0.1.1:
+    resolution: {integrity: sha512-tZqeDZ7yLLje2meTDL1pR3oBAnSlDd8fNyRUHtPxhGIGUGEoY8A/DHIpfxHE9eEoamA2snDJlVP9HyItfb18gQ==}
     engines: {node: '>=18'}
 
-  create-testers@0.1.0-alpha.13:
-    resolution: {integrity: sha512-rrCLIajWABQcakAr9eLwIqmzaXVx8zyfE/dXKf2Xj/L4+7m/48JE+4q8gRLh6SYsb4c/SFlaKZ/q50gIWitDcg==}
+  create-testers@0.1.0-alpha.14:
+    resolution: {integrity: sha512-IWK69nhyVEhMTDfmOwAr3Hlj3jtQ8P3mz4ezo77BI0er82KpPaNGuSePbj5N9NWfP5TuJeeFJ+uEDcHb2x7fzA==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.13
+      create: ^0.1.0-alpha.14
       create-fs: ^0.1.0
 
-  create@0.1.0-alpha.13:
-    resolution: {integrity: sha512-8pX3fXtYzyXcCkMppv7R9hsw0SFbxQxzkEDsjX8WyIQd0jPuSIQMr0ofZEUthJQG63NlJCvXmS2V4H7LQDUpFA==}
+  create@0.1.0-alpha.14:
+    resolution: {integrity: sha512-OExXy9Tn7Nugayz/eKMJV1/oM7J/p2SOi3HK/zEyMXNwF2IwnPiHli6rjyvl5hggU7618cumdD6D5ptJK1Zixw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5935,22 +5935,22 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
-  create-fs@0.1.0: {}
+  create-fs@0.1.1: {}
 
-  create-testers@0.1.0-alpha.13(create-fs@0.1.0)(create@0.1.0-alpha.13):
+  create-testers@0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.14):
     dependencies:
-      create: 0.1.0-alpha.13
-      create-fs: 0.1.0
+      create: 0.1.0-alpha.14
+      create-fs: 0.1.1
       diff: 7.0.0
       octokit: 4.1.0
       without-undefined-properties: 0.1.1
 
-  create@0.1.0-alpha.13:
+  create@0.1.0-alpha.14:
     dependencies:
       '@clack/prompts': 0.9.1
       cached-factory: 0.1.0
       chalk: 5.4.1
-      create-fs: 0.1.0
+      create-fs: 0.1.1
       execa: 9.5.2
       get-github-auth-token: 0.1.1
       hash-object: 5.0.1
@@ -6901,20 +6901,20 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.1.0-alpha.4(create@0.1.0-alpha.13):
+  input-from-file-json@0.1.0-alpha.4(create@0.1.0-alpha.14):
     dependencies:
-      create: 0.1.0-alpha.13
-      input-from-file: 0.1.0-alpha.4(create@0.1.0-alpha.13)
+      create: 0.1.0-alpha.14
+      input-from-file: 0.1.0-alpha.4(create@0.1.0-alpha.14)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.4(create@0.1.0-alpha.13):
+  input-from-file@0.1.0-alpha.4(create@0.1.0-alpha.14):
     dependencies:
-      create: 0.1.0-alpha.13
+      create: 0.1.0-alpha.14
       zod: 3.24.1
 
-  input-from-script@0.1.0-alpha.4(create@0.1.0-alpha.13):
+  input-from-script@0.1.0-alpha.4(create@0.1.0-alpha.14):
     dependencies:
-      create: 0.1.0-alpha.13
+      create: 0.1.0-alpha.14
       zod: 3.24.1
 
   inquirer@7.3.3:

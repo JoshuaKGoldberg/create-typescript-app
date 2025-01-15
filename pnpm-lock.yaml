@@ -130,7 +130,7 @@ importers:
         specifier: 4.0.9
         version: 4.0.9
       '@types/lodash':
-        specifier: ^4.17.14
+        specifier: 4.17.14
         version: 4.17.14
       '@types/node':
         specifier: 22.10.2

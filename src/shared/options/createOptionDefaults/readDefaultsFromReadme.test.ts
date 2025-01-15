@@ -151,7 +151,7 @@ It is good.
 			const logo = await readDefaultsFromReadme(
 				() =>
 					Promise.resolve(`
-<img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
+<img alt='Project logo: a fancy circle' height='117px' src='abc/def.jpg' width=' 117px'/>`),
 				() => Promise.resolve(undefined),
 			).logo();
 

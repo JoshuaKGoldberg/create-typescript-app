@@ -180,7 +180,7 @@ const optionsBaseline: Options = {
 	access: "public",
 	author: "Test Author",
 	base: "everything",
-	bin: "bin/test.js",
+	bin: "bin/index.js",
 	description: "Test Description",
 	directory: "test-directory",
 	email: { github: "github@example.com", npm: "npm@example.com" },

@@ -8,8 +8,8 @@ import { blocks, presets } from "./index.js";
 const actualLines = await createActualLines();
 const expectedLines = await createExpectedLines();
 
-// This test ensures ensures docs/Blocks.md has a row for each of CTA's options.
-// Each row should include emojis describing which preset(s) include the option.
+// This test ensures ensures docs/Blocks.md has a row for each of CTA's blocks.
+// Each row should include emojis describing which preset(s) include the block.
 //
 // If this fails, it's likely due to adding, removing, or renaming a block.
 // You may need to manually change docs/Blocks.md to match to those changes.

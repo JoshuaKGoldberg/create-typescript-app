@@ -14,6 +14,7 @@ export const blockTSup = base.createBlock({
 	},
 	addons: {
 		entry: z.array(z.string()).default([]),
+		runArgs: z.array(z.string()).default([]),
 	},
 	migrate() {
 		return {
@@ -56,7 +57,12 @@ pnpm build --watch
 					jobs: [
 						{
 							name: "Build",
-							steps: [{ run: "pnpm build" }, { run: "node ./lib/index.js" }],
+							steps: [
+								{ run: "pnpm build" },
+								{
+									run: `node ./lib/index.js${addons.runArgs.map((arg) => ` ${arg}`).join("")}`,
+								},
+							],
 						},
 					],
 				}),

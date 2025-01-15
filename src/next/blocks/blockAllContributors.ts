@@ -1,4 +1,4 @@
-import { sortBy } from "lodash";
+import _ from "lodash";
 
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base, Contributor } from "../base.js";
@@ -81,7 +81,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
 		`    <tr>`,
 		// This intentionally uses the same sort as all-contributors-cli:
 		// https://github.com/all-contributors/cli/blob/74bc388bd6f0ae2658e6495e9d3781d737438a97/src/generate/index.js#L76
-		...sortBy(contributors, "name").flatMap((contributor, i) => {
+		..._.sortBy(contributors, "name").flatMap((contributor, i) => {
 			const row = printContributorCell(contributor);
 
 			return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];

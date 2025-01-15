@@ -1,6 +1,6 @@
 # Creating from the Terminal
 
-You can run `npx create typescript-app` in your terminal to interactively create a new repository in a child directory:
+You can run `npx create typescript-app` in your terminal to interactively create a new repository:
 
 ```shell
 npx create typescript-app
@@ -8,8 +8,8 @@ npx create typescript-app
 
 The creation script will by default:
 
-1. Create a new directory with the given repository name
-2. Initialize that new directory as a local Git repository
+1. Prompt you for a directory, which template preset to run with, and some starting information
+2. Initialize new directory as a local Git repository
 3. Copy the template's files to that directory
 4. Create a new repository on GitHub and set it as the local repository's upstream
 5. Configure relevant settings on the GitHub repository
@@ -28,13 +28,13 @@ Hooray! 🥳
 
 ## Options
 
-You can explicitly provide some or all of the options the script would prompt for as command-line flags.
+You can customize which pieces of tooling are provided and the options they're created with.
 See [Options.md](./Options.md).
 
-For example, running the creation script and skipping the _"This package was templated with..."_ block:
+For example, skipping the _"This package was templated with..."_ block:
 
 ```shell
 npx create typescript-app --mode create --exclude-templated-with
 ```
 
-See [Tooling.md](./Tooling.md) for details on the tooling pieces and which bases they're included in.
+See [Blocks.md](./Blocks.md) for details on the tooling pieces and which presets they're included in.

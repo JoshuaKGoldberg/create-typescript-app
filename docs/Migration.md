@@ -41,13 +41,13 @@ Hooray! 🥳
 
 ## Options
 
-You can explicitly provide some or all of the options the script would prompt for as command-line flags.
+You can customize which pieces of tooling are provided and the options they're created with.
 See [Options.md](./Options.md).
 
-For example, running the migration script and skipping the _"This package was templated with..."_ block:
+For example, skipping the _"This package was templated with..."_ block:
 
 ```shell
-npx create typescript-app --mode migrate --exclude-templated-with
+npx create typescript-app --exclude-templated-with
 ```
 
-See [Tooling.md](./Tooling.md) for details on the tooling pieces and which bases they're included in.
+See [Blocks.md](./Blocks.md) for details on the tooling pieces and which presets they're included in.

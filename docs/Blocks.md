@@ -1,6 +1,6 @@
 # Blocks
 
-`create-typescript-app` provides over two dozen pieces of tooling, ranging from code building and formatting to various forms of GitHub repository management.
+`create-typescript-app` provides several dozen pieces of tooling, ranging from code building and formatting to various forms of GitHub repository management.
 Each can be individually turned off or on.
 
 This table summarizes each block and which base levels they're included in:
@@ -25,10 +25,10 @@ This table summarizes each block and which base levels they're included in:
 | ESLint Perfectionist Plugin  | `--exclude-eslint-perfectionist-plugin`  |         |        | 💯         |
 | ESLint Regexp Plugin         | `--exclude-eslint-regexp-plugin`         |         |        | 💯         |
 | ESLint YML Plugin            | `--exclude-eslint-yml-plugin`            |         |        | 💯         |
-| Funding                      | `--exclude-funding`                      | ✔️      | ✅     | 💯         |
+| Funding                      | `--exclude-funding`                      |         | ✅     | 💯         |
 | GitHub Actions CI            | `--exclude-github-actions-ci`            | ✔️      | ✅     | 💯         |
 | GitHub Issue Templates       | `--exclude-github-issue-templates`       | ✔️      | ✅     | 💯         |
-| GitHub Issue Templates       | `--exclude-github-issue-templates`       | ✔️      | ✅     | 💯         |
+| GitHub PR Template           | `--exclude-github-pr-template`           | ✔️      | ✅     | 💯         |
 | Gitignore                    | `--exclude-gitignore`                    | ✔️      | ✅     | 💯         |
 | Knip                         | `--exclude-knip`                         |         |        | 💯         |
 | Markdownlint                 | `--exclude-markdownlint`                 |         |        | 💯         |
@@ -44,7 +44,7 @@ This table summarizes each block and which base levels they're included in:
 | README.md                    | `--exclude-readme-md`                    | ✔️      | ✅     | 💯         |
 | release-it                   | `--exclude-release-it`                   |         | ✅     | 💯         |
 | Renovate                     | `--exclude-renovate`                     |         |        | 💯         |
-| Security Docs                | `--exclude-security-docs`                |         |        | 💯         |
+| Security Docs                | `--exclude-security-docs`                | ✔️      | ✅     | 💯         |
 | Templated By Notice          | `--exclude-templated-by-notice`          | ✔️      | ✅     | 💯         |
 | TSup                         | `--exclude-tsup`                         | ✔️      | ✅     | 💯         |
 | TypeScript                   | `--exclude-typescript`                   | ✔️      | ✅     | 💯         |

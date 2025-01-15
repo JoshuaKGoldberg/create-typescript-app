@@ -49,7 +49,7 @@ You can read more about the supported setup modes in their docs pages:
 
 You can read more about `create-typescript-app` and the tooling it supports:
 
-1. [**Tooling**](./docs/Tooling.md): a breakdown of all the pieces this template can set up.
+1. [**Blocks**](./docs/Blocks.md): a breakdown of all the pieces this template can set up.
 2. [**Options**](./docs/Options.md): granular options to customize how the template is run.
 3. [**FAQs**](./docs/FAQs.md): frequently asked questions
 

@@ -27,7 +27,7 @@ describe("base", () => {
 			},
 			explainer: [
 				`\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.`,
-				`It includes options not just for building and testing but also GitHub repository templates, contributor recognition, automated release management, and more.`,
+				`It includes options not just for building and testing but also automated release management, contributor recognition, GitHub repository settings, and more.`,
 			],
 			funding: "JoshuaKGoldberg",
 			guide: {

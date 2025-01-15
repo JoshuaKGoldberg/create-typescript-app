@@ -2,6 +2,7 @@ import jsYaml from "js-yaml";
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { CommandPhase } from "./phases.js";
@@ -43,6 +44,11 @@ export const blockGitHubActionsCI = base.createBlock({
 		const { jobs } = addons;
 
 		return {
+			addons: [
+				blockRepositoryBranchRuleset({
+					requiredStatusChecks: jobs?.map((job) => job.name),
+				}),
+			],
 			files: {
 				".github": {
 					actions: {

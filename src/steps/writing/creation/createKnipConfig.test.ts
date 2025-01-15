@@ -21,12 +21,12 @@ describe("createKnipConfig", () => {
 
 		expect(JSON.parse(packageJson)).toEqual({
 			$schema: `https://unpkg.com/knip@${version}/schema.json`,
-			entry: ["src/index.ts!"],
+			entry: ["src/index.ts"],
 			ignoreExportsUsedInFile: {
 				interface: true,
 				type: true,
 			},
-			project: ["src/**/*.ts!"],
+			project: ["src/**/*.ts"],
 		});
 	});
 
@@ -37,12 +37,12 @@ describe("createKnipConfig", () => {
 
 		expect(JSON.parse(packageJson)).toEqual({
 			$schema: `https://unpkg.com/knip@latest/schema.json`,
-			entry: ["src/index.ts!"],
+			entry: ["src/index.ts"],
 			ignoreExportsUsedInFile: {
 				interface: true,
 				type: true,
 			},
-			project: ["src/**/*.ts!"],
+			project: ["src/**/*.ts"],
 		});
 	});
 
@@ -55,12 +55,12 @@ describe("createKnipConfig", () => {
 
 		expect(JSON.parse(packageJson)).toEqual({
 			$schema: `https://unpkg.com/knip@latest/schema.json`,
-			entry: ["src/index.ts!"],
+			entry: ["src/index.ts"],
 			ignoreExportsUsedInFile: {
 				interface: true,
 				type: true,
 			},
-			project: ["src/**/*.ts!"],
+			project: ["src/**/*.ts"],
 		});
 	});
 });

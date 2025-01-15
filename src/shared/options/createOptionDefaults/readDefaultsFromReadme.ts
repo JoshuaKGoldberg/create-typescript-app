@@ -13,6 +13,14 @@ export function readDefaultsFromReadme(
 	);
 
 	return {
+		explainer: async () => {
+			return />\n\n([\s\S]*?)\n\n## Usage/u
+				.exec(await readme())?.[1]
+				.split("\n")
+				.map((line) => line.trim())
+				.filter(Boolean);
+		},
+
 		logo: async () => {
 			const tag = await imageTag();
 
@@ -22,18 +30,22 @@ export function readDefaultsFromReadme(
 
 			const src = /src\s*=(.+)['"/]>/
 				.exec(tag)?.[1]
-				?.replaceAll(/^['"]|['"]$/g, "");
+				?.split(/\s*\w+=/)[0]
+				.replaceAll(/^['"]|['"]$/g, "");
 
 			if (!src) {
 				return undefined;
 			}
 
 			return {
-				alt: /alt=['"](.+)['"]\s*src=/.exec(tag)?.[1] ?? "Project logo",
+				alt:
+					/alt=['"](.+)['"]\s*src=/.exec(tag)?.[1].split(/['"]?\s*\w+=/)[0] ??
+					"Project logo",
 				src,
 				...readLogoSizing(src),
 			};
 		},
+
 		title: async () => {
 			const text = await readme();
 			const fromText = (/^<h1\s+align="center">(.+)<\/h1>/.exec(text) ??

@@ -19,6 +19,50 @@ vi.mock("./getUsageFromReadme.js", () => ({
 }));
 
 describe("readDefaultsFromReadme", () => {
+	describe("explainer", () => {
+		it("defaults to undefined when it cannot be found", async () => {
+			const explainer = await readDefaultsFromReadme(
+				() => Promise.resolve(`nothing.`),
+				() => Promise.resolve(undefined),
+			).explainer();
+
+			expect(explainer).toBeUndefined();
+		});
+
+		it("parses a line after badges", async () => {
+			const explainer = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
+</p>
+
+This is my project.
+
+## Usage
+					.`),
+				() => Promise.resolve(undefined),
+			).explainer();
+
+			expect(explainer).toEqual(["This is my project."]);
+		});
+
+		it("parses multiple line after badges", async () => {
+			const explainer = await readDefaultsFromReadme(
+				() =>
+					Promise.resolve(`
+</p>
+
+This is my project.
+It is good.
+
+## Usage
+					.`),
+				() => Promise.resolve(undefined),
+			).explainer();
+
+			expect(explainer).toEqual(["This is my project.", "It is good."]);
+		});
+	});
+
 	describe("logo", () => {
 		it("defaults to undefined when it cannot be found", async () => {
 			const logo = await readDefaultsFromReadme(

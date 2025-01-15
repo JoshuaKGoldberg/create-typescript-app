@@ -116,11 +116,11 @@ Then:
    	"exports": {
    		".": {
    			"types": {
-   				"import": "./lib/index.d.ts",
-   				"require": "./lib/index.d.cts"
+   				"import": "lib/index.d.ts",
+   				"require": "lib/index.d.cts"
    			},
-   			"import": "./lib/index.js",
-   			"require": "./lib/index.cjs"
+   			"import": "lib/index.js",
+   			"require": "lib/index.cjs"
    		}
    	}
    }

@@ -177,16 +177,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 			 import vitest from "@vitest/eslint-plugin";
 			 import jsdoc from "eslint-plugin-jsdoc";
 			",
-			  "knip.json": "@@ -1,7 +1,7 @@
-			 {
-			 	"$schema": "https://unpkg.com/knip@5.41.1/schema.json",
-			-	"entry": ["src/index.ts", "src/**/*.test.*"],
-			+	"entry": ["src/index.ts"],
-			 	"ignoreDependencies": ["all-contributors-cli", "cspell-populate-words"],
-			 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
-			 	"project": ["src/**/*.ts"]
-			 }
-			",
 			}
 		`);
 });

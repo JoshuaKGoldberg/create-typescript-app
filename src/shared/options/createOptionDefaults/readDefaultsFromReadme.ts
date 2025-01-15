@@ -14,8 +14,17 @@ export function readDefaultsFromReadme(
 
 	return {
 		explainer: async () => {
-			return />\n\n([\s\S]*?)\n\n## Usage/u
-				.exec(await readme())?.[1]
+			const readmeText = await readme();
+
+			const indexOfH2 = readmeText.indexOf("##");
+			if (indexOfH2 === -1) {
+				return undefined;
+			}
+
+			const lastTag = readmeText.slice(0, indexOfH2).lastIndexOf(">");
+
+			return readmeText
+				.slice(lastTag + 1, indexOfH2)
 				.split("\n")
 				.map((line) => line.trim())
 				.filter(Boolean);

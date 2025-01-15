@@ -26,10 +26,6 @@ describe("blockREADME", () => {
 			<p align="center">One sentence.</p>
 
 			<p align="center">
-				<!-- prettier-ignore-start -->
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<!-- prettier-ignore-end -->
 				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
 				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage" /></a>
 				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
@@ -71,10 +67,6 @@ describe("blockREADME", () => {
 			</p>
 
 			<p align="center">
-				<!-- prettier-ignore-start -->
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<!-- prettier-ignore-end -->
 				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
 				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage" /></a>
 				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
@@ -116,10 +108,6 @@ describe("blockREADME", () => {
 			<p align="center">Test description</p>
 
 			<p align="center">
-				<!-- prettier-ignore-start -->
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<!-- prettier-ignore-end -->
 				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
 				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage" /></a>
 				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
@@ -165,10 +153,6 @@ describe("blockREADME", () => {
 			<p align="center">Test description</p>
 
 			<p align="center">
-				<!-- prettier-ignore-start -->
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<!-- prettier-ignore-end -->
 				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
 				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage" /></a>
 				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
@@ -206,10 +190,6 @@ describe("blockREADME", () => {
 			<p align="center">Test description</p>
 
 			<p align="center">
-				<!-- prettier-ignore-start -->
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<!-- prettier-ignore-end -->
 				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
 				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage" /></a>
 				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
@@ -235,7 +215,9 @@ describe("blockREADME", () => {
 	test("with addons", () => {
 		const creation = testBlock(blockREADME, {
 			addons: {
+				badges: ["<!-- badge! -->"],
 				notices: ["> Hello, world! 💖"],
+				sections: [`## Other\n\nHello!`],
 			},
 			options,
 		});
@@ -248,10 +230,7 @@ describe("blockREADME", () => {
 			<p align="center">Test description</p>
 
 			<p align="center">
-				<!-- prettier-ignore-start -->
-				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-			<!-- ALL-CONTRIBUTORS-BADGE:END -->
-				<!-- prettier-ignore-end -->
+				<!-- badge! -->
 				<a href="https://github.com/test-owner/test-repository/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
 				<a href="https://codecov.io/gh/test-owner/test-repository" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage" /></a>
 				<a href="https://github.com/test-owner/test-repository/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
@@ -268,6 +247,9 @@ describe("blockREADME", () => {
 			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 			Thanks! 💖
 
+			## Other
+
+			Hello!
 
 			> Hello, world! 💖",
 			  },

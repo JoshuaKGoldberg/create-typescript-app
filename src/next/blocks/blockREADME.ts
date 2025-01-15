@@ -13,11 +13,12 @@ export const blockREADME = base.createBlock({
 		name: "README.md",
 	},
 	addons: {
+		badges: z.array(z.string()).default([]),
 		notices: z.array(z.string()).default([]),
 		sections: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
-		const { notices, sections } = addons;
+		const { badges, notices, sections } = addons;
 
 		const logo = options.logo
 			? `\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`
@@ -29,11 +30,7 @@ export const blockREADME = base.createBlock({
 
 <p align="center">${formatDescription(options.description)}</p>
 
-<p align="center">
-	<!-- prettier-ignore-start -->
-	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-	<!-- prettier-ignore-end -->
+<p align="center">${badges.length ? badges.map((badge) => `\n\t${badge}`).join("\n") : ""}
 	<a href="https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
 	<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage" /></a>
 	<a href="https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
@@ -49,7 +46,7 @@ ${options.usage}
 
 See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 Thanks! 💖
-${sections.map((section) => `\n${section}\n`).join("")}
+${sections.map((section) => `\n${section}`).join("")}
 ${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : ""}`,
 			},
 		};

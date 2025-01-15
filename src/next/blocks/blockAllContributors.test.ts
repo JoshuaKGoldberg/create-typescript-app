@@ -13,6 +13,13 @@ describe("blockAllContributors", () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "badges": [
+			          "<!-- prettier-ignore-start -->
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				<a href="#contributors" target="_blank"><img alt="👪 All Contributors: undefined" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-undefined-21bb42.svg" /></a>
+			<!-- ALL-CONTRIBUTORS-BADGE:END -->
+				<!-- prettier-ignore-end -->",
+			        ],
 			        "sections": undefined,
 			      },
 			      "block": [Function],
@@ -99,6 +106,13 @@ describe("blockAllContributors", () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "badges": [
+			          "<!-- prettier-ignore-start -->
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-1-21bb42.svg" /></a>
+			<!-- ALL-CONTRIBUTORS-BADGE:END -->
+				<!-- prettier-ignore-end -->",
+			        ],
 			        "sections": [
 			          "## Contributors
 

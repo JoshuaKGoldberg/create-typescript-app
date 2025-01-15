@@ -166,17 +166,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 			 <!-- ALL-CONTRIBUTORS-LIST:END -->
 			-<!-- spellchecker: enable -->
 			",
-			  "eslint.config.js": "@@ -6,9 +6,8 @@
-			 If you're interested in learning more, see the 'getting started' docs on:
-			 - ESLint: https://eslint.org
-			 - typescript-eslint: https://typescript-eslint.io
-			 */
-			-
-			 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-			 import eslint from "@eslint/js";
-			 import vitest from "@vitest/eslint-plugin";
-			 import jsdoc from "eslint-plugin-jsdoc";
-			",
 			}
 		`);
 });

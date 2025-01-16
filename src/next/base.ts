@@ -89,12 +89,6 @@ export const base = createBase({
 			.describe(
 				"link to a contribution guide to place at the top of development docs",
 			),
-		hideTemplatedBy: z
-			.boolean()
-			.optional()
-			.describe(
-				"whether to hide the 'created by ...' notice at the bottom of the README.md",
-			),
 		keywords: z
 			.array(z.string())
 			.optional()

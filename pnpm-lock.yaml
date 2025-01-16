@@ -90,9 +90,6 @@ importers:
       '@eslint/js':
         specifier: 9.17.0
         version: 9.17.0
-      '@octokit/request-error':
-        specifier: 6.1.5
-        version: 6.1.5
       '@prettier/sync':
         specifier: ^0.5.2
         version: 0.5.2(prettier@3.4.2)
@@ -1168,10 +1165,6 @@ packages:
 
   '@octokit/request-error@5.1.0':
     resolution: {integrity: sha512-GETXfE05J0+7H2STzekpKObFe765O5dlAKUTLNGeH+x47z7JjXHfsHKo5z21D/o/IOZTUEI6nyWyR+bZVP/n5Q==}
-    engines: {node: '>= 18'}
-
-  '@octokit/request-error@6.1.5':
-    resolution: {integrity: sha512-IlBTfGX8Yn/oFPMwSfvugfncK2EwRLjzbrpifNaMY8o/HTEAFqCA1FZxjD9cWvSKBHgrIhc4CSBIzMxiLsbzFQ==}
     engines: {node: '>= 18'}
 
   '@octokit/request-error@6.1.6':
@@ -5178,10 +5171,6 @@ snapshots:
       deprecation: 2.3.1
       once: 1.4.0
 
-  '@octokit/request-error@6.1.5':
-    dependencies:
-      '@octokit/types': 13.7.0
-
   '@octokit/request-error@6.1.6':
     dependencies:
       '@octokit/types': 13.7.0
@@ -5196,7 +5185,7 @@ snapshots:
   '@octokit/request@9.2.0':
     dependencies:
       '@octokit/endpoint': 10.1.2
-      '@octokit/request-error': 6.1.5
+      '@octokit/request-error': 6.1.6
       '@octokit/types': 13.7.0
       fast-content-type-parse: 2.0.1
       universal-user-agent: 7.0.2
@@ -8699,7 +8688,7 @@ snapshots:
     dependencies:
       eslint-visitor-keys: 3.4.3
       lodash: 4.17.21
-      yaml: 2.6.1
+      yaml: 2.7.0
 
   yaml@2.6.1: {}
 

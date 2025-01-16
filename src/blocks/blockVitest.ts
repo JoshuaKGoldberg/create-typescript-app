@@ -23,7 +23,6 @@ export const blockVitest = base.createBlock({
 		actionSteps: z.array(zActionStep).default([]),
 		coverage: z
 			.object({
-				env: z.record(z.string(), z.string()).optional(),
 				exclude: z.array(z.string()).optional(),
 				include: z.array(z.string()).optional(),
 			})

@@ -22,6 +22,7 @@ export const blockTSup = base.createBlock({
 				{
 					commands: ["rm -rf .babelrc* babel.config.* dist lib"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

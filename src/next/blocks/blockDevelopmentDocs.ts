@@ -70,6 +70,7 @@ export const blockDevelopmentDocs = base.createBlock({
 				{
 					commands: ["rm DEVELOPMENT.md"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

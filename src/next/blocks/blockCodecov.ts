@@ -16,6 +16,7 @@ export const blockCodecov = base.createBlock({
 				{
 					commands: ["rm .github/codecov.yml codecov.yml"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

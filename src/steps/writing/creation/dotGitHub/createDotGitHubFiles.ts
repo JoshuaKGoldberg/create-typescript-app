@@ -289,6 +289,7 @@ We appreciate your efforts and responsible disclosure and will make every effort
 				labels: ["dependencies"],
 				minimumReleaseAge: "7 days",
 				patch: { enabled: false },
+				pinDigests: false,
 				postUpdateOptions: ["pnpmDedupe"],
 			}),
 		}),

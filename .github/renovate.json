@@ -8,6 +8,7 @@
 	],
 	"ignoreDeps": ["codecov/codecov-action"],
 	"labels": ["dependencies"],
+	"pinDigests": false,
 	"minimumReleaseAge": "7 days",
 	"patch": { "enabled": false },
 	"postUpdateOptions": ["pnpmDedupe"]

@@ -35,6 +35,7 @@ export const blockRenovate = base.createBlock({
 						labels: ["dependencies"],
 						minimumReleaseAge: "7 days",
 						patch: { enabled: false },
+						pinDigests: false,
 						postUpdateOptions: ["pnpmDedupe"],
 					}),
 				},

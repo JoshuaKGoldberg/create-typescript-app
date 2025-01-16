@@ -32,10 +32,8 @@ export const blockPrettier = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm .prettierrc* prettier.config*"],
 					phase: CommandPhase.Migrations,
-					silent: true,
 				},
 			],
 		};
@@ -97,7 +95,7 @@ pnpm format --write
 			files: {
 				".husky": {
 					".gitignore": "_\n",
-					"pre-commit": ["npx lint-staged\n", { mode: 33279 }],
+					"pre-commit": ["npx lint-staged\n", { executable: true }],
 				},
 				".prettierignore": formatIgnoreFile(
 					["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores].sort(),

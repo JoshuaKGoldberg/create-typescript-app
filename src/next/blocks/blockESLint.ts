@@ -70,6 +70,7 @@ export const blockESLint = base.createBlock({
 				{
 					commands: ["rm .eslintrc* .eslintignore eslint.config.*"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

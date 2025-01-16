@@ -35,6 +35,7 @@ export const blockGitHubActionsCI = base.createBlock({
 				{
 					commands: ["rm -rf .circleci travis.yml"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

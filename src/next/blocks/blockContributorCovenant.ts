@@ -11,6 +11,7 @@ export const blockContributorCovenant = base.createBlock({
 				{
 					commands: ["rm CODE_OF_CONDUCT.md"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

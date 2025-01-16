@@ -35,6 +35,7 @@ export const blockVitest = base.createBlock({
 				{
 					commands: ["rm .mocha* jest.config.* vitest.config.*"],
 					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

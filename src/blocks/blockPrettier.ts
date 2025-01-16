@@ -32,10 +32,8 @@ export const blockPrettier = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm .prettierrc* prettier.config*"],
 					phase: CommandPhase.Migrations,
-					silent: true,
 				},
 			],
 		};

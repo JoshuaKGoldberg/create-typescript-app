@@ -228,7 +228,6 @@ describe("blockPrettier", () => {
 			        "rm .prettierrc* prettier.config*",
 			      ],
 			      "phase": 0,
-			      "silent": true,
 			    },
 			  ],
 			}

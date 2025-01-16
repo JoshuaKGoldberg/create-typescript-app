@@ -1,12 +1,18 @@
+import { vi } from "vitest";
 import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
+import { resolveBin } from "../utils/resolveBin.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { CommandPhase } from "./phases.js";
+
+vi.mock("../utils/resolveBin.js", () => ({
+	resolveBin: (bin: string) => `path/to/${bin}`,
+}));
 
 export const blockTSup = base.createBlock({
 	about: {
@@ -20,7 +26,12 @@ export const blockTSup = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
+					commands: [
+						`node ${resolveBin("remove-dependencies/bin/index.js")} @babel/core babel`,
+					],
+					phase: CommandPhase.Process,
+				},
+				{
 					commands: ["rm -rf .babelrc* babel.config.* dist lib"],
 					phase: CommandPhase.Migrations,
 					silent: true,

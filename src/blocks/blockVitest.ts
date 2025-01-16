@@ -38,7 +38,6 @@ export const blockVitest = base.createBlock({
 						`node ${resolveBin("remove-dependencies/bin/index.js")} eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha`,
 					],
 					phase: CommandPhase.Process,
-					silent: true,
 				},
 				{
 					commands: ["rm .mocha* jest.config.* vitest.config.*"],

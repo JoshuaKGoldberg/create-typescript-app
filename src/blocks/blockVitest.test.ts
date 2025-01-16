@@ -473,10 +473,9 @@ describe("blockVitest", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "node path/to/remove-dependencies/bin/index.mjs eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha",
+			        "node path/to/remove-dependencies/bin/index.js eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha",
 			      ],
 			      "phase": 3,
-			      "silent": true,
 			    },
 			    {
 			      "commands": [

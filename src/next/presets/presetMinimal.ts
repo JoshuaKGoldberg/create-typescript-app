@@ -4,7 +4,6 @@ import { blockContributorCovenant } from "../blocks/blockContributorCovenant.js"
 import { blockDevelopmentDocs } from "../blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "../blocks/blockESLint.js";
 import { blockExampleFiles } from "../blocks/blockExampleFiles.js";
-import { blockFunding } from "../blocks/blockFunding.js";
 import { blockGitHubActionsCI } from "../blocks/blockGitHubActionsCI.js";
 import { blockGitHubApps } from "../blocks/blockGitHubApps.js";
 import { blockGitHubIssueTemplates } from "../blocks/blockGitHubIssueTemplates.js";
@@ -18,7 +17,8 @@ import { blockRepositoryBranchRuleset } from "../blocks/blockRepositoryBranchRul
 import { blockRepositoryLabels } from "../blocks/blockRepositoryLabels.js";
 import { blockRepositorySecrets } from "../blocks/blockRepositorySecrets.js";
 import { blockRepositorySettings } from "../blocks/blockRepositorySettings.js";
-import { blockTemplatedBy } from "../blocks/blockTemplatedBy.js";
+import { blockSecurityDocs } from "../blocks/blockSecurityDocs.js";
+import { blockTemplatedWith } from "../blocks/blockTemplatedWith.js";
 import { blockTSup } from "../blocks/blockTSup.js";
 import { blockTypeScript } from "../blocks/blockTypeScript.js";
 
@@ -34,7 +34,6 @@ export const presetMinimal = base.createPreset({
 		blockDevelopmentDocs,
 		blockESLint,
 		blockExampleFiles,
-		blockFunding,
 		blockGitHubActionsCI,
 		blockGitHubApps,
 		blockGitHubIssueTemplates,
@@ -48,7 +47,8 @@ export const presetMinimal = base.createPreset({
 		blockRepositoryLabels,
 		blockRepositorySecrets,
 		blockRepositorySettings,
-		blockTemplatedBy,
+		blockSecurityDocs,
+		blockTemplatedWith,
 		blockTSup,
 		blockTypeScript,
 	],

@@ -2,7 +2,7 @@ import { base } from "../base.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockREADME } from "./blockREADME.js";
 
-export const blockTemplatedBy = base.createBlock({
+export const blockTemplatedWith = base.createBlock({
 	about: {
 		name: "Templated By Notice",
 	},

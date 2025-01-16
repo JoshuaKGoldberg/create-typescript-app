@@ -35,7 +35,7 @@ export * from "./blockREADME.js";
 export * from "./blockReleaseIt.js";
 export * from "./blockRenovate.js";
 export * from "./blockSecurityDocs.js";
-export * from "./blockTemplatedBy.js";
+export * from "./blockTemplatedWith.js";
 export * from "./blockTSup.js";
 export * from "./blockTypeScript.js";
 export * from "./blockVitest.js";

@@ -19,7 +19,6 @@ import { blockPrettierPluginCurly } from "../blocks/blockPrettierPluginCurly.js"
 import { blockPrettierPluginPackageJson } from "../blocks/blockPrettierPluginPackageJson.js";
 import { blockPrettierPluginSh } from "../blocks/blockPrettierPluginSh.js";
 import { blockRenovate } from "../blocks/blockRenovate.js";
-import { blockSecurityDocs } from "../blocks/blockSecurityDocs.js";
 import { blockVSCode } from "../blocks/blockVSCode.js";
 import { presetCommon } from "../presets/presetCommon.js";
 
@@ -51,7 +50,6 @@ export const presetEverything = base.createPreset({
 		blockPrettierPluginPackageJson,
 		blockPrettierPluginSh,
 		blockRenovate,
-		blockSecurityDocs,
 		blockVSCode,
 	],
 });

@@ -5,15 +5,16 @@ import { blockExampleFiles } from "./blockExampleFiles.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockExampleFiles", () => {
-	test("without addons", () => {
+	test("without addons.files", () => {
 		const creation = testBlock(blockExampleFiles, {
+			addons: {},
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons and without mode", () => {
+	test("with addons.files and without mode", () => {
 		const creation = testBlock(blockExampleFiles, {
 			addons: {
 				files: {
@@ -26,7 +27,7 @@ describe("blockExampleFiles", () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons and mode", () => {
+	test("with addons.files and mode: initialize", () => {
 		const creation = testBlock(blockExampleFiles, {
 			addons: {
 				files: {

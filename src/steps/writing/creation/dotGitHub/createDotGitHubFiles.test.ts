@@ -586,7 +586,7 @@ describe("createDotGitHubFiles", () => {
 				  "renovate.json": "{
 					"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 					"automerge": true,
-					"extends":  [
+					"extends": [
 						":preserveSemverRanges",
 						"config:best-practices",
 						"replacements:all"

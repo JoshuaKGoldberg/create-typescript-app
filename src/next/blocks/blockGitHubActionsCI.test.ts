@@ -12,6 +12,14 @@ describe("blockGitHubActionsCI", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "requiredStatusChecks": undefined,
+			      },
+			      "block": [Function],
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "actions": {
@@ -101,6 +109,14 @@ describe("blockGitHubActionsCI", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "requiredStatusChecks": undefined,
+			      },
+			      "block": [Function],
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "actions": {
@@ -213,6 +229,16 @@ describe("blockGitHubActionsCI", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "requiredStatusChecks": [
+			          "Validate",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "actions": {

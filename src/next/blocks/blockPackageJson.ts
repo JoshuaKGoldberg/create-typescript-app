@@ -30,7 +30,6 @@ export const blockPackageJson = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm package-lock.json yarn.lock"],
 					phase: CommandPhase.Migrations,
 					silent: true,

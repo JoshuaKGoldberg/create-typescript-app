@@ -1,4 +1,5 @@
-import { applyFilesToSystem, createWritingFileSystem } from "create";
+import { applyFilesToSystem } from "create";
+import { createWritingFileSystem } from "create-fs";
 import { $ } from "execa";
 
 import { isUsingCreateEngine } from "../../shared/isUsingCreateEngine.js";

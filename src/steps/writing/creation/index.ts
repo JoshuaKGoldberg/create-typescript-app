@@ -1,9 +1,5 @@
-import {
-	CreatedFiles,
-	produceBase,
-	producePreset,
-	SystemFetchers,
-} from "create";
+import { produceBase, producePreset, SystemFetchers } from "create";
+import { CreatedDirectory } from "create-fs";
 import prettier from "prettier";
 
 import { presetCommon } from "../../../next/presets/presetCommon.js";
@@ -62,7 +58,7 @@ export async function createStructure(
 	};
 }
 
-async function recursivelyFormat(files: CreatedFiles): Promise<Structure> {
+async function recursivelyFormat(files: CreatedDirectory): Promise<Structure> {
 	const result: Structure = {};
 
 	for (const [key, value] of Object.entries(files)) {

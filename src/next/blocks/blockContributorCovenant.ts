@@ -9,7 +9,6 @@ export const blockContributorCovenant = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm CODE_OF_CONDUCT.md"],
 					phase: CommandPhase.Migrations,
 					silent: true,

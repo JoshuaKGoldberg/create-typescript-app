@@ -20,6 +20,9 @@ importers:
       create:
         specifier: ^0.1.0-alpha.15
         version: 0.1.0-alpha.15
+      create-fs:
+        specifier: ^0.1.1
+        version: 0.1.1
       cspell-populate-words:
         specifier: ^0.3.0
         version: 0.3.0

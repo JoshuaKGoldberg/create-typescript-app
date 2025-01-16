@@ -31,6 +31,7 @@ export async function uninstallPackages(offline: boolean | undefined) {
 			"parse-package-name",
 			"populate-all-contributors-for-repository",
 			"prettier",
+			"remove-dependencies",
 			"remove-undefined-objects",
 			"replace-in-file",
 			"rimraf",

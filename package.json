@@ -66,6 +66,7 @@
 		"parse-package-name": "^1.0.0",
 		"populate-all-contributors-for-repository": "^0.1.2",
 		"prettier": "^3.4.2",
+		"remove-dependencies": "^0.1.0",
 		"remove-undefined-objects": "^5.0.0",
 		"replace-in-file": "^8.3.0",
 		"rimraf": "^6.0.1",

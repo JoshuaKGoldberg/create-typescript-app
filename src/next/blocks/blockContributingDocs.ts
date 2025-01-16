@@ -9,7 +9,6 @@ export const blockContributingDocs = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm CONTRIBUTING.md"],
 					phase: CommandPhase.Migrations,
 					silent: true,

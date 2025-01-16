@@ -262,7 +262,6 @@ describe("blockESLint", () => {
 			        "rm .eslintrc* .eslintignore eslint.config.*",
 			      ],
 			      "phase": 0,
-			      "silent": true,
 			    },
 			  ],
 			}

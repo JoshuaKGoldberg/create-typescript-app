@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { resolveBin } from "../utils/resolveBin.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
@@ -32,6 +33,12 @@ export const blockVitest = base.createBlock({
 	migrate() {
 		return {
 			scripts: [
+				{
+					commands: [
+						`node ${resolveBin("remove-dependencies/bin/index.js")} eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha`,
+					],
+					phase: CommandPhase.Process,
+				},
 				{
 					commands: ["rm .mocha* jest.config.* vitest.config.*"],
 					phase: CommandPhase.Migrations,

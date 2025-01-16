@@ -4,6 +4,7 @@ import { z } from "zod";
 import { createMultiWorkflowFile } from "../../steps/writing/creation/dotGitHub/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "../../steps/writing/creation/dotGitHub/createSoloWorkflowFile.js";
 import { base } from "../base.js";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { CommandPhase } from "./phases.js";
 
 export const zActionStep = z.intersection(
@@ -33,7 +34,6 @@ export const blockGitHubActionsCI = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm -rf .circleci travis.yml"],
 					phase: CommandPhase.Migrations,
 					silent: true,
@@ -45,6 +45,11 @@ export const blockGitHubActionsCI = base.createBlock({
 		const { jobs } = addons;
 
 		return {
+			addons: [
+				blockRepositoryBranchRuleset({
+					requiredStatusChecks: jobs?.map((job) => job.name),
+				}),
+			],
 			files: {
 				".github": {
 					actions: {

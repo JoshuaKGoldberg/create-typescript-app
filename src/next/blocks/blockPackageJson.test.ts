@@ -21,7 +21,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install --offline",
+			        "pnpm install",
 			      ],
 			      "phase": 1,
 			    },
@@ -44,7 +44,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install --offline",
+			        "pnpm install",
 			      ],
 			      "phase": 1,
 			    },
@@ -82,7 +82,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install --offline",
+			        "pnpm install",
 			        "pnpm dedupe",
 			      ],
 			      "phase": 1,
@@ -117,7 +117,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install --offline",
+			        "pnpm install",
 			        "pnpm dedupe",
 			      ],
 			      "phase": 1,

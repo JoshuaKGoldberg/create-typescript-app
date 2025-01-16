@@ -101,7 +101,7 @@ export const blockPackageJson = base.createBlock({
 			scripts: [
 				{
 					commands: [
-						offline ? "pnpm install" : "pnpm install --offline",
+						offline ? "pnpm install --offline" : "pnpm install",
 						...addons.cleanupCommands,
 					],
 					phase: CommandPhase.Install,

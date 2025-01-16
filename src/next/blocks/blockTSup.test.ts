@@ -181,6 +181,7 @@ describe("blockTSup", () => {
 			        "rm -rf .babelrc* babel.config.* dist lib",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

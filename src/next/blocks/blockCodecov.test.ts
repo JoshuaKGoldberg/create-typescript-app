@@ -78,6 +78,7 @@ describe("blockCodecov", () => {
 			        "rm .github/codecov.yml codecov.yml",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

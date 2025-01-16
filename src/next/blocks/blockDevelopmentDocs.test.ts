@@ -58,6 +58,7 @@ describe("blockDevelopmentDocs", () => {
 			        "rm DEVELOPMENT.md",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

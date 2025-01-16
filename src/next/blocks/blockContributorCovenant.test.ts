@@ -304,6 +304,7 @@ describe("blockContributorCovenant", () => {
 			        "rm CODE_OF_CONDUCT.md",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

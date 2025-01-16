@@ -26,7 +26,11 @@ export const blockRenovate = base.createBlock({
 					"renovate.json": JSON.stringify({
 						$schema: "https://docs.renovatebot.com/renovate-schema.json",
 						automerge: true,
-						extends: ["config:best-practices", "replacements:all"],
+						extends: [
+							":preserveSemverRanges",
+							"config:best-practices",
+							"replacements:all",
+						],
 						ignoreDeps: ["codecov/codecov-action"],
 						labels: ["dependencies"],
 						minimumReleaseAge: "7 days",

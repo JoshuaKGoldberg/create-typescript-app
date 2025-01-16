@@ -68,7 +68,6 @@ export const blockDevelopmentDocs = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm DEVELOPMENT.md"],
 					phase: CommandPhase.Migrations,
 					silent: true,

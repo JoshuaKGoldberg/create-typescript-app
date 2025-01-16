@@ -18,7 +18,6 @@ export const blockKnip = base.createBlock({
 		return {
 			scripts: [
 				{
-					silent: true,
 					commands: ["rm .knip* knip.*"],
 					phase: CommandPhase.Migrations,
 					silent: true,

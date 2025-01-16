@@ -45,6 +45,7 @@
 		"@prettier/sync": "^0.5.2",
 		"chalk": "^5.4.1",
 		"create": "^0.1.0-alpha.15",
+		"create-fs": "^0.1.1",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",
 		"git-remote-origin-url": "^4.0.0",

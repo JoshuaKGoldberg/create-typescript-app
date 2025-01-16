@@ -1,4 +1,3 @@
-import { vi } from "vitest";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -9,10 +8,6 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { getPackageDependencies } from "./packageData.js";
 import { CommandPhase } from "./phases.js";
-
-vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
-}));
 
 export const blockTSup = base.createBlock({
 	about: {

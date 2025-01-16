@@ -53,6 +53,7 @@ describe("blockPackageJson", () => {
 			        "rm package-lock.json yarn.lock",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

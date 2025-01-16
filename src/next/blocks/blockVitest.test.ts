@@ -472,6 +472,7 @@ describe("blockVitest", () => {
 			        "rm .mocha* jest.config.* vitest.config.*",
 			      ],
 			      "phase": 0,
+			      "silent": true,
 			    },
 			  ],
 			}

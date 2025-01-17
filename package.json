@@ -41,10 +41,10 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
-		"@clack/prompts": "^0.9.0",
+		"@clack/prompts": "^0.9.1",
 		"@prettier/sync": "^0.5.2",
 		"chalk": "^5.4.1",
-		"create": "^0.1.0-alpha.15",
+		"create": "0.1.0-alpha.15",
 		"create-fs": "^0.1.1",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",
@@ -60,7 +60,7 @@
 		"lodash": "^4.17.21",
 		"npm-user": "^6.1.1",
 		"object-strings-deep": "^0.1.1",
-		"octokit": "^4.0.2",
+		"octokit": "^4.1.0",
 		"octokit-from-auth": "^0.3.0",
 		"parse-author": "^2.0.0",
 		"parse-package-name": "^1.0.0",
@@ -71,7 +71,7 @@
 		"replace-in-file": "^8.3.0",
 		"rimraf": "^6.0.1",
 		"set-github-repository-labels": "^0.1.0",
-		"sort-package-json": "^2.12.0",
+		"sort-package-json": "^2.14.0",
 		"title-case": "^4.3.2",
 		"zod": "^3.24.1",
 		"zod-validation-error": "^3.4.0"

@@ -15,8 +15,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       create-fs:
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.2.0
+        version: 0.2.0
       cspell-populate-words:
         specifier: ^0.3.0
         version: 0.3.0
@@ -131,7 +131,7 @@ importers:
         version: 0.5.0
       create-testers:
         specifier: 0.2.0
-        version: 0.2.0(create-fs@0.1.1)(create@0.2.0)
+        version: 0.2.0(create-fs@0.2.0)(create@0.2.0)
       cspell:
         specifier: 8.17.2
         version: 8.17.2
@@ -1954,10 +1954,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  create-fs@0.1.1:
-    resolution: {integrity: sha512-tZqeDZ7yLLje2meTDL1pR3oBAnSlDd8fNyRUHtPxhGIGUGEoY8A/DHIpfxHE9eEoamA2snDJlVP9HyItfb18gQ==}
-    engines: {node: '>=18'}
 
   create-fs@0.2.0:
     resolution: {integrity: sha512-FASG2SI5uQSthGpFNt//tPSf48vWm6BiU9HNcpgRbyA6coxPCtfQ9SaXNxjKzqIBa75sdfDDKJRyukyx6oNOdg==}
@@ -6017,14 +6013,12 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
-  create-fs@0.1.1: {}
-
   create-fs@0.2.0: {}
 
-  create-testers@0.2.0(create-fs@0.1.1)(create@0.2.0):
+  create-testers@0.2.0(create-fs@0.2.0)(create@0.2.0):
     dependencies:
       create: 0.2.0
-      create-fs: 0.1.1
+      create-fs: 0.2.0
       diff: 7.0.0
       octokit: 4.1.0
       without-undefined-properties: 0.1.1

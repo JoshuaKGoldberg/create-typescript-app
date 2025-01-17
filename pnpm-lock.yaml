@@ -12,8 +12,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       create:
-        specifier: ^0.1.0-alpha.15
-        version: 0.1.0-alpha.15
+        specifier: ^0.2.0
+        version: 0.2.0
       create-fs:
         specifier: ^0.1.1
         version: 0.1.1
@@ -36,14 +36,14 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       input-from-file:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+        specifier: 0.2.0
+        version: 0.2.0(create@0.2.0)
       input-from-file-json:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+        specifier: 0.2.0
+        version: 0.2.0(create@0.2.0)
       input-from-script:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+        specifier: 0.2.0
+        version: 0.2.0(create@0.2.0)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -130,8 +130,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0
       create-testers:
-        specifier: 0.1.0-alpha.14
-        version: 0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.15)
+        specifier: 0.2.0
+        version: 0.2.0(create-fs@0.1.1)(create@0.2.0)
       cspell:
         specifier: 8.17.2
         version: 8.17.2
@@ -1938,15 +1938,19 @@ packages:
     resolution: {integrity: sha512-tZqeDZ7yLLje2meTDL1pR3oBAnSlDd8fNyRUHtPxhGIGUGEoY8A/DHIpfxHE9eEoamA2snDJlVP9HyItfb18gQ==}
     engines: {node: '>=18'}
 
-  create-testers@0.1.0-alpha.14:
-    resolution: {integrity: sha512-IWK69nhyVEhMTDfmOwAr3Hlj3jtQ8P3mz4ezo77BI0er82KpPaNGuSePbj5N9NWfP5TuJeeFJ+uEDcHb2x7fzA==}
+  create-fs@0.2.0:
+    resolution: {integrity: sha512-FASG2SI5uQSthGpFNt//tPSf48vWm6BiU9HNcpgRbyA6coxPCtfQ9SaXNxjKzqIBa75sdfDDKJRyukyx6oNOdg==}
+    engines: {node: '>=18'}
+
+  create-testers@0.2.0:
+    resolution: {integrity: sha512-XgRyB7KwqeyKhmnG9ykDxBelFDBb8AjS6SZxVV35iKbUD9gwsMIumO/FodyyTwxtUriDYOsbOYL3UGeuPSeaFg==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.14
-      create-fs: ^0.1.0
+      create: ^0.2.0
+      create-fs: ^0.2.0
 
-  create@0.1.0-alpha.15:
-    resolution: {integrity: sha512-iTBTuTIv+f+nD9mr7hyKrKuPyw46UDDBVz0iU7mCnq5MW/0OUqwm7oTFrQ6GTggDiYiS+7Yz3/AZ92EKKZVadA==}
+  create@0.2.0:
+    resolution: {integrity: sha512-ZViCTKUiFXcRnjYwtcJS3Ir8rv7YwrLApAs2vWprHW0vvrvSZdrresJfFFK2Bh6e3pS9eHKT57kiii0UYYxE8w==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2700,23 +2704,23 @@ packages:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  input-from-file-json@0.1.0-alpha.4:
-    resolution: {integrity: sha512-GhZIAuAQGtcYJYh4yInk/Lp3ktwWnXSRGuM3FWjUYaMTSkW3UTqsDcgeMYxhT1nusnrvillyqux3HzaDJuUEsQ==}
+  input-from-file-json@0.2.0:
+    resolution: {integrity: sha512-O3RE5I6GTaaH6/2v1alfYgR7XYW5KlnHmqd880bqXVfPI1A59Ifd0cEtSlAqo1UE0bafTft6ipSQX5vtK5VCng==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.8
+      create: ^0.2.0
 
-  input-from-file@0.1.0-alpha.4:
-    resolution: {integrity: sha512-DRXzTjeTtq+MfesNnLNwjJgWB4mmWwEXi4WTlJrSGv8Ij/15/6W+DXeNgEoI9jRsFH5u+ZC0ffW5v7EalObKqA==}
+  input-from-file@0.2.0:
+    resolution: {integrity: sha512-IDb4ESogJCwOFx1JrKVveCKg/GsLDRIg8BhL3POi5TwLP8f62MPGcfZkll3ZQsNv6GfDcNOYuqWZU5MEHEbaQw==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.8
+      create: ^0.2.0
 
-  input-from-script@0.1.0-alpha.4:
-    resolution: {integrity: sha512-vHGeI/1ukGRDYkRRCnLLGnNO7Jy8/tOq+fteAqgTNpmyEdSUZTfqetDHKdhBwfwSCPK934ic60qO5iRCXxXmmw==}
+  input-from-script@0.2.0:
+    resolution: {integrity: sha512-cFbeNFti1n5oKHJBvwtttiY8MUj/Pi7koVoTIElkfF9a+xeCDKh/5V4a5F5r2YAN2aDf3KRpSWR5fjdZxg7uvw==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.8
+      create: ^0.2.0
 
   inquirer@7.3.3:
     resolution: {integrity: sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==}
@@ -5969,20 +5973,22 @@ snapshots:
 
   create-fs@0.1.1: {}
 
-  create-testers@0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.15):
+  create-fs@0.2.0: {}
+
+  create-testers@0.2.0(create-fs@0.1.1)(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
+      create: 0.2.0
       create-fs: 0.1.1
       diff: 7.0.0
       octokit: 4.1.0
       without-undefined-properties: 0.1.1
 
-  create@0.1.0-alpha.15:
+  create@0.2.0:
     dependencies:
       '@clack/prompts': 0.9.1
       cached-factory: 0.1.0
       chalk: 5.4.1
-      create-fs: 0.1.1
+      create-fs: 0.2.0
       execa: 9.5.2
       get-github-auth-token: 0.1.0
       hash-object: 5.0.1
@@ -6933,20 +6939,20 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.1.0-alpha.4(create@0.1.0-alpha.15):
+  input-from-file-json@0.2.0(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
-      input-from-file: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+      create: 0.2.0
+      input-from-file: 0.2.0(create@0.2.0)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.4(create@0.1.0-alpha.15):
+  input-from-file@0.2.0(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
+      create: 0.2.0
       zod: 3.24.1
 
-  input-from-script@0.1.0-alpha.4(create@0.1.0-alpha.15):
+  input-from-script@0.2.0(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
+      create: 0.2.0
       zod: 3.24.1
 
   inquirer@7.3.3:

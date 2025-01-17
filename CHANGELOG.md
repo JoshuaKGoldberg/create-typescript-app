@@ -1,3 +1,44 @@
+# Changelog
+
+# [2.0.0-beta.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.6...v2.0.0-beta.8) (2025-01-17)
+
+### Bug Fixes
+
+- add test entries back to blockKnip ([e1d935f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e1d935f24b57a91e78f75c8fdaf4d1d9f2ca1c46))
+- blockAllContributors table needs to also disable cspell ([f7e4dc1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f7e4dc126945d98bb481711eb8d1c8be55883cab))
+- correct --offline ternary in blockPackageJson ([#1893](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1893)) ([b172b31](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b172b31d95f0954eb3fc3f1c53a232ef99ca22ae)), closes [#1890](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1890)
+- correct blockPrettier .husky/pre-commit mode to 33279 / -rwxrwxrwx ([#1876](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1876)) ([a71b951](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a71b9518a35de9f8ea45bd2bc602a8f573a40788)), closes [#1875](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1875)
+- correct blockPrettier for executable, not mode ([20546ec](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/20546ec643a4b4bbbbe723fa3016ef6666b8e0ba))
+- **deps:** update dependency octokit to v4.1.0 ([#1880](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1880)) ([c20e420](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c20e4202c19bb692f967e202fe0f8247ab1d6407))
+- don't include ! in Knip files ([#1861](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1861)) ([f3e5bf8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f3e5bf89e18ef215f76e7a22dbc396596ce0747f)), closes [#1852](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1852)
+- don't include non-size properties in logo option ([#1857](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1857)) ([a0b7593](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a0b7593ee24ace8d00b8d2a93548d9eff42175ef)), closes [#1856](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1856)
+- don't wrap words in blockPackageJson description ([#1874](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1874)) ([e49f518](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e49f5183ad5a8fed966c693c76f9553ccdc2563a)), closes [#1873](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1873)
+- enable :preserveSemverRanges in renovate.json ([29f2e83](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/29f2e83cbaf55ada90abdbfb2747f604fdf378f5))
+- handle longer README.md content in options.explainer parsing ([ed526ee](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ed526eef84611ac6b957100a437d609e31bd99ba))
+- include options.bin in ESLint allowDefaultProject ([#1866](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1866)) ([66db26e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/66db26e2d5e030e047b8dfc6c273046eec3419f7)), closes [#1846](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1846)
+- pass job names from blockGitHubActionCI to blockRepositoryBranchRuleset ([#1891](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1891)) ([d0ff0fc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d0ff0fcc5c7bc0fb860e850d76933e8b88b78e3e)), closes [#1887](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1887)
+- put blank line after blockESLint explanations ([ddc79c2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ddc79c28e08e34037d63d4fbd0328730b5934477))
+- remove ./ prefixes in package.json bin and main ([#1871](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1871)) ([59e6a31](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/59e6a31b17ab293f71430d078e18b04a05b6acd0)), closes [#1870](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1870)
+- remove question marks from GHA job names ([#1858](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1858)) ([a626758](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a6267580547cbbef9ebd815ebf1436b09b14c1b6)), closes [#1855](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1855)
+- run migration rm scripts with silent: true ([#1882](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1882)) ([69cb704](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/69cb70476cee26a8a168a7e8c4a49267af706bd9)), closes [#1839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1839)
+- run migration rm scripts with silent: true ([#1884](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1884)) ([9307ea2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9307ea2e5a1ba273696c128aed44caa8627362e0)), closes [#1883](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1883)
+- update create to alpha.15 ([04a5a06](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/04a5a0673398960a6205ba62080791685fde3e3b))
+- use parenthesis for development your-name-here script ([#1868](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1868)) ([a15277b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a15277bfaa54259048a1ff3412381f01344fe819)), closes [#1841](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1841)
+
+### Features
+
+- add addons.explanations to blockESLint ([#1864](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1864)) ([a29ef05](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a29ef055180a21837de4d72732134ecaef3a638b)), closes [#1849](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1849)
+- add addons.ignoreDependencies to blockKnip ([#1863](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1863)) ([f92166a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f92166adaf18c313600168cefc265b7ab8c702e1)), closes [#1851](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1851)
+- add options.explainer for blockREADME ([#1879](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1879)) ([1249f4d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1249f4dba9f3154c1c7dfe0b82ba9d6b8d1ae457)), closes [#1878](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1878)
+- add runArgs to blockTSup ([#1859](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1859)) ([493e076](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/493e0761f99a4d6a82efac4330484f59c1e2f987)), closes [#1854](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1854)
+- adjust blocks to put funding in common and security in minimal ([360c9ef](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/360c9ef5d88d001f79687a9ff77c3e81615c94cb))
+- disable pinDigests in renovate.json ([2943b89](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2943b89648f7e39d731fcf9cce8bee31cc0f55fd))
+- don't add n/no-missing-import if usage doesn't need it ([#1862](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1862)) ([772f34f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/772f34f789c3800520b3125ab240b8ef2254adbd)), closes [#1850](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1850)
+- extract codecov uploading to a blockCodecov ([#1865](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1865)) ([444de1c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/444de1c64b2f321b3239e0cd2aee7c1b0ea1ef82)), closes [#1848](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1848) [#1839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1839)
+- fully onboard to create ([#1839](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1839)) ([c0325c4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c0325c4ebdc35950583419b54527d85e6ed23cc7)), closes [#1824](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1824)
+- manually generate all-contributors table in memory ([#1867](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1867)) ([91cb22b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/91cb22b271d63b5e3324c9f17715ce6ae4480c6a)), closes [#1845](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1845)
+- use remove-dependencies in blockTSup and blockVitest ([#1892](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1892)) ([024e347](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/024e3479710bba8ffba105809a1154d8f9555587)), closes [#1889](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1889)
+
 # [2.0.0-beta.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2025-01-14)
 
 # [2.0.0-beta.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2025-01-14)
@@ -817,8 +858,6 @@
 ### Bug Fixes
 
 - generate CHANGELOG.md files again ([#854](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/854)) ([88fbfb9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/88fbfb92f2cb16a93fe7f7badbb40c8e069de468)), closes [#842](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/842)
-
-# Changelog
 
 ### [1.27.12](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v1.27.11...v1.27.12) (2022-12-31)
 

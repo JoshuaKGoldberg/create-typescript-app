@@ -25,6 +25,10 @@ It includes options not just for building and testing but also automated release
 
 ## Usage
 
+> **Note:** create-typescript-app is preparing to promote 2.0 beta version to stable soon.
+> The repository's `main` branch shows commands for the `beta` version.
+> The published package's 1.x versions still show commands for the 1.x version.
+
 First make sure you have the following installed:
 
 - [Node.js](https://nodejs.org)
@@ -34,7 +38,7 @@ First make sure you have the following installed:
 Then in an existing repository or in your directory where you'd like to make a new repository:
 
 ```shell
-npx create typescript-app
+npx create typescript-app@beta
 ```
 
 That will launch `create-typescript-app` using the [`create` runner](https://create.bingo).

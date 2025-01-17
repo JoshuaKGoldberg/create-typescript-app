@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.0.0-beta.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2025-01-17)
+
+### Bug Fixes
+
+- **deps:** update dependency remove-undefined-objects to v6 ([#1899](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1899)) ([4771c24](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4771c24b7f3da2082b2d343caec0c0d69c7b4764))
+
 # [2.0.0-beta.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.6...v2.0.0-beta.8) (2025-01-17)
 
 ### Bug Fixes

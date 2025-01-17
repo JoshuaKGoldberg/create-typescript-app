@@ -1,12 +1,12 @@
 # Initializing from the Template
 
-As an alternative to [creating with `npx create typescript-app`](./Creation.md), the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub can be used to quickly create a new repository from the template.
+As an alternative to [creating with `npx create typescript-app@beta`](./Creation.md), the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub can be used to quickly create a new repository from the template.
 You can set up the new repository locally by cloning it and installing packages:
 
 ```shell
 git clone https://github.com/YourUsername/YourRepositoryName
 cd YourRepositoryName
-npx create typescript-app
+npx create typescript-app@beta
 ```
 
 You'll then need to manually go through the following two steps to set up tooling on GitHub:
@@ -29,7 +29,7 @@ See [Options.md](./Options.md).
 For example, skipping the _"This package was templated with..."_ block:
 
 ```shell
-npx create typescript-app --exclude-templated-with
+npx create typescript-app@beta --exclude-templated-with
 ```
 
 See [Blocks.md](./Blocks.md) for details on the tooling pieces and which presets they're included in.

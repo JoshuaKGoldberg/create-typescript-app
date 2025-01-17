@@ -1,7 +1,11 @@
 {
 	"$schema": "https://unpkg.com/knip@5.42.2/schema.json",
-	"entry": ["script/*e2e.js", "src/index.ts", "src/**/*.test.*"],
-	"ignoreDependencies": ["cspell-populate-words", "remove-dependencies"],
+	"entry": ["src/index.ts", "src/**/*.test.*"],
+	"ignoreDependencies": [
+		"all-contributors-cli",
+		"cspell-populate-words",
+		"remove-dependencies"
+	],
 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
-	"project": ["src/**/*.ts", "script/**/*.js"]
+	"project": ["src/**/*.ts"]
 }

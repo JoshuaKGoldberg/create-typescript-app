@@ -8,18 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@clack/prompts':
-        specifier: ^0.9.1
-        version: 0.9.1
-      '@prettier/sync':
-        specifier: ^0.5.2
-        version: 0.5.2(prettier@3.4.2)
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
       create:
-        specifier: 0.1.0-alpha.15
-        version: 0.1.0-alpha.15
+        specifier: ^0.2.0
+        version: 0.2.0
       create-fs:
         specifier: ^0.1.1
         version: 0.1.1
@@ -42,14 +36,14 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       input-from-file:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+        specifier: ^0.2.0
+        version: 0.2.0(create@0.2.0)
       input-from-file-json:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+        specifier: ^0.2.0
+        version: 0.2.0(create@0.2.0)
       input-from-script:
-        specifier: 0.1.0-alpha.4
-        version: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+        specifier: ^0.2.0
+        version: 0.2.0(create@0.2.0)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -65,36 +59,18 @@ importers:
       object-strings-deep:
         specifier: ^0.1.1
         version: 0.1.1
-      octokit:
-        specifier: ^4.1.0
-        version: 4.1.0
-      octokit-from-auth:
-        specifier: ^0.3.0
-        version: 0.3.0
       parse-author:
         specifier: ^2.0.0
         version: 2.0.0
       parse-package-name:
         specifier: ^1.0.0
         version: 1.0.0
-      populate-all-contributors-for-repository:
-        specifier: ^0.1.2
-        version: 0.1.2
-      prettier:
-        specifier: ^3.4.2
-        version: 3.4.2
       remove-dependencies:
         specifier: ^0.1.0
         version: 0.1.0
       remove-undefined-objects:
         specifier: ^5.0.0
         version: 5.0.0
-      replace-in-file:
-        specifier: ^8.3.0
-        version: 8.3.0
-      rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
       set-github-repository-labels:
         specifier: ^0.1.0
         version: 0.1.0
@@ -107,9 +83,6 @@ importers:
       zod:
         specifier: ^3.24.1
         version: 3.24.1
-      zod-validation-error:
-        specifier: ^3.4.0
-        version: 3.4.0(zod@3.24.1)
     devDependencies:
       '@eslint-community/eslint-plugin-eslint-comments':
         specifier: 4.4.1
@@ -117,9 +90,9 @@ importers:
       '@eslint/js':
         specifier: 9.17.0
         version: 9.17.0
-      '@octokit/request-error':
-        specifier: 6.1.5
-        version: 6.1.5
+      '@prettier/sync':
+        specifier: ^0.5.2
+        version: 0.5.2(prettier@3.4.2)
       '@release-it/conventional-changelog':
         specifier: 10.0.0
         version: 10.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)(release-it@17.10.0(typescript@5.7.2))
@@ -153,15 +126,12 @@ importers:
       all-contributors-cli:
         specifier: 6.26.1
         version: 6.26.1
-      c8:
-        specifier: 10.1.3
-        version: 10.1.3
       console-fail-test:
         specifier: 0.5.0
         version: 0.5.0
       create-testers:
-        specifier: 0.1.0-alpha.14
-        version: 0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.15)
+        specifier: 0.2.0
+        version: 0.2.0(create-fs@0.1.1)(create@0.2.0)
       cspell:
         specifier: 8.17.2
         version: 8.17.2
@@ -192,9 +162,6 @@ importers:
       eslint-plugin-yml:
         specifier: 1.16.0
         version: 1.16.0(eslint@9.17.0(jiti@2.4.2))
-      globby:
-        specifier: 14.0.2
-        version: 14.0.2
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -210,6 +177,9 @@ importers:
       markdownlint-cli:
         specifier: 0.43.0
         version: 0.43.0
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
       prettier-plugin-curly:
         specifier: 0.3.1
         version: 0.3.1(prettier@3.4.2)
@@ -228,9 +198,6 @@ importers:
       tsup:
         specifier: 8.3.5
         version: 8.3.5(jiti@2.4.2)(postcss@8.5.1)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.7.0)
-      tsx:
-        specifier: 4.19.2
-        version: 4.19.2
       typescript:
         specifier: 5.7.2
         version: 5.7.2
@@ -289,10 +256,6 @@ packages:
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
-
-  '@bcoe/v8-coverage@1.0.2':
-    resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
-    engines: {node: '>=18'}
 
   '@clack/core@0.4.1':
     resolution: {integrity: sha512-Pxhij4UXg8KSr7rPek6Zowm+5M22rbd2g1nfojHJkxp5YkFqiZ2+YLEM/XGVIzvGOcM0nqjIFxrpDwWRZYWYjA==}
@@ -1218,10 +1181,6 @@ packages:
     resolution: {integrity: sha512-GETXfE05J0+7H2STzekpKObFe765O5dlAKUTLNGeH+x47z7JjXHfsHKo5z21D/o/IOZTUEI6nyWyR+bZVP/n5Q==}
     engines: {node: '>= 18'}
 
-  '@octokit/request-error@6.1.5':
-    resolution: {integrity: sha512-IlBTfGX8Yn/oFPMwSfvugfncK2EwRLjzbrpifNaMY8o/HTEAFqCA1FZxjD9cWvSKBHgrIhc4CSBIzMxiLsbzFQ==}
-    engines: {node: '>= 18'}
-
   '@octokit/request-error@6.1.6':
     resolution: {integrity: sha512-pqnVKYo/at0NuOjinrgcQYpEbv4snvP3bKMRqHaD9kIsk9u1LCpb2smHZi8/qJfgeNqLo5hNW4Z7FezNdEo0xg==}
     engines: {node: '>= 18'}
@@ -1418,9 +1377,6 @@ packages:
   '@types/html-to-text@9.0.4':
     resolution: {integrity: sha512-pUY3cKH/Nm2yYrEmDlPR1mR7yszjGx4DrwPjQ702C4/D5CwHuZTgZdIdwPkRbcuhs7BAh2L5rg3CL5cbRiGTCQ==}
 
-  '@types/istanbul-lib-coverage@2.0.6':
-    resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
-
   '@types/js-yaml@4.0.9':
     resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
@@ -1612,10 +1568,6 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  all-contributors-for-repository@0.4.0:
-    resolution: {integrity: sha512-qGJHdVaRnoKMEZ6IcDvrFQJIDA9KPSsCVAMk+mjqVkHMYrgvp05TU94I8x4SjwWIfYBLp9heC9Onh55BIrOA4A==}
-    engines: {node: '>=18'}
-
   ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
 
@@ -1738,23 +1690,9 @@ packages:
     peerDependencies:
       esbuild: '>=0.18'
 
-  c8@10.1.3:
-    resolution: {integrity: sha512-LvcyrOAaOnrrlMpW22n690PUvxiq4Uf9WMhQwNJ9vgagkL/ph1+D4uvjvDA5XCbykrc0sx+ay6pVi9YZ1GnhyA==}
-    engines: {node: '>=18'}
-    hasBin: true
-    peerDependencies:
-      monocart-coverage-reports: ^2
-    peerDependenciesMeta:
-      monocart-coverage-reports:
-        optional: true
-
   cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
-
-  cached-factory@0.0.2:
-    resolution: {integrity: sha512-4mhebGQ8YyvlDAX+zOHso5MezPi2pP11ZFE7vYhDIOJifsxEi7R5geB/nrLBYzQH5nwZ9kNsLAjM+WBj6osLDg==}
-    engines: {node: '>=18'}
 
   cached-factory@0.1.0:
     resolution: {integrity: sha512-IGOSWu+NuED5UzCRmBeqQPZ8z7SkgrD/nN67W2iY1Qv83CVhevyMexkGclJ86saXisIqxoOnbeiTWvsCHRqJBw==}
@@ -1878,10 +1816,6 @@ packages:
   clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
-
-  co-author-to-username@0.1.1:
-    resolution: {integrity: sha512-KtQvKq2m52MncBa9hmYSiUae/hRRjLIOpXY29Ll43mSK/KreIRcoNy+K5/U5UHyVMNNjux1Xi4Ya744BO4G+RA==}
-    engines: {node: '>=18'}
 
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -2009,9 +1943,6 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  convert-source-map@2.0.0:
-    resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
-
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
@@ -2028,15 +1959,19 @@ packages:
     resolution: {integrity: sha512-tZqeDZ7yLLje2meTDL1pR3oBAnSlDd8fNyRUHtPxhGIGUGEoY8A/DHIpfxHE9eEoamA2snDJlVP9HyItfb18gQ==}
     engines: {node: '>=18'}
 
-  create-testers@0.1.0-alpha.14:
-    resolution: {integrity: sha512-IWK69nhyVEhMTDfmOwAr3Hlj3jtQ8P3mz4ezo77BI0er82KpPaNGuSePbj5N9NWfP5TuJeeFJ+uEDcHb2x7fzA==}
+  create-fs@0.2.0:
+    resolution: {integrity: sha512-FASG2SI5uQSthGpFNt//tPSf48vWm6BiU9HNcpgRbyA6coxPCtfQ9SaXNxjKzqIBa75sdfDDKJRyukyx6oNOdg==}
+    engines: {node: '>=18'}
+
+  create-testers@0.2.0:
+    resolution: {integrity: sha512-XgRyB7KwqeyKhmnG9ykDxBelFDBb8AjS6SZxVV35iKbUD9gwsMIumO/FodyyTwxtUriDYOsbOYL3UGeuPSeaFg==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.14
-      create-fs: ^0.1.0
+      create: ^0.2.0
+      create-fs: ^0.2.0
 
-  create@0.1.0-alpha.15:
-    resolution: {integrity: sha512-iTBTuTIv+f+nD9mr7hyKrKuPyw46UDDBVz0iU7mCnq5MW/0OUqwm7oTFrQ6GTggDiYiS+7Yz3/AZ92EKKZVadA==}
+  create@0.2.0:
+    resolution: {integrity: sha512-ZViCTKUiFXcRnjYwtcJS3Ir8rv7YwrLApAs2vWprHW0vvrvSZdrresJfFFK2Bh6e3pS9eHKT57kiii0UYYxE8w==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2159,10 +2094,6 @@ packages:
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
-
-  description-to-co-authors@0.3.0:
-    resolution: {integrity: sha512-GaMDuvOCmtkQ3tjjawAEl3YhxNEIsR9tmlXV4xeypGyiO75YLXRm3iHKltqrmxNgtNlppVzT2pdsPM2Yzm67CA==}
-    engines: {node: '>=18.3.0'}
 
   detect-indent@6.1.0:
     resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
@@ -2790,23 +2721,23 @@ packages:
     resolution: {integrity: sha512-X7rqawQBvfdjS10YU1y1YVreA3SsLrW9dX2CewP2EbBJM4ypVNLDkO5y04gejPwKIY9lR+7r9gn3rFPt/kmWFg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  input-from-file-json@0.1.0-alpha.4:
-    resolution: {integrity: sha512-GhZIAuAQGtcYJYh4yInk/Lp3ktwWnXSRGuM3FWjUYaMTSkW3UTqsDcgeMYxhT1nusnrvillyqux3HzaDJuUEsQ==}
+  input-from-file-json@0.2.0:
+    resolution: {integrity: sha512-O3RE5I6GTaaH6/2v1alfYgR7XYW5KlnHmqd880bqXVfPI1A59Ifd0cEtSlAqo1UE0bafTft6ipSQX5vtK5VCng==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.8
+      create: ^0.2.0
 
-  input-from-file@0.1.0-alpha.4:
-    resolution: {integrity: sha512-DRXzTjeTtq+MfesNnLNwjJgWB4mmWwEXi4WTlJrSGv8Ij/15/6W+DXeNgEoI9jRsFH5u+ZC0ffW5v7EalObKqA==}
+  input-from-file@0.2.0:
+    resolution: {integrity: sha512-IDb4ESogJCwOFx1JrKVveCKg/GsLDRIg8BhL3POi5TwLP8f62MPGcfZkll3ZQsNv6GfDcNOYuqWZU5MEHEbaQw==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.8
+      create: ^0.2.0
 
-  input-from-script@0.1.0-alpha.4:
-    resolution: {integrity: sha512-vHGeI/1ukGRDYkRRCnLLGnNO7Jy8/tOq+fteAqgTNpmyEdSUZTfqetDHKdhBwfwSCPK934ic60qO5iRCXxXmmw==}
+  input-from-script@0.2.0:
+    resolution: {integrity: sha512-cFbeNFti1n5oKHJBvwtttiY8MUj/Pi7koVoTIElkfF9a+xeCDKh/5V4a5F5r2YAN2aDf3KRpSWR5fjdZxg7uvw==}
     engines: {node: '>=18'}
     peerDependencies:
-      create: ^0.1.0-alpha.8
+      create: ^0.2.0
 
   inquirer@7.3.3:
     resolution: {integrity: sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==}
@@ -3428,10 +3359,6 @@ packages:
     resolution: {integrity: sha512-UMo+WQkWi1PS/HZ15SMM1sgPhhXykqPJKCCAi6R0+JAhTbLBcfeKCJ3AwUVdJBJQKSQ37BUqPpME4iGAjZQtkw==}
     engines: {node: '>=18.3.0'}
 
-  octokit-from-auth@0.3.0:
-    resolution: {integrity: sha512-HeS+YVPExV5nkdRZyQQRepZVV+pL4ahVmh9KfKXLAbNc3D82G2xeuSWfKzHSIlqB1taQnZYPJWdpfcIe45d1lw==}
-    engines: {node: '>=18.3.0'}
-
   octokit@4.1.0:
     resolution: {integrity: sha512-/UrQAOSvkc+lUUWKNzy4ByAgYU9KpFzZQt8DnC962YmQuDiZb1SNJ90YukCCK5aMzKqqCA+z1kkAlmzYvdYKag==}
     engines: {node: '>= 18'}
@@ -3645,11 +3572,6 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  populate-all-contributors-for-repository@0.1.2:
-    resolution: {integrity: sha512-PQ93fI7OpetHtW0c+iu6Dx2aaiRurj07LTu51pAw/qkky0eb1CdcZ+4Y+DYbzZXId4UhHGH/ednm46Pwf1P8FA==}
-    engines: {node: '>=18.3.0'}
-    hasBin: true
-
   postcss-load-config@6.0.1:
     resolution: {integrity: sha512-oPtTM4oerL+UXmx+93ytZVN82RrlY/wPUV8IeDxFrzIjXOLF1pN+EmKPLbubvKHT2HC20xXsCAH2Z+CKV6Oz/g==}
     engines: {node: '>= 18'}
@@ -3802,11 +3724,6 @@ packages:
     resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
     engines: {node: '>=0.10'}
 
-  replace-in-file@8.3.0:
-    resolution: {integrity: sha512-4VhddQiMCPIuypiwHDTM+XHjZoVu9h7ngBbSCnwGRcwdHwxltjt/m//Ep3GDwqaOx1fDSrKFQ+n7uo4uVcEz9Q==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -3848,11 +3765,6 @@ packages:
 
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
-
-  rimraf@6.0.1:
-    resolution: {integrity: sha512-9dkvaxAsk/xNXSJzMgFqqMCuFgt2+KsOFek3TMLfo8NCPfWpBmqwyNn5Y+NX56QUYfCtsyhF3ayiboEoUmJk/A==}
-    engines: {node: 20 || >=22}
-    hasBin: true
 
   rollup@4.30.1:
     resolution: {integrity: sha512-mlJ4glW020fPuLi7DkM/lN97mYEZGWeqBnrljzN0gs7GLctqX3lNWxKQ7Gl712UAX+6fog/L3jh4gb7R6aVi3w==}
@@ -4298,10 +4210,6 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  v8-to-istanbul@9.3.0:
-    resolution: {integrity: sha512-kiGUalWN+rgBJ/1OHZsBtU4rXZOfj/7rKQxULKlIzwzQSvMJUUNgPwJEEh7gU6xEVxC0ahoOBvN2YI8GH6FNgA==}
-    engines: {node: '>=10.12.0'}
-
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
 
@@ -4573,8 +4481,6 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.9
 
   '@bcoe/v8-coverage@0.2.3': {}
-
-  '@bcoe/v8-coverage@1.0.2': {}
 
   '@clack/core@0.4.1':
     dependencies:
@@ -5317,10 +5223,6 @@ snapshots:
       deprecation: 2.3.1
       once: 1.4.0
 
-  '@octokit/request-error@6.1.5':
-    dependencies:
-      '@octokit/types': 13.7.0
-
   '@octokit/request-error@6.1.6':
     dependencies:
       '@octokit/types': 13.7.0
@@ -5335,7 +5237,7 @@ snapshots:
   '@octokit/request@9.2.0':
     dependencies:
       '@octokit/endpoint': 10.1.2
-      '@octokit/request-error': 6.1.5
+      '@octokit/request-error': 6.1.6
       '@octokit/types': 13.7.0
       fast-content-type-parse: 2.0.1
       universal-user-agent: 7.0.2
@@ -5490,8 +5392,6 @@ snapshots:
   '@types/git-url-parse@9.0.3': {}
 
   '@types/html-to-text@9.0.4': {}
-
-  '@types/istanbul-lib-coverage@2.0.6': {}
 
   '@types/js-yaml@4.0.9': {}
 
@@ -5742,14 +5642,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  all-contributors-for-repository@0.4.0:
-    dependencies:
-      co-author-to-username: 0.1.1
-      conventional-commits-parser: 6.0.0
-      description-to-co-authors: 0.3.0
-      octokit: 4.1.0
-      octokit-from-auth: 0.3.0
-
   ansi-align@3.0.1:
     dependencies:
       string-width: 4.2.3
@@ -5865,23 +5757,7 @@ snapshots:
       esbuild: 0.24.2
       load-tsconfig: 0.2.5
 
-  c8@10.1.3:
-    dependencies:
-      '@bcoe/v8-coverage': 1.0.2
-      '@istanbuljs/schema': 0.1.3
-      find-up: 5.0.0
-      foreground-child: 3.3.0
-      istanbul-lib-coverage: 3.2.2
-      istanbul-lib-report: 3.0.1
-      istanbul-reports: 3.1.7
-      test-exclude: 7.0.1
-      v8-to-istanbul: 9.3.0
-      yargs: 17.7.2
-      yargs-parser: 21.1.1
-
   cac@6.7.14: {}
-
-  cached-factory@0.0.2: {}
 
   cached-factory@0.1.0: {}
 
@@ -5994,11 +5870,6 @@ snapshots:
       wrap-ansi: 7.0.0
 
   clone@1.0.4: {}
-
-  co-author-to-username@0.1.1:
-    dependencies:
-      cached-factory: 0.0.2
-      octokit: 4.1.0
 
   color-convert@2.0.1:
     dependencies:
@@ -6135,8 +6006,6 @@ snapshots:
       conventional-commits-parser: 6.0.0
       meow: 13.2.0
 
-  convert-source-map@2.0.0: {}
-
   core-util-is@1.0.3: {}
 
   cosmiconfig@9.0.0(typescript@5.7.2):
@@ -6150,20 +6019,22 @@ snapshots:
 
   create-fs@0.1.1: {}
 
-  create-testers@0.1.0-alpha.14(create-fs@0.1.1)(create@0.1.0-alpha.15):
+  create-fs@0.2.0: {}
+
+  create-testers@0.2.0(create-fs@0.1.1)(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
+      create: 0.2.0
       create-fs: 0.1.1
       diff: 7.0.0
       octokit: 4.1.0
       without-undefined-properties: 0.1.1
 
-  create@0.1.0-alpha.15:
+  create@0.2.0:
     dependencies:
       '@clack/prompts': 0.9.1
       cached-factory: 0.1.0
       chalk: 5.4.1
-      create-fs: 0.1.1
+      create-fs: 0.2.0
       execa: 9.5.2
       get-github-auth-token: 0.1.1
       hash-object: 5.0.1
@@ -6329,8 +6200,6 @@ snapshots:
 
   dequal@2.0.3: {}
 
-  description-to-co-authors@0.3.0: {}
-
   detect-indent@6.1.0: {}
 
   detect-indent@7.0.1: {}
@@ -6458,6 +6327,7 @@ snapshots:
       '@esbuild/win32-arm64': 0.23.1
       '@esbuild/win32-ia32': 0.23.1
       '@esbuild/win32-x64': 0.23.1
+    optional: true
 
   esbuild@0.24.2:
     optionalDependencies:
@@ -7109,20 +6979,20 @@ snapshots:
 
   ini@4.1.3: {}
 
-  input-from-file-json@0.1.0-alpha.4(create@0.1.0-alpha.15):
+  input-from-file-json@0.2.0(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
-      input-from-file: 0.1.0-alpha.4(create@0.1.0-alpha.15)
+      create: 0.2.0
+      input-from-file: 0.2.0(create@0.2.0)
       zod: 3.24.1
 
-  input-from-file@0.1.0-alpha.4(create@0.1.0-alpha.15):
+  input-from-file@0.2.0(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
+      create: 0.2.0
       zod: 3.24.1
 
-  input-from-script@0.1.0-alpha.4(create@0.1.0-alpha.15):
+  input-from-script@0.2.0(create@0.2.0):
     dependencies:
-      create: 0.1.0-alpha.15
+      create: 0.2.0
       zod: 3.24.1
 
   inquirer@7.3.3:
@@ -7839,11 +7709,6 @@ snapshots:
       get-github-auth-token: 0.1.1
       octokit: 4.1.0
 
-  octokit-from-auth@0.3.0:
-    dependencies:
-      get-github-auth-token: 0.1.1
-      octokit: 4.1.0
-
   octokit@4.1.0:
     dependencies:
       '@octokit/app': 15.1.2
@@ -8095,14 +7960,6 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  populate-all-contributors-for-repository@0.1.2:
-    dependencies:
-      all-contributors-cli: 6.26.1
-      all-contributors-for-repository: 0.4.0
-      execa: 9.5.2
-    transitivePeerDependencies:
-      - encoding
-
   postcss-load-config@6.0.1(jiti@2.4.2)(postcss@8.5.1)(tsx@4.19.2)(yaml@2.7.0):
     dependencies:
       lilconfig: 3.1.3
@@ -8272,12 +8129,6 @@ snapshots:
 
   repeat-string@1.6.1: {}
 
-  replace-in-file@8.3.0:
-    dependencies:
-      chalk: 5.4.1
-      glob: 10.4.5
-      yargs: 17.7.2
-
   require-directory@2.1.1: {}
 
   require-main-filename@2.0.0: {}
@@ -8309,11 +8160,6 @@ snapshots:
   reusify@1.0.4: {}
 
   rfdc@1.4.1: {}
-
-  rimraf@6.0.1:
-    dependencies:
-      glob: 11.0.1
-      package-json-from-dist: 1.0.1
 
   rollup@4.30.1:
     dependencies:
@@ -8686,6 +8532,7 @@ snapshots:
       get-tsconfig: 4.8.1
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   type-check@0.4.0:
     dependencies:
@@ -8752,12 +8599,6 @@ snapshots:
   url-join@5.0.0: {}
 
   util-deprecate@1.0.2: {}
-
-  v8-to-istanbul@9.3.0:
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      '@types/istanbul-lib-coverage': 2.0.6
-      convert-source-map: 2.0.0
 
   validate-npm-package-license@3.0.4:
     dependencies:

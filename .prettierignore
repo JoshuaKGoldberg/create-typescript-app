@@ -1,4 +1,4 @@
 /.husky
-/coverage*
+/coverage
 /lib
 /pnpm-lock.yaml

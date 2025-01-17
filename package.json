@@ -57,7 +57,7 @@
 		"parse-author": "^2.0.0",
 		"parse-package-name": "^1.0.0",
 		"remove-dependencies": "^0.1.0",
-		"remove-undefined-objects": "^5.0.0",
+		"remove-undefined-objects": "^6.0.0",
 		"set-github-repository-labels": "^0.1.0",
 		"sort-package-json": "^2.14.0",
 		"title-case": "^4.3.2",

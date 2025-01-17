@@ -69,8 +69,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       remove-undefined-objects:
-        specifier: ^5.0.0
-        version: 5.0.0
+        specifier: ^6.0.0
+        version: 6.0.0
       set-github-repository-labels:
         specifier: ^0.1.0
         version: 0.1.0
@@ -3716,8 +3716,8 @@ packages:
     engines: {node: '>=18.3.0'}
     hasBin: true
 
-  remove-undefined-objects@5.0.0:
-    resolution: {integrity: sha512-DE8C17uIWeHaY4SqIkpQpHXm0MIdYHtIqjieWuh0I2PG8YcZRxFE6pqeEhnRetsrQ7Lu9uvSNQkDbg95NLpvnQ==}
+  remove-undefined-objects@6.0.0:
+    resolution: {integrity: sha512-8fR4QQFV2xMKTYXazi1944rpr1f+JOzQu58TgUFi3xDu41fDon5qMXtjJ1/nhquOouTtJ621bKDrhE1IlOSP+A==}
     engines: {node: '>=18'}
 
   repeat-string@1.6.1:
@@ -8125,7 +8125,7 @@ snapshots:
 
   remove-dependencies@0.1.0: {}
 
-  remove-undefined-objects@5.0.0: {}
+  remove-undefined-objects@6.0.0: {}
 
   repeat-string@1.6.1: {}
 

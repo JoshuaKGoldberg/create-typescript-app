@@ -36,13 +36,13 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
       input-from-file:
-        specifier: 0.2.0
+        specifier: ^0.2.0
         version: 0.2.0(create@0.2.0)
       input-from-file-json:
-        specifier: 0.2.0
+        specifier: ^0.2.0
         version: 0.2.0(create@0.2.0)
       input-from-script:
-        specifier: 0.2.0
+        specifier: ^0.2.0
         version: 0.2.0(create@0.2.0)
       js-yaml:
         specifier: ^4.1.0

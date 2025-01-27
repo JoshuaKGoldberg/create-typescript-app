@@ -379,9 +379,5 @@
 	],
 	"contributorsSortAlphabetically": true,
 	"projectName": "create-typescript-app",
-	"projectOwner": "JoshuaKGoldberg",
-	"files": ["README.md"],
-	"commitType": "docs",
-	"commitConvention": "angular",
-	"contributorsPerLine": 7
+	"projectOwner": "JoshuaKGoldberg"
 }

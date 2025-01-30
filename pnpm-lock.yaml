@@ -151,8 +151,8 @@ importers:
         specifier: 17.15.1
         version: 17.15.1(eslint@9.17.0(jiti@2.4.2))
       eslint-plugin-package-json:
-        specifier: 0.20.1
-        version: 0.20.1(eslint@9.17.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)
+        specifier: 0.21.0
+        version: 0.21.0(eslint@9.17.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)
       eslint-plugin-perfectionist:
         specifier: 4.7.0
         version: 4.7.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
@@ -2289,8 +2289,8 @@ packages:
     peerDependencies:
       eslint: '>=8.23.0'
 
-  eslint-plugin-package-json@0.20.1:
-    resolution: {integrity: sha512-AR6SNUvllaKyFWCohaRkuTT5MfCO2sA2KAdf3ZHz5/l4fyfDh3NEwugmiBMEYzunH0ZK/3a5gw2OU/dXFy6cjw==}
+  eslint-plugin-package-json@0.21.0:
+    resolution: {integrity: sha512-CYWtNYr8V0J+RfgbfhsPxaHjbMqOuZtemUKdYps177qHseIqQCHNiCRmJYKO8CRsrvyD9COyupYmpkxzcGLCWQ==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: '>=8.0.0'
@@ -6453,7 +6453,7 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.6.3
 
-  eslint-plugin-package-json@0.20.1(eslint@9.17.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0):
+  eslint-plugin-package-json@0.21.0(eslint@9.17.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0):
     dependencies:
       '@altano/repository-tools': 0.1.1
       detect-indent: 6.1.0

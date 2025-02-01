@@ -122,7 +122,6 @@ export const blockReleaseIt = base.createBlock({
 						requireCommits: true,
 					},
 					github: {
-						autoGenerate: true,
 						release: true,
 						releaseName: "v${version}",
 					},

@@ -38,7 +38,7 @@
 	},
 	"dependencies": {
 		"chalk": "^5.4.1",
-		"create": "^0.2.0",
+		"create": "^0.3.0",
 		"create-fs": "^0.2.0",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",

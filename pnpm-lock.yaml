@@ -12,8 +12,8 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       create:
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.3.0
+        version: 0.3.0
       create-fs:
         specifier: ^0.2.0
         version: 0.2.0
@@ -37,13 +37,13 @@ importers:
         version: 1.2.0
       input-from-file:
         specifier: ^0.2.0
-        version: 0.2.0(create@0.2.0)
+        version: 0.2.0(create@0.3.0)
       input-from-file-json:
         specifier: ^0.2.0
-        version: 0.2.0(create@0.2.0)
+        version: 0.2.0(create@0.3.0)
       input-from-script:
         specifier: ^0.2.0
-        version: 0.2.0(create@0.2.0)
+        version: 0.2.0(create@0.3.0)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -131,7 +131,7 @@ importers:
         version: 0.5.0
       create-testers:
         specifier: 0.2.0
-        version: 0.2.0(create-fs@0.2.0)(create@0.2.0)
+        version: 0.2.0(create-fs@0.2.0)(create@0.3.0)
       cspell:
         specifier: 8.17.2
         version: 8.17.2
@@ -1990,8 +1990,8 @@ packages:
       create: ^0.2.0
       create-fs: ^0.2.0
 
-  create@0.2.0:
-    resolution: {integrity: sha512-ZViCTKUiFXcRnjYwtcJS3Ir8rv7YwrLApAs2vWprHW0vvrvSZdrresJfFFK2Bh6e3pS9eHKT57kiii0UYYxE8w==}
+  create@0.3.0:
+    resolution: {integrity: sha512-I1uWXyo1aX+irG10nZIzcxzRPFbS3CappdM8YnPunZHxtD/CVlqUXVxy/sjdTh9gq1G9M3M9+6Lck65ozClkWw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2680,8 +2680,8 @@ packages:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
 
-  import-local-or-npx@0.2.0:
-    resolution: {integrity: sha512-K0rFCUuIBX7lmzwp95F4Owg+bRZAUMoiC79fYSRHPG/pi3IFKyMYrc+RE00mC9AWU6J/YZKT8xept5VyLvkvUw==}
+  import-local-or-npx@0.3.0:
+    resolution: {integrity: sha512-H/xGm1bTjVKFZOQUDtACRH0teTzUQMGKrY/W6HMmtLi2tB23eZvfePnxqpPRhN31DvvieFvICNfee7QU87IbjQ==}
     engines: {node: '>=18.3.0'}
 
   import-meta-resolve@4.1.0:
@@ -6029,15 +6029,15 @@ snapshots:
 
   create-fs@0.2.0: {}
 
-  create-testers@0.2.0(create-fs@0.2.0)(create@0.2.0):
+  create-testers@0.2.0(create-fs@0.2.0)(create@0.3.0):
     dependencies:
-      create: 0.2.0
+      create: 0.3.0
       create-fs: 0.2.0
       diff: 7.0.0
       octokit: 4.1.0
       without-undefined-properties: 0.1.1
 
-  create@0.2.0:
+  create@0.3.0:
     dependencies:
       '@clack/prompts': 0.9.1
       cached-factory: 0.1.0
@@ -6047,7 +6047,7 @@ snapshots:
       get-github-auth-token: 0.1.1
       hash-object: 5.0.1
       hosted-git-info: 8.0.2
-      import-local-or-npx: 0.2.0
+      import-local-or-npx: 0.3.0
       octokit: 4.1.0
       prettier: 3.4.2
       read-pkg: 9.0.1
@@ -6923,7 +6923,7 @@ snapshots:
       parent-module: 1.0.1
       resolve-from: 4.0.0
 
-  import-local-or-npx@0.2.0:
+  import-local-or-npx@0.3.0:
     dependencies:
       enhanced-resolve: 5.18.0
       npx-import: 1.1.4
@@ -6949,20 +6949,20 @@ snapshots:
 
   ini@4.1.3: {}
 
-  input-from-file-json@0.2.0(create@0.2.0):
+  input-from-file-json@0.2.0(create@0.3.0):
     dependencies:
-      create: 0.2.0
-      input-from-file: 0.2.0(create@0.2.0)
+      create: 0.3.0
+      input-from-file: 0.2.0(create@0.3.0)
       zod: 3.24.1
 
-  input-from-file@0.2.0(create@0.2.0):
+  input-from-file@0.2.0(create@0.3.0):
     dependencies:
-      create: 0.2.0
+      create: 0.3.0
       zod: 3.24.1
 
-  input-from-script@0.2.0(create@0.2.0):
+  input-from-script@0.2.0(create@0.3.0):
     dependencies:
-      create: 0.2.0
+      create: 0.3.0
       zod: 3.24.1
 
   inquirer@12.3.0(@types/node@22.10.2):

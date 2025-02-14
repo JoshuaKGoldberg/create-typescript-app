@@ -1,4 +1,4 @@
-import { testBlock } from "create-testers";
+import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockPrettier } from "./blockPrettier.js";
@@ -116,9 +116,9 @@ describe("blockPrettier", () => {
 		`);
 	});
 
-	test("migration mode", () => {
+	test("transition mode", () => {
 		const creation = testBlock(blockPrettier, {
-			mode: "migrate",
+			mode: "transition",
 			options: optionsBase,
 		});
 

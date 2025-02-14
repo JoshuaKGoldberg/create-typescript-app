@@ -17,17 +17,6 @@ export const blockKnip = base.createBlock({
 	addons: {
 		ignoreDependencies: z.array(z.string()).optional(),
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm .knip* knip.*"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ addons }) {
 		const { ignoreDependencies } = addons;
 		return {
@@ -72,6 +61,17 @@ export const blockKnip = base.createBlock({
 					project: ["src/**/*.ts"],
 				}),
 			},
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm .knip* knip.*"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
+			],
 		};
 	},
 });

@@ -1,4 +1,4 @@
-import { testBlock } from "create-testers";
+import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockPackageJson } from "./blockPackageJson.js";
@@ -30,9 +30,9 @@ describe("blockPackageJson", () => {
 		`);
 	});
 
-	test("migration mode", () => {
+	test("transition mode", () => {
 		const creation = testBlock(blockPackageJson, {
-			mode: "migrate",
+			mode: "transition",
 			options,
 		});
 

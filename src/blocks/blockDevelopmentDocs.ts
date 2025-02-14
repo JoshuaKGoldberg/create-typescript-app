@@ -64,17 +64,6 @@ export const blockDevelopmentDocs = base.createBlock({
 		hints: z.array(z.string()).default([]),
 		sections: z.record(z.string(), zSection).default({}),
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm DEVELOPMENT.md"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ addons, options }) {
 		const lines = [
 			`# Development`,
@@ -107,6 +96,17 @@ export const blockDevelopmentDocs = base.createBlock({
 					"DEVELOPMENT.md": lines.join("\n"),
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm DEVELOPMENT.md"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
+			],
 		};
 	},
 });

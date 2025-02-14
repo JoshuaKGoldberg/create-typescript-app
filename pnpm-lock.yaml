@@ -11,12 +11,6 @@ importers:
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
-      create:
-        specifier: ^0.2.0
-        version: 0.2.0
-      create-fs:
-        specifier: ^0.2.0
-        version: 0.2.0
       cspell-populate-words:
         specifier: ^0.3.0
         version: 0.3.0
@@ -81,8 +75,8 @@ importers:
         specifier: ^4.3.2
         version: 4.3.2
       zod:
-        specifier: ^3.24.1
-        version: 3.24.1
+        specifier: ^3.24.2
+        version: 3.24.2
     devDependencies:
       '@eslint-community/eslint-plugin-eslint-comments':
         specifier: 4.4.1
@@ -129,9 +123,6 @@ importers:
       console-fail-test:
         specifier: 0.5.0
         version: 0.5.0
-      create-testers:
-        specifier: 0.2.0
-        version: 0.2.0(create-fs@0.2.0)(create@0.2.0)
       cspell:
         specifier: 8.17.2
         version: 8.17.2
@@ -1983,13 +1974,6 @@ packages:
     resolution: {integrity: sha512-FASG2SI5uQSthGpFNt//tPSf48vWm6BiU9HNcpgRbyA6coxPCtfQ9SaXNxjKzqIBa75sdfDDKJRyukyx6oNOdg==}
     engines: {node: '>=18'}
 
-  create-testers@0.2.0:
-    resolution: {integrity: sha512-XgRyB7KwqeyKhmnG9ykDxBelFDBb8AjS6SZxVV35iKbUD9gwsMIumO/FodyyTwxtUriDYOsbOYL3UGeuPSeaFg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      create: ^0.2.0
-      create-fs: ^0.2.0
-
   create@0.2.0:
     resolution: {integrity: sha512-ZViCTKUiFXcRnjYwtcJS3Ir8rv7YwrLApAs2vWprHW0vvrvSZdrresJfFFK2Bh6e3pS9eHKT57kiii0UYYxE8w==}
     engines: {node: '>=18'}
@@ -2133,10 +2117,6 @@ packages:
 
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
-
-  diff@7.0.0:
-    resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
-    engines: {node: '>=0.3.1'}
 
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
@@ -2511,6 +2491,9 @@ packages:
   get-stream@9.0.1:
     resolution: {integrity: sha512-kVCxPF3vQM/N0B1PmoqVUqgHP+EeVjmZSQn+1oCRPxd2P21P2F19lIgbR3HBosbB1PUhOAoctJnfEn2GbN2eZA==}
     engines: {node: '>=18'}
+
+  get-tsconfig@4.10.0:
+    resolution: {integrity: sha512-kGzZ3LWWQcGIAmg6iWvXn0ei6WDtV26wzHRMwDSzmAbcXrTEXxHy6IehI6/4eT6VRKyMP1eF1VqwrVUmE/LR7A==}
 
   get-tsconfig@4.8.1:
     resolution: {integrity: sha512-k9PN+cFBmaLWtVz29SkUoqU5O0slLuHJXt/2P+tMVFT+phsSGXGkp9t3rQIqdz0e+06EHNGs3oM6ZX1s2zHxRg==}
@@ -4390,6 +4373,9 @@ packages:
   zod@3.24.1:
     resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
+  zod@3.24.2:
+    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
+
 snapshots:
 
   '@altano/repository-tools@0.1.1': {}
@@ -6029,14 +6015,6 @@ snapshots:
 
   create-fs@0.2.0: {}
 
-  create-testers@0.2.0(create-fs@0.2.0)(create@0.2.0):
-    dependencies:
-      create: 0.2.0
-      create-fs: 0.2.0
-      diff: 7.0.0
-      octokit: 4.1.0
-      without-undefined-properties: 0.1.1
-
   create@0.2.0:
     dependencies:
       '@clack/prompts': 0.9.1
@@ -6220,8 +6198,6 @@ snapshots:
       dequal: 2.0.3
 
   didyoumean@1.2.2: {}
-
-  diff@7.0.0: {}
 
   dom-serializer@2.0.0:
     dependencies:
@@ -6728,6 +6704,11 @@ snapshots:
       '@sec-ant/readable-stream': 0.4.1
       is-stream: 4.0.1
 
+  get-tsconfig@4.10.0:
+    dependencies:
+      resolve-pkg-maps: 1.0.0
+    optional: true
+
   get-tsconfig@4.8.1:
     dependencies:
       resolve-pkg-maps: 1.0.0
@@ -7192,8 +7173,8 @@ snapshots:
       strip-json-comments: 5.0.1
       summary: 2.1.0
       typescript: 5.7.2
-      zod: 3.24.1
-      zod-validation-error: 3.4.0(zod@3.24.1)
+      zod: 3.24.2
+      zod-validation-error: 3.4.0(zod@3.24.2)
 
   ky@1.7.4: {}
 
@@ -8174,7 +8155,7 @@ snapshots:
     dependencies:
       octokit-from-auth: 0.2.0
       throttled-queue: 2.1.4
-      zod: 3.24.1
+      zod: 3.24.2
 
   sh-syntax@0.4.2:
     dependencies:
@@ -8464,7 +8445,7 @@ snapshots:
   tsx@4.19.2:
     dependencies:
       esbuild: 0.23.1
-      get-tsconfig: 4.8.1
+      get-tsconfig: 4.10.0
     optionalDependencies:
       fsevents: 2.3.3
     optional: true
@@ -8740,8 +8721,10 @@ snapshots:
 
   yoctocolors@2.1.1: {}
 
-  zod-validation-error@3.4.0(zod@3.24.1):
+  zod-validation-error@3.4.0(zod@3.24.2):
     dependencies:
-      zod: 3.24.1
+      zod: 3.24.2
 
   zod@3.24.1: {}
+
+  zod@3.24.2: {}

@@ -5,17 +5,6 @@ export const blockContributorCovenant = base.createBlock({
 	about: {
 		name: "Contributor Covenant",
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm CODE_OF_CONDUCT.md"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ options }) {
 		return {
 			files: {
@@ -155,6 +144,17 @@ For answers to common questions about this code of conduct, see the FAQ at
 `,
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm CODE_OF_CONDUCT.md"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
+			],
 		};
 	},
 });

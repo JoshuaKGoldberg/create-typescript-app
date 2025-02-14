@@ -17,23 +17,6 @@ export const blockTSup = base.createBlock({
 		entry: z.array(z.string()).default([]),
 		runArgs: z.array(z.string()).default([]),
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: [
-						`node ${resolveBin("remove-dependencies/bin/index.js")} @babel/core babel`,
-					],
-					phase: CommandPhase.Process,
-				},
-				{
-					commands: ["rm -rf .babelrc* babel.config.* dist lib"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ addons, options }) {
 		const { entry } = addons;
 
@@ -105,6 +88,23 @@ export default defineConfig({
 						},
 					]
 				: undefined,
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: [
+						`node ${resolveBin("remove-dependencies/bin/index.js")} @babel/core babel`,
+					],
+					phase: CommandPhase.Process,
+				},
+				{
+					commands: ["rm -rf .babelrc* babel.config.* dist lib"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
+			],
 		};
 	},
 });

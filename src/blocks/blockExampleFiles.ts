@@ -9,14 +9,15 @@ export const blockExampleFiles = base.createBlock({
 	addons: {
 		files: z.record(z.string()).default({}),
 	},
-	initialize({ addons }) {
+	setup({ addons }) {
 		return {
 			files: {
 				src: addons.files,
 			},
 		};
 	},
-	// TODO: Make produce() optional (so base is generic on its definition)
+	// TODO: Make produce() optional
+	// This needs createBlock to be generic to know if block.produce({}) is ok
 	produce() {
 		return {};
 	},

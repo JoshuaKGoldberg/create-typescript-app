@@ -20,22 +20,6 @@ export const blockCSpell = base.createBlock({
 		ignores: z.array(z.string()).default([]),
 		words: z.array(z.string()).default([]),
 	},
-	initialize({ options }) {
-		const wordArgs = getObjectStringsDeep(options)
-			.map((word) => `--words "${word.replaceAll(`"`, " ")}"`)
-			.join(" ");
-
-		return {
-			scripts: [
-				{
-					commands: [
-						`node ${resolveBin("cspell-populate-words/bin/index.mjs")} ${wordArgs}`,
-					],
-					phase: CommandPhase.Process,
-				},
-			],
-		};
-	},
 	produce({ addons }) {
 		const { ignores, words } = addons;
 
@@ -86,6 +70,22 @@ export const blockCSpell = base.createBlock({
 					...(words.length && { words: words.sort() }),
 				}),
 			},
+		};
+	},
+	setup({ options }) {
+		const wordArgs = getObjectStringsDeep(options)
+			.map((word) => `--words "${word.replaceAll(`"`, " ")}"`)
+			.join(" ");
+
+		return {
+			scripts: [
+				{
+					commands: [
+						`node ${resolveBin("cspell-populate-words/bin/index.mjs")} ${wordArgs}`,
+					],
+					phase: CommandPhase.Process,
+				},
+			],
 		};
 	},
 });

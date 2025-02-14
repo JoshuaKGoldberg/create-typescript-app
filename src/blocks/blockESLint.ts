@@ -64,17 +64,6 @@ export const blockESLint = base.createBlock({
 		rules: zExtensionRules.optional(),
 		settings: z.record(z.string(), z.unknown()).optional(),
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm .eslintrc* .eslintignore eslint.config.*"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ addons, options }) {
 		const { explanations, extensions, ignores, imports, rules, settings } =
 			addons;
@@ -224,6 +213,17 @@ export default tseslint.config(
 				{
 					commands: ["pnpm lint --fix"],
 					phase: CommandPhase.Process,
+				},
+			],
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm .eslintrc* .eslintignore eslint.config.*"],
+					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

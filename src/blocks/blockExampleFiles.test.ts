@@ -1,4 +1,4 @@
-import { testBlock } from "create-testers";
+import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockExampleFiles } from "./blockExampleFiles.js";
@@ -27,14 +27,14 @@ describe("blockExampleFiles", () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons.files and mode: initialize", () => {
+	test("with addons.files and mode: setup", () => {
 		const creation = testBlock(blockExampleFiles, {
 			addons: {
 				files: {
 					"index.ts": "console.log('Hello, world!');",
 				},
 			},
-			mode: "initialize",
+			mode: "setup",
 			options: optionsBase,
 		});
 

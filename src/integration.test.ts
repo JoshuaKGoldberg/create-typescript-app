@@ -1,7 +1,8 @@
 import prettier from "@prettier/sync";
-import { produceBase, producePreset } from "create";
-import { intakeFromDirectory } from "create-fs";
-import { diffCreatedDirectory } from "create-testers";
+import { prepareOptions } from "bingo";
+import { intakeFromDirectory } from "bingo-fs";
+import { producePreset } from "bingo-stratum";
+import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test } from "vitest";
 
 import {
@@ -38,7 +39,7 @@ test("Producing the everything preset matches the files in this repository", asy
 		exclude: /node_modules|^\.git$/,
 	});
 
-	const created = await producePreset(presets.everything, {
+	const created = producePreset(presets.everything, {
 		addons: [
 			blockCodecov({
 				env: {
@@ -99,7 +100,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 			add: [blockAreTheTypesWrong],
 			exclude: [blockTemplatedWith],
 		},
-		options: (await produceBase(base)) as BaseOptions,
+		options: (await prepareOptions(base)) as BaseOptions,
 	});
 
 	const processText = (text: string, filePath: string) =>

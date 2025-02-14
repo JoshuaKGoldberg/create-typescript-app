@@ -10,17 +10,6 @@ export const blockCodecov = base.createBlock({
 		name: "Codecov",
 	},
 	addons: { env: z.record(z.string(), z.string()).optional() },
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm .github/codecov.yml codecov.yml"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ addons }) {
 		const { env } = addons;
 		return {
@@ -42,6 +31,17 @@ export const blockCodecov = base.createBlock({
 						},
 					],
 				}),
+			],
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm .github/codecov.yml codecov.yml"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
 			],
 		};
 	},

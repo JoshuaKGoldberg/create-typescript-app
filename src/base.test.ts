@@ -1,4 +1,4 @@
-import { produceBase } from "create";
+import { prepareOptions } from "bingo";
 import { readFile } from "fs/promises";
 import { describe, expect, test } from "vitest";
 
@@ -7,7 +7,7 @@ import { AllContributorsData } from "./types.js";
 
 describe("base", () => {
 	test("production from create-typescript-app", async () => {
-		const options = await produceBase(base);
+		const options = await prepareOptions(base);
 
 		expect(options).toEqual({
 			access: "public",

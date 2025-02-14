@@ -30,17 +30,6 @@ export const blockGitHubActionsCI = base.createBlock({
 			)
 			.optional(),
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm -rf .circleci travis.yml"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ addons }) {
 		const { jobs } = addons;
 
@@ -136,6 +125,17 @@ export const blockGitHubActionsCI = base.createBlock({
 					},
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm -rf .circleci travis.yml"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
+			],
 		};
 	},
 });

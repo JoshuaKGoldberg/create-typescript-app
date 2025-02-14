@@ -1,4 +1,4 @@
-import { BaseOptionsFor, createBase } from "create";
+import { BaseOptionsFor, createBase } from "bingo-stratum";
 import { execaCommand } from "execa";
 import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
@@ -135,7 +135,7 @@ export const base = createBase({
 			.optional()
 			.describe("package version to publish as and store in `package.json`"),
 	},
-	produce({ options, take }) {
+	prepare({ options, take }) {
 		const allContributors = lazyValue(async () => {
 			const contributions = (await take(inputFromFileJSON, {
 				filePath: ".all-contributorsrc",
@@ -235,10 +235,6 @@ export const base = createBase({
 			...readDefaultsFromReadme(readme, repository),
 			version,
 		};
-	},
-	template: {
-		owner: "JoshuaKGoldberg",
-		repository: "create-typescript-app",
 	},
 });
 

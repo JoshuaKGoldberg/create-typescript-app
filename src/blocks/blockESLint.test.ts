@@ -1,4 +1,4 @@
-import { testBlock } from "create-testers";
+import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockESLint } from "./blockESLint.js";
@@ -133,9 +133,9 @@ describe("blockESLint", () => {
 		`);
 	});
 
-	test("migration mode", () => {
+	test("transition mode", () => {
 		const creation = testBlock(blockESLint, {
-			mode: "migrate",
+			mode: "transition",
 			options: optionsBase,
 		});
 

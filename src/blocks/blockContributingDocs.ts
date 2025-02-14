@@ -5,17 +5,6 @@ export const blockContributingDocs = base.createBlock({
 	about: {
 		name: "Contributing Docs",
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm CONTRIBUTING.md"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ options }) {
 		return {
 			files: {
@@ -120,6 +109,17 @@ Please include your favorite emoji in the bottom of your issues and PRs to signa
 `,
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm CONTRIBUTING.md"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
+			],
 		};
 	},
 });

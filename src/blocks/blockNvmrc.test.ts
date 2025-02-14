@@ -1,4 +1,4 @@
-import { testBlock } from "create-testers";
+import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, it } from "vitest";
 
 import { blockNvmrc } from "./blockNvmrc.js";

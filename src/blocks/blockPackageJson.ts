@@ -26,17 +26,6 @@ export const blockPackageJson = base.createBlock({
 			)
 			.default({}),
 	},
-	migrate() {
-		return {
-			scripts: [
-				{
-					commands: ["rm package-lock.json yarn.lock"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
-		};
-	},
 	produce({ addons, offline, options }) {
 		const dependencies = {
 			...options.packageData?.dependencies,
@@ -105,6 +94,17 @@ export const blockPackageJson = base.createBlock({
 						...addons.cleanupCommands,
 					],
 					phase: CommandPhase.Install,
+				},
+			],
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["rm package-lock.json yarn.lock"],
+					phase: CommandPhase.Migrations,
+					silent: true,
 				},
 			],
 		};

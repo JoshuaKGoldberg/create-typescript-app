@@ -1,5 +1,15 @@
 # Changelog
 
+# [2.0.0-beta.11](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.9...v2.0.0-beta.11) (2025-02-18)
+
+### Bug Fixes
+
+- don't include chore PRs in GH release page ([#1924](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1924)) ([97cdfad](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/97cdfad970a7968b63eba338b3c8c6335d44d68a)), closes [#1913](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1913) [release-it/release-it#1025](https://github.com/release-it/release-it/issues/1025) [#1913](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1913)
+
+### Features
+
+- switch to Bingo ([#1933](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1933)) ([1d60fc3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1d60fc35baadbd19a822518240517fd46531a4a3)), closes [#1932](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1932)
+
 # [2.0.0-beta.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2025-01-17)
 
 ### Bug Fixes

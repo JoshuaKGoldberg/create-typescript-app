@@ -1,4 +1,4 @@
-import { testBlock } from "create-testers";
+import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
@@ -101,9 +101,9 @@ describe("blockGitHubActionsCI", () => {
 		`);
 	});
 
-	test("migration mode", () => {
+	test("transition mode", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
-			mode: "migrate",
+			mode: "transition",
 			options: optionsBase,
 		});
 

@@ -1,4 +1,4 @@
-import { TakeInput } from "create";
+import { TakeInput } from "bingo";
 import { inputFromFile } from "input-from-file";
 
 import { swallowError } from "../utils/swallowError.js";

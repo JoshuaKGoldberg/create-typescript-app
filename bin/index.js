@@ -4,7 +4,7 @@ import chalk from "chalk";
 console.log(
 	[
 		"create-typescript-app is now run using ",
-		chalk.bold("create"),
+		chalk.bold("bingo"),
 		".\n\nRun:\n  ",
 		chalk.bold("npx create", process.argv.slice(2).join(" ")),
 		"\n\nYou can read more on:\n  https://",

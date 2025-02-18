@@ -1,4 +1,4 @@
-import { Block } from "create";
+import { Block } from "bingo-stratum";
 import * as fs from "node:fs/promises";
 import * as prettier from "prettier";
 import { describe, expect, test } from "vitest";

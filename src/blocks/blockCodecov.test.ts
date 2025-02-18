@@ -1,4 +1,4 @@
-import { testBlock } from "create-testers";
+import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockCodecov } from "./blockCodecov.js";
@@ -40,9 +40,9 @@ describe("blockCodecov", () => {
 		`);
 	});
 
-	test("migration mode", () => {
+	test("transition mode", () => {
 		const creation = testBlock(blockCodecov, {
-			mode: "migrate",
+			mode: "transition",
 			options: optionsBase,
 		});
 

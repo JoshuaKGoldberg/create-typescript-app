@@ -137,7 +137,7 @@ export const base = createBase({
 	},
 	prepare({ options, take }) {
 		const allContributors = lazyValue(async () => {
-			const contributions = (await take(inputFromFileJSON, {
+			const contributions = (await take(inputFromFileJSON as any, {
 				filePath: ".all-contributorsrc",
 			})) as AllContributorsData;
 
@@ -148,16 +148,16 @@ export const base = createBase({
 
 		const nvmrc = lazyValue(
 			async () =>
-				await take(inputFromFile, {
+				await take(inputFromFile as any, {
 					filePath: ".nvmrc",
 				}),
 		);
 
 		const githubCliUser = lazyValue(async () => {
 			return swallowError(
-				await take(inputFromScript, {
+				(await take(inputFromScript as any, {
 					command: "gh config get user -h github.com",
-				}),
+				})) as any,
 			)?.stdout?.toString();
 		});
 
@@ -192,7 +192,7 @@ export const base = createBase({
 			return {
 				minimum:
 					(engines?.node && /[\d+.]+/.exec(engines.node))?.[0] ?? "18.3.0",
-				pinned: swallowError(await nvmrc())?.trim() ?? "20.18.0",
+				pinned: swallowError((await nvmrc()) as any)?.trim() ?? "20.18.0",
 			};
 		});
 

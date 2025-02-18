@@ -38,10 +38,10 @@ First make sure you have the following installed:
 Then in an existing repository or in your directory where you'd like to make a new repository:
 
 ```shell
-npx create typescript-app@beta
+npx bingo typescript-app@beta
 ```
 
-That will launch `create-typescript-app` using the [`create` runner](https://create.bingo).
+That will launch `create-typescript-app` using the [`bingo` runner](https://create.bingo).
 
 You can read more about the supported setup modes in their docs pages:
 

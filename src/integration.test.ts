@@ -18,7 +18,7 @@ import {
 	presets,
 } from "./index.js";
 
-// This test checks the `create` production using options inferred from disk,
+// This test checks the Bingo production using options inferred from disk,
 // along with some explicit addons and blocks specified.
 // It ensures that result has no differences from the actual files on disk.
 //

@@ -1,7 +1,7 @@
 # Options
 
-`create-typescript-app` is built on top of [`create`](https://create.bingo).
-`npx create typescript-app@beta` supports all the flags defined by the [`create` CLI](https://www.create.bingo/cli).
+`create-typescript-app` is built on top of [Bingo](https://create.bingo).
+`npx bingo typescript-app@beta` supports all the flags defined by the [`bingo` CLI](https://www.create.bingo/cli).
 It provides three Presets:
 
 1. **Minimal**: Just bare starter tooling: building, formatting, linting, and type checking.
@@ -11,7 +11,7 @@ It provides three Presets:
 For example, to create a new repository on the _everything_ preset:
 
 ```shell
-npx create typescript-app@beta --preset everything
+npx bingo typescript-app@beta --preset everything
 ```
 
 `create-typescript-app` itself adds in two sections of flags:
@@ -21,7 +21,7 @@ npx create typescript-app@beta --preset everything
 
 ## Base Options
 
-Per [`create` > CLI > Template Options](https://www.create.bingo/cli#template-options), options defined by `create-typescript-app` may be provided on the CLI.
+Per [Bingo > CLI > Template Options](https://www.create.bingo/cli#template-options), options defined by `create-typescript-app` may be provided on the CLI.
 
 ### Required Base Options
 
@@ -34,7 +34,7 @@ Each will be prompted for when creating a new repository if not explicitly provi
 For example, pre-populating both required base options:
 
 ```shell
-npx create typescript-app@beta --description "My awesome TypeScript app! 💖" --title "My TypeScript App"
+npx bingo typescript-app@beta --description "My awesome TypeScript app! 💖" --title "My TypeScript App"
 ```
 
 That script will run completely autonomously, no prompted inputs required. ✨
@@ -56,16 +56,16 @@ They will be inferred from the running user, and if migrating an existing reposi
 For example, customizing the npm author and funding source:
 
 ```shell
-npx create typescript-app@beta --author my-npm-username --funding MyGitHubOrganization
+npx bingo typescript-app@beta --author my-npm-username --funding MyGitHubOrganization
 ```
 
 ## Block Exclusions
 
-Per [`create` > CLI > Template Options > Block Exclusions](https://www.create.bingo/cli#block-exclusions), individual Blocks may be excluded from running.
+Per [Bingo > Stratum > Configurations > `blocks`](https://www.create.bingo/engines/stratum/details/configurations#blocks), individual Blocks may be excluded from running.
 For example, initializing with all tooling except for Renovate:
 
 ```shell
-npx create typescript-app@beta --exclude-renovate
+npx bingo typescript-app@beta --exclude-renovate
 ```
 
 See [Blocks.md](./Blocks.md) for the list of blocks and their corresponding presets.

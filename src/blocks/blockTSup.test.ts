@@ -67,7 +67,7 @@ describe("blockTSup", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsup": "8.3.5",
+			            "tsup": "8.3.6",
 			          },
 			          "scripts": {
 			            "build": "tsup",
@@ -155,7 +155,7 @@ describe("blockTSup", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsup": "8.3.5",
+			            "tsup": "8.3.6",
 			          },
 			          "scripts": {
 			            "build": "tsup",
@@ -259,7 +259,7 @@ describe("blockTSup", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsup": "8.3.5",
+			            "tsup": "8.3.6",
 			          },
 			          "scripts": {
 			            "build": "tsup",

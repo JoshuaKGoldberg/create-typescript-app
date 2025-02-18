@@ -164,10 +164,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "2.1.8",
-			            "@vitest/eslint-plugin": "1.1.20",
+			            "@vitest/coverage-v8": "3.0.6",
+			            "@vitest/eslint-plugin": "1.1.31",
 			            "console-fail-test": "0.5.0",
-			            "vitest": "2.1.8",
+			            "vitest": "3.0.6",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -397,10 +397,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "2.1.8",
-			            "@vitest/eslint-plugin": "1.1.20",
+			            "@vitest/coverage-v8": "3.0.6",
+			            "@vitest/eslint-plugin": "1.1.31",
 			            "console-fail-test": "0.5.0",
-			            "vitest": "2.1.8",
+			            "vitest": "3.0.6",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -651,10 +651,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "2.1.8",
-			            "@vitest/eslint-plugin": "1.1.20",
+			            "@vitest/coverage-v8": "3.0.6",
+			            "@vitest/eslint-plugin": "1.1.31",
 			            "console-fail-test": "0.5.0",
-			            "vitest": "2.1.8",
+			            "vitest": "3.0.6",
 			          },
 			          "scripts": {
 			            "test": "vitest",

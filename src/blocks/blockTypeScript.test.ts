@@ -102,7 +102,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "typescript": "5.7.2",
+			            "typescript": "5.7.3",
 			          },
 			          "files": [
 			            "lib/",
@@ -253,7 +253,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "typescript": "5.7.2",
+			            "typescript": "5.7.3",
 			          },
 			          "files": [
 			            "lib/",

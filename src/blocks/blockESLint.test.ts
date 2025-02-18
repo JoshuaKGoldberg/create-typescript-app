@@ -68,10 +68,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.17.0",
-			            "@types/node": "22.10.2",
-			            "eslint": "9.17.0",
-			            "typescript-eslint": "8.19.0",
+			            "@eslint/js": "9.20.0",
+			            "@types/node": "22.13.4",
+			            "eslint": "9.20.1",
+			            "typescript-eslint": "8.24.1",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -197,10 +197,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.17.0",
-			            "@types/node": "22.10.2",
-			            "eslint": "9.17.0",
-			            "typescript-eslint": "8.19.0",
+			            "@eslint/js": "9.20.0",
+			            "@types/node": "22.13.4",
+			            "eslint": "9.20.1",
+			            "typescript-eslint": "8.24.1",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -362,13 +362,13 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.17.0",
+			            "@eslint/js": "9.20.0",
 			            "@types/eslint-plugin-markdown": "2.0.2",
-			            "@types/node": "22.10.2",
-			            "eslint": "9.17.0",
+			            "@types/node": "22.13.4",
+			            "eslint": "9.20.1",
 			            "eslint-plugin-markdown": "5.1.0",
 			            "eslint-plugin-regexp": "2.7.0",
-			            "typescript-eslint": "8.19.0",
+			            "typescript-eslint": "8.24.1",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -508,10 +508,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.17.0",
-			            "@types/node": "22.10.2",
-			            "eslint": "9.17.0",
-			            "typescript-eslint": "8.19.0",
+			            "@eslint/js": "9.20.0",
+			            "@types/node": "22.13.4",
+			            "eslint": "9.20.1",
+			            "typescript-eslint": "8.24.1",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",

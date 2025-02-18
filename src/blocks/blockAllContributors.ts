@@ -114,7 +114,7 @@ function printContributorCell(contributor: Contributor) {
 		`<img src="${contributor.avatar_url}?s=100" width="100px;" alt="${contributor.name}"/>`,
 		`<br />`,
 		`<sub><b>${contributor.name}</b></sub></a><br />`,
-		...contributor.contributions
+		contributor.contributions
 			.map((contribution) => {
 				switch (contribution) {
 					case "bug":

@@ -241,7 +241,7 @@ describe("blockVitest", () => {
 		`);
 	});
 
-	test.only("transition mode", () => {
+	test("transition mode", () => {
 		const creation = testBlock(blockVitest, {
 			mode: "transition",
 			options: optionsBase,

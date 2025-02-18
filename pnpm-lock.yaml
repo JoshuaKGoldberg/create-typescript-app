@@ -94,7 +94,7 @@ importers:
         specifier: 9.17.0
         version: 9.17.0
       '@prettier/sync':
-        specifier: ^0.5.2
+        specifier: 0.5.2
         version: 0.5.2(prettier@3.5.1)
       '@release-it/conventional-changelog':
         specifier: 10.0.0
@@ -184,7 +184,7 @@ importers:
         specifier: 0.43.0
         version: 0.43.0
       prettier:
-        specifier: ^3.5.1
+        specifier: 3.5.1
         version: 3.5.1
       prettier-plugin-curly:
         specifier: 0.3.1

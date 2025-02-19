@@ -5,7 +5,7 @@ import { presetMinimal } from "./presets/minimal.js";
 
 export const template = base.createStratumTemplate({
 	about: {
-		name: "TypeScript App",
+		name: "Create TypeScript App",
 		repository: {
 			owner: "JoshuaKGoldberg",
 			repository: "create-typescript-app",
@@ -14,5 +14,3 @@ export const template = base.createStratumTemplate({
 	presets: [presetMinimal, presetCommon, presetEverything],
 	suggested: presetCommon,
 });
-
-export default template;

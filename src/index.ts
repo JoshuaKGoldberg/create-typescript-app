@@ -1,6 +1,6 @@
 import { template } from "./template.js";
 
-export { template, template as default };
+export { template as default, template };
 
 export * from "./base.js";
 export * from "./blocks/index.js";

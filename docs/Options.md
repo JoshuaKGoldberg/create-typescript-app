@@ -1,17 +1,18 @@
 # Options
 
 `create-typescript-app` is built on top of [Bingo](https://create.bingo).
-`npx bingo typescript-app@beta` supports all the flags defined by the [`bingo` CLI](https://www.create.bingo/cli).
-It provides three Presets:
+It supports all the flags supported by [Bingo CLIs](https://www.create.bingo/cli).
+
+`npx create-typescript-app@beta` provides three `--preset` options:
 
 1. **Minimal**: Just bare starter tooling: building, formatting, linting, and type checking.
 2. **Common**: Bare starters plus testing and automation for all-contributors and releases.
 3. **Everything**: The most comprehensive tooling imaginable: sorting, spellchecking, and more!
 
-For example, to create a new repository on the _everything_ preset:
+For example, to create a new repository with the _Everything_ preset:
 
 ```shell
-npx bingo typescript-app@beta --preset everything
+npx create-typescript-app@beta --preset everything
 ```
 
 `create-typescript-app` itself adds in two sections of flags:
@@ -34,7 +35,7 @@ Each will be prompted for when creating a new repository if not explicitly provi
 For example, pre-populating both required base options:
 
 ```shell
-npx bingo typescript-app@beta --description "My awesome TypeScript app! 💖" --title "My TypeScript App"
+npx create-typescript-app@beta --description "My awesome TypeScript app! 💖" --title "My TypeScript App"
 ```
 
 That script will run completely autonomously, no prompted inputs required. ✨
@@ -56,16 +57,19 @@ They will be inferred from the running user, and if migrating an existing reposi
 For example, customizing the npm author and funding source:
 
 ```shell
-npx bingo typescript-app@beta --author my-npm-username --funding MyGitHubOrganization
+npx create-typescript-app@beta --author my-npm-username --funding MyGitHubOrganization
 ```
 
 ## Block Exclusions
+
+> TODO: This is not implemented yet!
+> <https://github.com/JoshuaKGoldberg/bingo/issues/215>
 
 Per [Bingo > Stratum > Configurations > `blocks`](https://www.create.bingo/engines/stratum/details/configurations#blocks), individual Blocks may be excluded from running.
 For example, initializing with all tooling except for Renovate:
 
 ```shell
-npx bingo typescript-app@beta --exclude-renovate
+npx create-typescript-app@beta --exclude-renovate
 ```
 
 See [Blocks.md](./Blocks.md) for the list of blocks and their corresponding presets.

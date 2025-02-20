@@ -1,16 +1,6 @@
 #!/usr/bin/env node
-import chalk from "chalk";
+import { runTemplateCLI } from "bingo";
 
-console.log(
-	[
-		"create-typescript-app is now run using ",
-		chalk.bold("bingo"),
-		".\n\nRun:\n  ",
-		chalk.bold("npx bingo", process.argv.slice(2).join(" ")),
-		"\n\nYou can read more on:\n  https://",
-		chalk.bold("create.bingo"),
-		"\n\nThanks for using create-typescript-app! 🎁",
-	].join(""),
-);
+import { template } from "../lib/index.js";
 
-process.exitCode = 1;
+process.exitCode = await runTemplateCLI(template);

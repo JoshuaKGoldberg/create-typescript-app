@@ -173,18 +173,6 @@ Each of the included tools exists for a good reason and provides real value.
 
 If you don't want to use any particular tool, you can always remove it manually.
 
-### What tooling does this package use that isn't part of created repositories?
-
-Glad you asked!
-These are the projects used across many parts of `create-typescript-app`:
-
-- [Chalk](https://github.com/chalk/chalk): Makes it easier to print colored characters in the terminal.
-- [Clack](https://www.clack.cc): Provides interactive terminal prompts and loading spinners.
-- [execa](https://github.com/sindresorhus/execa): Makes it easier to run child processes.
-- [Octokit](https://github.com/octokit/octokit.js#octokitjs):
-- [tsx](https://github.com/esbuild-kit/tsx): Quickly runs TypeScript files with ESBuild.
-- [Zod](https://zod.dev): TypeScript-first schema validation with static type inference.
-
 ## Why tabs?
 
 This repository template configures `"useTabs": true` in the root-level `.prettierrc.json`.

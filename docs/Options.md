@@ -63,6 +63,7 @@ npx create-typescript-app@beta --author my-npm-username --funding MyGitHubOrgani
 ## Block Exclusions
 
 > TODO: This is not implemented yet!
+> <https://github.com/JoshuaKGoldberg/bingo/issues/215>
 
 Per [Bingo > Stratum > Configurations > `blocks`](https://www.create.bingo/engines/stratum/details/configurations#blocks), individual Blocks may be excluded from running.
 For example, initializing with all tooling except for Renovate:

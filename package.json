@@ -40,7 +40,6 @@
 		"bingo": "^0.5.0",
 		"bingo-fs": "^0.5.0",
 		"bingo-stratum": "^0.5.0",
-		"chalk": "^5.4.1",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",
 		"git-remote-origin-url": "^4.0.0",

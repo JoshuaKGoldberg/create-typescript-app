@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.0.0-beta.14](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2025-02-20)
+
+### Features
+
+- switch bin to Bingo's runTemplateCLI ([#1943](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1943)) ([64e33ca](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/64e33ca014d3033c9d2c4bd8c3160cbd74ae7c1a)), closes [#1941](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1941)
+
 # [2.0.0-beta.13](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2025-02-20)
 
 # [2.0.0-beta.12](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2025-02-20)

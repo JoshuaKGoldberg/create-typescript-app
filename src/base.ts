@@ -9,7 +9,7 @@ import lazyValue from "lazy-value";
 import npmUser from "npm-user";
 import { z } from "zod";
 
-import { inputFromOctokit } from "./inputs/inputFromGitHub.js";
+import { inputFromOctokit } from "./inputs/inputFromOctokit.js";
 import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
 import { readDefaultsFromReadme } from "./options/readDefaultsFromReadme.js";
 import { readDescription } from "./options/readDescription.js";
@@ -175,9 +175,9 @@ export const base = createBase({
 					owner: await owner(),
 					repo: await repository(),
 				},
-			})) as { id: string; name: string }[];
+			})) as undefined | { id: string; name: string }[];
 
-			return rulesets.find(
+			return rulesets?.find(
 				(ruleset) => ruleset.name === "Branch protection for main",
 			)?.id;
 		});

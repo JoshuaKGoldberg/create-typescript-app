@@ -10,13 +10,17 @@ export const inputFromOctokit = createInput({
 	// This will require smart types around GitHub endpoints, similar to:
 	// https://github.com/JoshuaKGoldberg/bingo/issues/65
 	async produce({ args, fetchers }): Promise<unknown> {
-		const response = await fetchers.octokit.request(args.endpoint, {
-			headers: {
-				"X-GitHub-Api-Version": "2022-11-28",
-			},
-			...args.options,
-		});
+		try {
+			const response = await fetchers.octokit.request(args.endpoint, {
+				headers: {
+					"X-GitHub-Api-Version": "2022-11-28",
+				},
+				...args.options,
+			});
 
-		return response.data;
+			return response.data;
+		} catch {
+			return undefined;
+		}
 	},
 });

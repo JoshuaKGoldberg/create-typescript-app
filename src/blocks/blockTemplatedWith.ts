@@ -4,7 +4,7 @@ import { blockREADME } from "./blockREADME.js";
 
 export const blockTemplatedWith = base.createBlock({
 	about: {
-		name: "Templated By Notice",
+		name: "Templated With",
 	},
 	produce() {
 		return {
@@ -17,7 +17,7 @@ export const blockTemplatedWith = base.createBlock({
 						`
 <!-- You can remove this notice if you don't want it 🙂 no worries! -->
 
-> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [\`create\` engine](https://create.bingo).
+> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).
 `,
 					],
 				}),

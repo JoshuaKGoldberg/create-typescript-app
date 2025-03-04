@@ -45,7 +45,7 @@ This table summarizes each block and which base levels they're included in:
 | release-it                   | `--exclude-release-it`                   |         | ✅     | 💯         |
 | Renovate                     | `--exclude-renovate`                     |         |        | 💯         |
 | Security Docs                | `--exclude-security-docs`                | ✔️      | ✅     | 💯         |
-| Templated By Notice          | `--exclude-templated-by-notice`          | ✔️      | ✅     | 💯         |
+| Templated With               | `--exclude-templated-with`               | ✔️      | ✅     | 💯         |
 | TSup                         | `--exclude-tsup`                         | ✔️      | ✅     | 💯         |
 | TypeScript                   | `--exclude-typescript`                   | ✔️      | ✅     | 💯         |
 | Vitest                       | `--exclude-vitest`                       |         | ✅     | 💯         |

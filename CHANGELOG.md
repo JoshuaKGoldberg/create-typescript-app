@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.0.0-beta.22](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.21...v2.0.0-beta.22) (2025-03-04)
+
+### Bug Fixes
+
+- update 'templated with' notice for new Bingo name ([6f38815](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6f38815f06f8f3b3eb5e847937cda29fbbd405c7))
+
 # [2.0.0-beta.21](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.20...v2.0.0-beta.21) (2025-03-04)
 
 # [2.0.0-beta.20](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2025-03-04)

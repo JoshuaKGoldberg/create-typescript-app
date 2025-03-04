@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.0.0-beta.17](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2025-03-04)
+
+### Bug Fixes
+
+- Prettier transition file removal scripts should be silent ([56add2a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/56add2a2efbaf0023e2d925be774eedbfaf379ee))
+
 # [2.0.0-beta.16](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.14...v2.0.0-beta.16) (2025-03-04)
 
 # [2.0.0-beta.14](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2025-02-20)

@@ -9,6 +9,7 @@ import lazyValue from "lazy-value";
 import npmUser from "npm-user";
 import { z } from "zod";
 
+import { inputFromOctokit } from "./inputs/inputFromGitHub.js";
 import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
 import { readDefaultsFromReadme } from "./options/readDefaultsFromReadme.js";
 import { readDescription } from "./options/readDescription.js";
@@ -125,6 +126,10 @@ export const base = createBase({
 		repository: z
 			.string()
 			.describe("'kebab-case' or 'PascalCase' title of the repository"),
+		rulesetId: z
+			.string()
+			.optional()
+			.describe("GitHub branch ruleset ID for main branch protections"),
 		title: z.string().describe("'Title Case' title for the repository"),
 		usage: z
 			.string()
@@ -163,6 +168,20 @@ export const base = createBase({
 
 		const readme = lazyValue(async () => await readFileSafe("README.md", ""));
 
+		const rulesetId = lazyValue(async () => {
+			const rulesets = (await take(inputFromOctokit, {
+				endpoint: "GET /repos/{owner}/{repo}/rulesets",
+				options: {
+					owner: await owner(),
+					repo: await repository(),
+				},
+			})) as { id: string; name: string }[];
+
+			return rulesets.find(
+				(ruleset) => ruleset.name === "Branch protection for main",
+			)?.id;
+		});
+
 		// TODO: Make these all use take
 
 		const gitDefaults = tryCatchLazyValueAsync(async () =>
@@ -198,6 +217,13 @@ export const base = createBase({
 
 		const version = lazyValue(async () => (await packageData()).version);
 
+		const owner = lazyValue(
+			async () =>
+				(await gitDefaults())?.organization ??
+				(await packageAuthor()).author ??
+				(await githubCliUser()),
+		);
+
 		const repository = lazyValue(
 			async () =>
 				options.repository ??
@@ -218,10 +244,7 @@ export const base = createBase({
 			guide: readGuide,
 			login: author,
 			node,
-			owner: async () =>
-				(await gitDefaults())?.organization ??
-				(await packageAuthor()).author ??
-				(await githubCliUser()),
+			owner,
 			packageData: async () => {
 				const original = await packageData();
 
@@ -232,6 +255,7 @@ export const base = createBase({
 				};
 			},
 			repository,
+			rulesetId,
 			...readDefaultsFromReadme(readme, repository),
 			version,
 		};

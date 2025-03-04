@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.0.0-beta.20](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2025-03-04)
+
+### Bug Fixes
+
+- don't crash if GitHub API call for rulesetId option fails ([#1953](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1953)) ([c04bb29](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c04bb29b22bd3cd240e5ec00174b3df28044683e)), closes [#1952](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1952)
+
 # [2.0.0-beta.19](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2025-03-04)
 
 ### Bug Fixes

@@ -5,8 +5,20 @@ import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js"
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockRepositoryBranchRuleset", () => {
-	test("without addons", () => {
+	test("without addons when mode is undefined", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`{}`);
+	});
+
+	// TODO for improving the "requests" snapshots:
+	// https://github.com/JoshuaKGoldberg/create/issues/65
+
+	test("without addons when mode is setup", () => {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
+			mode: "setup",
 			options: optionsBase,
 		});
 
@@ -14,7 +26,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-ruleset",
+			      "id": "branch-ruleset-create",
 			      "send": [Function],
 			    },
 			  ],
@@ -22,14 +34,9 @@ describe("blockRepositoryBranchRuleset", () => {
 		`);
 	});
 
-	// TODO for improving the "requests" snapshots:
-	// https://github.com/JoshuaKGoldberg/create/issues/65
-
-	test("with addons", () => {
+	test("without addons when mode is transition", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
-			addons: {
-				requiredStatusChecks: ["build", "test"],
-			},
+			mode: "transition",
 			options: optionsBase,
 		});
 
@@ -37,7 +44,60 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-ruleset",
+			      "id": "branch-ruleset-update",
+			      "send": [Function],
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("with addons when mode is undefined", () => {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
+			addons: {
+				requiredStatusChecks: ["build", "test"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`{}`);
+	});
+
+	test("with addons when mode is setup", () => {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
+			addons: {
+				requiredStatusChecks: ["build", "test"],
+			},
+			mode: "setup",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "requests": [
+			    {
+			      "id": "branch-ruleset-create",
+			      "send": [Function],
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("with addons when mode is transition", () => {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
+			addons: {
+				requiredStatusChecks: ["build", "test"],
+			},
+			mode: "setup",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "requests": [
+			    {
+			      "id": "branch-ruleset-create",
 			      "send": [Function],
 			    },
 			  ],

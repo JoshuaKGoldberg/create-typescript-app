@@ -1,5 +1,7 @@
 # Changelog
 
+# [2.0.0-beta.18](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.17...v2.0.0-beta.18) (2025-03-04)
+
 # [2.0.0-beta.17](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2025-03-04)
 
 ### Bug Fixes

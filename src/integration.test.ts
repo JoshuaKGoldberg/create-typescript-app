@@ -1,6 +1,6 @@
 import prettier from "@prettier/sync";
 import { prepareOptions } from "bingo";
-import { intakeFromDirectory } from "bingo-fs";
+import { intake } from "bingo-fs";
 import { producePreset } from "bingo-stratum";
 import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test } from "vitest";
@@ -35,7 +35,7 @@ import {
 // For example, if you change blockTypeScript's target from "ES2022 to "ES2023",
 // you'll also need to update the ./tsconfig.json on disk in the same way.
 test("Producing the everything preset matches the files in this repository", async () => {
-	const actual = await intakeFromDirectory(".", {
+	const actual = await intake(".", {
 		exclude: /node_modules|^\.git$/,
 	});
 

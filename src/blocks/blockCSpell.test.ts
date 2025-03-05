@@ -58,7 +58,7 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "8.17.3",
+			            "cspell": "8.17.5",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -128,7 +128,7 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "8.17.3",
+			            "cspell": "8.17.5",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",

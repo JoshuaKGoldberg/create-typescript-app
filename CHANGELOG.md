@@ -1,5 +1,7 @@
 # Changelog
 
+# [2.0.0-beta.26](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2025-03-05)
+
 # [2.0.0-beta.25](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.24...v2.0.0-beta.25) (2025-03-05)
 
 # [2.0.0-beta.24](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.23...v2.0.0-beta.24) (2025-03-05)

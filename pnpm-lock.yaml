@@ -15,8 +15,8 @@ importers:
         specifier: ^0.5.3
         version: 0.5.3
       bingo-stratum:
-        specifier: ^0.5.3
-        version: 0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2)
+        specifier: ^0.5.4
+        version: 0.5.4(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2)
       cspell-populate-words:
         specifier: ^0.3.0
         version: 0.3.0
@@ -128,7 +128,7 @@ importers:
         version: 6.26.1
       bingo-stratum-testers:
         specifier: 0.5.3
-        version: 0.5.3(bingo-fs@0.5.3)(bingo-stratum@0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2))(bingo-systems@0.5.3)(bingo-testers@0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3))(bingo@0.5.3)
+        version: 0.5.3(bingo-fs@0.5.3)(bingo-stratum@0.5.4(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2))(bingo-systems@0.5.3)(bingo-testers@0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3))(bingo@0.5.3)
       bingo-testers:
         specifier: 0.5.3
         version: 0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)
@@ -1671,8 +1671,8 @@ packages:
       bingo-systems: ^0.5.3
       bingo-testers: ^0.5.3
 
-  bingo-stratum@0.5.3:
-    resolution: {integrity: sha512-cBMgqqBbW7iagaX5pDHKMPQ3VMc18JnTCfn1+fJjGZQ0IGWDDW60IjAuPoY2JoS56w1uQeLSc3TcszRpU2wB1A==}
+  bingo-stratum@0.5.4:
+    resolution: {integrity: sha512-9+Aj3bob3DOdCK+BNkOP08BTh5my/PcK8ReDGImHZCpHEp0vtrAaI4rmyjWc0qL3GkK9d19n9SjaGWsQ4AUPqg==}
     engines: {node: '>=18'}
     peerDependencies:
       bingo: ^0.5.3
@@ -5650,15 +5650,15 @@ snapshots:
 
   bingo-fs@0.5.3: {}
 
-  bingo-stratum-testers@0.5.3(bingo-fs@0.5.3)(bingo-stratum@0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2))(bingo-systems@0.5.3)(bingo-testers@0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3))(bingo@0.5.3):
+  bingo-stratum-testers@0.5.3(bingo-fs@0.5.3)(bingo-stratum@0.5.4(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2))(bingo-systems@0.5.3)(bingo-testers@0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3))(bingo@0.5.3):
     dependencies:
       bingo: 0.5.3
       bingo-fs: 0.5.3
-      bingo-stratum: 0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2)
+      bingo-stratum: 0.5.4(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2)
       bingo-systems: 0.5.3
       bingo-testers: 0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)
 
-  bingo-stratum@0.5.3(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2):
+  bingo-stratum@0.5.4(bingo-fs@0.5.3)(bingo-systems@0.5.3)(bingo@0.5.3)(zod@3.24.2):
     dependencies:
       bingo: 0.5.3
       bingo-fs: 0.5.3

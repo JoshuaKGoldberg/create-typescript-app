@@ -11,7 +11,7 @@ import { CommandPhase } from "./phases.js";
 
 export const blockTSup = base.createBlock({
 	about: {
-		name: "tsup",
+		name: "TSup",
 	},
 	addons: {
 		entry: z.array(z.string()).default([]),

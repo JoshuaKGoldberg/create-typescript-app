@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.0.0-beta.23](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.22...v2.0.0-beta.23) (2025-03-05)
+
+### Features
+
+- use bingo@0.5.3 ([3e16ad9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3e16ad9246f769b4a5de40c73fd47caffc302ab2))
+
 # [2.0.0-beta.22](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.21...v2.0.0-beta.22) (2025-03-04)
 
 ### Bug Fixes

@@ -40,67 +40,69 @@ test("Producing the everything preset matches the files in this repository", asy
 	})) as IntakeDirectory;
 
 	const created = producePreset(presets.everything, {
-		addons: [
-			blockCodecov({
-				env: {
-					CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
-				},
-			}),
-			blockCSpell({
-				words: [
-					"Anson",
-					"apexskier",
-					"dbaeumer",
-					"joshuakgoldberg",
-					"markdownlintignore",
-					"mtfoley",
-					"infile",
-					"npmjs",
-				],
-			}),
-			blockESLint({
-				explanations: [
-					`👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
+		options: (await prepareOptions(base)) as BaseOptions,
+		refinements: {
+			addons: [
+				blockCodecov({
+					env: {
+						CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
+					},
+				}),
+				blockCSpell({
+					words: [
+						"Anson",
+						"apexskier",
+						"dbaeumer",
+						"joshuakgoldberg",
+						"markdownlintignore",
+						"mtfoley",
+						"infile",
+						"npmjs",
+					],
+				}),
+				blockESLint({
+					explanations: [
+						`👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
 You can read from it to see all sorts of linting goodness, but don't worry -
 it's not something you need to exhaustively understand immediately. 💙
 
 If you're interested in learning more, see the 'getting started' docs on:
 - ESLint: https://eslint.org
 - typescript-eslint: https://typescript-eslint.io`,
-				],
-				rules: [
-					{
-						comment:
-							"These on-by-default rules work well for this repo if configured",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true, allowNullish: true, allowNumber: true },
-							],
+					],
+					rules: [
+						{
+							comment:
+								"These on-by-default rules work well for this repo if configured",
+							entries: {
+								"@typescript-eslint/prefer-nullish-coalescing": [
+									"error",
+									{ ignorePrimitives: true },
+								],
+								"@typescript-eslint/restrict-template-expressions": [
+									"error",
+									{ allowBoolean: true, allowNullish: true, allowNumber: true },
+								],
+							},
 						},
-					},
-				],
-			}),
-			blockKnip({
-				ignoreDependencies: [
-					"all-contributors-cli",
-					"cspell-populate-words",
-					"remove-dependencies",
-				],
-			}),
-			blockTSup({
-				runArgs: ["--version"],
-			}),
-		],
-		blocks: {
-			add: [blockAreTheTypesWrong],
-			exclude: [blockTemplatedWith],
+					],
+				}),
+				blockKnip({
+					ignoreDependencies: [
+						"all-contributors-cli",
+						"cspell-populate-words",
+						"remove-dependencies",
+					],
+				}),
+				blockTSup({
+					runArgs: ["--version"],
+				}),
+			],
+			blocks: {
+				add: [blockAreTheTypesWrong],
+				exclude: [blockTemplatedWith],
+			},
 		},
-		options: (await prepareOptions(base)) as BaseOptions,
 	});
 
 	const processText = (text: string, filePath: string) =>

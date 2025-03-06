@@ -1,4 +1,4 @@
-# Creating from the Terminal
+# Setup Mode
 
 You can run `npx create-typescript-app@beta` in your terminal to interactively create a new repository:
 
@@ -6,7 +6,7 @@ You can run `npx create-typescript-app@beta` in your terminal to interactively c
 npx create-typescript-app@beta
 ```
 
-The creation script will by default:
+The setup script will by default:
 
 1. Prompt you for a directory, which template preset to run with, and some starting information
 2. Initialize new directory as a local Git repository

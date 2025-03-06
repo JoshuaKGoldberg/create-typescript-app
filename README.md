@@ -37,11 +37,11 @@ Then in an existing repository or in your directory where you'd like to make a n
 npx create-typescript-app@beta
 ```
 
-You can read more about the supported setup modes in their docs pages:
+You can read more about the supported runtime modes in their docs pages:
 
-- [**Creating from the terminal**](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_
-- [**Initializing from the template**](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
-- [**Migrating an existing repository**](./docs/Migration.md): adding this template's tooling on top of an existing repository
+- [**Setting up from the terminal**](./docs/Setup.md): creating a new repository locally on the command-line _(recommended)_
+- [**Transitioning an existing repository**](./docs/Transition.md): adding this template's tooling on top of an existing repository
+- [**Using the template repository**](./docs/UseThisTemplate.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
 
 ## Documentation
 

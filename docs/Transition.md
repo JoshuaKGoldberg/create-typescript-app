@@ -1,12 +1,12 @@
-# Migrating an Existing Repository
+# Transition Mode
 
-If you have an existing repository that you'd like to give the files from this repository, you can run `npx create-typescript-app@beta` in it to "migrate" its tooling to this template's.
+If you have an existing repository that you'd like to migrate to the files from this template, you can run `npx create-typescript-app@beta` in it to "migrate" its tooling to this template's.
 
 ```shell
 npx create-typescript-app@beta
 ```
 
-The migration script will:
+The transition script will:
 
 - Uninstall any known old packages that conflict with this template's tooling
 - Delete configuration files used with those old packages

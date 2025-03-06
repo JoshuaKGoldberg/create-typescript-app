@@ -1,6 +1,7 @@
 import _ from "lodash";
 
 import { base, Contributor } from "../base.js";
+import { ownerContributions } from "../data/contributions.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
@@ -68,7 +69,7 @@ export const blockAllContributors = base.createBlock({
 			scripts: [
 				{
 					commands: [
-						`pnpx all-contributors-cli add ${options.owner} code,content,doc,ideas,infra,maintenance,projectManagement,tool`,
+						`pnpx all-contributors-cli add ${options.owner} ${ownerContributions.join(",")}`,
 					],
 					phase: CommandPhase.Process,
 				},

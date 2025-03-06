@@ -4,7 +4,7 @@ import { z } from "zod";
 export const inputFromOctokit = createInput({
 	args: {
 		endpoint: z.string(),
-		options: z.record(z.string(), z.unknown()),
+		options: z.record(z.string(), z.unknown()).optional(),
 	},
 	// TODO: Strongly type this, then push it upstream to Bingo
 	// This will require smart types around GitHub endpoints, similar to:

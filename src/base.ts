@@ -3,7 +3,6 @@ import { execaCommand } from "execa";
 import gitRemoteOriginUrl from "git-remote-origin-url";
 import gitUrlParse from "git-url-parse";
 import { inputFromFile } from "input-from-file";
-import { inputFromFileJSON } from "input-from-file-json";
 import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
 import npmUser from "npm-user";
@@ -11,6 +10,7 @@ import { z } from "zod";
 
 import { inputFromOctokit } from "./inputs/inputFromOctokit.js";
 import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
+import { readAllContributors } from "./options/readAllContributors.js";
 import { readDefaultsFromReadme } from "./options/readDefaultsFromReadme.js";
 import { readDescription } from "./options/readDescription.js";
 import { readDocumentation } from "./options/readDocumentation.js";
@@ -19,7 +19,6 @@ import { readFileSafe } from "./options/readFileSafe.js";
 import { readFunding } from "./options/readFunding.js";
 import { readGuide } from "./options/readGuide.js";
 import { readPackageData } from "./options/readPackageData.js";
-import { AllContributorsData } from "./types.js";
 import { swallowError } from "./utils/swallowError.js";
 import { tryCatchLazyValueAsync } from "./utils/tryCatchLazyValueAsync.js";
 
@@ -141,14 +140,7 @@ export const base = createBase({
 			.describe("package version to publish as and store in `package.json`"),
 	},
 	prepare({ options, take }) {
-		const allContributors = lazyValue(async () => {
-			const contributions = (await take(inputFromFileJSON, {
-				filePath: ".all-contributorsrc",
-			})) as AllContributorsData;
-
-			return contributions.contributors;
-		});
-
+		const allContributors = lazyValue(async () => readAllContributors(take));
 		const documentation = lazyValue(async () => readDocumentation(take));
 
 		const nvmrc = lazyValue(
@@ -232,6 +224,8 @@ export const base = createBase({
 				options.directory,
 		);
 
+		const email = lazyValue(async () => readEmails(npmDefaults, packageAuthor));
+
 		return {
 			access: "public" as const,
 			author,
@@ -239,7 +233,7 @@ export const base = createBase({
 			contributors: allContributors,
 			description: async () => await readDescription(packageData, readme),
 			documentation,
-			email: async () => readEmails(npmDefaults, packageAuthor),
+			email,
 			funding: readFunding,
 			guide: readGuide,
 			login: author,

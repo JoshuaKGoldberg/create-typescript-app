@@ -1,34 +1,31 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { getInstallationSuggestions } from "./getInstallationSuggestions.js";
 
-const zSecret = z.object({
-	description: z.string(),
-	name: z.string(),
-});
 export const blockRepositorySecrets = base.createBlock({
 	about: {
 		name: "Repository Secrets",
 	},
 	addons: {
-		secrets: z.array(zSecret).default([]),
+		secrets: z
+			.array(
+				z.object({
+					description: z.string(),
+					name: z.string(),
+				}),
+			)
+			.default([]),
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		return {
-			suggestions: addons.secrets.length
-				? [
-						[
-							`- populate the secret`,
-							addons.secrets.length === 1 ? "" : "s",
-							`:\n`,
-							addons.secrets.map(printSecret).join("\n"),
-						].join(""),
-					]
-				: undefined,
+			suggestions: getInstallationSuggestions(
+				"populate the secret",
+				addons.secrets.map(
+					(secret) => `${secret.name} (${secret.description})`,
+				),
+				`https://github.com/${options.owner}/${options.repository}/settings/secrets/actions`,
+			),
 		};
 	},
 });
-
-function printSecret(app: z.infer<typeof zSecret>) {
-	return `   - ${app.name} (${app.description})`;
-}

@@ -8,7 +8,6 @@ import lazyValue from "lazy-value";
 import npmUser from "npm-user";
 import { z } from "zod";
 
-import { packageData as ctaPackageData } from "./data/packageData.js";
 import { inputFromOctokit } from "./inputs/inputFromOctokit.js";
 import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
 import { readAllContributors } from "./options/readAllContributors.js";
@@ -20,6 +19,7 @@ import { readFileSafe } from "./options/readFileSafe.js";
 import { readFunding } from "./options/readFunding.js";
 import { readGuide } from "./options/readGuide.js";
 import { readPackageData } from "./options/readPackageData.js";
+import { readPnpm } from "./options/readPnpm.js";
 import { swallowError } from "./utils/swallowError.js";
 import { tryCatchLazyValueAsync } from "./utils/tryCatchLazyValueAsync.js";
 
@@ -212,13 +212,7 @@ export const base = createBase({
 			};
 		});
 
-		const pnpm = lazyValue(async () => {
-			const { packageManager } = await packageData();
-
-			return packageManager?.startsWith("pnpm@")
-				? packageManager.slice("pnpm@".length)
-				: "10.4.0";
-		});
+		const pnpm = lazyValue(async () => readPnpm(packageData));
 
 		const version = lazyValue(async () => (await packageData()).version);
 

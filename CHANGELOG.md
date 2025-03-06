@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.0.0-beta.27](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.26...v2.0.0-beta.27) (2025-03-06)
+
+### Bug Fixes
+
+- add README.md contributors section in setup ([#1958](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1958)) ([810eaad](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/810eaad13bb6c8d2deb83adbaa82776b03395ea0)), closes [#1956](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1956)
+
 # [2.0.0-beta.26](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.25...v2.0.0-beta.26) (2025-03-05)
 
 # [2.0.0-beta.25](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.24...v2.0.0-beta.25) (2025-03-05)

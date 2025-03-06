@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { readDocumentation } from "./readDocumentation.js";
 
-describe("finalize", () => {
+describe(readDocumentation, () => {
 	it("returns undefined when no .github/DEVELOPMENT.md exists", async () => {
 		const documentation = await readDocumentation(() =>
 			Promise.resolve(undefined),

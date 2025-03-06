@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { tryCatchLazyValueAsync } from "./tryCatchLazyValueAsync.js";
 
-describe("tryCatchLazyValueAsync", () => {
+describe(tryCatchLazyValueAsync, () => {
 	it("does not run get when it has not been called", () => {
 		const get = vi.fn();
 

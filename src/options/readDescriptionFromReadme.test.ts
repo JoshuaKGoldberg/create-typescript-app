@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { readDescriptionFromReadme } from "./readDescriptionFromReadme.js";
 
-describe("readDescriptionFromReadme", () => {
+describe(readDescriptionFromReadme, () => {
 	it("returns undefined when the paragraph starter is not found", async () => {
 		const description = await readDescriptionFromReadme(() =>
 			Promise.resolve(""),

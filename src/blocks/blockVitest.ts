@@ -79,6 +79,9 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 					],
 					ignores: ["coverage", "**/*.snap"],
 					imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
+					settings: {
+						vitest: { typecheck: true },
+					},
 				}),
 				blockExampleFiles({
 					files: {
@@ -88,7 +91,7 @@ import { greet } from "./greet.js";
 
 const message = "Yay, testing!";
 
-describe("greet", () => {
+describe(greet, () => {
 	it("logs to the console once when message is provided as a string", () => {
 		const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
 

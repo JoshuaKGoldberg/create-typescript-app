@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { getUsageFromReadme } from "./getUsageFromReadme.js";
 
-describe("getUsageFromReadme", () => {
+describe(getUsageFromReadme, () => {
 	it("returns undefined when ## Usage is not found", () => {
 		const usage = getUsageFromReadme("## Other");
 

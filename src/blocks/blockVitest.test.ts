@@ -82,6 +82,11 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
+			        "settings": {
+			          "vitest": {
+			            "typecheck": true,
+			          },
+			        },
 			      },
 			      "block": [Function],
 			    },
@@ -94,7 +99,7 @@ describe("blockVitest", () => {
 
 			const message = "Yay, testing!";
 
-			describe("greet", () => {
+			describe(greet, () => {
 				it("logs to the console once when message is provided as a string", () => {
 					const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
 
@@ -315,6 +320,11 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
+			        "settings": {
+			          "vitest": {
+			            "typecheck": true,
+			          },
+			        },
 			      },
 			      "block": [Function],
 			    },
@@ -327,7 +337,7 @@ describe("blockVitest", () => {
 
 			const message = "Yay, testing!";
 
-			describe("greet", () => {
+			describe(greet, () => {
 				it("logs to the console once when message is provided as a string", () => {
 					const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
 
@@ -569,6 +579,11 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
+			        "settings": {
+			          "vitest": {
+			            "typecheck": true,
+			          },
+			        },
 			      },
 			      "block": [Function],
 			    },
@@ -581,7 +596,7 @@ describe("blockVitest", () => {
 
 			const message = "Yay, testing!";
 
-			describe("greet", () => {
+			describe(greet, () => {
 				it("logs to the console once when message is provided as a string", () => {
 					const logger = vi.spyOn(console, "log").mockImplementation(() => undefined);
 

@@ -10,7 +10,7 @@ vi.mock("node:fs/promises", () => ({
 	},
 }));
 
-describe("readFundingIfExists", () => {
+describe(readFileSafe, () => {
 	it("outputs the file content as string when it exists", async () => {
 		mockReadFile.mockResolvedValue("File content as string");
 		const result = await readFileSafe("/path/to/file.ext", "fallback");

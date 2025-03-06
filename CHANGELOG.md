@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.4.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.3.0...2.4.0) (2025-03-06)
+
+### Features
+
+- include URLs in GitHub app and secret suggestions ([#1964](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1964)) ([2793e4c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2793e4c92bedeceb9d3c7c38d3bdad9fcd95fd2d)), closes [#1621](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1621)
+
 # [2.3.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.2.0...2.3.0) (2025-03-06)
 
 ### Features

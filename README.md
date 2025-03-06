@@ -34,7 +34,7 @@ First make sure you have the following installed:
 Then in an existing repository or in your directory where you'd like to make a new repository:
 
 ```shell
-npx create-typescript-app@beta
+npx create-typescript-app
 ```
 
 You can read more about the supported runtime modes in their docs pages:

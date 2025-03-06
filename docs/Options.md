@@ -3,7 +3,7 @@
 `create-typescript-app` is built on top of [Bingo](https://create.bingo).
 It supports all the flags supported by [Bingo CLIs](https://www.create.bingo/cli).
 
-`npx create-typescript-app@beta` provides three `--preset` options:
+`npx create-typescript-app` provides three `--preset` options:
 
 1. **Minimal**: Just bare starter tooling: building, formatting, linting, and type checking.
 2. **Common**: Bare starters plus testing and automation for all-contributors and releases.
@@ -12,7 +12,7 @@ It supports all the flags supported by [Bingo CLIs](https://www.create.bingo/cli
 For example, to create a new repository with the _Everything_ preset:
 
 ```shell
-npx create-typescript-app@beta --preset everything
+npx create-typescript-app --preset everything
 ```
 
 `create-typescript-app` itself adds in two sections of flags:
@@ -35,7 +35,7 @@ Each will be prompted for when creating a new repository if not explicitly provi
 For example, pre-populating all required base options:
 
 ```shell
-npx create-typescript-app@beta --directory my-typescript-app --description "My awesome TypeScript app! 💖" --preset everything
+npx create-typescript-app --directory my-typescript-app --description "My awesome TypeScript app! 💖" --preset everything
 ```
 
 That script will run completely autonomously, no prompted inputs required. ✨
@@ -58,7 +58,7 @@ They will be inferred from the running user, and if migrating an existing reposi
 For example, customizing the npm author and funding source:
 
 ```shell
-npx create-typescript-app@beta --author my-npm-username --funding MyGitHubOrganization
+npx create-typescript-app --author my-npm-username --funding MyGitHubOrganization
 ```
 
 ## Block Exclusions
@@ -67,7 +67,7 @@ Per [Bingo > Stratum > Configurations > `blocks`](https://www.create.bingo/engin
 For example, initializing with all tooling except for Renovate:
 
 ```shell
-npx create-typescript-app@beta --exclude-renovate
+npx create-typescript-app --exclude-renovate
 ```
 
 See [Blocks.md](./Blocks.md) for the list of blocks and their corresponding presets.

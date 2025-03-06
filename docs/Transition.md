@@ -1,9 +1,9 @@
 # Transition Mode
 
-If you have an existing repository that you'd like to migrate to the files from this template, you can run `npx create-typescript-app@beta` in it to "migrate" its tooling to this template's.
+If you have an existing repository that you'd like to migrate to the files from this template, you can run `npx create-typescript-app` in it to "migrate" its tooling to this template's.
 
 ```shell
-npx create-typescript-app@beta
+npx create-typescript-app
 ```
 
 The transition script will:
@@ -46,7 +46,7 @@ See [Options.md](./Options.md).
 For example, skipping the _"This package was templated with..."_ block:
 
 ```shell
-npx create-typescript-app@beta --exclude-templated-with
+npx create-typescript-app --exclude-templated-with
 ```
 
 See [Blocks.md](./Blocks.md) for details on the tooling pieces and which presets they're included in.

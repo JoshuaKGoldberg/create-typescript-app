@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "2.0.0-beta.27",
+	"version": "2.0.0",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 	"repository": {
 		"type": "git",
@@ -37,8 +37,8 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
-		"bingo": "^0.5.3",
-		"bingo-fs": "^0.5.3",
+		"bingo": "^0.5.4",
+		"bingo-fs": "^0.5.4",
 		"bingo-stratum": "^0.5.4",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",
@@ -46,9 +46,9 @@
 		"git-url-parse": "^16.0.1",
 		"html-to-text": "^9.0.5",
 		"image-size": "^1.2.0",
-		"input-from-file": "^0.5.3",
-		"input-from-file-json": "^0.5.3",
-		"input-from-script": "^0.5.3",
+		"input-from-file": "^0.5.4",
+		"input-from-file-json": "^0.5.4",
+		"input-from-script": "^0.5.4",
 		"js-yaml": "^4.1.0",
 		"lazy-value": "^3.0.0",
 		"lodash": "^4.17.21",
@@ -78,8 +78,8 @@
 		"@vitest/coverage-v8": "3.0.7",
 		"@vitest/eslint-plugin": "1.1.36",
 		"all-contributors-cli": "6.26.1",
-		"bingo-stratum-testers": "0.5.3",
-		"bingo-testers": "0.5.3",
+		"bingo-stratum-testers": "0.5.4",
+		"bingo-testers": "0.5.4",
 		"console-fail-test": "0.5.0",
 		"cspell": "8.17.5",
 		"eslint": "9.21.0",

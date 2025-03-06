@@ -110,32 +110,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 			? prettier.format(text, { filepath: filePath, useTabs: true })
 			: text;
 
-	// Right now, there is exactly one change: the altered beta release flow
-	// TODO: That will be removed once releases switch back to stable:
-	// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1831
-	expect(diffCreatedDirectory(actual, created.files, processText))
-		.toMatchInlineSnapshot(`
-			{
-			  ".github": {
-			    "workflows": {
-			      "release.yml": "@@ -14,13 +14,9 @@
-			       - run: pnpm build
-			       - env:
-			           GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			           NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			-        run: |
-			-          git config --global user.email "git@joshuakgoldberg.com"
-			-          git config --global user.name "Josh Goldberg"
-			-          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-			-      - run: npx release-it --preRelease=beta
-			+        uses: JoshuaKGoldberg/release-it-action@v0.2.2
-			 
-			 name: Release
-			 
-			 on:
-			",
-			    },
-			  },
-			}
-		`);
+	expect(
+		diffCreatedDirectory(actual, created.files, processText),
+	).toBeUndefined();
 });

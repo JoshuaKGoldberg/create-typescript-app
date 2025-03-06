@@ -1,18 +1,13 @@
-# Creating from the Terminal
+# Using the Template Repository
 
-You can run `npx create-typescript-app@beta` in your terminal to interactively create a new repository:
+As an alternative to [creating with `npx create-typescript-app`](./Setup.md), the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub can be used to quickly create a new repository from the template.
+You can set up the new repository locally by cloning it and installing packages:
 
 ```shell
-npx create-typescript-app@beta
+git clone https://github.com/YourUsername/YourRepositoryName
+cd YourRepositoryName
+npx create-typescript-app
 ```
-
-The creation script will by default:
-
-1. Prompt you for a directory, which template preset to run with, and some starting information
-2. Initialize new directory as a local Git repository
-3. Copy the template's files to that directory
-4. Create a new repository on GitHub and set it as the local repository's upstream
-5. Configure relevant settings on the GitHub repository
 
 You'll then need to manually go through the following two steps to set up tooling on GitHub:
 
@@ -34,7 +29,7 @@ See [Options.md](./Options.md).
 For example, skipping the _"This package was templated with..."_ block:
 
 ```shell
-npx create-typescript-app@beta --mode create --exclude-templated-with
+npx create-typescript-app --exclude-templated-with
 ```
 
 See [Blocks.md](./Blocks.md) for details on the tooling pieces and which presets they're included in.

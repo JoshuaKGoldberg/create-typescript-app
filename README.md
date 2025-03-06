@@ -25,10 +25,6 @@ It includes options not just for building and testing but also automated release
 
 ## Usage
 
-> **Note:** create-typescript-app is preparing to promote the 2.0 beta version to stable soon.
-> The repository's `main` branch shows commands for the `beta` version.
-> The published package's 1.x versions still show commands for the 1.x version.
-
 First make sure you have the following installed:
 
 - [Node.js](https://nodejs.org)
@@ -38,14 +34,14 @@ First make sure you have the following installed:
 Then in an existing repository or in your directory where you'd like to make a new repository:
 
 ```shell
-npx create-typescript-app@beta
+npx create-typescript-app
 ```
 
-You can read more about the supported setup modes in their docs pages:
+You can read more about the supported runtime modes in their docs pages:
 
-- [**Creating from the terminal**](./docs/Creation.md): creating a new repository locally on the command-line _(recommended)_
-- [**Initializing from the template**](./docs/Initialization.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
-- [**Migrating an existing repository**](./docs/Migration.md): adding this template's tooling on top of an existing repository
+- [**Setting up from the terminal**](./docs/Setup.md): creating a new repository locally on the command-line _(recommended)_
+- [**Transitioning an existing repository**](./docs/Transition.md): adding this template's tooling on top of an existing repository
+- [**Using the template repository**](./docs/UseThisTemplate.md): creating a new repository with the [_Use this template_](https://github.com/JoshuaKGoldberg/create-typescript-app/generate) button on GitHub
 
 ## Documentation
 

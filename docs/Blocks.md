@@ -72,7 +72,7 @@ We strongly recommend using at least the [_"common"_ base level](#common-base-le
 ### Building
 
 [**tsup**](https://tsup.egoist.dev): Builds output definitions and JavaScript files using [esbuild](https://esbuild.github.io).
-Each `*.ts` source file within `src/` is built into `.d.ts`, `.js`, and `.js.map` output files in `lib/`.
+Each `*.ts` source file within `src/` is built into `.d.ts` and `.js` output files in `lib/`.
 
 Building once:
 

@@ -126,4 +126,32 @@ describe("blockPackageJson", () => {
 			}
 		`);
 	});
+
+	test("with node and pnpm versions", () => {
+		const creation = testBlock(blockPackageJson, {
+			options: {
+				...options,
+				node: {
+					minimum: "22.0.0",
+				},
+				pnpm: "10.4.0",
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","files":["README.md","package.json"],"packageManager":"pnpm@10.4.0","engines":{"node":">=22.0.0"}}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+	});
 });

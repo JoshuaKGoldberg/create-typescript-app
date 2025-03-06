@@ -19,6 +19,7 @@ import { readFileSafe } from "./options/readFileSafe.js";
 import { readFunding } from "./options/readFunding.js";
 import { readGuide } from "./options/readGuide.js";
 import { readPackageData } from "./options/readPackageData.js";
+import { readPnpm } from "./options/readPnpm.js";
 import { swallowError } from "./utils/swallowError.js";
 import { tryCatchLazyValueAsync } from "./utils/tryCatchLazyValueAsync.js";
 
@@ -122,6 +123,10 @@ export const base = createBase({
 			})
 			.optional()
 			.describe("additional properties to include in `package.json`"),
+		pnpm: z
+			.string()
+			.optional()
+			.describe("pnpm version for package.json's packageManager field"),
 		repository: z
 			.string()
 			.describe("'kebab-case' or 'PascalCase' title of the repository"),
@@ -207,6 +212,8 @@ export const base = createBase({
 			};
 		});
 
+		const pnpm = lazyValue(async () => readPnpm(packageData));
+
 		const version = lazyValue(async () => (await packageData()).version);
 
 		const owner = lazyValue(
@@ -248,6 +255,7 @@ export const base = createBase({
 					scripts: original.scripts,
 				};
 			},
+			pnpm,
 			repository,
 			rulesetId,
 			...readDefaultsFromReadme(readme, repository),

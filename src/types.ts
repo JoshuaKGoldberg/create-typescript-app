@@ -19,6 +19,7 @@ export interface PartialPackageData {
 	email?: string;
 	engines?: { node?: string };
 	name?: string;
+	packageManager?: string;
 	repository?: string | { type: string; url: string };
 	scripts?: Record<string, string>;
 	version?: string;

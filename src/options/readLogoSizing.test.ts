@@ -12,7 +12,7 @@ vi.mock("image-size", () => ({
 
 const src = "img.jpg";
 
-describe("readLogoSizing", () => {
+describe(readLogoSizing, () => {
 	it("returns undefined when imageSize throws an error", () => {
 		mockImageSize.mockImplementationOnce(() => {
 			throw new Error("Oh no!");

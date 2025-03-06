@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
+import { sortObject } from "../utils/sortObject.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
@@ -241,7 +242,8 @@ function printExtension(extension: z.infer<typeof zExtension>) {
 		extension.linterOptions &&
 			`linterOptions: ${JSON.stringify(extension.linterOptions)}`,
 		extension.rules && `rules: ${printExtensionRules(extension.rules)},`,
-		extension.settings && `settings: ${JSON.stringify(extension.settings)},`,
+		extension.settings &&
+			`settings: ${JSON.stringify(sortObject(extension.settings))},`,
 		"}",
 	]
 		.filter(Boolean)

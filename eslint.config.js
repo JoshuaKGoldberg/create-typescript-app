@@ -72,7 +72,10 @@ export default tseslint.config(
 			"object-shorthand": "error",
 			"operator-assignment": "error",
 		},
-		settings: { perfectionist: { partitionByComment: true, type: "natural" } },
+		settings: {
+			perfectionist: { partitionByComment: true, type: "natural" },
+			vitest: { typecheck: true },
+		},
 	},
 	{ extends: [tseslint.configs.disableTypeChecked], files: ["**/*.md/*.ts"] },
 	{

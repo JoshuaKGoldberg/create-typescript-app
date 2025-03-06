@@ -12,7 +12,7 @@ vi.mock("../data/packageData.js", () => ({
 	},
 }));
 
-describe("readDescription", () => {
+describe(readDescription, () => {
 	it("returns undefined when the description matches the current package.json description", async () => {
 		const existing = "Same description.";
 

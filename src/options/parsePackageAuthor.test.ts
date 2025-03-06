@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { parsePackageAuthor } from "./parsePackageAuthor.js";
 
-describe("parsePackageAuthor", () => {
+describe(parsePackageAuthor, () => {
 	it.each([
 		[{}, {}],
 		[{ author: "abc123" }, { author: "abc123" }],

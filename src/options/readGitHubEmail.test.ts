@@ -10,7 +10,7 @@ vi.mock("./readFileSafe.js", () => ({
 	},
 }));
 
-describe("readGitHubEmail", () => {
+describe(readGitHubEmail, () => {
 	it("returns undefined when it cannot be found", async () => {
 		mockReadFileSafe.mockResolvedValue("nothing.");
 

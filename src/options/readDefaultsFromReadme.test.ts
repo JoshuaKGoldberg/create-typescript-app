@@ -18,7 +18,7 @@ vi.mock("./getUsageFromReadme.js", () => ({
 	},
 }));
 
-describe("readDefaultsFromReadme", () => {
+describe(readDefaultsFromReadme, () => {
 	describe("explainer", () => {
 		it("defaults to undefined when it cannot be found", async () => {
 			const explainer = await readDefaultsFromReadme(

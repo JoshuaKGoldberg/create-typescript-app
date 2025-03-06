@@ -10,7 +10,7 @@ vi.mock("node:fs/promises", () => ({
 	},
 }));
 
-describe("readFileAsJson", () => {
+describe(readFileAsJson, () => {
 	it("returns the file's parsed contents when it exists", async () => {
 		const data = { abc: 123 };
 

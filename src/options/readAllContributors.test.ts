@@ -22,7 +22,7 @@ vi.mock("../inputs/inputFromOctokit.js", () => ({
 
 const { take } = createMockSystems();
 
-describe("readAllContributors", () => {
+describe(readAllContributors, () => {
 	it("returns contributors from .all-contributorsrc when it can be read", async () => {
 		const contributors = ["a", "b", "c"];
 		mockInputFromFileJSON.mockResolvedValueOnce({ contributors });

@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.3.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.2.0...2.3.0) (2025-03-06)
+
+### Features
+
+- remove sourcemaps ([#1963](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1963)) ([92ef8c8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/92ef8c879fff3bfe63c898aef1018534f5a8821f)), closes [#1909](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1909)
+
 # [2.2.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.0.0...2.2.0) (2025-03-06)
 
 ### Features

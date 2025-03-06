@@ -59,6 +59,9 @@ export const blockPackageJson = base.createBlock({
 									node: `>=${options.node.minimum}`,
 								},
 							}),
+							...(options.pnpm && {
+								packageManager: `pnpm@${options.pnpm}`,
+							}),
 							files: [
 								options.bin?.replace(/^\.\//, ""),
 								...(addons.properties.files ?? []),

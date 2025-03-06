@@ -8,6 +8,7 @@ import lazyValue from "lazy-value";
 import npmUser from "npm-user";
 import { z } from "zod";
 
+import { packageData as ctaPackageData } from "./data/packageData.js";
 import { inputFromOctokit } from "./inputs/inputFromOctokit.js";
 import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
 import { readAllContributors } from "./options/readAllContributors.js";
@@ -122,6 +123,10 @@ export const base = createBase({
 			})
 			.optional()
 			.describe("additional properties to include in `package.json`"),
+		pnpm: z
+			.string()
+			.optional()
+			.describe("pnpm version for package.json's packageManager field"),
 		repository: z
 			.string()
 			.describe("'kebab-case' or 'PascalCase' title of the repository"),
@@ -207,6 +212,14 @@ export const base = createBase({
 			};
 		});
 
+		const pnpm = lazyValue(async () => {
+			const { packageManager } = await packageData();
+
+			return packageManager?.startsWith("pnpm@")
+				? packageManager.slice("pnpm@".length)
+				: "10.4.0";
+		});
+
 		const version = lazyValue(async () => (await packageData()).version);
 
 		const owner = lazyValue(
@@ -248,6 +261,7 @@ export const base = createBase({
 					scripts: original.scripts,
 				};
 			},
+			pnpm,
 			repository,
 			rulesetId,
 			...readDefaultsFromReadme(readme, repository),

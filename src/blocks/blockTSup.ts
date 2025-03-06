@@ -76,7 +76,6 @@ export default defineConfig({
 	entry: ${JSON.stringify(["src/**/*.ts", ...entry])},
 	format: "esm",
 	outDir: "lib",
-	sourcemap: true,
 });
 `,
 			},

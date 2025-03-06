@@ -121,7 +121,6 @@ export * from "./types.js";
 						noEmit: true,
 						resolveJsonModule: true,
 						skipLibCheck: true,
-						sourceMap: true,
 						strict: true,
 						target: "ES2022",
 					},

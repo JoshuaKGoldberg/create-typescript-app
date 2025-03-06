@@ -87,7 +87,6 @@ describe("blockTSup", () => {
 				entry: ["src/**/*.ts"],
 				format: "esm",
 				outDir: "lib",
-				sourcemap: true,
 			});
 			",
 			  },
@@ -175,7 +174,6 @@ describe("blockTSup", () => {
 				entry: ["src/**/*.ts"],
 				format: "esm",
 				outDir: "lib",
-				sourcemap: true,
 			});
 			",
 			  },
@@ -279,7 +277,6 @@ describe("blockTSup", () => {
 				entry: ["src/**/*.ts","!src/**/*.test.ts"],
 				format: "esm",
 				outDir: "lib",
-				sourcemap: true,
 			});
 			",
 			  },

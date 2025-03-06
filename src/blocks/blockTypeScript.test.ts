@@ -147,7 +147,7 @@ describe("blockTypeScript", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"NodeNext","moduleResolution":"NodeNext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"sourceMap":true,"strict":true,"target":"ES2022"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"NodeNext","moduleResolution":"NodeNext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2022"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -309,7 +309,7 @@ describe("blockTypeScript", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"NodeNext","moduleResolution":"NodeNext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"sourceMap":true,"strict":true,"target":"ES2022"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"NodeNext","moduleResolution":"NodeNext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2022"},"include":["src"]}",
 			  },
 			}
 		`);

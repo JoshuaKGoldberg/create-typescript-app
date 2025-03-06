@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.2.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.0.0...2.2.0) (2025-03-06)
+
+### Features
+
+- add packageManager back to package.json, and set to pnpm 10.4.0 in CI ([#1961](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1961)) ([f9c230c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f9c230c8bf9c6dfdb30cb76ffca4b547ab05f355)), closes [#1906](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1906)
+- enable ESLint settings.vitest.typecheck ([#1960](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1960)) ([1320f29](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1320f29eaa7223759eb0b29d22e461b71b8b706e)), closes [#1847](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1847)
+
 # [2.1.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/v2.0.0-beta.27...v2.1.0) (2025-03-06)
 
 ### Features

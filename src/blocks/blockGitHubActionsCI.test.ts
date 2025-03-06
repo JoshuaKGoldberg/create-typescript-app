@@ -31,8 +31,6 @@ describe("blockGitHubActionsCI", () => {
 			runs:
 			  steps:
 			    - uses: pnpm/action-setup@v4
-			      with:
-			        version: 9
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
@@ -128,8 +126,6 @@ describe("blockGitHubActionsCI", () => {
 			runs:
 			  steps:
 			    - uses: pnpm/action-setup@v4
-			      with:
-			        version: 9
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
@@ -250,8 +246,6 @@ describe("blockGitHubActionsCI", () => {
 			runs:
 			  steps:
 			    - uses: pnpm/action-setup@v4
-			      with:
-			        version: 9
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.1...2.4.2) (2025-03-07)
+
+### Bug Fixes
+
+- don't crash reading contributors when not logged into GitHub ([#1972](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1972)) ([e086537](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e086537a0d8625fcba0cc33bfc4f2c343ac4a28a)), closes [#1971](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1971)
+
 ## [2.4.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.0...2.4.1) (2025-03-07)
 
 ### Bug Fixes

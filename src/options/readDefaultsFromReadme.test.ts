@@ -269,6 +269,24 @@ It is good.
 			expect(title).toBe("My Awesome Package");
 		});
 
+		it("converts 'typescript' to 'TypeScript' when parsed from the repository name", async () => {
+			const title = await readDefaultsFromReadme(
+				() => Promise.resolve(""),
+				() => Promise.resolve("my-typescript-app"),
+			).title();
+
+			expect(title).toBe("My TypeScript App");
+		});
+
+		it("converts 'eslint' to 'ESLint' when parsed from the repository name", async () => {
+			const title = await readDefaultsFromReadme(
+				() => Promise.resolve(""),
+				() => Promise.resolve("my-eslint-plugin"),
+			).title();
+
+			expect(title).toBe("My ESLint Plugin");
+		});
+
 		it("returns undefined when title does not exist", async () => {
 			const title = await readDefaultsFromReadme(
 				() => Promise.resolve(`Other text.`),

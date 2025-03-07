@@ -68,6 +68,7 @@ export function readDefaultsFromReadme(
 			return (
 				repositoryValue &&
 				titleCase(repositoryValue)
+					.replaceAll("Eslint", "ESLint")
 					.replaceAll("Typescript", "TypeScript")
 					.replaceAll("-", " ")
 			);

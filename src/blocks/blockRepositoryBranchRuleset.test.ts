@@ -104,4 +104,28 @@ describe("blockRepositoryBranchRuleset", () => {
 			}
 		`);
 	});
+
+	test("with addons and a ruleset_id option when mode is transition", () => {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
+			addons: {
+				requiredStatusChecks: ["build", "test"],
+			},
+			mode: "setup",
+			options: {
+				...optionsBase,
+				rulesetId: "1234",
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "requests": [
+			    {
+			      "id": "branch-ruleset-create",
+			      "send": [Function],
+			    },
+			  ],
+			}
+		`);
+	});
 });

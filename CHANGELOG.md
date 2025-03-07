@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.2...2.4.3) (2025-03-07)
+
+### Bug Fixes
+
+- proper labels in issue templates ([4984398](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/498439808e767673fefbc8e855a78b4dcc6e2897))
+
 ## [2.4.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.1...2.4.2) (2025-03-07)
 
 ### Bug Fixes

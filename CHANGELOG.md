@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.3...2.4.4) (2025-03-07)
+
+### Bug Fixes
+
+- also convert 'Eslint' to 'ESLint' in title defaulting ([bcc4d62](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bcc4d62b44c3b02e76c2d6742136657965d8e8a7))
+
 ## [2.4.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.2...2.4.3) (2025-03-07)
 
 ### Bug Fixes

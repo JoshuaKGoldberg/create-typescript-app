@@ -33,7 +33,16 @@ describe(readAllContributors, () => {
 		expect(mockInputFromOctokit).not.toHaveBeenCalled();
 	});
 
-	it("returns the current user as a contributor when .all-contributorsrc cannot be read", async () => {
+	it("returns undefined when .all-contributorsrc cannot be read and GET /user resolves undefined", async () => {
+		mockInputFromFileJSON.mockResolvedValueOnce(new Error("Oh no!"));
+		mockInputFromOctokit.mockResolvedValueOnce(undefined);
+
+		const actual = await readAllContributors(take);
+
+		expect(actual).toBeUndefined();
+	});
+
+	it("returns the current user as a contributor when .all-contributorsrc cannot be read and GET /user resolves a user", async () => {
 		mockInputFromFileJSON.mockResolvedValueOnce(new Error("Oh no!"));
 		mockInputFromOctokit.mockResolvedValueOnce({
 			avatar_url: "avatar_url",

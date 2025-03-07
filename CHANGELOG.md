@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.4.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.0...2.4.1) (2025-03-07)
+
+### Bug Fixes
+
+- only PUT a ruleset when an ID already exists ([#1968](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1968)) ([784dfbb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/784dfbb9e499cfde0d4b0a355f28694096cfc7bb)), closes [#1967](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1967)
+
 # [2.4.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.3.0...2.4.0) (2025-03-06)
 
 ### Features

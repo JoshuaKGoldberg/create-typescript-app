@@ -14,7 +14,7 @@ describe("blockRepositoryBranchRuleset", () => {
 	});
 
 	// TODO for improving the "requests" snapshots:
-	// https://github.com/JoshuaKGoldberg/create/issues/65
+	// https://github.com/JoshuaKGoldberg/bingo/issues/65
 
 	test("without addons when mode is setup", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
@@ -105,7 +105,7 @@ describe("blockRepositoryBranchRuleset", () => {
 		`);
 	});
 
-	test("with addons and a ruleset_id option when mode is transition", () => {
+	test("with addons and a rulesetId option when mode is transition", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
 			addons: {
 				requiredStatusChecks: ["build", "test"],

@@ -144,6 +144,35 @@ describe("blockDevelopmentDocs", () => {
 		`);
 	});
 
+	test("with options.documentation", () => {
+		const creation = testBlock(blockDevelopmentDocs, {
+			options: {
+				...optionsBase,
+				documentation: "More documentation.",
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    ".github": {
+			      "DEVELOPMENT.md": "# Development
+
+			After [forking the repo from GitHub](https://help.github.com/articles/fork-a-repo) and [installing pnpm](https://pnpm.io/installation):
+
+			\`\`\`shell
+			git clone https://github.com/(your-name-here)/test-repository
+			cd test-repository
+			pnpm install
+			\`\`\`
+
+			More documentation.",
+			    },
+			  },
+			}
+		`);
+	});
+
 	test("with options.guide", () => {
 		const creation = testBlock(blockDevelopmentDocs, {
 			options: {

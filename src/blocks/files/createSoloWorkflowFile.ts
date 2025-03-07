@@ -31,22 +31,12 @@ interface WorkflowFileOn {
 	};
 	workflow_dispatch?: null | string;
 }
-
-type WorkflowFileOptions = WorkflowFileOptionsRuns | WorkflowFileOptionsSteps;
-
-interface WorkflowFileOptionsBase {
+interface WorkflowFileOptions {
 	concurrency?: WorkflowFileConcurrency;
 	if?: string;
 	name: string;
 	on?: WorkflowFileOn;
 	permissions?: WorkflowFilePermissions;
-}
-
-interface WorkflowFileOptionsRuns extends WorkflowFileOptionsBase {
-	runs: (string | WorkflowFileStep)[];
-}
-
-interface WorkflowFileOptionsSteps extends WorkflowFileOptionsBase {
 	steps: WorkflowFileStep[];
 }
 
@@ -79,14 +69,7 @@ export function createSoloWorkflowFile({
 			[createJobName(name)]: {
 				...(options.if && { if: options.if }),
 				"runs-on": "ubuntu-latest",
-				steps:
-					"runs" in options
-						? [
-								{ uses: "actions/checkout@v4" },
-								{ uses: "./.github/actions/prepare" },
-								...options.runs.map((run) => ({ run })),
-							]
-						: options.steps,
+				steps: options.steps,
 			},
 		},
 		name,

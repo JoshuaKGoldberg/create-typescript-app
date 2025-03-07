@@ -30,7 +30,7 @@ import {
 // specified by the addons mentioned in the producePreset() call below.
 // For now, if you change the output on disk, you'll need to manually update here too.
 // TODO: Eventually the create engine will be able to infer them:
-//   https://github.com/JoshuaKGoldberg/create/issues/128
+//   https://github.com/JoshuaKGoldberg/bingo/issues/128
 //
 // For example, if you change blockTypeScript's target from "ES2022 to "ES2023",
 // you'll also need to update the ./tsconfig.json on disk in the same way.

@@ -127,4 +127,72 @@ describe("blockKnip", () => {
 			}
 		`);
 	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockKnip, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "sections": {
+			          "Linting": {
+			            "contents": {
+			              "items": [
+			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+			              ],
+			            },
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "jobs": [
+			          {
+			            "name": "Lint Knip",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:knip",
+			              },
+			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "devDependencies": {
+			            "knip": "5.45.0",
+			          },
+			          "scripts": {
+			            "lint:knip": "knip",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.45.0/schema.json","entry":["src/index.ts","src/**/*.test.*"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "rm .knip* knip.*",
+			      ],
+			      "phase": 0,
+			      "silent": true,
+			    },
+			  ],
+			}
+		`);
+	});
 });

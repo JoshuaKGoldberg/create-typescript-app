@@ -1,7 +1,7 @@
 body:
   - attributes:
       description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
-      label: Bug Report Checklist
+      label: Tooling Report Checklist
       options:
         - label: I have tried restarting my IDE and the issue persists.
           required: true

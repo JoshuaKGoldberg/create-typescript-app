@@ -75,7 +75,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 									attributes: {
 										description:
 											"If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!",
-										label: "Bug Report Checklist",
+										label: "Documentation Report Checklist",
 										options: [
 											{
 												label:
@@ -119,7 +119,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 									attributes: {
 										description:
 											"If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!",
-										label: "Bug Report Checklist",
+										label: "Feature Request Checklist",
 										options: [
 											{
 												label:
@@ -164,7 +164,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 									attributes: {
 										description:
 											"If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!",
-										label: "Bug Report Checklist",
+										label: "Tooling Report Checklist",
 										options: [
 											{
 												label:

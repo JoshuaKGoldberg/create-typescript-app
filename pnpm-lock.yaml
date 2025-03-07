@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       bingo:
-        specifier: ^0.5.4
-        version: 0.5.4
+        specifier: ^0.5.5
+        version: 0.5.5
       bingo-fs:
         specifier: ^0.5.4
         version: 0.5.4
       bingo-stratum:
         specifier: ^0.5.4
-        version: 0.5.4(bingo-fs@0.5.4)(bingo@0.5.4)(zod@3.24.2)
+        version: 0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5)(zod@3.24.2)
       cspell-populate-words:
         specifier: ^0.3.0
         version: 0.3.0
@@ -37,13 +37,13 @@ importers:
         version: 1.2.0
       input-from-file:
         specifier: ^0.5.4
-        version: 0.5.4(bingo@0.5.4)
+        version: 0.5.4(bingo@0.5.5)
       input-from-file-json:
         specifier: ^0.5.4
-        version: 0.5.4(bingo@0.5.4)(zod@3.24.2)
+        version: 0.5.4(bingo@0.5.5)(zod@3.24.2)
       input-from-script:
         specifier: ^0.5.4
-        version: 0.5.4(bingo@0.5.4)
+        version: 0.5.4(bingo@0.5.5)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -127,11 +127,11 @@ importers:
         specifier: 6.26.1
         version: 6.26.1
       bingo-stratum-testers:
-        specifier: 0.5.5
-        version: 0.5.5(bingo-fs@0.5.4)(bingo-stratum@0.5.4(bingo-fs@0.5.4)(bingo@0.5.4)(zod@3.24.2))(bingo-testers@0.5.4(bingo-fs@0.5.4)(bingo@0.5.4))(bingo@0.5.4)
+        specifier: 0.5.6
+        version: 0.5.6(bingo-fs@0.5.4)(bingo-stratum@0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5))(bingo@0.5.5)
       bingo-testers:
         specifier: 0.5.4
-        version: 0.5.4(bingo-fs@0.5.4)(bingo@0.5.4)
+        version: 0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5)
       console-fail-test:
         specifier: 0.5.0
         version: 0.5.0
@@ -1186,6 +1186,9 @@ packages:
   '@octokit/openapi-types@23.0.1':
     resolution: {integrity: sha512-izFjMJ1sir0jn0ldEKhZ7xegCTj/ObmEDlEfpFrx4k/JyZSMRHbO3/rBwgE7f3m2DHt+RrNGIVw4wSmwnm3t/g==}
 
+  '@octokit/openapi-types@24.0.0':
+    resolution: {integrity: sha512-os8hmzrBPC3PDzXq93/9vBcxMvb90yw2SF76ANon+eP1HzVyd+TshkAkMX6bIm3bY5T3uXieQFDibcc35vM9mQ==}
+
   '@octokit/openapi-webhooks-types@9.1.0':
     resolution: {integrity: sha512-bO1D2jLdU8qEvqmbWjNxJzDYSFT4wesiYKIKP6f4LaM0XUGtn/0LBv/20hu9YqcnpdX38X5o/xANTMtIAqdwYw==}
 
@@ -1661,15 +1664,15 @@ packages:
     resolution: {integrity: sha512-0dP52RdNAff6F8MoHszk7YAZKZWes4+s9UYANNZVfr87g2KbgY56o6szVXEXytRtay6UuNIkjMHcRTGWw0ODzw==}
     engines: {node: '>=18'}
 
-  bingo-stratum-testers@0.5.5:
-    resolution: {integrity: sha512-b1Na6wE0/8nwtIE7cN3Y31OO+YUV+b5mquZzYsBncBsByWwI4g3cyh3utrUKr4hK5hJlwE4tJhLDmxzqGl1Ftg==}
+  bingo-stratum-testers@0.5.6:
+    resolution: {integrity: sha512-SLcCLqseReWHQLbqyxCepwjvsDgAvfDXzrohe2NV833EVuzu1QjQ8SmXTqB+OjtjcBPsaQzrics1SVGA8OMy7A==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: workspace:^
-      bingo-fs: workspace:^
-      bingo-stratum: workspace:^
-      bingo-systems: workspace:^
-      bingo-testers: workspace:^
+      bingo: ^0.5.4
+      bingo-fs: ^0.5.4
+      bingo-stratum: ^0.5.4
+      bingo-systems: ^0.5.4
+      bingo-testers: ^0.5.4
 
   bingo-stratum@0.5.4:
     resolution: {integrity: sha512-9+Aj3bob3DOdCK+BNkOP08BTh5my/PcK8ReDGImHZCpHEp0vtrAaI4rmyjWc0qL3GkK9d19n9SjaGWsQ4AUPqg==}
@@ -1692,8 +1695,8 @@ packages:
       bingo-fs: ^0.5.4
       bingo-systems: ^0.5.4
 
-  bingo@0.5.4:
-    resolution: {integrity: sha512-q9xZO+0tnVQS3LWNh3+n32fHGlkzaIRIHTEkZzfWNxrhnz1sljH0lbxHV6950n1BFJTF3dIWfenbckB/kShsyg==}
+  bingo@0.5.5:
+    resolution: {integrity: sha512-HvYtpr3p+Azjmv0xePJfixNDajpYm/frSFX/B2p9rvvCYjBZeJnEpCgIV0/1IhGq+X5ygcCO4+L2dQ0cXo3O9g==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3259,6 +3262,10 @@ packages:
     resolution: {integrity: sha512-NHDDGYudnvRutt/VhKFlX26IotXe1w0cmkDm6JGquh5bz/bDTw0LufSmH/GxTjEdpHEO+bVKFTwdrcGa/9XlKQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
+  new-github-repository@0.2.1:
+    resolution: {integrity: sha512-zzUV4UzmGgY/naFxleMZZQUGquODAKSLnu+lGqOWPfWunmyqJBlNNfYwah4Rpw00PduTVJm3W3Bvwoj6Y/Zm1w==}
+    engines: {node: '>=18.3.0'}
+
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
     engines: {node: 4.x || >=6.0.0}
@@ -3301,6 +3308,10 @@ packages:
 
   octokit-from-auth@0.2.0:
     resolution: {integrity: sha512-UMo+WQkWi1PS/HZ15SMM1sgPhhXykqPJKCCAi6R0+JAhTbLBcfeKCJ3AwUVdJBJQKSQ37BUqPpME4iGAjZQtkw==}
+    engines: {node: '>=18.3.0'}
+
+  octokit-from-auth@0.3.0:
+    resolution: {integrity: sha512-HeS+YVPExV5nkdRZyQQRepZVV+pL4ahVmh9KfKXLAbNc3D82G2xeuSWfKzHSIlqB1taQnZYPJWdpfcIe45d1lw==}
     engines: {node: '>=18.3.0'}
 
   octokit@4.1.2:
@@ -5178,6 +5189,8 @@ snapshots:
 
   '@octokit/openapi-types@23.0.1': {}
 
+  '@octokit/openapi-types@24.0.0': {}
+
   '@octokit/openapi-webhooks-types@9.1.0': {}
 
   '@octokit/plugin-paginate-graphql@5.2.4(@octokit/core@6.1.4)':
@@ -5645,17 +5658,19 @@ snapshots:
 
   bingo-fs@0.5.4: {}
 
-  bingo-stratum-testers@0.5.5(bingo-fs@0.5.4)(bingo-stratum@0.5.4(bingo-fs@0.5.4)(bingo@0.5.4)(zod@3.24.2))(bingo-testers@0.5.4(bingo-fs@0.5.4)(bingo@0.5.4))(bingo@0.5.4):
+  bingo-stratum-testers@0.5.6(bingo-fs@0.5.4)(bingo-stratum@0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5))(bingo@0.5.5):
     dependencies:
-      bingo: 0.5.4
+      bingo: 0.5.5
       bingo-fs: 0.5.4
-      bingo-stratum: 0.5.4(bingo-fs@0.5.4)(bingo@0.5.4)(zod@3.24.2)
-      bingo-testers: 0.5.4(bingo-fs@0.5.4)(bingo@0.5.4)
+      bingo-stratum: 0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5)(zod@3.24.2)
+      bingo-systems: 0.5.4
+      bingo-testers: 0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5)
 
-  bingo-stratum@0.5.4(bingo-fs@0.5.4)(bingo@0.5.4)(zod@3.24.2):
+  bingo-stratum@0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5)(zod@3.24.2):
     dependencies:
-      bingo: 0.5.4
+      bingo: 0.5.5
       bingo-fs: 0.5.4
+      bingo-systems: 0.5.4
       chalk: 5.4.1
       hash-object: 5.0.1
       octokit: 4.1.2
@@ -5670,15 +5685,16 @@ snapshots:
       get-github-auth-token: 0.1.1
       octokit: 4.1.2
 
-  bingo-testers@0.5.4(bingo-fs@0.5.4)(bingo@0.5.4):
+  bingo-testers@0.5.4(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.5):
     dependencies:
-      bingo: 0.5.4
+      bingo: 0.5.5
       bingo-fs: 0.5.4
+      bingo-systems: 0.5.4
       diff: 7.0.0
       octokit: 4.1.2
       without-undefined-properties: 0.1.1
 
-  bingo@0.5.4:
+  bingo@0.5.5:
     dependencies:
       '@clack/prompts': 0.10.0
       bingo-fs: 0.5.4
@@ -5689,6 +5705,7 @@ snapshots:
       get-github-auth-token: 0.1.1
       hash-object: 5.0.1
       hosted-git-info: 8.0.2
+      new-github-repository: 0.2.1
       prettier: 3.5.3
       read-package-up: 11.0.0
       read-pkg: 9.0.1
@@ -6872,20 +6889,20 @@ snapshots:
 
   ini@4.1.3: {}
 
-  input-from-file-json@0.5.4(bingo@0.5.4)(zod@3.24.2):
+  input-from-file-json@0.5.4(bingo@0.5.5)(zod@3.24.2):
     dependencies:
-      bingo: 0.5.4
-      input-from-file: 0.5.4(bingo@0.5.4)
+      bingo: 0.5.5
+      input-from-file: 0.5.4(bingo@0.5.5)
       zod: 3.24.2
 
-  input-from-file@0.5.4(bingo@0.5.4):
+  input-from-file@0.5.4(bingo@0.5.5):
     dependencies:
-      bingo: 0.5.4
+      bingo: 0.5.5
       zod: 3.24.2
 
-  input-from-script@0.5.4(bingo@0.5.4):
+  input-from-script@0.5.4(bingo@0.5.5):
     dependencies:
-      bingo: 0.5.4
+      bingo: 0.5.5
       zod: 3.24.2
 
   inquirer@12.3.0(@types/node@22.13.9):
@@ -7520,6 +7537,12 @@ snapshots:
     dependencies:
       type-fest: 2.19.0
 
+  new-github-repository@0.2.1:
+    dependencies:
+      '@octokit/openapi-types': 24.0.0
+      octokit: 4.1.2
+      octokit-from-auth: 0.3.0
+
   node-fetch@2.7.0:
     dependencies:
       whatwg-url: 5.0.0
@@ -7558,6 +7581,11 @@ snapshots:
   object-strings-deep@0.1.1: {}
 
   octokit-from-auth@0.2.0:
+    dependencies:
+      get-github-auth-token: 0.1.1
+      octokit: 4.1.2
+
+  octokit-from-auth@0.3.0:
     dependencies:
       get-github-auth-token: 0.1.1
       octokit: 4.1.2

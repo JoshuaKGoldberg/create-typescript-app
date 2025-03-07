@@ -37,7 +37,7 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
-		"bingo": "^0.5.4",
+		"bingo": "^0.5.5",
 		"bingo-fs": "^0.5.4",
 		"bingo-stratum": "^0.5.4",
 		"cspell-populate-words": "^0.3.0",
@@ -78,7 +78,7 @@
 		"@vitest/coverage-v8": "3.0.7",
 		"@vitest/eslint-plugin": "1.1.36",
 		"all-contributors-cli": "6.26.1",
-		"bingo-stratum-testers": "0.5.5",
+		"bingo-stratum-testers": "0.5.6",
 		"bingo-testers": "0.5.4",
 		"console-fail-test": "0.5.0",
 		"cspell": "8.17.5",

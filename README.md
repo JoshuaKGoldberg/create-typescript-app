@@ -34,7 +34,7 @@ First make sure you have the following installed:
 Then in an existing repository or in your directory where you'd like to make a new repository:
 
 ```shell
-npx create-typescript-app
+pnpx create-typescript-app
 ```
 
 You can read more about the supported runtime modes in their docs pages:
@@ -51,7 +51,7 @@ You can read more about `create-typescript-app` and the tooling it supports:
 2. [**Options**](./docs/Options.md): granular options to customize how the template is run.
 3. [**FAQs**](./docs/FAQs.md): frequently asked questions
 
-> [!NOTE]  
+> [!NOTE]
 > This template is early stage, opinionated, and not endorsed by the TypeScript team.
 > It can be configured to set up a _lot_ of tooling out of the box.
 > If you don't want to use any particular tool, you can always remove it manually.

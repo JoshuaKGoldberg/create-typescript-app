@@ -237,7 +237,83 @@ describe("blockRepositoryBranchRuleset", () => {
 			addons: {
 				requiredStatusChecks: ["build", "test"],
 			},
-			mode: "setup",
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "requests": [
+			    {
+			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "parameters": {
+			        "bypass_actors": [
+			          {
+			            "actor_id": 5,
+			            "actor_type": "RepositoryRole",
+			            "bypass_mode": "always",
+			          },
+			        ],
+			        "conditions": {
+			          "ref_name": {
+			            "exclude": [],
+			            "include": [
+			              "refs/heads/main",
+			            ],
+			          },
+			        },
+			        "enforcement": "active",
+			        "name": "Branch protection for main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			        "rules": [
+			          {
+			            "type": "deletion",
+			          },
+			          {
+			            "parameters": {
+			              "allowed_merge_methods": [
+			                "squash",
+			              ],
+			              "dismiss_stale_reviews_on_push": false,
+			              "require_code_owner_review": false,
+			              "require_last_push_approval": false,
+			              "required_approving_review_count": 0,
+			              "required_review_thread_resolution": false,
+			            },
+			            "type": "pull_request",
+			          },
+			          {
+			            "parameters": {
+			              "required_status_checks": [
+			                {
+			                  "context": "build",
+			                },
+			                {
+			                  "context": "test",
+			                },
+			              ],
+			              "strict_required_status_checks_policy": false,
+			            },
+			            "type": "required_status_checks",
+			          },
+			        ],
+			        "ruleset_id": undefined,
+			        "target": "branch",
+			      },
+			      "type": "octokit",
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("with addons and no rulesetId option when mode is transition", () => {
+		const creation = testBlock(blockRepositoryBranchRuleset, {
+			addons: {
+				requiredStatusChecks: ["build", "test"],
+			},
+			mode: "transition",
 			options: optionsBase,
 		});
 
@@ -313,7 +389,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			addons: {
 				requiredStatusChecks: ["build", "test"],
 			},
-			mode: "setup",
+			mode: "transition",
 			options: {
 				...optionsBase,
 				rulesetId: "1234",
@@ -324,7 +400,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "endpoint": "PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}",
 			      "parameters": {
 			        "bypass_actors": [
 			          {
@@ -377,7 +453,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			            "type": "required_status_checks",
 			          },
 			        ],
-			        "ruleset_id": undefined,
+			        "ruleset_id": 1234,
 			        "target": "branch",
 			      },
 			      "type": "octokit",

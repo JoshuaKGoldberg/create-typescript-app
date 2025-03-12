@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.5.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.6...2.5.0) (2025-03-12)
+
+### Features
+
+- bumped to bingo@0.5.8 with serializable requests ([#1978](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1978)) ([f2d2843](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f2d284313eb407c0cb4488d51d304c1c39b818a7)), closes [#1977](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1977)
+
 ## [2.4.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.5...2.4.6) (2025-03-08)
 
 ### Bug Fixes

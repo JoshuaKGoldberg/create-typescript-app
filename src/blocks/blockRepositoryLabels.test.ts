@@ -1,3 +1,4 @@
+/* spellchecker:disable */
 import { testBlock } from "bingo-stratum-testers";
 import { githubDefaultLabels } from "github-default-labels";
 import { describe, expect, test } from "vitest";

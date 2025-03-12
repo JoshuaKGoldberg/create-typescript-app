@@ -4,6 +4,7 @@ import { describe, expect, test } from "vitest";
 
 import { blockRepositoryLabels } from "./blockRepositoryLabels.js";
 import { optionsBase } from "./options.fakes.js";
+import { outcomeLabels } from "./outcomeLabels.js";
 
 describe("blockRepositoryLabels", () => {
 	test("when options.existingLabels is undefined", () => {
@@ -223,7 +224,7 @@ describe("blockRepositoryLabels", () => {
 		`);
 	});
 
-	test("when options.existingLabels contains entries", () => {
+	test("when options.existingLabels contains default entries", () => {
 		const creation = testBlock(blockRepositoryLabels, {
 			options: { ...optionsBase, existingLabels: githubDefaultLabels },
 		});
@@ -439,6 +440,46 @@ describe("blockRepositoryLabels", () => {
 			        "color": "fde282",
 			        "description": "Tech debt or other code/repository cleanups 🧹",
 			        "name": "type: cleanup",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			      },
+			      "type": "octokit",
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("when options.existingLabels contains duplicate entries", () => {
+		const creation = testBlock(blockRepositoryLabels, {
+			options: {
+				...optionsBase,
+				existingLabels: [
+					...outcomeLabels.filter(
+						(label) => !label.name.includes("documentation"),
+					),
+					{
+						color: "0075ca",
+						description: "Improvements or additions to docs 📝",
+						name: "docs",
+					},
+					{
+						color: "0075ca",
+						description: "Improvements or additions to docs 📝",
+						name: "area: documentation",
+					},
+				],
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "requests": [
+			    {
+			      "endpoint": "DELETE /repos/{owner}/{repo}/labels/{name}",
+			      "id": "delete label 'docs'",
+			      "parameters": {
+			        "name": "docs",
 			        "owner": "test-owner",
 			        "repo": "test-repository",
 			      },

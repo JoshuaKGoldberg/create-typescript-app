@@ -13,9 +13,6 @@ describe("blockRepositoryBranchRuleset", () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	// TODO for improving the "requests" snapshots:
-	// https://github.com/JoshuaKGoldberg/bingo/issues/65
-
 	test("without addons when mode is setup", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
 			mode: "setup",
@@ -26,8 +23,56 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-ruleset-create",
-			      "send": [Function],
+			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "parameters": {
+			        "bypass_actors": [
+			          {
+			            "actor_id": 5,
+			            "actor_type": "RepositoryRole",
+			            "bypass_mode": "always",
+			          },
+			        ],
+			        "conditions": {
+			          "ref_name": {
+			            "exclude": [],
+			            "include": [
+			              "refs/heads/main",
+			            ],
+			          },
+			        },
+			        "enforcement": "active",
+			        "name": "Branch protection for main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			        "rules": [
+			          {
+			            "type": "deletion",
+			          },
+			          {
+			            "parameters": {
+			              "allowed_merge_methods": [
+			                "squash",
+			              ],
+			              "dismiss_stale_reviews_on_push": false,
+			              "require_code_owner_review": false,
+			              "require_last_push_approval": false,
+			              "required_approving_review_count": 0,
+			              "required_review_thread_resolution": false,
+			            },
+			            "type": "pull_request",
+			          },
+			          {
+			            "parameters": {
+			              "required_status_checks": [],
+			              "strict_required_status_checks_policy": false,
+			            },
+			            "type": "required_status_checks",
+			          },
+			        ],
+			        "ruleset_id": undefined,
+			        "target": "branch",
+			      },
+			      "type": "octokit",
 			    },
 			  ],
 			}
@@ -44,8 +89,56 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-ruleset-update",
-			      "send": [Function],
+			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "parameters": {
+			        "bypass_actors": [
+			          {
+			            "actor_id": 5,
+			            "actor_type": "RepositoryRole",
+			            "bypass_mode": "always",
+			          },
+			        ],
+			        "conditions": {
+			          "ref_name": {
+			            "exclude": [],
+			            "include": [
+			              "refs/heads/main",
+			            ],
+			          },
+			        },
+			        "enforcement": "active",
+			        "name": "Branch protection for main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			        "rules": [
+			          {
+			            "type": "deletion",
+			          },
+			          {
+			            "parameters": {
+			              "allowed_merge_methods": [
+			                "squash",
+			              ],
+			              "dismiss_stale_reviews_on_push": false,
+			              "require_code_owner_review": false,
+			              "require_last_push_approval": false,
+			              "required_approving_review_count": 0,
+			              "required_review_thread_resolution": false,
+			            },
+			            "type": "pull_request",
+			          },
+			          {
+			            "parameters": {
+			              "required_status_checks": [],
+			              "strict_required_status_checks_policy": false,
+			            },
+			            "type": "required_status_checks",
+			          },
+			        ],
+			        "ruleset_id": undefined,
+			        "target": "branch",
+			      },
+			      "type": "octokit",
 			    },
 			  ],
 			}
@@ -76,8 +169,63 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-ruleset-create",
-			      "send": [Function],
+			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "parameters": {
+			        "bypass_actors": [
+			          {
+			            "actor_id": 5,
+			            "actor_type": "RepositoryRole",
+			            "bypass_mode": "always",
+			          },
+			        ],
+			        "conditions": {
+			          "ref_name": {
+			            "exclude": [],
+			            "include": [
+			              "refs/heads/main",
+			            ],
+			          },
+			        },
+			        "enforcement": "active",
+			        "name": "Branch protection for main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			        "rules": [
+			          {
+			            "type": "deletion",
+			          },
+			          {
+			            "parameters": {
+			              "allowed_merge_methods": [
+			                "squash",
+			              ],
+			              "dismiss_stale_reviews_on_push": false,
+			              "require_code_owner_review": false,
+			              "require_last_push_approval": false,
+			              "required_approving_review_count": 0,
+			              "required_review_thread_resolution": false,
+			            },
+			            "type": "pull_request",
+			          },
+			          {
+			            "parameters": {
+			              "required_status_checks": [
+			                {
+			                  "context": "build",
+			                },
+			                {
+			                  "context": "test",
+			                },
+			              ],
+			              "strict_required_status_checks_policy": false,
+			            },
+			            "type": "required_status_checks",
+			          },
+			        ],
+			        "ruleset_id": undefined,
+			        "target": "branch",
+			      },
+			      "type": "octokit",
 			    },
 			  ],
 			}
@@ -97,8 +245,63 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-ruleset-create",
-			      "send": [Function],
+			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "parameters": {
+			        "bypass_actors": [
+			          {
+			            "actor_id": 5,
+			            "actor_type": "RepositoryRole",
+			            "bypass_mode": "always",
+			          },
+			        ],
+			        "conditions": {
+			          "ref_name": {
+			            "exclude": [],
+			            "include": [
+			              "refs/heads/main",
+			            ],
+			          },
+			        },
+			        "enforcement": "active",
+			        "name": "Branch protection for main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			        "rules": [
+			          {
+			            "type": "deletion",
+			          },
+			          {
+			            "parameters": {
+			              "allowed_merge_methods": [
+			                "squash",
+			              ],
+			              "dismiss_stale_reviews_on_push": false,
+			              "require_code_owner_review": false,
+			              "require_last_push_approval": false,
+			              "required_approving_review_count": 0,
+			              "required_review_thread_resolution": false,
+			            },
+			            "type": "pull_request",
+			          },
+			          {
+			            "parameters": {
+			              "required_status_checks": [
+			                {
+			                  "context": "build",
+			                },
+			                {
+			                  "context": "test",
+			                },
+			              ],
+			              "strict_required_status_checks_policy": false,
+			            },
+			            "type": "required_status_checks",
+			          },
+			        ],
+			        "ruleset_id": undefined,
+			        "target": "branch",
+			      },
+			      "type": "octokit",
 			    },
 			  ],
 			}
@@ -121,8 +324,63 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
-			      "id": "branch-ruleset-create",
-			      "send": [Function],
+			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
+			      "parameters": {
+			        "bypass_actors": [
+			          {
+			            "actor_id": 5,
+			            "actor_type": "RepositoryRole",
+			            "bypass_mode": "always",
+			          },
+			        ],
+			        "conditions": {
+			          "ref_name": {
+			            "exclude": [],
+			            "include": [
+			              "refs/heads/main",
+			            ],
+			          },
+			        },
+			        "enforcement": "active",
+			        "name": "Branch protection for main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			        "rules": [
+			          {
+			            "type": "deletion",
+			          },
+			          {
+			            "parameters": {
+			              "allowed_merge_methods": [
+			                "squash",
+			              ],
+			              "dismiss_stale_reviews_on_push": false,
+			              "require_code_owner_review": false,
+			              "require_last_push_approval": false,
+			              "required_approving_review_count": 0,
+			              "required_review_thread_resolution": false,
+			            },
+			            "type": "pull_request",
+			          },
+			          {
+			            "parameters": {
+			              "required_status_checks": [
+			                {
+			                  "context": "build",
+			                },
+			                {
+			                  "context": "test",
+			                },
+			              ],
+			              "strict_required_status_checks_policy": false,
+			            },
+			            "type": "required_status_checks",
+			          },
+			        ],
+			        "ruleset_id": undefined,
+			        "target": "branch",
+			      },
+			      "type": "octokit",
 			    },
 			  ],
 			}

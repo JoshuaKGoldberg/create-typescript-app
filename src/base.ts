@@ -9,6 +9,7 @@ import npmUser from "npm-user";
 import { z } from "zod";
 
 import { inputFromOctokit } from "./inputs/inputFromOctokit.js";
+import { getExistingLabels } from "./options/getExistingLabels.js";
 import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
 import { readAllContributors } from "./options/readAllContributors.js";
 import { readDefaultsFromReadme } from "./options/readDefaultsFromReadme.js";
@@ -73,6 +74,16 @@ export const base = createBase({
 			.describe(
 				"email address to be listed as the point of contact in docs and packages",
 			),
+		existingLabels: z
+			.array(
+				z.object({
+					color: z.string(),
+					description: z.string(),
+					name: z.string(),
+				}),
+			)
+			.optional()
+			.describe("existing labels from the GitHub repository"),
 		explainer: z
 			.array(z.string())
 			.optional()
@@ -153,6 +164,10 @@ export const base = createBase({
 				await take(inputFromFile, {
 					filePath: ".nvmrc",
 				}),
+		);
+
+		const existingLabels = lazyValue(async () =>
+			getExistingLabels(take, await owner(), await repository()),
 		);
 
 		const githubCliUser = lazyValue(async () => {
@@ -241,6 +256,7 @@ export const base = createBase({
 			description: async () => await readDescription(packageData, readme),
 			documentation,
 			email,
+			existingLabels,
 			funding: readFunding,
 			guide: readGuide,
 			login: author,

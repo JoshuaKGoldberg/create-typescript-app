@@ -1,3 +1,4 @@
+/* spellchecker:disable */
 export const outcomeLabels = [
 	{
 		aliases: ["docs"],
@@ -38,7 +39,7 @@ export const outcomeLabels = [
 		name: "status: aged away",
 	},
 	{
-		color: "#ddcccc",
+		color: "ddcccc",
 		description: "Waiting for something else to be resolved 🙅",
 		name: "status: blocked",
 	},
@@ -48,7 +49,7 @@ export const outcomeLabels = [
 		name: "status: duplicate",
 	},
 	{
-		color: "#05104F",
+		color: "05104F",
 		description: "Not yet ready for implementation or a pull request",
 		name: "status: in discussion",
 	},

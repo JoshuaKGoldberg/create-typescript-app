@@ -1,3 +1,5 @@
+import type { CreatedOctokitRequest } from "bingo-requests";
+
 import { z } from "zod";
 
 import { base, BaseOptions } from "../base.js";
@@ -7,19 +9,18 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 		name: "Repository Branch Ruleset",
 	},
 	addons: {
-		requiredStatusChecks: z.array(z.string()).default([]),
+		requiredStatusChecks: z.array(z.string()).optional(),
 	},
 	setup({ addons, options }) {
 		return {
 			requests: [
 				{
-					id: "branch-ruleset-create",
-					async send({ octokit }) {
-						await octokit.request(
-							"POST /repos/{owner}/{repo}/rulesets",
-							createInnerSend(addons.requiredStatusChecks, options),
-						);
-					},
+					endpoint: "POST /repos/{owner}/{repo}/rulesets",
+					parameters: createRulesetParameters(
+						addons.requiredStatusChecks,
+						options,
+					),
+					type: "octokit",
 				},
 			],
 		};
@@ -27,26 +28,24 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 	transition({ addons, options }) {
 		return {
 			requests: [
-				{
-					id: "branch-ruleset-update",
-					async send({ octokit }) {
-						if (options.rulesetId) {
-							await octokit.request(
-								`PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}`,
-								createInnerSend(
-									addons.requiredStatusChecks,
-									options,
-									options.rulesetId,
-								),
-							);
-						} else {
-							await octokit.request(
-								`POST /repos/{owner}/{repo}/rulesets/{ruleset_id}`,
-								createInnerSend(addons.requiredStatusChecks, options),
-							);
+				options.rulesetId
+					? {
+							endpoint: "PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}",
+							parameters: createRulesetParameters(
+								addons.requiredStatusChecks,
+								options,
+								options.rulesetId,
+							),
+							type: "octokit",
 						}
-					},
-				},
+					: {
+							endpoint: "POST /repos/{owner}/{repo}/rulesets",
+							parameters: createRulesetParameters(
+								addons.requiredStatusChecks,
+								options,
+							),
+							type: "octokit",
+						},
 			],
 		};
 	},
@@ -57,8 +56,8 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 	},
 });
 
-function createInnerSend(
-	contexts: string[],
+function createRulesetParameters(
+	contexts: string[] | undefined,
 	options: BaseOptions,
 	rulesetId?: string,
 ) {
@@ -68,8 +67,8 @@ function createInnerSend(
 				// This *seems* to be the Repository Admin role always?
 				// https://github.com/github/rest-api-description/issues/4406
 				actor_id: 5,
-				actor_type: "RepositoryRole" as const,
-				bypass_mode: "always" as const,
+				actor_type: "RepositoryRole",
+				bypass_mode: "always",
 			},
 		],
 		conditions: {
@@ -78,12 +77,12 @@ function createInnerSend(
 				include: ["refs/heads/main"],
 			},
 		},
-		enforcement: "active" as const,
+		enforcement: "active",
 		name: "Branch protection for main",
 		owner: options.owner,
 		repo: options.repository,
 		rules: [
-			{ type: "deletion" as const },
+			{ type: "deletion" },
 			{
 				parameters: {
 					allowed_merge_methods: ["squash"],
@@ -93,21 +92,20 @@ function createInnerSend(
 					required_approving_review_count: 0,
 					required_review_thread_resolution: false,
 				},
-				type: "pull_request" as const,
+				type: "pull_request",
 			},
 			{
 				parameters: {
-					required_status_checks: contexts.map((context) => ({
-						context,
-					})),
+					required_status_checks:
+						contexts?.map((context) => ({
+							context,
+						})) ?? [],
 					strict_required_status_checks_policy: false,
 				},
-				type: "required_status_checks" as const,
+				type: "required_status_checks",
 			},
 		],
-		// Type fun because the GitHub Octokit APIs don't provide named types...
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		ruleset_id: (rulesetId === undefined ? rulesetId : Number(rulesetId))!,
-		target: "branch" as const,
-	};
+		ruleset_id: rulesetId === undefined ? rulesetId : Number(rulesetId),
+		target: "branch",
+	} satisfies CreatedOctokitRequest["parameters"];
 }

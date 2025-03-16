@@ -10,6 +10,7 @@ import { z } from "zod";
 
 import { inputFromOctokit } from "./inputs/inputFromOctokit.js";
 import { getExistingLabels } from "./options/getExistingLabels.js";
+import { parseEmojiFromDescription } from "./options/parseEmojiFromDescription.js";
 import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
 import { readAllContributors } from "./options/readAllContributors.js";
 import { readDefaultsFromReadme } from "./options/readDefaultsFromReadme.js";
@@ -53,7 +54,7 @@ export const base = createBase({
 			.describe("AllContributors contributors to store in .all-contributorsrc"),
 		description: z
 			.string()
-			.default("A very lovely package. Hooray! 💖")
+			.default("A very lovely package. Hooray!")
 			.describe("'Sentence case.' description of the repository"),
 		directory: z.string().describe("Directory to create the repository in"),
 		documentation: z
@@ -74,6 +75,10 @@ export const base = createBase({
 			.describe(
 				"email address to be listed as the point of contact in docs and packages",
 			),
+		emoji: z
+			.string()
+			.optional()
+			.describe("decorative emoji to use in descriptions and docs"),
 		existingLabels: z
 			.array(
 				z.object({
@@ -196,6 +201,10 @@ export const base = createBase({
 
 		// TODO: Make these all use take
 
+		const emoji = async () => parseEmojiFromDescription(description);
+
+		const description = async () => await readDescription(packageData, readme);
+
 		const gitDefaults = tryCatchLazyValueAsync(async () =>
 			gitUrlParse(await gitRemoteOriginUrl()),
 		);
@@ -253,9 +262,10 @@ export const base = createBase({
 			author,
 			bin: async () => (await packageData()).bin,
 			contributors: allContributors,
-			description: async () => await readDescription(packageData, readme),
+			description,
 			documentation,
 			email,
+			emoji,
 			existingLabels,
 			funding: readFunding,
 			guide: readGuide,
@@ -274,7 +284,7 @@ export const base = createBase({
 			pnpm,
 			repository,
 			rulesetId,
-			...readDefaultsFromReadme(readme, repository),
+			...readDefaultsFromReadme(emoji, readme, repository),
 			version,
 		};
 	},

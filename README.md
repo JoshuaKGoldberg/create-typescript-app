@@ -59,7 +59,7 @@ You can read more about `create-typescript-app` and the tooling it supports:
 ## Development
 
 See [`.github/CONTRIBUTING.md`](./.github/CONTRIBUTING.md), then [`.github/DEVELOPMENT.md`](./.github/DEVELOPMENT.md).
-Thanks! 💖
+Thanks! 🎁
 
 ## Contributors
 

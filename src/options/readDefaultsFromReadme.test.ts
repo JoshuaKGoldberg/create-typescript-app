@@ -18,10 +18,13 @@ vi.mock("./getUsageFromReadme.js", () => ({
 	},
 }));
 
+const emoji = () => Promise.resolve("💖");
+
 describe(readDefaultsFromReadme, () => {
 	describe("explainer", () => {
 		it("defaults to undefined when it cannot be found", async () => {
 			const explainer = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(`nothing.`),
 				() => Promise.resolve(undefined),
 			).explainer();
@@ -31,6 +34,7 @@ describe(readDefaultsFromReadme, () => {
 
 		it("parses a line after badges", async () => {
 			const explainer = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 </p>
@@ -47,6 +51,7 @@ This is my project.
 
 		it("parses multiple lines after badges", async () => {
 			const explainer = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 </p>
@@ -64,6 +69,7 @@ It is good.
 
 		it("parses multiple lines after badges and a logo", async () => {
 			const explainer = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <p align="center">
@@ -96,6 +102,7 @@ It is good.
 	describe("logo", () => {
 		it("defaults to undefined when it cannot be found", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(`nothing.`),
 				() => Promise.resolve(undefined),
 			).logo();
@@ -105,6 +112,7 @@ It is good.
 
 		it("parses when found in an unquoted string", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <img src=abc/def.jpg/>`),
@@ -119,6 +127,7 @@ It is good.
 
 		it("parses when found in a single quoted string", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <img src='abc/def.jpg'/>`),
@@ -133,6 +142,7 @@ It is good.
 
 		it("parses when found in a double quoted string", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <img src="abc/def.jpg"/>`),
@@ -147,6 +157,7 @@ It is good.
 
 		it("includes alt text when it exists in double quotes", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <img alt="Project logo: a fancy circle" src="abc/def.jpg"/>`),
@@ -161,6 +172,7 @@ It is good.
 
 		it("includes alt text when it exists in single quotes", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <img alt='Project logo: a fancy circle' src='abc/def.jpg'/>`),
@@ -179,6 +191,7 @@ It is good.
 			mockReadLogoSizing.mockReturnValueOnce(sizing);
 
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <img alt='Project logo: a fancy circle' height='117px' src='abc/def.jpg' width=' 117px'/>`),
@@ -194,6 +207,7 @@ It is good.
 
 		it("parses when found after a badge image", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 		<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 48" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-48-21bb42.svg" /></a>
@@ -210,6 +224,7 @@ It is good.
 
 		it("parses when found after an h1 and many badge images", async () => {
 			const logo = await readDefaultsFromReadme(
+				emoji,
 				() =>
 					Promise.resolve(`
 <h1 align="center">Create TypeScript App</h1>
@@ -244,6 +259,7 @@ It is good.
 	describe("title", () => {
 		it("defaults to undefined when it cannot be found", async () => {
 			const title = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(`nothing`),
 				() => Promise.resolve(undefined),
 			).title();
@@ -253,6 +269,7 @@ It is good.
 
 		it('reads title as markdown from "README.md" when it exists', async () => {
 			const title = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(`# My Awesome Package`),
 				() => Promise.resolve(undefined),
 			).title();
@@ -262,6 +279,7 @@ It is good.
 
 		it('reads title as HTML from "README.md" when it exists', async () => {
 			const title = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve('<h1 align="center">My Awesome Package</h1>'),
 				() => Promise.resolve(undefined),
 			).title();
@@ -271,6 +289,7 @@ It is good.
 
 		it("converts 'typescript' to 'TypeScript' when parsed from the repository name", async () => {
 			const title = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(""),
 				() => Promise.resolve("my-typescript-app"),
 			).title();
@@ -280,6 +299,7 @@ It is good.
 
 		it("converts 'eslint' to 'ESLint' when parsed from the repository name", async () => {
 			const title = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(""),
 				() => Promise.resolve("my-eslint-plugin"),
 			).title();
@@ -289,6 +309,7 @@ It is good.
 
 		it("returns undefined when title does not exist", async () => {
 			const title = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(`Other text.`),
 				() => Promise.resolve(undefined),
 			).title();
@@ -304,6 +325,7 @@ It is good.
 			mockGetUsageFromReadme.mockReturnValueOnce(existing);
 
 			const usage = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(""),
 				() => Promise.resolve(undefined),
 			).usage();
@@ -315,6 +337,7 @@ It is good.
 			mockGetUsageFromReadme.mockReturnValueOnce(undefined);
 
 			const usage = await readDefaultsFromReadme(
+				emoji,
 				() => Promise.resolve(""),
 				() => Promise.resolve("test-repository"),
 			).usage();

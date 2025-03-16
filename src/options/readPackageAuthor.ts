@@ -2,7 +2,10 @@ import parse from "parse-author";
 
 import { PartialPackageData } from "../types.js";
 
-export function parsePackageAuthor(packageData: PartialPackageData) {
+export async function readPackageAuthor(
+	getPackageDataFull: () => Promise<PartialPackageData>,
+) {
+	const packageData = await getPackageDataFull();
 	let packageAuthor: string | undefined;
 	let packageEmail: string | undefined;
 

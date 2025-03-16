@@ -1,28 +1,35 @@
 import { BaseOptionsFor, createBase } from "bingo-stratum";
-import { execaCommand } from "execa";
-import gitRemoteOriginUrl from "git-remote-origin-url";
-import gitUrlParse from "git-url-parse";
 import { inputFromFile } from "input-from-file";
 import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
-import npmUser from "npm-user";
 import { z } from "zod";
 
-import { inputFromOctokit } from "./inputs/inputFromOctokit.js";
-import { getExistingLabels } from "./options/getExistingLabels.js";
-import { parsePackageAuthor } from "./options/parsePackageAuthor.js";
 import { readAllContributors } from "./options/readAllContributors.js";
-import { readDefaultsFromReadme } from "./options/readDefaultsFromReadme.js";
+import { readAuthor } from "./options/readAuthor.js";
 import { readDescription } from "./options/readDescription.js";
 import { readDocumentation } from "./options/readDocumentation.js";
+import { readEmailFromCodeOfConduct } from "./options/readEmailFromCodeOfConduct.js";
+import { readEmailFromGit } from "./options/readEmailFromGit.js";
+import { readEmailFromNpm } from "./options/readEmailFromNpm.js";
 import { readEmails } from "./options/readEmails.js";
+import { readExistingLabels } from "./options/readExistingLabels.js";
+import { readExplainer } from "./options/readExplainer.js";
 import { readFileSafe } from "./options/readFileSafe.js";
 import { readFunding } from "./options/readFunding.js";
+import { readGitDefaults } from "./options/readGitDefaults.js";
 import { readGuide } from "./options/readGuide.js";
+import { readLogo } from "./options/readLogo.js";
+import { readNode } from "./options/readNode.js";
+import { readNpmDefaults } from "./options/readNpmDefaults.js";
+import { readOwner } from "./options/readOwner.js";
+import { readPackageAuthor } from "./options/readPackageAuthor.js";
 import { readPackageData } from "./options/readPackageData.js";
+import { readPackageDataFull } from "./options/readPackageDataFull.js";
 import { readPnpm } from "./options/readPnpm.js";
-import { swallowError } from "./utils/swallowError.js";
-import { tryCatchLazyValueAsync } from "./utils/tryCatchLazyValueAsync.js";
+import { readRepository } from "./options/readRepository.js";
+import { readRulesetId } from "./options/readRulesetId.js";
+import { readTitle } from "./options/readTitle.js";
+import { readUsage } from "./options/readUsage.js";
 
 const zContributor = z.object({
 	avatar_url: z.string(),
@@ -68,6 +75,7 @@ export const base = createBase({
 					npm: z.string(),
 				}),
 			])
+			// TODO: Test this? Is it still working?
 			.transform((email) =>
 				typeof email === "string" ? { github: email, npm: email } : email,
 			)
@@ -156,126 +164,142 @@ export const base = createBase({
 			.describe("package version to publish as and store in `package.json`"),
 	},
 	prepare({ options, take }) {
-		const allContributors = lazyValue(async () => readAllContributors(take));
-		const documentation = lazyValue(async () => readDocumentation(take));
+		const getAllContributors = lazyValue(
+			async () => await readAllContributors(take),
+		);
 
-		const nvmrc = lazyValue(
+		const getAuthor = lazyValue(
+			async () =>
+				await readAuthor(getPackageAuthor, getNpmDefaults, options.owner),
+		);
+
+		const getBin = lazyValue(async () => (await getPackageDataFull()).bin);
+
+		const getDescription = lazyValue(
+			async () => await readDescription(getPackageDataFull, getReadme),
+		);
+
+		const getDocumentation = lazyValue(
+			async () => await readDocumentation(take),
+		);
+
+		const getEmail = lazyValue(
+			async () =>
+				await readEmails(
+					getEmailFromCodeOfConduct,
+					getEmailFromGit,
+					getEmailFromNpm,
+				),
+		);
+
+		const getEmailFromCodeOfConduct = lazyValue(
+			async () => await readEmailFromCodeOfConduct(take),
+		);
+
+		const getEmailFromGit = lazyValue(async () => await readEmailFromGit(take));
+
+		const getEmailFromNpm = lazyValue(
+			async () => await readEmailFromNpm(getNpmDefaults, getPackageAuthor),
+		);
+
+		const getExistingLabels = lazyValue(
+			async () => await readExistingLabels(take, getOwner, getRepository),
+		);
+
+		const getExplainer = lazyValue(async () => await readExplainer(getReadme));
+
+		const getFunding = lazyValue(async () => await readFunding(take));
+
+		const getGitDefaults = lazyValue(async () => await readGitDefaults());
+
+		const getGuide = lazyValue(async () => await readGuide(take));
+
+		const getLogo = lazyValue(async () => await readLogo(getReadme));
+
+		const getPackageData = lazyValue(
+			async () => await readPackageData(getPackageDataFull),
+		);
+
+		const getPackageDataFull = lazyValue(
+			async () => await readPackageDataFull(take),
+		);
+
+		const getNode = lazyValue(
+			async () => await readNode(getNvmrc, getPackageDataFull),
+		);
+
+		const getNpmDefaults = lazyValue(
+			async () => await readNpmDefaults(getWhoami),
+		);
+
+		const getNvmrc = lazyValue(
 			async () =>
 				await take(inputFromFile, {
 					filePath: ".nvmrc",
 				}),
 		);
 
-		const existingLabels = lazyValue(async () =>
-			getExistingLabels(take, await owner(), await repository()),
+		const getOwner = lazyValue(
+			async () => await readOwner(take, getGitDefaults, getPackageAuthor),
 		);
 
-		const githubCliUser = lazyValue(async () => {
-			return swallowError(
-				await take(inputFromScript, {
-					command: "gh config get user -h github.com",
-				}),
-			)?.stdout?.toString();
-		});
-
-		const readme = lazyValue(async () => await readFileSafe("README.md", ""));
-
-		const rulesetId = lazyValue(async () => {
-			const rulesets = (await take(inputFromOctokit, {
-				endpoint: "GET /repos/{owner}/{repo}/rulesets",
-				options: {
-					owner: await owner(),
-					repo: await repository(),
-				},
-			})) as undefined | { id: string; name: string }[];
-
-			return rulesets?.find(
-				(ruleset) => ruleset.name === "Branch protection for main",
-			)?.id;
-		});
-
-		// TODO: Make these all use take
-
-		const gitDefaults = tryCatchLazyValueAsync(async () =>
-			gitUrlParse(await gitRemoteOriginUrl()),
+		const getPackageAuthor = lazyValue(
+			async () => await readPackageAuthor(getPackageDataFull),
 		);
 
-		const npmDefaults = tryCatchLazyValueAsync(async () => {
-			const whoami = (await execaCommand(`npm whoami`)).stdout;
-			return whoami ? await npmUser(whoami) : undefined;
-		});
+		const getPnpm = lazyValue(async () => await readPnpm(getPackageDataFull));
 
-		const packageData = lazyValue(readPackageData);
-		const packageAuthor = lazyValue(async () =>
-			parsePackageAuthor(await packageData()),
+		const getReadme = lazyValue(
+			async () => await readFileSafe("README.md", ""),
 		);
 
-		const author = lazyValue(
+		const getRepository = lazyValue(
 			async () =>
-				(await packageAuthor()).author ??
-				(await npmDefaults())?.name ??
-				options.owner,
+				await readRepository(getGitDefaults, getPackageDataFull, options),
 		);
 
-		const node = lazyValue(async () => {
-			const { engines } = await packageData();
-
-			return {
-				minimum:
-					(engines?.node && /[\d+.]+/.exec(engines.node))?.[0] ?? "18.3.0",
-				pinned: swallowError(await nvmrc())?.trim() ?? "20.18.0",
-			};
-		});
-
-		const pnpm = lazyValue(async () => readPnpm(packageData));
-
-		const version = lazyValue(async () => (await packageData()).version);
-
-		const owner = lazyValue(
-			async () =>
-				(await gitDefaults())?.organization ??
-				(await packageAuthor()).author ??
-				(await githubCliUser()),
+		const getRulesetId = lazyValue(
+			async () => await readRulesetId(take, getOwner, getRepository),
 		);
 
-		const repository = lazyValue(
-			async () =>
-				options.repository ??
-				(await gitDefaults())?.name ??
-				(await packageData()).name ??
-				options.directory,
+		const getTitle = lazyValue(
+			async () => await readTitle(getReadme, getRepository),
 		);
 
-		const email = lazyValue(async () => readEmails(npmDefaults, packageAuthor));
+		const getUsage = lazyValue(
+			async () => await readUsage(getReadme, getRepository),
+		);
+
+		const getVersion = lazyValue(
+			async () => (await getPackageDataFull()).version,
+		);
+
+		const getWhoami = lazyValue(
+			async () => await take(inputFromScript, { command: "npm whoami" }),
+		);
 
 		return {
 			access: "public" as const,
-			author,
-			bin: async () => (await packageData()).bin,
-			contributors: allContributors,
-			description: async () => await readDescription(packageData, readme),
-			documentation,
-			email,
-			existingLabels,
-			funding: readFunding,
-			guide: readGuide,
-			login: author,
-			node,
-			owner,
-			packageData: async () => {
-				const original = await packageData();
-
-				return {
-					dependencies: original.dependencies,
-					devDependencies: original.devDependencies,
-					scripts: original.scripts,
-				};
-			},
-			pnpm,
-			repository,
-			rulesetId,
-			...readDefaultsFromReadme(readme, repository),
-			version,
+			author: getAuthor,
+			bin: getBin,
+			contributors: getAllContributors,
+			description: getDescription,
+			documentation: getDocumentation,
+			email: getEmail,
+			existingLabels: getExistingLabels,
+			explainer: getExplainer,
+			funding: getFunding,
+			guide: getGuide,
+			logo: getLogo,
+			node: getNode,
+			owner: getOwner,
+			packageData: getPackageData,
+			pnpm: getPnpm,
+			repository: getRepository,
+			rulesetId: getRulesetId,
+			title: getTitle,
+			usage: getUsage,
+			version: getVersion,
 		};
 	},
 });

@@ -10,6 +10,8 @@ export interface OptionsLogoSizing {
 export function readLogoSizing(
 	src: string | Uint8Array,
 ): OptionsLogoSizing | undefined {
+	// TODO: create an input that provides the buffer data itself...
+	// ...which likely will need changes in bingo-fs/bingo-systems.
 	const size = imageSizeSafe(src);
 	if (!size) {
 		return undefined;

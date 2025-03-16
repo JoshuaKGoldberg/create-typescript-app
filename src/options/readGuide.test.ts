@@ -1,32 +1,28 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { readGuide } from "./readGuide.js";
 
-const mockReadFileSafe = vi.fn();
-
-vi.mock("./readFileSafe.js", () => ({
-	get readFileSafe() {
-		return mockReadFileSafe;
-	},
-}));
-
 describe(readGuide, () => {
-	it("defaults to undefined when .github/DEVELOPMENT.md cannot be found", async () => {
-		mockReadFileSafe.mockResolvedValue("");
+	it("resolves with undefined when .github/DEVELOPMENT.md cannot be read", async () => {
+		const guide = await readGuide(() => Promise.resolve(new Error("Oh no!")));
 
-		const guide = await readGuide();
+		expect(guide).toBeUndefined();
+	});
+
+	it("resolves with undefined when .github/DEVELOPMENT.md does not contain a guided walkthrough", async () => {
+		const guide = await readGuide(() => Promise.resolve(""));
 
 		expect(guide).toBeUndefined();
 	});
 
 	it("reads the href and title when the tag exists", async () => {
-		mockReadFileSafe.mockResolvedValue(`# Development
+		const guide = await readGuide(() =>
+			Promise.resolve(`# Development
 
 > If you'd like a more guided walkthrough, see [Contributing to a create-typescript-app Repository](https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository).
 > It'll walk you through the common activities you'll need to contribute.
-`);
-
-		const guide = await readGuide();
+`),
+		);
 
 		expect(guide).toEqual({
 			href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",

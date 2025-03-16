@@ -1,6 +1,6 @@
 import { prepareOptions } from "bingo";
 import { readFile } from "fs/promises";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it, test } from "vitest";
 
 import { base } from "./base.js";
 import { AllContributorsData } from "./types.js";
@@ -35,7 +35,6 @@ describe("base", () => {
 				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",
 				title: "Contributing to a create-typescript-app Repository",
 			},
-			login: "Josh Goldberg ✨",
 			logo: {
 				alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
 				height: 128,

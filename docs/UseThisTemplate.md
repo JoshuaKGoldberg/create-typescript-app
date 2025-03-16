@@ -21,10 +21,10 @@ You'll then need to manually go through the following two steps to set up toolin
 Your new repository will then be ready for development!
 Hooray! 🥳
 
-## Options
+## CLI Options
 
 You can customize which pieces of tooling are provided and the options they're created with.
-See [Options.md](./Options.md).
+See [CLI.md](./CLI.md).
 
 For example, skipping the _"This package was templated with..."_ block:
 

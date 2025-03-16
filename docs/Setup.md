@@ -29,7 +29,7 @@ Hooray! 🥳
 ## Options
 
 You can customize which pieces of tooling are provided and the options they're created with.
-See [Options.md](./Options.md).
+See [CLI.md](./CLI.md).
 
 For example, skipping the _"This package was templated with..."_ block:
 

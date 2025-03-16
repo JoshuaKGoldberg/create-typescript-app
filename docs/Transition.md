@@ -38,10 +38,10 @@ Hooray! 🥳
 > You'll want to review each of the changes.
 > There will almost certainly be some incorrect changes you'll need to fix.
 
-## Options
+## CLI Options
 
 You can customize which pieces of tooling are provided and the options they're created with.
-See [Options.md](./Options.md).
+See [CLI.md](./CLI.md).
 
 For example, skipping the _"This package was templated with..."_ block:
 

@@ -114,7 +114,7 @@ export const base = createBase({
 			})
 			.optional()
 			.describe(
-				"local image file in the repository to display near the top of the README.md",
+				"local image file and alt text to display near the top of the README.md",
 			),
 		node: z
 			.object({
@@ -122,10 +122,8 @@ export const base = createBase({
 				pinned: z.string().optional(),
 			})
 			.optional()
-			.describe("node.js engine version(s) to pin and require a minimum of"),
-		owner: z
-			.string()
-			.describe("GitHub organization or user the repository is underneath"),
+			.describe("Node.js engine version(s) to pin and require a minimum of"),
+		owner: z.string().describe("organization or user owning the repository"),
 		packageData: z
 			.object({
 				dependencies: z.record(z.string(), z.string()).optional(),
@@ -149,7 +147,7 @@ export const base = createBase({
 		usage: z
 			.string()
 			.optional()
-			.describe("markdown docs to put in README.md under the ## Usage heading"),
+			.describe("Markdown docs to put in README.md under the ## Usage heading"),
 		version: z
 			.string()
 			.optional()

@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.6.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.5.0...2.6.0) (2025-03-17)
+
+### Features
+
+- add emoji option ([#1984](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1984)) ([c2d239b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c2d239b362657417b569daa56ecbe1b0306b4f99)), closes [#1942](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1942)
+
 # [2.5.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.4.6...2.5.0) (2025-03-12)
 
 ### Features

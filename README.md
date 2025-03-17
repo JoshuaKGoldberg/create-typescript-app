@@ -48,8 +48,8 @@ You can read more about the supported runtime modes in their docs pages:
 You can read more about `create-typescript-app` and the tooling it supports:
 
 1. [**Blocks**](./docs/Blocks.md): a breakdown of all the pieces this template can set up.
-2. [**Options**](./docs/Options.md): granular options to customize how the template is run.
-3. [**FAQs**](./docs/FAQs.md): frequently asked questions
+2. [**CLI**](./docs/CLI.md): providing granular options to customize how the template is run.
+3. [**FAQs**](./docs/FAQs.md): frequently asked questions and troubleshooting
 
 > [!NOTE]  
 > This template is early stage, opinionated, and not endorsed by the TypeScript team.

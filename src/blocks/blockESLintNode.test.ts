@@ -9,52 +9,9 @@ vi.mock("../utils/resolveBin.js", () => ({
 }));
 
 describe("blockESLintNode", () => {
-	test("when options.usage does not have a repository import", () => {
+	test("production", () => {
 		const creation = testBlock(blockESLintNode, {
-			options: { ...optionsBase, usage: `...` },
-		});
-
-		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "extensions": [
-			          "n.configs["flat/recommended"]",
-			          {
-			            "extends": [
-			              "tseslint.configs.disableTypeChecked",
-			            ],
-			            "files": [
-			              "**/*.md/*.ts",
-			            ],
-			          },
-			        ],
-			        "imports": [
-			          {
-			            "source": "eslint-plugin-n",
-			            "specifier": "n",
-			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			}
-		`);
-	});
-
-	test("when options.usage does have a repository import", () => {
-		const creation = testBlock(blockESLintNode, {
-			options: {
-				...optionsBase,
-				usage: `\`\`\`ts
-import { greet } from "${optionsBase.repository}";
-
-greet();
-\`\`\`
-				`,
-			},
+			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -72,14 +29,7 @@ greet();
 			              "**/*.md/*.ts",
 			            ],
 			            "rules": {
-			              "n/no-missing-import": [
-			                "error",
-			                {
-			                  "allowModules": [
-			                    "test-repository",
-			                  ],
-			                },
-			              ],
+			              "n/no-missing-import": "off",
 			            },
 			          },
 			        ],

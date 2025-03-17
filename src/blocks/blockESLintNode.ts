@@ -5,7 +5,7 @@ export const blockESLintNode = base.createBlock({
 	about: {
 		name: "ESLint Node Plugin",
 	},
-	produce({ options }) {
+	produce() {
 		return {
 			addons: [
 				blockESLint({
@@ -14,14 +14,7 @@ export const blockESLintNode = base.createBlock({
 						{
 							extends: ["tseslint.configs.disableTypeChecked"],
 							files: ["**/*.md/*.ts"],
-							...(options.usage?.includes(`from "${options.repository}`) && {
-								rules: {
-									"n/no-missing-import": [
-										"error",
-										{ allowModules: [options.repository] },
-									],
-								},
-							}),
+							rules: { "n/no-missing-import": "off" },
 						},
 					],
 					imports: [{ source: "eslint-plugin-n", specifier: "n" }],

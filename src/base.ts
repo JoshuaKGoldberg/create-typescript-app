@@ -12,6 +12,7 @@ import { readEmailFromCodeOfConduct } from "./options/readEmailFromCodeOfConduct
 import { readEmailFromGit } from "./options/readEmailFromGit.js";
 import { readEmailFromNpm } from "./options/readEmailFromNpm.js";
 import { readEmails } from "./options/readEmails.js";
+import { readEmoji } from "./options/readEmoji.js";
 import { readExistingLabels } from "./options/readExistingLabels.js";
 import { readExplainer } from "./options/readExplainer.js";
 import { readFileSafe } from "./options/readFileSafe.js";
@@ -60,7 +61,7 @@ export const base = createBase({
 			.describe("AllContributors contributors to store in .all-contributorsrc"),
 		description: z
 			.string()
-			.default("A very lovely package. Hooray! 💖")
+			.default("A very lovely package. Hooray!")
 			.describe("'Sentence case.' description of the repository"),
 		directory: z.string().describe("Directory to create the repository in"),
 		documentation: z
@@ -82,6 +83,10 @@ export const base = createBase({
 			.describe(
 				"email address to be listed as the point of contact in docs and packages",
 			),
+		emoji: z
+			.string()
+			.optional()
+			.describe("decorative emoji to use in descriptions and docs"),
 		existingLabels: z
 			.array(
 				z.object({
@@ -175,6 +180,8 @@ export const base = createBase({
 
 		const getBin = lazyValue(async () => (await getPackageDataFull()).bin);
 
+		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
+
 		const getDescription = lazyValue(
 			async () => await readDescription(getPackageDataFull, getReadme),
 		);
@@ -267,7 +274,7 @@ export const base = createBase({
 		);
 
 		const getUsage = lazyValue(
-			async () => await readUsage(getReadme, getRepository),
+			async () => await readUsage(getEmoji, getReadme, getRepository),
 		);
 
 		const getVersion = lazyValue(
@@ -286,6 +293,7 @@ export const base = createBase({
 			description: getDescription,
 			documentation: getDocumentation,
 			email: getEmail,
+			emoji: getEmoji,
 			existingLabels: getExistingLabels,
 			explainer: getExplainer,
 			funding: getFunding,

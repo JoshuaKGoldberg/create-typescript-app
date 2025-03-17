@@ -17,6 +17,7 @@ describe(readUsage, () => {
 		mockGetUsageFromReadme.mockReturnValueOnce(existing);
 
 		const usage = await readUsage(
+			() => Promise.resolve("💖"),
 			() => Promise.resolve(""),
 			() => Promise.resolve(undefined),
 		);
@@ -28,6 +29,7 @@ describe(readUsage, () => {
 		mockGetUsageFromReadme.mockReturnValueOnce(undefined);
 
 		const usage = await readUsage(
+			() => Promise.resolve("💖"),
 			() => Promise.resolve(""),
 			() => Promise.resolve("test-repository"),
 		);

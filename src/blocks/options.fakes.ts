@@ -8,6 +8,7 @@ export const optionsBase = {
 		github: "github@email.com",
 		npm: "npm@email.com",
 	},
+	emoji: "💖",
 	owner: "test-owner",
 	repository: "test-repository",
 	title: "Test Title",

@@ -5,6 +5,7 @@ import { getUsageFromReadme } from "./getUsageFromReadme.js";
 import { readLogoSizing } from "./readLogoSizing.js";
 
 export function readDefaultsFromReadme(
+	emoji: () => Promise<string>,
 	readme: () => Promise<string>,
 	repository: () => Promise<string | undefined>,
 ) {
@@ -83,7 +84,7 @@ npm i ${await repository()}
 \`\`\`ts
 import { greet } from "${await repository()}";
 
-greet("Hello, world! 💖");
+greet("Hello, world! ${await emoji()}");
 \`\`\``
 			);
 		},

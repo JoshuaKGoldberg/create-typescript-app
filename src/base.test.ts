@@ -25,6 +25,7 @@ describe("base", () => {
 				github: "github@joshuakgoldberg.com",
 				npm: "npm@joshuakgoldberg.com",
 			},
+			emoji: "🎁",
 			existingLabels: expect.any(Array),
 			explainer: [
 				`\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.`,

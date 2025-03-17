@@ -41,7 +41,7 @@ describe(readAuthor, () => {
 		expect(actual).toBe(owner);
 	});
 
-	it("returns undefined when no sources provide a valuee", async () => {
+	it("returns undefined when no sources provide a value", async () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({}),
 			() => Promise.resolve(undefined),

@@ -1,4 +1,4 @@
-import { getUsageFromReadme } from "./getUsageFromReadme.js";
+import { readUsageFromReadme } from "./readUsageFromReadme.js";
 
 export async function readUsage(
 	getEmoji: () => Promise<string>,
@@ -6,7 +6,7 @@ export async function readUsage(
 	getRepository: () => Promise<string | undefined>,
 ) {
 	return (
-		getUsageFromReadme(await getReadme()) ??
+		readUsageFromReadme(await getReadme()) ??
 		`\`\`\`shell
 npm i ${await getRepository()}
 \`\`\`

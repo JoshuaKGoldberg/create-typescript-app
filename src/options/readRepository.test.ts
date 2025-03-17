@@ -2,9 +2,6 @@ import { describe, expect, it, vi } from "vitest";
 
 import { readRepository } from "./readRepository.js";
 
-const getOwner = () => Promise.resolve("test-owner");
-const getRepository = () => Promise.resolve("test-repository");
-
 describe(readRepository, () => {
 	it("returns options.repository when it exists", async () => {
 		const repository = "test-repository";

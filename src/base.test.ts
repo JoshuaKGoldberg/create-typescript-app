@@ -1,6 +1,6 @@
 import { prepareOptions } from "bingo";
 import { readFile } from "fs/promises";
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { base } from "./base.js";
 import { AllContributorsData } from "./types.js";

@@ -51,7 +51,7 @@ This table summarizes each block and which base levels they're included in:
 | Vitest                       | `--exclude-vitest`                       |         | ✅     | 💯         |
 | VS Code                      | `--exclude-vs-code`                      |         |        | 💯         |
 
-See also [Options](./Options.md) for how to customize the way template is run.
+See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.
 
 ## "Minimal" Base Level
 

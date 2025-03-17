@@ -164,7 +164,7 @@ The four presets correspond to what have seemed to be the most common user needs
    - Tooling added in this preset should be essential for a TypeScript repository that additionally automates useful GitHub tasks: contributor recognition, release management, and testing.
 3. **Everything**: Power users (including this repository) who want as much of the latest and greatest safety checks and standardization as possible.
 
-Note that you can always customize exactly which preset you use per [Options](./Options.md).
+Note that you can always customize exactly which preset you use per [CLI](./CLI.md).
 
 ## Why does this package include so many tools?
 

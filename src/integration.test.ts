@@ -52,11 +52,12 @@ test("Producing the everything preset matches the files in this repository", asy
 					words: [
 						"Anson",
 						"apexskier",
+						"attw",
 						"dbaeumer",
+						"infile",
 						"joshuakgoldberg",
 						"markdownlintignore",
 						"mtfoley",
-						"infile",
 						"npmjs",
 					],
 				}),

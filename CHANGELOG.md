@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.7.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.6.1...2.7.0) (2025-03-18)
+
+### Features
+
+- infer access option from package.json ([#1989](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1989)) ([3592308](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3592308e31f07149fd9f0f73c3b3f37a1b4c6f3e)), closes [#1988](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1988)
+
 ## [2.6.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.6.0...2.6.1) (2025-03-18)
 
 ### Bug Fixes

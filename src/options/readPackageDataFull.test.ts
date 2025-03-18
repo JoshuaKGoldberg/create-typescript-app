@@ -18,6 +18,7 @@ describe(readPackageDataFull, () => {
 
 		expect(actual).toEqual({});
 	});
+
 	it("returns file data when there is a package.json", async () => {
 		const packageData = { name: "test-name" };
 		const take = vi.fn().mockResolvedValueOnce(packageData);

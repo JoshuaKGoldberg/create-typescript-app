@@ -234,7 +234,12 @@ export const base = createBase({
 		);
 
 		const getNpmDefaults = lazyValue(
-			async () => await readNpmDefaults(getWhoami),
+			async () => await readNpmDefaults(getNpmWhoami),
+		);
+
+		const getNpmWhoami = lazyValue(
+			async () =>
+				await take(inputFromScript, { command: "npm whoami --offline" }),
 		);
 
 		const getNvmrc = lazyValue(
@@ -277,10 +282,6 @@ export const base = createBase({
 
 		const getVersion = lazyValue(
 			async () => (await getPackageDataFull()).version,
-		);
-
-		const getWhoami = lazyValue(
-			async () => await take(inputFromScript, { command: "npm whoami" }),
 		);
 
 		return {

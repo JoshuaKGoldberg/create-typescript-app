@@ -10,15 +10,25 @@ vi.mock("npm-user", () => ({
 	},
 }));
 
+const user = "test-user";
+
 describe(readNpmDefaults, () => {
 	it("returns the corresponding npm user when whoami resolves a value", async () => {
-		const user = "test-user";
 		mockNpmUser.mockResolvedValueOnce(user);
 		const getWhoami = vi.fn().mockResolvedValueOnce({ stdout: "test-whoami" });
 
 		const actual = await readNpmDefaults(getWhoami);
 
 		expect(actual).toBe(user);
+	});
+
+	it("returns undefined when whoami resolves undefined", async () => {
+		const getWhoami = vi.fn().mockResolvedValueOnce(undefined);
+
+		const actual = await readNpmDefaults(getWhoami);
+
+		expect(actual).toBeUndefined();
+		expect(mockNpmUser).not.toHaveBeenCalled();
 	});
 
 	it("returns undefined when whoami resolves no value", async () => {
@@ -28,5 +38,14 @@ describe(readNpmDefaults, () => {
 
 		expect(actual).toBeUndefined();
 		expect(mockNpmUser).not.toHaveBeenCalled();
+	});
+
+	it("returns undefined when whoami resolves a value but npmUser rejects", async () => {
+		const getWhoami = vi.fn().mockResolvedValueOnce(user);
+		mockNpmUser.mockRejectedValueOnce(new Error("Oh no!"));
+
+		const actual = await readNpmDefaults(getWhoami);
+
+		expect(actual).toBeUndefined();
 	});
 });

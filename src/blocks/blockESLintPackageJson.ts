@@ -12,7 +12,7 @@ export const blockESLintPackageJson = base.createBlock({
 					extensions: ["packageJson"],
 					imports: [
 						{
-							source: "eslint-plugin-package-json/configs/recommended",
+							source: "eslint-plugin-package-json",
 							specifier: "packageJson",
 						},
 					],

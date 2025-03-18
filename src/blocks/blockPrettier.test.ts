@@ -60,7 +60,7 @@ describe("blockPrettier", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "9.1.7",
-			            "lint-staged": "15.4.3",
+			            "lint-staged": "15.5.0",
 			            "prettier": "^3.5.3",
 			          },
 			          "lint-staged": {
@@ -172,7 +172,7 @@ describe("blockPrettier", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "9.1.7",
-			            "lint-staged": "15.4.3",
+			            "lint-staged": "15.5.0",
 			            "prettier": "^3.5.3",
 			          },
 			          "lint-staged": {
@@ -299,7 +299,7 @@ describe("blockPrettier", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "9.1.7",
-			            "lint-staged": "15.4.3",
+			            "lint-staged": "15.5.0",
 			            "prettier": "^3.5.3",
 			            "prettier-plugin-curly": "0.3.1",
 			            "prettier-plugin-packagejson": "2.5.10",

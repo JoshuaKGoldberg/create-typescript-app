@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.7.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.0...2.7.1) (2025-03-18)
+
+### Bug Fixes
+
+- use standard packages or link to issues for remaining code TODOs ([#1994](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1994)) ([855c1da](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/855c1dafe6d9030a2f3a29e46e11b1da807b6b0b)), closes [#1987](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1987) [#1990](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1990) [#1991](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1991) [#1992](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1992) [#1993](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1993)
+
 # [2.7.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.6.1...2.7.0) (2025-03-18)
 
 ### Features

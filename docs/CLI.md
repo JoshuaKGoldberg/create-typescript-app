@@ -45,7 +45,7 @@ Each defaults to a value based on the running system, including an repository if
 
 | Flag           | Type       | Description                                                                                                         | Default                                                                               |
 | -------------- | ---------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `--access`     | `string`   | Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with | `"public"` (TODO: file issue for `readAccess`)                                        |
+| `--access`     | `string`   | Which [`npm publish --access`](https://docs.npmjs.com/cli/commands/npm-publish#access) to release npm packages with | `"public"`                                                                            |
 | `--author`     | `string`   | Username on npm to publish packages under                                                                           | An existing npm author, or the currently logged in npm user, or `owner.toLowerCase()` |
 | `--bin`        | `string`   | Value to set in `package.json`'s `"bin"` property, per [FAQs > How can I use `bin`?](./FAQs.md#how-can-i-use-bin)   | _(none)_                                                                              |
 | `--email`      | `string`   | Email address to be listed as the point of contact in docs and packages (e.g. `example@joshuakgoldberg.com`)        | Yours from `gh`, `git config`, or `npm whoami`                                        |

@@ -1,5 +1,5 @@
 // TODO: try to see if we can avoid this altogether...
-// ...or failing that, create a package
+// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1992
 export function resolveBin(bin: string) {
 	// This can't be tested yet in Vitest :(
 	// https://github.com/vitest-dev/vitest/issues/6953

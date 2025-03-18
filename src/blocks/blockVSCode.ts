@@ -1,7 +1,7 @@
+import sortKeys from "sort-keys";
 import { z } from "zod";
 
 import { base } from "../base.js";
-import { sortObject } from "../utils/sortObject.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 
 export const blockVSCode = base.createBlock({
@@ -83,7 +83,7 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 							version: "0.2.0",
 						}),
 					"settings.json": JSON.stringify(
-						sortObject({
+						sortKeys({
 							"editor.formatOnSave": true,
 							"editor.rulers": [80],
 							...settings,

@@ -29,9 +29,6 @@ describe("docs/Blocks.md", () => {
 			continue;
 		}
 
-		// TODO: Enable vitest/eslint-plugin type-checking:
-		// https://github.com/vitest-dev/eslint-plugin-vitest?tab=readme-ov-file#enabling-with-type-testing
-		// eslint-disable-next-line vitest/valid-title
 		test(name, () => {
 			const actualLine = actualLines.find((line) => line.includes(`| ${name}`));
 			const expectedLine = expectedLines[i];

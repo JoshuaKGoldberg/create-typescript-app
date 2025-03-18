@@ -7,8 +7,7 @@ export const inputFromOctokit = createInput({
 		options: z.record(z.string(), z.unknown()).optional(),
 	},
 	// TODO: Strongly type this, then push it upstream to Bingo
-	// This will require smart types around GitHub endpoints, similar to:
-	// https://github.com/JoshuaKGoldberg/bingo/issues/65
+	// https://github.com/JoshuaKGoldberg/bingo/issues/296
 	async produce({ args, fetchers }): Promise<unknown> {
 		try {
 			const response = await fetchers.octokit.request(args.endpoint, {

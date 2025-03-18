@@ -4,8 +4,7 @@ import npmUser from "npm-user";
 import { swallowErrorAsync } from "../utils/swallowErrorAsync.js";
 
 // TODO: npmUser does not go through take(input*), making it harder to test.
-// The next refactor here should add an input.
-
+// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1990
 export async function readNpmDefaults(
 	getNpmWhoami: () => Promise<ExecaError | Result | undefined>,
 ) {

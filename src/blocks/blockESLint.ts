@@ -1,10 +1,10 @@
 // @ts-expect-error -- https://github.com/egoist/parse-package-name/issues/30
 import { parse as parsePackageName } from "parse-package-name";
+import sortKeys from "sort-keys";
 import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
-import { sortObject } from "../utils/sortObject.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
@@ -243,7 +243,7 @@ function printExtension(extension: z.infer<typeof zExtension>) {
 			`linterOptions: ${JSON.stringify(extension.linterOptions)}`,
 		extension.rules && `rules: ${printExtensionRules(extension.rules)},`,
 		extension.settings &&
-			`settings: ${JSON.stringify(sortObject(extension.settings))},`,
+			`settings: ${JSON.stringify(sortKeys(extension.settings))},`,
 		"}",
 	]
 		.filter(Boolean)

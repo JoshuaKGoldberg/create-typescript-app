@@ -34,7 +34,7 @@ export default tseslint.config(
 	jsonc.configs["flat/recommended-with-json"],
 	markdown.configs.recommended,
 	n.configs["flat/recommended"],
-	packageJson,
+	packageJson.configs.recommended,
 	perfectionist.configs["recommended-natural"],
 	regexp.configs["flat/recommended"],
 	{

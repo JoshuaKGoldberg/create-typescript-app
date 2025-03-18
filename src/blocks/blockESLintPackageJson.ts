@@ -9,10 +9,10 @@ export const blockESLintPackageJson = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					extensions: ["packageJson"],
+					extensions: ["packageJson.configs.recommended"],
 					imports: [
 						{
-							source: "eslint-plugin-package-json/configs/recommended",
+							source: "eslint-plugin-package-json",
 							specifier: "packageJson",
 						},
 					],

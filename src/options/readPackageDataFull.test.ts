@@ -3,8 +3,16 @@ import { describe, expect, it, vi } from "vitest";
 import { readPackageDataFull } from "./readPackageDataFull.js";
 
 describe(readPackageDataFull, () => {
-	it("returns {} when there is no package.json", async () => {
-		const take = vi.fn().mockResolvedValueOnce(undefined);
+	it("returns {} when reading package.json results in an error", async () => {
+		const take = vi.fn().mockResolvedValueOnce(new Error("Oh no!"));
+
+		const actual = await readPackageDataFull(take);
+
+		expect(actual).toEqual({});
+	});
+
+	it("returns {} when package.json is empty", async () => {
+		const take = vi.fn().mockResolvedValueOnce("");
 
 		const actual = await readPackageDataFull(take);
 

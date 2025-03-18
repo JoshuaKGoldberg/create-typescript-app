@@ -4,6 +4,7 @@ import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
 import { z } from "zod";
 
+import { readAccess } from "./options/readAccess.js";
 import { readAllContributors } from "./options/readAllContributors.js";
 import { readAuthor } from "./options/readAuthor.js";
 import { readDescription } from "./options/readDescription.js";
@@ -167,6 +168,10 @@ export const base = createBase({
 			.describe("package version to publish as and store in `package.json`"),
 	},
 	prepare({ options, take }) {
+		const getAccess = lazyValue(
+			async () => await readAccess(getPackageDataFull),
+		);
+
 		const getAllContributors = lazyValue(
 			async () => await readAllContributors(take),
 		);
@@ -285,7 +290,7 @@ export const base = createBase({
 		);
 
 		return {
-			access: "public" as const,
+			access: getAccess,
 			author: getAuthor,
 			bin: getBin,
 			contributors: getAllContributors,

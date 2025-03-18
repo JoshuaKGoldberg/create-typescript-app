@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.7.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.1...2.7.2) (2025-03-18)
+
+### Bug Fixes
+
+- ran ncu -u (March 18th) ([#1996](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1996)) ([37d7748](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/37d774847e9a28437e6520f61ba31a2f48cef03e)), closes [#1995](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1995)
+
 ## [2.7.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.0...2.7.1) (2025-03-18)
 
 ### Bug Fixes

@@ -1,4 +1,4 @@
-export async function parseEmojiFromDescription(
+export async function readEmoji(
 	getDescription: () => Promise<string | undefined>,
 ) {
 	return (

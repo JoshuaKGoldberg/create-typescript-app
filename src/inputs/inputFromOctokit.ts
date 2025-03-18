@@ -15,6 +15,7 @@ export const inputFromOctokit = createInput({
 				headers: {
 					"X-GitHub-Api-Version": "2022-11-28",
 				},
+				request: { retries: 0 },
 				...args.options,
 			});
 

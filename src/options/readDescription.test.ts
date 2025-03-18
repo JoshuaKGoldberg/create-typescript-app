@@ -13,6 +13,16 @@ vi.mock("../data/packageData.js", () => ({
 }));
 
 describe(readDescription, () => {
+	it("returns undefined when the there is no package.json description", async () => {
+		const description = await readDescription(
+			() => Promise.resolve({}),
+			() => Promise.resolve(""),
+		);
+
+		expect(description).toBeUndefined();
+		expect(mockPackageDataDescription).not.toHaveBeenCalled();
+	});
+
 	it("returns undefined when the description matches the current package.json description", async () => {
 		const existing = "Same description.";
 

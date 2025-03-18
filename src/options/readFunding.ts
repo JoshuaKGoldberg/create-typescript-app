@@ -1,9 +1,12 @@
-import fs from "node:fs/promises";
+import { TakeInput } from "bingo";
+import { inputFromFile } from "input-from-file";
 
-import { tryCatchAsync } from "../utils/tryCatchAsync.js";
+import { swallowError } from "../utils/swallowError.js";
 
-export async function readFunding() {
-	return await tryCatchAsync(async () =>
-		(await fs.readFile(".github/FUNDING.yml")).toString().split(":")[1]?.trim(),
-	);
+export async function readFunding(take: TakeInput) {
+	return swallowError(
+		await take(inputFromFile, { filePath: ".github/FUNDING.yml" }),
+	)
+		?.split(":")[1]
+		?.trim();
 }

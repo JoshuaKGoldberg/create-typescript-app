@@ -1,7 +1,15 @@
-import { readFileSafe } from "./readFileSafe.js";
+import { TakeInput } from "bingo";
+import { inputFromFile } from "input-from-file";
 
-export async function readGuide() {
-	const development = await readFileSafe(".github/DEVELOPMENT.md", "");
+export async function readGuide(take: TakeInput) {
+	const development = await take(inputFromFile, {
+		filePath: ".github/DEVELOPMENT.md",
+	});
+
+	if (development instanceof Error) {
+		return undefined;
+	}
+
 	const tag = /> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i.exec(
 		development,
 	);

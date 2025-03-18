@@ -1,7 +1,7 @@
 const startDevelopment = "## Development";
 const startUsage = "## Usage";
 
-export function getUsageFromReadme(readme: string) {
+export function readUsageFromReadme(readme: string) {
 	const indexOfUsage = readme.indexOf(startUsage);
 	if (indexOfUsage === -1) {
 		return undefined;

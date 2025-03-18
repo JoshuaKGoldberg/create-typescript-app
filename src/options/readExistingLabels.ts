@@ -4,11 +4,13 @@ import { OutcomeLabel } from "set-github-repository-labels";
 
 import { inputFromOctokit } from "../inputs/inputFromOctokit.js";
 
-export async function getExistingLabels(
+export async function readExistingLabels(
 	take: TakeInput,
-	owner: string | undefined,
-	repository: string | undefined,
+	getOwner: () => Promise<string | undefined>,
+	getRepository: () => Promise<string | undefined>,
 ) {
+	const [owner, repository] = await Promise.all([getOwner(), getRepository()]);
+
 	// When transitioning an existing repo, it should already have labels
 	const existingLabelsActual =
 		owner &&

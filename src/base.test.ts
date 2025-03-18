@@ -36,7 +36,6 @@ describe("base", () => {
 				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",
 				title: "Contributing to a create-typescript-app Repository",
 			},
-			login: "Josh Goldberg ✨",
 			logo: {
 				alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
 				height: 128,

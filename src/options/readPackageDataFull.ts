@@ -12,6 +12,6 @@ export async function readPackageDataFull(
 			await take(inputFromFileJSON, {
 				filePath: "./package.json",
 			}),
-		) ?? {}
+		) || {}
 	);
 }

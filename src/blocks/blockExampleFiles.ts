@@ -16,8 +16,8 @@ export const blockExampleFiles = base.createBlock({
 			},
 		};
 	},
-	// TODO: Make produce() optional
-	// This needs createBlock to be generic to know if block.produce({}) is ok
+	// TODO: Make produce() optional, so this empty-ish produce() can be removed
+	// https://github.com/JoshuaKGoldberg/bingo/issues/295
 	produce() {
 		return {};
 	},

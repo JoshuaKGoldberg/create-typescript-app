@@ -2,6 +2,7 @@ import * as htmlToText from "html-to-text";
 import removeUndefinedObjects from "remove-undefined-objects";
 import sortPackageJson from "sort-package-json";
 import { z } from "zod";
+import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.js";
 import { CommandPhase } from "./phases.js";
@@ -12,19 +13,7 @@ export const blockPackageJson = base.createBlock({
 	},
 	addons: {
 		cleanupCommands: z.array(z.string()).default([]),
-		// TODO: Find a zod package for this?
-		properties: z
-			.intersection(
-				z.object({
-					dependencies: z.record(z.string(), z.string()).optional(),
-					devDependencies: z.record(z.string(), z.string()).optional(),
-					files: z.array(z.string()).optional(),
-					peerDependencies: z.record(z.string(), z.string()).optional(),
-					scripts: z.record(z.string(), z.string()).optional(),
-				}),
-				z.record(z.string(), z.unknown()),
-			)
-			.default({}),
+		properties: PackageJson.partial().default({}),
 	},
 	produce({ addons, offline, options }) {
 		const dependencies = {

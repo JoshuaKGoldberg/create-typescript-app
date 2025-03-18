@@ -78,6 +78,7 @@ export const base = createBase({
 				}),
 			])
 			// TODO: Test this? Is it still working?
+			// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1991
 			.transform((email) =>
 				typeof email === "string" ? { github: email, npm: email } : email,
 			)
@@ -220,7 +221,7 @@ export const base = createBase({
 
 		const getFunding = lazyValue(async () => await readFunding(take));
 
-		const getGitDefaults = lazyValue(async () => await readGitDefaults());
+		const getGitDefaults = lazyValue(async () => await readGitDefaults(take));
 
 		const getGuide = lazyValue(async () => await readGuide(take));
 

@@ -42,7 +42,6 @@
 		"bingo-stratum": "^0.5.5",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",
-		"git-remote-origin-url": "^4.0.0",
 		"git-url-parse": "^16.0.1",
 		"github-default-labels": "^0.1.0",
 		"html-to-text": "^9.0.5",
@@ -60,9 +59,11 @@
 		"remove-dependencies": "^0.1.0",
 		"remove-undefined-objects": "^6.0.0",
 		"set-github-repository-labels": "^0.2.0",
+		"sort-keys": "^5.1.0",
 		"sort-package-json": "^3.0.0",
 		"title-case": "^4.3.2",
-		"zod": "^3.24.2"
+		"zod": "^3.24.2",
+		"zod-package-json": "^1.1.0"
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.4.1",
@@ -77,7 +78,7 @@
 		"@types/node": "22.13.9",
 		"@types/parse-author": "2.0.3",
 		"@vitest/coverage-v8": "3.0.7",
-		"@vitest/eslint-plugin": "1.1.36",
+		"@vitest/eslint-plugin": "1.1.38",
 		"all-contributors-cli": "6.26.1",
 		"bingo-requests": "^0.5.4",
 		"bingo-stratum-testers": "0.5.6",

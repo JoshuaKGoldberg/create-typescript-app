@@ -20,7 +20,12 @@ export interface PartialPackageData {
 	engines?: { node?: string };
 	name?: string;
 	packageManager?: string;
+	publishConfig?: PartialPublishConfig;
 	repository?: string | { type: string; url: string };
 	scripts?: Record<string, string>;
 	version?: string;
+}
+
+interface PartialPublishConfig {
+	access?: "public" | "restricted";
 }

@@ -4,10 +4,6 @@ import { describe, expect, test, vi } from "vitest";
 import { blockESLintPackageJson } from "./blockESLintPackageJson.js";
 import { optionsBase } from "./options.fakes.js";
 
-vi.mock("../utils/resolveBin.js", () => ({
-	resolveBin: (bin: string) => `path/to/${bin}`,
-}));
-
 describe("blockESLintPackageJson", () => {
 	test("production", () => {
 		const creation = testBlock(blockESLintPackageJson, {
@@ -20,7 +16,7 @@ describe("blockESLintPackageJson", () => {
 			    {
 			      "addons": {
 			        "extensions": [
-			          "packageJson",
+			          "packageJson.configs.recommended",
 			        ],
 			        "imports": [
 			          {

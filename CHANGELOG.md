@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.6.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.6.0...2.6.1) (2025-03-18)
+
+### Bug Fixes
+
+- refactor Base options to (mostly) properly use Bingo Inputs ([#1985](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1985)) ([963df5a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/963df5a0948bfd243097f4bf62b6c10a364a6e67)), closes [#1973](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1973)
+
 # [2.6.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.5.0...2.6.0) (2025-03-17)
 
 ### Features

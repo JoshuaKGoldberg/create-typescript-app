@@ -94,7 +94,7 @@ export { blockCodecov } from "./blockCodecov.js";
 export { blockContributingDocs } from "./blockContributingDocs.js";
 export { blockContributorCovenant } from "./blockContributorCovenant.js";
 export { blockCSpell } from "./blockCSpell.js";
-export { blockCTAUpdates } from "./blockCTAUpdates.js";
+export { blockCTATransitions } from "./blockCTATransitions.js";
 export { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 export { blockESLint } from "./blockESLint.js";
 export { blockESLintComments } from "./blockESLintComments.js";

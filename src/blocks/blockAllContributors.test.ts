@@ -13,6 +13,14 @@ describe("blockAllContributors", () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/.all-contributorsrc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "badges": [
 			          "<!-- prettier-ignore-start -->
 				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -104,6 +112,14 @@ describe("blockAllContributors", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/.all-contributorsrc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			    {
 			      "addons": {
 			        "badges": [

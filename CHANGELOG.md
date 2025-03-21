@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.8.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.3...2.8.0) (2025-03-21)
+
+### Features
+
+- add opt-in Block for automatic CTA transitions for Renovate ([#2000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2000)) ([57f70c3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/57f70c3ab01664559b5b81310b3c62934d9efddd)), closes [#1965](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1965)
+
 ## [2.7.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.2...2.7.3) (2025-03-21)
 
 ### Bug Fixes

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.8.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.8.0...2.8.1) (2025-03-21)
+
+### Bug Fixes
+
+- add /.all-contributorsrc back to .prettierignore again ([#2004](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2004)) ([451db09](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/451db092d54ca69af9932b56679f9f44367f75db)), closes [#2001](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2001) [#838](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/838)
+
 # [2.8.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.3...2.8.0) (2025-03-21)
 
 ### Features

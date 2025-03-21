@@ -39,7 +39,7 @@
 	"dependencies": {
 		"bingo": "^0.5.8",
 		"bingo-fs": "^0.5.4",
-		"bingo-stratum": "^0.5.5",
+		"bingo-stratum": "^0.5.7",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",
 		"git-url-parse": "^16.0.1",
@@ -62,6 +62,7 @@
 		"sort-keys": "^5.1.0",
 		"sort-package-json": "^3.0.0",
 		"title-case": "^4.3.2",
+		"trash-cli": "^6.0.0",
 		"zod": "^3.24.2",
 		"zod-package-json": "^1.1.0"
 	},

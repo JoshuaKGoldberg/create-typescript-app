@@ -20,6 +20,7 @@ export const blockCTATransitions = base.createBlock({
 									"${{github.event.pull_request.head.repo.full_name}}",
 								token: '"${{ secrets.ACCESS_TOKEN }}"',
 							},
+							if: "${{ startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app') }}",
 							name: "CTA Transitions",
 							steps: [
 								{ run: "pnpx create-typescript-app" },

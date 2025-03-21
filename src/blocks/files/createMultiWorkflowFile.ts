@@ -8,6 +8,7 @@ export interface MultiWorkflowFileOptions {
 
 export interface MultiWorkflowJobOptions {
 	checkoutWith?: Record<string, string>;
+	if?: string;
 	name: string;
 	steps: MultiWorkflowJobStep[];
 }
@@ -26,10 +27,11 @@ export function createMultiWorkflowFile({
 			jobs.map((job) => [
 				createJobName(job.name),
 				{
+					if: job.if,
 					name: job.name,
 					"runs-on": "ubuntu-latest",
 					steps: [
-						{ uses: "actions/checkout@v4", ...job.checkoutWith },
+						{ uses: "actions/checkout@v4", with: job.checkoutWith },
 						{ uses: "./.github/actions/prepare" },
 						...job.steps,
 					],

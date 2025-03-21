@@ -28,6 +28,15 @@ describe("blockRemoveFiles", () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
+	test("with mode", () => {
+		const creation = testBlock(blockRemoveFiles, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`{}`);
+	});
+
 	test("with addons and mode", () => {
 		const creation = testBlock(blockRemoveFiles, {
 			addons: {

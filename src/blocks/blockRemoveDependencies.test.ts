@@ -28,6 +28,29 @@ describe("blockRemoveDependencies", () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
+	test("with addons", () => {
+		const creation = testBlock(blockRemoveDependencies, {
+			addons: {
+				dependencies: ["a", "b", "c"],
+			},
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "scripts": [
+			    {
+			      "commands": [
+			        "node path/to/remove-dependencies/bin/index.js a b c",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
+			}
+		`);
+	});
+
 	test("with addons and mode", () => {
 		const creation = testBlock(blockRemoveDependencies, {
 			addons: {

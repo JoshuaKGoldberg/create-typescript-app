@@ -260,7 +260,6 @@ describe("blockPackageJson", () => {
 			  "test-dependency": "1.1.0",
 			}
 		`);
-		//
 	});
 
 	it("preserves an existing dependency when the addon has an older version minimum", () => {
@@ -351,7 +350,6 @@ describe("blockPackageJson", () => {
 			  "test-dependency": "1.0.0",
 			}
 		`);
-		//
 	});
 
 	it("replaces an existing dependency when the addon has a newer version", () => {
@@ -382,7 +380,6 @@ describe("blockPackageJson", () => {
 			  "test-dependency": "1.1.0",
 			}
 		`);
-		//
 	});
 
 	it("replaces an existing dependency when the addon has a newer version than the first range element", () => {
@@ -413,7 +410,6 @@ describe("blockPackageJson", () => {
 			  "test-dependency": "^1.1.0",
 			}
 		`);
-		//
 	});
 
 	it("preserves an existing devDependency when the addon has an older pinned version", () => {
@@ -444,7 +440,6 @@ describe("blockPackageJson", () => {
 			  "test-dependency": "1.0.0",
 			}
 		`);
-		//
 	});
 
 	it("merges an existing devDependency when the addon has the same version", () => {
@@ -475,7 +470,6 @@ describe("blockPackageJson", () => {
 			  "test-dependency": "1.0.0",
 			}
 		`);
-		//
 	});
 
 	it("replaces an existing devDependency when the addon has a newer version", () => {
@@ -506,6 +500,5 @@ describe("blockPackageJson", () => {
 			  "test-dependency": "1.1.0",
 			}
 		`);
-		//
 	});
 });

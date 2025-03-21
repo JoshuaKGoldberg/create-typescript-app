@@ -162,6 +162,9 @@ describe("blockVitest", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "test",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -400,6 +403,9 @@ describe("blockVitest", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "test",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -462,6 +468,27 @@ describe("blockVitest", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "dependencies": [
+			          "eslint-plugin-jest",
+			          "eslint-plugin-mocha",
+			          "eslint-plugin-vitest",
+			          "jest mocha",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".mocha*",
+			          "jest.config.*",
+			          "vitest.config.{c,j,m}*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "vitest.config.ts": "import { defineConfig } from "vitest/config";
@@ -480,21 +507,6 @@ describe("blockVitest", () => {
 			});
 				",
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "node path/to/remove-dependencies/bin/index.js eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha",
-			      ],
-			      "phase": 3,
-			    },
-			    {
-			      "commands": [
-			        "rm .mocha* jest.config.* vitest.config.*",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
 			}
 		`);
 	});
@@ -658,6 +670,9 @@ describe("blockVitest", () => {
 			              },
 			            ],
 			          },
+			        ],
+			        "removedWorkflows": [
+			          "test",
 			        ],
 			      },
 			      "block": [Function],

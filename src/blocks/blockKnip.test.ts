@@ -43,6 +43,10 @@ describe("blockKnip", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "knip",
+			          "lint-knip",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -104,6 +108,10 @@ describe("blockKnip", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "knip",
+			          "lint-knip",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -163,6 +171,10 @@ describe("blockKnip", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "knip",
+			          "lint-knip",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -179,19 +191,21 @@ describe("blockKnip", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".knip*",
+			          "knip.{c,m,t}*",
+			          "knip.js",
+			          "knip.jsonc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/index.ts","src/**/*.test.*"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "rm .knip* knip.*",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
 			}
 		`);
 	});

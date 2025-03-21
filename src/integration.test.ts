@@ -53,12 +53,15 @@ test("Producing the everything preset matches the files in this repository", asy
 						"Anson",
 						"apexskier",
 						"attw",
+						"boop",
 						"dbaeumer",
 						"infile",
 						"joshuakgoldberg",
 						"markdownlintignore",
+						"mshick",
 						"mtfoley",
 						"npmjs",
+						"stefanzweifel",
 					],
 				}),
 				blockESLint({
@@ -93,6 +96,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 						"all-contributors-cli",
 						"cspell-populate-words",
 						"remove-dependencies",
+						"trash-cli",
 					],
 				}),
 				blockTSup({

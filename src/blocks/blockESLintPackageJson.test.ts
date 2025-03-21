@@ -27,6 +27,33 @@ describe("blockESLintPackageJson", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "removedWorkflows": [
+			          "lint-package-json",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "scripts": {
+			            "lint:package-json": undefined,
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "dependencies": [
+			          "npm-package-json-lint",
+			          "npm-package-json-lint-config-default",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			}
 		`);

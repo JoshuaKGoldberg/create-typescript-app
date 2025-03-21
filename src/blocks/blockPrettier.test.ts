@@ -52,6 +52,10 @@ describe("blockPrettier", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "format",
+			          "prettier",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -164,6 +168,10 @@ describe("blockPrettier", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "format",
+			          "prettier",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -197,6 +205,15 @@ describe("blockPrettier", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".prettierrc.{c*,js,m*,t*}",
+			          "prettier.config*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    ".husky": {
@@ -222,13 +239,6 @@ describe("blockPrettier", () => {
 			        "pnpm format --write",
 			      ],
 			      "phase": 4,
-			    },
-			    {
-			      "commands": [
-			        "rm .prettierrc* prettier.config*",
-			      ],
-			      "phase": 0,
-			      "silent": true,
 			    },
 			  ],
 			}
@@ -290,6 +300,10 @@ describe("blockPrettier", () => {
 			              },
 			            ],
 			          },
+			        ],
+			        "removedWorkflows": [
+			          "format",
+			          "prettier",
 			        ],
 			      },
 			      "block": [Function],

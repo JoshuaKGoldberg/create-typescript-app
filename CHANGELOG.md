@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.7.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.2...2.7.3) (2025-03-21)
+
+### Bug Fixes
+
+- preserve existing package.json dependency versions as minimums ([#1999](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1999)) ([4b1d084](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4b1d084bf74a15ed71500ff07f63a6d5ac3495a6)), closes [#1997](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1997)
+
 ## [2.7.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.7.1...2.7.2) (2025-03-18)
 
 ### Bug Fixes

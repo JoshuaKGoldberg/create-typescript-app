@@ -96,6 +96,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 						"all-contributors-cli",
 						"cspell-populate-words",
 						"remove-dependencies",
+						"trash-cli",
 					],
 				}),
 				blockTSup({

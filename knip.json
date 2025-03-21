@@ -4,7 +4,8 @@
 	"ignoreDependencies": [
 		"all-contributors-cli",
 		"cspell-populate-words",
-		"remove-dependencies"
+		"remove-dependencies",
+		"trash-cli"
 	],
 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
 	"project": ["src/**/*.ts"]

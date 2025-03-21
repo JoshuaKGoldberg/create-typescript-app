@@ -62,7 +62,7 @@ describe("blockCTATransitions", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "create-typescript-app": "2.7.3",
+			            "create-typescript-app": "2.8.0",
 			          },
 			        },
 			      },

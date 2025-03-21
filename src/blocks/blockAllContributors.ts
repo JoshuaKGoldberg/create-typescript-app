@@ -2,6 +2,7 @@ import _ from "lodash";
 
 import { base, Contributor } from "../base.js";
 import { ownerContributions } from "../data/contributions.js";
+import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
@@ -15,6 +16,9 @@ export const blockAllContributors = base.createBlock({
 		const contributions = options.contributors?.length;
 		return {
 			addons: [
+				blockPrettier({
+					ignores: ["/.all-contributorsrc"],
+				}),
 				blockREADME({
 					badges: [
 						`<!-- prettier-ignore-start -->

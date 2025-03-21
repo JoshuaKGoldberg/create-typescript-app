@@ -69,6 +69,7 @@ export * from "./types.js";
 				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+					removedWorkflows: ["tsc"],
 				}),
 				blockMarkdownlint({
 					ignores: ["lib/"],

@@ -43,6 +43,12 @@ export const blockMarkdownlint = base.createBlock({
 							steps: [{ run: "pnpm lint:md" }],
 						},
 					],
+					removedWorkflows: [
+						"lint-md",
+						"lint-markdown",
+						"lint-markdownlint",
+						"markdownlint",
+					],
 				}),
 				blockPackageJson({
 					properties: {

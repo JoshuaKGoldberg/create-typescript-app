@@ -6,6 +6,7 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { formatIgnoreFile } from "./files/formatIgnoreFile.js";
 import { CommandPhase } from "./phases.js";
@@ -59,6 +60,7 @@ pnpm format --write
 							steps: [{ run: "pnpm format --list-different" }],
 						},
 					],
+					removedWorkflows: ["format", "prettier"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -107,12 +109,10 @@ pnpm format --write
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: ["rm .prettierrc* prettier.config*"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
+			addons: [
+				blockRemoveFiles({
+					files: [".prettierrc.{c*,js,m*,t*}", "prettier.config*"],
+				}),
 			],
 		};
 	},

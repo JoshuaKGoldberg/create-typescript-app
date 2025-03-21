@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
-import { resolveBin } from "../utils/resolveBin.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
@@ -11,9 +10,10 @@ import { blockGitHubActionsCI, zActionStep } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { CommandPhase } from "./phases.js";
 
 export const blockVitest = base.createBlock({
 	about: {
@@ -142,6 +142,7 @@ describe(greet, () => {
 							steps: [{ run: "pnpm run test --coverage" }, ...actionSteps],
 						},
 					],
+					removedWorkflows: ["test"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -205,18 +206,18 @@ export default defineConfig({
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: [
-						`node ${resolveBin("remove-dependencies/bin/index.js")} eslint-plugin-jest eslint-plugin-mocha eslint-plugin-vitest jest mocha`,
+			addons: [
+				blockRemoveDependencies({
+					dependencies: [
+						"eslint-plugin-jest",
+						"eslint-plugin-mocha",
+						"eslint-plugin-vitest",
+						"jest mocha",
 					],
-					phase: CommandPhase.Process,
-				},
-				{
-					commands: ["rm .mocha* jest.config.* vitest.config.*"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
+				}),
+				blockRemoveFiles({
+					files: [".mocha*", "jest.config.*", "vitest.config.{c,j,m}*"],
+				}),
 			],
 		};
 	},

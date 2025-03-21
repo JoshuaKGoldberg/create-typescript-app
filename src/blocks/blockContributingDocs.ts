@@ -1,5 +1,5 @@
 import { base } from "../base.js";
-import { CommandPhase } from "./phases.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
 export const blockContributingDocs = base.createBlock({
 	about: {
@@ -113,13 +113,7 @@ ${options.emoji} is a good starter if you're not sure which to use.
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: ["rm CONTRIBUTING.md"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
+			addons: [blockRemoveFiles({ files: ["CONTRIBUTING.md"] })],
 		};
 	},
 });

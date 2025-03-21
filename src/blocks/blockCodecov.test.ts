@@ -71,14 +71,14 @@ describe("blockCodecov", () => {
 			      },
 			      "block": [Function],
 			    },
-			  ],
-			  "scripts": [
 			    {
-			      "commands": [
-			        "rm .github/codecov.yml codecov.yml",
-			      ],
-			      "phase": 0,
-			      "silent": true,
+			      "addons": {
+			        "files": [
+			          ".github/codecov.yml",
+			          "codecov.yml",
+			        ],
+			      },
+			      "block": [Function],
 			    },
 			  ],
 			}

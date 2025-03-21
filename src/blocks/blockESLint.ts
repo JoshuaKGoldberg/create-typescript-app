@@ -9,6 +9,8 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { CommandPhase } from "./phases.js";
 
@@ -159,6 +161,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 							],
 						},
 					],
+					removedWorkflows: ["eslint", "lint"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -220,12 +223,22 @@ export default tseslint.config(
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: ["rm .eslintrc* .eslintignore eslint.config.*"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
+			addons: [
+				blockRemoveDependencies({
+					dependencies: [
+						"@types/eslint",
+						"@typescript-eslint/eslint-plugin",
+						"@typescript-eslint/parser",
+						"eslint-plugin-deprecation",
+						"eslint-plugin-eslint-comments",
+						"eslint-plugin-no-only-tests",
+						"jsonc-eslint-parser",
+						"yaml-eslint-parser",
+					],
+				}),
+				blockRemoveFiles({
+					files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,mjs}"],
+				}),
 			],
 		};
 	},

@@ -2,11 +2,12 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
-import { resolveBin } from "../utils/resolveBin.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockTSup = base.createBlock({
@@ -56,6 +57,7 @@ pnpm build --watch
 							],
 						},
 					],
+					removedWorkflows: ["build", "tsup"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -91,18 +93,13 @@ export default defineConfig({
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: [
-						`node ${resolveBin("remove-dependencies/bin/index.js")} @babel/core babel`,
-					],
-					phase: CommandPhase.Process,
-				},
-				{
-					commands: ["rm -rf .babelrc* babel.config.* dist lib"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
+			addons: [
+				blockRemoveDependencies({
+					dependencies: ["@babel/core", "babel"],
+				}),
+				blockRemoveFiles({
+					files: [".babelrc*", "babel.config.*", "dist", "lib"],
+				}),
 			],
 		};
 	},

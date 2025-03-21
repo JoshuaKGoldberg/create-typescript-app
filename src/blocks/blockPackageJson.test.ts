@@ -39,6 +39,16 @@ describe("blockPackageJson", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "files": [
+			          "package-lock.json yarn.lock",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
 			  "files": {
 			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","files":["README.md","package.json"]}",
 			  },
@@ -48,13 +58,6 @@ describe("blockPackageJson", () => {
 			        "pnpm install",
 			      ],
 			      "phase": 1,
-			    },
-			    {
-			      "commands": [
-			        "rm package-lock.json yarn.lock",
-			      ],
-			      "phase": 0,
-			      "silent": true,
 			    },
 			  ],
 			}

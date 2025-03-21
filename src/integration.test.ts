@@ -3,7 +3,7 @@ import { prepareOptions } from "bingo";
 import { intake, IntakeDirectory } from "bingo-fs";
 import { producePreset } from "bingo-stratum";
 import { diffCreatedDirectory } from "bingo-testers";
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 
 import {
 	base,
@@ -17,6 +17,10 @@ import {
 	blockTSup,
 	presets,
 } from "./index.js";
+
+vi.mock("./utils/resolveBin.js", () => ({
+	resolveBin: (bin: string) => `node_modules/${bin}`,
+}));
 
 // This test checks the Bingo production using options inferred from disk,
 // along with some explicit addons and blocks specified.

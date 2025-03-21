@@ -2,10 +2,10 @@ import jsYaml from "js-yaml";
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { CommandPhase } from "./phases.js";
 
 export const zActionStep = z.intersection(
 	z.object({
@@ -31,6 +31,7 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
+		removedWorkflows: z.array(z.string()).optional(),
 	},
 	produce({ addons }) {
 		const { jobs } = addons;
@@ -128,14 +129,19 @@ export const blockGitHubActionsCI = base.createBlock({
 			},
 		};
 	},
-	transition() {
+	transition({ addons }) {
+		const { removedWorkflows = [] } = addons;
 		return {
-			scripts: [
-				{
-					commands: ["rm -rf .circleci travis.yml"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
+			addons: [
+				blockRemoveFiles({
+					files: [
+						".circleci",
+						"travis.yml",
+						...removedWorkflows.map(
+							(removedWorkflow) => `.github/workflows/${removedWorkflow}.yml`,
+						),
+					],
+				}),
 			],
 		};
 	},

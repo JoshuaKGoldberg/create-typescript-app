@@ -6,7 +6,14 @@ import { z } from "zod";
 import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { CommandPhase } from "./phases.js";
+
+const PackageJsonWithNullableScripts = PackageJson.partial().extend({
+	scripts: z
+		.record(z.string(), z.union([z.string(), z.undefined()]))
+		.optional(),
+});
 
 export const blockPackageJson = base.createBlock({
 	about: {
@@ -14,7 +21,7 @@ export const blockPackageJson = base.createBlock({
 	},
 	addons: {
 		cleanupCommands: z.array(z.string()).default([]),
-		properties: PackageJson.partial().default({}),
+		properties: PackageJsonWithNullableScripts.default({}),
 	},
 	produce({ addons, offline, options }) {
 		const dependencies = useLargerVersions(options.packageData?.dependencies, {
@@ -96,13 +103,7 @@ export const blockPackageJson = base.createBlock({
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: ["rm package-lock.json yarn.lock"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
+			addons: [blockRemoveFiles({ files: ["package-lock.json yarn.lock"] })],
 		};
 	},
 });

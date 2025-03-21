@@ -60,6 +60,10 @@ describe("blockTSup", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "build",
+			          "tsup",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -147,6 +151,10 @@ describe("blockTSup", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "build",
+			          "tsup",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -160,6 +168,26 @@ describe("blockTSup", () => {
 			            "build": "tsup",
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "dependencies": [
+			          "@babel/core",
+			          "babel",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".babelrc*",
+			          "babel.config.*",
+			          "dist",
+			          "lib",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -177,21 +205,6 @@ describe("blockTSup", () => {
 			});
 			",
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "node path/to/remove-dependencies/bin/index.js @babel/core babel",
-			      ],
-			      "phase": 3,
-			    },
-			    {
-			      "commands": [
-			        "rm -rf .babelrc* babel.config.* dist lib",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
 			}
 		`);
 	});
@@ -249,6 +262,10 @@ describe("blockTSup", () => {
 			              },
 			            ],
 			          },
+			        ],
+			        "removedWorkflows": [
+			          "build",
+			          "tsup",
 			        ],
 			      },
 			      "block": [Function],

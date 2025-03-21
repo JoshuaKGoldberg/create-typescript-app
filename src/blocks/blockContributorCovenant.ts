@@ -1,5 +1,5 @@
 import { base } from "../base.js";
-import { CommandPhase } from "./phases.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
 export const blockContributorCovenant = base.createBlock({
 	about: {
@@ -148,13 +148,7 @@ For answers to common questions about this code of conduct, see the FAQ at
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: ["rm CODE_OF_CONDUCT.md"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
+			addons: [blockRemoveFiles({ files: ["CODE_OF_CONDUCT.md"] })],
 		};
 	},
 });

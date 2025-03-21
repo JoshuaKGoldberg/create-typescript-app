@@ -393,7 +393,5 @@
 	],
 	"contributorsSortAlphabetically": true,
 	"projectName": "create-typescript-app",
-	"projectOwner": "JoshuaKGoldberg",
-	"repoType": "github",
-	"commitConvention": "angular"
+	"projectOwner": "JoshuaKGoldberg"
 }

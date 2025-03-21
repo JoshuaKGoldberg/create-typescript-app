@@ -1,12 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readPackageDataFull } from "./readPackageDataFull.js";
+import { readPackageData } from "./readPackageData.js";
 
-describe(readPackageDataFull, () => {
+describe(readPackageData, () => {
 	it("returns {} when reading package.json results in an error", async () => {
 		const take = vi.fn().mockResolvedValueOnce(new Error("Oh no!"));
 
-		const actual = await readPackageDataFull(take);
+		const actual = await readPackageData(take);
 
 		expect(actual).toEqual({});
 	});
@@ -14,7 +14,7 @@ describe(readPackageDataFull, () => {
 	it("returns {} when package.json is empty", async () => {
 		const take = vi.fn().mockResolvedValueOnce("");
 
-		const actual = await readPackageDataFull(take);
+		const actual = await readPackageData(take);
 
 		expect(actual).toEqual({});
 	});
@@ -23,7 +23,7 @@ describe(readPackageDataFull, () => {
 		const packageData = { name: "test-name" };
 		const take = vi.fn().mockResolvedValueOnce(packageData);
 
-		const actual = await readPackageDataFull(take);
+		const actual = await readPackageData(take);
 
 		expect(actual).toBe(packageData);
 	});

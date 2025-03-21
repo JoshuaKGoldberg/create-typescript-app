@@ -24,6 +24,8 @@ export const blockGitHubActionsCI = base.createBlock({
 		jobs: z
 			.array(
 				z.object({
+					checkoutWith: z.record(z.string(), z.string()).optional(),
+					if: z.string().optional(),
 					name: z.string(),
 					steps: z.array(zActionStep),
 				}),

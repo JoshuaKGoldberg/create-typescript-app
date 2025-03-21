@@ -11,7 +11,12 @@ export const blockRemoveFiles = base.createBlock({
 	addons: {
 		files: z.array(z.string()).optional(),
 	},
-	produce({ addons }) {
+	// TODO: Make produce() optional, so this empty-ish produce() can be removed
+	// https://github.com/JoshuaKGoldberg/bingo/issues/295
+	produce() {
+		return {};
+	},
+	transition({ addons }) {
 		return {
 			scripts: addons.files
 				? [
@@ -20,7 +25,7 @@ export const blockRemoveFiles = base.createBlock({
 								`node ${resolveBin("trash-cli/cli.js")} ${addons.files.join(" ")}`,
 							],
 							phase: CommandPhase.Migrations,
-							// silent: true,
+							silent: true,
 						},
 					]
 				: undefined,

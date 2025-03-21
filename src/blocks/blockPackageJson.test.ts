@@ -1,4 +1,5 @@
 import { testBlock } from "bingo-stratum-testers";
+import { it } from "vitest";
 import { describe, expect, test } from "vitest";
 
 import { blockPackageJson } from "./blockPackageJson.js";
@@ -199,6 +200,304 @@ describe("blockPackageJson", () => {
 			      "phase": 1,
 			    },
 			  ],
+			}
+		`);
+	});
+
+	it("preserves an existing dependency when the addon has an older pinned version", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "0.9.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+	});
+
+	it("uses an addon's version when there is no existing equivalent", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "1.1.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.1.0",
+			}
+		`);
+	});
+
+	it("preserves an existing dependency when the addon has an older version minimum", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "^0.9.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {
+						[dependency]: "^1.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "^1.0.0",
+			}
+		`);
+	});
+
+	it("preserves an existing dependency when the addon has an older version range", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "^0.9.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {
+						[dependency]: "^1.0.0 || ^2.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "^1.0.0 || ^2.0.0",
+			}
+		`);
+	});
+
+	it("merges an existing dependency when the addon has the same version", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+	});
+
+	it("replaces an existing dependency when the addon has a newer version", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "1.1.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.1.0",
+			}
+		`);
+	});
+
+	it("replaces an existing dependency when the addon has a newer version than the first range element", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "^1.1.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {
+						[dependency]: "^1.0.0 || ^2.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "^1.1.0",
+			}
+		`);
+	});
+
+	it("preserves an existing devDependency when the addon has an older pinned version", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					devDependencies: {
+						[dependency]: "0.9.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					devDependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).devDependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+	});
+
+	it("merges an existing devDependency when the addon has the same version", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					devDependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					devDependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).devDependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
+			}
+		`);
+	});
+
+	it("replaces an existing devDependency when the addon has a newer version", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					devDependencies: {
+						[dependency]: "1.1.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					devDependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).devDependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.1.0",
 			}
 		`);
 	});

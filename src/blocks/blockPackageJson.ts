@@ -1,5 +1,6 @@
 import * as htmlToText from "html-to-text";
 import removeUndefinedObjects from "remove-undefined-objects";
+import semver from "semver";
 import sortPackageJson from "sort-package-json";
 import { z } from "zod";
 import { PackageJson } from "zod-package-json";
@@ -16,14 +17,17 @@ export const blockPackageJson = base.createBlock({
 		properties: PackageJson.partial().default({}),
 	},
 	produce({ addons, offline, options }) {
-		const dependencies = {
+		const dependencies = useLargerVersions(options.packageData?.dependencies, {
 			...options.packageData?.dependencies,
 			...addons.properties.dependencies,
-		};
-		const devDependencies = {
-			...options.packageData?.devDependencies,
-			...addons.properties.devDependencies,
-		};
+		});
+		const devDependencies = useLargerVersions(
+			options.packageData?.devDependencies,
+			{
+				...options.packageData?.devDependencies,
+				...addons.properties.devDependencies,
+			},
+		);
 		const description = htmlToText.convert(options.description, {
 			wordwrap: false,
 		});
@@ -102,3 +106,33 @@ export const blockPackageJson = base.createBlock({
 		};
 	},
 });
+
+function removeRangePrefix(version: string) {
+	return version.replaceAll(/[\^~><=]/gu, "").split(" ")[0];
+}
+
+function useLargerVersion(existing: string | undefined, replacement: string) {
+	if (!existing) {
+		return replacement;
+	}
+
+	return semver.gt(removeRangePrefix(existing), removeRangePrefix(replacement))
+		? existing
+		: replacement;
+}
+
+function useLargerVersions(
+	existing: Record<string, string | undefined> | undefined,
+	replacements: Record<string, string>,
+) {
+	if (!existing) {
+		return replacements;
+	}
+
+	return Object.fromEntries(
+		Object.entries(replacements).map(([key, replacement]) => [
+			key,
+			useLargerVersion(existing[key], replacement),
+		]),
+	);
+}

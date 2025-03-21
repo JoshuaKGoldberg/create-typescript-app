@@ -1,13 +1,17 @@
+import { TakeInput } from "bingo";
+import { inputFromFileJSON } from "input-from-file-json";
+
 import { PartialPackageData } from "../types.js";
+import { swallowError } from "../utils/swallowError.js";
 
 export async function readPackageData(
-	getPackageDataFull: () => Promise<PartialPackageData>,
-) {
-	const original = await getPackageDataFull();
-
-	return {
-		dependencies: original.dependencies,
-		devDependencies: original.devDependencies,
-		scripts: original.scripts,
-	};
+	take: TakeInput,
+): Promise<PartialPackageData> {
+	return (
+		swallowError(
+			await take(inputFromFileJSON, {
+				filePath: "./package.json",
+			}),
+		) || {}
+	);
 }

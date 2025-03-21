@@ -26,7 +26,6 @@ import { readNpmDefaults } from "./options/readNpmDefaults.js";
 import { readOwner } from "./options/readOwner.js";
 import { readPackageAuthor } from "./options/readPackageAuthor.js";
 import { readPackageData } from "./options/readPackageData.js";
-import { readPackageDataFull } from "./options/readPackageDataFull.js";
 import { readPnpm } from "./options/readPnpm.js";
 import { readRepository } from "./options/readRepository.js";
 import { readRulesetId } from "./options/readRulesetId.js";
@@ -169,9 +168,7 @@ export const base = createBase({
 			.describe("package version to publish as and store in `package.json`"),
 	},
 	prepare({ options, take }) {
-		const getAccess = lazyValue(
-			async () => await readAccess(getPackageDataFull),
-		);
+		const getAccess = lazyValue(async () => await readAccess(getPackageData));
 
 		const getAllContributors = lazyValue(
 			async () => await readAllContributors(take),
@@ -182,12 +179,12 @@ export const base = createBase({
 				await readAuthor(getPackageAuthor, getNpmDefaults, options.owner),
 		);
 
-		const getBin = lazyValue(async () => (await getPackageDataFull()).bin);
+		const getBin = lazyValue(async () => (await getPackageData()).bin);
 
 		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 
 		const getDescription = lazyValue(
-			async () => await readDescription(getPackageDataFull, getReadme),
+			async () => await readDescription(getPackageData, getReadme),
 		);
 
 		const getDocumentation = lazyValue(
@@ -227,16 +224,10 @@ export const base = createBase({
 
 		const getLogo = lazyValue(async () => await readLogo(getReadme));
 
-		const getPackageData = lazyValue(
-			async () => await readPackageData(getPackageDataFull),
-		);
-
-		const getPackageDataFull = lazyValue(
-			async () => await readPackageDataFull(take),
-		);
+		const getPackageData = lazyValue(async () => await readPackageData(take));
 
 		const getNode = lazyValue(
-			async () => await readNode(getNvmrc, getPackageDataFull),
+			async () => await readNode(getNvmrc, getPackageData),
 		);
 
 		const getNpmDefaults = lazyValue(
@@ -260,18 +251,17 @@ export const base = createBase({
 		);
 
 		const getPackageAuthor = lazyValue(
-			async () => await readPackageAuthor(getPackageDataFull),
+			async () => await readPackageAuthor(getPackageData),
 		);
 
-		const getPnpm = lazyValue(async () => await readPnpm(getPackageDataFull));
+		const getPnpm = lazyValue(async () => await readPnpm(getPackageData));
 
 		const getReadme = lazyValue(
 			async () => await readFileSafe("README.md", ""),
 		);
 
 		const getRepository = lazyValue(
-			async () =>
-				await readRepository(getGitDefaults, getPackageDataFull, options),
+			async () => await readRepository(getGitDefaults, getPackageData, options),
 		);
 
 		const getRulesetId = lazyValue(
@@ -286,9 +276,7 @@ export const base = createBase({
 			async () => await readUsage(getEmoji, getReadme, getRepository),
 		);
 
-		const getVersion = lazyValue(
-			async () => (await getPackageDataFull()).version,
-		);
+		const getVersion = lazyValue(async () => (await getPackageData()).version);
 
 		return {
 			access: getAccess,

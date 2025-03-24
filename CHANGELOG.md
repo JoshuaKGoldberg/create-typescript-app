@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.9.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.8.1...2.9.0) (2025-03-24)
+
+### Features
+
+- add more transition mode cleanups ([#2003](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2003)) ([c179a7e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c179a7ee157d359e8ac2f39b2c598c128c7b9739)), closes [#2002](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2002)
+
 ## [2.8.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.8.0...2.8.1) (2025-03-21)
 
 ### Bug Fixes

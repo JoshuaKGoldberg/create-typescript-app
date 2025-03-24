@@ -161,6 +161,16 @@ describe("blockContributorCovenant", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "files": [
+			          "CODE_OF_CONDUCT.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "CODE_OF_CONDUCT.md": "# Contributor Covenant Code of Conduct
@@ -298,15 +308,6 @@ describe("blockContributorCovenant", () => {
 			",
 			    },
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "rm CODE_OF_CONDUCT.md",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
 			}
 		`);
 	});

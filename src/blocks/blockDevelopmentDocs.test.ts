@@ -38,6 +38,16 @@ describe("blockDevelopmentDocs", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "files": [
+			          "DEVELOPMENT.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "DEVELOPMENT.md": "# Development
@@ -52,15 +62,6 @@ describe("blockDevelopmentDocs", () => {
 			",
 			    },
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "rm DEVELOPMENT.md",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
 			}
 		`);
 	});

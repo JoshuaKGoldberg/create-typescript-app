@@ -46,6 +46,7 @@ export const blockCSpell = base.createBlock({
 							steps: [{ run: "pnpm lint:spelling" }],
 						},
 					],
+					removedWorkflows: ["lint-spelling", "spelling"],
 				}),
 				blockPackageJson({
 					properties: {

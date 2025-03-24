@@ -61,6 +61,10 @@ describe("blockESLint", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "eslint",
+			          "lint",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -190,6 +194,10 @@ describe("blockESLint", () => {
 			            ],
 			          },
 			        ],
+			        "removedWorkflows": [
+			          "eslint",
+			          "lint",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -238,6 +246,31 @@ describe("blockESLint", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "dependencies": [
+			          "@types/eslint",
+			          "@typescript-eslint/eslint-plugin",
+			          "@typescript-eslint/parser",
+			          "eslint-plugin-deprecation",
+			          "eslint-plugin-eslint-comments",
+			          "eslint-plugin-no-only-tests",
+			          "jsonc-eslint-parser",
+			          "yaml-eslint-parser",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".eslintrc*",
+			          ".eslintignore",
+			          "eslint.config.{cjs,mjs}",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
@@ -256,13 +289,6 @@ describe("blockESLint", () => {
 			        "pnpm lint --fix",
 			      ],
 			      "phase": 3,
-			    },
-			    {
-			      "commands": [
-			        "rm .eslintrc* .eslintignore eslint.config.*",
-			      ],
-			      "phase": 0,
-			      "silent": true,
 			    },
 			  ],
 			}
@@ -361,6 +387,10 @@ describe("blockESLint", () => {
 			              },
 			            ],
 			          },
+			        ],
+			        "removedWorkflows": [
+			          "eslint",
+			          "lint",
 			        ],
 			      },
 			      "block": [Function],
@@ -507,6 +537,10 @@ describe("blockESLint", () => {
 			              },
 			            ],
 			          },
+			        ],
+			        "removedWorkflows": [
+			          "eslint",
+			          "lint",
 			        ],
 			      },
 			      "block": [Function],

@@ -2,8 +2,8 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { blockGitHubApps } from "./blockGitHubApps.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockVitest } from "./blockVitest.js";
-import { CommandPhase } from "./phases.js";
 
 export const blockCodecov = base.createBlock({
 	about: {
@@ -36,12 +36,8 @@ export const blockCodecov = base.createBlock({
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: ["rm .github/codecov.yml codecov.yml"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
+			addons: [
+				blockRemoveFiles({ files: [".github/codecov.yml", "codecov.yml"] }),
 			],
 		};
 	},

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
-import { CommandPhase } from "./phases.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
 const zInnerSection = z.object({
 	contents: z.string(),
@@ -100,13 +100,7 @@ export const blockDevelopmentDocs = base.createBlock({
 	},
 	transition() {
 		return {
-			scripts: [
-				{
-					commands: ["rm DEVELOPMENT.md"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
-			],
+			addons: [blockRemoveFiles({ files: ["DEVELOPMENT.md"] })],
 		};
 	},
 });

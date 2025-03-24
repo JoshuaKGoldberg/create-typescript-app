@@ -126,6 +126,16 @@ describe("blockContributingDocs", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "files": [
+			          "CONTRIBUTING.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "CONTRIBUTING.md": "# Contributing
@@ -228,15 +238,6 @@ describe("blockContributingDocs", () => {
 			",
 			    },
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "rm CONTRIBUTING.md",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
 			}
 		`);
 	});

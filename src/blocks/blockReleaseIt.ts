@@ -2,6 +2,7 @@ import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 
@@ -24,7 +25,13 @@ export const blockReleaseIt = base.createBlock({
 						publishConfig: {
 							provenance: true,
 						},
+						scripts: {
+							"should-semantic-release": undefined,
+						},
 					},
+				}),
+				blockRemoveDependencies({
+					dependencies: ["should-semantic-release"],
 				}),
 				blockRepositorySecrets({
 					secrets: [

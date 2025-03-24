@@ -114,6 +114,15 @@ describe("blockGitHubActionsCI", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".circleci",
+			          "travis.yml",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -190,15 +199,6 @@ describe("blockGitHubActionsCI", () => {
 			      },
 			    },
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "rm -rf .circleci travis.yml",
-			      ],
-			      "phase": 0,
-			      "silent": true,
-			    },
-			  ],
 			}
 		`);
 	});

@@ -1,5 +1,7 @@
 import jsYaml from "js-yaml";
 
+import { removeUsesQuotes } from "./removeUsesQuotes.js";
+
 const options: jsYaml.DumpOptions = {
 	lineWidth: -1,
 	noCompatMode: true,
@@ -21,5 +23,5 @@ const options: jsYaml.DumpOptions = {
 };
 
 export function formatYaml(value: unknown) {
-	return jsYaml.dump(value, options);
+	return removeUsesQuotes(jsYaml.dump(value, options));
 }

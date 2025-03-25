@@ -1,7 +1,9 @@
 import _ from "lodash";
 
-import { base, Contributor } from "../base.js";
+import { base } from "../base.js";
 import { ownerContributions } from "../data/contributions.js";
+import { Contributor } from "../schemas.js";
+import { resolveUses } from "./actions/resolveUses.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
@@ -59,11 +61,22 @@ export const blockAllContributors = base.createBlock({
 								},
 							},
 							steps: [
-								{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
+								{
+									uses: resolveUses(
+										"actions/checkout",
+										"v4",
+										options.workflowsVersions,
+									),
+									with: { "fetch-depth": 0 },
+								},
 								{ uses: "./.github/actions/prepare" },
 								{
 									env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
-									uses: `JoshuaKGoldberg/all-contributors-auto-action@v0.5.0`,
+									uses: resolveUses(
+										"JoshuaKGoldberg/all-contributors-auto-action",
+										"v0.5.0",
+										options.workflowsVersions,
+									),
 								},
 							],
 						}),

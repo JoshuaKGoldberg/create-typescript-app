@@ -1,5 +1,6 @@
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
+import { resolveUses } from "./actions/resolveUses.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
@@ -61,12 +62,23 @@ export const blockReleaseIt = base.createBlock({
 								"pull-requests": "write",
 							},
 							steps: [
-								{ uses: "actions/checkout@v4", with: { "fetch-depth": 0 } },
+								{
+									uses: resolveUses(
+										"actions/checkout",
+										"v4",
+										options.workflowsVersions,
+									),
+									with: { "fetch-depth": 0 },
+								},
 								{
 									run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
 								},
 								{
-									uses: "apexskier/github-release-commenter@v1",
+									uses: resolveUses(
+										"apexskier/github-release-commenter",
+										"v1",
+										options.workflowsVersions,
+									),
 									with: {
 										"comment-template": `
 							:tada: This is included in version {release_link} :tada:
@@ -99,7 +111,11 @@ export const blockReleaseIt = base.createBlock({
 							},
 							steps: [
 								{
-									uses: "actions/checkout@v4",
+									uses: resolveUses(
+										"actions/checkout",
+										"v4",
+										options.workflowsVersions,
+									),
 									with: {
 										"fetch-depth": 0,
 										ref: "main",
@@ -117,7 +133,11 @@ export const blockReleaseIt = base.createBlock({
 										GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
 										NPM_TOKEN: "${{ secrets.NPM_TOKEN }}",
 									},
-									uses: "JoshuaKGoldberg/release-it-action@v0.2.2",
+									uses: resolveUses(
+										"JoshuaKGoldberg/release-it-action",
+										"v0.2.2",
+										options.workflowsVersions,
+									),
 								},
 							],
 						}),

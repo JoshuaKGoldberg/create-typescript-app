@@ -31,16 +31,8 @@ import { readRepository } from "./options/readRepository.js";
 import { readRulesetId } from "./options/readRulesetId.js";
 import { readTitle } from "./options/readTitle.js";
 import { readUsage } from "./options/readUsage.js";
-
-const zContributor = z.object({
-	avatar_url: z.string(),
-	contributions: z.array(z.string()),
-	login: z.string(),
-	name: z.string(),
-	profile: z.string(),
-});
-
-export type Contributor = z.infer<typeof zContributor>;
+import { readWorkflowsVersions } from "./options/readWorkflowsVersions.js";
+import { zContributor, zWorkflowsVersions } from "./schemas.js";
 
 export const base = createBase({
 	options: {
@@ -166,6 +158,9 @@ export const base = createBase({
 			.string()
 			.optional()
 			.describe("package version to publish as and store in `package.json`"),
+		workflowsVersions: zWorkflowsVersions
+			.optional()
+			.describe("existing versions of GitHub Actions workflows used"),
 	},
 	prepare({ options, take }) {
 		const getAccess = lazyValue(async () => await readAccess(getPackageData));
@@ -278,6 +273,10 @@ export const base = createBase({
 
 		const getVersion = lazyValue(async () => (await getPackageData()).version);
 
+		const getWorkflowData = lazyValue(
+			async () => await readWorkflowsVersions(take),
+		);
+
 		return {
 			access: getAccess,
 			author: getAuthor,
@@ -301,6 +300,7 @@ export const base = createBase({
 			title: getTitle,
 			usage: getUsage,
 			version: getVersion,
+			workflowsVersions: getWorkflowData,
 		};
 	},
 });

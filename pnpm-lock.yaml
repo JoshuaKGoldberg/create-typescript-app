@@ -17,6 +17,9 @@ importers:
       bingo-stratum:
         specifier: ^0.5.7
         version: 0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.8)(zod@3.24.2)
+      cached-factory:
+        specifier: ^0.1.0
+        version: 0.1.0
       cspell-populate-words:
         specifier: ^0.3.0
         version: 0.3.0

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.9.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.2...2.9.3) (2025-03-25)
+
+### Bug Fixes
+
+- don't crash without a .github/actions directory ([7d81ad7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7d81ad7f973243d022ba3562f3855a68719f0bd6))
+
 ## [2.9.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.1...2.9.2) (2025-03-25)
 
 ### Bug Fixes

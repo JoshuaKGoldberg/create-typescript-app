@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.9.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.0...2.9.1) (2025-03-25)
+
+### Bug Fixes
+
+- run pnpm dedupe without --offline ([#2006](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2006)) ([afdcfee](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/afdcfee01a3631b4ebabb9791036d1627758d103)), closes [#2005](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2005)
+
 # [2.9.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.8.1...2.9.0) (2025-03-24)
 
 ### Features

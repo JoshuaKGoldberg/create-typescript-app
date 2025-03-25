@@ -7,33 +7,41 @@ import { WorkflowsVersions } from "../schemas.js";
 export async function readWorkflowsVersions(
 	take: TakeInput,
 ): Promise<WorkflowsVersions> {
-	const collection: WorkflowsVersions = {};
+	const workflowsVersions: WorkflowsVersions = {};
 
-	const compositeNames = await take(inputFromDirectory, {
-		directoryPath: ".github/actions",
-	});
+	// TODO: This would be more straightforward if bingo-fs provided globbing...
 
-	for (const compositeName of compositeNames) {
-		const compositeFileNames = await take(inputFromDirectory, {
-			directoryPath: `.github/actions/${compositeName}`,
+	async function collectCompositeUses() {
+		const compositeNames = await take(inputFromDirectory, {
+			directoryPath: ".github/actions",
 		});
 
-		for (const compositeFileName of compositeFileNames) {
-			await collectFile(
-				`.github/actions/${compositeName}/${compositeFileName}`,
-			);
-		}
+		await Promise.all(
+			compositeNames.map(async (compositeName) => {
+				const compositeFileNames = await take(inputFromDirectory, {
+					directoryPath: `.github/actions/${compositeName}`,
+				});
+
+				for (const compositeFileName of compositeFileNames) {
+					await collectFile(
+						`.github/actions/${compositeName}/${compositeFileName}`,
+					);
+				}
+			}),
+		);
 	}
 
-	const workflowFileNames = await take(inputFromDirectory, {
-		directoryPath: ".github/workflows",
-	});
+	async function collectWorkflowUses() {
+		const workflowFileNames = await take(inputFromDirectory, {
+			directoryPath: ".github/workflows",
+		});
 
-	await Promise.all(
-		workflowFileNames.map(async (workflowFileName) => {
-			await collectFile(`.github/workflows/${workflowFileName}`);
-		}),
-	);
+		await Promise.all(
+			workflowFileNames.map(async (workflowFileName) => {
+				await collectFile(`.github/workflows/${workflowFileName}`);
+			}),
+		);
+	}
 
 	async function collectFile(filePath: string) {
 		const raw = await take(inputFromFile, { filePath });
@@ -55,16 +63,18 @@ export async function readWorkflowsVersions(
 
 		const [, action, actual, commented] = matched;
 
-		collection[action] ??= {};
+		workflowsVersions[action] ??= {};
 
 		if (commented) {
-			collection[action][commented] ??= {};
-			collection[action][commented].hash = actual;
+			workflowsVersions[action][commented] ??= {};
+			workflowsVersions[action][commented].hash = actual;
 		} else {
-			collection[action][actual] ??= {};
-			collection[action][actual].pinned = true;
+			workflowsVersions[action][actual] ??= {};
+			workflowsVersions[action][actual].pinned = true;
 		}
 	}
 
-	return collection;
+	await Promise.all([collectCompositeUses(), collectWorkflowUses()]);
+
+	return workflowsVersions;
 }

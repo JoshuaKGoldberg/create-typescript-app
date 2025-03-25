@@ -3,15 +3,11 @@ import semver from "semver";
 
 import { WorkflowsVersions } from "../../schemas.js";
 
-const coerced = new CachedFactory((version: string) => {
-	if (!semver.valid(version)) {
-		return "0.0.0";
-	}
-
-	return semver.coerce(version)?.raw ?? version;
+const semverCoercions = new CachedFactory((version: string) => {
+	return semver.coerce(version)?.toString() ?? "0.0.0";
 });
 
-export function printUses(
+export function resolveUses(
 	action: string,
 	version: string,
 	workflowsVersions?: WorkflowsVersions,
@@ -19,15 +15,24 @@ export function printUses(
 	if (!workflowsVersions || !(action in workflowsVersions)) {
 		return `${action}@${version}`;
 	}
+
 	const workflowVersions = workflowsVersions[action];
 
 	const biggestVersion = Object.keys(workflowVersions).reduce(
 		(highestVersion, potentialVersion) =>
-			semver.gt(coerced.get(potentialVersion), coerced.get(highestVersion))
+			semver.gt(
+				semverCoercions.get(potentialVersion),
+				semverCoercions.get(highestVersion),
+			)
 				? potentialVersion
 				: highestVersion,
 		version,
 	);
+
+	if (!(biggestVersion in workflowVersions)) {
+		return `${action}@${biggestVersion}`;
+	}
+
 	const atBiggestVersion = workflowVersions[biggestVersion];
 
 	return atBiggestVersion.hash

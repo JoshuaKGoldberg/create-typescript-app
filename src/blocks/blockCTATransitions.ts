@@ -1,6 +1,6 @@
 import { base } from "../base.js";
 import { packageData } from "../data/packageData.js";
-import { printUses } from "./actions/printUses.js";
+import { resolveUses } from "./actions/resolveUses.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 
@@ -26,7 +26,7 @@ export const blockCTATransitions = base.createBlock({
 							steps: [
 								{ run: "pnpx create-typescript-app" },
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"stefanzweifel/git-auto-commit-action",
 										"v5",
 										options.workflowsVersions,
@@ -40,7 +40,7 @@ export const blockCTATransitions = base.createBlock({
 									},
 								},
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"mshick/add-pr-comment",
 										"v2",
 										options.workflowsVersions,

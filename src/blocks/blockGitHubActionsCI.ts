@@ -2,12 +2,12 @@ import jsYaml from "js-yaml";
 import { z } from "zod";
 
 import { base } from "../base.js";
-import { printUses } from "./actions/printUses.js";
+import { resolveUses } from "./actions/resolveUses.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { removeUsesQuotes } from "./files/formatYaml.js";
+import { removeUsesQuotes } from "./files/removeUsesQuotes.js";
 
 export const zActionStep = z.intersection(
 	z.object({
@@ -56,14 +56,14 @@ export const blockGitHubActionsCI = base.createBlock({
 										runs: {
 											steps: [
 												{
-													uses: printUses(
+													uses: resolveUses(
 														"pnpm/action-setup",
 														"v4",
 														options.workflowsVersions,
 													),
 												},
 												{
-													uses: printUses(
+													uses: resolveUses(
 														"actions/setup-node",
 														"v4",
 														options.workflowsVersions,
@@ -103,7 +103,7 @@ export const blockGitHubActionsCI = base.createBlock({
 							},
 							steps: [
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"github/accessibility-alt-text-bot",
 										"v1.4.0",
 										options.workflowsVersions,
@@ -130,7 +130,7 @@ export const blockGitHubActionsCI = base.createBlock({
 							},
 							steps: [
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"actions-ecosystem/action-remove-labels",
 										"v1",
 										options.workflowsVersions,

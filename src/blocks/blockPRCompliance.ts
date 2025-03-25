@@ -1,5 +1,5 @@
 import { base } from "../base.js";
-import { printUses } from "./actions/printUses.js";
+import { resolveUses } from "./actions/resolveUses.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 
 export const blockPRCompliance = base.createBlock({
@@ -24,7 +24,7 @@ export const blockPRCompliance = base.createBlock({
 							},
 							steps: [
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"mtfoley/pr-compliance-action",
 										"main",
 										options.workflowsVersions,

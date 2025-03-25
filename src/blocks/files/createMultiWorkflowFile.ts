@@ -1,5 +1,5 @@
 import { WorkflowsVersions } from "../../schemas.js";
-import { printUses } from "../actions/printUses.js";
+import { resolveUses } from "../actions/resolveUses.js";
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
@@ -36,7 +36,7 @@ export function createMultiWorkflowFile({
 					"runs-on": "ubuntu-latest",
 					steps: [
 						{
-							uses: printUses("actions/checkout", "v4", workflowsVersions),
+							uses: resolveUses("actions/checkout", "v4", workflowsVersions),
 							with: job.checkoutWith,
 						},
 						{ uses: "./.github/actions/prepare" },

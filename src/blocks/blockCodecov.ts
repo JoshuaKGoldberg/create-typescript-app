@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
-import { printUses } from "./actions/printUses.js";
+import { resolveUses } from "./actions/resolveUses.js";
 import { blockGitHubApps } from "./blockGitHubApps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockVitest } from "./blockVitest.js";
@@ -28,7 +28,7 @@ export const blockCodecov = base.createBlock({
 						{
 							...(env && { env }),
 							if: "always()",
-							uses: printUses(
+							uses: resolveUses(
 								"codecov/codecov-action",
 								"v3",
 								options.workflowsVersions,

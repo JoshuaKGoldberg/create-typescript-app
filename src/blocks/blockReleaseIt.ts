@@ -1,6 +1,6 @@
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
-import { printUses } from "./actions/printUses.js";
+import { resolveUses } from "./actions/resolveUses.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
@@ -63,7 +63,7 @@ export const blockReleaseIt = base.createBlock({
 							},
 							steps: [
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"actions/checkout",
 										"v4",
 										options.workflowsVersions,
@@ -74,7 +74,7 @@ export const blockReleaseIt = base.createBlock({
 									run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
 								},
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"apexskier/github-release-commenter",
 										"v1",
 										options.workflowsVersions,
@@ -111,7 +111,7 @@ export const blockReleaseIt = base.createBlock({
 							},
 							steps: [
 								{
-									uses: printUses(
+									uses: resolveUses(
 										"actions/checkout",
 										"v4",
 										options.workflowsVersions,
@@ -133,7 +133,7 @@ export const blockReleaseIt = base.createBlock({
 										GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
 										NPM_TOKEN: "${{ secrets.NPM_TOKEN }}",
 									},
-									uses: printUses(
+									uses: resolveUses(
 										"JoshuaKGoldberg/release-it-action",
 										"v0.2.2",
 										options.workflowsVersions,

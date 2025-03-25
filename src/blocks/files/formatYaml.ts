@@ -1,5 +1,7 @@
 import jsYaml from "js-yaml";
 
+import { removeUsesQuotes } from "./removeUsesQuotes.js";
+
 const options: jsYaml.DumpOptions = {
 	lineWidth: -1,
 	noCompatMode: true,
@@ -22,10 +24,4 @@ const options: jsYaml.DumpOptions = {
 
 export function formatYaml(value: unknown) {
 	return removeUsesQuotes(jsYaml.dump(value, options));
-}
-
-export function removeUsesQuotes(original: string) {
-	return original.replaceAll(/ uses: '.+'/gu, (line) =>
-		line.replaceAll("'", ""),
-	);
 }

@@ -37,7 +37,7 @@ describe("blockCTATransitions", () => {
 			runs:
 			  steps:
 			    - uses: ./.github/actions/prepare
-			    - run: pnpx create-typescript-app
+			    - run: npx create-typescript-app
 			      shell: bash
 			    - id: auto-commit-action
 			      uses: stefanzweifel/git-auto-commit-action@v5
@@ -51,7 +51,7 @@ describe("blockCTATransitions", () => {
 			      with:
 			        issue: \${{ github.event.pull_request.number }}
 			        message: >-
-			          🤖 Beep boop! I ran \`pnpx create-typescript-app\` and it updated some
+			          🤖 Beep boop! I ran \`npx create-typescript-app\` and it updated some
 			          files.
 
 			          I went ahead and checked those changes into this PR for you. Please

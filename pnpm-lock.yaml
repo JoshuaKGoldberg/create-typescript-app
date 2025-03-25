@@ -106,7 +106,7 @@ importers:
         specifier: 9.22.0
         version: 9.22.0
       '@prettier/sync':
-        specifier: ^0.5.2
+        specifier: 0.5.3
         version: 0.5.3(prettier@3.5.3)
       '@release-it/conventional-changelog':
         specifier: 10.0.0
@@ -133,7 +133,7 @@ importers:
         specifier: 2.0.3
         version: 2.0.3
       '@types/semver':
-        specifier: ^7.5.8
+        specifier: 7.5.8
         version: 7.5.8
       '@vitest/coverage-v8':
         specifier: 3.0.9
@@ -145,13 +145,13 @@ importers:
         specifier: 6.26.1
         version: 6.26.1
       bingo-requests:
-        specifier: ^0.5.4
+        specifier: 0.5.4
         version: 0.5.4
       bingo-stratum-testers:
         specifier: 0.5.6
         version: 0.5.6(bingo-fs@0.5.4)(bingo-stratum@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.8)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.6(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.8))(bingo@0.5.8)
       bingo-testers:
-        specifier: ^0.5.6
+        specifier: 0.5.6
         version: 0.5.6(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.8)
       console-fail-test:
         specifier: 0.5.0
@@ -202,7 +202,7 @@ importers:
         specifier: 0.44.0
         version: 0.44.0
       prettier:
-        specifier: ^3.5.3
+        specifier: 3.5.3
         version: 3.5.3
       prettier-plugin-curly:
         specifier: 0.3.1

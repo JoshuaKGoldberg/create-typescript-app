@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.9.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.1...2.9.2) (2025-03-25)
+
+### Bug Fixes
+
+- preserve GitHub Actions hashes and versions ([#2007](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2007)) ([56b2826](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/56b2826d009cb0d14e114a6614fa1fc78946d16d)), closes [#1998](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1998)
+
 ## [2.9.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.0...2.9.1) (2025-03-25)
 
 ### Bug Fixes

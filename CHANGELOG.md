@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.11.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.11.0...2.11.1) (2025-03-25)
+
+### Bug Fixes
+
+- use npx in transition action ([#2019](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2019)) ([6a73b39](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6a73b395e6216bb4154546bfc2f59fa6d67b7a21)), closes [#2018](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2018)
+
 # [2.11.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.10.0...2.11.0) (2025-03-25)
 
 ### Features

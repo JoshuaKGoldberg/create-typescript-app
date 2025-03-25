@@ -9,7 +9,7 @@ vi.mock("../utils/resolveBin.js", () => ({
 }));
 
 describe("blockTemplatedWith", () => {
-	test("without addons", () => {
+	test("production with unknown owner", () => {
 		const creation = testBlock(blockTemplatedWith, {
 			options: optionsBase,
 		});
@@ -29,9 +29,41 @@ describe("blockTemplatedWith", () => {
 			      "addons": {
 			        "notices": [
 			          "
-			<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+			<!-- You can remove this notice if you don't want it 🙂 no worries! -->",
+			          "> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).
+			",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			}
+		`);
+	});
 
-			> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).
+	test("production with JoshuaKGoldberg as owner", () => {
+		const creation = testBlock(blockTemplatedWith, {
+			options: {
+				...optionsBase,
+				owner: "JoshuaKGoldberg",
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "joshuakgoldberg",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "notices": [
+			          "> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).
 			",
 			        ],
 			      },

@@ -34,6 +34,7 @@ interface WorkflowFileOn {
 interface WorkflowFileOptions {
 	concurrency?: WorkflowFileConcurrency;
 	if?: string;
+	jobName?: string;
 	name: string;
 	on?: WorkflowFileOn;
 	permissions?: WorkflowFilePermissions;
@@ -49,6 +50,7 @@ interface WorkflowFilePermissions {
 
 interface WorkflowFileStep {
 	env?: Record<string, string>;
+	id?: string;
 	if?: string;
 	name?: string;
 	run?: string;
@@ -58,6 +60,7 @@ interface WorkflowFileStep {
 
 export function createSoloWorkflowFile({
 	concurrency,
+	jobName,
 	name,
 	on,
 	permissions,
@@ -66,8 +69,9 @@ export function createSoloWorkflowFile({
 	return formatWorkflowYaml({
 		concurrency,
 		jobs: {
-			[createJobName(name)]: {
+			[createJobName(jobName ?? name)]: {
 				...(options.if && { if: options.if }),
+				...(jobName && { name: jobName }),
 				"runs-on": "ubuntu-latest",
 				steps: options.steps,
 			},

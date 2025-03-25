@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.9.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.3...2.9.4) (2025-03-25)
+
+### Bug Fixes
+
+- run pnpm install with --no-frozen-lockfile ([#2011](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2011)) ([cb898c9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cb898c90923c4e95ef828c06c4899c87892144a6)), closes [#2010](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2010)
+
 ## [2.9.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.2...2.9.3) (2025-03-25)
 
 ### Bug Fixes

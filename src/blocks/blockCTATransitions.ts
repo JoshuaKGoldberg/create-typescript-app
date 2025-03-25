@@ -1,8 +1,9 @@
 import { base } from "../base.js";
 import { packageData } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
+import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 
 export const blockCTATransitions = base.createBlock({
 	about: {
@@ -11,19 +12,47 @@ export const blockCTATransitions = base.createBlock({
 	produce({ options }) {
 		return {
 			addons: [
-				blockGitHubActionsCI({
-					jobs: [
-						{
-							checkoutWith: {
-								"fetch-depth": "0",
-								ref: "${{github.event.pull_request.head.ref}}",
-								repository:
-									"${{github.event.pull_request.head.repo.full_name}}",
-								token: '"${{ secrets.ACCESS_TOKEN }}"',
-							},
-							if: "${{ startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app') }}",
+				blockPackageJson({
+					properties: {
+						devDependencies: {
+							"create-typescript-app": packageData.version,
+						},
+					},
+				}),
+				blockRepositoryBranchRuleset({
+					requiredStatusChecks: ["CTA Transitions"],
+				}),
+			],
+			files: {
+				".github": {
+					workflows: {
+						"cta-transitions.yml": createSoloWorkflowFile({
+							if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')`,
 							name: "CTA Transitions",
+							on: {
+								pull_request: {
+									branches: ["main"],
+								},
+							},
+							permissions: {
+								"pull-requests": "write",
+							},
 							steps: [
+								{
+									uses: resolveUses(
+										"actions/checkout",
+										"v4",
+										options.workflowsVersions,
+									),
+									with: {
+										"fetch-depth": 0,
+										ref: "${{github.event.pull_request.head.ref}}",
+										repository:
+											"${{github.event.pull_request.head.repo.full_name}}",
+										token: "${{ secrets.ACCESS_TOKEN }}",
+									},
+								},
+								{ uses: "./.github/actions/prepare" },
 								{ run: "pnpx create-typescript-app" },
 								{
 									uses: resolveUses(
@@ -48,29 +77,22 @@ export const blockCTATransitions = base.createBlock({
 									with: {
 										issue: "${{ github.event.pull_request.number }}",
 										message: [
-											"|",
-											"🤖 Beep boop! I ran `npx create-typescript-app` and found same changes.",
-											"Please review the latest commit to see if you want to merge it.",
-											"Cheers! 💝",
+											"🤖 Beep boop! I ran `pnpx create-typescript-app` and it updated some files.",
 											"",
-											"> This change was automatically made in CI to keep your repository up-to-date with the templating in [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).",
-											"> If you want to opt out of these automatic updates, delete the `.github/workflows/cta-transitions.yml` file on your `main` branch.",
+											"I went ahead and checked those changes into this PR for you. Please review the latest commit to see if you want to merge it.",
+											"",
+											"Cheers!",
+											" — _The Friendly Bingo Bot_ 💝",
+											"",
+											"> ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your `.github/workflows/cta-transitions.yml` file.",
 										].join("\n"),
-										"repo-token": "${{ secrets.ACCESS_TOKEN }}",
 									},
 								},
 							],
-						},
-					],
-				}),
-				blockPackageJson({
-					properties: {
-						devDependencies: {
-							"create-typescript-app": packageData.version,
-						},
+						}),
 					},
-				}),
-			],
+				},
+			},
 		};
 	},
 });

@@ -22,7 +22,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install",
+			        "pnpm install --no-frozen-lockfile",
 			      ],
 			      "phase": 1,
 			    },
@@ -55,7 +55,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install",
+			        "pnpm install --no-frozen-lockfile",
 			      ],
 			      "phase": 1,
 			    },
@@ -86,7 +86,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install",
+			        "pnpm install --no-frozen-lockfile",
 			        "pnpm dedupe",
 			      ],
 			      "phase": 1,
@@ -121,7 +121,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install",
+			        "pnpm install --no-frozen-lockfile",
 			        "pnpm dedupe",
 			      ],
 			      "phase": 1,
@@ -147,7 +147,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install",
+			        "pnpm install --no-frozen-lockfile",
 			      ],
 			      "phase": 1,
 			    },
@@ -175,7 +175,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install",
+			        "pnpm install --no-frozen-lockfile",
 			      ],
 			      "phase": 1,
 			    },
@@ -198,7 +198,7 @@ describe("blockPackageJson", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpm install --offline",
+			        "pnpm install --offline --no-frozen-lockfile",
 			      ],
 			      "phase": 1,
 			    },

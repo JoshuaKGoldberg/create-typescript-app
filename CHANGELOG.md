@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.11.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.10.0...2.11.0) (2025-03-25)
+
+### Features
+
+- hide 'no worries' notice when I am the owner ([#2015](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2015)) ([cf2d383](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cf2d383e6171721921bc246b244fbc2944aecf14)), closes [#2014](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2014)
+
 # [2.10.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.4...2.10.0) (2025-03-25)
 
 ### Features

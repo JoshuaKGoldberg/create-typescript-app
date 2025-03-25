@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.10.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.4...2.10.0) (2025-03-25)
+
+### Features
+
+- standalone CTA Transitions workflow ([#2012](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2012)) ([dcfa47b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dcfa47bbfd38a1d0f30cc8fb493bd0d1fc570735)), closes [#2009](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2009)
+
 ## [2.9.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.9.3...2.9.4) (2025-03-25)
 
 ### Bug Fixes

@@ -1,5 +1,6 @@
 import { base } from "../base.js";
 import { packageData } from "../data/packageData.js";
+import { printUses } from "./actions/printUses.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 
@@ -7,7 +8,7 @@ export const blockCTATransitions = base.createBlock({
 	about: {
 		name: "CTA Transitions",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
 				blockGitHubActionsCI({
@@ -25,7 +26,11 @@ export const blockCTATransitions = base.createBlock({
 							steps: [
 								{ run: "pnpx create-typescript-app" },
 								{
-									uses: "stefanzweifel/git-auto-commit-action@v5",
+									uses: printUses(
+										"stefanzweifel/git-auto-commit-action",
+										"v5",
+										options.workflowsVersions,
+									),
 									with: {
 										commit_author: "The Friendly Bingo Bot <bot@create.bingo>",
 										commit_message:
@@ -35,7 +40,11 @@ export const blockCTATransitions = base.createBlock({
 									},
 								},
 								{
-									uses: "mshick/add-pr-comment@v2",
+									uses: printUses(
+										"mshick/add-pr-comment",
+										"v2",
+										options.workflowsVersions,
+									),
 									with: {
 										issue: "${{ github.event.pull_request.number }}",
 										message: [

@@ -1,9 +1,12 @@
+import { WorkflowsVersions } from "../../schemas.js";
+import { printUses } from "../actions/printUses.js";
 import { createJobName } from "./createJobName.js";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
 
 export interface MultiWorkflowFileOptions {
 	jobs: MultiWorkflowJobOptions[];
 	name: string;
+	workflowsVersions: undefined | WorkflowsVersions;
 }
 
 export interface MultiWorkflowJobOptions {
@@ -21,6 +24,7 @@ export type MultiWorkflowJobStep = { if?: string } & (
 export function createMultiWorkflowFile({
 	jobs,
 	name,
+	workflowsVersions,
 }: MultiWorkflowFileOptions) {
 	return formatWorkflowYaml({
 		jobs: Object.fromEntries(
@@ -31,7 +35,10 @@ export function createMultiWorkflowFile({
 					name: job.name,
 					"runs-on": "ubuntu-latest",
 					steps: [
-						{ uses: "actions/checkout@v4", with: job.checkoutWith },
+						{
+							uses: printUses("actions/checkout", "v4", workflowsVersions),
+							with: job.checkoutWith,
+						},
 						{ uses: "./.github/actions/prepare" },
 						...job.steps,
 					],

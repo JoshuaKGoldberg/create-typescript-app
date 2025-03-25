@@ -1,11 +1,12 @@
 import { base } from "../base.js";
+import { printUses } from "./actions/printUses.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 
 export const blockPRCompliance = base.createBlock({
 	about: {
 		name: "PR Compliance",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			files: {
 				".github": {
@@ -23,7 +24,11 @@ export const blockPRCompliance = base.createBlock({
 							},
 							steps: [
 								{
-									uses: "mtfoley/pr-compliance-action@main",
+									uses: printUses(
+										"mtfoley/pr-compliance-action",
+										"main",
+										options.workflowsVersions,
+									),
 									with: {
 										"body-auto-close": false,
 										"ignore-authors": [

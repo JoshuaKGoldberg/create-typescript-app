@@ -53,6 +53,7 @@ describe("base", () => {
 			title: "Create TypeScript App",
 			usage: expect.any(String),
 			version: expect.any(String),
+			workflowsVersions: expect.any(Object),
 		});
 	});
 });

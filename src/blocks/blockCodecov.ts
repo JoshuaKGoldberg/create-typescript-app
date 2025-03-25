@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { printUses } from "./actions/printUses.js";
 import { blockGitHubApps } from "./blockGitHubApps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockVitest } from "./blockVitest.js";
@@ -10,7 +11,7 @@ export const blockCodecov = base.createBlock({
 		name: "Codecov",
 	},
 	addons: { env: z.record(z.string(), z.string()).optional() },
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { env } = addons;
 		return {
 			addons: [
@@ -27,7 +28,11 @@ export const blockCodecov = base.createBlock({
 						{
 							...(env && { env }),
 							if: "always()",
-							uses: "codecov/codecov-action@v3",
+							uses: printUses(
+								"codecov/codecov-action",
+								"v3",
+								options.workflowsVersions,
+							),
 						},
 					],
 				}),

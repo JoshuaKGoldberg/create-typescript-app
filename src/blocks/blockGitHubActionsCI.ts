@@ -2,10 +2,12 @@ import jsYaml from "js-yaml";
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { printUses } from "./actions/printUses.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
+import { removeUsesQuotes } from "./files/formatYaml.js";
 
 export const zActionStep = z.intersection(
 	z.object({
@@ -33,7 +35,7 @@ export const blockGitHubActionsCI = base.createBlock({
 			.optional(),
 		removedWorkflows: z.array(z.string()).optional(),
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { jobs } = addons;
 
 		return {
@@ -46,28 +48,38 @@ export const blockGitHubActionsCI = base.createBlock({
 				".github": {
 					actions: {
 						prepare: {
-							"action.yml": jsYaml
-								.dump({
-									description: "Prepares the repo for a typical CI job",
-									name: "Prepare",
-									runs: {
-										steps: [
-											{
-												uses: "pnpm/action-setup@v4",
-											},
-											{
-												uses: "actions/setup-node@v4",
-												with: { cache: "pnpm", "node-version": "20" },
-											},
-											{
-												run: "pnpm install --frozen-lockfile",
-												shell: "bash",
-											},
-										],
-										using: "composite",
-									},
-								})
-								.replaceAll(/\n(\S)/g, "\n\n$1"),
+							"action.yml": removeUsesQuotes(
+								jsYaml
+									.dump({
+										description: "Prepares the repo for a typical CI job",
+										name: "Prepare",
+										runs: {
+											steps: [
+												{
+													uses: printUses(
+														"pnpm/action-setup",
+														"v4",
+														options.workflowsVersions,
+													),
+												},
+												{
+													uses: printUses(
+														"actions/setup-node",
+														"v4",
+														options.workflowsVersions,
+													),
+													with: { cache: "pnpm", "node-version": "20" },
+												},
+												{
+													run: "pnpm install --frozen-lockfile",
+													shell: "bash",
+												},
+											],
+											using: "composite",
+										},
+									})
+									.replaceAll(/\n(\S)/g, "\n\n$1"),
+							),
 						},
 					},
 					workflows: {
@@ -91,7 +103,11 @@ export const blockGitHubActionsCI = base.createBlock({
 							},
 							steps: [
 								{
-									uses: "github/accessibility-alt-text-bot@v1.4.0",
+									uses: printUses(
+										"github/accessibility-alt-text-bot",
+										"v1.4.0",
+										options.workflowsVersions,
+									),
 								},
 							],
 						}),
@@ -100,6 +116,7 @@ export const blockGitHubActionsCI = base.createBlock({
 							createMultiWorkflowFile({
 								jobs: jobs.sort((a, b) => a.name.localeCompare(b.name)),
 								name: "CI",
+								workflowsVersions: options.workflowsVersions,
 							}),
 						"pr-review-requested.yml": createSoloWorkflowFile({
 							name: "PR Review Requested",
@@ -113,7 +130,11 @@ export const blockGitHubActionsCI = base.createBlock({
 							},
 							steps: [
 								{
-									uses: "actions-ecosystem/action-remove-labels@v1",
+									uses: printUses(
+										"actions-ecosystem/action-remove-labels",
+										"v1",
+										options.workflowsVersions,
+									),
 									with: {
 										labels: "status: waiting for author",
 									},

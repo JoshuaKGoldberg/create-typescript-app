@@ -40,6 +40,7 @@
 		"bingo": "^0.5.8",
 		"bingo-fs": "^0.5.4",
 		"bingo-stratum": "^0.5.7",
+		"cached-factory": "^0.1.0",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",
 		"git-url-parse": "^16.0.1",

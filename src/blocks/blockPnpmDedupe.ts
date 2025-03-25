@@ -31,7 +31,7 @@ export const blockPnpmDedupe = base.createBlock({
 					removedWorkflows: ["lint-packages"],
 				}),
 				blockPackageJson({
-					cleanupCommands: ["pnpm dedupe --offline"],
+					cleanupCommands: ["pnpm dedupe"],
 					properties: {
 						scripts: {
 							"lint:packages": "pnpm dedupe --check",

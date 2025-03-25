@@ -1,6 +1,7 @@
 import jsYaml from "js-yaml";
 
 import { base } from "../base.js";
+import { packageData } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
@@ -17,7 +18,7 @@ export const blockCTATransitions = base.createBlock({
 				blockPackageJson({
 					properties: {
 						devDependencies: {
-							"create-typescript-app": "2.8.0", // packageData.version,
+							"create-typescript-app": packageData.version,
 						},
 					},
 				}),

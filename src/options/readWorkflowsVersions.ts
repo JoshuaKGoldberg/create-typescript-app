@@ -10,6 +10,8 @@ export async function readWorkflowsVersions(
 	const workflowsVersions: WorkflowsVersions = {};
 
 	// TODO: This would be more straightforward if bingo-fs provided globbing...
+	// If you want to increase test coverage here, please do that first :)
+	// https://github.com/JoshuaKGoldberg/bingo/issues/308
 
 	async function collectCompositeUses() {
 		const compositeNames = await take(inputFromDirectory, {

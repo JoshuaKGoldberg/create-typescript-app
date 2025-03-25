@@ -3,6 +3,7 @@ import { inputFromFile } from "input-from-file";
 
 import { inputFromDirectory } from "../inputs/inputFromDirectory.js";
 import { WorkflowsVersions } from "../schemas.js";
+import { swallowErrorAsync } from "../utils/swallowErrorAsync.js";
 
 export async function readWorkflowsVersions(
 	take: TakeInput,
@@ -76,7 +77,10 @@ export async function readWorkflowsVersions(
 		}
 	}
 
-	await Promise.all([collectCompositeUses(), collectWorkflowUses()]);
+	await Promise.all([
+		swallowErrorAsync(collectCompositeUses()),
+		swallowErrorAsync(collectWorkflowUses()),
+	]);
 
 	return workflowsVersions;
 }

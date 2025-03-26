@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.14.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.13.0...2.14.0) (2025-03-26)
+
+### Features
+
+- remove legacy main branch protections in ruleset transition mode ([#2028](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2028)) ([8d1787a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8d1787a6656518818621a71362c6dc8f62c8003c)), closes [#2016](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2016)
+
 # [2.13.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.12.1...2.13.0) (2025-03-26)
 
 ### Features

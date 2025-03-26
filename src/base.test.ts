@@ -53,6 +53,8 @@ describe("base", () => {
 			title: "Create TypeScript App",
 			usage: expect.any(String),
 			version: expect.any(String),
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-require-imports
+			words: require("../cspell.json").words,
 			workflowsVersions: expect.any(Object),
 		});
 	});

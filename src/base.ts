@@ -31,6 +31,7 @@ import { readRepository } from "./options/readRepository.js";
 import { readRulesetId } from "./options/readRulesetId.js";
 import { readTitle } from "./options/readTitle.js";
 import { readUsage } from "./options/readUsage.js";
+import { readWords } from "./options/readWords.js";
 import { readWorkflowsVersions } from "./options/readWorkflowsVersions.js";
 import { zContributor, zWorkflowsVersions } from "./schemas.js";
 
@@ -158,6 +159,10 @@ export const base = createBase({
 			.string()
 			.optional()
 			.describe("package version to publish as and store in `package.json`"),
+		words: z
+			.array(z.string())
+			.optional()
+			.describe("additional words to add to the CSpell dictionary"),
 		workflowsVersions: zWorkflowsVersions
 			.optional()
 			.describe("existing versions of GitHub Actions workflows used"),
@@ -273,6 +278,8 @@ export const base = createBase({
 
 		const getVersion = lazyValue(async () => (await getPackageData()).version);
 
+		const getWords = lazyValue(async () => await readWords(take));
+
 		const getWorkflowData = lazyValue(
 			async () => await readWorkflowsVersions(take),
 		);
@@ -300,6 +307,7 @@ export const base = createBase({
 			title: getTitle,
 			usage: getUsage,
 			version: getVersion,
+			words: getWords,
 			workflowsVersions: getWorkflowData,
 		};
 	},

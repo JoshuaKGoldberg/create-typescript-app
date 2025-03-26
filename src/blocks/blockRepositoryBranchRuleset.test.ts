@@ -95,6 +95,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			        "owner": "test-owner",
 			        "repo": "test-repository",
 			      },
+			      "silent": true,
 			      "type": "octokit",
 			    },
 			    {
@@ -260,6 +261,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			        "owner": "test-owner",
 			        "repo": "test-repository",
 			      },
+			      "silent": true,
 			      "type": "octokit",
 			    },
 			    {
@@ -345,6 +347,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			        "owner": "test-owner",
 			        "repo": "test-repository",
 			      },
+			      "silent": true,
 			      "type": "octokit",
 			    },
 			    {
@@ -433,6 +436,7 @@ describe("blockRepositoryBranchRuleset", () => {
 			        "owner": "test-owner",
 			        "repo": "test-repository",
 			      },
+			      "silent": true,
 			      "type": "octokit",
 			    },
 			    {

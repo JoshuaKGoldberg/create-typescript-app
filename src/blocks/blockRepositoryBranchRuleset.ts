@@ -35,6 +35,7 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 						owner: options.owner,
 						repo: options.repository,
 					},
+					silent: true,
 					type: "octokit",
 				},
 				options.rulesetId

@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.13.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.12.1...2.13.0) (2025-03-26)
+
+### Features
+
+- assorted transition mode removals ([#2026](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2026)) ([0e21342](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0e2134214eb778453e68576c9b7dbb22e1df33be)), closes [#1970](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1970) [#2017](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2017) [#2023](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2023) [#2024](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2024)
+
 ## [2.12.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.12.0...2.12.1) (2025-03-26)
 
 ### Bug Fixes

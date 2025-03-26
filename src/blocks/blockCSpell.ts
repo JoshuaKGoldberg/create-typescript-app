@@ -7,6 +7,7 @@ import { resolveBin } from "../utils/resolveBin.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { CommandPhase } from "./phases.js";
 
@@ -50,7 +51,6 @@ export const blockCSpell = base.createBlock({
 							steps: [{ run: "pnpm lint:spelling" }],
 						},
 					],
-					removedWorkflows: ["lint-spelling", "spelling"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -90,6 +90,15 @@ export const blockCSpell = base.createBlock({
 					],
 					phase: CommandPhase.Process,
 				},
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveWorkflows({
+					workflows: ["lint-spelling", "spelling"],
+				}),
 			],
 		};
 	},

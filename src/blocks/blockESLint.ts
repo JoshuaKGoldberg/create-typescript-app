@@ -11,6 +11,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { CommandPhase } from "./phases.js";
 
@@ -161,7 +162,6 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 							],
 						},
 					],
-					removedWorkflows: ["eslint", "lint"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -238,6 +238,9 @@ export default tseslint.config(
 				}),
 				blockRemoveFiles({
 					files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,mjs}"],
+				}),
+				blockRemoveWorkflows({
+					workflows: ["eslint", "lint"],
 				}),
 			],
 		};

@@ -60,10 +60,6 @@ describe("blockTSup", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "build",
-			          "tsup",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -151,10 +147,6 @@ describe("blockTSup", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "build",
-			          "tsup",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -174,7 +166,9 @@ describe("blockTSup", () => {
 			    {
 			      "addons": {
 			        "dependencies": [
+			          "@babel/cli",
 			          "@babel/core",
+			          "@babel/preset-typescript",
 			          "babel",
 			        ],
 			      },
@@ -187,6 +181,15 @@ describe("blockTSup", () => {
 			          "babel.config.*",
 			          "dist",
 			          "lib",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "workflows": [
+			          "build",
+			          "tsup",
 			        ],
 			      },
 			      "block": [Function],
@@ -262,10 +265,6 @@ describe("blockTSup", () => {
 			              },
 			            ],
 			          },
-			        ],
-			        "removedWorkflows": [
-			          "build",
-			          "tsup",
 			        ],
 			      },
 			      "block": [Function],

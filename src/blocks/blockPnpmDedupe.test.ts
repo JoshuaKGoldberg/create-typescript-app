@@ -39,9 +39,6 @@ describe("blockPnpmDedupe", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-packages",
-			        ],
 			      },
 			      "block": [Function],
 			    },

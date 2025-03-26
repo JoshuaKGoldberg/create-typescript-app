@@ -87,9 +87,6 @@ describe("blockTypeScript", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "tsc",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -240,9 +237,6 @@ describe("blockTypeScript", () => {
 			              },
 			            ],
 			          },
-			        ],
-			        "removedWorkflows": [
-			          "tsc",
 			        ],
 			      },
 			      "block": [Function],

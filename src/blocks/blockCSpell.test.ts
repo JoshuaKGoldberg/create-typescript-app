@@ -51,10 +51,6 @@ describe("blockCSpell", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -125,10 +121,6 @@ describe("blockCSpell", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -198,10 +190,6 @@ describe("blockCSpell", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -268,10 +256,6 @@ describe("blockCSpell", () => {
 			              },
 			            ],
 			          },
-			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
 			        ],
 			      },
 			      "block": [Function],

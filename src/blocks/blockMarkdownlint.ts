@@ -6,6 +6,7 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { formatIgnoreFile } from "./files/formatIgnoreFile.js";
 import { CommandPhase } from "./phases.js";
@@ -42,12 +43,6 @@ export const blockMarkdownlint = base.createBlock({
 							name: "Lint Markdown",
 							steps: [{ run: "pnpm lint:md" }],
 						},
-					],
-					removedWorkflows: [
-						"lint-md",
-						"lint-markdown",
-						"lint-markdownlint",
-						"markdownlint",
 					],
 				}),
 				blockPackageJson({
@@ -87,6 +82,20 @@ export const blockMarkdownlint = base.createBlock({
 					commands: ["pnpm lint:md --fix"],
 					phase: CommandPhase.Process,
 				},
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveWorkflows({
+					workflows: [
+						"lint-md",
+						"lint-markdown",
+						"lint-markdownlint",
+						"markdownlint",
+					],
+				}),
 			],
 		};
 	},

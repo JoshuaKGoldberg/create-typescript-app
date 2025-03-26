@@ -61,10 +61,6 @@ describe("blockESLint", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "eslint",
-			          "lint",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -194,10 +190,6 @@ describe("blockESLint", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "eslint",
-			          "lint",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -267,6 +259,15 @@ describe("blockESLint", () => {
 			          ".eslintrc*",
 			          ".eslintignore",
 			          "eslint.config.{cjs,mjs}",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "workflows": [
+			          "eslint",
+			          "lint",
 			        ],
 			      },
 			      "block": [Function],
@@ -387,10 +388,6 @@ describe("blockESLint", () => {
 			              },
 			            ],
 			          },
-			        ],
-			        "removedWorkflows": [
-			          "eslint",
-			          "lint",
 			        ],
 			      },
 			      "block": [Function],
@@ -537,10 +534,6 @@ describe("blockESLint", () => {
 			              },
 			            ],
 			          },
-			        ],
-			        "removedWorkflows": [
-			          "eslint",
-			          "lint",
 			        ],
 			      },
 			      "block": [Function],

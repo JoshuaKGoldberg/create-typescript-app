@@ -6,6 +6,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
 
@@ -69,7 +70,6 @@ export * from "./types.js";
 				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
-					removedWorkflows: ["tsc"],
 				}),
 				blockMarkdownlint({
 					ignores: ["lib/"],
@@ -128,6 +128,15 @@ export * from "./types.js";
 					include: ["src"],
 				}),
 			},
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveWorkflows({
+					workflows: ["tsc"],
+				}),
+			],
 		};
 	},
 });

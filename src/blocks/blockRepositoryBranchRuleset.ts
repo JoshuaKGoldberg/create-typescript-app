@@ -28,6 +28,16 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 	transition({ addons, options }) {
 		return {
 			requests: [
+				{
+					endpoint: "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
+					parameters: {
+						branch: "main",
+						owner: options.owner,
+						repo: options.repository,
+					},
+					silent: true,
+					type: "octokit",
+				},
 				options.rulesetId
 					? {
 							endpoint: "PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}",

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.12.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.12.0...2.12.1) (2025-03-26)
+
+### Bug Fixes
+
+- ignore known badges when reading logo ([#2027](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2027)) ([f2f33d3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f2f33d3772f4e5e49e0ca4a8efa01290fae8f1f6)), closes [#2022](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2022)
+
 # [2.12.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.11.1...2.12.0) (2025-03-26)
 
 ### Features

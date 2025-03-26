@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.12.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.11.1...2.12.0) (2025-03-26)
+
+### Features
+
+- add --words with default from cspell.json words ([#2021](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2021)) ([f3ab953](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f3ab9533f85c81f61cd9ca6b26fd6ed135ea54e1)), closes [#2020](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2020)
+
 ## [2.11.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.11.0...2.11.1) (2025-03-25)
 
 ### Bug Fixes

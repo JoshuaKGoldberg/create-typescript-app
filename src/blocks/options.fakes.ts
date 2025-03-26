@@ -10,6 +10,7 @@ export const optionsBase = {
 	},
 	emoji: "💖",
 	owner: "test-owner",
+	preset: "minimal",
 	repository: "test-repository",
 	title: "Test Title",
 } satisfies BaseOptions;

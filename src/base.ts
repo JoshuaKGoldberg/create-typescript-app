@@ -313,4 +313,4 @@ export const base = createBase({
 	},
 });
 
-export type BaseOptions = BaseOptionsFor<typeof base>;
+export type BaseOptions = BaseOptionsFor<typeof base> & { preset?: string };

@@ -307,6 +307,7 @@ export const base = createBase({
 			title: getTitle,
 			usage: getUsage,
 			version: getVersion,
+			words: getWords,
 			workflowsVersions: getWorkflowData,
 		};
 	},

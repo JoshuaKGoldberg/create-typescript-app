@@ -7,19 +7,25 @@ export async function readLogo(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
+	const alt =
+		/alt=['"](.+)['"]\s*src=/.exec(tag)?.[1].split(/['"]?\s*\w+=/)[0] ??
+		"Project logo";
+
+	if (/All Contributors: \d+/.test(alt)) {
+		return undefined;
+	}
+
 	const src = /src\s*=(.+)['"/]>/
 		.exec(tag)?.[1]
 		?.split(/\s*\w+=/)[0]
 		.replaceAll(/^['"]|['"]$/g, "");
 
-	if (!src) {
+	if (!src || src.includes("//img.shields.io")) {
 		return undefined;
 	}
 
 	return {
-		alt:
-			/alt=['"](.+)['"]\s*src=/.exec(tag)?.[1].split(/['"]?\s*\w+=/)[0] ??
-			"Project logo",
+		alt,
 		src,
 		...readLogoSizing(src),
 	};

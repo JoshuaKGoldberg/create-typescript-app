@@ -24,6 +24,26 @@ describe(readLogo, () => {
 			expect(logo).toBeUndefined();
 		});
 
+		it("resolves undefined when the found image is an All Contributors badge", async () => {
+			const logo = await readLogo(() =>
+				Promise.resolve(
+					`\n<img alt="All Contributors: 1" src="https://img.shields.io/badge/all_contributors-1-21bb42.svg" />`,
+				),
+			);
+
+			expect(logo).toBeUndefined();
+		});
+
+		it("resolves undefined when the found image is a shields.io badge", async () => {
+			const logo = await readLogo(() =>
+				Promise.resolve(
+					`\n<img alt="TypeScript: Strict" src="https://img.shields.io/badge/typescript-strict-21bb42.svg" />`,
+				),
+			);
+
+			expect(logo).toBeUndefined();
+		});
+
 		it("parses when found in an unquoted string", async () => {
 			const logo = await readLogo(() =>
 				Promise.resolve(`

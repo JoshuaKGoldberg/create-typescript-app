@@ -20,8 +20,12 @@ export const blockCSpell = base.createBlock({
 		ignores: z.array(z.string()).default([]),
 		words: z.array(z.string()).default([]),
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { ignores, words } = addons;
+
+		const allWords = Array.from(
+			new Set([...(options.words ?? []), ...words]),
+		).sort();
 
 		return {
 			addons: [
@@ -68,7 +72,7 @@ export const blockCSpell = base.createBlock({
 						"pnpm-lock.yaml",
 						...ignores,
 					].sort(),
-					...(words.length && { words: words.sort() }),
+					...(allWords.length && { words: allWords }),
 				}),
 			},
 		};

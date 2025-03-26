@@ -89,6 +89,15 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
+			      "endpoint": "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
+			      "parameters": {
+			        "branch": "main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			      },
+			      "type": "octokit",
+			    },
+			    {
 			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
 			      "parameters": {
 			        "bypass_actors": [
@@ -245,6 +254,15 @@ describe("blockRepositoryBranchRuleset", () => {
 			{
 			  "requests": [
 			    {
+			      "endpoint": "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
+			      "parameters": {
+			        "branch": "main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			      },
+			      "type": "octokit",
+			    },
+			    {
 			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
 			      "parameters": {
 			        "bypass_actors": [
@@ -320,6 +338,15 @@ describe("blockRepositoryBranchRuleset", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "requests": [
+			    {
+			      "endpoint": "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
+			      "parameters": {
+			        "branch": "main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			      },
+			      "type": "octokit",
+			    },
 			    {
 			      "endpoint": "POST /repos/{owner}/{repo}/rulesets",
 			      "parameters": {
@@ -399,6 +426,15 @@ describe("blockRepositoryBranchRuleset", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "requests": [
+			    {
+			      "endpoint": "DELETE /repos/{owner}/{repo}/branches/{branch}/protection",
+			      "parameters": {
+			        "branch": "main",
+			        "owner": "test-owner",
+			        "repo": "test-repository",
+			      },
+			      "type": "octokit",
+			    },
 			    {
 			      "endpoint": "PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}",
 			      "parameters": {

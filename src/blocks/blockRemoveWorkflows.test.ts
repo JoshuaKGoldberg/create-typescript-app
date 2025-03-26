@@ -1,5 +1,5 @@
 import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { optionsBase } from "./options.fakes.js";

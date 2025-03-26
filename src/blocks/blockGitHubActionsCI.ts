@@ -32,7 +32,6 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
-		removedWorkflows: z.array(z.string()).optional(),
 	},
 	produce({ addons, options }) {
 		const { jobs } = addons;
@@ -145,18 +144,11 @@ export const blockGitHubActionsCI = base.createBlock({
 			},
 		};
 	},
-	transition({ addons }) {
-		const { removedWorkflows = [] } = addons;
+	transition() {
 		return {
 			addons: [
 				blockRemoveFiles({
-					files: [
-						".circleci",
-						"travis.yml",
-						...removedWorkflows.map(
-							(removedWorkflow) => `.github/workflows/${removedWorkflow}.yml`,
-						),
-					],
+					files: [".circleci", "travis.yml"],
 				}),
 			],
 		};

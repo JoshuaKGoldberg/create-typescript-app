@@ -12,6 +12,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
 
@@ -142,7 +143,6 @@ describe(greet, () => {
 							steps: [{ run: "pnpm run test --coverage" }, ...actionSteps],
 						},
 					],
-					removedWorkflows: ["test"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -209,6 +209,7 @@ export default defineConfig({
 			addons: [
 				blockRemoveDependencies({
 					dependencies: [
+						"@vitest/coverage-istanbul",
 						"eslint-plugin-jest",
 						"eslint-plugin-mocha",
 						"eslint-plugin-vitest",
@@ -217,6 +218,9 @@ export default defineConfig({
 				}),
 				blockRemoveFiles({
 					files: [".mocha*", "jest.config.*", "vitest.config.{c,j,m}*"],
+				}),
+				blockRemoveWorkflows({
+					workflows: ["test"],
 				}),
 			],
 		};

@@ -51,10 +51,6 @@ describe("blockCSpell", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -125,10 +121,6 @@ describe("blockCSpell", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -198,10 +190,6 @@ describe("blockCSpell", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -269,10 +257,6 @@ describe("blockCSpell", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "lint-spelling",
-			          "spelling",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -301,6 +285,82 @@ describe("blockCSpell", () => {
 			      "phase": 3,
 			    },
 			  ],
+			}
+		`);
+	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockCSpell, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "sections": {
+			          "Linting": {
+			            "contents": {
+			              "items": [
+			                "- \`pnpm lint:spelling\` ([cspell](https://cspell.org)): Spell checks across all source files",
+			              ],
+			            },
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          "streetsidesoftware.code-spell-checker",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "jobs": [
+			          {
+			            "name": "Lint Spelling",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:spelling",
+			              },
+			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "devDependencies": {
+			            "cspell": "8.17.5",
+			          },
+			          "scripts": {
+			            "lint:spelling": "cspell "**" ".github/**/*"",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "workflows": [
+			          "lint-spelling",
+			          "spelling",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			  },
 			}
 		`);
 	});

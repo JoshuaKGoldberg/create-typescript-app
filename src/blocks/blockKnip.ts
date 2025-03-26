@@ -9,6 +9,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 
 export const blockKnip = base.createBlock({
 	about: {
@@ -39,7 +40,6 @@ export const blockKnip = base.createBlock({
 							steps: [{ run: "pnpm lint:knip" }],
 						},
 					],
-					removedWorkflows: ["knip", "lint-knip"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -69,6 +69,9 @@ export const blockKnip = base.createBlock({
 			addons: [
 				blockRemoveFiles({
 					files: [".knip*", "knip.{c,m,t}*", "knip.js", "knip.jsonc"],
+				}),
+				blockRemoveWorkflows({
+					workflows: ["knip", "lint-knip"],
 				}),
 			],
 		};

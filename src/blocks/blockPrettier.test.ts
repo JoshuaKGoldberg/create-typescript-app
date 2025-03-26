@@ -52,10 +52,6 @@ describe("blockPrettier", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "format",
-			          "prettier",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -168,10 +164,6 @@ describe("blockPrettier", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "format",
-			          "prettier",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -207,9 +199,27 @@ describe("blockPrettier", () => {
 			    },
 			    {
 			      "addons": {
+			        "dependencies": [
+			          "eslint-config-prettier",
+			          "eslint-plugin-prettier",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "files": [
 			          ".prettierrc.{c*,js,m*,t*}",
 			          "prettier.config*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "workflows": [
+			          "format",
+			          "prettier",
 			        ],
 			      },
 			      "block": [Function],
@@ -300,10 +310,6 @@ describe("blockPrettier", () => {
 			              },
 			            ],
 			          },
-			        ],
-			        "removedWorkflows": [
-			          "format",
-			          "prettier",
 			        ],
 			      },
 			      "block": [Function],

@@ -1,8 +1,9 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 
 export const blockESLintPackageJson = base.createBlock({
 	about: {
@@ -20,9 +21,6 @@ export const blockESLintPackageJson = base.createBlock({
 						},
 					],
 				}),
-				blockGitHubActionsCI({
-					removedWorkflows: ["lint-package-json"],
-				}),
 				blockPackageJson({
 					properties: {
 						scripts: {
@@ -30,11 +28,23 @@ export const blockESLintPackageJson = base.createBlock({
 						},
 					},
 				}),
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveFiles({
+					files: [".npmpackagejsonlintrc*"],
+				}),
 				blockRemoveDependencies({
 					dependencies: [
 						"npm-package-json-lint",
 						"npm-package-json-lint-config-default",
 					],
+				}),
+				blockRemoveWorkflows({
+					workflows: ["lint-package-json"],
 				}),
 			],
 		};

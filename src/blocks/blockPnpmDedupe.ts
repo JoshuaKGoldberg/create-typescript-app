@@ -2,6 +2,7 @@ import { base } from "../base.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 
 export const blockPnpmDedupe = base.createBlock({
 	about: {
@@ -28,7 +29,6 @@ export const blockPnpmDedupe = base.createBlock({
 							steps: [{ run: "pnpm lint:packages" }],
 						},
 					],
-					removedWorkflows: ["lint-packages"],
 				}),
 				blockPackageJson({
 					cleanupCommands: ["pnpm dedupe"],
@@ -37,6 +37,15 @@ export const blockPnpmDedupe = base.createBlock({
 							"lint:packages": "pnpm dedupe --check",
 						},
 					},
+				}),
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveWorkflows({
+					workflows: ["lint-packages"],
 				}),
 			],
 		};

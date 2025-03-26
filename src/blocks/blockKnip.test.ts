@@ -43,10 +43,6 @@ describe("blockKnip", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "knip",
-			          "lint-knip",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -108,10 +104,6 @@ describe("blockKnip", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "knip",
-			          "lint-knip",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -171,10 +163,6 @@ describe("blockKnip", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "knip",
-			          "lint-knip",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -198,6 +186,15 @@ describe("blockKnip", () => {
 			          "knip.{c,m,t}*",
 			          "knip.js",
 			          "knip.jsonc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "workflows": [
+			          "knip",
+			          "lint-knip",
 			        ],
 			      },
 			      "block": [Function],

@@ -8,6 +8,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockTSup = base.createBlock({
@@ -57,7 +58,6 @@ pnpm build --watch
 							],
 						},
 					],
-					removedWorkflows: ["build", "tsup"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -95,10 +95,18 @@ export default defineConfig({
 		return {
 			addons: [
 				blockRemoveDependencies({
-					dependencies: ["@babel/core", "babel"],
+					dependencies: [
+						"@babel/cli",
+						"@babel/core",
+						"@babel/preset-typescript",
+						"babel",
+					],
 				}),
 				blockRemoveFiles({
 					files: [".babelrc*", "babel.config.*", "dist", "lib"],
+				}),
+				blockRemoveWorkflows({
+					workflows: ["build", "tsup"],
 				}),
 			],
 		};

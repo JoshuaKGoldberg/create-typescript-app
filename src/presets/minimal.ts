@@ -15,6 +15,7 @@ import { blockPrettier } from "../blocks/blockPrettier.js";
 import { blockREADME } from "../blocks/blockREADME.js";
 import { blockRemoveDependencies } from "../blocks/blockRemoveDependencies.js";
 import { blockRemoveFiles } from "../blocks/blockRemoveFiles.js";
+import { blockRemoveWorkflows } from "../blocks/blockRemoveWorkflows.js";
 import { blockRepositoryBranchRuleset } from "../blocks/blockRepositoryBranchRuleset.js";
 import { blockRepositoryLabels } from "../blocks/blockRepositoryLabels.js";
 import { blockRepositorySecrets } from "../blocks/blockRepositorySecrets.js";
@@ -47,6 +48,7 @@ export const presetMinimal = base.createPreset({
 		blockREADME,
 		blockRemoveDependencies,
 		blockRemoveFiles,
+		blockRemoveWorkflows,
 		blockRepositoryBranchRuleset,
 		blockRepositoryLabels,
 		blockRepositorySecrets,

@@ -162,9 +162,6 @@ describe("blockVitest", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "test",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -403,9 +400,6 @@ describe("blockVitest", () => {
 			            ],
 			          },
 			        ],
-			        "removedWorkflows": [
-			          "test",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -471,6 +465,7 @@ describe("blockVitest", () => {
 			    {
 			      "addons": {
 			        "dependencies": [
+			          "@vitest/coverage-istanbul",
 			          "eslint-plugin-jest",
 			          "eslint-plugin-mocha",
 			          "eslint-plugin-vitest",
@@ -485,6 +480,14 @@ describe("blockVitest", () => {
 			          ".mocha*",
 			          "jest.config.*",
 			          "vitest.config.{c,j,m}*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "workflows": [
+			          "test",
 			        ],
 			      },
 			      "block": [Function],
@@ -670,9 +673,6 @@ describe("blockVitest", () => {
 			              },
 			            ],
 			          },
-			        ],
-			        "removedWorkflows": [
-			          "test",
 			        ],
 			      },
 			      "block": [Function],

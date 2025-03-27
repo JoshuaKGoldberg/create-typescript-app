@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.15.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.1...2.15.2) (2025-03-27)
+
+### Bug Fixes
+
+- provide README badges via addons ([#2037](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2037)) ([3260079](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3260079633ec4215b790b3cf446125aed65c1de6)), closes [#2036](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2036)
+
 ## [2.15.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.0...2.15.1) (2025-03-27)
 
 ### Bug Fixes

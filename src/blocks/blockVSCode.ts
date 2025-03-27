@@ -71,19 +71,19 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 			],
 			files: {
 				".vscode": {
-					"extensions.json":
-						extensions &&
-						JSON.stringify({
-							recommendations: [...extensions].sort(),
-						}),
-					"launch.json":
-						debuggers &&
-						JSON.stringify({
-							configurations: [...debuggers].sort((a, b) =>
-								a.name.localeCompare(b.name),
-							),
-							version: "0.2.0",
-						}),
+					"extensions.json": extensions?.length
+						? JSON.stringify({
+								recommendations: [...extensions].sort(),
+							})
+						: undefined,
+					"launch.json": debuggers?.length
+						? JSON.stringify({
+								configurations: [...debuggers].sort((a, b) =>
+									a.name.localeCompare(b.name),
+								),
+								version: "0.2.0",
+							})
+						: undefined,
 					"settings.json": JSON.stringify(
 						sortKeys({
 							"editor.formatOnSave": true,
@@ -91,12 +91,12 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 							...settings,
 						}),
 					),
-					"tasks.json":
-						tasks &&
-						JSON.stringify({
-							tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
-							version: "2.0.0",
-						}),
+					"tasks.json": tasks?.length
+						? JSON.stringify({
+								tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
+								version: "2.0.0",
+							})
+						: undefined,
 				},
 			},
 		};

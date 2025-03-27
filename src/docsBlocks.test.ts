@@ -18,7 +18,7 @@ const expectedLines = await createExpectedLines();
 // you'll need to add a row like:
 //
 // ```md
-// | Example | `--exclude-example` | | ✅ | 💯 |
+// | Example | `--add-example`, `--exclude-example` | | ✅ | 💯 |
 // ```
 //
 // Rows are kept sorted by alphabetical order of name.
@@ -51,8 +51,8 @@ async function createActualLines() {
 
 async function createExpectedLines() {
 	const lines = [
-		"| Block | Exclusion Flag | Minimal | Common | Everything |",
-		"| ----- | -------------- | ------- | ------ | ---------- |",
+		"| Block | Flags | Minimal | Common | Everything |",
+		"| ----- | ----- | ------- | ------ | ---------- |",
 	];
 
 	for (const block of Object.values(blocks) as Block[]) {
@@ -62,7 +62,7 @@ async function createExpectedLines() {
 		lines.push(
 			[
 				name,
-				`\`--exclude-${name.replaceAll(/\W+/g, "-").toLowerCase()}\``,
+				`${createFlag("add", name)}, ${createFlag("exclude", name)}`,
 				presets.minimal.blocks.includes(block) ? "✔️" : " ",
 				presets.common.blocks.includes(block) ? "✅" : " ",
 				presets.everything.blocks.includes(block) ? "💯" : " ",
@@ -77,6 +77,10 @@ async function createExpectedLines() {
 	});
 
 	return splitTable(expectedTable);
+}
+
+function createFlag(prefix: string, name: string) {
+	return `\`--${prefix}-${name.replaceAll(/\W+/g, "-").toLowerCase()}\``;
 }
 
 function splitTable(table: string) {

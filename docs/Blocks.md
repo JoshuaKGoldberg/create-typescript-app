@@ -5,53 +5,59 @@ Each can be individually turned off or on.
 
 This table summarizes each block and which base levels they're included in:
 
-| Block                        | Exclusion Flag                           | Minimal | Common | Everything |
-| ---------------------------- | ---------------------------------------- | ------- | ------ | ---------- |
-| AllContributors              | `--exclude-allcontributors`              |         | ✅     | 💯         |
-| Are The Types Wrong          | `--exclude-are-the-types-wrong`          |         |        |            |
-| Contributing Docs            | `--exclude-contributing-docs`            | ✔️      | ✅     | 💯         |
-| Contributor Covenant         | `--exclude-contributor-covenant`         | ✔️      | ✅     | 💯         |
-| CSpell                       | `--exclude-cspell`                       |         |        | 💯         |
-| Codecov                      | `--exclude-codecov`                      |         | ✅     | 💯         |
-| Development Docs             | `--exclude-development-docs`             | ✔️      | ✅     | 💯         |
-| ESLint                       | `--exclude-eslint`                       | ✔️      | ✅     | 💯         |
-| ESLint Comments Plugin       | `--exclude-eslint-comments-plugin`       |         |        | 💯         |
-| ESLint JSDoc Plugin          | `--exclude-eslint-jsdoc-plugin`          |         |        | 💯         |
-| ESLint JSONC Plugin          | `--exclude-eslint-jsonc-plugin`          |         |        | 💯         |
-| ESLint Markdown Plugin       | `--exclude-eslint-markdown-plugin`       |         |        | 💯         |
-| ESLint More Styling          | `--exclude-eslint-more-styling`          |         |        | 💯         |
-| ESLint Node Plugin           | `--exclude-eslint-node-plugin`           |         |        | 💯         |
-| ESLint package.json Plugin   | `--exclude-eslint-package-json-plugin`   |         |        | 💯         |
-| ESLint Perfectionist Plugin  | `--exclude-eslint-perfectionist-plugin`  |         |        | 💯         |
-| ESLint Regexp Plugin         | `--exclude-eslint-regexp-plugin`         |         |        | 💯         |
-| ESLint YML Plugin            | `--exclude-eslint-yml-plugin`            |         |        | 💯         |
-| Funding                      | `--exclude-funding`                      |         | ✅     | 💯         |
-| GitHub Actions CI            | `--exclude-github-actions-ci`            | ✔️      | ✅     | 💯         |
-| GitHub Issue Templates       | `--exclude-github-issue-templates`       | ✔️      | ✅     | 💯         |
-| GitHub PR Template           | `--exclude-github-pr-template`           | ✔️      | ✅     | 💯         |
-| Gitignore                    | `--exclude-gitignore`                    | ✔️      | ✅     | 💯         |
-| Knip                         | `--exclude-knip`                         |         |        | 💯         |
-| Main                         | `--exclude-main`                         | ✔️      | ✅     | 💯         |
-| Markdownlint                 | `--exclude-markdownlint`                 |         |        | 💯         |
-| MIT License                  | `--exclude-mit-license`                  | ✔️      | ✅     | 💯         |
-| ncc                          | `--exclude-ncc`                          |         |        |            |
-| nvmrc                        | `--exclude-nvmrc`                        |         |        | 💯         |
-| Package JSON                 | `--exclude-package-json`                 | ✔️      | ✅     | 💯         |
-| pnpm Dedupe                  | `--exclude-pnpm-dedupe`                  |         |        | 💯         |
-| PR Compliance                | `--exclude-pr-compliance`                |         |        | 💯         |
-| Prettier                     | `--exclude-prettier`                     | ✔️      | ✅     | 💯         |
-| Prettier Plugin Curly        | `--exclude-prettier-plugin-curly`        |         |        | 💯         |
-| Prettier Plugin Package JSON | `--exclude-prettier-plugin-package-json` |         |        | 💯         |
-| Prettier Plugin Sh           | `--exclude-prettier-plugin-sh`           |         |        | 💯         |
-| README.md                    | `--exclude-readme-md`                    | ✔️      | ✅     | 💯         |
-| release-it                   | `--exclude-release-it`                   |         | ✅     | 💯         |
-| Renovate                     | `--exclude-renovate`                     |         |        | 💯         |
-| Security Docs                | `--exclude-security-docs`                | ✔️      | ✅     | 💯         |
-| Templated With               | `--exclude-templated-with`               | ✔️      | ✅     | 💯         |
-| TSup                         | `--exclude-tsup`                         | ✔️      | ✅     | 💯         |
-| TypeScript                   | `--exclude-typescript`                   | ✔️      | ✅     | 💯         |
-| Vitest                       | `--exclude-vitest`                       |         | ✅     | 💯         |
-| VS Code                      | `--exclude-vs-code`                      |         |        | 💯         |
+| Block                        | Flags                                                                          | Minimal | Common | Everything |
+| ---------------------------- | ------------------------------------------------------------------------------ | ------- | ------ | ---------- |
+| AllContributors              | `--add-allcontributors`, `--exclude-allcontributors`                           |         | ✅     | 💯         |
+| Are The Types Wrong          | `--add-are-the-types-wrong`, `--exclude-are-the-types-wrong`                   |         |        |            |
+| Contributing Docs            | `--add-contributing-docs`, `--exclude-contributing-docs`                       | ✔️      | ✅     | 💯         |
+| Contributor Covenant         | `--add-contributor-covenant`, `--exclude-contributor-covenant`                 | ✔️      | ✅     | 💯         |
+| CSpell                       | `--add-cspell`, `--exclude-cspell`                                             |         |        | 💯         |
+| Codecov                      | `--add-codecov`, `--exclude-codecov`                                           |         | ✅     | 💯         |
+| Development Docs             | `--add-development-docs`, `--exclude-development-docs`                         | ✔️      | ✅     | 💯         |
+| ESLint                       | `--add-eslint`, `--exclude-eslint`                                             | ✔️      | ✅     | 💯         |
+| ESLint Comments Plugin       | `--add-eslint-comments-plugin`, `--exclude-eslint-comments-plugin`             |         |        | 💯         |
+| ESLint JSDoc Plugin          | `--add-eslint-jsdoc-plugin`, `--exclude-eslint-jsdoc-plugin`                   |         |        | 💯         |
+| ESLint JSONC Plugin          | `--add-eslint-jsonc-plugin`, `--exclude-eslint-jsonc-plugin`                   |         |        | 💯         |
+| ESLint Markdown Plugin       | `--add-eslint-markdown-plugin`, `--exclude-eslint-markdown-plugin`             |         |        | 💯         |
+| ESLint More Styling          | `--add-eslint-more-styling`, `--exclude-eslint-more-styling`                   |         |        | 💯         |
+| ESLint Node Plugin           | `--add-eslint-node-plugin`, `--exclude-eslint-node-plugin`                     |         |        | 💯         |
+| ESLint package.json Plugin   | `--add-eslint-package-json-plugin`, `--exclude-eslint-package-json-plugin`     |         |        | 💯         |
+| ESLint Perfectionist Plugin  | `--add-eslint-perfectionist-plugin`, `--exclude-eslint-perfectionist-plugin`   |         |        | 💯         |
+| ESLint Regexp Plugin         | `--add-eslint-regexp-plugin`, `--exclude-eslint-regexp-plugin`                 |         |        | 💯         |
+| ESLint YML Plugin            | `--add-eslint-yml-plugin`, `--exclude-eslint-yml-plugin`                       |         |        | 💯         |
+| Funding                      | `--add-funding`, `--exclude-funding`                                           |         | ✅     | 💯         |
+| GitHub Actions CI            | `--add-github-actions-ci`, `--exclude-github-actions-ci`                       | ✔️      | ✅     | 💯         |
+| GitHub Issue Templates       | `--add-github-issue-templates`, `--exclude-github-issue-templates`             | ✔️      | ✅     | 💯         |
+| GitHub PR Template           | `--add-github-pr-template`, `--exclude-github-pr-template`                     | ✔️      | ✅     | 💯         |
+| Gitignore                    | `--add-gitignore`, `--exclude-gitignore`                                       | ✔️      | ✅     | 💯         |
+| Knip                         | `--add-knip`, `--exclude-knip`                                                 |         |        | 💯         |
+| Main                         | `--add-main`, `--exclude-main`                                                 | ✔️      | ✅     | 💯         |
+| Markdownlint                 | `--add-markdownlint`, `--exclude-markdownlint`                                 |         |        | 💯         |
+| MIT License                  | `--add-mit-license`, `--exclude-mit-license`                                   | ✔️      | ✅     | 💯         |
+| ncc                          | `--add-ncc`, `--exclude-ncc`                                                   |         |        |            |
+| nvmrc                        | `--add-nvmrc`, `--exclude-nvmrc`                                               |         |        | 💯         |
+| Package JSON                 | `--add-package-json`, `--exclude-package-json`                                 | ✔️      | ✅     | 💯         |
+| pnpm Dedupe                  | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                   |         |        | 💯         |
+| PR Compliance                | `--add-pr-compliance`, `--exclude-pr-compliance`                               |         |        | 💯         |
+| Prettier                     | `--add-prettier`, `--exclude-prettier`                                         | ✔️      | ✅     | 💯         |
+| Prettier Plugin Curly        | `--add-prettier-plugin-curly`, `--exclude-prettier-plugin-curly`               |         |        | 💯         |
+| Prettier Plugin Package JSON | `--add-prettier-plugin-package-json`, `--exclude-prettier-plugin-package-json` |         |        | 💯         |
+| Prettier Plugin Sh           | `--add-prettier-plugin-sh`, `--exclude-prettier-plugin-sh`                     |         |        | 💯         |
+| README.md                    | `--add-readme-md`, `--exclude-readme-md`                                       | ✔️      | ✅     | 💯         |
+| release-it                   | `--add-release-it`, `--exclude-release-it`                                     |         | ✅     | 💯         |
+| Renovate                     | `--add-renovate`, `--exclude-renovate`                                         |         |        | 💯         |
+| Security Docs                | `--add-security-docs`, `--exclude-security-docs`                               | ✔️      | ✅     | 💯         |
+| Templated With               | `--add-templated-with`, `--exclude-templated-with`                             | ✔️      | ✅     | 💯         |
+| TSup                         | `--add-tsup`, `--exclude-tsup`                                                 | ✔️      | ✅     | 💯         |
+| TypeScript                   | `--add-typescript`, `--exclude-typescript`                                     | ✔️      | ✅     | 💯         |
+| Vitest                       | `--add-vitest`, `--exclude-vitest`                                             |         | ✅     | 💯         |
+| VS Code                      | `--add-vs-code`, `--exclude-vs-code`                                           |         |        | 💯         |
+
+For example, this uses ncc instead of the default tsup builder:
+
+```shell
+npx create-typescript-app --add-ncc --exclude-tsup
+```
 
 See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.
 

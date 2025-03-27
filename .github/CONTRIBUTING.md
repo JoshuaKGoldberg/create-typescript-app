@@ -93,5 +93,5 @@ Please do ping the maintainer who merged your PR if that doesn't happen within 2
 ## Emojis & Appreciation
 
 If you made it all the way to the end, bravo dear user, we love you.
-Please include your favorite emoji in the bottom of your issues and PRs to signal to us that you did in fact read this file and are trying to conform to it as best as possible.
+Please include an emoji in the bottom of your issues and PRs to signal to us that you did in fact read this file and are trying to conform to it as best as possible.
 🎁 is a good starter if you're not sure which to use.

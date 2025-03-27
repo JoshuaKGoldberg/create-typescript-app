@@ -23,11 +23,19 @@ export const blockAllContributors = base.createBlock({
 				}),
 				blockREADME({
 					badges: [
-						`<!-- prettier-ignore-start -->
-\t<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-\t<a href="#contributors" target="_blank"><img alt="👪 All Contributors: ${contributions}" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg" /></a>
+						{
+							alt: `👪 All Contributors: ${contributions}`,
+							comments: {
+								after: `
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 \t<!-- prettier-ignore-end -->`,
+								before: `<!-- prettier-ignore-start -->
+\t<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+\t`,
+							},
+							href: "#contributors",
+							src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
+						},
 					],
 					sections: options.contributors
 						? [printAllContributorsTable(options.contributors)]

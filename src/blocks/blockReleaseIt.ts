@@ -3,6 +3,7 @@ import { getPackageDependencies } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockREADME } from "./blockREADME.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
@@ -30,6 +31,15 @@ export const blockReleaseIt = base.createBlock({
 							"should-semantic-release": undefined,
 						},
 					},
+				}),
+				blockREADME({
+					badges: [
+						{
+							alt: "📦 npm version",
+							href: `http://npmjs.com/package/${options.repository}`,
+							src: `https://img.shields.io/npm/v/${options.repository}?color=21bb42&label=%F0%9F%93%A6%20npm`,
+						},
+					],
 				}),
 				blockRemoveDependencies({
 					dependencies: ["should-semantic-release"],

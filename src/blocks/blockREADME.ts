@@ -9,24 +9,38 @@ function printAttributes(attributes: Record<string, number | string>) {
 		.join(" ");
 }
 
+const zBadge = z.object({
+	alt: z.string(),
+	comments: z
+		.object({
+			after: z.string(),
+			before: z.string(),
+		})
+		.optional(),
+	href: z.string().optional(),
+	src: z.string(),
+});
+
+type Badge = z.infer<typeof zBadge>;
+
 export const blockREADME = base.createBlock({
 	about: {
 		name: "README.md",
 	},
 	addons: {
-		badges: z.array(z.string()).default([]),
+		badges: z.array(zBadge).default([]),
 		notices: z.array(z.string()).default([]),
 		sections: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
 		const { badges, notices, sections } = addons;
 
+		const explainer =
+			options.explainer && `\n${options.explainer.join("\n")}\n`;
+
 		const logo =
 			options.logo &&
 			`\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`;
-
-		const explainer =
-			options.explainer && `\n${options.explainer.join("\n")}\n`;
 
 		return {
 			files: {
@@ -34,12 +48,8 @@ export const blockREADME = base.createBlock({
 
 <p align="center">${formatDescription(options.description)}</p>
 
-<p align="center">${badges.length ? badges.map((badge) => `\n\t${badge}`).join("\n") : ""}
-	<a href="https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
-	<a href="https://codecov.io/gh/${options.owner}/${options.repository}" target="_blank"><img alt="🧪 Coverage" src="https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage" /></a>
-	<a href="https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md" target="_blank"><img alt="📝 License: MIT" src="https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg"></a>
-	<a href="http://npmjs.com/package/${options.repository}"><img alt="📦 npm version" src="https://img.shields.io/npm/v/${options.repository}?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
-	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
+<p align="center">
+${formatBadges(badges)}
 </p>
 ${[logo, explainer].filter(Boolean).join("")}
 ## Usage
@@ -57,10 +67,43 @@ ${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : 
 	},
 });
 
+function badgeSorter(a: Badge, b: Badge) {
+	return removeEmojis(a.alt).localeCompare(removeEmojis(b.alt));
+}
+
+function formatBadge(badge: Badge) {
+	const image = `<img alt="${badge.alt}" src="${badge.src}" />`;
+	const tagged = badge.href
+		? `<a href="${badge.href}" target="_blank">${image}</a>`
+		: image;
+	const commented = badge.comments
+		? `${badge.comments.before}${tagged}${badge.comments.after}`
+		: tagged;
+
+	return `\t${commented}`;
+}
+
+function formatBadges(badges: Badge[]) {
+	return [
+		...badges,
+		{
+			alt: "💪 TypeScript: Strict",
+			src: "https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg",
+		},
+	]
+		.sort(badgeSorter)
+		.map(formatBadge)
+		.join("\n");
+}
+
 function formatDescription(description: string) {
 	if (!description.includes(". ")) {
 		return description;
 	}
 
 	return "\n\t" + description.replaceAll(". ", ".\n\t") + "\n";
+}
+
+function removeEmojis(text: string) {
+	return text.replaceAll(/\p{Emoji}/gu, "").trim();
 }

@@ -1,13 +1,23 @@
 import { base } from "../base.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockREADME } from "./blockREADME.js";
 
 export const blockMITLicense = base.createBlock({
 	about: {
 		name: "MIT License",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
+				blockREADME({
+					badges: [
+						{
+							alt: "📝 License: MIT",
+							href: `https://github.com/${options.owner}/${options.repository}/blob/main/LICENSE.md`,
+							src: "https://img.shields.io/badge/%F0%9F%93%9D_license-MIT-21bb42.svg",
+						},
+					],
+				}),
 				blockPackageJson({
 					properties: {
 						files: ["LICENSE.md"],

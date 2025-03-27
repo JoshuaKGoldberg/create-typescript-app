@@ -1,4 +1,5 @@
 import { base } from "../base.js";
+import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
 export const blockContributorCovenant = base.createBlock({
@@ -7,6 +8,17 @@ export const blockContributorCovenant = base.createBlock({
 	},
 	produce({ options }) {
 		return {
+			addons: [
+				blockREADME({
+					badges: [
+						{
+							alt: "🤝 Code of Conduct: Kept",
+							href: `https://github.com/${options.owner}/${options.repository}/blob/main/.github/CODE_OF_CONDUCT.md`,
+							src: "https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42",
+						},
+					],
+				}),
+			],
 			files: {
 				".github": {
 					"CODE_OF_CONDUCT.md": `# Contributor Covenant Code of Conduct

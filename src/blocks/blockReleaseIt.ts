@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
@@ -12,7 +14,19 @@ export const blockReleaseIt = base.createBlock({
 	about: {
 		name: "release-it",
 	},
-	produce({ options }) {
+	addons: {
+		builders: z
+			.array(
+				z.object({
+					order: z.number(),
+					run: z.string(),
+				}),
+			)
+			.default([]),
+	},
+	produce({ addons, options }) {
+		const { builders } = addons;
+
 		return {
 			addons: [
 				blockCSpell({
@@ -135,9 +149,9 @@ export const blockReleaseIt = base.createBlock({
 								{
 									uses: "./.github/actions/prepare",
 								},
-								{
-									run: "pnpm build",
-								},
+								...builders
+									.sort((a, b) => a.order - b.order)
+									.map(({ run }) => ({ run })),
 								{
 									env: {
 										GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",

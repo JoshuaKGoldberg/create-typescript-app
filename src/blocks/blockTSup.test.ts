@@ -73,6 +73,17 @@ describe("blockTSup", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "builders": [
+			          {
+			            "order": 0,
+			            "run": "pnpm build",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "tsup.config.ts": "import { defineConfig } from "tsup";
@@ -154,6 +165,17 @@ describe("blockTSup", () => {
 			            "build": "tsup",
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "builders": [
+			          {
+			            "order": 0,
+			            "run": "pnpm build",
+			          },
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -270,6 +292,17 @@ describe("blockTSup", () => {
 			            "build": "tsup",
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "builders": [
+			          {
+			            "order": 0,
+			            "run": "pnpm build",
+			          },
+			        ],
 			      },
 			      "block": [Function],
 			    },

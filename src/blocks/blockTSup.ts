@@ -6,6 +6,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockReleaseIt } from "./blockReleaseIt.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
@@ -64,6 +65,14 @@ pnpm build --watch
 							build: "tsup",
 						},
 					},
+				}),
+				blockReleaseIt({
+					builders: [
+						{
+							order: 0,
+							run: "pnpm build",
+						},
+					],
 				}),
 			],
 			files: {

@@ -1,4 +1,3 @@
-import * as htmlToText from "html-to-text";
 import removeUndefinedObjects from "remove-undefined-objects";
 import semver from "semver";
 import sortPackageJson from "sort-package-json";

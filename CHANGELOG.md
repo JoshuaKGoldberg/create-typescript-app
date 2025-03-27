@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.15.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.2...2.15.3) (2025-03-27)
+
+### Bug Fixes
+
+- support package.json bin objects ([#2040](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2040)) ([2396960](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2396960cb7a23acc6a9952040f203a8543cc2266)), closes [#2039](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2039)
+
 ## [2.15.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.1...2.15.2) (2025-03-27)
 
 ### Bug Fixes

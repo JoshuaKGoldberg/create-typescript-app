@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.15.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.4...2.15.5) (2025-03-27)
+
+### Bug Fixes
+
+- remove post-emoji '.' from PR template ([5f58fb2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5f58fb28d277f55a50b808a0da6cf0ca333bbc80))
+
 ## [2.15.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.3...2.15.4) (2025-03-27)
 
 ### Bug Fixes

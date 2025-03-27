@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.15.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.0...2.15.1) (2025-03-27)
+
+### Bug Fixes
+
+- also remove parentheses in GitHub job listings ([#2035](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2035)) ([d81c6fa](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d81c6fa8e8ddb18c2f1eda8c4257c4abf2518b70)), closes [#2034](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2034)
+
 # [2.15.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.14.0...2.15.0) (2025-03-27)
 
 ### Features

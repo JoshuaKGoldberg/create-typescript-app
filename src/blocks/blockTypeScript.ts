@@ -1,5 +1,6 @@
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
+import { getPrimaryBin } from "./bin/getPrimaryBin.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
@@ -15,6 +16,8 @@ export const blockTypeScript = base.createBlock({
 		name: "TypeScript",
 	},
 	produce({ options }) {
+		const primaryBin = getPrimaryBin(options.bin, options.repository);
+
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -86,12 +89,12 @@ export * from "./types.js";
 				}),
 				blockVitest({ coverage: { include: ["src"] }, exclude: ["lib"] }),
 				blockVSCode({
-					debuggers: options.bin
+					debuggers: primaryBin
 						? [
 								{
 									name: "Debug Program",
 									preLaunchTask: "build",
-									program: options.bin,
+									program: primaryBin,
 									request: "launch",
 									skipFiles: ["<node_internals>/**"],
 									type: "node",

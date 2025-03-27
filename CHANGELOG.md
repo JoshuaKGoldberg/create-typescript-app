@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.16.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.16.0...2.16.1) (2025-03-27)
+
+### Bug Fixes
+
+- say 'an' emoji, not specifically 'your favorite' ([c45f2a7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c45f2a7b8714095c3a49aff2828ece59f39921fc))
+
 # [2.16.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.6...2.16.0) (2025-03-27)
 
 ### Bug Fixes

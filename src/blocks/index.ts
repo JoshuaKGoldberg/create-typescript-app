@@ -24,6 +24,7 @@ import { blockGitignore } from "./blockGitignore.js";
 import { blockKnip } from "./blockKnip.js";
 import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockMITLicense } from "./blockMITLicense.js";
+import { blockNcc } from "./blockNcc.js";
 import { blockNvmrc } from "./blockNvmrc.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPnpmDedupe } from "./blockPnpmDedupe.js";
@@ -69,6 +70,7 @@ export const blocks = {
 	blockKnip,
 	blockMarkdownlint,
 	blockMITLicense,
+	blockNcc,
 	blockNvmrc,
 	blockPackageJson,
 	blockPnpmDedupe,
@@ -115,6 +117,7 @@ export { blockGitignore } from "./blockGitignore.js";
 export { blockKnip } from "./blockKnip.js";
 export { blockMarkdownlint } from "./blockMarkdownlint.js";
 export { blockMITLicense } from "./blockMITLicense.js";
+export { blockNcc } from "./blockNcc.js";
 export { blockNvmrc } from "./blockNvmrc.js";
 export { blockPackageJson } from "./blockPackageJson.js";
 export { blockPnpmDedupe } from "./blockPnpmDedupe.js";

@@ -32,10 +32,11 @@ describe("blockMain", () => {
 		`);
 	});
 
-	it("also includes files when options.node exists", () => {
+	it("with addons", () => {
 		const creation = testBlock(blockMain, {
 			addons: {
-				index: "other.js",
+				filePath: "other.js",
+				runArgs: ["--version"],
 			},
 			options: optionsBase,
 		});
@@ -46,7 +47,7 @@ describe("blockMain", () => {
 			    {
 			      "addons": {
 			        "properties": {
-			          "main": "lib/index.js",
+			          "main": "other.js",
 			        },
 			      },
 			      "block": [Function],
@@ -54,7 +55,7 @@ describe("blockMain", () => {
 			    {
 			      "addons": {
 			        "runInCI": [
-			          "node lib/index.js",
+			          "node other.js --version",
 			        ],
 			      },
 			      "block": [Function],

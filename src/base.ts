@@ -45,7 +45,7 @@ export const base = createBase({
 			.optional()
 			.describe("username on npm to publish packages under"),
 		bin: z
-			.string()
+			.union([z.string(), z.record(z.string())])
 			.optional()
 			.describe('value to set in `package.json`\'s `"bin"` property'),
 		contributors: z

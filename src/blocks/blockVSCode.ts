@@ -2,6 +2,7 @@ import sortKeys from "sort-keys";
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { getPrimaryBin } from "./bin/getPrimaryBin.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 
 export const blockVSCode = base.createBlock({
@@ -30,6 +31,7 @@ export const blockVSCode = base.createBlock({
 	},
 	produce({ addons, options }) {
 		const { debuggers, extensions, settings, tasks } = addons;
+		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
 			addons: [
@@ -40,13 +42,13 @@ export const blockVSCode = base.createBlock({
 					],
 					sections: {
 						Building: {
-							innerSections: options.bin
+							innerSections: primaryBin
 								? [
 										{
 											contents: `
 This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging.
 To debug a \`bin\` app, add a breakpoint to your code, then run _Debug Program_ from the VS Code Debug panel (or press F5).
-VS Code will automatically run the \`build\` task in the background before running \`${options.bin}\`.
+VS Code will automatically run the \`build\` task in the background before running \`${primaryBin}\`.
 `,
 											heading: "Built App Debugging",
 										},

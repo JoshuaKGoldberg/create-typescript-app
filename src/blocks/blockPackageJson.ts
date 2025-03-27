@@ -63,7 +63,7 @@ export const blockPackageJson = base.createBlock({
 								packageManager: `pnpm@${options.pnpm}`,
 							}),
 							files: [
-								options.bin?.replace(/^\.\//, ""),
+								...collectBinFiles(options.bin),
 								...(addons.properties.files ?? []),
 								"package.json",
 								"README.md",
@@ -107,6 +107,16 @@ export const blockPackageJson = base.createBlock({
 		};
 	},
 });
+
+function collectBinFiles(bin: Record<string, string> | string | undefined) {
+	if (!bin) {
+		return [];
+	}
+
+	const files = typeof bin === "object" ? Object.values(bin) : [bin];
+
+	return files.map((file) => file.replace(/^\.\//, ""));
+}
 
 function removeRangePrefix(version: string) {
 	return version.replaceAll(/[\^~><=]/gu, "").split(" ")[0];

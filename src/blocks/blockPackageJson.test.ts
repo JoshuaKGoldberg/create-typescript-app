@@ -184,6 +184,59 @@ describe("blockPackageJson", () => {
 		`);
 	});
 
+	test("with object bin", () => {
+		const creation = testBlock(blockPackageJson, {
+			options: {
+				...options,
+				bin: "bin/index.js",
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","bin":"bin/index.js","files":["README.md","bin/index.js","package.json"]}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install --no-frozen-lockfile",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test("with string bin", () => {
+		const creation = testBlock(blockPackageJson, {
+			options: {
+				...options,
+				bin: {
+					absolute: "bin/absolute.js",
+					relative: "./bin/relative.js",
+				},
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"license":"MIT","author":{"email":"npm@email.com"},"type":"module","main":"lib/index.js","bin":{"absolute":"bin/absolute.js","relative":"./bin/relative.js"},"files":["README.md","bin/absolute.js","bin/relative.js","package.json"]}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install --no-frozen-lockfile",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+	});
+
 	test("offline mode", () => {
 		const creation = testBlock(blockPackageJson, {
 			offline: true,

@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.17.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.16.2...2.17.0) (2025-03-27)
+
+### Features
+
+- allow customizing release.yml build steps ([#2053](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2053)) ([ecf8ee2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ecf8ee2aea628818f2391712c065c1b8029ff835)), closes [#2052](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2052)
+
 ## [2.16.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.16.1...2.16.2) (2025-03-27)
 
 ### Bug Fixes

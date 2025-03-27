@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.17.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.17.0...2.17.1) (2025-03-27)
+
+### Bug Fixes
+
+- pin actions versions in cta-transitions.yml ([#2054](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2054)) ([cce129d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cce129d66fd1ab0acb9c96d389d97b8811dd5448)), closes [#2038](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2038)
+
 # [2.17.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.16.2...2.17.0) (2025-03-27)
 
 ### Features

@@ -72,7 +72,6 @@ export const blockPackageJson = base.createBlock({
 								keyword.split(/ /),
 							),
 							license: "MIT",
-							main: "lib/index.js",
 							name: options.repository,
 							repository: {
 								type: "git",

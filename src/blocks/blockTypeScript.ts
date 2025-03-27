@@ -81,7 +81,6 @@ export * from "./types.js";
 					properties: {
 						devDependencies: getPackageDependencies("typescript"),
 						files: ["lib/"],
-						main: "lib/index.js",
 						scripts: {
 							tsc: "tsc",
 						},

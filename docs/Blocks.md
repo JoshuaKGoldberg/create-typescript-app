@@ -31,6 +31,7 @@ This table summarizes each block and which base levels they're included in:
 | GitHub PR Template           | `--exclude-github-pr-template`           | ✔️      | ✅     | 💯         |
 | Gitignore                    | `--exclude-gitignore`                    | ✔️      | ✅     | 💯         |
 | Knip                         | `--exclude-knip`                         |         |        | 💯         |
+| Main                         | `--exclude-main`                         | ✔️      | ✅     | 💯         |
 | Markdownlint                 | `--exclude-markdownlint`                 |         |        | 💯         |
 | MIT License                  | `--exclude-mit-license`                  | ✔️      | ✅     | 💯         |
 | ncc                          | `--exclude-ncc`                          |         |        |            |

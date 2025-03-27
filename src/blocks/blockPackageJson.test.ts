@@ -260,7 +260,7 @@ describe("blockPackageJson", () => {
 		`);
 	});
 
-	it("preserves an existing dependency when the addon has an older pinned version", () => {
+	it("preserves an existing dependency when the addon has an invalid version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
 			addons: {
@@ -314,6 +314,36 @@ describe("blockPackageJson", () => {
 		).toMatchInlineSnapshot(`
 			{
 			  "test-dependency": "1.1.0",
+			}
+		`);
+	});
+
+	it("uses the addon's version when the existing equivalent is invalid semver", () => {
+		const dependency = "test-dependency";
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					dependencies: {
+						[dependency]: "1.0.0",
+					},
+				},
+			},
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: {
+						[dependency]: "next",
+					},
+				},
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).dependencies,
+		).toMatchInlineSnapshot(`
+			{
+			  "test-dependency": "1.0.0",
 			}
 		`);
 	});

@@ -119,15 +119,20 @@ function collectBinFiles(bin: Record<string, string> | string | undefined) {
 }
 
 function removeRangePrefix(version: string) {
-	return version.replaceAll(/[\^~><=]/gu, "").split(" ")[0];
+	const raw = version.replaceAll(/[\^~><=]/gu, "").split(" ")[0];
+
+	return semver.coerce(raw) ?? raw;
 }
 
 function useLargerVersion(existing: string | undefined, replacement: string) {
-	if (!existing) {
+	if (!existing || existing === replacement) {
 		return replacement;
 	}
 
-	return semver.gt(removeRangePrefix(existing), removeRangePrefix(replacement))
+	const existingCoerced = semver.coerce(removeRangePrefix(existing));
+
+	return existingCoerced &&
+		semver.gt(existingCoerced, removeRangePrefix(replacement))
 		? existing
 		: replacement;
 }

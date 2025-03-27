@@ -13,8 +13,8 @@ import {
 	blockCSpell,
 	blockESLint,
 	blockKnip,
+	blockMain,
 	blockTemplatedWith,
-	blockTSup,
 	presets,
 } from "./index.js";
 
@@ -103,7 +103,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 						"trash-cli",
 					],
 				}),
-				blockTSup({
+				blockMain({
 					runArgs: ["--version"],
 				}),
 			],

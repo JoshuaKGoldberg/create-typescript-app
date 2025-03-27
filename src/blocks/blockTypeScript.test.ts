@@ -107,7 +107,6 @@ describe("blockTypeScript", () => {
 			          "files": [
 			            "lib/",
 			          ],
-			          "main": "lib/index.js",
 			          "scripts": {
 			            "tsc": "tsc",
 			          },
@@ -258,7 +257,6 @@ describe("blockTypeScript", () => {
 			          "files": [
 			            "lib/",
 			          ],
-			          "main": "lib/index.js",
 			          "scripts": {
 			            "tsc": "tsc",
 			          },
@@ -418,7 +416,6 @@ describe("blockTypeScript", () => {
 			          "files": [
 			            "lib/",
 			          ],
-			          "main": "lib/index.js",
 			          "scripts": {
 			            "tsc": "tsc",
 			          },

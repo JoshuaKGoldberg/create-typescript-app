@@ -9,6 +9,7 @@ import { blockGitHubApps } from "../blocks/blockGitHubApps.js";
 import { blockGitHubIssueTemplates } from "../blocks/blockGitHubIssueTemplates.js";
 import { blockGitHubPRTemplate } from "../blocks/blockGitHubPRTemplate.js";
 import { blockGitignore } from "../blocks/blockGitignore.js";
+import { blockMain } from "../blocks/blockMain.js";
 import { blockMITLicense } from "../blocks/blockMITLicense.js";
 import { blockPackageJson } from "../blocks/blockPackageJson.js";
 import { blockPrettier } from "../blocks/blockPrettier.js";
@@ -42,6 +43,7 @@ export const presetMinimal = base.createPreset({
 		blockGitHubIssueTemplates,
 		blockGitHubPRTemplate,
 		blockGitignore,
+		blockMain,
 		blockMITLicense,
 		blockPackageJson,
 		blockPrettier,

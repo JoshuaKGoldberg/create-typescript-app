@@ -22,6 +22,7 @@ import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.js";
 import { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockKnip } from "./blockKnip.js";
+import { blockMain } from "./blockMain.js";
 import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockMITLicense } from "./blockMITLicense.js";
 import { blockNcc } from "./blockNcc.js";
@@ -68,6 +69,7 @@ export const blocks = {
 	blockGitHubPRTemplate,
 	blockGitignore,
 	blockKnip,
+	blockMain,
 	blockMarkdownlint,
 	blockMITLicense,
 	blockNcc,
@@ -115,6 +117,7 @@ export { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.js";
 export { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.js";
 export { blockGitignore } from "./blockGitignore.js";
 export { blockKnip } from "./blockKnip.js";
+export { blockMain } from "./blockMain.js";
 export { blockMarkdownlint } from "./blockMarkdownlint.js";
 export { blockMITLicense } from "./blockMITLicense.js";
 export { blockNcc } from "./blockNcc.js";

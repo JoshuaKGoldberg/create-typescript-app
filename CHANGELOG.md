@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.15.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.14.0...2.15.0) (2025-03-27)
+
+### Features
+
+- add ncc builder block ([#2033](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2033)) ([03e91ce](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/03e91ce16528b28c6edcd4290a8cd10873ce6507)), closes [#2030](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2030)
+
 # [2.14.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.13.0...2.14.0) (2025-03-26)
 
 ### Features

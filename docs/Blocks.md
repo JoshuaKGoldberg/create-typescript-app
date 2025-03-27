@@ -33,6 +33,7 @@ This table summarizes each block and which base levels they're included in:
 | Knip                         | `--exclude-knip`                         |         |        | 💯         |
 | Markdownlint                 | `--exclude-markdownlint`                 |         |        | 💯         |
 | MIT License                  | `--exclude-mit-license`                  | ✔️      | ✅     | 💯         |
+| ncc                          | `--exclude-ncc`                          |         |        |            |
 | nvmrc                        | `--exclude-nvmrc`                        |         |        | 💯         |
 | Package JSON                 | `--exclude-package-json`                 | ✔️      | ✅     | 💯         |
 | pnpm Dedupe                  | `--exclude-pnpm-dedupe`                  |         |        | 💯         |

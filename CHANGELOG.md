@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.15.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.3...2.15.4) (2025-03-27)
+
+### Bug Fixes
+
+- also work with object bins in blockESLint ([a49293b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a49293bd1f231236de763ec58c867cd474910b89))
+
 ## [2.15.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.2...2.15.3) (2025-03-27)
 
 ### Bug Fixes

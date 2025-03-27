@@ -40,7 +40,11 @@ export const blockCTATransitions = base.createBlock({
 										},
 										{
 											id: "auto-commit-action",
-											uses: "stefanzweifel/git-auto-commit-action@v5",
+											uses: resolveUses(
+												"stefanzweifel/git-auto-commit-action",
+												"v5",
+												options.workflowsVersions,
+											),
 											with: {
 												commit_author:
 													"The Friendly Bingo Bot <bot@create.bingo>",
@@ -52,7 +56,11 @@ export const blockCTATransitions = base.createBlock({
 										},
 										{
 											if: "steps.auto-commit-action.outputs.changes_detected == 'true'",
-											uses: "mshick/add-pr-comment@v2",
+											uses: resolveUses(
+												"mshick/add-pr-comment",
+												"v2",
+												options.workflowsVersions,
+											),
 											with: {
 												issue: "${{ github.event.pull_request.number }}",
 												message: [

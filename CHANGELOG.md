@@ -1,5 +1,16 @@
 # Changelog
 
+# [2.16.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.6...2.16.0) (2025-03-27)
+
+### Bug Fixes
+
+- coerce dependency versions in semver parsing ([#2045](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2045)) ([4ef6223](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4ef6223e58369112a93aa85edb0b445258f2f945)), closes [#2043](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2043) [#2043](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2043)
+- don't word-wrap long repo descriptions in API calls ([#2047](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2047)) ([db1a371](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/db1a371be83a575270583f4d4eb6aeb4650b304d)), closes [#2046](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2046)
+
+### Features
+
+- separate out blockMain ([#2050](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2050)) ([9a6519d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9a6519d2d4deae1482d0b41e46a8dcfec5a9d4e0)), closes [#2048](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2048)
+
 ## [2.15.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.5...2.15.6) (2025-03-27)
 
 ### Bug Fixes

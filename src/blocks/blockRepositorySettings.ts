@@ -1,13 +1,12 @@
-import * as htmlToText from "html-to-text";
-
 import { base } from "../base.js";
+import { htmlToTextSafe } from "./html/htmlToTextSafe.js";
 
 export const blockRepositorySettings = base.createBlock({
 	about: {
 		name: "Repository Settings",
 	},
 	produce({ options }) {
-		const description = htmlToText.convert(options.description);
+		const description = htmlToTextSafe(options.description);
 
 		return {
 			requests: [

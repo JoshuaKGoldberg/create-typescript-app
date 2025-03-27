@@ -1,3 +1,3 @@
 export function createJobName(label: string) {
-	return label.toLowerCase().replaceAll("?", "").replaceAll(" ", "_");
+	return label.replaceAll(/[?()]/g, "").replaceAll(" ", "_").toLowerCase();
 }

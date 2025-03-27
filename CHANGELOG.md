@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.16.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.16.1...2.16.2) (2025-03-27)
+
+### Bug Fixes
+
+- don't print .vscode/ files with empty contents ([13aed92](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/13aed9258140b84b203152652864a31a1f711075))
+
 ## [2.16.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.16.0...2.16.1) (2025-03-27)
 
 ### Bug Fixes

@@ -1,4 +1,3 @@
-import * as htmlToText from "html-to-text";
 import removeUndefinedObjects from "remove-undefined-objects";
 import semver from "semver";
 import sortPackageJson from "sort-package-json";
@@ -7,6 +6,7 @@ import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { htmlToTextSafe } from "./html/htmlToTextSafe.js";
 import { CommandPhase } from "./phases.js";
 
 const PackageJsonWithNullableScripts = PackageJson.partial().extend({
@@ -35,9 +35,7 @@ export const blockPackageJson = base.createBlock({
 				...addons.properties.devDependencies,
 			},
 		);
-		const description = htmlToText.convert(options.description, {
-			wordwrap: false,
-		});
+		const description = htmlToTextSafe(options.description);
 
 		return {
 			files: {

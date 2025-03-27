@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.15.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.5...2.15.6) (2025-03-27)
+
+### Bug Fixes
+
+- more permissive usage bounds and headings ([#2042](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2042)) ([2b57403](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2b574035a87ee8f181f8771dc7f20c74adc342b1)), closes [#2041](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2041)
+
 ## [2.15.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.15.4...2.15.5) (2025-03-27)
 
 ### Bug Fixes

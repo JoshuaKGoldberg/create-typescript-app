@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.18.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.0...2.18.1) (2025-03-28)
+
+### Bug Fixes
+
+- perserve peerDependencies, peerDependenciesMeta in transition mode ([#2061](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2061)) ([1f1e989](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1f1e989ad4a0d5ebcd2fa6d8ae8b476554af6192)), closes [#2059](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2059)
+
 # [2.18.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.17.1...2.18.0) (2025-03-28)
 
 ### Features

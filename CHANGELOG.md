@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.18.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.1...2.18.2) (2025-03-28)
+
+### Bug Fixes
+
+- preserve existing owner contributions during transition ([#2065](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2065)) ([c9afe96](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c9afe96b310c40f8ec5cd30c11e8b6998561d174)), closes [#2063](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2063)
+
 ## [2.18.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.0...2.18.1) (2025-03-28)
 
 ### Bug Fixes

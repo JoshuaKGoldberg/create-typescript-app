@@ -1,7 +1,7 @@
 import { createMockSystems } from "bingo-testers";
 import { describe, expect, it, vi } from "vitest";
 
-import { ownerContributions } from "../data/contributions.js";
+import { startingOwnerContributions } from "../data/contributions.js";
 import { readAllContributors } from "./readAllContributors.js";
 
 const mockInputFromFileJSON = vi.fn();
@@ -56,7 +56,7 @@ describe(readAllContributors, () => {
 		expect(actual).toEqual([
 			{
 				avatar_url: "avatar_url",
-				contributions: ownerContributions,
+				contributions: startingOwnerContributions,
 				login: "login",
 				name: "name",
 				profile: "blog",

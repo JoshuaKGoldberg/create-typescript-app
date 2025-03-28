@@ -29,9 +29,6 @@ export const blockReleaseIt = base.createBlock({
 
 		return {
 			addons: [
-				blockCSpell({
-					words: ["apexskier"],
-				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies(

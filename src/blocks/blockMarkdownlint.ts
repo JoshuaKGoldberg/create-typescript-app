@@ -23,9 +23,6 @@ export const blockMarkdownlint = base.createBlock({
 
 		return {
 			addons: [
-				blockCSpell({
-					words: ["markdownlintignore"],
-				}),
 				blockDevelopmentDocs({
 					sections: {
 						Linting: {

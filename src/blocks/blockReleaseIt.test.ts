@@ -13,14 +13,6 @@ describe("blockReleaseIt", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "words": [
-			          "apexskier",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "10.0.0",
@@ -168,14 +160,6 @@ describe("blockReleaseIt", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
-			    {
-			      "addons": {
-			        "words": [
-			          "apexskier",
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			    {
 			      "addons": {
 			        "properties": {

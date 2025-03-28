@@ -19,14 +19,6 @@ describe("blockTemplatedWith", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "words": [
-			          "joshuakgoldberg",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "notices": [
 			          "
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->",
@@ -52,14 +44,6 @@ describe("blockTemplatedWith", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
-			    {
-			      "addons": {
-			        "words": [
-			          "joshuakgoldberg",
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			    {
 			      "addons": {
 			        "notices": [

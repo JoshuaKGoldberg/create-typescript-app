@@ -18,10 +18,11 @@ export const blockTSup = base.createBlock({
 	},
 	addons: {
 		entry: z.array(z.string()).default([]),
+		properties: z.record(z.unknown()).default({}),
 		runInCI: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
-		const { entry } = addons;
+		const { entry, properties, runInCI } = addons;
 
 		return {
 			addons: [
@@ -53,7 +54,7 @@ pnpm build --watch
 							name: "Build",
 							steps: [
 								{ run: "pnpm build" },
-								...addons.runInCI.map((run) => ({ run })),
+								...runInCI.map((run) => ({ run })),
 							],
 						},
 					],
@@ -78,14 +79,15 @@ pnpm build --watch
 			files: {
 				"tsup.config.ts": `import { defineConfig } from "tsup";
 
-export default defineConfig({
-	bundle: false,
-	clean: true,
-	dts: true,
-	entry: ${JSON.stringify(["src/**/*.ts", ...entry])},
-	format: "esm",
-	outDir: "lib",
-});
+export default defineConfig(${JSON.stringify({
+					bundle: false,
+					clean: true,
+					dts: true,
+					entry: ["src/**/*.ts", ...entry],
+					format: "esm",
+					outDir: "lib",
+					...properties,
+				})});
 `,
 			},
 			scripts: options.bin

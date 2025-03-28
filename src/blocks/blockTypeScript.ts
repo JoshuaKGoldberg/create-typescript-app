@@ -1,3 +1,5 @@
+import { CompilerOptionsSchema } from "zod-tsconfig";
+
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { getPrimaryBin } from "./bin/getPrimaryBin.js";
@@ -15,7 +17,11 @@ export const blockTypeScript = base.createBlock({
 	about: {
 		name: "TypeScript",
 	},
-	produce({ options }) {
+	addons: {
+		compilerOptions: CompilerOptionsSchema.optional(),
+	},
+	produce({ addons, options }) {
+		const { compilerOptions } = addons;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
@@ -126,6 +132,7 @@ export * from "./types.js";
 						skipLibCheck: true,
 						strict: true,
 						target: "ES2022",
+						...compilerOptions,
 					},
 					include: ["src"],
 				}),

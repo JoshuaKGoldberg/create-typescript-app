@@ -3,7 +3,6 @@ import { z } from "zod";
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
-import { blockCSpell } from "./blockCSpell.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";

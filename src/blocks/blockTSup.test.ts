@@ -88,14 +88,7 @@ describe("blockTSup", () => {
 			  "files": {
 			    "tsup.config.ts": "import { defineConfig } from "tsup";
 
-			export default defineConfig({
-				bundle: false,
-				clean: true,
-				dts: true,
-				entry: ["src/**/*.ts"],
-				format: "esm",
-				outDir: "lib",
-			});
+			export default defineConfig({"bundle":false,"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib"});
 			",
 			  },
 			  "scripts": undefined,
@@ -214,14 +207,7 @@ describe("blockTSup", () => {
 			  "files": {
 			    "tsup.config.ts": "import { defineConfig } from "tsup";
 
-			export default defineConfig({
-				bundle: false,
-				clean: true,
-				dts: true,
-				entry: ["src/**/*.ts"],
-				format: "esm",
-				outDir: "lib",
-			});
+			export default defineConfig({"bundle":false,"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib"});
 			",
 			  },
 			}
@@ -310,14 +296,7 @@ describe("blockTSup", () => {
 			  "files": {
 			    "tsup.config.ts": "import { defineConfig } from "tsup";
 
-			export default defineConfig({
-				bundle: false,
-				clean: true,
-				dts: true,
-				entry: ["src/**/*.ts","!src/**/*.test.ts"],
-				format: "esm",
-				outDir: "lib",
-			});
+			export default defineConfig({"bundle":false,"clean":true,"dts":true,"entry":["src/**/*.ts","!src/**/*.test.ts"],"format":"esm","outDir":"lib"});
 			",
 			  },
 			  "scripts": undefined,

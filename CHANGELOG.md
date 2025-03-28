@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.18.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.2...2.18.3) (2025-03-28)
+
+### Bug Fixes
+
+- remove automerge, tseslint from cspell.json ([#2066](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2066)) ([db0ea79](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/db0ea792c7388518efdc9594efa12232aed1b426)), closes [#2056](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2056)
+
 ## [2.18.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.1...2.18.2) (2025-03-28)
 
 ### Bug Fixes

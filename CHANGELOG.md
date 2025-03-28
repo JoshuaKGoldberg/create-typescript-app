@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.18.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.17.1...2.18.0) (2025-03-28)
+
+### Features
+
+- allow customizing tsc, tsup builds ([#2060](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2060)) ([9b1f68c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9b1f68cb4133293c2adeada6491351ee79ee15d4)), closes [#2057](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2057)
+
 ## [2.17.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.17.0...2.17.1) (2025-03-27)
 
 ### Bug Fixes

@@ -135,6 +135,8 @@ export const base = createBase({
 			.object({
 				dependencies: z.record(z.string(), z.string()).optional(),
 				devDependencies: z.record(z.string(), z.string()).optional(),
+				peerDependencies: z.record(z.string(), z.string()).optional(),
+				peerDependenciesMeta: z.record(z.unknown()).optional(),
 				scripts: z.record(z.string(), z.string()).optional(),
 			})
 			.optional()

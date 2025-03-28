@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.18.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.4...2.18.5) (2025-03-28)
+
+### Bug Fixes
+
+- remove unused disable pinDigests in Renovate ([e858854](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e858854b3ffd812ff462d4c08829505129eeb855))
+
 ## [2.18.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.3...2.18.4) (2025-03-28)
 
 ### Bug Fixes

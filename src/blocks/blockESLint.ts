@@ -5,7 +5,6 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
-import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
@@ -132,9 +131,6 @@ export const blockESLint = base.createBlock({
 
 		return {
 			addons: [
-				blockCSpell({
-					words: ["tseslint"],
-				}),
 				blockDevelopmentDocs({
 					sections: {
 						Linting: {

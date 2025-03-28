@@ -1,5 +1,4 @@
 import { base } from "../base.js";
-import { blockCSpell } from "./blockCSpell.js";
 import { blockREADME } from "./blockREADME.js";
 
 export const blockTemplatedWith = base.createBlock({
@@ -9,9 +8,6 @@ export const blockTemplatedWith = base.createBlock({
 	produce({ options }) {
 		return {
 			addons: [
-				blockCSpell({
-					words: ["joshuakgoldberg"],
-				}),
 				blockREADME({
 					notices: [
 						options.owner !== "JoshuaKGoldberg" &&

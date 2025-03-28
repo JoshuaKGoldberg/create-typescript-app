@@ -91,7 +91,7 @@ describe("blockPrettier", () => {
 			      ".gitignore": "_
 			",
 			      "pre-commit": [
-			        "npx lint-staged
+			        "pnpx lint-staged
 			",
 			        {
 			          "executable": true,
@@ -230,7 +230,7 @@ describe("blockPrettier", () => {
 			      ".gitignore": "_
 			",
 			      "pre-commit": [
-			        "npx lint-staged
+			        "pnpx lint-staged
 			",
 			        {
 			          "executable": true,
@@ -353,7 +353,7 @@ describe("blockPrettier", () => {
 			      ".gitignore": "_
 			",
 			      "pre-commit": [
-			        "npx lint-staged
+			        "pnpx lint-staged
 			",
 			        {
 			          "executable": true,

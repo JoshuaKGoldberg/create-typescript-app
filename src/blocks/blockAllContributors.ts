@@ -1,7 +1,7 @@
 import _ from "lodash";
 
 import { base } from "../base.js";
-import { ownerContributions } from "../data/contributions.js";
+import { startingOwnerContributions } from "../data/contributions.js";
 import { Contributor } from "../schemas.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPrettier } from "./blockPrettier.js";
@@ -16,6 +16,20 @@ export const blockAllContributors = base.createBlock({
 	},
 	produce({ options }) {
 		const contributions = options.contributors?.length;
+		const ownerContributions = Array.from(
+			new Set(
+				[
+					options.contributors?.find(
+						(contributor) =>
+							contributor.login.toLowerCase() === options.owner.toLowerCase(),
+					)?.contributions,
+					startingOwnerContributions,
+				]
+					.filter(Boolean)
+					.flat(),
+			),
+		);
+
 		return {
 			addons: [
 				blockPrettier({

@@ -1,7 +1,7 @@
 import { TakeInput } from "bingo";
 import { inputFromFileJSON } from "input-from-file-json";
 
-import { ownerContributions } from "../data/contributions.js";
+import { startingOwnerContributions } from "../data/contributions.js";
 import { inputFromOctokit } from "../inputs/inputFromOctokit.js";
 import { AllContributorsData } from "../types.js";
 
@@ -24,7 +24,7 @@ export async function readAllContributors(take: TakeInput) {
 		user && [
 			{
 				avatar_url: user.avatar_url,
-				contributions: ownerContributions,
+				contributions: startingOwnerContributions,
 				login: user.login,
 				name: user.name,
 				profile: user.blog,

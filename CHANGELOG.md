@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.18.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.3...2.18.4) (2025-03-28)
+
+### Bug Fixes
+
+- remove remaining manual cspell word additions ([#2067](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2067)) ([c9ddc5f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c9ddc5f348d9911b02aacef642331066318bed71)), closes [#2062](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2062) [#1794](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1794)
+
 ## [2.18.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.2...2.18.3) (2025-03-28)
 
 ### Bug Fixes

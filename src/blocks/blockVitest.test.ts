@@ -522,6 +522,7 @@ describe("blockVitest", () => {
 					include: ["src/"],
 				},
 				exclude: ["lib/"],
+				flags: ["--typecheck"],
 			},
 			options: optionsBase,
 		});
@@ -687,7 +688,7 @@ describe("blockVitest", () => {
 			            "vitest": "3.0.9",
 			          },
 			          "scripts": {
-			            "test": "vitest",
+			            "test": "vitest --typecheck",
 			          },
 			        },
 			      },

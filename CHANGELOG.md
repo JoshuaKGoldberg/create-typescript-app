@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.19.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.6...2.19.0) (2025-03-31)
+
+### Features
+
+- add flags Addon to blockVitest ([#2072](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2072)) ([1560d0f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1560d0f1a3eae90de0badff0324fdf357d9d32f6)), closes [#2071](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2071)
+
 ## [2.18.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.5...2.18.6) (2025-03-31)
 
 ### Bug Fixes

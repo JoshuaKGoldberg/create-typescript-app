@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.18.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.5...2.18.6) (2025-03-31)
+
+### Bug Fixes
+
+- update `resolveBin` to use `fileURLToPath` for cross-platform compatibility ([#2069](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2069)) ([04e7396](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/04e73966c187fe348028111724509c4bf81aca46)), closes [#2064](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2064)
+
 ## [2.18.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.4...2.18.5) (2025-03-28)
 
 ### Bug Fixes

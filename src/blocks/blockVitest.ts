@@ -29,6 +29,7 @@ export const blockVitest = base.createBlock({
 			})
 			.default({}),
 		exclude: z.array(z.string()).default([]),
+		flags: z.array(z.string()).default([]),
 	},
 	produce({ addons }) {
 		const { actionSteps, coverage, exclude = [] } = addons;
@@ -153,7 +154,7 @@ describe(greet, () => {
 							"vitest",
 						),
 						scripts: {
-							test: "vitest",
+							test: `vitest ${addons.flags.join(" ")}`.trim(),
 						},
 					},
 				}),

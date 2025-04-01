@@ -1,4 +1,4 @@
-import { get } from "lodash";
+import _ from "lodash";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -27,7 +27,7 @@ export const blockCodecov = base.createBlock({
 			return undefined;
 		}
 
-		const steps = get(ciYaml, ["jobs", "test", "steps"]) as
+		const steps = _.get(ciYaml, ["jobs", "test", "steps"]) as
 			| JobStep[]
 			| undefined;
 		if (!steps) {

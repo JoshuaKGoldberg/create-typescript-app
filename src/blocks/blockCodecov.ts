@@ -22,7 +22,7 @@ export const blockCodecov = base.createBlock({
 		env: z.record(z.string(), z.string()).optional(),
 	},
 	intake({ files }) {
-		const ciYaml = intakeFileAsYaml(files, ".github/workflows/ci.yml");
+		const ciYaml = intakeFileAsYaml(files, [".github", "workflows", "ci.yml"]);
 		if (!ciYaml) {
 			return undefined;
 		}

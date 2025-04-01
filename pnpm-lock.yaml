@@ -151,8 +151,8 @@ importers:
         specifier: 0.5.5
         version: 0.5.5
       bingo-stratum-testers:
-        specifier: 0.5.7
-        version: 0.5.7(bingo-fs@0.5.4)(bingo-stratum@0.5.8(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11))(bingo@0.5.11)
+        specifier: 0.5.8
+        version: 0.5.8(bingo-fs@0.5.4)(bingo-stratum@0.5.8(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11))(bingo@0.5.11)
       bingo-testers:
         specifier: 0.5.7
         version: 0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11)
@@ -1649,13 +1649,13 @@ packages:
     resolution: {integrity: sha512-NQcnlAtnR72Cfn6Y9EWPS3RXAGM+4ndE3BEueLnWOQgj+/Y6kQyhGEiB7cPmi4VeJL+Kcqo/EGyzuF23aIT3Cg==}
     engines: {node: '>=18'}
 
-  bingo-stratum-testers@0.5.7:
-    resolution: {integrity: sha512-ei6K13xK+Dq5WPr/9zgFfFQ+k0eswuJ3IPw8hHN2UgmwZNaMmOAtJi3lWp2nvBYzT+Zra6VtwkZ52uffhLYHmA==}
+  bingo-stratum-testers@0.5.8:
+    resolution: {integrity: sha512-QrAvq03mKTDG0jJtJ6AQ7cKVxA/iFdz6co1SHsu2NkYp/XKnFwchX0jhFeb8VWWoN68cJxv+Abjp6Utmb0qlYA==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.5.10
+      bingo: ^0.5.11
       bingo-fs: ^0.5.4
-      bingo-stratum: ^0.5.7
+      bingo-stratum: ^0.5.8
       bingo-systems: ^0.5.4
       bingo-testers: ^0.5.7
 
@@ -5760,7 +5760,7 @@ snapshots:
     dependencies:
       '@octokit/types': 13.10.0
 
-  bingo-stratum-testers@0.5.7(bingo-fs@0.5.4)(bingo-stratum@0.5.8(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11))(bingo@0.5.11):
+  bingo-stratum-testers@0.5.8(bingo-fs@0.5.4)(bingo-stratum@0.5.8(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.11))(bingo@0.5.11):
     dependencies:
       bingo: 0.5.11
       bingo-fs: 0.5.4

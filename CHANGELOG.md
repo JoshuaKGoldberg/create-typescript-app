@@ -1,5 +1,15 @@
 # Changelog
 
+# [2.20.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.19.0...2.20.0) (2025-04-01)
+
+### Bug Fixes
+
+- **deps:** bingo@ 0.5.11, bingo-stratum@0.5.8 ([#2074](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2074)) ([78d0108](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/78d01088663a337bf15712c17e2d77a134fb4d8a)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000)
+
+### Features
+
+- add intake method to blockCodecov ([#2078](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2078)) ([d88332a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d88332a9d0f8e33489e6ed8e205ea1576194d664)), closes [#2076](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2076)
+
 # [2.19.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.18.6...2.19.0) (2025-03-31)
 
 ### Features

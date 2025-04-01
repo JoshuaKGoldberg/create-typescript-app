@@ -1,3 +1,4 @@
+import JSON5 from "json5";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -15,6 +16,28 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { intakeFile } from "./intake/intakeFile.js";
+
+function tryParseJSON5(text: string) {
+	try {
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+		return JSON5.parse(text) as Record<string, unknown> | undefined;
+	} catch {
+		return undefined;
+	}
+}
+
+const zCoverage = z.object({
+	exclude: z.array(z.string()).optional(),
+	include: z.array(z.string()).optional(),
+});
+
+const zExclude = z.array(z.string());
+
+const zTest = z.object({
+	coverage: zCoverage,
+	exclude: zExclude,
+});
 
 export const blockVitest = base.createBlock({
 	about: {
@@ -22,14 +45,36 @@ export const blockVitest = base.createBlock({
 	},
 	addons: {
 		actionSteps: z.array(zActionStep).default([]),
-		coverage: z
-			.object({
-				exclude: z.array(z.string()).optional(),
-				include: z.array(z.string()).optional(),
-			})
-			.default({}),
-		exclude: z.array(z.string()).default([]),
+		coverage: zCoverage.default({}),
+		exclude: zExclude.default([]),
 		flags: z.array(z.string()).default([]),
+	},
+	intake({ files }) {
+		const file = intakeFile(files, ["vitest.config.ts"]);
+		if (!file) {
+			return undefined;
+		}
+
+		const normalized = file[0].replaceAll(/[\n\r]/g, "");
+		const matched = /defineConfig\(\{(.+)\}\)\s*(?:;\s*)?$/u.exec(normalized);
+		if (!matched) {
+			return undefined;
+		}
+
+		const rawData = tryParseJSON5(`{${matched[1]}}`);
+		if (typeof rawData !== "object" || typeof rawData.test !== "object") {
+			return undefined;
+		}
+
+		const parsedData = zTest.safeParse(rawData.test).data;
+		if (!parsedData) {
+			return undefined;
+		}
+
+		return {
+			coverage: parsedData.coverage,
+			exclude: parsedData.exclude,
+		};
 	},
 	produce({ addons }) {
 		const { actionSteps, coverage, exclude = [] } = addons;

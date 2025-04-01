@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockVitest } from "./blockVitest.js";
 import { optionsBase } from "./options.fakes.js";
@@ -758,5 +758,112 @@ describe("blockVitest", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when vitest.config.ts does not exist", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					src: {},
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns undefined when vitest.config.ts does not contain the expected defineConfig", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [`invalid`],
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns undefined when vitest.config.ts passes a non-object to defineConfig", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [`defineConfig("invalid")`],
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns undefined when vitest.config.ts does not pass a test to defineConfig", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [`defineConfig({ other: true })`],
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns undefined when vitest.config.ts passes unknown test data to defineConfig", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [`defineConfig({ test: true })`],
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns undefined when vitest.config.ts passes invalid test syntax to defineConfig", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [`defineConfig({ test: { ! } })`],
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns undefined when vitest.config.ts passes invalid test data to defineConfig", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [
+						`defineConfig({ test: { coverage: 'invalid' } })`,
+					],
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns coverage and exclude when they exist in vitest.config.ts", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [
+						`import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+	test: {
+		clearMocks: true,
+		coverage: {
+			all: true,
+			exclude: ["src/index.ts"],
+			include: ["src", "other"],
+			reporter: ["html", "lcov"],
+		},
+		exclude: ["lib", "node_modules"],
+		setupFiles: ["console-fail-test/setup"],
+	},
+});
+`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				coverage: {
+					exclude: ["src/index.ts"],
+					include: ["src", "other"],
+				},
+				exclude: ["lib", "node_modules"],
+			});
+		});
 	});
 });

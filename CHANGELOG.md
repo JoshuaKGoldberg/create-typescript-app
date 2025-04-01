@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.21.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.2...2.21.3) (2025-04-01)
+
+### Bug Fixes
+
+- deduplicate Vitest excludes entries ([#2083](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2083)) ([713a00d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/713a00d3d24b089f1b57a9fcc5aa28cb2ba29b84)), closes [#2082](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2082)
+
 ## [2.21.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.1...2.21.2) (2025-04-01)
 
 ### Bug Fixes

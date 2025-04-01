@@ -78,7 +78,9 @@ export const blockVitest = base.createBlock({
 	},
 	produce({ addons }) {
 		const { actionSteps, coverage, exclude = [] } = addons;
-		const excludeText = JSON.stringify(exclude);
+		const excludeText = JSON.stringify(
+			Array.from(new Set(["node_modules", ...exclude])).sort(),
+		);
 
 		return {
 			addons: [
@@ -242,7 +244,7 @@ export default defineConfig({
 			}include: ${JSON.stringify(coverage.include)},
 			reporter: ["html", "lcov"],
 		},
-		exclude: [${excludeText.slice(1, excludeText.length - 1)}, "node_modules"],
+		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
 		setupFiles: ["console-fail-test/setup"],
 	},
 });

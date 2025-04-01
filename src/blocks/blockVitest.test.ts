@@ -811,10 +811,22 @@ describe("blockVitest", () => {
 			expect(actual).toEqual(undefined);
 		});
 
-		it("returns undefined when vitest.config.ts passes invalid test data to defineConfig", () => {
+		it("returns undefined when vitest.config.ts passes invalid test syntax to defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					"vitest.config.ts": [`defineConfig({ test: { ! } })`],
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns undefined when vitest.config.ts passes invalid test data to defineConfig", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [
+						`defineConfig({ test: { coverage: 'invalid' } })`,
+					],
 				},
 			});
 

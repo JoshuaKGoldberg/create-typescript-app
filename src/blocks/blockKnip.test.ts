@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockKnip } from "./blockKnip.js";
 import { optionsBase } from "./options.fakes.js";
@@ -205,5 +205,37 @@ describe("blockKnip", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when knip.json does not exist", () => {
+			const actual = testIntake(blockKnip, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when knip.json does not contain ignoreDependencies", () => {
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.json": [JSON.stringify({ other: true })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns ignoreDependencies when knip.json contains ignoreDependencies", () => {
+			const ignoreDependencies = ["a", "b", "c"];
+
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.json": [JSON.stringify({ ignoreDependencies })],
+				},
+			});
+
+			expect(actual).toEqual({ ignoreDependencies });
+		});
 	});
 });

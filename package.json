@@ -39,7 +39,7 @@
 	"dependencies": {
 		"bingo": "^0.5.12",
 		"bingo-fs": "^0.5.5",
-		"bingo-stratum": "^0.5.9",
+		"bingo-stratum": "^0.5.10",
 		"cached-factory": "^0.1.0",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",

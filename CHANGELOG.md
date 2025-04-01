@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.21.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.3...2.21.4) (2025-04-01)
+
+### Bug Fixes
+
+- trim preceding ./ from package.json bin ([#2084](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2084)) ([3c073d7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3c073d7041c99a6069620c02895f86521c8f3b84)), closes [#2081](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2081)
+
 ## [2.21.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.2...2.21.3) (2025-04-01)
 
 ### Bug Fixes

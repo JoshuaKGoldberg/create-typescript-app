@@ -7,6 +7,7 @@ import { z } from "zod";
 import { readAccess } from "./options/readAccess.js";
 import { readAllContributors } from "./options/readAllContributors.js";
 import { readAuthor } from "./options/readAuthor.js";
+import { readBin } from "./options/readBin.js";
 import { readDescription } from "./options/readDescription.js";
 import { readDocumentation } from "./options/readDocumentation.js";
 import { readEmailFromCodeOfConduct } from "./options/readEmailFromCodeOfConduct.js";
@@ -181,7 +182,7 @@ export const base = createBase({
 				await readAuthor(getPackageAuthor, getNpmDefaults, options.owner),
 		);
 
-		const getBin = lazyValue(async () => (await getPackageData()).bin);
+		const getBin = lazyValue(async () => await readBin(getPackageData));
 
 		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 

@@ -10,13 +10,28 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
+
+const zIgnoreDependencies = z.array(z.string());
 
 export const blockKnip = base.createBlock({
 	about: {
 		name: "Knip",
 	},
 	addons: {
-		ignoreDependencies: z.array(z.string()).optional(),
+		ignoreDependencies: zIgnoreDependencies.optional(),
+	},
+	intake({ files }) {
+		const knipJson = intakeFileAsJson(files, ["knip.json"]);
+		if (!knipJson?.ignoreDependencies) {
+			return undefined;
+		}
+
+		return {
+			ignoreDependencies: zIgnoreDependencies.safeParse(
+				knipJson.ignoreDependencies,
+			).data,
+		};
 	},
 	produce({ addons }) {
 		const { ignoreDependencies } = addons;

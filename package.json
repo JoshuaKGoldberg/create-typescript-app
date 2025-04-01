@@ -37,9 +37,9 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
-		"bingo": "^0.5.10",
+		"bingo": "^0.5.11",
 		"bingo-fs": "^0.5.4",
-		"bingo-stratum": "^0.5.7",
+		"bingo-stratum": "^0.5.8",
 		"cached-factory": "^0.1.0",
 		"cspell-populate-words": "^0.3.0",
 		"execa": "^9.5.2",

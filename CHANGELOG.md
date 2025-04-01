@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.21.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.0...2.21.1) (2025-04-01)
+
+### Bug Fixes
+
+- **deps:** bump bingo-stratum to 0.5.10 ([bf835c2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bf835c24eab2639c326a6427f2e73e435f5155f3))
+
 # [2.21.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.20.0...2.21.0) (2025-04-01)
 
 ### Features

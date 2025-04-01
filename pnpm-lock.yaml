@@ -15,8 +15,8 @@ importers:
         specifier: ^0.5.5
         version: 0.5.5
       bingo-stratum:
-        specifier: ^0.5.9
-        version: 0.5.9(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2)
+        specifier: ^0.5.10
+        version: 0.5.10(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2)
       cached-factory:
         specifier: ^0.1.0
         version: 0.1.0
@@ -155,7 +155,7 @@ importers:
         version: 0.5.5
       bingo-stratum-testers:
         specifier: 0.5.8
-        version: 0.5.8(bingo-fs@0.5.5)(bingo-stratum@0.5.9(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12))(bingo@0.5.12)
+        version: 0.5.8(bingo-fs@0.5.5)(bingo-stratum@0.5.10(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12))(bingo@0.5.12)
       bingo-testers:
         specifier: 0.5.7
         version: 0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)
@@ -1662,12 +1662,12 @@ packages:
       bingo-systems: ^0.5.4
       bingo-testers: ^0.5.7
 
-  bingo-stratum@0.5.9:
-    resolution: {integrity: sha512-xajT9gPLGQsgYrvYXi/s0kBwJ2EHkmdxHRvzw0Yd2Wi//EmpMa6EYK9mLJOpp8bOyx9ReUj1Xe/sOMuAeB+44w==}
+  bingo-stratum@0.5.10:
+    resolution: {integrity: sha512-Nzuh93WLHp0ngAf/oJq5iWjFdaPRgS6sUq29M4GgRdmSO3ApCeH1nWZTVuGQL5nPsYDFW8+MgWCNpQYbHmCVlQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.5.11
-      bingo-fs: ^0.5.4
+      bingo: ^0.5.13
+      bingo-fs: ^0.5.5
       bingo-systems: ^0.5.4
       zod: ^3.24.2
 
@@ -5768,15 +5768,15 @@ snapshots:
     dependencies:
       '@octokit/types': 13.10.0
 
-  bingo-stratum-testers@0.5.8(bingo-fs@0.5.5)(bingo-stratum@0.5.9(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12))(bingo@0.5.12):
+  bingo-stratum-testers@0.5.8(bingo-fs@0.5.5)(bingo-stratum@0.5.10(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12))(bingo@0.5.12):
     dependencies:
       bingo: 0.5.12
       bingo-fs: 0.5.5
-      bingo-stratum: 0.5.9(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2)
+      bingo-stratum: 0.5.10(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2)
       bingo-systems: 0.5.4
       bingo-testers: 0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)
 
-  bingo-stratum@0.5.9(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2):
+  bingo-stratum@0.5.10(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.12)(zod@3.24.2):
     dependencies:
       all-properties-lazy: 0.1.0
       bingo: 0.5.12

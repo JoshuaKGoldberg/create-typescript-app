@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.21.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.20.0...2.21.0) (2025-04-01)
+
+### Features
+
+- add intake method to blockVitest ([#2079](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2079)) ([b03abe8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b03abe816fab6de796f130eccd817b3c6b2e52d8)), closes [#2077](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2077)
+
 # [2.20.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.19.0...2.20.0) (2025-04-01)
 
 ### Bug Fixes

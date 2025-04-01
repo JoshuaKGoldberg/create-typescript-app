@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.22.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.4...2.22.0) (2025-04-01)
+
+### Features
+
+- infer Knip Addons from disk ([#2086](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2086)) ([eb38a04](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/eb38a04410795fbbf7543c1cee696312c59ae289)), closes [#2085](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2085)
+
 ## [2.21.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.3...2.21.4) (2025-04-01)
 
 ### Bug Fixes

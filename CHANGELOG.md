@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.8...2.22.9) (2025-04-02)
+
+### Bug Fixes
+
+- handle subset file matches in blockPackageJson ([#2107](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2107)) ([8f6039d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8f6039dc72a823accba6583d5d386e1766b98516)), closes [#2106](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2106)
+
 ## [2.22.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.7...2.22.8) (2025-04-02)
 
 ### Bug Fixes

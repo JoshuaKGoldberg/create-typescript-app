@@ -10,6 +10,20 @@ export const zContributor = z.object({
 
 export type Contributor = z.infer<typeof zContributor>;
 
+export const zReadme = z.object({
+	additional: z.string().optional(),
+	usage: z.string(),
+});
+
+export type Readme = z.infer<typeof zReadme>;
+
+export const zDocumentation = z.object({
+	development: z.string().optional(),
+	readme: zReadme,
+});
+
+export type Documentation = z.infer<typeof zDocumentation>;
+
 export const zWorkflowVersion = z.object({
 	hash: z.string().optional(),
 	pinned: z.boolean().optional(),

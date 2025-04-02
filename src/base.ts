@@ -9,6 +9,7 @@ import { readAllContributors } from "./options/readAllContributors.js";
 import { readAuthor } from "./options/readAuthor.js";
 import { readBin } from "./options/readBin.js";
 import { readDescription } from "./options/readDescription.js";
+import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.js";
 import { readDocumentation } from "./options/readDocumentation.js";
 import { readEmailFromCodeOfConduct } from "./options/readEmailFromCodeOfConduct.js";
 import { readEmailFromGit } from "./options/readEmailFromGit.js";
@@ -28,13 +29,14 @@ import { readOwner } from "./options/readOwner.js";
 import { readPackageAuthor } from "./options/readPackageAuthor.js";
 import { readPackageData } from "./options/readPackageData.js";
 import { readPnpm } from "./options/readPnpm.js";
+import { readReadmeAdditional } from "./options/readReadmeAdditional.js";
+import { readReadmeUsage } from "./options/readReadmeUsage.js";
 import { readRepository } from "./options/readRepository.js";
 import { readRulesetId } from "./options/readRulesetId.js";
 import { readTitle } from "./options/readTitle.js";
-import { readUsage } from "./options/readUsage.js";
 import { readWords } from "./options/readWords.js";
 import { readWorkflowsVersions } from "./options/readWorkflowsVersions.js";
-import { zContributor, zWorkflowsVersions } from "./schemas.js";
+import { zContributor, zDocumentation, zWorkflowsVersions } from "./schemas.js";
 
 export const base = createBase({
 	options: {
@@ -58,10 +60,9 @@ export const base = createBase({
 			.default("A very lovely package. Hooray!")
 			.describe("'Sentence case.' description of the repository"),
 		directory: z.string().describe("Directory to create the repository in"),
-		documentation: z
-			.string()
-			.optional()
-			.describe("any additional docs to add to .github/DEVELOPMENT.md"),
+		documentation: zDocumentation.describe(
+			"additional docs to add to .md files",
+		),
 		email: z
 			.union([
 				z.string(),
@@ -154,10 +155,6 @@ export const base = createBase({
 			.optional()
 			.describe("GitHub branch ruleset ID for main branch protections"),
 		title: z.string().describe("'Title Case' title for the repository"),
-		usage: z
-			.string()
-			.optional()
-			.describe("Markdown docs to put in README.md under the ## Usage heading"),
 		version: z
 			.string()
 			.optional()
@@ -190,8 +187,17 @@ export const base = createBase({
 			async () => await readDescription(getPackageData, getReadme),
 		);
 
+		const getDevelopmentDocumentation = lazyValue(
+			async () => await readDevelopmentDocumentation(take),
+		);
+
 		const getDocumentation = lazyValue(
-			async () => await readDocumentation(take),
+			async () =>
+				await readDocumentation(
+					getDevelopmentDocumentation,
+					getReadmeAdditional,
+					getReadmeUsage,
+				),
 		);
 
 		const getEmail = lazyValue(
@@ -263,6 +269,14 @@ export const base = createBase({
 			async () => await readFileSafe("README.md", ""),
 		);
 
+		const getReadmeAdditional = lazyValue(
+			async () => await readReadmeAdditional(getReadme),
+		);
+
+		const getReadmeUsage = lazyValue(
+			async () => await readReadmeUsage(getEmoji, getReadme, getRepository),
+		);
+
 		const getRepository = lazyValue(
 			async () => await readRepository(getGitDefaults, getPackageData, options),
 		);
@@ -273,10 +287,6 @@ export const base = createBase({
 
 		const getTitle = lazyValue(
 			async () => await readTitle(getReadme, getRepository),
-		);
-
-		const getUsage = lazyValue(
-			async () => await readUsage(getEmoji, getReadme, getRepository),
 		);
 
 		const getVersion = lazyValue(async () => (await getPackageData()).version);
@@ -308,7 +318,6 @@ export const base = createBase({
 			repository: getRepository,
 			rulesetId: getRulesetId,
 			title: getTitle,
-			usage: getUsage,
 			version: getVersion,
 			words: getWords,
 			workflowsVersions: getWorkflowData,

@@ -1,6 +1,6 @@
 import { readUsageFromReadme } from "./readUsageFromReadme.js";
 
-export async function readUsage(
+export async function readReadmeUsage(
 	getEmoji: () => Promise<string>,
 	getReadme: () => Promise<string>,
 	getRepository: () => Promise<string | undefined>,

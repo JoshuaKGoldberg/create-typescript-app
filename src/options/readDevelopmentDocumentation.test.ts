@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { readDocumentation } from "./readDocumentation.js";
+import { readDevelopmentDocumentation } from "./readDevelopmentDocumentation.js";
 
-describe(readDocumentation, () => {
+describe(readDevelopmentDocumentation, () => {
 	it("returns undefined when no .github/DEVELOPMENT.md exists", async () => {
-		const documentation = await readDocumentation(() =>
+		const documentation = await readDevelopmentDocumentation(() =>
 			Promise.resolve(undefined),
 		);
 
@@ -12,7 +12,7 @@ describe(readDocumentation, () => {
 	});
 
 	it("filters known headings when .github/DEVELOPMENT.md exists", async () => {
-		const documentation = await readDocumentation(() =>
+		const documentation = await readDevelopmentDocumentation(() =>
 			Promise.resolve(`# Development\nremoved\n\n## Unknown\n\nKept.\n`),
 		);
 

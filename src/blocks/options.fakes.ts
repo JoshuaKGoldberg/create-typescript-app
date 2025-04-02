@@ -4,6 +4,11 @@ export const optionsBase = {
 	access: "public",
 	description: "Test description",
 	directory: ".",
+	documentation: {
+		readme: {
+			usage: "Test usage.",
+		},
+	},
 	email: {
 		github: "github@email.com",
 		npm: "npm@email.com",

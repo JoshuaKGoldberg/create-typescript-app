@@ -50,21 +50,13 @@ describe("blockCTATransitions", () => {
 			      uses: mshick/add-pr-comment@v2
 			      with:
 			        issue: \${{ github.event.pull_request.number }}
-			        message: >-
-			          🤖 Beep boop! I ran \`npx create-typescript-app\` and it updated some
-			          files.
-
-			          I went ahead and checked those changes into this PR for you. Please
-			          review the latest commit to see if you want to merge it.
-
+			        message: |-
+			          🤖 Beep boop! I ran \`npx create-typescript-app\` and it updated some files.
+			          I went ahead and checked those changes into this PR for you. Please review the latest commit to see if you want to merge it.
 			          Cheers!
 			           — _The Friendly Bingo Bot_ 💝
 
-			          > ℹ️ These automatic commits keep your repository up-to-date with new
-			          versions of
-			          [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app).
-			          If you want to opt out, delete your
-			          \`.github/workflows/cta-transitions.yml\` file.
+			          > ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your \`.github/workflows/cta-transitions.yml\` file.
 			  using: composite
 			",
 			      },
@@ -87,12 +79,15 @@ describe("blockCTATransitions", () => {
 			      - if: steps.check.outcome == 'skipped'
 			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'
 
+
 			name: CTA
+
 
 			on:
 			  pull_request:
 			    branches:
 			      - main
+
 
 			permissions:
 			  pull-requests: write

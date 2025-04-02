@@ -4,7 +4,7 @@ import { resolveUses } from "./actions/resolveUses.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { formatYamlAction } from "./files/formatYamlAction.js";
+import { formatYaml } from "./files/formatYaml.js";
 
 export const blockCTATransitions = base.createBlock({
 	about: {
@@ -28,7 +28,7 @@ export const blockCTATransitions = base.createBlock({
 				".github": {
 					actions: {
 						transition: {
-							"action.yml": formatYamlAction({
+							"action.yml": formatYaml({
 								description: "Runs create-typescript-app in transition mode",
 								name: "Transition",
 								runs: {

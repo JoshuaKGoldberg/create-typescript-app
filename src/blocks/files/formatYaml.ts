@@ -23,5 +23,8 @@ const options: jsYaml.DumpOptions = {
 };
 
 export function formatYaml(value: unknown) {
-	return removeUsesQuotes(jsYaml.dump(value, options));
+	return removeUsesQuotes(jsYaml.dump(value, options)).replaceAll(
+		/\n(\S)/g,
+		"\n\n$1",
+	);
 }

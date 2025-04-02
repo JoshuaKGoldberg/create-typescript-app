@@ -59,16 +59,13 @@ export const blockPackageJson = base.createBlock({
 							...(options.pnpm && {
 								packageManager: `pnpm@${options.pnpm}`,
 							}),
-							files: [
+							files: processFiles([
 								...collectBinFiles(options.bin),
 								...(addons.properties.files ?? []),
 								"package.json",
 								"README.md",
-							]
-								.filter(Boolean)
-								.sort(),
+							]),
 							keywords: options.keywords,
-							license: "MIT",
 							name: options.repository,
 							repository: {
 								type: "git",
@@ -110,6 +107,23 @@ function collectBinFiles(bin: Record<string, string> | string | undefined) {
 	const files = typeof bin === "object" ? Object.values(bin) : [bin];
 
 	return files.map((file) => file.replace(/^\.\//, ""));
+}
+
+function processFiles(files: string[]) {
+	// First sort so that shorter entries are first (e.g. "lib/")...
+	const sortedByLength = files
+		.filter(Boolean)
+		.sort((a, b) => a.length - b.length);
+
+	// ...then remove entries captured by earlier directories (e.g. "lib/index.js")
+	return sortedByLength
+		.filter(
+			(file, i) =>
+				!sortedByLength
+					.slice(0, i)
+					.some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
+		)
+		.sort();
 }
 
 function removeRangePrefix(version: string) {

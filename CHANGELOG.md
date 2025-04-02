@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.3...2.22.4) (2025-04-02)
+
+### Bug Fixes
+
+- **deps:** bump zod-tsconfig to 0.2.0 ([7f47eff](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7f47efff03ca870b5447a58c3869d312f6fd1e47))
+
 ## [2.22.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.2...2.22.3) (2025-04-02)
 
 ### Bug Fixes

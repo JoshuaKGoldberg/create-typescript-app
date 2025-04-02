@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.0...2.22.1) (2025-04-02)
+
+### Bug Fixes
+
+- preserve additional README.md content in transition ([#2090](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2090)) ([2c41380](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2c413801dba06f465382b3d0538fa38303a33a6f)), closes [#2088](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2088)
+
 # [2.22.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.21.4...2.22.0) (2025-04-01)
 
 ### Features

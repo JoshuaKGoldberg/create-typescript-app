@@ -35,13 +35,32 @@ After.
 		expect(result).toBe("After.");
 	});
 
-	it("returns all content after contributors when there is a comment template notice", async () => {
+	it("returns all content after contributors when there is a spellchecker comment template notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
 
 Usage.
 
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker:enable -->
+
+After.
+
+<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+`);
+
+		const result = await readReadmeAdditional(getReadme);
+
+		expect(result).toBe("After.");
+	});
+
+	it("returns all content after contributors when there is a contributors comment template notice", async () => {
+		const getReadme = () =>
+			Promise.resolve(`# My Package
+
+Usage.
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 After.
 

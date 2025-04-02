@@ -18,7 +18,7 @@ describe("blockNvmrc", () => {
 		});
 	});
 
-	it("also includes files when options.node exists", () => {
+	it("also includes files when options.node.pinned exists", () => {
 		const creation = testBlock(blockNvmrc, {
 			options: {
 				...optionsBase,

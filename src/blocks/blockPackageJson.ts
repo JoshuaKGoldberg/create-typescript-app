@@ -53,11 +53,9 @@ export const blockPackageJson = base.createBlock({
 							devDependencies: Object.keys(devDependencies).length
 								? devDependencies
 								: undefined,
-							...(options.node && {
-								engines: {
-									node: `>=${options.node.minimum}`,
-								},
-							}),
+							engines: {
+								node: `>=${options.node.minimum}`,
+							},
 							...(options.pnpm && {
 								packageManager: `pnpm@${options.pnpm}`,
 							}),

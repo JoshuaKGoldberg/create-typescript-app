@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.1...2.22.2) (2025-04-02)
+
+### Bug Fixes
+
+- normalize yaml outputs to always use -1 lineWidth ([#2098](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2098)) ([f64dba4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f64dba4eed839e5cfdee2f64937db6730249460c)), closes [#2097](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2097)
+
 ## [2.22.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.0...2.22.1) (2025-04-02)
 
 ### Bug Fixes

@@ -130,7 +130,6 @@ export const base = createBase({
 				minimum: z.string(),
 				pinned: z.string().optional(),
 			})
-			.optional()
 			.describe("Node.js engine version(s) to pin and require a minimum of"),
 		owner: z.string().describe("organization or user owning the repository"),
 		packageData: z

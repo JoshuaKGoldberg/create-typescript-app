@@ -64,7 +64,11 @@ export const blockGitHubActionsCI = base.createBlock({
 												"v4",
 												options.workflowsVersions,
 											),
-											with: { cache: "pnpm", "node-version": "20" },
+											with: {
+												cache: "pnpm",
+												"node-version":
+													options.node.pinned ?? options.node.minimum,
+											},
 										},
 										{
 											run: "pnpm install --frozen-lockfile",

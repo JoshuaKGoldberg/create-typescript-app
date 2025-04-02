@@ -206,6 +206,7 @@ export const base = createBase({
 					getEmailFromCodeOfConduct,
 					getEmailFromGit,
 					getEmailFromNpm,
+					getPackageAuthor,
 				),
 		);
 

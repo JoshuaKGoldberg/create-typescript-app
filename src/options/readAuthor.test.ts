@@ -4,16 +4,16 @@ import { readAuthor } from "./readAuthor.js";
 
 describe(readAuthor, () => {
 	it("returns package author when it exists", async () => {
-		const author = "test-author";
+		const name = "test-author";
 		const getNpmDefaults = vi.fn();
 
 		const actual = await readAuthor(
-			() => Promise.resolve({ author }),
+			() => Promise.resolve({ name }),
 			getNpmDefaults,
 			undefined,
 		);
 
-		expect(actual).toBe(author);
+		expect(actual).toBe(name);
 		expect(getNpmDefaults).not.toHaveBeenCalled();
 	});
 

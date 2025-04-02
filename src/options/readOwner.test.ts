@@ -7,24 +7,24 @@ describe(readOwner, () => {
 		const take = vi.fn();
 		const organization = "test-organization";
 		const getGitDefaults = vi.fn().mockResolvedValueOnce({ organization });
-		const getPackageDataFull = vi.fn();
+		const getPackageAuthor = vi.fn();
 
-		const actual = await readOwner(take, getGitDefaults, getPackageDataFull);
+		const actual = await readOwner(take, getGitDefaults, getPackageAuthor);
 
 		expect(actual).toBe(organization);
 		expect(take).not.toHaveBeenCalled();
-		expect(getPackageDataFull).not.toHaveBeenCalled();
+		expect(getPackageAuthor).not.toHaveBeenCalled();
 	});
 
 	it("returns package data author when only it exists", async () => {
 		const take = vi.fn();
-		const author = "test-author";
+		const name = "test-author";
 		const getGitDefaults = vi.fn();
-		const getPackageDataFull = vi.fn().mockResolvedValueOnce({ author });
+		const getPackageAuthor = vi.fn().mockResolvedValueOnce({ name });
 
-		const actual = await readOwner(take, getGitDefaults, getPackageDataFull);
+		const actual = await readOwner(take, getGitDefaults, getPackageAuthor);
 
-		expect(actual).toBe(author);
+		expect(actual).toBe(name);
 		expect(take).not.toHaveBeenCalled();
 	});
 
@@ -32,9 +32,9 @@ describe(readOwner, () => {
 		const user = "test-user";
 		const take = vi.fn().mockResolvedValueOnce({ stdout: user });
 		const getGitDefaults = vi.fn();
-		const getPackageDataFull = vi.fn().mockResolvedValueOnce({});
+		const getPackageAuthor = vi.fn().mockResolvedValueOnce({});
 
-		const actual = await readOwner(take, getGitDefaults, getPackageDataFull);
+		const actual = await readOwner(take, getGitDefaults, getPackageAuthor);
 
 		expect(actual).toBe(user);
 	});
@@ -42,9 +42,9 @@ describe(readOwner, () => {
 	it("returns undefined when no values exist", async () => {
 		const take = vi.fn().mockResolvedValueOnce({});
 		const getGitDefaults = vi.fn();
-		const getPackageDataFull = vi.fn().mockResolvedValueOnce({});
+		const getPackageAuthor = vi.fn().mockResolvedValueOnce({});
 
-		const actual = await readOwner(take, getGitDefaults, getPackageDataFull);
+		const actual = await readOwner(take, getGitDefaults, getPackageAuthor);
 
 		expect(actual).toBe(undefined);
 	});

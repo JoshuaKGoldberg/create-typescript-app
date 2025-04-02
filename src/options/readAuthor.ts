@@ -1,9 +1,11 @@
+import { PackageAuthor } from "./readPackageAuthor.js";
+
 export async function readAuthor(
-	getPackageAuthor: () => Promise<{ author?: string }>,
+	getPackageAuthor: () => Promise<PackageAuthor>,
 	getNpmDefaults: () => Promise<undefined | { name?: string }>,
 	owner: string | undefined,
 ) {
 	return (
-		(await getPackageAuthor()).author ?? (await getNpmDefaults())?.name ?? owner
+		(await getPackageAuthor()).name ?? (await getNpmDefaults())?.name ?? owner
 	);
 }

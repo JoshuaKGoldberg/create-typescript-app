@@ -5,6 +5,217 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe("blockGitHubActionsCI", () => {
+	test("without options.node.pinned", () => {
+		const creation = testBlock(blockGitHubActionsCI, {
+			options: {
+				...optionsBase,
+				node: {
+					minimum: "20.12.0",
+				},
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "requiredStatusChecks": undefined,
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    ".github": {
+			      "actions": {
+			        "prepare": {
+			          "action.yml": "description: Prepares the repo for a typical CI job
+
+			name: Prepare
+
+			runs:
+			  steps:
+			    - uses: pnpm/action-setup@v4
+			    - uses: actions/setup-node@v4
+			      with:
+			        cache: pnpm
+			        node-version: 20.12.0
+			    - run: pnpm install --frozen-lockfile
+			      shell: bash
+			  using: composite
+			",
+			        },
+			      },
+			      "workflows": {
+			        "accessibility-alt-text-bot.yml": "jobs:
+			  accessibility_alt_text_bot:
+			    if: \${{ !endsWith(github.actor, '[bot]') }}
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: github/accessibility-alt-text-bot@v1.4.0
+
+
+			name: Accessibility Alt Text Bot
+
+
+			on:
+			  issue_comment:
+			    types:
+			      - created
+			      - edited
+			  issues:
+			    types:
+			      - edited
+			      - opened
+			  pull_request:
+			    types:
+			      - edited
+			      - opened
+
+
+			permissions:
+			  issues: write
+			  pull-requests: write
+			",
+			        "ci.yml": undefined,
+			        "pr-review-requested.yml": "jobs:
+			  pr_review_requested:
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions-ecosystem/action-remove-labels@v1
+			        with:
+			          labels: 'status: waiting for author'
+			      - if: failure()
+			        run: |
+			          echo "Don't worry if the previous step failed."
+			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+
+
+			name: PR Review Requested
+
+
+			on:
+			  pull_request_target:
+			    types:
+			      - review_requested
+
+
+			permissions:
+			  pull-requests: write
+			",
+			      },
+			    },
+			  },
+			}
+		`);
+	});
+
+	test("with options.node.pinned", () => {
+		const creation = testBlock(blockGitHubActionsCI, {
+			options: {
+				...optionsBase,
+				node: {
+					minimum: "20.12.0",
+					pinned: "22.12.0",
+				},
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "requiredStatusChecks": undefined,
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    ".github": {
+			      "actions": {
+			        "prepare": {
+			          "action.yml": "description: Prepares the repo for a typical CI job
+
+			name: Prepare
+
+			runs:
+			  steps:
+			    - uses: pnpm/action-setup@v4
+			    - uses: actions/setup-node@v4
+			      with:
+			        cache: pnpm
+			        node-version: 22.12.0
+			    - run: pnpm install --frozen-lockfile
+			      shell: bash
+			  using: composite
+			",
+			        },
+			      },
+			      "workflows": {
+			        "accessibility-alt-text-bot.yml": "jobs:
+			  accessibility_alt_text_bot:
+			    if: \${{ !endsWith(github.actor, '[bot]') }}
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: github/accessibility-alt-text-bot@v1.4.0
+
+
+			name: Accessibility Alt Text Bot
+
+
+			on:
+			  issue_comment:
+			    types:
+			      - created
+			      - edited
+			  issues:
+			    types:
+			      - edited
+			      - opened
+			  pull_request:
+			    types:
+			      - edited
+			      - opened
+
+
+			permissions:
+			  issues: write
+			  pull-requests: write
+			",
+			        "ci.yml": undefined,
+			        "pr-review-requested.yml": "jobs:
+			  pr_review_requested:
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions-ecosystem/action-remove-labels@v1
+			        with:
+			          labels: 'status: waiting for author'
+			      - if: failure()
+			        run: |
+			          echo "Don't worry if the previous step failed."
+			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+
+
+			name: PR Review Requested
+
+
+			on:
+			  pull_request_target:
+			    types:
+			      - review_requested
+
+
+			permissions:
+			  pull-requests: write
+			",
+			      },
+			    },
+			  },
+			}
+		`);
+	});
+
 	test("without addons or mode", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			options: optionsBase,
@@ -34,7 +245,7 @@ describe("blockGitHubActionsCI", () => {
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
-			        node-version: '20'
+			        node-version: 20.12.0
 			    - run: pnpm install --frozen-lockfile
 			      shell: bash
 			  using: composite
@@ -144,7 +355,7 @@ describe("blockGitHubActionsCI", () => {
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
-			        node-version: '20'
+			        node-version: 20.12.0
 			    - run: pnpm install --frozen-lockfile
 			      shell: bash
 			  using: composite
@@ -261,7 +472,7 @@ describe("blockGitHubActionsCI", () => {
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
-			        node-version: '20'
+			        node-version: 20.12.0
 			    - run: pnpm install --frozen-lockfile
 			      shell: bash
 			  using: composite

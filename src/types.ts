@@ -11,7 +11,7 @@ export interface AllContributorsData {
 }
 
 export interface PartialPackageData {
-	author?: string | { email: string; name: string };
+	author?: string | { email?: string; name?: string };
 	bin?: Record<string, string> | string;
 	dependencies?: Record<string, string>;
 	description?: string;

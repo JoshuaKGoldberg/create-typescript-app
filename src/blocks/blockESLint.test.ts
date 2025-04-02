@@ -449,6 +449,154 @@ describe("blockESLint", () => {
 		`);
 	});
 
+	test("with multiline addon rules comment", () => {
+		const creation = testBlock(blockESLint, {
+			addons: {
+				rules: [
+					{
+						comment: "One line",
+						entries: { a: "error" },
+					},
+					{
+						comment: "Two lines\ntwo lines",
+						entries: { a: "error" },
+					},
+					{
+						comment: "Three lines\nthree lines\nthree lines",
+						entries: { a: "error" },
+					},
+				],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "sections": {
+			          "Linting": {
+			            "contents": {
+			              "after": [
+			                "
+			For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complaints:
+
+			\`\`\`shell
+			pnpm run lint --fix
+			\`\`\`
+			",
+			              ],
+			              "before": "
+			This package includes several forms of linting to enforce consistent code quality and styling.
+			Each should be shown in VS Code, and can be run manually on the command-line:
+			",
+			              "items": [
+			                "- \`pnpm lint\` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files",
+			              ],
+			              "plural": "Read the individual documentation for each linter to understand how it can be configured and used best.",
+			            },
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "jobs": [
+			          {
+			            "name": "Lint",
+			            "steps": [
+			              {
+			                "run": "pnpm lint",
+			              },
+			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "devDependencies": {
+			            "@eslint/js": "9.22.0",
+			            "@types/node": "22.13.10",
+			            "eslint": "9.22.0",
+			            "typescript-eslint": "8.26.1",
+			          },
+			          "scripts": {
+			            "lint": "eslint . --max-warnings 0",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          "dbaeumer.vscode-eslint",
+			        ],
+			        "settings": {
+			          "editor.codeActionsOnSave": {
+			            "source.fixAll.eslint": "explicit",
+			          },
+			          "eslint.probe": [
+			            "javascript",
+			            "javascriptreact",
+			            "json",
+			            "jsonc",
+			            "markdown",
+			            "typescript",
+			            "typescriptreact",
+			            "yaml",
+			          ],
+			          "eslint.rules.customizations": [
+			            {
+			              "rule": "*",
+			              "severity": "warn",
+			            },
+			          ],
+			        },
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    "eslint.config.js": "import eslint from "@eslint/js";
+			import tseslint from "typescript-eslint";
+
+			export default tseslint.config(
+				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
+				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
+				eslint.configs.recommended,
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.js", "**/*.ts"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, rules: {
+
+			// One line
+			"a": "error",
+
+			// Two lines
+			// two lines
+			"a": "error",
+
+			// Three lines
+			// three lines
+			// three lines
+			"a": "error",}, }
+			);",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm lint --fix",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
+			}
+		`);
+	});
+
 	test("with object options.bin", () => {
 		const creation = testBlock(blockESLint, {
 			options: {

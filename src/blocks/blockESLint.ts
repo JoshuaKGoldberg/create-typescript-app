@@ -279,13 +279,17 @@ function printExtensionRules(rules: z.infer<typeof zExtensionRules>) {
 	return [
 		"{",
 		...rules.flatMap((group) => [
-			group.comment ? `\n\n// ${group.comment}\n` : "",
+			printGroupComment(group.comment),
 			...Object.entries(group.entries).map(
 				([ruleName, options]) => `"${ruleName}": ${JSON.stringify(options)},`,
 			),
 		]),
 		"}",
 	].join("");
+}
+
+function printGroupComment(comment: string | undefined) {
+	return comment ? `\n\n// ${comment.replaceAll("\n", "\n// ")}\n` : "";
 }
 
 function processForSort(line: string) {

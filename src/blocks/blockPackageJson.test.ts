@@ -131,6 +131,33 @@ describe("blockPackageJson", () => {
 		`);
 	});
 
+	test("with addons adding type", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				properties: {
+					type: "commonjs",
+				},
+			},
+			options,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"commonjs","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install --no-frozen-lockfile",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+	});
+
 	test("with addons adding overlapping files", () => {
 		const creation = testBlock(blockPackageJson, {
 			addons: {

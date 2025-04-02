@@ -54,7 +54,9 @@ describe("blockGitHubActionsCI", () => {
 			    steps:
 			      - uses: github/accessibility-alt-text-bot@v1.4.0
 
+
 			name: Accessibility Alt Text Bot
+
 
 			on:
 			  issue_comment:
@@ -69,6 +71,7 @@ describe("blockGitHubActionsCI", () => {
 			    types:
 			      - edited
 			      - opened
+
 
 			permissions:
 			  issues: write
@@ -87,12 +90,15 @@ describe("blockGitHubActionsCI", () => {
 			          echo "Don't worry if the previous step failed."
 			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
+
 			name: PR Review Requested
+
 
 			on:
 			  pull_request_target:
 			    types:
 			      - review_requested
+
 
 			permissions:
 			  pull-requests: write
@@ -154,7 +160,9 @@ describe("blockGitHubActionsCI", () => {
 			    steps:
 			      - uses: github/accessibility-alt-text-bot@v1.4.0
 
+
 			name: Accessibility Alt Text Bot
+
 
 			on:
 			  issue_comment:
@@ -169,6 +177,7 @@ describe("blockGitHubActionsCI", () => {
 			    types:
 			      - edited
 			      - opened
+
 
 			permissions:
 			  issues: write
@@ -187,12 +196,15 @@ describe("blockGitHubActionsCI", () => {
 			          echo "Don't worry if the previous step failed."
 			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
+
 			name: PR Review Requested
+
 
 			on:
 			  pull_request_target:
 			    types:
 			      - review_requested
+
 
 			permissions:
 			  pull-requests: write

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.2...2.22.3) (2025-04-02)
+
+### Bug Fixes
+
+- use options.node in CI prepare action ([#2100](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2100)) ([cbcc586](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cbcc5864874ea52e857444c02178b22fe87a931d)), closes [#2096](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2096)
+
 ## [2.22.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.1...2.22.2) (2025-04-02)
 
 ### Bug Fixes

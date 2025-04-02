@@ -42,6 +42,7 @@ export const blockPackageJson = base.createBlock({
 				"package.json": sortPackageJson(
 					JSON.stringify(
 						removeUndefinedObjects({
+							type: "module",
 							...options.packageData,
 							...addons.properties,
 							author: { email: options.email.npm, name: options.author },
@@ -75,7 +76,6 @@ export const blockPackageJson = base.createBlock({
 								...options.packageData?.scripts,
 								...addons.properties.scripts,
 							},
-							type: "module",
 							version: options.version ?? "0.0.0",
 						}),
 					),

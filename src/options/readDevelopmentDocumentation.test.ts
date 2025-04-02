@@ -18,6 +18,7 @@ describe(readDevelopmentDocumentation, () => {
 
 		expect(documentation).toMatchInlineSnapshot(`
 			"## Unknown
+
 			Kept.
 			"
 		`);

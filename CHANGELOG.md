@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.7...2.22.8) (2025-04-02)
+
+### Bug Fixes
+
+- read keywords from package.json during transition ([#2105](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2105)) ([a1304c2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a1304c2e374991a6c87b90122e8f99134afa81c2)), closes [#2094](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2094)
+
 ## [2.22.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.6...2.22.7) (2025-04-02)
 
 ### Bug Fixes

@@ -52,7 +52,9 @@ describe("blockCTATransitions", () => {
 			        issue: \${{ github.event.pull_request.number }}
 			        message: |-
 			          🤖 Beep boop! I ran \`npx create-typescript-app\` and it updated some files.
+
 			          I went ahead and checked those changes into this PR for you. Please review the latest commit to see if you want to merge it.
+
 			          Cheers!
 			           — _The Friendly Bingo Bot_ 💝
 

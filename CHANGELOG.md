@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.4...2.22.5) (2025-04-02)
+
+### Bug Fixes
+
+- allow multiline comments in blockESLint ([#2101](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2101)) ([9c84a66](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9c84a6652ff4e17e03f5f40a42d1fddeabd5bd90)), closes [#2095](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2095)
+
 ## [2.22.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.3...2.22.4) (2025-04-02)
 
 ### Bug Fixes

@@ -41,6 +41,7 @@ After.
 
 Usage.
 
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker:enable -->
 
 After.

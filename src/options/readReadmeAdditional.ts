@@ -1,5 +1,6 @@
-const indicatorAfterContributors =
-	/<!--\s*(?:spellchecker:\s*enable|ALL-CONTRIBUTORS-LIST:END)\s*-->/;
+const indicatorAfterAllContributors = /<!--\s*ALL-CONTRIBUTORS-LIST:END\s*-->/;
+const indicatorAfterAllContributorsSpellCheck =
+	/<!--\s*spellchecker:\s*enable\s*-->/;
 
 const indicatorBeforeTemplatedBy =
 	/> .* This package was templated with |<!-- You can remove this notice/;
@@ -10,7 +11,9 @@ export async function readReadmeAdditional(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
-	const indexAfterContributors = indicatorAfterContributors.exec(readme);
+	const indexAfterContributors =
+		indicatorAfterAllContributorsSpellCheck.exec(readme) ??
+		indicatorAfterAllContributors.exec(readme);
 	if (!indexAfterContributors) {
 		return undefined;
 	}

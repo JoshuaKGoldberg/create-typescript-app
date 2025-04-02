@@ -67,9 +67,7 @@ export const blockPackageJson = base.createBlock({
 							]
 								.filter(Boolean)
 								.sort(),
-							keywords: options.keywords?.flatMap((keyword) =>
-								keyword.split(/ /),
-							),
+							keywords: options.keywords,
 							license: "MIT",
 							name: options.repository,
 							repository: {

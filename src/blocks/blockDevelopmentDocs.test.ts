@@ -149,7 +149,10 @@ describe("blockDevelopmentDocs", () => {
 		const creation = testBlock(blockDevelopmentDocs, {
 			options: {
 				...optionsBase,
-				documentation: "More documentation.",
+				documentation: {
+					...optionsBase.documentation,
+					development: "More documentation.",
+				},
 			},
 		});
 

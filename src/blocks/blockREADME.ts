@@ -54,13 +54,16 @@ ${formatBadges(badges)}
 ${[logo, explainer].filter(Boolean).join("")}
 ## Usage
 
-${options.usage}
+${options.documentation.readme.usage}
 
 ## Development
 
 See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 Thanks! ${options.emoji}
-${sections.map((section) => `\n${section}`).join("")}
+${[...sections, options.documentation.readme.additional]
+	.filter(Boolean)
+	.map((section) => `\n${section}`)
+	.join("")}
 ${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : ""}`,
 			},
 		};

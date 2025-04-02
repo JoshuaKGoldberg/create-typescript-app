@@ -87,7 +87,9 @@ export const blockDevelopmentDocs = base.createBlock({
 			...Object.entries(addons.sections)
 				.sort(([a], [b]) => a.localeCompare(b))
 				.flatMap(([heading, section]) => printSection(heading, section)),
-			...(options.documentation ? [options.documentation] : []),
+			...(options.documentation.development
+				? [options.documentation.development]
+				: []),
 		];
 
 		return {

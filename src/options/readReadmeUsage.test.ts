@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readUsage } from "./readUsage.js";
+import { readReadmeUsage } from "./readReadmeUsage.js";
 
 const mockReadUsageFromReadme = vi.fn();
 
@@ -10,13 +10,13 @@ vi.mock("./readUsageFromReadme.js", () => ({
 	},
 }));
 
-describe(readUsage, () => {
+describe(readReadmeUsage, () => {
 	it("returns the existing usage when readUsageFromReadme provides one", async () => {
 		const existing = "Use it.";
 
 		mockReadUsageFromReadme.mockReturnValueOnce(existing);
 
-		const usage = await readUsage(
+		const usage = await readReadmeUsage(
 			() => Promise.resolve("💖"),
 			() => Promise.resolve(""),
 			() => Promise.resolve(undefined),
@@ -28,7 +28,7 @@ describe(readUsage, () => {
 	it("returns sample usage when readUsageFromReadme doesn't provide usage", async () => {
 		mockReadUsageFromReadme.mockReturnValueOnce(undefined);
 
-		const usage = await readUsage(
+		const usage = await readReadmeUsage(
 			() => Promise.resolve("💖"),
 			() => Promise.resolve(""),
 			() => Promise.resolve("test-repository"),

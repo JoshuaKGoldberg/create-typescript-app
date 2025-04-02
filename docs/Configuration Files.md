@@ -22,7 +22,7 @@ These options are generally only programmatically used internally, but can still
 | Option              | Description                                                              | Default (If Available)                                    |
 | ------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------- |
 | `contributors`      | AllContributors contributors to store in `.all-contributorsrc`           | Existing contributors in the file, or just your username  |
-| `documentation`     | any additional docs to add to `.github/DEVELOPMENT.md`                   | Extra content in `.github/DEVELOPMENT.md`                 |
+| `documentation`     | additional docs to add to `.github/DEVELOPMENT.md` and/or `README.md`    | Extra content in those two files                          |
 | `existingLabels`    | existing labels to switch to the standard template labels                | Existing labels on the repository from the GitHub API     |
 | `explainer`         | additional `README.md` sentence(s) describing the package                | Extra content in `README.md` after badges and description |
 | `guide`             | link to a contribution guide to place at the top of development docs     | Block quote on top of `.github/DEVELOPMENT.md`            |
@@ -30,7 +30,6 @@ These options are generally only programmatically used internally, but can still
 | `node`              | Node.js engine version(s) to pin and require a minimum of                | Values from `.nvmrc` and `package.json`'s `"engines"`     |
 | `packageData`       | additional properties to include in `package.json`                       | Existing values in `package.json`                         |
 | `rulesetId`         | GitHub branch ruleset ID for main branch protections                     | Existing ruleset on the `main` branch from the GitHub API |
-| `usage`             | Markdown docs to put in `README.md` under the `## Usage` heading         | Existing usage lines in `README.md`                       |
 | `workflowsVersions` | existing versions of GitHub Actions workflows used                       | Existing action versions in `.github/workflows/*.yml`     |
 
 For example, changing `node` versions to values different from what would be inferred:

@@ -20,7 +20,13 @@ describe("base", () => {
 			).contributors,
 			description:
 				"Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
-			documentation: "",
+			documentation: {
+				development: expect.any(String),
+				readme: {
+					additional: expect.any(String),
+					usage: expect.any(String),
+				},
+			},
 			email: {
 				github: "github@joshuakgoldberg.com",
 				npm: "npm@joshuakgoldberg.com",
@@ -51,7 +57,6 @@ describe("base", () => {
 			pnpm: expect.any(String),
 			repository: "create-typescript-app",
 			title: "Create TypeScript App",
-			usage: expect.any(String),
 			version: expect.any(String),
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-require-imports
 			words: require("../cspell.json").words,

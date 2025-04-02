@@ -57,6 +57,7 @@ describe("base", () => {
 			pnpm: expect.any(String),
 			repository: "create-typescript-app",
 			title: "Create TypeScript App",
+			type: expect.any(String),
 			version: expect.any(String),
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-require-imports
 			words: require("../cspell.json").words,

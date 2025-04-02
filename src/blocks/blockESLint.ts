@@ -71,6 +71,9 @@ export const blockESLint = base.createBlock({
 		const { explanations, extensions, ignores, imports, rules, settings } =
 			addons;
 
+		const configFileName =
+			options.type === "commonjs" ? "eslint.config.mjs" : "eslint.config.js";
+
 		const explanation =
 			explanations.length > 0
 				? `${explanations
@@ -207,7 +210,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 			],
 			files: {
-				"eslint.config.js": `${explanation}${importLines.join("\n")}
+				[configFileName]: `${explanation}${importLines.join("\n")}
 
 export default tseslint.config(
 	{ ignores: [${ignoreLines.join(", ")}] },

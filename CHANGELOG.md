@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.5...2.22.6) (2025-04-02)
+
+### Bug Fixes
+
+- detect additional content after ALL-CONTRIBUTORS-LIST:END ([#2103](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2103)) ([59026eb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/59026ebe490b23e14ed20bf2cd1a95a14cd62d08)), closes [#2102](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2102)
+
 ## [2.22.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.4...2.22.5) (2025-04-02)
 
 ### Bug Fixes

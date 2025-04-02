@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.11](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.10...2.22.11) (2025-04-02)
+
+### Bug Fixes
+
+- allow overriding package.json type ([#2110](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2110)) ([f7c5561](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f7c5561f4e173e8cddc0865b9ea1c8a7e4cc8431)), closes [#2109](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2109)
+
 ## [2.22.10](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.9...2.22.10) (2025-04-02)
 
 ### Bug Fixes

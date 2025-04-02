@@ -1,4 +1,5 @@
-const indicatorAfterContributors = /<!--\s*spellchecker:\s*enable\s*-->/;
+const indicatorAfterContributors =
+	/<!--\s*(?:spellchecker:\s*enable|ALL-CONTRIBUTORS-LIST:END)\s*-->/;
 
 const indicatorBeforeTemplatedBy =
 	/> .* This package was templated with |<!-- You can remove this notice/;

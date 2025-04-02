@@ -18,6 +18,7 @@ export interface PartialPackageData {
 	devDependencies?: Record<string, string>;
 	email?: string;
 	engines?: { node?: string };
+	keywords?: string[];
 	name?: string;
 	packageManager?: string;
 	publishConfig?: PartialPublishConfig;

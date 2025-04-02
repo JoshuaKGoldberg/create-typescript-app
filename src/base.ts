@@ -22,6 +22,7 @@ import { readFileSafe } from "./options/readFileSafe.js";
 import { readFunding } from "./options/readFunding.js";
 import { readGitDefaults } from "./options/readGitDefaults.js";
 import { readGuide } from "./options/readGuide.js";
+import { readKeywords } from "./options/readKeywords.js";
 import { readLogo } from "./options/readLogo.js";
 import { readNode } from "./options/readNode.js";
 import { readNpmDefaults } from "./options/readNpmDefaults.js";
@@ -208,6 +209,10 @@ export const base = createBase({
 				),
 		);
 
+		const getKeywords = lazyValue(
+			async () => await readKeywords(getPackageData),
+		);
+
 		const getEmailFromCodeOfConduct = lazyValue(
 			async () => await readEmailFromCodeOfConduct(take),
 		);
@@ -309,6 +314,7 @@ export const base = createBase({
 			explainer: getExplainer,
 			funding: getFunding,
 			guide: getGuide,
+			keywords: getKeywords,
 			logo: getLogo,
 			node: getNode,
 			owner: getOwner,

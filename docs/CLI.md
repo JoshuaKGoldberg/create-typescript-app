@@ -65,11 +65,11 @@ For example, customizing the npm author and funding source to different values t
 npx create-typescript-app --author my-npm-username --funding MyGitHubOrganization
 ```
 
-Array flags can be specified as space-delineated strings and/or multiple times.
-For example, customizing keywords to three:
+Array flags can be specified as multiple times.
+For example, customizing keywords to two:
 
 ```shell
-npx create-typescript-app --keywords eslint --keywords "javascript typescript"
+npx create-typescript-app --keywords eslint --keywords typescript
 ```
 
 ## Block Exclusion Flags

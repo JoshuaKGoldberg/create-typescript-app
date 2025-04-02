@@ -68,7 +68,7 @@
 		"trash-cli": "^6.0.0",
 		"zod": "^3.24.2",
 		"zod-package-json": "^1.1.0",
-		"zod-tsconfig": "^0.1.1"
+		"zod-tsconfig": "^0.2.0"
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.4.1",

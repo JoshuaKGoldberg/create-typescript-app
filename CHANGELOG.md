@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.6...2.22.7) (2025-04-02)
+
+### Bug Fixes
+
+- sort compilerOptions in tsconfig.json ([#2104](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2104)) ([c56f78a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c56f78a6be63e9d1d0719548df55f3ef969467e4)), closes [#2092](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2092)
+
 ## [2.22.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.5...2.22.6) (2025-04-02)
 
 ### Bug Fixes

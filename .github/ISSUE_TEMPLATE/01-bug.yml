@@ -26,8 +26,12 @@ body:
       description: Any additional info you'd like to provide.
       label: Additional Info
     type: textarea
+
 description: Report a bug trying to run the code
+
 labels:
   - "type: bug"
+
 name: 🐛 Bug
+
 title: "🐛 Bug: <short description of the bug>"

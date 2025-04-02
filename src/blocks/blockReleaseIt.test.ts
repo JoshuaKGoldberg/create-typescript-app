@@ -88,12 +88,15 @@ describe("blockReleaseIt", () => {
 
 			              Cheers! 📦🚀
 
+
 			name: Post Release
+
 
 			on:
 			  release:
 			    types:
 			      - published
+
 
 			permissions:
 			  issues: write
@@ -101,6 +104,7 @@ describe("blockReleaseIt", () => {
 			",
 			        "release.yml": "concurrency:
 			  group: \${{ github.workflow }}
+
 
 			jobs:
 			  release:
@@ -117,12 +121,15 @@ describe("blockReleaseIt", () => {
 			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.2.2
 
+
 			name: Release
+
 
 			on:
 			  push:
 			    branches:
 			      - main
+
 
 			permissions:
 			  contents: write
@@ -237,12 +244,15 @@ describe("blockReleaseIt", () => {
 
 			              Cheers! 📦🚀
 
+
 			name: Post Release
+
 
 			on:
 			  release:
 			    types:
 			      - published
+
 
 			permissions:
 			  issues: write
@@ -250,6 +260,7 @@ describe("blockReleaseIt", () => {
 			",
 			        "release.yml": "concurrency:
 			  group: \${{ github.workflow }}
+
 
 			jobs:
 			  release:
@@ -269,12 +280,15 @@ describe("blockReleaseIt", () => {
 			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.2.2
 
+
 			name: Release
+
 
 			on:
 			  push:
 			    branches:
 			      - main
+
 
 			permissions:
 			  contents: write

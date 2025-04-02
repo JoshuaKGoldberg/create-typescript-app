@@ -4,7 +4,7 @@ import { resolveUses } from "./actions/resolveUses.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { formatYamlAction } from "./files/formatYamlAction.js";
+import { formatYaml } from "./files/formatYaml.js";
 
 export const blockCTATransitions = base.createBlock({
 	about: {
@@ -28,7 +28,7 @@ export const blockCTATransitions = base.createBlock({
 				".github": {
 					actions: {
 						transition: {
-							"action.yml": formatYamlAction({
+							"action.yml": formatYaml({
 								description: "Runs create-typescript-app in transition mode",
 								name: "Transition",
 								runs: {
@@ -65,7 +65,9 @@ export const blockCTATransitions = base.createBlock({
 												issue: "${{ github.event.pull_request.number }}",
 												message: [
 													"🤖 Beep boop! I ran `npx create-typescript-app` and it updated some files.",
+													"",
 													"I went ahead and checked those changes into this PR for you. Please review the latest commit to see if you want to merge it.",
+													"",
 													"Cheers!",
 													" — _The Friendly Bingo Bot_ 💝",
 													"",

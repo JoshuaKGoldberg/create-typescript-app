@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "2.22.1",
+	"version": "2.22.2",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 	"repository": {
 		"type": "git",
@@ -82,7 +82,7 @@
 		"@types/lodash": "4.17.16",
 		"@types/node": "22.13.10",
 		"@types/parse-author": "2.0.3",
-		"@types/semver": "7.5.8",
+		"@types/semver": "7.7.0",
 		"@vitest/coverage-v8": "3.0.9",
 		"@vitest/eslint-plugin": "1.1.38",
 		"all-contributors-cli": "6.26.1",

@@ -6,7 +6,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { formatYamlAction } from "./files/formatYamlAction.js";
+import { formatYaml } from "./files/formatYaml.js";
 
 export const zActionStep = z.intersection(
 	z.object({
@@ -46,7 +46,7 @@ export const blockGitHubActionsCI = base.createBlock({
 				".github": {
 					actions: {
 						prepare: {
-							"action.yml": formatYamlAction({
+							"action.yml": formatYaml({
 								description: "Prepares the repo for a typical CI job",
 								name: "Prepare",
 								runs: {

@@ -1,3 +1,4 @@
+import sortKeys from "sort-keys";
 import { CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.js";
@@ -121,7 +122,7 @@ export * from "./types.js";
 			],
 			files: {
 				"tsconfig.json": JSON.stringify({
-					compilerOptions: {
+					compilerOptions: sortKeys({
 						declaration: true,
 						declarationMap: true,
 						esModuleInterop: true,
@@ -133,7 +134,7 @@ export * from "./types.js";
 						strict: true,
 						target: "ES2022",
 						...compilerOptions,
-					},
+					}),
 					include: ["src"],
 				}),
 			},

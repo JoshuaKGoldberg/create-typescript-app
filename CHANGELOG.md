@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.22.10](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.9...2.22.10) (2025-04-02)
+
+### Bug Fixes
+
+- infer author email from package.json if available ([#2108](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2108)) ([26ee6f3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/26ee6f397f79b668e584c5007582e5f063312620)), closes [#2093](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2093)
+
 ## [2.22.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.8...2.22.9) (2025-04-02)
 
 ### Bug Fixes

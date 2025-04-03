@@ -75,8 +75,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       remove-dependencies:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
       remove-undefined-objects:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3725,8 +3725,8 @@ packages:
     engines: {node: ^20.9.0 || >=22.0.0}
     hasBin: true
 
-  remove-dependencies@0.1.0:
-    resolution: {integrity: sha512-K9PXkqGYkuQbRVf57SI/t3xBhw87pLbvd94zir6v4+ptJQ0TSjLWtd0ZlebtQEOfnxSchz+wgzTvG7KNpLMAbg==}
+  remove-dependencies@0.1.1:
+    resolution: {integrity: sha512-CDQMz0yYx8Jta0LcWgGdkRXbd+wxXlGj7mPKJAkBkJjw0Wq4WVgPpQs3/S695YnBcTpk1JxLAiX+oPw+2Cqagw==}
     engines: {node: '>=18.3.0'}
     hasBin: true
 
@@ -8158,7 +8158,7 @@ snapshots:
       - supports-color
       - typescript
 
-  remove-dependencies@0.1.0: {}
+  remove-dependencies@0.1.1: {}
 
   remove-undefined-objects@6.0.0: {}
 

@@ -59,7 +59,7 @@
 		"object-strings-deep": "^0.1.1",
 		"parse-author": "^2.0.0",
 		"parse-package-name": "^1.0.0",
-		"remove-dependencies": "^0.1.0",
+		"remove-dependencies": "^0.1.1",
 		"remove-undefined-objects": "^6.0.0",
 		"semver": "^7.7.1",
 		"set-github-repository-labels": "^0.2.0",

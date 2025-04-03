@@ -31,6 +31,7 @@ import { readPackageData } from "./options/readPackageData.js";
 import { readPnpm } from "./options/readPnpm.js";
 import { readReadmeAdditional } from "./options/readReadmeAdditional.js";
 import { readReadmeExplainer } from "./options/readReadmeExplainer.js";
+import { readReadmeFootnotes } from "./options/readReadmeFootnotes.js";
 import { readReadmeUsage } from "./options/readReadmeUsage.js";
 import { readRepository } from "./options/readRepository.js";
 import { readRulesetId } from "./options/readRulesetId.js";
@@ -197,6 +198,7 @@ export const base = createBase({
 					getDevelopmentDocumentation,
 					getReadmeAdditional,
 					getReadmeExplainer,
+					getReadmeFootnotes,
 					getReadmeUsage,
 				),
 		);
@@ -279,6 +281,10 @@ export const base = createBase({
 
 		const getReadmeExplainer = lazyValue(
 			async () => await readReadmeExplainer(getReadme),
+		);
+
+		const getReadmeFootnotes = lazyValue(
+			async () => await readReadmeFootnotes(getReadme),
 		);
 
 		const getReadmeUsage = lazyValue(

@@ -71,8 +71,10 @@ export const blockESLint = base.createBlock({
 		const { explanations, extensions, ignores, imports, rules, settings } =
 			addons;
 
-		const configFileName =
-			options.type === "commonjs" ? "eslint.config.mjs" : "eslint.config.js";
+		const [configFileName, fileExtensions] =
+			options.type === "commonjs"
+				? ["eslint.config.mjs", "js,mjs,ts"]
+				: ["eslint.config.js", "js,ts"];
 
 		const explanation =
 			explanations.length > 0
@@ -102,7 +104,7 @@ export const blockESLint = base.createBlock({
 					"tseslint.configs.strictTypeChecked",
 					"tseslint.configs.stylisticTypeChecked",
 				],
-				files: ["**/*.js", "**/*.ts"],
+				files: [`**/*.{${fileExtensions}}`],
 				languageOptions: {
 					parserOptions: {
 						projectService: {
@@ -125,6 +127,14 @@ export const blockESLint = base.createBlock({
 				...(rules && { rules }),
 				...(settings && { settings }),
 			}),
+			...(options.type === "commonjs"
+				? [
+						printExtension({
+							files: ["*.mjs"],
+							languageOptions: { sourceType: "module" },
+						}),
+					]
+				: []),
 			...extensions.map((extension) =>
 				typeof extension === "string" ? extension : printExtension(extension),
 			),

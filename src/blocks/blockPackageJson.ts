@@ -5,8 +5,8 @@ import { z } from "zod";
 import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { CommandPhase } from "./phases.js";
 
 const PackageJsonWithNullableScripts = PackageJson.partial().extend({

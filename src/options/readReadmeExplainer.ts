@@ -6,9 +6,9 @@ export async function readReadmeExplainer(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
-	const beforeLastTag = readme.slice(0, indexOfUsageH2);
+	const beforeUsageH2 = readme.slice(0, indexOfUsageH2);
 
-	const [indexOfLastTag, lastTagMatcher] = lastLastIndexOf(beforeLastTag, [
+	const [indexOfLastTag, lastTagMatcher] = lastLastIndexOf(beforeUsageH2, [
 		`">`,
 		"/p>",
 		"/>",

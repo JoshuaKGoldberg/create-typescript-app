@@ -3,8 +3,28 @@ import { describe, expect, it } from "vitest";
 import { readReadmeExplainer } from "./readReadmeExplainer.js";
 
 describe(readReadmeExplainer, () => {
-	it("defaults to undefined when it cannot be found", async () => {
+	it("resolves with undefined when an h2 cannot be found", async () => {
 		const actual = await readReadmeExplainer(() => Promise.resolve(`nothing.`));
+
+		expect(actual).toBeUndefined();
+	});
+
+	it("resolves with undefined before h2 when a Usage h2 exists and there are no preceding tags", async () => {
+		const actual = await readReadmeExplainer(() =>
+			Promise.resolve(`# Title
+			
+## Usage`),
+		);
+
+		expect(actual).toBeUndefined();
+	});
+
+	it("resolves with undefined before h2 when a non-Usage h2 exists and there are no preceding tags", async () => {
+		const actual = await readReadmeExplainer(() =>
+			Promise.resolve(`# Title
+			
+## What?`),
+		);
 
 		expect(actual).toBeUndefined();
 	});

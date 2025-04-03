@@ -209,6 +209,7 @@ describe("blockPrettier", () => {
 			    {
 			      "addons": {
 			        "files": [
+			          ".prettierrc",
 			          ".prettierrc.{c*,js,m*,t*}",
 			          "prettier.config*",
 			        ],
@@ -265,6 +266,7 @@ describe("blockPrettier", () => {
 					"prettier-plugin-packagejson",
 					"prettier-plugin-sh",
 				],
+				runBefore: ["pnpm build || exit 0"],
 			},
 			options: optionsBase,
 		});
@@ -305,6 +307,9 @@ describe("blockPrettier", () => {
 			          {
 			            "name": "Prettier",
 			            "steps": [
+			              {
+			                "run": "pnpm build || exit 0",
+			              },
 			              {
 			                "run": "pnpm format --list-different",
 			              },

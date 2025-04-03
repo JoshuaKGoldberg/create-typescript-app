@@ -30,7 +30,7 @@ describe(getPackageDependencies, () => {
 		const act = () => getPackageDependencies("package-unknown");
 
 		expect(act).toThrowError(
-			"package-unknown is neither in package.json's dependencies nor its devDependencies.",
+			"'package-unknown' is neither in package.json's dependencies nor its devDependencies.",
 		);
 	});
 });

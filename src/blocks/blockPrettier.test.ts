@@ -376,6 +376,7 @@ describe("blockPrettier", () => {
 			  "scripts": [
 			    {
 			      "commands": [
+			        "pnpm build || exit 0",
 			        "pnpm format --write",
 			      ],
 			      "phase": 4,

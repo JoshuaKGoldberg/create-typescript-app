@@ -49,7 +49,10 @@ const zExtension = z.object({
 });
 
 const zPackageImport = z.object({
-	source: z.string(),
+	source: z.union([
+		z.string(),
+		z.object({ packageName: z.string(), version: z.string() }),
+	]),
 	specifier: z.string(),
 	types: z.boolean().optional(),
 });
@@ -88,7 +91,7 @@ export const blockESLint = base.createBlock({
 			'import tseslint from "typescript-eslint";',
 			...imports.map(
 				(packageImport) =>
-					`import ${packageImport.specifier} from "${packageImport.source}"`,
+					`import ${packageImport.specifier} from "${typeof packageImport.source === "string" ? packageImport.source : packageImport.source.packageName}"`,
 			),
 		].sort((a, b) =>
 			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
@@ -183,17 +186,36 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: getPackageDependencies(
-							"@eslint/js",
-							"@types/node",
-							"eslint",
-							"typescript-eslint",
-							...imports.flatMap(({ source, types }) => {
-								// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
-								const { name } = parsePackageName(source) as { name: string };
-								return types ? [name, `@types/${name}`] : [name];
-							}),
-						),
+						devDependencies: {
+							...getPackageDependencies(
+								"@eslint/js",
+								"@types/node",
+								"eslint",
+								"typescript-eslint",
+								...imports
+									.filter((imported) => typeof imported.source === "string")
+									.flatMap(({ source, types }) => {
+										// eslint-disable-next-line @typescript-eslint/no-unsafe-call -- https://github.com/egoist/parse-package-name/issues/30
+										const { name } = parsePackageName(source) as {
+											name: string;
+										};
+										return types ? [name, `@types/${name}`] : [name];
+									}),
+							),
+							...Object.fromEntries(
+								imports
+									.filter(
+										(
+											imported,
+										): imported is typeof imported & { source: object } =>
+											typeof imported.source === "object",
+									)
+									.map((imported) => [
+										imported.source.packageName,
+										imported.source.version,
+									]),
+							),
+						},
 						scripts: {
 							lint: "eslint . --max-warnings 0",
 						},

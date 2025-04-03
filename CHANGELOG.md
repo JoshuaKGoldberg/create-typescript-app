@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.25.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.5...2.25.0) (2025-04-03)
+
+### Features
+
+- add opt-in blockESLintPlugin ([#2131](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2131)) ([11d8e05](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/11d8e05e33accaf6e6011cd8e92f86e9d9cdd600)), closes [#1936](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1936)
+
 ## [2.24.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.4...2.24.5) (2025-04-03)
 
 ### Bug Fixes

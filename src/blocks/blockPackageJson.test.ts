@@ -131,20 +131,18 @@ describe("blockPackageJson", () => {
 		`);
 	});
 
-	test("with addons adding type", () => {
+	test("with options.type set to commonjs", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					type: "commonjs",
-				},
+			options: {
+				...options,
+				type: "commonjs",
 			},
-			options,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"commonjs","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {

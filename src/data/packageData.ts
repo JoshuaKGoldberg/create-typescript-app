@@ -21,7 +21,7 @@ export function getPackageDependency(name: string) {
 
 	if (!version) {
 		throw new Error(
-			`'${name} is neither in package.json's dependencies nor its devDependencies.`,
+			`'${name}' is neither in package.json's dependencies nor its devDependencies.`,
 		);
 	}
 

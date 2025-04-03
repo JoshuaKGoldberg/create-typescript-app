@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.26.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.25.0...2.26.0) (2025-04-03)
+
+### Features
+
+- support parsing existing package.json descriptions as markdown ([#2132](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2132)) ([5ff30dd](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5ff30dd715f0cc59d3bc508c9f5b3f76305a12b2)), closes [#1934](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1934)
+
 # [2.25.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.5...2.25.0) (2025-04-03)
 
 ### Features

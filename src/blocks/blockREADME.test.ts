@@ -143,8 +143,10 @@ describe("blockREADME", () => {
 			</p>
 
 
+
 			And a one.
 			And a two.
+
 
 
 			## Usage
@@ -275,8 +277,10 @@ describe("blockREADME", () => {
 
 			<img align="right" alt="My logo" height="100" src="img.jpg" width="128">
 
+
 			And a one.
 			And a two.
+
 
 			## Usage
 

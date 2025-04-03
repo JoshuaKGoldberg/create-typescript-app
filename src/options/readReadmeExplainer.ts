@@ -17,7 +17,9 @@ export async function readReadmeExplainer(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
-	return readme.slice(indexOfLastTag + lastTagMatcher.length, indexOfUsageH2);
+	return readme
+		.slice(indexOfLastTag + lastTagMatcher.length, indexOfUsageH2)
+		.trim();
 }
 
 function lastLastIndexOf(text: string, matchers: string[]) {

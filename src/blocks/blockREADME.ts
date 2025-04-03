@@ -35,6 +35,10 @@ export const blockREADME = base.createBlock({
 	produce({ addons, options }) {
 		const { badges, notices, sections } = addons;
 
+		const explainer =
+			options.documentation.readme.explainer &&
+			`\n${options.documentation.readme.explainer}\n`;
+
 		const logo =
 			options.logo &&
 			`\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`;
@@ -48,7 +52,7 @@ export const blockREADME = base.createBlock({
 <p align="center">
 ${formatBadges(badges)}
 </p>
-${[logo, options.documentation.readme.explainer].filter(Boolean).join("")}
+${[logo, explainer].filter(Boolean).join("")}
 ## Usage
 
 ${options.documentation.readme.usage}

@@ -20,7 +20,7 @@ This is my project.
 					.`),
 		);
 
-		expect(actual).toEqual("\n\nThis is my project.\n\n");
+		expect(actual).toEqual("This is my project.");
 	});
 
 	it("parses multiple lines after badges", async () => {
@@ -35,7 +35,7 @@ It is good.
 					.`),
 		);
 
-		expect(actual).toEqual("\n\nThis is my project.\nIt is good.\n\n");
+		expect(actual).toEqual("This is my project.\nIt is good.");
 	});
 
 	it("parses multiple lines after full badges and a logo", async () => {
@@ -63,7 +63,7 @@ It is good.
 					.`),
 		);
 
-		expect(actual).toEqual("\n\nThis is my project.\nIt is good.\n\n");
+		expect(actual).toEqual("This is my project.\nIt is good.");
 	});
 
 	it("parses a non-Usage h2 after full badges", async () => {
@@ -91,9 +91,7 @@ It is good.
 					.`),
 		);
 
-		expect(actual).toEqual(
-			"\n\n## What?\n\nThis is my project.\nIt is good.\n\n",
-		);
+		expect(actual).toEqual("## What?\n\nThis is my project.\nIt is good.");
 	});
 
 	it("parses a non-Usage h2 with a block quote after full badges", async () => {
@@ -115,7 +113,7 @@ It is good.
 		);
 
 		expect(actual).toEqual(
-			"\n\n## What?\n\nThis is my project.\nIt is good.\n\n> See here.\n\n",
+			"## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
 		);
 	});
 
@@ -137,9 +135,7 @@ It is good.
 					.`),
 		);
 
-		expect(actual).toEqual(
-			"\n\n## What?\n\nThis is my project.\nIt is good.\n\n",
-		);
+		expect(actual).toEqual("## What?\n\nThis is my project.\nIt is good.");
 	});
 
 	it("parses a non-Usage h2 with a block quote after full badges and a logo", async () => {
@@ -163,7 +159,7 @@ It is good.
 		);
 
 		expect(actual).toEqual(
-			"\n\n## What?\n\nThis is my project.\nIt is good.\n\n> See here.\n\n",
+			"## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
 		);
 	});
 });

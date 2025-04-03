@@ -1,22 +1,33 @@
+import { marked } from "marked";
+
 import { packageData } from "../data/packageData.js";
 import { PartialPackageData } from "../types.js";
+import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
 import { readDescriptionFromReadme } from "./readDescriptionFromReadme.js";
 
 export async function readDescription(
 	getPackageData: () => Promise<PartialPackageData>,
 	getReadme: () => Promise<string>,
 ) {
-	const { description: inferred } = await getPackageData();
-	if (!inferred) {
+	const { description: fromPackageJson } = await getPackageData();
+	if (!fromPackageJson) {
 		return undefined;
 	}
 
-	const { description: existing } = packageData;
 	const fromReadme = await readDescriptionFromReadme(getReadme);
+	if (!fromReadme) {
+		return fromPackageJson;
+	}
 
-	if (fromReadme?.replaceAll(/<\s*(?:\/\s*)?\w+\s*>/gu, "") === inferred) {
+	const fromPackageJsonNormalized = htmlToTextSafe(
+		await marked.parseInline(fromPackageJson),
+	);
+	const fromReadmeNormalized = htmlToTextSafe(fromReadme);
+	if (fromReadmeNormalized === fromPackageJsonNormalized) {
 		return fromReadme;
 	}
 
-	return existing === inferred ? undefined : inferred;
+	return fromPackageJson === packageData.description
+		? undefined
+		: await marked.parseInline(fromPackageJson);
 }

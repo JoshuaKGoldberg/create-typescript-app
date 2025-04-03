@@ -239,7 +239,7 @@ export default tseslint.config(
 			],
 		};
 	},
-	transition() {
+	transition({ options }) {
 		return {
 			addons: [
 				blockRemoveDependencies({
@@ -255,7 +255,13 @@ export default tseslint.config(
 					],
 				}),
 				blockRemoveFiles({
-					files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,mjs}"],
+					files: [
+						".eslintrc*",
+						".eslintignore",
+						options.type === "commonjs"
+							? "eslint.config.{cjs,js}"
+							: "eslint.config.{cjs,mjs}",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["eslint", "lint"],

@@ -146,6 +146,27 @@ export { rules };
 export default plugin;
 `,
 					rules: {
+						"example.test.ts": `import { rule } from "./enums.js";
+import { ruleTester } from "./ruleTester.js";
+
+ruleTester.run("enums", rule, {
+	invalid: [
+		{
+			code: \`enum Values {}\`,
+			errors: [
+				{
+					column: 1,
+					endColumn: 15,
+					endLine: 1,
+					line: 1,
+					messageId: "enum",
+				},
+			],
+		},
+	],
+	valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
+});
+`,
 						"example.ts": `import { createRule } from "../utils.js";
 
 export const rule = createRule({
@@ -178,6 +199,16 @@ export const rule = createRule({
 export const rules = {
 	example,
 };
+`,
+						"ruleTester.ts": `import { RuleTester } from "@typescript-eslint/rule-tester";
+import * as vitest from "vitest";
+
+RuleTester.afterAll = vitest.afterAll;
+RuleTester.it = vitest.it;
+RuleTester.itOnly = vitest.it.only;
+RuleTester.describe = vitest.describe;
+
+export const ruleTester = new RuleTester();
 `,
 					},
 					"utils.ts": `import { ESLintUtils } from "@typescript-eslint/utils";

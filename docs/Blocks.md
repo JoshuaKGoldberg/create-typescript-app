@@ -23,6 +23,7 @@ This table summarizes each block and which base levels they're included in:
 | ESLint Node Plugin           | `--add-eslint-node-plugin`, `--exclude-eslint-node-plugin`                     |         |        | 💯         |
 | ESLint package.json Plugin   | `--add-eslint-package-json-plugin`, `--exclude-eslint-package-json-plugin`     |         |        | 💯         |
 | ESLint Perfectionist Plugin  | `--add-eslint-perfectionist-plugin`, `--exclude-eslint-perfectionist-plugin`   |         |        | 💯         |
+| ESLint Plugin                | `--add-eslint-plugin`, `--exclude-eslint-plugin`                               |         |        |            |
 | ESLint Regexp Plugin         | `--add-eslint-regexp-plugin`, `--exclude-eslint-regexp-plugin`                 |         |        | 💯         |
 | ESLint YML Plugin            | `--add-eslint-yml-plugin`, `--exclude-eslint-yml-plugin`                       |         |        | 💯         |
 | Funding                      | `--add-funding`, `--exclude-funding`                                           |         | ✅     | 💯         |

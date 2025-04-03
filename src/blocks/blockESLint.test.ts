@@ -465,6 +465,10 @@ describe("blockESLint", () => {
 				imports: [
 					{ source: "eslint-plugin-markdown", specifier: "a", types: true },
 					{ source: "eslint-plugin-regexp", specifier: "b" },
+					{
+						source: { packageName: "eslint-plugin-unknown", version: "1.2.3" },
+						specifier: "c",
+					},
 				],
 				rules: {
 					"a/b": "error",
@@ -536,6 +540,7 @@ describe("blockESLint", () => {
 			            "eslint": "9.22.0",
 			            "eslint-plugin-markdown": "5.1.0",
 			            "eslint-plugin-regexp": "2.7.0",
+			            "eslint-plugin-unknown": "1.2.3",
 			            "typescript-eslint": "8.26.1",
 			          },
 			          "scripts": {
@@ -586,6 +591,7 @@ describe("blockESLint", () => {
 			import eslint from "@eslint/js";
 			import a from "eslint-plugin-markdown"
 			import b from "eslint-plugin-regexp"
+			import c from "eslint-plugin-unknown"
 			import tseslint from "typescript-eslint";
 
 			export default tseslint.config(

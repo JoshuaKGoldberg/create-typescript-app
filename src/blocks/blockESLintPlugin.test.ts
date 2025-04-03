@@ -142,6 +142,7 @@ describe("blockESLintPlugin", () => {
 
 	test("setup mode", () => {
 		const creation = testBlock(blockESLintPlugin, {
+			mode: "setup",
 			options: optionsBase,
 		});
 
@@ -270,6 +271,114 @@ describe("blockESLintPlugin", () => {
 
 			export default config;
 			",
+			    "src": {
+			      "index.ts": "import Module from "node:module";
+
+			import { rules } from "./rules/index.js";
+
+			const require = Module.createRequire(import.meta.url);
+
+			const { name, version } =
+				// \`import\`ing here would bypass the TSConfig's \`"rootDir": "src"\`
+				require("../package.json") as typeof import("../package.json");
+
+			export const plugin = {
+				configs: {
+					get recommended() {
+						return recommended;
+					},
+				},
+				meta: { name, version },
+				rules,
+			};
+
+			const recommended = {
+				plugins: {
+					"test-repository": plugin,
+				},
+				rules: Object.fromEntries(
+					Object.keys(rules).map((rule) => [\`test-repository/\${rule}\`, "error"]),
+				),
+			};
+
+			export { rules };
+
+			export default plugin;
+			",
+			      "rules": {
+			        "example.test.ts": "import { rule } from "./enums.js";
+			import { ruleTester } from "./ruleTester.js";
+
+			ruleTester.run("enums", rule, {
+				invalid: [
+					{
+						code: \`enum Values {}\`,
+						errors: [
+							{
+								column: 1,
+								endColumn: 15,
+								endLine: 1,
+								line: 1,
+								messageId: "enum",
+							},
+						],
+					},
+				],
+				valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
+			});
+			",
+			        "example.ts": "import { createRule } from "../utils.js";
+
+			export const rule = createRule({
+				create(context) {
+					return {
+						TSEnumDeclaration(node) {
+							context.report({
+								messageId: "enum",
+								node,
+							});
+						},
+					};
+				},
+				defaultOptions: [],
+				meta: {
+					docs: {
+						description: "Avoid using TypeScript's enums.",
+					},
+					messages: {
+						enum: "This enum will not be allowed under TypeScript's --erasableSyntaxOnly.",
+					},
+					schema: [],
+					type: "problem",
+				},
+				name: "enums",
+			});
+			",
+			        "index.ts": "import { rule as example } from "./example.js";
+
+			export const rules = {
+				example,
+			};
+			",
+			        "ruleTester.ts": "import { RuleTester } from "@typescript-eslint/rule-tester";
+			import * as vitest from "vitest";
+
+			RuleTester.afterAll = vitest.afterAll;
+			RuleTester.it = vitest.it;
+			RuleTester.itOnly = vitest.it.only;
+			RuleTester.describe = vitest.describe;
+
+			export const ruleTester = new RuleTester();
+			",
+			      },
+			      "utils.ts": "import { ESLintUtils } from "@typescript-eslint/utils";
+
+			export const createRule = ESLintUtils.RuleCreator(
+				(name) =>
+					\`https://github.com/test-owner/test-repository/blob/main/docs/rules/\${name}.md\`,
+			);
+			",
+			    },
 			  },
 			}
 		`);

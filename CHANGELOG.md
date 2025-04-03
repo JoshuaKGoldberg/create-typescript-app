@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.23.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.11...2.23.0) (2025-04-03)
+
+### Features
+
+- add options.type ([#2112](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2112)) ([a07f6ed](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a07f6edaf911493ed26eb7f3b077576f421fc473)), closes [#2111](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2111) [#2110](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2110)
+
 ## [2.22.11](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.22.10...2.22.11) (2025-04-02)
 
 ### Bug Fixes

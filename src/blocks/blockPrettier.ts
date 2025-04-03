@@ -106,7 +106,7 @@ pnpm format --write
 			},
 			scripts: [
 				{
-					commands: ["pnpm format --write"],
+					commands: [...runBefore, "pnpm format --write"],
 					phase: CommandPhase.Format,
 				},
 			],

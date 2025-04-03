@@ -71,6 +71,11 @@ export const blockESLint = base.createBlock({
 		const { explanations, extensions, ignores, imports, rules, settings } =
 			addons;
 
+		const [configFileName, fileExtensions] =
+			options.type === "commonjs"
+				? ["eslint.config.mjs", "js,mjs,ts"]
+				: ["eslint.config.js", "js,ts"];
+
 		const explanation =
 			explanations.length > 0
 				? `${explanations
@@ -99,7 +104,7 @@ export const blockESLint = base.createBlock({
 					"tseslint.configs.strictTypeChecked",
 					"tseslint.configs.stylisticTypeChecked",
 				],
-				files: ["**/*.js", "**/*.ts"],
+				files: [`**/*.{${fileExtensions}}`],
 				languageOptions: {
 					parserOptions: {
 						projectService: {
@@ -122,6 +127,14 @@ export const blockESLint = base.createBlock({
 				...(rules && { rules }),
 				...(settings && { settings }),
 			}),
+			...(options.type === "commonjs"
+				? [
+						printExtension({
+							files: ["*.mjs"],
+							languageOptions: { sourceType: "module" },
+						}),
+					]
+				: []),
 			...extensions.map((extension) =>
 				typeof extension === "string" ? extension : printExtension(extension),
 			),
@@ -207,7 +220,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 			],
 			files: {
-				"eslint.config.js": `${explanation}${importLines.join("\n")}
+				[configFileName]: `${explanation}${importLines.join("\n")}
 
 export default tseslint.config(
 	{ ignores: [${ignoreLines.join(", ")}] },
@@ -226,7 +239,7 @@ export default tseslint.config(
 			],
 		};
 	},
-	transition() {
+	transition({ options }) {
 		return {
 			addons: [
 				blockRemoveDependencies({
@@ -242,7 +255,13 @@ export default tseslint.config(
 					],
 				}),
 				blockRemoveFiles({
-					files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,mjs}"],
+					files: [
+						".eslintrc*",
+						".eslintignore",
+						options.type === "commonjs"
+							? "eslint.config.{cjs,js}"
+							: "eslint.config.{cjs,mjs}",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["eslint", "lint"],

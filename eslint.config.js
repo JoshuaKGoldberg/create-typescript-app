@@ -42,7 +42,7 @@ export default tseslint.config(
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
 		],
-		files: ["**/*.js", "**/*.ts"],
+		files: ["**/*.{js,ts}"],
 		languageOptions: {
 			parserOptions: {
 				projectService: {

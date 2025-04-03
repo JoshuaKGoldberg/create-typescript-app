@@ -24,6 +24,7 @@ export interface PartialPackageData {
 	publishConfig?: PartialPublishConfig;
 	repository?: string | { type: string; url: string };
 	scripts?: Record<string, string>;
+	type?: "commonjs" | "module";
 	version?: string;
 }
 

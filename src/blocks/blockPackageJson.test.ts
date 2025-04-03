@@ -131,14 +131,12 @@ describe("blockPackageJson", () => {
 		`);
 	});
 
-	test("with addons adding type", () => {
+	test("with options.type set to commonjs", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					type: "commonjs",
-				},
+			options: {
+				...options,
+				type: "commonjs",
 			},
-			options,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

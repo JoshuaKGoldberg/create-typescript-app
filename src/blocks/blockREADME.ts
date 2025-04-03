@@ -43,6 +43,11 @@ export const blockREADME = base.createBlock({
 			options.logo &&
 			`\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`;
 
+		const suffixes = [
+			...notices,
+			options.documentation.readme.footnotes,
+		].filter((suffix) => typeof suffix === "string");
+
 		return {
 			files: {
 				"README.md": `<h1 align="center">${options.title}</h1>
@@ -65,7 +70,7 @@ ${[...sections, options.documentation.readme.additional]
 	.filter(Boolean)
 	.map((section) => `\n${section}`)
 	.join("")}
-${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : ""}`,
+${suffixes.length ? `\n${suffixes.map((suffix) => suffix.trim()).join("\n\n")}` : ""}`,
 			},
 		};
 	},

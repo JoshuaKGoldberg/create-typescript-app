@@ -117,7 +117,7 @@ describe("blockREADME", () => {
 		`);
 	});
 
-	test("options.explainer", () => {
+	test("options.documentation.readme.explainer", () => {
 		const creation = testBlock(blockREADME, {
 			options: {
 				...optionsBase,
@@ -125,7 +125,7 @@ describe("blockREADME", () => {
 					...optionsBase.documentation,
 					readme: {
 						...optionsBase.documentation.readme,
-						explainer: "\nAnd a one.\nAnd a two.\n",
+						explainer: "And a one.\nAnd a two.",
 					},
 				},
 			},
@@ -142,10 +142,8 @@ describe("blockREADME", () => {
 				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 			</p>
 
-
 			And a one.
 			And a two.
-
 
 			## Usage
 
@@ -157,6 +155,48 @@ describe("blockREADME", () => {
 			Thanks! 💖
 
 			",
+			  },
+			}
+		`);
+	});
+
+	test("options.documentation.readme.footnotes", () => {
+		const creation = testBlock(blockREADME, {
+			options: {
+				...optionsBase,
+				documentation: {
+					...optionsBase.documentation,
+					readme: {
+						...optionsBase.documentation.readme,
+						footnotes: "And a one.\nAnd a two.",
+					},
+				},
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "README.md": "<h1 align="center">Test Title</h1>
+
+			<p align="center">Test description</p>
+
+			<p align="center">
+				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
+			</p>
+
+			## Usage
+
+			Test usage.
+
+			## Development
+
+			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
+			Thanks! 💖
+
+
+			And a one.
+			And a two.",
 			  },
 			}
 		`);

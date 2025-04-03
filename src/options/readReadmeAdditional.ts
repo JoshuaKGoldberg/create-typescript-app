@@ -1,9 +1,8 @@
+import { indicatorTemplatedBy } from "./readReadmeFootnotes.js";
+
 const indicatorAfterAllContributors = /<!--\s*ALL-CONTRIBUTORS-LIST:END\s*-->/;
 const indicatorAfterAllContributorsSpellCheck =
 	/<!--\s*spellchecker:\s*enable\s*-->/;
-
-const indicatorBeforeTemplatedBy =
-	/> .* This package (?:is|was) (?:based|build|templated) (?:on|with) |<!-- You can remove this notice/;
 
 export async function readReadmeAdditional(getReadme: () => Promise<string>) {
 	const readme = await getReadme();
@@ -18,7 +17,7 @@ export async function readReadmeAdditional(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
-	const templatedByMatch = indicatorBeforeTemplatedBy.exec(readme);
+	const templatedByMatch = indicatorTemplatedBy.exec(readme);
 
 	return readme
 		.slice(

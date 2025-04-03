@@ -262,6 +262,7 @@ describe("blockPrettier", () => {
 				ignores: ["generated"],
 				overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				plugins: [
+					"./lib/index.js",
 					"prettier-plugin-curly",
 					"prettier-plugin-packagejson",
 					"prettier-plugin-sh",
@@ -370,7 +371,7 @@ describe("blockPrettier", () => {
 			/pnpm-lock.yaml
 			generated
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
+			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
 			  },
 			  "scripts": [
 			    {

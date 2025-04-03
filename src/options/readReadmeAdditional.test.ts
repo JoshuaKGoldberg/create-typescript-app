@@ -72,7 +72,25 @@ After.
 		expect(result).toBe("After.");
 	});
 
-	it("returns all content after contributors when there is a quote template notice", async () => {
+	it("returns all content after contributors when there is a legacy quote template notice", async () => {
+		const getReadme = () =>
+			Promise.resolve(`# My Package
+
+Usage.
+
+<!-- spellchecker:enable -->
+
+After.
+
+> 💙 This package is based on ...
+`);
+
+		const result = await readReadmeAdditional(getReadme);
+
+		expect(result).toBe("After.");
+	});
+
+	it("returns all content after contributors when there is a current quote template notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
 

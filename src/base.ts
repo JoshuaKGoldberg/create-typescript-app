@@ -17,7 +17,6 @@ import { readEmailFromNpm } from "./options/readEmailFromNpm.js";
 import { readEmails } from "./options/readEmails.js";
 import { readEmoji } from "./options/readEmoji.js";
 import { readExistingLabels } from "./options/readExistingLabels.js";
-import { readExplainer } from "./options/readExplainer.js";
 import { readFileSafe } from "./options/readFileSafe.js";
 import { readFunding } from "./options/readFunding.js";
 import { readGitDefaults } from "./options/readGitDefaults.js";
@@ -31,6 +30,7 @@ import { readPackageAuthor } from "./options/readPackageAuthor.js";
 import { readPackageData } from "./options/readPackageData.js";
 import { readPnpm } from "./options/readPnpm.js";
 import { readReadmeAdditional } from "./options/readReadmeAdditional.js";
+import { readReadmeExplainer } from "./options/readReadmeExplainer.js";
 import { readReadmeUsage } from "./options/readReadmeUsage.js";
 import { readRepository } from "./options/readRepository.js";
 import { readRulesetId } from "./options/readRulesetId.js";
@@ -94,10 +94,6 @@ export const base = createBase({
 			)
 			.optional()
 			.describe("existing labels from the GitHub repository"),
-		explainer: z
-			.array(z.string())
-			.optional()
-			.describe("additional README.md sentence(s) describing the package"),
 		funding: z
 			.string()
 			.optional()
@@ -200,6 +196,7 @@ export const base = createBase({
 				await readDocumentation(
 					getDevelopmentDocumentation,
 					getReadmeAdditional,
+					getReadmeExplainer,
 					getReadmeUsage,
 				),
 		);
@@ -231,8 +228,6 @@ export const base = createBase({
 		const getExistingLabels = lazyValue(
 			async () => await readExistingLabels(take, getOwner, getRepository),
 		);
-
-		const getExplainer = lazyValue(async () => await readExplainer(getReadme));
 
 		const getFunding = lazyValue(async () => await readFunding(take));
 
@@ -282,6 +277,10 @@ export const base = createBase({
 			async () => await readReadmeAdditional(getReadme),
 		);
 
+		const getReadmeExplainer = lazyValue(
+			async () => await readReadmeExplainer(getReadme),
+		);
+
 		const getReadmeUsage = lazyValue(
 			async () => await readReadmeUsage(getEmoji, getReadme, getRepository),
 		);
@@ -318,7 +317,6 @@ export const base = createBase({
 			email: getEmail,
 			emoji: getEmoji,
 			existingLabels: getExistingLabels,
-			explainer: getExplainer,
 			funding: getFunding,
 			guide: getGuide,
 			keywords: getKeywords,

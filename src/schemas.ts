@@ -12,6 +12,7 @@ export type Contributor = z.infer<typeof zContributor>;
 
 export const zReadme = z.object({
 	additional: z.string().optional(),
+	explainer: z.string().optional(),
 	usage: z.string(),
 });
 

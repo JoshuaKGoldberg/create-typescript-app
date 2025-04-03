@@ -121,7 +121,13 @@ describe("blockREADME", () => {
 		const creation = testBlock(blockREADME, {
 			options: {
 				...optionsBase,
-				explainer: ["And a one.", "And a two."],
+				documentation: {
+					...optionsBase.documentation,
+					readme: {
+						...optionsBase.documentation.readme,
+						explainer: "\n\nAnd a one.\nAnd a two.\n\n",
+					},
+				},
 			},
 		});
 
@@ -136,8 +142,10 @@ describe("blockREADME", () => {
 				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 			</p>
 
+
 			And a one.
 			And a two.
+
 
 			## Usage
 
@@ -238,7 +246,13 @@ describe("blockREADME", () => {
 		const creation = testBlock(blockREADME, {
 			options: {
 				...optionsBase,
-				explainer: ["And a one.", "And a two."],
+				documentation: {
+					...optionsBase.documentation,
+					readme: {
+						...optionsBase.documentation.readme,
+						explainer: "\nAnd a one.\nAnd a two.\n",
+					},
+				},
 				logo: {
 					alt: "My logo",
 					height: 100,

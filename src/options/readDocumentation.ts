@@ -3,10 +3,12 @@ import { Documentation } from "../schemas.js";
 export async function readDocumentation(
 	getDevelopmentDocumentation: () => Promise<string | undefined>,
 	getReadmeAdditional: () => Promise<string | undefined>,
+	getReadmeExplainer: () => Promise<string | undefined>,
 	getReadmeUsage: () => Promise<string>,
 ): Promise<Documentation> {
-	const [additional, development, usage] = await Promise.all([
+	const [additional, explainer, development, usage] = await Promise.all([
 		getReadmeAdditional(),
+		getReadmeExplainer(),
 		getDevelopmentDocumentation(),
 		getReadmeUsage(),
 	]);
@@ -15,6 +17,7 @@ export async function readDocumentation(
 		development,
 		readme: {
 			additional,
+			explainer,
 			usage,
 		},
 	};

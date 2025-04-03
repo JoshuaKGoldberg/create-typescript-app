@@ -119,7 +119,7 @@ describe("blockReleaseIt", () => {
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.2.2
+			        uses: JoshuaKGoldberg/release-it-action@v0.3.1
 
 
 			name: Release
@@ -278,7 +278,7 @@ describe("blockReleaseIt", () => {
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.2.2
+			        uses: JoshuaKGoldberg/release-it-action@v0.3.1
 
 
 			name: Release

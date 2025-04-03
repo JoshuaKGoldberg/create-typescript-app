@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.24.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.1...2.24.2) (2025-04-03)
+
+### Bug Fixes
+
+- detect legacy 'based on' notices in README.md ([#2125](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2125)) ([4bbfbca](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4bbfbca89e4919015b143bf87ac7e25df45022e2)), closes [#2124](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2124)
+
 ## [2.24.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.0...2.24.1) (2025-04-03)
 
 ### Bug Fixes

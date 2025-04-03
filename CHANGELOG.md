@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.24.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.2...2.24.3) (2025-04-03)
+
+### Bug Fixes
+
+- allow README.md explainer to be a full section ([#2128](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2128)) ([3d3c5a8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3d3c5a8c8cd3a468803f50976637363d51fca7a5)), closes [#2127](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2127)
+
 ## [2.24.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.1...2.24.2) (2025-04-03)
 
 ### Bug Fixes

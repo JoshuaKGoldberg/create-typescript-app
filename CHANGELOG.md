@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.24.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.4...2.24.5) (2025-04-03)
+
+### Bug Fixes
+
+- account for footnotes in README.md ([#2130](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2130)) ([6bd31ee](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6bd31ee9e7f5ad0a3ad3964537f1047562e200ac)), closes [#2129](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2129)
+
 ## [2.24.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.3...2.24.4) (2025-04-03)
 
 ### Bug Fixes

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.26.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.0...2.26.1) (2025-04-03)
+
+### Bug Fixes
+
+- **deps:** bump remove-dependencies to 0.1.1 ([84f801a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/84f801a9ed1c9d5bfbe011c83be7282e629d2fc6))
+
 # [2.26.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.25.0...2.26.0) (2025-04-03)
 
 ### Features

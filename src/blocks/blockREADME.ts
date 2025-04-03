@@ -36,7 +36,8 @@ export const blockREADME = base.createBlock({
 		const { badges, notices, sections } = addons;
 
 		const explainer =
-			options.explainer && `\n${options.explainer.join("\n")}\n`;
+			options.documentation.readme.explainer &&
+			`\n${options.documentation.readme.explainer}\n`;
 
 		const logo =
 			options.logo &&

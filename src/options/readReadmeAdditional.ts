@@ -3,7 +3,7 @@ const indicatorAfterAllContributorsSpellCheck =
 	/<!--\s*spellchecker:\s*enable\s*-->/;
 
 const indicatorBeforeTemplatedBy =
-	/> .* This package was templated with |<!-- You can remove this notice/;
+	/> .* This package (?:is|was) (?:based|build|templated) (?:on|with) |<!-- You can remove this notice/;
 
 export async function readReadmeAdditional(getReadme: () => Promise<string>) {
 	const readme = await getReadme();

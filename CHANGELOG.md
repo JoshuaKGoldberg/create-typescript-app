@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.24.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.23.1...2.24.0) (2025-04-03)
+
+### Features
+
+- allow more Prettier customizations ([#2121](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2121)) ([702a313](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/702a313987d17503eb4e032fc194d814eace7759)), closes [#2118](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2118) [#2119](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2119) [#2120](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2120)
+
 ## [2.23.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.23.0...2.23.1) (2025-04-03)
 
 ### Bug Fixes

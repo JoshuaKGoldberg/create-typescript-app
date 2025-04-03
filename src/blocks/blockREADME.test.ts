@@ -125,7 +125,7 @@ describe("blockREADME", () => {
 					...optionsBase.documentation,
 					readme: {
 						...optionsBase.documentation.readme,
-						explainer: "\n\nAnd a one.\nAnd a two.\n\n",
+						explainer: "\nAnd a one.\nAnd a two.\n",
 					},
 				},
 			},
@@ -143,10 +143,8 @@ describe("blockREADME", () => {
 			</p>
 
 
-
 			And a one.
 			And a two.
-
 
 
 			## Usage
@@ -252,7 +250,7 @@ describe("blockREADME", () => {
 					...optionsBase.documentation,
 					readme: {
 						...optionsBase.documentation.readme,
-						explainer: "\nAnd a one.\nAnd a two.\n",
+						explainer: "And a one.\nAnd a two.",
 					},
 				},
 				logo: {
@@ -277,10 +275,8 @@ describe("blockREADME", () => {
 
 			<img align="right" alt="My logo" height="100" src="img.jpg" width="128">
 
-
 			And a one.
 			And a two.
-
 
 			## Usage
 

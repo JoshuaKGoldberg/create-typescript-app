@@ -43,7 +43,7 @@ describe("blockRepositorySettings", () => {
 		`);
 	});
 
-	test("with a long description", () => {
+	test("with a long HTML description", () => {
 		const creation = testBlock(blockRepositorySettings, {
 			options: {
 				...optionsBase,

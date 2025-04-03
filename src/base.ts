@@ -185,7 +185,8 @@ export const base = createBase({
 		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 
 		const getDescription = lazyValue(
-			async () => await readDescription(getPackageData, getReadme),
+			async () =>
+				await readDescription(getPackageData, getReadme, getRepository),
 		);
 
 		const getDevelopmentDocumentation = lazyValue(

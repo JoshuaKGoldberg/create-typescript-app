@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.24.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.24.0...2.24.1) (2025-04-03)
+
+### Bug Fixes
+
+- add runBefore to local CLI run in blockPrettier ([#2123](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2123)) ([a5dcb11](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a5dcb113180444ddbbf30d8adb168d8ffb84f942)), closes [#2122](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2122)
+
 # [2.24.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.23.1...2.24.0) (2025-04-03)
 
 ### Features

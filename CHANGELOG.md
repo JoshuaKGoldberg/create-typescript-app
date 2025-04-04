@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.26.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.3...2.26.4) (2025-04-04)
+
+### Bug Fixes
+
+- deduplicate blockESLint rule groups by comment ([#2139](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2139)) ([2a11884](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2a1188400a2fd5994937cef9d4091dbe25b166e1)), closes [#2133](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2133)
+
 ## [2.26.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.2...2.26.3) (2025-04-04)
 
 ### Bug Fixes

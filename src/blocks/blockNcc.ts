@@ -4,6 +4,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockPrettier } from "./blockPrettier.js";
 
 export const blockNcc = base.createBlock({
 	about: {
@@ -71,6 +72,9 @@ pnpm build:release
 							"build:release": "ncc build src/index.ts -o dist",
 						},
 					},
+				}),
+				blockPrettier({
+					ignores: ["dist"],
 				}),
 			],
 		};

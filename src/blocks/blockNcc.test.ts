@@ -100,6 +100,14 @@ describe("blockNcc", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			}
 		`);

@@ -53,6 +53,7 @@ This table summarizes each block and which base levels they're included in:
 | TypeScript                   | `--add-typescript`, `--exclude-typescript`                                     | ✔️      | ✅     | 💯         |
 | Vitest                       | `--add-vitest`, `--exclude-vitest`                                             |         | ✅     | 💯         |
 | VS Code                      | `--add-vs-code`, `--exclude-vs-code`                                           |         |        | 💯         |
+| Web-ext                      | `--add-web-ext`, `--exclude-web-ext`                                           |         |        |            |
 
 For example, this uses ncc instead of the default tsup builder:
 

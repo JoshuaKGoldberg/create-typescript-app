@@ -44,6 +44,7 @@ import { blockTSup } from "./blockTSup.js";
 import { blockTypeScript } from "./blockTypeScript.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { blockWebExt } from "./blockWebExt.js";
 
 export const blocks = {
 	blockAllContributors,
@@ -92,6 +93,7 @@ export const blocks = {
 	blockTypeScript,
 	blockVitest,
 	blockVSCode,
+	blockWebExt,
 };
 
 export { blockAllContributors } from "./blockAllContributors.js";
@@ -141,3 +143,4 @@ export { blockTSup } from "./blockTSup.js";
 export { blockTypeScript } from "./blockTypeScript.js";
 export { blockVitest } from "./blockVitest.js";
 export { blockVSCode } from "./blockVSCode.js";
+export { blockWebExt } from "./blockWebExt.js";

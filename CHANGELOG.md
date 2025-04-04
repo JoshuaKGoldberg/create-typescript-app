@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.29.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.28.0...2.29.0) (2025-04-04)
+
+### Features
+
+- switch Knip entry and project to Addons ([#2150](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2150)) ([525a3bc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/525a3bc4049a78df732c3352e964ab852950871c)), closes [#2147](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2147) [#2147](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2147)
+
 # [2.28.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.27.0...2.28.0) (2025-04-04)
 
 ### Features

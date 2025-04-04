@@ -125,7 +125,7 @@ describe("blockESLintPlugin", () => {
 						...(await prettier.resolveConfig(path)),
 						parser: "markdown",
 					}),
-				ruleDocTitleFormat: "prefix-name",
+				ruleDocTitleFormat: "name",
 			};
 
 			export default config;
@@ -258,7 +258,7 @@ describe("blockESLintPlugin", () => {
 						...(await prettier.resolveConfig(path)),
 						parser: "markdown",
 					}),
-				ruleDocTitleFormat: "prefix-name",
+				ruleDocTitleFormat: "name",
 			};
 
 			export default config;
@@ -389,7 +389,7 @@ describe("blockESLintPlugin", () => {
 						...(await prettier.resolveConfig(path)),
 						parser: "markdown",
 					}),
-				ruleDocTitleFormat: "prefix-name",
+				ruleDocTitleFormat: "name",
 			};
 
 			export default config;

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.29.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.29.0...2.29.1) (2025-04-04)
+
+### Bug Fixes
+
+- move Knip src/index.ts entry from blockTypeScript to blockTsup ([ad2ca3c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ad2ca3c73c0f0634ecafa2b458b40d871beee9e2))
+
 # [2.29.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.28.0...2.29.0) (2025-04-04)
 
 ### Features

@@ -8,6 +8,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
+import { blockKnip } from "./blockKnip.js";
 import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
@@ -80,6 +81,10 @@ export * from "./types.js";
 				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+				}),
+				blockKnip({
+					entry: ["src/index.ts"],
+					project: ["src/**/*.ts"],
 				}),
 				blockMarkdownlint({
 					ignores: ["lib/"],

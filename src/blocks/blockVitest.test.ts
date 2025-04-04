@@ -167,6 +167,14 @@ describe("blockVitest", () => {
 			    },
 			    {
 			      "addons": {
+			        "entry": [
+			          "src/**/*.test.*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "3.0.9",
@@ -399,6 +407,14 @@ describe("blockVitest", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "entry": [
+			          "src/**/*.test.*",
 			        ],
 			      },
 			      "block": [Function],
@@ -681,6 +697,14 @@ describe("blockVitest", () => {
 			    },
 			    {
 			      "addons": {
+			        "entry": [
+			          "src/**/*.test.*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "3.0.9",
@@ -922,6 +946,14 @@ describe("blockVitest", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "entry": [
+			          "src/**/*.test.*",
 			        ],
 			      },
 			      "block": [Function],

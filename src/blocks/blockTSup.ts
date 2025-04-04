@@ -5,6 +5,7 @@ import { getPackageDependencies } from "../data/packageData.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockKnip } from "./blockKnip.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockReleaseIt } from "./blockReleaseIt.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
@@ -58,6 +59,9 @@ pnpm build --watch
 							],
 						},
 					],
+				}),
+				blockKnip({
+					entry: ["src/index.ts"],
 				}),
 				blockPackageJson({
 					properties: {

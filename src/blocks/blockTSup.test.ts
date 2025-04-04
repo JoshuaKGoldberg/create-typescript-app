@@ -62,6 +62,14 @@ describe("blockTSup", () => {
 			    },
 			    {
 			      "addons": {
+			        "entry": [
+			          "src/index.ts",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsup": "8.4.0",
@@ -144,6 +152,14 @@ describe("blockTSup", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "entry": [
+			          "src/index.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -264,6 +280,14 @@ describe("blockTSup", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "entry": [
+			          "src/index.ts",
 			        ],
 			      },
 			      "block": [Function],

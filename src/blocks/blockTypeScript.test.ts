@@ -92,9 +92,6 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "src/index.ts",
-			        ],
 			        "project": [
 			          "src/**/*.ts",
 			        ],
@@ -255,9 +252,6 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "src/index.ts",
-			        ],
 			        "project": [
 			          "src/**/*.ts",
 			        ],
@@ -416,9 +410,6 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "src/index.ts",
-			        ],
 			        "project": [
 			          "src/**/*.ts",
 			        ],
@@ -586,9 +577,6 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "src/index.ts",
-			        ],
 			        "project": [
 			          "src/**/*.ts",
 			        ],

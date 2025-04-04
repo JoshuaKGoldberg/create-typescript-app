@@ -83,7 +83,6 @@ export * from "./types.js";
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
 				}),
 				blockKnip({
-					entry: ["src/index.ts"],
 					project: ["src/**/*.ts"],
 				}),
 				blockMarkdownlint({

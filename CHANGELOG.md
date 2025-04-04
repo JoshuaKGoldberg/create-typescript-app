@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.30.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.29.3...2.30.0) (2025-04-04)
+
+### Features
+
+- add entry addon for blockNcc ([#2155](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2155)) ([813e48d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/813e48d45e61884b38e49a77e0193a77fe406418)), closes [#2154](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2154)
+
 ## [2.29.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.29.1...2.29.3) (2025-04-04)
 
 ### Bug Fixes

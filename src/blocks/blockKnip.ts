@@ -20,6 +20,7 @@ export const blockKnip = base.createBlock({
 	},
 	addons: {
 		ignoreDependencies: zIgnoreDependencies.optional(),
+		properties: z.record(z.unknown()).default({}),
 	},
 	intake({ files }) {
 		const knipJson = intakeFileAsJson(files, ["knip.json"]);
@@ -34,7 +35,7 @@ export const blockKnip = base.createBlock({
 		};
 	},
 	produce({ addons }) {
-		const { ignoreDependencies } = addons;
+		const { ignoreDependencies, properties } = addons;
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -75,6 +76,7 @@ export const blockKnip = base.createBlock({
 						type: true,
 					},
 					project: ["src/**/*.ts"],
+					...properties,
 				}),
 			},
 		};

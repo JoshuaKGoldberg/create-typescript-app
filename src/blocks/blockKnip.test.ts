@@ -71,6 +71,9 @@ describe("blockKnip", () => {
 		const creation = testBlock(blockKnip, {
 			addons: {
 				ignoreDependencies: ["abc", "def"],
+				properties: {
+					entry: ["src/content-script.ts"],
+				},
 			},
 			options: optionsBase,
 		});
@@ -122,7 +125,7 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/index.ts","src/**/*.test.*"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/content-script.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
 			  },
 			}
 		`);

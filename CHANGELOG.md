@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.29.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.29.1...2.29.3) (2025-04-04)
+
+### Bug Fixes
+
+- add dist/ to .prettierignore in blockNcc ([b39ae00](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b39ae009b36c80dfdc3f50745a404dba0e0b77b4))
+- allow should-semantic-release dependency ([#2152](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2152)) ([fda4ec9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/fda4ec9d9624945476326d552af8462d6eb5b392)), closes [#2151](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2151)
+- normalize package.json version ([89aba8f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/89aba8f48722ab15d69d38ef6fd84b1abfa2584f))
+
 ## [2.29.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.29.0...2.29.1) (2025-04-04)
 
 ### Bug Fixes

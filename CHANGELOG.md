@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.27.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.7...2.27.0) (2025-04-04)
+
+### Features
+
+- allow customizing Vitest environment ([#2149](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2149)) ([81708cc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/81708cc7d628c65a9788115197f617e0893746cd)), closes [#2146](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2146)
+
 ## [2.26.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.6...2.26.7) (2025-04-04)
 
 ### Bug Fixes

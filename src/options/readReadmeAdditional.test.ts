@@ -107,4 +107,24 @@ After.
 
 		expect(result).toBe("After.");
 	});
+
+	it("excludes templated notices contributors when there are comment and quote template notices", async () => {
+		const getReadme = () =>
+			Promise.resolve(`# My Package
+
+Usage.
+
+<!-- spellchecker:enable -->
+
+After.
+
+<!-- You can remove this notice if you don't want it 🙂 no worries! -->
+
+> 💝 This package was templated with ...
+`);
+
+		const result = await readReadmeAdditional(getReadme);
+
+		expect(result).toBe("After.");
+	});
 });

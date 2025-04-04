@@ -1,5 +1,7 @@
-export const indicatorTemplatedBy =
-	/> .* This package (?:is|was) (?:based|build|templated) (?:on|with) |<!-- You can remove this notice/;
+export const indicatorsTemplatedBy = [
+	/> .* This package (?:is|was) (?:based|build|templated) (?:on|with)/,
+	/<!-- You can remove this notice/,
+];
 
 export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
 	const readme = await getReadme();
@@ -7,12 +9,18 @@ export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
-	const indexOfTemplatedBy = indicatorTemplatedBy.exec(readme)?.index;
-	if (!indexOfTemplatedBy) {
+	const indexOfLastTemplatedBy = indicatorsTemplatedBy.reduce(
+		(largest, indicator) => {
+			const indexOf = indicator.exec(readme)?.index;
+			return indexOf ? Math.max(largest, indexOf) : largest;
+		},
+		0,
+	);
+	if (!indexOfLastTemplatedBy) {
 		return undefined;
 	}
 
-	const indexOfNextLine = readme.indexOf("\n", indexOfTemplatedBy);
+	const indexOfNextLine = readme.indexOf("\n", indexOfLastTemplatedBy);
 
 	return readme.slice(indexOfNextLine).trim() || undefined;
 }

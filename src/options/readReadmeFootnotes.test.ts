@@ -19,7 +19,7 @@ describe(readReadmeFootnotes, () => {
 		expect(result).toBeUndefined();
 	});
 
-	it("resolves undefined when there is no content after a templated by notice", async () => {
+	it("resolves undefined when there is no content after a quote templated by notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
 			
@@ -32,7 +32,7 @@ describe(readReadmeFootnotes, () => {
 		expect(result).toBeUndefined();
 	});
 
-	it("resolves the content when there plain text content after a templated by notice", async () => {
+	it("resolves the content when there plain text content after a quote templated by notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
 			
@@ -46,10 +46,26 @@ After.
 		expect(result).toBe("After.");
 	});
 
-	it("resolves the content when there are footnotes after a templated by notice", async () => {
+	it("resolves the content when there are footnotes after a quote templated by notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package
 			
+> 💖 This package was templated with etc. etc.
+
+[^1]: After.
+`);
+
+		const result = await readReadmeFootnotes(getReadme);
+
+		expect(result).toBe("[^1]: After.");
+	});
+
+	it("resolves the content when there are footnotes after a comment and quote templated by notice", async () => {
+		const getReadme = () =>
+			Promise.resolve(`# My Package
+
+<!-- You can remove this notice etc. etc. -->
+
 > 💖 This package was templated with etc. etc.
 
 [^1]: After.

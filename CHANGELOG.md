@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.28.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.27.0...2.28.0) (2025-04-04)
+
+### Features
+
+- add blockWebExt for Web-ext builds ([#2148](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2148)) ([1982162](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1982162d14b2c9c38bec78d477b3cb48a95b10a2)), closes [#2031](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2031)
+
 # [2.27.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.7...2.27.0) (2025-04-04)
 
 ### Features

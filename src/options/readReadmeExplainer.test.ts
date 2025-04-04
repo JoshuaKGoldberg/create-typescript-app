@@ -37,7 +37,8 @@ describe(readReadmeExplainer, () => {
 This is my project.
 
 ## Usage
-					.`),
+
+...`),
 		);
 
 		expect(actual).toEqual("This is my project.");
@@ -52,7 +53,8 @@ This is my project.
 It is good.
 
 ## Usage
-					.`),
+
+...`),
 		);
 
 		expect(actual).toEqual("This is my project.\nIt is good.");
@@ -80,7 +82,8 @@ This is my project.
 It is good.
 
 ## Usage
-					.`),
+
+...`),
 		);
 
 		expect(actual).toEqual("This is my project.\nIt is good.");
@@ -108,7 +111,8 @@ This is my project.
 It is good.
 
 ## Usage
-					.`),
+
+...`),
 		);
 
 		expect(actual).toEqual("## What?\n\nThis is my project.\nIt is good.");
@@ -129,7 +133,8 @@ It is good.
 > See here.
 
 ## Usage
-					.`),
+
+...`),
 		);
 
 		expect(actual).toEqual(
@@ -152,7 +157,8 @@ This is my project.
 It is good.
 
 ## Usage
-					.`),
+
+...`),
 		);
 
 		expect(actual).toEqual("## What?\n\nThis is my project.\nIt is good.");
@@ -175,7 +181,57 @@ It is good.
 > See here.
 
 ## Usage
-					.`),
+
+...`),
+		);
+
+		expect(actual).toEqual(
+			"## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
+		);
+	});
+
+	it("returns existing content before a non-Usage h2 when the Usage h2 does not exist", async () => {
+		const actual = await readReadmeExplainer(() =>
+			Promise.resolve(`
+	<a href="http://npmjs.com/package/create-typescript-app"><img alt="📦 npm version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
+	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
+</p>
+
+<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" height="128" src="./docs/create-typescript-app.png" width="128">
+
+## What?
+
+This is my project.
+It is good.
+
+> See here.
+
+## Contributing
+
+...`),
+		);
+
+		expect(actual).toEqual(
+			"## What?\n\nThis is my project.\nIt is good.\n\n> See here.",
+		);
+	});
+
+	it("returns existing content until the end of the file when no subsequent h2 exists", async () => {
+		const actual = await readReadmeExplainer(() =>
+			Promise.resolve(`
+	<a href="http://npmjs.com/package/create-typescript-app"><img alt="📦 npm version" src="https://img.shields.io/npm/v/create-typescript-app?color=21bb42&label=%F0%9F%93%A6%20npm" /></a>
+	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
+</p>
+
+<img align="right" alt="Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'" height="128" src="./docs/create-typescript-app.png" width="128">
+
+## What?
+
+This is my project.
+It is good.
+
+> See here.
+`),
 		);
 
 		expect(actual).toEqual(

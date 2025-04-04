@@ -1,24 +1,24 @@
+const lastTagMatchers = [`">`, "/p>", "/>"];
+
 export async function readReadmeExplainer(getReadme: () => Promise<string>) {
 	const readme = await getReadme();
 
-	const indexOfUsageH2 = /## Usage/.exec(readme)?.index ?? readme.indexOf("##");
-	if (indexOfUsageH2 === -1) {
-		return undefined;
-	}
-
-	const beforeUsageH2 = readme.slice(0, indexOfUsageH2);
-
-	const [indexOfLastTag, lastTagMatcher] = lastLastIndexOf(beforeUsageH2, [
-		`">`,
-		"/p>",
-		"/>",
-	]);
+	const indexOfFirstH2 = readme.indexOf("##");
+	const indexOfUsageH2 = /## Usage/.exec(readme)?.index;
+	const beforeH2s = readme.slice(0, indexOfUsageH2 ?? indexOfFirstH2);
+	const [indexOfLastTag, lastTagMatcher] = lastLastIndexOf(
+		beforeH2s,
+		lastTagMatchers,
+	);
 	if (!lastTagMatcher) {
 		return undefined;
 	}
 
+	const endingIndex =
+		indexOfUsageH2 ?? /## (?:Contrib|Develop)/.exec(readme)?.index;
+
 	return readme
-		.slice(indexOfLastTag + lastTagMatcher.length, indexOfUsageH2)
+		.slice(indexOfLastTag + lastTagMatcher.length, endingIndex)
 		.trim();
 }
 

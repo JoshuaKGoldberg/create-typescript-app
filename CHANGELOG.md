@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.26.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.6...2.26.7) (2025-04-04)
+
+### Bug Fixes
+
+- correct README.md parsing without an existing Usage h2 ([#2143](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2143)) ([79cd25f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/79cd25fe140841bccbe57665e7d5586a58d75747)), closes [#2140](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2140)
+
 ## [2.26.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.5...2.26.6) (2025-04-04)
 
 ### Bug Fixes

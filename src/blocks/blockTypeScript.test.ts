@@ -92,6 +92,17 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
+			        "entry": [
+			          "src/index.ts",
+			        ],
+			        "project": [
+			          "src/**/*.ts",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "ignores": [
 			          "lib/",
 			        ],
@@ -244,6 +255,17 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
+			        "entry": [
+			          "src/index.ts",
+			        ],
+			        "project": [
+			          "src/**/*.ts",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "ignores": [
 			          "lib/",
 			        ],
@@ -388,6 +410,17 @@ describe("blockTypeScript", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "entry": [
+			          "src/index.ts",
+			        ],
+			        "project": [
+			          "src/**/*.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -547,6 +580,17 @@ describe("blockTypeScript", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "entry": [
+			          "src/index.ts",
+			        ],
+			        "project": [
+			          "src/**/*.ts",
 			        ],
 			      },
 			      "block": [Function],

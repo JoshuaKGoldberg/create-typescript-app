@@ -9,6 +9,7 @@ import { blockESLint } from "./blockESLint.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI, zActionStep } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
+import { blockKnip } from "./blockKnip.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
@@ -192,6 +193,9 @@ describe(greet, () => {
 							steps: [{ run: "pnpm run test --coverage" }, ...actionSteps],
 						},
 					],
+				}),
+				blockKnip({
+					entry: ["src/**/*.test.*"],
 				}),
 				blockPackageJson({
 					properties: {

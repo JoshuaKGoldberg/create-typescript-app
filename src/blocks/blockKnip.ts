@@ -1,3 +1,4 @@
+import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -12,29 +13,32 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
-const zIgnoreDependencies = z.array(z.string());
+const zStringArray = z.array(z.string());
 
 export const blockKnip = base.createBlock({
 	about: {
 		name: "Knip",
 	},
 	addons: {
-		ignoreDependencies: zIgnoreDependencies.optional(),
+		entry: zStringArray.optional(),
+		ignoreDependencies: zStringArray.optional(),
+		project: zStringArray.optional(),
 	},
 	intake({ files }) {
 		const knipJson = intakeFileAsJson(files, ["knip.json"]);
-		if (!knipJson?.ignoreDependencies) {
+		if (!knipJson) {
 			return undefined;
 		}
 
-		return {
-			ignoreDependencies: zIgnoreDependencies.safeParse(
-				knipJson.ignoreDependencies,
-			).data,
-		};
+		return removeUndefinedObjects({
+			entry: zStringArray.safeParse(knipJson.entry).data,
+			ignoreDependencies: zStringArray.safeParse(knipJson.ignoreDependencies)
+				.data,
+			project: zStringArray.safeParse(knipJson.project).data,
+		});
 	},
 	produce({ addons }) {
-		const { ignoreDependencies } = addons;
+		const { entry, ignoreDependencies, project } = addons;
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -68,13 +72,13 @@ export const blockKnip = base.createBlock({
 			files: {
 				"knip.json": JSON.stringify({
 					$schema: `https://unpkg.com/knip@${getPackageDependency("knip")}/schema.json`,
-					entry: ["src/index.ts", "src/**/*.test.*"],
+					entry: entry?.sort(),
 					ignoreDependencies,
 					ignoreExportsUsedInFile: {
 						interface: true,
 						type: true,
 					},
-					project: ["src/**/*.ts"],
+					project: project?.sort(),
 				}),
 			},
 		};

@@ -61,7 +61,7 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/index.ts","src/**/*.test.*"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true}}",
 			  },
 			}
 		`);
@@ -70,7 +70,9 @@ describe("blockKnip", () => {
 	test("with addons", () => {
 		const creation = testBlock(blockKnip, {
 			addons: {
+				entry: ["src/index.ts"],
 				ignoreDependencies: ["abc", "def"],
+				project: ["src/**/*.ts"],
 			},
 			options: optionsBase,
 		});
@@ -122,7 +124,7 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/index.ts","src/**/*.test.*"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
 			  },
 			}
 		`);
@@ -201,7 +203,7 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/index.ts","src/**/*.test.*"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true}}",
 			  },
 			}
 		`);

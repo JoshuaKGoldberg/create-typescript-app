@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.26.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.2...2.26.3) (2025-04-04)
+
+### Bug Fixes
+
+- correct blockESLintPlugin peerDependencies and config file name ([#2138](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2138)) ([4f3b211](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4f3b2114ca346dfdd9c4e7679ee1df3b75d5db03)), closes [#2134](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2134) [#2137](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2137)
+
 ## [2.26.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.1...2.26.2) (2025-04-04)
 
 ### Bug Fixes

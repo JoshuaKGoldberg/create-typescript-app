@@ -46,6 +46,7 @@ export const blockVitest = base.createBlock({
 	addons: {
 		actionSteps: z.array(zActionStep).default([]),
 		coverage: zCoverage.default({}),
+		environment: z.string().optional(),
 		exclude: zExclude.default([]),
 		flags: z.array(z.string()).default([]),
 	},
@@ -77,7 +78,7 @@ export const blockVitest = base.createBlock({
 		};
 	},
 	produce({ addons }) {
-		const { actionSteps, coverage, exclude = [] } = addons;
+		const { actionSteps, coverage, environment, exclude = [] } = addons;
 		const excludeText = JSON.stringify(
 			Array.from(new Set(["node_modules", ...exclude])).sort(),
 		);
@@ -243,7 +244,12 @@ export default defineConfig({
 					: ""
 			}include: ${JSON.stringify(coverage.include)},
 			reporter: ["html", "lcov"],
-		},
+		},${
+			environment
+				? `
+		environment: "${environment}",`
+				: ""
+		}
 		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
 		setupFiles: ["console-fail-test/setup"],
 	},

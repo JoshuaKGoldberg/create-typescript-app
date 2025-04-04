@@ -1,4 +1,4 @@
-import { indicatorTemplatedBy } from "./readReadmeFootnotes.js";
+import { indicatorsTemplatedBy } from "./readReadmeFootnotes.js";
 
 const indicatorAfterAllContributors = /<!--\s*ALL-CONTRIBUTORS-LIST:END\s*-->/;
 const indicatorAfterAllContributorsSpellCheck =
@@ -17,12 +17,18 @@ export async function readReadmeAdditional(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
-	const templatedByMatch = indicatorTemplatedBy.exec(readme);
+	const indexOfFirstTemplatedBy = indicatorsTemplatedBy.reduce(
+		(smallest, indicator) => {
+			const indexOf = indicator.exec(readme)?.index;
+			return indexOf ? Math.min(smallest, indexOf) : smallest;
+		},
+		readme.length,
+	);
 
 	return readme
 		.slice(
 			indexAfterContributors.index + indexAfterContributors[0].length,
-			templatedByMatch?.index,
+			indexOfFirstTemplatedBy,
 		)
 		.trim();
 }

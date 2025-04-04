@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.26.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.5...2.26.6) (2025-04-04)
+
+### Bug Fixes
+
+- correct readme templated-by parsing for multiple indicators ([#2142](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2142)) ([c71dbbf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c71dbbf7dae15f00098aeee3785e5234db1091ad)), closes [#2141](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2141)
+
 ## [2.26.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.4...2.26.5) (2025-04-04)
 
 ### Bug Fixes

@@ -10,11 +10,13 @@ export const blockESLintPlugin = base.createBlock({
 	about: {
 		name: "ESLint Plugin",
 	},
-	produce() {
+	produce({ options }) {
+		const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
+
 		return {
 			addons: [
 				blockCSpell({
-					words: ["eslint-doc-generatorrc.js"],
+					words: ["eslint-doc-generatorrc"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -43,7 +45,7 @@ pnpm build:docs
 				}),
 				blockESLint({
 					extensions: ['eslintPlugin.configs["flat/recommended"]'],
-					ignores: [".eslint-doc-generatorrc.js", "docs/rules/*/*.ts"],
+					ignores: [configFileName, "docs/rules/*/*.ts"],
 					imports: [
 						{
 							source: {
@@ -71,11 +73,6 @@ pnpm build:docs
 							"eslint-doc-generator": "2.1.0",
 							"eslint-plugin-eslint-plugin": "6.4.0",
 						},
-						peerDependencies: {
-							"@typescript-eslint/parser": ">=8",
-							eslint: ">=9",
-							typescript: ">=5",
-						},
 						scripts: {
 							"build:docs": "eslint-doc-generator",
 							"lint:docs": "eslint-doc-generator --check",
@@ -89,7 +86,7 @@ pnpm build:docs
 				}),
 			],
 			files: {
-				".eslint-doc-generatorrc.js": `import prettier from "prettier";
+				[configFileName]: `import prettier from "prettier";
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {

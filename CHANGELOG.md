@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.26.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.1...2.26.2) (2025-04-04)
+
+### Bug Fixes
+
+- allow jsonc-eslint-parser as devDependency ([#2136](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2136)) ([4cea9fc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4cea9fc35b6542c8cbf191e738c6b099892b3c7c)), closes [#2135](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2135)
+
 ## [2.26.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.0...2.26.1) (2025-04-03)
 
 ### Bug Fixes

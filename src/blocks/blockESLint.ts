@@ -272,7 +272,6 @@ export default tseslint.config(
 						"eslint-plugin-deprecation",
 						"eslint-plugin-eslint-comments",
 						"eslint-plugin-no-only-tests",
-						"jsonc-eslint-parser",
 						"yaml-eslint-parser",
 					],
 				}),

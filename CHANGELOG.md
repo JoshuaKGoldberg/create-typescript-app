@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.26.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.4...2.26.5) (2025-04-04)
+
+### Bug Fixes
+
+- blockESLintPlugin should have ruleDocTitleFormatname, not prefix-name ([2e7fe1b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2e7fe1b55ad01d95fedd7342d3e13463d96f3041))
+
 ## [2.26.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.26.3...2.26.4) (2025-04-04)
 
 ### Bug Fixes

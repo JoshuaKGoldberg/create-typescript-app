@@ -28,15 +28,19 @@ const zRuleOptions = z.union([
 	]),
 ]);
 
+const zExtensionRuleGroup = z.object({
+	comment: z.string().optional(),
+	entries: z.record(z.string(), zRuleOptions),
+});
+
+type ExtensionRuleGroup = z.infer<typeof zExtensionRuleGroup>;
+
 const zExtensionRules = z.union([
 	z.record(z.string(), zRuleOptions),
-	z.array(
-		z.object({
-			comment: z.string().optional(),
-			entries: z.record(z.string(), zRuleOptions),
-		}),
-	),
+	z.array(zExtensionRuleGroup),
 ]);
+
+type ExtensionRules = z.infer<typeof zExtensionRules>;
 
 const zExtension = z.object({
 	extends: z.array(z.string()).optional(),
@@ -47,6 +51,8 @@ const zExtension = z.object({
 	rules: zExtensionRules.optional(),
 	settings: z.record(z.string(), z.unknown()).optional(),
 });
+
+type Extension = z.infer<typeof zExtension>;
 
 const zPackageImport = z.object({
 	source: z.union([
@@ -292,7 +298,29 @@ export default tseslint.config(
 	},
 });
 
-function printExtension(extension: z.infer<typeof zExtension>) {
+function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
+	const byComment = new Map<string | undefined, ExtensionRuleGroup>();
+	const grouped: typeof rulesGroups = [];
+
+	for (const group of rulesGroups) {
+		const existing = byComment.get(group.comment);
+
+		if (existing) {
+			existing.entries = {
+				...existing.entries,
+				...group.entries,
+			};
+			continue;
+		} else {
+			byComment.set(group.comment, group);
+			grouped.push(group);
+		}
+	}
+
+	return grouped;
+}
+
+function printExtension(extension: Extension) {
 	return [
 		"{",
 		extension.extends && `extends: [${extension.extends.join(", ")}],`,
@@ -311,14 +339,14 @@ function printExtension(extension: z.infer<typeof zExtension>) {
 		.join(" ");
 }
 
-function printExtensionRules(rules: z.infer<typeof zExtensionRules>) {
+function printExtensionRules(rules: ExtensionRules) {
 	if (!Array.isArray(rules)) {
 		return JSON.stringify(rules);
 	}
 
 	return [
 		"{",
-		...rules.flatMap((group) => [
+		...groupByComment(rules).flatMap((group) => [
 			printGroupComment(group.comment),
 			...Object.entries(group.entries).map(
 				([ruleName, options]) => `"${ruleName}": ${JSON.stringify(options)},`,

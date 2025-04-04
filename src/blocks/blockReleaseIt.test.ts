@@ -42,14 +42,6 @@ describe("blockReleaseIt", () => {
 			    },
 			    {
 			      "addons": {
-			        "dependencies": [
-			          "should-semantic-release",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "secrets": [
 			          {
 			            "description": "a GitHub PAT with repo and workflow permissions",
@@ -192,14 +184,6 @@ describe("blockReleaseIt", () => {
 			            "href": "http://npmjs.com/package/test-repository",
 			            "src": "https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm",
 			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "dependencies": [
-			          "should-semantic-release",
 			        ],
 			      },
 			      "block": [Function],

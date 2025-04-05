@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.31.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.30.0...2.31.0) (2025-04-05)
+
+### Features
+
+- added blockVitest environment and flags intake ([#2162](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2162)) ([051e480](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/051e480571e58d2f39b333783d2498c05bdd7e82)), closes [#2159](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2159) [#2160](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2160)
+
 # [2.30.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.29.3...2.30.0) (2025-04-04)
 
 ### Features

@@ -1,6 +1,6 @@
 import JSON5 from "json5";
 import sortKeys from "sort-keys";
-import { CompilerOptionsSchema, TSConfigSchema } from "zod-tsconfig";
+import { CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";

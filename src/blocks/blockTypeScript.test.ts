@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test } from "vitest";
 
 import { blockTypeScript } from "./blockTypeScript.js";
 import { optionsBase } from "./options.fakes.js";
@@ -651,5 +651,47 @@ describe("blockTypeScript", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when tsconfig.json does not exist", () => {
+			const actual = testIntake(blockTypeScript, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when tsconfig.json does not contain truthy data", () => {
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify(null)],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when tsconfig.json does not contain compilerOptions", () => {
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ other: true })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns compilerOptions when tsconfig.json contains compilerOptions", () => {
+			const compilerOptions = { module: "ESNext" };
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions });
+		});
 	});
 });

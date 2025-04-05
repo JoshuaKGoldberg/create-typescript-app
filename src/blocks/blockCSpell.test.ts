@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockCSpell } from "./blockCSpell.js";
 import { optionsBase } from "./options.fakes.js";
@@ -363,5 +363,50 @@ describe("blockCSpell", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when cspell.json does not exist", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when cspell.json does not contain truthy data", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify(null)],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when cspell.json contains invalid data", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify({ ignores: true })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns compilerOptions when cspell.json contains ignores and words", () => {
+			const data = {
+				ignores: ["other"],
+				words: ["abc", "def"],
+			};
+
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify(data)],
+				},
+			});
+
+			expect(actual).toEqual(data);
+		});
 	});
 });

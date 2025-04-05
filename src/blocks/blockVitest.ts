@@ -1,3 +1,4 @@
+import { IntakeDirectory } from "bingo-fs";
 import JSON5 from "json5";
 import { z } from "zod";
 
@@ -33,12 +34,46 @@ const zCoverage = z.object({
 	include: z.array(z.string()).optional(),
 });
 
+const zEnvironment = z.string();
+
 const zExclude = z.array(z.string());
 
-const zTest = z.object({
-	coverage: zCoverage,
-	exclude: zExclude,
-});
+const zTest = z
+	.object({
+		coverage: zCoverage,
+		environment: zEnvironment,
+		exclude: zExclude,
+	})
+	.partial();
+
+function intakeFromConfig(files: IntakeDirectory) {
+	const file = intakeFile(files, ["vitest.config.ts"]);
+	if (!file) {
+		return undefined;
+	}
+
+	const normalized = file[0].replaceAll(/[\n\r]/g, "");
+	const matched = /defineConfig\(\{(.+)\}\)\s*(?:;\s*)?$/u.exec(normalized);
+	if (!matched) {
+		return undefined;
+	}
+
+	const rawData = tryParseJSON5(`{${matched[1]}}`);
+	if (typeof rawData !== "object" || typeof rawData.test !== "object") {
+		return undefined;
+	}
+
+	const parsedData = zTest.safeParse(rawData.test).data;
+	if (!parsedData) {
+		return undefined;
+	}
+
+	return {
+		coverage: parsedData.coverage,
+		environment: parsedData.environment,
+		exclude: parsedData.exclude,
+	};
+}
 
 export const blockVitest = base.createBlock({
 	about: {
@@ -47,35 +82,16 @@ export const blockVitest = base.createBlock({
 	addons: {
 		actionSteps: z.array(zActionStep).default([]),
 		coverage: zCoverage.default({}),
-		environment: z.string().optional(),
+		environment: zEnvironment.optional(),
 		exclude: zExclude.default([]),
 		flags: z.array(z.string()).default([]),
 	},
-	intake({ files }) {
-		const file = intakeFile(files, ["vitest.config.ts"]);
-		if (!file) {
-			return undefined;
-		}
-
-		const normalized = file[0].replaceAll(/[\n\r]/g, "");
-		const matched = /defineConfig\(\{(.+)\}\)\s*(?:;\s*)?$/u.exec(normalized);
-		if (!matched) {
-			return undefined;
-		}
-
-		const rawData = tryParseJSON5(`{${matched[1]}}`);
-		if (typeof rawData !== "object" || typeof rawData.test !== "object") {
-			return undefined;
-		}
-
-		const parsedData = zTest.safeParse(rawData.test).data;
-		if (!parsedData) {
-			return undefined;
-		}
-
+	intake({ files, options }) {
 		return {
-			coverage: parsedData.coverage,
-			exclude: parsedData.exclude,
+			...intakeFromConfig(files),
+			flags: options.packageData?.scripts?.test
+				?.match(/^vitest (.+)/)?.[1]
+				.split(" "),
 		};
 	},
 	produce({ addons }) {

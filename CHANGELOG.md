@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.32.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.31.0...2.32.0) (2025-04-05)
+
+### Features
+
+- add intake to blockTypeScript ([#2164](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2164)) ([c97a8ca](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c97a8ca6bd81823eb1c05f77c67cbc2ad5ddf0b6)), closes [#2115](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2115)
+
 # [2.31.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.30.0...2.31.0) (2025-04-05)
 
 ### Features

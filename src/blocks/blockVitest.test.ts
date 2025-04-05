@@ -1041,76 +1041,83 @@ describe("blockVitest", () => {
 	});
 
 	describe("intake", () => {
-		it("returns undefined when vitest.config.ts does not exist", () => {
+		it("returns nothing when vitest.config.ts does not exist", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					src: {},
 				},
+				options: optionsBase,
 			});
 
-			expect(actual).toEqual(undefined);
+			expect(actual).toEqual({});
 		});
 
-		it("returns undefined when vitest.config.ts does not contain the expected defineConfig", () => {
+		it("returns nothing when vitest.config.ts does not contain the expected defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					"vitest.config.ts": [`invalid`],
 				},
+				options: optionsBase,
 			});
 
-			expect(actual).toEqual(undefined);
+			expect(actual).toEqual({});
 		});
 
-		it("returns undefined when vitest.config.ts passes a non-object to defineConfig", () => {
+		it("returns nothing when vitest.config.ts passes a non-object to defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					"vitest.config.ts": [`defineConfig("invalid")`],
 				},
+				options: optionsBase,
 			});
 
-			expect(actual).toEqual(undefined);
+			expect(actual).toEqual({});
 		});
 
-		it("returns undefined when vitest.config.ts does not pass a test to defineConfig", () => {
+		it("returns nothing when vitest.config.ts does not pass a test to defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					"vitest.config.ts": [`defineConfig({ other: true })`],
 				},
+				options: optionsBase,
 			});
 
-			expect(actual).toEqual(undefined);
+			expect(actual).toEqual({});
 		});
 
-		it("returns undefined when vitest.config.ts passes unknown test data to defineConfig", () => {
+		it("returns nothing when vitest.config.ts passes unknown test data to defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					"vitest.config.ts": [`defineConfig({ test: true })`],
 				},
+				options: optionsBase,
 			});
 
-			expect(actual).toEqual(undefined);
+			expect(actual).toEqual({});
 		});
 
-		it("returns undefined when vitest.config.ts passes invalid test syntax to defineConfig", () => {
+		it("returns nothing when vitest.config.ts passes invalid test syntax to defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					"vitest.config.ts": [`defineConfig({ test: { ! } })`],
 				},
+				options: optionsBase,
 			});
 
-			expect(actual).toEqual(undefined);
+			expect(actual).toEqual({});
 		});
 
-		it("returns undefined when vitest.config.ts passes invalid test data to defineConfig", () => {
+		it("returns nothing when vitest.config.ts passes invalid test data to defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {
 					"vitest.config.ts": [
 						`defineConfig({ test: { coverage: 'invalid' } })`,
 					],
 				},
+				options: optionsBase,
 			});
 
-			expect(actual).toEqual(undefined);
+			expect(actual).toEqual({});
 		});
 
 		it("returns coverage and exclude when they exist in vitest.config.ts", () => {
@@ -1135,6 +1142,7 @@ export default defineConfig({
 `,
 					],
 				},
+				options: optionsBase,
 			});
 
 			expect(actual).toEqual({
@@ -1143,6 +1151,46 @@ export default defineConfig({
 					include: ["src", "other"],
 				},
 				exclude: ["lib", "node_modules"],
+			});
+		});
+
+		it("returns environment when it exists in vitest.config.ts", () => {
+			const actual = testIntake(blockVitest, {
+				files: {
+					"vitest.config.ts": [
+						`import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+	test: {
+		environment: "happy-dom",
+	},
+});
+`,
+					],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({
+				environment: "happy-dom",
+			});
+		});
+
+		it("returns flags when it exists in package.json", () => {
+			const actual = testIntake(blockVitest, {
+				files: {},
+				options: {
+					...optionsBase,
+					packageData: {
+						scripts: {
+							test: "vitest --typecheck",
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({
+				flags: ["--typecheck"],
 			});
 		});
 	});

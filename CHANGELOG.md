@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.33.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.32.0...2.33.0) (2025-04-05)
+
+### Features
+
+- add intake to blockCspell ([#2165](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2165)) ([5542d8b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5542d8b3eaa79d801727151616cc466ea62fd8f0)), closes [#2113](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2113)
+
 # [2.32.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.31.0...2.32.0) (2025-04-05)
 
 ### Features

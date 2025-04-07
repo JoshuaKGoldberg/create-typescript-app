@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.34.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.33.0...2.34.0) (2025-04-07)
+
+### Features
+
+- add intake method to blockESLint ([#2167](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2167)) ([acf65b6](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/acf65b6159201cfad8770d06433b83a955ab3c07)), closes [#2158](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2158)
+
 # [2.33.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.32.0...2.33.0) (2025-04-05)
 
 ### Features

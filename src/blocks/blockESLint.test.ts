@@ -1,8 +1,18 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockESLint } from "./blockESLint.js";
 import { optionsBase } from "./options.fakes.js";
+
+const mockIntakeData = { ignores: ["lib"] };
+
+const mockBlockESLintIntake = vi.fn().mockReturnValue(mockIntakeData);
+
+vi.mock("./eslint/blockESLintIntake.js", () => ({
+	get blockESLintIntake() {
+		return mockBlockESLintIntake;
+	},
+}));
 
 describe("blockESLint", () => {
 	test("without addons or mode", () => {
@@ -1401,5 +1411,41 @@ describe("blockESLint", () => {
 			  ],
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when there is no eslint.config file", () => {
+			const actual = testIntake(blockESLint, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns data when there is an eslint.config.js file", () => {
+			const sourceText = "export default ...";
+
+			const actual = testIntake(blockESLint, {
+				files: {
+					"eslint.config.js": [sourceText],
+				},
+			});
+
+			expect(mockBlockESLintIntake).toHaveBeenCalledWith(sourceText);
+			expect(actual).toBe(mockIntakeData);
+		});
+
+		it("returns data when there is an eslint.config.mjs file", () => {
+			const sourceText = "export default ...";
+
+			const actual = testIntake(blockESLint, {
+				files: {
+					"eslint.config.mjs": [sourceText],
+				},
+			});
+
+			expect(mockBlockESLintIntake).toHaveBeenCalledWith(sourceText);
+			expect(actual).toBe(mockIntakeData);
+		});
 	});
 });

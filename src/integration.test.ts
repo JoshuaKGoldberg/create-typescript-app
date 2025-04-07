@@ -55,6 +55,7 @@ test("Producing the everything preset matches the files in this repository", asy
 				blockCSpell({
 					words: [
 						"Anson",
+						"TSESTree",
 						"apexskier",
 						"attw",
 						"boop",

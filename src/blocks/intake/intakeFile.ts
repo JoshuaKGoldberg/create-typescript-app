@@ -2,13 +2,22 @@ import { IntakeDirectory, IntakeFileEntry } from "bingo-fs";
 
 export function intakeFile(
 	files: IntakeDirectory,
-	filePath: string[],
+	filePath: (string | string[])[],
 ): IntakeFileEntry | undefined {
 	if (!filePath.length) {
 		return undefined;
 	}
 
-	const entry = files[filePath[0]];
+	const nextPathCandidates =
+		typeof filePath[0] === "string" ? [filePath[0]] : filePath[0];
+	const nextFilePath = nextPathCandidates.find(
+		(candidate) => candidate in files,
+	);
+	if (!nextFilePath) {
+		return undefined;
+	}
+
+	const entry = files[nextFilePath];
 
 	if (filePath.length === 1) {
 		return Array.isArray(entry) ? entry : undefined;

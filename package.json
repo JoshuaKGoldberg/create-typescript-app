@@ -37,6 +37,7 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
+		"@typescript-eslint/typescript-estree": "^8.29.1",
 		"bingo": "^0.5.14",
 		"bingo-fs": "^0.5.5",
 		"bingo-stratum": "^0.5.11",

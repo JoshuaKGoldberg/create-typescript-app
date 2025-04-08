@@ -96,7 +96,7 @@ describe("blockESLintPlugin", () => {
 			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
 			          "scripts": {
-			            "build:docs": "eslint-doc-generator",
+			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
 			            "lint:docs": "eslint-doc-generator --check",
 			          },
 			        },
@@ -229,7 +229,7 @@ describe("blockESLintPlugin", () => {
 			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
 			          "scripts": {
-			            "build:docs": "eslint-doc-generator",
+			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
 			            "lint:docs": "eslint-doc-generator --check",
 			          },
 			        },
@@ -360,7 +360,7 @@ describe("blockESLintPlugin", () => {
 			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
 			          "scripts": {
-			            "build:docs": "eslint-doc-generator",
+			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
 			            "lint:docs": "eslint-doc-generator --check",
 			          },
 			        },

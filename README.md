@@ -52,7 +52,7 @@ You can read more about `create-typescript-app` and the tooling it supports:
 3. [**FAQs**](./docs/FAQs.md): frequently asked questions and troubleshooting
 
 > [!NOTE]  
-> This template is early stage, opinionated, and not endorsed by the TypeScript team.
+> This template is opinionated and not endorsed by the TypeScript team.
 > It can be configured to set up a _lot_ of tooling out of the box.
 > If you don't want to use any particular tool, you can always remove it manually.
 

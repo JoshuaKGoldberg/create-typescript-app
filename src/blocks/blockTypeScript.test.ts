@@ -693,5 +693,22 @@ describe("blockTypeScript", () => {
 
 			expect(actual).toEqual({ compilerOptions });
 		});
+
+		it("returns compilerOptions when tsconfig.json contains compilerOptions and other data", () => {
+			const compilerOptions = { module: "ESNext" };
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [
+						JSON.stringify({
+							compilerOptions,
+							other: true,
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions });
+		});
 	});
 });

@@ -11,16 +11,33 @@ import { blockReleaseIt } from "./blockReleaseIt.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
+import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 import { CommandPhase } from "./phases.js";
+
+const zEntry = z.array(z.string());
+const zProperties = z.record(z.unknown());
 
 export const blockTSup = base.createBlock({
 	about: {
 		name: "TSup",
 	},
 	addons: {
-		entry: z.array(z.string()).default([]),
-		properties: z.record(z.unknown()).default({}),
+		entry: zEntry.default([]),
+		properties: zProperties.default({}),
 		runInCI: z.array(z.string()).default([]),
+	},
+	intake({ files }) {
+		const rawData = intakeFileDefineConfig(files, ["tsup.config.ts"]);
+		if (!rawData) {
+			return undefined;
+		}
+
+		const { entry: rawEntry, ...rest } = rawData;
+
+		return {
+			entry: zEntry.safeParse(rawEntry).data,
+			properties: zProperties.safeParse(rest).data,
+		};
 	},
 	produce({ addons, options }) {
 		const { entry, properties, runInCI } = addons;

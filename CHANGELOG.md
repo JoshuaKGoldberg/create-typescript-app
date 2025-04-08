@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.37.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.2...2.37.0) (2025-04-08)
+
+### Features
+
+- add build --no-dts before eslint-doc-generator in blockESLintPlugin build:docs ([#2186](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2186)) ([0a62e70](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0a62e70ba28ec6349bb056e1b7c9096d8a1bba80)), closes [#2182](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2182)
+
 ## [2.36.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.1...2.36.2) (2025-04-08)
 
 ### Bug Fixes

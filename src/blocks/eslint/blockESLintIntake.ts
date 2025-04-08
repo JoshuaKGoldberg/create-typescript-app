@@ -139,27 +139,19 @@ export function blockESLintIntake(sourceText: string) {
 
 	function getConfigRulesObject(nodes: TSESTree.Node[]) {
 		const configObject = nodes.find(
-			(node) => node.type === AST_NODE_TYPES.ObjectExpression,
+			(node): node is TSESTree.ObjectExpression =>
+				node.type === AST_NODE_TYPES.ObjectExpression &&
+				areArraysEqual(
+					node.properties.map((property) =>
+						property.type === AST_NODE_TYPES.Property &&
+						property.key.type === AST_NODE_TYPES.Identifier
+							? property.key.name
+							: undefined,
+					),
+					["extends", "files", "languageOptions", "rules", "settings"],
+				),
 		);
 		if (!configObject) {
-			return undefined;
-		}
-
-		const configPropertyKeys = configObject.properties.map((property) =>
-			property.type === AST_NODE_TYPES.Property &&
-			property.key.type === AST_NODE_TYPES.Identifier
-				? property.key.name
-				: undefined,
-		);
-		if (
-			!areArraysEqual(configPropertyKeys, [
-				"extends",
-				"files",
-				"languageOptions",
-				"rules",
-				"settings",
-			])
-		) {
 			return undefined;
 		}
 

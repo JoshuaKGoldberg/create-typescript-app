@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.36.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.1...2.36.2) (2025-04-08)
+
+### Bug Fixes
+
+- all-contributors-cli@6.23.1, not 6.23.0 ([ae63a30](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ae63a306984cb4e20d61d36dc2893a0866de778e))
+
 ## [2.36.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.0...2.36.1) (2025-04-08)
 
 ### Bug Fixes

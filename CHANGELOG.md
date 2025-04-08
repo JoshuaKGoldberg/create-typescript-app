@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.34.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.34.1...2.34.2) (2025-04-08)
+
+### Bug Fixes
+
+- deduplicate blockESLint ignore lines ([a7fbc0b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a7fbc0b84bec798b682883218cd109b5b41aec3c))
+
 ## [2.34.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.34.0...2.34.1) (2025-04-08)
 
 ### Bug Fixes

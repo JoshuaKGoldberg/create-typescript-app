@@ -15,7 +15,7 @@ export const blockWebExt = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					ignores: ["assets"],
+					ignorePaths: ["assets"],
 				}),
 				blockDevelopmentDocs({
 					sections: {

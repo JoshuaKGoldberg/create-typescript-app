@@ -15,7 +15,7 @@ describe("blockNcc", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          "dist",
 			        ],
 			      },
@@ -126,7 +126,7 @@ describe("blockNcc", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          "dist",
 			        ],
 			      },

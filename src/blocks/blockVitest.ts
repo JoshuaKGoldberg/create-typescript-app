@@ -82,7 +82,7 @@ export const blockVitest = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					ignores: ["coverage"],
+					ignorePaths: ["coverage"],
 				}),
 				blockDevelopmentDocs({
 					sections: {

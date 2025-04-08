@@ -15,7 +15,7 @@ describe("blockWebExt", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          "assets",
 			        ],
 			      },

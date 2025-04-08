@@ -78,7 +78,7 @@ describe("blockCSpell", () => {
 	test("with addons", () => {
 		const creation = testBlock(blockCSpell, {
 			addons: {
-				ignores: ["lib/"],
+				ignorePaths: ["lib/"],
 				words: ["joshuakgoldberg"],
 			},
 			options: optionsBase,
@@ -387,16 +387,16 @@ describe("blockCSpell", () => {
 		it("returns undefined when cspell.json contains invalid data", () => {
 			const actual = testIntake(blockCSpell, {
 				files: {
-					"cspell.json": [JSON.stringify({ ignores: true })],
+					"cspell.json": [JSON.stringify({ ignorePaths: true })],
 				},
 			});
 
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns compilerOptions when cspell.json contains ignores and words", () => {
+		it("returns compilerOptions when cspell.json contains ignorePaths and words", () => {
 			const data = {
-				ignores: ["other"],
+				ignorePaths: ["other"],
 				words: ["abc", "def"],
 			};
 

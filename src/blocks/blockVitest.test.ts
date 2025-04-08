@@ -19,7 +19,7 @@ describe("blockVitest", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },
@@ -265,7 +265,7 @@ describe("blockVitest", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },
@@ -549,7 +549,7 @@ describe("blockVitest", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },
@@ -804,7 +804,7 @@ describe("blockVitest", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },

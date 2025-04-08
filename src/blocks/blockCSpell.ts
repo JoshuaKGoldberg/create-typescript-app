@@ -16,7 +16,7 @@ import { CommandPhase } from "./phases.js";
 const filesGlob = `"**" ".github/**/*"`;
 
 const addons = {
-	ignores: z.array(z.string()).default([]),
+	ignorePaths: z.array(z.string()).default([]),
 	words: z.array(z.string()).default([]),
 };
 
@@ -41,7 +41,7 @@ export const blockCSpell = base.createBlock({
 		return data;
 	},
 	produce({ addons, options }) {
-		const { ignores, words } = addons;
+		const { ignorePaths, words } = addons;
 
 		const allWords = Array.from(
 			new Set([...(options.words ?? []), ...words]),
@@ -83,14 +83,16 @@ export const blockCSpell = base.createBlock({
 			files: {
 				"cspell.json": JSON.stringify({
 					dictionaries: ["npm", "node", "typescript"],
-					ignorePaths: [
-						".github",
-						"CHANGELOG.md",
-						"lib",
-						"node_modules",
-						"pnpm-lock.yaml",
-						...ignores,
-					].sort(),
+					ignorePaths: Array.from(
+						new Set([
+							".github",
+							"CHANGELOG.md",
+							"lib",
+							"node_modules",
+							"pnpm-lock.yaml",
+							...ignorePaths,
+						]),
+					).sort(),
 					...(allWords.length && { words: allWords }),
 				}),
 			},

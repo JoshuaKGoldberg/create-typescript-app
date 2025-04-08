@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.36.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.4...2.36.0) (2025-04-08)
+
+### Features
+
+- add ignoreDeps Addon to blockRenovate ([#2180](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2180)) ([a678d4f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a678d4f3a55117015f7c106e6b0988a658400e1c)), closes [#2179](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2179)
+
 ## [2.35.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.3...2.35.4) (2025-04-08)
 
 ### Bug Fixes

@@ -94,6 +94,49 @@ describe(blockESLintIntake, () => {
 
 	it.each([
 		[
+			"rules group after linterOptions and member expression extends",
+			`
+export default tseslint.config(
+	{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
+	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
+	eslint.configs.recommended,
+	comments.recommended,
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"@typescript-eslint/prefer-nullish-coalescing": [
+				"error",
+				{ ignorePrimitives: true },
+			],
+			"@typescript-eslint/restrict-template-expressions": [
+				"error",
+				{ allowBoolean: true },
+			],
+		},
+		settings: { /* ... */ }
+	}
+);`,
+			{
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
+				rules: [
+					{
+						entries: {
+							"@typescript-eslint/prefer-nullish-coalescing": [
+								"error",
+								{ ignorePrimitives: true },
+							],
+							"@typescript-eslint/restrict-template-expressions": [
+								"error",
+								{ allowBoolean: true },
+							],
+						},
+					},
+				],
+			},
+		],
+		[
 			"non-commented group in rules",
 			`
 export default tseslint.config(

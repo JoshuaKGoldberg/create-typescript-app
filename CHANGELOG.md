@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.34.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.34.0...2.34.1) (2025-04-08)
+
+### Bug Fixes
+
+- allow linterOptions in blockESLintIntake ([#2169](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2169)) ([07b07f0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/07b07f0cb51d029a588c8639afdbf79c1037f2cf)), closes [#2168](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2168)
+
 # [2.34.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.33.0...2.34.0) (2025-04-07)
 
 ### Features

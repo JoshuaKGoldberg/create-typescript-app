@@ -104,7 +104,7 @@ export default defineConfig(${JSON.stringify({
 					bundle: false,
 					clean: true,
 					dts: true,
-					entry: ["src/**/*.ts", ...entry],
+					entry: Array.from(new Set(["src/**/*.ts", ...entry])),
 					format: "esm",
 					outDir: "lib",
 					...properties,

@@ -15,7 +15,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { intakeFile } from "./intake/intakeFile.js";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
 export const blockTypeScript = base.createBlock({
 	about: {
@@ -25,12 +25,7 @@ export const blockTypeScript = base.createBlock({
 		compilerOptions: CompilerOptionsSchema.optional(),
 	},
 	intake({ files }) {
-		const tsconfig = intakeFile(files, ["tsconfig.json"]);
-		if (!tsconfig) {
-			return undefined;
-		}
-
-		const raw = JSON5.parse<Record<string, undefined> | undefined>(tsconfig[0]);
+		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
 		const { data } = CompilerOptionsSchema.safeParse(raw?.compilerOptions);
 		if (!data) {
 			return undefined;

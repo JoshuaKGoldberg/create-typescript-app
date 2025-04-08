@@ -1,11 +1,28 @@
+import { z } from "zod";
+
 import { base } from "../base.js";
 import { blockGitHubApps } from "./blockGitHubApps.js";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
+
+const zIgnoreDeps = z.array(z.string()).default([]);
 
 export const blockRenovate = base.createBlock({
 	about: {
 		name: "Renovate",
 	},
-	produce() {
+	addons: {
+		ignoreDeps: zIgnoreDeps,
+	},
+	intake({ files }) {
+		const raw = intakeFileAsJson(files, [".github", "renovate.json"]);
+
+		return {
+			ignoreDeps: zIgnoreDeps.safeParse(raw?.ignoreDeps).data,
+		};
+	},
+	produce({ addons }) {
+		const { ignoreDeps } = addons;
+
 		return {
 			addons: [
 				blockGitHubApps({
@@ -27,7 +44,9 @@ export const blockRenovate = base.createBlock({
 							"config:best-practices",
 							"replacements:all",
 						],
-						ignoreDeps: ["codecov/codecov-action"],
+						ignoreDeps: Array.from(
+							new Set(["codecov/codecov-action", ...ignoreDeps]),
+						).sort(),
 						labels: ["dependencies"],
 						minimumReleaseAge: "7 days",
 						patch: { enabled: false },

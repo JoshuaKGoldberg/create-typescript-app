@@ -89,7 +89,7 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli@6.23.0 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx all-contributors-cli@6.23.1 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },
@@ -231,7 +231,7 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli@6.23.0 add JoshuaKGoldberg bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
+			        "pnpx all-contributors-cli@6.23.1 add JoshuaKGoldberg bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
 			      ],
 			      "phase": 3,
 			    },
@@ -372,7 +372,7 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli@6.23.0 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx all-contributors-cli@6.23.1 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },

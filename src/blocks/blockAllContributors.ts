@@ -112,7 +112,7 @@ export const blockAllContributors = base.createBlock({
 			scripts: [
 				{
 					commands: [
-						`pnpx all-contributors-cli@6.23.0 add ${options.owner} ${ownerContributions.join(",")}`,
+						`pnpx all-contributors-cli@6.23.1 add ${options.owner} ${ownerContributions.join(",")}`,
 					],
 					phase: CommandPhase.Process,
 				},

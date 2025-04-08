@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.35.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.3...2.35.4) (2025-04-08)
+
+### Bug Fixes
+
+- print .all-contributorsrc with two spaces ([#2178](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2178)) ([a02897e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a02897eb66cc0844b544d11bb9abdfd2b56103f7)), closes [#2177](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2177)
+
 ## [2.35.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.2...2.35.3) (2025-04-08)
 
 ### Bug Fixes

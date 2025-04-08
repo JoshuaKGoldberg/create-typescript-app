@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.35.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.1...2.35.2) (2025-04-08)
+
+### Bug Fixes
+
+- correct blockESLint intake multi-line comment parsing ([#2172](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2172)) ([dac51dd](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/dac51ddb41e109240a4ee04ee179c6103379837e)), closes [#2171](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2171)
+
 ## [2.35.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.0...2.35.1) (2025-04-08)
 
 ### Bug Fixes

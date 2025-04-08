@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.36.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.0...2.36.1) (2025-04-08)
+
+### Bug Fixes
+
+- stop all-contributors-cli from being updated beyond 6.26.1 ([#2181](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2181)) ([6943fb5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6943fb59077ac764d821ebb11cac4c3df13c7b9e)), closes [#2177](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2177) [#2180](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2180)
+
 # [2.36.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.4...2.36.0) (2025-04-08)
 
 ### Features

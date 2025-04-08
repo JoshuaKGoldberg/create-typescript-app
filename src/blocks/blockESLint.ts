@@ -71,9 +71,13 @@ export const blockESLint = base.createBlock({
 			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
 		);
 
-		const ignoreLines = ["lib", "node_modules", "pnpm-lock.yaml", ...ignores]
-			.map((ignore) => JSON.stringify(ignore))
-			.sort();
+		const ignoreLines = Array.from(
+			new Set(
+				["lib", "node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
+					JSON.stringify(ignore),
+				),
+			),
+		).sort();
 
 		const extensionLines = [
 			printExtension({

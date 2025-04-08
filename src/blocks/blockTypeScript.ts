@@ -1,4 +1,3 @@
-import JSON5 from "json5";
 import sortKeys from "sort-keys";
 import { CompilerOptionsSchema } from "zod-tsconfig";
 

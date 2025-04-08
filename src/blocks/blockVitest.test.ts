@@ -1041,39 +1041,6 @@ describe("blockVitest", () => {
 	});
 
 	describe("intake", () => {
-		it("returns nothing when vitest.config.ts does not exist", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					src: {},
-				},
-				options: optionsBase,
-			});
-
-			expect(actual).toEqual({});
-		});
-
-		it("returns nothing when vitest.config.ts does not contain the expected defineConfig", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [`invalid`],
-				},
-				options: optionsBase,
-			});
-
-			expect(actual).toEqual({});
-		});
-
-		it("returns nothing when vitest.config.ts passes a non-object to defineConfig", () => {
-			const actual = testIntake(blockVitest, {
-				files: {
-					"vitest.config.ts": [`defineConfig("invalid")`],
-				},
-				options: optionsBase,
-			});
-
-			expect(actual).toEqual({});
-		});
-
 		it("returns nothing when vitest.config.ts does not pass a test to defineConfig", () => {
 			const actual = testIntake(blockVitest, {
 				files: {

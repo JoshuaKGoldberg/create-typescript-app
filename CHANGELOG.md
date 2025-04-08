@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.35.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.2...2.35.3) (2025-04-08)
+
+### Bug Fixes
+
+- correct blockCSpell intake ignorePaths ([#2174](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2174)) ([db1943c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/db1943c304f59a90ecb5f2eb6e2d5f4b3ebc4d0e)), closes [#2173](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2173)
+
 ## [2.35.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.1...2.35.2) (2025-04-08)
 
 ### Bug Fixes

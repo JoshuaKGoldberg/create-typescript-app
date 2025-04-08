@@ -65,14 +65,18 @@ export const blockAllContributors = base.createBlock({
 				}),
 			],
 			files: {
-				".all-contributorsrc": JSON.stringify({
-					badgeTemplate:
-						'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
-					contributors: options.contributors ?? [],
-					contributorsSortAlphabetically: true,
-					projectName: options.repository,
-					projectOwner: options.owner,
-				}),
+				".all-contributorsrc": JSON.stringify(
+					{
+						badgeTemplate:
+							'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
+						contributors: options.contributors ?? [],
+						contributorsSortAlphabetically: true,
+						projectName: options.repository,
+						projectOwner: options.owner,
+					},
+					null,
+					2,
+				),
 				".github": {
 					workflows: {
 						"contributors.yml": createSoloWorkflowFile({

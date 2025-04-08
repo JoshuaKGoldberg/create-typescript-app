@@ -53,7 +53,13 @@ describe("blockAllContributors", () => {
 			    },
 			  ],
 			  "files": {
-			    ".all-contributorsrc": "{"badgeTemplate":"\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>","contributors":[],"contributorsSortAlphabetically":true,"projectName":"test-repository","projectOwner":"test-owner"}",
+			    ".all-contributorsrc": "{
+			  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+			  "contributors": [],
+			  "contributorsSortAlphabetically": true,
+			  "projectName": "test-repository",
+			  "projectOwner": "test-owner"
+			}",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yml": "jobs:
@@ -174,7 +180,28 @@ describe("blockAllContributors", () => {
 			    },
 			  ],
 			  "files": {
-			    ".all-contributorsrc": "{"badgeTemplate":"\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>","contributors":[{"avatar_url":"https://avatars.githubusercontent.com/u/3335181?v=4","contributions":["bug","code","design","doc","test","tool"],"login":"JoshuaKGoldberg","name":"Josh Goldberg","profile":"http://www.joshuakgoldberg.com"}],"contributorsSortAlphabetically":true,"projectName":"test-repository","projectOwner":"JoshuaKGoldberg"}",
+			    ".all-contributorsrc": "{
+			  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+			  "contributors": [
+			    {
+			      "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+			      "contributions": [
+			        "bug",
+			        "code",
+			        "design",
+			        "doc",
+			        "test",
+			        "tool"
+			      ],
+			      "login": "JoshuaKGoldberg",
+			      "name": "Josh Goldberg",
+			      "profile": "http://www.joshuakgoldberg.com"
+			    }
+			  ],
+			  "contributorsSortAlphabetically": true,
+			  "projectName": "test-repository",
+			  "projectOwner": "JoshuaKGoldberg"
+			}",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yml": "jobs:
@@ -294,7 +321,28 @@ describe("blockAllContributors", () => {
 			    },
 			  ],
 			  "files": {
-			    ".all-contributorsrc": "{"badgeTemplate":"\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>","contributors":[{"avatar_url":"https://avatars.githubusercontent.com/u/3335181?v=4","contributions":["bug","code","design","doc","test","tool"],"login":"other","name":"Other","profile":"http://www.example.com"}],"contributorsSortAlphabetically":true,"projectName":"test-repository","projectOwner":"test-owner"}",
+			    ".all-contributorsrc": "{
+			  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+			  "contributors": [
+			    {
+			      "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+			      "contributions": [
+			        "bug",
+			        "code",
+			        "design",
+			        "doc",
+			        "test",
+			        "tool"
+			      ],
+			      "login": "other",
+			      "name": "Other",
+			      "profile": "http://www.example.com"
+			    }
+			  ],
+			  "contributorsSortAlphabetically": true,
+			  "projectName": "test-repository",
+			  "projectOwner": "test-owner"
+			}",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yml": "jobs:

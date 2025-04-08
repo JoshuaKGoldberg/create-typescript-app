@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.35.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.35.0...2.35.1) (2025-04-08)
+
+### Bug Fixes
+
+- deduplicate tsup.config.ts entry entries ([1a0b27b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1a0b27b0f9d4c485e841e63ffc399fb5816395c6))
+
 # [2.35.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.34.2...2.35.0) (2025-04-08)
 
 ### Features

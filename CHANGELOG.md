@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.38.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.37.0...2.38.0) (2025-04-08)
+
+### Features
+
+- added nodeVersion Addon to blockGitHubActionsCI ([#2189](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2189)) ([39a7fce](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/39a7fce67f2a36f2f621f33fd01d09cf836494d9)), closes [#2183](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2183)
+
 # [2.37.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.2...2.37.0) (2025-04-08)
 
 ### Features

@@ -313,6 +313,36 @@ export default tseslint.config(
 				],
 			},
 		],
+		[
+			"multi-line custom commented group in rules",
+			`
+export default tseslint.config(
+	{ ignores: ["lib"] },
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			// First line.
+			// Second line.
+			// Third line.
+			"@typescript-eslint/prefer-nullish-coalescing": "error"
+		},
+		settings: { /* ... */ }
+	}
+);`,
+			{
+				ignores: ["lib"],
+				rules: [
+					{
+						comment: "First line.\nSecond line.\nThird line.",
+						entries: {
+							"@typescript-eslint/prefer-nullish-coalescing": "error",
+						},
+					},
+				],
+			},
+		],
 	])("returns data when given %s", (_, sourceText, expected) => {
 		const actual = blockESLintIntake(sourceText);
 

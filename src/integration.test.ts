@@ -14,6 +14,7 @@ import {
 	blockESLint,
 	blockKnip,
 	blockMain,
+	blockRenovate,
 	blockTemplatedWith,
 	presets,
 } from "./index.js";
@@ -106,6 +107,9 @@ If you're interested in learning more, see the 'getting started' docs on:
 				}),
 				blockMain({
 					runArgs: ["--version"],
+				}),
+				blockRenovate({
+					ignoreDeps: ["all-contributors-cli"],
 				}),
 			],
 			blocks: {

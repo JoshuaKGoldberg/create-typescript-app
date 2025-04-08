@@ -6,7 +6,7 @@
 		"config:best-practices",
 		"replacements:all"
 	],
-	"ignoreDeps": ["codecov/codecov-action"],
+	"ignoreDeps": ["all-contributors-cli", "codecov/codecov-action"],
 	"labels": ["dependencies"],
 	"minimumReleaseAge": "7 days",
 	"patch": { "enabled": false },

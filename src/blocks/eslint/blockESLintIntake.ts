@@ -94,7 +94,7 @@ export function blockESLintIntake(sourceText: string) {
 				property.range[0],
 			);
 			const comment =
-				precedingText.replaceAll(/\/\/|\n/g, "").trim() || undefined;
+				precedingText.replaceAll(/\/\/ ?|\t\s*/g, "").trim() || undefined;
 
 			// blockESLintMoreStyling's comment always gets pushed to the end.
 			if (comment === stylisticComment) {

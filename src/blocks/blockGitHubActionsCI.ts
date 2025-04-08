@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -7,6 +8,7 @@ import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js"
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { formatYaml } from "./files/formatYaml.js";
+import { intakeFileAsYaml } from "./intake/intakeFileAsYaml.js";
 
 export const zActionStep = z.intersection(
 	z.object({
@@ -16,6 +18,11 @@ export const zActionStep = z.intersection(
 	}),
 	z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),
 );
+
+interface RunStep {
+	uses?: unknown;
+	with?: Record<string, string>;
+}
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
@@ -32,9 +39,43 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
+		nodeVersion: z.union([z.number(), z.string()]).optional(),
+	},
+	intake({ files }) {
+		const actionYml = intakeFileAsYaml(files, [
+			".github",
+			"actions",
+			"prepare",
+			"action.yml",
+		]);
+		if (!actionYml) {
+			return;
+		}
+
+		const steps = _.get(actionYml, ["runs", "steps"]) as RunStep[] | undefined;
+		if (!steps || !Array.isArray(steps)) {
+			return undefined;
+		}
+
+		const setupNodeStep = steps.find(
+			(step) =>
+				typeof step.uses === "string" &&
+				step.uses.startsWith("actions/setup-node"),
+		);
+		if (!setupNodeStep) {
+			return undefined;
+		}
+
+		const nodeVersion = setupNodeStep.with?.["node-version"];
+		if (!nodeVersion) {
+			return undefined;
+		}
+
+		return { nodeVersion };
 	},
 	produce({ addons, options }) {
-		const { jobs } = addons;
+		const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
+			addons;
 
 		return {
 			addons: [
@@ -66,8 +107,7 @@ export const blockGitHubActionsCI = base.createBlock({
 											),
 											with: {
 												cache: "pnpm",
-												"node-version":
-													options.node.pinned ?? options.node.minimum,
+												"node-version": nodeVersion,
 											},
 										},
 										{

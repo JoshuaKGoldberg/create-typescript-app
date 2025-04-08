@@ -1,5 +1,6 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import jsYaml from "js-yaml";
+import { describe, expect, it, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
@@ -564,5 +565,158 @@ describe("blockGitHubActionsCI", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when action.yml does not exist", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when action.yml contains invalid yml", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": ["invalid yml!"],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when action.yml does not contain a runs entry", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										other: {
+											steps: [],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when action.yml runs steps is not an array", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: true,
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined env when action.yml contains a test action with actions/setup-node step", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: [
+												{
+													uses: "actions/other@v1",
+												},
+											],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined env when action.yml contains a test action with no env in its actions/setup-node step", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: [
+												{
+													uses: "actions/setup-node@v4",
+												},
+											],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns nodeVersion when action.yml contains a test action with node-version in its actions/setup/node step", () => {
+			const nodeVersion = "20.10.0";
+
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: [
+												{
+													uses: "actions/setup-node@v4",
+													with: {
+														"node-version": nodeVersion,
+													},
+												},
+											],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ nodeVersion });
+		});
 	});
 });

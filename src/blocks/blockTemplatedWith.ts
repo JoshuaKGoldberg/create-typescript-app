@@ -13,7 +13,7 @@ export const blockTemplatedWith = base.createBlock({
 						options.owner !== "JoshuaKGoldberg" &&
 							`
 <!-- You can remove this notice if you don't want it 🙂 no worries! -->`,
-						`> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).
+						`> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo framework](https://create.bingo).
 `,
 					].filter((notice) => typeof notice === "string"),
 				}),

@@ -15,6 +15,14 @@ describe("blockContributorCovenant", () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "ignores": [
+			          ".github/CODE_OF_CONDUCT.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "badges": [
 			          {
 			            "alt": "🤝 Code of Conduct: Kept",
@@ -176,6 +184,14 @@ describe("blockContributorCovenant", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
+			    {
+			      "addons": {
+			        "ignores": [
+			          ".github/CODE_OF_CONDUCT.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			    {
 			      "addons": {
 			        "badges": [

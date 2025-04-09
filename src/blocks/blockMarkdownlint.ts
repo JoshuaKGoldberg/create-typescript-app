@@ -8,6 +8,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { formatIgnoreFile } from "./files/formatIgnoreFile.js";
+import { intakeFile } from "./intake/intakeFile.js";
 import { CommandPhase } from "./phases.js";
 
 export const blockMarkdownlint = base.createBlock({
@@ -16,6 +17,17 @@ export const blockMarkdownlint = base.createBlock({
 	},
 	addons: {
 		ignores: z.array(z.string()).default([]),
+	},
+	intake({ files }) {
+		const markdownlintignoreRaw = intakeFile(files, [".markdownlintignore"]);
+
+		if (!markdownlintignoreRaw) {
+			return undefined;
+		}
+
+		return {
+			ignores: markdownlintignoreRaw[0].split("\n").filter(Boolean),
+		};
 	},
 	produce({ addons }) {
 		const { ignores } = addons;
@@ -65,12 +77,7 @@ export const blockMarkdownlint = base.createBlock({
 					"no-inline-html": false,
 				}),
 				".markdownlintignore": formatIgnoreFile(
-					[
-						".github/CODE_OF_CONDUCT.md",
-						"CHANGELOG.md",
-						"node_modules/",
-						...ignores,
-					].sort(),
+					Array.from(new Set(["node_modules/", ...ignores])).sort(),
 				),
 			},
 			scripts: [

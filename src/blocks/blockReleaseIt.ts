@@ -3,6 +3,7 @@ import { z } from "zod";
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
@@ -27,6 +28,9 @@ export const blockReleaseIt = base.createBlock({
 
 		return {
 			addons: [
+				blockMarkdownlint({
+					ignores: ["CHANGELOG.md"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies(

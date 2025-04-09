@@ -68,9 +68,7 @@ describe("blockMarkdownlint", () => {
 			  ],
 			  "files": {
 			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false}",
-			    ".markdownlintignore": ".github/CODE_OF_CONDUCT.md
-			CHANGELOG.md
-			node_modules/
+			    ".markdownlintignore": "node_modules/
 			",
 			  },
 			  "scripts": [
@@ -151,9 +149,7 @@ describe("blockMarkdownlint", () => {
 			  ],
 			  "files": {
 			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false}",
-			    ".markdownlintignore": ".github/CODE_OF_CONDUCT.md
-			CHANGELOG.md
-			lib/
+			    ".markdownlintignore": "lib/
 			node_modules/
 			",
 			  },
@@ -244,9 +240,7 @@ describe("blockMarkdownlint", () => {
 			  ],
 			  "files": {
 			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false}",
-			    ".markdownlintignore": ".github/CODE_OF_CONDUCT.md
-			CHANGELOG.md
-			node_modules/
+			    ".markdownlintignore": "node_modules/
 			",
 			  },
 			  "scripts": [

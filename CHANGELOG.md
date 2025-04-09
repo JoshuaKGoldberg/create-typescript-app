@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.40.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.2...2.40.3) (2025-04-09)
+
+### Bug Fixes
+
+- refer to Bingo as a framework, not an engine ([#2200](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2200)) ([f7b2a59](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f7b2a59f3f5d7397f7343d89148f9da5b195041a)), closes [#2199](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2199)
+
 ## [2.40.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.1...2.40.2) (2025-04-09)
 
 ### Bug Fixes

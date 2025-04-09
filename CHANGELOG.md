@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.39.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.38.0...2.39.0) (2025-04-09)
+
+### Features
+
+- add ignores Addon for blockMarkdownlint ([#2193](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2193)) ([7a5c680](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7a5c680c76a14f8a4005264695e26d47144e3b08)), closes [#2191](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2191)
+
 # [2.38.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.37.0...2.38.0) (2025-04-08)
 
 ### Features

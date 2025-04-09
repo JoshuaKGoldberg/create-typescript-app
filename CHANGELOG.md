@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.40.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.0...2.40.1) (2025-04-09)
+
+### Bug Fixes
+
+- corrected setup for blockESLintPlugin ([#2196](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2196)) ([afc398b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/afc398b0f27c6b6e8699e7e0d471c64438bbac04)), closes [#2195](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2195)
+
 # [2.40.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.39.0...2.40.0) (2025-04-09)
 
 ### Features

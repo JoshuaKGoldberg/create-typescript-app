@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.40.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.39.0...2.40.0) (2025-04-09)
+
+### Features
+
+- added configEmoji Addon to blockESLintPlugin ([#2194](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2194)) ([0f420f8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0f420f8a3c081339ad8921efb718da407ea0d21a)), closes [#2190](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2190)
+
 # [2.39.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.38.0...2.39.0) (2025-04-09)
 
 ### Features

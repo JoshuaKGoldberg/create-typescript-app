@@ -394,7 +394,7 @@ describe("blockCSpell", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns compilerOptions when cspell.json contains ignorePaths and words", () => {
+		it("returns the data when cspell.json contains ignorePaths and words", () => {
 			const data = {
 				ignorePaths: ["other"],
 				words: ["abc", "def"],

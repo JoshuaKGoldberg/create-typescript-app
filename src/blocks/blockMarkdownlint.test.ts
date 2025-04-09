@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test } from "vitest";
 
 import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { optionsBase } from "./options.fakes.js";
@@ -253,5 +253,37 @@ describe("blockMarkdownlint", () => {
 			  ],
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when .markdownlintignore does not exist", () => {
+			const actual = testIntake(blockMarkdownlint, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns no ignores when .markdownlintignore does not contain truthy lines", () => {
+			const actual = testIntake(blockMarkdownlint, {
+				files: {
+					".markdownlintignore": ["\n"],
+				},
+			});
+
+			expect(actual).toEqual({ ignores: [] });
+		});
+
+		it("returns ignores when .markdownlintignore contains lines", () => {
+			const ignores = ["abc", "def"];
+
+			const actual = testIntake(blockMarkdownlint, {
+				files: {
+					".markdownlintignore": [ignores.join("\n") + "\n"],
+				},
+			});
+
+			expect(actual).toEqual({ ignores });
+		});
 	});
 });

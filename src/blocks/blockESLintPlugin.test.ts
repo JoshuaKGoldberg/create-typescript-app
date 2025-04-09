@@ -90,8 +90,39 @@ describe("blockESLintPlugin", () => {
 			    },
 			    {
 			      "addons": {
+			        "defaultUsage": [
+			          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+
+			\`\`\`shell
+			npm i test-repository -D
+			\`\`\`
+
+			\`\`\`ts
+			import testRepository from "test-repository";
+
+			export default [
+				// (other plugins)
+				testRepository.configs.recommended, // 👈
+			];
+			\`\`\`
+
+			### Rules
+
+			These are all set to \`"error"\` in the recommended config:
+
+			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
+			          "dependencies": {
+			            "@typescript-eslint/utils": "^8.29.0",
+			          },
 			          "devDependencies": {
+			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
 			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
@@ -131,6 +162,20 @@ describe("blockESLintPlugin", () => {
 			export default config;
 			",
 			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm build",
+			      ],
+			      "phase": 2,
+			    },
+			    {
+			      "commands": [
+			        "pnpm eslint-doc-generator --init-rule-docs",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
 			}
 		`);
 	});
@@ -223,8 +268,39 @@ describe("blockESLintPlugin", () => {
 			    },
 			    {
 			      "addons": {
+			        "defaultUsage": [
+			          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+
+			\`\`\`shell
+			npm i test-repository -D
+			\`\`\`
+
+			\`\`\`ts
+			import testRepository from "test-repository";
+
+			export default [
+				// (other plugins)
+				testRepository.configs.recommended, // 👈
+			];
+			\`\`\`
+
+			### Rules
+
+			These are all set to \`"error"\` in the recommended config:
+
+			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
+			          "dependencies": {
+			            "@typescript-eslint/utils": "^8.29.0",
+			          },
 			          "devDependencies": {
+			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
 			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
@@ -264,6 +340,20 @@ describe("blockESLintPlugin", () => {
 			export default config;
 			",
 			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm build",
+			      ],
+			      "phase": 2,
+			    },
+			    {
+			      "commands": [
+			        "pnpm eslint-doc-generator --init-rule-docs",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
 			}
 		`);
 	});
@@ -354,8 +444,39 @@ describe("blockESLintPlugin", () => {
 			    },
 			    {
 			      "addons": {
+			        "defaultUsage": [
+			          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+
+			\`\`\`shell
+			npm i test-repository -D
+			\`\`\`
+
+			\`\`\`ts
+			import testRepository from "test-repository";
+
+			export default [
+				// (other plugins)
+				testRepository.configs.recommended, // 👈
+			];
+			\`\`\`
+
+			### Rules
+
+			These are all set to \`"error"\` in the recommended config:
+
+			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
+			          "dependencies": {
+			            "@typescript-eslint/utils": "^8.29.0",
+			          },
 			          "devDependencies": {
+			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
 			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
@@ -429,7 +550,7 @@ describe("blockESLintPlugin", () => {
 			export default plugin;
 			",
 			      "rules": {
-			        "example.test.ts": "import { rule } from "./enums.js";
+			        "enums.test.ts": "import { rule } from "./enums.js";
 			import { ruleTester } from "./ruleTester.js";
 
 			ruleTester.run("enums", rule, {
@@ -450,7 +571,7 @@ describe("blockESLintPlugin", () => {
 				valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
 			});
 			",
-			        "example.ts": "import { createRule } from "../utils.js";
+			        "enums.ts": "import { createRule } from "../utils.js";
 
 			export const rule = createRule({
 				create(context) {
@@ -477,10 +598,10 @@ describe("blockESLintPlugin", () => {
 				name: "enums",
 			});
 			",
-			        "index.ts": "import { rule as example } from "./example.js";
+			        "index.ts": "import { rule as enums } from "./enums.js";
 
 			export const rules = {
-				example,
+				enums,
 			};
 			",
 			        "ruleTester.ts": "import { RuleTester } from "@typescript-eslint/rule-tester";
@@ -503,6 +624,20 @@ describe("blockESLintPlugin", () => {
 			",
 			    },
 			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm build",
+			      ],
+			      "phase": 2,
+			    },
+			    {
+			      "commands": [
+			        "pnpm eslint-doc-generator --init-rule-docs",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
 			}
 		`);
 	});
@@ -598,8 +733,39 @@ describe("blockESLintPlugin", () => {
 			    },
 			    {
 			      "addons": {
+			        "defaultUsage": [
+			          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+
+			\`\`\`shell
+			npm i test-repository -D
+			\`\`\`
+
+			\`\`\`ts
+			import testRepository from "test-repository";
+
+			export default [
+				// (other plugins)
+				testRepository.configs.recommended, // 👈
+			];
+			\`\`\`
+
+			### Rules
+
+			These are all set to \`"error"\` in the recommended config:
+
+			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
+			          "dependencies": {
+			            "@typescript-eslint/utils": "^8.29.0",
+			          },
 			          "devDependencies": {
+			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
 			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
@@ -640,6 +806,20 @@ describe("blockESLintPlugin", () => {
 			export default config;
 			",
 			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm build",
+			      ],
+			      "phase": 2,
+			    },
+			    {
+			      "commands": [
+			        "pnpm eslint-doc-generator --init-rule-docs",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
 			}
 		`);
 	});

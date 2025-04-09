@@ -1,46 +1,51 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { readReadmeUsage } from "./readReadmeUsage.js";
 
-const mockReadUsageFromReadme = vi.fn();
-
-vi.mock("./readUsageFromReadme.js", () => ({
-	get readUsageFromReadme() {
-		return mockReadUsageFromReadme;
-	},
-}));
-
 describe(readReadmeUsage, () => {
-	it("returns the existing usage when readUsageFromReadme provides one", async () => {
-		const existing = "Use it.";
+	it("returns undefined when ## Usage is not found", async () => {
+		const actual = await readReadmeUsage(() => Promise.resolve("## Other"));
 
-		mockReadUsageFromReadme.mockReturnValueOnce(existing);
-
-		const usage = await readReadmeUsage(
-			() => Promise.resolve("💖"),
-			() => Promise.resolve(""),
-			() => Promise.resolve(undefined),
-		);
-
-		expect(usage).toBe(existing);
+		expect(actual).toBeUndefined();
 	});
 
-	it("returns sample usage when readUsageFromReadme doesn't provide usage", async () => {
-		mockReadUsageFromReadme.mockReturnValueOnce(undefined);
-
-		const usage = await readReadmeUsage(
-			() => Promise.resolve("💖"),
-			() => Promise.resolve(""),
-			() => Promise.resolve("test-repository"),
+	it("returns existing content when ## Usage is found and a next important heading is not found", async () => {
+		const actual = await readReadmeUsage(() =>
+			Promise.resolve("## Usage\n\nContents."),
 		);
 
-		expect(usage).toBe(`\`\`\`shell
-npm i test-repository
-\`\`\`
-\`\`\`ts
-import { greet } from "test-repository";
+		expect(actual).toBe(`\n\nContents.`);
+	});
 
-greet("Hello, world! 💖");
-\`\`\``);
+	it("returns undefined when there is no content between ## Usage and ## Development", async () => {
+		const actual = await readReadmeUsage(() =>
+			Promise.resolve("## Usage\n\n  \n## Development"),
+		);
+
+		expect(actual).toBeUndefined();
+	});
+
+	it("returns the content when content exists between ## Usage and ## Development", async () => {
+		const actual = await readReadmeUsage(() =>
+			Promise.resolve("## Usage\n\n  Content.\n## Development"),
+		);
+
+		expect(actual).toBe("Content.");
+	});
+
+	it("returns the content when content exists between ## Usage and ## Contributing", async () => {
+		const actual = await readReadmeUsage(() =>
+			Promise.resolve("## Usage\n\n  Content.\n## Contributing"),
+		);
+
+		expect(actual).toBe("Content.");
+	});
+
+	it("returns the content when content exists between ## Usage and ## Contributors", async () => {
+		const actual = await readReadmeUsage(() =>
+			Promise.resolve("## Usage\n\n  Content.\n## Contributors"),
+		);
+
+		expect(actual).toBe("Content.");
 	});
 });

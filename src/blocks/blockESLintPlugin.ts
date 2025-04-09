@@ -5,12 +5,28 @@ import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockVitest } from "./blockVitest.js";
+import { blockESLintPluginIntake } from "./eslint/blockESLintPluginIntake.js";
+import { zConfigEmoji } from "./eslint/schemas.js";
+import { intakeFile } from "./intake/intakeFile.js";
 
 export const blockESLintPlugin = base.createBlock({
 	about: {
 		name: "ESLint Plugin",
 	},
-	produce({ options }) {
+	addons: {
+		configEmoji: zConfigEmoji,
+	},
+	intake({ files }) {
+		const docGeneratorConfigRaw = intakeFile(files, [
+			[".eslint-doc-generatorrc.js", ".eslint-doc-generatorrc.mjs"],
+		]);
+
+		return docGeneratorConfigRaw
+			? blockESLintPluginIntake(docGeneratorConfigRaw[0])
+			: undefined;
+	},
+	produce({ addons, options }) {
+		const { configEmoji } = addons;
 		const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
 
 		return {
@@ -90,7 +106,7 @@ pnpm build:docs
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {
-	postprocess: async (content, path) =>
+	${configEmoji ? `configEmoji: ${JSON.stringify(configEmoji)},\n\t` : ""}postprocess: async (content, path) =>
 		prettier.format(content, {
 			...(await prettier.resolveConfig(path)),
 			parser: "markdown",

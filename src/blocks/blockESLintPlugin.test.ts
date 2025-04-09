@@ -654,6 +654,17 @@ describe("blockESLintPlugin", () => {
 			expect(actual).toEqual(undefined);
 		});
 
+		it("returns nothing when .eslint-doc-generatorrc.js does not have a to const config =", () => {
+			const actual = testIntake(blockESLintPlugin, {
+				files: {
+					".eslint-doc-generatorrc.js": [`const other = {};`],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
 		it("returns nothing when .eslint-doc-generatorrc.js passes nothing to config =", () => {
 			const actual = testIntake(blockESLintPlugin, {
 				files: {

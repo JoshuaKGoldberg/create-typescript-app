@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.40.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.1...2.40.2) (2025-04-09)
+
+### Bug Fixes
+
+- only --init-rule-docs in setup ([f8f96f1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f8f96f1e440bf64321577be6748c17452602ef7e))
+
 ## [2.40.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.0...2.40.1) (2025-04-09)
 
 ### Bug Fixes

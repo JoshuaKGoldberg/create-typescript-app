@@ -87,6 +87,16 @@ export * from "./types.js";
 	}
 	`,
 					},
+					usage: [
+						`\`\`\`shell
+npm i ${options.repository}
+\`\`\`
+\`\`\`ts
+import { greet } from "${options.repository}";
+
+greet("Hello, world! ${options.emoji}");
+\`\`\``,
+					],
 				}),
 				blockGitignore({
 					ignores: ["/lib"],

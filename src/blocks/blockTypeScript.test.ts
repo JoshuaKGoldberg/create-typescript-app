@@ -64,6 +64,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -224,6 +234,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -382,6 +402,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -549,6 +579,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },

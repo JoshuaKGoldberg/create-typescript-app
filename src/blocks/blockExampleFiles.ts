@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.js";
+import { blockREADME } from "./blockREADME.js";
 
 export const blockExampleFiles = base.createBlock({
 	about: {
@@ -8,9 +9,17 @@ export const blockExampleFiles = base.createBlock({
 	},
 	addons: {
 		files: z.record(z.string()).default({}),
+		usage: z.array(z.string()).default([]),
 	},
 	setup({ addons }) {
+		const { usage } = addons;
+
 		return {
+			addons: [
+				blockREADME({
+					defaultUsage: usage,
+				}),
+			],
 			files: {
 				src: addons.files,
 			},

@@ -78,7 +78,7 @@
 		"@prettier/sync": "0.5.3",
 		"@release-it/conventional-changelog": "10.0.0",
 		"@types/eslint-plugin-markdown": "2.0.2",
-		"@types/git-url-parse": "9.0.3",
+		"@types/git-url-parse": "16.0.0",
 		"@types/html-to-text": "9.0.4",
 		"@types/js-yaml": "4.0.9",
 		"@types/lodash": "4.17.16",

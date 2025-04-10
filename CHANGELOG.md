@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.40.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.3...2.40.4) (2025-04-10)
+
+### Bug Fixes
+
+- **deps:** bump bingo to 0.5.16 ([7ce6f8f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7ce6f8f6a668262f94711c502fe5a517055f777b))
+
 ## [2.40.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.2...2.40.3) (2025-04-09)
 
 ### Bug Fixes

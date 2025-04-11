@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.40.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.4...2.40.5) (2025-04-11)
+
+### Bug Fixes
+
+- put redundant .all-contributorsrc properties back ([#2204](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2204)) ([0edc793](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0edc793040f1159a73ccff45e68b120fe7eaa041)), closes [#2203](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2203)
+
 ## [2.40.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.3...2.40.4) (2025-04-10)
 
 ### Bug Fixes

@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.41.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.5...2.41.0) (2025-04-15)
+
+### Features
+
+- use eslint-plugin-yml's 'standard' config ([#2210](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2210)) ([35b86c8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/35b86c82de893deedd884321e690336d79b4e24f)), closes [#2209](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2209)
+
 ## [2.40.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.4...2.40.5) (2025-04-11)
 
 ### Bug Fixes

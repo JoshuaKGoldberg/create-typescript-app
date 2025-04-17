@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.41.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.0...2.41.1) (2025-04-17)
+
+### Bug Fixes
+
+- bump release-it-action to v0.3.2 ([beaafd8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/beaafd8f47a7452e17e34b834627e2c38f570920))
+
 # [2.41.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.5...2.41.0) (2025-04-15)
 
 ### Features

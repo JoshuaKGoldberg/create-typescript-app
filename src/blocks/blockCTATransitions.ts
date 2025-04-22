@@ -95,6 +95,8 @@ export const blockCTATransitions = base.createBlock({
 							},
 							steps: [
 								{
+									id: "checkout",
+									if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')`,
 									uses: resolveUses(
 										"actions/checkout",
 										"v4",
@@ -109,12 +111,11 @@ export const blockCTATransitions = base.createBlock({
 									},
 								},
 								{
-									id: "check",
-									if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')`,
+									if: "steps.checkout.outcome != 'skipped'",
 									uses: "./.github/actions/transition",
 								},
 								{
-									if: "steps.check.outcome == 'skipped'",
+									if: "steps.checkout.outcome == 'skipped'",
 									run: "echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'",
 								},
 							],

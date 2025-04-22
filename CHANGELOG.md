@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.41.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.1...2.41.2) (2025-04-22)
+
+### Bug Fixes
+
+- skip checkout in CTA action before transition step ([#2215](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2215)) ([61fd266](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/61fd266134fca4c8ff795a355ec3b7cbb894b1c7)), closes [#2214](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2214)
+
 ## [2.41.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.0...2.41.1) (2025-04-17)
 
 ### Bug Fixes

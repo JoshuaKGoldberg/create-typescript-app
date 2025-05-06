@@ -538,7 +538,7 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it.only("returns nodeVersion when action.yml contains a test action with node-version in its actions/setup/node step", () => {
+		it("returns nodeVersion when action.yml contains a test action with node-version in its actions/setup/node step", () => {
 			const nodeVersion = "20.10.0";
 
 			const actual = testIntake(blockGitHubActionsCI, {

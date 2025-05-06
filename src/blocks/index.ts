@@ -28,9 +28,10 @@ import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockMITLicense } from "./blockMITLicense.js";
 import { blockNcc } from "./blockNcc.js";
 import { blockNvmrc } from "./blockNvmrc.js";
+import { blockOctoGuide } from "./blockOctoGuide.js";
+import { blockOctoGuideStrict } from "./blockOctoGuideStrict.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPnpmDedupe } from "./blockPnpmDedupe.js";
-import { blockPRCompliance } from "./blockPRCompliance.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.js";
 import { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.js";
@@ -77,9 +78,10 @@ export const blocks = {
 	blockMITLicense,
 	blockNcc,
 	blockNvmrc,
+	blockOctoGuide,
+	blockOctoGuideStrict,
 	blockPackageJson,
 	blockPnpmDedupe,
-	blockPRCompliance,
 	blockPrettier,
 	blockPrettierPluginCurly,
 	blockPrettierPluginPackageJson,
@@ -127,9 +129,10 @@ export { blockMarkdownlint } from "./blockMarkdownlint.js";
 export { blockMITLicense } from "./blockMITLicense.js";
 export { blockNcc } from "./blockNcc.js";
 export { blockNvmrc } from "./blockNvmrc.js";
+export { blockOctoGuide } from "./blockOctoGuide.js";
+export { blockOctoGuideStrict } from "./blockOctoGuideStrict.js";
 export { blockPackageJson } from "./blockPackageJson.js";
 export { blockPnpmDedupe } from "./blockPnpmDedupe.js";
-export { blockPRCompliance } from "./blockPRCompliance.js";
 export { blockPrettier } from "./blockPrettier.js";
 export { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.js";
 export { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.js";

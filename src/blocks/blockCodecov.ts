@@ -3,16 +3,11 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { intakeFileYamlSteps } from "./actions/steps.js";
 import { blockGitHubApps } from "./blockGitHubApps.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockVitest } from "./blockVitest.js";
-import { intakeFileAsYaml } from "./intake/intakeFileAsYaml.js";
-
-interface JobStep {
-	env?: Record<string, string>;
-	uses?: unknown;
-}
 
 export const blockCodecov = base.createBlock({
 	about: {
@@ -22,14 +17,11 @@ export const blockCodecov = base.createBlock({
 		env: z.record(z.string(), z.string()).optional(),
 	},
 	intake({ files }) {
-		const ciYaml = intakeFileAsYaml(files, [".github", "workflows", "ci.yml"]);
-		if (!ciYaml) {
-			return undefined;
-		}
-
-		const steps = _.get(ciYaml, ["jobs", "test", "steps"]) as
-			| JobStep[]
-			| undefined;
+		const steps = intakeFileYamlSteps(
+			files,
+			[".github", "workflows", "ci.yml"],
+			["jobs", "test", "steps"],
+		);
 		if (!steps) {
 			return undefined;
 		}

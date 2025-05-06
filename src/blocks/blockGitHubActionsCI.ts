@@ -1,28 +1,13 @@
-import _ from "lodash";
 import { z } from "zod";
 
 import { base } from "../base.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { intakeFileYamlSteps, zActionStep } from "./actions/steps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { formatYaml } from "./files/formatYaml.js";
-import { intakeFileAsYaml } from "./intake/intakeFileAsYaml.js";
-
-export const zActionStep = z.intersection(
-	z.object({
-		env: z.record(z.string(), z.string()).optional(),
-		if: z.string().optional(),
-		with: z.record(z.string(), z.string()).optional(),
-	}),
-	z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),
-);
-
-interface RunStep {
-	uses?: unknown;
-	with?: Record<string, string>;
-}
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
@@ -42,18 +27,12 @@ export const blockGitHubActionsCI = base.createBlock({
 		nodeVersion: z.union([z.number(), z.string()]).optional(),
 	},
 	intake({ files }) {
-		const actionYml = intakeFileAsYaml(files, [
-			".github",
-			"actions",
-			"prepare",
-			"action.yml",
-		]);
-		if (!actionYml) {
-			return;
-		}
-
-		const steps = _.get(actionYml, ["runs", "steps"]) as RunStep[] | undefined;
-		if (!steps || !Array.isArray(steps)) {
+		const steps = intakeFileYamlSteps(
+			files,
+			[".github", "actions", "prepare", "action.yml"],
+			["runs", "steps"],
+		);
+		if (!steps) {
 			return undefined;
 		}
 
@@ -121,34 +100,6 @@ export const blockGitHubActionsCI = base.createBlock({
 						},
 					},
 					workflows: {
-						"accessibility-alt-text-bot.yml": createSoloWorkflowFile({
-							if: "${{ !endsWith(github.actor, '[bot]') }}",
-							name: "Accessibility Alt Text Bot",
-							on: {
-								issue_comment: {
-									types: ["created", "edited"],
-								},
-								issues: {
-									types: ["edited", "opened"],
-								},
-								pull_request: {
-									types: ["edited", "opened"],
-								},
-							},
-							permissions: {
-								issues: "write",
-								"pull-requests": "write",
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"github/accessibility-alt-text-bot",
-										"v1.4.0",
-										options.workflowsVersions,
-									),
-								},
-							],
-						}),
 						"ci.yml":
 							jobs &&
 							createMultiWorkflowFile({

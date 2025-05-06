@@ -48,36 +48,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -154,36 +124,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -254,36 +194,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -364,36 +274,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -481,36 +361,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": "jobs:
 			  validate:
 			    name: Validate

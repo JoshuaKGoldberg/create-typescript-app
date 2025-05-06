@@ -326,4 +326,4 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 
 ### OctoGuide Strict
 
-[**OctoGuide's Strict Config**](https://octo.guide/configs#rules-table): additionally enforces enforcing semantic pull request conventions
+[**OctoGuide's Strict Config**](https://octo.guide/configs#rules-table): additionally enforces enforcing semantic pull request conventions.

@@ -177,6 +177,7 @@ This is recommended for most users of `create-typescript-app` to start with.
 
 - [Contributors](#contributors)
 - [Lint Knip](#lint-knip)
+- [OctoGuide](#octoguide)
 - [Releases](#releases)
 - [Renovate](#renovate)
 - [Testing](#testing)
@@ -195,6 +196,11 @@ Running Knip:
 ```shell
 pnpm run lint:knip
 ```
+
+### OctoGuide
+
+[**OctoGuide**](https://octo.guide): checks that contributor activity on your GitHub repository aligns with common expectations of smoothly-running projects.
+It will automatically post friendly comments when contributors take actions you don’t want them to.
 
 ### Releases
 
@@ -236,7 +242,6 @@ pnpm run test run --coverage
 This level is for developers who are eager to get the maximum tooling benefits in a repository.
 Using the _"everything"_ level will gain you comprehensive, strict coverage of all sorts of repository issues, including auto-sorting of properties and strict ESLint configs.
 
-- [Compliance](#compliance)
 - [Lint ESLint](#lint-eslint)
 - [Lint JSDoc](#lint-jsdoc)
 - [Lint JSON](#lint-json)
@@ -249,10 +254,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 - [Lint Strict](#lint-strict)
 - [Lint Stylistic](#lint-stylistic)
 - [Lint YML](#lint-yml)
-
-### Compliance
-
-[**PR Compliance Action**](https://github.com/mtfoley/pr-compliance-action): Checks PRs for compliance such as addressing a linked issue and proper title formatting.
+- [OctoGuide Strict](#octoguide-strict)
 
 ### Lint ESLint
 
@@ -321,3 +323,7 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 ### Lint YML
 
 [`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yaml` and `.yml` files, such as sorting keys.
+
+### OctoGuide Strict
+
+[**OctoGuide's Strict Config**](https://octo.guide/configs#rules-table): additionally enforces enforcing semantic pull request conventions

@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.42.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.2...2.42.0) (2025-05-06)
+
+### Features
+
+- add Octoguide ([#2220](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2220)) ([3bab735](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3bab735442c16ab721a75c2357004e80ced1560b)), closes [#2219](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2219)
+
 ## [2.41.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.1...2.41.2) (2025-04-22)
 
 ### Bug Fixes

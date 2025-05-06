@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { z } from "zod";
 
 import { base } from "../base.js";

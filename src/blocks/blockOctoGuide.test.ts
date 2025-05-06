@@ -232,7 +232,35 @@ describe("blockOctoGuide", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns config when octoguide.yml contains a test job with config in its octoguide step", () => {
+		it("returns undefined when octoguide.yml contains an octoguide job with no octoguide step ", () => {
+			const actual = testIntake(blockOctoGuide, {
+				files: {
+					".github": {
+						workflows: {
+							"octoguide.yml": [
+								jsYaml.dump({
+									jobs: {
+										octoguide: {
+											name: "Octoguide",
+											steps: [
+												{
+													uses: "other/workflow@1",
+													with: { config: "strict" },
+												},
+											],
+										},
+									},
+								}),
+							],
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns config when octoguide.yml contains an octoguide job with config in its octoguide step", () => {
 			const config = "strict";
 
 			const actual = testIntake(blockOctoGuide, {

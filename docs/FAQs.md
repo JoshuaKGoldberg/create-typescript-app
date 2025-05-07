@@ -93,7 +93,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    ```diff
    +pnpm run build
    +git add dist
-   npx lint-staged
+   pnpx lint-staged
    ```
 
 2. Create an [`action.yml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).

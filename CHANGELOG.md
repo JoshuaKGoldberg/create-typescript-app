@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.0...2.42.1) (2025-05-15)
+
+### Bug Fixes
+
+- correct transition path of removed accessibility-alt-text-bot.yml ([5ed6338](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5ed63383110bca4c617f7e1ad20bacb588f5ed80))
+
 # [2.42.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.2...2.42.0) (2025-05-06)
 
 ### Features

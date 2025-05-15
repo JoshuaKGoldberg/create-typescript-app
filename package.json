@@ -47,7 +47,7 @@
 		"git-url-parse": "^16.0.1",
 		"github-default-labels": "^0.1.0",
 		"html-to-text": "^9.0.5",
-		"image-size": "^1.2.0",
+		"image-size": "^2.0.0",
 		"input-from-file": "^0.5.4",
 		"input-from-file-json": "^0.5.4",
 		"input-from-script": "^0.5.4",

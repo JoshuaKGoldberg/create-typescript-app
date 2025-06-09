@@ -1,16 +1,16 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
-import { blockTSup } from "./blockTSup.js";
+import { blockTSDown } from "./blockTSDown.js";
 import { optionsBase } from "./options.fakes.js";
 
 vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockTSup", () => {
+describe("blockTSDown", () => {
 	test("without addons or mode", () => {
-		const creation = testBlock(blockTSup, {
+		const creation = testBlock(blockTSDown, {
 			options: optionsBase,
 		});
 
@@ -22,7 +22,7 @@ describe("blockTSup", () => {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
 
 			\`\`\`shell
 			pnpm build
@@ -72,10 +72,10 @@ describe("blockTSup", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsup": "8.4.0",
+			            "tsdown": "0.12.7",
 			          },
 			          "scripts": {
-			            "build": "tsup",
+			            "build": "tsdown",
 			          },
 			        },
 			      },
@@ -94,9 +94,9 @@ describe("blockTSup", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsup.config.ts": "import { defineConfig } from "tsup";
+			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"bundle":false,"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib"});
+			export default defineConfig({"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib","unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -105,7 +105,7 @@ describe("blockTSup", () => {
 	});
 
 	test("transition mode", () => {
-		const creation = testBlock(blockTSup, {
+		const creation = testBlock(blockTSDown, {
 			mode: "transition",
 			options: optionsBase,
 		});
@@ -118,7 +118,7 @@ describe("blockTSup", () => {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
 
 			\`\`\`shell
 			pnpm build
@@ -168,10 +168,10 @@ describe("blockTSup", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsup": "8.4.0",
+			            "tsdown": "0.12.7",
 			          },
 			          "scripts": {
-			            "build": "tsup",
+			            "build": "tsdown",
 			          },
 			        },
 			      },
@@ -206,6 +206,7 @@ describe("blockTSup", () => {
 			          "babel.config.*",
 			          "dist",
 			          "lib",
+			          "tsup.config.*",
 			        ],
 			      },
 			      "block": [Function],
@@ -221,9 +222,9 @@ describe("blockTSup", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsup.config.ts": "import { defineConfig } from "tsup";
+			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"bundle":false,"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib"});
+			export default defineConfig({"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib","unbundle":true});
 			",
 			  },
 			}
@@ -231,7 +232,7 @@ describe("blockTSup", () => {
 	});
 
 	test("with addons", () => {
-		const creation = testBlock(blockTSup, {
+		const creation = testBlock(blockTSDown, {
 			addons: {
 				entry: ["!src/**/*.test.ts"],
 			},
@@ -246,7 +247,7 @@ describe("blockTSup", () => {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
 
 			\`\`\`shell
 			pnpm build
@@ -296,10 +297,10 @@ describe("blockTSup", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsup": "8.4.0",
+			            "tsdown": "0.12.7",
 			          },
 			          "scripts": {
-			            "build": "tsup",
+			            "build": "tsdown",
 			          },
 			        },
 			      },
@@ -318,9 +319,9 @@ describe("blockTSup", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsup.config.ts": "import { defineConfig } from "tsup";
+			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"bundle":false,"clean":true,"dts":true,"entry":["src/**/*.ts","!src/**/*.test.ts"],"format":"esm","outDir":"lib"});
+			export default defineConfig({"clean":true,"dts":true,"entry":["src/**/*.ts","!src/**/*.test.ts"],"format":"esm","outDir":"lib","unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -329,10 +330,10 @@ describe("blockTSup", () => {
 	});
 
 	describe("intake", () => {
-		it("returns nothing when tsup.config.ts passes nothing to defineConfig", () => {
-			const actual = testIntake(blockTSup, {
+		it("returns nothing when tsdown.config.ts passes nothing to defineConfig", () => {
+			const actual = testIntake(blockTSDown, {
 				files: {
-					"tsup.config.ts": [`defineConfig()`],
+					"tsdown.config.ts": [`defineConfig()`],
 				},
 				options: optionsBase,
 			});
@@ -340,10 +341,10 @@ describe("blockTSup", () => {
 			expect(actual).toEqual(undefined);
 		});
 
-		it("returns nothing when tsup.config.ts passes invalid syntax to defineConfig", () => {
-			const actual = testIntake(blockTSup, {
+		it("returns nothing when tsdown.config.ts passes invalid syntax to defineConfig", () => {
+			const actual = testIntake(blockTSDown, {
 				files: {
-					"tsup.config.ts": [`defineConfig({ ! })`],
+					"tsdown.config.ts": [`defineConfig({ ! })`],
 				},
 				options: optionsBase,
 			});
@@ -351,11 +352,11 @@ describe("blockTSup", () => {
 			expect(actual).toEqual(undefined);
 		});
 
-		it("returns entry when it exists alone in tsup.config.ts", () => {
-			const actual = testIntake(blockTSup, {
+		it("returns entry when it exists alone in tsdown.config.ts", () => {
+			const actual = testIntake(blockTSDown, {
 				files: {
-					"tsup.config.ts": [
-						`import { defineConfig } from "tsup";
+					"tsdown.config.ts": [
+						`import { defineConfig } from "tsdown";
 	
 export default defineConfig({
 	entry: ["src/**/*.ts", "!src/**/*.test.*"],
@@ -372,14 +373,14 @@ export default defineConfig({
 			});
 		});
 
-		it("returns other properties when they exists without entry in tsup.config.ts", () => {
-			const actual = testIntake(blockTSup, {
+		it("returns other properties when they exists without entry in tsdown.config.ts", () => {
+			const actual = testIntake(blockTSDown, {
 				files: {
-					"tsup.config.ts": [
-						`import { defineConfig } from "tsup";
+					"tsdown.config.ts": [
+						`import { defineConfig } from "tsdown";
 	
 export default defineConfig({
-	bundle: false,
+	unbundle: true,
 	format: "esm",
 });
 	`,
@@ -390,14 +391,40 @@ export default defineConfig({
 
 			expect(actual).toEqual({
 				properties: {
-					bundle: false,
 					format: "esm",
+					unbundle: true,
 				},
 			});
 		});
 
-		it("returns entry and other properties when they all exist in tsup.config.ts", () => {
-			const actual = testIntake(blockTSup, {
+		it("returns entry and other properties when they all exist in tsdown.config.ts", () => {
+			const actual = testIntake(blockTSDown, {
+				files: {
+					"tsdown.config.ts": [
+						`import { defineConfig } from "tsdown";
+	
+export default defineConfig({
+	unbundle: true,
+	entry: ["src/**/*.ts", "!src/**/*.test.*"],
+	format: "esm",
+});
+	`,
+					],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({
+				entry: ["src/**/*.ts", "!src/**/*.test.*"],
+				properties: {
+					format: "esm",
+					unbundle: true,
+				},
+			});
+		});
+
+		it("returns entry and other properties other than bundle when they all exist in tsup.config.ts", () => {
+			const actual = testIntake(blockTSDown, {
 				files: {
 					"tsup.config.ts": [
 						`import { defineConfig } from "tsup";
@@ -416,7 +443,6 @@ export default defineConfig({
 			expect(actual).toEqual({
 				entry: ["src/**/*.ts", "!src/**/*.test.*"],
 				properties: {
-					bundle: false,
 					format: "esm",
 				},
 			});

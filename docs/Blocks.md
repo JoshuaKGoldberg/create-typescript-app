@@ -50,16 +50,16 @@ This table summarizes each block and which base levels they're included in:
 | Renovate                     | `--add-renovate`, `--exclude-renovate`                                         |         |        | 💯         |
 | Security Docs                | `--add-security-docs`, `--exclude-security-docs`                               | ✔️      | ✅     | 💯         |
 | Templated With               | `--add-templated-with`, `--exclude-templated-with`                             | ✔️      | ✅     | 💯         |
-| TSup                         | `--add-tsup`, `--exclude-tsup`                                                 | ✔️      | ✅     | 💯         |
+| TSDown                       | `--add-tsdown`, `--exclude-tsdown`                                             | ✔️      | ✅     | 💯         |
 | TypeScript                   | `--add-typescript`, `--exclude-typescript`                                     | ✔️      | ✅     | 💯         |
 | Vitest                       | `--add-vitest`, `--exclude-vitest`                                             |         | ✅     | 💯         |
 | VS Code                      | `--add-vs-code`, `--exclude-vs-code`                                           |         |        | 💯         |
 | Web-ext                      | `--add-web-ext`, `--exclude-web-ext`                                           |         |        |            |
 
-For example, this uses ncc instead of the default tsup builder:
+For example, this uses ncc instead of the default tsdown builder:
 
 ```shell
-npx create-typescript-app --add-ncc --exclude-tsup
+npx create-typescript-app --add-ncc --exclude-tsdown
 ```
 
 See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.
@@ -82,7 +82,7 @@ We strongly recommend using at least the [_"common"_ base level](#common-base-le
 
 ### Building
 
-[**tsup**](https://tsup.egoist.dev): Builds output definitions and JavaScript files using [esbuild](https://esbuild.github.io).
+[**tsdown**](https://tsdown.dev): Builds output definitions and JavaScript files.
 Each `*.ts` source file within `src/` is built into `.d.ts` and `.js` output files in `lib/`.
 
 Building once:

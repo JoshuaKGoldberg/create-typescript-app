@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { blockPackageJson } from "./blockPackageJson.js";
-import { blockTSup } from "./blockTSup.js";
+import { blockTSDown } from "./blockTSDown.js";
 
 export const blockMain = base.createBlock({
 	about: {
@@ -22,7 +22,7 @@ export const blockMain = base.createBlock({
 						main: filePath,
 					},
 				}),
-				blockTSup({
+				blockTSDown({
 					runInCI: [
 						`node ${filePath}${runArgs.map((arg) => ` ${arg}`).join("")}`,
 					],

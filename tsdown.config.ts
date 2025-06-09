@@ -1,10 +1,10 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
-	bundle: false,
 	clean: true,
 	dts: true,
 	entry: ["src/**/*.ts", "!src/**/*.test.*"],
 	format: "esm",
 	outDir: "lib",
+	unbundle: true,
 });

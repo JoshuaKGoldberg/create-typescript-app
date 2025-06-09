@@ -41,7 +41,7 @@ import { blockReleaseIt } from "./blockReleaseIt.js";
 import { blockRenovate } from "./blockRenovate.js";
 import { blockSecurityDocs } from "./blockSecurityDocs.js";
 import { blockTemplatedWith } from "./blockTemplatedWith.js";
-import { blockTSup } from "./blockTSup.js";
+import { blockTSDown } from "./blockTSDown.js";
 import { blockTypeScript } from "./blockTypeScript.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
@@ -91,7 +91,7 @@ export const blocks = {
 	blockRenovate,
 	blockSecurityDocs,
 	blockTemplatedWith,
-	blockTSup,
+	blockTSDown,
 	blockTypeScript,
 	blockVitest,
 	blockVSCode,
@@ -142,7 +142,7 @@ export { blockReleaseIt } from "./blockReleaseIt.js";
 export { blockRenovate } from "./blockRenovate.js";
 export { blockSecurityDocs } from "./blockSecurityDocs.js";
 export { blockTemplatedWith } from "./blockTemplatedWith.js";
-export { blockTSup } from "./blockTSup.js";
+export { blockTSDown } from "./blockTSDown.js";
 export { blockTypeScript } from "./blockTypeScript.js";
 export { blockVitest } from "./blockVitest.js";
 export { blockVSCode } from "./blockVSCode.js";

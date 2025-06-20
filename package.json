@@ -74,7 +74,7 @@
 	},
 	"devDependencies": {
 		"@eslint-community/eslint-plugin-eslint-comments": "4.5.0",
-		"@eslint/js": "9.22.0",
+		"@eslint/js": "9.29.0",
 		"@prettier/sync": "0.5.3",
 		"@release-it/conventional-changelog": "10.0.0",
 		"@types/eslint-plugin-markdown": "2.0.2",
@@ -93,7 +93,7 @@
 		"bingo-testers": "0.5.7",
 		"console-fail-test": "0.5.0",
 		"cspell": "8.17.5",
-		"eslint": "9.22.0",
+		"eslint": "9.29.0",
 		"eslint-plugin-jsdoc": "50.6.8",
 		"eslint-plugin-jsonc": "2.20.0",
 		"eslint-plugin-markdown": "5.1.0",

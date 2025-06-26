@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.1...2.43.0) (2025-06-26)
+
+### Features
+
+- draft PR in blockCTATransitions when package.json engines is changed ([#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)) ([84f2205](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/84f220557e1de65b73e3767259a54e3caf67f57a)), closes [#2185](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2185)
+
 ## [2.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.0...2.42.1) (2025-05-15)
 
 ### Bug Fixes

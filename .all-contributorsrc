@@ -397,6 +397,13 @@
 			"avatar_url": "https://avatars.githubusercontent.com/u/105541001?v=4",
 			"profile": "https://github.com/astrochemx",
 			"contributions": ["code"]
+		},
+		{
+			"login": "birkskyum",
+			"name": "Birk Skyum",
+			"avatar_url": "https://avatars.githubusercontent.com/u/74932975?v=4",
+			"profile": "https://github.com/birkskyum",
+			"contributions": ["ideas"]
 		}
 	],
 	"contributorsPerLine": 7,

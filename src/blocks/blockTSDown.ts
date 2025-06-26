@@ -1,3 +1,4 @@
+import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -13,7 +14,6 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 import { CommandPhase } from "./phases.js";
-import removeUndefinedObjects from "remove-undefined-objects";
 
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());

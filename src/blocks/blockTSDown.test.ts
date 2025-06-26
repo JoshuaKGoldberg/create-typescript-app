@@ -3,7 +3,6 @@ import { describe, expect, it, test } from "vitest";
 
 import { blockTSDown } from "./blockTSDown.js";
 import { optionsBase } from "./options.fakes.js";
-import { clean } from "semver";
 
 describe("blockTSDown", () => {
 	test("without addons or options", () => {
@@ -375,7 +374,7 @@ describe("blockTSDown", () => {
 		});
 
 		it("returns the properties when tsdown.config.ts contains other properties", () => {
-			const properties = { dts: false, clean: false, format: "cjs" };
+			const properties = { clean: false, dts: false, format: "cjs" };
 
 			const actual = testIntake(blockTSDown, {
 				files: {

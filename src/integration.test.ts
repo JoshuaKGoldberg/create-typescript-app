@@ -95,6 +95,10 @@ If you're interested in learning more, see the 'getting started' docs on:
 									"error",
 									{ allowBoolean: true, allowNullish: true, allowNumber: true },
 								],
+								"n/no-unsupported-features/node-builtins": [
+									"error",
+									{ allowExperimental: true, ignores: ["import.meta.dirname"] },
+								],
 							},
 						},
 					],

@@ -178,7 +178,7 @@ describe("blockVitest", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "3.0.9",
-			            "@vitest/eslint-plugin": "1.1.38",
+			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
 			            "vitest": "3.0.9",
 			          },
@@ -424,7 +424,7 @@ describe("blockVitest", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "3.0.9",
-			            "@vitest/eslint-plugin": "1.1.38",
+			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
 			            "vitest": "3.0.9",
 			          },
@@ -708,7 +708,7 @@ describe("blockVitest", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "3.0.9",
-			            "@vitest/eslint-plugin": "1.1.38",
+			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
 			            "vitest": "3.0.9",
 			          },
@@ -963,7 +963,7 @@ describe("blockVitest", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "3.0.9",
-			            "@vitest/eslint-plugin": "1.1.38",
+			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
 			            "vitest": "3.0.9",
 			          },

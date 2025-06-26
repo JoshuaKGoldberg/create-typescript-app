@@ -22,7 +22,7 @@ describe("blockNvmrc", () => {
 		const creation = testBlock(blockNvmrc, {
 			options: {
 				...optionsBase,
-				node: { minimum: ">=18.3.0", pinned: "20.18.0" },
+				node: { minimum: ">=20.19.0", pinned: "24.3.0" },
 			},
 		});
 
@@ -33,7 +33,7 @@ describe("blockNvmrc", () => {
 				}),
 			],
 			files: {
-				".nvmrc": `20.18.0\n`,
+				".nvmrc": `24.3.0\n`,
 			},
 		});
 	});

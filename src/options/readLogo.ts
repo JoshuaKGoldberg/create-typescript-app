@@ -1,3 +1,5 @@
+import * as fs from "node:fs/promises";
+
 import { readLogoSizing } from "./readLogoSizing.js";
 
 export async function readLogo(getReadme: () => Promise<string>) {
@@ -24,9 +26,14 @@ export async function readLogo(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
+	// TODO: imageSize does not go through take(input*), making it harder to test.
+	// It takes either a string (fs access) or buffer data (not in bingo-fs).
+	// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1993
+	const bufferData = await fs.readFile(src);
+
 	return {
 		alt,
 		src,
-		...readLogoSizing(src),
+		...readLogoSizing(bufferData),
 	};
 }

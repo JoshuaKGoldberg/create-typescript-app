@@ -7,9 +7,7 @@ export interface OptionsLogoSizing {
 	width?: number;
 }
 
-export function readLogoSizing(
-	src: string | Uint8Array,
-): OptionsLogoSizing | undefined {
+export function readLogoSizing(src: Uint8Array): OptionsLogoSizing | undefined {
 	const size = imageSizeSafe(src);
 	if (!size) {
 		return undefined;
@@ -32,7 +30,7 @@ export function readLogoSizing(
 		: { height: (size.height / size.width) * maximum, width: maximum };
 }
 
-function imageSizeSafe(src: string | Uint8Array) {
+function imageSizeSafe(src: Uint8Array) {
 	try {
 		// TODO: imageSize does not go through take(input*), making it harder to test.
 		// It takes either a string (fs access) or buffer data (not in bingo-fs).

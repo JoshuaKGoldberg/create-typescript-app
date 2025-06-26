@@ -2,6 +2,10 @@ import { describe, expect, it, vi } from "vitest";
 
 import { readLogo } from "./readLogo.js";
 
+vi.mock("node:fs/promises", () => ({
+	readFile: vi.fn(() => Promise.resolve(Buffer.from([0]))),
+}));
+
 const mockReadLogoSizing = vi.fn().mockResolvedValue({});
 
 vi.mock("./readLogoSizing.js", () => ({

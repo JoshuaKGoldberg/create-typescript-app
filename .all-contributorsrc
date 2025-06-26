@@ -67,21 +67,14 @@
 			"name": "Ron Jean-Francois",
 			"avatar_url": "https://avatars.githubusercontent.com/u/105710107?v=4",
 			"profile": "http://ronjeanfrancois.com",
-			"contributions": [
-				"code",
-				"infra"
-			]
+			"contributions": ["code",	"infra"]
 		},
 		{
 			"login": "nowyDEV",
 			"name": "Dominik Nowik",
 			"avatar_url": "https://avatars.githubusercontent.com/u/12304307?v=4",
 			"profile": "https://github.com/nowyDEV",
-			"contributions": [
-				"tool",
-				"code",
-				"ideas"
-			]
+			"contributions": ["tool", "code", "ideas"]
 		},
 		{
 			"login": "TAKANOME-DEV",
@@ -102,21 +95,14 @@
 			"name": "Joe Previte",
 			"avatar_url": "https://avatars.githubusercontent.com/u/3806031?v=4",
 			"profile": "https://typescriptcourse.com/tutorials",
-			"contributions": [
-				"bug",
-				"code"
-			]
+			"contributions": ["bug", "code"]
 		},
 		{
 			"login": "navin-moorthy",
 			"name": "Navin Moorthy",
 			"avatar_url": "https://avatars.githubusercontent.com/u/39694575?v=4",
 			"profile": "https://navinmoorthy.me/",
-			"contributions": [
-				"bug",
-				"code",
-				"ideas"
-			]
+			"contributions": ["bug", "code", "ideas"]
 		},
 		{
 			"login": "garuna-m6",
@@ -144,11 +130,7 @@
 			"name": "Ron Braha",
 			"avatar_url": "https://avatars.githubusercontent.com/u/45559220?v=4",
 			"profile": "https://linktr.ee/ronbraha",
-			"contributions": [
-				"code",
-				"design",
-				"test"
-			]
+			"contributions": ["code", "design", "test"]
 		},
 		{
 			"login": "tungbq",
@@ -162,10 +144,7 @@
 			"name": "Orta Therox",
 			"avatar_url": "https://avatars.githubusercontent.com/u/49038?v=4",
 			"profile": "https://orta.io",
-			"contributions": [
-				"code",
-				"ideas"
-			]
+			"contributions": ["code", "ideas"]
 		},
 		{
 			"login": "promise-dash",
@@ -193,10 +172,7 @@
 			"name": "Ryota Murakami",
 			"avatar_url": "https://avatars.githubusercontent.com/u/5501268?v=4",
 			"profile": "https://ryota-murakami.github.io/",
-			"contributions": [
-				"code",
-				"bug"
-			]
+			"contributions": ["code", "bug"]
 		},
 		{
 			"login": "ruthwikreddy09",
@@ -231,28 +207,21 @@
 			"name": "Daniel",
 			"avatar_url": "https://avatars.githubusercontent.com/u/72567464?v=4",
 			"profile": "https://github.com/DanexQ",
-			"contributions": [
-				"infra"
-			]
+			"contributions": ["infra"]
 		},
 		{
 			"login": "jaas666",
 			"name": "Juan A.",
 			"avatar_url": "https://avatars.githubusercontent.com/u/30204147?v=4",
 			"profile": "https://github.com/jaas666",
-			"contributions": [
-				"code",
-				"doc"
-			]
+			"contributions": ["code", "doc"]
 		},
 		{
 			"login": "katt",
 			"name": "Alex / KATT",
 			"avatar_url": "https://avatars.githubusercontent.com/u/459267?v=4",
 			"profile": "https://katt.dev",
-			"contributions": [
-				"bug"
-			]
+			"contributions": ["bug"]
 		},
 		{
 			"login": "dertimonius",
@@ -273,9 +242,7 @@
 			"name": "Swastik Patel",
 			"avatar_url": "https://avatars.githubusercontent.com/u/107865087?v=4",
 			"profile": "https://github.com/mrswastik-robot",
-			"contributions": [
-				"doc"
-			]
+			"contributions": ["doc"]
 		},
 		{
 			"login": "gv14982",
@@ -331,20 +298,14 @@
 			"name": "lcforbes",
 			"avatar_url": "https://avatars.githubusercontent.com/u/42080532?v=4",
 			"profile": "https://github.com/lcforbes",
-			"contributions": [
-				"bug"
-			]
+			"contributions": ["bug"]
 		},
 		{
 			"login": "danvk",
 			"name": "Dan Vanderkam",
 			"avatar_url": "https://avatars.githubusercontent.com/u/98301?v=4",
 			"profile": "https://effectivetypescript.com",
-			"contributions": [
-				"bug",
-				"ideas",
-				"tool"
-			]
+			"contributions": ["bug", "ideas", "tool"]
 		},
 		{
 			"login": "nandertga",
@@ -358,10 +319,7 @@
 			"name": "Demian Parkhomenko",
 			"avatar_url": "https://avatars.githubusercontent.com/u/95881717?v=4",
 			"profile": "https://linktr.ee/DemianParkhomenko",
-			"contributions": [
-				"bug",
-				"code"
-			]
+			"contributions": ["bug", "code"]
 		},
 		{
 			"login": "niklas-wortmann",
@@ -375,46 +333,35 @@
 			"name": "rubiesonthesky",
 			"avatar_url": "https://avatars.githubusercontent.com/u/2591240?v=4",
 			"profile": "https://github.com/rubiesonthesky",
-			"contributions": [
-				"ideas",
-				"code"
-			]
+			"contributions": ["ideas", "code"]
 		},
 		{
 			"login": "FarazPatankar",
 			"name": "Faraz Patankar",
 			"avatar_url": "https://avatars.githubusercontent.com/u/10681116?v=4",
 			"profile": "https://farazpatankar.com/",
-			"contributions": [
-				"bug"
-			]
+			"contributions": ["bug"]
 		},
 		{
 			"login": "fb55",
 			"name": "Felix Boehm",
 			"avatar_url": "https://avatars.githubusercontent.com/u/188768?v=4",
 			"profile": "https://feedic.com",
-			"contributions": [
-				"bug"
-			]
+			"contributions": ["bug"]
 		},
 		{
 			"login": "atilafassina",
 			"name": "Atila Fassina",
 			"avatar_url": "https://avatars.githubusercontent.com/u/2382552?v=4",
 			"profile": "https://atila.io",
-			"contributions": [
-				"bug"
-			]
+			"contributions": ["bug"]
 		},
 		{
 			"login": "valon-loshaj",
 			"name": "Valon",
 			"avatar_url": "https://avatars.githubusercontent.com/u/73202963?v=4",
 			"profile": "https://github.com/valon-loshaj",
-			"contributions": [
-				"doc"
-			]
+			"contributions": ["doc"]
 		},
 		{
 			"login": "voxpelli",

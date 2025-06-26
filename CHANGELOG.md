@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.44.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.0...2.44.1) (2025-06-26)
+
+### Bug Fixes
+
+- update image-size to v2 ([#2232](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2232)) ([016fc0d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/016fc0da5afcd6d65ff670d4e9247d8764053eaf)), closes [#2231](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2231) [#1948](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1948)
+
 # [2.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.43.0...2.44.0) (2025-06-26)
 
 ### Features

@@ -70,10 +70,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -191,10 +191,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -348,10 +348,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -546,14 +546,14 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/eslint-plugin-markdown": "2.0.2",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
+			            "eslint": "9.29.0",
 			            "eslint-plugin-markdown": "5.1.0",
-			            "eslint-plugin-regexp": "2.7.0",
+			            "eslint-plugin-regexp": "2.9.0",
 			            "eslint-plugin-unknown": "1.2.3",
-			            "typescript-eslint": "8.26.1",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -696,10 +696,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -838,10 +838,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -976,10 +976,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1102,10 +1102,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1225,10 +1225,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1348,10 +1348,10 @@ describe("blockESLint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "9.22.0",
+			            "@eslint/js": "9.29.0",
 			            "@types/node": "22.13.10",
-			            "eslint": "9.22.0",
-			            "typescript-eslint": "8.26.1",
+			            "eslint": "9.29.0",
+			            "typescript-eslint": "8.35.0",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",

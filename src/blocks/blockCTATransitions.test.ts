@@ -32,6 +32,11 @@ describe("blockCTATransitions", () => {
 			      "transition": {
 			        "action.yml": "description: Runs create-typescript-app in transition mode
 
+			inputs:
+			  token:
+			    description: GitHub personal access token with repo, workflow, and read:org permissions.
+			    required: true
+
 			name: Transition
 
 			runs:
@@ -59,6 +64,19 @@ describe("blockCTATransitions", () => {
 			           — _The Friendly Bingo Bot_ 💝
 
 			          > ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your \`.github/workflows/cta-transitions.yml\` file.
+			    - id: package-change
+			      uses: JoshuaKGoldberg/package-change-detector-action@0.1.0
+			      with:
+			        properties: engines
+			    - if: steps.package-change.outputs.changed == 'true'
+			      uses: JoshuaKGoldberg/draft-pull-request-once-action@0.0.1
+			      with:
+			        github-token: \${{ inputs.token }}
+			        message: |-
+			          🤖 Beep boop! This PR changes the \`engines\` field in \`package.json\`. That might be a breaking change. It's been set to a draft so that it doesn't automatically merge. Go ahead and un-draft the PR if the change is ready for release.
+
+			          Cheers!
+			           — _The Friendly Bingo Bot_ 💝
 			  using: composite
 			",
 			      },
@@ -79,6 +97,8 @@ describe("blockCTATransitions", () => {
 			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - if: steps.checkout.outcome != 'skipped'
 			        uses: ./.github/actions/transition
+			        with:
+			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - if: steps.checkout.outcome == 'skipped'
 			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'
 

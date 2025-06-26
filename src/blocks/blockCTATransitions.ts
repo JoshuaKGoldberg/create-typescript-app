@@ -30,6 +30,13 @@ export const blockCTATransitions = base.createBlock({
 						transition: {
 							"action.yml": formatYaml({
 								description: "Runs create-typescript-app in transition mode",
+								inputs: {
+									token: {
+										description:
+											"GitHub personal access token with repo, workflow, and read:org permissions.",
+										required: true,
+									},
+								},
 								name: "Transition",
 								runs: {
 									steps: [
@@ -75,6 +82,34 @@ export const blockCTATransitions = base.createBlock({
 												].join("\n"),
 											},
 										},
+										{
+											id: "package-change",
+											uses: resolveUses(
+												"JoshuaKGoldberg/package-change-detector-action",
+												"0.1.0",
+												options.workflowsVersions,
+											),
+											with: {
+												properties: "engines",
+											},
+										},
+										{
+											if: `steps.package-change.outputs.changed == 'true'`,
+											uses: resolveUses(
+												"JoshuaKGoldberg/draft-pull-request-once-action",
+												"0.0.1",
+												options.workflowsVersions,
+											),
+											with: {
+												"github-token": "${{ inputs.token }}",
+												message: [
+													"🤖 Beep boop! This PR changes the `engines` field in `package.json`. That might be a breaking change. It's been set to a draft so that it doesn't automatically merge. Go ahead and un-draft the PR if the change is ready for release.",
+													"",
+													"Cheers!",
+													" — _The Friendly Bingo Bot_ 💝",
+												].join("\n"),
+											},
+										},
 									],
 									using: "composite",
 								},
@@ -113,6 +148,9 @@ export const blockCTATransitions = base.createBlock({
 								{
 									if: "steps.checkout.outcome != 'skipped'",
 									uses: "./.github/actions/transition",
+									with: {
+										token: "${{ secrets.ACCESS_TOKEN }}",
+									},
 								},
 								{
 									if: "steps.checkout.outcome == 'skipped'",

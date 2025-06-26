@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.44.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.1...2.44.2) (2025-06-26)
+
+### Bug Fixes
+
+- bump Prettier to 3.6, along with related deps ([#2233](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2233)) ([c228205](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c2282059698465d5ef9387eda017d37509677903)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2161](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2161)
+
 ## [2.44.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.0...2.44.1) (2025-06-26)
 
 ### Bug Fixes

@@ -404,6 +404,5 @@
 	"files": ["README.md"],
 	"projectName": "create-typescript-app",
 	"projectOwner": "JoshuaKGoldberg",
-	"repoType": "github",
-	"commitConvention": "angular"
+	"repoType": "github"
 }

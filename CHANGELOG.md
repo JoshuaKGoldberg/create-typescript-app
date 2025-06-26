@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.45.0...2.46.0) (2025-06-26)
+
+### Features
+
+- switch from tsup to tsdown ([#2224](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2224)) ([5ea7d3e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5ea7d3e653d4f1d71fef28c7189a68f73fcd7d7f)), closes [#2223](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2223)
+
 # [2.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.6...2.45.0) (2025-06-26)
 
 ### Features

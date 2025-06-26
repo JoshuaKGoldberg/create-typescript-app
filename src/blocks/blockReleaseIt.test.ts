@@ -137,7 +137,7 @@ describe("blockReleaseIt", () => {
 			",
 			      },
 			    },
-			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"publishArgs":["--access public","--provenance"]},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"angular","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
+			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"publishArgs":["--access public","--provenance"]},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
 			  },
 			}
 		`);
@@ -296,7 +296,7 @@ describe("blockReleaseIt", () => {
 			",
 			      },
 			    },
-			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"publishArgs":["--access public","--provenance"]},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"angular","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
+			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"publishArgs":["--access public","--provenance"]},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
 			  },
 			}
 		`);

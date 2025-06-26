@@ -178,7 +178,7 @@ export const blockReleaseIt = base.createBlock({
 					plugins: {
 						"@release-it/conventional-changelog": {
 							infile: "CHANGELOG.md",
-							preset: "angular",
+							preset: "conventionalcommits",
 							types: [
 								{ section: "Features", type: "feat" },
 								{ section: "Bug Fixes", type: "fix" },

@@ -56,6 +56,7 @@ Each defaults to a value based on the running system, including an repository if
 | `--pnpm`       | `string`   | pnpm version for `package.json`'s `packageManager` field                                                            | Existing value in `package.json` if it exists                                                  |
 | `--repository` | `string`   | Name for the new repository                                                                                         | The same as `--directory`                                                                      |
 | `--title`      | `string`   | 'Title Case' title for the repository                                                                               | Title-cased `repository`                                                                       |
+| `--type`       | `string`   | package.json modules type                                                                                           | Existing value in `package.json` if it exists, or `"module"`                                   |
 | `--version`    | `string`   | package version to publish as and store in `package.json`                                                           | Existing value in `package.json` if it exists, or `"0.0.0"`                                    |
 | `--words`      | `string[]` | additional words to add to the CSpell dictionary                                                                    | Existing `words` in a `cspell.json` file if it exists, and any new words in from other options |
 
@@ -65,11 +66,11 @@ For example, customizing the npm author and funding source to different values t
 npx create-typescript-app --author my-npm-username --funding MyGitHubOrganization
 ```
 
-Array flags can be specified as space-delineated strings and/or multiple times.
-For example, customizing keywords to three:
+Array flags can be specified as multiple times.
+For example, customizing keywords to two:
 
 ```shell
-npx create-typescript-app --keywords eslint --keywords "javascript typescript"
+npx create-typescript-app --keywords eslint --keywords typescript
 ```
 
 ## Block Exclusion Flags

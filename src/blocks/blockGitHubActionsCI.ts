@@ -2,20 +2,12 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { intakeFileYamlSteps, zActionStep } from "./actions/steps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { formatYamlAction } from "./files/formatYamlAction.js";
-
-export const zActionStep = z.intersection(
-	z.object({
-		env: z.record(z.string(), z.string()).optional(),
-		if: z.string().optional(),
-		with: z.record(z.string(), z.string()).optional(),
-	}),
-	z.union([z.object({ run: z.string() }), z.object({ uses: z.string() })]),
-);
+import { formatYaml } from "./files/formatYaml.js";
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
@@ -32,9 +24,37 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
+		nodeVersion: z.union([z.number(), z.string()]).optional(),
+	},
+	intake({ files }) {
+		const steps = intakeFileYamlSteps(
+			files,
+			[".github", "actions", "prepare", "action.yml"],
+			["runs", "steps"],
+		);
+		if (!steps) {
+			return undefined;
+		}
+
+		const setupNodeStep = steps.find(
+			(step) =>
+				typeof step.uses === "string" &&
+				step.uses.startsWith("actions/setup-node"),
+		);
+		if (!setupNodeStep) {
+			return undefined;
+		}
+
+		const nodeVersion = setupNodeStep.with?.["node-version"];
+		if (!nodeVersion) {
+			return undefined;
+		}
+
+		return { nodeVersion };
 	},
 	produce({ addons, options }) {
-		const { jobs } = addons;
+		const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
+			addons;
 
 		return {
 			addons: [
@@ -46,7 +66,7 @@ export const blockGitHubActionsCI = base.createBlock({
 				".github": {
 					actions: {
 						prepare: {
-							"action.yml": formatYamlAction({
+							"action.yml": formatYaml({
 								description: "Prepares the repo for a typical CI job",
 								name: "Prepare",
 								runs: {
@@ -64,7 +84,10 @@ export const blockGitHubActionsCI = base.createBlock({
 												"v4",
 												options.workflowsVersions,
 											),
-											with: { cache: "pnpm", "node-version": "20" },
+											with: {
+												cache: "pnpm",
+												"node-version": nodeVersion,
+											},
 										},
 										{
 											run: "pnpm install --frozen-lockfile",
@@ -77,34 +100,6 @@ export const blockGitHubActionsCI = base.createBlock({
 						},
 					},
 					workflows: {
-						"accessibility-alt-text-bot.yml": createSoloWorkflowFile({
-							if: "${{ !endsWith(github.actor, '[bot]') }}",
-							name: "Accessibility Alt Text Bot",
-							on: {
-								issue_comment: {
-									types: ["created", "edited"],
-								},
-								issues: {
-									types: ["edited", "opened"],
-								},
-								pull_request: {
-									types: ["edited", "opened"],
-								},
-							},
-							permissions: {
-								issues: "write",
-								"pull-requests": "write",
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"github/accessibility-alt-text-bot",
-										"v1.4.0",
-										options.workflowsVersions,
-									),
-								},
-							],
-						}),
 						"ci.yml":
 							jobs &&
 							createMultiWorkflowFile({

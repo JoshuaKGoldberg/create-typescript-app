@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test } from "vitest";
 
 import { blockTypeScript } from "./blockTypeScript.js";
 import { optionsBase } from "./options.fakes.js";
@@ -64,6 +64,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -86,6 +96,14 @@ describe("blockTypeScript", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "project": [
+			          "src/**/*.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -216,6 +234,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -238,6 +266,14 @@ describe("blockTypeScript", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "project": [
+			          "src/**/*.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -298,7 +334,7 @@ describe("blockTypeScript", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"NodeNext","moduleResolution":"NodeNext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2022","strictBindCallApply":false},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"NodeNext","moduleResolution":"NodeNext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2022"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -366,6 +402,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -388,6 +434,14 @@ describe("blockTypeScript", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "project": [
+			          "src/**/*.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -525,6 +579,16 @@ describe("blockTypeScript", () => {
 				}
 				",
 			        },
+			        "usage": [
+			          "\`\`\`shell
+			npm i test-repository
+			\`\`\`
+			\`\`\`ts
+			import { greet } from "test-repository";
+
+			greet("Hello, world! 💖");
+			\`\`\`",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -547,6 +611,14 @@ describe("blockTypeScript", () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "project": [
+			          "src/**/*.ts",
 			        ],
 			      },
 			      "block": [Function],
@@ -619,5 +691,64 @@ describe("blockTypeScript", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when tsconfig.json does not exist", () => {
+			const actual = testIntake(blockTypeScript, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when tsconfig.json does not contain truthy data", () => {
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify(null)],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when tsconfig.json does not contain compilerOptions", () => {
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ other: true })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns compilerOptions when tsconfig.json contains compilerOptions", () => {
+			const compilerOptions = { module: "ESNext" };
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions });
+		});
+
+		it("returns compilerOptions when tsconfig.json contains compilerOptions and other data", () => {
+			const compilerOptions = { module: "ESNext" };
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [
+						JSON.stringify({
+							compilerOptions,
+							other: true,
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions });
+		});
 	});
 });

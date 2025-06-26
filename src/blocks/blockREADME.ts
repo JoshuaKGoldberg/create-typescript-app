@@ -29,18 +29,25 @@ export const blockREADME = base.createBlock({
 	},
 	addons: {
 		badges: z.array(zBadge).default([]),
+		defaultUsage: z.array(z.string()).default([]),
 		notices: z.array(z.string()).default([]),
 		sections: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
-		const { badges, notices, sections } = addons;
+		const { badges, defaultUsage, notices, sections } = addons;
 
 		const explainer =
-			options.explainer && `\n${options.explainer.join("\n")}\n`;
+			options.documentation.readme.explainer &&
+			`\n${options.documentation.readme.explainer}\n`;
 
 		const logo =
 			options.logo &&
 			`\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`;
+
+		const suffixes = [
+			...notices,
+			options.documentation.readme.footnotes,
+		].filter((suffix) => typeof suffix === "string");
 
 		return {
 			files: {
@@ -54,14 +61,17 @@ ${formatBadges(badges)}
 ${[logo, explainer].filter(Boolean).join("")}
 ## Usage
 
-${options.usage}
+${options.documentation.readme.usage ?? defaultUsage.join("\n\n")}
 
 ## Development
 
 See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 Thanks! ${options.emoji}
-${sections.map((section) => `\n${section}`).join("")}
-${notices.length ? `\n${notices.map((notice) => notice.trim()).join("\n\n")}` : ""}`,
+${[...sections, options.documentation.readme.additional]
+	.filter(Boolean)
+	.map((section) => `\n${section}`)
+	.join("")}
+${suffixes.length ? `\n${suffixes.map((suffix) => suffix.trim()).join("\n\n")}` : ""}`,
 			},
 		};
 	},

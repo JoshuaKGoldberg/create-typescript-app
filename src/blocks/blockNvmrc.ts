@@ -12,7 +12,7 @@ export const blockNvmrc = base.createBlock({
 					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				}),
 			],
-			...(options.node?.pinned && {
+			...(options.node.pinned && {
 				files: {
 					".nvmrc": `${options.node.pinned}\n`,
 				},

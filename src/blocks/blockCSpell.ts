@@ -1,3 +1,4 @@
+import JSON5 from "json5";
 import { getObjectStringsDeep } from "object-strings-deep";
 import { z } from "zod";
 
@@ -9,20 +10,38 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { intakeFile } from "./intake/intakeFile.js";
 import { CommandPhase } from "./phases.js";
 
 const filesGlob = `"**" ".github/**/*"`;
+
+const addons = {
+	ignorePaths: z.array(z.string()).default([]),
+	words: z.array(z.string()).default([]),
+};
+
+const zAddons = z.object(addons);
 
 export const blockCSpell = base.createBlock({
 	about: {
 		name: "CSpell",
 	},
-	addons: {
-		ignores: z.array(z.string()).default([]),
-		words: z.array(z.string()).default([]),
+	addons,
+	intake({ files }) {
+		const cspellJson = intakeFile(files, ["cspell.json"]);
+		if (!cspellJson) {
+			return undefined;
+		}
+
+		const { data } = zAddons.safeParse(JSON5.parse<unknown>(cspellJson[0]));
+		if (!data) {
+			return undefined;
+		}
+
+		return data;
 	},
 	produce({ addons, options }) {
-		const { ignores, words } = addons;
+		const { ignorePaths, words } = addons;
 
 		const allWords = Array.from(
 			new Set([...(options.words ?? []), ...words]),
@@ -64,14 +83,16 @@ export const blockCSpell = base.createBlock({
 			files: {
 				"cspell.json": JSON.stringify({
 					dictionaries: ["npm", "node", "typescript"],
-					ignorePaths: [
-						".github",
-						"CHANGELOG.md",
-						"lib",
-						"node_modules",
-						"pnpm-lock.yaml",
-						...ignores,
-					].sort(),
+					ignorePaths: Array.from(
+						new Set([
+							".github",
+							"CHANGELOG.md",
+							"lib",
+							"node_modules",
+							"pnpm-lock.yaml",
+							...ignorePaths,
+						]),
+					).sort(),
 					...(allWords.length && { words: allWords }),
 				}),
 			},

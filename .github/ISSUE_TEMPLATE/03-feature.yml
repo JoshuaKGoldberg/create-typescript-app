@@ -18,8 +18,12 @@ body:
       description: Any additional info you'd like to provide.
       label: Additional Info
     type: textarea
+
 description: Request that a new feature be added or an existing feature improved
+
 labels:
   - "type: feature"
+
 name: 🚀 Feature
+
 title: "🚀 Feature: <short description of the feature>"

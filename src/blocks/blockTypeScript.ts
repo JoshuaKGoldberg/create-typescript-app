@@ -1,3 +1,4 @@
+import sortKeys from "sort-keys";
 import { CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.js";
@@ -7,11 +8,13 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
+import { blockKnip } from "./blockKnip.js";
 import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
 export const blockTypeScript = base.createBlock({
 	about: {
@@ -19,6 +22,17 @@ export const blockTypeScript = base.createBlock({
 	},
 	addons: {
 		compilerOptions: CompilerOptionsSchema.optional(),
+	},
+	intake({ files }) {
+		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
+		const { data } = CompilerOptionsSchema.safeParse(raw?.compilerOptions);
+		if (!data) {
+			return undefined;
+		}
+
+		return {
+			compilerOptions: data,
+		};
 	},
 	produce({ addons, options }) {
 		const { compilerOptions } = addons;
@@ -73,12 +87,25 @@ export * from "./types.js";
 	}
 	`,
 					},
+					usage: [
+						`\`\`\`shell
+npm i ${options.repository}
+\`\`\`
+\`\`\`ts
+import { greet } from "${options.repository}";
+
+greet("Hello, world! ${options.emoji}");
+\`\`\``,
+					],
 				}),
 				blockGitignore({
 					ignores: ["/lib"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+				}),
+				blockKnip({
+					project: ["src/**/*.ts"],
 				}),
 				blockMarkdownlint({
 					ignores: ["lib/"],
@@ -121,7 +148,7 @@ export * from "./types.js";
 			],
 			files: {
 				"tsconfig.json": JSON.stringify({
-					compilerOptions: {
+					compilerOptions: sortKeys({
 						declaration: true,
 						declarationMap: true,
 						esModuleInterop: true,
@@ -133,7 +160,7 @@ export * from "./types.js";
 						strict: true,
 						target: "ES2022",
 						...compilerOptions,
-					},
+					}),
 					include: ["src"],
 				}),
 			},

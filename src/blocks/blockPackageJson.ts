@@ -5,8 +5,8 @@ import { z } from "zod";
 import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.js";
+import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { htmlToTextSafe } from "./html/htmlToTextSafe.js";
 import { CommandPhase } from "./phases.js";
 
 const PackageJsonWithNullableScripts = PackageJson.partial().extend({
@@ -53,26 +53,19 @@ export const blockPackageJson = base.createBlock({
 							devDependencies: Object.keys(devDependencies).length
 								? devDependencies
 								: undefined,
-							...(options.node && {
-								engines: {
-									node: `>=${options.node.minimum}`,
-								},
-							}),
+							engines: {
+								node: `>=${options.node.minimum}`,
+							},
 							...(options.pnpm && {
 								packageManager: `pnpm@${options.pnpm}`,
 							}),
-							files: [
+							files: processFiles([
 								...collectBinFiles(options.bin),
 								...(addons.properties.files ?? []),
 								"package.json",
 								"README.md",
-							]
-								.filter(Boolean)
-								.sort(),
-							keywords: options.keywords?.flatMap((keyword) =>
-								keyword.split(/ /),
-							),
-							license: "MIT",
+							]),
+							keywords: options.keywords,
 							name: options.repository,
 							repository: {
 								type: "git",
@@ -82,7 +75,7 @@ export const blockPackageJson = base.createBlock({
 								...options.packageData?.scripts,
 								...addons.properties.scripts,
 							},
-							type: "module",
+							type: options.type ?? "module",
 							version: options.version ?? "0.0.0",
 						}),
 					),
@@ -114,6 +107,23 @@ function collectBinFiles(bin: Record<string, string> | string | undefined) {
 	const files = typeof bin === "object" ? Object.values(bin) : [bin];
 
 	return files.map((file) => file.replace(/^\.\//, ""));
+}
+
+function processFiles(files: string[]) {
+	// First sort so that shorter entries are first (e.g. "lib/")...
+	const sortedByLength = files
+		.filter(Boolean)
+		.sort((a, b) => a.length - b.length);
+
+	// ...then remove entries captured by earlier directories (e.g. "lib/index.js")
+	return sortedByLength
+		.filter(
+			(file, i) =>
+				!sortedByLength
+					.slice(0, i)
+					.some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
+		)
+		.sort();
 }
 
 function removeRangePrefix(version: string) {

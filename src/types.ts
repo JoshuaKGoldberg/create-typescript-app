@@ -11,18 +11,20 @@ export interface AllContributorsData {
 }
 
 export interface PartialPackageData {
-	author?: string | { email: string; name: string };
+	author?: string | { email?: string; name?: string };
 	bin?: Record<string, string> | string;
 	dependencies?: Record<string, string>;
 	description?: string;
 	devDependencies?: Record<string, string>;
 	email?: string;
 	engines?: { node?: string };
+	keywords?: string[];
 	name?: string;
 	packageManager?: string;
 	publishConfig?: PartialPublishConfig;
 	repository?: string | { type: string; url: string };
 	scripts?: Record<string, string>;
+	type?: "commonjs" | "module";
 	version?: string;
 }
 

@@ -15,7 +15,7 @@ describe("blockPrettier", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
@@ -127,7 +127,7 @@ describe("blockPrettier", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
@@ -209,6 +209,7 @@ describe("blockPrettier", () => {
 			    {
 			      "addons": {
 			        "files": [
+			          ".prettierrc",
 			          ".prettierrc.{c*,js,m*,t*}",
 			          "prettier.config*",
 			        ],
@@ -261,10 +262,12 @@ describe("blockPrettier", () => {
 				ignores: ["generated"],
 				overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				plugins: [
+					"./lib/index.js",
 					"prettier-plugin-curly",
 					"prettier-plugin-packagejson",
 					"prettier-plugin-sh",
 				],
+				runBefore: ["pnpm build || exit 0"],
 			},
 			options: optionsBase,
 		});
@@ -274,7 +277,7 @@ describe("blockPrettier", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
@@ -305,6 +308,9 @@ describe("blockPrettier", () => {
 			          {
 			            "name": "Prettier",
 			            "steps": [
+			              {
+			                "run": "pnpm build || exit 0",
+			              },
 			              {
 			                "run": "pnpm format --list-different",
 			              },
@@ -365,11 +371,12 @@ describe("blockPrettier", () => {
 			/pnpm-lock.yaml
 			generated
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
+			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
 			  },
 			  "scripts": [
 			    {
 			      "commands": [
+			        "pnpm build || exit 0",
 			        "pnpm format --write",
 			      ],
 			      "phase": 4,

@@ -1,13 +1,16 @@
+import { IntakeDirectory } from "bingo-fs";
 import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
+import { zActionStep } from "./actions/steps.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
-import { blockGitHubActionsCI, zActionStep } from "./blockGitHubActionsCI.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
+import { blockKnip } from "./blockKnip.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
@@ -15,6 +18,42 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
+
+const zCoverage = z.object({
+	exclude: z.array(z.string()).optional(),
+	include: z.array(z.string()).optional(),
+});
+
+const zEnvironment = z.string();
+
+const zExclude = z.array(z.string());
+
+const zTest = z
+	.object({
+		coverage: zCoverage,
+		environment: zEnvironment,
+		exclude: zExclude,
+	})
+	.partial();
+
+function intakeFromConfig(files: IntakeDirectory) {
+	const rawData = intakeFileDefineConfig(files, ["vitest.config.ts"]);
+	if (typeof rawData?.test !== "object") {
+		return undefined;
+	}
+
+	const parsedData = zTest.safeParse(rawData.test).data;
+	if (!parsedData) {
+		return undefined;
+	}
+
+	return {
+		coverage: parsedData.coverage,
+		environment: parsedData.environment,
+		exclude: parsedData.exclude,
+	};
+}
 
 export const blockVitest = base.createBlock({
 	about: {
@@ -22,22 +61,29 @@ export const blockVitest = base.createBlock({
 	},
 	addons: {
 		actionSteps: z.array(zActionStep).default([]),
-		coverage: z
-			.object({
-				exclude: z.array(z.string()).optional(),
-				include: z.array(z.string()).optional(),
-			})
-			.default({}),
-		exclude: z.array(z.string()).default([]),
+		coverage: zCoverage.default({}),
+		environment: zEnvironment.optional(),
+		exclude: zExclude.default([]),
+		flags: z.array(z.string()).default([]),
+	},
+	intake({ files, options }) {
+		return {
+			...intakeFromConfig(files),
+			flags: options.packageData?.scripts?.test
+				?.match(/^vitest (.+)/)?.[1]
+				.split(" "),
+		};
 	},
 	produce({ addons }) {
-		const { actionSteps, coverage, exclude = [] } = addons;
-		const excludeText = JSON.stringify(exclude);
+		const { actionSteps, coverage, environment, exclude = [] } = addons;
+		const excludeText = JSON.stringify(
+			Array.from(new Set(["node_modules", ...exclude])).sort(),
+		);
 
 		return {
 			addons: [
 				blockCSpell({
-					ignores: ["coverage"],
+					ignorePaths: ["coverage"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -144,6 +190,9 @@ describe(greet, () => {
 						},
 					],
 				}),
+				blockKnip({
+					entry: ["src/**/*.test.*"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies(
@@ -153,7 +202,7 @@ describe(greet, () => {
 							"vitest",
 						),
 						scripts: {
-							test: "vitest",
+							test: `vitest ${addons.flags.join(" ")}`.trim(),
 						},
 					},
 				}),
@@ -195,8 +244,13 @@ export default defineConfig({
 					: ""
 			}include: ${JSON.stringify(coverage.include)},
 			reporter: ["html", "lcov"],
-		},
-		exclude: [${excludeText.slice(1, excludeText.length - 1)}, "node_modules"],
+		},${
+			environment
+				? `
+		environment: "${environment}",`
+				: ""
+		}
+		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
 		setupFiles: ["console-fail-test/setup"],
 	},
 });

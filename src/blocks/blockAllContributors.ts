@@ -65,14 +65,22 @@ export const blockAllContributors = base.createBlock({
 				}),
 			],
 			files: {
-				".all-contributorsrc": JSON.stringify({
-					badgeTemplate:
-						'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
-					contributors: options.contributors ?? [],
-					contributorsSortAlphabetically: true,
-					projectName: options.repository,
-					projectOwner: options.owner,
-				}),
+				".all-contributorsrc": JSON.stringify(
+					{
+						badgeTemplate:
+							'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
+						commitType: "docs",
+						contributors: options.contributors ?? [],
+						contributorsPerLine: 7,
+						contributorsSortAlphabetically: true,
+						files: ["README.md"],
+						projectName: options.repository,
+						projectOwner: options.owner,
+						repoType: "github",
+					},
+					null,
+					2,
+				),
 				".github": {
 					workflows: {
 						"contributors.yml": createSoloWorkflowFile({
@@ -108,7 +116,7 @@ export const blockAllContributors = base.createBlock({
 			scripts: [
 				{
 					commands: [
-						`pnpx all-contributors-cli add ${options.owner} ${ownerContributions.join(",")}`,
+						`pnpx all-contributors-cli@6.23.1 add ${options.owner} ${ownerContributions.join(",")}`,
 					],
 					phase: CommandPhase.Process,
 				},

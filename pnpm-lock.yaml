@@ -8,15 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@typescript-eslint/typescript-estree':
+        specifier: ^8.29.1
+        version: 8.29.1(typescript@5.8.2)
       bingo:
-        specifier: ^0.5.10
-        version: 0.5.10
+        specifier: ^0.5.16
+        version: 0.5.16
       bingo-fs:
-        specifier: ^0.5.4
-        version: 0.5.4
+        specifier: ^0.5.5
+        version: 0.5.5
       bingo-stratum:
-        specifier: ^0.5.7
-        version: 0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10)(zod@3.24.2)
+        specifier: ^0.5.11
+        version: 0.5.11(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16)(zod@3.24.2)
       cached-factory:
         specifier: ^0.1.0
         version: 0.1.0
@@ -40,22 +43,28 @@ importers:
         version: 1.2.0
       input-from-file:
         specifier: ^0.5.4
-        version: 0.5.4(bingo@0.5.10)
+        version: 0.5.4(bingo@0.5.16)
       input-from-file-json:
         specifier: ^0.5.4
-        version: 0.5.4(bingo@0.5.10)(zod@3.24.2)
+        version: 0.5.4(bingo@0.5.16)(zod@3.24.2)
       input-from-script:
         specifier: ^0.5.4
-        version: 0.5.4(bingo@0.5.10)
+        version: 0.5.4(bingo@0.5.16)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
+      json5:
+        specifier: ^2.2.3
+        version: 2.2.3
       lazy-value:
         specifier: ^3.0.0
         version: 3.0.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      marked:
+        specifier: ^15.0.7
+        version: 15.0.7
       npm-user:
         specifier: ^6.1.1
         version: 6.1.1
@@ -69,8 +78,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       remove-dependencies:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
       remove-undefined-objects:
         specifier: ^6.0.0
         version: 6.0.0
@@ -99,12 +108,12 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       zod-tsconfig:
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       '@eslint-community/eslint-plugin-eslint-comments':
-        specifier: 4.4.1
-        version: 4.4.1(eslint@9.22.0(jiti@2.4.2))
+        specifier: 4.5.0
+        version: 4.5.0(eslint@9.22.0(jiti@2.4.2))
       '@eslint/js':
         specifier: 9.22.0
         version: 9.22.0
@@ -118,8 +127,8 @@ importers:
         specifier: 2.0.2
         version: 2.0.2
       '@types/git-url-parse':
-        specifier: 9.0.3
-        version: 9.0.3
+        specifier: 16.0.0
+        version: 16.0.0
       '@types/html-to-text':
         specifier: 9.0.4
         version: 9.0.4
@@ -136,14 +145,14 @@ importers:
         specifier: 2.0.3
         version: 2.0.3
       '@types/semver':
-        specifier: 7.5.8
-        version: 7.5.8
+        specifier: 7.7.0
+        version: 7.7.0
       '@vitest/coverage-v8':
         specifier: 3.0.9
         version: 3.0.9(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
       '@vitest/eslint-plugin':
         specifier: 1.1.38
-        version: 1.1.38(@typescript-eslint/utils@8.27.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
+        version: 1.1.38(@typescript-eslint/utils@8.29.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
       all-contributors-cli:
         specifier: 6.26.1
         version: 6.26.1
@@ -151,11 +160,11 @@ importers:
         specifier: 0.5.5
         version: 0.5.5
       bingo-stratum-testers:
-        specifier: 0.5.7
-        version: 0.5.7(bingo-fs@0.5.4)(bingo-stratum@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10))(bingo@0.5.10)
+        specifier: 0.5.9
+        version: 0.5.9(bingo-fs@0.5.5)(bingo-stratum@0.5.11(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16))(bingo@0.5.16)
       bingo-testers:
         specifier: 0.5.7
-        version: 0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10)
+        version: 0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16)
       console-fail-test:
         specifier: 0.5.0
         version: 0.5.0
@@ -169,8 +178,8 @@ importers:
         specifier: 50.6.8
         version: 50.6.8(eslint@9.22.0(jiti@2.4.2))
       eslint-plugin-jsonc:
-        specifier: 2.19.1
-        version: 2.19.1(eslint@9.22.0(jiti@2.4.2))
+        specifier: 2.20.0
+        version: 2.20.0(eslint@9.22.0(jiti@2.4.2))
       eslint-plugin-markdown:
         specifier: 5.1.0
         version: 5.1.0(eslint@9.22.0(jiti@2.4.2))
@@ -181,8 +190,8 @@ importers:
         specifier: 0.29.0
         version: 0.29.0(@types/estree@1.0.6)(eslint@9.22.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)
       eslint-plugin-perfectionist:
-        specifier: 4.10.1
-        version: 4.10.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
+        specifier: 4.11.0
+        version: 4.11.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
       eslint-plugin-regexp:
         specifier: 2.7.0
         version: 2.7.0(eslint@9.22.0(jiti@2.4.2))
@@ -820,8 +829,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@eslint-community/eslint-plugin-eslint-comments@4.4.1':
-    resolution: {integrity: sha512-lb/Z/MzbTf7CaVYM9WCFNQZ4L1yi3ev2fsFPF99h31ljhSEyUoyEsKsNWiU+qD1glbYTDJdqgyaLKtyTkkqtuQ==}
+  '@eslint-community/eslint-plugin-eslint-comments@4.5.0':
+    resolution: {integrity: sha512-MAhuTKlr4y/CE3WYX26raZjy+I/kS2PLKSzvfmDCGrBLTFHOYwqROZdr4XwPgXwX3K9rjzMr4pSmUWGnzsUyMg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -1358,8 +1367,12 @@ packages:
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
-  '@types/git-url-parse@9.0.3':
-    resolution: {integrity: sha512-Wrb8zeghhpKbYuqAOg203g+9YSNlrZWNZYvwxJuDF4dTmerijqpnGbI79yCuPtHSXHPEwv1pAFUB4zsSqn82Og==}
+  '@types/git-up@8.1.0':
+    resolution: {integrity: sha512-dKq6FQmhuWVxjvKkhGNgIx1ZthVWClz6RhgONzQXHuHFEVmDbTcy0vAIvdAEKRpBvGOPiHSxoWFKryTTLvgFvQ==}
+    deprecated: This is a stub types definition. git-up provides its own type definitions, so you do not need this installed.
+
+  '@types/git-url-parse@16.0.0':
+    resolution: {integrity: sha512-l1xqqjwYTk0Wz8AwEezpUvns0LhTBV7RV/DOeDfIf1rbrob8Lne4ooYa2K30wJw95s1MJGXAXzx021922rUStg==}
 
   '@types/html-to-text@9.0.4':
     resolution: {integrity: sha512-pUY3cKH/Nm2yYrEmDlPR1mR7yszjGx4DrwPjQ702C4/D5CwHuZTgZdIdwPkRbcuhs7BAh2L5rg3CL5cbRiGTCQ==}
@@ -1394,8 +1407,8 @@ packages:
   '@types/parse-path@7.0.3':
     resolution: {integrity: sha512-LriObC2+KYZD3FzCrgWGv/qufdUy4eXrxcLgQMfYXgPbLIecKIsVBaQgUPmxSSLcjmYbDTQbMgr6qr6l/eb7Bg==}
 
-  '@types/semver@7.5.8':
-    resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
+  '@types/semver@7.7.0':
+    resolution: {integrity: sha512-k107IF4+Xr7UHjwDc7Cfd6PRQfbdkiRabXGRjo07b4WyPahFBZCZ1sE+BNxYIJPPg73UkfOsVOLwqVc/6ETrIA==}
 
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
@@ -1422,8 +1435,8 @@ packages:
     resolution: {integrity: sha512-6EIvbE5cNER8sqBu6V7+KeMZIC1664d2Yjt+B9EWUXrsyWpxx4lEZrmvxgSKRC6gX+efDL/UY9OpPZ267io3mg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript-eslint/scope-manager@8.27.0':
-    resolution: {integrity: sha512-8oI9GwPMQmBryaaxG1tOZdxXVeMDte6NyJA4i7/TWa4fBwgnAXYlIQP+uYOeqAaLJ2JRxlG9CAyL+C+YE9Xknw==}
+  '@typescript-eslint/scope-manager@8.29.1':
+    resolution: {integrity: sha512-2nggXGX5F3YrsGN08pw4XpMLO1Rgtnn4AzTegC2MDesv6q3QaTU5yU7IbS1tf1IwCR0Hv/1EFygLn9ms6LIpDA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/type-utils@8.26.1':
@@ -1437,8 +1450,8 @@ packages:
     resolution: {integrity: sha512-n4THUQW27VmQMx+3P+B0Yptl7ydfceUj4ON/AQILAASwgYdZ/2dhfymRMh5egRUrvK5lSmaOm77Ry+lmXPOgBQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript-eslint/types@8.27.0':
-    resolution: {integrity: sha512-/6cp9yL72yUHAYq9g6DsAU+vVfvQmd1a8KyA81uvfDE21O2DwQ/qxlM4AR8TSdAu+kJLBDrEHKC5/W2/nxsY0A==}
+  '@typescript-eslint/types@8.29.1':
+    resolution: {integrity: sha512-VT7T1PuJF1hpYC3AGm2rCgJBjHL3nc+A/bhOp9sGMKfi5v0WufsX/sHCFBfNTx2F+zA6qBc/PD0/kLRLjdt8mQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/typescript-estree@8.26.1':
@@ -1447,8 +1460,8 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/typescript-estree@8.27.0':
-    resolution: {integrity: sha512-BnKq8cqPVoMw71O38a1tEb6iebEgGA80icSxW7g+kndx0o6ot6696HjG7NdgfuAVmVEtwXUr3L8R9ZuVjoQL6A==}
+  '@typescript-eslint/typescript-estree@8.29.1':
+    resolution: {integrity: sha512-l1enRoSaUkQxOQnbi0KPUtqeZkSiFlqrx9/3ns2rEDhGKfTa+88RmXqedC1zmVTOWrLc2e6DEJrTA51C9iLH5g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
@@ -1460,8 +1473,8 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/utils@8.27.0':
-    resolution: {integrity: sha512-njkodcwH1yvmo31YWgRHNb/x1Xhhq4/m81PhtvmRngD8iHPehxffz1SNCO+kwaePhATC+kOa/ggmvPoPza5i0Q==}
+  '@typescript-eslint/utils@8.29.1':
+    resolution: {integrity: sha512-QAkFEbytSaB8wnmB+DflhUPz6CLbFWE2SnSCrRMEa+KnXIzDYbpsn++1HGvnfAsUY44doDXmvRkO5shlM/3UfA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
@@ -1471,8 +1484,8 @@ packages:
     resolution: {integrity: sha512-AjOC3zfnxd6S4Eiy3jwktJPclqhFHNyd8L6Gycf9WUPoKZpgM5PjkxY1X7uSy61xVpiJDhhk7XT2NVsN3ALTWg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript-eslint/visitor-keys@8.27.0':
-    resolution: {integrity: sha512-WsXQwMkILJvffP6z4U3FYJPlbf/j07HIxmDjZpbNvBJkMfvwXj5ACRkkHwBDvLBbDbtX5TdU64/rcvKJ/vuInQ==}
+  '@typescript-eslint/visitor-keys@8.29.1':
+    resolution: {integrity: sha512-RGLh5CRaUEf02viP5c1Vh1cMGffQscyHe7HPAzGpfmfflFg1wUz2rYxd+OZqwpeypYvZ8UxSxuIpF++fmOzEcg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@vitest/coverage-v8@3.0.9':
@@ -1641,30 +1654,30 @@ packages:
   before-after-hook@3.0.2:
     resolution: {integrity: sha512-Nik3Sc0ncrMK4UUdXQmAnRtzmNQTAAXmXIopizwZ1W1t8QmfJj+zL4OA2I7XPTPW5z5TDqv4hRo/JzouDJnX3A==}
 
-  bingo-fs@0.5.4:
-    resolution: {integrity: sha512-0dP52RdNAff6F8MoHszk7YAZKZWes4+s9UYANNZVfr87g2KbgY56o6szVXEXytRtay6UuNIkjMHcRTGWw0ODzw==}
+  bingo-fs@0.5.5:
+    resolution: {integrity: sha512-T06BMIQPuJEuDKEQRl206hRFVthMu5byyFf1ZslCRUVRdFExrZ7A5dBU5FZdeT+41nJX89/rvu8wFfNB/LY98Q==}
     engines: {node: '>=18'}
 
   bingo-requests@0.5.5:
     resolution: {integrity: sha512-NQcnlAtnR72Cfn6Y9EWPS3RXAGM+4ndE3BEueLnWOQgj+/Y6kQyhGEiB7cPmi4VeJL+Kcqo/EGyzuF23aIT3Cg==}
     engines: {node: '>=18'}
 
-  bingo-stratum-testers@0.5.7:
-    resolution: {integrity: sha512-ei6K13xK+Dq5WPr/9zgFfFQ+k0eswuJ3IPw8hHN2UgmwZNaMmOAtJi3lWp2nvBYzT+Zra6VtwkZ52uffhLYHmA==}
+  bingo-stratum-testers@0.5.9:
+    resolution: {integrity: sha512-G7V5j4++dnHv3PqAbnFEVADQWmFLyQJtM1aIHOTMW41xOl9wa+XLmQ70uFvuvZQvhb59Q/sgpO5ORSltImeDQA==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.5.10
-      bingo-fs: ^0.5.4
-      bingo-stratum: ^0.5.7
+      bingo: ^0.5.14
+      bingo-fs: ^0.5.5
+      bingo-stratum: ^0.5.11
       bingo-systems: ^0.5.4
       bingo-testers: ^0.5.7
 
-  bingo-stratum@0.5.7:
-    resolution: {integrity: sha512-PznnKNYhGe5DobDVBvIMGn0mIXorSSwUBeG2NaCl5PI3prcGeD5NubzFDeq2O3WzH/l9MZ3wmz5a2nB7YiHKrA==}
+  bingo-stratum@0.5.11:
+    resolution: {integrity: sha512-5tmx6zmqDjHyMklhnYsUNyv9aJVxu92kYdUlSs3Jq42w9WVIwCACJatCMUJYDRo6035MXjB6sbUSORT55l/qBg==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.5.9
-      bingo-fs: ^0.5.4
+      bingo: ^0.5.14
+      bingo-fs: ^0.5.5
       bingo-systems: ^0.5.4
       zod: ^3.24.2
 
@@ -1680,8 +1693,8 @@ packages:
       bingo-fs: ^0.5.4
       bingo-systems: ^0.5.4
 
-  bingo@0.5.10:
-    resolution: {integrity: sha512-/1v+VhuDWOcISXayuEBAyNBCD0GuN5bJq2m1/dIX8SAH1SZjH2geIb/lTqmQjBQ4XDxAAevGHrhK+L779xvBbw==}
+  bingo@0.5.16:
+    resolution: {integrity: sha512-1gtg5qTJ3Xv7I0yElNjEEtTLbS8XUg8WzF9rWP3vm6V86VCBkZm8CuUYtLzUbZ8iRfMF6cVfXLXKMoRmimBGgA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2267,8 +2280,8 @@ packages:
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
 
-  eslint-plugin-jsonc@2.19.1:
-    resolution: {integrity: sha512-MmlAOaZK1+Lg7YoCZPGRjb88ZjT+ct/KTsvcsbZdBm+w8WMzGx+XEmexk0m40P1WV9G2rFV7X3klyRGRpFXEjA==}
+  eslint-plugin-jsonc@2.20.0:
+    resolution: {integrity: sha512-FRgCn9Hzk5eKboCbVMrr9QrhM0eO4G+WKH8IFXoaeqhM/2kuWzbStJn4kkr0VWL8J5H8RYZF+Aoam1vlBaZVkw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -2292,8 +2305,8 @@ packages:
       eslint: '>=8.0.0'
       jsonc-eslint-parser: ^2.0.0
 
-  eslint-plugin-perfectionist@4.10.1:
-    resolution: {integrity: sha512-GXwFfL47RfBLZRGQdrvGZw9Ali2T2GPW8p4Gyj2fyWQ9396R/HgJMf0m9kn7D6WXRwrINfTDGLS+QYIeok9qEg==}
+  eslint-plugin-perfectionist@4.11.0:
+    resolution: {integrity: sha512-5s+ehXydnLPQpLDj5mJ0CnYj2fQe6v6gKA3tS+FZVBLzwMOh8skH+l+1Gni08rG0SdEcNhJyjQp/mEkDYK8czw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       eslint: '>=8.45.0'
@@ -2938,6 +2951,11 @@ packages:
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
+  json5@2.2.3:
+    resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
+    engines: {node: '>=6'}
+    hasBin: true
+
   jsonc-eslint-parser@2.4.0:
     resolution: {integrity: sha512-WYDyuc/uFcGp6YtM2H0uKmUwieOuzeE/5YocFJLnLfclZ4inf3mRn8ZVy1s7Hxji7Jxm6Ss8gqpexD/GlKoGgg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -3089,6 +3107,11 @@ packages:
   markdownlint@0.37.4:
     resolution: {integrity: sha512-u00joA/syf3VhWh6/ybVFkib5Zpj2e5KB/cfCei8fkSRuums6nyisTWGqjTWIOFoFwuXoTBQQiqlB4qFKp8ncQ==}
     engines: {node: '>=18'}
+
+  marked@15.0.7:
+    resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
+    engines: {node: '>= 18'}
+    hasBin: true
 
   mdast-util-from-markdown@0.8.5:
     resolution: {integrity: sha512-2hkTXtYYnr+NubD/g6KGBS/0mFmBcifAsI0yIWRiRo0PjVs6SSOSOdtzbp6kSGnShDN6G5aWZpKQ2lWRy27mWQ==}
@@ -3246,6 +3269,7 @@ packages:
 
   mvdan-sh@0.10.1:
     resolution: {integrity: sha512-kMbrH0EObaKmK3nVRKUIIya1dpASHIEusM13S4V1ViHFuxuNxCo+arxoa6j/dbV22YBGjl7UKJm9QQKJ2Crzhg==}
+    deprecated: See https://github.com/mvdan/sh/issues/1145
 
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
@@ -3709,8 +3733,8 @@ packages:
     engines: {node: ^20.9.0 || >=22.0.0}
     hasBin: true
 
-  remove-dependencies@0.1.0:
-    resolution: {integrity: sha512-K9PXkqGYkuQbRVf57SI/t3xBhw87pLbvd94zir6v4+ptJQ0TSjLWtd0ZlebtQEOfnxSchz+wgzTvG7KNpLMAbg==}
+  remove-dependencies@0.1.1:
+    resolution: {integrity: sha512-CDQMz0yYx8Jta0LcWgGdkRXbd+wxXlGj7mPKJAkBkJjw0Wq4WVgPpQs3/S695YnBcTpk1JxLAiX+oPw+2Cqagw==}
     engines: {node: '>=18.3.0'}
     hasBin: true
 
@@ -4447,8 +4471,8 @@ packages:
     resolution: {integrity: sha512-RvEsa3W/NCqEBMtnoE09GRVelA3IqRcKaijEiM6CEGsD19qLurf0HjrYMHwOqImOszlLL0ja63DPJeeU4pm7oQ==}
     engines: {node: '>=20'}
 
-  zod-tsconfig@0.1.1:
-    resolution: {integrity: sha512-vb24ELvJOTwhKCg876cDBo7CGwdAHu8u/MRlJkNHVS8UBAUd4h5nLH8NcnceT/f5EL78jp+2/wVo+2gqVfM8Ew==}
+  zod-tsconfig@0.2.0:
+    resolution: {integrity: sha512-ug/zndWh/wNiejtCJ2tGyNzi3Nf94ZnpFos/e5CGTIXYIwoXMiXYg3a3SptYVrfXFnLCpuTTfVjYWh6q9djKhA==}
     engines: {node: '>=18.3.0'}
 
   zod-validation-error@3.4.0:
@@ -4533,7 +4557,7 @@ snapshots:
 
   '@conventional-changelog/git-client@1.0.1(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.1.0)':
     dependencies:
-      '@types/semver': 7.5.8
+      '@types/semver': 7.7.0
       semver: 7.7.1
     optionalDependencies:
       conventional-commits-filter: 5.0.0
@@ -4903,7 +4927,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.1':
     optional: true
 
-  '@eslint-community/eslint-plugin-eslint-comments@4.4.1(eslint@9.22.0(jiti@2.4.2))':
+  '@eslint-community/eslint-plugin-eslint-comments@4.5.0(eslint@9.22.0(jiti@2.4.2))':
     dependencies:
       escape-string-regexp: 4.0.0
       eslint: 9.22.0(jiti@2.4.2)
@@ -5434,7 +5458,13 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
-  '@types/git-url-parse@9.0.3': {}
+  '@types/git-up@8.1.0':
+    dependencies:
+      git-up: 8.0.1
+
+  '@types/git-url-parse@16.0.0':
+    dependencies:
+      '@types/git-up': 8.1.0
 
   '@types/html-to-text@9.0.4': {}
 
@@ -5462,7 +5492,7 @@ snapshots:
 
   '@types/parse-path@7.0.3': {}
 
-  '@types/semver@7.5.8': {}
+  '@types/semver@7.7.0': {}
 
   '@types/unist@2.0.11': {}
 
@@ -5502,10 +5532,10 @@ snapshots:
       '@typescript-eslint/types': 8.26.1
       '@typescript-eslint/visitor-keys': 8.26.1
 
-  '@typescript-eslint/scope-manager@8.27.0':
+  '@typescript-eslint/scope-manager@8.29.1':
     dependencies:
-      '@typescript-eslint/types': 8.27.0
-      '@typescript-eslint/visitor-keys': 8.27.0
+      '@typescript-eslint/types': 8.29.1
+      '@typescript-eslint/visitor-keys': 8.29.1
 
   '@typescript-eslint/type-utils@8.26.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
@@ -5520,7 +5550,7 @@ snapshots:
 
   '@typescript-eslint/types@8.26.1': {}
 
-  '@typescript-eslint/types@8.27.0': {}
+  '@typescript-eslint/types@8.29.1': {}
 
   '@typescript-eslint/typescript-estree@8.26.1(typescript@5.8.2)':
     dependencies:
@@ -5536,10 +5566,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/typescript-estree@8.27.0(typescript@5.8.2)':
+  '@typescript-eslint/typescript-estree@8.29.1(typescript@5.8.2)':
     dependencies:
-      '@typescript-eslint/types': 8.27.0
-      '@typescript-eslint/visitor-keys': 8.27.0
+      '@typescript-eslint/types': 8.29.1
+      '@typescript-eslint/visitor-keys': 8.29.1
       debug: 4.4.0
       fast-glob: 3.3.3
       is-glob: 4.0.3
@@ -5561,12 +5591,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.27.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)':
+  '@typescript-eslint/utils@8.29.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
       '@eslint-community/eslint-utils': 4.5.1(eslint@9.22.0(jiti@2.4.2))
-      '@typescript-eslint/scope-manager': 8.27.0
-      '@typescript-eslint/types': 8.27.0
-      '@typescript-eslint/typescript-estree': 8.27.0(typescript@5.8.2)
+      '@typescript-eslint/scope-manager': 8.29.1
+      '@typescript-eslint/types': 8.29.1
+      '@typescript-eslint/typescript-estree': 8.29.1(typescript@5.8.2)
       eslint: 9.22.0(jiti@2.4.2)
       typescript: 5.8.2
     transitivePeerDependencies:
@@ -5577,9 +5607,9 @@ snapshots:
       '@typescript-eslint/types': 8.26.1
       eslint-visitor-keys: 4.2.0
 
-  '@typescript-eslint/visitor-keys@8.27.0':
+  '@typescript-eslint/visitor-keys@8.29.1':
     dependencies:
-      '@typescript-eslint/types': 8.27.0
+      '@typescript-eslint/types': 8.29.1
       eslint-visitor-keys: 4.2.0
 
   '@vitest/coverage-v8@3.0.9(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))':
@@ -5600,9 +5630,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/eslint-plugin@1.1.38(@typescript-eslint/utils@8.27.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))':
+  '@vitest/eslint-plugin@1.1.38(@typescript-eslint/utils@8.29.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.9(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))':
     dependencies:
-      '@typescript-eslint/utils': 8.27.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
+      '@typescript-eslint/utils': 8.29.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
       eslint: 9.22.0(jiti@2.4.2)
     optionalDependencies:
       typescript: 5.8.2
@@ -5754,25 +5784,25 @@ snapshots:
 
   before-after-hook@3.0.2: {}
 
-  bingo-fs@0.5.4: {}
+  bingo-fs@0.5.5: {}
 
   bingo-requests@0.5.5:
     dependencies:
       '@octokit/types': 13.10.0
 
-  bingo-stratum-testers@0.5.7(bingo-fs@0.5.4)(bingo-stratum@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10))(bingo@0.5.10):
+  bingo-stratum-testers@0.5.9(bingo-fs@0.5.5)(bingo-stratum@0.5.11(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16)(zod@3.24.2))(bingo-systems@0.5.4)(bingo-testers@0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16))(bingo@0.5.16):
     dependencies:
-      bingo: 0.5.10
-      bingo-fs: 0.5.4
-      bingo-stratum: 0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10)(zod@3.24.2)
+      bingo: 0.5.16
+      bingo-fs: 0.5.5
+      bingo-stratum: 0.5.11(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16)(zod@3.24.2)
       bingo-systems: 0.5.4
-      bingo-testers: 0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10)
+      bingo-testers: 0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16)
 
-  bingo-stratum@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10)(zod@3.24.2):
+  bingo-stratum@0.5.11(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16)(zod@3.24.2):
     dependencies:
       all-properties-lazy: 0.1.0
-      bingo: 0.5.10
-      bingo-fs: 0.5.4
+      bingo: 0.5.16
+      bingo-fs: 0.5.5
       bingo-systems: 0.5.4
       cached-factory: 0.1.0
       chalk: 5.4.1
@@ -5784,26 +5814,26 @@ snapshots:
 
   bingo-systems@0.5.4:
     dependencies:
-      bingo-fs: 0.5.4
+      bingo-fs: 0.5.5
       execa: 9.5.2
       get-github-auth-token: 0.1.1
       octokit: 4.1.2
 
-  bingo-testers@0.5.7(bingo-fs@0.5.4)(bingo-systems@0.5.4)(bingo@0.5.10):
+  bingo-testers@0.5.7(bingo-fs@0.5.5)(bingo-systems@0.5.4)(bingo@0.5.16):
     dependencies:
       all-properties-lazy: 0.1.0
-      bingo: 0.5.10
-      bingo-fs: 0.5.4
+      bingo: 0.5.16
+      bingo-fs: 0.5.5
       bingo-systems: 0.5.4
       diff: 7.0.0
       octokit: 4.1.2
       without-undefined-properties: 0.1.1
 
-  bingo@0.5.10:
+  bingo@0.5.16:
     dependencies:
       '@clack/prompts': 0.10.0
       all-properties-lazy: 0.1.0
-      bingo-fs: 0.5.4
+      bingo-fs: 0.5.5
       bingo-requests: 0.5.5
       bingo-systems: 0.5.4
       cached-factory: 0.1.0
@@ -5813,7 +5843,6 @@ snapshots:
       hash-object: 5.0.1
       hosted-git-info: 8.0.2
       new-github-repository: 0.2.1
-      prettier: 3.5.3
       read-package-up: 11.0.0
       read-pkg: 9.0.1
       slugify: 1.6.6
@@ -6471,13 +6500,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-jsonc@2.19.1(eslint@9.22.0(jiti@2.4.2)):
+  eslint-plugin-jsonc@2.20.0(eslint@9.22.0(jiti@2.4.2)):
     dependencies:
       '@eslint-community/eslint-utils': 4.5.1(eslint@9.22.0(jiti@2.4.2))
       eslint: 9.22.0(jiti@2.4.2)
       eslint-compat-utils: 0.6.4(eslint@9.22.0(jiti@2.4.2))
       eslint-json-compat-utils: 0.2.1(eslint@9.22.0(jiti@2.4.2))(jsonc-eslint-parser@2.4.0)
-      espree: 9.6.1
+      espree: 10.3.0
       graphemer: 1.4.0
       jsonc-eslint-parser: 2.4.0
       natural-compare: 1.4.0
@@ -6520,10 +6549,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/estree'
 
-  eslint-plugin-perfectionist@4.10.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2):
+  eslint-plugin-perfectionist@4.11.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2):
     dependencies:
-      '@typescript-eslint/types': 8.27.0
-      '@typescript-eslint/utils': 8.27.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
+      '@typescript-eslint/types': 8.29.1
+      '@typescript-eslint/utils': 8.29.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
       eslint: 9.22.0(jiti@2.4.2)
       natural-orderby: 5.0.0
     transitivePeerDependencies:
@@ -6999,20 +7028,20 @@ snapshots:
 
   ini@4.1.3: {}
 
-  input-from-file-json@0.5.4(bingo@0.5.10)(zod@3.24.2):
+  input-from-file-json@0.5.4(bingo@0.5.16)(zod@3.24.2):
     dependencies:
-      bingo: 0.5.10
-      input-from-file: 0.5.4(bingo@0.5.10)
+      bingo: 0.5.16
+      input-from-file: 0.5.4(bingo@0.5.16)
       zod: 3.24.2
 
-  input-from-file@0.5.4(bingo@0.5.10):
+  input-from-file@0.5.4(bingo@0.5.16):
     dependencies:
-      bingo: 0.5.10
+      bingo: 0.5.16
       zod: 3.24.2
 
-  input-from-script@0.5.4(bingo@0.5.10):
+  input-from-script@0.5.4(bingo@0.5.16):
     dependencies:
-      bingo: 0.5.10
+      bingo: 0.5.16
       zod: 3.24.2
 
   inquirer@12.3.0(@types/node@22.13.10):
@@ -7203,6 +7232,8 @@ snapshots:
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
+  json5@2.2.3: {}
+
   jsonc-eslint-parser@2.4.0:
     dependencies:
       acorn: 8.14.1
@@ -7392,6 +7423,8 @@ snapshots:
       micromark-util-types: 2.0.1
     transitivePeerDependencies:
       - supports-color
+
+  marked@15.0.7: {}
 
   mdast-util-from-markdown@0.8.5:
     dependencies:
@@ -8138,7 +8171,7 @@ snapshots:
       - supports-color
       - typescript
 
-  remove-dependencies@0.1.0: {}
+  remove-dependencies@0.1.1: {}
 
   remove-undefined-objects@6.0.0: {}
 
@@ -8857,7 +8890,7 @@ snapshots:
     dependencies:
       zod: 3.24.2
 
-  zod-tsconfig@0.1.1:
+  zod-tsconfig@0.2.0:
     dependencies:
       zod: 3.24.2
 

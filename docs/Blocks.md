@@ -23,6 +23,7 @@ This table summarizes each block and which base levels they're included in:
 | ESLint Node Plugin           | `--add-eslint-node-plugin`, `--exclude-eslint-node-plugin`                     |         |        | 💯         |
 | ESLint package.json Plugin   | `--add-eslint-package-json-plugin`, `--exclude-eslint-package-json-plugin`     |         |        | 💯         |
 | ESLint Perfectionist Plugin  | `--add-eslint-perfectionist-plugin`, `--exclude-eslint-perfectionist-plugin`   |         |        | 💯         |
+| ESLint Plugin                | `--add-eslint-plugin`, `--exclude-eslint-plugin`                               |         |        |            |
 | ESLint Regexp Plugin         | `--add-eslint-regexp-plugin`, `--exclude-eslint-regexp-plugin`                 |         |        | 💯         |
 | ESLint YML Plugin            | `--add-eslint-yml-plugin`, `--exclude-eslint-yml-plugin`                       |         |        | 💯         |
 | Funding                      | `--add-funding`, `--exclude-funding`                                           |         | ✅     | 💯         |
@@ -36,9 +37,10 @@ This table summarizes each block and which base levels they're included in:
 | MIT License                  | `--add-mit-license`, `--exclude-mit-license`                                   | ✔️      | ✅     | 💯         |
 | ncc                          | `--add-ncc`, `--exclude-ncc`                                                   |         |        |            |
 | nvmrc                        | `--add-nvmrc`, `--exclude-nvmrc`                                               |         |        | 💯         |
+| OctoGuide                    | `--add-octoguide`, `--exclude-octoguide`                                       |         | ✅     | 💯         |
+| OctoGuide Strict             | `--add-octoguide-strict`, `--exclude-octoguide-strict`                         |         |        | 💯         |
 | Package JSON                 | `--add-package-json`, `--exclude-package-json`                                 | ✔️      | ✅     | 💯         |
 | pnpm Dedupe                  | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                   |         |        | 💯         |
-| PR Compliance                | `--add-pr-compliance`, `--exclude-pr-compliance`                               |         |        | 💯         |
 | Prettier                     | `--add-prettier`, `--exclude-prettier`                                         | ✔️      | ✅     | 💯         |
 | Prettier Plugin Curly        | `--add-prettier-plugin-curly`, `--exclude-prettier-plugin-curly`               |         |        | 💯         |
 | Prettier Plugin Package JSON | `--add-prettier-plugin-package-json`, `--exclude-prettier-plugin-package-json` |         |        | 💯         |
@@ -52,6 +54,7 @@ This table summarizes each block and which base levels they're included in:
 | TypeScript                   | `--add-typescript`, `--exclude-typescript`                                     | ✔️      | ✅     | 💯         |
 | Vitest                       | `--add-vitest`, `--exclude-vitest`                                             |         | ✅     | 💯         |
 | VS Code                      | `--add-vs-code`, `--exclude-vs-code`                                           |         |        | 💯         |
+| Web-ext                      | `--add-web-ext`, `--exclude-web-ext`                                           |         |        |            |
 
 For example, this uses ncc instead of the default tsup builder:
 
@@ -174,6 +177,7 @@ This is recommended for most users of `create-typescript-app` to start with.
 
 - [Contributors](#contributors)
 - [Lint Knip](#lint-knip)
+- [OctoGuide](#octoguide)
 - [Releases](#releases)
 - [Renovate](#renovate)
 - [Testing](#testing)
@@ -192,6 +196,11 @@ Running Knip:
 ```shell
 pnpm run lint:knip
 ```
+
+### OctoGuide
+
+[**OctoGuide**](https://octo.guide): checks that contributor activity on your GitHub repository aligns with common expectations of smoothly-running projects.
+It will automatically post friendly comments when contributors take actions you don’t want them to.
 
 ### Releases
 
@@ -233,7 +242,6 @@ pnpm run test run --coverage
 This level is for developers who are eager to get the maximum tooling benefits in a repository.
 Using the _"everything"_ level will gain you comprehensive, strict coverage of all sorts of repository issues, including auto-sorting of properties and strict ESLint configs.
 
-- [Compliance](#compliance)
 - [Lint ESLint](#lint-eslint)
 - [Lint JSDoc](#lint-jsdoc)
 - [Lint JSON](#lint-json)
@@ -246,10 +254,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 - [Lint Strict](#lint-strict)
 - [Lint Stylistic](#lint-stylistic)
 - [Lint YML](#lint-yml)
-
-### Compliance
-
-[**PR Compliance Action**](https://github.com/mtfoley/pr-compliance-action): Checks PRs for compliance such as addressing a linked issue and proper title formatting.
+- [OctoGuide Strict](#octoguide-strict)
 
 ### Lint ESLint
 
@@ -318,3 +323,7 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 ### Lint YML
 
 [`eslint-plugin-yml`](https://ota-meshi.github.io/eslint-plugin-yml): Adds linting for `yaml` and `.yml` files, such as sorting keys.
+
+### OctoGuide Strict
+
+[**OctoGuide's Strict Config**](https://octo.guide/configs#rules-table): additionally enforces enforcing semantic pull request conventions.

@@ -14,6 +14,7 @@ import { blockESLintMoreStyling } from "./blockESLintMoreStyling.js";
 import { blockESLintNode } from "./blockESLintNode.js";
 import { blockESLintPackageJson } from "./blockESLintPackageJson.js";
 import { blockESLintPerfectionist } from "./blockESLintPerfectionist.js";
+import { blockESLintPlugin } from "./blockESLintPlugin.js";
 import { blockESLintRegexp } from "./blockESLintRegexp.js";
 import { blockESLintYML } from "./blockESLintYML.js";
 import { blockFunding } from "./blockFunding.js";
@@ -27,9 +28,10 @@ import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockMITLicense } from "./blockMITLicense.js";
 import { blockNcc } from "./blockNcc.js";
 import { blockNvmrc } from "./blockNvmrc.js";
+import { blockOctoGuide } from "./blockOctoGuide.js";
+import { blockOctoGuideStrict } from "./blockOctoGuideStrict.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPnpmDedupe } from "./blockPnpmDedupe.js";
-import { blockPRCompliance } from "./blockPRCompliance.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.js";
 import { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.js";
@@ -43,6 +45,7 @@ import { blockTSup } from "./blockTSup.js";
 import { blockTypeScript } from "./blockTypeScript.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { blockWebExt } from "./blockWebExt.js";
 
 export const blocks = {
 	blockAllContributors,
@@ -61,6 +64,7 @@ export const blocks = {
 	blockESLintNode,
 	blockESLintPackageJson,
 	blockESLintPerfectionist,
+	blockESLintPlugin,
 	blockESLintRegexp,
 	blockESLintYML,
 	blockFunding,
@@ -74,9 +78,10 @@ export const blocks = {
 	blockMITLicense,
 	blockNcc,
 	blockNvmrc,
+	blockOctoGuide,
+	blockOctoGuideStrict,
 	blockPackageJson,
 	blockPnpmDedupe,
-	blockPRCompliance,
 	blockPrettier,
 	blockPrettierPluginCurly,
 	blockPrettierPluginPackageJson,
@@ -90,6 +95,7 @@ export const blocks = {
 	blockTypeScript,
 	blockVitest,
 	blockVSCode,
+	blockWebExt,
 };
 
 export { blockAllContributors } from "./blockAllContributors.js";
@@ -109,6 +115,7 @@ export { blockESLintMoreStyling } from "./blockESLintMoreStyling.js";
 export { blockESLintNode } from "./blockESLintNode.js";
 export { blockESLintPackageJson } from "./blockESLintPackageJson.js";
 export { blockESLintPerfectionist } from "./blockESLintPerfectionist.js";
+export { blockESLintPlugin } from "./blockESLintPlugin.js";
 export { blockESLintRegexp } from "./blockESLintRegexp.js";
 export { blockESLintYML } from "./blockESLintYML.js";
 export { blockFunding } from "./blockFunding.js";
@@ -122,9 +129,10 @@ export { blockMarkdownlint } from "./blockMarkdownlint.js";
 export { blockMITLicense } from "./blockMITLicense.js";
 export { blockNcc } from "./blockNcc.js";
 export { blockNvmrc } from "./blockNvmrc.js";
+export { blockOctoGuide } from "./blockOctoGuide.js";
+export { blockOctoGuideStrict } from "./blockOctoGuideStrict.js";
 export { blockPackageJson } from "./blockPackageJson.js";
 export { blockPnpmDedupe } from "./blockPnpmDedupe.js";
-export { blockPRCompliance } from "./blockPRCompliance.js";
 export { blockPrettier } from "./blockPrettier.js";
 export { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.js";
 export { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.js";
@@ -138,3 +146,4 @@ export { blockTSup } from "./blockTSup.js";
 export { blockTypeScript } from "./blockTypeScript.js";
 export { blockVitest } from "./blockVitest.js";
 export { blockVSCode } from "./blockVSCode.js";
+export { blockWebExt } from "./blockWebExt.js";

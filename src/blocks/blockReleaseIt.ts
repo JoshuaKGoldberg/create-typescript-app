@@ -3,9 +3,9 @@ import { z } from "zod";
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
+import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockREADME } from "./blockREADME.js";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 
@@ -28,6 +28,9 @@ export const blockReleaseIt = base.createBlock({
 
 		return {
 			addons: [
+				blockMarkdownlint({
+					ignores: ["CHANGELOG.md"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies(
@@ -50,9 +53,6 @@ export const blockReleaseIt = base.createBlock({
 							src: `https://img.shields.io/npm/v/${options.repository}?color=21bb42&label=%F0%9F%93%A6%20npm`,
 						},
 					],
-				}),
-				blockRemoveDependencies({
-					dependencies: ["should-semantic-release"],
 				}),
 				blockRepositorySecrets({
 					secrets: [
@@ -155,7 +155,7 @@ export const blockReleaseIt = base.createBlock({
 									},
 									uses: resolveUses(
 										"JoshuaKGoldberg/release-it-action",
-										"v0.2.2",
+										"v0.3.2",
 										options.workflowsVersions,
 									),
 								},

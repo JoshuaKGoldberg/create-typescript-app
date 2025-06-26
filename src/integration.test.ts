@@ -5,6 +5,8 @@ import { producePreset } from "bingo-stratum";
 import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test, vi } from "vitest";
 
+Error.stackTraceLimit = 9001;
+
 import {
 	base,
 	BaseOptions,
@@ -14,6 +16,7 @@ import {
 	blockESLint,
 	blockKnip,
 	blockMain,
+	blockRenovate,
 	blockTemplatedWith,
 	presets,
 } from "./index.js";
@@ -55,6 +58,7 @@ test("Producing the everything preset matches the files in this repository", asy
 				blockCSpell({
 					words: [
 						"Anson",
+						"TSESTree",
 						"apexskier",
 						"attw",
 						"boop",
@@ -63,7 +67,7 @@ test("Producing the everything preset matches the files in this repository", asy
 						"joshuakgoldberg",
 						"markdownlintignore",
 						"mshick",
-						"mtfoley",
+						"octoguide",
 						"npmjs",
 						"stefanzweifel",
 					],
@@ -105,6 +109,9 @@ If you're interested in learning more, see the 'getting started' docs on:
 				}),
 				blockMain({
 					runArgs: ["--version"],
+				}),
+				blockRenovate({
+					ignoreDeps: ["all-contributors-cli"],
 				}),
 			],
 			blocks: {

@@ -1,37 +1,28 @@
-import { TakeInput } from "bingo";
-import { inputFromFile } from "input-from-file";
+import { Documentation } from "../schemas.js";
 
-import { swallowError } from "../utils/swallowError.js";
+export async function readDocumentation(
+	getDevelopmentDocumentation: () => Promise<string | undefined>,
+	getReadmeAdditional: () => Promise<string | undefined>,
+	getReadmeExplainer: () => Promise<string | undefined>,
+	getReadmeFootnotes: () => Promise<string | undefined>,
+	getReadmeUsage: () => Promise<string | undefined>,
+): Promise<Documentation> {
+	const [additional, explainer, footnotes, development, usage] =
+		await Promise.all([
+			getReadmeAdditional(),
+			getReadmeExplainer(),
+			getReadmeFootnotes(),
+			getDevelopmentDocumentation(),
+			getReadmeUsage(),
+		]);
 
-const knownHeadings = new Set([
-	"building",
-	"development",
-	"formatting",
-	"linting",
-	"testing",
-	"type checking",
-]);
-
-export async function readDocumentation(take: TakeInput) {
-	const existing = swallowError(
-		await take(inputFromFile, {
-			filePath: ".github/DEVELOPMENT.md",
-		}),
-	);
-	if (!existing) {
-		return undefined;
-	}
-
-	return existing
-		.split(/\n\n(?=##\s)/)
-		.filter((section) => !knownHeadings.has(parseHeading(section)))
-		.join("\n\n");
-}
-
-function parseHeading(section: string) {
-	return section
-		.split("\n")[0]
-		.replace(/^#+\s+/, "")
-		.trim()
-		.toLowerCase();
+	return {
+		development,
+		readme: {
+			additional,
+			explainer,
+			footnotes,
+			usage,
+		},
+	};
 }

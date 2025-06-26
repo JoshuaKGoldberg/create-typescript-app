@@ -1,19 +1,34 @@
+import { z } from "zod";
+
 import { base } from "../base.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockPrettier } from "./blockPrettier.js";
 
 export const blockNcc = base.createBlock({
 	about: {
 		name: "ncc",
 	},
-	produce() {
+	addons: {
+		entry: z.string().optional(),
+	},
+	intake({ options }) {
+		return {
+			entry: options.packageData?.scripts?.["build:release"]?.match(
+				/ncc build (.+) -o dist/,
+			)?.[1],
+		};
+	},
+	produce({ addons }) {
+		const { entry = "src/index.ts" } = addons;
+
 		return {
 			addons: [
 				blockCSpell({
-					ignores: ["dist"],
+					ignorePaths: ["dist"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -68,9 +83,12 @@ pnpm build:release
 						},
 						scripts: {
 							build: "tsc",
-							"build:release": "ncc build src/index.ts -o dist",
+							"build:release": `ncc build ${entry} -o dist`,
 						},
 					},
+				}),
+				blockPrettier({
+					ignores: ["/dist"],
 				}),
 			],
 		};

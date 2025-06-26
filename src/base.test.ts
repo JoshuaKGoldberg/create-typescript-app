@@ -20,17 +20,23 @@ describe("base", () => {
 			).contributors,
 			description:
 				"Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
-			documentation: "",
+			documentation: {
+				development: expect.any(String),
+				readme: {
+					additional: expect.any(String),
+					explainer: [
+						`\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.`,
+						`It includes options not just for building and testing but also automated release management, contributor recognition, GitHub repository settings, and more.`,
+					].join("\n"),
+					usage: expect.any(String),
+				},
+			},
 			email: {
 				github: "github@joshuakgoldberg.com",
 				npm: "npm@joshuakgoldberg.com",
 			},
 			emoji: "🎁",
 			existingLabels: expect.any(Array),
-			explainer: [
-				`\`create-typescript-app\` is a one-stop-shop solution to set up a new or existing repository with the latest and greatest TypeScript tooling.`,
-				`It includes options not just for building and testing but also automated release management, contributor recognition, GitHub repository settings, and more.`,
-			],
 			funding: "JoshuaKGoldberg",
 			guide: {
 				href: "https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository",
@@ -51,7 +57,7 @@ describe("base", () => {
 			pnpm: expect.any(String),
 			repository: "create-typescript-app",
 			title: "Create TypeScript App",
-			usage: expect.any(String),
+			type: expect.any(String),
 			version: expect.any(String),
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-require-imports
 			words: require("../cspell.json").words,

@@ -13,6 +13,14 @@ describe("blockReleaseIt", () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "ignores": [
+			          "CHANGELOG.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "10.0.0",
@@ -36,14 +44,6 @@ describe("blockReleaseIt", () => {
 			            "href": "http://npmjs.com/package/test-repository",
 			            "src": "https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm",
 			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "dependencies": [
-			          "should-semantic-release",
 			        ],
 			      },
 			      "block": [Function],
@@ -88,12 +88,15 @@ describe("blockReleaseIt", () => {
 
 			              Cheers! 📦🚀
 
+
 			name: Post Release
+
 
 			on:
 			  release:
 			    types:
 			      - published
+
 
 			permissions:
 			  issues: write
@@ -101,6 +104,7 @@ describe("blockReleaseIt", () => {
 			",
 			        "release.yml": "concurrency:
 			  group: \${{ github.workflow }}
+
 
 			jobs:
 			  release:
@@ -115,14 +119,17 @@ describe("blockReleaseIt", () => {
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.2.2
+			        uses: JoshuaKGoldberg/release-it-action@v0.3.2
+
 
 			name: Release
+
 
 			on:
 			  push:
 			    branches:
 			      - main
+
 
 			permissions:
 			  contents: write
@@ -162,6 +169,14 @@ describe("blockReleaseIt", () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "ignores": [
+			          "CHANGELOG.md",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "10.0.0",
@@ -185,14 +200,6 @@ describe("blockReleaseIt", () => {
 			            "href": "http://npmjs.com/package/test-repository",
 			            "src": "https://img.shields.io/npm/v/test-repository?color=21bb42&label=%F0%9F%93%A6%20npm",
 			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "dependencies": [
-			          "should-semantic-release",
 			        ],
 			      },
 			      "block": [Function],
@@ -237,12 +244,15 @@ describe("blockReleaseIt", () => {
 
 			              Cheers! 📦🚀
 
+
 			name: Post Release
+
 
 			on:
 			  release:
 			    types:
 			      - published
+
 
 			permissions:
 			  issues: write
@@ -250,6 +260,7 @@ describe("blockReleaseIt", () => {
 			",
 			        "release.yml": "concurrency:
 			  group: \${{ github.workflow }}
+
 
 			jobs:
 			  release:
@@ -267,14 +278,17 @@ describe("blockReleaseIt", () => {
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.2.2
+			        uses: JoshuaKGoldberg/release-it-action@v0.3.2
+
 
 			name: Release
+
 
 			on:
 			  push:
 			    branches:
 			      - main
+
 
 			permissions:
 			  contents: write

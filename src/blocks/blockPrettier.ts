@@ -30,14 +30,15 @@ export const blockPrettier = base.createBlock({
 			)
 			.default([]),
 		plugins: z.array(z.string()).default([]),
+		runBefore: z.array(z.string()).default([]),
 	},
 	produce({ addons }) {
-		const { ignores, overrides, plugins } = addons;
+		const { ignores, overrides, plugins, runBefore } = addons;
 
 		return {
 			addons: [
 				blockCSpell({
-					ignores: [".all-contributorsrc"],
+					ignorePaths: [".all-contributorsrc"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -59,14 +60,17 @@ pnpm format --write
 					jobs: [
 						{
 							name: "Prettier",
-							steps: [{ run: "pnpm format --list-different" }],
+							steps: [
+								...runBefore.map((run) => ({ run })),
+								{ run: "pnpm format --list-different" },
+							],
 						},
 					],
 				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies(
-							...plugins,
+							...plugins.filter((plugin) => !plugin.startsWith(".")),
 							"husky",
 							"lint-staged",
 							"prettier",
@@ -102,7 +106,7 @@ pnpm format --write
 			},
 			scripts: [
 				{
-					commands: ["pnpm format --write"],
+					commands: [...runBefore, "pnpm format --write"],
 					phase: CommandPhase.Format,
 				},
 			],
@@ -115,7 +119,11 @@ pnpm format --write
 					dependencies: ["eslint-config-prettier", "eslint-plugin-prettier"],
 				}),
 				blockRemoveFiles({
-					files: [".prettierrc.{c*,js,m*,t*}", "prettier.config*"],
+					files: [
+						".prettierrc",
+						".prettierrc.{c*,js,m*,t*}",
+						"prettier.config*",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["format", "prettier"],

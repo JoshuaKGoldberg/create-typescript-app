@@ -1,6 +1,8 @@
 const startUsage = "## Usage";
 
-export function readUsageFromReadme(readme: string) {
+export async function readReadmeUsage(getReadme: () => Promise<string>) {
+	const readme = await getReadme();
+
 	const indexOfUsage = readme.indexOf(startUsage);
 	if (indexOfUsage === -1) {
 		return undefined;
@@ -11,10 +13,10 @@ export function readUsageFromReadme(readme: string) {
 		.slice(offset)
 		.search(/## (?:Development|Contributing|Contributors)/);
 	if (indexOfNextKnownHeading === -1) {
-		return readme.slice(offset);
+		return readme.slice(offset) || undefined;
 	}
 
 	const usage = readme.slice(offset, indexOfNextKnownHeading + offset).trim();
 
-	return usage ? usage : undefined;
+	return usage || undefined;
 }

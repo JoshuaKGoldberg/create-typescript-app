@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockCSpell } from "./blockCSpell.js";
 import { optionsBase } from "./options.fakes.js";
@@ -78,7 +78,7 @@ describe("blockCSpell", () => {
 	test("with addons", () => {
 		const creation = testBlock(blockCSpell, {
 			addons: {
-				ignores: ["lib/"],
+				ignorePaths: ["lib/"],
 				words: ["joshuakgoldberg"],
 			},
 			options: optionsBase,
@@ -280,7 +280,7 @@ describe("blockCSpell", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "description" --words "Test description" --words "directory" --words "." --words "email" --words "github" --words "github@email.com" --words "npm" --words "npm@email.com" --words "emoji" --words "💖" --words "owner" --words "test-owner" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
+			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "Test usage." --words "email" --words "github" --words "github@email.com" --words "npm" --words "npm@email.com" --words "emoji" --words "💖" --words "node" --words "minimum" --words "20.12.0" --words "owner" --words "test-owner" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
 			      ],
 			      "phase": 3,
 			    },
@@ -363,5 +363,50 @@ describe("blockCSpell", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when cspell.json does not exist", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when cspell.json does not contain truthy data", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify(null)],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when cspell.json contains invalid data", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify({ ignorePaths: true })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns the data when cspell.json contains ignorePaths and words", () => {
+			const data = {
+				ignorePaths: ["other"],
+				words: ["abc", "def"],
+			};
+
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify(data)],
+				},
+			});
+
+			expect(actual).toEqual(data);
+		});
 	});
 });

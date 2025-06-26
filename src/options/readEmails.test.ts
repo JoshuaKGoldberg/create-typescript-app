@@ -12,6 +12,7 @@ describe(readEmails, () => {
 			() => Promise.resolve(undefined),
 			() => Promise.resolve(undefined),
 			() => Promise.resolve(undefined),
+			() => Promise.resolve({}),
 		);
 
 		expect(actual).toBeUndefined();
@@ -22,6 +23,7 @@ describe(readEmails, () => {
 			() => Promise.resolve(emailCoC),
 			() => Promise.resolve(undefined),
 			() => Promise.resolve(undefined),
+			() => Promise.resolve({}),
 		);
 
 		expect(actual).toEqual({ github: emailCoC, npm: emailCoC });
@@ -32,6 +34,7 @@ describe(readEmails, () => {
 			() => Promise.resolve(undefined),
 			() => Promise.resolve(undefined),
 			() => Promise.resolve(emailNpm),
+			() => Promise.resolve({}),
 		);
 
 		expect(actual).toEqual({ github: emailNpm, npm: emailNpm });
@@ -42,6 +45,7 @@ describe(readEmails, () => {
 			() => Promise.resolve(emailCoC),
 			() => Promise.resolve(undefined),
 			() => Promise.resolve(emailNpm),
+			() => Promise.resolve({}),
 		);
 
 		expect(actual).toEqual({ github: emailCoC, npm: emailNpm });
@@ -52,8 +56,20 @@ describe(readEmails, () => {
 			() => Promise.resolve(undefined),
 			() => Promise.resolve(emailGit),
 			() => Promise.resolve(emailNpm),
+			() => Promise.resolve({}),
 		);
 
 		expect(actual).toEqual({ github: emailGit, npm: emailNpm });
+	});
+
+	it("resolves package author email as the github and npm emails when only the package author email exists", async () => {
+		const actual = await readEmails(
+			() => Promise.resolve(undefined),
+			() => Promise.resolve(undefined),
+			() => Promise.resolve(undefined),
+			() => Promise.resolve({ email: emailNpm }),
+		);
+
+		expect(actual).toEqual({ github: emailNpm, npm: emailNpm });
 	});
 });

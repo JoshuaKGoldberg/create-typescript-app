@@ -1,12 +1,12 @@
 # Changelog
 
-# [2.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.45.0...2.46.0) (2025-06-26)
+## [2.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.45.0...2.46.0) (2025-06-26)
 
 ### Features
 
 - switch from tsup to tsdown ([#2224](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2224)) ([5ea7d3e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5ea7d3e653d4f1d71fef28c7189a68f73fcd7d7f)), closes [#2223](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2223)
 
-# [2.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.6...2.45.0) (2025-06-26)
+## [2.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.6...2.45.0) (2025-06-26)
 
 ### Features
 
@@ -48,13 +48,13 @@
 
 - update image-size to v2 ([#2232](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2232)) ([016fc0d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/016fc0da5afcd6d65ff670d4e9247d8764053eaf)), closes [#2231](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2231) [#1948](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1948)
 
-# [2.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.43.0...2.44.0) (2025-06-26)
+## [2.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.43.0...2.44.0) (2025-06-26)
 
 ### Features
 
 - bump Node.js minimum to 20.12.0 and pinned to 24.3.0 ([#2230](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2230)) ([2d7af5b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2d7af5b2564f205588e3e93ab5b6f53c078a7387)), closes [#2184](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2184) [#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)
 
-# [2.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.1...2.43.0) (2025-06-26)
+## [2.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.1...2.43.0) (2025-06-26)
 
 ### Features
 

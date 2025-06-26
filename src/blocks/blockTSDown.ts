@@ -13,6 +13,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 import { CommandPhase } from "./phases.js";
+import removeUndefinedObjects from "remove-undefined-objects";
 
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());
@@ -38,12 +39,14 @@ export const blockTSDown = base.createBlock({
 
 		return {
 			entry: zEntry.safeParse(rawEntry).data,
-			properties: {
+			properties: removeUndefinedObjects({
 				...zProperties.safeParse(rest).data,
 
 				// In case of a tsup.config.ts migrated to tsdown.config.ts
 				bundle: undefined,
-			},
+				clean: rest.clean === false ? false : undefined,
+				format: rest.format === "esm" ? undefined : rest.format,
+			}),
 		};
 	},
 	produce({ addons, options }) {

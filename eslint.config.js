@@ -61,6 +61,10 @@ export default tseslint.config(
 				"error",
 				{ allowBoolean: true, allowNullish: true, allowNumber: true },
 			],
+			"n/no-unsupported-features/node-builtins": [
+				"error",
+				{ allowExperimental: true, ignores: ["import.meta.dirname"] },
+			],
 
 			// Stylistic concerns that don't interfere with Prettier
 			"logical-assignment-operators": [

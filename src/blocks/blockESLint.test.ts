@@ -71,7 +71,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -192,7 +192,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -349,7 +349,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -548,7 +548,7 @@ describe("blockESLint", () => {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
 			            "@types/eslint-plugin-markdown": "2.0.2",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "eslint-plugin-markdown": "5.1.0",
 			            "eslint-plugin-regexp": "2.9.0",
@@ -697,7 +697,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -839,7 +839,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -977,7 +977,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -1103,7 +1103,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -1226,7 +1226,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },
@@ -1349,7 +1349,7 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.29.0",
-			            "@types/node": "22.13.10",
+			            "@types/node": "24.0.4",
 			            "eslint": "9.29.0",
 			            "typescript-eslint": "8.35.0",
 			          },

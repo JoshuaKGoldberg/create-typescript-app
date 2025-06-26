@@ -1,5 +1,29 @@
 # Changelog
 
+# [2.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.43.0...2.44.0) (2025-06-26)
+
+### Features
+
+- bump Node.js minimum to 20.12.0 and pinned to 24.3.0 ([#2230](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2230)) ([2d7af5b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2d7af5b2564f205588e3e93ab5b6f53c078a7387)), closes [#2184](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2184) [#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)
+
+# [2.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.1...2.43.0) (2025-06-26)
+
+### Features
+
+- draft PR in blockCTATransitions when package.json engines is changed ([#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)) ([84f2205](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/84f220557e1de65b73e3767259a54e3caf67f57a)), closes [#2185](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2185)
+
+## [2.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.0...2.42.1) (2025-05-15)
+
+### Bug Fixes
+
+- correct transition path of removed accessibility-alt-text-bot.yml ([5ed6338](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5ed63383110bca4c617f7e1ad20bacb588f5ed80))
+
+# [2.42.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.2...2.42.0) (2025-05-06)
+
+### Features
+
+- add Octoguide ([#2220](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2220)) ([3bab735](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3bab735442c16ab721a75c2357004e80ced1560b)), closes [#2219](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2219)
+
 ## [2.41.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.1...2.41.2) (2025-04-22)
 
 ### Bug Fixes

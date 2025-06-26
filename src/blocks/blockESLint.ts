@@ -12,56 +12,17 @@ import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
+import { blockESLintIntake } from "./eslint/blockESLintIntake.js";
+import {
+	Extension,
+	ExtensionRuleGroup,
+	ExtensionRules,
+	zExtension,
+	zExtensionRules,
+	zPackageImport,
+} from "./eslint/schemas.js";
+import { intakeFile } from "./intake/intakeFile.js";
 import { CommandPhase } from "./phases.js";
-
-const zRuleOptions = z.union([
-	z.literal("error"),
-	z.literal("off"),
-	z.literal("warn"),
-	z.union([
-		z.tuple([z.union([z.literal("error"), z.literal("warn")]), z.unknown()]),
-		z.tuple([
-			z.union([z.literal("error"), z.literal("warn")]),
-			z.unknown(),
-			z.unknown(),
-		]),
-	]),
-]);
-
-const zExtensionRuleGroup = z.object({
-	comment: z.string().optional(),
-	entries: z.record(z.string(), zRuleOptions),
-});
-
-type ExtensionRuleGroup = z.infer<typeof zExtensionRuleGroup>;
-
-const zExtensionRules = z.union([
-	z.record(z.string(), zRuleOptions),
-	z.array(zExtensionRuleGroup),
-]);
-
-type ExtensionRules = z.infer<typeof zExtensionRules>;
-
-const zExtension = z.object({
-	extends: z.array(z.string()).optional(),
-	files: z.array(z.string()).optional(),
-	languageOptions: z.unknown().optional(),
-	linterOptions: z.unknown().optional(),
-	plugins: z.record(z.string(), z.string()).optional(),
-	rules: zExtensionRules.optional(),
-	settings: z.record(z.string(), z.unknown()).optional(),
-});
-
-type Extension = z.infer<typeof zExtension>;
-
-const zPackageImport = z.object({
-	source: z.union([
-		z.string(),
-		z.object({ packageName: z.string(), version: z.string() }),
-	]),
-	specifier: z.string(),
-	types: z.boolean().optional(),
-});
 
 export const blockESLint = base.createBlock({
 	about: {
@@ -75,6 +36,13 @@ export const blockESLint = base.createBlock({
 		imports: z.array(zPackageImport).default([]),
 		rules: zExtensionRules.optional(),
 		settings: z.record(z.string(), z.unknown()).optional(),
+	},
+	intake({ files }) {
+		const eslintConfigRaw = intakeFile(files, [
+			["eslint.config.js", "eslint.config.mjs"],
+		]);
+
+		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
 	produce({ addons, options }) {
 		const { explanations, extensions, ignores, imports, rules, settings } =
@@ -103,9 +71,13 @@ export const blockESLint = base.createBlock({
 			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
 		);
 
-		const ignoreLines = ["lib", "node_modules", "pnpm-lock.yaml", ...ignores]
-			.map((ignore) => JSON.stringify(ignore))
-			.sort();
+		const ignoreLines = Array.from(
+			new Set(
+				["lib", "node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
+					JSON.stringify(ignore),
+				),
+			),
+		).sort();
 
 		const extensionLines = [
 			printExtension({

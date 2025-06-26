@@ -28,7 +28,7 @@ export const blockNcc = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					ignores: ["dist"],
+					ignorePaths: ["dist"],
 				}),
 				blockDevelopmentDocs({
 					sections: {

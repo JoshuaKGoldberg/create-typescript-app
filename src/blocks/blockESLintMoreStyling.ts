@@ -1,6 +1,9 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
 
+export const stylisticComment =
+	"Stylistic concerns that don't interfere with Prettier";
+
 export const blockESLintMoreStyling = base.createBlock({
 	about: {
 		name: "ESLint More Styling",
@@ -11,7 +14,7 @@ export const blockESLintMoreStyling = base.createBlock({
 				blockESLint({
 					rules: [
 						{
-							comment: "Stylistic concerns that don't interfere with Prettier",
+							comment: stylisticComment,
 							entries: {
 								"logical-assignment-operators": [
 									"error",

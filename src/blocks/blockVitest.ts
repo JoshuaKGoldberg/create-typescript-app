@@ -1,14 +1,14 @@
 import { IntakeDirectory } from "bingo-fs";
-import JSON5 from "json5";
 import { z } from "zod";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
+import { zActionStep } from "./actions/steps.js";
 import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockExampleFiles } from "./blockExampleFiles.js";
-import { blockGitHubActionsCI, zActionStep } from "./blockGitHubActionsCI.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockKnip } from "./blockKnip.js";
 import { blockPackageJson } from "./blockPackageJson.js";
@@ -18,16 +18,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockTSup } from "./blockTSup.js";
 import { blockVSCode } from "./blockVSCode.js";
-import { intakeFile } from "./intake/intakeFile.js";
-
-function tryParseJSON5(text: string) {
-	try {
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-		return JSON5.parse(text) as Record<string, unknown> | undefined;
-	} catch {
-		return undefined;
-	}
-}
+import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 
 const zCoverage = z.object({
 	exclude: z.array(z.string()).optional(),
@@ -47,19 +38,8 @@ const zTest = z
 	.partial();
 
 function intakeFromConfig(files: IntakeDirectory) {
-	const file = intakeFile(files, ["vitest.config.ts"]);
-	if (!file) {
-		return undefined;
-	}
-
-	const normalized = file[0].replaceAll(/[\n\r]/g, "");
-	const matched = /defineConfig\(\{(.+)\}\)\s*(?:;\s*)?$/u.exec(normalized);
-	if (!matched) {
-		return undefined;
-	}
-
-	const rawData = tryParseJSON5(`{${matched[1]}}`);
-	if (typeof rawData !== "object" || typeof rawData.test !== "object") {
+	const rawData = intakeFileDefineConfig(files, ["vitest.config.ts"]);
+	if (typeof rawData?.test !== "object") {
 		return undefined;
 	}
 
@@ -103,7 +83,7 @@ export const blockVitest = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					ignores: ["coverage"],
+					ignorePaths: ["coverage"],
 				}),
 				blockDevelopmentDocs({
 					sections: {

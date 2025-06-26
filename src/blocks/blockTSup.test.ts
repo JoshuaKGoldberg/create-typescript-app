@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockTSup } from "./blockTSup.js";
 import { optionsBase } from "./options.fakes.js";
@@ -326,5 +326,100 @@ describe("blockTSup", () => {
 			  "scripts": undefined,
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns nothing when tsup.config.ts passes nothing to defineConfig", () => {
+			const actual = testIntake(blockTSup, {
+				files: {
+					"tsup.config.ts": [`defineConfig()`],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns nothing when tsup.config.ts passes invalid syntax to defineConfig", () => {
+			const actual = testIntake(blockTSup, {
+				files: {
+					"tsup.config.ts": [`defineConfig({ ! })`],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual(undefined);
+		});
+
+		it("returns entry when it exists alone in tsup.config.ts", () => {
+			const actual = testIntake(blockTSup, {
+				files: {
+					"tsup.config.ts": [
+						`import { defineConfig } from "tsup";
+	
+export default defineConfig({
+	entry: ["src/**/*.ts", "!src/**/*.test.*"],
+});
+	`,
+					],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({
+				entry: ["src/**/*.ts", "!src/**/*.test.*"],
+				properties: {},
+			});
+		});
+
+		it("returns other properties when they exists without entry in tsup.config.ts", () => {
+			const actual = testIntake(blockTSup, {
+				files: {
+					"tsup.config.ts": [
+						`import { defineConfig } from "tsup";
+	
+export default defineConfig({
+	bundle: false,
+	format: "esm",
+});
+	`,
+					],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({
+				properties: {
+					bundle: false,
+					format: "esm",
+				},
+			});
+		});
+
+		it("returns entry and other properties when they all exist in tsup.config.ts", () => {
+			const actual = testIntake(blockTSup, {
+				files: {
+					"tsup.config.ts": [
+						`import { defineConfig } from "tsup";
+	
+export default defineConfig({
+	bundle: false,
+	entry: ["src/**/*.ts", "!src/**/*.test.*"],
+	format: "esm",
+});
+	`,
+					],
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({
+				entry: ["src/**/*.ts", "!src/**/*.test.*"],
+				properties: {
+					bundle: false,
+					format: "esm",
+				},
+			});
+		});
 	});
 });

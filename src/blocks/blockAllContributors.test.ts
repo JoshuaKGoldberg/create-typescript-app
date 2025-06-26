@@ -53,7 +53,19 @@ describe("blockAllContributors", () => {
 			    },
 			  ],
 			  "files": {
-			    ".all-contributorsrc": "{"badgeTemplate":"\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>","contributors":[],"contributorsSortAlphabetically":true,"projectName":"test-repository","projectOwner":"test-owner"}",
+			    ".all-contributorsrc": "{
+			  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+			  "commitType": "docs",
+			  "contributors": [],
+			  "contributorsPerLine": 7,
+			  "contributorsSortAlphabetically": true,
+			  "files": [
+			    "README.md"
+			  ],
+			  "projectName": "test-repository",
+			  "projectOwner": "test-owner",
+			  "repoType": "github"
+			}",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yml": "jobs:
@@ -83,7 +95,7 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx all-contributors-cli@6.23.1 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },
@@ -174,7 +186,34 @@ describe("blockAllContributors", () => {
 			    },
 			  ],
 			  "files": {
-			    ".all-contributorsrc": "{"badgeTemplate":"\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>","contributors":[{"avatar_url":"https://avatars.githubusercontent.com/u/3335181?v=4","contributions":["bug","code","design","doc","test","tool"],"login":"JoshuaKGoldberg","name":"Josh Goldberg","profile":"http://www.joshuakgoldberg.com"}],"contributorsSortAlphabetically":true,"projectName":"test-repository","projectOwner":"JoshuaKGoldberg"}",
+			    ".all-contributorsrc": "{
+			  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+			  "commitType": "docs",
+			  "contributors": [
+			    {
+			      "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+			      "contributions": [
+			        "bug",
+			        "code",
+			        "design",
+			        "doc",
+			        "test",
+			        "tool"
+			      ],
+			      "login": "JoshuaKGoldberg",
+			      "name": "Josh Goldberg",
+			      "profile": "http://www.joshuakgoldberg.com"
+			    }
+			  ],
+			  "contributorsPerLine": 7,
+			  "contributorsSortAlphabetically": true,
+			  "files": [
+			    "README.md"
+			  ],
+			  "projectName": "test-repository",
+			  "projectOwner": "JoshuaKGoldberg",
+			  "repoType": "github"
+			}",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yml": "jobs:
@@ -204,7 +243,7 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli add JoshuaKGoldberg bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
+			        "pnpx all-contributors-cli@6.23.1 add JoshuaKGoldberg bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
 			      ],
 			      "phase": 3,
 			    },
@@ -294,7 +333,34 @@ describe("blockAllContributors", () => {
 			    },
 			  ],
 			  "files": {
-			    ".all-contributorsrc": "{"badgeTemplate":"\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>","contributors":[{"avatar_url":"https://avatars.githubusercontent.com/u/3335181?v=4","contributions":["bug","code","design","doc","test","tool"],"login":"other","name":"Other","profile":"http://www.example.com"}],"contributorsSortAlphabetically":true,"projectName":"test-repository","projectOwner":"test-owner"}",
+			    ".all-contributorsrc": "{
+			  "badgeTemplate": "\\t<a href=\\"#contributors\\" target=\\"_blank\\"><img alt=\\"👪 All Contributors: <%= contributors.length %>\\" src=\\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\\" /></a>",
+			  "commitType": "docs",
+			  "contributors": [
+			    {
+			      "avatar_url": "https://avatars.githubusercontent.com/u/3335181?v=4",
+			      "contributions": [
+			        "bug",
+			        "code",
+			        "design",
+			        "doc",
+			        "test",
+			        "tool"
+			      ],
+			      "login": "other",
+			      "name": "Other",
+			      "profile": "http://www.example.com"
+			    }
+			  ],
+			  "contributorsPerLine": 7,
+			  "contributorsSortAlphabetically": true,
+			  "files": [
+			    "README.md"
+			  ],
+			  "projectName": "test-repository",
+			  "projectOwner": "test-owner",
+			  "repoType": "github"
+			}",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yml": "jobs:
@@ -324,7 +390,7 @@ describe("blockAllContributors", () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "pnpx all-contributors-cli add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
+			        "pnpx all-contributors-cli@6.23.1 add test-owner code,content,doc,ideas,infra,maintenance,projectManagement,tool",
 			      ],
 			      "phase": 3,
 			    },

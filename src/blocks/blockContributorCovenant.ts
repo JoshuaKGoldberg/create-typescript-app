@@ -1,4 +1,5 @@
 import { base } from "../base.js";
+import { blockMarkdownlint } from "./blockMarkdownlint.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 
@@ -9,6 +10,9 @@ export const blockContributorCovenant = base.createBlock({
 	produce({ options }) {
 		return {
 			addons: [
+				blockMarkdownlint({
+					ignores: [".github/CODE_OF_CONDUCT.md"],
+				}),
 				blockREADME({
 					badges: [
 						{

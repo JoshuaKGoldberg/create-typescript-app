@@ -1,5 +1,6 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import jsYaml from "js-yaml";
+import { describe, expect, it, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
@@ -47,36 +48,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -153,36 +124,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -253,36 +194,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -363,36 +274,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": undefined,
 			        "pr-review-requested.yml": "jobs:
 			  pr_review_requested:
@@ -480,36 +361,6 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "accessibility-alt-text-bot.yml": "jobs:
-			  accessibility_alt_text_bot:
-			    if: \${{ !endsWith(github.actor, '[bot]') }}
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: github/accessibility-alt-text-bot@v1.4.0
-
-
-			name: Accessibility Alt Text Bot
-
-
-			on:
-			  issue_comment:
-			    types:
-			      - created
-			      - edited
-			  issues:
-			    types:
-			      - edited
-			      - opened
-			  pull_request:
-			    types:
-			      - edited
-			      - opened
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
-			",
 			        "ci.yml": "jobs:
 			  validate:
 			    name: Validate
@@ -564,5 +415,158 @@ describe("blockGitHubActionsCI", () => {
 			  },
 			}
 		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when action.yml does not exist", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when action.yml contains invalid yml", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": ["invalid yml!"],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when action.yml does not contain a runs entry", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										other: {
+											steps: [],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when action.yml runs steps is not an array", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: true,
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined env when action.yml contains a test action with actions/setup-node step", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: [
+												{
+													uses: "actions/other@v1",
+												},
+											],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined env when action.yml contains a test action with no env in its actions/setup-node step", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: [
+												{
+													uses: "actions/setup-node@v4",
+												},
+											],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns nodeVersion when action.yml contains a test action with node-version in its actions/setup/node step", () => {
+			const nodeVersion = "20.10.0";
+
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						actions: {
+							prepare: {
+								"action.yml": [
+									jsYaml.dump({
+										runs: {
+											steps: [
+												{
+													uses: "actions/setup-node@v4",
+													with: {
+														"node-version": nodeVersion,
+													},
+												},
+											],
+										},
+									}),
+								],
+							},
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ nodeVersion });
+		});
 	});
 });

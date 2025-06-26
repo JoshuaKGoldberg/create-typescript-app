@@ -15,7 +15,7 @@ describe("blockPrettier", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
@@ -127,7 +127,7 @@ describe("blockPrettier", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
@@ -277,7 +277,7 @@ describe("blockPrettier", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "ignores": [
+			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },

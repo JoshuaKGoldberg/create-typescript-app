@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.46.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.0...2.46.1) (2025-06-26)
+
+### Bug Fixes
+
+- switch changelog preset from angular to conventionalcommits ([#2226](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2226)) ([2a5d9c7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2a5d9c70463fcc3897e2d388536c5a489e9ceb14)), closes [#915](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/915)
+
 ## [2.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.45.0...2.46.0) (2025-06-26)
 
 ### Features

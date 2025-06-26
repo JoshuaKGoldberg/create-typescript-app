@@ -50,7 +50,7 @@ describe("blockKnip", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "5.46.0",
+			            "knip": "5.61.2",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -61,7 +61,7 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true}}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.61.2/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true}}",
 			  },
 			}
 		`);
@@ -113,7 +113,7 @@ describe("blockKnip", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "5.46.0",
+			            "knip": "5.61.2",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -124,7 +124,7 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.61.2/schema.json","entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"]}",
 			  },
 			}
 		`);
@@ -172,7 +172,7 @@ describe("blockKnip", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "5.46.0",
+			            "knip": "5.61.2",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -203,7 +203,7 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.46.0/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true}}",
+			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.61.2/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true}}",
 			  },
 			}
 		`);

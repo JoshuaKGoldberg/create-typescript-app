@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.6...2.45.0) (2025-06-26)
+
+### Features
+
+- assorted dependency bumps ([#2240](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2240)) ([8974345](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/89743453670e543e316130ecdc857823ce6f84e8)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2218](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2218) [#2205](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2205) [#2201](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2201)
+
+## [2.44.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.5...2.44.6) (2025-06-26)
+
+### Bug Fixes
+
+- bump vitest to 3.2.4 ([#2239](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2239)) ([4554ffa](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4554ffa3c67c9d5eb4205aedeeb772a5e091e6a8)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2166](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2166)
+
 ## [2.44.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.4...2.44.5) (2025-06-26)
 
 ### Bug Fixes

@@ -22,7 +22,7 @@
 		"package.json"
 	],
 	"scripts": {
-		"build": "tsup",
+		"build": "tsdown",
 		"format": "prettier .",
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
@@ -113,7 +113,7 @@
 		"prettier-plugin-sh": "0.17.4",
 		"release-it": "19.0.3",
 		"sentences-per-line": "0.3.0",
-		"tsup": "8.5.0",
+		"tsdown": "0.12.7",
 		"typescript": "5.8.3",
 		"typescript-eslint": "8.35.0",
 		"vitest": "3.2.4"

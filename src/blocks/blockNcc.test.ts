@@ -270,7 +270,7 @@ describe("blockNcc", () => {
 					...optionsBase,
 					packageData: {
 						scripts: {
-							"build:release": "tsup",
+							"build:release": "tsdown",
 						},
 					},
 				},

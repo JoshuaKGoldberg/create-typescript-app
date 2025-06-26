@@ -16,7 +16,7 @@ import { blockPrettier } from "./blockPrettier.js";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockTSup } from "./blockTSup.js";
+import { blockTSDown } from "./blockTSDown.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
 
@@ -209,7 +209,7 @@ describe(greet, () => {
 				blockPrettier({
 					ignores: ["/coverage"],
 				}),
-				blockTSup({
+				blockTSDown({
 					entry: ["!src/**/*.test.*"],
 				}),
 				blockVSCode({

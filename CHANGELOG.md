@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.44.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.2...2.44.3) (2025-06-26)
+
+### Bug Fixes
+
+- bump ESLint to 9.29, along with related deps ([#2234](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2234)) ([09bca8e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/09bca8ea054d8253d08248dca79aa3b6d9cb7cd9)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2161](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2161)
+
 ## [2.44.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.1...2.44.2) (2025-06-26)
 
 ### Bug Fixes

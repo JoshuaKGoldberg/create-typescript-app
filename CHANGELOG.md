@@ -1,5 +1,11 @@
 # Changelog
 
+# [2.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.43.0...2.44.0) (2025-06-26)
+
+### Features
+
+- bump Node.js minimum to 20.12.0 and pinned to 24.3.0 ([#2230](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2230)) ([2d7af5b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2d7af5b2564f205588e3e93ab5b6f53c078a7387)), closes [#2184](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2184) [#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)
+
 # [2.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.1...2.43.0) (2025-06-26)
 
 ### Features

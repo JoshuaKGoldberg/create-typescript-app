@@ -82,7 +82,7 @@
 		"@types/html-to-text": "9.0.4",
 		"@types/js-yaml": "4.0.9",
 		"@types/lodash": "4.17.16",
-		"@types/node": "22.13.10",
+		"@types/node": "22.15.32",
 		"@types/parse-author": "2.0.3",
 		"@types/semver": "7.7.0",
 		"@vitest/coverage-v8": "3.2.4",

@@ -20,7 +20,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 1. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
    As a consequence we should:
-
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
    - update `.github/workflows/build.yml` to ensure `dist` is up to date:
 
@@ -74,20 +73,17 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    pnpm remove tsup
    pnpm add @vercel/ncc -D
    ```
-
    - Now we need to update the `build` script in our `package.json`:
 
    ```diff
    -"build": "tsup",
    +"build": "ncc build src/index.ts -o dist --license licenses.txt",
    ```
-
    - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
 
    ```diff
    +dist
    ```
-
    - Rather than having to remember to compile each time, we'll update our pre-commit hook in `.husky/pre-commit` to build for us on each commit:
 
    ```diff

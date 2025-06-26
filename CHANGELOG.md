@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.44.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.3...2.44.4) (2025-06-26)
+
+### Bug Fixes
+
+- bump cspell from 8 to 9 ([#2237](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2237)) ([8786f9a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8786f9a9e3f68e504be80b40497fdf739d71117a)), closes [#2227](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2227) [#2230](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2230)
+
 ## [2.44.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.2...2.44.3) (2025-06-26)
 
 ### Bug Fixes

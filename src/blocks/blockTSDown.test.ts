@@ -96,7 +96,7 @@ describe("blockTSDown", () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib","unbundle":true});
+			export default defineConfig({"dts":true,"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -224,7 +224,7 @@ describe("blockTSDown", () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"clean":true,"dts":true,"entry":["src/**/*.ts"],"format":"esm","outDir":"lib","unbundle":true});
+			export default defineConfig({"dts":true,"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
 			",
 			  },
 			}
@@ -321,7 +321,7 @@ describe("blockTSDown", () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"clean":true,"dts":true,"entry":["src/**/*.ts","!src/**/*.test.ts"],"format":"esm","outDir":"lib","unbundle":true});
+			export default defineConfig({"dts":true,"entry":["src/**/*.ts","!src/**/*.test.ts"],"outDir":"lib","unbundle":true});
 			",
 			  },
 			  "scripts": undefined,

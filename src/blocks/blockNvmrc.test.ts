@@ -33,7 +33,7 @@ describe("blockNvmrc", () => {
 				}),
 			],
 			files: {
-				".nvmrc": `20.18.0\n`,
+				".nvmrc": `20.19.0\n`,
 			},
 		});
 	});

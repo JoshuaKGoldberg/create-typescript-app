@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.44.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.4...2.44.5) (2025-06-26)
+
+### Bug Fixes
+
+- bump markdownlint to 0.38 ([#2238](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2238)) ([08bde9b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/08bde9b755e11e479b0b9b89384bd90f00a54a6e)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000)
+
 ## [2.44.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.3...2.44.4) (2025-06-26)
 
 ### Bug Fixes

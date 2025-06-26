@@ -14,7 +14,7 @@ export const zReadme = z.object({
 	additional: z.string().optional(),
 	explainer: z.string().optional(),
 	footnotes: z.string().optional(),
-	usage: z.string(),
+	usage: z.string().optional(),
 });
 
 export type Readme = z.infer<typeof zReadme>;

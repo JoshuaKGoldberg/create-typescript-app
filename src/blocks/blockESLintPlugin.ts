@@ -4,14 +4,35 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockREADME } from "./blockREADME.js";
 import { blockVitest } from "./blockVitest.js";
+import { blockESLintPluginIntake } from "./eslint/blockESLintPluginIntake.js";
+import { zConfigEmoji } from "./eslint/schemas.js";
+import { intakeFile } from "./intake/intakeFile.js";
+import { CommandPhase } from "./phases.js";
 
 export const blockESLintPlugin = base.createBlock({
 	about: {
 		name: "ESLint Plugin",
 	},
-	produce({ options }) {
+	addons: {
+		configEmoji: zConfigEmoji,
+	},
+	intake({ files }) {
+		const docGeneratorConfigRaw = intakeFile(files, [
+			[".eslint-doc-generatorrc.js", ".eslint-doc-generatorrc.mjs"],
+		]);
+
+		return docGeneratorConfigRaw
+			? blockESLintPluginIntake(docGeneratorConfigRaw[0])
+			: undefined;
+	},
+	produce({ addons, options }) {
+		const { configEmoji } = addons;
 		const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
+		const pluginName = options.repository
+			.replace(/^eslint-plugin-/, "")
+			.replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
 
 		return {
 			addons: [
@@ -67,9 +88,37 @@ pnpm build:docs
 						},
 					],
 				}),
+				blockREADME({
+					defaultUsage: [
+						`Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+
+\`\`\`shell
+npm i ${options.repository} -D
+\`\`\`
+
+\`\`\`ts
+import ${pluginName} from "${options.repository}";
+
+export default [
+	// (other plugins)
+	${pluginName}.configs.recommended, // 👈
+];
+\`\`\`
+
+### Rules
+
+These are all set to \`"error"\` in the recommended config:
+
+<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->`,
+					],
+				}),
 				blockPackageJson({
 					properties: {
+						dependencies: {
+							"@typescript-eslint/utils": "^8.29.0",
+						},
 						devDependencies: {
+							"@typescript-eslint/rule-tester": "8.29.1",
 							"eslint-doc-generator": "2.1.0",
 							"eslint-plugin-eslint-plugin": "6.4.0",
 						},
@@ -90,7 +139,7 @@ pnpm build:docs
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {
-	postprocess: async (content, path) =>
+	${configEmoji ? `configEmoji: ${JSON.stringify(configEmoji)},\n\t` : ""}postprocess: async (content, path) =>
 		prettier.format(content, {
 			...(await prettier.resolveConfig(path)),
 			parser: "markdown",
@@ -101,6 +150,16 @@ const config = {
 export default config;
 `,
 			},
+			scripts: [
+				{
+					commands: ["pnpm build"],
+					phase: CommandPhase.Build,
+				},
+				{
+					commands: ["pnpm eslint-doc-generator --init-rule-docs"],
+					phase: CommandPhase.Process,
+				},
+			],
 		};
 	},
 	setup({ options }) {
@@ -143,7 +202,7 @@ export { rules };
 export default plugin;
 `,
 					rules: {
-						"example.test.ts": `import { rule } from "./enums.js";
+						"enums.test.ts": `import { rule } from "./enums.js";
 import { ruleTester } from "./ruleTester.js";
 
 ruleTester.run("enums", rule, {
@@ -164,7 +223,7 @@ ruleTester.run("enums", rule, {
 	valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
 });
 `,
-						"example.ts": `import { createRule } from "../utils.js";
+						"enums.ts": `import { createRule } from "../utils.js";
 
 export const rule = createRule({
 	create(context) {
@@ -191,10 +250,10 @@ export const rule = createRule({
 	name: "enums",
 });
 `,
-						"index.ts": `import { rule as example } from "./example.js";
+						"index.ts": `import { rule as enums } from "./enums.js";
 
 export const rules = {
-	example,
+	enums,
 };
 `,
 						"ruleTester.ts": `import { RuleTester } from "@typescript-eslint/rule-tester";

@@ -1,19 +1,22 @@
-import { readUsageFromReadme } from "./readUsageFromReadme.js";
+const startUsage = "## Usage";
 
-export async function readReadmeUsage(
-	getEmoji: () => Promise<string>,
-	getReadme: () => Promise<string>,
-	getRepository: () => Promise<string | undefined>,
-) {
-	return (
-		readUsageFromReadme(await getReadme()) ??
-		`\`\`\`shell
-npm i ${await getRepository()}
-\`\`\`
-\`\`\`ts
-import { greet } from "${await getRepository()}";
+export async function readReadmeUsage(getReadme: () => Promise<string>) {
+	const readme = await getReadme();
 
-greet("Hello, world! ${await getEmoji()}");
-\`\`\``
-	);
+	const indexOfUsage = readme.indexOf(startUsage);
+	if (indexOfUsage === -1) {
+		return undefined;
+	}
+
+	const offset = indexOfUsage + startUsage.length;
+	const indexOfNextKnownHeading = readme
+		.slice(offset)
+		.search(/## (?:Development|Contributing|Contributors)/);
+	if (indexOfNextKnownHeading === -1) {
+		return readme.slice(offset) || undefined;
+	}
+
+	const usage = readme.slice(offset, indexOfNextKnownHeading + offset).trim();
+
+	return usage || undefined;
 }

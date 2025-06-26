@@ -29,11 +29,12 @@ export const blockREADME = base.createBlock({
 	},
 	addons: {
 		badges: z.array(zBadge).default([]),
+		defaultUsage: z.array(z.string()).default([]),
 		notices: z.array(z.string()).default([]),
 		sections: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
-		const { badges, notices, sections } = addons;
+		const { badges, defaultUsage, notices, sections } = addons;
 
 		const explainer =
 			options.documentation.readme.explainer &&
@@ -60,7 +61,7 @@ ${formatBadges(badges)}
 ${[logo, explainer].filter(Boolean).join("")}
 ## Usage
 
-${options.documentation.readme.usage}
+${options.documentation.readme.usage ?? defaultUsage.join("\n\n")}
 
 ## Development
 

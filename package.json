@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "2.36.2",
+	"version": "2.44.0",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 	"repository": {
 		"type": "git",
@@ -38,7 +38,7 @@
 	},
 	"dependencies": {
 		"@typescript-eslint/typescript-estree": "^8.29.1",
-		"bingo": "^0.5.15",
+		"bingo": "^0.5.16",
 		"bingo-fs": "^0.5.5",
 		"bingo-stratum": "^0.5.11",
 		"cached-factory": "^0.1.0",
@@ -73,12 +73,12 @@
 		"zod-tsconfig": "^0.2.0"
 	},
 	"devDependencies": {
-		"@eslint-community/eslint-plugin-eslint-comments": "4.4.1",
+		"@eslint-community/eslint-plugin-eslint-comments": "4.5.0",
 		"@eslint/js": "9.22.0",
 		"@prettier/sync": "0.5.3",
 		"@release-it/conventional-changelog": "10.0.0",
 		"@types/eslint-plugin-markdown": "2.0.2",
-		"@types/git-url-parse": "9.0.3",
+		"@types/git-url-parse": "16.0.0",
 		"@types/html-to-text": "9.0.4",
 		"@types/js-yaml": "4.0.9",
 		"@types/lodash": "4.17.16",
@@ -99,7 +99,7 @@
 		"eslint-plugin-markdown": "5.1.0",
 		"eslint-plugin-n": "17.16.2",
 		"eslint-plugin-package-json": "0.29.0",
-		"eslint-plugin-perfectionist": "4.10.1",
+		"eslint-plugin-perfectionist": "4.11.0",
 		"eslint-plugin-regexp": "2.7.0",
 		"eslint-plugin-yml": "1.17.0",
 		"husky": "9.1.7",
@@ -119,9 +119,9 @@
 		"typescript-eslint": "8.26.1",
 		"vitest": "3.0.9"
 	},
-	"packageManager": "pnpm@10.7.0",
+	"packageManager": "pnpm@10.8.0",
 	"engines": {
-		"node": ">=18.3.0"
+		"node": ">=20.19.0"
 	},
 	"publishConfig": {
 		"provenance": true

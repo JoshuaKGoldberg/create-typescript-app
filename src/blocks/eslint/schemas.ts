@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+export const zConfigEmoji = z
+	.array(z.tuple([z.string(), z.string()]))
+	.optional();
+
 export const zRuleOptions = z.union([
 	z.literal("error"),
 	z.literal("off"),

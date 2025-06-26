@@ -1,5 +1,101 @@
 # Changelog
 
+# [2.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.43.0...2.44.0) (2025-06-26)
+
+### Features
+
+- bump Node.js minimum to 20.12.0 and pinned to 24.3.0 ([#2230](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2230)) ([2d7af5b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2d7af5b2564f205588e3e93ab5b6f53c078a7387)), closes [#2184](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2184) [#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)
+
+# [2.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.1...2.43.0) (2025-06-26)
+
+### Features
+
+- draft PR in blockCTATransitions when package.json engines is changed ([#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)) ([84f2205](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/84f220557e1de65b73e3767259a54e3caf67f57a)), closes [#2185](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2185)
+
+## [2.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.0...2.42.1) (2025-05-15)
+
+### Bug Fixes
+
+- correct transition path of removed accessibility-alt-text-bot.yml ([5ed6338](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5ed63383110bca4c617f7e1ad20bacb588f5ed80))
+
+# [2.42.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.2...2.42.0) (2025-05-06)
+
+### Features
+
+- add Octoguide ([#2220](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2220)) ([3bab735](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3bab735442c16ab721a75c2357004e80ced1560b)), closes [#2219](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2219)
+
+## [2.41.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.1...2.41.2) (2025-04-22)
+
+### Bug Fixes
+
+- skip checkout in CTA action before transition step ([#2215](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2215)) ([61fd266](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/61fd266134fca4c8ff795a355ec3b7cbb894b1c7)), closes [#2214](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2214)
+
+## [2.41.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.41.0...2.41.1) (2025-04-17)
+
+### Bug Fixes
+
+- bump release-it-action to v0.3.2 ([beaafd8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/beaafd8f47a7452e17e34b834627e2c38f570920))
+
+# [2.41.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.5...2.41.0) (2025-04-15)
+
+### Features
+
+- use eslint-plugin-yml's 'standard' config ([#2210](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2210)) ([35b86c8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/35b86c82de893deedd884321e690336d79b4e24f)), closes [#2209](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2209)
+
+## [2.40.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.4...2.40.5) (2025-04-11)
+
+### Bug Fixes
+
+- put redundant .all-contributorsrc properties back ([#2204](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2204)) ([0edc793](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0edc793040f1159a73ccff45e68b120fe7eaa041)), closes [#2203](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2203)
+
+## [2.40.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.3...2.40.4) (2025-04-10)
+
+### Bug Fixes
+
+- **deps:** bump bingo to 0.5.16 ([7ce6f8f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7ce6f8f6a668262f94711c502fe5a517055f777b))
+
+## [2.40.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.2...2.40.3) (2025-04-09)
+
+### Bug Fixes
+
+- refer to Bingo as a framework, not an engine ([#2200](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2200)) ([f7b2a59](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f7b2a59f3f5d7397f7343d89148f9da5b195041a)), closes [#2199](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2199)
+
+## [2.40.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.1...2.40.2) (2025-04-09)
+
+### Bug Fixes
+
+- only --init-rule-docs in setup ([f8f96f1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f8f96f1e440bf64321577be6748c17452602ef7e))
+
+## [2.40.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.40.0...2.40.1) (2025-04-09)
+
+### Bug Fixes
+
+- corrected setup for blockESLintPlugin ([#2196](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2196)) ([afc398b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/afc398b0f27c6b6e8699e7e0d471c64438bbac04)), closes [#2195](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2195)
+
+# [2.40.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.39.0...2.40.0) (2025-04-09)
+
+### Features
+
+- added configEmoji Addon to blockESLintPlugin ([#2194](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2194)) ([0f420f8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0f420f8a3c081339ad8921efb718da407ea0d21a)), closes [#2190](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2190)
+
+# [2.39.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.38.0...2.39.0) (2025-04-09)
+
+### Features
+
+- add ignores Addon for blockMarkdownlint ([#2193](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2193)) ([7a5c680](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7a5c680c76a14f8a4005264695e26d47144e3b08)), closes [#2191](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2191)
+
+# [2.38.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.37.0...2.38.0) (2025-04-08)
+
+### Features
+
+- added nodeVersion Addon to blockGitHubActionsCI ([#2189](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2189)) ([39a7fce](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/39a7fce67f2a36f2f621f33fd01d09cf836494d9)), closes [#2183](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2183)
+
+# [2.37.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.2...2.37.0) (2025-04-08)
+
+### Features
+
+- add build --no-dts before eslint-doc-generator in blockESLintPlugin build:docs ([#2186](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2186)) ([0a62e70](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0a62e70ba28ec6349bb056e1b7c9096d8a1bba80)), closes [#2182](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2182)
+
 ## [2.36.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.36.1...2.36.2) (2025-04-08)
 
 ### Bug Fixes

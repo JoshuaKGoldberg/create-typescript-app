@@ -289,7 +289,7 @@ export const base = createBase({
 		);
 
 		const getReadmeUsage = lazyValue(
-			async () => await readReadmeUsage(getEmoji, getReadme, getRepository),
+			async () => await readReadmeUsage(getReadme),
 		);
 
 		const getRepository = lazyValue(

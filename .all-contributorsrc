@@ -401,9 +401,7 @@
 	],
 	"contributorsPerLine": 7,
 	"contributorsSortAlphabetically": true,
-	"files": [
-		"README.md"
-	],
+	"files": ["README.md"],
 	"projectName": "create-typescript-app",
 	"projectOwner": "JoshuaKGoldberg",
 	"repoType": "github",

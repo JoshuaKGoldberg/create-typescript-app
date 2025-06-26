@@ -1,3 +1,4 @@
+import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
 import { base } from "../base.js";
@@ -17,9 +18,9 @@ import { CommandPhase } from "./phases.js";
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());
 
-export const blockTSup = base.createBlock({
+export const blockTSDown = base.createBlock({
 	about: {
-		name: "TSup",
+		name: "TSDown",
 	},
 	addons: {
 		entry: zEntry.default([]),
@@ -27,7 +28,9 @@ export const blockTSup = base.createBlock({
 		runInCI: z.array(z.string()).default([]),
 	},
 	intake({ files }) {
-		const rawData = intakeFileDefineConfig(files, ["tsup.config.ts"]);
+		const rawData =
+			intakeFileDefineConfig(files, ["tsdown.config.ts"]) ??
+			intakeFileDefineConfig(files, ["tsup.config.ts"]);
 		if (!rawData) {
 			return undefined;
 		}
@@ -36,7 +39,14 @@ export const blockTSup = base.createBlock({
 
 		return {
 			entry: zEntry.safeParse(rawEntry).data,
-			properties: zProperties.safeParse(rest).data,
+			properties: removeUndefinedObjects({
+				...zProperties.safeParse(rest).data,
+
+				// In case of a tsup.config.ts migrated to tsdown.config.ts
+				bundle: undefined,
+				clean: rest.clean === false ? false : undefined,
+				format: rest.format === "esm" ? undefined : rest.format,
+			}),
 		};
 	},
 	produce({ addons, options }) {
@@ -48,7 +58,7 @@ export const blockTSup = base.createBlock({
 					sections: {
 						Building: {
 							contents: `
-Run [**tsup**](https://tsup.egoist.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
 
 \`\`\`shell
 pnpm build
@@ -82,9 +92,9 @@ pnpm build --watch
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: getPackageDependencies("tsup"),
+						devDependencies: getPackageDependencies("tsdown"),
 						scripts: {
-							build: "tsup",
+							build: "tsdown",
 						},
 					},
 				}),
@@ -98,15 +108,13 @@ pnpm build --watch
 				}),
 			],
 			files: {
-				"tsup.config.ts": `import { defineConfig } from "tsup";
+				"tsdown.config.ts": `import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-					bundle: false,
-					clean: true,
 					dts: true,
 					entry: Array.from(new Set(["src/**/*.ts", ...entry])),
-					format: "esm",
 					outDir: "lib",
+					unbundle: true,
 					...properties,
 				})});
 `,
@@ -133,7 +141,13 @@ export default defineConfig(${JSON.stringify({
 					],
 				}),
 				blockRemoveFiles({
-					files: [".babelrc*", "babel.config.*", "dist", "lib"],
+					files: [
+						".babelrc*",
+						"babel.config.*",
+						"dist",
+						"lib",
+						"tsup.config.*",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["build", "tsup"],

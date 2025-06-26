@@ -1,5 +1,65 @@
 # Changelog
 
+# [2.46.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.45.0...2.46.0) (2025-06-26)
+
+### Features
+
+- switch from tsup to tsdown ([#2224](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2224)) ([5ea7d3e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5ea7d3e653d4f1d71fef28c7189a68f73fcd7d7f)), closes [#2223](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2223)
+
+# [2.45.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.6...2.45.0) (2025-06-26)
+
+### Features
+
+- assorted dependency bumps ([#2240](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2240)) ([8974345](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/89743453670e543e316130ecdc857823ce6f84e8)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2218](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2218) [#2205](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2205) [#2201](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2201)
+
+## [2.44.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.5...2.44.6) (2025-06-26)
+
+### Bug Fixes
+
+- bump vitest to 3.2.4 ([#2239](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2239)) ([4554ffa](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4554ffa3c67c9d5eb4205aedeeb772a5e091e6a8)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2166](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2166)
+
+## [2.44.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.4...2.44.5) (2025-06-26)
+
+### Bug Fixes
+
+- bump markdownlint to 0.38 ([#2238](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2238)) ([08bde9b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/08bde9b755e11e479b0b9b89384bd90f00a54a6e)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000)
+
+## [2.44.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.3...2.44.4) (2025-06-26)
+
+### Bug Fixes
+
+- bump cspell from 8 to 9 ([#2237](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2237)) ([8786f9a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8786f9a9e3f68e504be80b40497fdf739d71117a)), closes [#2227](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2227) [#2230](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2230)
+
+## [2.44.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.2...2.44.3) (2025-06-26)
+
+### Bug Fixes
+
+- bump ESLint to 9.29, along with related deps ([#2234](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2234)) ([09bca8e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/09bca8ea054d8253d08248dca79aa3b6d9cb7cd9)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2161](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2161)
+
+## [2.44.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.1...2.44.2) (2025-06-26)
+
+### Bug Fixes
+
+- bump Prettier to 3.6, along with related deps ([#2233](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2233)) ([c228205](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c2282059698465d5ef9387eda017d37509677903)), closes [#000](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/000) [#2161](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2161)
+
+## [2.44.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.44.0...2.44.1) (2025-06-26)
+
+### Bug Fixes
+
+- update image-size to v2 ([#2232](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2232)) ([016fc0d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/016fc0da5afcd6d65ff670d4e9247d8764053eaf)), closes [#2231](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2231) [#1948](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1948)
+
+# [2.44.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.43.0...2.44.0) (2025-06-26)
+
+### Features
+
+- bump Node.js minimum to 20.12.0 and pinned to 24.3.0 ([#2230](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2230)) ([2d7af5b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2d7af5b2564f205588e3e93ab5b6f53c078a7387)), closes [#2184](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2184) [#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)
+
+# [2.43.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.1...2.43.0) (2025-06-26)
+
+### Features
+
+- draft PR in blockCTATransitions when package.json engines is changed ([#2229](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2229)) ([84f2205](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/84f220557e1de65b73e3767259a54e3caf67f57a)), closes [#2185](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2185)
+
 ## [2.42.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.42.0...2.42.1) (2025-05-15)
 
 ### Bug Fixes

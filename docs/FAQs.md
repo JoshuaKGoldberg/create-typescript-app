@@ -20,7 +20,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 1. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
    As a consequence we should:
-
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
    - update `.github/workflows/build.yml` to ensure `dist` is up to date:
 
@@ -67,27 +66,24 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
       </details>
 
    - GitHub Actions run without installing package dependencies.
-     Replace `tsup` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
-     Delete `tsup.config.ts` then execute the following commands:
+     Replace `tsdown` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
+     Delete `tsdown.config.ts` then execute the following commands:
 
    ```bash
-   pnpm remove tsup
+   pnpm remove tsdown
    pnpm add @vercel/ncc -D
    ```
-
    - Now we need to update the `build` script in our `package.json`:
 
    ```diff
-   -"build": "tsup",
+   -"build": "tsdown",
    +"build": "ncc build src/index.ts -o dist --license licenses.txt",
    ```
-
    - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
 
    ```diff
    +dist
    ```
-
    - Rather than having to remember to compile each time, we'll update our pre-commit hook in `.husky/pre-commit` to build for us on each commit:
 
    ```diff
@@ -106,7 +102,7 @@ First, I'd suggest reading [TypeScript Handbook > Modules - Introduction](https:
 
 Then:
 
-1. In `tsup.config.ts`, change the [tsup `format` option](https://tsup.egoist.dev/#bundle-formats) from `["esm"]` to `["cjs", "esm"]`
+1. In `tsdown.config.ts`, change the [tsdown `format` option](https://tsdown.dev/options/output-format) from `["esm"]` to `["cjs", "esm"]`
 2. Add a [`package.json` `"exports"` entry](https://nodejs.org/api/packages.html#subpath-exports) like:
 
    <!-- eslint-disable jsonc/sort-keys -->

@@ -177,10 +177,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "3.0.9",
+			            "@vitest/coverage-v8": "3.2.4",
 			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
-			            "vitest": "3.0.9",
+			            "vitest": "3.2.4",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -423,10 +423,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "3.0.9",
+			            "@vitest/coverage-v8": "3.2.4",
 			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
-			            "vitest": "3.0.9",
+			            "vitest": "3.2.4",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -707,10 +707,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "3.0.9",
+			            "@vitest/coverage-v8": "3.2.4",
 			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
-			            "vitest": "3.0.9",
+			            "vitest": "3.2.4",
 			          },
 			          "scripts": {
 			            "test": "vitest --typecheck",
@@ -962,10 +962,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "3.0.9",
+			            "@vitest/coverage-v8": "3.2.4",
 			            "@vitest/eslint-plugin": "1.2.7",
 			            "console-fail-test": "0.5.0",
-			            "vitest": "3.0.9",
+			            "vitest": "3.2.4",
 			          },
 			          "scripts": {
 			            "test": "vitest --typecheck",

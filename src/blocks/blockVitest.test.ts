@@ -63,13 +63,6 @@ describe("blockVitest", () => {
 			            "files": [
 			              "**/*.test.*",
 			            ],
-			            "rules": [
-			              {
-			                "entries": {
-			                  "@typescript-eslint/no-unsafe-assignment": "off",
-			                },
-			              },
-			            ],
 			          },
 			        ],
 			        "ignores": [
@@ -308,13 +301,6 @@ describe("blockVitest", () => {
 			            ],
 			            "files": [
 			              "**/*.test.*",
-			            ],
-			            "rules": [
-			              {
-			                "entries": {
-			                  "@typescript-eslint/no-unsafe-assignment": "off",
-			                },
-			              },
 			            ],
 			          },
 			        ],
@@ -593,13 +579,6 @@ describe("blockVitest", () => {
 			            "files": [
 			              "**/*.test.*",
 			            ],
-			            "rules": [
-			              {
-			                "entries": {
-			                  "@typescript-eslint/no-unsafe-assignment": "off",
-			                },
-			              },
-			            ],
 			          },
 			        ],
 			        "ignores": [
@@ -847,13 +826,6 @@ describe("blockVitest", () => {
 			            ],
 			            "files": [
 			              "**/*.test.*",
-			            ],
-			            "rules": [
-			              {
-			                "entries": {
-			                  "@typescript-eslint/no-unsafe-assignment": "off",
-			                },
-			              },
 			            ],
 			          },
 			        ],

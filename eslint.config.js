@@ -85,11 +85,7 @@ export default tseslint.config(
 		files: ["**/*.md/*.ts"],
 		rules: { "n/no-missing-import": "off" },
 	},
-	{
-		extends: [vitest.configs.recommended],
-		files: ["**/*.test.*"],
-		rules: { "@typescript-eslint/no-unsafe-assignment": "off" },
-	},
+	{ extends: [vitest.configs.recommended], files: ["**/*.test.*"] },
 	{
 		extends: [yml.configs["flat/standard"], yml.configs["flat/prettier"]],
 		files: ["**/*.{yml,yaml}"],

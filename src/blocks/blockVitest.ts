@@ -115,13 +115,6 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 						{
 							extends: ["vitest.configs.recommended"],
 							files: ["**/*.test.*"],
-							rules: [
-								{
-									entries: {
-										"@typescript-eslint/no-unsafe-assignment": "off",
-									},
-								},
-							],
 						},
 					],
 					ignores: ["coverage", "**/*.snap"],

@@ -102,7 +102,6 @@ export const blockESLint = base.createBlock({
 								),
 							),
 						},
-						tsconfigRootDir: "import.meta.dirname",
 					},
 				},
 				...(rules && { rules }),

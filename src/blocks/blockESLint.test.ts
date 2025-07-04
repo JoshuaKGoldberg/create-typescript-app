@@ -120,7 +120,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, }
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
 			);",
 			  },
 			  "scripts": [
@@ -274,7 +274,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, }
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
 			);",
 			  },
 			  "scripts": [
@@ -431,7 +431,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, },{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, }
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, },{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, }
 			);",
 			  },
 			  "scripts": [
@@ -610,7 +610,7 @@ describe("blockESLint", () => {
 				{ ignores: ["generated", "lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				a.configs.recommended,{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, },{ extends: [c.configs.recommended], rules: {"c/d":"error","c/e":["error",{"f":"g"}]}, },{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, rules: {"a/b": "error","a/c": ["error",{"d":"e"}],}, settings: {"react":{"version":"detect"}}, }
+				a.configs.recommended,{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, },{ extends: [c.configs.recommended], rules: {"c/d":"error","c/e":["error",{"f":"g"}]}, },{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, rules: {"a/b": "error","a/c": ["error",{"d":"e"}],}, settings: {"react":{"version":"detect"}}, }
 			);",
 			  },
 			  "scripts": [
@@ -746,7 +746,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, rules: {
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, rules: {
 
 			// Duplicated comment
 			"a": "error","c": "error",
@@ -888,7 +888,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, rules: {
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, rules: {
 
 			// One line
 			"a": "error",
@@ -1026,7 +1026,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]},"tsconfigRootDir":import.meta.dirname}}, }
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]}}}, }
 			);",
 			  },
 			  "scripts": [
@@ -1152,7 +1152,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]},"tsconfigRootDir":import.meta.dirname}}, }
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]}}}, }
 			);",
 			  },
 			  "scripts": [
@@ -1275,7 +1275,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, },{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, }
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, },{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, }
 			);",
 			  },
 			  "scripts": [
@@ -1398,7 +1398,7 @@ describe("blockESLint", () => {
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
-				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]},"tsconfigRootDir":import.meta.dirname}}, }
+				{ extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
 			);",
 			  },
 			  "scripts": [

@@ -48,7 +48,6 @@ export default tseslint.config(
 				projectService: {
 					allowDefaultProject: ["*.config.*s", "bin/index.js"],
 				},
-				tsconfigRootDir: import.meta.dirname,
 			},
 		},
 		rules: {

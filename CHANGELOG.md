@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.46.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.2...2.46.3) (2025-07-04)
+
+### Bug Fixes
+
+- switch tseslint's tsconfigRootDir to implicit ([#2245](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2245)) ([bef2d36](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bef2d366ff35e498c23b5420d7517eafbed5040f)), closes [#2242](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2242)
+
 ## [2.46.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.1...2.46.2) (2025-07-04)
 
 ### Bug Fixes

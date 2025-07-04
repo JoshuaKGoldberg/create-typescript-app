@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.46.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.1...2.46.2) (2025-07-04)
+
+### Bug Fixes
+
+- **deps:** update dependency marked to v16 ([#2244](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2244)) ([b869e93](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b869e938435daf8dd6bb2280c2ccd8e2299f636e))
+
 ## [2.46.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.0...2.46.1) (2025-06-26)
 
 ### Bug Fixes

@@ -63,8 +63,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       marked:
-        specifier: ^15.0.12
-        version: 15.0.12
+        specifier: ^16.0.0
+        version: 16.0.0
       npm-user:
         specifier: ^6.1.1
         version: 6.1.1
@@ -3180,9 +3180,9 @@ packages:
     resolution: {integrity: sha512-xaSxkaU7wY/0852zGApM8LdlIfGCW8ETZ0Rr62IQtAnUMlMuifsg09vWJcNYeL4f0anvr8Vo4ZQar8jGpV0btQ==}
     engines: {node: '>=20'}
 
-  marked@15.0.12:
-    resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
-    engines: {node: '>= 18'}
+  marked@16.0.0:
+    resolution: {integrity: sha512-MUKMXDjsD/eptB7GPzxo4xcnLS6oo7/RHimUMHEDRhUooPwmN9BEpMl7AEOJv3bmso169wHI2wUF9VQgL7zfmA==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   mdast-util-from-markdown@0.8.5:
@@ -7449,7 +7449,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  marked@15.0.12: {}
+  marked@16.0.0: {}
 
   mdast-util-from-markdown@0.8.5:
     dependencies:

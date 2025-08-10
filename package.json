@@ -68,7 +68,7 @@
 		"sort-package-json": "^3.3.1",
 		"title-case": "^4.3.2",
 		"trash-cli": "^6.0.0",
-		"zod": "^3.25.67",
+		"zod": "^4.0.0",
 		"zod-package-json": "^1.2.0",
 		"zod-tsconfig": "^0.2.0"
 	},

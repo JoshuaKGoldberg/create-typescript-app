@@ -102,7 +102,7 @@ describe("blockPrettier", () => {
 			/lib
 			/pnpm-lock.yaml
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","useTabs":true}",
+			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":["README.md"],"options":{"useTabs":false}}],"useTabs":true}",
 			  },
 			  "scripts": [
 			    {
@@ -242,7 +242,7 @@ describe("blockPrettier", () => {
 			/lib
 			/pnpm-lock.yaml
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","useTabs":true}",
+			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":["README.md"],"options":{"useTabs":false}}],"useTabs":true}",
 			  },
 			  "scripts": [
 			    {
@@ -371,7 +371,7 @@ describe("blockPrettier", () => {
 			/pnpm-lock.yaml
 			generated
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
+			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}},{"files":["README.md"],"options":{"useTabs":false}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
 			  },
 			  "scripts": [
 			    {

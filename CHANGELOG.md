@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.46.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.3...2.46.4) (2025-10-27)
+
+### Bug Fixes
+
+- default author.name to git config.user ([#2280](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2280)) ([6aac53e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6aac53e1bc44c31c74725c71814c9ef3d82876d6)), closes [#2279](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2279)
+
 ## [2.46.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.2...2.46.3) (2025-07-04)
 
 ### Bug Fixes

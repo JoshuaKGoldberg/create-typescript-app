@@ -1,3 +1,4 @@
+import { Result } from "execa";
 import { describe, expect, it, vi } from "vitest";
 
 import { readAuthor } from "./readAuthor.js";
@@ -10,6 +11,7 @@ describe(readAuthor, () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({ name }),
 			getNpmDefaults,
+			() => Promise.resolve(undefined),
 			undefined,
 		);
 
@@ -23,6 +25,7 @@ describe(readAuthor, () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({}),
 			() => Promise.resolve({ name }),
+			() => Promise.resolve(undefined),
 			undefined,
 		);
 
@@ -35,15 +38,30 @@ describe(readAuthor, () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({}),
 			() => Promise.resolve(undefined),
+			() => Promise.resolve(undefined),
 			owner,
 		);
 
 		expect(actual).toBe(owner);
 	});
 
+	it("returns gitUser when only it exists", async () => {
+		const gitUser = "test-owner";
+
+		const actual = await readAuthor(
+			() => Promise.resolve({}),
+			() => Promise.resolve(undefined),
+			() => Promise.resolve({ stdout: gitUser } as Result),
+			undefined,
+		);
+
+		expect(actual).toBe(gitUser);
+	});
+
 	it("returns undefined when no sources provide a value", async () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({}),
+			() => Promise.resolve(undefined),
 			() => Promise.resolve(undefined),
 			undefined,
 		);

@@ -177,7 +177,12 @@ export const base = createBase({
 
 		const getAuthor = lazyValue(
 			async () =>
-				await readAuthor(getPackageAuthor, getNpmDefaults, options.owner),
+				await readAuthor(
+					getPackageAuthor,
+					getNpmDefaults,
+					getGitUser,
+					options.owner,
+				),
 		);
 
 		const getBin = lazyValue(async () => await readBin(getPackageData));
@@ -235,6 +240,11 @@ export const base = createBase({
 		const getFunding = lazyValue(async () => await readFunding(take));
 
 		const getGitDefaults = lazyValue(async () => await readGitDefaults(take));
+
+		const getGitUser = lazyValue(
+			async () =>
+				await take(inputFromScript, { command: "git config user.name" }),
+		);
 
 		const getGuide = lazyValue(async () => await readGuide(take));
 

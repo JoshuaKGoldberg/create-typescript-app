@@ -99,7 +99,13 @@ pnpm format --write
 				),
 				".prettierrc.json": JSON.stringify({
 					$schema: "http://json.schemastore.org/prettierrc",
-					...(overrides.length && { overrides: overrides.sort() }),
+					overrides: [
+						...(overrides.length ? overrides.sort() : []),
+						{
+							files: ["README.md"],
+							options: { useTabs: false },
+						},
+					],
 					...(plugins.length && { plugins: plugins.sort() }),
 					useTabs: true,
 				}),

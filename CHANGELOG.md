@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.47.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.4...2.47.0) (2025-11-18)
+
+### Features
+
+- bingo@0.7.0 (--skip-\* flags) ([#2282](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2282)) ([861a351](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/861a3518be9c284c84cf21c79c3eaec93a424299)), closes [#2281](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2281)
+
 ## [2.46.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.3...2.46.4) (2025-10-27)
 
 ### Bug Fixes

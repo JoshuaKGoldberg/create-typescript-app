@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.48.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.47.0...2.48.0) (2025-12-01)
+
+### Features
+
+- switch from sentences-per-line to markdownlint-sentences-per-line ([#2284](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2284)) ([104e75c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/104e75cc50d7da41b52683fc823ce8a51c4ed48f)), closes [#2283](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2283) [#2283](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2283)
+
 ## [2.47.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.46.4...2.47.0) (2025-11-18)
 
 ### Features

@@ -210,6 +210,9 @@ importers:
       markdownlint-cli:
         specifier: 0.45.0
         version: 0.45.0
+      markdownlint-sentences-per-line:
+        specifier: 0.1.1
+        version: 0.1.1(markdownlint@0.38.0)
       prettier:
         specifier: 3.6.1
         version: 3.6.1
@@ -225,9 +228,6 @@ importers:
       release-it:
         specifier: 19.0.3
         version: 19.0.3(@types/node@24.0.4)(magicast@0.3.5)
-      sentences-per-line:
-        specifier: 0.3.0
-        version: 0.3.0
       tsdown:
         specifier: 0.12.7
         version: 0.12.7(oxc-resolver@11.2.1)(typescript@5.8.3)
@@ -3172,9 +3172,14 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  markdownlint-rule-helpers@0.28.0:
-    resolution: {integrity: sha512-qBOQWESmc/yTNe6nVu3D7AU7pFg2e7T5svbQI+S7rocw4g4xZ3GHerKPl0Rw0cx4fnAViEdzoAcbrxeuXUCEAA==}
+  markdownlint-rule-helpers@0.30.0:
+    resolution: {integrity: sha512-bQr0l6MGl5ia6PmkZpIP7qETSw3c/+ZXsHpACVO0SR/PaC5+VT3DFImR45G/EGGOzLwqZGussgx91Mh3cttyJw==}
     engines: {node: '>=18'}
+
+  markdownlint-sentences-per-line@0.1.1:
+    resolution: {integrity: sha512-64IDuRF/j5ArWvpTHPrxsN6b7yc/kgEznRaP1bTC1ehBzzE1alUxWvT1L2oy+xasYfSTbq0GBNVVeYQx08Qmjw==}
+    peerDependencies:
+      markdownlint: ^0.37.0
 
   markdownlint@0.38.0:
     resolution: {integrity: sha512-xaSxkaU7wY/0852zGApM8LdlIfGCW8ETZ0Rr62IQtAnUMlMuifsg09vWJcNYeL4f0anvr8Vo4ZQar8jGpV0btQ==}
@@ -3882,9 +3887,9 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  sentences-per-line@0.3.0:
-    resolution: {integrity: sha512-/cSQgaLDEmed+AIC2KAd1A5k4sy8bbWy3ObBDUE2+JmiwolTBuc87TlwlTSnBJVPa7+zfGv28J63xzznFRv5tQ==}
-    engines: {node: '>=18'}
+  sentences-per-line@0.4.0:
+    resolution: {integrity: sha512-KHlNwB0prYEmhs6yxPPrZZmq0O+tauB04lMY7vTirbFHSwaZmffsShCRH4dNThbhVQ1kVfpD+Omb8EOzKv7XcQ==}
+    engines: {node: '>=22.14.0'}
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
@@ -7432,7 +7437,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  markdownlint-rule-helpers@0.28.0: {}
+  markdownlint-rule-helpers@0.30.0: {}
+
+  markdownlint-sentences-per-line@0.1.1(markdownlint@0.38.0):
+    dependencies:
+      markdownlint: 0.38.0
+      markdownlint-rule-helpers: 0.30.0
+      sentences-per-line: 0.4.0
 
   markdownlint@0.38.0:
     dependencies:
@@ -8308,9 +8319,7 @@ snapshots:
 
   semver@7.7.2: {}
 
-  sentences-per-line@0.3.0:
-    dependencies:
-      markdownlint-rule-helpers: 0.28.0
+  sentences-per-line@0.4.0: {}
 
   set-blocking@2.0.0: {}
 

@@ -48,10 +48,10 @@ describe("blockMarkdownlint", () => {
 			          "devDependencies": {
 			            "markdownlint": "0.38.0",
 			            "markdownlint-cli": "0.45.0",
-			            "sentences-per-line": "0.3.0",
+			            "markdownlint-sentences-per-line": "0.1.1",
 			          },
 			          "scripts": {
-			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
+			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules markdownlint-sentences-per-line",
 			          },
 			        },
 			      },
@@ -129,10 +129,10 @@ describe("blockMarkdownlint", () => {
 			          "devDependencies": {
 			            "markdownlint": "0.38.0",
 			            "markdownlint-cli": "0.45.0",
-			            "sentences-per-line": "0.3.0",
+			            "markdownlint-sentences-per-line": "0.1.1",
 			          },
 			          "scripts": {
-			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
+			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules markdownlint-sentences-per-line",
 			          },
 			        },
 			      },
@@ -209,10 +209,10 @@ describe("blockMarkdownlint", () => {
 			          "devDependencies": {
 			            "markdownlint": "0.38.0",
 			            "markdownlint-cli": "0.45.0",
-			            "sentences-per-line": "0.3.0",
+			            "markdownlint-sentences-per-line": "0.1.1",
 			          },
 			          "scripts": {
-			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules sentences-per-line",
+			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md" --rules markdownlint-sentences-per-line",
 			          },
 			        },
 			      },

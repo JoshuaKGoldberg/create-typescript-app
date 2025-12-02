@@ -13,12 +13,12 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { blockESLintIntake } from "./eslint/blockESLintIntake.js";
+import { mergeAllExtensions } from "./eslint/mergeAllExtensions.js";
 import {
 	Extension,
 	ExtensionRuleGroup,
 	ExtensionRules,
 	zExtension,
-	zExtensionRules,
 	zPackageImport,
 } from "./eslint/schemas.js";
 import { intakeFile } from "./intake/intakeFile.js";
@@ -34,7 +34,6 @@ export const blockESLint = base.createBlock({
 		extensions: z.array(zExtension).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
-		rules: zExtensionRules.optional(),
 	},
 	intake({ files }) {
 		const eslintConfigRaw = intakeFile(files, [
@@ -44,7 +43,7 @@ export const blockESLint = base.createBlock({
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
 	produce({ addons, options }) {
-		const { explanations, extensions, ignores, imports, rules } = addons;
+		const { explanations, extensions, ignores, imports } = addons;
 
 		const [configFileName, fileExtensions] =
 			options.type === "commonjs"
@@ -104,7 +103,6 @@ export const blockESLint = base.createBlock({
 						},
 					},
 				},
-				...(rules && { rules }),
 			},
 			...extensions,
 			...(options.type === "commonjs"
@@ -287,64 +285,6 @@ function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
 	}
 
 	return grouped;
-}
-
-function mergeAllExtensions(...extensions: Extension[]) {
-	const entries: Record<string, Extension> = {};
-
-	for (const extension of extensions) {
-		const filesKey = JSON.stringify(extension.files);
-
-		entries[filesKey] =
-			filesKey in entries
-				? mergeExtensions(entries[filesKey], extension, extension.files)
-				: extension;
-	}
-
-	return Object.values(entries);
-}
-
-function mergeExtensions(
-	a: Extension,
-	b: Extension,
-	files: string[],
-): Extension {
-	return {
-		extends: Array.from(
-			new Set([...(a.extends ?? []), ...(b.extends ?? [])]),
-		).sort(),
-		files,
-		languageOptions: (a.languageOptions ?? b.languageOptions) && {
-			...(a.languageOptions ?? {}),
-			...(b.languageOptions ?? {}),
-		},
-		linterOptions: (a.linterOptions ?? b.linterOptions) && {
-			...(a.linterOptions ?? {}),
-			...(b.linterOptions ?? {}),
-		},
-		plugins: (a.plugins ?? b.plugins) && { ...a.plugins, ...b.plugins },
-		rules: mergeExtensionsRules(a.rules, b.rules),
-		settings: (a.settings ?? b.settings) && { ...a.settings, ...b.settings },
-	};
-}
-
-function mergeExtensionsRules(
-	a: ExtensionRules | undefined,
-	b: ExtensionRules | undefined,
-): ExtensionRules | undefined {
-	if (!a || !b) {
-		return a ?? b;
-	}
-
-	if (Array.isArray(a) && Array.isArray(b)) {
-		return [...a, ...b];
-	}
-
-	if (!Array.isArray(a) && !Array.isArray(b)) {
-		return { ...a, ...b };
-	}
-
-	console.log({ a, b });
 }
 
 function printExtension(extension: Extension) {

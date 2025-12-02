@@ -79,24 +79,36 @@ If you're interested in learning more, see the 'getting started' docs on:
 - ESLint: https://eslint.org
 - typescript-eslint: https://typescript-eslint.io`,
 					],
-					rules: [
+					extensions: [
 						{
-							comment:
-								"These on-by-default rules work well for this repo if configured",
-							entries: {
-								"@typescript-eslint/prefer-nullish-coalescing": [
-									"error",
-									{ ignorePrimitives: true },
-								],
-								"@typescript-eslint/restrict-template-expressions": [
-									"error",
-									{ allowBoolean: true, allowNullish: true, allowNumber: true },
-								],
-								"n/no-unsupported-features/node-builtins": [
-									"error",
-									{ allowExperimental: true, ignores: ["import.meta.dirname"] },
-								],
-							},
+							files: ["**/*.{js,ts}"],
+							rules: [
+								{
+									comment:
+										"These on-by-default rules work well for this repo if configured",
+									entries: {
+										"@typescript-eslint/prefer-nullish-coalescing": [
+											"error",
+											{ ignorePrimitives: true },
+										],
+										"@typescript-eslint/restrict-template-expressions": [
+											"error",
+											{
+												allowBoolean: true,
+												allowNullish: true,
+												allowNumber: true,
+											},
+										],
+										"n/no-unsupported-features/node-builtins": [
+											"error",
+											{
+												allowExperimental: true,
+												ignores: ["import.meta.dirname"],
+											},
+										],
+									},
+								},
+							],
 						},
 					],
 				}),

@@ -12,19 +12,24 @@ export const blockESLintMoreStyling = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					rules: [
+					extensions: [
 						{
-							comment: stylisticComment,
-							entries: {
-								"logical-assignment-operators": [
-									"error",
-									"always",
-									{ enforceForIfStatements: true },
-								],
-								"no-useless-rename": "error",
-								"object-shorthand": "error",
-								"operator-assignment": "error",
-							},
+							files: ["**/*.{js,ts}"],
+							rules: [
+								{
+									comment: stylisticComment,
+									entries: {
+										"logical-assignment-operators": [
+											"error",
+											"always",
+											{ enforceForIfStatements: true },
+										],
+										"no-useless-rename": "error",
+										"object-shorthand": "error",
+										"operator-assignment": "error",
+									},
+								},
+							],
 						},
 					],
 				}),

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.52.1](///compare/2.52.0...2.52.1) (2025-12-02)
+
+### Bug Fixes
+
+- bump eslint-plugin-package-json to 0.85.0 ([#2294](undefined/undefined/undefined/issues/2294)) 93d5171, closes #2271 #2288
+
 ## [2.52.0](///compare/2.51.0...2.52.0) (2025-12-02)
 
 ### Features

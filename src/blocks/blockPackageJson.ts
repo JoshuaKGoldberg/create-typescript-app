@@ -59,7 +59,10 @@ export const blockPackageJson = base.createBlock({
 							...(options.pnpm && {
 								packageManager: `pnpm@${options.pnpm}`,
 							}),
-							files: processFiles(addons.properties.files),
+							files: processFiles([
+								...collectBinFiles(options.bin),
+								...(addons.properties.files ?? []),
+							]),
 							keywords: options.keywords,
 							name: options.repository,
 							repository: {
@@ -94,12 +97,17 @@ export const blockPackageJson = base.createBlock({
 	},
 });
 
-function processFiles(files: string[] | undefined) {
-	// If we don't have any files, great - the property can be undefined.
-	if (!files) {
-		return undefined;
+function collectBinFiles(bin: Record<string, string> | string | undefined) {
+	if (!bin) {
+		return [];
 	}
 
+	const files = typeof bin === "object" ? Object.values(bin) : [bin];
+
+	return files.map((file) => file.replace(/^\.\//, ""));
+}
+
+function processFiles(files: string[]) {
 	// First sort so that shorter entries are first (e.g. "lib/")...
 	const sortedByLength = files
 		.filter(Boolean)

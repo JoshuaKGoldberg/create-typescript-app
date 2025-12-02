@@ -58,7 +58,7 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "9.1.2",
+			            "cspell": "9.4.0",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -128,7 +128,7 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "9.1.2",
+			            "cspell": "9.4.0",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -197,7 +197,7 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "9.1.2",
+			            "cspell": "9.4.0",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -264,7 +264,7 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "9.1.2",
+			            "cspell": "9.4.0",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -339,7 +339,7 @@ describe("blockCSpell", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "9.1.2",
+			            "cspell": "9.4.0",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",

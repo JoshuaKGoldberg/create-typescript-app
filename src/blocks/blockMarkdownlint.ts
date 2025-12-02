@@ -73,6 +73,7 @@ export const blockMarkdownlint = base.createBlock({
 					extends: "markdownlint/style/prettier",
 					"first-line-h1": false,
 					"no-inline-html": false,
+					"table-column-style": false,
 				}),
 				".markdownlintignore": formatIgnoreFile(
 					Array.from(new Set(["node_modules/", ...ignores])).sort(),

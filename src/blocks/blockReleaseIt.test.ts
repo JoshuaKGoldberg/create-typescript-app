@@ -23,8 +23,8 @@ describe("blockReleaseIt", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@release-it/conventional-changelog": "10.0.1",
-			            "release-it": "19.0.3",
+			            "@release-it/conventional-changelog": "10.0.2",
+			            "release-it": "19.0.6",
 			          },
 			          "publishConfig": {
 			            "provenance": true,
@@ -179,8 +179,8 @@ describe("blockReleaseIt", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@release-it/conventional-changelog": "10.0.1",
-			            "release-it": "19.0.3",
+			            "@release-it/conventional-changelog": "10.0.2",
+			            "release-it": "19.0.6",
 			          },
 			          "publishConfig": {
 			            "provenance": true,

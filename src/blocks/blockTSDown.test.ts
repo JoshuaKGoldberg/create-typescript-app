@@ -68,7 +68,7 @@ describe("blockTSDown", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.12.7",
+			            "tsdown": "0.16.8",
 			          },
 			          "scripts": {
 			            "build": "tsdown",
@@ -173,7 +173,7 @@ describe("blockTSDown", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.12.7",
+			            "tsdown": "0.16.8",
 			          },
 			          "scripts": {
 			            "build": "tsdown",
@@ -269,7 +269,7 @@ describe("blockTSDown", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.12.7",
+			            "tsdown": "0.16.8",
 			          },
 			          "scripts": {
 			            "build": "tsdown",

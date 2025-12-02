@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.50.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.49.0...2.50.0) (2025-12-02)
+
+### Features
+
+- switch from tseslint.config to ESLint's defineConfig ([#2286](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2286)) ([97047f0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/97047f049adba151f594353acbc2105749e718bf)), closes [#2272](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2272)
+
 ## [2.49.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.48.0...2.49.0) (2025-12-02)
 
 ### Features

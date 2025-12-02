@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.49.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.48.0...2.49.0) (2025-12-02)
+
+### Features
+
+- move sentences-per-line from Markdownlint to Prettier ([#2285](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2285)) ([8dced8a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8dced8afb5b28406303e6414d4a61ff89b50cf34)), closes [#2216](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2216)
+
 ## [2.48.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.47.0...2.48.0) (2025-12-01)
 
 ### Features

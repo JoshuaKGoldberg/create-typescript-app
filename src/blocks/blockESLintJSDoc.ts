@@ -1,11 +1,12 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
 
 export const blockESLintJSDoc = base.createBlock({
 	about: {
 		name: "ESLint JSDoc Plugin",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
 				blockESLint({
@@ -16,7 +17,7 @@ export const blockESLintJSDoc = base.createBlock({
 								'jsdoc.configs["flat/logical-typescript-error"]',
 								'jsdoc.configs["flat/stylistic-typescript-error"]',
 							],
-							files: ["**/*.{js,ts}"],
+							files: [getScriptFileExtension(options)],
 						},
 					],
 					imports: [{ source: "eslint-plugin-jsdoc", specifier: "jsdoc" }],

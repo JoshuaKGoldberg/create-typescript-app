@@ -7,6 +7,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockVitest } from "./blockVitest.js";
 import { blockESLintPluginIntake } from "./eslint/blockESLintPluginIntake.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
 import { zConfigEmoji } from "./eslint/schemas.js";
 import { intakeFile } from "./intake/intakeFile.js";
 import { CommandPhase } from "./phases.js";
@@ -68,7 +69,7 @@ pnpm build:docs
 					extensions: [
 						{
 							extends: ['eslintPlugin.configs["flat/recommended"]'],
-							files: ["**/*.{js,ts}"],
+							files: [getScriptFileExtension(options)],
 						},
 					],
 					ignores: [configFileName, "docs/rules/*/*.ts"],

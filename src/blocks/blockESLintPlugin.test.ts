@@ -242,7 +242,7 @@ describe("blockESLintPlugin", () => {
 			              "eslintPlugin.configs["flat/recommended"]",
 			            ],
 			            "files": [
-			              "**/*.{js,ts}",
+			              "**/*.{js,mjs,ts}",
 			            ],
 			          },
 			        ],

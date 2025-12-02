@@ -1,18 +1,19 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
 
 export const blockESLintNode = base.createBlock({
 	about: {
 		name: "ESLint Node Plugin",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
 				blockESLint({
 					extensions: [
 						{
 							extends: ['n.configs["flat/recommended"]'],
-							files: ["**/*.{js,ts}"],
+							files: [getScriptFileExtension(options)],
 						},
 						{
 							extends: ["tseslint.configs.disableTypeChecked"],

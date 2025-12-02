@@ -1,18 +1,19 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
 
 export const blockESLintComments = base.createBlock({
 	about: {
 		name: "ESLint Comments Plugin",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
 				blockESLint({
 					extensions: [
 						{
 							extends: ["comments.recommended"],
-							files: ["**/*.{js,ts}"],
+							files: [getScriptFileExtension(options)],
 						},
 					],
 					imports: [

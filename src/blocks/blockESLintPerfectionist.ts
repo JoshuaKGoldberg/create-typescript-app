@@ -1,18 +1,19 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
 
 export const blockESLintPerfectionist = base.createBlock({
 	about: {
 		name: "ESLint Perfectionist Plugin",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
 				blockESLint({
 					extensions: [
 						{
 							extends: [`perfectionist.configs["recommended-natural"]`],
-							files: ["**/*.{js,ts}"],
+							files: [getScriptFileExtension(options)],
 							settings: {
 								perfectionist: {
 									partitionByComment: true,

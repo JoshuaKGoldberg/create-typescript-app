@@ -1,5 +1,6 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
 
 export const stylisticComment =
 	"Stylistic concerns that don't interfere with Prettier";
@@ -8,13 +9,13 @@ export const blockESLintMoreStyling = base.createBlock({
 	about: {
 		name: "ESLint More Styling",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
 				blockESLint({
 					extensions: [
 						{
-							files: ["**/*.{js,ts}"],
+							files: [getScriptFileExtension(options)],
 							rules: [
 								{
 									comment: stylisticComment,

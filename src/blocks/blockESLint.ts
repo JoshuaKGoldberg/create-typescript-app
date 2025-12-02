@@ -13,6 +13,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { blockESLintIntake } from "./eslint/blockESLintIntake.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
 import { mergeAllExtensions } from "./eslint/mergeAllExtensions.js";
 import {
 	Extension,
@@ -45,10 +46,8 @@ export const blockESLint = base.createBlock({
 	produce({ addons, options }) {
 		const { explanations, extensions, ignores, imports } = addons;
 
-		const [configFileName, fileExtensions] =
-			options.type === "commonjs"
-				? ["eslint.config.mjs", "js,mjs,ts"]
-				: ["eslint.config.js", "js,ts"];
+		const configFileName =
+			options.type === "commonjs" ? "eslint.config.mjs" : "eslint.config.js";
 
 		const explanation =
 			explanations.length > 0
@@ -84,7 +83,7 @@ export const blockESLint = base.createBlock({
 					"tseslint.configs.strictTypeChecked",
 					"tseslint.configs.stylisticTypeChecked",
 				],
-				files: [`**/*.{${fileExtensions}}`],
+				files: [getScriptFileExtension(options)],
 				languageOptions: {
 					parserOptions: {
 						projectService: {

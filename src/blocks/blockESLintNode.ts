@@ -10,7 +10,10 @@ export const blockESLintNode = base.createBlock({
 			addons: [
 				blockESLint({
 					extensions: [
-						'n.configs["flat/recommended"]',
+						{
+							extends: ['n.configs["flat/recommended"]'],
+							files: ["**/*.{js,ts}"],
+						},
 						{
 							extends: ["tseslint.configs.disableTypeChecked"],
 							files: ["**/*.md/*.ts"],

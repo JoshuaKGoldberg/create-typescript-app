@@ -52,7 +52,14 @@ describe("blockESLintPlugin", () => {
 			    {
 			      "addons": {
 			        "extensions": [
-			          "eslintPlugin.configs["flat/recommended"]",
+			          {
+			            "extends": [
+			              "eslintPlugin.configs["flat/recommended"]",
+			            ],
+			            "files": [
+			              "**/*.{js,ts}",
+			            ],
+			          },
 			        ],
 			        "ignores": [
 			          ".eslint-doc-generatorrc.js",
@@ -189,173 +196,180 @@ describe("blockESLintPlugin", () => {
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
-			      	{
-			      	  "addons": [
-			      	    {
-			      	      "addons": {
-			      	        "words": [
-			      	          "eslint-doc-generatorrc",
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "sections": {
-			      	          "Building": {
-			      	            "innerSections": [
-			      	              {
-			      	                "contents": "
-			      	Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to generate Markdown files documenting rules.
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "eslint-doc-generatorrc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "sections": {
+			          "Building": {
+			            "innerSections": [
+			              {
+			                "contents": "
+			Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to generate Markdown files documenting rules.
 
-			      	\`\`\`shell
-			      	pnpm build:docs
-			      	\`\`\`
-			      			",
-			      	                "heading": "Building Docs",
-			      	              },
-			      	            ],
-			      	          },
-			      	          "Linting": {
-			      	            "contents": {
-			      	              "items": [
-			      	                "- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules",
-			      	              ],
-			      	            },
-			      	          },
-			      	        },
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "extensions": [
-			      	          "eslintPlugin.configs["flat/recommended"]",
-			      	        ],
-			      	        "ignores": [
-			      	          ".eslint-doc-generatorrc.mjs",
-			      	          "docs/rules/*/*.ts",
-			      	        ],
-			      	        "imports": [
-			      	          {
-			      	            "source": {
-			      	              "packageName": "eslint-plugin-eslint-plugin",
-			      	              "version": "6.4.0",
-			      	            },
-			      	            "specifier": "eslintPlugin",
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "jobs": [
-			      	          {
-			      	            "name": "Lint Docs",
-			      	            "steps": [
-			      	              {
-			      	                "run": "pnpm build || exit 0",
-			      	              },
-			      	              {
-			      	                "run": "pnpm lint:docs",
-			      	              },
-			      	            ],
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "defaultUsage": [
-			      	          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+			\`\`\`shell
+			pnpm build:docs
+			\`\`\`
+					",
+			                "heading": "Building Docs",
+			              },
+			            ],
+			          },
+			          "Linting": {
+			            "contents": {
+			              "items": [
+			                "- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules",
+			              ],
+			            },
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          {
+			            "extends": [
+			              "eslintPlugin.configs["flat/recommended"]",
+			            ],
+			            "files": [
+			              "**/*.{js,ts}",
+			            ],
+			          },
+			        ],
+			        "ignores": [
+			          ".eslint-doc-generatorrc.mjs",
+			          "docs/rules/*/*.ts",
+			        ],
+			        "imports": [
+			          {
+			            "source": {
+			              "packageName": "eslint-plugin-eslint-plugin",
+			              "version": "6.4.0",
+			            },
+			            "specifier": "eslintPlugin",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "jobs": [
+			          {
+			            "name": "Lint Docs",
+			            "steps": [
+			              {
+			                "run": "pnpm build || exit 0",
+			              },
+			              {
+			                "run": "pnpm lint:docs",
+			              },
+			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "defaultUsage": [
+			          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
-			      	\`\`\`shell
-			      	npm i test-repository -D
-			      	\`\`\`
+			\`\`\`shell
+			npm i test-repository -D
+			\`\`\`
 
-			      	\`\`\`ts
-			      	import testRepository from "test-repository";
+			\`\`\`ts
+			import testRepository from "test-repository";
 
-			      	export default [
-			      		// (other plugins)
-			      		testRepository.configs.recommended, // 👈
-			      	];
-			      	\`\`\`
+			export default [
+				// (other plugins)
+				testRepository.configs.recommended, // 👈
+			];
+			\`\`\`
 
-			      	### Rules
+			### Rules
 
-			      	These are all set to \`"error"\` in the recommended config:
+			These are all set to \`"error"\` in the recommended config:
 
-			      	<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "properties": {
-			      	          "dependencies": {
-			      	            "@typescript-eslint/utils": "^8.29.0",
-			      	          },
-			      	          "devDependencies": {
-			      	            "@typescript-eslint/rule-tester": "8.29.1",
-			      	            "eslint-doc-generator": "2.1.0",
-			      	            "eslint-plugin-eslint-plugin": "6.4.0",
-			      	          },
-			      	          "scripts": {
-			      	            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
-			      	            "lint:docs": "eslint-doc-generator --check",
-			      	          },
-			      	        },
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "coverage": {
-			      	          "exclude": [
-			      	            "src/index.ts",
-			      	            "src/rules/index.ts",
-			      	          ],
-			      	        },
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	  ],
-			      	  "files": {
-			      	    ".eslint-doc-generatorrc.mjs": "import prettier from "prettier";
+			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "dependencies": {
+			            "@typescript-eslint/utils": "^8.29.0",
+			          },
+			          "devDependencies": {
+			            "@typescript-eslint/rule-tester": "8.29.1",
+			            "eslint-doc-generator": "2.1.0",
+			            "eslint-plugin-eslint-plugin": "6.4.0",
+			          },
+			          "scripts": {
+			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
+			            "lint:docs": "eslint-doc-generator --check",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "coverage": {
+			          "exclude": [
+			            "src/index.ts",
+			            "src/rules/index.ts",
+			          ],
+			        },
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    ".eslint-doc-generatorrc.mjs": "import prettier from "prettier";
 
-			      	/** @type {import('eslint-doc-generator').GenerateOptions} */
-			      	const config = {
-			      		postprocess: async (content, path) =>
-			      			prettier.format(content, {
-			      				...(await prettier.resolveConfig(path)),
-			      				parser: "markdown",
-			      			}),
-			      		ruleDocTitleFormat: "name",
-			      	};
+			/** @type {import('eslint-doc-generator').GenerateOptions} */
+			const config = {
+				postprocess: async (content, path) =>
+					prettier.format(content, {
+						...(await prettier.resolveConfig(path)),
+						parser: "markdown",
+					}),
+				ruleDocTitleFormat: "name",
+			};
 
-			      	export default config;
-			      	",
-			      	  },
-			      	  "scripts": [
-			      	    {
-			      	      "commands": [
-			      	        "pnpm build",
-			      	      ],
-			      	      "phase": 2,
-			      	    },
-			      	    {
-			      	      "commands": [
-			      	        "pnpm eslint-doc-generator --init-rule-docs",
-			      	      ],
-			      	      "phase": 3,
-			      	    },
-			      	  ],
-			      	}
-			      `);
+			export default config;
+			",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm build",
+			      ],
+			      "phase": 2,
+			    },
+			    {
+			      "commands": [
+			        "pnpm eslint-doc-generator --init-rule-docs",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
+			}
+		`);
 	});
 
 	test("setup mode", () => {
@@ -365,281 +379,288 @@ describe("blockESLintPlugin", () => {
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
-				{
-				  "addons": [
-				    {
-				      "addons": {
-				        "words": [
-				          "eslint-doc-generatorrc",
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "sections": {
-				          "Building": {
-				            "innerSections": [
-				              {
-				                "contents": "
-				Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to generate Markdown files documenting rules.
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "eslint-doc-generatorrc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "sections": {
+			          "Building": {
+			            "innerSections": [
+			              {
+			                "contents": "
+			Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to generate Markdown files documenting rules.
 
-				\`\`\`shell
-				pnpm build:docs
-				\`\`\`
-						",
-				                "heading": "Building Docs",
-				              },
-				            ],
-				          },
-				          "Linting": {
-				            "contents": {
-				              "items": [
-				                "- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules",
-				              ],
-				            },
-				          },
-				        },
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "extensions": [
-				          "eslintPlugin.configs["flat/recommended"]",
-				        ],
-				        "ignores": [
-				          ".eslint-doc-generatorrc.js",
-				          "docs/rules/*/*.ts",
-				        ],
-				        "imports": [
-				          {
-				            "source": {
-				              "packageName": "eslint-plugin-eslint-plugin",
-				              "version": "6.4.0",
-				            },
-				            "specifier": "eslintPlugin",
-				          },
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "jobs": [
-				          {
-				            "name": "Lint Docs",
-				            "steps": [
-				              {
-				                "run": "pnpm build || exit 0",
-				              },
-				              {
-				                "run": "pnpm lint:docs",
-				              },
-				            ],
-				          },
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "defaultUsage": [
-				          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+			\`\`\`shell
+			pnpm build:docs
+			\`\`\`
+					",
+			                "heading": "Building Docs",
+			              },
+			            ],
+			          },
+			          "Linting": {
+			            "contents": {
+			              "items": [
+			                "- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules",
+			              ],
+			            },
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          {
+			            "extends": [
+			              "eslintPlugin.configs["flat/recommended"]",
+			            ],
+			            "files": [
+			              "**/*.{js,ts}",
+			            ],
+			          },
+			        ],
+			        "ignores": [
+			          ".eslint-doc-generatorrc.js",
+			          "docs/rules/*/*.ts",
+			        ],
+			        "imports": [
+			          {
+			            "source": {
+			              "packageName": "eslint-plugin-eslint-plugin",
+			              "version": "6.4.0",
+			            },
+			            "specifier": "eslintPlugin",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "jobs": [
+			          {
+			            "name": "Lint Docs",
+			            "steps": [
+			              {
+			                "run": "pnpm build || exit 0",
+			              },
+			              {
+			                "run": "pnpm lint:docs",
+			              },
+			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "defaultUsage": [
+			          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
-				\`\`\`shell
-				npm i test-repository -D
-				\`\`\`
+			\`\`\`shell
+			npm i test-repository -D
+			\`\`\`
 
-				\`\`\`ts
-				import testRepository from "test-repository";
+			\`\`\`ts
+			import testRepository from "test-repository";
 
-				export default [
-					// (other plugins)
-					testRepository.configs.recommended, // 👈
-				];
-				\`\`\`
+			export default [
+				// (other plugins)
+				testRepository.configs.recommended, // 👈
+			];
+			\`\`\`
 
-				### Rules
+			### Rules
 
-				These are all set to \`"error"\` in the recommended config:
+			These are all set to \`"error"\` in the recommended config:
 
-				<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "properties": {
-				          "dependencies": {
-				            "@typescript-eslint/utils": "^8.29.0",
-				          },
-				          "devDependencies": {
-				            "@typescript-eslint/rule-tester": "8.29.1",
-				            "eslint-doc-generator": "2.1.0",
-				            "eslint-plugin-eslint-plugin": "6.4.0",
-				          },
-				          "scripts": {
-				            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
-				            "lint:docs": "eslint-doc-generator --check",
-				          },
-				        },
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "coverage": {
-				          "exclude": [
-				            "src/index.ts",
-				            "src/rules/index.ts",
-				          ],
-				        },
-				      },
-				      "block": [Function],
-				    },
-				  ],
-				  "files": {
-				    ".eslint-doc-generatorrc.js": "import prettier from "prettier";
+			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "dependencies": {
+			            "@typescript-eslint/utils": "^8.29.0",
+			          },
+			          "devDependencies": {
+			            "@typescript-eslint/rule-tester": "8.29.1",
+			            "eslint-doc-generator": "2.1.0",
+			            "eslint-plugin-eslint-plugin": "6.4.0",
+			          },
+			          "scripts": {
+			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
+			            "lint:docs": "eslint-doc-generator --check",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "coverage": {
+			          "exclude": [
+			            "src/index.ts",
+			            "src/rules/index.ts",
+			          ],
+			        },
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    ".eslint-doc-generatorrc.js": "import prettier from "prettier";
 
-				/** @type {import('eslint-doc-generator').GenerateOptions} */
-				const config = {
-					postprocess: async (content, path) =>
-						prettier.format(content, {
-							...(await prettier.resolveConfig(path)),
-							parser: "markdown",
-						}),
-					ruleDocTitleFormat: "name",
-				};
+			/** @type {import('eslint-doc-generator').GenerateOptions} */
+			const config = {
+				postprocess: async (content, path) =>
+					prettier.format(content, {
+						...(await prettier.resolveConfig(path)),
+						parser: "markdown",
+					}),
+				ruleDocTitleFormat: "name",
+			};
 
-				export default config;
-				",
-				    "src": {
-				      "index.ts": "import Module from "node:module";
+			export default config;
+			",
+			    "src": {
+			      "index.ts": "import Module from "node:module";
 
-				import { rules } from "./rules/index.js";
+			import { rules } from "./rules/index.js";
 
-				const require = Module.createRequire(import.meta.url);
+			const require = Module.createRequire(import.meta.url);
 
-				const { name, version } =
-					// \`import\`ing here would bypass the TSConfig's \`"rootDir": "src"\`
-					require("../package.json") as typeof import("../package.json");
+			const { name, version } =
+				// \`import\`ing here would bypass the TSConfig's \`"rootDir": "src"\`
+				require("../package.json") as typeof import("../package.json");
 
-				export const plugin = {
-					configs: {
-						get recommended() {
-							return recommended;
-						},
+			export const plugin = {
+				configs: {
+					get recommended() {
+						return recommended;
 					},
-					meta: { name, version },
-					rules,
-				};
+				},
+				meta: { name, version },
+				rules,
+			};
 
-				const recommended = {
-					plugins: {
-						"test-repository": plugin,
-					},
-					rules: Object.fromEntries(
-						Object.keys(rules).map((rule) => [\`test-repository/\${rule}\`, "error"]),
-					),
-				};
+			const recommended = {
+				plugins: {
+					"test-repository": plugin,
+				},
+				rules: Object.fromEntries(
+					Object.keys(rules).map((rule) => [\`test-repository/\${rule}\`, "error"]),
+				),
+			};
 
-				export { rules };
+			export { rules };
 
-				export default plugin;
-				",
-				      "rules": {
-				        "enums.test.ts": "import { rule } from "./enums.js";
-				import { ruleTester } from "./ruleTester.js";
+			export default plugin;
+			",
+			      "rules": {
+			        "enums.test.ts": "import { rule } from "./enums.js";
+			import { ruleTester } from "./ruleTester.js";
 
-				ruleTester.run("enums", rule, {
-					invalid: [
-						{
-							code: \`enum Values {}\`,
-							errors: [
-								{
-									column: 1,
-									endColumn: 15,
-									endLine: 1,
-									line: 1,
-									messageId: "enum",
-								},
-							],
-						},
-					],
-					valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
-				});
-				",
-				        "enums.ts": "import { createRule } from "../utils.js";
-
-				export const rule = createRule({
-					create(context) {
-						return {
-							TSEnumDeclaration(node) {
-								context.report({
-									messageId: "enum",
-									node,
-								});
+			ruleTester.run("enums", rule, {
+				invalid: [
+					{
+						code: \`enum Values {}\`,
+						errors: [
+							{
+								column: 1,
+								endColumn: 15,
+								endLine: 1,
+								line: 1,
+								messageId: "enum",
 							},
-						};
+						],
 					},
-					defaultOptions: [],
-					meta: {
-						docs: {
-							description: "Avoid using TypeScript's enums.",
+				],
+				valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
+			});
+			",
+			        "enums.ts": "import { createRule } from "../utils.js";
+
+			export const rule = createRule({
+				create(context) {
+					return {
+						TSEnumDeclaration(node) {
+							context.report({
+								messageId: "enum",
+								node,
+							});
 						},
-						messages: {
-							enum: "This enum will not be allowed under TypeScript's --erasableSyntaxOnly.",
-						},
-						schema: [],
-						type: "problem",
+					};
+				},
+				defaultOptions: [],
+				meta: {
+					docs: {
+						description: "Avoid using TypeScript's enums.",
 					},
-					name: "enums",
-				});
-				",
-				        "index.ts": "import { rule as enums } from "./enums.js";
+					messages: {
+						enum: "This enum will not be allowed under TypeScript's --erasableSyntaxOnly.",
+					},
+					schema: [],
+					type: "problem",
+				},
+				name: "enums",
+			});
+			",
+			        "index.ts": "import { rule as enums } from "./enums.js";
 
-				export const rules = {
-					enums,
-				};
-				",
-				        "ruleTester.ts": "import { RuleTester } from "@typescript-eslint/rule-tester";
-				import * as vitest from "vitest";
+			export const rules = {
+				enums,
+			};
+			",
+			        "ruleTester.ts": "import { RuleTester } from "@typescript-eslint/rule-tester";
+			import * as vitest from "vitest";
 
-				RuleTester.afterAll = vitest.afterAll;
-				RuleTester.it = vitest.it;
-				RuleTester.itOnly = vitest.it.only;
-				RuleTester.describe = vitest.describe;
+			RuleTester.afterAll = vitest.afterAll;
+			RuleTester.it = vitest.it;
+			RuleTester.itOnly = vitest.it.only;
+			RuleTester.describe = vitest.describe;
 
-				export const ruleTester = new RuleTester();
-				",
-				      },
-				      "utils.ts": "import { ESLintUtils } from "@typescript-eslint/utils";
+			export const ruleTester = new RuleTester();
+			",
+			      },
+			      "utils.ts": "import { ESLintUtils } from "@typescript-eslint/utils";
 
-				export const createRule = ESLintUtils.RuleCreator(
-					(name) =>
-						\`https://github.com/test-owner/test-repository/blob/main/docs/rules/\${name}.md\`,
-				);
-				",
-				    },
-				  },
-				  "scripts": [
-				    {
-				      "commands": [
-				        "pnpm build",
-				      ],
-				      "phase": 2,
-				    },
-				    {
-				      "commands": [
-				        "pnpm eslint-doc-generator --init-rule-docs",
-				      ],
-				      "phase": 3,
-				    },
-				  ],
-				}
-			`);
+			export const createRule = ESLintUtils.RuleCreator(
+				(name) =>
+					\`https://github.com/test-owner/test-repository/blob/main/docs/rules/\${name}.md\`,
+			);
+			",
+			    },
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm build",
+			      ],
+			      "phase": 2,
+			    },
+			    {
+			      "commands": [
+			        "pnpm eslint-doc-generator --init-rule-docs",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
+			}
+		`);
 	});
 
 	test("addons", () => {
@@ -654,174 +675,181 @@ describe("blockESLintPlugin", () => {
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
-				{
-				  "addons": [
-				    {
-				      "addons": {
-				        "words": [
-				          "eslint-doc-generatorrc",
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "sections": {
-				          "Building": {
-				            "innerSections": [
-				              {
-				                "contents": "
-				Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to generate Markdown files documenting rules.
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "eslint-doc-generatorrc",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "sections": {
+			          "Building": {
+			            "innerSections": [
+			              {
+			                "contents": "
+			Run [\`eslint-doc-generator\`](https://github.com/bmish/eslint-doc-generator) to generate Markdown files documenting rules.
 
-				\`\`\`shell
-				pnpm build:docs
-				\`\`\`
-						",
-				                "heading": "Building Docs",
-				              },
-				            ],
-				          },
-				          "Linting": {
-				            "contents": {
-				              "items": [
-				                "- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules",
-				              ],
-				            },
-				          },
-				        },
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "extensions": [
-				          "eslintPlugin.configs["flat/recommended"]",
-				        ],
-				        "ignores": [
-				          ".eslint-doc-generatorrc.js",
-				          "docs/rules/*/*.ts",
-				        ],
-				        "imports": [
-				          {
-				            "source": {
-				              "packageName": "eslint-plugin-eslint-plugin",
-				              "version": "6.4.0",
-				            },
-				            "specifier": "eslintPlugin",
-				          },
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "jobs": [
-				          {
-				            "name": "Lint Docs",
-				            "steps": [
-				              {
-				                "run": "pnpm build || exit 0",
-				              },
-				              {
-				                "run": "pnpm lint:docs",
-				              },
-				            ],
-				          },
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "defaultUsage": [
-				          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
+			\`\`\`shell
+			pnpm build:docs
+			\`\`\`
+					",
+			                "heading": "Building Docs",
+			              },
+			            ],
+			          },
+			          "Linting": {
+			            "contents": {
+			              "items": [
+			                "- \`pnpm lint:docs\` ([eslint-doc-generator](https://github.com/bmish/eslint-doc-generator)): Generates and validates documentation for ESLint rules",
+			              ],
+			            },
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          {
+			            "extends": [
+			              "eslintPlugin.configs["flat/recommended"]",
+			            ],
+			            "files": [
+			              "**/*.{js,ts}",
+			            ],
+			          },
+			        ],
+			        "ignores": [
+			          ".eslint-doc-generatorrc.js",
+			          "docs/rules/*/*.ts",
+			        ],
+			        "imports": [
+			          {
+			            "source": {
+			              "packageName": "eslint-plugin-eslint-plugin",
+			              "version": "6.4.0",
+			            },
+			            "specifier": "eslintPlugin",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "jobs": [
+			          {
+			            "name": "Lint Docs",
+			            "steps": [
+			              {
+			                "run": "pnpm build || exit 0",
+			              },
+			              {
+			                "run": "pnpm lint:docs",
+			              },
+			            ],
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "defaultUsage": [
+			          "Add this plugin to the list of plugins in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files):
 
-				\`\`\`shell
-				npm i test-repository -D
-				\`\`\`
+			\`\`\`shell
+			npm i test-repository -D
+			\`\`\`
 
-				\`\`\`ts
-				import testRepository from "test-repository";
+			\`\`\`ts
+			import testRepository from "test-repository";
 
-				export default [
-					// (other plugins)
-					testRepository.configs.recommended, // 👈
-				];
-				\`\`\`
+			export default [
+				// (other plugins)
+				testRepository.configs.recommended, // 👈
+			];
+			\`\`\`
 
-				### Rules
+			### Rules
 
-				These are all set to \`"error"\` in the recommended config:
+			These are all set to \`"error"\` in the recommended config:
 
-				<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
-				        ],
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "properties": {
-				          "dependencies": {
-				            "@typescript-eslint/utils": "^8.29.0",
-				          },
-				          "devDependencies": {
-				            "@typescript-eslint/rule-tester": "8.29.1",
-				            "eslint-doc-generator": "2.1.0",
-				            "eslint-plugin-eslint-plugin": "6.4.0",
-				          },
-				          "scripts": {
-				            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
-				            "lint:docs": "eslint-doc-generator --check",
-				          },
-				        },
-				      },
-				      "block": [Function],
-				    },
-				    {
-				      "addons": {
-				        "coverage": {
-				          "exclude": [
-				            "src/index.ts",
-				            "src/rules/index.ts",
-				          ],
-				        },
-				      },
-				      "block": [Function],
-				    },
-				  ],
-				  "files": {
-				    ".eslint-doc-generatorrc.js": "import prettier from "prettier";
+			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "properties": {
+			          "dependencies": {
+			            "@typescript-eslint/utils": "^8.29.0",
+			          },
+			          "devDependencies": {
+			            "@typescript-eslint/rule-tester": "8.29.1",
+			            "eslint-doc-generator": "2.1.0",
+			            "eslint-plugin-eslint-plugin": "6.4.0",
+			          },
+			          "scripts": {
+			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
+			            "lint:docs": "eslint-doc-generator --check",
+			          },
+			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "coverage": {
+			          "exclude": [
+			            "src/index.ts",
+			            "src/rules/index.ts",
+			          ],
+			        },
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			  "files": {
+			    ".eslint-doc-generatorrc.js": "import prettier from "prettier";
 
-				/** @type {import('eslint-doc-generator').GenerateOptions} */
-				const config = {
-					configEmoji: [["recommended","✅"],["legacy-recommended","✔️"]],
-					postprocess: async (content, path) =>
-						prettier.format(content, {
-							...(await prettier.resolveConfig(path)),
-							parser: "markdown",
-						}),
-					ruleDocTitleFormat: "name",
-				};
+			/** @type {import('eslint-doc-generator').GenerateOptions} */
+			const config = {
+				configEmoji: [["recommended","✅"],["legacy-recommended","✔️"]],
+				postprocess: async (content, path) =>
+					prettier.format(content, {
+						...(await prettier.resolveConfig(path)),
+						parser: "markdown",
+					}),
+				ruleDocTitleFormat: "name",
+			};
 
-				export default config;
-				",
-				  },
-				  "scripts": [
-				    {
-				      "commands": [
-				        "pnpm build",
-				      ],
-				      "phase": 2,
-				    },
-				    {
-				      "commands": [
-				        "pnpm eslint-doc-generator --init-rule-docs",
-				      ],
-				      "phase": 3,
-				    },
-				  ],
-				}
-			`);
+			export default config;
+			",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm build",
+			      ],
+			      "phase": 2,
+			    },
+			    {
+			      "commands": [
+			        "pnpm eslint-doc-generator --init-rule-docs",
+			      ],
+			      "phase": 3,
+			    },
+			  ],
+			}
+		`);
 	});
 
 	describe("intake", () => {

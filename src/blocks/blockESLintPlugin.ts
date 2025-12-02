@@ -65,7 +65,12 @@ pnpm build:docs
 					},
 				}),
 				blockESLint({
-					extensions: ['eslintPlugin.configs["flat/recommended"]'],
+					extensions: [
+						{
+							extends: ['eslintPlugin.configs["flat/recommended"]'],
+							files: ["**/*.{js,ts}"],
+						},
+					],
 					ignores: [configFileName, "docs/rules/*/*.ts"],
 					imports: [
 						{

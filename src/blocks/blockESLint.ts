@@ -31,11 +31,10 @@ export const blockESLint = base.createBlock({
 	addons: {
 		beforeLint: z.string().optional(),
 		explanations: z.array(z.string()).default([]),
-		extensions: z.array(z.union([z.string(), zExtension])).default([]),
+		extensions: z.array(zExtension).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
 		rules: zExtensionRules.optional(),
-		settings: z.record(z.string(), z.unknown()).optional(),
 	},
 	intake({ files }) {
 		const eslintConfigRaw = intakeFile(files, [
@@ -45,8 +44,7 @@ export const blockESLint = base.createBlock({
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
 	produce({ addons, options }) {
-		const { explanations, extensions, ignores, imports, rules, settings } =
-			addons;
+		const { explanations, extensions, ignores, imports, rules } = addons;
 
 		const [configFileName, fileExtensions] =
 			options.type === "commonjs"
@@ -80,9 +78,10 @@ export const blockESLint = base.createBlock({
 			),
 		).sort();
 
-		const extensionLines = [
-			printExtension({
+		const extensionEntries = mergeAllExtensions(
+			{
 				extends: [
+					"eslint.configs.recommended",
 					"tseslint.configs.strictTypeChecked",
 					"tseslint.configs.stylisticTypeChecked",
 				],
@@ -106,22 +105,23 @@ export const blockESLint = base.createBlock({
 					},
 				},
 				...(rules && { rules }),
-				...(settings && { settings }),
-			}),
+			},
+			...extensions,
 			...(options.type === "commonjs"
 				? [
-						printExtension({
+						{
 							files: ["*.mjs"],
 							languageOptions: { sourceType: "module" },
-						}),
+						},
 					]
 				: []),
-			...extensions.map((extension) =>
-				typeof extension === "string" ? extension : printExtension(extension),
-			),
-		]
-			.sort((a, b) => processForSort(a).localeCompare(processForSort(b)))
-			.map((t) => t);
+		);
+
+		const extensionLines = extensionEntries
+			.sort((a, b) =>
+				processForSort(a.files).localeCompare(processForSort(b.files)),
+			)
+			.map(printExtension);
 
 		return {
 			addons: [
@@ -224,10 +224,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 
 export default defineConfig(
 	{ ignores: [${ignoreLines.join(", ")}] },
-	${printExtension({
-		linterOptions: { reportUnusedDisableDirectives: "error" },
-	})},
-	eslint.configs.recommended,
+	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	${extensionLines.join(",")}
 );`,
 			},
@@ -292,12 +289,69 @@ function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
 	return grouped;
 }
 
+function mergeAllExtensions(...extensions: Extension[]) {
+	const entries: Record<string, Extension> = {};
+
+	for (const extension of extensions) {
+		const filesKey = JSON.stringify(extension.files);
+
+		entries[filesKey] =
+			filesKey in entries
+				? mergeExtensions(entries[filesKey], extension, extension.files)
+				: extension;
+	}
+
+	return Object.values(entries);
+}
+
+function mergeExtensions(
+	a: Extension,
+	b: Extension,
+	files: string[],
+): Extension {
+	return {
+		extends: Array.from(
+			new Set([...(a.extends ?? []), ...(b.extends ?? [])]),
+		).sort(),
+		files,
+		languageOptions: (a.languageOptions ?? b.languageOptions) && {
+			...(a.languageOptions ?? {}),
+			...(b.languageOptions ?? {}),
+		},
+		linterOptions: (a.linterOptions ?? b.linterOptions) && {
+			...(a.linterOptions ?? {}),
+			...(b.linterOptions ?? {}),
+		},
+		plugins: (a.plugins ?? b.plugins) && { ...a.plugins, ...b.plugins },
+		rules: mergeExtensionsRules(a.rules, b.rules),
+		settings: (a.settings ?? b.settings) && { ...a.settings, ...b.settings },
+	};
+}
+
+function mergeExtensionsRules(
+	a: ExtensionRules | undefined,
+	b: ExtensionRules | undefined,
+): ExtensionRules | undefined {
+	if (!a || !b) {
+		return a ?? b;
+	}
+
+	if (Array.isArray(a) && Array.isArray(b)) {
+		return [...a, ...b];
+	}
+
+	if (!Array.isArray(a) && !Array.isArray(b)) {
+		return { ...a, ...b };
+	}
+
+	console.log({ a, b });
+}
+
 function printExtension(extension: Extension) {
 	return [
 		"{",
 		extension.extends && `extends: [${extension.extends.join(", ")}],`,
-		extension.files &&
-			`files: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
+		`files: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
 		extension.languageOptions &&
 			`languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
 		extension.linterOptions &&
@@ -332,10 +386,6 @@ function printGroupComment(comment: string | undefined) {
 	return comment ? `\n\n// ${comment.replaceAll("\n", "\n// ")}\n` : "";
 }
 
-function processForSort(line: string) {
-	if (line.startsWith("...") || /\w+/.test(line[0])) {
-		return `A\n${line.replaceAll(/\W+/g, "")}`;
-	}
-
-	return `B\n${(/files: (.+)/.exec(line)?.[1] ?? line).replaceAll(/\W+/g, "")}`;
+function processForSort(files: string[]) {
+	return files.join("").replaceAll("{", "");
 }

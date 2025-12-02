@@ -9,7 +9,12 @@ export const blockESLintComments = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					extensions: ["comments.recommended"],
+					extensions: [
+						{
+							extends: ["comments.recommended"],
+							files: ["**/*.{js,ts}"],
+						},
+					],
 					imports: [
 						{
 							source: "@eslint-community/eslint-plugin-eslint-comments/configs",

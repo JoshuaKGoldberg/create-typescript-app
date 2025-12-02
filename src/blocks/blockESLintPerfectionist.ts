@@ -9,19 +9,24 @@ export const blockESLintPerfectionist = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					extensions: [`perfectionist.configs["recommended-natural"]`],
+					extensions: [
+						{
+							extends: [`perfectionist.configs["recommended-natural"]`],
+							files: ["**/*.{js,ts}"],
+							settings: {
+								perfectionist: {
+									partitionByComment: true,
+									type: "natural",
+								},
+							},
+						},
+					],
 					imports: [
 						{
 							source: "eslint-plugin-perfectionist",
 							specifier: "perfectionist",
 						},
 					],
-					settings: {
-						perfectionist: {
-							partitionByComment: true,
-							type: "natural",
-						},
-					},
 				}),
 			],
 		};

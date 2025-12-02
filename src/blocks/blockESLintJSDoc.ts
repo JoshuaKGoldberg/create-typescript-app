@@ -10,9 +10,14 @@ export const blockESLintJSDoc = base.createBlock({
 			addons: [
 				blockESLint({
 					extensions: [
-						'jsdoc.configs["flat/contents-typescript-error"]',
-						'jsdoc.configs["flat/logical-typescript-error"]',
-						'jsdoc.configs["flat/stylistic-typescript-error"]',
+						{
+							extends: [
+								'jsdoc.configs["flat/contents-typescript-error"]',
+								'jsdoc.configs["flat/logical-typescript-error"]',
+								'jsdoc.configs["flat/stylistic-typescript-error"]',
+							],
+							files: ["**/*.{js,ts}"],
+						},
 					],
 					imports: [{ source: "eslint-plugin-jsdoc", specifier: "jsdoc" }],
 				}),

@@ -9,7 +9,12 @@ export const blockESLintRegexp = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					extensions: [`regexp.configs["flat/recommended"]`],
+					extensions: [
+						{
+							extends: [`regexp.configs["flat/recommended"]`],
+							files: ["**/*.{js,ts}"],
+						},
+					],
 					imports: [
 						{ source: "eslint-plugin-regexp", specifier: "* as regexp" },
 					],

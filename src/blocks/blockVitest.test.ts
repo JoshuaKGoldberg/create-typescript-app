@@ -70,6 +70,11 @@ describe("blockVitest", () => {
 			                },
 			              },
 			            ],
+			            "settings": {
+			              "vitest": {
+			                "typecheck": true,
+			              },
+			            },
 			          },
 			        ],
 			        "ignores": [
@@ -82,11 +87,6 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
-			        "settings": {
-			          "vitest": {
-			            "typecheck": true,
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },
@@ -316,6 +316,11 @@ describe("blockVitest", () => {
 			                },
 			              },
 			            ],
+			            "settings": {
+			              "vitest": {
+			                "typecheck": true,
+			              },
+			            },
 			          },
 			        ],
 			        "ignores": [
@@ -328,11 +333,6 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
-			        "settings": {
-			          "vitest": {
-			            "typecheck": true,
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },
@@ -600,6 +600,11 @@ describe("blockVitest", () => {
 			                },
 			              },
 			            ],
+			            "settings": {
+			              "vitest": {
+			                "typecheck": true,
+			              },
+			            },
 			          },
 			        ],
 			        "ignores": [
@@ -612,11 +617,6 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
-			        "settings": {
-			          "vitest": {
-			            "typecheck": true,
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },
@@ -855,6 +855,11 @@ describe("blockVitest", () => {
 			                },
 			              },
 			            ],
+			            "settings": {
+			              "vitest": {
+			                "typecheck": true,
+			              },
+			            },
 			          },
 			        ],
 			        "ignores": [
@@ -867,11 +872,6 @@ describe("blockVitest", () => {
 			            "specifier": "vitest",
 			          },
 			        ],
-			        "settings": {
-			          "vitest": {
-			            "typecheck": true,
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },

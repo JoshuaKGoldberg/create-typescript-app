@@ -34,7 +34,7 @@ export type ExtensionRules = z.infer<typeof zExtensionRules>;
 
 export const zExtension = z.object({
 	extends: z.array(z.string()).optional(),
-	files: z.array(z.string()).optional(),
+	files: z.array(z.string()),
 	languageOptions: z.unknown().optional(),
 	linterOptions: z.unknown().optional(),
 	plugins: z.record(z.string(), z.string()).optional(),

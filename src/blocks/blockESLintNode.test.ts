@@ -27,6 +27,14 @@ describe("blockESLintNode", () => {
 			            "files": [
 			              "**/*.{js,ts}",
 			            ],
+			            "rules": [
+			              {
+			                "comment": "https://github.com/eslint-community/eslint-plugin-n/issues/472",
+			                "entries": {
+			                  "n/no-unpublished-bin": "off",
+			                },
+			              },
+			            ],
 			          },
 			          {
 			            "extends": [

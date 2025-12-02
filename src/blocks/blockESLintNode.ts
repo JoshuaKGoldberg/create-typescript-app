@@ -14,6 +14,15 @@ export const blockESLintNode = base.createBlock({
 						{
 							extends: ['n.configs["flat/recommended"]'],
 							files: [getScriptFileExtension(options)],
+							rules: [
+								{
+									comment:
+										"https://github.com/eslint-community/eslint-plugin-n/issues/472",
+									entries: {
+										"n/no-unpublished-bin": "off",
+									},
+								},
+							],
 						},
 						{
 							extends: ["tseslint.configs.disableTypeChecked"],

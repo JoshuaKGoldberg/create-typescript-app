@@ -210,9 +210,6 @@ importers:
       markdownlint-cli:
         specifier: 0.45.0
         version: 0.45.0
-      markdownlint-sentences-per-line:
-        specifier: 0.1.1
-        version: 0.1.1(markdownlint@0.38.0)
       prettier:
         specifier: 3.6.1
         version: 3.6.1
@@ -222,6 +219,9 @@ importers:
       prettier-plugin-packagejson:
         specifier: 2.5.15
         version: 2.5.15(prettier@3.6.1)
+      prettier-plugin-sentences-per-line:
+        specifier: 0.1.0
+        version: 0.1.0(prettier@3.6.1)
       prettier-plugin-sh:
         specifier: 0.17.4
         version: 0.17.4(prettier@3.6.1)
@@ -3172,15 +3172,6 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  markdownlint-rule-helpers@0.30.0:
-    resolution: {integrity: sha512-bQr0l6MGl5ia6PmkZpIP7qETSw3c/+ZXsHpACVO0SR/PaC5+VT3DFImR45G/EGGOzLwqZGussgx91Mh3cttyJw==}
-    engines: {node: '>=18'}
-
-  markdownlint-sentences-per-line@0.1.1:
-    resolution: {integrity: sha512-64IDuRF/j5ArWvpTHPrxsN6b7yc/kgEznRaP1bTC1ehBzzE1alUxWvT1L2oy+xasYfSTbq0GBNVVeYQx08Qmjw==}
-    peerDependencies:
-      markdownlint: ^0.37.0
-
   markdownlint@0.38.0:
     resolution: {integrity: sha512-xaSxkaU7wY/0852zGApM8LdlIfGCW8ETZ0Rr62IQtAnUMlMuifsg09vWJcNYeL4f0anvr8Vo4ZQar8jGpV0btQ==}
     engines: {node: '>=20'}
@@ -3686,6 +3677,11 @@ packages:
       prettier:
         optional: true
 
+  prettier-plugin-sentences-per-line@0.1.0:
+    resolution: {integrity: sha512-7qdRufqcCHypdG4ThTPjsw1xQVPGHQ/L3TG2oiqkF3pNJAT/+VDDeuUz+6m8R6TZ7NE+kx6aVKXB/N/UrD2LTQ==}
+    peerDependencies:
+      prettier: ^3
+
   prettier-plugin-sh@0.17.4:
     resolution: {integrity: sha512-aAVKXZ7GTEMZdZsIPSwMwddwPvt2ibMbRGd4OJAP0G7QoeYZV+mPNg2Oln3R53sZ4PVjeAA7Xzi/PuI0QlHHfQ==}
     engines: {node: '>=16.0.0'}
@@ -3886,10 +3882,6 @@ packages:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
     hasBin: true
-
-  sentences-per-line@0.4.0:
-    resolution: {integrity: sha512-KHlNwB0prYEmhs6yxPPrZZmq0O+tauB04lMY7vTirbFHSwaZmffsShCRH4dNThbhVQ1kVfpD+Omb8EOzKv7XcQ==}
-    engines: {node: '>=22.14.0'}
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
@@ -7437,14 +7429,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  markdownlint-rule-helpers@0.30.0: {}
-
-  markdownlint-sentences-per-line@0.1.1(markdownlint@0.38.0):
-    dependencies:
-      markdownlint: 0.38.0
-      markdownlint-rule-helpers: 0.30.0
-      sentences-per-line: 0.4.0
-
   markdownlint@0.38.0:
     dependencies:
       micromark: 4.0.2
@@ -8070,6 +8054,10 @@ snapshots:
     optionalDependencies:
       prettier: 3.6.1
 
+  prettier-plugin-sentences-per-line@0.1.0(prettier@3.6.1):
+    dependencies:
+      prettier: 3.6.1
+
   prettier-plugin-sh@0.17.4(prettier@3.6.1):
     dependencies:
       '@reteps/dockerfmt': 0.3.6
@@ -8318,8 +8306,6 @@ snapshots:
       parseley: 0.12.1
 
   semver@7.7.2: {}
-
-  sentences-per-line@0.4.0: {}
 
   set-blocking@2.0.0: {}
 

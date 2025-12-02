@@ -58,11 +58,9 @@ export const blockMarkdownlint = base.createBlock({
 						devDependencies: getPackageDependencies(
 							"markdownlint",
 							"markdownlint-cli",
-							"markdownlint-sentences-per-line",
 						),
 						scripts: {
-							"lint:md":
-								'markdownlint "**/*.md" ".github/**/*.md" --rules markdownlint-sentences-per-line',
+							"lint:md": 'markdownlint "**/*.md" ".github/**/*.md"',
 						},
 					},
 				}),

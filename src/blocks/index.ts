@@ -35,6 +35,7 @@ import { blockPnpmDedupe } from "./blockPnpmDedupe.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.js";
 import { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.js";
+import { blockPrettierPluginSentencesPerLine } from "./blockPrettierPluginSentencesPerLine.js";
 import { blockPrettierPluginSh } from "./blockPrettierPluginSh.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockReleaseIt } from "./blockReleaseIt.js";
@@ -85,6 +86,7 @@ export const blocks = {
 	blockPrettier,
 	blockPrettierPluginCurly,
 	blockPrettierPluginPackageJson,
+	blockPrettierPluginSentencesPerLine,
 	blockPrettierPluginSh,
 	blockREADME,
 	blockReleaseIt,
@@ -136,6 +138,7 @@ export { blockPnpmDedupe } from "./blockPnpmDedupe.js";
 export { blockPrettier } from "./blockPrettier.js";
 export { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.js";
 export { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.js";
+export { blockPrettierPluginSentencesPerLine } from "./blockPrettierPluginSentencesPerLine.js";
 export { blockPrettierPluginSh } from "./blockPrettierPluginSh.js";
 export { blockREADME } from "./blockREADME.js";
 export { blockReleaseIt } from "./blockReleaseIt.js";

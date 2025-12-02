@@ -19,7 +19,7 @@ Yes! If you want to read the [GitHub Actions documentation](https://docs.github.
 Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 1. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
-   As a consequence we should:
+As a consequence we should:
    - delete `.github/workflows/release.yml` and `.github/workflows/post-release.yml`.
    - update `.github/workflows/build.yml` to ensure `dist` is up to date:
 
@@ -66,8 +66,8 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
       </details>
 
    - GitHub Actions run without installing package dependencies.
-     Replace `tsdown` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
-     Delete `tsdown.config.ts` then execute the following commands:
+Replace `tsdown` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
+Delete `tsdown.config.ts` then execute the following commands:
 
    ```bash
    pnpm remove tsdown

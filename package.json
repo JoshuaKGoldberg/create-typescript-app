@@ -113,7 +113,7 @@
 		"prettier-plugin-sentences-per-line": "0.1.0",
 		"prettier-plugin-sh": "0.17.4",
 		"release-it": "19.0.3",
-		"tsdown": "0.12.7",
+		"tsdown": "0.16.8",
 		"typescript": "5.8.3",
 		"typescript-eslint": "8.35.0",
 		"vitest": "3.2.4"

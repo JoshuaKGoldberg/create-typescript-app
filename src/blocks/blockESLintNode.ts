@@ -10,7 +10,19 @@ export const blockESLintNode = base.createBlock({
 			addons: [
 				blockESLint({
 					extensions: [
-						'n.configs["flat/recommended"]',
+						{
+							extends: ['n.configs["flat/recommended"]'],
+							files: ["**/*.js", "**/*.ts"],
+							rules: [
+								{
+									comment:
+										"https://github.com/eslint-community/eslint-plugin-n/issues/472",
+									entries: {
+										"n/no-unpublished-bin": "off",
+									},
+								},
+							],
+						},
 						{
 							extends: ["tseslint.configs.disableTypeChecked"],
 							files: ["**/*.md/*.ts"],
@@ -18,13 +30,6 @@ export const blockESLintNode = base.createBlock({
 								{
 									entries: {
 										"n/no-missing-import": "off",
-									},
-								},
-								{
-									comment:
-										"https://github.com/eslint-community/eslint-plugin-n/issues/472",
-									entries: {
-										"n/no-unpublished-bin": "off",
 									},
 								},
 							],

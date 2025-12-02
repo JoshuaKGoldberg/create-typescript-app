@@ -34,12 +34,12 @@ export default defineConfig(
 	jsdoc.configs["flat/stylistic-typescript-error"],
 	jsonc.configs["flat/recommended-with-json"],
 	markdown.configs.recommended,
+	n.configs["flat/recommended"],
 	packageJson.configs.recommended,
 	perfectionist.configs["recommended-natural"],
 	regexp.configs["flat/recommended"],
 	{
 		extends: [
-			n.configs["flat/recommended"],
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
 		],
@@ -52,9 +52,6 @@ export default defineConfig(
 			},
 		},
 		rules: {
-			// https://github.com/eslint-community/eslint-plugin-n/issues/472
-			"n/no-unpublished-bin": "off",
-
 			// These on-by-default rules work well for this repo if configured
 			"@typescript-eslint/prefer-nullish-coalescing": [
 				"error",
@@ -87,9 +84,7 @@ export default defineConfig(
 	{
 		extends: [tseslint.configs.disableTypeChecked],
 		files: ["**/*.md/*.ts"],
-		rules: {
-			"n/no-missing-import": "off",
-		},
+		rules: { "n/no-missing-import": "off" },
 	},
 	{
 		extends: [vitest.configs.recommended],

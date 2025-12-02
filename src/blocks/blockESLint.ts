@@ -62,6 +62,7 @@ export const blockESLint = base.createBlock({
 
 		const importLines = [
 			'import eslint from "@eslint/js";',
+			'import { defineConfig } from "eslint/config";',
 			'import tseslint from "typescript-eslint";',
 			...imports.map(
 				(packageImport) =>
@@ -221,7 +222,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 			files: {
 				[configFileName]: `${explanation}${importLines.join("\n")}
 
-export default tseslint.config(
+export default defineConfig(
 	{ ignores: [${ignoreLines.join(", ")}] },
 	${printExtension({
 		linterOptions: { reportUnusedDisableDirectives: "error" },

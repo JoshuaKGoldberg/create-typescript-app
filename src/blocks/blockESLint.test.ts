@@ -114,9 +114,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -268,9 +269,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -425,9 +427,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.mjs": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -604,9 +607,10 @@ describe("blockESLint", () => {
 			import a from "eslint-plugin-markdown"
 			import b from "eslint-plugin-regexp"
 			import c from "eslint-plugin-unknown"
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["generated", "lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -740,9 +744,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -882,9 +887,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -1020,9 +1026,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -1146,9 +1153,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -1269,9 +1277,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.mjs": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,
@@ -1392,9 +1401,10 @@ describe("blockESLint", () => {
 			  ],
 			  "files": {
 			    "eslint.config.js": "import eslint from "@eslint/js";
+			import { defineConfig } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
-			export default tseslint.config(
+			export default defineConfig(
 				{ ignores: ["lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: {"reportUnusedDisableDirectives":"error"} },
 				eslint.configs.recommended,

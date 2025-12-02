@@ -223,8 +223,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0(prettier@3.6.1)
       prettier-plugin-sh:
-        specifier: 0.17.4
-        version: 0.17.4(prettier@3.6.1)
+        specifier: 0.18.0
+        version: 0.18.0(prettier@3.6.1)
       release-it:
         specifier: 19.0.3
         version: 19.0.3(@types/node@24.0.4)(magicast@0.3.5)
@@ -2389,6 +2389,7 @@ packages:
   eslint-plugin-markdown@5.1.0:
     resolution: {integrity: sha512-SJeyKko1K6GwI0AN6xeCDToXDkfKZfXcexA6B+O2Wr2btUS9GrC+YgwSyVli5DJnctUHjFXcQ2cqTaAmVoLi2A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: Please use @eslint/markdown instead
     peerDependencies:
       eslint: '>=8'
 
@@ -3682,11 +3683,11 @@ packages:
     peerDependencies:
       prettier: ^3
 
-  prettier-plugin-sh@0.17.4:
-    resolution: {integrity: sha512-aAVKXZ7GTEMZdZsIPSwMwddwPvt2ibMbRGd4OJAP0G7QoeYZV+mPNg2Oln3R53sZ4PVjeAA7Xzi/PuI0QlHHfQ==}
+  prettier-plugin-sh@0.18.0:
+    resolution: {integrity: sha512-cW1XL27FOJQ/qGHOW6IHwdCiNWQsAgK+feA8V6+xUTaH0cD3Mh+tFAtBvEEWvuY6hTDzRV943Fzeii+qMOh7nQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      prettier: ^3.0.3
+      prettier: ^3.6.0
 
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
@@ -8058,7 +8059,7 @@ snapshots:
     dependencies:
       prettier: 3.6.1
 
-  prettier-plugin-sh@0.17.4(prettier@3.6.1):
+  prettier-plugin-sh@0.18.0(prettier@3.6.1):
     dependencies:
       '@reteps/dockerfmt': 0.3.6
       prettier: 3.6.1

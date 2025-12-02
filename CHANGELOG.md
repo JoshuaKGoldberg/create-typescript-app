@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.52.0](///compare/2.51.0...2.52.0) (2025-12-02)
+
+### Features
+
+- move all ESLint configuration into files-based blocks ([#2291](undefined/undefined/undefined/issues/2291)) 9e97d56, closes #2275
+
 ## [2.51.0](///compare/2.50.0...2.51.0) (2025-12-02)
 
 ### Features

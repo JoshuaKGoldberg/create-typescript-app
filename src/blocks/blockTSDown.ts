@@ -113,6 +113,7 @@ pnpm build --watch
 export default defineConfig(${JSON.stringify({
 					dts: true,
 					entry: Array.from(new Set(["src/**/*.ts", ...entry])),
+					fixedExtension: false,
 					outDir: "lib",
 					unbundle: true,
 					...properties,

@@ -12,7 +12,7 @@
 		"email": "npm@joshuakgoldberg.com"
 	},
 	"type": "module",
-	"main": "lib/index.mjs",
+	"main": "lib/index.js",
 	"bin": "bin/index.js",
 	"files": [
 		"lib/"

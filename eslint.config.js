@@ -72,6 +72,9 @@ export default defineConfig(
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
 			"operator-assignment": "error",
+
+			// https://github.com/eslint-community/eslint-plugin-n/issues/472
+			"n/no-unpublished-bin": "off",
 		},
 		settings: { perfectionist: { partitionByComment: true, type: "natural" } },
 	},

@@ -52,6 +52,9 @@ export default defineConfig(
 			},
 		},
 		rules: {
+			// https://github.com/eslint-community/eslint-plugin-n/issues/472
+			"n/no-unpublished-bin": "off",
+
 			// These on-by-default rules work well for this repo if configured
 			"@typescript-eslint/prefer-nullish-coalescing": [
 				"error",

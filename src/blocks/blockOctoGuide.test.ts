@@ -232,7 +232,7 @@ describe("blockOctoGuide", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when octoguide.yml contains an octoguide job with no octoguide step ", () => {
+		it("returns undefined when octoguide.yml contains an octoguide job with no octoguide step", () => {
 			const actual = testIntake(blockOctoGuide, {
 				files: {
 					".github": {

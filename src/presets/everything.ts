@@ -17,6 +17,7 @@ import { blockOctoGuideStrict } from "../blocks/blockOctoGuideStrict.js";
 import { blockPnpmDedupe } from "../blocks/blockPnpmDedupe.js";
 import { blockPrettierPluginCurly } from "../blocks/blockPrettierPluginCurly.js";
 import { blockPrettierPluginPackageJson } from "../blocks/blockPrettierPluginPackageJson.js";
+import { blockPrettierPluginSentencesPerLine } from "../blocks/blockPrettierPluginSentencesPerLine.js";
 import { blockPrettierPluginSh } from "../blocks/blockPrettierPluginSh.js";
 import { blockRenovate } from "../blocks/blockRenovate.js";
 import { blockVSCode } from "../blocks/blockVSCode.js";
@@ -48,6 +49,7 @@ export const presetEverything = base.createPreset({
 		blockOctoGuideStrict,
 		blockPrettierPluginCurly,
 		blockPrettierPluginPackageJson,
+		blockPrettierPluginSentencesPerLine,
 		blockPrettierPluginSh,
 		blockRenovate,
 		blockVSCode,

@@ -122,13 +122,13 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 									},
 								},
 							],
+							settings: {
+								vitest: { typecheck: true },
+							},
 						},
 					],
 					ignores: ["coverage", "**/*.snap"],
 					imports: [{ source: "@vitest/eslint-plugin", specifier: "vitest" }],
-					settings: {
-						vitest: { typecheck: true },
-					},
 				}),
 				blockExampleFiles({
 					files: {

@@ -9,7 +9,12 @@ export const blockESLintMarkdown = base.createBlock({
 		return {
 			addons: [
 				blockESLint({
-					extensions: ["markdown.configs.recommended"],
+					extensions: [
+						{
+							extends: ["markdown.configs.recommended"],
+							files: ["**/*.md"],
+						},
+					],
 					imports: [
 						{
 							source: "eslint-plugin-markdown",

@@ -16,7 +16,14 @@ describe("blockESLintPackageJson", () => {
 			    {
 			      "addons": {
 			        "extensions": [
-			          "packageJson.configs.recommended",
+			          {
+			            "extends": [
+			              "packageJson.configs.recommended",
+			            ],
+			            "files": [
+			              "package.json",
+			            ],
+			          },
 			        ],
 			        "imports": [
 			          {
@@ -54,7 +61,14 @@ describe("blockESLintPackageJson", () => {
 			    {
 			      "addons": {
 			        "extensions": [
-			          "packageJson.configs.recommended",
+			          {
+			            "extends": [
+			              "packageJson.configs.recommended",
+			            ],
+			            "files": [
+			              "package.json",
+			            ],
+			          },
 			        ],
 			        "imports": [
 			          {

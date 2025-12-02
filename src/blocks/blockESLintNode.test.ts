@@ -20,7 +20,14 @@ describe("blockESLintNode", () => {
 			    {
 			      "addons": {
 			        "extensions": [
-			          "n.configs["flat/recommended"]",
+			          {
+			            "extends": [
+			              "n.configs["flat/recommended"]",
+			            ],
+			            "files": [
+			              "**/*.{js,ts}",
+			            ],
+			          },
 			          {
 			            "extends": [
 			              "tseslint.configs.disableTypeChecked",

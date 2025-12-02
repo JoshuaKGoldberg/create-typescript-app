@@ -13,12 +13,13 @@ import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { blockESLintIntake } from "./eslint/blockESLintIntake.js";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
+import { mergeAllExtensions } from "./eslint/mergeAllExtensions.js";
 import {
 	Extension,
 	ExtensionRuleGroup,
 	ExtensionRules,
 	zExtension,
-	zExtensionRules,
 	zPackageImport,
 } from "./eslint/schemas.js";
 import { intakeFile } from "./intake/intakeFile.js";
@@ -31,11 +32,9 @@ export const blockESLint = base.createBlock({
 	addons: {
 		beforeLint: z.string().optional(),
 		explanations: z.array(z.string()).default([]),
-		extensions: z.array(z.union([z.string(), zExtension])).default([]),
+		extensions: z.array(zExtension).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
-		rules: zExtensionRules.optional(),
-		settings: z.record(z.string(), z.unknown()).optional(),
 	},
 	intake({ files }) {
 		const eslintConfigRaw = intakeFile(files, [
@@ -45,13 +44,10 @@ export const blockESLint = base.createBlock({
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
 	produce({ addons, options }) {
-		const { explanations, extensions, ignores, imports, rules, settings } =
-			addons;
+		const { explanations, extensions, ignores, imports } = addons;
 
-		const [configFileName, fileExtensions] =
-			options.type === "commonjs"
-				? ["eslint.config.mjs", "js,mjs,ts"]
-				: ["eslint.config.js", "js,ts"];
+		const configFileName =
+			options.type === "commonjs" ? "eslint.config.mjs" : "eslint.config.js";
 
 		const explanation =
 			explanations.length > 0
@@ -80,13 +76,14 @@ export const blockESLint = base.createBlock({
 			),
 		).sort();
 
-		const extensionLines = [
-			printExtension({
+		const extensionEntries = mergeAllExtensions(
+			{
 				extends: [
+					"eslint.configs.recommended",
 					"tseslint.configs.strictTypeChecked",
 					"tseslint.configs.stylisticTypeChecked",
 				],
-				files: [`**/*.{${fileExtensions}}`],
+				files: [getScriptFileExtension(options)],
 				languageOptions: {
 					parserOptions: {
 						projectService: {
@@ -105,23 +102,23 @@ export const blockESLint = base.createBlock({
 						},
 					},
 				},
-				...(rules && { rules }),
-				...(settings && { settings }),
-			}),
+			},
+			...extensions,
 			...(options.type === "commonjs"
 				? [
-						printExtension({
+						{
 							files: ["*.mjs"],
 							languageOptions: { sourceType: "module" },
-						}),
+						},
 					]
 				: []),
-			...extensions.map((extension) =>
-				typeof extension === "string" ? extension : printExtension(extension),
-			),
-		]
-			.sort((a, b) => processForSort(a).localeCompare(processForSort(b)))
-			.map((t) => t);
+		);
+
+		const extensionLines = extensionEntries
+			.sort((a, b) =>
+				processForSort(a.files).localeCompare(processForSort(b.files)),
+			)
+			.map(printExtension);
 
 		return {
 			addons: [
@@ -224,10 +221,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 
 export default defineConfig(
 	{ ignores: [${ignoreLines.join(", ")}] },
-	${printExtension({
-		linterOptions: { reportUnusedDisableDirectives: "error" },
-	})},
-	eslint.configs.recommended,
+	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	${extensionLines.join(",")}
 );`,
 			},
@@ -296,8 +290,7 @@ function printExtension(extension: Extension) {
 	return [
 		"{",
 		extension.extends && `extends: [${extension.extends.join(", ")}],`,
-		extension.files &&
-			`files: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
+		`files: [${extension.files.map((glob) => JSON.stringify(glob)).join(", ")}],`,
 		extension.languageOptions &&
 			`languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
 		extension.linterOptions &&
@@ -332,10 +325,6 @@ function printGroupComment(comment: string | undefined) {
 	return comment ? `\n\n// ${comment.replaceAll("\n", "\n// ")}\n` : "";
 }
 
-function processForSort(line: string) {
-	if (line.startsWith("...") || /\w+/.test(line[0])) {
-		return `A\n${line.replaceAll(/\W+/g, "")}`;
-	}
-
-	return `B\n${(/files: (.+)/.exec(line)?.[1] ?? line).replaceAll(/\W+/g, "")}`;
+function processForSort(files: string[]) {
+	return files.join("").replaceAll("{", "");
 }

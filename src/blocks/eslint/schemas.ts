@@ -25,16 +25,21 @@ export const zExtensionRuleGroup = z.object({
 
 export type ExtensionRuleGroup = z.infer<typeof zExtensionRuleGroup>;
 
-export const zExtensionRules = z.union([
-	z.record(z.string(), zRuleOptions),
-	z.array(zExtensionRuleGroup),
-]);
+export const zRulesArray = z.array(zExtensionRuleGroup);
+
+export type RulesArray = z.infer<typeof zRulesArray>;
+
+export const zRulesRecord = z.record(z.string(), zRuleOptions);
+
+export type RulesRecord = z.infer<typeof zRulesRecord>;
+
+export const zExtensionRules = z.union([zRulesArray, zRulesRecord]);
 
 export type ExtensionRules = z.infer<typeof zExtensionRules>;
 
 export const zExtension = z.object({
 	extends: z.array(z.string()).optional(),
-	files: z.array(z.string()).optional(),
+	files: z.array(z.string()),
 	languageOptions: z.unknown().optional(),
 	linterOptions: z.unknown().optional(),
 	plugins: z.record(z.string(), z.string()).optional(),

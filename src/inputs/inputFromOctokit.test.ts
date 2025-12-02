@@ -38,4 +38,19 @@ describe("inputFromOctokit", () => {
 
 		expect(actual).toBe(undefined);
 	});
+
+	it("returns undefined when there is no octokit fetcher", async () => {
+		const actual = await testInput(inputFromOctokit, {
+			args: {
+				endpoint: "GET /repos/{owner}/{repo}/rulesets",
+				options: {},
+			},
+			fetchers: {
+				fetch: vi.fn(),
+				octokit: undefined,
+			},
+		});
+
+		expect(actual).toBe(undefined);
+	});
 });

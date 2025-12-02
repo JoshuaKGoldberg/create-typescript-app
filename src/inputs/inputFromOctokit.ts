@@ -9,6 +9,10 @@ export const inputFromOctokit = createInput({
 	// TODO: Strongly type this, then push it upstream to Bingo
 	// https://github.com/JoshuaKGoldberg/bingo/issues/296
 	async produce({ args, fetchers }): Promise<unknown> {
+		if (!fetchers.octokit) {
+			return undefined;
+		}
+
 		try {
 			const response = await fetchers.octokit.request(args.endpoint, {
 				headers: {

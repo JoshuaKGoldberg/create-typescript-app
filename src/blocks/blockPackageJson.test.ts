@@ -17,7 +17,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -50,7 +50,7 @@ describe("blockPackageJson", () => {
 			    },
 			  ],
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -81,7 +81,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"engines":{"node":">=20.12.0"},"other":true}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","dependencies":{"is-odd":"1.2.3"},"engines":{"node":">=20.12.0"},"other":true}",
 			  },
 			  "scripts": [
 			    {
@@ -116,7 +116,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"engines":{"node":">=20.12.0"},"other":true}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","dependencies":{"is-odd":"1.2.3"},"devDependencies":{"is-even":"4.5.6"},"engines":{"node":">=20.12.0"},"other":true}",
 			  },
 			  "scripts": [
 			    {
@@ -142,7 +142,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"commonjs","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"commonjs","engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -169,7 +169,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["LICENSE.md","README.md","lib/","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["LICENSE.md","README.md","lib/"],"engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -194,7 +194,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","keywords":["abc","def ghi"],"repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","keywords":["abc","def ghi"],"repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -222,7 +222,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"packageManager":"pnpm@10.4.0","engines":{"node":">=22.0.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","packageManager":"pnpm@10.4.0","engines":{"node":">=22.0.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -247,7 +247,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","bin":"bin/index.js","files":["README.md","bin/index.js","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","bin":"bin/index.js","engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -275,7 +275,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","bin":{"absolute":"bin/absolute.js","relative":"./bin/relative.js"},"files":["README.md","bin/absolute.js","bin/relative.js","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","bin":{"absolute":"bin/absolute.js","relative":"./bin/relative.js"},"engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -310,7 +310,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"peerDependencies":{"@types/estree":">=1","eslint":">=8"},"peerDependenciesMeta":{"@types/estree":{"optional":true}},"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","peerDependencies":{"@types/estree":">=1","eslint":">=8"},"peerDependenciesMeta":{"@types/estree":{"optional":true}},"engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {
@@ -333,7 +333,7 @@ describe("blockPackageJson", () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "files": {
-			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","files":["README.md","package.json"],"engines":{"node":">=20.12.0"}}",
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"npm@email.com"},"type":"module","engines":{"node":">=20.12.0"}}",
 			  },
 			  "scripts": [
 			    {

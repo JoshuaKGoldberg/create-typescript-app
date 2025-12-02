@@ -28,9 +28,19 @@ describe("blockESLintNode", () => {
 			            "files": [
 			              "**/*.md/*.ts",
 			            ],
-			            "rules": {
-			              "n/no-missing-import": "off",
-			            },
+			            "rules": [
+			              {
+			                "entries": {
+			                  "n/no-missing-import": "off",
+			                },
+			              },
+			              {
+			                "comment": "https://github.com/eslint-community/eslint-plugin-n/issues/472",
+			                "entries": {
+			                  "n/no-unpublished-bin": "off",
+			                },
+			              },
+			            ],
 			          },
 			        ],
 			        "imports": [

@@ -467,6 +467,11 @@ describe("blockESLint", () => {
 							"b/c": "error",
 							"b/d": ["error", { e: "f" }],
 						},
+						settings: {
+							react: {
+								version: "detect",
+							},
+						},
 					},
 				],
 				ignores: ["generated"],
@@ -486,11 +491,6 @@ describe("blockESLint", () => {
 						},
 					},
 				],
-				settings: {
-					react: {
-						version: "detect",
-					},
-				},
 			},
 			options: optionsBase,
 		});
@@ -610,7 +610,7 @@ describe("blockESLint", () => {
 			export default defineConfig(
 				{ ignores: ["generated", "lib", "node_modules", "pnpm-lock.yaml"] },
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, rules: {"a/b": "error","a/c": ["error",{"d":"e"}],}, }
+				{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, rules: {"a/b": "error","a/c": ["error",{"d":"e"}],}, }
 			);",
 			  },
 			  "scripts": [

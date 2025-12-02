@@ -73,17 +73,20 @@ Delete `tsdown.config.ts` then execute the following commands:
    pnpm remove tsdown
    pnpm add @vercel/ncc -D
    ```
+
    - Now we need to update the `build` script in our `package.json`:
 
    ```diff
    -"build": "tsdown",
    +"build": "ncc build src/index.ts -o dist --license licenses.txt",
    ```
+
    - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
 
    ```diff
    +dist
    ```
+
    - Rather than having to remember to compile each time, we'll update our pre-commit hook in `.husky/pre-commit` to build for us on each commit:
 
    ```diff

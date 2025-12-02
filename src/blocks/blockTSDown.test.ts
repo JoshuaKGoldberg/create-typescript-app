@@ -68,7 +68,7 @@ describe("blockTSDown", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.12.7",
+			            "tsdown": "0.16.8",
 			          },
 			          "scripts": {
 			            "build": "tsdown",
@@ -92,7 +92,7 @@ describe("blockTSDown", () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"dts":true,"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
+			export default defineConfig({"dts":true,"entry":["src/**/*.ts"],"fixedExtension":false,"outDir":"lib","unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -173,7 +173,7 @@ describe("blockTSDown", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.12.7",
+			            "tsdown": "0.16.8",
 			          },
 			          "scripts": {
 			            "build": "tsdown",
@@ -197,7 +197,7 @@ describe("blockTSDown", () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"dts":false,"entry":["src/**/*.ts","src/other.ts"],"outDir":"lib","unbundle":true});
+			export default defineConfig({"dts":false,"entry":["src/**/*.ts","src/other.ts"],"fixedExtension":false,"outDir":"lib","unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -269,7 +269,7 @@ describe("blockTSDown", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.12.7",
+			            "tsdown": "0.16.8",
 			          },
 			          "scripts": {
 			            "build": "tsdown",
@@ -325,7 +325,7 @@ describe("blockTSDown", () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"dts":true,"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
+			export default defineConfig({"dts":true,"entry":["src/**/*.ts"],"fixedExtension":false,"outDir":"lib","unbundle":true});
 			",
 			  },
 			}

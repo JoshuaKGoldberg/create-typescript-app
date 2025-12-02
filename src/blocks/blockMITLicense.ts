@@ -20,7 +20,6 @@ export const blockMITLicense = base.createBlock({
 				}),
 				blockPackageJson({
 					properties: {
-						files: ["LICENSE.md"],
 						license: "MIT",
 					},
 				}),

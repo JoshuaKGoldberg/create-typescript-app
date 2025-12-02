@@ -46,8 +46,8 @@ describe("blockMarkdownlint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "markdownlint": "0.38.0",
-			            "markdownlint-cli": "0.45.0",
+			            "markdownlint": "0.39.0",
+			            "markdownlint-cli": "0.46.0",
 			          },
 			          "scripts": {
 			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md"",
@@ -66,7 +66,7 @@ describe("blockMarkdownlint", () => {
 			    },
 			  ],
 			  "files": {
-			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false}",
+			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false,"table-column-style":false}",
 			    ".markdownlintignore": "node_modules/
 			",
 			  },
@@ -126,8 +126,8 @@ describe("blockMarkdownlint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "markdownlint": "0.38.0",
-			            "markdownlint-cli": "0.45.0",
+			            "markdownlint": "0.39.0",
+			            "markdownlint-cli": "0.46.0",
 			          },
 			          "scripts": {
 			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md"",
@@ -146,7 +146,7 @@ describe("blockMarkdownlint", () => {
 			    },
 			  ],
 			  "files": {
-			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false}",
+			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false,"table-column-style":false}",
 			    ".markdownlintignore": "lib/
 			node_modules/
 			",
@@ -205,8 +205,8 @@ describe("blockMarkdownlint", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "markdownlint": "0.38.0",
-			            "markdownlint-cli": "0.45.0",
+			            "markdownlint": "0.39.0",
+			            "markdownlint-cli": "0.46.0",
 			          },
 			          "scripts": {
 			            "lint:md": "markdownlint "**/*.md" ".github/**/*.md"",
@@ -236,7 +236,7 @@ describe("blockMarkdownlint", () => {
 			    },
 			  ],
 			  "files": {
-			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false}",
+			    ".markdownlint.json": "{"extends":"markdownlint/style/prettier","first-line-h1":false,"no-inline-html":false,"table-column-style":false}",
 			    ".markdownlintignore": "node_modules/
 			",
 			  },

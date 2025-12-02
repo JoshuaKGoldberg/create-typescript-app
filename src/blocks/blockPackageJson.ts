@@ -62,8 +62,6 @@ export const blockPackageJson = base.createBlock({
 							files: processFiles([
 								...collectBinFiles(options.bin),
 								...(addons.properties.files ?? []),
-								"package.json",
-								"README.md",
 							]),
 							keywords: options.keywords,
 							name: options.repository,

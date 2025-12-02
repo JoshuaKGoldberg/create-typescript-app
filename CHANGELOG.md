@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.51.0](///compare/2.50.0...2.51.0) (2025-12-02)
+
+### Features
+
+- bumped most packages to latest as of Dec 2nd, 2025 ([#2288](undefined/undefined/undefined/issues/2288)) 0074af5, closes #2287 #2275
+
 ## [2.50.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.49.0...2.50.0) (2025-12-02)
 
 ### Features

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.53.0](///compare/2.52.1...2.53.0) (2025-12-03)
+
+### Features
+
+- switch from deprecated `eslint-plugin-markdown` to `@eslint/markdown` ([#2297](undefined/undefined/undefined/issues/2297)) eef0d97, closes #2273 #1926
+
 ## [2.52.1](///compare/2.52.0...2.52.1) (2025-12-02)
 
 ### Bug Fixes

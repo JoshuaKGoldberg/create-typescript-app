@@ -126,14 +126,6 @@ describe("blockWebExt", () => {
 			    },
 			    {
 			      "addons": {
-			        "ignores": [
-			          "assets/",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "esbuild": "^0.25.0",

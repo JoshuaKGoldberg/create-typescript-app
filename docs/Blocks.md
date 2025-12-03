@@ -33,7 +33,6 @@ This table summarizes each block and which base levels they're included in:
 | Gitignore                          | `--add-gitignore`, `--exclude-gitignore`                                                   | ✔️      | ✅     | 💯         |
 | Knip                               | `--add-knip`, `--exclude-knip`                                                             |         |        | 💯         |
 | Main                               | `--add-main`, `--exclude-main`                                                             | ✔️      | ✅     | 💯         |
-| Markdownlint                       | `--add-markdownlint`, `--exclude-markdownlint`                                             |         |        | 💯         |
 | MIT License                        | `--add-mit-license`, `--exclude-mit-license`                                               | ✔️      | ✅     | 💯         |
 | ncc                                | `--add-ncc`, `--exclude-ncc`                                                               |         |        |            |
 | nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        | 💯         |
@@ -251,7 +250,6 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 - [Lint ESLint](#lint-eslint)
 - [Lint JSDoc](#lint-jsdoc)
 - [Lint JSON](#lint-json)
-- [Lint MD](#lint-md)
 - [Lint Package JSON](#lint-package-json)
 - [Lint Packages](#lint-packages)
 - [Lint Perfectionist](#lint-perfectionist)
@@ -273,16 +271,6 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 ### Lint JSON
 
 [`eslint-plugin-jsonc`](https://github.com/ota-meshi/eslint-plugin-jsonc): Adds linting for `.json` and `.jsonc` files.
-
-### Lint MD
-
-[**Markdownlint**](https://github.com/DavidAnson/markdownlint): Linting for Markdown code.
-
-```shell
-pnpm lint:md
-```
-
-> This is a separate linter from ESLint, but will likely eventually be switched to an ESLint plugin ([#567](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/567)).
 
 ### Lint Package JSON
 

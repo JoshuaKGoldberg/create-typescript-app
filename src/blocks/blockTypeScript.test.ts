@@ -110,14 +110,6 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
-			        "ignores": [
-			          "lib/",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "typescript": "5.9.3",
@@ -280,14 +272,6 @@ describe("blockTypeScript", () => {
 			    },
 			    {
 			      "addons": {
-			        "ignores": [
-			          "lib/",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "typescript": "5.9.3",
@@ -442,14 +426,6 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "project": [
 			          "src/**/*.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "lib/",
 			        ],
 			      },
 			      "block": [Function],
@@ -619,14 +595,6 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "project": [
 			          "src/**/*.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "lib/",
 			        ],
 			      },
 			      "block": [Function],

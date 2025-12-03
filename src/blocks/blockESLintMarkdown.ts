@@ -1,5 +1,8 @@
 import { base } from "../base.js";
 import { blockESLint } from "./blockESLint.js";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 
 export const blockESLintMarkdown = base.createBlock({
 	about: {
@@ -29,6 +32,19 @@ export const blockESLintMarkdown = base.createBlock({
 							specifier: "markdown",
 						},
 					],
+				}),
+				blockRemoveDependencies({
+					dependencies: [
+						"eslint-plugin-markdown",
+						"markdownlint",
+						"markdownlint-cli",
+					],
+				}),
+				blockRemoveFiles({
+					files: [".markdownlint*", ".markdownlintignore"],
+				}),
+				blockRemoveWorkflows({
+					workflows: ["lint_markdown", "lint_md"],
 				}),
 			],
 		};

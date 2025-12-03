@@ -3,7 +3,7 @@ body:
       description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
       label: Feature Request Checklist
       options:
-        - label: I have pulled the latest `main` branch of the repository.
+        - label: I am looking at the latest version of the project.
           required: true
         - label: I have [searched for related issues](https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=is%3Aissue) and found none that matched my issue.
           required: true

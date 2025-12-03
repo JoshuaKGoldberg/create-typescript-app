@@ -9,7 +9,7 @@ import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockKnip } from "./blockKnip.js";
-import { blockMarkdownlint } from "./blockMarkdownlint.js";
+
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVitest } from "./blockVitest.js";
@@ -106,9 +106,6 @@ greet("Hello, world! ${options.emoji}");
 				}),
 				blockKnip({
 					project: ["src/**/*.ts"],
-				}),
-				blockMarkdownlint({
-					ignores: ["lib/"],
 				}),
 				blockPackageJson({
 					properties: {

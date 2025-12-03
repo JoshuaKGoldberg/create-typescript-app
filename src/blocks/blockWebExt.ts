@@ -3,7 +3,7 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
-import { blockMarkdownlint } from "./blockMarkdownlint.js";
+
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 
@@ -96,9 +96,6 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 				}),
 				blockGitignore({
 					ignores: ["*.zip", "web-ext-artifacts"],
-				}),
-				blockMarkdownlint({
-					ignores: ["assets/"],
 				}),
 				blockPackageJson({
 					properties: {

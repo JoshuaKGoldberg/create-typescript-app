@@ -11,7 +11,6 @@ import { blockESLintPerfectionist } from "../blocks/blockESLintPerfectionist.js"
 import { blockESLintRegexp } from "../blocks/blockESLintRegexp.js";
 import { blockESLintYML } from "../blocks/blockESLintYML.js";
 import { blockKnip } from "../blocks/blockKnip.js";
-import { blockMarkdownlint } from "../blocks/blockMarkdownlint.js";
 import { blockNvmrc } from "../blocks/blockNvmrc.js";
 import { blockOctoGuideStrict } from "../blocks/blockOctoGuideStrict.js";
 import { blockPnpmDedupe } from "../blocks/blockPnpmDedupe.js";
@@ -43,7 +42,6 @@ export const presetEverything = base.createPreset({
 		blockESLintRegexp,
 		blockESLintYML,
 		blockKnip,
-		blockMarkdownlint,
 		blockNvmrc,
 		blockPnpmDedupe,
 		blockOctoGuideStrict,

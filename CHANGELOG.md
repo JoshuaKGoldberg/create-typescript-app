@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.56.1](///compare/2.56.0...2.56.1) (2025-12-03)
+
+### Bug Fixes
+
+- correct main-branch phrasing in issue templates ([#2301](undefined/undefined/undefined/issues/2301)) 341c2d0, closes #2217
+
 ## [2.56.0](///compare/2.55.0...2.56.0) (2025-12-03)
 
 ### Features

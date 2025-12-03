@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.56.0](///compare/2.55.0...2.56.0) (2025-12-03)
+
+### Features
+
+- enable Knip's treatConfigHintsAsErrors ([#2300](undefined/undefined/undefined/issues/2300)) 3934596, closes #2213
+
 ## [2.55.0](///compare/2.54.0...2.55.0) (2025-12-03)
 
 ### Features

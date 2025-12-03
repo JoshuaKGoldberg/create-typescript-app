@@ -67,6 +67,7 @@ test("Producing the everything preset matches the files in this repository", asy
 						"mshick",
 						"octoguide",
 						"stefanzweifel",
+						"ts-prunerc",
 					],
 				}),
 				blockESLint({

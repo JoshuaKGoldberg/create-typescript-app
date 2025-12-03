@@ -59,6 +59,14 @@ describe("blockKnip", () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".ts-prunerc*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.71.0/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true}}",
@@ -119,6 +127,14 @@ describe("blockKnip", () => {
 			            "lint:knip": "knip",
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "files": [
+			          ".ts-prunerc*",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -184,10 +200,7 @@ describe("blockKnip", () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".knip*",
-			          "knip.{c,m,t}*",
-			          "knip.js",
-			          "knip.jsonc",
+			          ".ts-prunerc*",
 			        ],
 			      },
 			      "block": [Function],

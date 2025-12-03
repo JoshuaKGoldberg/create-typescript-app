@@ -68,6 +68,9 @@ export const blockKnip = base.createBlock({
 						},
 					},
 				}),
+				blockRemoveFiles({
+					files: [".ts-prunerc*"],
+				}),
 			],
 			files: {
 				"knip.json": JSON.stringify({

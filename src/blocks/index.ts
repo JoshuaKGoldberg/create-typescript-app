@@ -24,7 +24,6 @@ import { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockKnip } from "./blockKnip.js";
 import { blockMain } from "./blockMain.js";
-
 import { blockMITLicense } from "./blockMITLicense.js";
 import { blockNcc } from "./blockNcc.js";
 import { blockNvmrc } from "./blockNvmrc.js";

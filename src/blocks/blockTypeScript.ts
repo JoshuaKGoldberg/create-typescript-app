@@ -9,7 +9,6 @@ import { blockExampleFiles } from "./blockExampleFiles.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockKnip } from "./blockKnip.js";
-
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { blockVitest } from "./blockVitest.js";

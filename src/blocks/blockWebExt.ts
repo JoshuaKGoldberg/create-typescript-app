@@ -3,7 +3,6 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitignore } from "./blockGitignore.js";
-
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
 

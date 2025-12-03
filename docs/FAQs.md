@@ -108,8 +108,6 @@ Then:
 1. In `tsdown.config.ts`, change the [tsdown `format` option](https://tsdown.dev/options/output-format) from `["esm"]` to `["cjs", "esm"]`
 2. Add a [`package.json` `"exports"` entry](https://nodejs.org/api/packages.html#subpath-exports) like:
 
-   <!-- eslint-disable jsonc/sort-keys -->
-
    ```json package.json
    {
    	"exports": {
@@ -124,8 +122,6 @@ Then:
    	}
    }
    ```
-
-   <!-- eslint-enable jsonc/sort-keys -->
 
 That should be it!
 

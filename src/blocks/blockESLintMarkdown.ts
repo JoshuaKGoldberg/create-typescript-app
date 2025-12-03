@@ -13,13 +13,20 @@ export const blockESLintMarkdown = base.createBlock({
 						{
 							extends: ["markdown.configs.recommended"],
 							files: ["**/*.md"],
+							rules: [
+								{
+									comment: "https://github.com/eslint/markdown/issues/294",
+									entries: {
+										"markdown/no-missing-label-refs": "off",
+									},
+								},
+							],
 						},
 					],
 					imports: [
 						{
-							source: "eslint-plugin-markdown",
+							source: "@eslint/markdown",
 							specifier: "markdown",
-							types: true,
 						},
 					],
 				}),

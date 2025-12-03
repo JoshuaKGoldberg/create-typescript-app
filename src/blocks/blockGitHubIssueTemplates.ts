@@ -123,7 +123,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 										options: [
 											{
 												label:
-													"I am looking at the latest version of the project.",
+													"I have looked at the latest version of the project.",
 												required: true,
 											},
 											{

@@ -8,6 +8,6 @@
 		"trash-cli"
 	],
 	"ignoreExportsUsedInFile": { "interface": true, "type": true },
-	"treatConfigHintsAsErrors": true,
-	"project": ["src/**/*.ts"]
+	"project": ["src/**/*.ts"],
+	"treatConfigHintsAsErrors": true
 }

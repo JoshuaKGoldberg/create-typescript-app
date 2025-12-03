@@ -81,6 +81,7 @@ export const blockKnip = base.createBlock({
 						interface: true,
 						type: true,
 					},
+					treatConfigHintsAsErrors: true,
 					project: project?.sort(),
 				}),
 			},

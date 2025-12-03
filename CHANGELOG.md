@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.54.0](///compare/2.53.0...2.54.0) (2025-12-03)
+
+### Features
+
+- remove Markdownlint ([#2298](undefined/undefined/undefined/issues/2298)) 1dd9763, closes #1926
+
 ## [2.53.0](///compare/2.52.1...2.53.0) (2025-12-03)
 
 ### Features

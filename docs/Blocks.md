@@ -250,7 +250,6 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 - [Lint ESLint](#lint-eslint)
 - [Lint JSDoc](#lint-jsdoc)
 - [Lint JSON](#lint-json)
-- [Lint MD](#lint-md)
 - [Lint Package JSON](#lint-package-json)
 - [Lint Packages](#lint-packages)
 - [Lint Perfectionist](#lint-perfectionist)

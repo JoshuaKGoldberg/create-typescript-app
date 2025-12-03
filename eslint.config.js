@@ -10,10 +10,10 @@ If you're interested in learning more, see the 'getting started' docs on:
 
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import eslint from "@eslint/js";
+import markdown from "@eslint/markdown";
 import vitest from "@vitest/eslint-plugin";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
-import markdown from "eslint-plugin-markdown";
 import n from "eslint-plugin-n";
 import packageJson from "eslint-plugin-package-json";
 import perfectionist from "eslint-plugin-perfectionist";
@@ -82,7 +82,14 @@ export default defineConfig(
 		extends: [jsonc.configs["flat/recommended-with-json"]],
 		files: ["**/*.json"],
 	},
-	{ extends: [markdown.configs.recommended], files: ["**/*.md"] },
+	{
+		extends: [markdown.configs.recommended],
+		files: ["**/*.md"],
+		rules: {
+			// https://github.com/eslint/markdown/issues/294
+			"markdown/no-missing-label-refs": "off",
+		},
+	},
 	{
 		extends: [tseslint.configs.disableTypeChecked],
 		files: ["**/*.md/*.ts"],

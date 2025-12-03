@@ -476,7 +476,7 @@ describe("blockESLint", () => {
 				],
 				ignores: ["generated"],
 				imports: [
-					{ source: "eslint-plugin-markdown", specifier: "a", types: true },
+					{ source: "@eslint/markdown", specifier: "a" },
 					{ source: "eslint-plugin-regexp", specifier: "b" },
 					{
 						source: { packageName: "eslint-plugin-unknown", version: "1.2.3" },
@@ -539,10 +539,9 @@ describe("blockESLint", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "9.39.1",
-			            "@types/eslint-plugin-markdown": "2.0.2",
+			            "@eslint/markdown": "7.5.1",
 			            "@types/node": "24.10.1",
 			            "eslint": "9.39.1",
-			            "eslint-plugin-markdown": "5.1.0",
 			            "eslint-plugin-regexp": "2.10.0",
 			            "eslint-plugin-unknown": "1.2.3",
 			            "typescript-eslint": "8.48.1",
@@ -593,7 +592,7 @@ describe("blockESLint", () => {
 			*/
 
 			import eslint from "@eslint/js";
-			import a from "eslint-plugin-markdown"
+			import a from "@eslint/markdown"
 			import b from "eslint-plugin-regexp"
 			import c from "eslint-plugin-unknown"
 			import { defineConfig } from "eslint/config";

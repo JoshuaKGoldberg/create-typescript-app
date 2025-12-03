@@ -79,7 +79,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 										options: [
 											{
 												label:
-													"I have pulled the latest `main` branch of the repository.",
+													"I have looked at the latest `main` branch of the repository.",
 												required: true,
 											},
 											{
@@ -123,7 +123,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 										options: [
 											{
 												label:
-													"I have pulled the latest `main` branch of the repository.",
+													"I have looked at the latest version of the project.",
 												required: true,
 											},
 											{

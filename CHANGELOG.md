@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.55.0](///compare/2.54.0...2.55.0) (2025-12-03)
+
+### Features
+
+- remove ts-prune config files in blockKnip ([#2299](undefined/undefined/undefined/issues/2299)) 0bfe033, closes #2126
+
 ## [2.54.0](///compare/2.53.0...2.54.0) (2025-12-03)
 
 ### Features

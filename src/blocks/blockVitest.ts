@@ -236,7 +236,6 @@ export default defineConfig({
 	test: {
 		clearMocks: true,
 		coverage: {
-			all: true,
 			${
 				coverage.exclude?.length
 					? `exclude: ${JSON.stringify(coverage.exclude)},

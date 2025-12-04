@@ -262,7 +262,7 @@ export default defineConfig({
 				: ""
 		}
 		exclude: [${excludeText.slice(1, excludeText.length - 1)}],${
-			setupFiles?.length
+			setupFiles.length
 				? `
 		setupFiles: ${JSON.stringify(setupFiles)},`
 				: ""

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.56.2](///compare/2.56.1...2.56.2) (2025-12-04)
+
+### Bug Fixes
+
+- issues with Vitest 4 ([#2307](undefined/undefined/undefined/issues/2307)) f693847, closes #2305
+
 ## [2.56.1](///compare/2.56.0...2.56.1) (2025-12-03)
 
 ### Bug Fixes

@@ -42,7 +42,8 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-			",
+
+					",
 			          },
 			        },
 			      },
@@ -280,7 +281,8 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-			",
+
+					",
 			          },
 			        },
 			      },
@@ -556,7 +558,8 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-			",
+
+					",
 			          },
 			        },
 			      },
@@ -803,7 +806,8 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-			",
+
+					",
 			          },
 			        },
 			      },

@@ -179,7 +179,7 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.5.0",
+			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -240,7 +240,6 @@ describe("blockVitest", () => {
 				test: {
 					clearMocks: true,
 					coverage: {
-						all: true,
 						include: undefined,
 						reporter: ["html", "lcov"],
 					},
@@ -425,7 +424,7 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.5.0",
+			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -516,7 +515,6 @@ describe("blockVitest", () => {
 				test: {
 					clearMocks: true,
 					coverage: {
-						all: true,
 						include: undefined,
 						reporter: ["html", "lcov"],
 					},
@@ -709,7 +707,7 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.5.0",
+			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -770,7 +768,6 @@ describe("blockVitest", () => {
 				test: {
 					clearMocks: true,
 					coverage: {
-						all: true,
 						exclude: ["other"],
 						include: ["src/"],
 						reporter: ["html", "lcov"],
@@ -964,7 +961,7 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.5.0",
+			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -1025,7 +1022,6 @@ describe("blockVitest", () => {
 				test: {
 					clearMocks: true,
 					coverage: {
-						all: true,
 						exclude: ["other"],
 						include: ["src/"],
 						reporter: ["html", "lcov"],

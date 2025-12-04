@@ -42,12 +42,7 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-					",
+			",
 			          },
 			        },
 			      },
@@ -179,7 +174,6 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -244,7 +238,6 @@ describe("blockVitest", () => {
 						reporter: ["html", "lcov"],
 					},
 					exclude: ["node_modules"],
-					setupFiles: ["console-fail-test/setup"],
 				},
 			});
 				",
@@ -287,12 +280,7 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-					",
+			",
 			          },
 			        },
 			      },
@@ -424,7 +412,6 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -519,7 +506,6 @@ describe("blockVitest", () => {
 						reporter: ["html", "lcov"],
 					},
 					exclude: ["node_modules"],
-					setupFiles: ["console-fail-test/setup"],
 				},
 			});
 				",
@@ -570,12 +556,7 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-					",
+			",
 			          },
 			        },
 			      },
@@ -707,7 +688,6 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -774,7 +754,6 @@ describe("blockVitest", () => {
 					},
 					environment: "happy-dom",
 					exclude: ["lib/","node_modules"],
-					setupFiles: ["console-fail-test/setup"],
 				},
 			});
 				",
@@ -824,12 +803,7 @@ describe("blockVitest", () => {
 			\`\`\`shell
 			pnpm run test --coverage
 			\`\`\`
-
-			Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-			Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
-					",
+			",
 			          },
 			        },
 			      },
@@ -961,7 +935,6 @@ describe("blockVitest", () => {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "4.0.15",
 			            "@vitest/eslint-plugin": "1.5.1",
-			            "console-fail-test": "0.6.1",
 			            "vitest": "4.0.15",
 			          },
 			          "scripts": {
@@ -1027,7 +1000,6 @@ describe("blockVitest", () => {
 						reporter: ["html", "lcov"],
 					},
 					exclude: ["lib/","node_modules"],
-					setupFiles: ["console-fail-test/setup"],
 				},
 			});
 				",

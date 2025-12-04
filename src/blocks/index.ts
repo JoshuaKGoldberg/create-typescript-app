@@ -1,6 +1,7 @@
 import { blockAllContributors } from "./blockAllContributors.js";
 import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.js";
 import { blockCodecov } from "./blockCodecov.js";
+import { blockConsoleFailTest } from "./blockConsoleFailTest.js";
 import { blockContributingDocs } from "./blockContributingDocs.js";
 import { blockContributorCovenant } from "./blockContributorCovenant.js";
 import { blockCSpell } from "./blockCSpell.js";
@@ -51,6 +52,7 @@ export const blocks = {
 	blockAllContributors,
 	blockAreTheTypesWrong,
 	blockCodecov,
+	blockConsoleFailTest,
 	blockContributingDocs,
 	blockContributorCovenant,
 	blockCSpell,
@@ -101,6 +103,7 @@ export const blocks = {
 export { blockAllContributors } from "./blockAllContributors.js";
 export { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.js";
 export { blockCodecov } from "./blockCodecov.js";
+export { blockConsoleFailTest } from "./blockConsoleFailTest.js";
 export { blockContributingDocs } from "./blockContributingDocs.js";
 export { blockContributorCovenant } from "./blockContributorCovenant.js";
 export { blockCSpell } from "./blockCSpell.js";

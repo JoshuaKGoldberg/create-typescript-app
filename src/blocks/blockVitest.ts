@@ -61,10 +61,12 @@ export const blockVitest = base.createBlock({
 	},
 	addons: {
 		actionSteps: z.array(zActionStep).default([]),
+		additionalDocs: z.string().default(""),
 		coverage: zCoverage.default({}),
 		environment: zEnvironment.optional(),
 		exclude: zExclude.default([]),
 		flags: z.array(z.string()).default([]),
+		setupFiles: z.array(z.string()).default([]),
 	},
 	intake({ files, options }) {
 		return {
@@ -75,7 +77,14 @@ export const blockVitest = base.createBlock({
 		};
 	},
 	produce({ addons }) {
-		const { actionSteps, coverage, environment, exclude = [] } = addons;
+		const {
+			actionSteps,
+			additionalDocs,
+			coverage,
+			environment,
+			exclude = [],
+			setupFiles,
+		} = addons;
 		const excludeText = JSON.stringify(
 			Array.from(new Set(["node_modules", ...exclude])).sort(),
 		);
@@ -101,11 +110,15 @@ Add the \`--coverage\` flag to compute test coverage and place reports in the \`
 \`\`\`shell
 pnpm run test --coverage
 \`\`\`
+${
+	additionalDocs
+		? `
 
-Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
+${additionalDocs}
 
-
+`
+		: ""
+}
 		`,
 						},
 					},
@@ -198,7 +211,6 @@ describe(greet, () => {
 						devDependencies: getPackageDependencies(
 							"@vitest/coverage-v8",
 							"@vitest/eslint-plugin",
-							"console-fail-test",
 							"vitest",
 						),
 						scripts: {
@@ -249,8 +261,12 @@ export default defineConfig({
 		environment: "${environment}",`
 				: ""
 		}
-		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
-		setupFiles: ["console-fail-test/setup"],
+		exclude: [${excludeText.slice(1, excludeText.length - 1)}],${
+			setupFiles?.length
+				? `
+		setupFiles: ${JSON.stringify(setupFiles)},`
+				: ""
+		}
 	},
 });
 	`,

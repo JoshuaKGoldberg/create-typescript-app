@@ -22,7 +22,7 @@ export const blockRemoveWorkflows = base.createBlock({
 			addons: [
 				blockRemoveFiles({
 					files: workflows?.map(
-						(workflow) => `.github/workflows/${workflow}.yml`,
+						(workflow) => `.github/workflows/${workflow}.yaml`,
 					),
 				}),
 			],

@@ -9,7 +9,7 @@ export const blockFunding = base.createBlock({
 		return {
 			files: {
 				".github": {
-					"FUNDING.yml":
+					"FUNDING.yaml":
 						options.funding && formatYaml({ github: options.funding }),
 				},
 			},

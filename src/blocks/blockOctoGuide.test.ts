@@ -16,7 +16,7 @@ describe("blockOctoGuide", () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yml": "jobs:
+			        "octoguide.yaml": "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    runs-on: ubuntu-latest
@@ -84,8 +84,8 @@ describe("blockOctoGuide", () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".github/workflows/accessibility-alt-text-bot.yml",
-			          ".github/workflows/compliance.yml",
+			          ".github/workflows/accessibility-alt-text-bot.yaml",
+			          ".github/workflows/compliance.yaml",
 			        ],
 			      },
 			      "block": [Function],
@@ -94,7 +94,7 @@ describe("blockOctoGuide", () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yml": "jobs:
+			        "octoguide.yaml": "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    runs-on: ubuntu-latest
@@ -163,7 +163,7 @@ describe("blockOctoGuide", () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yml": "jobs:
+			        "octoguide.yaml": "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    runs-on: ubuntu-latest
@@ -220,7 +220,7 @@ describe("blockOctoGuide", () => {
 	});
 
 	describe("intake", () => {
-		it("returns undefined when octoguide.yml does not exist", () => {
+		it("returns undefined when octoguide.yaml does not exist", () => {
 			const actual = testIntake(blockOctoGuide, {
 				files: {
 					".github": {
@@ -232,12 +232,12 @@ describe("blockOctoGuide", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when octoguide.yml contains an octoguide job with no octoguide step", () => {
+		it("returns undefined when octoguide.yaml contains an octoguide job with no octoguide step", () => {
 			const actual = testIntake(blockOctoGuide, {
 				files: {
 					".github": {
 						workflows: {
-							"octoguide.yml": [
+							"octoguide.yaml": [
 								jsYaml.dump({
 									jobs: {
 										octoguide: {
@@ -260,14 +260,14 @@ describe("blockOctoGuide", () => {
 			expect(actual).toEqual(undefined);
 		});
 
-		it("returns config when octoguide.yml contains an octoguide job with config in its octoguide step", () => {
+		it("returns config when octoguide.yaml contains an octoguide job with config in its octoguide step", () => {
 			const config = "strict";
 
 			const actual = testIntake(blockOctoGuide, {
 				files: {
 					".github": {
 						workflows: {
-							"octoguide.yml": [
+							"octoguide.yaml": [
 								jsYaml.dump({
 									jobs: {
 										octoguide: {

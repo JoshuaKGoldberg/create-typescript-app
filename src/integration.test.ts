@@ -136,7 +136,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 	});
 
 	const processText = (text: string, filePath: string) =>
-		/all-contributorsrc|js|md|ts|yml/.test(filePath)
+		/all-contributorsrc|js|md|ts|yaml/.test(filePath)
 			? prettier.format(text, { filepath: filePath, useTabs: true })
 			: text;
 

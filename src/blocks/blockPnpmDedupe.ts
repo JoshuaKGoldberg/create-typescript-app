@@ -16,7 +16,7 @@ export const blockPnpmDedupe = base.createBlock({
 						Linting: {
 							contents: {
 								items: [
-									`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file`,
+									`- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yaml\` file`,
 								],
 							},
 						},

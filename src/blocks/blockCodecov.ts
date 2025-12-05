@@ -18,7 +18,7 @@ export const blockCodecov = base.createBlock({
 	intake({ files }) {
 		const steps = intakeFileYamlSteps(
 			files,
-			[".github", "workflows", "ci.yml"],
+			[".github", "workflows", "ci.yaml"],
 			["jobs", "test", "steps"],
 		);
 		if (!steps) {
@@ -78,7 +78,7 @@ export const blockCodecov = base.createBlock({
 	transition() {
 		return {
 			addons: [
-				blockRemoveFiles({ files: [".github/codecov.yml", "codecov.yml"] }),
+				blockRemoveFiles({ files: [".github/codecov.yaml", "codecov.yaml"] }),
 			],
 		};
 	},

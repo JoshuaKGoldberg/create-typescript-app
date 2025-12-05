@@ -105,7 +105,7 @@ export default defineConfig(
 		extends: [yml.configs["flat/standard"], yml.configs["flat/prettier"]],
 		files: ["**/*.{yml,yaml}"],
 		rules: {
-			"yml/file-extension": ["error", { extension: "yml" }],
+			"yml/file-extension": "error",
 			"yml/sort-keys": [
 				"error",
 				{ order: { type: "asc" }, pathPattern: "^.*$" },

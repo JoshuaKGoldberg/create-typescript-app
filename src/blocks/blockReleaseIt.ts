@@ -66,7 +66,7 @@ export const blockReleaseIt = base.createBlock({
 			files: {
 				".github": {
 					workflows: {
-						"post-release.yml": createSoloWorkflowFile({
+						"post-release.yaml": createSoloWorkflowFile({
 							name: "Post Release",
 							on: {
 								release: {
@@ -111,7 +111,7 @@ export const blockReleaseIt = base.createBlock({
 								},
 							],
 						}),
-						"release.yml": createSoloWorkflowFile({
+						"release.yaml": createSoloWorkflowFile({
 							concurrency: {
 								group: "${{ github.workflow }}",
 							},

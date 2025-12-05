@@ -98,7 +98,7 @@ export const base = createBase({
 		funding: z
 			.string()
 			.optional()
-			.describe("GitHub organization or username to mention in `funding.yml`"),
+			.describe("GitHub organization or username to mention in `funding.yaml`"),
 		guide: z
 			.object({
 				href: z.string(),

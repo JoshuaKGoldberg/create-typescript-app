@@ -28,7 +28,7 @@ export const blockCTATransitions = base.createBlock({
 				".github": {
 					actions: {
 						transition: {
-							"action.yml": formatYaml({
+							"action.yaml": formatYaml({
 								description: "Runs create-typescript-app in transition mode",
 								inputs: {
 									token: {
@@ -78,7 +78,7 @@ export const blockCTATransitions = base.createBlock({
 													"Cheers!",
 													" — _The Friendly Bingo Bot_ 💝",
 													"",
-													"> ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your `.github/workflows/cta-transitions.yml` file.",
+													"> ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your `.github/workflows/cta-transitions.yaml` file.",
 												].join("\n"),
 											},
 										},
@@ -117,7 +117,7 @@ export const blockCTATransitions = base.createBlock({
 						},
 					},
 					workflows: {
-						"cta.yml": createSoloWorkflowFile({
+						"cta.yaml": createSoloWorkflowFile({
 							jobName: "Transition",
 							name: "CTA",
 							on: {

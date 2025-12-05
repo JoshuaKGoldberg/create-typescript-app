@@ -83,7 +83,7 @@ export const blockAllContributors = base.createBlock({
 				),
 				".github": {
 					workflows: {
-						"contributors.yml": createSoloWorkflowFile({
+						"contributors.yaml": createSoloWorkflowFile({
 							name: "Contributors",
 							on: {
 								push: {

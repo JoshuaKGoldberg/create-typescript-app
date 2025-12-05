@@ -16,7 +16,7 @@ export const blockOctoGuide = base.createBlock({
 	intake({ files }) {
 		const steps = intakeFileYamlSteps(
 			files,
-			[".github", "workflows", "octoguide.yml"],
+			[".github", "workflows", "octoguide.yaml"],
 			["jobs", "octoguide", "steps"],
 		);
 		if (!steps) {
@@ -44,7 +44,7 @@ export const blockOctoGuide = base.createBlock({
 			files: {
 				".github": {
 					workflows: {
-						"octoguide.yml": createSoloWorkflowFile({
+						"octoguide.yaml": createSoloWorkflowFile({
 							if: "${{ !endsWith(github.actor, '[bot]') }}",
 							name: "OctoGuide",
 							on: {
@@ -96,8 +96,8 @@ export const blockOctoGuide = base.createBlock({
 			addons: [
 				blockRemoveFiles({
 					files: [
-						".github/workflows/accessibility-alt-text-bot.yml",
-						".github/workflows/compliance.yml",
+						".github/workflows/accessibility-alt-text-bot.yaml",
+						".github/workflows/compliance.yaml",
 					],
 				}),
 			],

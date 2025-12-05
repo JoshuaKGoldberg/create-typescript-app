@@ -19,7 +19,7 @@ describe("blockPnpmDedupe", () => {
 			          "Linting": {
 			            "contents": {
 			              "items": [
-			                "- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file",
+			                "- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yaml\` file",
 			              ],
 			            },
 			          },
@@ -75,7 +75,7 @@ describe("blockPnpmDedupe", () => {
 			          "Linting": {
 			            "contents": {
 			              "items": [
-			                "- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yml\` file",
+			                "- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yaml\` file",
 			              ],
 			            },
 			          },

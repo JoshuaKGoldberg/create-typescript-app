@@ -10,7 +10,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 			files: {
 				".github": {
 					ISSUE_TEMPLATE: {
-						"01-bug.yml": formatYaml({
+						"01-bug.yaml": formatYaml({
 							body: [
 								{
 									attributes: {
@@ -69,7 +69,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 							name: "🐛 Bug",
 							title: "🐛 Bug: <short description of the bug>",
 						}),
-						"02-documentation.yml": formatYaml({
+						"02-documentation.yaml": formatYaml({
 							body: [
 								{
 									attributes: {
@@ -113,7 +113,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 							name: "📝 Documentation",
 							title: "📝 Documentation: <short description of the request>",
 						}),
-						"03-feature.yml": formatYaml({
+						"03-feature.yaml": formatYaml({
 							body: [
 								{
 									attributes: {
@@ -158,7 +158,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 							name: "🚀 Feature",
 							title: "🚀 Feature: <short description of the feature>",
 						}),
-						"04-tooling.yml": formatYaml({
+						"04-tooling.yaml": formatYaml({
 							body: [
 								{
 									attributes: {

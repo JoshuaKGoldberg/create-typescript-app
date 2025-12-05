@@ -29,7 +29,7 @@ export const blockGitHubActionsCI = base.createBlock({
 	intake({ files }) {
 		const steps = intakeFileYamlSteps(
 			files,
-			[".github", "actions", "prepare", "action.yml"],
+			[".github", "actions", "prepare", "action.yaml"],
 			["runs", "steps"],
 		);
 		if (!steps) {
@@ -66,7 +66,7 @@ export const blockGitHubActionsCI = base.createBlock({
 				".github": {
 					actions: {
 						prepare: {
-							"action.yml": formatYaml({
+							"action.yaml": formatYaml({
 								description: "Prepares the repo for a typical CI job",
 								name: "Prepare",
 								runs: {
@@ -100,14 +100,14 @@ export const blockGitHubActionsCI = base.createBlock({
 						},
 					},
 					workflows: {
-						"ci.yml":
+						"ci.yaml":
 							jobs &&
 							createMultiWorkflowFile({
 								jobs: jobs.sort((a, b) => a.name.localeCompare(b.name)),
 								name: "CI",
 								workflowsVersions: options.workflowsVersions,
 							}),
-						"pr-review-requested.yml": createSoloWorkflowFile({
+						"pr-review-requested.yaml": createSoloWorkflowFile({
 							name: "PR Review Requested",
 							on: {
 								pull_request_target: {
@@ -143,7 +143,7 @@ export const blockGitHubActionsCI = base.createBlock({
 		return {
 			addons: [
 				blockRemoveFiles({
-					files: [".circleci", "travis.yml"],
+					files: [".circleci", "travis.yaml"],
 				}),
 			],
 		};

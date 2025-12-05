@@ -17,7 +17,7 @@ export const blockESLintYML = base.createBlock({
 							],
 							files: ["**/*.{yml,yaml}"],
 							rules: {
-								"yml/file-extension": ["error", { extension: "yml" }],
+								"yml/file-extension": "error",
 								"yml/sort-keys": [
 									"error",
 									{

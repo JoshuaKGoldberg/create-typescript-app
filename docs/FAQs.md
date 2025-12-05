@@ -26,7 +26,7 @@ As a consequence we should:
      <details>
          <summary><code>.github/workflows/build.yaml</code></summary>
 
-     ```yml
+     ```yaml
      jobs:
        build:
          runs-on: ubuntu-latest

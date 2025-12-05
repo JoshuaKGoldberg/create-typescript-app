@@ -178,12 +178,12 @@ describe("blockCodecov", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when ci.yaml contains invalid yml", () => {
+		it("returns undefined when ci.yaml contains invalid YAML", () => {
 			const actual = testIntake(blockCodecov, {
 				files: {
 					".github": {
 						workflows: {
-							"ci.yaml": ["invalid yml!"],
+							"ci.yaml": ["invalid YAML!"],
 						},
 					},
 				},

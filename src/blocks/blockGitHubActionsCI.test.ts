@@ -426,13 +426,13 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when action.yaml contains invalid yml", () => {
+		it("returns undefined when action.yaml contains invalid YAML", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
 						actions: {
 							prepare: {
-								"action.yaml": ["invalid yml!"],
+								"action.yaml": ["invalid YAML!"],
 							},
 						},
 					},

@@ -29,7 +29,7 @@ These options are generally only programmatically used internally, but can still
 | `node`              | Node.js engine version(s) to pin and require a minimum of                | Values from `.nvmrc` and `package.json`'s `"engines"`     |
 | `packageData`       | additional properties to include in `package.json`                       | Existing values in `package.json`                         |
 | `rulesetId`         | GitHub branch ruleset ID for main branch protections                     | Existing ruleset on the `main` branch from the GitHub API |
-| `workflowsVersions` | existing versions of GitHub Actions workflows used                       | Existing action versions in `.github/workflows/*.yml`     |
+| `workflowsVersions` | existing versions of GitHub Actions workflows used                       | Existing action versions in `.github/workflows/*.yaml`    |
 
 For example, changing `node` versions to values different from what would be inferred:
 

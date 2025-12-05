@@ -59,7 +59,7 @@ describe("blockReleaseIt", () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "post-release.yml": "jobs:
+			        "post-release.yaml": "jobs:
 			  post_release:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -94,7 +94,7 @@ describe("blockReleaseIt", () => {
 			  issues: write
 			  pull-requests: write
 			",
-			        "release.yml": "concurrency:
+			        "release.yaml": "concurrency:
 			  group: \${{ github.workflow }}
 
 
@@ -207,7 +207,7 @@ describe("blockReleaseIt", () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "post-release.yml": "jobs:
+			        "post-release.yaml": "jobs:
 			  post_release:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -242,7 +242,7 @@ describe("blockReleaseIt", () => {
 			  issues: write
 			  pull-requests: write
 			",
-			        "release.yml": "concurrency:
+			        "release.yaml": "concurrency:
 			  group: \${{ github.workflow }}
 
 

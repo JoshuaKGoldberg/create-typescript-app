@@ -5,7 +5,7 @@ import { swallowError } from "../utils/swallowError.js";
 
 export async function readFunding(take: TakeInput) {
 	return swallowError(
-		await take(inputFromFile, { filePath: ".github/FUNDING.yml" }),
+		await take(inputFromFile, { filePath: ".github/FUNDING.yaml" }),
 	)
 		?.split(":")[1]
 		?.trim();

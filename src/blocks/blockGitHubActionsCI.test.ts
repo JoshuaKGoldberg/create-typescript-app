@@ -30,7 +30,7 @@ describe("blockGitHubActionsCI", () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": "description: Prepares the repo for a typical CI job
 
 			name: Prepare
 
@@ -48,8 +48,8 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "ci.yml": undefined,
-			        "pr-review-requested.yml": "jobs:
+			        "ci.yaml": undefined,
+			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -106,7 +106,7 @@ describe("blockGitHubActionsCI", () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": "description: Prepares the repo for a typical CI job
 
 			name: Prepare
 
@@ -124,8 +124,8 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "ci.yml": undefined,
-			        "pr-review-requested.yml": "jobs:
+			        "ci.yaml": undefined,
+			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -176,7 +176,7 @@ describe("blockGitHubActionsCI", () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": "description: Prepares the repo for a typical CI job
 
 			name: Prepare
 
@@ -194,8 +194,8 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "ci.yml": undefined,
-			        "pr-review-requested.yml": "jobs:
+			        "ci.yaml": undefined,
+			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -246,7 +246,7 @@ describe("blockGitHubActionsCI", () => {
 			      "addons": {
 			        "files": [
 			          ".circleci",
-			          "travis.yml",
+			          "travis.yaml",
 			        ],
 			      },
 			      "block": [Function],
@@ -256,7 +256,7 @@ describe("blockGitHubActionsCI", () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": "description: Prepares the repo for a typical CI job
 
 			name: Prepare
 
@@ -274,8 +274,8 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "ci.yml": undefined,
-			        "pr-review-requested.yml": "jobs:
+			        "ci.yaml": undefined,
+			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -343,7 +343,7 @@ describe("blockGitHubActionsCI", () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": "description: Prepares the repo for a typical CI job
 
 			name: Prepare
 
@@ -361,7 +361,7 @@ describe("blockGitHubActionsCI", () => {
 			        },
 			      },
 			      "workflows": {
-			        "ci.yml": "jobs:
+			        "ci.yaml": "jobs:
 			  validate:
 			    name: Validate
 			    runs-on: ubuntu-latest
@@ -385,7 +385,7 @@ describe("blockGitHubActionsCI", () => {
 			    branches:
 			      - main
 			",
-			        "pr-review-requested.yml": "jobs:
+			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -418,7 +418,7 @@ describe("blockGitHubActionsCI", () => {
 	});
 
 	describe("intake", () => {
-		it("returns undefined when action.yml does not exist", () => {
+		it("returns undefined when action.yaml does not exist", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {},
 			});
@@ -426,13 +426,13 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when action.yml contains invalid yml", () => {
+		it("returns undefined when action.yaml contains invalid yml", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
 						actions: {
 							prepare: {
-								"action.yml": ["invalid yml!"],
+								"action.yaml": ["invalid yml!"],
 							},
 						},
 					},
@@ -442,13 +442,13 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when action.yml does not contain a runs entry", () => {
+		it("returns undefined when action.yaml does not contain a runs entry", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
 						actions: {
 							prepare: {
-								"action.yml": [
+								"action.yaml": [
 									jsYaml.dump({
 										other: {
 											steps: [],
@@ -464,13 +464,13 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when action.yml runs steps is not an array", () => {
+		it("returns undefined when action.yaml runs steps is not an array", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
 						actions: {
 							prepare: {
-								"action.yml": [
+								"action.yaml": [
 									jsYaml.dump({
 										runs: {
 											steps: true,
@@ -486,13 +486,13 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined env when action.yml contains a test action with actions/setup-node step", () => {
+		it("returns undefined env when action.yaml contains a test action with actions/setup-node step", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
 						actions: {
 							prepare: {
-								"action.yml": [
+								"action.yaml": [
 									jsYaml.dump({
 										runs: {
 											steps: [
@@ -512,13 +512,13 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined env when action.yml contains a test action with no env in its actions/setup-node step", () => {
+		it("returns undefined env when action.yaml contains a test action with no env in its actions/setup-node step", () => {
 			const actual = testIntake(blockGitHubActionsCI, {
 				files: {
 					".github": {
 						actions: {
 							prepare: {
-								"action.yml": [
+								"action.yaml": [
 									jsYaml.dump({
 										runs: {
 											steps: [
@@ -538,7 +538,7 @@ describe("blockGitHubActionsCI", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns nodeVersion when action.yml contains a test action with node-version in its actions/setup/node step", () => {
+		it("returns nodeVersion when action.yaml contains a test action with node-version in its actions/setup/node step", () => {
 			const nodeVersion = "20.10.0";
 
 			const actual = testIntake(blockGitHubActionsCI, {
@@ -546,7 +546,7 @@ describe("blockGitHubActionsCI", () => {
 					".github": {
 						actions: {
 							prepare: {
-								"action.yml": [
+								"action.yaml": [
 									jsYaml.dump({
 										runs: {
 											steps: [

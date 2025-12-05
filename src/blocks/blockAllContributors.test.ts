@@ -68,7 +68,7 @@ describe("blockAllContributors", () => {
 			}",
 			    ".github": {
 			      "workflows": {
-			        "contributors.yml": "jobs:
+			        "contributors.yaml": "jobs:
 			  contributors:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -214,7 +214,7 @@ describe("blockAllContributors", () => {
 			}",
 			    ".github": {
 			      "workflows": {
-			        "contributors.yml": "jobs:
+			        "contributors.yaml": "jobs:
 			  contributors:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -359,7 +359,7 @@ describe("blockAllContributors", () => {
 			}",
 			    ".github": {
 			      "workflows": {
-			        "contributors.yml": "jobs:
+			        "contributors.yaml": "jobs:
 			  contributors:
 			    runs-on: ubuntu-latest
 			    steps:

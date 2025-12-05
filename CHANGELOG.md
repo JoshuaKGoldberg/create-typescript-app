@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.57.0](///compare/2.56.3...2.57.0) (2025-12-05)
+
+### Features
+
+- switch YAML extension preference from .yml to .yaml ([#2310](undefined/undefined/undefined/issues/2310)) 6ea8011, closes #2309
+
 ## [2.56.3](///compare/2.56.2...2.56.3) (2025-12-04)
 
 ### Bug Fixes

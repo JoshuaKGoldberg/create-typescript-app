@@ -12,14 +12,14 @@ importers:
         specifier: ^8.48.1
         version: 8.48.1(typescript@5.9.3)
       bingo:
-        specifier: ^0.8.2
-        version: 0.8.2
+        specifier: ^0.9.1
+        version: 0.9.1
       bingo-fs:
         specifier: ^0.5.6
         version: 0.5.6
       bingo-stratum:
-        specifier: ^0.5.12
-        version: 0.5.12(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.8.2)(zod@3.25.76)
+        specifier: ^0.5.13
+        version: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.1)(zod@3.25.76)
       cached-factory:
         specifier: ^0.1.0
         version: 0.1.0
@@ -43,13 +43,13 @@ importers:
         version: 2.0.2
       input-from-file:
         specifier: ^0.5.5
-        version: 0.5.5(bingo@0.8.2)
+        version: 0.5.5(bingo@0.9.1)
       input-from-file-json:
         specifier: ^0.5.5
-        version: 0.5.5(bingo@0.8.2)
+        version: 0.5.5(bingo@0.9.1)
       input-from-script:
         specifier: ^0.5.5
-        version: 0.5.5(bingo@0.8.2)
+        version: 0.5.5(bingo@0.9.1)
       js-yaml:
         specifier: ^4.1.1
         version: 4.1.1
@@ -158,10 +158,10 @@ importers:
         version: 0.5.6
       bingo-stratum-testers:
         specifier: 0.5.10
-        version: 0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.12(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.8.2)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.8.2)
+        version: 0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.1)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.9.1)
       bingo-testers:
         specifier: 0.5.8
-        version: 0.5.8(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.8.2)
+        version: 0.5.8(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.1)
       console-fail-test:
         specifier: 0.6.1
         version: 0.6.1
@@ -1851,11 +1851,11 @@ packages:
       bingo-stratum: ^0.5.12
       bingo-systems: ^0.5.5
 
-  bingo-stratum@0.5.12:
-    resolution: {integrity: sha512-n0KaopOp7xFP0kmejz09ZuH98Tw3DHJj3uv/5lENY2IITKqSmpAR2n5he8PzeL02P3giJIdp7pKuo+j+761dkQ==}
+  bingo-stratum@0.5.13:
+    resolution: {integrity: sha512-rIbqb5/bUK1Iyg8sYat8IRlgOlp9AuYTBFff1ChhQCklXAGKXwwH1rsNln5kgJ3CA2gMU6aaa/bOMvyxDVjb4Q==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.8.1
+      bingo: ^0.9.0
       bingo-fs: ^0.5.6
       bingo-systems: ^0.5.5
       zod: ^3.24.2
@@ -1872,8 +1872,8 @@ packages:
       bingo-fs: ^0.5.6
       bingo-systems: ^0.5.5
 
-  bingo@0.8.2:
-    resolution: {integrity: sha512-J68oGAjukMF0K4MgqU8uA72hh/D8yTlkNYOQxl7AxJR8INCcqHP2JrxfVbb3632+c1Ol2V9Fi0fAoOUzt3qLOA==}
+  bingo@0.9.1:
+    resolution: {integrity: sha512-LipeZdto+6iO/ZrXMaEGTcvuECKf/0+3M6p71XPSiqSdoy/PCAQt2GzcnNI6GEyM2tlLGcCrJMxFCoEn60zGIQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5797,17 +5797,17 @@ snapshots:
     dependencies:
       '@octokit/types': 16.0.0
 
-  bingo-stratum-testers@0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.12(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.8.2)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.8.2):
+  bingo-stratum-testers@0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.1)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.9.1):
     dependencies:
-      bingo: 0.8.2
+      bingo: 0.9.1
       bingo-fs: 0.5.6
-      bingo-stratum: 0.5.12(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.8.2)(zod@3.25.76)
+      bingo-stratum: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.1)(zod@3.25.76)
       bingo-systems: 0.5.5
 
-  bingo-stratum@0.5.12(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.8.2)(zod@3.25.76):
+  bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.1)(zod@3.25.76):
     dependencies:
       all-properties-lazy: 0.1.0
-      bingo: 0.8.2
+      bingo: 0.9.1
       bingo-fs: 0.5.6
       bingo-systems: 0.5.5
       cached-factory: 0.1.0
@@ -5825,17 +5825,17 @@ snapshots:
       get-github-auth-token: 0.1.2
       octokit: 5.0.5
 
-  bingo-testers@0.5.8(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.8.2):
+  bingo-testers@0.5.8(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.1):
     dependencies:
       all-properties-lazy: 0.1.0
-      bingo: 0.8.2
+      bingo: 0.9.1
       bingo-fs: 0.5.6
       bingo-systems: 0.5.5
       diff: 8.0.2
       octokit: 5.0.5
       without-undefined-properties: 0.1.2
 
-  bingo@0.8.2:
+  bingo@0.9.1:
     dependencies:
       '@clack/prompts': 0.11.0
       all-properties-lazy: 0.1.0
@@ -5846,6 +5846,7 @@ snapshots:
       call-id: 0.1.0
       chalk: 5.6.2
       get-github-auth-token: 0.1.2
+      git-url-parse: 16.1.0
       hash-object: 5.0.1
       hosted-git-info: 9.0.2
       new-github-repository: 0.2.4
@@ -6894,19 +6895,19 @@ snapshots:
 
   ini@4.1.1: {}
 
-  input-from-file-json@0.5.5(bingo@0.8.2):
+  input-from-file-json@0.5.5(bingo@0.9.1):
     dependencies:
-      bingo: 0.8.2
-      input-from-file: 0.5.5(bingo@0.8.2)
+      bingo: 0.9.1
+      input-from-file: 0.5.5(bingo@0.9.1)
 
-  input-from-file@0.5.5(bingo@0.8.2):
+  input-from-file@0.5.5(bingo@0.9.1):
     dependencies:
-      bingo: 0.8.2
+      bingo: 0.9.1
       zod: 3.25.76
 
-  input-from-script@0.5.5(bingo@0.8.2):
+  input-from-script@0.5.5(bingo@0.9.1):
     dependencies:
-      bingo: 0.8.2
+      bingo: 0.9.1
       zod: 3.25.76
 
   inquirer@12.9.6(@types/node@24.10.1):

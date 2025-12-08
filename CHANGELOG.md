@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.57.2](///compare/2.57.1...2.57.2) (2025-12-08)
+
+### Bug Fixes
+
+- upgrade trash from 10.0.0 to 10.0.1 ([#2313](undefined/undefined/undefined/issues/2313)) fcdd75e, closes #2304
+
 ## [2.57.1](///compare/2.57.0...2.57.1) (2025-12-08)
 
 ### Bug Fixes

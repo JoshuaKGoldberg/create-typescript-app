@@ -16,8 +16,20 @@ describe(readOwner, () => {
 		expect(getPackageAuthor).not.toHaveBeenCalled();
 	});
 
+	it("returns the gh config value when only it resolves", async () => {
+		const user = "test-user";
+		const take = vi.fn().mockResolvedValueOnce({ stdout: user });
+		const getGitDefaults = vi.fn();
+		const getPackageAuthor = vi.fn();
+
+		const actual = await readOwner(take, getGitDefaults, getPackageAuthor);
+
+		expect(actual).toBe(user);
+		expect(getPackageAuthor).not.toHaveBeenCalled();
+	});
+
 	it("returns package data author when only it exists", async () => {
-		const take = vi.fn();
+		const take = vi.fn().mockResolvedValueOnce({});
 		const name = "test-author";
 		const getGitDefaults = vi.fn();
 		const getPackageAuthor = vi.fn().mockResolvedValueOnce({ name });
@@ -25,18 +37,6 @@ describe(readOwner, () => {
 		const actual = await readOwner(take, getGitDefaults, getPackageAuthor);
 
 		expect(actual).toBe(name);
-		expect(take).not.toHaveBeenCalled();
-	});
-
-	it("returns the gh config value when only it resolves", async () => {
-		const user = "test-user";
-		const take = vi.fn().mockResolvedValueOnce({ stdout: user });
-		const getGitDefaults = vi.fn();
-		const getPackageAuthor = vi.fn().mockResolvedValueOnce({});
-
-		const actual = await readOwner(take, getGitDefaults, getPackageAuthor);
-
-		expect(actual).toBe(user);
 	});
 
 	it("returns undefined when no values exist", async () => {

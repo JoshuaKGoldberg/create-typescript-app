@@ -7,6 +7,22 @@ It also provides a collection of custom flags per [Bingo CLI > Template Flags](h
 npx create-typescript-app
 ```
 
+## Remote Repositories
+
+By default, `npx create-typescript-app` creates only a local Git repository.
+It will not send network requests to create a repository on GitHub.
+
+However, if you have an `origin` remote on GitHub, `create-typescript-app` will synchronize the local repository with it.
+That includes pushing the latest commits, setting repository labels, updating repository settings such as allowed merge strategies.
+
+A `--remote` CLI flag exists as a convenience to create a remote repository on GitHub:
+
+```shell
+npx create-typescript-app --remote
+```
+
+You can run with `--remote` when creating a new repository or transitioning an existing local Git repository.
+
 ## Required Flags
 
 These options can only be inferred when running on an existing repository.

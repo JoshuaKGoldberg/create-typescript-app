@@ -1538,11 +1538,6 @@ packages:
     resolution: {integrity: sha512-TeheYy0ILzBEI/CO55CP6zJCSdSWeRtGnHy8U8dWSUH4I68iqTsy7HkMktR4xakThc9jotkPQUXT4ITdbV7cHA==}
     engines: {node: '>=18'}
 
-  '@sindresorhus/chunkify@2.0.0':
-    resolution: {integrity: sha512-srajPSoMTC98FETCJIeXJhJqB77IRPJSu8g907jLuuioLORHZJ3YAOY2DsP5ebrZrjOrAwjqf+Cgkg/I8TGPpw==}
-    engines: {node: '>=18'}
-    deprecated: 'Renamed to chunkify: https://www.npmjs.com/package/chunkify'
-
   '@sindresorhus/df@1.0.1':
     resolution: {integrity: sha512-1Hyp7NQnD/u4DSxR2DGW78TF9k7R0wZ8ev0BpMAIzA6yTQSHqNb5wTuvtcPYf4FWbVse2rW7RgDsyL8ua2vXHw==}
     engines: {node: '>=0.10.0'}
@@ -1981,6 +1976,10 @@ packages:
   chokidar@5.0.0:
     resolution: {integrity: sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==}
     engines: {node: '>= 20.19.0'}
+
+  chunkify@5.0.0:
+    resolution: {integrity: sha512-G8dj/3/Gm+1yL4oWSdwIxihZWFlgC4V2zYtIApacI0iPIRKBHlBGOGAiDUBZgrj4H8MBA8g8fPFwnJrWF3wl7Q==}
+    engines: {node: '>=18'}
 
   ci-info@4.3.1:
     resolution: {integrity: sha512-Wdy2Igu8OcBpI2pZePZ5oWjPC38tmDVx5WKUXKwlLYkA0ozo85sLsLvkBbBn/sZaSCMFOGZJ14fvW9t5/d7kdA==}
@@ -4011,8 +4010,8 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  trash@10.0.0:
-    resolution: {integrity: sha512-nyHQPJ7F4dYCfj1xN95DAkLkf9qlyRLDpT9yYwcR5SH16q+f7VA1L5VwsdEqWFUuGNpKwgLnbOS1QBvXMYnLfA==}
+  trash@10.0.1:
+    resolution: {integrity: sha512-WSh7WXBRkudzQMXRh61vyT/f3mjVnn+3conu5DdvMGzRPsc3mtviPLIwCK1OtwfgR2gr4+9+EE/eWwPlDj5NcA==}
     engines: {node: '>=20'}
 
   tree-kill@1.2.2:
@@ -5468,8 +5467,6 @@ snapshots:
 
   '@sindresorhus/base62@1.0.0': {}
 
-  '@sindresorhus/chunkify@2.0.0': {}
-
   '@sindresorhus/df@1.0.1': {}
 
   '@sindresorhus/df@3.1.1':
@@ -5959,6 +5956,8 @@ snapshots:
   chokidar@5.0.0:
     dependencies:
       readdirp: 5.0.0
+
+  chunkify@5.0.0: {}
 
   ci-info@4.3.1: {}
 
@@ -8315,12 +8314,12 @@ snapshots:
   trash-cli@7.0.0:
     dependencies:
       meow: 14.0.0
-      trash: 10.0.0
+      trash: 10.0.1
 
-  trash@10.0.0:
+  trash@10.0.1:
     dependencies:
-      '@sindresorhus/chunkify': 2.0.0
       '@stroncium/procfs': 1.2.1
+      chunkify: 5.0.0
       globby: 14.1.0
       is-path-inside: 4.0.0
       move-file: 3.1.0

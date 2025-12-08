@@ -11,11 +11,11 @@ export async function readOwner(
 ) {
 	return (
 		(await getGitDefaults())?.organization ??
-		(await getPackageAuthor()).name ??
 		(
 			await take(inputFromScript, {
 				command: "gh config get user -h github.com",
 			})
-		).stdout?.toString()
+		).stdout?.toString() ??
+		(await getPackageAuthor()).name
 	);
 }

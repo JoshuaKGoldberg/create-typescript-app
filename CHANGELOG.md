@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.57.1](///compare/2.57.0...2.57.1) (2025-12-08)
+
+### Bug Fixes
+
+- prefer gh user over package.json author for owner option ([#2312](undefined/undefined/undefined/issues/2312)) a53f3bf, closes #2311
+
 ## [2.57.0](///compare/2.56.3...2.57.0) (2025-12-05)
 
 ### Features

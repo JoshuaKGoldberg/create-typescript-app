@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.58.0](///compare/2.57.2...2.58.0) (2025-12-08)
+
+### Features
+
+- brought in Bingo's 0.9 `--remote` flag ([#2315](undefined/undefined/undefined/issues/2315)) f6ba94a, closes #2314
+
 ## [2.57.2](///compare/2.57.1...2.57.2) (2025-12-08)
 
 ### Bug Fixes

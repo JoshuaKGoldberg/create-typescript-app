@@ -5,7 +5,7 @@ body:
       options:
         - label: I have tried restarting my IDE and the issue persists.
           required: true
-        - label: I have pulled the latest `main` branch of the repository.
+        - label: I have pulled in the newest version of the project.
           required: true
         - label: I have [searched for related issues](https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=is%3Aissue) and found none that matched my issue.
           required: true

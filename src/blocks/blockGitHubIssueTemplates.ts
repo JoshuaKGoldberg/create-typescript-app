@@ -25,7 +25,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 											},
 											{
 												label:
-													"I have pulled in the newest version of the project.",
+													"I have pulled the latest `main` branch of the repository.",
 												required: true,
 											},
 											{
@@ -173,7 +173,7 @@ export const blockGitHubIssueTemplates = base.createBlock({
 											},
 											{
 												label:
-													"I have pulled in the newest version of the project.",
+													"I have pulled the latest `main` branch of the repository.",
 												required: true,
 											},
 											{

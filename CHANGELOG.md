@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.59.0](///compare/2.58.1...2.59.0) (2026-01-02)
+
+### Features
+
+- add globalIgnores helper to eslint ([#2324](undefined/undefined/undefined/issues/2324)) 884be05, closes #2321
+- enable trusted publishing for release-it ([#2337](undefined/undefined/undefined/issues/2337)) 6f90b26, closes #2270
+
+### Bug Fixes
+
+- bump release-it-action to 0.4.0 ([#2339](undefined/undefined/undefined/issues/2339)) 5febaab, closes #2270
+- don't mention `main` in bug or tooling issue templates ([#2326](undefined/undefined/undefined/issues/2326)) 326d9c5, closes #2325
+
 ## [2.58.1](///compare/2.58.0...2.58.1) (2025-12-09)
 
 ### Bug Fixes

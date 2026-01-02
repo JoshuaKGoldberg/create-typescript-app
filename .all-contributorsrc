@@ -545,6 +545,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/54253392?v=4",
       "profile": "https://github.com/cylewaitforit",
       "contributions": [
+        "code",
         "ideas"
       ]
     }
@@ -556,6 +557,5 @@
   ],
   "projectName": "create-typescript-app",
   "projectOwner": "JoshuaKGoldberg",
-  "repoType": "github",
-  "commitConvention": "angular"
+  "repoType": "github"
 }

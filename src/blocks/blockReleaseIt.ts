@@ -143,7 +143,7 @@ export const blockReleaseIt = base.createBlock({
 									},
 									uses: resolveUses(
 										"JoshuaKGoldberg/release-it-action",
-										"v0.3.2",
+										"v0.4.0",
 										options.workflowsVersions,
 									),
 								},

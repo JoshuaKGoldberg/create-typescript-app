@@ -112,8 +112,5 @@
 	"packageManager": "pnpm@10.25.0",
 	"engines": {
 		"node": ">=20.19.0"
-	},
-	"publishConfig": {
-		"provenance": true
 	}
 }

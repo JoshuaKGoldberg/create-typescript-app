@@ -548,6 +548,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "lishaduck",
+      "name": "Eli",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88557639?v=4",
+      "profile": "http://lishaduck.github.io",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -557,5 +566,6 @@
   ],
   "projectName": "create-typescript-app",
   "projectOwner": "JoshuaKGoldberg",
-  "repoType": "github"
+  "repoType": "github",
+  "commitConvention": "angular"
 }

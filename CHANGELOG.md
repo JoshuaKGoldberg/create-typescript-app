@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.60.0](///compare/2.59.0...2.60.0) (2026-01-14)
+
+### Features
+
+- switched ESLint config from JS to TS ([#2351](undefined/undefined/undefined/issues/2351)) 98fca73, closes #000
+
 ## [2.59.0](///compare/2.58.1...2.59.0) (2026-01-02)
 
 ### Features

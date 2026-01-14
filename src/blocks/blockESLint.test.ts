@@ -113,7 +113,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -267,7 +267,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -424,7 +424,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.mjs": "import eslint from "@eslint/js";
+			    "eslint.config.mts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -584,7 +584,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "/*
+			    "eslint.config.ts": "/*
 			This is a great config!
 			*/
 			/*
@@ -752,7 +752,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -899,7 +899,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -1059,7 +1059,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -1207,7 +1207,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -1333,7 +1333,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -1459,7 +1459,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -1582,7 +1582,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.mjs": "import eslint from "@eslint/js";
+			    "eslint.config.mts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -1705,7 +1705,7 @@ describe("blockESLint", () => {
 			    },
 			  ],
 			  "files": {
-			    "eslint.config.js": "import eslint from "@eslint/js";
+			    "eslint.config.ts": "import eslint from "@eslint/js";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
@@ -1736,12 +1736,12 @@ describe("blockESLint", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns data when there is an eslint.config.js file", () => {
+		it("returns data when there is an eslint.config.ts file", () => {
 			const sourceText = "export default ...";
 
 			const actual = testIntake(blockESLint, {
 				files: {
-					"eslint.config.js": [sourceText],
+					"eslint.config.ts": [sourceText],
 				},
 			});
 
@@ -1749,12 +1749,12 @@ describe("blockESLint", () => {
 			expect(actual).toBe(mockIntakeData);
 		});
 
-		it("returns data when there is an eslint.config.mjs file", () => {
+		it("returns data when there is an eslint.config.mts file", () => {
 			const sourceText = "export default ...";
 
 			const actual = testIntake(blockESLint, {
 				files: {
-					"eslint.config.mjs": [sourceText],
+					"eslint.config.mts": [sourceText],
 				},
 			});
 

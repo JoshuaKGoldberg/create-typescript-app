@@ -38,7 +38,12 @@ export const blockESLint = base.createBlock({
 	},
 	intake({ files }) {
 		const eslintConfigRaw = intakeFile(files, [
-			["eslint.config.js", "eslint.config.mjs"],
+			[
+				"eslint.config.ts",
+				"eslint.config.mts",
+				"eslint.config.js",
+				"eslint.config.mjs",
+			],
 		]);
 
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
@@ -47,7 +52,7 @@ export const blockESLint = base.createBlock({
 		const { explanations, extensions, ignores, imports } = addons;
 
 		const configFileName =
-			options.type === "commonjs" ? "eslint.config.mjs" : "eslint.config.js";
+			options.type === "commonjs" ? "eslint.config.mts" : "eslint.config.ts";
 
 		const explanation =
 			explanations.length > 0

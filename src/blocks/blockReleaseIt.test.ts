@@ -18,9 +18,6 @@ describe("blockReleaseIt", () => {
 			            "@release-it/conventional-changelog": "10.0.2",
 			            "release-it": "19.0.6",
 			          },
-			          "publishConfig": {
-			            "provenance": true,
-			          },
 			          "scripts": {
 			            "should-semantic-release": undefined,
 			          },
@@ -46,10 +43,6 @@ describe("blockReleaseIt", () => {
 			          {
 			            "description": "a GitHub PAT with repo and workflow permissions",
 			            "name": "ACCESS_TOKEN",
-			          },
-			          {
-			            "description": "an npm access token with automation permissions",
-			            "name": "NPM_TOKEN",
 			          },
 			        ],
 			      },
@@ -110,8 +103,7 @@ describe("blockReleaseIt", () => {
 			      - uses: ./.github/actions/prepare
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.3.2
+			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
 
 
 			name: Release
@@ -129,8 +121,12 @@ describe("blockReleaseIt", () => {
 			",
 			      },
 			    },
-			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"publishArgs":["--access public","--provenance"]},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
+			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
 			  },
+			  "suggestions": [
+			    "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
+			   https://www.npmjs.com/package/test-repository/access",
+			  ],
 			}
 		`);
 	});
@@ -166,9 +162,6 @@ describe("blockReleaseIt", () => {
 			            "@release-it/conventional-changelog": "10.0.2",
 			            "release-it": "19.0.6",
 			          },
-			          "publishConfig": {
-			            "provenance": true,
-			          },
 			          "scripts": {
 			            "should-semantic-release": undefined,
 			          },
@@ -194,10 +187,6 @@ describe("blockReleaseIt", () => {
 			          {
 			            "description": "a GitHub PAT with repo and workflow permissions",
 			            "name": "ACCESS_TOKEN",
-			          },
-			          {
-			            "description": "an npm access token with automation permissions",
-			            "name": "NPM_TOKEN",
 			          },
 			        ],
 			      },
@@ -261,8 +250,7 @@ describe("blockReleaseIt", () => {
 			      - run: two
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			          NPM_TOKEN: \${{ secrets.NPM_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.3.2
+			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
 
 
 			name: Release
@@ -280,8 +268,12 @@ describe("blockReleaseIt", () => {
 			",
 			      },
 			    },
-			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"publishArgs":["--access public","--provenance"]},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
+			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
 			  },
+			  "suggestions": [
+			    "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
+			   https://www.npmjs.com/package/test-repository/access",
+			  ],
 			}
 		`);
 	});

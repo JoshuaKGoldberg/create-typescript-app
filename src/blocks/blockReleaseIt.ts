@@ -33,9 +33,6 @@ export const blockReleaseIt = base.createBlock({
 							"@release-it/conventional-changelog",
 							"release-it",
 						),
-						publishConfig: {
-							provenance: true,
-						},
 						scripts: {
 							"should-semantic-release": undefined,
 						},
@@ -55,10 +52,6 @@ export const blockReleaseIt = base.createBlock({
 						{
 							description: "a GitHub PAT with repo and workflow permissions",
 							name: "ACCESS_TOKEN",
-						},
-						{
-							description: "an npm access token with automation permissions",
-							name: "NPM_TOKEN",
 						},
 					],
 				}),
@@ -147,11 +140,10 @@ export const blockReleaseIt = base.createBlock({
 								{
 									env: {
 										GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
-										NPM_TOKEN: "${{ secrets.NPM_TOKEN }}",
 									},
 									uses: resolveUses(
 										"JoshuaKGoldberg/release-it-action",
-										"v0.3.2",
+										"v0.4.0",
 										options.workflowsVersions,
 									),
 								},
@@ -168,9 +160,7 @@ export const blockReleaseIt = base.createBlock({
 						release: true,
 						releaseName: "v${version}",
 					},
-					npm: {
-						publishArgs: [`--access ${options.access}`, "--provenance"],
-					},
+					npm: { skipChecks: true },
 					plugins: {
 						"@release-it/conventional-changelog": {
 							infile: "CHANGELOG.md",
@@ -191,6 +181,12 @@ export const blockReleaseIt = base.createBlock({
 					},
 				}),
 			},
+			suggestions: [
+				[
+					`- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
+					`   https://www.npmjs.com/package/${options.repository}/access`,
+				].join("\n"),
+			],
 		};
 	},
 });

@@ -103,7 +103,7 @@
 		"prettier-plugin-packagejson": "2.5.20",
 		"prettier-plugin-sentences-per-line": "0.2.0",
 		"prettier-plugin-sh": "0.18.0",
-		"release-it": "19.0.6",
+		"release-it": "19.2.4",
 		"tsdown": "0.16.8",
 		"typescript": "5.9.3",
 		"typescript-eslint": "8.48.1",

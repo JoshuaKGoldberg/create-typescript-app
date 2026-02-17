@@ -80,7 +80,7 @@
 		"@types/parse-author": "2.0.3",
 		"@types/semver": "7.7.1",
 		"@vitest/coverage-v8": "4.0.15",
-		"@vitest/eslint-plugin": "1.5.1",
+		"@vitest/eslint-plugin": "1.6.9",
 		"all-contributors-cli": "6.26.1",
 		"bingo-requests": "0.5.6",
 		"bingo-stratum-testers": "0.5.10",

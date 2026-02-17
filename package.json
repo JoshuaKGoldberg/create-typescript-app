@@ -64,7 +64,7 @@
 		"title-case": "^4.3.2",
 		"trash-cli": "^7.0.0",
 		"zod": "^3.25.76",
-		"zod-package-json": "^1.2.0",
+		"zod-package-json": "^2.0.0",
 		"zod-tsconfig": "^0.2.0"
 	},
 	"devDependencies": {

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.60.1](///compare/2.60.0...2.60.1) (2026-02-17)
+
+### Bug Fixes
+
+- generalize DEVELOPMENT.md lint files description ([#2367](undefined/undefined/undefined/issues/2367)) a350a93, closes #2366
+
 ## [2.60.0](///compare/2.59.0...2.60.0) (2026-01-14)
 
 ### Features

@@ -96,7 +96,7 @@
 		"eslint-plugin-regexp": "2.10.0",
 		"eslint-plugin-yml": "3.0.0",
 		"husky": "9.1.7",
-		"knip": "5.71.0",
+		"knip": "5.84.1",
 		"lint-staged": "16.2.7",
 		"prettier": "3.7.3",
 		"prettier-plugin-curly": "0.4.1",

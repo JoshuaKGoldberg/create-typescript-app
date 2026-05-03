@@ -20,6 +20,7 @@
 	"scripts": {
 		"build": "tsdown",
 		"format": "prettier .",
+		"postinstall": "patch-package",
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
 		"lint:packages": "pnpm dedupe --check",
@@ -55,6 +56,7 @@
 		"object-strings-deep": "^0.1.2",
 		"parse-author": "^2.0.0",
 		"parse-package-name": "^1.0.0",
+		"patch-package": "^8.0.1",
 		"remove-dependencies": "^0.1.1",
 		"remove-undefined-objects": "^7.0.0",
 		"semver": "^7.7.3",
@@ -98,6 +100,7 @@
 		"husky": "9.1.7",
 		"knip": "5.71.0",
 		"lint-staged": "16.2.7",
+		"patch-package": "^8.0.1",
 		"prettier": "3.7.3",
 		"prettier-plugin-curly": "0.4.1",
 		"prettier-plugin-packagejson": "2.5.20",

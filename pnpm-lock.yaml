@@ -122,7 +122,7 @@ importers:
         version: 7.5.1
       '@prettier/sync':
         specifier: 0.6.1
-        version: 0.6.1(prettier@3.7.3)
+        version: 0.6.1(prettier@3.8.3)
       '@release-it/conventional-changelog':
         specifier: 10.0.2
         version: 10.0.2(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.1)(release-it@19.0.6(@types/node@24.10.1)(magicast@0.3.5))
@@ -202,20 +202,20 @@ importers:
         specifier: 16.2.7
         version: 16.2.7
       prettier:
-        specifier: 3.7.3
-        version: 3.7.3
+        specifier: 3.8.3
+        version: 3.8.3
       prettier-plugin-curly:
         specifier: 0.4.1
-        version: 0.4.1(prettier@3.7.3)
+        version: 0.4.1(prettier@3.8.3)
       prettier-plugin-packagejson:
         specifier: 2.5.20
-        version: 2.5.20(prettier@3.7.3)
+        version: 2.5.20(prettier@3.8.3)
       prettier-plugin-sentences-per-line:
         specifier: 0.2.0
-        version: 0.2.0(prettier@3.7.3)
+        version: 0.2.0(prettier@3.8.3)
       prettier-plugin-sh:
         specifier: 0.18.0
-        version: 0.18.0(prettier@3.7.3)
+        version: 0.18.0(prettier@3.8.3)
       release-it:
         specifier: 19.0.6
         version: 19.0.6(@types/node@24.10.1)(magicast@0.3.5)
@@ -1879,6 +1879,7 @@ packages:
   basic-ftp@5.0.5:
     resolution: {integrity: sha512-4Bcg1P8xhUuqcii/S0Z9wiHIrQVPMermM1any+MX5GeGD7faD3/msQUDGLol9wOcz4/jbg/WJnGqoJF6LiBdtg==}
     engines: {node: '>=10.0.0'}
+    deprecated: Security vulnerability fixed in 5.2.1, please upgrade
 
   before-after-hook@4.0.0:
     resolution: {integrity: sha512-q6tR3RPqIB1pMiTRMFcZwuG5T8vwp+vUvEG0vuI6B+Rikh5BfPp2fQ82c925FOs+b0lcFQ8CFrL+KbilfZFhOQ==}
@@ -3658,8 +3659,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.7.3:
-    resolution: {integrity: sha512-QgODejq9K3OzoBbuyobZlUhznP5SKwPqp+6Q6xw6o8gnhr4O85L2U915iM2IDcfF2NPXVaM9zlo9tdwipnYwzg==}
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5386,10 +5387,10 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@prettier/sync@0.6.1(prettier@3.7.3)':
+  '@prettier/sync@0.6.1(prettier@3.8.3)':
     dependencies:
       make-synchronized: 0.8.0
-      prettier: 3.7.3
+      prettier: 3.8.3
 
   '@quansync/fs@0.1.5':
     dependencies:
@@ -8002,32 +8003,32 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-curly@0.4.1(prettier@3.7.3):
+  prettier-plugin-curly@0.4.1(prettier@3.8.3):
     dependencies:
-      prettier: 3.7.3
+      prettier: 3.8.3
 
-  prettier-plugin-packagejson@2.5.20(prettier@3.7.3):
+  prettier-plugin-packagejson@2.5.20(prettier@3.8.3):
     dependencies:
       sort-package-json: 3.5.0
       synckit: 0.11.11
     optionalDependencies:
-      prettier: 3.7.3
+      prettier: 3.8.3
 
-  prettier-plugin-sentences-per-line@0.2.0(prettier@3.7.3):
+  prettier-plugin-sentences-per-line@0.2.0(prettier@3.8.3):
     dependencies:
-      prettier: 3.7.3
+      prettier: 3.8.3
       sentences-per-line: 0.5.0
 
-  prettier-plugin-sh@0.18.0(prettier@3.7.3):
+  prettier-plugin-sh@0.18.0(prettier@3.8.3):
     dependencies:
       '@reteps/dockerfmt': 0.3.6
-      prettier: 3.7.3
+      prettier: 3.8.3
       sh-syntax: 0.5.8
 
   prettier@2.8.8:
     optional: true
 
-  prettier@3.7.3: {}
+  prettier@3.8.3: {}
 
   pretty-ms@9.3.0:
     dependencies:

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.60.2](///compare/2.60.1...2.60.2) (2026-05-04)
+
+### Bug Fixes
+
+- bump bingo to ^0.9.3 ([#2373](undefined/undefined/undefined/issues/2373)) 7741ff4, closes #2369
+
 ## [2.60.1](///compare/2.60.0...2.60.1) (2026-02-17)
 
 ### Bug Fixes

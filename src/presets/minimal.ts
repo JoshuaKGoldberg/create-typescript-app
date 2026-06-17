@@ -4,12 +4,12 @@ import { blockContributorCovenant } from "../blocks/blockContributorCovenant.js"
 import { blockDevelopmentDocs } from "../blocks/blockDevelopmentDocs.js";
 import { blockESLint } from "../blocks/blockESLint.js";
 import { blockExampleFiles } from "../blocks/blockExampleFiles.js";
+import { blockExports } from "../blocks/blockExports.js";
 import { blockGitHubActionsCI } from "../blocks/blockGitHubActionsCI.js";
 import { blockGitHubApps } from "../blocks/blockGitHubApps.js";
 import { blockGitHubIssueTemplates } from "../blocks/blockGitHubIssueTemplates.js";
 import { blockGitHubPRTemplate } from "../blocks/blockGitHubPRTemplate.js";
 import { blockGitignore } from "../blocks/blockGitignore.js";
-import { blockMain } from "../blocks/blockMain.js";
 import { blockMITLicense } from "../blocks/blockMITLicense.js";
 import { blockPackageJson } from "../blocks/blockPackageJson.js";
 import { blockPrettier } from "../blocks/blockPrettier.js";
@@ -22,6 +22,7 @@ import { blockRepositoryLabels } from "../blocks/blockRepositoryLabels.js";
 import { blockRepositorySecrets } from "../blocks/blockRepositorySecrets.js";
 import { blockRepositorySettings } from "../blocks/blockRepositorySettings.js";
 import { blockSecurityDocs } from "../blocks/blockSecurityDocs.js";
+import { blockSideEffects } from "../blocks/blockSideEffects.js";
 import { blockTemplatedWith } from "../blocks/blockTemplatedWith.js";
 import { blockTSDown } from "../blocks/blockTSDown.js";
 import { blockTypeScript } from "../blocks/blockTypeScript.js";
@@ -37,13 +38,13 @@ export const presetMinimal = base.createPreset({
 		blockContributorCovenant,
 		blockDevelopmentDocs,
 		blockESLint,
+		blockExports,
 		blockExampleFiles,
 		blockGitHubActionsCI,
 		blockGitHubApps,
 		blockGitHubIssueTemplates,
 		blockGitHubPRTemplate,
 		blockGitignore,
-		blockMain,
 		blockMITLicense,
 		blockPackageJson,
 		blockPrettier,
@@ -56,6 +57,7 @@ export const presetMinimal = base.createPreset({
 		blockRepositorySecrets,
 		blockRepositorySettings,
 		blockSecurityDocs,
+		blockSideEffects,
 		blockTemplatedWith,
 		blockTSDown,
 		blockTypeScript,

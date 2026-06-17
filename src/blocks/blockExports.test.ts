@@ -1,12 +1,12 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, it } from "vitest";
 
-import { blockMain } from "./blockMain.js";
+import { blockExports } from "./blockExports.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockMain", () => {
+describe(blockExports, () => {
 	it("without addons", () => {
-		const creation = testBlock(blockMain, { options: optionsBase });
+		const creation = testBlock(blockExports, { options: optionsBase });
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
@@ -14,7 +14,9 @@ describe("blockMain", () => {
 			    {
 			      "addons": {
 			        "properties": {
-			          "main": "lib/index.js",
+			          "exports": {
+			            ".": "./lib/index.js",
+			          },
 			        },
 			      },
 			      "block": [Function],
@@ -22,7 +24,7 @@ describe("blockMain", () => {
 			    {
 			      "addons": {
 			        "runInCI": [
-			          "node lib/index.js",
+			          "node ./lib/index.js",
 			        ],
 			      },
 			      "block": [Function],
@@ -33,7 +35,7 @@ describe("blockMain", () => {
 	});
 
 	it("with addons", () => {
-		const creation = testBlock(blockMain, {
+		const creation = testBlock(blockExports, {
 			addons: {
 				filePath: "other.js",
 				runArgs: ["--version"],
@@ -47,7 +49,9 @@ describe("blockMain", () => {
 			    {
 			      "addons": {
 			        "properties": {
-			          "main": "other.js",
+			          "exports": {
+			            ".": "./other.js",
+			          },
 			        },
 			      },
 			      "block": [Function],

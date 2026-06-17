@@ -117,5 +117,8 @@ export default defineConfig(
 			],
 		},
 	},
-	{ extends: [packageJson.configs.recommended], files: ["package.json"] },
+	{
+		extends: [packageJson.configs.recommended, packageJson.configs.stylistic],
+		files: ["package.json"],
+	},
 );

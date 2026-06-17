@@ -14,7 +14,7 @@ The transition script will:
 - Create or rewrite configuration files for the new tooling
 - Run ESLint and Prettier auto-fixers to align formatting and style to the new settings
 
-For example, if the repository previously using Jest for testing:
+For example, if the repository previously used Jest for testing:
 
 - `eslint-plugin-jest`, `jest`, and other Jest-related packages will be uninstalled
 - Any Jest config file like `jest.config.js` will be deleted

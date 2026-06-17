@@ -14,8 +14,8 @@ import {
 	blockCodecov,
 	blockCSpell,
 	blockESLint,
+	blockExports,
 	blockKnip,
-	blockMain,
 	blockRenovate,
 	blockTemplatedWith,
 	presets,
@@ -121,7 +121,7 @@ If you're interested in learning more, see the 'getting started' docs on:
 						"trash-cli",
 					],
 				}),
-				blockMain({
+				blockExports({
 					runArgs: ["--version"],
 				}),
 				blockRenovate({

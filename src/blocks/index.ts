@@ -17,13 +17,13 @@ import { blockESLintPerfectionist } from "./blockESLintPerfectionist.js";
 import { blockESLintPlugin } from "./blockESLintPlugin.js";
 import { blockESLintRegexp } from "./blockESLintRegexp.js";
 import { blockESLintYML } from "./blockESLintYML.js";
+import { blockExports } from "./blockExports.js";
 import { blockFunding } from "./blockFunding.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.js";
 import { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.js";
 import { blockGitignore } from "./blockGitignore.js";
 import { blockKnip } from "./blockKnip.js";
-import { blockMain } from "./blockMain.js";
 import { blockMITLicense } from "./blockMITLicense.js";
 import { blockNcc } from "./blockNcc.js";
 import { blockNvmrc } from "./blockNvmrc.js";
@@ -40,6 +40,7 @@ import { blockREADME } from "./blockREADME.js";
 import { blockReleaseIt } from "./blockReleaseIt.js";
 import { blockRenovate } from "./blockRenovate.js";
 import { blockSecurityDocs } from "./blockSecurityDocs.js";
+import { blockSideEffects } from "./blockSideEffects.js";
 import { blockTemplatedWith } from "./blockTemplatedWith.js";
 import { blockTSDown } from "./blockTSDown.js";
 import { blockTypeScript } from "./blockTypeScript.js";
@@ -67,13 +68,13 @@ export const blocks = {
 	blockESLintPlugin,
 	blockESLintRegexp,
 	blockESLintYML,
+	blockExports,
 	blockFunding,
 	blockGitHubActionsCI,
 	blockGitHubIssueTemplates,
 	blockGitHubPRTemplate,
 	blockGitignore,
 	blockKnip,
-	blockMain,
 	blockMITLicense,
 	blockNcc,
 	blockNvmrc,
@@ -90,6 +91,7 @@ export const blocks = {
 	blockReleaseIt,
 	blockRenovate,
 	blockSecurityDocs,
+	blockSideEffects,
 	blockTemplatedWith,
 	blockTSDown,
 	blockTypeScript,
@@ -118,13 +120,13 @@ export { blockESLintPerfectionist } from "./blockESLintPerfectionist.js";
 export { blockESLintPlugin } from "./blockESLintPlugin.js";
 export { blockESLintRegexp } from "./blockESLintRegexp.js";
 export { blockESLintYML } from "./blockESLintYML.js";
+export { blockExports } from "./blockExports.js";
 export { blockFunding } from "./blockFunding.js";
 export { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 export { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.js";
 export { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.js";
 export { blockGitignore } from "./blockGitignore.js";
 export { blockKnip } from "./blockKnip.js";
-export { blockMain } from "./blockMain.js";
 export { blockMITLicense } from "./blockMITLicense.js";
 export { blockNcc } from "./blockNcc.js";
 export { blockNvmrc } from "./blockNvmrc.js";
@@ -141,6 +143,7 @@ export { blockREADME } from "./blockREADME.js";
 export { blockReleaseIt } from "./blockReleaseIt.js";
 export { blockRenovate } from "./blockRenovate.js";
 export { blockSecurityDocs } from "./blockSecurityDocs.js";
+export { blockSideEffects } from "./blockSideEffects.js";
 export { blockTemplatedWith } from "./blockTemplatedWith.js";
 export { blockTSDown } from "./blockTSDown.js";
 export { blockTypeScript } from "./blockTypeScript.js";

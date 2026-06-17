@@ -4,22 +4,24 @@ import { base } from "../base.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockTSDown } from "./blockTSDown.js";
 
-export const blockMain = base.createBlock({
+export const blockExports = base.createBlock({
 	about: {
-		name: "Main",
+		name: "Exports",
 	},
 	addons: {
 		filePath: z.string().optional(),
 		runArgs: z.array(z.string()).default([]),
 	},
 	produce({ addons }) {
-		const { filePath = "lib/index.js", runArgs } = addons;
+		const { filePath = "./lib/index.js", runArgs } = addons;
 
 		return {
 			addons: [
 				blockPackageJson({
 					properties: {
-						main: filePath,
+						exports: {
+							".": filePath.startsWith(".") ? filePath : `./${filePath}`,
+						},
 					},
 				}),
 				blockTSDown({

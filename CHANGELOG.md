@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.60.3](///compare/2.60.2...2.60.3) (2026-06-18)
+
+### Bug Fixes
+
+- update blocks to conform to latest eslint-plugin-package-json standards ([#2377](undefined/undefined/undefined/issues/2377)) 266a405, closes #2374
+
 ## [2.60.2](///compare/2.60.1...2.60.2) (2026-05-04)
 
 ### Bug Fixes

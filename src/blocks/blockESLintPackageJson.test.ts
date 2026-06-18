@@ -19,6 +19,7 @@ describe("blockESLintPackageJson", () => {
 			          {
 			            "extends": [
 			              "packageJson.configs.recommended",
+			              "packageJson.configs.stylistic",
 			            ],
 			            "files": [
 			              "package.json",
@@ -64,6 +65,7 @@ describe("blockESLintPackageJson", () => {
 			          {
 			            "extends": [
 			              "packageJson.configs.recommended",
+			              "packageJson.configs.stylistic",
 			            ],
 			            "files": [
 			              "package.json",

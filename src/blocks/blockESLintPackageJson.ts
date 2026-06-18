@@ -15,7 +15,10 @@ export const blockESLintPackageJson = base.createBlock({
 				blockESLint({
 					extensions: [
 						{
-							extends: ["packageJson.configs.recommended"],
+							extends: [
+								"packageJson.configs.recommended",
+								"packageJson.configs.stylistic",
+							],
 							files: ["package.json"],
 						},
 					],

@@ -500,7 +500,8 @@
       "contributions": [
         "code",
         "bug",
-        "ideas"
+        "ideas",
+        "tool"
       ]
     },
     {
@@ -575,5 +576,6 @@
   ],
   "projectName": "create-typescript-app",
   "projectOwner": "JoshuaKGoldberg",
-  "repoType": "github"
+  "repoType": "github",
+  "commitConvention": "angular"
 }

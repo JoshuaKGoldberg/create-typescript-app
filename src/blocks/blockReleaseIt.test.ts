@@ -54,6 +54,9 @@ describe("blockReleaseIt", () => {
 			      "workflows": {
 			        "post-release.yaml": "jobs:
 			  post_release:
+			    permissions:
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
@@ -81,11 +84,6 @@ describe("blockReleaseIt", () => {
 			  release:
 			    types:
 			      - published
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
 			",
 			        "release.yaml": "concurrency:
 			  group: \${{ github.workflow }}
@@ -93,6 +91,9 @@ describe("blockReleaseIt", () => {
 
 			jobs:
 			  release:
+			    permissions:
+			      contents: write
+			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
@@ -113,11 +114,6 @@ describe("blockReleaseIt", () => {
 			  push:
 			    branches:
 			      - main
-
-
-			permissions:
-			  contents: write
-			  id-token: write
 			",
 			      },
 			    },
@@ -198,6 +194,9 @@ describe("blockReleaseIt", () => {
 			      "workflows": {
 			        "post-release.yaml": "jobs:
 			  post_release:
+			    permissions:
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
@@ -225,11 +224,6 @@ describe("blockReleaseIt", () => {
 			  release:
 			    types:
 			      - published
-
-
-			permissions:
-			  issues: write
-			  pull-requests: write
 			",
 			        "release.yaml": "concurrency:
 			  group: \${{ github.workflow }}
@@ -237,6 +231,9 @@ describe("blockReleaseIt", () => {
 
 			jobs:
 			  release:
+			    permissions:
+			      contents: write
+			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
@@ -260,11 +257,6 @@ describe("blockReleaseIt", () => {
 			  push:
 			    branches:
 			      - main
-
-
-			permissions:
-			  contents: write
-			  id-token: write
 			",
 			      },
 			    },

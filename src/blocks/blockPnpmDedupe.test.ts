@@ -15,26 +15,12 @@ describe("blockPnpmDedupe", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "sections": {
-			          "Linting": {
-			            "contents": {
-			              "items": [
-			                "- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yaml\` file",
-			              ],
-			            },
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
-			            "name": "Lint Packages",
+			            "name": "Dedupe Check",
 			            "steps": [
 			              {
-			                "run": "pnpm lint:packages",
+			                "run": "pnpm dedupe --check",
 			              },
 			            ],
 			          },
@@ -47,11 +33,6 @@ describe("blockPnpmDedupe", () => {
 			        "cleanupCommands": [
 			          "pnpm dedupe",
 			        ],
-			        "properties": {
-			          "scripts": {
-			            "lint:packages": "pnpm dedupe --check",
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },
@@ -71,26 +52,12 @@ describe("blockPnpmDedupe", () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "sections": {
-			          "Linting": {
-			            "contents": {
-			              "items": [
-			                "- \`pnpm lint:packages\` ([pnpm dedupe --check](https://pnpm.io/cli/dedupe)): Checks for unnecessarily duplicated packages in the \`pnpm-lock.yaml\` file",
-			              ],
-			            },
-			          },
-			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
-			            "name": "Lint Packages",
+			            "name": "Dedupe Check",
 			            "steps": [
 			              {
-			                "run": "pnpm lint:packages",
+			                "run": "pnpm dedupe --check",
 			              },
 			            ],
 			          },
@@ -103,11 +70,6 @@ describe("blockPnpmDedupe", () => {
 			        "cleanupCommands": [
 			          "pnpm dedupe",
 			        ],
-			        "properties": {
-			          "scripts": {
-			            "lint:packages": "pnpm dedupe --check",
-			          },
-			        },
 			      },
 			      "block": [Function],
 			    },

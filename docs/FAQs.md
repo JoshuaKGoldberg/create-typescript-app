@@ -29,6 +29,8 @@ As a consequence we should:
      ```yaml
      jobs:
        build:
+         permissions:
+           contents: read
          runs-on: ubuntu-latest
          steps:
            - uses: actions/checkout@v4
@@ -58,9 +60,6 @@ As a consequence we should:
        push:
          branches:
            - main
-
-     permissions:
-       contents: read
      ```
 
       </details>
@@ -95,7 +94,7 @@ Delete `tsdown.config.ts` then execute the following commands:
    npx lint-staged
    ```
 
-2. Create an [`action.yaml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
+1. Create an [`action.yaml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).
 
 It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 

@@ -82,12 +82,12 @@ export function createSoloWorkflowFile({
 			[createJobName(jobName ?? name)]: {
 				...(options.if && { if: options.if }),
 				...(jobName && { name: jobName }),
+				permissions,
 				"runs-on": "ubuntu-latest",
 				steps: options.steps,
 			},
 		},
 		name,
 		on,
-		permissions,
 	});
 }

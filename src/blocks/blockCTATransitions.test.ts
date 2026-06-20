@@ -85,6 +85,8 @@ describe("blockCTATransitions", () => {
 			      "cta.yaml": "jobs:
 			  transition:
 			    name: Transition
+			    permissions:
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - id: checkout
@@ -110,10 +112,6 @@ describe("blockCTATransitions", () => {
 			  pull_request:
 			    branches:
 			      - main
-
-
-			permissions:
-			  pull-requests: write
 			",
 			    },
 			  },

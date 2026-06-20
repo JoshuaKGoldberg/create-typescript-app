@@ -3,6 +3,9 @@ concurrency:
 
 jobs:
   release:
+    permissions:
+      contents: write
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
@@ -22,7 +25,3 @@ on:
   push:
     branches:
       - main
-
-permissions:
-  contents: write
-  id-token: write

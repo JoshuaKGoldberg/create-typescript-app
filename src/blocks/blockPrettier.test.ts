@@ -44,7 +44,7 @@ describe("blockPrettier", () => {
 			      "addons": {
 			        "jobs": [
 			          {
-			            "name": "Prettier",
+			            "name": "Format Check",
 			            "steps": [
 			              {
 			                "run": "pnpm format --list-different",
@@ -156,7 +156,7 @@ describe("blockPrettier", () => {
 			      "addons": {
 			        "jobs": [
 			          {
-			            "name": "Prettier",
+			            "name": "Format Check",
 			            "steps": [
 			              {
 			                "run": "pnpm format --list-different",
@@ -306,7 +306,7 @@ describe("blockPrettier", () => {
 			      "addons": {
 			        "jobs": [
 			          {
-			            "name": "Prettier",
+			            "name": "Format Check",
 			            "steps": [
 			              {
 			                "run": "pnpm build || exit 0",

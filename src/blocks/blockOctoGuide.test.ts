@@ -19,6 +19,10 @@ describe("blockOctoGuide", () => {
 			        "octoguide.yaml": "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
+			    permissions:
+			      discussions: write
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: JoshuaKGoldberg/octoguide@0.11.1
@@ -58,12 +62,6 @@ describe("blockOctoGuide", () => {
 			    types:
 			      - edited
 			      - opened
-
-
-			permissions:
-			  discussions: write
-			  issues: write
-			  pull-requests: write
 			",
 			      },
 			    },
@@ -97,6 +95,10 @@ describe("blockOctoGuide", () => {
 			        "octoguide.yaml": "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
+			    permissions:
+			      discussions: write
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: JoshuaKGoldberg/octoguide@0.11.1
@@ -136,12 +138,6 @@ describe("blockOctoGuide", () => {
 			    types:
 			      - edited
 			      - opened
-
-
-			permissions:
-			  discussions: write
-			  issues: write
-			  pull-requests: write
 			",
 			      },
 			    },
@@ -166,6 +162,10 @@ describe("blockOctoGuide", () => {
 			        "octoguide.yaml": "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
+			    permissions:
+			      discussions: write
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: JoshuaKGoldberg/octoguide@0.11.1
@@ -205,12 +205,6 @@ describe("blockOctoGuide", () => {
 			    types:
 			      - edited
 			      - opened
-
-
-			permissions:
-			  discussions: write
-			  issues: write
-			  pull-requests: write
 			",
 			      },
 			    },

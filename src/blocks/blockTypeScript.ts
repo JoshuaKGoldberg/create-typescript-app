@@ -63,14 +63,14 @@ pnpm tsc --watch
 				blockExampleFiles({
 					files: {
 						"greet.ts": `import { GreetOptions } from "./types.js";
-	
+
 	export function greet(options: GreetOptions | string) {
 		const {
 			logger = console.log.bind(console),
 			message,
 			times = 1,
 		} = typeof options === "string" ? { message: options } : options;
-	
+
 		for (let i = 0; i < times; i += 1) {
 			logger(message);
 		}
@@ -110,9 +110,6 @@ greet("Hello, world! ${options.emoji}");
 					properties: {
 						devDependencies: getPackageDependencies("typescript"),
 						files: ["lib/"],
-						scripts: {
-							tsc: "tsc",
-						},
 					},
 				}),
 				blockVitest({ coverage: { include: ["src"] }, exclude: ["lib"] }),

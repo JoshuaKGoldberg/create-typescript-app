@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.61.0](///compare/2.60.3...2.61.0) (2026-06-20)
+
+### Features
+
+- update CI conventions ([#2380](undefined/undefined/undefined/issues/2380)) 9b9c669, closes #2379
+
 ## [2.60.3](///compare/2.60.2...2.60.3) (2026-06-18)
 
 ### Bug Fixes

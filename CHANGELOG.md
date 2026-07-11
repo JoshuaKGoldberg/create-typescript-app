@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.61.1](///compare/2.61.0...2.61.1) (2026-07-11)
+
+### Bug Fixes
+
+- remove redundant tsc script ([#2383](undefined/undefined/undefined/issues/2383)) 7e1d9d7, closes #2375
+
 ## [2.61.0](///compare/2.60.3...2.61.0) (2026-06-20)
 
 ### Features

@@ -127,7 +127,7 @@ greet("Hello, world! ${options.emoji}");
 							]
 						: [],
 					settings: {
-						"typescript.tsdk": "node_modules/typescript/lib",
+						"js/ts.tsdk.path": "node_modules/typescript/lib",
 					},
 					tasks: [
 						{
@@ -143,7 +143,6 @@ greet("Hello, world! ${options.emoji}");
 				"tsconfig.json": JSON.stringify({
 					compilerOptions: sortKeys({
 						declaration: true,
-						declarationMap: true,
 						esModuleInterop: true,
 						module: "nodenext",
 						moduleResolution: "nodenext",

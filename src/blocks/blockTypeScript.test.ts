@@ -4,7 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockTypeScript } from "./blockTypeScript.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockTypeScript", () => {
+describe(blockTypeScript, () => {
 	test("without addons or options", () => {
 		const creation = testBlock(blockTypeScript, {
 			options: optionsBase,
@@ -138,7 +138,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -153,7 +153,7 @@ describe("blockTypeScript", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -297,7 +297,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -312,7 +312,7 @@ describe("blockTypeScript", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -465,7 +465,7 @@ describe("blockTypeScript", () => {
 			          },
 			        ],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -480,7 +480,7 @@ describe("blockTypeScript", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -620,7 +620,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -643,7 +643,7 @@ describe("blockTypeScript", () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"declarationMap":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);

@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"declaration": true,
-		"declarationMap": true,
 		"esModuleInterop": true,
 		"module": "nodenext",
 		"moduleResolution": "nodenext",

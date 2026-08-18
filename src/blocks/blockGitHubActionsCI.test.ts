@@ -5,7 +5,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockGitHubActionsCI", () => {
+describe(blockGitHubActionsCI, () => {
 	test("without options.node.pinned", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			options: {
@@ -32,7 +32,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -106,7 +106,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -174,7 +174,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -252,7 +252,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -337,7 +337,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:

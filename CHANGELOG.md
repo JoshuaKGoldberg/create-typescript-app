@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.61.2](///compare/2.61.1...2.61.2) (2026-08-18)
+
+### Bug Fixes
+
+- remove redundant `dts` prop from tsdown config ([#2385](undefined/undefined/undefined/issues/2385)) 08d4c61, closes #000 #2384
+
 ## [2.61.1](///compare/2.61.0...2.61.1) (2026-07-11)
 
 ### Bug Fixes

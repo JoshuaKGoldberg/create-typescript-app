@@ -67,6 +67,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],
@@ -312,6 +313,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],
@@ -595,6 +597,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],
@@ -849,6 +852,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],

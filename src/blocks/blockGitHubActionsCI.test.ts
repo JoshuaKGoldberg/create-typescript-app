@@ -1,5 +1,5 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import jsYaml from "js-yaml";
+import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
@@ -439,7 +439,7 @@ describe(blockGitHubActionsCI, () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										other: {
 											steps: [],
 										},
@@ -461,7 +461,7 @@ describe(blockGitHubActionsCI, () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: true,
 										},
@@ -483,7 +483,7 @@ describe(blockGitHubActionsCI, () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: [
 												{
@@ -509,7 +509,7 @@ describe(blockGitHubActionsCI, () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: [
 												{
@@ -537,7 +537,7 @@ describe(blockGitHubActionsCI, () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: [
 												{

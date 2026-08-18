@@ -1,7 +1,7 @@
 import type { KnipConfig } from "knip";
 
 export default {
-	entry: ["src/**/*.test.*", "src/index.ts"],
+	entry: ["src/**/*.test.*"],
 	ignoreDependencies: [
 		"all-contributors-cli",
 		"cspell-populate-words",

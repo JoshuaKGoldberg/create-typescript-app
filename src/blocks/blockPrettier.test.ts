@@ -60,8 +60,8 @@ describe("blockPrettier", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "9.1.7",
-			            "lint-staged": "16.2.7",
-			            "prettier": "3.7.3",
+			            "lint-staged": "17.3.0",
+			            "prettier": "3.9.6",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",
@@ -172,8 +172,8 @@ describe("blockPrettier", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "9.1.7",
-			            "lint-staged": "16.2.7",
-			            "prettier": "3.7.3",
+			            "lint-staged": "17.3.0",
+			            "prettier": "3.9.6",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",
@@ -325,11 +325,11 @@ describe("blockPrettier", () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "9.1.7",
-			            "lint-staged": "16.2.7",
-			            "prettier": "3.7.3",
+			            "lint-staged": "17.3.0",
+			            "prettier": "3.9.6",
 			            "prettier-plugin-curly": "0.4.1",
-			            "prettier-plugin-packagejson": "2.5.20",
-			            "prettier-plugin-sh": "0.18.0",
+			            "prettier-plugin-packagejson": "3.0.2",
+			            "prettier-plugin-sh": "0.19.0",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",

@@ -34,9 +34,7 @@ export const blockOctoGuide = base.createBlock({
 
 		return {
 			config: runOctoGuideStep.with?.config as
-				| "recommended"
-				| "strict"
-				| undefined,
+				"recommended" | "strict" | undefined,
 		};
 	},
 	produce({ addons, options }) {

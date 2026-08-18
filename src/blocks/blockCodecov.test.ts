@@ -1,5 +1,5 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import jsYaml from "js-yaml";
+import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
 import { blockCodecov } from "./blockCodecov.js";
@@ -198,7 +198,7 @@ describe(blockCodecov, () => {
 					".github": {
 						workflows: {
 							"ci.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										other: {
 											name: "Other",
@@ -221,7 +221,7 @@ describe(blockCodecov, () => {
 					".github": {
 						workflows: {
 							"ci.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										test: {
 											name: "Test",
@@ -248,7 +248,7 @@ describe(blockCodecov, () => {
 					".github": {
 						workflows: {
 							"ci.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										test: {
 											name: "Test",
@@ -278,7 +278,7 @@ describe(blockCodecov, () => {
 					".github": {
 						workflows: {
 							"ci.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										test: {
 											name: "Test",

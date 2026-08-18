@@ -1,5 +1,5 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import jsYaml from "js-yaml";
+import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
 import { blockOctoGuide } from "./blockOctoGuide.js";
@@ -232,7 +232,7 @@ describe(blockOctoGuide, () => {
 					".github": {
 						workflows: {
 							"octoguide.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										octoguide: {
 											name: "Octoguide",
@@ -262,7 +262,7 @@ describe(blockOctoGuide, () => {
 					".github": {
 						workflows: {
 							"octoguide.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										octoguide: {
 											name: "Octoguide",

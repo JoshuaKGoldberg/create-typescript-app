@@ -6,7 +6,6 @@ import { Contributor } from "../schemas.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
-import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { CommandPhase } from "./phases.js";
 
@@ -55,14 +54,6 @@ export const blockAllContributors = base.createBlock({
 						? [printAllContributorsTable(options.contributors)]
 						: undefined,
 				}),
-				blockRepositorySecrets({
-					secrets: [
-						{
-							description: "a GitHub PAT with repo and workflow permissions",
-							name: "ACCESS_TOKEN",
-						},
-					],
-				}),
 			],
 			files: {
 				".all-contributorsrc": JSON.stringify(
@@ -90,6 +81,7 @@ export const blockAllContributors = base.createBlock({
 									branches: ["main"],
 								},
 							},
+							permissions: { contents: "write" },
 							steps: [
 								{
 									uses: resolveUses(
@@ -101,7 +93,7 @@ export const blockAllContributors = base.createBlock({
 								},
 								{ uses: "./.github/actions/prepare" },
 								{
-									env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
+									env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" },
 									uses: resolveUses(
 										"JoshuaKGoldberg/all-contributors-auto-action",
 										"v0.5.0",

@@ -86,6 +86,7 @@ describe("blockCTATransitions", () => {
 			  transition:
 			    name: Transition
 			    permissions:
+			      contents: write
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -96,11 +97,11 @@ describe("blockCTATransitions", () => {
 			          fetch-depth: 0
 			          ref: \${{github.event.pull_request.head.ref}}
 			          repository: \${{github.event.pull_request.head.repo.full_name}}
-			          token: \${{ secrets.ACCESS_TOKEN }}
+			          token: \${{ secrets.GITHUB_TOKEN }}
 			      - if: steps.checkout.outcome != 'skipped'
 			        uses: ./.github/actions/transition
 			        with:
-			          token: \${{ secrets.ACCESS_TOKEN }}
+			          token: \${{ secrets.GITHUB_TOKEN }}
 			      - if: steps.checkout.outcome == 'skipped'
 			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'
 

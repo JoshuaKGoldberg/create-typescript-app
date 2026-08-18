@@ -59,7 +59,7 @@ describe(readEmoji, () => {
 		expect(actual).toBe("👍🏽");
 	});
 
-	it("resolves with the full emoji when the description has a keycap sequence", async () => {
+	it("resolves with the full emoji when the description has a key cap sequence", async () => {
 		const getDescription = () => Promise.resolve("Hello. 1️⃣");
 
 		const actual = await readEmoji(getDescription);

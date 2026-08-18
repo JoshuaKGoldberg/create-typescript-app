@@ -3,7 +3,7 @@ const graphemeSegmenter = new Intl.Segmenter(undefined, {
 });
 
 const pictographicPattern = /\p{Extended_Pictographic}|\p{Regional_Indicator}/u;
-const keycapPattern = /\p{Emoji}\uFE0F?\u20E3/u;
+const keyCapPattern = /\p{Emoji}\uFE0F?\u20E3/u;
 
 export async function readEmoji(
 	getDescription: () => Promise<string | undefined>,
@@ -16,7 +16,7 @@ export async function readEmoji(
 			({ segment }) => segment,
 		).findLast(
 			(grapheme) =>
-				pictographicPattern.test(grapheme) || keycapPattern.test(grapheme),
+				pictographicPattern.test(grapheme) || keyCapPattern.test(grapheme),
 		) ?? "💖"
 	);
 }

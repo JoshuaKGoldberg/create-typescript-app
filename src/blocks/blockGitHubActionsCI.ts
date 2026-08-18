@@ -58,27 +58,28 @@ export const blockGitHubActionsCI = base.createBlock({
 		const minimumNodeVersion = options.node.minimum
 			.replace(/^\D*/u, "")
 			.split(/[^\d.]/u)[0];
-		const jobsWithEnginesCheck = jobs && [
-			...jobs,
-			{
-				name: "Engines Check",
-				steps: [
-					{
-						uses: resolveUses(
-							"actions/setup-node",
-							"v4",
-							options.workflowsVersions,
-						),
-						with: {
-							cache: "pnpm",
-							"node-version": minimumNodeVersion,
+		const jobsWithEnginesCheck =
+			jobs &&
+			[
+				...jobs,
+				{
+					name: "Engines Check",
+					steps: [
+						{
+							uses: resolveUses(
+								"actions/setup-node",
+								"v4",
+								options.workflowsVersions,
+							),
+							with: {
+								cache: "pnpm",
+								"node-version": minimumNodeVersion,
+							},
 						},
-					},
-					{ run: "pnpm install --prod --engine-strict --ignore-scripts" },
-				],
-			},
-		];
-		jobsWithEnginesCheck?.sort((a, b) => a.name.localeCompare(b.name));
+						{ run: "pnpm install --prod --engine-strict --ignore-scripts" },
+					],
+				},
+			].toSorted((a, b) => a.name.localeCompare(b.name));
 
 		return {
 			addons: [

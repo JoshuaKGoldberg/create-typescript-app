@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.63.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.62.0...2.63.0) (2026-08-18)
+
+### Features
+
+- update most deps to latest (August 18, 2026) ([#2399](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2399)) ([0c4d268](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0c4d26897aa62b4b738a61098739214e9e879c0f)), closes [#2397](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2397)
+
 ## [2.62.0](///compare/2.61.2...2.62.0) (2026-08-18)
 
 ### Features

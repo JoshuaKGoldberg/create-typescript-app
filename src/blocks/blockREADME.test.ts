@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockREADME } from "./blockREADME.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockREADME", () => {
+describe(blockREADME, () => {
 	test("description with one sentence", () => {
 		const creation = testBlock(blockREADME, {
 			options: {

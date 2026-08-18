@@ -4,7 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockTypeScript } from "./blockTypeScript.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockTypeScript", () => {
+describe(blockTypeScript, () => {
 	test("without addons or options", () => {
 		const creation = testBlock(blockTypeScript, {
 			options: optionsBase,

@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockRepositoryBranchRuleset", () => {
+describe(blockRepositoryBranchRuleset, () => {
 	test("without addons when mode is undefined", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
 			options: optionsBase,

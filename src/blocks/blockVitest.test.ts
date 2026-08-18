@@ -8,7 +8,7 @@ vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockVitest", () => {
+describe(blockVitest, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockVitest, {
 			options: optionsBase,
@@ -67,6 +67,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],
@@ -312,6 +313,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],
@@ -595,6 +597,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],
@@ -849,6 +852,7 @@ describe("blockVitest", () => {
 			              {
 			                "entries": {
 			                  "@typescript-eslint/no-unsafe-assignment": "off",
+			                  "vitest/prefer-describe-function-title": "error",
 			                },
 			              },
 			            ],

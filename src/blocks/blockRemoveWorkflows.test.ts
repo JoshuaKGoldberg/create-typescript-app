@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockRemoveWorkflows", () => {
+describe(blockRemoveWorkflows, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockRemoveWorkflows, {
 			options: optionsBase,

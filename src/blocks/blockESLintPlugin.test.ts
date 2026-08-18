@@ -4,7 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockESLintPlugin } from "./blockESLintPlugin.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockESLintPlugin", () => {
+describe(blockESLintPlugin, () => {
 	test("without addons, mode, or options", () => {
 		const creation = testBlock(blockESLintPlugin, {
 			options: optionsBase,

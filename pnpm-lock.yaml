@@ -210,6 +210,9 @@ importers:
       prettier-plugin-packagejson:
         specifier: 3.0.2
         version: 3.0.2(prettier@3.9.6)
+      prettier-plugin-padding-lines:
+        specifier: 0.1.0
+        version: 0.1.0(prettier@3.9.6)
       prettier-plugin-sentences-per-line:
         specifier: 0.2.4
         version: 0.2.4(prettier@3.9.6)
@@ -3586,6 +3589,12 @@ packages:
     peerDependenciesMeta:
       prettier:
         optional: true
+
+  prettier-plugin-padding-lines@0.1.0:
+    resolution: {integrity: sha512-CYZyfSyHdlCnP0T4qe/tdY9ninLhpe7XbSS8dZYvzu1ZeCUK8tQ8P9Z5Ep7ofZL6X6laq01xzYAeZq4o9jWAEw==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      prettier: ^3
 
   prettier-plugin-sentences-per-line@0.2.4:
     resolution: {integrity: sha512-1SSPJxwvekA6wVb4VqJYcVZw39Ak7Oy/IKd4qCGG48hO7oWg/DF0EWPo4PrEROy2LWLl3/U570NM7SurMKQNSA==}
@@ -7928,6 +7937,10 @@ snapshots:
     dependencies:
       sort-package-json: 3.7.1
     optionalDependencies:
+      prettier: 3.9.6
+
+  prettier-plugin-padding-lines@0.1.0(prettier@3.9.6):
+    dependencies:
       prettier: 3.9.6
 
   prettier-plugin-sentences-per-line@0.2.4(prettier@3.9.6):

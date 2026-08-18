@@ -32,7 +32,7 @@ describe(blockGitHubActionsCI, () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -106,7 +106,7 @@ describe(blockGitHubActionsCI, () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -174,7 +174,7 @@ describe(blockGitHubActionsCI, () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -252,7 +252,7 @@ describe(blockGitHubActionsCI, () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -337,7 +337,7 @@ describe(blockGitHubActionsCI, () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:

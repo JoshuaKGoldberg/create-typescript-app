@@ -82,8 +82,9 @@ describe(blockOctoGuide, () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".github/workflows/accessibility-alt-text-bot.yaml",
-			          ".github/workflows/compliance.yaml",
+			          ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
+			          ".github/workflows/compliance.{yaml,yml}",
+			          ".github/workflows/octoguide.yml",
 			        ],
 			      },
 			      "block": [Function],

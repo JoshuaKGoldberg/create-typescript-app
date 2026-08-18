@@ -59,9 +59,9 @@ describe(blockRemoveWorkflows, () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".github/workflows/a.yaml",
-			          ".github/workflows/b.yaml",
-			          ".github/workflows/c.yaml",
+			          ".github/workflows/a.{yaml,yml}",
+			          ".github/workflows/b.{yaml,yml}",
+			          ".github/workflows/c.{yaml,yml}",
 			        ],
 			      },
 			      "block": [Function],

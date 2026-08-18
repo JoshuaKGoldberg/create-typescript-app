@@ -58,14 +58,6 @@ describe("blockTSDown", () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "src/index.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
@@ -163,14 +155,6 @@ describe("blockTSDown", () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "src/index.ts",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
@@ -253,14 +237,6 @@ describe("blockTSDown", () => {
 			              },
 			            ],
 			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "entry": [
-			          "src/index.ts",
 			        ],
 			      },
 			      "block": [Function],

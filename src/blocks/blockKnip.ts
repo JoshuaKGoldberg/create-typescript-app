@@ -2,10 +2,7 @@ import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
 import { base } from "../base.js";
-import {
-	getPackageDependencies,
-	getPackageDependency,
-} from "../data/packageData.js";
+import { getPackageDependencies } from "../data/packageData.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";

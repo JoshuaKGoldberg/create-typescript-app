@@ -29,7 +29,7 @@ describe(getPackageDependencies, () => {
 	it("throws an error when neither exist", () => {
 		const act = () => getPackageDependencies("package-unknown");
 
-		expect(act).toThrowError(
+		expect(act).toThrow(
 			"'package-unknown' is neither in package.json's dependencies nor its devDependencies.",
 		);
 	});

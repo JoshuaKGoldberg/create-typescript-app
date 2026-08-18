@@ -15,11 +15,12 @@ If you think the tool would be broadly useful to most consumers of this template
 
 ## Can I create a GitHub action?
 
-Yes! If you want to read the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions) in detail.
+Yes!
+If you want to read the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions) in detail.
 Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 1. GitHub Actions store built output on a GitHub branch rather than in a published package on npm.
-As a consequence we should:
+   As a consequence we should:
    - delete `.github/workflows/release.yaml` and `.github/workflows/post-release.yaml`.
    - update `.github/workflows/build.yaml` to ensure `dist` is up to date:
 
@@ -65,8 +66,8 @@ As a consequence we should:
       </details>
 
    - GitHub Actions run without installing package dependencies.
-Replace `tsdown` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
-Delete `tsdown.config.ts` then execute the following commands:
+     Replace `tsdown` with [`ncc`](https://github.com/vercel/ncc) to build source files and dependencies into a single JS file.
+     Delete `tsdown.config.ts` then execute the following commands:
 
    ```bash
    pnpm remove tsdown

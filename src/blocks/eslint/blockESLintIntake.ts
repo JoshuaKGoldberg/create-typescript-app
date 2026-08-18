@@ -131,9 +131,7 @@ export function blockESLintIntake(sourceText: string) {
 					element?.type === AST_NODE_TYPES.Literal &&
 					typeof element.value === "string",
 			) &&
-			node.properties[0].value.elements.map(
-				(element) => element.value as string,
-			)
+			node.properties[0].value.elements.map((element) => element.value)
 		);
 	}
 

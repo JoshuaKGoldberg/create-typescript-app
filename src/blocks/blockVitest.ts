@@ -75,7 +75,7 @@ export const blockVitest = base.createBlock({
 		};
 	},
 	produce({ addons }) {
-		const { actionSteps, coverage, environment, exclude = [] } = addons;
+		const { actionSteps, coverage, environment, exclude } = addons;
 		const excludeText = JSON.stringify(
 			Array.from(new Set(["node_modules", ...exclude])).sort(),
 		);

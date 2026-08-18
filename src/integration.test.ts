@@ -5,8 +5,6 @@ import { producePreset } from "bingo-stratum";
 import { diffCreatedDirectory } from "bingo-testers";
 import { expect, test, vi } from "vitest";
 
-Error.stackTraceLimit = 9001;
-
 import {
 	base,
 	BaseOptions,

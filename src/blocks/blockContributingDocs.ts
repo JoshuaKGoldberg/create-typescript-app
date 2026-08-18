@@ -21,7 +21,8 @@ This project contains a [Contributor Covenant code of conduct](./CODE_OF_CONDUCT
 
 ## Reporting Issues
 
-Please do [report an issue on the issue tracker](https://github.com/${options.owner}/${options.repository}/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
+Please do [report an issue on the issue tracker](https://github.com/${options.owner}/${options.repository}/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository!
+Please fully fill out all required fields in the most appropriate issue form.
 
 ## Sending Contributions
 

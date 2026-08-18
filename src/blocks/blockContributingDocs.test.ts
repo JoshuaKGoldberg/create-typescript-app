@@ -26,7 +26,8 @@ describe("blockContributingDocs", () => {
 
 			## Reporting Issues
 
-			Please do [report an issue on the issue tracker](https://github.com/test-owner/test-repository/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
+			Please do [report an issue on the issue tracker](https://github.com/test-owner/test-repository/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository!
+			Please fully fill out all required fields in the most appropriate issue form.
 
 			## Sending Contributions
 
@@ -150,7 +151,8 @@ describe("blockContributingDocs", () => {
 
 			## Reporting Issues
 
-			Please do [report an issue on the issue tracker](https://github.com/test-owner/test-repository/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository! Please fully fill out all required fields in the most appropriate issue form.
+			Please do [report an issue on the issue tracker](https://github.com/test-owner/test-repository/issues/new/choose) if there's any bugfix, documentation improvement, or general enhancement you'd like to see in the repository!
+			Please fully fill out all required fields in the most appropriate issue form.
 
 			## Sending Contributions
 

@@ -15,8 +15,8 @@ describe("blockReleaseIt", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@release-it/conventional-changelog": "10.0.2",
-			            "release-it": "19.0.6",
+			            "@release-it/conventional-changelog": "12.0.0",
+			            "release-it": "21.0.2",
 			          },
 			          "scripts": {
 			            "should-semantic-release": undefined,
@@ -155,8 +155,8 @@ describe("blockReleaseIt", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@release-it/conventional-changelog": "10.0.2",
-			            "release-it": "19.0.6",
+			            "@release-it/conventional-changelog": "12.0.0",
+			            "release-it": "21.0.2",
 			          },
 			          "scripts": {
 			            "should-semantic-release": undefined,

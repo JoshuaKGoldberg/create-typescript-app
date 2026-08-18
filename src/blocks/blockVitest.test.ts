@@ -177,10 +177,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.0.15",
-			            "@vitest/eslint-plugin": "1.5.1",
+			            "@vitest/coverage-v8": "4.1.10",
+			            "@vitest/eslint-plugin": "1.6.27",
 			            "console-fail-test": "0.6.1",
-			            "vitest": "4.0.15",
+			            "vitest": "4.1.10",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -422,10 +422,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.0.15",
-			            "@vitest/eslint-plugin": "1.5.1",
+			            "@vitest/coverage-v8": "4.1.10",
+			            "@vitest/eslint-plugin": "1.6.27",
 			            "console-fail-test": "0.6.1",
-			            "vitest": "4.0.15",
+			            "vitest": "4.1.10",
 			          },
 			          "scripts": {
 			            "test": "vitest",
@@ -705,10 +705,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.0.15",
-			            "@vitest/eslint-plugin": "1.5.1",
+			            "@vitest/coverage-v8": "4.1.10",
+			            "@vitest/eslint-plugin": "1.6.27",
 			            "console-fail-test": "0.6.1",
-			            "vitest": "4.0.15",
+			            "vitest": "4.1.10",
 			          },
 			          "scripts": {
 			            "test": "vitest --typecheck",
@@ -959,10 +959,10 @@ describe("blockVitest", () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vitest/coverage-v8": "4.0.15",
-			            "@vitest/eslint-plugin": "1.5.1",
+			            "@vitest/coverage-v8": "4.1.10",
+			            "@vitest/eslint-plugin": "1.6.27",
 			            "console-fail-test": "0.6.1",
-			            "vitest": "4.0.15",
+			            "vitest": "4.1.10",
 			          },
 			          "scripts": {
 			            "test": "vitest --typecheck",

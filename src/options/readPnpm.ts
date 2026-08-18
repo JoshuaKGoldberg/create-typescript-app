@@ -5,5 +5,5 @@ export async function readPnpm(packageData: () => Promise<PartialPackageData>) {
 
 	return packageManager?.startsWith("pnpm@")
 		? packageManager.slice("pnpm@".length)
-		: "10.4.0";
+		: "11.22.0";
 }

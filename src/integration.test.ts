@@ -44,10 +44,8 @@ test("Producing the everything preset matches the files in this repository", asy
 	})) as IntakeDirectory;
 
 	const created = producePreset(presets.everything, {
-		options: {
-			...((await prepareOptions(base)) as BaseOptions),
-			codecovToken: true,
-		},
+		files: actual,
+		options: (await prepareOptions(base)) as BaseOptions,
 		refinements: {
 			addons: [
 				blockCSpell({

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.63.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.63.0...2.63.1) (2026-08-18)
+
+### Bug Fixes
+
+- remove n/no-unpublished-bin disable ([#2400](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2400)) ([1a8cf44](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1a8cf44066dbdc9eb0923c2158b801c12332a242)), closes [#2387](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2387)
+
 ## [2.63.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.62.0...2.63.0) (2026-08-18)
 
 ### Features

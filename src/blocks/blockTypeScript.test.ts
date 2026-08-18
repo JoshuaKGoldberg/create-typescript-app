@@ -1,5 +1,5 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, it, onTestFinished, test, vi } from "vitest";
 
 import { blockTypeScript } from "./blockTypeScript.js";
 import { optionsBase } from "./options.fakes.js";
@@ -647,6 +647,38 @@ describe(blockTypeScript, () => {
 			  },
 			}
 		`);
+	});
+
+	it("produces a tsconfig.json when zod-tsconfig's schemas are created by Zod 4", async () => {
+		vi.doMock("zod-tsconfig", async () => {
+			const z4 = await import("zod/v4");
+
+			return {
+				CompilerOptionsSchema: z4.object({
+					module: z4.string().optional(),
+				}),
+			};
+		});
+		vi.resetModules();
+		onTestFinished(() => {
+			vi.doUnmock("zod-tsconfig");
+			vi.resetModules();
+		});
+		const { blockTypeScript: blockTypeScriptWithZod4 } =
+			await import("./blockTypeScript.js");
+
+		const creation = testBlock(blockTypeScriptWithZod4, {
+			addons: {
+				compilerOptions: {
+					module: "esnext",
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files).toEqual({
+			"tsconfig.json": expect.stringContaining(`"module":"esnext"`),
+		});
 	});
 
 	describe("intake", () => {

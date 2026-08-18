@@ -37,7 +37,7 @@ vi.mock("./utils/resolveBin.js", () => ({
 // TODO: Eventually the create engine will be able to infer them:
 //   https://github.com/JoshuaKGoldberg/bingo/issues/128
 //
-// For example, if you change blockTypeScript's target from "ES2022 to "ES2023",
+// For example, if you change blockTypeScript's target from "ES2023" to "ES2024",
 // you'll also need to update the ./tsconfig.json on disk in the same way.
 test("Producing the everything preset matches the files in this repository", async () => {
 	const actual = (await intake(".", {

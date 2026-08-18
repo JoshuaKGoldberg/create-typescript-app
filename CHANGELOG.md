@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.62.0](///compare/2.61.2...2.62.0) (2026-08-18)
+
+### Features
+
+- convert knip.json to knip.config.ts ([#2398](undefined/undefined/undefined/issues/2398)) a2bc4ce, closes #2393
+
 ## [2.61.2](///compare/2.61.1...2.61.2) (2026-08-18)
 
 ### Bug Fixes

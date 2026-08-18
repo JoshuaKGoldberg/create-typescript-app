@@ -51,6 +51,8 @@ describe("blockGitHubActionsCI", () => {
 			        "ci.yaml": undefined,
 			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
+			    permissions:
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions-ecosystem/action-remove-labels@v1
@@ -69,10 +71,6 @@ describe("blockGitHubActionsCI", () => {
 			  pull_request_target:
 			    types:
 			      - review_requested
-
-
-			permissions:
-			  pull-requests: write
 			",
 			      },
 			    },
@@ -127,6 +125,8 @@ describe("blockGitHubActionsCI", () => {
 			        "ci.yaml": undefined,
 			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
+			    permissions:
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions-ecosystem/action-remove-labels@v1
@@ -145,10 +145,6 @@ describe("blockGitHubActionsCI", () => {
 			  pull_request_target:
 			    types:
 			      - review_requested
-
-
-			permissions:
-			  pull-requests: write
 			",
 			      },
 			    },
@@ -197,6 +193,8 @@ describe("blockGitHubActionsCI", () => {
 			        "ci.yaml": undefined,
 			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
+			    permissions:
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions-ecosystem/action-remove-labels@v1
@@ -215,10 +213,6 @@ describe("blockGitHubActionsCI", () => {
 			  pull_request_target:
 			    types:
 			      - review_requested
-
-
-			permissions:
-			  pull-requests: write
 			",
 			      },
 			    },
@@ -277,6 +271,8 @@ describe("blockGitHubActionsCI", () => {
 			        "ci.yaml": undefined,
 			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
+			    permissions:
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions-ecosystem/action-remove-labels@v1
@@ -295,10 +291,6 @@ describe("blockGitHubActionsCI", () => {
 			  pull_request_target:
 			    types:
 			      - review_requested
-
-
-			permissions:
-			  pull-requests: write
 			",
 			      },
 			    },
@@ -387,6 +379,8 @@ describe("blockGitHubActionsCI", () => {
 			",
 			        "pr-review-requested.yaml": "jobs:
 			  pr_review_requested:
+			    permissions:
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions-ecosystem/action-remove-labels@v1
@@ -405,10 +399,6 @@ describe("blockGitHubActionsCI", () => {
 			  pull_request_target:
 			    types:
 			      - review_requested
-
-
-			permissions:
-			  pull-requests: write
 			",
 			      },
 			    },

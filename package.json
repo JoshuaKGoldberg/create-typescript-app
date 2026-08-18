@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "2.60.3",
+	"version": "2.62.0",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 	"repository": {
 		"type": "git",
@@ -25,11 +25,9 @@
 		"format": "prettier .",
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
-		"lint:packages": "pnpm dedupe --check",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky",
-		"test": "vitest",
-		"tsc": "tsc"
+		"test": "vitest"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write"

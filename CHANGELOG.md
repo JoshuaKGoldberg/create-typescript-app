@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.62.0](///compare/2.61.2...2.62.0) (2026-08-18)
+
+### Features
+
+- convert knip.json to knip.config.ts ([#2398](undefined/undefined/undefined/issues/2398)) a2bc4ce, closes #2393
+
+## [2.61.2](///compare/2.61.1...2.61.2) (2026-08-18)
+
+### Bug Fixes
+
+- remove redundant `dts` prop from tsdown config ([#2385](undefined/undefined/undefined/issues/2385)) 08d4c61, closes #000 #2384
+
+## [2.61.1](///compare/2.61.0...2.61.1) (2026-07-11)
+
+### Bug Fixes
+
+- remove redundant tsc script ([#2383](undefined/undefined/undefined/issues/2383)) 7e1d9d7, closes #2375
+
+## [2.61.0](///compare/2.60.3...2.61.0) (2026-06-20)
+
+### Features
+
+- update CI conventions ([#2380](undefined/undefined/undefined/issues/2380)) 9b9c669, closes #2379
+
 ## [2.60.3](///compare/2.60.2...2.60.3) (2026-06-18)
 
 ### Bug Fixes

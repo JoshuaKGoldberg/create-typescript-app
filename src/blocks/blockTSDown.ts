@@ -111,7 +111,6 @@ pnpm build --watch
 				"tsdown.config.ts": `import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-					dts: true,
 					entry: Array.from(new Set(["src/**/*.ts", ...entry])),
 					fixedExtension: false,
 					outDir: "lib",

@@ -89,13 +89,13 @@ Each `*.ts` source file within `src/` is built into `.d.ts` and `.js` output fil
 Building once:
 
 ```shell
-pnpm run build
+pnpm build
 ```
 
 Building in watch mode:
 
 ```shell
-pnpm run build --watch
+pnpm build --watch
 ```
 
 ### Formatting
@@ -112,7 +112,7 @@ Additional formatting can be provided by the following plugins:
 Auto-formatting all files:
 
 ```shell
-pnpm run format --write
+pnpm format --write
 ```
 
 ### Linting
@@ -123,13 +123,13 @@ Uses [**typescript-eslint**](https://typescript-eslint.io) to understand TypeScr
 Linting all files:
 
 ```shell
-pnpm run lint
+pnpm lint
 ```
 
 Linting all files, auto-fixing fixable rule reports:
 
 ```shell
-pnpm run lint --fix
+pnpm lint --fix
 ```
 
 ### Package Management
@@ -140,7 +140,7 @@ It caches packages in a computer-wide registry and symlinks installed packages w
 Installing packages:
 
 ```shell
-pnpm run install
+pnpm install
 ```
 
 ### Repository Templates
@@ -167,13 +167,13 @@ Configured with strict compiler options, including [`noImplicitAny`](https://aka
 Type checking once:
 
 ```shell
-pnpm run tsc
+pnpm tsc
 ```
 
 Type checking in watch mode:
 
 ```shell
-pnpm run tsc --watch
+pnpm tsc --watch
 ```
 
 ## "Common" Base Level
@@ -200,7 +200,7 @@ Contributions will be auto-detected when possible using [all-contributors-auto-a
 Running Knip:
 
 ```shell
-pnpm run lint:knip
+pnpm lint:knip
 ```
 
 ### OctoGuide
@@ -228,19 +228,19 @@ Additionally:
 Running tests in watch mode:
 
 ```shell
-pnpm run test
+pnpm test
 ```
 
 Running tests in watch mode and auto-updating [Vitest snapshots](https://vitest.dev/guide/snapshot.html):
 
 ```shell
-pnpm run test -u
+pnpm test -u
 ```
 
 Running tests once with coverage tracking:
 
 ```shell
-pnpm run test run --coverage
+pnpm test run --coverage
 ```
 
 ## "Everything" Base Level

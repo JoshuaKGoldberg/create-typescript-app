@@ -12,6 +12,7 @@ import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
+import { intakeFileExportObject } from "./intake/intakeFileExportObject.js";
 
 const zStringArray = z.array(z.string());
 
@@ -25,7 +26,9 @@ export const blockKnip = base.createBlock({
 		project: zStringArray.optional(),
 	},
 	intake({ files }) {
-		const knipJson = intakeFileAsJson(files, ["knip.json"]);
+		const knipJson =
+			intakeFileExportObject(files, ["knip.config.ts"]) ??
+			intakeFileAsJson(files, ["knip.json"]);
 		if (!knipJson) {
 			return undefined;
 		}
@@ -73,8 +76,9 @@ export const blockKnip = base.createBlock({
 				}),
 			],
 			files: {
-				"knip.json": JSON.stringify({
-					$schema: `https://unpkg.com/knip@${getPackageDependency("knip")}/schema.json`,
+				"knip.config.ts": `import type { KnipConfig } from "knip";
+
+export default ${JSON.stringify({
 					entry: entry?.sort(),
 					ignoreDependencies,
 					ignoreExportsUsedInFile: {
@@ -83,7 +87,7 @@ export const blockKnip = base.createBlock({
 					},
 					project: project?.sort(),
 					treatConfigHintsAsErrors: true,
-				}),
+				})} satisfies KnipConfig;`,
 			},
 		};
 	},
@@ -91,7 +95,7 @@ export const blockKnip = base.createBlock({
 		return {
 			addons: [
 				blockRemoveFiles({
-					files: [".knip*", "knip.{c,m,t}*", "knip.js", "knip.jsonc"],
+					files: [".knip*", "knip.{c,j,m}*", "knip.json*"],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["knip", "lint-knip"],

@@ -59,7 +59,7 @@ pnpm format --write
 				blockGitHubActionsCI({
 					jobs: [
 						{
-							name: "Prettier",
+							name: "Format Check",
 							steps: [
 								...runBefore.map((run) => ({ run })),
 								{ run: "pnpm format --list-different" },

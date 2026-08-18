@@ -1,6 +1,10 @@
 jobs:
   octoguide:
     if: ${{ !endsWith(github.actor, '[bot]') }}
+    permissions:
+      discussions: write
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: JoshuaKGoldberg/octoguide@2323755a369bb2daf760304df78385f144cb4ce0 # 0.21.0
@@ -38,8 +42,3 @@ on:
     types:
       - edited
       - opened
-
-permissions:
-  discussions: write
-  issues: write
-  pull-requests: write

@@ -18,155 +18,155 @@
 
 - update most deps to latest (August 18, 2026) ([#2399](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2399)) ([0c4d268](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0c4d26897aa62b4b738a61098739214e9e879c0f)), closes [#2397](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2397)
 
-## [2.62.0](///compare/2.61.2...2.62.0) (2026-08-18)
+## [2.62.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.61.2...2.62.0) (2026-08-18)
 
 ### Features
 
-- convert knip.json to knip.config.ts ([#2398](undefined/undefined/undefined/issues/2398)) a2bc4ce, closes #2393
+- convert knip.json to knip.config.ts ([#2398](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2398)) a2bc4ce, closes #2393
 
-## [2.61.2](///compare/2.61.1...2.61.2) (2026-08-18)
-
-### Bug Fixes
-
-- remove redundant `dts` prop from tsdown config ([#2385](undefined/undefined/undefined/issues/2385)) 08d4c61, closes #000 #2384
-
-## [2.61.1](///compare/2.61.0...2.61.1) (2026-07-11)
+## [2.61.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.61.1...2.61.2) (2026-08-18)
 
 ### Bug Fixes
 
-- remove redundant tsc script ([#2383](undefined/undefined/undefined/issues/2383)) 7e1d9d7, closes #2375
+- remove redundant `dts` prop from tsdown config ([#2385](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2385)) 08d4c61, closes #000 #2384
 
-## [2.61.0](///compare/2.60.3...2.61.0) (2026-06-20)
+## [2.61.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.61.0...2.61.1) (2026-07-11)
+
+### Bug Fixes
+
+- remove redundant tsc script ([#2383](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2383)) 7e1d9d7, closes #2375
+
+## [2.61.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.60.3...2.61.0) (2026-06-20)
 
 ### Features
 
-- update CI conventions ([#2380](undefined/undefined/undefined/issues/2380)) 9b9c669, closes #2379
+- update CI conventions ([#2380](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2380)) 9b9c669, closes #2379
 
-## [2.60.3](///compare/2.60.2...2.60.3) (2026-06-18)
-
-### Bug Fixes
-
-- update blocks to conform to latest eslint-plugin-package-json standards ([#2377](undefined/undefined/undefined/issues/2377)) 266a405, closes #2374
-
-## [2.60.2](///compare/2.60.1...2.60.2) (2026-05-04)
+## [2.60.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.60.2...2.60.3) (2026-06-18)
 
 ### Bug Fixes
 
-- bump bingo to ^0.9.3 ([#2373](undefined/undefined/undefined/issues/2373)) 7741ff4, closes #2369
+- update blocks to conform to latest eslint-plugin-package-json standards ([#2377](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2377)) 266a405, closes #2374
 
-## [2.60.1](///compare/2.60.0...2.60.1) (2026-02-17)
+## [2.60.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.60.1...2.60.2) (2026-05-04)
 
 ### Bug Fixes
 
-- generalize DEVELOPMENT.md lint files description ([#2367](undefined/undefined/undefined/issues/2367)) a350a93, closes #2366
+- bump bingo to ^0.9.3 ([#2373](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2373)) 7741ff4, closes #2369
 
-## [2.60.0](///compare/2.59.0...2.60.0) (2026-01-14)
+## [2.60.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.60.0...2.60.1) (2026-02-17)
+
+### Bug Fixes
+
+- generalize DEVELOPMENT.md lint files description ([#2367](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2367)) a350a93, closes #2366
+
+## [2.60.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.59.0...2.60.0) (2026-01-14)
 
 ### Features
 
-- switched ESLint config from JS to TS ([#2351](undefined/undefined/undefined/issues/2351)) 98fca73, closes #000
+- switched ESLint config from JS to TS ([#2351](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2351)) 98fca73, closes #000
 
-## [2.59.0](///compare/2.58.1...2.59.0) (2026-01-02)
+## [2.59.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.58.1...2.59.0) (2026-01-02)
 
 ### Features
 
-- add globalIgnores helper to eslint ([#2324](undefined/undefined/undefined/issues/2324)) 884be05, closes #2321
-- enable trusted publishing for release-it ([#2337](undefined/undefined/undefined/issues/2337)) 6f90b26, closes #2270
+- add globalIgnores helper to eslint ([#2324](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2324)) 884be05, closes #2321
+- enable trusted publishing for release-it ([#2337](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2337)) 6f90b26, closes #2270
 
 ### Bug Fixes
 
-- bump release-it-action to 0.4.0 ([#2339](undefined/undefined/undefined/issues/2339)) 5febaab, closes #2270
-- don't mention `main` in bug or tooling issue templates ([#2326](undefined/undefined/undefined/issues/2326)) 326d9c5, closes #2325
+- bump release-it-action to 0.4.0 ([#2339](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2339)) 5febaab, closes #2270
+- don't mention `main` in bug or tooling issue templates ([#2326](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2326)) 326d9c5, closes #2325
 
-## [2.58.1](///compare/2.58.0...2.58.1) (2025-12-09)
+## [2.58.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.58.0...2.58.1) (2025-12-09)
 
 ### Bug Fixes
 
 - bingo@0.9.2 f3eff84
 
-## [2.58.0](///compare/2.57.2...2.58.0) (2025-12-08)
+## [2.58.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.57.2...2.58.0) (2025-12-08)
 
 ### Features
 
-- brought in Bingo's 0.9 `--remote` flag ([#2315](undefined/undefined/undefined/issues/2315)) f6ba94a, closes #2314
+- brought in Bingo's 0.9 `--remote` flag ([#2315](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2315)) f6ba94a, closes #2314
 
-## [2.57.2](///compare/2.57.1...2.57.2) (2025-12-08)
-
-### Bug Fixes
-
-- upgrade trash from 10.0.0 to 10.0.1 ([#2313](undefined/undefined/undefined/issues/2313)) fcdd75e, closes #2304
-
-## [2.57.1](///compare/2.57.0...2.57.1) (2025-12-08)
+## [2.57.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.57.1...2.57.2) (2025-12-08)
 
 ### Bug Fixes
 
-- prefer gh user over package.json author for owner option ([#2312](undefined/undefined/undefined/issues/2312)) a53f3bf, closes #2311
+- upgrade trash from 10.0.0 to 10.0.1 ([#2313](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2313)) fcdd75e, closes #2304
 
-## [2.57.0](///compare/2.56.3...2.57.0) (2025-12-05)
+## [2.57.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.57.0...2.57.1) (2025-12-08)
+
+### Bug Fixes
+
+- prefer gh user over package.json author for owner option ([#2312](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2312)) a53f3bf, closes #2311
+
+## [2.57.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.56.3...2.57.0) (2025-12-05)
 
 ### Features
 
-- switch YAML extension preference from .yml to .yaml ([#2310](undefined/undefined/undefined/issues/2310)) 6ea8011, closes #2309
+- switch YAML extension preference from .yml to .yaml ([#2310](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2310)) 6ea8011, closes #2309
 
-## [2.56.3](///compare/2.56.2...2.56.3) (2025-12-04)
+## [2.56.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.56.2...2.56.3) (2025-12-04)
 
 ### Bug Fixes
 
 - bingo@0.8.2 7ccbaef
 
-## [2.56.2](///compare/2.56.1...2.56.2) (2025-12-04)
+## [2.56.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.56.1...2.56.2) (2025-12-04)
 
 ### Bug Fixes
 
-- issues with Vitest 4 ([#2307](undefined/undefined/undefined/issues/2307)) f693847, closes #2305
+- issues with Vitest 4 ([#2307](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2307)) f693847, closes #2305
 
-## [2.56.1](///compare/2.56.0...2.56.1) (2025-12-03)
-
-### Bug Fixes
-
-- correct main-branch phrasing in issue templates ([#2301](undefined/undefined/undefined/issues/2301)) 341c2d0, closes #2217
-
-## [2.56.0](///compare/2.55.0...2.56.0) (2025-12-03)
-
-### Features
-
-- enable Knip's treatConfigHintsAsErrors ([#2300](undefined/undefined/undefined/issues/2300)) 3934596, closes #2213
-
-## [2.55.0](///compare/2.54.0...2.55.0) (2025-12-03)
-
-### Features
-
-- remove ts-prune config files in blockKnip ([#2299](undefined/undefined/undefined/issues/2299)) 0bfe033, closes #2126
-
-## [2.54.0](///compare/2.53.0...2.54.0) (2025-12-03)
-
-### Features
-
-- remove Markdownlint ([#2298](undefined/undefined/undefined/issues/2298)) 1dd9763, closes #1926
-
-## [2.53.0](///compare/2.52.1...2.53.0) (2025-12-03)
-
-### Features
-
-- switch from deprecated `eslint-plugin-markdown` to `@eslint/markdown` ([#2297](undefined/undefined/undefined/issues/2297)) eef0d97, closes #2273 #1926
-
-## [2.52.1](///compare/2.52.0...2.52.1) (2025-12-02)
+## [2.56.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.56.0...2.56.1) (2025-12-03)
 
 ### Bug Fixes
 
-- bump eslint-plugin-package-json to 0.85.0 ([#2294](undefined/undefined/undefined/issues/2294)) 93d5171, closes #2271 #2288
+- correct main-branch phrasing in issue templates ([#2301](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2301)) 341c2d0, closes #2217
 
-## [2.52.0](///compare/2.51.0...2.52.0) (2025-12-02)
-
-### Features
-
-- move all ESLint configuration into files-based blocks ([#2291](undefined/undefined/undefined/issues/2291)) 9e97d56, closes #2275
-
-## [2.51.0](///compare/2.50.0...2.51.0) (2025-12-02)
+## [2.56.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.55.0...2.56.0) (2025-12-03)
 
 ### Features
 
-- bumped most packages to latest as of Dec 2nd, 2025 ([#2288](undefined/undefined/undefined/issues/2288)) 0074af5, closes #2287 #2275
+- enable Knip's treatConfigHintsAsErrors ([#2300](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2300)) 3934596, closes #2213
+
+## [2.55.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.54.0...2.55.0) (2025-12-03)
+
+### Features
+
+- remove ts-prune config files in blockKnip ([#2299](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2299)) 0bfe033, closes #2126
+
+## [2.54.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.53.0...2.54.0) (2025-12-03)
+
+### Features
+
+- remove Markdownlint ([#2298](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2298)) 1dd9763, closes #1926
+
+## [2.53.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.52.1...2.53.0) (2025-12-03)
+
+### Features
+
+- switch from deprecated `eslint-plugin-markdown` to `@eslint/markdown` ([#2297](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2297)) eef0d97, closes #2273 #1926
+
+## [2.52.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.52.0...2.52.1) (2025-12-02)
+
+### Bug Fixes
+
+- bump eslint-plugin-package-json to 0.85.0 ([#2294](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2294)) 93d5171, closes #2271 #2288
+
+## [2.52.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.51.0...2.52.0) (2025-12-02)
+
+### Features
+
+- move all ESLint configuration into files-based blocks ([#2291](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2291)) 9e97d56, closes #2275
+
+## [2.51.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.50.0...2.51.0) (2025-12-02)
+
+### Features
+
+- bumped most packages to latest as of Dec 2nd, 2025 ([#2288](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2288)) 0074af5, closes #2287 #2275
 
 ## [2.50.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.49.0...2.50.0) (2025-12-02)
 

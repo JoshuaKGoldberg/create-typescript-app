@@ -4,6 +4,7 @@ import { blockESLintComments } from "../blocks/blockESLintComments.js";
 import { blockESLintJSDoc } from "../blocks/blockESLintJSDoc.js";
 import { blockESLintJSONC } from "../blocks/blockESLintJSONC.js";
 import { blockESLintMarkdown } from "../blocks/blockESLintMarkdown.js";
+import { blockESLintMarkdownLinks } from "../blocks/blockESLintMarkdownLinks.js";
 import { blockESLintMoreStyling } from "../blocks/blockESLintMoreStyling.js";
 import { blockESLintNode } from "../blocks/blockESLintNode.js";
 import { blockESLintPackageJson } from "../blocks/blockESLintPackageJson.js";
@@ -35,6 +36,7 @@ export const presetEverything = base.createPreset({
 		blockESLintJSDoc,
 		blockESLintJSONC,
 		blockESLintMarkdown,
+		blockESLintMarkdownLinks,
 		blockESLintMoreStyling,
 		blockESLintNode,
 		blockESLintPackageJson,

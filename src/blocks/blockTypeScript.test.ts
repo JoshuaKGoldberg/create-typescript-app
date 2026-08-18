@@ -138,7 +138,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -297,7 +297,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -465,7 +465,7 @@ describe("blockTypeScript", () => {
 			          },
 			        ],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -620,7 +620,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {

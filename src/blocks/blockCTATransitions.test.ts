@@ -4,6 +4,7 @@ import { describe, expect, test } from "vitest";
 import { packageData } from "../data/packageData.js";
 import { blockCTATransitions } from "./blockCTATransitions.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { optionsBase } from "./options.fakes.js";
 
@@ -117,5 +118,21 @@ describe("blockCTATransitions", () => {
 			  },
 			}
 		`);
+	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockCTATransitions, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.addons).toContainEqual(
+			blockRemoveFiles({
+				files: [
+					".github/actions/transition/action.yml",
+					".github/workflows/cta.yml",
+				],
+			}),
+		);
 	});
 });

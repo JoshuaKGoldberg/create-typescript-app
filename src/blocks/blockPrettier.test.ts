@@ -102,7 +102,10 @@ describe("blockPrettier", () => {
 			/lib
 			/pnpm-lock.yaml
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","useTabs":true}",
+			    "prettier.config.ts": "import type { Config } from "prettier";
+
+			export default {"useTabs":true} satisfies Config;
+			",
 			  },
 			  "scripts": [
 			    {
@@ -242,7 +245,10 @@ describe("blockPrettier", () => {
 			/lib
 			/pnpm-lock.yaml
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","useTabs":true}",
+			    "prettier.config.ts": "import type { Config } from "prettier";
+
+			export default {"useTabs":true} satisfies Config;
+			",
 			  },
 			  "scripts": [
 			    {
@@ -371,7 +377,10 @@ describe("blockPrettier", () => {
 			/pnpm-lock.yaml
 			generated
 			",
-			    ".prettierrc.json": "{"$schema":"http://json.schemastore.org/prettierrc","overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true}",
+			    "prettier.config.ts": "import type { Config } from "prettier";
+
+			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true} satisfies Config;
+			",
 			  },
 			  "scripts": [
 			    {

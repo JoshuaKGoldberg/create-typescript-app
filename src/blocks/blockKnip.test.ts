@@ -8,7 +8,7 @@ vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockKnip", () => {
+describe(blockKnip, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockKnip, {
 			options: optionsBase,
@@ -69,7 +69,9 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.71.0/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true}",
+			    "knip.config.ts": "import type { KnipConfig } from "knip";
+
+			export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
 			  },
 			}
 		`);
@@ -140,7 +142,9 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.71.0/schema.json","entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"],"treatConfigHintsAsErrors":true}",
+			    "knip.config.ts": "import type { KnipConfig } from "knip";
+
+			export default {"entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"],"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
 			  },
 			}
 		`);
@@ -216,14 +220,16 @@ describe("blockKnip", () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.json": "{"$schema":"https://unpkg.com/knip@5.71.0/schema.json","ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true}",
+			    "knip.config.ts": "import type { KnipConfig } from "knip";
+
+			export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
 			  },
 			}
 		`);
 	});
 
 	describe("intake", () => {
-		it("returns undefined when knip.json does not exist", () => {
+		it("returns undefined when knip.config.ts and knip.json do not exist", () => {
 			const actual = testIntake(blockKnip, {
 				files: {},
 			});
@@ -231,7 +237,31 @@ describe("blockKnip", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when knip.json does not contain ignoreDependencies", () => {
+		it("returns undefined when knip.config.ts exists and does not contain ignoreDependencies", () => {
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.config.ts": [`export default { other: true };`],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns ignoreDependencies when knip.config.ts exists and contains ignoreDependencies", () => {
+			const ignoreDependencies = ["a", "b", "c"];
+
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.config.ts": [
+						`export default { ignoreDependencies: ${JSON.stringify(ignoreDependencies)} };`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({ ignoreDependencies });
+		});
+
+		it("returns undefined when knip.json exists and does not contain ignoreDependencies", () => {
 			const actual = testIntake(blockKnip, {
 				files: {
 					"knip.json": [JSON.stringify({ other: true })],
@@ -241,7 +271,7 @@ describe("blockKnip", () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns ignoreDependencies when knip.json contains ignoreDependencies", () => {
+		it("returns ignoreDependencies when knip.json exists and contains ignoreDependencies", () => {
 			const ignoreDependencies = ["a", "b", "c"];
 
 			const actual = testIntake(blockKnip, {

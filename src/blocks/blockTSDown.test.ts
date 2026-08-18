@@ -4,7 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockTSDown } from "./blockTSDown.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockTSDown", () => {
+describe(blockTSDown, () => {
 	test("without addons or options", () => {
 		const creation = testBlock(blockTSDown, {
 			options: optionsBase,

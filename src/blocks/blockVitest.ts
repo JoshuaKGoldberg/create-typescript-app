@@ -119,6 +119,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 								{
 									entries: {
 										"@typescript-eslint/no-unsafe-assignment": "off",
+										"vitest/prefer-describe-function-title": "error",
 									},
 								},
 							],

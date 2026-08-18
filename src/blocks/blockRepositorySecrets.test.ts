@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockRepositorySecrets", () => {
+describe(blockRepositorySecrets, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockRepositorySecrets, {
 			options: optionsBase,

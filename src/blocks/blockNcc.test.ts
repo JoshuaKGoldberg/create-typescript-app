@@ -4,7 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockNcc } from "./blockNcc.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockNcc", () => {
+describe(blockNcc, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockNcc, {
 			options: optionsBase,

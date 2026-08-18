@@ -4,7 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockRenovate } from "./blockRenovate.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockRenovate", () => {
+describe(blockRenovate, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockRenovate, {
 			options: optionsBase,

@@ -78,6 +78,7 @@ export const blockGitHubActionsCI = base.createBlock({
 				],
 			},
 		];
+		jobsWithEnginesCheck?.sort((a, b) => a.name.localeCompare(b.name));
 
 		return {
 			addons: [
@@ -126,9 +127,7 @@ export const blockGitHubActionsCI = base.createBlock({
 						"ci.yaml":
 							jobsWithEnginesCheck &&
 							createMultiWorkflowFile({
-								jobs: jobsWithEnginesCheck.sort((a, b) =>
-									a.name.localeCompare(b.name),
-								),
+								jobs: jobsWithEnginesCheck,
 								name: "CI",
 								workflowsVersions: options.workflowsVersions,
 							}),

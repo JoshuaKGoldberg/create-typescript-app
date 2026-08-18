@@ -325,8 +325,8 @@ describe(blockGitHubActionsCI, () => {
 			    {
 			      "addons": {
 			        "requiredStatusChecks": [
-			          "Validate",
 			          "Engines Check",
+			          "Validate",
 			        ],
 			      },
 			      "block": [Function],

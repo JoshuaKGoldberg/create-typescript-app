@@ -325,6 +325,7 @@ describe(blockGitHubActionsCI, () => {
 			    {
 			      "addons": {
 			        "requiredStatusChecks": [
+			          "Engines Check",
 			          "Validate",
 			        ],
 			      },
@@ -354,6 +355,17 @@ describe(blockGitHubActionsCI, () => {
 			      },
 			      "workflows": {
 			        "ci.yaml": "jobs:
+			  engines_check:
+			    name: Engines Check
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - uses: actions/setup-node@v4
+			        with:
+			          cache: pnpm
+			          node-version: 20.12.0
+			      - run: pnpm install --prod --engine-strict --ignore-scripts
 			  validate:
 			    name: Validate
 			    runs-on: ubuntu-latest

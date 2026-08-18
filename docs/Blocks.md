@@ -44,6 +44,7 @@ This table summarizes each block and which base levels they're included in:
 | Prettier                           | `--add-prettier`, `--exclude-prettier`                                                     | ✔️      | ✅     | 💯         |
 | Prettier Plugin Curly              | `--add-prettier-plugin-curly`, `--exclude-prettier-plugin-curly`                           |         |        | 💯         |
 | Prettier Plugin Package JSON       | `--add-prettier-plugin-package-json`, `--exclude-prettier-plugin-package-json`             |         |        | 💯         |
+| Prettier Plugin Padding Lines      | `--add-prettier-plugin-padding-lines`, `--exclude-prettier-plugin-padding-lines`           |         |        | 💯         |
 | Prettier Plugin Sentences Per Line | `--add-prettier-plugin-sentences-per-line`, `--exclude-prettier-plugin-sentences-per-line` |         |        | 💯         |
 | Prettier Plugin Sh                 | `--add-prettier-plugin-sh`, `--exclude-prettier-plugin-sh`                                 |         |        | 💯         |
 | README.md                          | `--add-readme-md`, `--exclude-readme-md`                                                   | ✔️      | ✅     | 💯         |
@@ -106,6 +107,7 @@ It's run on file save per [VS Code](https://code.visualstudio.com/docs/getstarte
 Additional formatting can be provided by the following plugins:
 
 - [prettier-plugin-curly](https://github.com/JoshuaKGoldberg/prettier-plugin-curly)
+- [prettier-plugin-padding-lines](https://github.com/JoshuaKGoldberg/prettier-plugin-padding-lines)
 - [prettier-plugin-sentences-per-line](https://github.com/JoshuaKGoldberg/sentences-per-line/tree/main/packages/prettier-plugin-sentences-per-line)
 - [prettier-plugin-sh](https://github.com/un-ts/prettier/tree/master/packages/sh)
 - [prettier-plugin-packagejson](https://github.com/matzkoh/prettier-plugin-packagejson)

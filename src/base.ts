@@ -38,7 +38,12 @@ import { readRulesetId } from "./options/readRulesetId.js";
 import { readTitle } from "./options/readTitle.js";
 import { readWords } from "./options/readWords.js";
 import { readWorkflowsVersions } from "./options/readWorkflowsVersions.js";
-import { zContributor, zDocumentation, zWorkflowsVersions } from "./schemas.js";
+import {
+	zContributor,
+	zDocumentation,
+	zEmails,
+	zWorkflowsVersions,
+} from "./schemas.js";
 
 export const base = createBase({
 	options: {
@@ -66,18 +71,7 @@ export const base = createBase({
 			"additional docs to add to .md files",
 		),
 		email: z
-			.union([
-				z.string(),
-				z.object({
-					github: z.string(),
-					npm: z.string(),
-				}),
-			])
-			// TODO: Test this? Is it still working?
-			// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1991
-			.transform((email) =>
-				typeof email === "string" ? { github: email, npm: email } : email,
-			)
+			.union([z.string(), zEmails])
 			.describe(
 				"email address to be listed as the point of contact in docs and packages",
 			),

@@ -6,6 +6,14 @@ import { base } from "./base.js";
 import { AllContributorsData } from "./types.js";
 
 describe("base", () => {
+	// Bingo's CLI can only map an option to a --flag it knows the type of.
+	// A z.transform() hides the string, so --email would be parsed as a boolean.
+	test("email option schema accepts a plain string", () => {
+		const result = base.options.email.safeParse("test@example.com");
+
+		expect(result).toEqual({ data: "test@example.com", success: true });
+	});
+
 	test("production from create-typescript-app", async () => {
 		const options = await prepareOptions(base);
 

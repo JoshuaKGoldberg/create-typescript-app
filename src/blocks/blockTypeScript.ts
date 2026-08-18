@@ -151,7 +151,7 @@ greet("Hello, world! ${options.emoji}");
 						resolveJsonModule: true,
 						skipLibCheck: true,
 						strict: true,
-						target: "ES2022",
+						target: "ES2023",
 						...compilerOptions,
 					}),
 					include: ["src"],

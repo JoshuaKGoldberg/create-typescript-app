@@ -143,10 +143,9 @@ greet("Hello, world! ${options.emoji}");
 				"tsconfig.json": JSON.stringify({
 					compilerOptions: sortKeys({
 						declaration: true,
-						declarationMap: true,
 						esModuleInterop: true,
-						module: "NodeNext",
-						moduleResolution: "NodeNext",
+						module: "nodenext",
+						moduleResolution: "nodenext",
 						noEmit: true,
 						resolveJsonModule: true,
 						skipLibCheck: true,

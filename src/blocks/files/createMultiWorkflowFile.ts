@@ -17,7 +17,7 @@ export interface MultiWorkflowJobOptions {
 }
 
 export type MultiWorkflowJobStep = { if?: string } & (
-	{ run: string } | { uses: string }
+	{ run: string } | { uses: string; with?: Record<string, string> }
 );
 
 export function createMultiWorkflowFile({

@@ -55,11 +55,33 @@ export const blockGitHubActionsCI = base.createBlock({
 	produce({ addons, options }) {
 		const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
 			addons;
+		const minimumNodeVersion =
+			/[\d.]+/u.exec(options.node.minimum)?.[0] ?? options.node.minimum;
+		const jobsWithEnginesCheck = jobs && [
+			...jobs,
+			{
+				name: "Engines Check",
+				steps: [
+					{
+						uses: resolveUses(
+							"actions/setup-node",
+							"v4",
+							options.workflowsVersions,
+						),
+						with: {
+							cache: "pnpm",
+							"node-version": minimumNodeVersion,
+						},
+					},
+					{ run: "pnpm install --prod --engine-strict --ignore-scripts" },
+				],
+			},
+		];
 
 		return {
 			addons: [
 				blockRepositoryBranchRuleset({
-					requiredStatusChecks: jobs?.map((job) => job.name),
+					requiredStatusChecks: jobsWithEnginesCheck?.map((job) => job.name),
 				}),
 			],
 			files: {
@@ -101,9 +123,11 @@ export const blockGitHubActionsCI = base.createBlock({
 					},
 					workflows: {
 						"ci.yaml":
-							jobs &&
+							jobsWithEnginesCheck &&
 							createMultiWorkflowFile({
-								jobs: jobs.sort((a, b) => a.name.localeCompare(b.name)),
+								jobs: jobsWithEnginesCheck.sort((a, b) =>
+									a.name.localeCompare(b.name),
+								),
 								name: "CI",
 								workflowsVersions: options.workflowsVersions,
 							}),

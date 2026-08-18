@@ -51,8 +51,8 @@ importers:
         specifier: ^0.5.5
         version: 0.5.5(bingo@0.9.3)
       js-yaml:
-        specifier: ^4.1.1
-        version: 4.3.1
+        specifier: ^5.0.0
+        version: 5.3.0
       json5:
         specifier: ^2.2.3
         version: 2.2.3
@@ -2858,8 +2858,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@4.3.1:
-    resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
+  js-yaml@5.3.0:
+    resolution: {integrity: sha512-muutsYr+e2+d3rTgUGslq5rxbBlUy3cJ61IsHag2QNDQV+7zXWjkUpmALIajhrlLlrgRUiymj6U3zUr/TMK84Q==}
     hasBin: true
 
   jsdoc-type-pratt-parser@9.1.2:
@@ -6943,7 +6943,7 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@4.3.1:
+  js-yaml@5.3.0:
     dependencies:
       argparse: 2.0.1
 

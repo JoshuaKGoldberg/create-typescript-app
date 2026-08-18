@@ -8,7 +8,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        uses: JoshuaKGoldberg/all-contributors-auto-action@944abe4387e751b5bbb38616cb25cf4a4ca998f2 # v0.5.0
+        uses: JoshuaKGoldberg/all-contributors-auto-action@c7fc6295746c5946841efee0aaf37796a60bef71 # v0.6.1
 
 name: Contributors
 

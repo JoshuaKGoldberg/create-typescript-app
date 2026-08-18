@@ -9,7 +9,6 @@ import {
 	base,
 	BaseOptions,
 	blockAreTheTypesWrong,
-	blockCodecov,
 	blockCSpell,
 	blockESLint,
 	blockExports,
@@ -45,14 +44,12 @@ test("Producing the everything preset matches the files in this repository", asy
 	})) as IntakeDirectory;
 
 	const created = producePreset(presets.everything, {
-		options: (await prepareOptions(base)) as BaseOptions,
+		options: {
+			...((await prepareOptions(base)) as BaseOptions),
+			codecovToken: true,
+		},
 		refinements: {
 			addons: [
-				blockCodecov({
-					env: {
-						CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
-					},
-				}),
 				blockCSpell({
 					words: [
 						"Anson",

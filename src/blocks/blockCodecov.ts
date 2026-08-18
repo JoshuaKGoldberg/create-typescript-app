@@ -39,7 +39,10 @@ export const blockCodecov = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { env } = addons;
+		const env = options.codecovToken
+			? { CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}", ...addons.env }
+			: addons.env;
+
 		return {
 			addons: [
 				blockGitHubApps({

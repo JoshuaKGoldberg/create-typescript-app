@@ -53,6 +53,12 @@ export const base = createBase({
 			.union([z.string(), z.record(z.string())])
 			.optional()
 			.describe('value to set in `package.json`\'s `"bin"` property'),
+		codecovToken: z
+			.boolean()
+			.optional()
+			.describe(
+				"whether to send a `CODECOV_TOKEN` repository secret to Codecov in CI",
+			),
 		contributors: z
 			.array(zContributor)
 			.optional()

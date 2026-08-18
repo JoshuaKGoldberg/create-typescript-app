@@ -68,7 +68,7 @@ export const blockGitHubActionsCI = base.createBlock({
 						prepare: {
 							"action.yaml": formatYaml({
 								description: "Prepares the repo for a typical CI job",
-								name: "Prepare",
+								name: "Setup",
 								runs: {
 									steps: [
 										{

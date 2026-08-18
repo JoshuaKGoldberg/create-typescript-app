@@ -5,7 +5,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockGitHubActionsCI", () => {
+describe(blockGitHubActionsCI, () => {
 	test("without options.node.pinned", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			options: {

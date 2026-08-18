@@ -4,7 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockTypeScript } from "./blockTypeScript.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockTypeScript", () => {
+describe(blockTypeScript, () => {
 	test("without addons or options", () => {
 		const creation = testBlock(blockTypeScript, {
 			options: optionsBase,
@@ -138,7 +138,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -297,7 +297,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -465,7 +465,7 @@ describe("blockTypeScript", () => {
 			          },
 			        ],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {
@@ -620,7 +620,7 @@ describe("blockTypeScript", () => {
 			      "addons": {
 			        "debuggers": [],
 			        "settings": {
-			          "typescript.tsdk": "node_modules/typescript/lib",
+			          "js/ts.tsdk.path": "node_modules/typescript/lib",
 			        },
 			        "tasks": [
 			          {

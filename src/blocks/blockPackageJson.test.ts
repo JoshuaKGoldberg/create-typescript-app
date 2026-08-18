@@ -10,7 +10,7 @@ const options = {
 	description: `A very very very very very very very very very very very very very very very very long <em><code>HTML-ish</code> description</em> ending with an emoji. 🧵`,
 };
 
-describe("blockPackageJson", () => {
+describe(blockPackageJson, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockPackageJson, { options });
 

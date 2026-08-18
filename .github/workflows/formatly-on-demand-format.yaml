@@ -1,0 +1,18 @@
+jobs:
+  format:
+    permissions:
+      issues: write
+      pull-requests: read
+    secrets:
+      push-token: ${{ secrets.FORMATLY_ON_DEMAND_TOKEN }}
+    uses: JoshuaKGoldberg/formatly-on-demand/.github/workflows/format.yaml@v0
+    with:
+      install: corepack enable && pnpm install --frozen-lockfile
+      node-version: 24.19.0
+
+name: Formatly on Demand Format
+
+on:
+  issue_comment:
+    types:
+      - created

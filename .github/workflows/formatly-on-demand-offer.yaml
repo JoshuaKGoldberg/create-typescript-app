@@ -1,0 +1,16 @@
+jobs:
+  offer:
+    permissions:
+      actions: read
+      issues: write
+      pull-requests: read
+    uses: JoshuaKGoldberg/formatly-on-demand/.github/workflows/offer.yaml@v0
+
+name: Formatly on Demand Offer
+
+on:
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - Formatly on Demand Detect

@@ -28,6 +28,7 @@ This table summarizes each block and which base levels they're included in:
 | ESLint Regexp Plugin               | `--add-eslint-regexp-plugin`, `--exclude-eslint-regexp-plugin`                             |         |        | 💯         |
 | ESLint YML Plugin                  | `--add-eslint-yml-plugin`, `--exclude-eslint-yml-plugin`                                   |         |        | 💯         |
 | Exports                            | `--add-exports`, `--exclude-exports`                                                       | ✔️      | ✅     | 💯         |
+| Formatly on Demand                 | `--add-formatly-on-demand`, `--exclude-formatly-on-demand`                                 |         |        | 💯         |
 | Funding                            | `--add-funding`, `--exclude-funding`                                                       |         | ✅     | 💯         |
 | GitHub Actions CI                  | `--add-github-actions-ci`, `--exclude-github-actions-ci`                                   | ✔️      | ✅     | 💯         |
 | GitHub Issue Templates             | `--add-github-issue-templates`, `--exclude-github-issue-templates`                         | ✔️      | ✅     | 💯         |
@@ -265,6 +266,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Renovate](#renovate)
     - [Testing](#testing)
   - ["Everything" Base Level](#everything-base-level)
+    - [Formatly on Demand](#formatly-on-demand)
     - [Lint ESLint](#lint-eslint)
     - [Lint JSDoc](#lint-jsdoc)
     - [Lint JSON](#lint-json)
@@ -277,6 +279,12 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint Stylistic](#lint-stylistic)
     - [Lint YML](#lint-yml)
     - [OctoGuide Strict](#octoguide-strict)
+
+### Formatly on Demand
+
+[**formatly-on-demand**](https://github.com/JoshuaKGoldberg/formatly-on-demand): Comments on pull requests whose files aren't formatted, offering to format them.
+It only formats and pushes if the pull request's author or a maintainer asks it to by commenting `/formatly`.
+Pushing to pull requests from forks needs a repository secret containing a GitHub PAT.
 
 ### Lint ESLint
 

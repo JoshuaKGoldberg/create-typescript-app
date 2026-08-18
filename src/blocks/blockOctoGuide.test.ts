@@ -5,7 +5,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockOctoGuide } from "./blockOctoGuide.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockOctoGuide", () => {
+describe(blockOctoGuide, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockOctoGuide, {
 			options: optionsBase,

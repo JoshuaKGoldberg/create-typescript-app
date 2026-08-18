@@ -5,7 +5,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockCodecov } from "./blockCodecov.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockCodecov", () => {
+describe(blockCodecov, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockCodecov, {
 			options: optionsBase,

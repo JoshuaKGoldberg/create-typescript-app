@@ -55,8 +55,9 @@ export const blockGitHubActionsCI = base.createBlock({
 	produce({ addons, options }) {
 		const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
 			addons;
-		const minimumNodeVersion =
-			/[\d.]+/u.exec(options.node.minimum)?.[0] ?? options.node.minimum;
+		const minimumNodeVersion = options.node.minimum
+				.replace(/^\D*/u, "")
+				.split(/[^\d.]/u)[0];
 		const jobsWithEnginesCheck = jobs && [
 			...jobs,
 			{

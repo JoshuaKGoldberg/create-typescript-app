@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.63.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.63.1...2.63.2) (2026-08-18)
+
+### Bug Fixes
+
+- bump tsc target to ES2023 ([#2403](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2403)) ([962d530](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/962d5300876b18cee1fea51ae545dfbfbcfce717)), closes [#2386](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2386)
+
 ## [2.63.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.63.0...2.63.1) (2026-08-18)
 
 ### Bug Fixes

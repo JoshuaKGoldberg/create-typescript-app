@@ -40,6 +40,10 @@ describe("blockRepositorySettings", () => {
 			      "type": "octokit",
 			    },
 			  ],
+			  "suggestions": [
+			    "- enable "Limit how many branches and tags can be updated in a single push" with a maximum of 5 on:
+			   https://github.com/test-owner/test-repository/settings",
+			  ],
 			}
 		`);
 	});
@@ -81,6 +85,10 @@ describe("blockRepositorySettings", () => {
 			      },
 			      "type": "octokit",
 			    },
+			  ],
+			  "suggestions": [
+			    "- enable "Limit how many branches and tags can be updated in a single push" with a maximum of 5 on:
+			   https://github.com/test-owner/test-repository/settings",
 			  ],
 			}
 		`);

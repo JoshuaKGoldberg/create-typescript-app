@@ -90,6 +90,7 @@
 		"eslint": "10.8.1",
 		"eslint-plugin-jsdoc": "64.2.1",
 		"eslint-plugin-jsonc": "3.4.1",
+		"eslint-plugin-markdown-links": "0.9.1",
 		"eslint-plugin-n": "18.3.0",
 		"eslint-plugin-package-json": "1.7.1",
 		"eslint-plugin-perfectionist": "5.10.1",
@@ -101,6 +102,7 @@
 		"prettier": "3.9.6",
 		"prettier-plugin-curly": "0.4.1",
 		"prettier-plugin-packagejson": "3.0.2",
+		"prettier-plugin-padding-lines": "0.1.0",
 		"prettier-plugin-sentences-per-line": "0.2.4",
 		"prettier-plugin-sh": "0.19.0",
 		"release-it": "21.0.2",
@@ -109,8 +111,8 @@
 		"typescript-eslint": "8.67.0",
 		"vitest": "4.1.10"
 	},
-	"packageManager": "pnpm@11.22.0",
+	"packageManager": "pnpm@11.24.0",
 	"engines": {
-		"node": ">=20.19.0"
+		"node": "^22.13.0 || ^24.11.0 || >=26.0.0"
 	}
 }

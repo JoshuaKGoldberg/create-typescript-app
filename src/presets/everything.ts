@@ -4,6 +4,7 @@ import { blockESLintComments } from "../blocks/blockESLintComments.js";
 import { blockESLintJSDoc } from "../blocks/blockESLintJSDoc.js";
 import { blockESLintJSONC } from "../blocks/blockESLintJSONC.js";
 import { blockESLintMarkdown } from "../blocks/blockESLintMarkdown.js";
+import { blockESLintMarkdownLinks } from "../blocks/blockESLintMarkdownLinks.js";
 import { blockESLintMoreStyling } from "../blocks/blockESLintMoreStyling.js";
 import { blockESLintNode } from "../blocks/blockESLintNode.js";
 import { blockESLintPackageJson } from "../blocks/blockESLintPackageJson.js";
@@ -16,6 +17,7 @@ import { blockOctoGuideStrict } from "../blocks/blockOctoGuideStrict.js";
 import { blockPnpmDedupe } from "../blocks/blockPnpmDedupe.js";
 import { blockPrettierPluginCurly } from "../blocks/blockPrettierPluginCurly.js";
 import { blockPrettierPluginPackageJson } from "../blocks/blockPrettierPluginPackageJson.js";
+import { blockPrettierPluginPaddingLines } from "../blocks/blockPrettierPluginPaddingLines.js";
 import { blockPrettierPluginSentencesPerLine } from "../blocks/blockPrettierPluginSentencesPerLine.js";
 import { blockPrettierPluginSh } from "../blocks/blockPrettierPluginSh.js";
 import { blockRenovate } from "../blocks/blockRenovate.js";
@@ -35,6 +37,7 @@ export const presetEverything = base.createPreset({
 		blockESLintJSDoc,
 		blockESLintJSONC,
 		blockESLintMarkdown,
+		blockESLintMarkdownLinks,
 		blockESLintMoreStyling,
 		blockESLintNode,
 		blockESLintPackageJson,
@@ -47,6 +50,7 @@ export const presetEverything = base.createPreset({
 		blockOctoGuideStrict,
 		blockPrettierPluginCurly,
 		blockPrettierPluginPackageJson,
+		blockPrettierPluginPaddingLines,
 		blockPrettierPluginSentencesPerLine,
 		blockPrettierPluginSh,
 		blockRenovate,

@@ -2,6 +2,7 @@ import { base } from "../base.js";
 import { packageData } from "../data/packageData.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPackageJson } from "./blockPackageJson.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { formatYaml } from "./files/formatYaml.js";
@@ -161,6 +162,18 @@ export const blockCTATransitions = base.createBlock({
 					},
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveFiles({
+					files: [
+						".github/actions/transition/action.yml",
+						".github/workflows/cta.yml",
+					],
+				}),
+			],
 		};
 	},
 });

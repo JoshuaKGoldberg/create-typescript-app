@@ -2,6 +2,7 @@ import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockReleaseIt } from "./blockReleaseIt.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockReleaseIt, () => {
@@ -268,5 +269,21 @@ describe(blockReleaseIt, () => {
 			  ],
 			}
 		`);
+	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockReleaseIt, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.addons).toContainEqual(
+			blockRemoveFiles({
+				files: [
+					".github/workflows/post-release.yml",
+					".github/workflows/release.yml",
+				],
+			}),
+		);
 	});
 });

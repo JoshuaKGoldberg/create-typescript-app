@@ -67,6 +67,14 @@ describe(blockKnip, () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          "webpro.vscode-knip",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "knip.config.ts": "import type { KnipConfig } from "knip";
@@ -140,6 +148,14 @@ describe(blockKnip, () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          "webpro.vscode-knip",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "knip.config.ts": "import type { KnipConfig } from "knip";
@@ -205,6 +221,14 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "files": [
 			          ".ts-prunerc*",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "extensions": [
+			          "webpro.vscode-knip",
 			        ],
 			      },
 			      "block": [Function],

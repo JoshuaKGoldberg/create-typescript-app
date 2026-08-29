@@ -1,5 +1,0 @@
-minimumReleaseAgeExclude:
-  - "@es-joy/jsdoccomment@0.95.1"
-  - eslint-plugin-jsdoc@64.2.1
-  - jsdoc-type-pratt-parser@9.1.2
-  - marked@18.0.10

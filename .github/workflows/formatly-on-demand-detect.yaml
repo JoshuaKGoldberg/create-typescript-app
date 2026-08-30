@@ -1,0 +1,11 @@
+jobs:
+  detect:
+    uses: JoshuaKGoldberg/formatly-on-demand/.github/workflows/detect.yaml@v0
+    with:
+      install: corepack enable && pnpm install --frozen-lockfile
+      node-version: 24.19.0
+
+name: Formatly on Demand Detect
+
+on:
+  pull_request: ~

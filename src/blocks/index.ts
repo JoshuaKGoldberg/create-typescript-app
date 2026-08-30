@@ -19,6 +19,7 @@ import { blockESLintPlugin } from "./blockESLintPlugin.js";
 import { blockESLintRegexp } from "./blockESLintRegexp.js";
 import { blockESLintYML } from "./blockESLintYML.js";
 import { blockExports } from "./blockExports.js";
+import { blockFormatlyOnDemand } from "./blockFormatlyOnDemand.js";
 import { blockFunding } from "./blockFunding.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.js";
@@ -71,6 +72,7 @@ export const blocks = {
 	blockESLintRegexp,
 	blockESLintYML,
 	blockExports,
+	blockFormatlyOnDemand,
 	blockFunding,
 	blockGitHubActionsCI,
 	blockGitHubIssueTemplates,
@@ -124,6 +126,7 @@ export { blockESLintPlugin } from "./blockESLintPlugin.js";
 export { blockESLintRegexp } from "./blockESLintRegexp.js";
 export { blockESLintYML } from "./blockESLintYML.js";
 export { blockExports } from "./blockExports.js";
+export { blockFormatlyOnDemand } from "./blockFormatlyOnDemand.js";
 export { blockFunding } from "./blockFunding.js";
 export { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 export { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.js";

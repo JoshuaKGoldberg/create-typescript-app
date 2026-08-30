@@ -105,7 +105,7 @@ First, I'd suggest reading [TypeScript Handbook > Modules - Introduction](https:
 
 Then:
 
-1. In `tsdown.config.ts`, change the [tsdown `format` option](https://tsdown.dev/options/output-format) from `["esm"]` to `["cjs", "esm"]`
+1. In `tsdown.config.ts`, set the [tsdown `format` option](https://tsdown.dev/options/output-format) to `["cjs", "esm"]`
 2. Add a [`package.json` `"exports"` entry](https://nodejs.org/api/packages.html#subpath-exports) like:
 
    ```json package.json
@@ -113,15 +113,31 @@ Then:
    	"exports": {
    		".": {
    			"types": {
-   				"import": "lib/index.d.ts",
-   				"require": "lib/index.d.cts"
+   				"import": "./lib/index.d.ts",
+   				"require": "./lib/index.d.cts"
    			},
-   			"import": "lib/index.js",
-   			"require": "lib/index.cjs"
+   			"import": "./lib/index.js",
+   			"require": "./lib/index.cjs"
    		}
    	}
    }
    ```
+
+   Every path inside `"exports"` has to start with `./`.
+   Node.js refuses to load the package with an `ERR_INVALID_PACKAGE_TARGET` error otherwise.
+
+3. Add `package.json` `"main"`, `"module"`, and `"types"` entries pointing to the same files:
+
+   ```json package.json
+   {
+   	"main": "./lib/index.cjs",
+   	"module": "./lib/index.js",
+   	"types": "./lib/index.d.cts"
+   }
+   ```
+
+   `"exports"` is ignored by TypeScript's older `"moduleResolution": "node10"` and by other legacy resolvers.
+   Without these three entries they find nothing at all for the package.
 
 That should be it!
 

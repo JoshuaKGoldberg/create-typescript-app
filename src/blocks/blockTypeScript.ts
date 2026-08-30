@@ -1,5 +1,6 @@
 import sortKeys from "sort-keys";
-import { CompilerOptionsSchema } from "zod-tsconfig";
+import { z } from "zod";
+import { CompilerOptions, CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.js";
 import { getPackageDependencies } from "../data/packageData.js";
@@ -15,12 +16,19 @@ import { blockVitest } from "./blockVitest.js";
 import { blockVSCode } from "./blockVSCode.js";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 
+// zod-tsconfig allows any Zod major, so its schemas can be built by Zod 4 while
+// Stratum parses Addons with Zod 3.
+// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2437
+const zCompilerOptions = z.custom<CompilerOptions>(
+	(value) => CompilerOptionsSchema.safeParse(value).success,
+);
+
 export const blockTypeScript = base.createBlock({
 	about: {
 		name: "TypeScript",
 	},
 	addons: {
-		compilerOptions: CompilerOptionsSchema.optional(),
+		compilerOptions: zCompilerOptions.optional(),
 	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);

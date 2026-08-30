@@ -6,6 +6,7 @@ import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.js";
 import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
+import { resolveEmails } from "../utils/resolveEmails.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { CommandPhase } from "./phases.js";
 
@@ -44,7 +45,10 @@ export const blockPackageJson = base.createBlock({
 						removeUndefinedObjects({
 							...options.packageData,
 							...addons.properties,
-							author: { email: options.email.npm, name: options.author },
+							author: {
+								email: resolveEmails(options.email).npm,
+								name: options.author,
+							},
 							bin: options.bin,
 							dependencies: Object.keys(dependencies).length
 								? dependencies

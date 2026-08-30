@@ -110,6 +110,56 @@ describe(blockCodecov, () => {
 		`);
 	});
 
+	test("with codecovToken option", () => {
+		const creation = testBlock(blockCodecov, {
+			options: { ...optionsBase, codecovToken: true },
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "apps": [
+			          {
+			            "name": "Codecov",
+			            "url": "https://github.com/apps/codecov",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "badges": [
+			          {
+			            "alt": "🧪 Coverage",
+			            "href": "https://codecov.io/gh/test-owner/test-repository",
+			            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "env": {
+			              "CODECOV_TOKEN": "\${{ secrets.CODECOV_TOKEN }}",
+			            },
+			            "if": "always()",
+			            "uses": "codecov/codecov-action@v3",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			  ],
+			}
+		`);
+	});
+
 	test("with addons", () => {
 		const creation = testBlock(blockCodecov, {
 			addons: {

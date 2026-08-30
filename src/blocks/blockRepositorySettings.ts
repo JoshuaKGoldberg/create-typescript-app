@@ -37,6 +37,12 @@ export const blockRepositorySettings = base.createBlock({
 					type: "octokit",
 				},
 			],
+			suggestions: [
+				[
+					`- enable "Limit how many branches and tags can be updated in a single push" with a maximum of 5 on:`,
+					`   https://github.com/${options.owner}/${options.repository}/settings`,
+				].join("\n"),
+			],
 		};
 	},
 });

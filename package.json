@@ -108,7 +108,7 @@
 		"release-it": "21.0.2",
 		"tsdown": "0.22.14",
 		"typescript": "5.9.3",
-		"typescript-eslint": "8.67.0",
+		"typescript-eslint": "8.69.0",
 		"vitest": "4.1.10"
 	},
 	"packageManager": "pnpm@11.24.0",

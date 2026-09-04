@@ -76,7 +76,7 @@
 		"@release-it/conventional-changelog": "12.0.0",
 		"@types/html-to-text": "9.0.4",
 		"@types/lodash": "4.17.25",
-		"@types/node": "26.2.0",
+		"@types/node": "26.4.1",
 		"@types/parse-author": "2.0.3",
 		"@types/semver": "7.8.0",
 		"@vitest/coverage-v8": "4.1.10",

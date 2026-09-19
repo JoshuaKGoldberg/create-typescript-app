@@ -24,7 +24,7 @@ export const blockExports = base.createBlock({
 
 		// lib was the default before build output moved to tsdown's dist
 		return filePath
-			? { filePath: filePath.replace(/^(\.\/)?lib\//u, "./dist/") }
+			? { filePath: filePath.replace(/^(?:\.\/)?lib\//u, "./dist/") }
 			: undefined;
 	},
 	produce({ addons }) {

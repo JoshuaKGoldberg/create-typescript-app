@@ -104,6 +104,10 @@ export default defineConfig(
 		settings: { vitest: { typecheck: true } },
 	},
 	{
+		files: ["**/*.test.*", "eslint.config.*"],
+		rules: { "n/no-unsupported-features/node-builtins": "off" },
+	},
+	{
 		extends: [yml.configs["flat/standard"], yml.configs["flat/prettier"]],
 		files: ["**/*.{yml,yaml}"],
 		rules: {

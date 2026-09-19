@@ -81,9 +81,7 @@ describe("blockAllContributors", () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
 
-
 			name: Contributors
-
 
 			on:
 			  push:
@@ -227,9 +225,7 @@ describe("blockAllContributors", () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
 
-
 			name: Contributors
-
 
 			on:
 			  push:
@@ -372,9 +368,7 @@ describe("blockAllContributors", () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
 
-
 			name: Contributors
-
 
 			on:
 			  push:

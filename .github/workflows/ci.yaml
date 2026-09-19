@@ -7,6 +7,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm build
       - run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -15,6 +16,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm build
       - run: node ./lib/index.js --version
+
   dedupe_check:
     name: Dedupe Check
     runs-on: ubuntu-latest
@@ -22,6 +24,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: ./.github/actions/prepare
       - run: pnpm dedupe --check
+
   engines_check:
     name: Engines Check
     runs-on: ubuntu-latest
@@ -33,6 +36,7 @@ jobs:
           cache: pnpm
           node-version: 22.13.0
       - run: pnpm install --prod --engine-strict --ignore-scripts
+
   format_check:
     name: Format Check
     runs-on: ubuntu-latest
@@ -40,6 +44,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: ./.github/actions/prepare
       - run: pnpm format --list-different
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -48,6 +53,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm build
       - run: pnpm lint
+
   lint_knip:
     name: Lint Knip
     runs-on: ubuntu-latest
@@ -55,6 +61,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: ./.github/actions/prepare
       - run: pnpm lint:knip
+
   lint_spelling:
     name: Lint Spelling
     runs-on: ubuntu-latest
@@ -62,6 +69,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: ./.github/actions/prepare
       - run: pnpm lint:spelling
+
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -73,6 +81,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         if: always()
         uses: codecov/codecov-action@v3
+
   type_check:
     name: Type Check
     runs-on: ubuntu-latest

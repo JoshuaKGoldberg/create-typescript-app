@@ -63,9 +63,7 @@ describe(blockGitHubActionsCI, () => {
 			          echo "Don't worry if the previous step failed."
 			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
-
 			name: PR Review Requested
-
 
 			on:
 			  pull_request_target:
@@ -137,9 +135,7 @@ describe(blockGitHubActionsCI, () => {
 			          echo "Don't worry if the previous step failed."
 			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
-
 			name: PR Review Requested
-
 
 			on:
 			  pull_request_target:
@@ -205,9 +201,7 @@ describe(blockGitHubActionsCI, () => {
 			          echo "Don't worry if the previous step failed."
 			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
-
 			name: PR Review Requested
-
 
 			on:
 			  pull_request_target:
@@ -286,9 +280,7 @@ describe(blockGitHubActionsCI, () => {
 			          echo "Don't worry if the previous step failed."
 			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
-
 			name: PR Review Requested
-
 
 			on:
 			  pull_request_target:
@@ -369,6 +361,7 @@ describe(blockGitHubActionsCI, () => {
 			          cache: pnpm
 			          node-version: 20.12.0
 			      - run: pnpm install --prod --engine-strict --ignore-scripts
+
 			  validate:
 			    name: Validate
 			    runs-on: ubuntu-latest
@@ -382,9 +375,7 @@ describe(blockGitHubActionsCI, () => {
 			        with:
 			          VAR_WITH: 'true'
 
-
 			name: CI
-
 
 			on:
 			  pull_request: ~
@@ -406,9 +397,7 @@ describe(blockGitHubActionsCI, () => {
 			          echo "Don't worry if the previous step failed."
 			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
 
-
 			name: PR Review Requested
-
 
 			on:
 			  pull_request_target:

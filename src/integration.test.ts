@@ -32,6 +32,8 @@ vi.mock("./utils/resolveBin.ts", () => ({
 // Most addons are inferred from the files on disk by each block's intake();
 // only the ones without an intake need to be listed here.
 // If you change one of those on disk, you'll need to manually update here too.
+// TODO: Eventually the create engine will be able to infer them:
+//   https://github.com/JoshuaKGoldberg/bingo/issues/128
 //
 // For example, if you change blockTypeScript's target from "ES2023" to "ES2024",
 // you'll also need to update the ./tsconfig.json on disk in the same way.

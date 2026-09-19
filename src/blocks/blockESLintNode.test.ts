@@ -39,6 +39,15 @@ describe("blockESLintNode", () => {
 			              "n/no-missing-import": "off",
 			            },
 			          },
+			          {
+			            "files": [
+			              "**/*.test.*",
+			              "eslint.config.*",
+			            ],
+			            "rules": {
+			              "n/no-unsupported-features/node-builtins": "off",
+			            },
+			          },
 			        ],
 			        "imports": [
 			          {

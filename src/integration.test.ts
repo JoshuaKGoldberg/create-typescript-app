@@ -9,6 +9,7 @@ import {
 	base,
 	BaseOptions,
 	blockAreTheTypesWrong,
+	blockBin,
 	blockCodecov,
 	blockCSpell,
 	blockESLint,
@@ -48,6 +49,15 @@ test("Producing the everything preset matches the files in this repository", asy
 		options: (await prepareOptions(base)) as BaseOptions,
 		refinements: {
 			addons: [
+				blockBin({
+					contents: `#!/usr/bin/env node
+import { runTemplateCLI } from "bingo";
+
+import { template } from "../lib/index.mjs";
+
+process.exitCode = await runTemplateCLI(template);
+`,
+				}),
 				blockCodecov({
 					env: {
 						CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",

@@ -1,11 +1,11 @@
-import { base } from "../base.js";
-import { blockAllContributors } from "../blocks/blockAllContributors.js";
-import { blockCodecov } from "../blocks/blockCodecov.js";
-import { blockFunding } from "../blocks/blockFunding.js";
-import { blockOctoGuide } from "../blocks/blockOctoGuide.js";
-import { blockReleaseIt } from "../blocks/blockReleaseIt.js";
-import { blockVitest } from "../blocks/blockVitest.js";
-import { presetMinimal } from "./minimal.js";
+import { base } from "../base.ts";
+import { blockAllContributors } from "../blocks/blockAllContributors.ts";
+import { blockCodecov } from "../blocks/blockCodecov.ts";
+import { blockFunding } from "../blocks/blockFunding.ts";
+import { blockOctoGuide } from "../blocks/blockOctoGuide.ts";
+import { blockReleaseIt } from "../blocks/blockReleaseIt.ts";
+import { blockVitest } from "../blocks/blockVitest.ts";
+import { presetMinimal } from "./minimal.ts";
 
 export const presetCommon = base.createPreset({
 	about: {

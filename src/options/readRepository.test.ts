@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readRepository } from "./readRepository.js";
+import { readRepository } from "./readRepository.ts";
 
 describe(readRepository, () => {
 	it("returns options.repository when it exists", async () => {

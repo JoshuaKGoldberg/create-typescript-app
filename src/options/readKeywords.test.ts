@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readKeywords } from "./readKeywords.js";
+import { readKeywords } from "./readKeywords.ts";
 
 describe(readKeywords, () => {
 	it("resolves with undefined when there are no existing keywords", async () => {

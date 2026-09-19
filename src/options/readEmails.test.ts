@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readEmails } from "./readEmails.js";
+import { readEmails } from "./readEmails.ts";
 
 const emailCoC = "test-email-coc";
 const emailGit = "test-email-git";

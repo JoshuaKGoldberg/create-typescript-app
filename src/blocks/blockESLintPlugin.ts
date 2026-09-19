@@ -1,16 +1,16 @@
-import { base } from "../base.js";
-import { blockCSpell } from "./blockCSpell.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockESLint } from "./blockESLint.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockREADME } from "./blockREADME.js";
-import { blockVitest } from "./blockVitest.js";
-import { blockESLintPluginIntake } from "./eslint/blockESLintPluginIntake.js";
-import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
-import { zConfigEmoji } from "./eslint/schemas.js";
-import { intakeFile } from "./intake/intakeFile.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { blockCSpell } from "./blockCSpell.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockREADME } from "./blockREADME.ts";
+import { blockVitest } from "./blockVitest.ts";
+import { blockESLintPluginIntake } from "./eslint/blockESLintPluginIntake.ts";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
+import { zConfigEmoji } from "./eslint/schemas.ts";
+import { intakeFile } from "./intake/intakeFile.ts";
+import { CommandPhase } from "./phases.ts";
 
 export const blockESLintPlugin = base.createBlock({
 	about: {
@@ -176,7 +176,7 @@ export default config;
 				src: {
 					"index.ts": `import Module from "node:module";
 
-import { rules } from "./rules/index.js";
+import { rules } from "./rules/index.ts";
 
 const require = Module.createRequire(import.meta.url);
 
@@ -208,8 +208,8 @@ export { rules };
 export default plugin;
 `,
 					rules: {
-						"enums.test.ts": `import { rule } from "./enums.js";
-import { ruleTester } from "./ruleTester.js";
+						"enums.test.ts": `import { rule } from "./enums.ts";
+import { ruleTester } from "./ruleTester.ts";
 
 ruleTester.run("enums", rule, {
 	invalid: [
@@ -229,7 +229,7 @@ ruleTester.run("enums", rule, {
 	valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
 });
 `,
-						"enums.ts": `import { createRule } from "../utils.js";
+						"enums.ts": `import { createRule } from "../utils.ts";
 
 export const rule = createRule({
 	create(context) {
@@ -256,7 +256,7 @@ export const rule = createRule({
 	name: "enums",
 });
 `,
-						"index.ts": `import { rule as enums } from "./enums.js";
+						"index.ts": `import { rule as enums } from "./enums.ts";
 
 export const rules = {
 	enums,

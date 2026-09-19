@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { formatIgnoreFile } from "./files/formatIgnoreFile.js";
+import { base } from "../base.ts";
+import { formatIgnoreFile } from "./files/formatIgnoreFile.ts";
 
 export const blockGitignore = base.createBlock({
 	about: {

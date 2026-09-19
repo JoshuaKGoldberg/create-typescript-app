@@ -1,5 +1,5 @@
-import { base } from "../base.js";
-import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
+import { base } from "../base.ts";
+import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
 
 export const blockRepositorySettings = base.createBlock({
 	about: {

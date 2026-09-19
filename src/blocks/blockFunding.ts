@@ -1,6 +1,6 @@
-import { base } from "../base.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { formatYaml } from "./files/formatYaml.js";
+import { base } from "../base.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { formatYaml } from "./files/formatYaml.ts";
 
 export const blockFunding = base.createBlock({
 	about: {

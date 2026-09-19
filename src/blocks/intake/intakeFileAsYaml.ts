@@ -1,7 +1,7 @@
 import { IntakeDirectory } from "bingo-fs";
 import { load } from "js-yaml";
 
-import { intakeFile } from "./intakeFile.js";
+import { intakeFile } from "./intakeFile.ts";
 
 export function intakeFileAsYaml(files: IntakeDirectory, filePath: string[]) {
 	const file =

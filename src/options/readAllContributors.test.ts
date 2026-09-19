@@ -1,8 +1,8 @@
 import { createMockSystems } from "bingo-testers";
 import { describe, expect, it, vi } from "vitest";
 
-import { startingOwnerContributions } from "../data/contributions.js";
-import { readAllContributors } from "./readAllContributors.js";
+import { startingOwnerContributions } from "../data/contributions.ts";
+import { readAllContributors } from "./readAllContributors.ts";
 
 const mockInputFromFileJSON = vi.fn();
 
@@ -14,7 +14,7 @@ vi.mock("input-from-file-json", () => ({
 
 const mockInputFromOctokit = vi.fn();
 
-vi.mock("../inputs/inputFromOctokit.js", () => ({
+vi.mock("../inputs/inputFromOctokit.ts", () => ({
 	get inputFromOctokit() {
 		return mockInputFromOctokit;
 	},

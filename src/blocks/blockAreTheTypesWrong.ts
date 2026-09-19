@@ -1,5 +1,5 @@
-import { base } from "../base.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { base } from "../base.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 
 export const blockAreTheTypesWrong = base.createBlock({
 	about: {

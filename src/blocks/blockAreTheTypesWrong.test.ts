@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockAreTheTypesWrong", () => {
 	test("production", () => {

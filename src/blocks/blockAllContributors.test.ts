@@ -1,9 +1,9 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, it } from "vitest";
 
-import { blockAllContributors } from "./blockAllContributors.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockAllContributors } from "./blockAllContributors.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockAllContributors", () => {
 	it("defaults contributors to [] when not provided", () => {

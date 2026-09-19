@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getInstallationSuggestions } from "./getInstallationSuggestions.js";
+import { base } from "../base.ts";
+import { getInstallationSuggestions } from "./getInstallationSuggestions.ts";
 
 export const blockGitHubApps = base.createBlock({
 	about: {

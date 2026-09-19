@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readReadmeUsage } from "./readReadmeUsage.js";
+import { readReadmeUsage } from "./readReadmeUsage.ts";
 
 describe(readReadmeUsage, () => {
 	it("returns undefined when ## Usage is not found", async () => {

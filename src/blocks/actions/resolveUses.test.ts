@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { resolveUses } from "./resolveUses.js";
+import { resolveUses } from "./resolveUses.ts";
 
 describe(resolveUses, () => {
 	it("returns action@version when workflowsVersions is undefined", () => {

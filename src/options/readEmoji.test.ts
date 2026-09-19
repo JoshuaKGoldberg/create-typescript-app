@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readEmoji } from "./readEmoji.js";
+import { readEmoji } from "./readEmoji.ts";
 
 describe(readEmoji, () => {
 	it("resolves with undefined when description is undefined", async () => {

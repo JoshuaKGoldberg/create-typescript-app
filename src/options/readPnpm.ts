@@ -1,4 +1,4 @@
-import { PartialPackageData } from "../types.js";
+import { PartialPackageData } from "../types.ts";
 
 export async function readPnpm(packageData: () => Promise<PartialPackageData>) {
 	const { packageManager } = await packageData();

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readReadmeAdditional } from "./readReadmeAdditional.js";
+import { readReadmeAdditional } from "./readReadmeAdditional.ts";
 
 describe(readReadmeAdditional, () => {
 	it("returns undefined when there is no existing readme content", async () => {

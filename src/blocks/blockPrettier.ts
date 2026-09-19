@@ -1,17 +1,17 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { blockCSpell } from "./blockCSpell.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockVSCode } from "./blockVSCode.js";
-import { formatIgnoreFile } from "./files/formatIgnoreFile.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { blockCSpell } from "./blockCSpell.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVSCode } from "./blockVSCode.ts";
+import { formatIgnoreFile } from "./files/formatIgnoreFile.ts";
+import { CommandPhase } from "./phases.ts";
 
 export const blockPrettier = base.createBlock({
 	about: {

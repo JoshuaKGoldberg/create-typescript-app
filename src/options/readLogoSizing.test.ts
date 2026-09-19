@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readLogoSizing } from "./readLogoSizing.js";
+import { readLogoSizing } from "./readLogoSizing.ts";
 
 const mockImageSize = vi.fn();
 

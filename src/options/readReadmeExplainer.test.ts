@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readReadmeExplainer } from "./readReadmeExplainer.js";
+import { readReadmeExplainer } from "./readReadmeExplainer.ts";
 
 describe(readReadmeExplainer, () => {
 	it("resolves with undefined when an h2 cannot be found", async () => {

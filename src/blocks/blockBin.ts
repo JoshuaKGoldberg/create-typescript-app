@@ -13,6 +13,8 @@ export const blockBin = base.createBlock({
 		contents: z.string().optional(),
 		entry: z.string().optional(),
 	},
+	// Bin files are bespoke per repository, so an existing one is preserved as-is.
+	// The starter contents below only apply when creating a new repository.
 	intake({ files, options }) {
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 		if (!primaryBin) {

@@ -187,6 +187,6 @@ If you really want spaces in your project you can always remove the `"useTabs": 
 
 The `--bin` option allows you to create a `package.json` bin value to include for npx-style running.
 An example of this would be `"bin/index.js"`.
-You'll need to create the folders and files that `bin` references.
+A starter file will be created at that path that imports the built entry point; edit it to run your CLI.
 
 If you'd like an example of what that looks like, take a look at the [CTA source code](https://github.com/JoshuaKGoldberg/create-typescript-app/blob/e7fafcb8968f8f6c551ab0917c9a6a849a3cba28/bin/index.js)!

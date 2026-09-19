@@ -61,7 +61,9 @@ describe("blockAllContributors", () => {
 			        "contributors.yaml": "jobs:
 			  contributors:
 			    permissions:
-			      contents: write
+			      contents: read
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
@@ -198,7 +200,9 @@ describe("blockAllContributors", () => {
 			        "contributors.yaml": "jobs:
 			  contributors:
 			    permissions:
-			      contents: write
+			      contents: read
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
@@ -334,7 +338,9 @@ describe("blockAllContributors", () => {
 			        "contributors.yaml": "jobs:
 			  contributors:
 			    permissions:
-			      contents: write
+			      contents: read
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4

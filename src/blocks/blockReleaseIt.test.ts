@@ -38,6 +38,17 @@ describe(blockReleaseIt, () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "secrets": [
+			          {
+			            "description": "a GitHub PAT with repo and workflow permissions",
+			            "name": "ACCESS_TOKEN",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -90,10 +101,10 @@ describe(blockReleaseIt, () => {
 			        with:
 			          fetch-depth: 0
 			          ref: main
-			          token: \${{ secrets.GITHUB_TOKEN }}
+			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - uses: ./.github/actions/prepare
 			      - env:
-			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
 
 
@@ -167,6 +178,17 @@ describe(blockReleaseIt, () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "secrets": [
+			          {
+			            "description": "a GitHub PAT with repo and workflow permissions",
+			            "name": "ACCESS_TOKEN",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -219,13 +241,13 @@ describe(blockReleaseIt, () => {
 			        with:
 			          fetch-depth: 0
 			          ref: main
-			          token: \${{ secrets.GITHUB_TOKEN }}
+			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - uses: ./.github/actions/prepare
 			      - run: zero
 			      - run: one
 			      - run: two
 			      - env:
-			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
 
 

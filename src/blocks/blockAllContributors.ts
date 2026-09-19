@@ -7,7 +7,6 @@ import { resolveUses } from "./actions/resolveUses.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { CommandPhase } from "./phases.js";
 
@@ -83,7 +82,11 @@ export const blockAllContributors = base.createBlock({
 									branches: ["main"],
 								},
 							},
-							permissions: { contents: "write" },
+							permissions: {
+								contents: "read",
+								issues: "write",
+								"pull-requests": "write",
+							},
 							steps: [
 								{
 									uses: resolveUses(

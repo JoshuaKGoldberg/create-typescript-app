@@ -15,6 +15,12 @@ describe(blockTSDown, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "entry": "dist/index.mjs",
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "ignorePaths": [
 			          "dist",
 			        ],
@@ -147,6 +153,12 @@ describe(blockTSDown, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "entry": "dist/index.mjs",
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "ignorePaths": [
 			          "dist",
 			        ],
@@ -265,7 +277,7 @@ describe(blockTSDown, () => {
 		`);
 	});
 
-	test("with an outDir preserved from intake", () => {
+	test("with an explicit outDir", () => {
 		const creation = testBlock(blockTSDown, {
 			addons: {
 				properties: {
@@ -323,6 +335,12 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
+			    {
+			      "addons": {
+			        "entry": "dist/index.mjs",
+			      },
+			      "block": [Function],
+			    },
 			    {
 			      "addons": {
 			        "ignorePaths": [
@@ -524,7 +542,22 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 			expect(actual).toEqual({ entry: undefined, properties });
 		});
 
-		it("returns outDir in properties when tsdown.config.ts contains it", () => {
+		it("returns outDir in properties when tsdown.config.ts contains a custom outDir", () => {
+			const actual = testIntake(blockTSDown, {
+				files: {
+					"tsdown.config.ts": [
+						`defineConfig(${JSON.stringify({ outDir: "build" })})`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				entry: undefined,
+				properties: { outDir: "build" },
+			});
+		});
+
+		it("drops outDir when tsdown.config.ts contains the legacy lib outDir", () => {
 			const actual = testIntake(blockTSDown, {
 				files: {
 					"tsdown.config.ts": [
@@ -535,7 +568,7 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 
 			expect(actual).toEqual({
 				entry: undefined,
-				properties: { outDir: "lib" },
+				properties: undefined,
 			});
 		});
 

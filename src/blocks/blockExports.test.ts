@@ -103,14 +103,26 @@ describe(blockExports, () => {
 		it("returns filePath when package.json exports is a string", () => {
 			const actual = testIntake(blockExports, {
 				files: {
-					"package.json": [JSON.stringify({ exports: "./lib/index.js" })],
+					"package.json": [JSON.stringify({ exports: "./dist/index.js" })],
 				},
 			});
 
-			expect(actual).toEqual({ filePath: "./lib/index.js" });
+			expect(actual).toEqual({ filePath: "./dist/index.js" });
 		});
 
 		it("returns filePath when package.json exports contains a string '.' entry", () => {
+			const actual = testIntake(blockExports, {
+				files: {
+					"package.json": [
+						JSON.stringify({ exports: { ".": "./dist/index.js" } }),
+					],
+				},
+			});
+
+			expect(actual).toEqual({ filePath: "./dist/index.js" });
+		});
+
+		it("returns a dist/ filePath when package.json exports points into the legacy lib/", () => {
 			const actual = testIntake(blockExports, {
 				files: {
 					"package.json": [
@@ -119,7 +131,7 @@ describe(blockExports, () => {
 				},
 			});
 
-			expect(actual).toEqual({ filePath: "./lib/index.js" });
+			expect(actual).toEqual({ filePath: "./dist/index.js" });
 		});
 	});
 });

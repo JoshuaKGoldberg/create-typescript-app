@@ -22,7 +22,10 @@ export const blockExports = base.createBlock({
 		).data;
 		const filePath = typeof exports === "string" ? exports : exports?.["."];
 
-		return filePath ? { filePath } : undefined;
+		// lib was the default before build output moved to tsdown's dist
+		return filePath
+			? { filePath: filePath.replace(/^(\.\/)?lib\//u, "./dist/") }
+			: undefined;
 	},
 	produce({ addons }) {
 		const { filePath = "./dist/index.mjs", runArgs } = addons;

@@ -53,7 +53,7 @@ test("Producing the everything preset matches the files in this repository", asy
 					contents: `#!/usr/bin/env node
 import { runTemplateCLI } from "bingo";
 
-import { template } from "../lib/index.mjs";
+import { template } from "../dist/index.mjs";
 
 process.exitCode = await runTemplateCLI(template);
 `,

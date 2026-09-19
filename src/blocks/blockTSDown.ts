@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { blockBin } from "./blockBin.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
@@ -55,6 +56,9 @@ export const blockTSDown = base.createBlock({
 				bundle: undefined,
 				clean: rest.clean === false ? false : undefined,
 				format: rest.format === "esm" ? undefined : rest.format,
+
+				// lib was the default before build output moved to tsdown's dist
+				outDir: rest.outDir === "lib" ? undefined : rest.outDir,
 			}),
 		};
 	},
@@ -68,6 +72,9 @@ export const blockTSDown = base.createBlock({
 
 		return {
 			addons: [
+				blockBin({
+					entry: `${outDir}/index.mjs`,
+				}),
 				blockCSpell({
 					ignorePaths: [outDir],
 				}),

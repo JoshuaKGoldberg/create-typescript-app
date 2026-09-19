@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readBin } from "./readBin.js";
+import { readBin } from "./readBin.ts";
 
 describe(readBin, () => {
 	it("resolves with undefined when package data has no bin", async () => {

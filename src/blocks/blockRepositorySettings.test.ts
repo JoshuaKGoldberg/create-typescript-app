@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockRepositorySettings } from "./blockRepositorySettings.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockRepositorySettings } from "./blockRepositorySettings.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockRepositorySettings", () => {
 	test("with a short description", () => {

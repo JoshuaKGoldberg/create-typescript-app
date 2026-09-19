@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { defaults } from "../constants.js";
-import { readNode } from "./readNode.js";
+import { defaults } from "../constants.ts";
+import { readNode } from "./readNode.ts";
 
 describe(readNode, () => {
 	describe("minimum", () => {

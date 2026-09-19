@@ -1,4 +1,4 @@
-import { PartialPackageData } from "../types.js";
+import { PartialPackageData } from "../types.ts";
 
 export async function readAccess(
 	getPackageDataFull: () => Promise<PartialPackageData | undefined>,

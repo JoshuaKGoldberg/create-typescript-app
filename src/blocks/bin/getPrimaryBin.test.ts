@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { getPrimaryBin } from "./getPrimaryBin.js";
+import { getPrimaryBin } from "./getPrimaryBin.ts";
 
 const repository = "test-repository";
 

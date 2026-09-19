@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { packageData } from "../data/packageData.js";
-import { readDescription } from "./readDescription.js";
+import { packageData } from "../data/packageData.ts";
+import { readDescription } from "./readDescription.ts";
 
 describe(readDescription, () => {
 	it("returns undefined when the there is no package.json description", async () => {

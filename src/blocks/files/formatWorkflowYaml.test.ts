@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
+import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
 
 describe(formatWorkflowYaml, () => {
 	it("does not add blank lines when there is only one job", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getInstallationSuggestions } from "./getInstallationSuggestions.js";
+import { getInstallationSuggestions } from "./getInstallationSuggestions.ts";
 
 const description = "do the action";
 const url = "https://example.com";

@@ -2,7 +2,7 @@ import { TakeInput } from "bingo";
 import { GitUrl } from "git-url-parse";
 import { inputFromScript } from "input-from-script";
 
-import { PackageAuthor } from "./readPackageAuthor.js";
+import { PackageAuthor } from "./readPackageAuthor.ts";
 
 export async function readOwner(
 	take: TakeInput,

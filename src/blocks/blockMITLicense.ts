@@ -1,6 +1,6 @@
-import { base } from "../base.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockREADME } from "./blockREADME.js";
+import { base } from "../base.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockREADME } from "./blockREADME.ts";
 
 export const blockMITLicense = base.createBlock({
 	about: {

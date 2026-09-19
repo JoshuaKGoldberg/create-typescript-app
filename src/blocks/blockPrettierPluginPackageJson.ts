@@ -1,5 +1,5 @@
-import { base } from "../base.js";
-import { blockPrettier } from "./blockPrettier.js";
+import { base } from "../base.ts";
+import { blockPrettier } from "./blockPrettier.ts";
 
 export const blockPrettierPluginPackageJson = base.createBlock({
 	about: {

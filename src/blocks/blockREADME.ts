@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
+import { base } from "../base.ts";
 
 function printAttributes(attributes: Record<string, number | string>) {
 	return Object.entries(attributes)

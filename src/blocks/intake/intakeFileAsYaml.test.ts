@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { intakeFileAsYaml } from "./intakeFileAsYaml.js";
+import { intakeFileAsYaml } from "./intakeFileAsYaml.ts";
 
 describe(intakeFileAsYaml, () => {
 	it("returns undefined when the file does not exist", () => {

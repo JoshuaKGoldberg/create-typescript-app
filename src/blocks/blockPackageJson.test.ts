@@ -2,8 +2,8 @@ import { testBlock } from "bingo-stratum-testers";
 import { it } from "vitest";
 import { describe, expect, test } from "vitest";
 
-import { blockPackageJson } from "./blockPackageJson.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 const options = {
 	...optionsBase,

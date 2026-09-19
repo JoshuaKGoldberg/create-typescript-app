@@ -1,5 +1,5 @@
-import { base } from "../base.js";
-import { blockESLint } from "./blockESLint.js";
+import { base } from "../base.ts";
+import { blockESLint } from "./blockESLint.ts";
 
 export const blockESLintMarkdownLinks = base.createBlock({
 	about: {

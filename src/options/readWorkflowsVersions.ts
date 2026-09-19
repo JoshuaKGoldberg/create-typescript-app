@@ -1,9 +1,9 @@
 import { TakeInput } from "bingo";
 import { inputFromFile } from "input-from-file";
 
-import { inputFromDirectory } from "../inputs/inputFromDirectory.js";
-import { WorkflowsVersions } from "../schemas.js";
-import { swallowErrorAsync } from "../utils/swallowErrorAsync.js";
+import { inputFromDirectory } from "../inputs/inputFromDirectory.ts";
+import { WorkflowsVersions } from "../schemas.ts";
+import { swallowErrorAsync } from "../utils/swallowErrorAsync.ts";
 
 export async function readWorkflowsVersions(
 	take: TakeInput,

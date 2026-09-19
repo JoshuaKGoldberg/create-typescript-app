@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { base } from "../base.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 
 const zInnerSection = z.object({
 	contents: z.string(),

@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockGitHubActionsCI, () => {
 	test("without addons or mode", () => {

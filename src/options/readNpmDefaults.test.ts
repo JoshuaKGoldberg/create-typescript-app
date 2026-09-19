@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readNpmDefaults } from "./readNpmDefaults.js";
+import { readNpmDefaults } from "./readNpmDefaults.ts";
 
 const mockNpmUser = vi.fn();
 

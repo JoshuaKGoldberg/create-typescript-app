@@ -2,16 +2,16 @@ import JSON5 from "json5";
 import { getObjectStringsDeep } from "object-strings-deep";
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { resolveBin } from "../utils/resolveBin.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockVSCode } from "./blockVSCode.js";
-import { intakeFile } from "./intake/intakeFile.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { resolveBin } from "../utils/resolveBin.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVSCode } from "./blockVSCode.ts";
+import { intakeFile } from "./intake/intakeFile.ts";
+import { CommandPhase } from "./phases.ts";
 
 const filesGlob = `"**" ".github/**/*"`;
 

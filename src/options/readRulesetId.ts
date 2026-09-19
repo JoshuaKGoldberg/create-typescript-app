@@ -1,6 +1,6 @@
 import { TakeInput } from "bingo";
 
-import { inputFromOctokit } from "../inputs/inputFromOctokit.js";
+import { inputFromOctokit } from "../inputs/inputFromOctokit.ts";
 
 export async function readRulesetId(
 	take: TakeInput,

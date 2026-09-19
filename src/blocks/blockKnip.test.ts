@@ -1,10 +1,10 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
-import { blockKnip } from "./blockKnip.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockKnip } from "./blockKnip.ts";
+import { optionsBase } from "./options.fakes.ts";
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 

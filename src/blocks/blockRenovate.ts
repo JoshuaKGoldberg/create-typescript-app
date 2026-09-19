@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockGitHubApps } from "./blockGitHubApps.js";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
+import { base } from "../base.ts";
+import { blockGitHubApps } from "./blockGitHubApps.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
 const zIgnoreDeps = z.array(z.string()).default([]);
 

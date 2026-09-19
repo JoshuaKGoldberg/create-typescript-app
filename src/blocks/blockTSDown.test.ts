@@ -557,20 +557,21 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 			});
 		});
 
-		it("drops outDir when tsdown.config.ts contains the legacy lib outDir", () => {
-			const actual = testIntake(blockTSDown, {
-				files: {
-					"tsdown.config.ts": [
-						`defineConfig(${JSON.stringify({ outDir: "lib" })})`,
-					],
-				},
-			});
+		it.each(["lib", "./lib", "lib/", "./lib/"])(
+			"drops outDir when tsdown.config.ts contains the legacy lib outDir as %j",
+			(outDir) => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"tsdown.config.ts": [`defineConfig(${JSON.stringify({ outDir })})`],
+					},
+				});
 
-			expect(actual).toEqual({
-				entry: undefined,
-				properties: undefined,
-			});
-		});
+				expect(actual).toEqual({
+					entry: undefined,
+					properties: undefined,
+				});
+			},
+		);
 
 		it("clears tsup default properties when tsup.config.ts contains them", () => {
 			const properties = { bundle: true, clean: true, format: "esm" };

@@ -28,6 +28,13 @@ const zProperties = z.record(z.unknown());
 // cycle that bingo-stratum never settles.
 const defaultEntry = ["src/**/*.ts", "!src/**/*.test.*"];
 
+function isLegacyOutDir(outDir: unknown) {
+	return (
+		typeof outDir === "string" &&
+		outDir.replace(/^\.\//u, "").replace(/\/$/u, "") === "lib"
+	);
+}
+
 export const blockTSDown = base.createBlock({
 	about: {
 		name: "TSDown",
@@ -58,7 +65,7 @@ export const blockTSDown = base.createBlock({
 				format: rest.format === "esm" ? undefined : rest.format,
 
 				// lib was the default before build output moved to tsdown's dist
-				outDir: rest.outDir === "lib" ? undefined : rest.outDir,
+				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
 			}),
 		};
 	},

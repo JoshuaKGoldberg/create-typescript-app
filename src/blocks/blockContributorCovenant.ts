@@ -1,6 +1,6 @@
-import { base } from "../base.js";
-import { blockREADME } from "./blockREADME.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { base } from "../base.ts";
+import { blockREADME } from "./blockREADME.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 
 export const blockContributorCovenant = base.createBlock({
 	about: {

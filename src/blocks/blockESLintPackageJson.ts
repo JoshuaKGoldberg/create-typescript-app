@@ -1,9 +1,9 @@
-import { base } from "../base.js";
-import { blockESLint } from "./blockESLint.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
+import { base } from "../base.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 
 export const blockESLintPackageJson = base.createBlock({
 	about: {

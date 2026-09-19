@@ -5,8 +5,8 @@ import {
 } from "@typescript-eslint/typescript-estree";
 import JSON5 from "json5";
 
-import { tryCatch } from "../../utils/tryCatch.js";
-import { zConfigEmoji } from "./schemas.js";
+import { tryCatch } from "../../utils/tryCatch.ts";
+import { zConfigEmoji } from "./schemas.ts";
 
 export function blockESLintPluginIntake(sourceText: string) {
 	const ast = tryCatch(() =>

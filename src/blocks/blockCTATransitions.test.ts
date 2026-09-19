@@ -1,12 +1,12 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { packageData } from "../data/packageData.js";
-import { blockCTATransitions } from "./blockCTATransitions.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { optionsBase } from "./options.fakes.js";
+import { packageData } from "../data/packageData.ts";
+import { blockCTATransitions } from "./blockCTATransitions.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockCTATransitions", () => {
 	test("production", () => {

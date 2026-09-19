@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockTSDown } from "./blockTSDown.js";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
+import { base } from "../base.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockTSDown } from "./blockTSDown.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
 const zFilePath = z.string();
 const zExports = z.union([zFilePath, z.object({ ".": zFilePath })]);

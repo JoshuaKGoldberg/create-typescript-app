@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readPackageData } from "./readPackageData.js";
+import { readPackageData } from "./readPackageData.ts";
 
 describe(readPackageData, () => {
 	it("returns {} when reading package.json results in an error", async () => {

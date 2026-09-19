@@ -1,9 +1,9 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockFunding } from "./blockFunding.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockFunding } from "./blockFunding.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockFunding", () => {
 	test("transition mode", () => {

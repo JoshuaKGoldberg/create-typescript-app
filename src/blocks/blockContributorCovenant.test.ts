@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockContributorCovenant } from "./blockContributorCovenant.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockContributorCovenant } from "./blockContributorCovenant.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockContributorCovenant", () => {
 	test("without mode", () => {

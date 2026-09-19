@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockGitignore } from "./blockGitignore.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockGitignore } from "./blockGitignore.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockGitignore, () => {
 	test("without addons", () => {

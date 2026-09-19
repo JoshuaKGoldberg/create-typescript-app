@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockRepositorySecrets, () => {
 	test("without addons", () => {

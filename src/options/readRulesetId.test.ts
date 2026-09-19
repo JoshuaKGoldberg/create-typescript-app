@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readRulesetId } from "./readRulesetId.js";
+import { readRulesetId } from "./readRulesetId.ts";
 
 const getOwner = () => Promise.resolve("test-owner");
 const getRepository = () => Promise.resolve("test-repository");

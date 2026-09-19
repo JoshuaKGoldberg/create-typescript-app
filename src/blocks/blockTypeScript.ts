@@ -1,18 +1,18 @@
 import sortKeys from "sort-keys";
 import { CompilerOptionsSchema } from "zod-tsconfig";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { getPrimaryBin } from "./bin/getPrimaryBin.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockExampleFiles } from "./blockExampleFiles.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockKnip } from "./blockKnip.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockVitest } from "./blockVitest.js";
-import { blockVSCode } from "./blockVSCode.js";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockExampleFiles } from "./blockExampleFiles.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockKnip } from "./blockKnip.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVitest } from "./blockVitest.ts";
+import { blockVSCode } from "./blockVSCode.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
 export const blockTypeScript = base.createBlock({
 	about: {
@@ -61,7 +61,7 @@ pnpm tsc --watch
 				}),
 				blockExampleFiles({
 					files: {
-						"greet.ts": `import { GreetOptions } from "./types.js";
+						"greet.ts": `import { GreetOptions } from "./types.ts";
 
 	export function greet(options: GreetOptions | string) {
 		const {
@@ -75,8 +75,8 @@ pnpm tsc --watch
 		}
 	}
 	`,
-						"index.ts": `export * from "./greet.js";
-export * from "./types.js";
+						"index.ts": `export * from "./greet.ts";
+export * from "./types.ts";
 `,
 						"types.ts": `export interface GreetOptions {
 		logger?: (message: string) => void;
@@ -143,6 +143,7 @@ greet("Hello, world! ${options.emoji}");
 						moduleResolution: "nodenext",
 						noEmit: true,
 						resolveJsonModule: true,
+						rewriteRelativeImportExtensions: true,
 						skipLibCheck: true,
 						strict: true,
 						target: "ES2023",

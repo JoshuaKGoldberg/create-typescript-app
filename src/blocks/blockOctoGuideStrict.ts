@@ -1,5 +1,5 @@
-import { base } from "../base.js";
-import { blockOctoGuide } from "./blockOctoGuide.js";
+import { base } from "../base.ts";
+import { blockOctoGuide } from "./blockOctoGuide.ts";
 
 export const blockOctoGuideStrict = base.createBlock({
 	about: {

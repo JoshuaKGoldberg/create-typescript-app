@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockPnpmDedupe } from "./blockPnpmDedupe.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockPnpmDedupe } from "./blockPnpmDedupe.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockPnpmDedupe", () => {
 	test("without mode", () => {

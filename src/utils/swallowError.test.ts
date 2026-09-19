@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { swallowError } from "./swallowError.js";
+import { swallowError } from "./swallowError.ts";
 
 describe(swallowError, () => {
 	it("returns the value when it's not an error", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readPnpm } from "./readPnpm.js";
+import { readPnpm } from "./readPnpm.ts";
 
 describe(readPnpm, () => {
 	it("returns 11.22.0 when there is no existing packageManager", async () => {

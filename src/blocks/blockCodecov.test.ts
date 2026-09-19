@@ -2,8 +2,8 @@ import { testBlock, testIntake } from "bingo-stratum-testers";
 import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
-import { blockCodecov } from "./blockCodecov.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockCodecov } from "./blockCodecov.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockCodecov, () => {
 	test("without addons or mode", () => {

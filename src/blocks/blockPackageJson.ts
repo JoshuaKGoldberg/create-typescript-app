@@ -4,10 +4,10 @@ import sortPackageJson from "sort-package-json";
 import { z } from "zod";
 import { PackageJson } from "zod-package-json";
 
-import { base } from "../base.js";
-import { htmlToTextSafe } from "../utils/htmlToTextSafe.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { CommandPhase } from "./phases.ts";
 
 const PackageJsonWithNullableScripts = PackageJson.partial().extend({
 	scripts: z

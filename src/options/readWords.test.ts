@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readWords } from "./readWords.js";
+import { readWords } from "./readWords.ts";
 
 describe(readWords, () => {
 	it("returns undefined when the file does not exist", async () => {

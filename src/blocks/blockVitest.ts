@@ -1,23 +1,23 @@
 import { IntakeDirectory } from "bingo-fs";
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { zActionStep } from "./actions/steps.js";
-import { blockCSpell } from "./blockCSpell.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockESLint } from "./blockESLint.js";
-import { blockExampleFiles } from "./blockExampleFiles.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockGitignore } from "./blockGitignore.js";
-import { blockKnip } from "./blockKnip.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockPrettier } from "./blockPrettier.js";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockVSCode } from "./blockVSCode.js";
-import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { zActionStep } from "./actions/steps.ts";
+import { blockCSpell } from "./blockCSpell.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockExampleFiles } from "./blockExampleFiles.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
+import { blockKnip } from "./blockKnip.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockPrettier } from "./blockPrettier.ts";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVSCode } from "./blockVSCode.ts";
+import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 
 const zCoverage = z.object({
 	exclude: z.array(z.string()).optional(),
@@ -134,7 +134,7 @@ Calls to \`console.log\`, \`console.warn\`, and other console methods will cause
 					files: {
 						"greet.test.ts": `import { describe, expect, it, vi } from "vitest";
 
-import { greet } from "./greet.js";
+import { greet } from "./greet.ts";
 
 const message = "Yay, testing!";
 

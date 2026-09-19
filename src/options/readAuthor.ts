@@ -1,6 +1,6 @@
 import { ExecaError, Result } from "execa";
 
-import { PackageAuthor } from "./readPackageAuthor.js";
+import { PackageAuthor } from "./readPackageAuthor.ts";
 
 export async function readAuthor(
 	getPackageAuthor: () => Promise<PackageAuthor>,

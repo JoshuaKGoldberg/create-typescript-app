@@ -1,6 +1,6 @@
-import { defaults } from "../constants.js";
-import { PartialPackageData } from "../types.js";
-import { swallowError } from "../utils/swallowError.js";
+import { defaults } from "../constants.ts";
+import { PartialPackageData } from "../types.ts";
+import { swallowError } from "../utils/swallowError.ts";
 
 export async function readNode(
 	getNvmrc: () => Promise<Error | string>,

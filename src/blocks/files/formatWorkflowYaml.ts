@@ -1,4 +1,4 @@
-import { formatYaml } from "./formatYaml.js";
+import { formatYaml } from "./formatYaml.ts";
 
 export function formatWorkflowYaml(value: unknown) {
 	return addBlankLinesBetweenJobs(

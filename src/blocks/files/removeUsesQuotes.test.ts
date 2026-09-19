@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { removeUsesQuotes } from "./removeUsesQuotes.js";
+import { removeUsesQuotes } from "./removeUsesQuotes.ts";
 
 describe(removeUsesQuotes, () => {
 	test.each([

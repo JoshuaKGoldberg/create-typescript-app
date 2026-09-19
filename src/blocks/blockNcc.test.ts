@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test } from "vitest";
 
-import { blockNcc } from "./blockNcc.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockNcc } from "./blockNcc.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockNcc, () => {
 	test("without addons", () => {

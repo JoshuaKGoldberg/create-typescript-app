@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it } from "vitest";
 
-import { blockExports } from "./blockExports.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockExports } from "./blockExports.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockExports, () => {
 	it("without addons", () => {

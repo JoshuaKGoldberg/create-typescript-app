@@ -1,12 +1,12 @@
-import { base } from "../base.js";
-import { blockCSpell } from "./blockCSpell.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockESLint } from "./blockESLint.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockGitignore } from "./blockGitignore.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockPrettier } from "./blockPrettier.js";
-import { blockVitest } from "./blockVitest.js";
+import { base } from "../base.ts";
+import { blockCSpell } from "./blockCSpell.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockPrettier } from "./blockPrettier.ts";
+import { blockVitest } from "./blockVitest.ts";
 
 export const blockWebExt = base.createBlock({
 	about: {

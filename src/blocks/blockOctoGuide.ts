@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { intakeFileYamlSteps } from "./actions/steps.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
+import { base } from "../base.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { intakeFileYamlSteps } from "./actions/steps.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
 export const blockOctoGuide = base.createBlock({
 	about: {

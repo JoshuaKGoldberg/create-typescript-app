@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readPackageAuthor } from "./readPackageAuthor.js";
+import { readPackageAuthor } from "./readPackageAuthor.ts";
 
 describe(readPackageAuthor, () => {
 	it.each([

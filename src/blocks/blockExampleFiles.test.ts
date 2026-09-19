@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockExampleFiles } from "./blockExampleFiles.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockExampleFiles } from "./blockExampleFiles.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockExampleFiles, () => {
 	test("without addons.files", () => {

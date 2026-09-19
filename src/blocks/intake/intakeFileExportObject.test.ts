@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { intakeFileExportObject } from "./intakeFileExportObject.js";
+import { intakeFileExportObject } from "./intakeFileExportObject.ts";
 
 describe("intake", () => {
 	it("returns nothing when the filePath file does not exist", () => {

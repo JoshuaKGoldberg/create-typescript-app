@@ -1,9 +1,9 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, it } from "vitest";
 
-import { blockNvmrc } from "./blockNvmrc.js";
-import { blockPrettier } from "./blockPrettier.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockNvmrc } from "./blockNvmrc.ts";
+import { blockPrettier } from "./blockPrettier.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockNvmrc", () => {
 	it("only includes blockPackageJson addons when options.node does not exist", () => {

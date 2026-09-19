@@ -5,8 +5,10 @@ import { blockCSpell } from "./blockCSpell.js";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { blockESLint } from "./blockESLint.js";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
+import { blockGitignore } from "./blockGitignore.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockPrettier } from "./blockPrettier.js";
+import { blockVitest } from "./blockVitest.js";
 
 export const blockNcc = base.createBlock({
 	about: {
@@ -28,7 +30,7 @@ export const blockNcc = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					ignorePaths: ["dist"],
+					ignorePaths: ["dist", "lib"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -62,7 +64,10 @@ pnpm build:release
 					},
 				}),
 				blockESLint({
-					ignores: ["dist"],
+					ignores: ["dist", "lib"],
+				}),
+				blockGitignore({
+					ignores: ["/lib"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [
@@ -81,6 +86,7 @@ pnpm build:release
 						devDependencies: {
 							"@vercel/ncc": "^0.38.3",
 						},
+						files: ["lib/"],
 						scripts: {
 							build: "tsc",
 							"build:release": `ncc build ${entry} -o dist`,
@@ -88,7 +94,10 @@ pnpm build:release
 					},
 				}),
 				blockPrettier({
-					ignores: ["/dist"],
+					ignores: ["/dist", "/lib"],
+				}),
+				blockVitest({
+					exclude: ["lib"],
 				}),
 			],
 		};

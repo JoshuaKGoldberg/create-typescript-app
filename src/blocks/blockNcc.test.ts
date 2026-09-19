@@ -17,6 +17,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignorePaths": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": [Function],
@@ -59,6 +60,15 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "dist",
+			          "lib",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/lib",
 			        ],
 			      },
 			      "block": [Function],
@@ -92,6 +102,9 @@ describe(blockNcc, () => {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
+			          "files": [
+			            "lib/",
+			          ],
 			          "scripts": {
 			            "build": "tsc",
 			            "build:release": "ncc build src/index.ts -o dist",
@@ -104,6 +117,15 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "/dist",
+			          "/lib",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "lib",
 			        ],
 			      },
 			      "block": [Function],
@@ -128,6 +150,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignorePaths": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": [Function],
@@ -170,6 +193,15 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "dist",
+			          "lib",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/lib",
 			        ],
 			      },
 			      "block": [Function],
@@ -203,6 +235,9 @@ describe(blockNcc, () => {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
+			          "files": [
+			            "lib/",
+			          ],
 			          "scripts": {
 			            "build": "tsc",
 			            "build:release": "ncc build src/action/index.ts -o dist",
@@ -215,6 +250,15 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "/dist",
+			          "/lib",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "lib",
 			        ],
 			      },
 			      "block": [Function],

@@ -15,16 +15,24 @@ describe(blockTSDown, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "ignorePaths": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 			\`\`\`shell
 			pnpm build
 			\`\`\`
 
-			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
@@ -38,6 +46,17 @@ describe(blockTSDown, () => {
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
+			        "ignores": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -62,10 +81,21 @@ describe(blockTSDown, () => {
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -80,11 +110,19 @@ describe(blockTSDown, () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
+			export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -109,16 +147,24 @@ describe(blockTSDown, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "ignorePaths": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 			\`\`\`shell
 			pnpm build
 			\`\`\`
 
-			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
@@ -132,6 +178,17 @@ describe(blockTSDown, () => {
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
+			        "ignores": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -159,10 +216,21 @@ describe(blockTSDown, () => {
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -177,16 +245,73 @@ describe(blockTSDown, () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts","src/other.ts"],"outDir":"lib","unbundle":true,"dts":false});
+			export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"unbundle":true,"dts":false});
 			",
 			  },
 			  "scripts": undefined,
 			}
 		`);
+	});
+
+	test("with an outDir preserved from intake", () => {
+		const creation = testBlock(blockTSDown, {
+			addons: {
+				properties: {
+					outDir: "lib",
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files).toEqual({
+			"tsdown.config.ts": `import { defineConfig } from "tsdown";
+
+export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true,"outDir":"lib"});
+`,
+		});
+
+		expect(creation.addons).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({
+					addons: expect.objectContaining({
+						sections: {
+							Building: {
+								contents: expect.stringContaining("output files in `lib/`"),
+							},
+						},
+					}),
+				}),
+				expect.objectContaining({
+					addons: expect.objectContaining({ ignorePaths: ["lib"] }),
+				}),
+				expect.objectContaining({
+					addons: expect.objectContaining({ ignores: ["lib"] }),
+				}),
+				expect.objectContaining({
+					addons: expect.objectContaining({ ignores: ["/lib"] }),
+				}),
+				expect.objectContaining({
+					addons: expect.objectContaining({
+						properties: expect.objectContaining({ files: ["lib/"] }),
+					}),
+				}),
+				expect.objectContaining({
+					addons: expect.objectContaining({ exclude: ["lib"] }),
+				}),
+			]),
+		);
 	});
 
 	test("transition mode", () => {
@@ -200,16 +325,24 @@ describe(blockTSDown, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "ignorePaths": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 			\`\`\`shell
 			pnpm build
 			\`\`\`
 
-			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
@@ -223,6 +356,17 @@ describe(blockTSDown, () => {
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
+			        "ignores": [
+			          "dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -247,10 +391,21 @@ describe(blockTSDown, () => {
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
 			        },
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -261,6 +416,14 @@ describe(blockTSDown, () => {
 			            "order": 0,
 			            "run": "pnpm build",
 			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -301,7 +464,7 @@ describe(blockTSDown, () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
+			export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
 			",
 			  },
 			}
@@ -359,6 +522,21 @@ describe(blockTSDown, () => {
 			});
 
 			expect(actual).toEqual({ entry: undefined, properties });
+		});
+
+		it("returns outDir in properties when tsdown.config.ts contains it", () => {
+			const actual = testIntake(blockTSDown, {
+				files: {
+					"tsdown.config.ts": [
+						`defineConfig(${JSON.stringify({ outDir: "lib" })})`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				entry: undefined,
+				properties: { outDir: "lib" },
+			});
 		});
 
 		it("clears tsup default properties when tsup.config.ts contains them", () => {

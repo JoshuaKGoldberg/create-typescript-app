@@ -25,7 +25,7 @@ export const blockExports = base.createBlock({
 		return filePath ? { filePath } : undefined;
 	},
 	produce({ addons }) {
-		const { filePath = "./lib/index.mjs", runArgs } = addons;
+		const { filePath = "./dist/index.mjs", runArgs } = addons;
 
 		return {
 			addons: [

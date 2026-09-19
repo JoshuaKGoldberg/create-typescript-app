@@ -87,7 +87,6 @@ export const blockCSpell = base.createBlock({
 						new Set([
 							".github",
 							"CHANGELOG.md",
-							"lib",
 							"node_modules",
 							"pnpm-lock.yaml",
 							...ignorePaths,

@@ -15,7 +15,7 @@ describe(blockExports, () => {
 			      "addons": {
 			        "properties": {
 			          "exports": {
-			            ".": "./lib/index.mjs",
+			            ".": "./dist/index.mjs",
 			          },
 			        },
 			      },
@@ -24,7 +24,7 @@ describe(blockExports, () => {
 			    {
 			      "addons": {
 			        "runInCI": [
-			          "node ./lib/index.mjs",
+			          "node ./dist/index.mjs",
 			        ],
 			      },
 			      "block": [Function],

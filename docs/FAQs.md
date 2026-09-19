@@ -113,11 +113,11 @@ Then:
    	"exports": {
    		".": {
    			"types": {
-   				"import": "lib/index.d.mts",
-   				"require": "lib/index.d.cts"
+   				"import": "dist/index.d.mts",
+   				"require": "dist/index.d.cts"
    			},
-   			"import": "lib/index.mjs",
-   			"require": "lib/index.cjs"
+   			"import": "dist/index.mjs",
+   			"require": "dist/index.cjs"
    		}
    	}
    }

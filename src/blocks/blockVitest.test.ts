@@ -200,14 +200,6 @@ describe(blockVitest, () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -440,14 +432,6 @@ describe(blockVitest, () => {
 			      "addons": {
 			        "ignores": [
 			          "/coverage",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
 			        ],
 			      },
 			      "block": [Function],
@@ -730,14 +714,6 @@ describe(blockVitest, () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -979,14 +955,6 @@ describe(blockVitest, () => {
 			      "addons": {
 			        "ignores": [
 			          "/coverage",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
 			        ],
 			      },
 			      "block": [Function],

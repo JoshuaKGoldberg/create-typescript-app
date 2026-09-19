@@ -1,154 +1,10 @@
-import { testBlock, testIntake } from "bingo-stratum-testers";
-import { dump } from "js-yaml";
-import { describe, expect, it, test } from "vitest";
+import { testBlock } from "bingo-stratum-testers";
+import { describe, expect, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
 
 describe(blockGitHubActionsCI, () => {
-	test("without options.node.pinned", () => {
-		const creation = testBlock(blockGitHubActionsCI, {
-			options: {
-				...optionsBase,
-				node: {
-					minimum: "20.12.0",
-				},
-			},
-		});
-
-		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "requiredStatusChecks": undefined,
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "actions": {
-			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
-
-			name: Setup
-
-			runs:
-			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
-			      with:
-			        cache: pnpm
-			        node-version: 20.12.0
-			    - run: pnpm install --frozen-lockfile
-			      shell: bash
-			  using: composite
-			",
-			        },
-			      },
-			      "workflows": {
-			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
-			  pr_review_requested:
-			    permissions:
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
-
-			name: PR Review Requested
-
-			on:
-			  pull_request_target:
-			    types:
-			      - review_requested
-			",
-			      },
-			    },
-			  },
-			}
-		`);
-	});
-
-	test("with options.node.pinned", () => {
-		const creation = testBlock(blockGitHubActionsCI, {
-			options: {
-				...optionsBase,
-				node: {
-					minimum: "20.12.0",
-					pinned: "22.12.0",
-				},
-			},
-		});
-
-		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "addons": [
-			    {
-			      "addons": {
-			        "requiredStatusChecks": undefined,
-			      },
-			      "block": [Function],
-			    },
-			  ],
-			  "files": {
-			    ".github": {
-			      "actions": {
-			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
-
-			name: Setup
-
-			runs:
-			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
-			      with:
-			        cache: pnpm
-			        node-version: 22.12.0
-			    - run: pnpm install --frozen-lockfile
-			      shell: bash
-			  using: composite
-			",
-			        },
-			      },
-			      "workflows": {
-			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
-			  pr_review_requested:
-			    permissions:
-			      pull-requests: write
-			    runs-on: ubuntu-latest
-			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
-
-			name: PR Review Requested
-
-			on:
-			  pull_request_target:
-			    types:
-			      - review_requested
-			",
-			      },
-			    },
-			  },
-			}
-		`);
-	});
-
 	test("without addons or mode", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			options: optionsBase,
@@ -178,7 +34,7 @@ describe(blockGitHubActionsCI, () => {
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
-			        node-version: 20.12.0
+			        node-version: lts/*
 			    - run: pnpm install --frozen-lockfile
 			      shell: bash
 			  using: composite
@@ -257,7 +113,7 @@ describe(blockGitHubActionsCI, () => {
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
-			        node-version: 20.12.0
+			        node-version: lts/*
 			    - run: pnpm install --frozen-lockfile
 			      shell: bash
 			  using: composite
@@ -341,7 +197,7 @@ describe(blockGitHubActionsCI, () => {
 			    - uses: actions/setup-node@v4
 			      with:
 			        cache: pnpm
-			        node-version: 20.12.0
+			        node-version: lts/*
 			    - run: pnpm install --frozen-lockfile
 			      shell: bash
 			  using: composite
@@ -409,158 +265,5 @@ describe(blockGitHubActionsCI, () => {
 			  },
 			}
 		`);
-	});
-
-	describe("intake", () => {
-		it("returns undefined when action.yaml does not exist", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns undefined when action.yaml contains invalid YAML", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							prepare: {
-								"action.yaml": ["invalid YAML!"],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns undefined when action.yaml does not contain a runs entry", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							prepare: {
-								"action.yaml": [
-									dump({
-										other: {
-											steps: [],
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns undefined when action.yaml runs steps is not an array", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							prepare: {
-								"action.yaml": [
-									dump({
-										runs: {
-											steps: true,
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns undefined env when action.yaml contains a test action with actions/setup-node step", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							prepare: {
-								"action.yaml": [
-									dump({
-										runs: {
-											steps: [
-												{
-													uses: "actions/other@v1",
-												},
-											],
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns undefined env when action.yaml contains a test action with no env in its actions/setup-node step", () => {
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							prepare: {
-								"action.yaml": [
-									dump({
-										runs: {
-											steps: [
-												{
-													uses: "actions/setup-node@v4",
-												},
-											],
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toBeUndefined();
-		});
-
-		it("returns nodeVersion when action.yaml contains a test action with node-version in its actions/setup/node step", () => {
-			const nodeVersion = "20.10.0";
-
-			const actual = testIntake(blockGitHubActionsCI, {
-				files: {
-					".github": {
-						actions: {
-							prepare: {
-								"action.yaml": [
-									dump({
-										runs: {
-											steps: [
-												{
-													uses: "actions/setup-node@v4",
-													with: {
-														"node-version": nodeVersion,
-													},
-												},
-											],
-										},
-									}),
-								],
-							},
-						},
-					},
-				},
-			});
-
-			expect(actual).toEqual({ nodeVersion });
-		});
 	});
 });

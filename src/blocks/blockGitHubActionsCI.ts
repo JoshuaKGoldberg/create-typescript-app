@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.js";
 import { resolveUses } from "./actions/resolveUses.js";
-import { intakeFileYamlSteps, zActionStep } from "./actions/steps.js";
+import { zActionStep } from "./actions/steps.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
@@ -24,37 +24,9 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
-		nodeVersion: z.union([z.number(), z.string()]).optional(),
-	},
-	intake({ files }) {
-		const steps = intakeFileYamlSteps(
-			files,
-			[".github", "actions", "prepare", "action.yaml"],
-			["runs", "steps"],
-		);
-		if (!steps) {
-			return undefined;
-		}
-
-		const setupNodeStep = steps.find(
-			(step) =>
-				typeof step.uses === "string" &&
-				step.uses.startsWith("actions/setup-node"),
-		);
-		if (!setupNodeStep) {
-			return undefined;
-		}
-
-		const nodeVersion = setupNodeStep.with?.["node-version"];
-		if (!nodeVersion) {
-			return undefined;
-		}
-
-		return { nodeVersion };
 	},
 	produce({ addons, options }) {
-		const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
-			addons;
+		const { jobs } = addons;
 		const minimumNodeVersion = options.node.minimum
 			.replace(/^\D*/u, "")
 			.split(/[^\d.]/u)[0];
@@ -111,7 +83,7 @@ export const blockGitHubActionsCI = base.createBlock({
 											),
 											with: {
 												cache: "pnpm",
-												"node-version": nodeVersion,
+												"node-version": "lts/*",
 											},
 										},
 										{

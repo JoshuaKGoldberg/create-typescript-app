@@ -14,7 +14,7 @@
 	"sideEffects": false,
 	"type": "module",
 	"exports": {
-		".": "./lib/index.js"
+		".": "./lib/index.mjs"
 	},
 	"bin": "bin/index.js",
 	"files": [

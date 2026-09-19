@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test } from "vitest";
 
-import { blockESLintPlugin } from "./blockESLintPlugin.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockESLintPlugin } from "./blockESLintPlugin.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockESLintPlugin, () => {
 	test("without addons, mode, or options", () => {
@@ -539,7 +539,7 @@ describe(blockESLintPlugin, () => {
 			    "src": {
 			      "index.ts": "import Module from "node:module";
 
-			import { rules } from "./rules/index.js";
+			import { rules } from "./rules/index.ts";
 
 			const require = Module.createRequire(import.meta.url);
 
@@ -571,8 +571,8 @@ describe(blockESLintPlugin, () => {
 			export default plugin;
 			",
 			      "rules": {
-			        "enums.test.ts": "import { rule } from "./enums.js";
-			import { ruleTester } from "./ruleTester.js";
+			        "enums.test.ts": "import { rule } from "./enums.ts";
+			import { ruleTester } from "./ruleTester.ts";
 
 			ruleTester.run("enums", rule, {
 				invalid: [
@@ -592,7 +592,7 @@ describe(blockESLintPlugin, () => {
 				valid: [\`const Values = {};\`, \`const Values = {} as const;\`],
 			});
 			",
-			        "enums.ts": "import { createRule } from "../utils.js";
+			        "enums.ts": "import { createRule } from "../utils.ts";
 
 			export const rule = createRule({
 				create(context) {
@@ -619,7 +619,7 @@ describe(blockESLintPlugin, () => {
 				name: "enums",
 			});
 			",
-			        "index.ts": "import { rule as enums } from "./enums.js";
+			        "index.ts": "import { rule as enums } from "./enums.ts";
 
 			export const rules = {
 				enums,

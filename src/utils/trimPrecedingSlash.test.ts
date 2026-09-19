@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { trimPrecedingSlash } from "./trimPrecedingSlash.js";
+import { trimPrecedingSlash } from "./trimPrecedingSlash.ts";
 
 describe(trimPrecedingSlash, () => {
 	test.each([

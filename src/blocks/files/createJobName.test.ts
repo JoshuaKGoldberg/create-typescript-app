@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { createJobName } from "./createJobName.js";
+import { createJobName } from "./createJobName.ts";
 
 describe(createJobName, () => {
 	test.each([

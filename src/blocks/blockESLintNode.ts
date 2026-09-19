@@ -1,6 +1,6 @@
-import { base } from "../base.js";
-import { blockESLint } from "./blockESLint.js";
-import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
+import { base } from "../base.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
 
 export const blockESLintNode = base.createBlock({
 	about: {

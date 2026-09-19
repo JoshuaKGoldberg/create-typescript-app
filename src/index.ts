@@ -1,9 +1,9 @@
-import { template } from "./template.js";
+import { template } from "./template.ts";
 
 export { template };
 
 export const { createConfig } = template;
 
-export * from "./base.js";
-export * from "./blocks/index.js";
-export * from "./presets/index.js";
+export * from "./base.ts";
+export * from "./blocks/index.ts";
+export * from "./presets/index.ts";

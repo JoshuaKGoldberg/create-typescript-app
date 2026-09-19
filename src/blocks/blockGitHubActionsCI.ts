@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { intakeFileYamlSteps, zActionStep } from "./actions/steps.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { formatYaml } from "./files/formatYaml.js";
+import { base } from "../base.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { intakeFileYamlSteps, zActionStep } from "./actions/steps.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.ts";
+import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
+import { formatYaml } from "./files/formatYaml.ts";
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {

@@ -1,6 +1,6 @@
 import * as fs from "node:fs/promises";
 
-import { readLogoSizing } from "./readLogoSizing.js";
+import { readLogoSizing } from "./readLogoSizing.ts";
 
 export async function readLogo(getReadme: () => Promise<string>) {
 	const tag = /\n<img.+src=.+>/.exec(await getReadme())?.[0];

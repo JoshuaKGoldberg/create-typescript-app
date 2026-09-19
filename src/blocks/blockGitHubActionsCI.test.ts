@@ -2,8 +2,8 @@ import { testBlock, testIntake } from "bingo-stratum-testers";
 import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockGitHubActionsCI, () => {
 	test("without options.node.pinned", () => {

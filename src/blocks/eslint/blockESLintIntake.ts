@@ -5,9 +5,9 @@ import {
 } from "@typescript-eslint/typescript-estree";
 import JSON5 from "json5";
 
-import { tryCatch } from "../../utils/tryCatch.js";
-import { stylisticComment } from "../blockESLintMoreStyling.js";
-import { type ExtensionRuleGroup, zRuleOptions } from "./schemas.js";
+import { tryCatch } from "../../utils/tryCatch.ts";
+import { stylisticComment } from "../blockESLintMoreStyling.ts";
+import { type ExtensionRuleGroup, zRuleOptions } from "./schemas.ts";
 
 type ConfigExport = TSESTree.ExportDefaultDeclaration & {
 	declaration: TSESTree.CallExpression;

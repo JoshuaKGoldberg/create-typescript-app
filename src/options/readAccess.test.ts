@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readAccess } from "./readAccess.js";
+import { readAccess } from "./readAccess.ts";
 
 describe(readAccess, () => {
 	it("resolves with 'public' when package data does not exist", async () => {

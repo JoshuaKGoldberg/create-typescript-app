@@ -17,9 +17,9 @@ import {
 	blockRenovate,
 	blockTemplatedWith,
 	presets,
-} from "./index.js";
+} from "./index.ts";
 
-vi.mock("./utils/resolveBin.js", () => ({
+vi.mock("./utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `node_modules/${bin}`,
 }));
 

@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockVSCode } from "./blockVSCode.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockVSCode } from "./blockVSCode.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockVSCode, () => {
 	test("without addons", () => {

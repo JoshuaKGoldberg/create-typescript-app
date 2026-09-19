@@ -1,18 +1,18 @@
 import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockESLint } from "./blockESLint.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockReleaseIt } from "./blockReleaseIt.js";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockReleaseIt } from "./blockReleaseIt.ts";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
+import { CommandPhase } from "./phases.ts";
 
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());

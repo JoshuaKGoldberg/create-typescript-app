@@ -1,7 +1,7 @@
 import * as fs from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
-import { base } from "./index.js";
+import { base } from "./index.ts";
 
 // This test ensures all options are mentioned in either:
 // - docs/CLI.md: for options that can be used on the command line

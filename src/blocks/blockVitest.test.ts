@@ -1,10 +1,10 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
-import { blockVitest } from "./blockVitest.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockVitest } from "./blockVitest.ts";
+import { optionsBase } from "./options.fakes.ts";
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
@@ -96,7 +96,7 @@ describe(blockVitest, () => {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-			import { greet } from "./greet.js";
+			import { greet } from "./greet.ts";
 
 			const message = "Yay, testing!";
 
@@ -342,7 +342,7 @@ describe(blockVitest, () => {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-			import { greet } from "./greet.js";
+			import { greet } from "./greet.ts";
 
 			const message = "Yay, testing!";
 
@@ -626,7 +626,7 @@ describe(blockVitest, () => {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-			import { greet } from "./greet.js";
+			import { greet } from "./greet.ts";
 
 			const message = "Yay, testing!";
 
@@ -881,7 +881,7 @@ describe(blockVitest, () => {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
-			import { greet } from "./greet.js";
+			import { greet } from "./greet.ts";
 
 			const message = "Yay, testing!";
 

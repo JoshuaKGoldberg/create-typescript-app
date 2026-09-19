@@ -1,16 +1,16 @@
 import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockVSCode } from "./blockVSCode.js";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
-import { intakeFileExportObject } from "./intake/intakeFileExportObject.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVSCode } from "./blockVSCode.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
+import { intakeFileExportObject } from "./intake/intakeFileExportObject.ts";
 
 const zStringArray = z.array(z.string());
 

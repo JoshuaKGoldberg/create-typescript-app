@@ -97,12 +97,14 @@ pnpm format --write
 				".prettierignore": formatIgnoreFile(
 					["/.husky", "/lib", "/pnpm-lock.yaml", ...ignores].sort(),
 				),
-				".prettierrc.json": JSON.stringify({
-					$schema: "http://json.schemastore.org/prettierrc",
+				"prettier.config.ts": `import type { Config } from "prettier";
+
+export default ${JSON.stringify({
 					...(overrides.length && { overrides: overrides.sort() }),
 					...(plugins.length && { plugins: plugins.sort() }),
 					useTabs: true,
-				}),
+				})} satisfies Config;
+`,
 			},
 			scripts: [
 				{

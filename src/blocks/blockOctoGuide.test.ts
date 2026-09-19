@@ -1,11 +1,11 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import jsYaml from "js-yaml";
+import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
 import { blockOctoGuide } from "./blockOctoGuide.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockOctoGuide", () => {
+describe(blockOctoGuide, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockOctoGuide, {
 			options: optionsBase,
@@ -82,8 +82,9 @@ describe("blockOctoGuide", () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".github/workflows/accessibility-alt-text-bot.yaml",
-			          ".github/workflows/compliance.yaml",
+			          ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
+			          ".github/workflows/compliance.{yaml,yml}",
+			          ".github/workflows/octoguide.yml",
 			        ],
 			      },
 			      "block": [Function],
@@ -232,7 +233,7 @@ describe("blockOctoGuide", () => {
 					".github": {
 						workflows: {
 							"octoguide.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										octoguide: {
 											name: "Octoguide",
@@ -262,7 +263,7 @@ describe("blockOctoGuide", () => {
 					".github": {
 						workflows: {
 							"octoguide.yaml": [
-								jsYaml.dump({
+								dump({
 									jobs: {
 										octoguide: {
 											name: "Octoguide",

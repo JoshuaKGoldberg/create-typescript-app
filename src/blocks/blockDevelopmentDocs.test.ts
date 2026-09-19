@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockDevelopmentDocs", () => {
+describe(blockDevelopmentDocs, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockDevelopmentDocs, {
 			options: optionsBase,

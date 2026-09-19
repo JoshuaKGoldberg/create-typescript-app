@@ -14,7 +14,7 @@ vi.mock("./eslint/blockESLintIntake.js", () => ({
 	},
 }));
 
-describe("blockESLint", () => {
+describe(blockESLint, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockESLint, {
 			options: optionsBase,

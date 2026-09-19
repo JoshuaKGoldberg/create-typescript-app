@@ -10,7 +10,7 @@ export async function readNode(
 
 	return {
 		minimum:
-			(engines?.node && /[\d+.]+/.exec(engines.node))?.[0] ??
+			(engines?.node && /\d/u.test(engines.node) && engines.node) ||
 			defaults.node.minimum,
 		pinned: swallowError(await getNvmrc())?.trim() || defaults.node.pinned,
 	};

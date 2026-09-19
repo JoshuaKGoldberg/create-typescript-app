@@ -78,7 +78,9 @@ export const blockCodecov = base.createBlock({
 	transition() {
 		return {
 			addons: [
-				blockRemoveFiles({ files: [".github/codecov.yaml", "codecov.yaml"] }),
+				blockRemoveFiles({
+					files: [".github/codecov.{yaml,yml}", "codecov.{yaml,yml}"],
+				}),
 			],
 		};
 	},

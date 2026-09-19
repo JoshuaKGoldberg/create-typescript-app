@@ -8,7 +8,7 @@ vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockRemoveFiles", () => {
+describe(blockRemoveFiles, () => {
 	test("without addons or mode", () => {
 		const creation = testBlock(blockRemoveFiles, {
 			options: optionsBase,

@@ -1,11 +1,11 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import jsYaml from "js-yaml";
+import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockGitHubActionsCI", () => {
+describe(blockGitHubActionsCI, () => {
 	test("without options.node.pinned", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			options: {
@@ -32,7 +32,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -106,7 +106,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -174,7 +174,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -240,7 +240,10 @@ describe("blockGitHubActionsCI", () => {
 			      "addons": {
 			        "files": [
 			          ".circleci",
-			          "travis.yaml",
+			          ".github/actions/prepare/action.yml",
+			          ".github/workflows/ci.yml",
+			          ".github/workflows/pr-review-requested.yml",
+			          "travis.{yaml,yml}",
 			        ],
 			      },
 			      "block": [Function],
@@ -252,7 +255,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -325,6 +328,7 @@ describe("blockGitHubActionsCI", () => {
 			    {
 			      "addons": {
 			        "requiredStatusChecks": [
+			          "Engines Check",
 			          "Validate",
 			        ],
 			      },
@@ -337,7 +341,7 @@ describe("blockGitHubActionsCI", () => {
 			        "prepare": {
 			          "action.yaml": "description: Prepares the repo for a typical CI job
 
-			name: Prepare
+			name: Setup
 
 			runs:
 			  steps:
@@ -354,6 +358,17 @@ describe("blockGitHubActionsCI", () => {
 			      },
 			      "workflows": {
 			        "ci.yaml": "jobs:
+			  engines_check:
+			    name: Engines Check
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - uses: actions/setup-node@v4
+			        with:
+			          cache: pnpm
+			          node-version: 20.12.0
+			      - run: pnpm install --prod --engine-strict --ignore-scripts
 			  validate:
 			    name: Validate
 			    runs-on: ubuntu-latest
@@ -439,7 +454,7 @@ describe("blockGitHubActionsCI", () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										other: {
 											steps: [],
 										},
@@ -461,7 +476,7 @@ describe("blockGitHubActionsCI", () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: true,
 										},
@@ -483,7 +498,7 @@ describe("blockGitHubActionsCI", () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: [
 												{
@@ -509,7 +524,7 @@ describe("blockGitHubActionsCI", () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: [
 												{
@@ -537,7 +552,7 @@ describe("blockGitHubActionsCI", () => {
 						actions: {
 							prepare: {
 								"action.yaml": [
-									jsYaml.dump({
+									dump({
 										runs: {
 											steps: [
 												{

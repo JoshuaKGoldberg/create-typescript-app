@@ -170,7 +170,7 @@ If you don't want to use any particular tool, you can always remove it manually.
 
 ## Why tabs?
 
-This repository template configures `"useTabs": true` in the root-level `.prettierrc.json`.
+This repository template configures `useTabs: true` in the root-level `prettier.config.ts`.
 It does so because tabs have been phrased by the community as generally better for accessibility:
 
 - <https://github.com/11ty/eleventy/issues/3098>

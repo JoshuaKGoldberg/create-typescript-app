@@ -14,6 +14,7 @@ import markdown from "@eslint/markdown";
 import vitest from "@vitest/eslint-plugin";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
+import markdownLinks from "eslint-plugin-markdown-links";
 import n from "eslint-plugin-n";
 import packageJson from "eslint-plugin-package-json";
 import perfectionist from "eslint-plugin-perfectionist";
@@ -81,7 +82,7 @@ export default defineConfig(
 		files: ["**/*.json"],
 	},
 	{
-		extends: [markdown.configs.recommended],
+		extends: [markdown.configs.recommended, markdownLinks.configs.recommended],
 		files: ["**/*.md"],
 		rules: {
 			// https://github.com/eslint/markdown/issues/294
@@ -96,7 +97,10 @@ export default defineConfig(
 	{
 		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
-		rules: { "@typescript-eslint/no-unsafe-assignment": "off" },
+		rules: {
+			"@typescript-eslint/no-unsafe-assignment": "off",
+			"vitest/prefer-describe-function-title": "error",
+		},
 		settings: { vitest: { typecheck: true } },
 	},
 	{

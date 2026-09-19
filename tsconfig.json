@@ -1,10 +1,9 @@
 {
 	"compilerOptions": {
 		"declaration": true,
-		"declarationMap": true,
 		"esModuleInterop": true,
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
 		"noEmit": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,

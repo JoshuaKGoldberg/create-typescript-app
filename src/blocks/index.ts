@@ -10,6 +10,7 @@ import { blockESLintComments } from "./blockESLintComments.js";
 import { blockESLintJSDoc } from "./blockESLintJSDoc.js";
 import { blockESLintJSONC } from "./blockESLintJSONC.js";
 import { blockESLintMarkdown } from "./blockESLintMarkdown.js";
+import { blockESLintMarkdownLinks } from "./blockESLintMarkdownLinks.js";
 import { blockESLintMoreStyling } from "./blockESLintMoreStyling.js";
 import { blockESLintNode } from "./blockESLintNode.js";
 import { blockESLintPackageJson } from "./blockESLintPackageJson.js";
@@ -61,6 +62,7 @@ export const blocks = {
 	blockESLintJSDoc,
 	blockESLintJSONC,
 	blockESLintMarkdown,
+	blockESLintMarkdownLinks,
 	blockESLintMoreStyling,
 	blockESLintNode,
 	blockESLintPackageJson,
@@ -113,6 +115,7 @@ export { blockESLintComments } from "./blockESLintComments.js";
 export { blockESLintJSDoc } from "./blockESLintJSDoc.js";
 export { blockESLintJSONC } from "./blockESLintJSONC.js";
 export { blockESLintMarkdown } from "./blockESLintMarkdown.js";
+export { blockESLintMarkdownLinks } from "./blockESLintMarkdownLinks.js";
 export { blockESLintMoreStyling } from "./blockESLintMoreStyling.js";
 export { blockESLintNode } from "./blockESLintNode.js";
 export { blockESLintPackageJson } from "./blockESLintPackageJson.js";

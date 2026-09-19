@@ -6,6 +6,8 @@ import { Contributor } from "../schemas.js";
 import { resolveUses } from "./actions/resolveUses.js";
 import { blockPrettier } from "./blockPrettier.js";
 import { blockREADME } from "./blockREADME.js";
+import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
 import { CommandPhase } from "./phases.js";
 
@@ -112,6 +114,15 @@ export const blockAllContributors = base.createBlock({
 					],
 					phase: CommandPhase.Process,
 				},
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveFiles({
+					files: [".github/workflows/contributors.yml"],
+				}),
 			],
 		};
 	},

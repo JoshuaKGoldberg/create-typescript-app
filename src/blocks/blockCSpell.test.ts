@@ -8,7 +8,7 @@ vi.mock("../utils/resolveBin.js", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockCSpell", () => {
+describe(blockCSpell, () => {
 	test("without addons or options", () => {
 		const creation = testBlock(blockCSpell, {
 			options: optionsBase,

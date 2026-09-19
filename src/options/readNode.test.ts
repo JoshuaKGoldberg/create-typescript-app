@@ -28,7 +28,7 @@ describe(readNode, () => {
 		});
 
 		it("uses the engines value when engines.node contains a valid value", async () => {
-			const node = "23.4.5";
+			const node = "^22.13.0 || ^24.11.0 || >=26.0.0";
 
 			const { minimum } = await readNode(getNvmrc, () =>
 				Promise.resolve({

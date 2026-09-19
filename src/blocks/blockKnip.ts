@@ -8,6 +8,7 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
 import { blockPackageJson } from "./blockPackageJson.js";
 import { blockRemoveFiles } from "./blockRemoveFiles.js";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
+import { blockVSCode } from "./blockVSCode.js";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.js";
 import { intakeFileExportObject } from "./intake/intakeFileExportObject.js";
 
@@ -70,6 +71,9 @@ export const blockKnip = base.createBlock({
 				}),
 				blockRemoveFiles({
 					files: [".ts-prunerc*"],
+				}),
+				blockVSCode({
+					extensions: ["webpro.vscode-knip"],
 				}),
 			],
 			files: {

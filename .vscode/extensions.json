@@ -3,6 +3,7 @@
 		"dbaeumer.vscode-eslint",
 		"esbenp.prettier-vscode",
 		"streetsidesoftware.code-spell-checker",
-		"vitest.explorer"
+		"vitest.explorer",
+		"webpro.vscode-knip"
 	]
 }

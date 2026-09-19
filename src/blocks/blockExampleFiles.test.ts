@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockExampleFiles } from "./blockExampleFiles.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockExampleFiles", () => {
+describe(blockExampleFiles, () => {
 	test("without addons.files", () => {
 		const creation = testBlock(blockExampleFiles, {
 			addons: {},

@@ -19,6 +19,7 @@ export const blockRepositorySettings = base.createBlock({
 						allow_squash_merge: true,
 						delete_branch_on_merge: true,
 						description,
+						has_projects: false,
 						has_wiki: false,
 						owner: options.owner,
 						repo: options.repository,

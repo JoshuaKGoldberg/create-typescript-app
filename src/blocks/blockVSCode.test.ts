@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockVSCode } from "./blockVSCode.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockVSCode", () => {
+describe(blockVSCode, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockVSCode, {
 			options: optionsBase,

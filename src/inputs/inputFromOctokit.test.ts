@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { inputFromOctokit } from "./inputFromOctokit.js";
 
-describe("inputFromOctokit", () => {
+describe(inputFromOctokit, () => {
 	it("returns data when the request resolves", async () => {
 		const data = JSON.stringify({ found: true });
 

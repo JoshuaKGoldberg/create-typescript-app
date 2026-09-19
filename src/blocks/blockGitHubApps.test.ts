@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockGitHubApps } from "./blockGitHubApps.js";
 import { optionsBase } from "./options.fakes.js";
 
-describe("blockGitHubApps", () => {
+describe(blockGitHubApps, () => {
 	test("without addons", () => {
 		const creation = testBlock(blockGitHubApps, {
 			options: optionsBase,

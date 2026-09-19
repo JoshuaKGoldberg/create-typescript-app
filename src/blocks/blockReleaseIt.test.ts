@@ -77,9 +77,7 @@ describe(blockReleaseIt, () => {
 
 			              Cheers! 📦🚀
 
-
 			name: Post Release
-
 
 			on:
 			  release:
@@ -88,7 +86,6 @@ describe(blockReleaseIt, () => {
 			",
 			        "release.yaml": "concurrency:
 			  group: \${{ github.workflow }}
-
 
 			jobs:
 			  release:
@@ -107,9 +104,7 @@ describe(blockReleaseIt, () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
 
-
 			name: Release
-
 
 			on:
 			  push:
@@ -217,9 +212,7 @@ describe(blockReleaseIt, () => {
 
 			              Cheers! 📦🚀
 
-
 			name: Post Release
-
 
 			on:
 			  release:
@@ -228,7 +221,6 @@ describe(blockReleaseIt, () => {
 			",
 			        "release.yaml": "concurrency:
 			  group: \${{ github.workflow }}
-
 
 			jobs:
 			  release:
@@ -250,9 +242,7 @@ describe(blockReleaseIt, () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
 
-
 			name: Release
-
 
 			on:
 			  push:

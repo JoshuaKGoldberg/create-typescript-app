@@ -30,9 +30,7 @@ describe(blockOctoGuide, () => {
 			          config: recommended
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
-
 			name: OctoGuide
-
 
 			on:
 			  discussion:
@@ -107,9 +105,7 @@ describe(blockOctoGuide, () => {
 			          config: recommended
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
-
 			name: OctoGuide
-
 
 			on:
 			  discussion:
@@ -174,9 +170,7 @@ describe(blockOctoGuide, () => {
 			          config: strict
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
-
 			name: OctoGuide
-
 
 			on:
 			  discussion:

@@ -105,9 +105,7 @@ describe("blockCTATransitions", () => {
 			      - if: steps.checkout.outcome == 'skipped'
 			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'
 
-
 			name: CTA
-
 
 			on:
 			  pull_request:

@@ -1,3 +1,4 @@
+import { IntakeDirectory } from "bingo-fs";
 import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
@@ -16,6 +17,7 @@ import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { blockVitest } from "./blockVitest.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 import { CommandPhase } from "./phases.ts";
 
@@ -27,6 +29,25 @@ const zProperties = z.record(z.unknown());
 // outDir from blockTSDown while also sending entries back would create an addons
 // cycle that bingo-stratum never settles.
 const defaultEntry = ["src/**/*.ts", "!src/**/*.test.*"];
+
+function hasJsEntryPoint(files: IntakeDirectory) {
+	const packageData = intakeFileAsJson(files, ["package.json"]);
+	const exports = packageData?.exports;
+	const entryPoint =
+		typeof exports === "string"
+			? exports
+			: ((exports as Record<string, unknown> | undefined)?.["."] ??
+				packageData?.main);
+
+	// A package.json without an entry point predates tsdown's .mjs default.
+	return typeof entryPoint === "string"
+		? entryPoint.endsWith(".js")
+		: entryPoint === undefined;
+}
+
+function isEsmOnly(format: unknown) {
+	return format === undefined || format === "esm";
+}
 
 function isLegacyOutDir(outDir: unknown) {
 	return (
@@ -66,6 +87,13 @@ export const blockTSDown = base.createBlock({
 
 				// lib was the default before build output moved to tsdown's dist
 				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
+				// Repositories created before tsdown defaulted to .mjs output still
+				// publish .js files, so they keep doing so unless they say otherwise.
+				fixedExtension:
+					rest.fixedExtension ??
+					(isEsmOnly(rest.format) && hasJsEntryPoint(files)
+						? false
+						: undefined),
 			}),
 		};
 	},

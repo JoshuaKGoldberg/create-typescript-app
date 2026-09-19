@@ -17,10 +17,15 @@ export const blockExports = base.createBlock({
 		runArgs: z.array(z.string()).default([]),
 	},
 	intake({ files }) {
-		const exports = zExports.safeParse(
-			intakeFileAsJson(files, ["package.json"])?.exports,
-		).data;
-		const filePath = typeof exports === "string" ? exports : exports?.["."];
+		const packageData = intakeFileAsJson(files, ["package.json"]);
+		const exports = zExports.safeParse(packageData?.exports).data;
+		const filePath =
+			packageData?.exports === undefined
+				? // Repositories created before exports were generated only have a main
+					zFilePath.safeParse(packageData?.main).data
+				: typeof exports === "string"
+					? exports
+					: exports?.["."];
 
 		// lib was the default before build output moved to tsdown's dist
 		return filePath

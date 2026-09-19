@@ -527,7 +527,7 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 				},
 			});
 
-			expect(actual).toEqual({ entry });
+			expect(actual).toEqual({ entry, properties: { fixedExtension: false } });
 		});
 
 		it("returns the properties when tsdown.config.ts contains other properties", () => {
@@ -553,7 +553,7 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 
 			expect(actual).toEqual({
 				entry: undefined,
-				properties: { outDir: "build" },
+				properties: { fixedExtension: false, outDir: "build" },
 			});
 		});
 
@@ -568,10 +568,87 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 
 				expect(actual).toEqual({
 					entry: undefined,
-					properties: undefined,
+					properties: { fixedExtension: false },
 				});
 			},
 		);
+		describe("fixedExtension", () => {
+			const config = `defineConfig(${JSON.stringify({ entry: ["src/index.ts"] })})`;
+
+			it("is pinned to false when the config omits it and package.json has no entry point", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [JSON.stringify({ name: "test" })],
+						"tsdown.config.ts": [config],
+					},
+				});
+
+				expect(actual?.properties).toEqual({ fixedExtension: false });
+			});
+
+			it("is pinned to false when the config omits it and package.json main is a .js file", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [JSON.stringify({ main: "lib/index.js" })],
+						"tsup.config.ts": [config],
+					},
+				});
+
+				expect(actual?.properties).toEqual({ fixedExtension: false });
+			});
+
+			it("is pinned to false when the config omits it and package.json exports is a .js file", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [
+							JSON.stringify({ exports: { ".": "./lib/index.js" } }),
+						],
+						"tsdown.config.ts": [config],
+					},
+				});
+
+				expect(actual?.properties).toEqual({ fixedExtension: false });
+			});
+
+			it("is left alone when package.json exports is a .mjs file", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [
+							JSON.stringify({ exports: { ".": "./lib/index.mjs" } }),
+						],
+						"tsdown.config.ts": [config],
+					},
+				});
+
+				expect(actual?.properties).toBeUndefined();
+			});
+
+			it("is left alone when the config has a non-esm format", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [JSON.stringify({ main: "lib/index.js" })],
+						"tsup.config.ts": [
+							`defineConfig(${JSON.stringify({ format: ["cjs", "esm"] })})`,
+						],
+					},
+				});
+
+				expect(actual?.properties).toEqual({ format: ["cjs", "esm"] });
+			});
+
+			it("is preserved when the config sets it", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [JSON.stringify({ main: "lib/index.js" })],
+						"tsdown.config.ts": [
+							`defineConfig(${JSON.stringify({ fixedExtension: true })})`,
+						],
+					},
+				});
+
+				expect(actual?.properties).toEqual({ fixedExtension: true });
+			});
+		});
 
 		it("clears tsup default properties when tsup.config.ts contains them", () => {
 			const properties = { bundle: true, clean: true, format: "esm" };
@@ -584,7 +661,7 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 
 			expect(actual).toEqual({
 				entry: undefined,
-				properties: undefined,
+				properties: { fixedExtension: false },
 			});
 		});
 	});

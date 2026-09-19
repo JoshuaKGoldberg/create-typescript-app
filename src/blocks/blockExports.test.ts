@@ -78,7 +78,7 @@ describe(blockExports, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns undefined when package.json does not contain exports", () => {
+		it("returns undefined when package.json does not contain exports or main", () => {
 			const actual = testIntake(blockExports, {
 				files: {
 					"package.json": [JSON.stringify({ name: "test" })],
@@ -86,6 +86,31 @@ describe(blockExports, () => {
 			});
 
 			expect(actual).toBeUndefined();
+		});
+
+		it("returns filePath from main when package.json does not contain exports", () => {
+			const actual = testIntake(blockExports, {
+				files: {
+					"package.json": [JSON.stringify({ main: "lib/index.js" })],
+				},
+			});
+
+			expect(actual).toEqual({ filePath: "./dist/index.js" });
+		});
+
+		it("ignores main when package.json contains exports", () => {
+			const actual = testIntake(blockExports, {
+				files: {
+					"package.json": [
+						JSON.stringify({
+							exports: { ".": "./lib/index.mjs" },
+							main: "lib/index.js",
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({ filePath: "./dist/index.mjs" });
 		});
 
 		it("returns undefined when package.json exports does not contain a string '.' entry", () => {

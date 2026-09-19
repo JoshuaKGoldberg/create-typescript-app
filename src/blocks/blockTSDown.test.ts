@@ -399,6 +399,32 @@ describe(blockTSDown, () => {
 				expect(actual?.properties).toEqual({ fixedExtension: false });
 			});
 
+			it("is pinned to false when the config omits it and package.json exports is a .js string", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [JSON.stringify({ exports: "./lib/index.js" })],
+						"tsdown.config.ts": [config],
+					},
+				});
+
+				expect(actual?.properties).toEqual({ fixedExtension: false });
+			});
+
+			it("is left alone when package.json exports '.' is an object", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [
+							JSON.stringify({
+								exports: { ".": { default: "./lib/index.js" } },
+							}),
+						],
+						"tsdown.config.ts": [config],
+					},
+				});
+
+				expect(actual?.properties).toBeUndefined();
+			});
+
 			it("is left alone when package.json exports is a .mjs file", () => {
 				const actual = testIntake(blockTSDown, {
 					files: {

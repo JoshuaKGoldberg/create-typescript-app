@@ -9,12 +9,8 @@ import {
 	base,
 	BaseOptions,
 	blockAreTheTypesWrong,
-	blockCodecov,
-	blockCSpell,
 	blockESLint,
 	blockExports,
-	blockKnip,
-	blockRenovate,
 	blockTemplatedWith,
 	presets,
 } from "./index.ts";
@@ -33,7 +29,9 @@ vi.mock("./utils/resolveBin.ts", () => ({
 //
 // The next most likely culprit for failures is changing file contents that are
 // specified by the addons mentioned in the producePreset() call below.
-// For now, if you change the output on disk, you'll need to manually update here too.
+// Most addons are inferred from the files on disk by each block's intake();
+// only the ones without an intake need to be listed here.
+// If you change one of those on disk, you'll need to manually update here too.
 // TODO: Eventually the create engine will be able to infer them:
 //   https://github.com/JoshuaKGoldberg/bingo/issues/128
 //
@@ -45,30 +43,10 @@ test("Producing the everything preset matches the files in this repository", asy
 	})) as IntakeDirectory;
 
 	const created = producePreset(presets.everything, {
+		files: actual,
 		options: (await prepareOptions(base)) as BaseOptions,
 		refinements: {
 			addons: [
-				blockCodecov({
-					env: {
-						CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
-					},
-				}),
-				blockCSpell({
-					words: [
-						"Anson",
-						"TSESTree",
-						"apexskier",
-						"attw",
-						"dbaeumer",
-						"infile",
-						"joshuakgoldberg",
-						"mshick",
-						"octoguide",
-						"stefanzweifel",
-						"ts-prunerc",
-						"webpro",
-					],
-				}),
 				blockESLint({
 					explanations: [
 						`👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
@@ -112,19 +90,8 @@ If you're interested in learning more, see the 'getting started' docs on:
 						},
 					],
 				}),
-				blockKnip({
-					ignoreDependencies: [
-						"all-contributors-cli",
-						"cspell-populate-words",
-						"remove-dependencies",
-						"trash-cli",
-					],
-				}),
 				blockExports({
 					runArgs: ["--version"],
-				}),
-				blockRenovate({
-					ignoreDeps: ["all-contributors-cli"],
 				}),
 			],
 			blocks: {

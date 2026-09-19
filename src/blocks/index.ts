@@ -1,5 +1,6 @@
 import { blockAllContributors } from "./blockAllContributors.ts";
 import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
+import { blockBin } from "./blockBin.ts";
 import { blockCodecov } from "./blockCodecov.ts";
 import { blockContributingDocs } from "./blockContributingDocs.ts";
 import { blockContributorCovenant } from "./blockContributorCovenant.ts";
@@ -52,6 +53,7 @@ import { blockWebExt } from "./blockWebExt.ts";
 export const blocks = {
 	blockAllContributors,
 	blockAreTheTypesWrong,
+	blockBin,
 	blockCodecov,
 	blockContributingDocs,
 	blockContributorCovenant,
@@ -104,6 +106,7 @@ export const blocks = {
 
 export { blockAllContributors } from "./blockAllContributors.ts";
 export { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
+export { blockBin } from "./blockBin.ts";
 export { blockCodecov } from "./blockCodecov.ts";
 export { blockContributingDocs } from "./blockContributingDocs.ts";
 export { blockContributorCovenant } from "./blockContributorCovenant.ts";

@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { blockBin } from "../blocks/blockBin.ts";
 import { blockContributingDocs } from "../blocks/blockContributingDocs.ts";
 import { blockContributorCovenant } from "../blocks/blockContributorCovenant.ts";
 import { blockDevelopmentDocs } from "../blocks/blockDevelopmentDocs.ts";
@@ -34,6 +35,7 @@ export const presetMinimal = base.createPreset({
 		name: "Minimal",
 	},
 	blocks: [
+		blockBin,
 		blockContributingDocs,
 		blockContributorCovenant,
 		blockDevelopmentDocs,

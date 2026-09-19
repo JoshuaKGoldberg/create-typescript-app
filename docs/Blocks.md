@@ -9,6 +9,7 @@ This table summarizes each block and which base levels they're included in:
 | ---------------------------------- | ------------------------------------------------------------------------------------------ | ------- | ------ | ---------- |
 | AllContributors                    | `--add-allcontributors`, `--exclude-allcontributors`                                       |         | ✅     | 💯         |
 | Are The Types Wrong                | `--add-are-the-types-wrong`, `--exclude-are-the-types-wrong`                               |         |        |            |
+| Bin                                | `--add-bin`, `--exclude-bin`                                                               | ✔️      | ✅     | 💯         |
 | Contributing Docs                  | `--add-contributing-docs`, `--exclude-contributing-docs`                                   | ✔️      | ✅     | 💯         |
 | Contributor Covenant               | `--add-contributor-covenant`, `--exclude-contributor-covenant`                             | ✔️      | ✅     | 💯         |
 | CSpell                             | `--add-cspell`, `--exclude-cspell`                                                         |         |        | 💯         |

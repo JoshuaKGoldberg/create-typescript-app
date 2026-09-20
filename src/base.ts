@@ -9,6 +9,7 @@ import { readAllContributors } from "./options/readAllContributors.ts";
 import { readAuthor } from "./options/readAuthor.ts";
 import { readBin } from "./options/readBin.ts";
 import { readBundle } from "./options/readBundle.ts";
+import { readCodecovSecret } from "./options/readCodecovSecret.ts";
 import { readCodecovToken } from "./options/readCodecovToken.ts";
 import { readDescription } from "./options/readDescription.ts";
 import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.ts";
@@ -60,6 +61,15 @@ export const base = createBase({
 			.optional()
 			.describe(
 				"whether to bundle build output into a single file, instead of one output file per source file",
+			),
+		codecovSecret: z
+			.object({
+				encryptedValue: z.string(),
+				keyId: z.string(),
+			})
+			.optional()
+			.describe(
+				"Codecov upload token, encrypted for the repository, to store as its `CODECOV_TOKEN` secret",
 			),
 		codecovToken: z
 			.boolean()
@@ -202,6 +212,16 @@ export const base = createBase({
 		const getBin = lazyValue(async () => await readBin(getPackageData));
 
 		const getBundle = lazyValue(async () => await readBundle(take));
+
+		const getCodecovSecret = lazyValue(
+			async () =>
+				await readCodecovSecret(
+					take,
+					async () => options.codecovToken ?? (await getCodecovToken()),
+					getOwner,
+					getRepository,
+				),
+		);
 
 		const getCodecovToken = lazyValue(async () => await readCodecovToken(take));
 
@@ -347,6 +367,7 @@ export const base = createBase({
 			author: getAuthor,
 			bin: getBin,
 			bundle: getBundle,
+			codecovSecret: getCodecovSecret,
 			codecovToken: getCodecovToken,
 			contributors: getAllContributors,
 			description: getDescription,

@@ -6,6 +6,7 @@ import { intakeFileYamlSteps } from "./actions/steps.ts";
 import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { blockVitest } from "./blockVitest.ts";
 import {
 	codecovTokenSecret,
@@ -80,7 +81,35 @@ export const blockCodecov = base.createBlock({
 						},
 					],
 				}),
+				...(options.codecovToken && !options.codecovSecret
+					? [
+							blockRepositorySecrets({
+								secrets: [
+									{
+										description:
+											"upload token from the repository's Codecov settings",
+										name: "CODECOV_TOKEN",
+									},
+								],
+							}),
+						]
+					: []),
 			],
+			...(options.codecovSecret && {
+				requests: [
+					{
+						endpoint: "PUT /repos/{owner}/{repo}/actions/secrets/{secret_name}",
+						parameters: {
+							encrypted_value: options.codecovSecret.encryptedValue,
+							key_id: options.codecovSecret.keyId,
+							owner: options.owner,
+							repo: options.repository,
+							secret_name: "CODECOV_TOKEN",
+						},
+						type: "octokit",
+					},
+				],
+			}),
 		};
 	},
 	transition() {

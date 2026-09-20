@@ -50,6 +50,7 @@
 		"js-yaml": "^5.0.0",
 		"json5": "^2.2.3",
 		"lazy-value": "^3.0.0",
+		"libsodium-wrappers": "^0.8.4",
 		"lodash": "^4.18.1",
 		"marked": "^18.0.10",
 		"npm-user": "^6.1.1",

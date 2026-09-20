@@ -155,9 +155,49 @@ describe(blockCodecov, () => {
 			      },
 			      "block": [Function],
 			    },
+			    {
+			      "addons": {
+			        "secrets": [
+			          {
+			            "description": "upload token from the repository's Codecov settings",
+			            "name": "CODECOV_TOKEN",
+			          },
+			        ],
+			      },
+			      "block": [Function],
+			    },
 			  ],
 			}
 		`);
+	});
+
+	test("with codecovToken and codecovSecret options", () => {
+		const creation = testBlock(blockCodecov, {
+			options: {
+				...optionsBase,
+				codecovSecret: { encryptedValue: "encrypted", keyId: "key-id" },
+				codecovToken: true,
+			},
+		});
+
+		expect(creation.requests).toEqual([
+			{
+				endpoint: "PUT /repos/{owner}/{repo}/actions/secrets/{secret_name}",
+				parameters: {
+					encrypted_value: "encrypted",
+					key_id: "key-id",
+					owner: optionsBase.owner,
+					repo: optionsBase.repository,
+					secret_name: "CODECOV_TOKEN",
+				},
+				type: "octokit",
+			},
+		]);
+		expect(creation.addons).not.toContainEqual(
+			expect.objectContaining({
+				addons: expect.objectContaining({ secrets: expect.anything() }),
+			}),
+		);
 	});
 
 	test("with addons", () => {

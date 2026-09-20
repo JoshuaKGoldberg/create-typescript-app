@@ -18,10 +18,13 @@
 		"eslint-doc-generatorrc",
 		"infile",
 		"joshuakgoldberg",
+		"keypair",
+		"libsodium",
 		"mshick",
 		"octoguide",
 		"stefanzweifel",
 		"ts-prunerc",
+		"unstub",
 		"webpro"
 	]
 }

@@ -200,6 +200,14 @@ You can adjust the tab size that GitHub uses to display files from your [account
 
 If you really want spaces in your project you can always remove the `"useTabs": true`.
 
+## How can I populate `CODECOV_TOKEN`?
+
+With `--codecovToken`, CI passes a `CODECOV_TOKEN` repository secret to `codecov/codecov-action`.
+By default you'll be prompted to create that secret yourself.
+
+To have `create-typescript-app` set it for you in transition mode, set a `CODECOV_API_TOKEN` environment variable to a [Codecov API access token](https://docs.codecov.com/reference/overview).
+The repository's upload token is fetched from the Codecov API, encrypted with the repository's public key, and stored as the `CODECOV_TOKEN` secret.
+
 ## How can I use `bin`?
 
 The `--bin` option allows you to create a `package.json` bin value to include for npx-style running.

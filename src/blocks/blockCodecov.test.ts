@@ -319,9 +319,40 @@ describe(blockCodecov, () => {
 			expect(actual).toEqual({ env: undefined });
 		});
 
-		it("returns env when ci.yaml contains a test job with env in its codecov step", () => {
+		it("returns undefined env when ci.yaml contains a test job with only the standard CODECOV_TOKEN env in its codecov step", () => {
+			const actual = testIntake(blockCodecov, {
+				files: {
+					".github": {
+						workflows: {
+							"ci.yaml": [
+								dump({
+									jobs: {
+										test: {
+											name: "Test",
+											steps: [
+												{
+													env: {
+														CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
+													},
+													uses: "codecov/codecov-action@v3",
+												},
+											],
+										},
+									},
+								}),
+							],
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ env: undefined });
+		});
+
+		it("returns env when ci.yaml contains a test job with other env in its codecov step", () => {
 			const env = {
-				CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
+				CODECOV_TOKEN: "${{ secrets.OTHER_TOKEN }}",
+				OTHER: "value",
 			};
 			const actual = testIntake(blockCodecov, {
 				files: {

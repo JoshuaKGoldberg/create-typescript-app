@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.ts";
+import { codecovTokenSecret } from "../options/readCodecovToken.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { intakeFileYamlSteps } from "./actions/steps.ts";
 import { blockGitHubApps } from "./blockGitHubApps.ts";
@@ -34,13 +35,19 @@ export const blockCodecov = base.createBlock({
 			return undefined;
 		}
 
+		// The standard token is owned by the base codecovToken option, which is read from this file
+		const { CODECOV_TOKEN, ...env } = step.env ?? {};
+		if (CODECOV_TOKEN && CODECOV_TOKEN !== codecovTokenSecret) {
+			env.CODECOV_TOKEN = CODECOV_TOKEN;
+		}
+
 		return {
-			env: step.env,
+			env: Object.keys(env).length ? env : undefined,
 		};
 	},
 	produce({ addons, options }) {
 		const env = options.codecovToken
-			? { CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}", ...addons.env }
+			? { CODECOV_TOKEN: codecovTokenSecret, ...addons.env }
 			: addons.env;
 
 		return {

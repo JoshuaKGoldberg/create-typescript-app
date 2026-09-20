@@ -1,13 +1,16 @@
 import { z } from "zod";
 
 import { base } from "../base.ts";
-import { codecovTokenSecret } from "../options/readCodecovToken.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { intakeFileYamlSteps } from "./actions/steps.ts";
 import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockVitest } from "./blockVitest.ts";
+import {
+	codecovTokenSecret,
+	findCodecovStep,
+} from "./codecov/findCodecovStep.ts";
 
 export const blockCodecov = base.createBlock({
 	about: {
@@ -26,11 +29,7 @@ export const blockCodecov = base.createBlock({
 			return undefined;
 		}
 
-		const step = steps.find(
-			(step) =>
-				typeof step.uses === "string" &&
-				step.uses.startsWith("codecov/codecov-action"),
-		);
+		const step = findCodecovStep(steps);
 		if (!step) {
 			return undefined;
 		}

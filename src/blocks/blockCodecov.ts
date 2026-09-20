@@ -34,7 +34,6 @@ export const blockCodecov = base.createBlock({
 			return undefined;
 		}
 
-		// The standard token is owned by the base codecovToken option, which is read from this file
 		const { CODECOV_TOKEN, ...env } = step.env ?? {};
 		if (CODECOV_TOKEN && CODECOV_TOKEN !== codecovTokenSecret) {
 			env.CODECOV_TOKEN = CODECOV_TOKEN;

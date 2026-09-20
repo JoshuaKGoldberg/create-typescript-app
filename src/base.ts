@@ -8,6 +8,7 @@ import { readAccess } from "./options/readAccess.ts";
 import { readAllContributors } from "./options/readAllContributors.ts";
 import { readAuthor } from "./options/readAuthor.ts";
 import { readBin } from "./options/readBin.ts";
+import { readBundle } from "./options/readBundle.ts";
 import { readDescription } from "./options/readDescription.ts";
 import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.ts";
 import { readDocumentation } from "./options/readDocumentation.ts";
@@ -53,6 +54,12 @@ export const base = createBase({
 			.union([z.string(), z.record(z.string())])
 			.optional()
 			.describe('value to set in `package.json`\'s `"bin"` property'),
+		bundle: z
+			.boolean()
+			.optional()
+			.describe(
+				"whether to bundle build output into a single file, instead of one output file per source file",
+			),
 		contributors: z
 			.array(zContributor)
 			.optional()
@@ -186,6 +193,8 @@ export const base = createBase({
 		);
 
 		const getBin = lazyValue(async () => await readBin(getPackageData));
+
+		const getBundle = lazyValue(async () => await readBundle(take));
 
 		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 
@@ -328,6 +337,7 @@ export const base = createBase({
 			access: getAccess,
 			author: getAuthor,
 			bin: getBin,
+			bundle: getBundle,
 			contributors: getAllContributors,
 			description: getDescription,
 			documentation: getDocumentation,

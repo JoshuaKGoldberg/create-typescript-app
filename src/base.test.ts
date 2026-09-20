@@ -13,6 +13,7 @@ describe("base", () => {
 			access: "public",
 			author: "Josh Goldberg ✨",
 			bin: "bin/index.js",
+			bundle: false,
 			contributors: (
 				JSON.parse(
 					(await readFile(".all-contributorsrc")).toString(),

@@ -207,6 +207,22 @@ export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"b
 		});
 	});
 
+	test("with the bundle option", () => {
+		const creation = testBlock(blockTSDown, {
+			addons: {
+				entry: ["src/other.ts"],
+			},
+			options: { ...optionsBase, bundle: true },
+		});
+
+		expect(creation.files).toEqual({
+			"tsdown.config.ts": `import { defineConfig } from "tsdown";
+
+export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
+`,
+		});
+	});
+
 	test("transition mode", () => {
 		const creation = testBlock(blockTSDown, {
 			mode: "transition",
@@ -356,7 +372,7 @@ export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"b
 		});
 
 		it("returns entry when tsdown.config.ts contains entry", () => {
-			const entry = ["src/index.ts", "src/other.ts"];
+			const entry = ["src/other.ts"];
 
 			const actual = testIntake(blockTSDown, {
 				files: {
@@ -366,6 +382,42 @@ export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"b
 
 			expect(actual).toEqual({ entry, properties: { fixedExtension: false } });
 		});
+
+		it.each(["src/**/*.ts", "src/index.ts"])(
+			"drops the default entry %j from entry when tsdown.config.ts contains it",
+			(defaultEntry) => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"tsdown.config.ts": [
+							`defineConfig(${JSON.stringify({ entry: [defaultEntry, "src/other.ts"] })})`,
+						],
+					},
+				});
+
+				expect(actual).toEqual({
+					entry: ["src/other.ts"],
+					properties: { fixedExtension: false },
+				});
+			},
+		);
+
+		it.each([true, false])(
+			"drops unbundle from properties when tsdown.config.ts contains unbundle: %j",
+			(unbundle) => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"tsdown.config.ts": [
+							`defineConfig(${JSON.stringify({ clean: false, unbundle })})`,
+						],
+					},
+				});
+
+				expect(actual).toEqual({
+					entry: undefined,
+					properties: { clean: false, fixedExtension: false },
+				});
+			},
+		);
 
 		it("returns the properties when tsdown.config.ts contains other properties", () => {
 			const properties = { clean: false, dts: false, format: "cjs" };

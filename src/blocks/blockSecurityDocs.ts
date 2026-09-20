@@ -1,5 +1,5 @@
-import { base } from "../base.js";
-import { resolveEmails } from "../utils/resolveEmails.js";
+import { base } from "../base.ts";
+import { resolveEmails } from "../utils/resolveEmails.ts";
 
 export const blockSecurityDocs = base.createBlock({
 	about: {

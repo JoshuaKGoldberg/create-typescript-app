@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readDevelopmentDocumentation } from "./readDevelopmentDocumentation.js";
+import { readDevelopmentDocumentation } from "./readDevelopmentDocumentation.ts";
 
 describe(readDevelopmentDocumentation, () => {
 	it("returns undefined when no .github/DEVELOPMENT.md exists", async () => {

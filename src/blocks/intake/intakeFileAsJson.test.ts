@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { intakeFileAsJson } from "./intakeFileAsJson.js";
+import { intakeFileAsJson } from "./intakeFileAsJson.ts";
 
 describe(intakeFileAsJson, () => {
 	it("returns undefined when the file does not exist", () => {

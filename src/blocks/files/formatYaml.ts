@@ -2,7 +2,7 @@ import type { DumpOptions } from "js-yaml";
 
 import { CORE_SCHEMA, dump, nullCoreTag, visit } from "js-yaml";
 
-import { removeUsesQuotes } from "./removeUsesQuotes.js";
+import { removeUsesQuotes } from "./removeUsesQuotes.ts";
 
 const options: DumpOptions = {
 	lineWidth: -1,

@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockWebExt } from "./blockWebExt.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockWebExt } from "./blockWebExt.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockWebExt", () => {
 	test("production", () => {
@@ -17,6 +17,7 @@ describe("blockWebExt", () => {
 			      "addons": {
 			        "ignorePaths": [
 			          "assets",
+			          "lib",
 			        ],
 			      },
 			      "block": [Function],
@@ -91,6 +92,14 @@ describe("blockWebExt", () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "lib",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Build",
@@ -119,6 +128,7 @@ describe("blockWebExt", () => {
 			      "addons": {
 			        "ignores": [
 			          "*.zip",
+			          "/lib",
 			          "web-ext-artifacts",
 			        ],
 			      },
@@ -131,6 +141,9 @@ describe("blockWebExt", () => {
 			            "esbuild": "^0.25.0",
 			            "web-ext": "^8.3.0",
 			          },
+			          "files": [
+			            "lib/",
+			          ],
 			          "scripts": {
 			            "build": "web-ext build --overwrite-dest",
 			            "dev": "esbuild src/content-script.ts --bundle --minify --outfile=lib/content-script.js --sourcemap",
@@ -143,7 +156,16 @@ describe("blockWebExt", () => {
 			    {
 			      "addons": {
 			        "ignores": [
+			          "/lib",
 			          "assets/",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "lib",
 			        ],
 			      },
 			      "block": [Function],

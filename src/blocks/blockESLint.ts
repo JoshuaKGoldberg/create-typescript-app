@@ -3,27 +3,27 @@ import { parse as parsePackageName } from "parse-package-name";
 import sortKeys from "sort-keys";
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveDependencies } from "./blockRemoveDependencies.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { blockVSCode } from "./blockVSCode.js";
-import { blockESLintIntake } from "./eslint/blockESLintIntake.js";
-import { getScriptFileExtension } from "./eslint/getScriptFileExtension.js";
-import { mergeAllExtensions } from "./eslint/mergeAllExtensions.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVSCode } from "./blockVSCode.ts";
+import { blockESLintIntake } from "./eslint/blockESLintIntake.ts";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
+import { mergeAllExtensions } from "./eslint/mergeAllExtensions.ts";
 import {
 	Extension,
 	ExtensionRuleGroup,
 	ExtensionRules,
 	zExtension,
 	zPackageImport,
-} from "./eslint/schemas.js";
-import { intakeFile } from "./intake/intakeFile.js";
-import { CommandPhase } from "./phases.js";
+} from "./eslint/schemas.ts";
+import { intakeFile } from "./intake/intakeFile.ts";
+import { CommandPhase } from "./phases.ts";
 
 export const blockESLint = base.createBlock({
 	about: {
@@ -75,7 +75,7 @@ export const blockESLint = base.createBlock({
 
 		const ignoreLines = Array.from(
 			new Set(
-				["lib", "node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
+				["dist", "node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
 					JSON.stringify(ignore),
 				),
 			),

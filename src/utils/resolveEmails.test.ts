@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { resolveEmails } from "./resolveEmails.js";
+import { resolveEmails } from "./resolveEmails.ts";
 
 describe(resolveEmails, () => {
 	it("uses the string for both github and npm when given a string", () => {

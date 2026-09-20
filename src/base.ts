@@ -4,46 +4,48 @@ import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
 import { z } from "zod";
 
-import { readAccess } from "./options/readAccess.js";
-import { readAllContributors } from "./options/readAllContributors.js";
-import { readAuthor } from "./options/readAuthor.js";
-import { readBin } from "./options/readBin.js";
-import { readDescription } from "./options/readDescription.js";
-import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.js";
-import { readDocumentation } from "./options/readDocumentation.js";
-import { readEmailFromCodeOfConduct } from "./options/readEmailFromCodeOfConduct.js";
-import { readEmailFromGit } from "./options/readEmailFromGit.js";
-import { readEmailFromNpm } from "./options/readEmailFromNpm.js";
-import { readEmails } from "./options/readEmails.js";
-import { readEmoji } from "./options/readEmoji.js";
-import { readExistingLabels } from "./options/readExistingLabels.js";
-import { readFileSafe } from "./options/readFileSafe.js";
-import { readFunding } from "./options/readFunding.js";
-import { readGitDefaults } from "./options/readGitDefaults.js";
-import { readGuide } from "./options/readGuide.js";
-import { readKeywords } from "./options/readKeywords.js";
-import { readLogo } from "./options/readLogo.js";
-import { readNode } from "./options/readNode.js";
-import { readNpmDefaults } from "./options/readNpmDefaults.js";
-import { readOwner } from "./options/readOwner.js";
-import { readPackageAuthor } from "./options/readPackageAuthor.js";
-import { readPackageData } from "./options/readPackageData.js";
-import { readPnpm } from "./options/readPnpm.js";
-import { readReadmeAdditional } from "./options/readReadmeAdditional.js";
-import { readReadmeExplainer } from "./options/readReadmeExplainer.js";
-import { readReadmeFootnotes } from "./options/readReadmeFootnotes.js";
-import { readReadmeUsage } from "./options/readReadmeUsage.js";
-import { readRepository } from "./options/readRepository.js";
-import { readRulesetId } from "./options/readRulesetId.js";
-import { readTitle } from "./options/readTitle.js";
-import { readWords } from "./options/readWords.js";
-import { readWorkflowsVersions } from "./options/readWorkflowsVersions.js";
+import { readAccess } from "./options/readAccess.ts";
+import { readAllContributors } from "./options/readAllContributors.ts";
+import { readAuthor } from "./options/readAuthor.ts";
+import { readBin } from "./options/readBin.ts";
+import { readBundle } from "./options/readBundle.ts";
+import { readCodecovToken } from "./options/readCodecovToken.ts";
+import { readDescription } from "./options/readDescription.ts";
+import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.ts";
+import { readDocumentation } from "./options/readDocumentation.ts";
+import { readEmailFromCodeOfConduct } from "./options/readEmailFromCodeOfConduct.ts";
+import { readEmailFromGit } from "./options/readEmailFromGit.ts";
+import { readEmailFromNpm } from "./options/readEmailFromNpm.ts";
+import { readEmails } from "./options/readEmails.ts";
+import { readEmoji } from "./options/readEmoji.ts";
+import { readExistingLabels } from "./options/readExistingLabels.ts";
+import { readFileSafe } from "./options/readFileSafe.ts";
+import { readFunding } from "./options/readFunding.ts";
+import { readGitDefaults } from "./options/readGitDefaults.ts";
+import { readGuide } from "./options/readGuide.ts";
+import { readKeywords } from "./options/readKeywords.ts";
+import { readLogo } from "./options/readLogo.ts";
+import { readNode } from "./options/readNode.ts";
+import { readNpmDefaults } from "./options/readNpmDefaults.ts";
+import { readOwner } from "./options/readOwner.ts";
+import { readPackageAuthor } from "./options/readPackageAuthor.ts";
+import { readPackageData } from "./options/readPackageData.ts";
+import { readPnpm } from "./options/readPnpm.ts";
+import { readReadmeAdditional } from "./options/readReadmeAdditional.ts";
+import { readReadmeExplainer } from "./options/readReadmeExplainer.ts";
+import { readReadmeFootnotes } from "./options/readReadmeFootnotes.ts";
+import { readReadmeUsage } from "./options/readReadmeUsage.ts";
+import { readRepository } from "./options/readRepository.ts";
+import { readRulesetId } from "./options/readRulesetId.ts";
+import { readTitle } from "./options/readTitle.ts";
+import { readWords } from "./options/readWords.ts";
+import { readWorkflowsVersions } from "./options/readWorkflowsVersions.ts";
 import {
 	zContributor,
 	zDocumentation,
 	zEmails,
 	zWorkflowsVersions,
-} from "./schemas.js";
+} from "./schemas.ts";
 
 export const base = createBase({
 	options: {
@@ -58,6 +60,18 @@ export const base = createBase({
 			.union([z.string(), z.record(z.string())])
 			.optional()
 			.describe('value to set in `package.json`\'s `"bin"` property'),
+		bundle: z
+			.boolean()
+			.optional()
+			.describe(
+				"whether to bundle build output into a single file, instead of one output file per source file",
+			),
+		codecovToken: z
+			.boolean()
+			.optional()
+			.describe(
+				"whether to send a `CODECOV_TOKEN` repository secret to Codecov in CI",
+			),
 		contributors: z
 			.array(zContributor)
 			.optional()
@@ -180,6 +194,10 @@ export const base = createBase({
 		);
 
 		const getBin = lazyValue(async () => await readBin(getPackageData));
+
+		const getBundle = lazyValue(async () => await readBundle(take));
+
+		const getCodecovToken = lazyValue(async () => await readCodecovToken(take));
 
 		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 
@@ -322,6 +340,8 @@ export const base = createBase({
 			access: getAccess,
 			author: getAuthor,
 			bin: getBin,
+			bundle: getBundle,
+			codecovToken: getCodecovToken,
 			contributors: getAllContributors,
 			description: getDescription,
 			documentation: getDocumentation,

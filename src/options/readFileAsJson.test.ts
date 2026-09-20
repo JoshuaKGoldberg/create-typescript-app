@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readFileAsJson } from "./readFileAsJson.js";
+import { readFileAsJson } from "./readFileAsJson.ts";
 
 const mockReadFile = vi.fn();
 

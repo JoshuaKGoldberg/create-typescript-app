@@ -1,5 +1,5 @@
-import { PartialPackageData } from "../types.js";
-import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.js";
+import { PartialPackageData } from "../types.ts";
+import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.ts";
 
 export async function readBin(
 	getPackageData: () => Promise<PartialPackageData>,
@@ -8,10 +8,11 @@ export async function readBin(
 
 	return typeof bin === "object"
 		? (Object.fromEntries(
-				Object.entries(bin).map(([key, value]) => [
-					key,
-					trimPrecedingSlash(value),
-				]),
+				Object.entries(bin).map(([key, value]) => [key, normalizeBin(value)]),
 			) as typeof bin)
-		: trimPrecedingSlash(bin);
+		: normalizeBin(bin);
+}
+
+function normalizeBin(bin: string | undefined) {
+	return trimPrecedingSlash(bin)?.replace(/^lib\//u, "dist/");
 }

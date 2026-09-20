@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readOwner } from "./readOwner.js";
+import { readOwner } from "./readOwner.ts";
 
 describe(readOwner, () => {
 	it("returns git defaults organization when it exists", async () => {

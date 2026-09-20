@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { swallowErrorAsync } from "./swallowErrorAsync.js";
+import { swallowErrorAsync } from "./swallowErrorAsync.ts";
 
 describe(swallowErrorAsync, () => {
 	it("returns the task's resolved value when it resolves", async () => {

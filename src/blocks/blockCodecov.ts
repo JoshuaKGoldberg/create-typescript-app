@@ -1,12 +1,16 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { intakeFileYamlSteps } from "./actions/steps.js";
-import { blockGitHubApps } from "./blockGitHubApps.js";
-import { blockREADME } from "./blockREADME.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockVitest } from "./blockVitest.js";
+import { base } from "../base.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { intakeFileYamlSteps } from "./actions/steps.ts";
+import { blockGitHubApps } from "./blockGitHubApps.ts";
+import { blockREADME } from "./blockREADME.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockVitest } from "./blockVitest.ts";
+import {
+	codecovTokenSecret,
+	findCodecovStep,
+} from "./codecov/findCodecovStep.ts";
 
 export const blockCodecov = base.createBlock({
 	about: {
@@ -25,21 +29,25 @@ export const blockCodecov = base.createBlock({
 			return undefined;
 		}
 
-		const step = steps.find(
-			(step) =>
-				typeof step.uses === "string" &&
-				step.uses.startsWith("codecov/codecov-action"),
-		);
+		const step = findCodecovStep(steps);
 		if (!step) {
 			return undefined;
 		}
 
+		const { CODECOV_TOKEN, ...env } = step.env ?? {};
+		if (CODECOV_TOKEN && CODECOV_TOKEN !== codecovTokenSecret) {
+			env.CODECOV_TOKEN = CODECOV_TOKEN;
+		}
+
 		return {
-			env: step.env,
+			env: Object.keys(env).length ? env : undefined,
 		};
 	},
 	produce({ addons, options }) {
-		const { env } = addons;
+		const env = options.codecovToken
+			? { CODECOV_TOKEN: codecovTokenSecret, ...addons.env }
+			: addons.env;
+
 		return {
 			addons: [
 				blockGitHubApps({
@@ -78,7 +86,9 @@ export const blockCodecov = base.createBlock({
 	transition() {
 		return {
 			addons: [
-				blockRemoveFiles({ files: [".github/codecov.yaml", "codecov.yaml"] }),
+				blockRemoveFiles({
+					files: [".github/codecov.{yaml,yml}", "codecov.{yaml,yml}"],
+				}),
 			],
 		};
 	},

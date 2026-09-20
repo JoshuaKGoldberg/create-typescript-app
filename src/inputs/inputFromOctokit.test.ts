@@ -1,7 +1,7 @@
 import { createMockFetchers, testInput } from "bingo-testers";
 import { describe, expect, it, vi } from "vitest";
 
-import { inputFromOctokit } from "./inputFromOctokit.js";
+import { inputFromOctokit } from "./inputFromOctokit.ts";
 
 describe(inputFromOctokit, () => {
 	it("returns data when the request resolves", async () => {

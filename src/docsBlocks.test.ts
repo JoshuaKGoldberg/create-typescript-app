@@ -3,7 +3,7 @@ import * as fs from "node:fs/promises";
 import * as prettier from "prettier";
 import { describe, expect, test } from "vitest";
 
-import { blocks, presets } from "./index.js";
+import { blocks, presets } from "./index.ts";
 
 const actualLines = await createActualLines();
 const expectedLines = await createExpectedLines();

@@ -1,6 +1,6 @@
-import { presetCommon } from "./common.js";
-import { presetEverything } from "./everything.js";
-import { presetMinimal } from "./minimal.js";
+import { presetCommon } from "./common.ts";
+import { presetEverything } from "./everything.ts";
+import { presetMinimal } from "./minimal.ts";
 
 export const presets = {
 	common: presetCommon,
@@ -8,6 +8,6 @@ export const presets = {
 	minimal: presetMinimal,
 };
 
-export { presetCommon } from "./common.js";
-export { presetEverything } from "./everything.js";
-export { presetMinimal } from "./minimal.js";
+export { presetCommon } from "./common.ts";
+export { presetEverything } from "./everything.ts";
+export { presetMinimal } from "./minimal.ts";

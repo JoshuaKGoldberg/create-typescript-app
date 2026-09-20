@@ -1,7 +1,7 @@
 import { IntakeDirectory } from "bingo-fs";
 import { load } from "js-yaml";
 
-import { intakeFile } from "./intakeFile.js";
+import { intakeFile } from "./intakeFile.ts";
 
 export function intakeFileAsYaml(files: IntakeDirectory, filePath: string[]) {
 	const file =
@@ -11,8 +11,12 @@ export function intakeFileAsYaml(files: IntakeDirectory, filePath: string[]) {
 			filePath[filePath.length - 1].replace(/\.yaml$/i, ".yml"),
 		]);
 
+	return file && loadYamlSafe(file[0]);
+}
+
+export function loadYamlSafe(contents: string) {
 	try {
-		return file && load(file[0]);
+		return load(contents);
 	} catch {
 		return undefined;
 	}

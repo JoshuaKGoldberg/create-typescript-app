@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readEmailFromCodeOfConduct } from "./readEmailFromCodeOfConduct.js";
+import { readEmailFromCodeOfConduct } from "./readEmailFromCodeOfConduct.ts";
 
 describe(readEmailFromCodeOfConduct, () => {
 	it("resolves undefined when CODE_OF_CONDUCT.md cannot be read", async () => {

@@ -1,7 +1,7 @@
-import { WorkflowsVersions } from "../../schemas.js";
-import { resolveUses } from "../actions/resolveUses.js";
-import { createJobName } from "./createJobName.js";
-import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
+import { WorkflowsVersions } from "../../schemas.ts";
+import { resolveUses } from "../actions/resolveUses.ts";
+import { createJobName } from "./createJobName.ts";
+import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
 
 export interface MultiWorkflowFileOptions {
 	jobs: MultiWorkflowJobOptions[];

@@ -1,9 +1,9 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { resolveEmails } from "./resolveEmails.js";
 
 describe(resolveEmails, () => {
-	test("string", () => {
+	it("uses the string for both github and npm when given a string", () => {
 		const actual = resolveEmails("test@example.com");
 
 		expect(actual).toEqual({
@@ -12,7 +12,7 @@ describe(resolveEmails, () => {
 		});
 	});
 
-	test("object", () => {
+	it("returns the object as-is when given an object", () => {
 		const actual = resolveEmails({
 			github: "github@example.com",
 			npm: "npm@example.com",

@@ -1,5 +1,5 @@
-import { createJobName } from "./createJobName.js";
-import { formatWorkflowYaml } from "./formatWorkflowYaml.js";
+import { createJobName } from "./createJobName.ts";
+import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
 
 interface WorkflowFileConcurrency {
 	"cancel-in-progress"?: boolean;

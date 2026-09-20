@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { intakeFileDefineConfig } from "./intakeFileDefineConfig.js";
+import { intakeFileDefineConfig } from "./intakeFileDefineConfig.ts";
 
 describe("intake", () => {
 	it("returns nothing when the filePath file does not exist", () => {

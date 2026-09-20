@@ -1,10 +1,12 @@
-import { base } from "../base.js";
-import { blockCSpell } from "./blockCSpell.js";
-import { blockDevelopmentDocs } from "./blockDevelopmentDocs.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockGitignore } from "./blockGitignore.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockPrettier } from "./blockPrettier.js";
+import { base } from "../base.ts";
+import { blockCSpell } from "./blockCSpell.ts";
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockESLint } from "./blockESLint.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockPrettier } from "./blockPrettier.ts";
+import { blockVitest } from "./blockVitest.ts";
 
 export const blockWebExt = base.createBlock({
 	about: {
@@ -14,7 +16,7 @@ export const blockWebExt = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					ignorePaths: ["assets"],
+					ignorePaths: ["assets", "lib"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -81,6 +83,9 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 						},
 					},
 				}),
+				blockESLint({
+					ignores: ["lib"],
+				}),
 				blockGitHubActionsCI({
 					jobs: [
 						{
@@ -94,7 +99,7 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 					],
 				}),
 				blockGitignore({
-					ignores: ["*.zip", "web-ext-artifacts"],
+					ignores: ["*.zip", "/lib", "web-ext-artifacts"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -102,6 +107,7 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 							esbuild: "^0.25.0",
 							"web-ext": "^8.3.0",
 						},
+						files: ["lib/"],
 						scripts: {
 							build: "web-ext build --overwrite-dest",
 							dev: "esbuild src/content-script.ts --bundle --minify --outfile=lib/content-script.js --sourcemap",
@@ -110,7 +116,10 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 					},
 				}),
 				blockPrettier({
-					ignores: ["assets/"],
+					ignores: ["/lib", "assets/"],
+				}),
+				blockVitest({
+					exclude: ["lib"],
 				}),
 			],
 		};

@@ -1,4 +1,4 @@
-import { base } from "../base.js";
+import { base } from "../base.ts";
 
 export const blockSecurityDocs = base.createBlock({
 	about: {

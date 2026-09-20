@@ -1,5 +1,5 @@
-import { base } from "../base.js";
-import { blockREADME } from "./blockREADME.js";
+import { base } from "../base.ts";
+import { blockREADME } from "./blockREADME.ts";
 
 export const blockTemplatedWith = base.createBlock({
 	about: {

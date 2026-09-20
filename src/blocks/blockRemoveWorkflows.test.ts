@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockRemoveWorkflows, () => {
 	test("without addons or mode", () => {
@@ -59,9 +59,9 @@ describe(blockRemoveWorkflows, () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".github/workflows/a.yaml",
-			          ".github/workflows/b.yaml",
-			          ".github/workflows/c.yaml",
+			          ".github/workflows/a.{yaml,yml}",
+			          ".github/workflows/b.{yaml,yml}",
+			          ".github/workflows/c.{yaml,yml}",
 			        ],
 			      },
 			      "block": [Function],

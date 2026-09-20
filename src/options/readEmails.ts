@@ -1,4 +1,4 @@
-import { PackageAuthor } from "./readPackageAuthor.js";
+import { PackageAuthor } from "./readPackageAuthor.ts";
 
 export async function readEmails(
 	getEmailFromCodeOfConduct: () => Promise<string | undefined>,

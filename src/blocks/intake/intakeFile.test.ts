@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { intakeFile } from "./intakeFile.js";
+import { intakeFile } from "./intakeFile.ts";
 
 describe(intakeFile, () => {
 	it("returns undefined when filePath is empty", () => {

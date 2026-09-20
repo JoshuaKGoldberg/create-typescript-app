@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readDescriptionFromReadme } from "./readDescriptionFromReadme.js";
+import { readDescriptionFromReadme } from "./readDescriptionFromReadme.ts";
 
 describe(readDescriptionFromReadme, () => {
 	it("returns undefined when the paragraph starter is not found", async () => {

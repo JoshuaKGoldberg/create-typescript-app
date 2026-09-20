@@ -1,4 +1,4 @@
-import { Documentation } from "../schemas.js";
+import { Documentation } from "../schemas.ts";
 
 export async function readDocumentation(
 	getDevelopmentDocumentation: () => Promise<string | undefined>,

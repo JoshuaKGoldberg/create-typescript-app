@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockPrettier } from "./blockPrettier.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockPrettier } from "./blockPrettier.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockPrettier, () => {
 	test("without addons or mode", () => {
@@ -99,7 +99,7 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
+			/dist
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
@@ -242,7 +242,7 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
+			/dist
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
@@ -373,7 +373,7 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
+			/dist
 			/pnpm-lock.yaml
 			generated
 			",

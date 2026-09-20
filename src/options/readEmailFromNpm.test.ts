@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readEmailFromNpm } from "./readEmailFromNpm.js";
+import { readEmailFromNpm } from "./readEmailFromNpm.ts";
 
 describe(readEmailFromNpm, () => {
 	it("resolves the npm defaults email when it exists", async () => {

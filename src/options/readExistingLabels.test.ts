@@ -1,8 +1,8 @@
 import { githubDefaultLabels } from "github-default-labels";
 import { describe, expect, it, vi } from "vitest";
 
-import { inputFromOctokit } from "../inputs/inputFromOctokit.js";
-import { readExistingLabels } from "./readExistingLabels.js";
+import { inputFromOctokit } from "../inputs/inputFromOctokit.ts";
+import { readExistingLabels } from "./readExistingLabels.ts";
 
 const owner = "TestOwner";
 const repository = "test-repository";

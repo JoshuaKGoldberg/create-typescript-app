@@ -1,12 +1,13 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { getPackageDependencies } from "../data/packageData.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockREADME } from "./blockREADME.js";
-import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
+import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockREADME } from "./blockREADME.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
+import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
 export const blockReleaseIt = base.createBlock({
 	about: {
@@ -186,6 +187,18 @@ export const blockReleaseIt = base.createBlock({
 					`- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
 					`   https://www.npmjs.com/package/${options.repository}/access`,
 				].join("\n"),
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveFiles({
+					files: [
+						".github/workflows/post-release.yml",
+						".github/workflows/release.yml",
+					],
+				}),
 			],
 		};
 	},

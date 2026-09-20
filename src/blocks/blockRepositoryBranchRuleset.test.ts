@@ -1,8 +1,8 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockRepositoryBranchRuleset, () => {
 	test("without addons when mode is undefined", () => {

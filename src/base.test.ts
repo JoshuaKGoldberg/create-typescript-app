@@ -2,8 +2,8 @@ import { prepareOptions } from "bingo";
 import { readFile } from "fs/promises";
 import { describe, expect, test } from "vitest";
 
-import { base } from "./base.js";
-import { AllContributorsData } from "./types.js";
+import { base } from "./base.ts";
+import { AllContributorsData } from "./types.ts";
 
 describe("base", () => {
 	test("production from create-typescript-app", async () => {
@@ -13,6 +13,8 @@ describe("base", () => {
 			access: "public",
 			author: "Josh Goldberg ✨",
 			bin: "bin/index.js",
+			bundle: false,
+			codecovToken: true,
 			contributors: (
 				JSON.parse(
 					(await readFile(".all-contributorsrc")).toString(),

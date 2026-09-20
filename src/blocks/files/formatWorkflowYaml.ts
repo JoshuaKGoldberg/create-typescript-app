@@ -1,12 +1,17 @@
-import { formatYaml } from "./formatYaml.js";
+import { formatYaml } from "./formatYaml.ts";
 
 export function formatWorkflowYaml(value: unknown) {
-	return (
+	return addBlankLinesBetweenJobs(
 		formatYaml(value)
-			.replaceAll(/\n(\S)/g, "\n\n$1")
 			// https://github.com/nodeca/js-yaml/pull/515
 			.replaceAll(/: "\\n(.+)"/g, ": |\n$1")
 			.replaceAll("\\n", "\n")
-			.replaceAll("\\t", "  ")
+			.replaceAll("\\t", "  "),
+	);
+}
+
+function addBlankLinesBetweenJobs(yaml: string) {
+	return yaml.replace(/(?<=^|\n)jobs:\n[\s\S]*?(?=\n\n\S|$)/, (jobs) =>
+		jobs.replaceAll(/\n(?= {2}\S)/g, "\n\n").replace("jobs:\n\n", "jobs:\n"),
 	);
 }

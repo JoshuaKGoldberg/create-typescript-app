@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { readEmailFromGit } from "./readEmailFromGit.js";
+import { readEmailFromGit } from "./readEmailFromGit.ts";
 
 describe(readEmailFromGit, () => {
 	it("resolves the git config email when it can be found", async () => {

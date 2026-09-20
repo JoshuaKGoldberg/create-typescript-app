@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readGuide } from "./readGuide.js";
+import { readGuide } from "./readGuide.ts";
 
 describe(readGuide, () => {
 	it("resolves with undefined when .github/DEVELOPMENT.md cannot be read", async () => {

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockPackageJson } from "./blockPackageJson.js";
+import { base } from "../base.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
 
 export const blockSideEffects = base.createBlock({
 	about: {

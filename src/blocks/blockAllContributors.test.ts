@@ -1,8 +1,9 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, it } from "vitest";
 
-import { blockAllContributors } from "./blockAllContributors.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockAllContributors } from "./blockAllContributors.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockAllContributors", () => {
 	it("defaults contributors to [] when not provided", () => {
@@ -80,9 +81,7 @@ describe("blockAllContributors", () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
 
-
 			name: Contributors
-
 
 			on:
 			  push:
@@ -226,9 +225,7 @@ describe("blockAllContributors", () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
 
-
 			name: Contributors
-
 
 			on:
 			  push:
@@ -371,9 +368,7 @@ describe("blockAllContributors", () => {
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
 			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
 
-
 			name: Contributors
-
 
 			on:
 			  push:
@@ -393,5 +388,16 @@ describe("blockAllContributors", () => {
 			  ],
 			}
 		`);
+	});
+
+	it("removes the previous .yml workflow file when in transition mode", () => {
+		const creation = testBlock(blockAllContributors, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.addons).toContainEqual(
+			blockRemoveFiles({ files: [".github/workflows/contributors.yml"] }),
+		);
 	});
 });

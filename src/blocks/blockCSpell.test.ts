@@ -1,10 +1,10 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
-import { blockCSpell } from "./blockCSpell.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockCSpell } from "./blockCSpell.ts";
+import { optionsBase } from "./options.fakes.ts";
 
-vi.mock("../utils/resolveBin.js", () => ({
+vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
@@ -69,7 +69,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"]}",
 			  },
 			}
 		`);
@@ -139,7 +139,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","lib/","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","lib/","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
 			  },
 			}
 		`);
@@ -208,7 +208,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
 			  },
 			}
 		`);
@@ -275,7 +275,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"]}",
 			  },
 			  "scripts": [
 			    {
@@ -359,7 +359,7 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","lib","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"]}",
 			  },
 			}
 		`);

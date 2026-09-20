@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { mergeAllExtensions } from "./mergeAllExtensions.js";
+import { mergeAllExtensions } from "./mergeAllExtensions.ts";
 
 describe(mergeAllExtensions, () => {
 	test("when the first provides everything", () => {

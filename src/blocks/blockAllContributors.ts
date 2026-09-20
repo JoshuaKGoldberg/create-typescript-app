@@ -1,14 +1,15 @@
 import _ from "lodash";
 
-import { base } from "../base.js";
-import { startingOwnerContributions } from "../data/contributions.js";
-import { Contributor } from "../schemas.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { blockPrettier } from "./blockPrettier.js";
-import { blockREADME } from "./blockREADME.js";
-import { blockRepositorySecrets } from "./blockRepositorySecrets.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { startingOwnerContributions } from "../data/contributions.ts";
+import { Contributor } from "../schemas.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { blockPrettier } from "./blockPrettier.ts";
+import { blockREADME } from "./blockREADME.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
+import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
+import { CommandPhase } from "./phases.ts";
 
 export const blockAllContributors = base.createBlock({
 	about: {
@@ -120,6 +121,15 @@ export const blockAllContributors = base.createBlock({
 					],
 					phase: CommandPhase.Process,
 				},
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveFiles({
+					files: [".github/workflows/contributors.yml"],
+				}),
 			],
 		};
 	},

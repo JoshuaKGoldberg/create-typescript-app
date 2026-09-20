@@ -2,7 +2,7 @@ import { IntakeDirectory } from "bingo-fs";
 import _ from "lodash";
 import { z } from "zod";
 
-import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.js";
+import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.ts";
 
 export const zActionStep = z.intersection(
 	z.object({
@@ -19,20 +19,18 @@ export interface JobOrRunStep {
 	with?: Record<string, string>;
 }
 
+export function getYamlSteps(yaml: unknown, ymlPath: string[]) {
+	const steps = _.get(yaml, ymlPath) as JobOrRunStep[] | undefined;
+
+	return Array.isArray(steps) ? steps : undefined;
+}
+
 export function intakeFileYamlSteps(
 	files: IntakeDirectory,
 	filePath: string[],
 	ymlPath: string[],
 ) {
 	const actionYml = intakeFileAsYaml(files, filePath);
-	if (!actionYml) {
-		return undefined;
-	}
 
-	const steps = _.get(actionYml, ymlPath) as JobOrRunStep[] | undefined;
-	if (!steps || !Array.isArray(steps)) {
-		return undefined;
-	}
-
-	return steps;
+	return actionYml ? getYamlSteps(actionYml, ymlPath) : undefined;
 }

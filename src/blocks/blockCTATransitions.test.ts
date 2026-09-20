@@ -1,11 +1,12 @@
 import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
-import { packageData } from "../data/packageData.js";
-import { blockCTATransitions } from "./blockCTATransitions.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { optionsBase } from "./options.fakes.js";
+import { packageData } from "../data/packageData.ts";
+import { blockCTATransitions } from "./blockCTATransitions.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe("blockCTATransitions", () => {
 	test("production", () => {
@@ -104,9 +105,7 @@ describe("blockCTATransitions", () => {
 			      - if: steps.checkout.outcome == 'skipped'
 			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'
 
-
 			name: CTA
-
 
 			on:
 			  pull_request:
@@ -117,5 +116,21 @@ describe("blockCTATransitions", () => {
 			  },
 			}
 		`);
+	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockCTATransitions, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.addons).toContainEqual(
+			blockRemoveFiles({
+				files: [
+					".github/actions/transition/action.yml",
+					".github/workflows/cta.yml",
+				],
+			}),
+		);
 	});
 });

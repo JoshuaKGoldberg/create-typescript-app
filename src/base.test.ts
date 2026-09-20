@@ -14,6 +14,7 @@ describe("base", () => {
 			author: "Josh Goldberg ✨",
 			bin: "bin/index.js",
 			bundle: false,
+			codecovToken: true,
 			contributors: (
 				JSON.parse(
 					(await readFile(".all-contributorsrc")).toString(),

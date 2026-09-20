@@ -9,6 +9,7 @@ import { readAllContributors } from "./options/readAllContributors.ts";
 import { readAuthor } from "./options/readAuthor.ts";
 import { readBin } from "./options/readBin.ts";
 import { readBundle } from "./options/readBundle.ts";
+import { readCodecovToken } from "./options/readCodecovToken.ts";
 import { readDescription } from "./options/readDescription.ts";
 import { readDevelopmentDocumentation } from "./options/readDevelopmentDocumentation.ts";
 import { readDocumentation } from "./options/readDocumentation.ts";
@@ -59,6 +60,12 @@ export const base = createBase({
 			.optional()
 			.describe(
 				"whether to bundle build output into a single file, instead of one output file per source file",
+			),
+		codecovToken: z
+			.boolean()
+			.optional()
+			.describe(
+				"whether to send a `CODECOV_TOKEN` repository secret to Codecov in CI",
 			),
 		contributors: z
 			.array(zContributor)
@@ -195,6 +202,8 @@ export const base = createBase({
 		const getBin = lazyValue(async () => await readBin(getPackageData));
 
 		const getBundle = lazyValue(async () => await readBundle(take));
+
+		const getCodecovToken = lazyValue(async () => await readCodecovToken(take));
 
 		const getEmoji = lazyValue(async () => await readEmoji(getDescription));
 
@@ -338,6 +347,7 @@ export const base = createBase({
 			author: getAuthor,
 			bin: getBin,
 			bundle: getBundle,
+			codecovToken: getCodecovToken,
 			contributors: getAllContributors,
 			description: getDescription,
 			documentation: getDocumentation,

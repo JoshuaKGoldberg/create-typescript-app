@@ -1,4 +1,4 @@
-import { Extension, ExtensionRules } from "./schemas.js";
+import { Extension, ExtensionRules } from "./schemas.ts";
 
 export function mergeAllExtensions(...extensions: Extension[]) {
 	const entries: Record<string, Extension> = {};

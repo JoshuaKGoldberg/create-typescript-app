@@ -2,8 +2,8 @@ import { testBlock, testIntake } from "bingo-stratum-testers";
 import { dump } from "js-yaml";
 import { describe, expect, it, test } from "vitest";
 
-import { blockOctoGuide } from "./blockOctoGuide.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockOctoGuide } from "./blockOctoGuide.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockOctoGuide, () => {
 	test("without addons", () => {
@@ -30,9 +30,7 @@ describe(blockOctoGuide, () => {
 			          config: recommended
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
-
 			name: OctoGuide
-
 
 			on:
 			  discussion:
@@ -82,8 +80,9 @@ describe(blockOctoGuide, () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".github/workflows/accessibility-alt-text-bot.yaml",
-			          ".github/workflows/compliance.yaml",
+			          ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
+			          ".github/workflows/compliance.{yaml,yml}",
+			          ".github/workflows/octoguide.yml",
 			        ],
 			      },
 			      "block": [Function],
@@ -106,9 +105,7 @@ describe(blockOctoGuide, () => {
 			          config: recommended
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
-
 			name: OctoGuide
-
 
 			on:
 			  discussion:
@@ -173,9 +170,7 @@ describe(blockOctoGuide, () => {
 			          config: strict
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
-
 			name: OctoGuide
-
 
 			on:
 			  discussion:

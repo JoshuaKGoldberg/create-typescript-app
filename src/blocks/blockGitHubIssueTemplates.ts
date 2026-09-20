@@ -1,5 +1,6 @@
-import { base } from "../base.js";
-import { formatYaml } from "./files/formatYaml.js";
+import { base } from "../base.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { formatYaml } from "./files/formatYaml.ts";
 
 export const blockGitHubIssueTemplates = base.createBlock({
 	about: {
@@ -221,6 +222,20 @@ export const blockGitHubIssueTemplates = base.createBlock({
 `,
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveFiles({
+					files: [
+						".github/ISSUE_TEMPLATE/01-bug.yml",
+						".github/ISSUE_TEMPLATE/02-documentation.yml",
+						".github/ISSUE_TEMPLATE/03-feature.yml",
+						".github/ISSUE_TEMPLATE/04-tooling.yml",
+					],
+				}),
+			],
 		};
 	},
 });

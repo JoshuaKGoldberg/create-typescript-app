@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
+import { base } from "../base.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 
 export const blockRemoveWorkflows = base.createBlock({
 	about: {
@@ -22,7 +22,7 @@ export const blockRemoveWorkflows = base.createBlock({
 			addons: [
 				blockRemoveFiles({
 					files: workflows?.map(
-						(workflow) => `.github/workflows/${workflow}.yaml`,
+						(workflow) => `.github/workflows/${workflow}.{yaml,yml}`,
 					),
 				}),
 			],

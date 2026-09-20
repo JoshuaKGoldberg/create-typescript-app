@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { intakeFileYamlSteps } from "./actions/steps.js";
-import { blockGitHubApps } from "./blockGitHubApps.js";
-import { blockREADME } from "./blockREADME.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockVitest } from "./blockVitest.js";
+import { base } from "../base.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { intakeFileYamlSteps } from "./actions/steps.ts";
+import { blockGitHubApps } from "./blockGitHubApps.ts";
+import { blockREADME } from "./blockREADME.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockVitest } from "./blockVitest.ts";
 
 export const blockCodecov = base.createBlock({
 	about: {
@@ -81,7 +81,9 @@ export const blockCodecov = base.createBlock({
 	transition() {
 		return {
 			addons: [
-				blockRemoveFiles({ files: [".github/codecov.yaml", "codecov.yaml"] }),
+				blockRemoveFiles({
+					files: [".github/codecov.{yaml,yml}", "codecov.{yaml,yml}"],
+				}),
 			],
 		};
 	},

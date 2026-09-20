@@ -1,31 +1,32 @@
-import { base } from "../base.js";
-import { blockContributingDocs } from "../blocks/blockContributingDocs.js";
-import { blockContributorCovenant } from "../blocks/blockContributorCovenant.js";
-import { blockDevelopmentDocs } from "../blocks/blockDevelopmentDocs.js";
-import { blockESLint } from "../blocks/blockESLint.js";
-import { blockExampleFiles } from "../blocks/blockExampleFiles.js";
-import { blockExports } from "../blocks/blockExports.js";
-import { blockGitHubActionsCI } from "../blocks/blockGitHubActionsCI.js";
-import { blockGitHubApps } from "../blocks/blockGitHubApps.js";
-import { blockGitHubIssueTemplates } from "../blocks/blockGitHubIssueTemplates.js";
-import { blockGitHubPRTemplate } from "../blocks/blockGitHubPRTemplate.js";
-import { blockGitignore } from "../blocks/blockGitignore.js";
-import { blockMITLicense } from "../blocks/blockMITLicense.js";
-import { blockPackageJson } from "../blocks/blockPackageJson.js";
-import { blockPrettier } from "../blocks/blockPrettier.js";
-import { blockREADME } from "../blocks/blockREADME.js";
-import { blockRemoveDependencies } from "../blocks/blockRemoveDependencies.js";
-import { blockRemoveFiles } from "../blocks/blockRemoveFiles.js";
-import { blockRemoveWorkflows } from "../blocks/blockRemoveWorkflows.js";
-import { blockRepositoryBranchRuleset } from "../blocks/blockRepositoryBranchRuleset.js";
-import { blockRepositoryLabels } from "../blocks/blockRepositoryLabels.js";
-import { blockRepositorySecrets } from "../blocks/blockRepositorySecrets.js";
-import { blockRepositorySettings } from "../blocks/blockRepositorySettings.js";
-import { blockSecurityDocs } from "../blocks/blockSecurityDocs.js";
-import { blockSideEffects } from "../blocks/blockSideEffects.js";
-import { blockTemplatedWith } from "../blocks/blockTemplatedWith.js";
-import { blockTSDown } from "../blocks/blockTSDown.js";
-import { blockTypeScript } from "../blocks/blockTypeScript.js";
+import { base } from "../base.ts";
+import { blockBin } from "../blocks/blockBin.ts";
+import { blockContributingDocs } from "../blocks/blockContributingDocs.ts";
+import { blockContributorCovenant } from "../blocks/blockContributorCovenant.ts";
+import { blockDevelopmentDocs } from "../blocks/blockDevelopmentDocs.ts";
+import { blockESLint } from "../blocks/blockESLint.ts";
+import { blockExampleFiles } from "../blocks/blockExampleFiles.ts";
+import { blockExports } from "../blocks/blockExports.ts";
+import { blockGitHubActionsCI } from "../blocks/blockGitHubActionsCI.ts";
+import { blockGitHubApps } from "../blocks/blockGitHubApps.ts";
+import { blockGitHubIssueTemplates } from "../blocks/blockGitHubIssueTemplates.ts";
+import { blockGitHubPRTemplate } from "../blocks/blockGitHubPRTemplate.ts";
+import { blockGitignore } from "../blocks/blockGitignore.ts";
+import { blockMITLicense } from "../blocks/blockMITLicense.ts";
+import { blockPackageJson } from "../blocks/blockPackageJson.ts";
+import { blockPrettier } from "../blocks/blockPrettier.ts";
+import { blockREADME } from "../blocks/blockREADME.ts";
+import { blockRemoveDependencies } from "../blocks/blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "../blocks/blockRemoveFiles.ts";
+import { blockRemoveWorkflows } from "../blocks/blockRemoveWorkflows.ts";
+import { blockRepositoryBranchRuleset } from "../blocks/blockRepositoryBranchRuleset.ts";
+import { blockRepositoryLabels } from "../blocks/blockRepositoryLabels.ts";
+import { blockRepositorySecrets } from "../blocks/blockRepositorySecrets.ts";
+import { blockRepositorySettings } from "../blocks/blockRepositorySettings.ts";
+import { blockSecurityDocs } from "../blocks/blockSecurityDocs.ts";
+import { blockSideEffects } from "../blocks/blockSideEffects.ts";
+import { blockTemplatedWith } from "../blocks/blockTemplatedWith.ts";
+import { blockTSDown } from "../blocks/blockTSDown.ts";
+import { blockTypeScript } from "../blocks/blockTypeScript.ts";
 
 export const presetMinimal = base.createPreset({
 	about: {
@@ -34,6 +35,7 @@ export const presetMinimal = base.createPreset({
 		name: "Minimal",
 	},
 	blocks: [
+		blockBin,
 		blockContributingDocs,
 		blockContributorCovenant,
 		blockDevelopmentDocs,

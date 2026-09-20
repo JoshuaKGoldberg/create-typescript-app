@@ -1,8 +1,8 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test } from "vitest";
 
-import { blockTypeScript } from "./blockTypeScript.js";
-import { optionsBase } from "./options.fakes.js";
+import { blockTypeScript } from "./blockTypeScript.ts";
+import { optionsBase } from "./options.fakes.ts";
 
 describe(blockTypeScript, () => {
 	test("without addons or options", () => {
@@ -40,7 +40,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "files": {
-			          "greet.ts": "import { GreetOptions } from "./types.js";
+			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
 				export function greet(options: GreetOptions | string) {
 					const {
@@ -54,8 +54,8 @@ describe(blockTypeScript, () => {
 					}
 				}
 				",
-			          "index.ts": "export * from "./greet.js";
-			export * from "./types.js";
+			          "index.ts": "export * from "./greet.ts";
+			export * from "./types.ts";
 			",
 			          "types.ts": "export interface GreetOptions {
 					logger?: (message: string) => void;
@@ -80,7 +80,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -115,7 +115,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -129,7 +129,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -153,7 +153,7 @@ describe(blockTypeScript, () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -199,7 +199,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "files": {
-			          "greet.ts": "import { GreetOptions } from "./types.js";
+			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
 				export function greet(options: GreetOptions | string) {
 					const {
@@ -213,8 +213,8 @@ describe(blockTypeScript, () => {
 					}
 				}
 				",
-			          "index.ts": "export * from "./greet.js";
-			export * from "./types.js";
+			          "index.ts": "export * from "./greet.ts";
+			export * from "./types.ts";
 			",
 			          "types.ts": "export interface GreetOptions {
 					logger?: (message: string) => void;
@@ -239,7 +239,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -274,7 +274,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -288,7 +288,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -312,7 +312,7 @@ describe(blockTypeScript, () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"strictBindCallApply":false,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -356,7 +356,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "files": {
-			          "greet.ts": "import { GreetOptions } from "./types.js";
+			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
 				export function greet(options: GreetOptions | string) {
 					const {
@@ -370,8 +370,8 @@ describe(blockTypeScript, () => {
 					}
 				}
 				",
-			          "index.ts": "export * from "./greet.js";
-			export * from "./types.js";
+			          "index.ts": "export * from "./greet.ts";
+			export * from "./types.ts";
 			",
 			          "types.ts": "export interface GreetOptions {
 					logger?: (message: string) => void;
@@ -396,7 +396,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -431,7 +431,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -445,7 +445,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -480,7 +480,7 @@ describe(blockTypeScript, () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);
@@ -522,7 +522,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "files": {
-			          "greet.ts": "import { GreetOptions } from "./types.js";
+			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
 				export function greet(options: GreetOptions | string) {
 					const {
@@ -536,8 +536,8 @@ describe(blockTypeScript, () => {
 					}
 				}
 				",
-			          "index.ts": "export * from "./greet.js";
-			export * from "./types.js";
+			          "index.ts": "export * from "./greet.ts";
+			export * from "./types.ts";
 			",
 			          "types.ts": "export interface GreetOptions {
 					logger?: (message: string) => void;
@@ -562,7 +562,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -597,7 +597,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -611,7 +611,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -643,7 +643,7 @@ describe(blockTypeScript, () => {
 			    },
 			  ],
 			  "files": {
-			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
+			    "tsconfig.json": "{"compilerOptions":{"declaration":true,"esModuleInterop":true,"module":"nodenext","moduleResolution":"nodenext","noEmit":true,"resolveJsonModule":true,"rewriteRelativeImportExtensions":true,"skipLibCheck":true,"strict":true,"target":"ES2023"},"include":["src"]}",
 			  },
 			}
 		`);

@@ -1,14 +1,14 @@
-import { base } from "./base.js";
-import { blockAreTheTypesWrong } from "./blocks/blockAreTheTypesWrong.js";
-import { blockCTATransitions } from "./blocks/blockCTATransitions.js";
-import { blockESLintPlugin } from "./blocks/blockESLintPlugin.js";
-import { blockNcc } from "./blocks/blockNcc.js";
-import { blockRemoveDependencies } from "./blocks/blockRemoveDependencies.js";
-import { blockRemoveFiles } from "./blocks/blockRemoveFiles.js";
-import { blockWebExt } from "./blocks/blockWebExt.js";
-import { presetCommon } from "./presets/common.js";
-import { presetEverything } from "./presets/everything.js";
-import { presetMinimal } from "./presets/minimal.js";
+import { base } from "./base.ts";
+import { blockAreTheTypesWrong } from "./blocks/blockAreTheTypesWrong.ts";
+import { blockCTATransitions } from "./blocks/blockCTATransitions.ts";
+import { blockESLintPlugin } from "./blocks/blockESLintPlugin.ts";
+import { blockNcc } from "./blocks/blockNcc.ts";
+import { blockRemoveDependencies } from "./blocks/blockRemoveDependencies.ts";
+import { blockRemoveFiles } from "./blocks/blockRemoveFiles.ts";
+import { blockWebExt } from "./blocks/blockWebExt.ts";
+import { presetCommon } from "./presets/common.ts";
+import { presetEverything } from "./presets/everything.ts";
+import { presetMinimal } from "./presets/minimal.ts";
 
 export const template = base.createStratumTemplate({
 	about: {

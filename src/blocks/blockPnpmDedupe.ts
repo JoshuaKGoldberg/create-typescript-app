@@ -1,7 +1,7 @@
-import { base } from "../base.js";
-import { blockGitHubActionsCI } from "./blockGitHubActionsCI.js";
-import { blockPackageJson } from "./blockPackageJson.js";
-import { blockRemoveWorkflows } from "./blockRemoveWorkflows.js";
+import { base } from "../base.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 
 export const blockPnpmDedupe = base.createBlock({
 	about: {

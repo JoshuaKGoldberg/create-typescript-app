@@ -25,7 +25,7 @@ import tseslint from "typescript-eslint";
 
 export default defineConfig(
 	globalIgnores(
-		["**/*.snap", "coverage", "lib", "node_modules", "pnpm-lock.yaml"],
+		["**/*.snap", "coverage", "dist", "node_modules", "pnpm-lock.yaml"],
 		"Global Ignores",
 	),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
@@ -102,6 +102,10 @@ export default defineConfig(
 			"vitest/prefer-describe-function-title": "error",
 		},
 		settings: { vitest: { typecheck: true } },
+	},
+	{
+		files: ["**/*.test.*", "eslint.config.*"],
+		rules: { "n/no-unsupported-features/node-builtins": "off" },
 	},
 	{
 		extends: [yml.configs["flat/standard"], yml.configs["flat/prettier"]],

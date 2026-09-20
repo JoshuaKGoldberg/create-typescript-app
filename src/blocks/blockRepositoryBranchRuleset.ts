@@ -2,7 +2,7 @@ import type { CreatedOctokitRequest } from "bingo-requests";
 
 import { z } from "zod";
 
-import { base, BaseOptions } from "../base.js";
+import { base, BaseOptions } from "../base.ts";
 
 export const blockRepositoryBranchRuleset = base.createBlock({
 	about: {

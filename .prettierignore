@@ -1,5 +1,5 @@
 /.all-contributorsrc
 /.husky
 /coverage
-/lib
+/dist
 /pnpm-lock.yaml

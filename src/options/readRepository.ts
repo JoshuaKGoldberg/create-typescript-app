@@ -1,6 +1,6 @@
 import { GitUrl } from "git-url-parse";
 
-import { PartialPackageData } from "../types.js";
+import { PartialPackageData } from "../types.ts";
 
 export async function readRepository(
 	getGitDefaults: () => Promise<GitUrl | undefined>,

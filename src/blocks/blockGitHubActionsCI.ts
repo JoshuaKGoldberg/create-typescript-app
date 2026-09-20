@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { resolveUses } from "./actions/resolveUses.js";
-import { intakeFileYamlSteps, zActionStep } from "./actions/steps.js";
-import { blockRemoveFiles } from "./blockRemoveFiles.js";
-import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.js";
-import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.js";
-import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.js";
-import { formatYaml } from "./files/formatYaml.js";
+import { base } from "../base.ts";
+import { resolveUses } from "./actions/resolveUses.ts";
+import { zActionStep } from "./actions/steps.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.ts";
+import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
+import { formatYaml } from "./files/formatYaml.ts";
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
@@ -24,37 +24,9 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
-		nodeVersion: z.union([z.number(), z.string()]).optional(),
-	},
-	intake({ files }) {
-		const steps = intakeFileYamlSteps(
-			files,
-			[".github", "actions", "prepare", "action.yaml"],
-			["runs", "steps"],
-		);
-		if (!steps) {
-			return undefined;
-		}
-
-		const setupNodeStep = steps.find(
-			(step) =>
-				typeof step.uses === "string" &&
-				step.uses.startsWith("actions/setup-node"),
-		);
-		if (!setupNodeStep) {
-			return undefined;
-		}
-
-		const nodeVersion = setupNodeStep.with?.["node-version"];
-		if (!nodeVersion) {
-			return undefined;
-		}
-
-		return { nodeVersion };
 	},
 	produce({ addons, options }) {
-		const { jobs, nodeVersion = options.node.pinned ?? options.node.minimum } =
-			addons;
+		const { jobs } = addons;
 		const minimumNodeVersion = options.node.minimum
 			.replace(/^\D*/u, "")
 			.split(/[^\d.]/u)[0];
@@ -111,7 +83,7 @@ export const blockGitHubActionsCI = base.createBlock({
 											),
 											with: {
 												cache: "pnpm",
-												"node-version": nodeVersion,
+												"node-version": "lts/*",
 											},
 										},
 										{
@@ -168,7 +140,13 @@ export const blockGitHubActionsCI = base.createBlock({
 		return {
 			addons: [
 				blockRemoveFiles({
-					files: [".circleci", "travis.yaml"],
+					files: [
+						".circleci",
+						".github/actions/prepare/action.yml",
+						".github/workflows/ci.yml",
+						".github/workflows/pr-review-requested.yml",
+						"travis.{yaml,yml}",
+					],
 				}),
 			],
 		};

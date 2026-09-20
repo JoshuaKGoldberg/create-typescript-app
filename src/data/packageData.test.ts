@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { getPackageDependencies } from "./packageData.js";
+import { getPackageDependencies } from "./packageData.ts";
 
 vi.mock("node:module", () => ({
 	createRequire: () => () => ({

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { readTitle } from "./readTitle.js";
+import { readTitle } from "./readTitle.ts";
 
 describe(readTitle, () => {
 	describe("title", () => {

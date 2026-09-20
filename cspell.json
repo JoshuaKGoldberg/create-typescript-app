@@ -5,7 +5,7 @@
 		".github",
 		"CHANGELOG.md",
 		"coverage",
-		"lib",
+		"dist",
 		"node_modules",
 		"pnpm-lock.yaml"
 	],
@@ -21,6 +21,7 @@
 		"mshick",
 		"octoguide",
 		"stefanzweifel",
-		"ts-prunerc"
+		"ts-prunerc",
+		"webpro"
 	]
 }

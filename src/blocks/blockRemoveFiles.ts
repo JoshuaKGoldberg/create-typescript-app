@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import { base } from "../base.js";
-import { resolveBin } from "../utils/resolveBin.js";
-import { CommandPhase } from "./phases.js";
+import { base } from "../base.ts";
+import { resolveBin } from "../utils/resolveBin.ts";
+import { CommandPhase } from "./phases.ts";
 
 export const blockRemoveFiles = base.createBlock({
 	about: {

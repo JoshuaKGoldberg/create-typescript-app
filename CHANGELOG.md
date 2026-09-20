@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.64.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.63.2...2.64.0) (2026-08-18)
+
+### Features
+
+- disable GitHub Projects ([#2421](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2421)) ([819155e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/819155ed78fdf0ad95951d65ce300dfac84d78d2)), closes [#2390](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2390)
+
 ## [2.63.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.63.1...2.63.2) (2026-08-18)
 
 ### Bug Fixes

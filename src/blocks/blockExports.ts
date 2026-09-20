@@ -26,7 +26,6 @@ export const blockExports = base.createBlock({
 					? exports
 					: exports?.["."];
 
-		// lib was the default before build output moved to tsdown's dist
 		return filePath
 			? { filePath: filePath.replace(/^(?:\.\/)?lib\//u, "./dist/") }
 			: undefined;

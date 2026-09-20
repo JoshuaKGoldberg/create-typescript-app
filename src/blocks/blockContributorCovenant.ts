@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { resolveEmails } from "../utils/resolveEmails.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 
@@ -83,7 +84,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-${options.email.github}.
+${resolveEmails(options.email).github}.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the

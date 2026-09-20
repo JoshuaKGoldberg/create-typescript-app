@@ -131,6 +131,31 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
+	test("with options.email set to a string", () => {
+		const creation = testBlock(blockPackageJson, {
+			options: {
+				...options,
+				email: "string@email.com",
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "package.json": "{"name":"test-repository","version":"0.0.0","description":"A very very very very very very very very very very very very very very very very long HTML-ish description ending with an emoji. 🧵","repository":{"type":"git","url":"git+https://github.com/test-owner/test-repository.git"},"author":{"email":"string@email.com"},"type":"module","engines":{"node":">=20.12.0"}}",
+			  },
+			  "scripts": [
+			    {
+			      "commands": [
+			        "pnpm install --no-frozen-lockfile",
+			      ],
+			      "phase": 1,
+			    },
+			  ],
+			}
+		`);
+	});
+
 	test("with options.type set to commonjs", () => {
 		const creation = testBlock(blockPackageJson, {
 			options: {

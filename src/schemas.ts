@@ -1,5 +1,12 @@
 import { z } from "zod";
 
+export const zEmails = z.object({
+	github: z.string(),
+	npm: z.string(),
+});
+
+export type Emails = z.infer<typeof zEmails>;
+
 export const zContributor = z.object({
 	avatar_url: z.string(),
 	contributions: z.array(z.string()),

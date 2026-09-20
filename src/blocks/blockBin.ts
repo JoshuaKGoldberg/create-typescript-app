@@ -24,17 +24,20 @@ export const blockBin = base.createBlock({
 	},
 	produce({ addons, options }) {
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
-		if (!primaryBin) {
+
+		// A bin inside the build output is produced by the build, not by this block.
+		if (!primaryBin || primaryBin.startsWith("dist/")) {
 			return {};
 		}
 
 		const segments = primaryBin.split("/");
 		const toRoot = "../".repeat(segments.length - 1);
-		const contents =
+		const contents = (
 			addons.contents ??
 			`#!/usr/bin/env node
-import "${toRoot}lib/index.mjs";
-`;
+import "${toRoot}dist/index.mjs";
+`
+		).replaceAll(/((?:\.\.\/)+)lib\//gu, "$1dist/");
 
 		return {
 			files: segments.reduceRight<CreatedDirectory | CreatedFileEntry>(

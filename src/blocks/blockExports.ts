@@ -26,10 +26,12 @@ export const blockExports = base.createBlock({
 					? exports
 					: exports?.["."];
 
-		return filePath ? { filePath } : undefined;
+		return filePath
+			? { filePath: filePath.replace(/^(?:\.\/)?lib\//u, "./dist/") }
+			: undefined;
 	},
 	produce({ addons }) {
-		const { filePath = "./lib/index.mjs", runArgs } = addons;
+		const { filePath = "./dist/index.mjs", runArgs } = addons;
 
 		return {
 			addons: [

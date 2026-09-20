@@ -37,6 +37,13 @@ function isEsmOnly(format: unknown) {
 	return format === undefined || format === "esm";
 }
 
+function isLegacyOutDir(outDir: unknown) {
+	return (
+		typeof outDir === "string" &&
+		outDir.replace(/^\.\//u, "").replace(/\/$/u, "") === "lib"
+	);
+}
+
 export const blockTSDown = base.createBlock({
 	about: {
 		name: "TSDown",
@@ -70,6 +77,9 @@ export const blockTSDown = base.createBlock({
 						? false
 						: undefined),
 				format: rest.format === "esm" ? undefined : rest.format,
+
+				// lib was the default before build output moved to tsdown's dist
+				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
 			}),
 		};
 	},
@@ -82,13 +92,13 @@ export const blockTSDown = base.createBlock({
 					sections: {
 						Building: {
 							contents: `
-Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 \`\`\`shell
 pnpm build
 \`\`\`
 
-Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 \`\`\`shell
 pnpm build --watch
@@ -133,7 +143,6 @@ pnpm build --watch
 
 export default defineConfig(${JSON.stringify({
 					entry: Array.from(new Set(["src/**/*.ts", ...entry])),
-					outDir: "lib",
 					unbundle: true,
 					...properties,
 				})});

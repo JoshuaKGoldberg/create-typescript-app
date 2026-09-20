@@ -14,11 +14,11 @@
 	"sideEffects": false,
 	"type": "module",
 	"exports": {
-		".": "./lib/index.mjs"
+		".": "./dist/index.mjs"
 	},
 	"bin": "bin/index.js",
 	"files": [
-		"lib/"
+		"dist/"
 	],
 	"scripts": {
 		"build": "tsdown",

@@ -98,7 +98,7 @@ greet("Hello, world! ${options.emoji}");
 					],
 				}),
 				blockGitignore({
-					ignores: ["/lib"],
+					ignores: ["/dist"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
@@ -109,10 +109,10 @@ greet("Hello, world! ${options.emoji}");
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies("typescript"),
-						files: ["lib/"],
+						files: ["dist/"],
 					},
 				}),
-				blockVitest({ coverage: { include: ["src"] }, exclude: ["lib"] }),
+				blockVitest({ coverage: { include: ["src"] }, exclude: ["dist"] }),
 				blockVSCode({
 					debuggers: primaryBin
 						? [

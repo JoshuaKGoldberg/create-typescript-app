@@ -16,13 +16,13 @@ pnpm install
 
 ## Building
 
-Run [**tsdown**](https://tsdown.dev) locally to build source files from `src/` into output files in `lib/`:
+Run [**tsdown**](https://tsdown.dev) locally to build source files from `src/` into output files in `dist/`:
 
 ```shell
 pnpm build
 ```
 
-Add `--watch` to run the builder in a watch mode that continuously cleans and recreates `lib/` as you save files:
+Add `--watch` to run the builder in a watch mode that continuously cleans and recreates `dist/` as you save files:
 
 ```shell
 pnpm build --watch

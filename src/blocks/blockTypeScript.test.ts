@@ -80,7 +80,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -115,7 +115,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -129,7 +129,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -239,7 +239,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -274,7 +274,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -288,7 +288,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -396,7 +396,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -431,7 +431,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -445,7 +445,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -562,7 +562,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "ignores": [
-			          "/lib",
+			          "/dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -597,7 +597,7 @@ describe(blockTypeScript, () => {
 			            "typescript": "5.9.3",
 			          },
 			          "files": [
-			            "lib/",
+			            "dist/",
 			          ],
 			        },
 			      },
@@ -611,7 +611,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			        "exclude": [
-			          "lib",
+			          "dist",
 			        ],
 			      },
 			      "block": [Function],

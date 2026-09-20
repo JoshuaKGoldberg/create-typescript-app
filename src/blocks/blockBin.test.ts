@@ -22,7 +22,7 @@ describe(blockBin, () => {
 			    "bin": {
 			      "index.js": [
 			        "#!/usr/bin/env node
-			import "../lib/index.mjs";
+			import "../dist/index.mjs";
 			",
 			        {
 			          "executable": true,
@@ -46,7 +46,7 @@ describe(blockBin, () => {
 			      "cli": {
 			        "index.js": [
 			          "#!/usr/bin/env node
-			import "../../lib/index.mjs";
+			import "../../dist/index.mjs";
 			",
 			          {
 			            "executable": true,
@@ -76,7 +76,7 @@ describe(blockBin, () => {
 			    "bin": {
 			      "index.js": [
 			        "#!/usr/bin/env node
-			import "../lib/index.mjs";
+			import "../dist/index.mjs";
 			",
 			        {
 			          "executable": true,
@@ -94,6 +94,48 @@ describe(blockBin, () => {
 		});
 
 		expect(creation).toMatchInlineSnapshot(`{}`);
+	});
+
+	it("produces nothing when options.bin is inside the build output", () => {
+		const creation = testBlock(blockBin, {
+			options: { ...optionsBase, bin: "dist/index.js" },
+		});
+
+		expect(creation).toMatchInlineSnapshot(`{}`);
+	});
+
+	it("rewrites legacy lib/ imports in addons.contents to the build output", () => {
+		const creation = testBlock(blockBin, {
+			addons: {
+				contents: `#!/usr/bin/env node
+import { run } from "../lib/index.js";
+import "../lib/other.js";
+
+run();
+`,
+			},
+			options: { ...optionsBase, bin: "bin/index.js" },
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "bin": {
+			      "index.js": [
+			        "#!/usr/bin/env node
+			import { run } from "../dist/index.js";
+			import "../dist/other.js";
+
+			run();
+			",
+			        {
+			          "executable": true,
+			        },
+			      ],
+			    },
+			  },
+			}
+		`);
 	});
 
 	it("uses addons.contents when provided", () => {

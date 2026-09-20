@@ -99,7 +99,7 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
+			/dist
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
@@ -242,7 +242,7 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
+			/dist
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": "import type { Config } from "prettier";
@@ -373,7 +373,7 @@ describe(blockPrettier, () => {
 			      ],
 			    },
 			    ".prettierignore": "/.husky
-			/lib
+			/dist
 			/pnpm-lock.yaml
 			generated
 			",

@@ -18,13 +18,13 @@ describe(blockTSDown, () => {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 			\`\`\`shell
 			pnpm build
 			\`\`\`
 
-			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
@@ -84,7 +84,7 @@ describe(blockTSDown, () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
+			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -112,13 +112,13 @@ describe(blockTSDown, () => {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 			\`\`\`shell
 			pnpm build
 			\`\`\`
 
-			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
@@ -181,12 +181,30 @@ describe(blockTSDown, () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts","src/other.ts"],"outDir":"lib","unbundle":true,"dts":false});
+			export default defineConfig({"entry":["src/**/*.ts","src/other.ts"],"unbundle":true,"dts":false});
 			",
 			  },
 			  "scripts": undefined,
 			}
 		`);
+	});
+
+	test("with an explicit outDir", () => {
+		const creation = testBlock(blockTSDown, {
+			addons: {
+				properties: {
+					outDir: "build",
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files).toEqual({
+			"tsdown.config.ts": `import { defineConfig } from "tsdown";
+
+export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"build"});
+`,
+		});
 	});
 
 	test("transition mode", () => {
@@ -203,13 +221,13 @@ describe(blockTSDown, () => {
 			        "sections": {
 			          "Building": {
 			            "contents": "
-			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`lib/\`:
+			Run [**tsdown**](https://tsdown.dev) locally to build source files from \`src/\` into output files in \`dist/\`:
 
 			\`\`\`shell
 			pnpm build
 			\`\`\`
 
-			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+			Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`dist/\` as you save files:
 
 			\`\`\`shell
 			pnpm build --watch
@@ -301,7 +319,7 @@ describe(blockTSDown, () => {
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts"],"outDir":"lib","unbundle":true});
+			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
 			",
 			  },
 			}
@@ -361,6 +379,36 @@ describe(blockTSDown, () => {
 			expect(actual).toEqual({ entry: undefined, properties });
 		});
 
+		it("returns outDir in properties when tsdown.config.ts contains a custom outDir", () => {
+			const actual = testIntake(blockTSDown, {
+				files: {
+					"tsdown.config.ts": [
+						`defineConfig(${JSON.stringify({ outDir: "build" })})`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				entry: undefined,
+				properties: { fixedExtension: false, outDir: "build" },
+			});
+		});
+
+		it.each(["lib", "./lib", "lib/", "./lib/"])(
+			"drops outDir when tsdown.config.ts contains the legacy lib outDir as %j",
+			(outDir) => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"tsdown.config.ts": [`defineConfig(${JSON.stringify({ outDir })})`],
+					},
+				});
+
+				expect(actual).toEqual({
+					entry: undefined,
+					properties: { fixedExtension: false },
+				});
+			},
+		);
 		describe("fixedExtension", () => {
 			const config = `defineConfig(${JSON.stringify({ entry: ["src/index.ts"] })})`;
 

@@ -1,3 +1,4 @@
+import { IntakeDirectory } from "bingo-fs";
 import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
@@ -11,11 +12,30 @@ import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 import { CommandPhase } from "./phases.ts";
 
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());
+
+function hasJsEntryPoint(files: IntakeDirectory) {
+	const packageData = intakeFileAsJson(files, ["package.json"]);
+	const exports = packageData?.exports;
+	const entryPoint =
+		typeof exports === "string"
+			? exports
+			: ((exports as Record<string, unknown> | undefined)?.["."] ??
+				packageData?.main);
+
+	return typeof entryPoint === "string"
+		? entryPoint.endsWith(".js")
+		: entryPoint === undefined;
+}
+
+function isEsmOnly(format: unknown) {
+	return format === undefined || format === "esm";
+}
 
 export const blockTSDown = base.createBlock({
 	about: {
@@ -44,6 +64,11 @@ export const blockTSDown = base.createBlock({
 				// In case of a tsup.config.ts migrated to tsdown.config.ts
 				bundle: undefined,
 				clean: rest.clean === false ? false : undefined,
+				fixedExtension:
+					rest.fixedExtension ??
+					(isEsmOnly(rest.format) && hasJsEntryPoint(files)
+						? false
+						: undefined),
 				format: rest.format === "esm" ? undefined : rest.format,
 			}),
 		};

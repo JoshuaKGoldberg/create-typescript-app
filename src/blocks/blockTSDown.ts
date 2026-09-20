@@ -19,6 +19,9 @@ import { CommandPhase } from "./phases.ts";
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.unknown());
 
+// Whichever of these is the base entry is re-added in produce based on options.bundle
+const defaultEntries = new Set(["src/**/*.ts", "src/index.ts"]);
+
 function hasJsEntryPoint(files: IntakeDirectory) {
 	const packageData = intakeFileAsJson(files, ["package.json"]);
 	const exports = packageData?.exports;
@@ -64,7 +67,9 @@ export const blockTSDown = base.createBlock({
 		const { entry: rawEntry, ...rest } = rawData;
 
 		return {
-			entry: zEntry.safeParse(rawEntry).data,
+			entry: zEntry
+				.safeParse(rawEntry)
+				.data?.filter((entry) => !defaultEntries.has(entry)),
 			properties: removeUndefinedObjects({
 				...zProperties.safeParse(rest).data,
 
@@ -80,6 +85,9 @@ export const blockTSDown = base.createBlock({
 
 				// lib was the default before build output moved to tsdown's dist
 				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
+
+				// Owned by the base bundle option, which is read from this file
+				unbundle: undefined,
 			}),
 		};
 	},
@@ -142,8 +150,13 @@ pnpm build --watch
 				"tsdown.config.ts": `import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-					entry: Array.from(new Set(["src/**/*.ts", ...entry])),
-					unbundle: true,
+					entry: Array.from(
+						new Set([
+							options.bundle ? "src/index.ts" : "src/**/*.ts",
+							...entry,
+						]),
+					),
+					...(options.bundle ? {} : { unbundle: true }),
 					...properties,
 				})});
 `,

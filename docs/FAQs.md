@@ -99,6 +99,23 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 
+## How can I bundle build output?
+
+By default, `create-typescript-app` configures [tsdown](https://tsdown.dev) with [`unbundle: true`](https://tsdown.dev/options/unbundle): every file under `src/` is built to a matching file under `dist/`.
+That keeps output readable and lets consumers deep-import individual files, which suits the many small packages this template is used for.
+
+Pass `--bundle` to instead bundle everything reachable from `src/index.ts` into a single `dist/index.mjs`:
+
+```shell
+npx create-typescript-app --bundle
+```
+
+That emits a `tsdown.config.ts` with `src/index.ts` as the only entry and no `unbundle` setting, so tsdown uses its default bundled output.
+Dependencies are still left external; see [tsdown > Dependencies](https://tsdown.dev/options/dependencies) if you'd like to inline any.
+
+Re-running `create-typescript-app` in a repository keeps whatever the existing `tsdown.config.ts` does: bundling stays on unless it contains `unbundle: true`.
+To switch an existing repository back, add `unbundle: true` to its `tsdown.config.ts` and re-run `create-typescript-app`.
+
 ## How can I add dual CommonJS / ECMAScript Modules emit?
 
 First, I'd suggest reading [TypeScript Handbook > Modules - Introduction](https://www.typescriptlang.org/docs/handbook/modules/introduction.html) to understand how CommonJS (CJS) and ECMAScript (ESM) came to be.

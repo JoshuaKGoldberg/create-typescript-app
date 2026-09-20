@@ -69,7 +69,6 @@ export const blockTSDown = base.createBlock({
 					(isEsmOnly(rest.format) && hasJsEntryPoint(files)
 						? false
 						: undefined),
-
 				format: rest.format === "esm" ? undefined : rest.format,
 			}),
 		};

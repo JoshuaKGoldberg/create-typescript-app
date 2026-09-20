@@ -21,8 +21,7 @@ export const blockExports = base.createBlock({
 		const exports = zExports.safeParse(packageData?.exports).data;
 		const filePath =
 			packageData?.exports === undefined
-				? // Repositories created before exports were generated only have a main
-					zFilePath.safeParse(packageData?.main).data
+				? zFilePath.safeParse(packageData?.main).data
 				: typeof exports === "string"
 					? exports
 					: exports?.["."];

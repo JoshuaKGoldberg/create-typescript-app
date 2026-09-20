@@ -39,7 +39,6 @@ function hasJsEntryPoint(files: IntakeDirectory) {
 			: ((exports as Record<string, unknown> | undefined)?.["."] ??
 				packageData?.main);
 
-	// A package.json without an entry point predates tsdown's .mjs default.
 	return typeof entryPoint === "string"
 		? entryPoint.endsWith(".js")
 		: entryPoint === undefined;
@@ -83,17 +82,15 @@ export const blockTSDown = base.createBlock({
 				// In case of a tsup.config.ts migrated to tsdown.config.ts
 				bundle: undefined,
 				clean: rest.clean === false ? false : undefined,
-				format: rest.format === "esm" ? undefined : rest.format,
-
-				// lib was the default before build output moved to tsdown's dist
-				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
-				// Repositories created before tsdown defaulted to .mjs output still
-				// publish .js files, so they keep doing so unless they say otherwise.
 				fixedExtension:
 					rest.fixedExtension ??
 					(isEsmOnly(rest.format) && hasJsEntryPoint(files)
 						? false
 						: undefined),
+				format: rest.format === "esm" ? undefined : rest.format,
+
+				// lib was the default before build output moved to tsdown's dist
+				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
 			}),
 		};
 	},

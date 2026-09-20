@@ -75,7 +75,7 @@ export const blockESLint = base.createBlock({
 
 		const ignoreLines = Array.from(
 			new Set(
-				["node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
+				["dist", "node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
 					JSON.stringify(ignore),
 				),
 			),

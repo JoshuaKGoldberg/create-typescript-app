@@ -15,20 +15,6 @@ describe(blockTSDown, () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "entry": "dist/index.mjs",
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignorePaths": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
@@ -52,17 +38,6 @@ describe(blockTSDown, () => {
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
-			        "ignores": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -87,21 +62,10 @@ describe(blockTSDown, () => {
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
 			          },
-			          "files": [
-			            "dist/",
-			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
 			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -116,19 +80,11 @@ describe(blockTSDown, () => {
 			      },
 			      "block": [Function],
 			    },
-			    {
-			      "addons": {
-			        "exclude": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			  ],
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
+			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
 			",
 			  },
 			  "scripts": undefined,
@@ -151,20 +107,6 @@ describe(blockTSDown, () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
-			    {
-			      "addons": {
-			        "entry": "dist/index.mjs",
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignorePaths": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			    {
 			      "addons": {
 			        "sections": {
@@ -190,17 +132,6 @@ describe(blockTSDown, () => {
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
-			        "ignores": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -228,21 +159,10 @@ describe(blockTSDown, () => {
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
 			          },
-			          "files": [
-			            "dist/",
-			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
 			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -257,19 +177,11 @@ describe(blockTSDown, () => {
 			      },
 			      "block": [Function],
 			    },
-			    {
-			      "addons": {
-			        "exclude": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			  ],
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*","src/other.ts"],"unbundle":true,"dts":false});
+			export default defineConfig({"entry":["src/**/*.ts","src/other.ts"],"unbundle":true,"dts":false});
 			",
 			  },
 			  "scripts": undefined,
@@ -281,7 +193,7 @@ describe(blockTSDown, () => {
 		const creation = testBlock(blockTSDown, {
 			addons: {
 				properties: {
-					outDir: "lib",
+					outDir: "build",
 				},
 			},
 			options: optionsBase,
@@ -290,40 +202,9 @@ describe(blockTSDown, () => {
 		expect(creation.files).toEqual({
 			"tsdown.config.ts": `import { defineConfig } from "tsdown";
 
-export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true,"outDir":"lib"});
+export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"build"});
 `,
 		});
-
-		expect(creation.addons).toEqual(
-			expect.arrayContaining([
-				expect.objectContaining({
-					addons: expect.objectContaining({
-						sections: {
-							Building: {
-								contents: expect.stringContaining("output files in `lib/`"),
-							},
-						},
-					}),
-				}),
-				expect.objectContaining({
-					addons: expect.objectContaining({ ignorePaths: ["lib"] }),
-				}),
-				expect.objectContaining({
-					addons: expect.objectContaining({ ignores: ["lib"] }),
-				}),
-				expect.objectContaining({
-					addons: expect.objectContaining({ ignores: ["/lib"] }),
-				}),
-				expect.objectContaining({
-					addons: expect.objectContaining({
-						properties: expect.objectContaining({ files: ["lib/"] }),
-					}),
-				}),
-				expect.objectContaining({
-					addons: expect.objectContaining({ exclude: ["lib"] }),
-				}),
-			]),
-		);
 	});
 
 	test("transition mode", () => {
@@ -335,20 +216,6 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
-			    {
-			      "addons": {
-			        "entry": "dist/index.mjs",
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignorePaths": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
 			    {
 			      "addons": {
 			        "sections": {
@@ -374,17 +241,6 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
-			        "ignores": [
-			          "dist",
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -409,21 +265,10 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 			          "devDependencies": {
 			            "tsdown": "0.22.14",
 			          },
-			          "files": [
-			            "dist/",
-			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
 			        },
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -434,14 +279,6 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 			            "order": 0,
 			            "run": "pnpm build",
 			          },
-			        ],
-			      },
-			      "block": [Function],
-			    },
-			    {
-			      "addons": {
-			        "exclude": [
-			          "dist",
 			        ],
 			      },
 			      "block": [Function],
@@ -482,7 +319,7 @@ export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundl
 			  "files": {
 			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts","!src/**/*.test.*"],"unbundle":true});
+			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
 			",
 			  },
 			}

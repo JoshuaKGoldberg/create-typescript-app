@@ -95,7 +95,7 @@ pnpm format --write
 					"pre-commit": ["npx lint-staged\n", { executable: true }],
 				},
 				".prettierignore": formatIgnoreFile(
-					["/.husky", "/pnpm-lock.yaml", ...ignores].sort(),
+					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
 				),
 				"prettier.config.ts": `import type { Config } from "prettier";
 

@@ -104,30 +104,6 @@ describe(blockBin, () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	it("imports addons.entry when provided", () => {
-		const creation = testBlock(blockBin, {
-			addons: { entry: "build/index.mjs" },
-			options: { ...optionsBase, bin: "bin/index.js" },
-		});
-
-		expect(creation).toMatchInlineSnapshot(`
-			{
-			  "files": {
-			    "bin": {
-			      "index.js": [
-			        "#!/usr/bin/env node
-			import "../build/index.mjs";
-			",
-			        {
-			          "executable": true,
-			        },
-			      ],
-			    },
-			  },
-			}
-		`);
-	});
-
 	it("rewrites legacy lib/ imports in addons.contents to the build output", () => {
 		const creation = testBlock(blockBin, {
 			addons: {

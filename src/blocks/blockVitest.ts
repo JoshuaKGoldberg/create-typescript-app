@@ -16,6 +16,7 @@ import { blockPrettier } from "./blockPrettier.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockTSDown } from "./blockTSDown.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 
@@ -208,6 +209,9 @@ describe(greet, () => {
 				}),
 				blockPrettier({
 					ignores: ["/coverage"],
+				}),
+				blockTSDown({
+					entry: ["!src/**/*.test.*"],
 				}),
 				blockVSCode({
 					debuggers: [

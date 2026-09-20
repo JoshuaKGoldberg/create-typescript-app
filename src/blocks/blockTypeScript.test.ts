@@ -79,6 +79,14 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -106,6 +114,9 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "5.9.3",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -117,6 +128,9 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
+			        "exclude": [
+			          "dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -224,6 +238,14 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -251,6 +273,9 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "5.9.3",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -262,6 +287,9 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
+			        "exclude": [
+			          "dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -367,6 +395,14 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -394,6 +430,9 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "5.9.3",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -405,6 +444,9 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
+			        "exclude": [
+			          "dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },
@@ -519,6 +561,14 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
+			      },
+			      "block": [Function],
+			    },
+			    {
+			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -546,6 +596,9 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "5.9.3",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			        },
 			      },
 			      "block": [Function],
@@ -557,6 +610,9 @@ describe(blockTypeScript, () => {
 			            "src",
 			          ],
 			        },
+			        "exclude": [
+			          "dist",
+			        ],
 			      },
 			      "block": [Function],
 			    },

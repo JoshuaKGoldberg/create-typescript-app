@@ -7,6 +7,7 @@ import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockExampleFiles } from "./blockExampleFiles.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
 import { blockKnip } from "./blockKnip.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
@@ -96,6 +97,9 @@ greet("Hello, world! ${options.emoji}");
 \`\`\``,
 					],
 				}),
+				blockGitignore({
+					ignores: ["/dist"],
+				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
 				}),
@@ -105,9 +109,10 @@ greet("Hello, world! ${options.emoji}");
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies("typescript"),
+						files: ["dist/"],
 					},
 				}),
-				blockVitest({ coverage: { include: ["src"] } }),
+				blockVitest({ coverage: { include: ["src"] }, exclude: ["dist"] }),
 				blockVSCode({
 					debuggers: primaryBin
 						? [

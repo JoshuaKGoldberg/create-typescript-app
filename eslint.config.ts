@@ -74,6 +74,9 @@ export default defineConfig(
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
 			"operator-assignment": "error",
+
+			// Relative imports should include their file extensions
+			"n/file-extension-in-import": ["error", "always"],
 		},
 		settings: { perfectionist: { partitionByComment: true, type: "natural" } },
 	},

@@ -26,7 +26,7 @@ describe("blockTemplatedWith", () => {
 			",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			  ],
 			}
@@ -51,7 +51,7 @@ describe("blockTemplatedWith", () => {
 			",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			  ],
 			}

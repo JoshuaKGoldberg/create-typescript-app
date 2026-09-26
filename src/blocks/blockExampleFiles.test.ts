@@ -45,7 +45,7 @@ describe(blockExampleFiles, () => {
 			      "addons": {
 			        "defaultUsage": undefined,
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			  ],
 			  "files": {

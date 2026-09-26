@@ -23,7 +23,7 @@ describe("blockContributorCovenant", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			  ],
 			  "files": {
@@ -189,7 +189,7 @@ describe("blockContributorCovenant", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -197,7 +197,7 @@ describe("blockContributorCovenant", () => {
 			          "CODE_OF_CONDUCT.md",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {

@@ -24,7 +24,7 @@ describe(blockReleaseIt, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -36,7 +36,7 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -47,7 +47,7 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Secrets]",
 			    },
 			  ],
 			  "files": {
@@ -159,7 +159,7 @@ describe(blockReleaseIt, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -171,7 +171,7 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -182,7 +182,7 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Secrets]",
 			    },
 			  ],
 			  "files": {

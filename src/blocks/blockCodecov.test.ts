@@ -23,7 +23,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Apps]",
 			    },
 			    {
 			      "addons": {
@@ -35,7 +35,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -46,7 +46,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			}
@@ -71,7 +71,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Apps]",
 			    },
 			    {
 			      "addons": {
@@ -83,7 +83,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -94,7 +94,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			    {
 			      "addons": {
@@ -103,7 +103,7 @@ describe(blockCodecov, () => {
 			          "codecov.{yaml,yml}",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			}
@@ -127,7 +127,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Apps]",
 			    },
 			    {
 			      "addons": {
@@ -139,7 +139,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -153,7 +153,7 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			}
@@ -171,48 +171,48 @@ describe(blockCodecov, () => {
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
-			      	{
-			      	  "addons": [
-			      	    {
-			      	      "addons": {
-			      	        "apps": [
-			      	          {
-			      	            "name": "Codecov",
-			      	            "url": "https://github.com/apps/codecov",
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "badges": [
-			      	          {
-			      	            "alt": "🧪 Coverage",
-			      	            "href": "https://codecov.io/gh/test-owner/test-repository",
-			      	            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	    {
-			      	      "addons": {
-			      	        "actionSteps": [
-			      	          {
-			      	            "env": {
-			      	              "CODECOV_TOKEN": "\${{ secrets.CODECOV_TOKEN }}",
-			      	            },
-			      	            "if": "always()",
-			      	            "uses": "codecov/codecov-action@v3",
-			      	          },
-			      	        ],
-			      	      },
-			      	      "block": [Function],
-			      	    },
-			      	  ],
-			      	}
-			      `);
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "apps": [
+			          {
+			            "name": "Codecov",
+			            "url": "https://github.com/apps/codecov",
+			          },
+			        ],
+			      },
+			      "block": "[Block GitHub Apps]",
+			    },
+			    {
+			      "addons": {
+			        "badges": [
+			          {
+			            "alt": "🧪 Coverage",
+			            "href": "https://codecov.io/gh/test-owner/test-repository",
+			            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
+			          },
+			        ],
+			      },
+			      "block": "[Block README.md]",
+			    },
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "env": {
+			              "CODECOV_TOKEN": "\${{ secrets.CODECOV_TOKEN }}",
+			            },
+			            "if": "always()",
+			            "uses": "codecov/codecov-action@v3",
+			          },
+			        ],
+			      },
+			      "block": "[Block Vitest]",
+			    },
+			  ],
+			}
+		`);
 	});
 
 	describe("intake", () => {

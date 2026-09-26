@@ -57,7 +57,7 @@ export const base = createBase({
 			.optional()
 			.describe("username on npm to publish packages under"),
 		bin: z
-			.union([z.string(), z.record(z.string())])
+			.union([z.string(), z.record(z.string(), z.string())])
 			.optional()
 			.describe('value to set in `package.json`\'s `"bin"` property'),
 		bundle: z
@@ -143,7 +143,7 @@ export const base = createBase({
 				dependencies: z.record(z.string(), z.string()).optional(),
 				devDependencies: z.record(z.string(), z.string()).optional(),
 				peerDependencies: z.record(z.string(), z.string()).optional(),
-				peerDependenciesMeta: z.record(z.unknown()).optional(),
+				peerDependenciesMeta: z.record(z.string(), z.unknown()).optional(),
 				scripts: z.record(z.string(), z.string().optional()).optional(),
 			})
 			.optional()

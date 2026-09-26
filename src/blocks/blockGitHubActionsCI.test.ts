@@ -17,7 +17,7 @@ describe(blockGitHubActionsCI, () => {
 			      "addons": {
 			        "requiredStatusChecks": undefined,
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			  ],
 			  "files": {
@@ -84,7 +84,7 @@ describe(blockGitHubActionsCI, () => {
 			      "addons": {
 			        "requiredStatusChecks": undefined,
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			    {
 			      "addons": {
@@ -96,7 +96,7 @@ describe(blockGitHubActionsCI, () => {
 			          "travis.{yaml,yml}",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {
@@ -180,7 +180,7 @@ describe(blockGitHubActionsCI, () => {
 			          "Validate",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			  ],
 			  "files": {

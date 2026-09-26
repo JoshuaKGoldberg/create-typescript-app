@@ -33,7 +33,7 @@ describe("blockESLintPackageJson", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -43,7 +43,7 @@ describe("blockESLintPackageJson", () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
@@ -79,7 +79,7 @@ describe("blockESLintPackageJson", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -89,7 +89,7 @@ describe("blockESLintPackageJson", () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -97,7 +97,7 @@ describe("blockESLintPackageJson", () => {
 			          ".npmpackagejsonlintrc*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			    {
 			      "addons": {
@@ -106,7 +106,7 @@ describe("blockESLintPackageJson", () => {
 			          "npm-package-json-lint-config-default",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
 			      "addons": {
@@ -114,7 +114,7 @@ describe("blockESLintPackageJson", () => {
 			          "lint-package-json",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			}

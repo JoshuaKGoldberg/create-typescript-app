@@ -22,7 +22,7 @@ describe(blockRenovate, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Apps]",
 			    },
 			  ],
 			  "files": {
@@ -54,7 +54,7 @@ describe(blockRenovate, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Apps]",
 			    },
 			  ],
 			  "files": {

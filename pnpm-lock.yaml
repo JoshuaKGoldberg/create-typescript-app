@@ -12,14 +12,14 @@ importers:
         specifier: ^8.67.0
         version: 8.67.0(supports-color@7.2.0)(typescript@5.9.3)
       bingo:
-        specifier: ^0.9.3
-        version: 0.9.3
+        specifier: ^0.12.2
+        version: 0.12.2
       bingo-fs:
-        specifier: ^0.5.6
-        version: 0.5.6
+        specifier: ^0.5.7
+        version: 0.5.7
       bingo-stratum:
-        specifier: ^0.5.13
-        version: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76)
+        specifier: ^0.6.3
+        version: 0.6.3(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.2)(zod@4.4.3)
       cached-factory:
         specifier: ^0.3.0
         version: 0.3.0
@@ -42,14 +42,14 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       input-from-file:
-        specifier: ^0.5.5
-        version: 0.5.5(bingo@0.9.3)
+        specifier: ^0.5.8
+        version: 0.5.8(bingo@0.12.2)
       input-from-file-json:
-        specifier: ^0.5.5
-        version: 0.5.5(bingo@0.9.3)
+        specifier: ^0.5.8
+        version: 0.5.8(bingo@0.12.2)
       input-from-script:
-        specifier: ^0.5.5
-        version: 0.5.5(bingo@0.9.3)
+        specifier: ^0.5.8
+        version: 0.5.8(bingo@0.12.2)
       js-yaml:
         specifier: ^5.0.0
         version: 5.3.0
@@ -87,8 +87,8 @@ importers:
         specifier: ^7.8.5
         version: 7.8.5
       set-github-repository-labels:
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^0.2.3
+        version: 0.2.3
       sort-keys:
         specifier: ^6.0.1
         version: 6.0.1
@@ -102,14 +102,14 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.4.3
+        version: 4.4.3
       zod-package-json:
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^2.1.0
+        version: 2.1.0(zod@4.4.3)
       zod-tsconfig:
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.2.1
+        version: 0.2.1(zod@4.4.3)
     devDependencies:
       '@eslint-community/eslint-plugin-eslint-comments':
         specifier: 4.7.2
@@ -154,11 +154,11 @@ importers:
         specifier: 0.5.6
         version: 0.5.6
       bingo-stratum-testers:
-        specifier: 0.5.10
-        version: 0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.9.3)
+        specifier: 0.5.13
+        version: 0.5.13(bingo-fs@0.5.7)(bingo-stratum@0.6.3(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.2)(zod@4.4.3))(bingo-systems@0.6.0)(bingo@0.12.2)
       bingo-testers:
-        specifier: 0.5.8
-        version: 0.5.8(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)
+        specifier: 0.6.0
+        version: 0.6.0(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.2)
       console-fail-test:
         specifier: 0.6.1
         version: 0.6.1
@@ -1805,47 +1805,47 @@ packages:
   before-after-hook@4.0.0:
     resolution: {integrity: sha512-q6tR3RPqIB1pMiTRMFcZwuG5T8vwp+vUvEG0vuI6B+Rikh5BfPp2fQ82c925FOs+b0lcFQ8CFrL+KbilfZFhOQ==}
 
-  bingo-fs@0.5.6:
-    resolution: {integrity: sha512-af4FUCgSQ9cKv9p9umRAjZNHHcipJhMbhSJ7YNNrRv8as4OQNG+XnpUp4gja8JVJ8CWpdTL8FlF2XkO9Y6WN3Q==}
+  bingo-fs@0.5.7:
+    resolution: {integrity: sha512-unn80/qC5BZlppL1HLrveT+RGXYFDXW/shM/CgDFHGIKuIvVJlnq66XKhY7B2H/vceLsow4r15Jhd/6gfuR56g==}
     engines: {node: '>=18'}
 
   bingo-requests@0.5.6:
     resolution: {integrity: sha512-cpvNWqMlFkbynxJzyKJ4B/R57zR2MsPkJSldNJRxSTN6LlgB9uzQ8jAeDZy2ENoUHNlH5nApv2JyHxVqFxcjSg==}
     engines: {node: '>=18'}
 
-  bingo-stratum-testers@0.5.10:
-    resolution: {integrity: sha512-WUaX7ThttkTfR/Zo+GHcBe5Jglgjg1IkCFxxHUVeHOG7msCCFzJsNpUXziZYQyIK3rTaY64WiMgkS2F5c3EuzA==}
+  bingo-stratum-testers@0.5.13:
+    resolution: {integrity: sha512-BNGxyNiqgqLwZDWiPfNIlG9sHom8hUQRTfPjTuW+2U6In3+mnAvfZdpm7R4IfoKkj5QkOpc4ce9yiCi6if9THA==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.8.1
-      bingo-fs: ^0.5.6
-      bingo-stratum: ^0.5.12
-      bingo-systems: ^0.5.5
+      bingo: ^0.12.1
+      bingo-fs: ^0.5.7
+      bingo-stratum: ^0.6.2
+      bingo-systems: ^0.6.0
 
-  bingo-stratum@0.5.13:
-    resolution: {integrity: sha512-rIbqb5/bUK1Iyg8sYat8IRlgOlp9AuYTBFff1ChhQCklXAGKXwwH1rsNln5kgJ3CA2gMU6aaa/bOMvyxDVjb4Q==}
+  bingo-stratum@0.6.3:
+    resolution: {integrity: sha512-RXsWnlrgJPFqtXCBS0RB+1uj+68bhs7vyNW4BVjucKNxv0mQsvs4Y/4plkLaTuvLAYL4FWIAJew5x5HogRwepA==}
+    engines: {node: '>=20.18.0'}
+    peerDependencies:
+      bingo: ^0.12.2
+      bingo-fs: ^0.5.7
+      bingo-systems: ^0.6.0
+      zod: ^4.4.3
+
+  bingo-systems@0.6.0:
+    resolution: {integrity: sha512-RIHq/TUw8p6+eqpPMfy+5Xj51kSUk2yQf9ZbTa8XnZUrg4hhON+MrbxBRuKnvHuogSGSzUuJPCQUd1pCeWh5jg==}
+    engines: {node: '>=22'}
+
+  bingo-testers@0.6.0:
+    resolution: {integrity: sha512-AVW7xF4UPk73KUg/JuT80j/hhJNNwfcmWEn98YVyqyg3T1OhnC+JxMNPmgcleO1+U4se0nN5XGVwDQ+cJEwaew==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.9.0
-      bingo-fs: ^0.5.6
-      bingo-systems: ^0.5.5
-      zod: ^3.24.2
+      bingo: ^0.12.0
+      bingo-fs: ^0.5.7
+      bingo-systems: ^0.6.0
 
-  bingo-systems@0.5.5:
-    resolution: {integrity: sha512-n8ah6qwk0JojolpoILxDvQWaw9b5pzAujrzDYMNppDNtPYQMqGsqJGvUtSw6i+mKPJ/WWqVbpCskm0f8cZjtrQ==}
-    engines: {node: '>=18'}
-
-  bingo-testers@0.5.8:
-    resolution: {integrity: sha512-bR8s5A2ftS4YO3F8PbEFNm/l+0VOZ2PVupfD5UtWmWFkTqBCufyXayR+KTOiqMGkkaCJTrX7y4VTZP/NhFwXjA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      bingo: ^0.8.1
-      bingo-fs: ^0.5.6
-      bingo-systems: ^0.5.5
-
-  bingo@0.9.3:
-    resolution: {integrity: sha512-bIo91Ac1RAyFnUotI3+iIbl35Wk5yZrJIE6JQQOt33NneQj/A34j64bkyYxeVGLxAfNSfKE9cfIyDDy7JLyNiw==}
-    engines: {node: '>=18'}
+  bingo@0.12.2:
+    resolution: {integrity: sha512-RkNq4haEfiSdX5nstLlTbNtcFiSokEMA3NQTb9sVbctT78ZsW8c26+KX1VmJ94oI/UWCR6/bLe87JZLTe4XZuQ==}
+    engines: {node: '>=22'}
     hasBin: true
 
   boolbase@1.0.0:
@@ -1880,10 +1880,6 @@ packages:
   cac@7.0.0:
     resolution: {integrity: sha512-tixWYgm5ZoOD+3g6UTea91eow5z6AAHaho3g0V9CNSNb45gM8SmflpAc+GRd1InC4AqN/07Unrgp56Y94N9hJQ==}
     engines: {node: '>=20.19.0'}
-
-  cached-factory@0.1.0:
-    resolution: {integrity: sha512-IGOSWu+NuED5UzCRmBeqQPZ8z7SkgrD/nN67W2iY1Qv83CVhevyMexkGclJ86saXisIqxoOnbeiTWvsCHRqJBw==}
-    engines: {node: '>=18'}
 
   cached-factory@0.3.0:
     resolution: {integrity: sha512-8PWf78SYJg9kGpUNlqOlg2iE4nu/iW7FidBVdvEZPy0GJRUyN91X7q0VzX/oyJE6bGrgr/bR0VhcGF87vgeQaw==}
@@ -2237,10 +2233,6 @@ packages:
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-
-  diff@8.0.4:
-    resolution: {integrity: sha512-DPi0FmjiSU5EvQV0++GFDOJ9ASQUVFh5kD+OzOnYdi7n3Wpm9hWWGfB/O2blfHcMVTL5WkQXSnRiK9makhrcnw==}
-    engines: {node: '>=0.3.1'}
 
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
@@ -2771,23 +2763,23 @@ packages:
     resolution: {integrity: sha512-IBTdIkzZNOpqm7q3dRqJvMaldXjDHWkEDfrwGEQTs5eaQMWV+djAhR+wahyNNMAa+qpbDUhBMVt4ZKNwpPm7xQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  input-from-file-json@0.5.5:
-    resolution: {integrity: sha512-0EOOAWVRItCNv7027YlCjUTHw62+nE2TtEHcN1+vCrUlNHiwB6bAkI+zVBc+GRlkv6fkXZRW+1dgo7SFvb34RA==}
+  input-from-file-json@0.5.8:
+    resolution: {integrity: sha512-BntjgRqV/COLu9bVFMrRcpDNGBmK92g9eAdWYSLa6NJbzdvsj9aTiMfL3fd4jBpU7H/fnajV/bZFo7vFO0exzA==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.8.1
+      bingo: ^0.12.1
 
-  input-from-file@0.5.5:
-    resolution: {integrity: sha512-bhUdsqlgNW/Ru0aD6kEi9CSG+PWd/3XnC+qPyyoncIQl0kJ6OFnbCPgBLwHM3+H5eDXRbAO9ZbKAgbvXTaEIxQ==}
+  input-from-file@0.5.8:
+    resolution: {integrity: sha512-vswadPznU1YGd05TMLCwlHBQbS8lDkSoJpQc+h/imCKwlOIXfj+mrGpfXyeAVLPIapQsEWOye6HTxALMheWXhw==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.8.1
+      bingo: ^0.12.0
 
-  input-from-script@0.5.5:
-    resolution: {integrity: sha512-f/gdhvkja56eQKhunFrRCkLyx+KtfzlDSiSCF5Sl0Q6Am1E9enlcHhW6uE2ldriq87MauGs7hSHKw+UHONfbxA==}
+  input-from-script@0.5.8:
+    resolution: {integrity: sha512-RDodgev2plapa8bG9yC3tdSa00n6pS3GvtKQNIufn2dn/pH/Rsp6jwKhp34cRPH+5IMgu7QdbtYDwtl5Dpo8dw==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.8.1
+      bingo: ^0.12.0
 
   inquirer@7.3.3:
     resolution: {integrity: sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==}
@@ -3818,8 +3810,8 @@ packages:
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
 
-  set-github-repository-labels@0.2.2:
-    resolution: {integrity: sha512-/CTFBP0vyT9TDK4zxOmy1xdBKJKfbJGob60O5fw39Sk9cjwJcJNX1Bqz7INQ75gaPa/K7r1q2dz9iF8TY+d4Fw==}
+  set-github-repository-labels@0.2.3:
+    resolution: {integrity: sha512-rbwdaar7bNfwxStOtNxD3k2yHutiFq606lbwMK5Cd+Jf0UK+ieoGhUj22QrnvEMEXy0oEpOV9q8rKOOhyayILA==}
     engines: {node: '>=18.3.0'}
     hasBin: true
 
@@ -4382,16 +4374,17 @@ packages:
   yuku-parser@0.8.7:
     resolution: {integrity: sha512-vRD9nwt4L3aYpxNqeSC4WqLv58xrXef0Ong1Mc45CTXTIpvLafx7JO05sczmQZwdLEZvywrLOGdNC5+Rp5N1BQ==}
 
-  zod-package-json@1.2.0:
-    resolution: {integrity: sha512-tamtgPM3MkP+obfO2dLr/G+nYoYkpJKmuHdYEy6IXRKfLybruoJ5NUj0lM0LxwOpC9PpoGLbll1ecoeyj43Wsg==}
+  zod-package-json@2.1.0:
+    resolution: {integrity: sha512-XLlyeEk+5q4m+GSNrTXAi9QwTbtOCHJOzr1eTCHsF6J5y8zypZRFCvfO1rOZ2CXht+9pY6DNpC7si1tcWESPCw==}
     engines: {node: '>=20'}
+    peerDependencies:
+      zod: ^4.0.0
 
-  zod-tsconfig@0.2.0:
-    resolution: {integrity: sha512-ug/zndWh/wNiejtCJ2tGyNzi3Nf94ZnpFos/e5CGTIXYIwoXMiXYg3a3SptYVrfXFnLCpuTTfVjYWh6q9djKhA==}
+  zod-tsconfig@0.2.1:
+    resolution: {integrity: sha512-vG7lpJPPakNSR3i2uDDWqAVAxetevnirfETvCu3s6ZHLasJB+iQ9EMTlhI+25vyqFHH8qUKO3B6V83U8cuHUhw==}
     engines: {node: '>=18.3.0'}
-
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+    peerDependencies:
+      zod: ^4.4.3
 
   zod@4.4.3:
     resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
@@ -5823,60 +5816,59 @@ snapshots:
 
   before-after-hook@4.0.0: {}
 
-  bingo-fs@0.5.6: {}
+  bingo-fs@0.5.7: {}
 
   bingo-requests@0.5.6:
     dependencies:
       '@octokit/types': 16.0.0
 
-  bingo-stratum-testers@0.5.10(bingo-fs@0.5.6)(bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76))(bingo-systems@0.5.5)(bingo@0.9.3):
+  bingo-stratum-testers@0.5.13(bingo-fs@0.5.7)(bingo-stratum@0.6.3(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.2)(zod@4.4.3))(bingo-systems@0.6.0)(bingo@0.12.2):
     dependencies:
-      bingo: 0.9.3
-      bingo-fs: 0.5.6
-      bingo-stratum: 0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76)
-      bingo-systems: 0.5.5
+      bingo: 0.12.2
+      bingo-fs: 0.5.7
+      bingo-stratum: 0.6.3(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.2)(zod@4.4.3)
+      bingo-systems: 0.6.0
 
-  bingo-stratum@0.5.13(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3)(zod@3.25.76):
+  bingo-stratum@0.6.3(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.2)(zod@4.4.3):
     dependencies:
       all-properties-lazy: 0.1.0
-      bingo: 0.9.3
-      bingo-fs: 0.5.6
-      bingo-systems: 0.5.5
-      cached-factory: 0.1.0
-      chalk: 5.6.2
+      bingo: 0.12.2
+      bingo-fs: 0.5.7
+      bingo-systems: 0.6.0
+      cached-factory: 0.3.0
       hash-object: 5.1.0
       octokit: 5.0.5
       slugify: 1.6.9
       without-undefined-properties: 0.1.2
-      zod: 3.25.76
+      zod: 4.4.3
 
-  bingo-systems@0.5.5:
+  bingo-systems@0.6.0:
     dependencies:
-      bingo-fs: 0.5.6
+      bingo-fs: 0.5.7
       execa: 9.6.1
       get-github-auth-token: 0.1.2
       octokit: 5.0.5
 
-  bingo-testers@0.5.8(bingo-fs@0.5.6)(bingo-systems@0.5.5)(bingo@0.9.3):
+  bingo-testers@0.6.0(bingo-fs@0.5.7)(bingo-systems@0.6.0)(bingo@0.12.2):
     dependencies:
+      '@vitest/utils': 4.1.10
       all-properties-lazy: 0.1.0
-      bingo: 0.9.3
-      bingo-fs: 0.5.6
-      bingo-systems: 0.5.5
-      diff: 8.0.4
+      bingo: 0.12.2
+      bingo-fs: 0.5.7
+      bingo-systems: 0.6.0
       octokit: 5.0.5
+      tinyrainbow: 3.1.1
       without-undefined-properties: 0.1.2
 
-  bingo@0.9.3:
+  bingo@0.12.2:
     dependencies:
       '@clack/prompts': 0.11.0
       all-properties-lazy: 0.1.0
-      bingo-fs: 0.5.6
+      bingo-fs: 0.5.7
       bingo-requests: 0.5.6
-      bingo-systems: 0.5.5
-      cached-factory: 0.1.0
+      bingo-systems: 0.6.0
+      cached-factory: 0.3.0
       call-id: 0.1.0
-      chalk: 5.6.2
       get-github-auth-token: 0.1.2
       git-url-parse: 16.1.0
       hash-object: 5.1.0
@@ -5886,7 +5878,7 @@ snapshots:
       read-pkg: 10.1.0
       slugify: 1.6.9
       without-undefined-properties: 0.1.2
-      zod: 3.25.76
+      zod: 4.4.3
 
   boolbase@1.0.0: {}
 
@@ -5924,8 +5916,6 @@ snapshots:
       magicast: 0.5.4
 
   cac@7.0.0: {}
-
-  cached-factory@0.1.0: {}
 
   cached-factory@0.3.0: {}
 
@@ -6348,8 +6338,6 @@ snapshots:
   didyoumean@1.2.2: {}
 
   diff-sequences@29.6.3: {}
-
-  diff@8.0.4: {}
 
   dom-serializer@2.0.0:
     dependencies:
@@ -6939,20 +6927,20 @@ snapshots:
 
   ini@6.0.0: {}
 
-  input-from-file-json@0.5.5(bingo@0.9.3):
+  input-from-file-json@0.5.8(bingo@0.12.2):
     dependencies:
-      bingo: 0.9.3
-      input-from-file: 0.5.5(bingo@0.9.3)
+      bingo: 0.12.2
+      input-from-file: 0.5.8(bingo@0.12.2)
 
-  input-from-file@0.5.5(bingo@0.9.3):
+  input-from-file@0.5.8(bingo@0.12.2):
     dependencies:
-      bingo: 0.9.3
-      zod: 3.25.76
+      bingo: 0.12.2
+      zod: 4.4.3
 
-  input-from-script@0.5.5(bingo@0.9.3):
+  input-from-script@0.5.8(bingo@0.12.2):
     dependencies:
-      bingo: 0.9.3
-      zod: 3.25.76
+      bingo: 0.12.2
+      zod: 4.4.3
 
   inquirer@7.3.3:
     dependencies:
@@ -8174,11 +8162,11 @@ snapshots:
 
   set-blocking@2.0.0: {}
 
-  set-github-repository-labels@0.2.2:
+  set-github-repository-labels@0.2.3:
     dependencies:
       octokit-from-auth: 0.3.2
       throttled-queue: 2.1.4
-      zod: 3.25.76
+      zod: 4.4.3
 
   sh-syntax@0.6.0: {}
 
@@ -8679,15 +8667,13 @@ snapshots:
       '@yuku-parser/binding-win32-arm64': 0.8.7
       '@yuku-parser/binding-win32-x64': 0.8.7
 
-  zod-package-json@1.2.0:
+  zod-package-json@2.1.0(zod@4.4.3):
     dependencies:
-      zod: 3.25.76
+      zod: 4.4.3
 
-  zod-tsconfig@0.2.0:
+  zod-tsconfig@0.2.1(zod@4.4.3):
     dependencies:
-      zod: 3.25.76
-
-  zod@3.25.76: {}
+      zod: 4.4.3
 
   zod@4.4.3: {}
 

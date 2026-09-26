@@ -33,13 +33,13 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -54,7 +54,7 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -67,7 +67,7 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -78,7 +78,7 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block release-it]",
 			    },
 			  ],
 			  "files": {
@@ -127,13 +127,13 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -151,7 +151,7 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -164,7 +164,7 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -175,7 +175,7 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block release-it]",
 			    },
 			  ],
 			  "files": {
@@ -252,13 +252,13 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -273,7 +273,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -286,7 +286,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -297,7 +297,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block release-it]",
 			    },
 			    {
 			      "addons": {
@@ -308,7 +308,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			          "babel",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
 			      "addons": {
@@ -320,7 +320,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			          "tsup.config.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			    {
 			      "addons": {
@@ -329,7 +329,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			          "tsup",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {

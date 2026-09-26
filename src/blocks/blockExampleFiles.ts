@@ -8,7 +8,7 @@ export const blockExampleFiles = base.createBlock({
 		name: "Example Files",
 	},
 	addons: {
-		files: z.record(z.string()).default({}),
+		files: z.record(z.string(), z.string()).default({}),
 		usage: z.array(z.string()).default([]),
 	},
 	setup({ addons }) {

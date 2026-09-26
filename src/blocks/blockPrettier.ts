@@ -121,11 +121,7 @@ export default ${JSON.stringify({
 					dependencies: ["eslint-config-prettier", "eslint-plugin-prettier"],
 				}),
 				blockRemoveFiles({
-					files: [
-						".prettierrc",
-						".prettierrc.{c*,js,m*,t*}",
-						"prettier.config*",
-					],
+					files: [".prettierrc*", "prettier.config.{c,j,m}*"],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["format", "prettier"],

@@ -238,7 +238,7 @@ export default defineConfig(
 			],
 		};
 	},
-	transition({ options }) {
+	transition() {
 		return {
 			addons: [
 				blockRemoveDependencies({
@@ -253,13 +253,7 @@ export default defineConfig(
 					],
 				}),
 				blockRemoveFiles({
-					files: [
-						".eslintrc*",
-						".eslintignore",
-						options.type === "commonjs"
-							? "eslint.config.{cjs,js}"
-							: "eslint.config.{cjs,mjs}",
-					],
+					files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,js,mjs}"],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["eslint", "lint"],

@@ -26,12 +26,11 @@ export const blockExports = base.createBlock({
 					? exports
 					: exports?.["."];
 
-		return filePath
-			? { filePath: filePath.replace(/^(?:\.\/)?lib\//u, "./dist/") }
-			: undefined;
+		return filePath ? { filePath: libToDist(filePath) } : undefined;
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { filePath = "./dist/index.mjs", runArgs } = addons;
+		const main = zFilePath.safeParse(options.packageData?.main).data;
 
 		return {
 			addons: [
@@ -40,6 +39,7 @@ export const blockExports = base.createBlock({
 						exports: {
 							".": filePath.startsWith(".") ? filePath : `./${filePath}`,
 						},
+						...(main && { main: libToDist(main) }),
 					},
 				}),
 				blockTSDown({
@@ -51,3 +51,7 @@ export const blockExports = base.createBlock({
 		};
 	},
 });
+
+function libToDist(filePath: string) {
+	return filePath.replace(/^(?:\.\/)?lib\//u, "./dist/");
+}

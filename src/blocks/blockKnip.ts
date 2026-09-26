@@ -96,7 +96,12 @@ export default ${JSON.stringify({
 		return {
 			addons: [
 				blockRemoveFiles({
-					files: [".knip*", "knip.{c,j,m}*", "knip.json*"],
+					files: [
+						".knip*",
+						"knip.{cjs,js,mjs}",
+						"knip.config.{c,j,m}*",
+						"knip.json*",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["knip", "lint-knip"],

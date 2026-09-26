@@ -251,7 +251,7 @@ describe(blockESLint, () => {
 			        "files": [
 			          ".eslintrc*",
 			          ".eslintignore",
-			          "eslint.config.{cjs,mjs}",
+			          "eslint.config.{cjs,js,mjs}",
 			        ],
 			      },
 			      "block": "[Block Remove Files]",
@@ -408,7 +408,7 @@ describe(blockESLint, () => {
 			        "files": [
 			          ".eslintrc*",
 			          ".eslintignore",
-			          "eslint.config.{cjs,js}",
+			          "eslint.config.{cjs,js,mjs}",
 			        ],
 			      },
 			      "block": "[Block Remove Files]",

@@ -1,8 +1,13 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockTSDown } from "./blockTSDown.ts";
 import { optionsBase } from "./options.fakes.ts";
+
+vi.mock("../data/packageData.ts", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "0.0.0-mock"])),
+}));
 
 describe(blockTSDown, () => {
 	test("without addons or options", () => {
@@ -60,7 +65,7 @@ describe(blockTSDown, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.22.14",
+			            "tsdown": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "build": "tsdown",
@@ -157,7 +162,7 @@ describe(blockTSDown, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.22.14",
+			            "tsdown": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "build": "tsdown",
@@ -279,7 +284,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "tsdown": "0.22.14",
+			            "tsdown": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "build": "tsdown",

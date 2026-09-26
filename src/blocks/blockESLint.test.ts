@@ -4,6 +4,11 @@ import { describe, expect, it, test, vi } from "vitest";
 import { blockESLint } from "./blockESLint.ts";
 import { optionsBase } from "./options.fakes.ts";
 
+vi.mock("../data/packageData.ts", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "0.0.0-mock"])),
+}));
+
 const mockIntakeData = { ignores: ["lib"] };
 
 const mockBlockESLintIntake = vi.fn().mockReturnValue(mockIntakeData);
@@ -70,10 +75,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -191,10 +196,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -348,10 +353,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -538,13 +543,13 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@eslint/markdown": "8.0.3",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "eslint-plugin-regexp": "3.2.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@eslint/markdown": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "eslint-plugin-regexp": "0.0.0-mock",
 			            "eslint-plugin-unknown": "1.2.3",
-			            "typescript-eslint": "8.67.0",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -709,10 +714,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -856,10 +861,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1016,10 +1021,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1164,10 +1169,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1290,10 +1295,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1416,10 +1421,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1539,10 +1544,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",
@@ -1662,10 +1667,10 @@ describe(blockESLint, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@eslint/js": "10.0.1",
-			            "@types/node": "26.2.0",
-			            "eslint": "10.8.1",
-			            "typescript-eslint": "8.67.0",
+			            "@eslint/js": "0.0.0-mock",
+			            "@types/node": "0.0.0-mock",
+			            "eslint": "0.0.0-mock",
+			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint": "eslint . --max-warnings 0",

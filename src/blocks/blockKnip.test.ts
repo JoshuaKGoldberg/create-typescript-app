@@ -4,6 +4,11 @@ import { describe, expect, it, test, vi } from "vitest";
 import { blockKnip } from "./blockKnip.ts";
 import { optionsBase } from "./options.fakes.ts";
 
+vi.mock("../data/packageData.ts", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "0.0.0-mock"])),
+}));
+
 vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
@@ -50,7 +55,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.32.2",
+			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -131,7 +136,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.32.2",
+			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
@@ -208,7 +213,7 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "knip": "6.32.2",
+			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",

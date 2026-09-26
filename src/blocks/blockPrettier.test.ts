@@ -1,8 +1,13 @@
 import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import { blockPrettier } from "./blockPrettier.ts";
 import { optionsBase } from "./options.fakes.ts";
+
+vi.mock("../data/packageData.ts", () => ({
+	getPackageDependencies: (...names: string[]) =>
+		Object.fromEntries(names.map((name) => [name, "0.0.0-mock"])),
+}));
 
 describe(blockPrettier, () => {
 	test("without addons or mode", () => {
@@ -59,9 +64,9 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "husky": "9.1.7",
-			            "lint-staged": "17.3.0",
-			            "prettier": "3.9.6",
+			            "husky": "0.0.0-mock",
+			            "lint-staged": "0.0.0-mock",
+			            "prettier": "0.0.0-mock",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",
@@ -174,9 +179,9 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "husky": "9.1.7",
-			            "lint-staged": "17.3.0",
-			            "prettier": "3.9.6",
+			            "husky": "0.0.0-mock",
+			            "lint-staged": "0.0.0-mock",
+			            "prettier": "0.0.0-mock",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",
@@ -330,12 +335,12 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "husky": "9.1.7",
-			            "lint-staged": "17.3.0",
-			            "prettier": "3.9.6",
-			            "prettier-plugin-curly": "0.4.1",
-			            "prettier-plugin-packagejson": "3.0.2",
-			            "prettier-plugin-sh": "0.19.0",
+			            "husky": "0.0.0-mock",
+			            "lint-staged": "0.0.0-mock",
+			            "prettier": "0.0.0-mock",
+			            "prettier-plugin-curly": "0.0.0-mock",
+			            "prettier-plugin-packagejson": "0.0.0-mock",
+			            "prettier-plugin-sh": "0.0.0-mock",
 			          },
 			          "lint-staged": {
 			            "*": "prettier --ignore-unknown --write",

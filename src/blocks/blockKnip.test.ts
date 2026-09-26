@@ -4,10 +4,19 @@ import { describe, expect, it, test, vi } from "vitest";
 import { blockKnip } from "./blockKnip.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-vi.mock("../data/packageData.ts", () => ({
-	getPackageDependencies: (...names: string[]) =>
-		Object.fromEntries(names.map((name) => [name, "0.0.0-mock"])),
-}));
+vi.mock("../data/packageData.ts", async (importOriginal) => {
+	const { getPackageDependencies } =
+		await importOriginal<typeof import("../data/packageData.ts")>();
+	return {
+		getPackageDependencies: (...names: string[]) =>
+			Object.fromEntries(
+				Object.keys(getPackageDependencies(...names)).map((name) => [
+					name,
+					"0.0.0-mock",
+				]),
+			),
+	};
+});
 
 vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,

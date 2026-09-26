@@ -212,9 +212,8 @@ describe(blockPrettier, () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".prettierrc",
-			          ".prettierrc.{c*,js,m*,t*}",
-			          "prettier.config*",
+			          ".prettierrc*",
+			          "prettier.config.{c,j,m}*",
 			        ],
 			      },
 			      "block": "[Block Remove Files]",

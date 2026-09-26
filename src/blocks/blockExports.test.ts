@@ -69,6 +69,44 @@ describe(blockExports, () => {
 		`);
 	});
 
+	it("with a legacy lib/ main in options.packageData", () => {
+		const creation = testBlock(blockExports, {
+			addons: {
+				filePath: "./dist/index.js",
+			},
+			options: {
+				...optionsBase,
+				packageData: { main: "lib/index.js" },
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "properties": {
+			          "exports": {
+			            ".": "./dist/index.js",
+			          },
+			          "main": "./dist/index.js",
+			        },
+			      },
+			      "block": "[Block Package JSON]",
+			    },
+			    {
+			      "addons": {
+			        "runInCI": [
+			          "node ./dist/index.js",
+			        ],
+			      },
+			      "block": "[Block TSDown]",
+			    },
+			  ],
+			}
+		`);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when package.json does not exist", () => {
 			const actual = testIntake(blockExports, {

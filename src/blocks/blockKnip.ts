@@ -38,6 +38,9 @@ export const blockKnip = base.createBlock({
 			project: zStringArray.safeParse(knipJson.project).data,
 		});
 	},
+	legacyFiles: {
+		"knip.json": "knip.config.ts",
+	},
 	produce({ addons }) {
 		const { entry, ignoreDependencies, project } = addons;
 		return {

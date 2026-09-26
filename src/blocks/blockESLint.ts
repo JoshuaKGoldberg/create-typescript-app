@@ -48,6 +48,9 @@ export const blockESLint = base.createBlock({
 
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
+	legacyFiles: {
+		"eslint.config.js": "eslint.config.ts",
+	},
 	produce({ addons, options }) {
 		const { explanations, extensions, ignores, imports } = addons;
 

@@ -6,6 +6,12 @@ export const blockGitHubIssueTemplates = base.createBlock({
 	about: {
 		name: "GitHub Issue Templates",
 	},
+	legacyFiles: {
+		".github/ISSUE_TEMPLATE/01-bug.yml": ".github/ISSUE_TEMPLATE/01-bug.yaml",
+		".github/ISSUE_TEMPLATE/02-documentation.yml": ".github/ISSUE_TEMPLATE/02-documentation.yaml",
+		".github/ISSUE_TEMPLATE/03-feature.yml": ".github/ISSUE_TEMPLATE/03-feature.yaml",
+		".github/ISSUE_TEMPLATE/04-tooling.yml": ".github/ISSUE_TEMPLATE/04-tooling.yaml",
+	},
 	produce({ options }) {
 		return {
 			files: {

@@ -32,6 +32,9 @@ export const blockPrettier = base.createBlock({
 		plugins: z.array(z.string()).default([]),
 		runBefore: z.array(z.string()).default([]),
 	},
+	legacyFiles: {
+		".prettierrc.json": "prettier.config.ts",
+	},
 	produce({ addons }) {
 		const { ignores, overrides, plugins, runBefore } = addons;
 

@@ -25,6 +25,11 @@ export const blockGitHubActionsCI = base.createBlock({
 			)
 			.optional(),
 	},
+	legacyFiles: {
+		".github/actions/prepare/action.yml": ".github/actions/prepare/action.yaml",
+		".github/workflows/ci.yml": ".github/workflows/ci.yaml",
+		".github/workflows/pr-review-requested.yml": ".github/workflows/pr-review-requested.yaml",
+	},
 	produce({ addons, options }) {
 		const { jobs } = addons;
 		const minimumNodeVersion = options.node.minimum

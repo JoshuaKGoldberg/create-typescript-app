@@ -91,6 +91,9 @@ export const blockTSDown = base.createBlock({
 			}),
 		};
 	},
+	legacyFiles: {
+		"tsup.config.ts": "tsdown.config.ts",
+	},
 	produce({ addons, options }) {
 		const { entry, properties, runInCI } = addons;
 

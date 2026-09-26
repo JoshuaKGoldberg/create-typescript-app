@@ -37,6 +37,9 @@ export const blockOctoGuide = base.createBlock({
 				"recommended" | "strict" | undefined,
 		};
 	},
+	legacyFiles: {
+		".github/workflows/octoguide.yml": ".github/workflows/octoguide.yaml",
+	},
 	produce({ addons, options }) {
 		return {
 			files: {

@@ -15,6 +15,9 @@ export const blockAllContributors = base.createBlock({
 	about: {
 		name: "AllContributors",
 	},
+	legacyFiles: {
+		".github/workflows/contributors.yml": ".github/workflows/contributors.yaml",
+	},
 	produce({ options }) {
 		const contributions = options.contributors?.length;
 		const ownerContributions = Array.from(

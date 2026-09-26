@@ -6,6 +6,9 @@ export const blockFunding = base.createBlock({
 	about: {
 		name: "Funding",
 	},
+	legacyFiles: {
+		".github/FUNDING.yml": ".github/FUNDING.yaml",
+	},
 	produce({ options }) {
 		return {
 			files: {

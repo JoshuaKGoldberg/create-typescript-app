@@ -23,6 +23,10 @@ export const blockReleaseIt = base.createBlock({
 			)
 			.default([]),
 	},
+	legacyFiles: {
+		".github/workflows/post-release.yml": ".github/workflows/post-release.yaml",
+		".github/workflows/release.yml": ".github/workflows/release.yaml",
+	},
 	produce({ addons, options }) {
 		const { builders } = addons;
 

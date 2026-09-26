@@ -1,9 +1,18 @@
 import { prepareOptions } from "bingo";
 import { readFile } from "fs/promises";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import { base } from "./base.ts";
 import { AllContributorsData } from "./types.ts";
+
+// Contributors' forks have a different origin remote than this repository.
+vi.mock("./options/readGitDefaults.ts", async () => {
+	const { default: gitUrlParse } = await import("git-url-parse");
+	return {
+		readGitDefaults: () =>
+			gitUrlParse("https://github.com/JoshuaKGoldberg/create-typescript-app"),
+	};
+});
 
 describe("base", () => {
 	test("production from create-typescript-app", async () => {

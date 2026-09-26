@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.65.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.1...2.65.2) (2026-09-26)
+
+### Bug Fixes
+
+- handle config files from pre-2.64 repositories in transition mode ([#2482](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2482)) ([07755da](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/07755daeba692dde3accdda91ae6ca5c32ea31bf)), closes [#2481](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2481)
+
 ## [2.65.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.0...2.65.1) (2026-09-26)
 
 ### Bug Fixes

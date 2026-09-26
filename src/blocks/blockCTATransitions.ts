@@ -12,7 +12,8 @@ export const blockCTATransitions = base.createBlock({
 		name: "CTA Transitions",
 	},
 	legacyFiles: {
-		".github/actions/transition/action.yml": ".github/actions/transition/action.yaml",
+		".github/actions/transition/action.yml":
+			".github/actions/transition/action.yaml",
 		".github/workflows/cta.yml": ".github/workflows/cta.yaml",
 	},
 	produce({ options }) {

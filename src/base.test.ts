@@ -5,7 +5,6 @@ import { describe, expect, test, vi } from "vitest";
 import { base } from "./base.ts";
 import { AllContributorsData } from "./types.ts";
 
-// Contributors' forks have a different origin remote than this repository.
 vi.mock("./options/readGitDefaults.ts", async () => {
 	const { default: gitUrlParse } = await import("git-url-parse");
 	return {

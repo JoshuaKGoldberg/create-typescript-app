@@ -85,7 +85,7 @@
 		"bingo-requests": "0.5.6",
 		"bingo-stratum-testers": "0.5.13",
 		"bingo-testers": "0.6.0",
-		"console-fail-test": "0.6.1",
+		"console-fail-test": "0.9.0",
 		"cspell": "10.0.1",
 		"eslint": "10.8.1",
 		"eslint-plugin-jsdoc": "64.2.1",

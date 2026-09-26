@@ -2,18 +2,18 @@ import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockFunding } from "./blockFunding.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe("blockFunding", () => {
-	test("transition mode", () => {
+	test("marks FUNDING.yaml as previously FUNDING.yml", () => {
 		const creation = testBlock(blockFunding, {
-			mode: "transition",
-			options: optionsBase,
+			options: { ...optionsBase, funding: "abc" },
 		});
 
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({ files: [".github/FUNDING.yml"] }),
-		);
+		expect(creation.files).toEqual({
+			".github": {
+				"FUNDING.yaml": [expect.any(String), { previously: ["FUNDING.yml"] }],
+			},
+		});
 	});
 });

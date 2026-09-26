@@ -102,10 +102,17 @@ describe(blockPrettier, () => {
 			/dist
 			/pnpm-lock.yaml
 			",
-			    "prettier.config.ts": "import type { Config } from "prettier";
+			    "prettier.config.ts": [
+			      "import type { Config } from "prettier";
 
 			export default {"useTabs":true} satisfies Config;
 			",
+			      {
+			        "previously": [
+			          ".prettierrc.json",
+			        ],
+			      },
+			    ],
 			  },
 			  "scripts": [
 			    {
@@ -244,10 +251,17 @@ describe(blockPrettier, () => {
 			/dist
 			/pnpm-lock.yaml
 			",
-			    "prettier.config.ts": "import type { Config } from "prettier";
+			    "prettier.config.ts": [
+			      "import type { Config } from "prettier";
 
 			export default {"useTabs":true} satisfies Config;
 			",
+			      {
+			        "previously": [
+			          ".prettierrc.json",
+			        ],
+			      },
+			    ],
 			  },
 			  "scripts": [
 			    {
@@ -376,10 +390,17 @@ describe(blockPrettier, () => {
 			/pnpm-lock.yaml
 			generated
 			",
-			    "prettier.config.ts": "import type { Config } from "prettier";
+			    "prettier.config.ts": [
+			      "import type { Config } from "prettier";
 
 			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true} satisfies Config;
 			",
+			      {
+			        "previously": [
+			          ".prettierrc.json",
+			        ],
+			      },
+			    ],
 			  },
 			  "scripts": [
 			    {

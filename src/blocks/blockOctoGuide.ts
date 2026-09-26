@@ -5,6 +5,7 @@ import { resolveUses } from "./actions/resolveUses.ts";
 import { intakeFileYamlSteps } from "./actions/steps.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 
 export const blockOctoGuide = base.createBlock({
 	about: {
@@ -37,56 +38,56 @@ export const blockOctoGuide = base.createBlock({
 				"recommended" | "strict" | undefined,
 		};
 	},
-	legacyFiles: {
-		".github/workflows/octoguide.yml": ".github/workflows/octoguide.yaml",
-	},
 	produce({ addons, options }) {
 		return {
 			files: {
 				".github": {
 					workflows: {
-						"octoguide.yaml": createSoloWorkflowFile({
-							if: "${{ !endsWith(github.actor, '[bot]') }}",
-							name: "OctoGuide",
-							on: {
-								discussion: {
-									types: ["created", "edited"],
-								},
-								discussion_comment: {
-									types: ["created", "deleted", "edited"],
-								},
-								issue_comment: {
-									types: ["created", "deleted", "edited"],
-								},
-								issues: {
-									types: ["edited", "opened"],
-								},
-								pull_request_review_comment: {
-									types: ["created", "deleted", "edited"],
-								},
-								pull_request_target: {
-									types: ["edited", "opened"],
-								},
-							},
-							permissions: {
-								discussions: "write",
-								issues: "write",
-								"pull-requests": "write",
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"JoshuaKGoldberg/octoguide",
-										"0.11.1",
-										options.workflowsVersions,
-									),
-									with: {
-										config: addons.config ?? "recommended",
-										"github-token": "${{ secrets.GITHUB_TOKEN }}",
+						"octoguide.yaml": withPreviously(
+							createSoloWorkflowFile({
+								if: "${{ !endsWith(github.actor, '[bot]') }}",
+								name: "OctoGuide",
+								on: {
+									discussion: {
+										types: ["created", "edited"],
+									},
+									discussion_comment: {
+										types: ["created", "deleted", "edited"],
+									},
+									issue_comment: {
+										types: ["created", "deleted", "edited"],
+									},
+									issues: {
+										types: ["edited", "opened"],
+									},
+									pull_request_review_comment: {
+										types: ["created", "deleted", "edited"],
+									},
+									pull_request_target: {
+										types: ["edited", "opened"],
 									},
 								},
-							],
-						}),
+								permissions: {
+									discussions: "write",
+									issues: "write",
+									"pull-requests": "write",
+								},
+								steps: [
+									{
+										uses: resolveUses(
+											"JoshuaKGoldberg/octoguide",
+											"0.11.1",
+											options.workflowsVersions,
+										),
+										with: {
+											config: addons.config ?? "recommended",
+											"github-token": "${{ secrets.GITHUB_TOKEN }}",
+										},
+									},
+								],
+							}),
+							["octoguide.yml"],
+						),
 					},
 				},
 			},
@@ -99,7 +100,6 @@ export const blockOctoGuide = base.createBlock({
 					files: [
 						".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
 						".github/workflows/compliance.{yaml,yml}",
-						".github/workflows/octoguide.yml",
 					],
 				}),
 			],

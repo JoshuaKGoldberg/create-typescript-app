@@ -22,6 +22,7 @@ import {
 	zExtension,
 	zPackageImport,
 } from "./eslint/schemas.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFile } from "./intake/intakeFile.ts";
 import { CommandPhase } from "./phases.ts";
 
@@ -47,9 +48,6 @@ export const blockESLint = base.createBlock({
 		]);
 
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
-	},
-	legacyFiles: {
-		"eslint.config.js": "eslint.config.ts",
 	},
 	produce({ addons, options }) {
 		const { explanations, extensions, ignores, imports } = addons;
@@ -225,13 +223,16 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 				}),
 			],
 			files: {
-				[configFileName]: `${explanation}${importLines.join("\n")}
+				[configFileName]: withPreviously(
+					`${explanation}${importLines.join("\n")}
 
 export default defineConfig(
 	globalIgnores( [${ignoreLines.join(", ")}], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	${extensionLines.join(",")}
 );`,
+					["eslint.config.js"],
+				),
 			},
 			scripts: [
 				{

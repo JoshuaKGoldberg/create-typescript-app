@@ -9,6 +9,7 @@ import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { blockVSCode } from "./blockVSCode.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { intakeFileExportObject } from "./intake/intakeFileExportObject.ts";
 
@@ -37,9 +38,6 @@ export const blockKnip = base.createBlock({
 				.data,
 			project: zStringArray.safeParse(knipJson.project).data,
 		});
-	},
-	legacyFiles: {
-		"knip.json": "knip.config.ts",
 	},
 	produce({ addons }) {
 		const { entry, ignoreDependencies, project } = addons;
@@ -80,18 +78,21 @@ export const blockKnip = base.createBlock({
 				}),
 			],
 			files: {
-				"knip.config.ts": `import type { KnipConfig } from "knip";
+				"knip.config.ts": withPreviously(
+					`import type { KnipConfig } from "knip";
 
 export default ${JSON.stringify({
-					entry: entry?.sort(),
-					ignoreDependencies,
-					ignoreExportsUsedInFile: {
-						interface: true,
-						type: true,
-					},
-					project: project?.sort(),
-					treatConfigHintsAsErrors: true,
-				})} satisfies KnipConfig;`,
+						entry: entry?.sort(),
+						ignoreDependencies,
+						ignoreExportsUsedInFile: {
+							interface: true,
+							type: true,
+						},
+						project: project?.sort(),
+						treatConfigHintsAsErrors: true,
+					})} satisfies KnipConfig;`,
+					["knip.json"],
+				),
 			},
 		};
 	},

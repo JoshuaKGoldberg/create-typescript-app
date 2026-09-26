@@ -8,6 +8,7 @@ import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts"
 import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { formatYaml } from "./files/formatYaml.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
@@ -24,12 +25,6 @@ export const blockGitHubActionsCI = base.createBlock({
 				}),
 			)
 			.optional(),
-	},
-	legacyFiles: {
-		".github/actions/prepare/action.yml": ".github/actions/prepare/action.yaml",
-		".github/workflows/ci.yml": ".github/workflows/ci.yaml",
-		".github/workflows/pr-review-requested.yml":
-			".github/workflows/pr-review-requested.yaml",
 	},
 	produce({ addons, options }) {
 		const { jobs } = addons;
@@ -69,74 +64,82 @@ export const blockGitHubActionsCI = base.createBlock({
 				".github": {
 					actions: {
 						prepare: {
-							"action.yaml": formatYaml({
-								description: "Prepares the repo for a typical CI job",
-								name: "Setup",
-								runs: {
-									steps: [
-										{
-											uses: resolveUses(
-												"pnpm/action-setup",
-												"v4",
-												options.workflowsVersions,
-											),
-										},
-										{
-											uses: resolveUses(
-												"actions/setup-node",
-												"v4",
-												options.workflowsVersions,
-											),
-											with: {
-												cache: "pnpm",
-												"node-version": "lts/*",
+							"action.yaml": withPreviously(
+								formatYaml({
+									description: "Prepares the repo for a typical CI job",
+									name: "Setup",
+									runs: {
+										steps: [
+											{
+												uses: resolveUses(
+													"pnpm/action-setup",
+													"v4",
+													options.workflowsVersions,
+												),
 											},
-										},
-										{
-											run: "pnpm install --frozen-lockfile",
-											shell: "bash",
-										},
-									],
-									using: "composite",
-								},
-							}),
+											{
+												uses: resolveUses(
+													"actions/setup-node",
+													"v4",
+													options.workflowsVersions,
+												),
+												with: {
+													cache: "pnpm",
+													"node-version": "lts/*",
+												},
+											},
+											{
+												run: "pnpm install --frozen-lockfile",
+												shell: "bash",
+											},
+										],
+										using: "composite",
+									},
+								}),
+								["action.yml"],
+							),
 						},
 					},
 					workflows: {
-						"ci.yaml":
+						"ci.yaml": withPreviously(
 							jobsWithEnginesCheck &&
-							createMultiWorkflowFile({
-								jobs: jobsWithEnginesCheck,
-								name: "CI",
-								workflowsVersions: options.workflowsVersions,
-							}),
-						"pr-review-requested.yaml": createSoloWorkflowFile({
-							name: "PR Review Requested",
-							on: {
-								pull_request_target: {
-									types: ["review_requested"],
-								},
-							},
-							permissions: {
-								"pull-requests": "write",
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"actions-ecosystem/action-remove-labels",
-										"v1",
-										options.workflowsVersions,
-									),
-									with: {
-										labels: "status: waiting for author",
+								createMultiWorkflowFile({
+									jobs: jobsWithEnginesCheck,
+									name: "CI",
+									workflowsVersions: options.workflowsVersions,
+								}),
+							["ci.yml"],
+						),
+						"pr-review-requested.yaml": withPreviously(
+							createSoloWorkflowFile({
+								name: "PR Review Requested",
+								on: {
+									pull_request_target: {
+										types: ["review_requested"],
 									},
 								},
-								{
-									if: "failure()",
-									run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
+								permissions: {
+									"pull-requests": "write",
 								},
-							],
-						}),
+								steps: [
+									{
+										uses: resolveUses(
+											"actions-ecosystem/action-remove-labels",
+											"v1",
+											options.workflowsVersions,
+										),
+										with: {
+											labels: "status: waiting for author",
+										},
+									},
+									{
+										if: "failure()",
+										run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
+									},
+								],
+							}),
+							["pr-review-requested.yml"],
+						),
 					},
 				},
 			},
@@ -146,13 +149,7 @@ export const blockGitHubActionsCI = base.createBlock({
 		return {
 			addons: [
 				blockRemoveFiles({
-					files: [
-						".circleci",
-						".github/actions/prepare/action.yml",
-						".github/workflows/ci.yml",
-						".github/workflows/pr-review-requested.yml",
-						"travis.{yaml,yml}",
-					],
+					files: [".circleci", "travis.{yaml,yml}"],
 				}),
 			],
 		};

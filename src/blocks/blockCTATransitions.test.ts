@@ -4,7 +4,6 @@ import { describe, expect, test } from "vitest";
 import { packageData } from "../data/packageData.ts";
 import { blockCTATransitions } from "./blockCTATransitions.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import { optionsBase } from "./options.fakes.ts";
 
@@ -31,7 +30,8 @@ describe("blockCTATransitions", () => {
 			  ".github": {
 			    "actions": {
 			      "transition": {
-			        "action.yaml": "description: Runs create-typescript-app in transition mode
+			        "action.yaml": [
+			          "description: Runs create-typescript-app in transition mode
 
 			inputs:
 			  token:
@@ -80,10 +80,17 @@ describe("blockCTATransitions", () => {
 			           — _The Friendly Bingo Bot_ 💝
 			  using: composite
 			",
+			          {
+			            "previously": [
+			              "action.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			    "workflows": {
-			      "cta.yaml": "jobs:
+			      "cta.yaml": [
+			        "jobs:
 			  transition:
 			    name: Transition
 			    permissions:
@@ -112,25 +119,30 @@ describe("blockCTATransitions", () => {
 			    branches:
 			      - main
 			",
+			        {
+			          "previously": [
+			            "cta.yml",
+			          ],
+			        },
+			      ],
 			    },
 			  },
 			}
 		`);
 	});
 
-	test("transition mode", () => {
-		const creation = testBlock(blockCTATransitions, {
-			mode: "transition",
-			options: optionsBase,
-		});
+	test("marks its files as previously .yml files", () => {
+		const creation = testBlock(blockCTATransitions, { options: optionsBase });
 
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({
-				files: [
-					".github/actions/transition/action.yml",
-					".github/workflows/cta.yml",
-				],
-			}),
-		);
+		expect(creation.files?.[".github"]).toMatchObject({
+			actions: {
+				transition: {
+					"action.yaml": [expect.any(String), { previously: ["action.yml"] }],
+				},
+			},
+			workflows: {
+				"cta.yaml": [expect.any(String), { previously: ["cta.yml"] }],
+			},
+		});
 	});
 });

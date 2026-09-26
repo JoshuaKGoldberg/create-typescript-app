@@ -40,10 +40,10 @@ export const zWorkflowVersion = z.object({
 
 export type WorkflowVersion = z.infer<typeof zWorkflowVersion>;
 
-export const zWorkflowVersions = z.record(zWorkflowVersion);
+export const zWorkflowVersions = z.record(z.string(), zWorkflowVersion);
 
 export type WorkflowVersions = z.infer<typeof zWorkflowVersions>;
 
-export const zWorkflowsVersions = z.record(zWorkflowVersions);
+export const zWorkflowsVersions = z.record(z.string(), zWorkflowVersions);
 
 export type WorkflowsVersions = z.infer<typeof zWorkflowsVersions>;

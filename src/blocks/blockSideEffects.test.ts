@@ -17,7 +17,7 @@ describe(blockSideEffects, () => {
 			          "sideEffects": false,
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
@@ -41,7 +41,7 @@ describe(blockSideEffects, () => {
 			          "sideEffects": true,
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
@@ -67,7 +67,7 @@ describe(blockSideEffects, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}

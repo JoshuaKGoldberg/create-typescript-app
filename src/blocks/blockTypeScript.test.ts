@@ -35,7 +35,7 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -75,7 +75,7 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -83,7 +83,7 @@ describe(blockTypeScript, () => {
 			          "/dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -98,7 +98,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -106,7 +106,7 @@ describe(blockTypeScript, () => {
 			          "src/**/*.ts",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -119,7 +119,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -132,7 +132,7 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			    {
 			      "addons": {
@@ -149,7 +149,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -194,7 +194,7 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -234,7 +234,7 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -242,7 +242,7 @@ describe(blockTypeScript, () => {
 			          "/dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -257,7 +257,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -265,7 +265,7 @@ describe(blockTypeScript, () => {
 			          "src/**/*.ts",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -278,7 +278,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -291,7 +291,7 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			    {
 			      "addons": {
@@ -308,7 +308,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -351,7 +351,7 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -391,7 +391,7 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -399,7 +399,7 @@ describe(blockTypeScript, () => {
 			          "/dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -414,7 +414,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -422,7 +422,7 @@ describe(blockTypeScript, () => {
 			          "src/**/*.ts",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -435,7 +435,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -448,7 +448,7 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			    {
 			      "addons": {
@@ -476,7 +476,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -517,7 +517,7 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -557,7 +557,7 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -565,7 +565,7 @@ describe(blockTypeScript, () => {
 			          "/dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -580,7 +580,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -588,7 +588,7 @@ describe(blockTypeScript, () => {
 			          "src/**/*.ts",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -601,7 +601,7 @@ describe(blockTypeScript, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -614,7 +614,7 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			    {
 			      "addons": {
@@ -631,7 +631,7 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			    {
 			      "addons": {
@@ -639,7 +639,7 @@ describe(blockTypeScript, () => {
 			          "tsc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {

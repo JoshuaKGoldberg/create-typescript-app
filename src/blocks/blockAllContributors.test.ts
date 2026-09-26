@@ -18,7 +18,7 @@ describe("blockAllContributors", () => {
 			          "/.all-contributorsrc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -39,7 +39,7 @@ describe("blockAllContributors", () => {
 			        ],
 			        "sections": undefined,
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -50,7 +50,7 @@ describe("blockAllContributors", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Secrets]",
 			    },
 			  ],
 			  "files": {
@@ -129,7 +129,7 @@ describe("blockAllContributors", () => {
 			          "/.all-contributorsrc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -168,7 +168,7 @@ describe("blockAllContributors", () => {
 			<!-- spellchecker: enable -->",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -179,7 +179,7 @@ describe("blockAllContributors", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Secrets]",
 			    },
 			  ],
 			  "files": {
@@ -272,7 +272,7 @@ describe("blockAllContributors", () => {
 			          "/.all-contributorsrc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -311,7 +311,7 @@ describe("blockAllContributors", () => {
 			<!-- spellchecker: enable -->",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -322,7 +322,7 @@ describe("blockAllContributors", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Repository Secrets]",
 			    },
 			  ],
 			  "files": {

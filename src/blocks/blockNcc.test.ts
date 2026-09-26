@@ -19,7 +19,7 @@ describe(blockNcc, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -53,7 +53,7 @@ describe(blockNcc, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -61,7 +61,7 @@ describe(blockNcc, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -84,7 +84,7 @@ describe(blockNcc, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -98,7 +98,7 @@ describe(blockNcc, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -106,7 +106,7 @@ describe(blockNcc, () => {
 			          "/dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			  ],
 			}
@@ -130,7 +130,7 @@ describe(blockNcc, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -164,7 +164,7 @@ describe(blockNcc, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -172,7 +172,7 @@ describe(blockNcc, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -195,7 +195,7 @@ describe(blockNcc, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -209,7 +209,7 @@ describe(blockNcc, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -217,7 +217,7 @@ describe(blockNcc, () => {
 			          "/dist",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			  ],
 			}

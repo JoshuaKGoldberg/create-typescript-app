@@ -29,7 +29,7 @@ describe("blockAreTheTypesWrong", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			  ],
 			}

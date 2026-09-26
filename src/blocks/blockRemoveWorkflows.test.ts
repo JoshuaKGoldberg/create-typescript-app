@@ -37,7 +37,7 @@ describe(blockRemoveWorkflows, () => {
 			      "addons": {
 			        "files": undefined,
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			}
@@ -64,7 +64,7 @@ describe(blockRemoveWorkflows, () => {
 			          ".github/workflows/c.{yaml,yml}",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			}

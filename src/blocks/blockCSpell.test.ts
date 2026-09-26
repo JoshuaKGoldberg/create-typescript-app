@@ -29,7 +29,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -37,7 +37,7 @@ describe(blockCSpell, () => {
 			          "streetsidesoftware.code-spell-checker",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			    {
 			      "addons": {
@@ -52,7 +52,7 @@ describe(blockCSpell, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -65,7 +65,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			  "files": {
@@ -99,7 +99,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -107,7 +107,7 @@ describe(blockCSpell, () => {
 			          "streetsidesoftware.code-spell-checker",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			    {
 			      "addons": {
@@ -122,7 +122,7 @@ describe(blockCSpell, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -135,7 +135,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			  "files": {
@@ -168,7 +168,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -176,7 +176,7 @@ describe(blockCSpell, () => {
 			          "streetsidesoftware.code-spell-checker",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			    {
 			      "addons": {
@@ -191,7 +191,7 @@ describe(blockCSpell, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -204,7 +204,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			  "files": {
@@ -235,7 +235,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -243,7 +243,7 @@ describe(blockCSpell, () => {
 			          "streetsidesoftware.code-spell-checker",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			    {
 			      "addons": {
@@ -258,7 +258,7 @@ describe(blockCSpell, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -271,7 +271,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			  "files": {
@@ -310,7 +310,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -318,7 +318,7 @@ describe(blockCSpell, () => {
 			          "streetsidesoftware.code-spell-checker",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			    {
 			      "addons": {
@@ -333,7 +333,7 @@ describe(blockCSpell, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -346,7 +346,7 @@ describe(blockCSpell, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -355,7 +355,7 @@ describe(blockCSpell, () => {
 			          "spelling",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {

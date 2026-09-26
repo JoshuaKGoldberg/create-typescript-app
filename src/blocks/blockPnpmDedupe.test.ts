@@ -26,7 +26,7 @@ describe("blockPnpmDedupe", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -34,7 +34,7 @@ describe("blockPnpmDedupe", () => {
 			          "pnpm dedupe",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
@@ -63,7 +63,7 @@ describe("blockPnpmDedupe", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -71,7 +71,7 @@ describe("blockPnpmDedupe", () => {
 			          "pnpm dedupe",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -79,7 +79,7 @@ describe("blockPnpmDedupe", () => {
 			          "lint-packages",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			}

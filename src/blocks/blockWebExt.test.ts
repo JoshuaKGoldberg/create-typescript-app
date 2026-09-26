@@ -20,7 +20,7 @@ describe("blockWebExt", () => {
 			          "lib",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -88,7 +88,7 @@ describe("blockWebExt", () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -96,7 +96,7 @@ describe("blockWebExt", () => {
 			          "lib",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -122,7 +122,7 @@ describe("blockWebExt", () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -132,7 +132,7 @@ describe("blockWebExt", () => {
 			          "web-ext-artifacts",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -151,7 +151,7 @@ describe("blockWebExt", () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -160,7 +160,7 @@ describe("blockWebExt", () => {
 			          "assets/",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -168,7 +168,7 @@ describe("blockWebExt", () => {
 			          "lib",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			}

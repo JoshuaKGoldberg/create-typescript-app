@@ -17,7 +17,7 @@ import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 import { CommandPhase } from "./phases.ts";
 
 const zEntry = z.array(z.string());
-const zProperties = z.record(z.unknown());
+const zProperties = z.record(z.string(), z.unknown());
 
 // Whichever of these is the base entry is re-added in produce based on options.bundle
 const defaultEntries = new Set(["src/**/*.ts", "src/index.ts"]);

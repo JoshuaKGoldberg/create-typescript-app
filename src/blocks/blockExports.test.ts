@@ -19,7 +19,7 @@ describe(blockExports, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -27,7 +27,7 @@ describe(blockExports, () => {
 			          "node ./dist/index.mjs",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block TSDown]",
 			    },
 			  ],
 			}
@@ -54,7 +54,7 @@ describe(blockExports, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -62,7 +62,7 @@ describe(blockExports, () => {
 			          "node other.js --version",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block TSDown]",
 			    },
 			  ],
 			}

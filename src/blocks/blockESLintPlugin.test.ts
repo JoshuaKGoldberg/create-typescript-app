@@ -19,7 +19,7 @@ describe(blockESLintPlugin, () => {
 			          "eslint-doc-generatorrc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -47,7 +47,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -75,7 +75,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -93,7 +93,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -120,7 +120,7 @@ describe(blockESLintPlugin, () => {
 			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -139,7 +139,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -150,7 +150,7 @@ describe(blockESLintPlugin, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			  "files": {
@@ -204,7 +204,7 @@ describe(blockESLintPlugin, () => {
 			          "eslint-doc-generatorrc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -232,7 +232,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -260,7 +260,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -278,7 +278,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -305,7 +305,7 @@ describe(blockESLintPlugin, () => {
 			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -324,7 +324,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -335,7 +335,7 @@ describe(blockESLintPlugin, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			  "files": {
@@ -387,7 +387,7 @@ describe(blockESLintPlugin, () => {
 			          "eslint-doc-generatorrc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -415,7 +415,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -443,7 +443,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -461,7 +461,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -488,7 +488,7 @@ describe(blockESLintPlugin, () => {
 			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -507,7 +507,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -518,7 +518,7 @@ describe(blockESLintPlugin, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			  "files": {
@@ -683,7 +683,7 @@ describe(blockESLintPlugin, () => {
 			          "eslint-doc-generatorrc",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -711,7 +711,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -739,7 +739,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -757,7 +757,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -784,7 +784,7 @@ describe(blockESLintPlugin, () => {
 			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block README.md]",
 			    },
 			    {
 			      "addons": {
@@ -803,7 +803,7 @@ describe(blockESLintPlugin, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -814,7 +814,7 @@ describe(blockESLintPlugin, () => {
 			          ],
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			  "files": {

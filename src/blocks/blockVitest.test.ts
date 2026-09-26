@@ -23,7 +23,7 @@ describe(blockVitest, () => {
 			          "coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -51,7 +51,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -89,7 +89,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -141,7 +141,7 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -149,7 +149,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -164,7 +164,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -172,7 +172,7 @@ describe(blockVitest, () => {
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -188,7 +188,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -196,7 +196,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -204,7 +204,7 @@ describe(blockVitest, () => {
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block TSDown]",
 			    },
 			    {
 			      "addons": {
@@ -231,7 +231,7 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -269,7 +269,7 @@ describe(blockVitest, () => {
 			          "coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -297,7 +297,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -335,7 +335,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -387,7 +387,7 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -395,7 +395,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -410,7 +410,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -418,7 +418,7 @@ describe(blockVitest, () => {
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -434,7 +434,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -442,7 +442,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -450,7 +450,7 @@ describe(blockVitest, () => {
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block TSDown]",
 			    },
 			    {
 			      "addons": {
@@ -477,7 +477,7 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			    {
 			      "addons": {
@@ -489,7 +489,7 @@ describe(blockVitest, () => {
 			          "jest mocha",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
 			      "addons": {
@@ -499,7 +499,7 @@ describe(blockVitest, () => {
 			          "vitest.config.{c,j,m}*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Files]",
 			    },
 			    {
 			      "addons": {
@@ -507,7 +507,7 @@ describe(blockVitest, () => {
 			          "test",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {
@@ -553,7 +553,7 @@ describe(blockVitest, () => {
 			          "coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -581,7 +581,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -619,7 +619,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -671,7 +671,7 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -679,7 +679,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -694,7 +694,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -702,7 +702,7 @@ describe(blockVitest, () => {
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -718,7 +718,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -726,7 +726,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -734,7 +734,7 @@ describe(blockVitest, () => {
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block TSDown]",
 			    },
 			    {
 			      "addons": {
@@ -761,7 +761,7 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -808,7 +808,7 @@ describe(blockVitest, () => {
 			          "coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block CSpell]",
 			    },
 			    {
 			      "addons": {
@@ -836,7 +836,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			    {
 			      "addons": {
@@ -874,7 +874,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block ESLint]",
 			    },
 			    {
 			      "addons": {
@@ -926,7 +926,7 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Example Files]",
 			    },
 			    {
 			      "addons": {
@@ -934,7 +934,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {
@@ -949,7 +949,7 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
 			      "addons": {
@@ -957,7 +957,7 @@ describe(blockVitest, () => {
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -973,7 +973,7 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Package JSON]",
 			    },
 			    {
 			      "addons": {
@@ -981,7 +981,7 @@ describe(blockVitest, () => {
 			          "/coverage",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block Prettier]",
 			    },
 			    {
 			      "addons": {
@@ -989,7 +989,7 @@ describe(blockVitest, () => {
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block TSDown]",
 			    },
 			    {
 			      "addons": {
@@ -1016,7 +1016,7 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": [Function],
+			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {

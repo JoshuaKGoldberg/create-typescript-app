@@ -36,7 +36,7 @@ describe(blockVSCode, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			  ],
 			  "files": {
@@ -87,7 +87,7 @@ describe(blockVSCode, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			  ],
 			  "files": {
@@ -152,7 +152,7 @@ describe(blockVSCode, () => {
 			          },
 			        },
 			      },
-			      "block": [Function],
+			      "block": "[Block Development Docs]",
 			    },
 			  ],
 			  "files": {

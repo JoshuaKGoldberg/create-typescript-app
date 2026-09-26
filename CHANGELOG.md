@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.65.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.0...2.65.1) (2026-09-26)
+
+### Bug Fixes
+
+- migrate to Zod 4 and Bingo 0.12 ([#2478](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2478)) ([ad93ae8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ad93ae836a7b0d26c42460ce5586cc610b148e78)), closes [#2437](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2437)
+
 ## [2.65.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.63.2...2.65.0) (2026-09-20)
 
 ### Features

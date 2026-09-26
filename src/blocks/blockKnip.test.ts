@@ -77,9 +77,16 @@ describe(blockKnip, () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.config.ts": "import type { KnipConfig } from "knip";
+			    "knip.config.ts": [
+			      "import type { KnipConfig } from "knip";
 
 			export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+			      {
+			        "previously": [
+			          "knip.json",
+			        ],
+			      },
+			    ],
 			  },
 			}
 		`);
@@ -158,9 +165,16 @@ describe(blockKnip, () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.config.ts": "import type { KnipConfig } from "knip";
+			    "knip.config.ts": [
+			      "import type { KnipConfig } from "knip";
 
 			export default {"entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"],"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+			      {
+			        "previously": [
+			          "knip.json",
+			        ],
+			      },
+			    ],
 			  },
 			}
 		`);
@@ -221,6 +235,10 @@ describe(blockKnip, () => {
 			      "addons": {
 			        "files": [
 			          ".ts-prunerc*",
+			          ".knip*",
+			          "knip.{cjs,js,mjs}",
+			          "knip.config.{c,j,m}*",
+			          "knip.json*",
 			        ],
 			      },
 			      "block": "[Block Remove Files]",
@@ -244,9 +262,16 @@ describe(blockKnip, () => {
 			    },
 			  ],
 			  "files": {
-			    "knip.config.ts": "import type { KnipConfig } from "knip";
+			    "knip.config.ts": [
+			      "import type { KnipConfig } from "knip";
 
 			export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+			      {
+			        "previously": [
+			          "knip.json",
+			        ],
+			      },
+			    ],
 			  },
 			}
 		`);

@@ -36,7 +36,7 @@
 		"@typescript-eslint/typescript-estree": "^8.67.0",
 		"bingo": "^0.12.2",
 		"bingo-fs": "^0.5.7",
-		"bingo-stratum": "^0.6.3",
+		"bingo-stratum": "^0.6.4",
 		"cached-factory": "^0.3.0",
 		"cspell-populate-words": "^0.3.1",
 		"execa": "^10.0.1",

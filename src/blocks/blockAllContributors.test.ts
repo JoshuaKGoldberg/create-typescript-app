@@ -2,7 +2,6 @@ import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, it } from "vitest";
 
 import { blockAllContributors } from "./blockAllContributors.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe("blockAllContributors", () => {
@@ -69,7 +68,8 @@ describe("blockAllContributors", () => {
 			}",
 			    ".github": {
 			      "workflows": {
-			        "contributors.yaml": "jobs:
+			        "contributors.yaml": [
+			          "jobs:
 			  contributors:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -88,6 +88,12 @@ describe("blockAllContributors", () => {
 			    branches:
 			      - main
 			",
+			          {
+			            "previously": [
+			              "contributors.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },
@@ -213,7 +219,8 @@ describe("blockAllContributors", () => {
 			}",
 			    ".github": {
 			      "workflows": {
-			        "contributors.yaml": "jobs:
+			        "contributors.yaml": [
+			          "jobs:
 			  contributors:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -232,6 +239,12 @@ describe("blockAllContributors", () => {
 			    branches:
 			      - main
 			",
+			          {
+			            "previously": [
+			              "contributors.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },
@@ -356,7 +369,8 @@ describe("blockAllContributors", () => {
 			}",
 			    ".github": {
 			      "workflows": {
-			        "contributors.yaml": "jobs:
+			        "contributors.yaml": [
+			          "jobs:
 			  contributors:
 			    runs-on: ubuntu-latest
 			    steps:
@@ -375,6 +389,12 @@ describe("blockAllContributors", () => {
 			    branches:
 			      - main
 			",
+			          {
+			            "previously": [
+			              "contributors.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },
@@ -390,14 +410,16 @@ describe("blockAllContributors", () => {
 		`);
 	});
 
-	it("removes the previous .yml workflow file when in transition mode", () => {
-		const creation = testBlock(blockAllContributors, {
-			mode: "transition",
-			options: optionsBase,
-		});
+	it("marks its workflow as previously a .yml file", () => {
+		const creation = testBlock(blockAllContributors, { options: optionsBase });
 
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({ files: [".github/workflows/contributors.yml"] }),
-		);
+		expect(creation.files?.[".github"]).toMatchObject({
+			workflows: {
+				"contributors.yaml": [
+					expect.any(String),
+					{ previously: ["contributors.yml"] },
+				],
+			},
+		});
 	});
 });

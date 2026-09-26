@@ -6,9 +6,9 @@ import { Contributor } from "../schemas.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 import { blockREADME } from "./blockREADME.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 import { CommandPhase } from "./phases.ts";
 
 export const blockAllContributors = base.createBlock({
@@ -84,33 +84,36 @@ export const blockAllContributors = base.createBlock({
 				),
 				".github": {
 					workflows: {
-						"contributors.yaml": createSoloWorkflowFile({
-							name: "Contributors",
-							on: {
-								push: {
-									branches: ["main"],
+						"contributors.yaml": withPreviously(
+							createSoloWorkflowFile({
+								name: "Contributors",
+								on: {
+									push: {
+										branches: ["main"],
+									},
 								},
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"actions/checkout",
-										"v4",
-										options.workflowsVersions,
-									),
-									with: { "fetch-depth": 0 },
-								},
-								{ uses: "./.github/actions/prepare" },
-								{
-									env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
-									uses: resolveUses(
-										"JoshuaKGoldberg/all-contributors-auto-action",
-										"v0.5.0",
-										options.workflowsVersions,
-									),
-								},
-							],
-						}),
+								steps: [
+									{
+										uses: resolveUses(
+											"actions/checkout",
+											"v4",
+											options.workflowsVersions,
+										),
+										with: { "fetch-depth": 0 },
+									},
+									{ uses: "./.github/actions/prepare" },
+									{
+										env: { GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}" },
+										uses: resolveUses(
+											"JoshuaKGoldberg/all-contributors-auto-action",
+											"v0.5.0",
+											options.workflowsVersions,
+										),
+									},
+								],
+							}),
+							["contributors.yml"],
+						),
 					},
 				},
 			},
@@ -121,15 +124,6 @@ export const blockAllContributors = base.createBlock({
 					],
 					phase: CommandPhase.Process,
 				},
-			],
-		};
-	},
-	transition() {
-		return {
-			addons: [
-				blockRemoveFiles({
-					files: [".github/workflows/contributors.yml"],
-				}),
 			],
 		};
 	},

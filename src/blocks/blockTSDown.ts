@@ -12,6 +12,7 @@ import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 import { CommandPhase } from "./phases.ts";
@@ -147,19 +148,22 @@ pnpm build --watch
 				}),
 			],
 			files: {
-				"tsdown.config.ts": `import { defineConfig } from "tsdown";
+				"tsdown.config.ts": withPreviously(
+					`import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-					entry: Array.from(
-						new Set([
-							options.bundle ? "src/index.ts" : "src/**/*.ts",
-							...entry,
-						]),
-					),
-					...(options.bundle ? {} : { unbundle: true }),
-					...properties,
-				})});
+						entry: Array.from(
+							new Set([
+								options.bundle ? "src/index.ts" : "src/**/*.ts",
+								...entry,
+							]),
+						),
+						...(options.bundle ? {} : { unbundle: true }),
+						...properties,
+					})});
 `,
+					["tsup.config.ts"],
+				),
 			},
 			scripts: options.bin
 				? [

@@ -11,6 +11,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { formatIgnoreFile } from "./files/formatIgnoreFile.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 import { CommandPhase } from "./phases.ts";
 
 export const blockPrettier = base.createBlock({
@@ -97,14 +98,17 @@ pnpm format --write
 				".prettierignore": formatIgnoreFile(
 					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
 				),
-				"prettier.config.ts": `import type { Config } from "prettier";
+				"prettier.config.ts": withPreviously(
+					`import type { Config } from "prettier";
 
 export default ${JSON.stringify({
-					...(overrides.length && { overrides: overrides.sort() }),
-					...(plugins.length && { plugins: plugins.sort() }),
-					useTabs: true,
-				})} satisfies Config;
+						...(overrides.length && { overrides: overrides.sort() }),
+						...(plugins.length && { plugins: plugins.sort() }),
+						useTabs: true,
+					})} satisfies Config;
 `,
+					[".prettierrc.json"],
+				),
 			},
 			scripts: [
 				{

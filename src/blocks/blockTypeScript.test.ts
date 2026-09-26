@@ -1,8 +1,22 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { optionsBase } from "./options.fakes.ts";
+
+vi.mock("../data/packageData.ts", async (importOriginal) => {
+	const { getPackageDependencies } =
+		await importOriginal<typeof import("../data/packageData.ts")>();
+	return {
+		getPackageDependencies: (...names: string[]) =>
+			Object.fromEntries(
+				Object.keys(getPackageDependencies(...names)).map((name) => [
+					name,
+					"0.0.0-mock",
+				]),
+			),
+	};
+});
 
 describe(blockTypeScript, () => {
 	test("without addons or options", () => {
@@ -112,7 +126,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "typescript": "5.9.3",
+			            "typescript": "0.0.0-mock",
 			          },
 			          "files": [
 			            "dist/",
@@ -271,7 +285,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "typescript": "5.9.3",
+			            "typescript": "0.0.0-mock",
 			          },
 			          "files": [
 			            "dist/",
@@ -428,7 +442,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "typescript": "5.9.3",
+			            "typescript": "0.0.0-mock",
 			          },
 			          "files": [
 			            "dist/",
@@ -594,7 +608,7 @@ describe(blockTypeScript, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "typescript": "5.9.3",
+			            "typescript": "0.0.0-mock",
 			          },
 			          "files": [
 			            "dist/",

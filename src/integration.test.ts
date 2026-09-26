@@ -15,7 +15,6 @@ import {
 	presets,
 } from "./index.ts";
 
-// Contributors' forks have a different origin remote than this repository.
 vi.mock("./options/readGitDefaults.ts", async () => {
 	const { default: gitUrlParse } = await import("git-url-parse");
 	return {

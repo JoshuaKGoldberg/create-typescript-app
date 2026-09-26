@@ -27,6 +27,17 @@ describe("blockESLintNode", () => {
 			            "files": [
 			              "**/*.{js,ts}",
 			            ],
+			            "rules": [
+			              {
+			                "comment": "Relative imports should include their file extensions",
+			                "entries": {
+			                  "n/file-extension-in-import": [
+			                    "error",
+			                    "always",
+			                  ],
+			                },
+			              },
+			            ],
 			          },
 			          {
 			            "extends": [

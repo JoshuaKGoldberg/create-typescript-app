@@ -14,6 +14,15 @@ export const blockESLintNode = base.createBlock({
 						{
 							extends: ['n.configs["flat/recommended"]'],
 							files: [getScriptFileExtension(options)],
+							rules: [
+								{
+									comment:
+										"Relative imports should include their file extensions",
+									entries: {
+										"n/file-extension-in-import": ["error", "always"],
+									},
+								},
+							],
 						},
 						{
 							extends: ["tseslint.configs.disableTypeChecked"],

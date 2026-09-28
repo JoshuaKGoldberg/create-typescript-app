@@ -148,7 +148,7 @@ export const blockReleaseIt = base.createBlock({
 										},
 										uses: resolveUses(
 											"JoshuaKGoldberg/release-it-action",
-											"v0.4.0",
+											"v0.5.4",
 											options.workflowsVersions,
 										),
 									},
@@ -161,13 +161,15 @@ export const blockReleaseIt = base.createBlock({
 				".release-it.json": JSON.stringify({
 					git: {
 						commitMessage: "chore: release v${version}",
+						pushArgs: ["--follow-tags", "--atomic"],
 						requireCommits: true,
 					},
 					github: {
 						release: true,
 						releaseName: "v${version}",
 					},
-					npm: { skipChecks: true },
+					hooks: { "after:git:release": "npm publish" },
+					npm: { publish: false, skipChecks: true },
 					plugins: {
 						"@release-it/conventional-changelog": {
 							infile: "CHANGELOG.md",

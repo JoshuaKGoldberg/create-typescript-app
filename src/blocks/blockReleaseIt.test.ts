@@ -123,7 +123,7 @@ describe(blockReleaseIt, () => {
 			      - uses: ./.github/actions/prepare
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
+			        uses: JoshuaKGoldberg/release-it-action@v0.5.4
 
 			name: Release
 
@@ -140,7 +140,7 @@ describe(blockReleaseIt, () => {
 			        ],
 			      },
 			    },
-			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
+			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","pushArgs":["--follow-tags","--atomic"],"requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"hooks":{"after:git:release":"npm publish"},"npm":{"publish":false,"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
 			  },
 			  "suggestions": [
 			    "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:
@@ -275,7 +275,7 @@ describe(blockReleaseIt, () => {
 			      - run: two
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.4.0
+			        uses: JoshuaKGoldberg/release-it-action@v0.5.4
 
 			name: Release
 
@@ -292,7 +292,7 @@ describe(blockReleaseIt, () => {
 			        ],
 			      },
 			    },
-			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
+			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","pushArgs":["--follow-tags","--atomic"],"requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"hooks":{"after:git:release":"npm publish"},"npm":{"publish":false,"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
 			  },
 			  "suggestions": [
 			    "- add test-owner/test-repository and \`release.yaml\` as a Trusted Publisher on:

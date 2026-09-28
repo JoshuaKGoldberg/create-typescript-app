@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.65.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.2...2.65.3) (2026-09-28)
+
+### Bug Fixes
+
+- mark renamed files as previously created at their old paths ([#2486](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2486)) ([381f5bd](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/381f5bd54bb2ebe604323d06966700fd0c1d03d9)), closes [#2485](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2485)
+
 ## [2.65.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.1...2.65.2) (2026-09-26)
 
 ### Bug Fixes

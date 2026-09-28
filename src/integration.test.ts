@@ -15,6 +15,14 @@ import {
 	presets,
 } from "./index.ts";
 
+vi.mock("./options/readGitDefaults.ts", async () => {
+	const { default: gitUrlParse } = await import("git-url-parse");
+	return {
+		readGitDefaults: () =>
+			gitUrlParse("https://github.com/JoshuaKGoldberg/create-typescript-app"),
+	};
+});
+
 vi.mock("./utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `node_modules/${bin}`,
 }));

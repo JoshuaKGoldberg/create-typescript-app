@@ -4,6 +4,20 @@ import { describe, expect, it, test, vi } from "vitest";
 import { blockCSpell } from "./blockCSpell.ts";
 import { optionsBase } from "./options.fakes.ts";
 
+vi.mock("../data/packageData.ts", async (importOriginal) => {
+	const { getPackageDependencies } =
+		await importOriginal<typeof import("../data/packageData.ts")>();
+	return {
+		getPackageDependencies: (...names: string[]) =>
+			Object.fromEntries(
+				Object.keys(getPackageDependencies(...names)).map((name) => [
+					name,
+					"0.0.0-mock",
+				]),
+			),
+	};
+});
+
 vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
@@ -58,7 +72,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -128,7 +142,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -197,7 +211,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -264,7 +278,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",
@@ -339,7 +353,7 @@ describe(blockCSpell, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "cspell": "10.0.1",
+			            "cspell": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "lint:spelling": "cspell "**" ".github/**/*"",

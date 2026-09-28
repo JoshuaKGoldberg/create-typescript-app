@@ -1,8 +1,22 @@
 import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { optionsBase } from "./options.fakes.ts";
+
+vi.mock("../data/packageData.ts", async (importOriginal) => {
+	const { getPackageDependencies } =
+		await importOriginal<typeof import("../data/packageData.ts")>();
+	return {
+		getPackageDependencies: (...names: string[]) =>
+			Object.fromEntries(
+				Object.keys(getPackageDependencies(...names)).map((name) => [
+					name,
+					"0.0.0-mock",
+				]),
+			),
+	};
+});
 
 describe(blockReleaseIt, () => {
 	test("without addons", () => {
@@ -15,8 +29,8 @@ describe(blockReleaseIt, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@release-it/conventional-changelog": "12.0.0",
-			            "release-it": "21.0.2",
+			            "@release-it/conventional-changelog": "0.0.0-mock",
+			            "release-it": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "should-semantic-release": undefined,
@@ -164,8 +178,8 @@ describe(blockReleaseIt, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
-			            "@release-it/conventional-changelog": "12.0.0",
-			            "release-it": "21.0.2",
+			            "@release-it/conventional-changelog": "0.0.0-mock",
+			            "release-it": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "should-semantic-release": undefined,

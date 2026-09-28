@@ -1,6 +1,7 @@
 import { base } from "../base.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { formatYaml } from "./files/formatYaml.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 
 export const blockFunding = base.createBlock({
 	about: {
@@ -10,8 +11,10 @@ export const blockFunding = base.createBlock({
 		return {
 			files: {
 				".github": {
-					"FUNDING.yaml":
+					"FUNDING.yaml": withPreviously(
 						options.funding && formatYaml({ github: options.funding }),
+						["FUNDING.yml"],
+					),
 				},
 			},
 		};

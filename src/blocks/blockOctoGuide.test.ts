@@ -16,7 +16,8 @@ describe(blockOctoGuide, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yaml": "jobs:
+			        "octoguide.yaml": [
+			          "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    permissions:
@@ -61,6 +62,12 @@ describe(blockOctoGuide, () => {
 			      - edited
 			      - opened
 			",
+			          {
+			            "previously": [
+			              "octoguide.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },
@@ -82,7 +89,6 @@ describe(blockOctoGuide, () => {
 			        "files": [
 			          ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
 			          ".github/workflows/compliance.{yaml,yml}",
-			          ".github/workflows/octoguide.yml",
 			        ],
 			      },
 			      "block": "[Block Remove Files]",
@@ -91,7 +97,8 @@ describe(blockOctoGuide, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yaml": "jobs:
+			        "octoguide.yaml": [
+			          "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    permissions:
@@ -136,6 +143,12 @@ describe(blockOctoGuide, () => {
 			      - edited
 			      - opened
 			",
+			          {
+			            "previously": [
+			              "octoguide.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },
@@ -156,7 +169,8 @@ describe(blockOctoGuide, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "octoguide.yaml": "jobs:
+			        "octoguide.yaml": [
+			          "jobs:
 			  octoguide:
 			    if: \${{ !endsWith(github.actor, '[bot]') }}
 			    permissions:
@@ -201,6 +215,12 @@ describe(blockOctoGuide, () => {
 			      - edited
 			      - opened
 			",
+			          {
+			            "previously": [
+			              "octoguide.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },

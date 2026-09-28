@@ -5,9 +5,9 @@ import { getPackageDependencies } from "../data/packageData.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockREADME } from "./blockREADME.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 
 export const blockReleaseIt = base.createBlock({
 	about: {
@@ -60,37 +60,38 @@ export const blockReleaseIt = base.createBlock({
 			files: {
 				".github": {
 					workflows: {
-						"post-release.yaml": createSoloWorkflowFile({
-							name: "Post Release",
-							on: {
-								release: {
-									types: ["published"],
+						"post-release.yaml": withPreviously(
+							createSoloWorkflowFile({
+								name: "Post Release",
+								on: {
+									release: {
+										types: ["published"],
+									},
 								},
-							},
-							permissions: {
-								issues: "write",
-								"pull-requests": "write",
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"actions/checkout",
-										"v4",
-										options.workflowsVersions,
-									),
-									with: { "fetch-depth": 0 },
+								permissions: {
+									issues: "write",
+									"pull-requests": "write",
 								},
-								{
-									run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
-								},
-								{
-									uses: resolveUses(
-										"apexskier/github-release-commenter",
-										"v1",
-										options.workflowsVersions,
-									),
-									with: {
-										"comment-template": `
+								steps: [
+									{
+										uses: resolveUses(
+											"actions/checkout",
+											"v4",
+											options.workflowsVersions,
+										),
+										with: { "fetch-depth": 0 },
+									},
+									{
+										run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
+									},
+									{
+										uses: resolveUses(
+											"apexskier/github-release-commenter",
+											"v1",
+											options.workflowsVersions,
+										),
+										with: {
+											"comment-template": `
 							:tada: This is included in version {release_link} :tada:
 
 							The release is available on:
@@ -100,56 +101,61 @@ export const blockReleaseIt = base.createBlock({
 
 							Cheers! 📦🚀
 						`,
-										GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+											GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+										},
+									},
+								],
+							}),
+							["post-release.yml"],
+						),
+						"release.yaml": withPreviously(
+							createSoloWorkflowFile({
+								concurrency: {
+									group: "${{ github.workflow }}",
+								},
+								name: "Release",
+								on: {
+									push: {
+										branches: ["main"],
 									},
 								},
-							],
-						}),
-						"release.yaml": createSoloWorkflowFile({
-							concurrency: {
-								group: "${{ github.workflow }}",
-							},
-							name: "Release",
-							on: {
-								push: {
-									branches: ["main"],
+								permissions: {
+									contents: "write",
+									"id-token": "write",
 								},
-							},
-							permissions: {
-								contents: "write",
-								"id-token": "write",
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"actions/checkout",
-										"v4",
-										options.workflowsVersions,
-									),
-									with: {
-										"fetch-depth": 0,
-										ref: "main",
-										token: "${{ secrets.ACCESS_TOKEN }}",
+								steps: [
+									{
+										uses: resolveUses(
+											"actions/checkout",
+											"v4",
+											options.workflowsVersions,
+										),
+										with: {
+											"fetch-depth": 0,
+											ref: "main",
+											token: "${{ secrets.ACCESS_TOKEN }}",
+										},
 									},
-								},
-								{
-									uses: "./.github/actions/prepare",
-								},
-								...builders
-									.sort((a, b) => a.order - b.order)
-									.map(({ run }) => ({ run })),
-								{
-									env: {
-										GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
+									{
+										uses: "./.github/actions/prepare",
 									},
-									uses: resolveUses(
-										"JoshuaKGoldberg/release-it-action",
-										"v0.4.0",
-										options.workflowsVersions,
-									),
-								},
-							],
-						}),
+									...builders
+										.sort((a, b) => a.order - b.order)
+										.map(({ run }) => ({ run })),
+									{
+										env: {
+											GITHUB_TOKEN: "${{ secrets.ACCESS_TOKEN }}",
+										},
+										uses: resolveUses(
+											"JoshuaKGoldberg/release-it-action",
+											"v0.4.0",
+											options.workflowsVersions,
+										),
+									},
+								],
+							}),
+							["release.yml"],
+						),
 					},
 				},
 				".release-it.json": JSON.stringify({
@@ -187,18 +193,6 @@ export const blockReleaseIt = base.createBlock({
 					`- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
 					`   https://www.npmjs.com/package/${options.repository}/access`,
 				].join("\n"),
-			],
-		};
-	},
-	transition() {
-		return {
-			addons: [
-				blockRemoveFiles({
-					files: [
-						".github/workflows/post-release.yml",
-						".github/workflows/release.yml",
-					],
-				}),
 			],
 		};
 	},

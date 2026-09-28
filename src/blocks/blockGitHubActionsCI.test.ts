@@ -24,7 +24,8 @@ describe(blockGitHubActionsCI, () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": [
+			            "description: Prepares the repo for a typical CI job
 
 			name: Setup
 
@@ -39,11 +40,18 @@ describe(blockGitHubActionsCI, () => {
 			      shell: bash
 			  using: composite
 			",
+			            {
+			              "previously": [
+			                "action.yml",
+			              ],
+			            },
+			          ],
 			        },
 			      },
 			      "workflows": {
 			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
+			        "pr-review-requested.yaml": [
+			          "jobs:
 			  pr_review_requested:
 			    permissions:
 			      pull-requests: write
@@ -64,6 +72,12 @@ describe(blockGitHubActionsCI, () => {
 			    types:
 			      - review_requested
 			",
+			          {
+			            "previously": [
+			              "pr-review-requested.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },
@@ -90,9 +104,7 @@ describe(blockGitHubActionsCI, () => {
 			      "addons": {
 			        "files": [
 			          ".circleci",
-			          ".github/actions/prepare/action.yml",
 			          ".github/workflows/ci.yml",
-			          ".github/workflows/pr-review-requested.yml",
 			          "travis.{yaml,yml}",
 			        ],
 			      },
@@ -103,7 +115,8 @@ describe(blockGitHubActionsCI, () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": [
+			            "description: Prepares the repo for a typical CI job
 
 			name: Setup
 
@@ -118,11 +131,18 @@ describe(blockGitHubActionsCI, () => {
 			      shell: bash
 			  using: composite
 			",
+			            {
+			              "previously": [
+			                "action.yml",
+			              ],
+			            },
+			          ],
 			        },
 			      },
 			      "workflows": {
 			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": "jobs:
+			        "pr-review-requested.yaml": [
+			          "jobs:
 			  pr_review_requested:
 			    permissions:
 			      pull-requests: write
@@ -143,6 +163,12 @@ describe(blockGitHubActionsCI, () => {
 			    types:
 			      - review_requested
 			",
+			          {
+			            "previously": [
+			              "pr-review-requested.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },
@@ -187,7 +213,8 @@ describe(blockGitHubActionsCI, () => {
 			    ".github": {
 			      "actions": {
 			        "prepare": {
-			          "action.yaml": "description: Prepares the repo for a typical CI job
+			          "action.yaml": [
+			            "description: Prepares the repo for a typical CI job
 
 			name: Setup
 
@@ -202,10 +229,17 @@ describe(blockGitHubActionsCI, () => {
 			      shell: bash
 			  using: composite
 			",
+			            {
+			              "previously": [
+			                "action.yml",
+			              ],
+			            },
+			          ],
 			        },
 			      },
 			      "workflows": {
-			        "ci.yaml": "jobs:
+			        "ci.yaml": [
+			          "jobs:
 			  engines_check:
 			    name: Engines Check
 			    runs-on: ubuntu-latest
@@ -239,7 +273,14 @@ describe(blockGitHubActionsCI, () => {
 			    branches:
 			      - main
 			",
-			        "pr-review-requested.yaml": "jobs:
+			          {
+			            "previously": [
+			              "ci.yml",
+			            ],
+			          },
+			        ],
+			        "pr-review-requested.yaml": [
+			          "jobs:
 			  pr_review_requested:
 			    permissions:
 			      pull-requests: write
@@ -260,6 +301,12 @@ describe(blockGitHubActionsCI, () => {
 			    types:
 			      - review_requested
 			",
+			          {
+			            "previously": [
+			              "pr-review-requested.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			  },

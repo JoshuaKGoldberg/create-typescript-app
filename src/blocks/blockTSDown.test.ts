@@ -96,10 +96,17 @@ describe(blockTSDown, () => {
 			    },
 			  ],
 			  "files": {
-			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
+			    "tsdown.config.ts": [
+			      "import { defineConfig } from "tsdown";
 
 			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
 			",
+			      {
+			        "previously": [
+			          "tsup.config.ts",
+			        ],
+			      },
+			    ],
 			  },
 			  "scripts": undefined,
 			}
@@ -193,10 +200,17 @@ describe(blockTSDown, () => {
 			    },
 			  ],
 			  "files": {
-			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
+			    "tsdown.config.ts": [
+			      "import { defineConfig } from "tsdown";
 
 			export default defineConfig({"entry":["src/**/*.ts","src/other.ts"],"unbundle":true,"dts":false});
 			",
+			      {
+			        "previously": [
+			          "tsup.config.ts",
+			        ],
+			      },
+			    ],
 			  },
 			  "scripts": undefined,
 			}
@@ -214,10 +228,13 @@ describe(blockTSDown, () => {
 		});
 
 		expect(creation.files).toEqual({
-			"tsdown.config.ts": `import { defineConfig } from "tsdown";
+			"tsdown.config.ts": [
+				`import { defineConfig } from "tsdown";
 
 export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"build"});
 `,
+				{ previously: ["tsup.config.ts"] },
+			],
 		});
 	});
 
@@ -230,10 +247,13 @@ export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"b
 		});
 
 		expect(creation.files).toEqual({
-			"tsdown.config.ts": `import { defineConfig } from "tsdown";
+			"tsdown.config.ts": [
+				`import { defineConfig } from "tsdown";
 
 export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 `,
+				{ previously: ["tsup.config.ts"] },
+			],
 		});
 	});
 
@@ -347,10 +367,17 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			    },
 			  ],
 			  "files": {
-			    "tsdown.config.ts": "import { defineConfig } from "tsdown";
+			    "tsdown.config.ts": [
+			      "import { defineConfig } from "tsdown";
 
 			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
 			",
+			      {
+			        "previously": [
+			          "tsup.config.ts",
+			        ],
+			      },
+			    ],
 			  },
 			}
 		`);

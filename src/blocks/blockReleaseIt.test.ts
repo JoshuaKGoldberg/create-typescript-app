@@ -2,7 +2,6 @@ import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test, vi } from "vitest";
 
 import { blockReleaseIt } from "./blockReleaseIt.ts";
-import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 vi.mock("../data/packageData.ts", async (importOriginal) => {
@@ -67,7 +66,8 @@ describe(blockReleaseIt, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "post-release.yaml": "jobs:
+			        "post-release.yaml": [
+			          "jobs:
 			  post_release:
 			    permissions:
 			      issues: write
@@ -98,7 +98,14 @@ describe(blockReleaseIt, () => {
 			    types:
 			      - published
 			",
-			        "release.yaml": "concurrency:
+			          {
+			            "previously": [
+			              "post-release.yml",
+			            ],
+			          },
+			        ],
+			        "release.yaml": [
+			          "concurrency:
 			  group: \${{ github.workflow }}
 
 			jobs:
@@ -125,6 +132,12 @@ describe(blockReleaseIt, () => {
 			    branches:
 			      - main
 			",
+			          {
+			            "previously": [
+			              "release.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
@@ -202,7 +215,8 @@ describe(blockReleaseIt, () => {
 			  "files": {
 			    ".github": {
 			      "workflows": {
-			        "post-release.yaml": "jobs:
+			        "post-release.yaml": [
+			          "jobs:
 			  post_release:
 			    permissions:
 			      issues: write
@@ -233,7 +247,14 @@ describe(blockReleaseIt, () => {
 			    types:
 			      - published
 			",
-			        "release.yaml": "concurrency:
+			          {
+			            "previously": [
+			              "post-release.yml",
+			            ],
+			          },
+			        ],
+			        "release.yaml": [
+			          "concurrency:
 			  group: \${{ github.workflow }}
 
 			jobs:
@@ -263,6 +284,12 @@ describe(blockReleaseIt, () => {
 			    branches:
 			      - main
 			",
+			          {
+			            "previously": [
+			              "release.yml",
+			            ],
+			          },
+			        ],
 			      },
 			    },
 			    ".release-it.json": "{"git":{"commitMessage":"chore: release v\${version}","requireCommits":true},"github":{"release":true,"releaseName":"v\${version}"},"npm":{"skipChecks":true},"plugins":{"@release-it/conventional-changelog":{"infile":"CHANGELOG.md","preset":"conventionalcommits","types":[{"section":"Features","type":"feat"},{"section":"Bug Fixes","type":"fix"},{"section":"Performance Improvements","type":"perf"},{"hidden":true,"type":"build"},{"hidden":true,"type":"chore"},{"hidden":true,"type":"ci"},{"hidden":true,"type":"docs"},{"hidden":true,"type":"refactor"},{"hidden":true,"type":"style"},{"hidden":true,"type":"test"}]}}}",
@@ -275,19 +302,17 @@ describe(blockReleaseIt, () => {
 		`);
 	});
 
-	test("transition mode", () => {
-		const creation = testBlock(blockReleaseIt, {
-			mode: "transition",
-			options: optionsBase,
-		});
+	test("marks its workflows as previously .yml files", () => {
+		const creation = testBlock(blockReleaseIt, { options: optionsBase });
 
-		expect(creation.addons).toContainEqual(
-			blockRemoveFiles({
-				files: [
-					".github/workflows/post-release.yml",
-					".github/workflows/release.yml",
+		expect(creation.files?.[".github"]).toMatchObject({
+			workflows: {
+				"post-release.yaml": [
+					expect.any(String),
+					{ previously: ["post-release.yml"] },
 				],
-			}),
-		);
+				"release.yaml": [expect.any(String), { previously: ["release.yml"] }],
+			},
+		});
 	});
 });

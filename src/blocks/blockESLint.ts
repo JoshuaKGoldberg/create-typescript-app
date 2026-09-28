@@ -231,7 +231,7 @@ export default defineConfig(
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	${extensionLines.join(",")}
 );`,
-					["eslint.config.js"],
+					["eslint.config.js", "eslint.config.mjs"],
 				),
 			},
 			scripts: [

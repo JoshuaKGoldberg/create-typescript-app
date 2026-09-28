@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 
@@ -16,6 +17,15 @@ export const blockFunding = base.createBlock({
 					),
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				blockRemoveFiles({
+					files: [".github/FUNDING.yml"],
+				}),
+			],
 		};
 	},
 });

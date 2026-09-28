@@ -104,6 +104,7 @@ describe(blockGitHubActionsCI, () => {
 			      "addons": {
 			        "files": [
 			          ".circleci",
+			          ".github/workflows/ci.yml",
 			          "travis.{yaml,yml}",
 			        ],
 			      },

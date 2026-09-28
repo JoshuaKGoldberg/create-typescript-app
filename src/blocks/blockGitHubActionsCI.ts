@@ -149,7 +149,7 @@ export const blockGitHubActionsCI = base.createBlock({
 		return {
 			addons: [
 				blockRemoveFiles({
-					files: [".circleci", "travis.{yaml,yml}"],
+					files: [".circleci", ".github/workflows/ci.yml", "travis.{yaml,yml}"],
 				}),
 			],
 		};

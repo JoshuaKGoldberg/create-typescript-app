@@ -140,6 +140,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -301,6 +302,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -465,6 +467,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -642,6 +645,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -813,6 +817,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -973,6 +978,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -1128,6 +1134,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -1283,6 +1290,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -1416,6 +1424,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -1549,6 +1558,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -1679,6 +1689,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],
@@ -1809,6 +1820,7 @@ describe(blockESLint, () => {
 			      {
 			        "previously": [
 			          "eslint.config.js",
+			          "eslint.config.mjs",
 			        ],
 			      },
 			    ],

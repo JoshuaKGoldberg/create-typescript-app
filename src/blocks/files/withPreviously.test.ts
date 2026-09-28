@@ -4,7 +4,7 @@ import { withPreviously } from "./withPreviously.ts";
 
 describe(withPreviously, () => {
 	it.each([false, undefined, ""] as const)(
-		"returns %j when contents are %j",
+		"returns contents when contents are %j",
 		(contents) => {
 			expect(withPreviously(contents, ["a.yml"])).toBe(contents);
 		},

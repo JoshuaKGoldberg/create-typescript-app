@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.66.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.3...2.66.0) (2026-09-29)
+
+### Features
+
+- push release commits before publishing to npm ([#2502](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2502)) ([eabfd03](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/eabfd03a263df052c2ddb4c5c4eafbeff48b8dc9)), closes [#2483](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2483)
+
 ## [2.65.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.2...2.65.3) (2026-09-28)
 
 ### Bug Fixes

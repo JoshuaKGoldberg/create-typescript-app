@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.67.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.1...2.67.2) (2026-09-29)
+
+### Bug Fixes
+
+- export configs by name from generated ESLint plugins ([#2511](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2511)) ([73c006a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/73c006af7bec8d1b6aafac416022c7c2fca87584)), closes [#2197](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2197)
+- retain existing .gitignore entries in transition mode ([#2510](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2510)) ([8379e77](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8379e77b9095b7b01f40de8e5da6ad30e5c875c5)), closes [#1354](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1354)
+
 ## [2.67.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.0...2.67.1) (2026-09-29)
 
 ### Bug Fixes

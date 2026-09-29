@@ -566,6 +566,9 @@ describe(blockESLintPlugin, () => {
 				),
 			};
 
+			// Tools such as eslint-doc-generator may require() this module and read named exports
+			export const { configs } = plugin;
+
 			export { rules };
 
 			export default plugin;

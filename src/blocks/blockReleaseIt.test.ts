@@ -123,7 +123,7 @@ describe(blockReleaseIt, () => {
 			      - uses: ./.github/actions/prepare
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.5.5
+			        uses: JoshuaKGoldberg/release-it-action@v0.5.6
 
 			name: Release
 
@@ -275,7 +275,7 @@ describe(blockReleaseIt, () => {
 			      - run: two
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.5.5
+			        uses: JoshuaKGoldberg/release-it-action@v0.5.6
 
 			name: Release
 

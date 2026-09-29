@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.67.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.0...2.67.1) (2026-09-29)
+
+### Bug Fixes
+
+- fall back past empty author names ([#2512](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2512)) ([6790007](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6790007802acd10995508680abaa021451461319)), closes [#2365](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2365)
+
 ## [2.67.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.66.1...2.67.0) (2026-09-29)
 
 ### Features

@@ -265,6 +265,9 @@ export default defineConfig({
 	transition() {
 		return {
 			addons: [
+				blockGitignore({
+					removals: ["/coverage*", "coverage*/", "coverage/"],
+				}),
 				blockRemoveDependencies({
 					dependencies: [
 						"@vitest/coverage-istanbul",

@@ -408,6 +408,11 @@ describe(blockVitest, () => {
 			        "ignores": [
 			          "/coverage",
 			        ],
+			        "removals": [
+			          "/coverage*",
+			          "coverage*/",
+			          "coverage/",
+			        ],
 			      },
 			      "block": "[Block Gitignore]",
 			    },

@@ -8,6 +8,7 @@ import { formatFile } from "../utils/formatFile.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
@@ -182,6 +183,9 @@ export default defineConfig(${JSON.stringify({
 	transition() {
 		return {
 			addons: [
+				blockGitignore({
+					removals: ["/lib", "lib/"],
+				}),
 				blockRemoveDependencies({
 					dependencies: [
 						"@babel/cli",

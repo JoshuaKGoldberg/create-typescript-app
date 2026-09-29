@@ -624,6 +624,9 @@ describe(blockTypeScript, () => {
 			        "ignores": [
 			          "/dist",
 			        ],
+			        "removals": [
+			          "dist/",
+			        ],
 			      },
 			      "block": "[Block Gitignore]",
 			    },

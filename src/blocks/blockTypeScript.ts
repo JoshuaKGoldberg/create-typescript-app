@@ -166,6 +166,9 @@ greet("Hello, world! ${options.emoji}");
 	transition() {
 		return {
 			addons: [
+				blockGitignore({
+					removals: ["dist/"],
+				}),
 				blockRemoveWorkflows({
 					workflows: ["tsc"],
 				}),

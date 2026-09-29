@@ -60,6 +60,27 @@ describe(blockGitignore, () => {
 		`);
 	});
 
+	test("with existing entries and removals", () => {
+		const creation = testBlock(blockGitignore, {
+			addons: {
+				existing: [".env", "/lib", "node_modules/"],
+				ignores: ["/lib"],
+				removals: ["/lib", ".env"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    ".gitignore": "/lib
+			/node_modules
+			",
+			  },
+			}
+		`);
+	});
+
 	describe("intake", () => {
 		test("returns undefined when .gitignore does not exist", () => {
 			const actual = testIntake(blockGitignore, {
@@ -69,25 +90,17 @@ describe(blockGitignore, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		test("returns entries without blank lines, comments, or legacy entries", () => {
+		test("returns existing entries without blank lines or comments", () => {
 			const actual = testIntake(blockGitignore, {
 				files: {
 					".gitignore": [
-						[
-							"# Build output",
-							"lib/",
-							"/coverage",
-							"",
-							"node_modules/",
-							"  .env  ",
-							"*.log",
-						].join("\n"),
+						["# Build output", "lib/", "", "  .env  ", "*.log"].join("\n"),
 					],
 				},
 			});
 
 			expect(actual).toEqual({
-				ignores: ["/coverage", ".env", "*.log"],
+				existing: ["lib/", ".env", "*.log"],
 			});
 		});
 	});

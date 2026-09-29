@@ -343,6 +343,15 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			    },
 			    {
 			      "addons": {
+			        "removals": [
+			          "/lib",
+			          "lib/",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "dependencies": [
 			          "@babel/cli",
 			          "@babel/core",

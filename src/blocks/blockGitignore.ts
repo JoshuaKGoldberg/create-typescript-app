@@ -34,7 +34,6 @@ export const blockGitignore = base.createBlock({
 			...addons.ignores,
 		]);
 
-		// Negations must come after the patterns they negate
 		const negations = [...ignores].filter((line) => line.startsWith("!"));
 		const patterns = [...ignores].filter((line) => !line.startsWith("!"));
 

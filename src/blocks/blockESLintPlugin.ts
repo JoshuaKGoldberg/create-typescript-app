@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
@@ -141,7 +142,9 @@ These are all set to \`"error"\` in the recommended config:
 				}),
 			],
 			files: {
-				[configFileName]: `import prettier from "prettier";
+				[configFileName]: formatFile(
+					configFileName,
+					`import prettier from "prettier";
 
 /** @type {import('eslint-doc-generator').GenerateOptions} */
 const config = {
@@ -155,6 +158,7 @@ const config = {
 
 export default config;
 `,
+				),
 			},
 			scripts: [
 				{

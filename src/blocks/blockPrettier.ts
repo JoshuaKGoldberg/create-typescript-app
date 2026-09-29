@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
@@ -99,14 +100,17 @@ pnpm format --write
 					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
 				),
 				"prettier.config.ts": withPreviously(
-					`import type { Config } from "prettier";
+					formatFile(
+						"prettier.config.ts",
+						`import type { Config } from "prettier";
 
 export default ${JSON.stringify({
-						...(overrides.length && { overrides: overrides.sort() }),
-						...(plugins.length && { plugins: plugins.sort() }),
-						useTabs: true,
-					})} satisfies Config;
+							...(overrides.length && { overrides: overrides.sort() }),
+							...(plugins.length && { plugins: plugins.sort() }),
+							useTabs: true,
+						})} satisfies Config;
 `,
+					),
 					[".prettierrc.json"],
 				),
 			},

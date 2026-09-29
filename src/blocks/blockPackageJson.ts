@@ -5,6 +5,7 @@ import { z } from "zod";
 import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
 import { resolveEmails } from "../utils/resolveEmails.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
@@ -29,56 +30,60 @@ export const blockPackageJson = base.createBlock({
 			...options.packageData?.dependencies,
 			...addons.properties.dependencies,
 		});
-		const devDependencies = useLargerVersions(
-			options.packageData?.devDependencies,
-			{
-				...options.packageData?.devDependencies,
-				...addons.properties.devDependencies,
-			},
+		const devDependencies = Object.fromEntries(
+			Object.entries(
+				useLargerVersions(options.packageData?.devDependencies, {
+					...options.packageData?.devDependencies,
+					...addons.properties.devDependencies,
+				}),
+			).filter(([name]) => !(name in dependencies)),
 		);
 		const description = htmlToTextSafe(options.description);
 
 		return {
 			files: {
-				"package.json": sortPackageJson(
-					JSON.stringify(
-						removeUndefinedObjects({
-							...options.packageData,
-							...addons.properties,
-							author: {
-								email: resolveEmails(options.email).npm,
-								name: options.author,
-							},
-							bin: options.bin,
-							dependencies: Object.keys(dependencies).length
-								? dependencies
-								: undefined,
-							description,
-							devDependencies: Object.keys(devDependencies).length
-								? devDependencies
-								: undefined,
-							engines: {
-								node: /^\d/u.test(options.node.minimum)
-									? `>=${options.node.minimum}`
-									: options.node.minimum,
-							},
-							...(options.pnpm && {
-								packageManager: `pnpm@${options.pnpm}`,
+				"package.json": formatFile(
+					"package.json",
+					sortPackageJson(
+						JSON.stringify(
+							removeUndefinedObjects({
+								...options.packageData,
+								...addons.properties,
+								author: {
+									email: resolveEmails(options.email).npm,
+									name: options.author,
+								},
+								bin: options.bin,
+								dependencies: Object.keys(dependencies).length
+									? dependencies
+									: undefined,
+								description,
+								devDependencies: Object.keys(devDependencies).length
+									? devDependencies
+									: undefined,
+								engines: {
+									node: /^\d/u.test(options.node.minimum)
+										? `>=${options.node.minimum}`
+										: options.node.minimum,
+								},
+								...(options.pnpm && {
+									packageManager: `pnpm@${options.pnpm}`,
+								}),
+								files: processFiles(addons.properties.files),
+								keywords: options.keywords,
+								name: options.repository,
+								repository: {
+									type: "git",
+									url: `git+https://github.com/${options.owner}/${options.repository}.git`,
+								},
+								scripts: {
+									...options.packageData?.scripts,
+									...addons.properties.scripts,
+								},
+								type: options.type ?? "module",
+								version: options.version ?? "0.0.0",
 							}),
-							files: processFiles(addons.properties.files),
-							keywords: options.keywords,
-							name: options.repository,
-							repository: {
-								type: "git",
-								url: `git+https://github.com/${options.owner}/${options.repository}.git`,
-							},
-							scripts: {
-								...options.packageData?.scripts,
-								...addons.properties.scripts,
-							},
-							type: options.type ?? "module",
-							version: options.version ?? "0.0.0",
-						}),
+						),
 					),
 				),
 			},

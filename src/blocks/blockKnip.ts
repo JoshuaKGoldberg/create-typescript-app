@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
@@ -79,18 +80,21 @@ export const blockKnip = base.createBlock({
 			],
 			files: {
 				"knip.config.ts": withPreviously(
-					`import type { KnipConfig } from "knip";
+					formatFile(
+						"knip.config.ts",
+						`import type { KnipConfig } from "knip";
 
 export default ${JSON.stringify({
-						entry: entry?.sort(),
-						ignoreDependencies,
-						ignoreExportsUsedInFile: {
-							interface: true,
-							type: true,
-						},
-						project: project?.sort(),
-						treatConfigHintsAsErrors: true,
-					})} satisfies KnipConfig;`,
+							entry: entry?.sort(),
+							ignoreDependencies,
+							ignoreExportsUsedInFile: {
+								interface: true,
+								type: true,
+							},
+							project: project?.sort(),
+							treatConfigHintsAsErrors: true,
+						})} satisfies KnipConfig;`,
+					),
 					["knip.json"],
 				),
 			},

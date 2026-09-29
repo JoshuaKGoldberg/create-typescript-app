@@ -33,6 +33,7 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"dependencies": {
+		"@prettier/sync": "^0.6.1",
 		"@typescript-eslint/typescript-estree": "^8.67.0",
 		"bingo": "^0.13.0",
 		"bingo-fs": "^0.6.0",
@@ -56,6 +57,7 @@
 		"object-strings-deep": "^0.1.2",
 		"parse-author": "^2.0.0",
 		"parse-package-name": "^1.0.0",
+		"prettier": "^3.9.6",
 		"remove-dependencies": "^0.1.1",
 		"remove-undefined-objects": "^9.0.0",
 		"semver": "^7.8.5",
@@ -72,7 +74,6 @@
 		"@eslint-community/eslint-plugin-eslint-comments": "4.8.1",
 		"@eslint/js": "10.0.1",
 		"@eslint/markdown": "8.0.3",
-		"@prettier/sync": "0.6.1",
 		"@release-it/conventional-changelog": "12.0.0",
 		"@types/html-to-text": "9.0.4",
 		"@types/lodash": "4.17.25",
@@ -99,7 +100,6 @@
 		"husky": "9.1.7",
 		"knip": "6.38.0",
 		"lint-staged": "17.5.1",
-		"prettier": "3.9.6",
 		"prettier-plugin-curly": "0.4.1",
 		"prettier-plugin-packagejson": "3.0.2",
 		"prettier-plugin-padding-lines": "0.1.0",

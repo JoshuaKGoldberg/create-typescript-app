@@ -2,6 +2,7 @@ import sortKeys from "sort-keys";
 import { z } from "zod";
 
 import { base } from "../base.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 
@@ -72,30 +73,42 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 			files: {
 				".vscode": {
 					"extensions.json": extensions?.length
-						? JSON.stringify({
-								recommendations: [...extensions].sort(),
-							})
+						? formatFile(
+								".vscode/extensions.json",
+								JSON.stringify({
+									recommendations: [...extensions].sort(),
+								}),
+							)
 						: undefined,
 					"launch.json": debuggers?.length
-						? JSON.stringify({
-								configurations: [...debuggers].sort((a, b) =>
-									a.name.localeCompare(b.name),
-								),
-								version: "0.2.0",
-							})
+						? formatFile(
+								".vscode/launch.json",
+								JSON.stringify({
+									configurations: [...debuggers].sort((a, b) =>
+										a.name.localeCompare(b.name),
+									),
+									version: "0.2.0",
+								}),
+							)
 						: undefined,
-					"settings.json": JSON.stringify(
-						sortKeys({
-							"editor.formatOnSave": true,
-							"editor.rulers": [80],
-							...settings,
-						}),
+					"settings.json": formatFile(
+						".vscode/settings.json",
+						JSON.stringify(
+							sortKeys({
+								"editor.formatOnSave": true,
+								"editor.rulers": [80],
+								...settings,
+							}),
+						),
 					),
 					"tasks.json": tasks?.length
-						? JSON.stringify({
-								tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
-								version: "2.0.0",
-							})
+						? formatFile(
+								".vscode/tasks.json",
+								JSON.stringify({
+									tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
+									version: "2.0.0",
+								}),
+							)
 						: undefined,
 				},
 			},

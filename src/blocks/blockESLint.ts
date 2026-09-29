@@ -5,6 +5,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
@@ -224,13 +225,16 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 			],
 			files: {
 				[configFileName]: withPreviously(
-					`${explanation}${importLines.join("\n")}
+					formatFile(
+						configFileName,
+						`${explanation}${importLines.join("\n")}
 
 export default defineConfig(
 	globalIgnores( [${ignoreLines.join(", ")}], "Global Ignores" ),
 	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 	${extensionLines.join(",")}
 );`,
+					),
 					["eslint.config.js", "eslint.config.mjs"],
 				),
 			},
@@ -297,7 +301,7 @@ function printExtension(extension: Extension) {
 		extension.languageOptions &&
 			`languageOptions: ${JSON.stringify(extension.languageOptions).replace('"import.meta.dirname"', "import.meta.dirname")},`,
 		extension.linterOptions &&
-			`linterOptions: ${JSON.stringify(extension.linterOptions)}`,
+			`linterOptions: ${JSON.stringify(extension.linterOptions)},`,
 		extension.rules && `rules: ${printExtensionRules(extension.rules)},`,
 		extension.settings &&
 			`settings: ${JSON.stringify(sortKeys(extension.settings))},`,

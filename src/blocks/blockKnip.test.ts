@@ -94,7 +94,11 @@ describe(blockKnip, () => {
 			    "knip.config.ts": [
 			      "import type { KnipConfig } from "knip";
 
-			export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+			export default {
+				ignoreExportsUsedInFile: { interface: true, type: true },
+				treatConfigHintsAsErrors: true,
+			} satisfies KnipConfig;
+			",
 			      {
 			        "previously": [
 			          "knip.json",
@@ -182,7 +186,14 @@ describe(blockKnip, () => {
 			    "knip.config.ts": [
 			      "import type { KnipConfig } from "knip";
 
-			export default {"entry":["src/index.ts"],"ignoreDependencies":["abc","def"],"ignoreExportsUsedInFile":{"interface":true,"type":true},"project":["src/**/*.ts"],"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+			export default {
+				entry: ["src/index.ts"],
+				ignoreDependencies: ["abc", "def"],
+				ignoreExportsUsedInFile: { interface: true, type: true },
+				project: ["src/**/*.ts"],
+				treatConfigHintsAsErrors: true,
+			} satisfies KnipConfig;
+			",
 			      {
 			        "previously": [
 			          "knip.json",
@@ -279,7 +290,11 @@ describe(blockKnip, () => {
 			    "knip.config.ts": [
 			      "import type { KnipConfig } from "knip";
 
-			export default {"ignoreExportsUsedInFile":{"interface":true,"type":true},"treatConfigHintsAsErrors":true} satisfies KnipConfig;",
+			export default {
+				ignoreExportsUsedInFile: { interface: true, type: true },
+				treatConfigHintsAsErrors: true,
+			} satisfies KnipConfig;
+			",
 			      {
 			        "previously": [
 			          "knip.json",

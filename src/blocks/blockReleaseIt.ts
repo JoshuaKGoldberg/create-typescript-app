@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockREADME } from "./blockREADME.ts";
@@ -158,37 +159,40 @@ export const blockReleaseIt = base.createBlock({
 						),
 					},
 				},
-				".release-it.json": JSON.stringify({
-					git: {
-						commitMessage: "chore: release v${version}",
-						pushArgs: ["--follow-tags", "--atomic"],
-						requireCommits: true,
-					},
-					github: {
-						release: true,
-						releaseName: "v${version}",
-					},
-					hooks: { "after:git:release": "npm publish" },
-					npm: { publish: false, skipChecks: true },
-					plugins: {
-						"@release-it/conventional-changelog": {
-							infile: "CHANGELOG.md",
-							preset: "conventionalcommits",
-							types: [
-								{ section: "Features", type: "feat" },
-								{ section: "Bug Fixes", type: "fix" },
-								{ section: "Performance Improvements", type: "perf" },
-								{ hidden: true, type: "build" },
-								{ hidden: true, type: "chore" },
-								{ hidden: true, type: "ci" },
-								{ hidden: true, type: "docs" },
-								{ hidden: true, type: "refactor" },
-								{ hidden: true, type: "style" },
-								{ hidden: true, type: "test" },
-							],
+				".release-it.json": formatFile(
+					".release-it.json",
+					JSON.stringify({
+						git: {
+							commitMessage: "chore: release v${version}",
+							pushArgs: ["--follow-tags", "--atomic"],
+							requireCommits: true,
 						},
-					},
-				}),
+						github: {
+							release: true,
+							releaseName: "v${version}",
+						},
+						hooks: { "after:git:release": "npm publish" },
+						npm: { publish: false, skipChecks: true },
+						plugins: {
+							"@release-it/conventional-changelog": {
+								infile: "CHANGELOG.md",
+								preset: "conventionalcommits",
+								types: [
+									{ section: "Features", type: "feat" },
+									{ section: "Bug Fixes", type: "fix" },
+									{ section: "Performance Improvements", type: "perf" },
+									{ hidden: true, type: "build" },
+									{ hidden: true, type: "chore" },
+									{ hidden: true, type: "ci" },
+									{ hidden: true, type: "docs" },
+									{ hidden: true, type: "refactor" },
+									{ hidden: true, type: "style" },
+									{ hidden: true, type: "test" },
+								],
+							},
+						},
+					}),
+				),
 			},
 			suggestions: [
 				[

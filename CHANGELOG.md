@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.66.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.66.0...2.66.1) (2026-09-29)
+
+### Bug Fixes
+
+- pin cspell-populate-words to 0.3.1 to keep Node 22.13 support ([#2505](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2505)) ([4e2fa32](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4e2fa328916f7edd6cccd4ce743e2280a96acf66)), closes [#2504](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2504)
+
 ## [2.66.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.65.3...2.66.0) (2026-09-29)
 
 ### Features

@@ -566,6 +566,8 @@ describe(blockESLintPlugin, () => {
 				),
 			};
 
+			export const { configs } = plugin;
+
 			export { rules };
 
 			export default plugin;

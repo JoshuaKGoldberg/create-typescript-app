@@ -207,6 +207,8 @@ const recommended = {
 	),
 };
 
+export const { configs } = plugin;
+
 export { rules };
 
 export default plugin;

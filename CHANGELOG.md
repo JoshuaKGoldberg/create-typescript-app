@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.67.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.66.1...2.67.0) (2026-09-29)
+
+### Features
+
+- format created files with Prettier instead of raw JSON.stringify ([#2507](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2507)) ([f8b0b0a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f8b0b0a3611b534433247704ec26e69526c70f9c)), closes [#2058](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2058)
+
 ## [2.66.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.66.0...2.66.1) (2026-09-29)
 
 ### Bug Fixes

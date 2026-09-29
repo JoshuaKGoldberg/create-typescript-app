@@ -9,9 +9,9 @@ export async function readAuthor(
 	owner: string | undefined,
 ) {
 	return (
-		(await getPackageAuthor()).name ??
-		(await getNpmDefaults())?.name ??
-		(await getGitUser())?.stdout?.toString() ??
+		(await getPackageAuthor()).name ||
+		(await getNpmDefaults())?.name ||
+		(await getGitUser())?.stdout?.toString() ||
 		owner
 	);
 }

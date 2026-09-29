@@ -58,6 +58,32 @@ describe(readAuthor, () => {
 		expect(actual).toBe(gitUser);
 	});
 
+	it("returns gitUser when package author and npm defaults names are empty", async () => {
+		const gitUser = "test-owner";
+
+		const actual = await readAuthor(
+			() => Promise.resolve({ name: "" }),
+			() => Promise.resolve({ name: "" }),
+			() => Promise.resolve({ stdout: gitUser } as Result),
+			undefined,
+		);
+
+		expect(actual).toBe(gitUser);
+	});
+
+	it("returns owner when gitUser is empty", async () => {
+		const owner = "test-owner";
+
+		const actual = await readAuthor(
+			() => Promise.resolve({}),
+			() => Promise.resolve(undefined),
+			() => Promise.resolve({ stdout: "" } as Result),
+			owner,
+		);
+
+		expect(actual).toBe(owner);
+	});
+
 	it("returns undefined when no sources provide a value", async () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({}),

@@ -119,7 +119,7 @@ describe(blockPrettier, () => {
 			    "prettier.config.ts": [
 			      "import type { Config } from "prettier";
 
-			export default {"useTabs":true} satisfies Config;
+			export default { useTabs: true } satisfies Config;
 			",
 			      {
 			        "previously": [
@@ -268,7 +268,7 @@ describe(blockPrettier, () => {
 			    "prettier.config.ts": [
 			      "import type { Config } from "prettier";
 
-			export default {"useTabs":true} satisfies Config;
+			export default { useTabs: true } satisfies Config;
 			",
 			      {
 			        "previously": [
@@ -407,7 +407,16 @@ describe(blockPrettier, () => {
 			    "prettier.config.ts": [
 			      "import type { Config } from "prettier";
 
-			export default {"overrides":[{"files":".nvmrc","options":{"parser":"yaml"}}],"plugins":["./lib/index.js","prettier-plugin-curly","prettier-plugin-packagejson","prettier-plugin-sh"],"useTabs":true} satisfies Config;
+			export default {
+				overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
+				plugins: [
+					"./lib/index.js",
+					"prettier-plugin-curly",
+					"prettier-plugin-packagejson",
+					"prettier-plugin-sh",
+				],
+				useTabs: true,
+			} satisfies Config;
 			",
 			      {
 			        "previously": [

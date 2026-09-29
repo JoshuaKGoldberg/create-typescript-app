@@ -43,7 +43,8 @@ describe(blockVSCode, () => {
 			    ".vscode": {
 			      "extensions.json": undefined,
 			      "launch.json": undefined,
-			      "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[80]}",
+			      "settings.json": "{ "editor.formatOnSave": true, "editor.rulers": [80] }
+			",
 			      "tasks.json": undefined,
 			    },
 			  },
@@ -94,7 +95,8 @@ describe(blockVSCode, () => {
 			    ".vscode": {
 			      "extensions.json": undefined,
 			      "launch.json": undefined,
-			      "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[80]}",
+			      "settings.json": "{ "editor.formatOnSave": true, "editor.rulers": [80] }
+			",
 			      "tasks.json": undefined,
 			    },
 			  },
@@ -158,9 +160,25 @@ describe(blockVSCode, () => {
 			  "files": {
 			    ".vscode": {
 			      "extensions.json": undefined,
-			      "launch.json": "{"configurations":[{"name":"fake-debugger","other":true}],"version":"0.2.0"}",
-			      "settings.json": "{"editor.formatOnSave":true,"editor.rulers":[80]}",
-			      "tasks.json": "{"tasks":[{"detail":"Build the project","label":"build","script":"build","type":"npm"}],"version":"2.0.0"}",
+			      "launch.json": "{
+				"configurations": [{ "name": "fake-debugger", "other": true }],
+				"version": "0.2.0"
+			}
+			",
+			      "settings.json": "{ "editor.formatOnSave": true, "editor.rulers": [80] }
+			",
+			      "tasks.json": "{
+				"tasks": [
+					{
+						"detail": "Build the project",
+						"label": "build",
+						"script": "build",
+						"type": "npm"
+					}
+				],
+				"version": "2.0.0"
+			}
+			",
 			    },
 			  },
 			}

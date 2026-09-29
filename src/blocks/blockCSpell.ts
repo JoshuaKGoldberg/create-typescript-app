@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { resolveBin } from "../utils/resolveBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
@@ -81,20 +82,23 @@ export const blockCSpell = base.createBlock({
 				}),
 			],
 			files: {
-				"cspell.json": JSON.stringify({
-					dictionaries: ["npm", "node", "typescript"],
-					ignorePaths: Array.from(
-						new Set([
-							".github",
-							"CHANGELOG.md",
-							"dist",
-							"node_modules",
-							"pnpm-lock.yaml",
-							...ignorePaths,
-						]),
-					).sort(),
-					...(allWords.length && { words: allWords }),
-				}),
+				"cspell.json": formatFile(
+					"cspell.json",
+					JSON.stringify({
+						dictionaries: ["npm", "node", "typescript"],
+						ignorePaths: Array.from(
+							new Set([
+								".github",
+								"CHANGELOG.md",
+								"dist",
+								"node_modules",
+								"pnpm-lock.yaml",
+								...ignorePaths,
+							]),
+						).sort(),
+						...(allWords.length && { words: allWords }),
+					}),
+				),
 			},
 		};
 	},

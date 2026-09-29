@@ -3,6 +3,7 @@ import { CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockExampleFiles } from "./blockExampleFiles.ts";
@@ -140,22 +141,25 @@ greet("Hello, world! ${options.emoji}");
 				}),
 			],
 			files: {
-				"tsconfig.json": JSON.stringify({
-					compilerOptions: sortKeys({
-						declaration: true,
-						esModuleInterop: true,
-						module: "nodenext",
-						moduleResolution: "nodenext",
-						noEmit: true,
-						resolveJsonModule: true,
-						rewriteRelativeImportExtensions: true,
-						skipLibCheck: true,
-						strict: true,
-						target: "ES2023",
-						...compilerOptions,
+				"tsconfig.json": formatFile(
+					"tsconfig.json",
+					JSON.stringify({
+						compilerOptions: sortKeys({
+							declaration: true,
+							esModuleInterop: true,
+							module: "nodenext",
+							moduleResolution: "nodenext",
+							noEmit: true,
+							resolveJsonModule: true,
+							rewriteRelativeImportExtensions: true,
+							skipLibCheck: true,
+							strict: true,
+							target: "ES2023",
+							...compilerOptions,
+						}),
+						include: ["src"],
 					}),
-					include: ["src"],
-				}),
+				),
 			},
 		};
 	},

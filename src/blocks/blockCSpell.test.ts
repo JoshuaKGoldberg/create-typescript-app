@@ -83,7 +83,17 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{
+				"dictionaries": ["npm", "node", "typescript"],
+				"ignorePaths": [
+					".github",
+					"CHANGELOG.md",
+					"dist",
+					"node_modules",
+					"pnpm-lock.yaml"
+				]
+			}
+			",
 			  },
 			}
 		`);
@@ -153,7 +163,19 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","lib/","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "cspell.json": "{
+				"dictionaries": ["npm", "node", "typescript"],
+				"ignorePaths": [
+					".github",
+					"CHANGELOG.md",
+					"dist",
+					"lib/",
+					"node_modules",
+					"pnpm-lock.yaml"
+				],
+				"words": ["joshuakgoldberg"]
+			}
+			",
 			  },
 			}
 		`);
@@ -222,7 +244,18 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"],"words":["joshuakgoldberg"]}",
+			    "cspell.json": "{
+				"dictionaries": ["npm", "node", "typescript"],
+				"ignorePaths": [
+					".github",
+					"CHANGELOG.md",
+					"dist",
+					"node_modules",
+					"pnpm-lock.yaml"
+				],
+				"words": ["joshuakgoldberg"]
+			}
+			",
 			  },
 			}
 		`);
@@ -289,7 +322,17 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{
+				"dictionaries": ["npm", "node", "typescript"],
+				"ignorePaths": [
+					".github",
+					"CHANGELOG.md",
+					"dist",
+					"node_modules",
+					"pnpm-lock.yaml"
+				]
+			}
+			",
 			  },
 			  "scripts": [
 			    {
@@ -373,7 +416,17 @@ describe(blockCSpell, () => {
 			    },
 			  ],
 			  "files": {
-			    "cspell.json": "{"dictionaries":["npm","node","typescript"],"ignorePaths":[".github","CHANGELOG.md","dist","node_modules","pnpm-lock.yaml"]}",
+			    "cspell.json": "{
+				"dictionaries": ["npm", "node", "typescript"],
+				"ignorePaths": [
+					".github",
+					"CHANGELOG.md",
+					"dist",
+					"node_modules",
+					"pnpm-lock.yaml"
+				]
+			}
+			",
 			  },
 			}
 		`);

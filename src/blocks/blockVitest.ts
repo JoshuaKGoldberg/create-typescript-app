@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { zActionStep } from "./actions/steps.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
@@ -231,7 +232,9 @@ describe(greet, () => {
 				}),
 			],
 			files: {
-				"vitest.config.ts": `import { defineConfig } from "vitest/config";
+				"vitest.config.ts": formatFile(
+					"vitest.config.ts",
+					`import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {
@@ -255,6 +258,7 @@ export default defineConfig({
 	},
 });
 	`,
+				),
 			},
 		};
 	},

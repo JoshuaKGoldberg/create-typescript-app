@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
@@ -36,22 +37,25 @@ export const blockRenovate = base.createBlock({
 			],
 			files: {
 				".github": {
-					"renovate.json": JSON.stringify({
-						$schema: "https://docs.renovatebot.com/renovate-schema.json",
-						automerge: true,
-						extends: [
-							":preserveSemverRanges",
-							"config:best-practices",
-							"replacements:all",
-						],
-						ignoreDeps: Array.from(
-							new Set(["codecov/codecov-action", ...ignoreDeps]),
-						).sort(),
-						labels: ["dependencies"],
-						minimumReleaseAge: "7 days",
-						patch: { enabled: false },
-						postUpdateOptions: ["pnpmDedupe"],
-					}),
+					"renovate.json": formatFile(
+						".github/renovate.json",
+						JSON.stringify({
+							$schema: "https://docs.renovatebot.com/renovate-schema.json",
+							automerge: true,
+							extends: [
+								":preserveSemverRanges",
+								"config:best-practices",
+								"replacements:all",
+							],
+							ignoreDeps: Array.from(
+								new Set(["codecov/codecov-action", ...ignoreDeps]),
+							).sort(),
+							labels: ["dependencies"],
+							minimumReleaseAge: "7 days",
+							patch: { enabled: false },
+							postUpdateOptions: ["pnpmDedupe"],
+						}),
+					),
 				},
 			},
 		};

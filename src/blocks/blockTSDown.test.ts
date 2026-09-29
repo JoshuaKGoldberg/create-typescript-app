@@ -99,7 +99,7 @@ describe(blockTSDown, () => {
 			    "tsdown.config.ts": [
 			      "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
+			export default defineConfig({ entry: ["src/**/*.ts"], unbundle: true });
 			",
 			      {
 			        "previously": [
@@ -203,7 +203,11 @@ describe(blockTSDown, () => {
 			    "tsdown.config.ts": [
 			      "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts","src/other.ts"],"unbundle":true,"dts":false});
+			export default defineConfig({
+				entry: ["src/**/*.ts", "src/other.ts"],
+				unbundle: true,
+				dts: false,
+			});
 			",
 			      {
 			        "previously": [
@@ -231,7 +235,11 @@ describe(blockTSDown, () => {
 			"tsdown.config.ts": [
 				`import { defineConfig } from "tsdown";
 
-export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"build"});
+export default defineConfig({
+	entry: ["src/**/*.ts"],
+	unbundle: true,
+	outDir: "build",
+});
 `,
 				{ previously: ["tsup.config.ts"] },
 			],
@@ -250,7 +258,7 @@ export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true,"outDir":"b
 			"tsdown.config.ts": [
 				`import { defineConfig } from "tsdown";
 
-export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
+export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 `,
 				{ previously: ["tsup.config.ts"] },
 			],
@@ -370,7 +378,7 @@ export default defineConfig({"entry":["src/index.ts","src/other.ts"]});
 			    "tsdown.config.ts": [
 			      "import { defineConfig } from "tsdown";
 
-			export default defineConfig({"entry":["src/**/*.ts"],"unbundle":true});
+			export default defineConfig({ entry: ["src/**/*.ts"], unbundle: true });
 			",
 			      {
 			        "previously": [

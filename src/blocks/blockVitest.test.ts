@@ -262,7 +262,7 @@ describe(blockVitest, () => {
 					setupFiles: ["console-fail-test/setup"],
 				},
 			});
-				",
+			",
 			  },
 			}
 		`);
@@ -538,7 +538,7 @@ describe(blockVitest, () => {
 					setupFiles: ["console-fail-test/setup"],
 				},
 			});
-				",
+			",
 			  },
 			}
 		`);
@@ -790,11 +790,11 @@ describe(blockVitest, () => {
 						reporter: ["html", "lcov"],
 					},
 					environment: "happy-dom",
-					exclude: ["lib/","node_modules"],
+					exclude: ["lib/", "node_modules"],
 					setupFiles: ["console-fail-test/setup"],
 				},
 			});
-				",
+			",
 			  },
 			}
 		`);
@@ -1044,11 +1044,11 @@ describe(blockVitest, () => {
 						include: ["src/"],
 						reporter: ["html", "lcov"],
 					},
-					exclude: ["lib/","node_modules"],
+					exclude: ["lib/", "node_modules"],
 					setupFiles: ["console-fail-test/setup"],
 				},
 			});
-				",
+			",
 			  },
 			}
 		`);

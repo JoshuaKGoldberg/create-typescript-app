@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
+import { formatFile } from "../utils/formatFile.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
@@ -149,19 +150,22 @@ pnpm build --watch
 			],
 			files: {
 				"tsdown.config.ts": withPreviously(
-					`import { defineConfig } from "tsdown";
+					formatFile(
+						"tsdown.config.ts",
+						`import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-						entry: Array.from(
-							new Set([
-								options.bundle ? "src/index.ts" : "src/**/*.ts",
-								...entry,
-							]),
-						),
-						...(options.bundle ? {} : { unbundle: true }),
-						...properties,
-					})});
+							entry: Array.from(
+								new Set([
+									options.bundle ? "src/index.ts" : "src/**/*.ts",
+									...entry,
+								]),
+							),
+							...(options.bundle ? {} : { unbundle: true }),
+							...properties,
+						})});
 `,
+					),
 					["tsup.config.ts"],
 				),
 			},

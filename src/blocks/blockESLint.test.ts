@@ -133,10 +133,23 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -295,10 +308,23 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -460,10 +486,24 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,mjs,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -631,17 +671,44 @@ describe(blockESLint, () => {
 			*/
 
 			import eslint from "@eslint/js";
-			import a from "@eslint/markdown"
-			import b from "eslint-plugin-regexp"
-			import c from "eslint-plugin-unknown"
+			import a from "@eslint/markdown";
+			import b from "eslint-plugin-regexp";
+			import c from "eslint-plugin-unknown";
 			import { defineConfig, globalIgnores } from "eslint/config";
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "generated", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(
+					["dist", "generated", "node_modules", "pnpm-lock.yaml"],
+					"Global Ignores",
+				),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [a.configs.recommended], files: ["**/*.a"], rules: {"a/b":"error","a/c":["error",{"d":"e"}]}, },{ extends: [b.configs.recommended], files: ["**/*.b"], rules: {"b/c":"error","b/d":["error",{"e":"f"}]}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{
+					extends: [a.configs.recommended],
+					files: ["**/*.a"],
+					rules: { "a/b": "error", "a/c": ["error", { d: "e" }] },
+				},
+				{
+					extends: [b.configs.recommended],
+					files: ["**/*.b"],
+					rules: { "b/c": "error", "b/d": ["error", { e: "f" }] },
+					settings: { react: { version: "detect" } },
+				},
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -804,16 +871,38 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [], files: ["**/*.js"], rules: {
+				{
+					extends: [],
+					files: ["**/*.js"],
+					rules: {
+						// Duplicated comment
+						a: "error",
+						c: "error",
+						d: "error",
+						f: "error",
 
-			// Duplicated comment
-			"a": "error","c": "error","d": "error","f": "error",
-
-			// Standalone comment
-			"b": "error","e": "error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+						// Standalone comment
+						b: "error",
+						e: "error",
+					},
+				},
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -959,22 +1048,39 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ files: ["**/*.js"], rules: {
+				{
+					files: ["**/*.js"],
+					rules: {
+						// One line
+						a: "error",
 
-			// One line
-			"a": "error",
+						// Two lines
+						// two lines
+						a: "error",
 
-			// Two lines
-			// two lines
-			"a": "error",
-
-			// Three lines
-			// three lines
-			// three lines
-			"a": "error",}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+						// Three lines
+						// three lines
+						// three lines
+						a: "error",
+					},
+				},
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -1127,10 +1233,31 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{
+					extends: [a.configs.recommended],
+					files: ["**/*.a"],
+					languageOptions: { languageOption: true },
+					linterOptions: { linterOption: true },
+					rules: { "a/b": "error" },
+					settings: { react: { version: "detect" } },
+				},
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -1283,10 +1410,31 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [a.configs.recommended], files: ["**/*.a"], languageOptions: {"languageOption":true}, linterOptions: {"linterOption":true} rules: {"a/b":"error"}, settings: {"react":{"version":"detect"}}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{
+					extends: [a.configs.recommended],
+					files: ["**/*.a"],
+					languageOptions: { languageOption: true },
+					linterOptions: { linterOption: true },
+					rules: { "a/b": "error" },
+					settings: { react: { version: "detect" } },
+				},
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -1417,10 +1565,25 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]}}}, }
-			);",
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: {
+								allowDefaultProject: ["*.config.*s", "bin/index.js"],
+							},
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -1551,10 +1714,25 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s","bin/index.js"]}}}, }
-			);",
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: {
+								allowDefaultProject: ["*.config.*s", "bin/index.js"],
+							},
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -1682,10 +1860,24 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ files: ["*.mjs"], languageOptions: {"sourceType":"module"}, },{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,mjs,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,mjs,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",
@@ -1813,10 +2005,23 @@ describe(blockESLint, () => {
 			import tseslint from "typescript-eslint";
 
 			export default defineConfig(
-				globalIgnores( ["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores" ),
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ extends: [eslint.configs.recommended, tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked], files: ["**/*.{js,ts}"], languageOptions: {"parserOptions":{"projectService":{"allowDefaultProject":["*.config.*s"]}}}, }
-			);",
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
 			      {
 			        "previously": [
 			          "eslint.config.js",

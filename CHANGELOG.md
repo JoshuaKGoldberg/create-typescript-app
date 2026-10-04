@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.68.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.0...2.68.1) (2026-10-04)
+
+### Bug Fixes
+
+- clear dist/ and ignore .d.ts files in blockNcc build:release ([#2537](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2537)) ([51e42cf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/51e42cf2f5da1b9a548c938be3808344dfcd4e32)), closes [#2520](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2520)
+
 ## [2.68.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.4...2.68.0) (2026-10-04)
 
 ### Features

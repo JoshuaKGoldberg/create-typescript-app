@@ -320,7 +320,6 @@ This plugin is quite particular -perfectionist, even- but all its rules include 
 
 [**CSpell**](https://cspell.org): Spell checking for code.
 Helps detect typos based on a configurable user dictionary (`cspell.json`).
-Files under `.github/` are checked too.
 
 ```shell
 pnpm lint:spelling

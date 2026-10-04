@@ -47,8 +47,9 @@ describe(blockNcc, () => {
 			pnpm build:release
 			\`\`\`
 
-			CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces.
-			If that happens, run \`pnpm build:release\` and commit all changes under \`dist/\`.
+			CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces, not counting \`.d.ts\` files.
+			If that happens, run \`pnpm build:release\` and commit the changed files under \`dist/\`.
+			Renovate PRs that update bundled dependencies need the same: rebuild and commit \`dist/\` on their branch before they can merge.
 					",
 			                "heading": "Building for Release",
 			              },
@@ -84,14 +85,11 @@ describe(blockNcc, () => {
 			                "run": "pnpm build:release",
 			              },
 			              {
-			                "run": "if git check-ignore --no-index --quiet dist; then
-			  echo "::error::dist/ is gitignored, so new files in it can't be detected or committed. Remove dist from .gitignore."
-			  exit 1
-			fi
-			changes=$(git status --porcelain --untracked-files=all -- dist)
+			                "run": "# Verify dist/ is up to date
+			changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
 			if [ -n "$changes" ]; then
 			  echo "$changes"
-			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit all changes under dist/."
+			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
 			  exit 1
 			fi
 			",
@@ -174,8 +172,9 @@ describe(blockNcc, () => {
 			pnpm build:release
 			\`\`\`
 
-			CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces.
-			If that happens, run \`pnpm build:release\` and commit all changes under \`dist/\`.
+			CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces, not counting \`.d.ts\` files.
+			If that happens, run \`pnpm build:release\` and commit the changed files under \`dist/\`.
+			Renovate PRs that update bundled dependencies need the same: rebuild and commit \`dist/\` on their branch before they can merge.
 					",
 			                "heading": "Building for Release",
 			              },
@@ -211,14 +210,11 @@ describe(blockNcc, () => {
 			                "run": "pnpm build:release",
 			              },
 			              {
-			                "run": "if git check-ignore --no-index --quiet dist; then
-			  echo "::error::dist/ is gitignored, so new files in it can't be detected or committed. Remove dist from .gitignore."
-			  exit 1
-			fi
-			changes=$(git status --porcelain --untracked-files=all -- dist)
+			                "run": "# Verify dist/ is up to date
+			changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
 			if [ -n "$changes" ]; then
 			  echo "$changes"
-			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit all changes under dist/."
+			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
 			  exit 1
 			fi
 			",

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { base } from "../base.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { intakeFileYamlSteps } from "./actions/steps.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { withPreviously } from "./files/withPreviously.ts";
@@ -40,6 +41,11 @@ export const blockOctoGuide = base.createBlock({
 	},
 	produce({ addons, options }) {
 		return {
+			addons: [
+				blockCSpell({
+					words: ["octoguide"],
+				}),
+			],
 			files: {
 				".github": {
 					workflows: {

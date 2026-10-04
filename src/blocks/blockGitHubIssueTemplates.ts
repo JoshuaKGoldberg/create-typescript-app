@@ -1,12 +1,37 @@
+import { z } from "zod";
+
 import { base } from "../base.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { withPreviously } from "./files/withPreviously.ts";
+
+const zChecklist = z.array(z.string()).optional();
 
 export const blockGitHubIssueTemplates = base.createBlock({
 	about: {
 		name: "GitHub Issue Templates",
 	},
-	produce({ options }) {
+	addons: {
+		checklists: z
+			.object({
+				bug: zChecklist,
+				documentation: zChecklist,
+				feature: zChecklist,
+				tooling: zChecklist,
+			})
+			.default({}),
+	},
+	produce({ addons, options }) {
+		const { checklists } = addons;
+
+		const createChecklistOptions = (
+			custom: string[] | undefined,
+			defaults: string[],
+		) =>
+			[
+				...(custom ?? defaults),
+				`I have [searched for related issues](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
+			].map((label) => ({ label, required: true }));
+
 		return {
 			files: {
 				".github": {
@@ -19,22 +44,10 @@ export const blockGitHubIssueTemplates = base.createBlock({
 											description:
 												"If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!",
 											label: "Bug Report Checklist",
-											options: [
-												{
-													label:
-														"I have tried restarting my IDE and the issue persists.",
-													required: true,
-												},
-												{
-													label:
-														"I have pulled in the newest version of the project.",
-													required: true,
-												},
-												{
-													label: `I have [searched for related issues](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
-													required: true,
-												},
-											],
+											options: createChecklistOptions(checklists.bug, [
+												"I have tried restarting my IDE and the issue persists.",
+												"I have pulled in the newest version of the project.",
+											]),
 										},
 										type: "checkboxes",
 									},
@@ -81,17 +94,12 @@ export const blockGitHubIssueTemplates = base.createBlock({
 											description:
 												"If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!",
 											label: "Documentation Report Checklist",
-											options: [
-												{
-													label:
-														"I have looked at the latest `main` branch of the repository.",
-													required: true,
-												},
-												{
-													label: `I have [searched for related issues](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
-													required: true,
-												},
-											],
+											options: createChecklistOptions(
+												checklists.documentation,
+												[
+													"I have looked at the latest `main` branch of the repository.",
+												],
+											),
 										},
 										type: "checkboxes",
 									},
@@ -128,17 +136,9 @@ export const blockGitHubIssueTemplates = base.createBlock({
 											description:
 												"If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!",
 											label: "Feature Request Checklist",
-											options: [
-												{
-													label:
-														"I have looked at the latest version of the project.",
-													required: true,
-												},
-												{
-													label: `I have [searched for related issues](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
-													required: true,
-												},
-											],
+											options: createChecklistOptions(checklists.feature, [
+												"I have looked at the latest version of the project.",
+											]),
 										},
 										type: "checkboxes",
 									},
@@ -176,22 +176,10 @@ export const blockGitHubIssueTemplates = base.createBlock({
 											description:
 												"If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!",
 											label: "Tooling Report Checklist",
-											options: [
-												{
-													label:
-														"I have tried restarting my IDE and the issue persists.",
-													required: true,
-												},
-												{
-													label:
-														"I have pulled in the newest version of the project.",
-													required: true,
-												},
-												{
-													label: `I have [searched for related issues](https://github.com/${options.owner}/${options.repository}/issues?q=is%3Aissue) and found none that matched my issue.`,
-													required: true,
-												},
-											],
+											options: createChecklistOptions(checklists.tooling, [
+												"I have tried restarting my IDE and the issue persists.",
+												"I have pulled in the newest version of the project.",
+											]),
 										},
 										type: "checkboxes",
 									},

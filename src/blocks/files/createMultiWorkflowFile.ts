@@ -13,6 +13,7 @@ export interface MultiWorkflowJobOptions {
 	checkoutWith?: Record<string, string>;
 	if?: string;
 	name: string;
+	permissions?: Record<string, "none" | "read" | "write">;
 	steps: MultiWorkflowJobStep[];
 }
 
@@ -32,6 +33,7 @@ export function createMultiWorkflowFile({
 				{
 					if: job.if,
 					name: job.name,
+					permissions: job.permissions,
 					"runs-on": "ubuntu-latest",
 					steps: [
 						{

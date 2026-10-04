@@ -21,6 +21,9 @@ export const blockGitHubActionsCI = base.createBlock({
 					checkoutWith: z.record(z.string(), z.string()).optional(),
 					if: z.string().optional(),
 					name: z.string(),
+					permissions: z
+						.record(z.string(), z.enum(["none", "read", "write"]))
+						.optional(),
 					steps: z.array(zActionStep),
 				}),
 			)

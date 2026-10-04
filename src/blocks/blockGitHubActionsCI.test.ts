@@ -182,6 +182,7 @@ describe(blockGitHubActionsCI, () => {
 				jobs: [
 					{
 						name: "Validate",
+						permissions: { contents: "read" },
 						steps: [
 							{
 								env: { VAR_ENV: "true" },
@@ -254,6 +255,8 @@ describe(blockGitHubActionsCI, () => {
 
 			  validate:
 			    name: Validate
+			    permissions:
+			      contents: read
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4

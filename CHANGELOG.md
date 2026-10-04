@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.67.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.3...2.67.4) (2026-10-04)
+
+### Bug Fixes
+
+- correct blockNcc build --watch wording ([#2532](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2532)) ([cf35c6d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cf35c6d32fc64a0a3c791ae7473309f436b21ee7)), closes [#2515](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2515)
+- grant generated Release workflow contents: read instead of write ([#2531](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2531)) ([c6bd882](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c6bd8827618c1aec3f507b4f66e96d990411cc49)), closes [#2524](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2524), references [JoshuaKGoldberg/release-it-action#930](https://github.com/JoshuaKGoldberg/release-it-action/issues/930)
+
 ## [2.67.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.2...2.67.3) (2026-10-04)
 
 ### Bug Fixes

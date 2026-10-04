@@ -319,6 +319,9 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			    },
 			    {
 			      "addons": {
+			        "outdatedFiles": [
+			          "lib/",
+			        ],
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.0.0-mock",

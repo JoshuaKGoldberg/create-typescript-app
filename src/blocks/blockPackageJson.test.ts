@@ -1,4 +1,4 @@
-import { testBlock } from "bingo-stratum-testers";
+import { testBlock, testIntake } from "bingo-stratum-testers";
 import { it } from "vitest";
 import { describe, expect, test } from "vitest";
 
@@ -990,5 +990,216 @@ describe(blockPackageJson, () => {
 			  "test-dependency": "1.1.0",
 			}
 		`);
+	});
+
+	it("keeps existing files after addon files, in their original order", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: [
+					"dist/",
+					"assets/",
+					"!dist/**/*.test.*",
+					"!dist/tests/",
+				],
+				properties: { files: ["dist/", "dist/index.js"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "assets/",
+			  "!dist/**/*.test.*",
+			  "!dist/tests/",
+			]
+		`);
+	});
+
+	it("keeps an existing file include under an existing directory", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["dist/", "dist/special.js", "!dist/*.js"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "dist/special.js",
+			  "!dist/*.js",
+			]
+		`);
+	});
+
+	it("keeps an existing re-include after an existing negation", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["dist/", "!dist/tests/", "dist/tests/*.js"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "!dist/tests/",
+			  "dist/tests/*.js",
+			]
+		`);
+	});
+
+	it("keeps an existing file under an addon directory", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["dist/", "dist/index.js.map"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "dist/index.js.map",
+			]
+		`);
+	});
+
+	it("dedupes existing files that only differ in slashes, using the addon spelling", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["./dist/", "/assets", "assets/", "lib/**"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "/assets",
+			  "lib/**",
+			]
+		`);
+	});
+
+	it("removes existing files that are outdated or always included", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: [
+					"lib",
+					"./lib/",
+					"/lib/",
+					"!lib/**/*.test.*",
+					"./bin/index.js",
+					"bin/other.js",
+					"LICENSE.md",
+					"package.json",
+					"README.md",
+				],
+				outdatedFiles: ["lib/"],
+				properties: { files: ["dist/"] },
+			},
+			options: { ...options, bin: "bin/index.js" },
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "!lib/**/*.test.*",
+			  "bin/other.js",
+			]
+		`);
+	});
+
+	it("keeps addon files that are also outdated existing files", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["lib/"],
+				outdatedFiles: ["lib/"],
+				properties: { files: ["lib/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "lib/",
+			]
+		`);
+	});
+
+	it("omits files when all existing files are removed", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["lib/", "package.json"],
+				outdatedFiles: ["lib/"],
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toBeUndefined();
+	});
+
+	describe("intake", () => {
+		test("returns undefined when package.json does not exist", () => {
+			const actual = testIntake(blockPackageJson, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		test("returns undefined when files is not an array", () => {
+			const actual = testIntake(blockPackageJson, {
+				files: {
+					"package.json": [JSON.stringify({ files: "lib/" })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		test("returns existing string files", () => {
+			const actual = testIntake(blockPackageJson, {
+				files: {
+					"package.json": [
+						JSON.stringify({ files: ["lib/", 123, "!lib/**/*.test.*"] }),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				existingFiles: ["lib/", "!lib/**/*.test.*"],
+			});
+		});
 	});
 });

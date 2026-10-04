@@ -1,7 +1,14 @@
+import { z } from "zod";
+
 import { WorkflowsVersions } from "../../schemas.ts";
 import { resolveUses } from "../actions/resolveUses.ts";
 import { createJobName } from "./createJobName.ts";
 import { formatWorkflowYaml } from "./formatWorkflowYaml.ts";
+
+export const zMultiWorkflowJobPermissions = z.record(
+	z.string(),
+	z.enum(["none", "read", "write"]),
+);
 
 export interface MultiWorkflowFileOptions {
 	jobs: MultiWorkflowJobOptions[];
@@ -13,7 +20,7 @@ export interface MultiWorkflowJobOptions {
 	checkoutWith?: Record<string, string>;
 	if?: string;
 	name: string;
-	permissions?: Record<string, "none" | "read" | "write">;
+	permissions?: z.infer<typeof zMultiWorkflowJobPermissions>;
 	steps: MultiWorkflowJobStep[];
 }
 

@@ -121,7 +121,7 @@ export const blockReleaseIt = base.createBlock({
 									},
 								},
 								permissions: {
-									contents: "write",
+									contents: "read",
 									"id-token": "write",
 								},
 								steps: [

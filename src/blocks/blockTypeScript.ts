@@ -154,8 +154,6 @@ greet("Hello, world! ${options.emoji}");
 							target: "ES2023",
 							...(outDir && { outDir, rootDir: "src" }),
 							...compilerOptions,
-
-							// tsc itself builds into outDir, so it must emit files there
 							...(outDir && { noEmit: undefined }),
 						}),
 						include: ["src"],

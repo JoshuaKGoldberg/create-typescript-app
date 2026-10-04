@@ -352,6 +352,7 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			        ],
 			        "removals": [
 			          "/lib",
+			          "dist/",
 			          "lib/",
 			        ],
 			      },

@@ -9,7 +9,6 @@ import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockExampleFiles } from "./blockExampleFiles.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockGitignore } from "./blockGitignore.ts";
 import { blockKnip } from "./blockKnip.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
@@ -168,9 +167,6 @@ greet("Hello, world! ${options.emoji}");
 	transition() {
 		return {
 			addons: [
-				blockGitignore({
-					removals: ["dist/"],
-				}),
 				blockRemoveWorkflows({
 					workflows: ["tsc"],
 				}),

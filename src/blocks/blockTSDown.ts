@@ -192,7 +192,7 @@ export default defineConfig(${JSON.stringify({
 		return {
 			addons: [
 				blockGitignore({
-					removals: ["/lib", "lib/"],
+					removals: ["/lib", "dist/", "lib/"],
 				}),
 				blockRemoveDependencies({
 					dependencies: [

@@ -713,14 +713,6 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
-			        "removals": [
-			          "dist/",
-			        ],
-			      },
-			      "block": "[Block Gitignore]",
-			    },
-			    {
-			      "addons": {
 			        "workflows": [
 			          "tsc",
 			        ],

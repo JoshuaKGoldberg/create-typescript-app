@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.68.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.4...2.68.0) (2026-10-04)
+
+### Features
+
+- allow setting permissions on blockGitHubActionsCI jobs ([#2533](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2533)) ([e095792](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e095792bcb81442099540851ac2abcbe71147e4a)), closes [#2523](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2523), references [JoshuaKGoldberg/release-it-action#939](https://github.com/JoshuaKGoldberg/release-it-action/issues/939)
+- verify committed dist/ is up to date in blockNcc's Build (Release) job ([#2538](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2538)) ([0a91a14](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0a91a1497c717ea34229fbb4d7f3ddb7d8fa8560)), closes [#2521](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2521)
+
+### Bug Fixes
+
+- retain existing package.json files entries in transition mode ([#2536](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2536)) ([b6ffda2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b6ffda22ae9137ce33f8793172fec7fda98be137)), closes [#2522](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2522)
+- say "issue tracker" in generated CONTRIBUTING.md ([#2530](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2530)) ([15a1a26](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/15a1a26d5e5982db70e9feacabb75c1481c75316)), closes [#2516](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2516)
+- spell check .github files with lint:spelling ([#2534](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2534)) ([d3fdb3b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d3fdb3bff88697d6ef9b42988c8911870f229a34)), closes [#2517](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2517)
+
 ## [2.67.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.3...2.67.4) (2026-10-04)
 
 ### Bug Fixes

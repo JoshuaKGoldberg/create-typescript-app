@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.67.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.2...2.67.3) (2026-10-04)
+
+### Bug Fixes
+
+- bump bingo packages to latest (bingo@0.13.1) ([#2529](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2529)) ([5fc4d66](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5fc4d669787ab7f81e1b77dc7be3a1685f5a7946)), closes [#2382](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2382)
+
 ## [2.67.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.1...2.67.2) (2026-09-29)
 
 ### Bug Fixes

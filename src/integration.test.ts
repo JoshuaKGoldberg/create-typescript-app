@@ -115,6 +115,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 			: text;
 
 	expect(
-		diffCreatedDirectory(actual, created.files, { processText }),
+		await diffCreatedDirectory(actual, created.files, { processText }),
 	).toBeUndefined();
 });

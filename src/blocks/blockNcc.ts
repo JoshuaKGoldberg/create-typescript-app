@@ -54,6 +54,10 @@ Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to create an output \`dist/
 \`\`\`shell
 pnpm build:release
 \`\`\`
+
+CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces, not counting \`.d.ts\` files.
+If that happens, run \`pnpm build:release\` and commit the changed files under \`dist/\`.
+Renovate PRs that update bundled dependencies need the same: rebuild and commit \`dist/\` on their branch before they can merge.
 		`,
 									heading: "Building for Release",
 								},
@@ -72,7 +76,19 @@ pnpm build:release
 						},
 						{
 							name: "Build (Release)",
-							steps: [{ run: "pnpm build:release" }],
+							steps: [
+								{ run: "pnpm build:release" },
+								{
+									run: `# Verify dist/ is up to date
+changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
+if [ -n "$changes" ]; then
+  echo "$changes"
+  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
+  exit 1
+fi
+`,
+								},
+							],
 						},
 					],
 				}),

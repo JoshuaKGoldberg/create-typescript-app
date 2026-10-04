@@ -38,19 +38,12 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
            - uses: ./.github/actions/prepare
            - run: pnpm build
 
-           - name: Compare dist/index.js
+           - name: Verify dist is up to date
              run: |
-               if [ "$(git diff --ignore-space-at-eol --text dist/index.js | wc -l)" -gt "0" ]; then
-                 echo "Detected uncommitted changes after build."
-                 echo "You may need to run 'pnpm run build' locally and commit the changes."
-                 echo ""
-                 echo "See diff below:"
-                 echo ""
-                 git diff --ignore-space-at-eol --text dist/index.js
-                 echo ""
-                 # say this again in case the diff is long
-                 echo "You may need to run 'pnpm run build' locally and commit the changes."
-                 echo ""
+               changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
+               if [ -n "$changes" ]; then
+                 echo "$changes"
+                 echo "::error::dist/ is out of date. Run 'pnpm build', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
                  exit 1
                fi
 

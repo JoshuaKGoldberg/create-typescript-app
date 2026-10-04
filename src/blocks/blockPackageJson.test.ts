@@ -1,4 +1,4 @@
-import { testBlock } from "bingo-stratum-testers";
+import { testBlock, testIntake } from "bingo-stratum-testers";
 import { it } from "vitest";
 import { describe, expect, test } from "vitest";
 
@@ -990,5 +990,140 @@ describe(blockPackageJson, () => {
 			  "test-dependency": "1.1.0",
 			}
 		`);
+	});
+
+	it("keeps existing files alongside addon files, with negations last", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: [
+					"dist/",
+					"!dist/**/*.test.*",
+					"assets/",
+					"!dist/tests/",
+				],
+				properties: {
+					files: ["dist/", "dist/index.js"],
+				},
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "assets/",
+			  "dist/",
+			  "!dist/**/*.test.*",
+			  "!dist/tests/",
+			]
+		`);
+	});
+
+	it("removes existing files that are outdated or always included", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: [
+					"!lib/**/*.test.*",
+					"./bin/index.js",
+					"bin/other.js",
+					"LICENSE.md",
+					"lib/",
+					"package.json",
+					"README.md",
+				],
+				outdatedFiles: ["lib/"],
+				properties: {
+					files: ["dist/"],
+				},
+			},
+			options: {
+				...options,
+				bin: "./bin/index.js",
+			},
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "bin/other.js",
+			  "dist/",
+			  "!lib/**/*.test.*",
+			]
+		`);
+	});
+
+	it("keeps addon files that are also outdated existing files", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["lib/"],
+				outdatedFiles: ["lib/"],
+				properties: {
+					files: ["lib/"],
+				},
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "lib/",
+			]
+		`);
+	});
+
+	it("omits files when all existing files are removed", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["lib/", "package.json"],
+				outdatedFiles: ["lib/"],
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toBeUndefined();
+	});
+
+	describe("intake", () => {
+		test("returns undefined when package.json does not exist", () => {
+			const actual = testIntake(blockPackageJson, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		test("returns undefined when files is not an array", () => {
+			const actual = testIntake(blockPackageJson, {
+				files: {
+					"package.json": [JSON.stringify({ files: "lib/" })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		test("returns existing string files", () => {
+			const actual = testIntake(blockPackageJson, {
+				files: {
+					"package.json": [
+						JSON.stringify({ files: ["lib/", 123, "!lib/**/*.test.*"] }),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				existingFiles: ["lib/", "!lib/**/*.test.*"],
+			});
+		});
 	});
 });

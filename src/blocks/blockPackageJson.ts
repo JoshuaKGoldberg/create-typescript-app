@@ -8,7 +8,9 @@ import { base } from "../base.ts";
 import { formatFile } from "../utils/formatFile.ts";
 import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
 import { resolveEmails } from "../utils/resolveEmails.ts";
+import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { CommandPhase } from "./phases.ts";
 
 const PackageJsonWithNullableScripts = PackageJson.partial().extend({
@@ -23,7 +25,21 @@ export const blockPackageJson = base.createBlock({
 	},
 	addons: {
 		cleanupCommands: z.array(z.string()).default([]),
+		existingFiles: z.array(z.string()).default([]),
+		outdatedFiles: z.array(z.string()).default([]),
 		properties: PackageJsonWithNullableScripts.default({}),
+	},
+	intake({ files }) {
+		const packageData = intakeFileAsJson(files, ["package.json"]);
+		if (!Array.isArray(packageData?.files)) {
+			return undefined;
+		}
+
+		return {
+			existingFiles: packageData.files.filter(
+				(file): file is string => typeof file === "string",
+			),
+		};
 	},
 	produce({ addons, offline, options }) {
 		const dependencies = useLargerVersions(options.packageData?.dependencies, {
@@ -69,7 +85,14 @@ export const blockPackageJson = base.createBlock({
 								...(options.pnpm && {
 									packageManager: `pnpm@${options.pnpm}`,
 								}),
-								files: processFiles(addons.properties.files),
+								files: processFiles([
+									...filterExistingFiles(
+										addons.existingFiles,
+										addons.outdatedFiles,
+										options.bin,
+									),
+									...(addons.properties.files ?? []),
+								]),
 								keywords: options.keywords,
 								name: options.repository,
 								repository: {
@@ -105,26 +128,53 @@ export const blockPackageJson = base.createBlock({
 	},
 });
 
-function processFiles(files: string[] | undefined) {
+function filterExistingFiles(
+	existingFiles: string[],
+	outdatedFiles: string[],
+	bin: Record<string, string | undefined> | string | undefined,
+) {
+	const removals = new Set([
+		...outdatedFiles,
+
+		// Older versions of this template listed files npm always includes anyway
+		...(typeof bin === "object" ? Object.values(bin) : [bin]).map(
+			trimPrecedingSlash,
+		),
+		"LICENSE.md",
+		"package.json",
+		"README.md",
+	]);
+
+	return existingFiles.filter(
+		(file) => !removals.has(trimPrecedingSlash(file)),
+	);
+}
+
+function processFiles(files: string[]) {
+	const unique = Array.from(new Set(files.filter(Boolean)));
+
 	// If no files have been specified, we can skip the property altogether
-	if (!files?.length) {
+	if (!unique.length) {
 		return undefined;
 	}
 
+	// Negated entries only exclude files from earlier entries, so they go last
+	const negations = unique.filter((file) => file.startsWith("!"));
+
 	// First sort so that shorter entries are first (e.g. "lib/")...
-	const sortedByLength = files
-		.filter(Boolean)
+	const sortedByLength = unique
+		.filter((file) => !file.startsWith("!"))
 		.sort((a, b) => a.length - b.length);
 
 	// ...then remove entries captured by earlier directories (e.g. "lib/index.js")
-	return sortedByLength
-		.filter(
-			(file, i) =>
-				!sortedByLength
-					.slice(0, i)
-					.some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
-		)
-		.sort();
+	const patterns = sortedByLength.filter(
+		(file, i) =>
+			!sortedByLength
+				.slice(0, i)
+				.some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
+	);
+
+	return [...patterns.sort(), ...negations];
 }
 
 function removeRangePrefix(version: string) {

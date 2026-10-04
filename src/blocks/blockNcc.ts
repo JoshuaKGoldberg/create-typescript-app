@@ -40,7 +40,7 @@ Run [TypeScript](https://typescriptlang.org) locally to type check and build sou
 pnpm build
 \`\`\`
 
-Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+Add \`--watch\` to run the builder in a watch mode that rebuilds changed files into \`lib/\` as you save them:
 
 \`\`\`shell
 pnpm build --watch

@@ -1,7 +1,9 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test } from "vitest";
 
+import { blockGitignore } from "./blockGitignore.ts";
 import { blockNcc } from "./blockNcc.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockNcc, () => {
@@ -17,6 +19,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignorePaths": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block CSpell]",
@@ -59,6 +62,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block ESLint]",
@@ -88,10 +92,21 @@ describe(blockNcc, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/lib",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
+			          "files": [
+			            "lib/",
+			          ],
 			          "scripts": {
 			            "build": "tsc",
 			            "build:release": "ncc build src/index.ts -o dist",
@@ -104,9 +119,24 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "/dist",
+			          "/lib",
 			        ],
 			      },
 			      "block": "[Block Prettier]",
+			    },
+			    {
+			      "addons": {
+			        "outDir": "lib",
+			      },
+			      "block": "[Block TypeScript]",
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "lib",
+			        ],
+			      },
+			      "block": "[Block Vitest]",
 			    },
 			  ],
 			}
@@ -128,6 +158,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignorePaths": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block CSpell]",
@@ -170,6 +201,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block ESLint]",
@@ -199,10 +231,21 @@ describe(blockNcc, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/lib",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
+			          "files": [
+			            "lib/",
+			          ],
 			          "scripts": {
 			            "build": "tsc",
 			            "build:release": "ncc build src/action/index.ts -o dist",
@@ -215,12 +258,86 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "/dist",
+			          "/lib",
 			        ],
 			      },
 			      "block": "[Block Prettier]",
 			    },
+			    {
+			      "addons": {
+			        "outDir": "lib",
+			      },
+			      "block": "[Block TypeScript]",
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "lib",
+			        ],
+			      },
+			      "block": "[Block Vitest]",
+			    },
 			  ],
 			}
+		`);
+	});
+
+	test("setup mode", () => {
+		const creation = testBlock(blockNcc, {
+			mode: "setup",
+			options: optionsBase,
+		});
+
+		expect(creation.addons?.filter(({ block }) => block === blockPackageJson))
+			.toMatchInlineSnapshot(`
+			[
+			  {
+			    "addons": {
+			      "properties": {
+			        "devDependencies": {
+			          "@vercel/ncc": "^0.38.3",
+			        },
+			        "exports": {
+			          ".": "./lib/index.js",
+			        },
+			        "files": [
+			          "lib/",
+			        ],
+			        "scripts": {
+			          "build": "tsc",
+			          "build:release": "ncc build src/index.ts -o dist",
+			        },
+			      },
+			    },
+			    "block": "[Block Package JSON]",
+			  },
+			]
+		`);
+	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockNcc, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.addons?.filter(({ block }) => block === blockGitignore))
+			.toMatchInlineSnapshot(`
+			[
+			  {
+			    "addons": {
+			      "ignores": [
+			        "/lib",
+			      ],
+			      "removals": [
+			        "/dist",
+			        "dist",
+			        "dist/",
+			      ],
+			    },
+			    "block": "[Block Gitignore]",
+			  },
+			]
 		`);
 	});
 

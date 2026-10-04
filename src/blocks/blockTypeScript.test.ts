@@ -93,14 +93,6 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
-			      },
-			      "block": "[Block Gitignore]",
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -128,9 +120,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
-			          "files": [
-			            "dist/",
-			          ],
 			        },
 			      },
 			      "block": "[Block Package JSON]",
@@ -267,14 +256,6 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
-			      },
-			      "block": "[Block Gitignore]",
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -302,9 +283,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
-			          "files": [
-			            "dist/",
-			          ],
 			        },
 			      },
 			      "block": "[Block Package JSON]",
@@ -360,6 +338,68 @@ describe(blockTypeScript, () => {
 			",
 			  },
 			}
+		`);
+	});
+
+	test("with an outDir addon", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				outDir: "lib",
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"outDir": "lib",
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"rootDir": "src",
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src"]
+			}
+			"
+		`);
+	});
+
+	test("with an outDir addon and noEmit in compilerOptions", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					noEmit: true,
+					outDir: "lib",
+				},
+				outDir: "lib",
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"outDir": "lib",
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"rootDir": "src",
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src"]
+			}
+			"
 		`);
 	});
 
@@ -440,14 +480,6 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
-			      },
-			      "block": "[Block Gitignore]",
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -475,9 +507,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
-			          "files": [
-			            "dist/",
-			          ],
 			        },
 			      },
 			      "block": "[Block Package JSON]",
@@ -621,17 +650,6 @@ describe(blockTypeScript, () => {
 			    },
 			    {
 			      "addons": {
-			        "ignores": [
-			          "/dist",
-			        ],
-			        "removals": [
-			          "dist/",
-			        ],
-			      },
-			      "block": "[Block Gitignore]",
-			    },
-			    {
-			      "addons": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -659,9 +677,6 @@ describe(blockTypeScript, () => {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
-			          "files": [
-			            "dist/",
-			          ],
 			        },
 			      },
 			      "block": "[Block Package JSON]",
@@ -695,6 +710,14 @@ describe(blockTypeScript, () => {
 			        ],
 			      },
 			      "block": "[Block VS Code]",
+			    },
+			    {
+			      "addons": {
+			        "removals": [
+			          "dist/",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {

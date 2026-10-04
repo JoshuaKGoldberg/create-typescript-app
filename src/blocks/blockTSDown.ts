@@ -56,6 +56,8 @@ export const blockTSDown = base.createBlock({
 	},
 	addons: {
 		entry: zEntry.default([]),
+		exports: z.string().optional(),
+		main: z.string().optional(),
 		properties: zProperties.default({}),
 		runInCI: z.array(z.string()).default([]),
 	},
@@ -95,7 +97,7 @@ export const blockTSDown = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { entry, properties, runInCI } = addons;
+		const { entry, exports, main, properties, runInCI } = addons;
 
 		return {
 			addons: [
@@ -132,9 +134,15 @@ pnpm build --watch
 						},
 					],
 				}),
+				blockGitignore({
+					ignores: ["/dist"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies("tsdown"),
+						...(exports && { exports: { ".": exports } }),
+						files: ["dist/"],
+						...(main && { main }),
 						scripts: {
 							build: "tsdown",
 						},

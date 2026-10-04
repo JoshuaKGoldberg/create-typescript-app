@@ -72,10 +72,21 @@ describe(blockTSDown, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.0.0-mock",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
@@ -117,6 +128,8 @@ describe(blockTSDown, () => {
 		const creation = testBlock(blockTSDown, {
 			addons: {
 				entry: ["src/other.ts"],
+				exports: "./dist/other.mjs",
+				main: "./dist/other.mjs",
 				properties: {
 					dts: false,
 				},
@@ -176,10 +189,25 @@ describe(blockTSDown, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.0.0-mock",
 			          },
+			          "exports": {
+			            ".": "./dist/other.mjs",
+			          },
+			          "files": [
+			            "dist/",
+			          ],
+			          "main": "./dist/other.mjs",
 			          "scripts": {
 			            "build": "tsdown",
 			          },
@@ -319,10 +347,25 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist",
+			        ],
+			        "removals": [
+			          "/lib",
+			          "lib/",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.0.0-mock",
 			          },
+			          "files": [
+			            "dist/",
+			          ],
 			          "scripts": {
 			            "build": "tsdown",
 			          },
@@ -340,15 +383,6 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			        ],
 			      },
 			      "block": "[Block release-it]",
-			    },
-			    {
-			      "addons": {
-			        "removals": [
-			          "/lib",
-			          "lib/",
-			        ],
-			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
 			      "addons": {

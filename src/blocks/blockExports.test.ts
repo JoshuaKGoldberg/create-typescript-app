@@ -13,16 +13,7 @@ describe(blockExports, () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "properties": {
-			          "exports": {
-			            ".": "./dist/index.mjs",
-			          },
-			        },
-			      },
-			      "block": "[Block Package JSON]",
-			    },
-			    {
-			      "addons": {
+			        "exports": "./dist/index.mjs",
 			        "runInCI": [
 			          "node ./dist/index.mjs",
 			        ],
@@ -48,16 +39,7 @@ describe(blockExports, () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "properties": {
-			          "exports": {
-			            ".": "./other.js",
-			          },
-			        },
-			      },
-			      "block": "[Block Package JSON]",
-			    },
-			    {
-			      "addons": {
+			        "exports": "./other.js",
 			        "runInCI": [
 			          "node other.js --version",
 			        ],
@@ -85,17 +67,8 @@ describe(blockExports, () => {
 			  "addons": [
 			    {
 			      "addons": {
-			        "properties": {
-			          "exports": {
-			            ".": "./dist/index.js",
-			          },
-			          "main": "./dist/index.js",
-			        },
-			      },
-			      "block": "[Block Package JSON]",
-			    },
-			    {
-			      "addons": {
+			        "exports": "./dist/index.js",
+			        "main": "./dist/index.js",
 			        "runInCI": [
 			          "node ./dist/index.js",
 			        ],

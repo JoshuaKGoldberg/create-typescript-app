@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import { base } from "../base.ts";
-import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
@@ -34,15 +33,10 @@ export const blockExports = base.createBlock({
 
 		return {
 			addons: [
-				blockPackageJson({
-					properties: {
-						exports: {
-							".": filePath.startsWith(".") ? filePath : `./${filePath}`,
-						},
-						...(main && { main: libToDist(main) }),
-					},
-				}),
+				// The entry point is built by tsdown, so it's only set when tsdown is used
 				blockTSDown({
+					exports: filePath.startsWith(".") ? filePath : `./${filePath}`,
+					...(main && { main: libToDist(main) }),
 					runInCI: [
 						`node ${filePath}${runArgs.map((arg) => ` ${arg}`).join("")}`,
 					],

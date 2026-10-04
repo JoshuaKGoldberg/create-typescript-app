@@ -5,8 +5,11 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
+import { blockTypeScript } from "./blockTypeScript.ts";
+import { blockVitest } from "./blockVitest.ts";
 
 export const blockNcc = base.createBlock({
 	about: {
@@ -28,7 +31,7 @@ export const blockNcc = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					ignorePaths: ["dist"],
+					ignorePaths: ["dist", "lib"],
 				}),
 				blockDevelopmentDocs({
 					sections: {
@@ -62,7 +65,7 @@ pnpm build:release
 					},
 				}),
 				blockESLint({
-					ignores: ["dist"],
+					ignores: ["dist", "lib"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [
@@ -76,11 +79,15 @@ pnpm build:release
 						},
 					],
 				}),
+				blockGitignore({
+					ignores: ["/lib"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: {
 							"@vercel/ncc": "^0.38.3",
 						},
+						files: ["lib/"],
 						scripts: {
 							build: "tsc",
 							"build:release": `ncc build ${entry} -o dist`,
@@ -88,7 +95,35 @@ pnpm build:release
 					},
 				}),
 				blockPrettier({
-					ignores: ["/dist"],
+					ignores: ["/dist", "/lib"],
+				}),
+				blockTypeScript({
+					outDir: "lib",
+				}),
+				blockVitest({
+					exclude: ["lib"],
+				}),
+			],
+		};
+	},
+	setup() {
+		return {
+			addons: [
+				blockPackageJson({
+					properties: {
+						// tsc builds the package's entry point into lib/, not ncc's dist/
+						exports: { ".": "./lib/index.js" },
+					},
+				}),
+			],
+		};
+	},
+	transition() {
+		return {
+			addons: [
+				// dist/ holds the committed ncc bundle, so it must not be ignored
+				blockGitignore({
+					removals: ["/dist", "dist", "dist/"],
 				}),
 			],
 		};

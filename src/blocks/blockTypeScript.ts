@@ -1,4 +1,5 @@
 import sortKeys from "sort-keys";
+import { z } from "zod";
 import { CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.ts";
@@ -22,6 +23,7 @@ export const blockTypeScript = base.createBlock({
 	},
 	addons: {
 		compilerOptions: CompilerOptionsSchema.optional(),
+		outDir: z.string().optional(),
 	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
@@ -35,7 +37,7 @@ export const blockTypeScript = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { compilerOptions } = addons;
+		const { compilerOptions, outDir } = addons;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
@@ -98,9 +100,6 @@ greet("Hello, world! ${options.emoji}");
 \`\`\``,
 					],
 				}),
-				blockGitignore({
-					ignores: ["/dist"],
-				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
 				}),
@@ -110,7 +109,6 @@ greet("Hello, world! ${options.emoji}");
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies("typescript"),
-						files: ["dist/"],
 					},
 				}),
 				blockVitest({ coverage: { include: ["src"] }, exclude: ["dist"] }),
@@ -155,7 +153,11 @@ greet("Hello, world! ${options.emoji}");
 							skipLibCheck: true,
 							strict: true,
 							target: "ES2023",
+							...(outDir && { outDir, rootDir: "src" }),
 							...compilerOptions,
+
+							// tsc itself builds into outDir, so it must emit files there
+							...(outDir && { noEmit: undefined }),
 						}),
 						include: ["src"],
 					}),

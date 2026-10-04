@@ -46,6 +46,9 @@ describe(blockNcc, () => {
 			\`\`\`shell
 			pnpm build:release
 			\`\`\`
+
+			CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces.
+			If that happens, run \`pnpm build:release\` and commit all changes under \`dist/\`.
 					",
 			                "heading": "Building for Release",
 			              },
@@ -79,6 +82,19 @@ describe(blockNcc, () => {
 			            "steps": [
 			              {
 			                "run": "pnpm build:release",
+			              },
+			              {
+			                "run": "if git check-ignore --no-index --quiet dist; then
+			  echo "::error::dist/ is gitignored, so new files in it can't be detected or committed. Remove dist from .gitignore."
+			  exit 1
+			fi
+			changes=$(git status --porcelain --untracked-files=all -- dist)
+			if [ -n "$changes" ]; then
+			  echo "$changes"
+			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit all changes under dist/."
+			  exit 1
+			fi
+			",
 			              },
 			            ],
 			          },
@@ -157,6 +173,9 @@ describe(blockNcc, () => {
 			\`\`\`shell
 			pnpm build:release
 			\`\`\`
+
+			CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces.
+			If that happens, run \`pnpm build:release\` and commit all changes under \`dist/\`.
 					",
 			                "heading": "Building for Release",
 			              },
@@ -190,6 +209,19 @@ describe(blockNcc, () => {
 			            "steps": [
 			              {
 			                "run": "pnpm build:release",
+			              },
+			              {
+			                "run": "if git check-ignore --no-index --quiet dist; then
+			  echo "::error::dist/ is gitignored, so new files in it can't be detected or committed. Remove dist from .gitignore."
+			  exit 1
+			fi
+			changes=$(git status --porcelain --untracked-files=all -- dist)
+			if [ -n "$changes" ]; then
+			  echo "$changes"
+			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit all changes under dist/."
+			  exit 1
+			fi
+			",
 			              },
 			            ],
 			          },

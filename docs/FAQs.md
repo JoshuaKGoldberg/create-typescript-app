@@ -81,7 +81,6 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    +"build": "rm -rf dist && ncc build src/index.ts -o dist --license licenses.txt",
    ```
 
-   - Clearing `dist` first removes files left over from previous builds, which ncc doesn't do on its own.
    - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
 
    ```diff

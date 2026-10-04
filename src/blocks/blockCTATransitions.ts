@@ -16,7 +16,7 @@ export const blockCTATransitions = base.createBlock({
 		return {
 			addons: [
 				blockCSpell({
-					words: ["mshick", "stefanzweifel"],
+					words: ["mshick", options.owner, "stefanzweifel"],
 				}),
 				blockPackageJson({
 					properties: {

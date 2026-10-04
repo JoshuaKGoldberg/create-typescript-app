@@ -451,6 +451,19 @@ describe(blockCSpell, () => {
 			expect(actual).toEqual(data);
 		});
 
+		it("removes .github from ignorePaths when it is the only ignore path", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify({ ignorePaths: [".github"] })],
+				},
+			});
+
+			expect(actual).toEqual({
+				ignorePaths: [],
+				words: [],
+			});
+		});
+
 		it("removes .github from ignorePaths when cspell.json contains it", () => {
 			const actual = testIntake(blockCSpell, {
 				files: {

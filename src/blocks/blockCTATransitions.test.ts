@@ -16,7 +16,7 @@ describe("blockCTATransitions", () => {
 
 		expect(creation.addons).toEqual([
 			blockCSpell({
-				words: ["mshick", "stefanzweifel"],
+				words: ["mshick", optionsBase.owner, "stefanzweifel"],
 			}),
 			blockPackageJson({
 				properties: {

@@ -41,7 +41,7 @@ describe(blockNcc, () => {
 			            "innerSections": [
 			              {
 			                "contents": "
-			Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to create an output \`dist/\` to be used in production.
+			Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to clear and recreate an output \`dist/\` to be used in production.
 
 			\`\`\`shell
 			pnpm build:release
@@ -88,13 +88,22 @@ describe(blockNcc, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist/**/*.d.ts",
+			          "/dist/**/*.d.ts.map",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
 			          "scripts": {
 			            "build": "tsc",
-			            "build:release": "ncc build src/index.ts -o dist",
+			            "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
 			          },
 			        },
 			      },
@@ -152,7 +161,7 @@ describe(blockNcc, () => {
 			            "innerSections": [
 			              {
 			                "contents": "
-			Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to create an output \`dist/\` to be used in production.
+			Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to clear and recreate an output \`dist/\` to be used in production.
 
 			\`\`\`shell
 			pnpm build:release
@@ -199,13 +208,22 @@ describe(blockNcc, () => {
 			    },
 			    {
 			      "addons": {
+			        "ignores": [
+			          "/dist/**/*.d.ts",
+			          "/dist/**/*.d.ts.map",
+			        ],
+			      },
+			      "block": "[Block Gitignore]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
 			          "scripts": {
 			            "build": "tsc",
-			            "build:release": "ncc build src/action/index.ts -o dist",
+			            "build:release": "rm -rf dist && ncc build src/action/index.ts -o dist",
 			          },
 			        },
 			      },
@@ -287,6 +305,23 @@ describe(blockNcc, () => {
 					packageData: {
 						scripts: {
 							"build:release": "ncc build src/action/index.ts -o dist",
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ entry: "src/action/index.ts" });
+		});
+
+		it("returns a parsed entry when options.packageData contains a matching build:release script that first clears dist", () => {
+			const actual = testIntake(blockNcc, {
+				files: {},
+				options: {
+					...optionsBase,
+					packageData: {
+						scripts: {
+							"build:release":
+								"rm -rf dist && ncc build src/action/index.ts -o dist",
 						},
 					},
 				},

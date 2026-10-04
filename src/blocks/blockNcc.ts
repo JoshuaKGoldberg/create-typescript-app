@@ -5,6 +5,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 
@@ -49,7 +50,7 @@ pnpm build --watch
 							innerSections: [
 								{
 									contents: `
-Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to create an output \`dist/\` to be used in production.
+Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to clear and recreate an output \`dist/\` to be used in production.
 
 \`\`\`shell
 pnpm build:release
@@ -76,6 +77,9 @@ pnpm build:release
 						},
 					],
 				}),
+				blockGitignore({
+					ignores: ["/dist/**/*.d.ts", "/dist/**/*.d.ts.map"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: {
@@ -83,7 +87,7 @@ pnpm build:release
 						},
 						scripts: {
 							build: "tsc",
-							"build:release": `ncc build ${entry} -o dist`,
+							"build:release": `rm -rf dist && ncc build ${entry} -o dist`,
 						},
 					},
 				}),

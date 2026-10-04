@@ -82,12 +82,15 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    ```
 
    - Clearing `dist` first removes files left over from previous builds, which ncc doesn't do on its own.
-     ncc also emits `.d.ts` declaration files alongside its output; so we'll want to ignore those by adding the following to our `.gitignore`:
+     ncc also emits `.d.ts` declaration files alongside its output; so we'll want our `.gitignore` to ignore only those, rather than all of `dist`:
 
    ```diff
+   -/dist
    +/dist/**/*.d.ts
    +/dist/**/*.d.ts.map
    ```
+
+   - If any declaration files were already committed, stop tracking them with `git rm --cached $(git ls-files 'dist/*.d.ts' 'dist/*.d.ts.map')`.
 
    - Our build now emits to the `dist` directory; so we'll want to avoid linting that directory by adding the following to `.eslintignore` and our `.prettierignore`:
 

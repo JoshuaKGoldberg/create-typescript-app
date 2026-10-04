@@ -1,7 +1,10 @@
 import _ from "lodash";
 
 import { base } from "../base.ts";
-import { startingOwnerContributions } from "../data/contributions.ts";
+import {
+	contributionTypes,
+	startingOwnerContributions,
+} from "../data/contributions.ts";
 import { Contributor } from "../schemas.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockPrettier } from "./blockPrettier.ts";
@@ -53,7 +56,12 @@ export const blockAllContributors = base.createBlock({
 						},
 					],
 					sections: options.contributors
-						? [printAllContributorsTable(options.contributors)]
+						? [
+								printAllContributorsTable(
+									options.contributors,
+									`https://github.com/${options.owner}/${options.repository}`,
+								),
+							]
 						: undefined,
 				}),
 				blockRepositorySecrets({
@@ -129,7 +137,10 @@ export const blockAllContributors = base.createBlock({
 	},
 });
 
-function printAllContributorsTable(contributors: Contributor[]) {
+function printAllContributorsTable(
+	contributors: Contributor[],
+	repositoryUrl: string,
+) {
 	return [
 		`## Contributors`,
 		``,
@@ -142,7 +153,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
 		// This intentionally uses the same sort as all-contributors-cli:
 		// https://github.com/all-contributors/cli/blob/74bc388bd6f0ae2658e6495e9d3781d737438a97/src/generate/index.js#L76
 		..._.sortBy(contributors, "name").flatMap((contributor, i) => {
-			const row = printContributorCell(contributor);
+			const row = printContributorCell(contributor, repositoryUrl);
 
 			return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];
 		}),
@@ -157,7 +168,7 @@ function printAllContributorsTable(contributors: Contributor[]) {
 	].join("\n");
 }
 
-function printContributorCell(contributor: Contributor) {
+function printContributorCell(contributor: Contributor, repositoryUrl: string) {
 	return [
 		`      <td align="center" valign="top" width="14.28%">`,
 		`<a href="${contributor.profile}">`,
@@ -165,29 +176,19 @@ function printContributorCell(contributor: Contributor) {
 		`<br />`,
 		`<sub><b>${contributor.name}</b></sub></a><br />`,
 		contributor.contributions
-			.map((contribution) => {
-				switch (contribution) {
-					case "bug":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3A${contributor.login}" title="Bug reports">🐛</a>`;
-					case "code":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=${contributor.login}" title="Code">💻</a>`;
-					case "design":
-						return `<a href="#design-${contributor.login}" title="Design">🎨</a>`;
-					case "doc":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=${contributor.login}" title="Documentation">📖</a>`;
-					case "ideas":
-						return `<a href="#ideas-${contributor.login}" title="Ideas, Planning, & Feedback">🤔</a>`;
-					case "infra":
-						return `<a href="#infra-${contributor.login}" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>`;
-					case "maintenance":
-						return `<a href="#maintenance-${contributor.login}" title="Maintenance">🚧</a>`;
-					case "review":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/pulls?q=is%3Apr+reviewed-by%3A${contributor.login}" title="Reviewed Pull Requests">👀</a>`;
-					case "test":
-						return `<a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=${contributor.login}" title="Tests">⚠️</a>`;
-					case "tool":
-						return `<a href="#tool-${contributor.login}" title="Tools">🔧</a>`;
+			.flatMap((contribution) => {
+				const type = contributionTypes[contribution];
+				if (!type) {
+					return [];
 				}
+
+				const href = type.link
+					? `${repositoryUrl}/${type.link}${contributor.login}`
+					: `#${contribution}-${contributor.login}`;
+
+				return [
+					`<a href="${href}" title="${type.description}">${type.symbol}</a>`,
+				];
 			})
 			.join(" "),
 		`</td>`,

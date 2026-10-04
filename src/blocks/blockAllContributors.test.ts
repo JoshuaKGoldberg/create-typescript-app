@@ -163,7 +163,7 @@ describe("blockAllContributors", () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/test-repository/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -313,7 +313,7 @@ describe("blockAllContributors", () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/test-owner/test-repository/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -405,6 +405,69 @@ describe("blockAllContributors", () => {
 			      ],
 			      "phase": 3,
 			    },
+			  ],
+			}
+		`);
+	});
+
+	it("prints contributions linking to the owner's repository, including types without links and skipping unknown types", () => {
+		const creation = testBlock(blockAllContributors, {
+			options: {
+				...optionsBase,
+				contributors: [
+					{
+						avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
+						contributions: [
+							"bug",
+							"code",
+							"content",
+							"unknown",
+							"projectManagement",
+							"review",
+						],
+						login: "other",
+						name: "Other",
+						profile: "http://www.example.com",
+					},
+				],
+			},
+		});
+
+		expect(creation.addons?.[1].addons).toMatchInlineSnapshot(`
+			{
+			  "badges": [
+			    {
+			      "alt": "👪 All Contributors: 1",
+			      "comments": {
+			        "after": "
+			<!-- ALL-CONTRIBUTORS-BADGE:END -->
+				<!-- prettier-ignore-end -->",
+			        "before": "<!-- prettier-ignore-start -->
+				<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+				",
+			      },
+			      "href": "#contributors",
+			      "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-1-21bb42.svg",
+			    },
+			  ],
+			  "sections": [
+			    "## Contributors
+
+			<!-- spellchecker: disable -->
+			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+			<!-- prettier-ignore-start -->
+			<table>
+			  <tbody>
+			    <tr>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/test-owner/test-repository/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Code">💻</a> <a href="#content-other" title="Content">🖋</a> <a href="#projectManagement-other" title="Project Management">📆</a> <a href="https://github.com/test-owner/test-repository/pulls?q=is%3Apr+reviewed-by%3Aother" title="Reviewed Pull Requests">👀</a></td>
+			    </tr>
+			  </tbody>
+			</table>
+
+			<!-- prettier-ignore-end -->
+
+			<!-- ALL-CONTRIBUTORS-LIST:END -->
+			<!-- spellchecker: enable -->",
 			  ],
 			}
 		`);

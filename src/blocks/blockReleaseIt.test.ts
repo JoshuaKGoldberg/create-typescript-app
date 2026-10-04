@@ -27,6 +27,14 @@ describe(blockReleaseIt, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "words": [
+			          "apexskier",
+			        ],
+			      },
+			      "block": "[Block CSpell]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "0.0.0-mock",
@@ -202,6 +210,14 @@ describe(blockReleaseIt, () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "apexskier",
+			        ],
+			      },
+			      "block": "[Block CSpell]",
+			    },
 			    {
 			      "addons": {
 			        "properties": {

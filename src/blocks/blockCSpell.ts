@@ -39,7 +39,14 @@ export const blockCSpell = base.createBlock({
 			return undefined;
 		}
 
-		return data;
+		return {
+			...data,
+			// Older versions of this Block ignored .github, which kept the
+			// lint:spelling script's ".github/**/*" glob from checking anything.
+			ignorePaths: data.ignorePaths.filter(
+				(ignorePath) => ignorePath !== ".github",
+			),
+		};
 	},
 	produce({ addons, options }) {
 		const { ignorePaths, words } = addons;
@@ -88,7 +95,6 @@ export const blockCSpell = base.createBlock({
 						dictionaries: ["npm", "node", "typescript"],
 						ignorePaths: Array.from(
 							new Set([
-								".github",
 								"CHANGELOG.md",
 								"dist",
 								"node_modules",

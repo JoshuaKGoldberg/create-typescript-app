@@ -4,6 +4,7 @@ import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
@@ -29,6 +30,9 @@ export const blockReleaseIt = base.createBlock({
 
 		return {
 			addons: [
+				blockCSpell({
+					words: ["apexskier"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies(

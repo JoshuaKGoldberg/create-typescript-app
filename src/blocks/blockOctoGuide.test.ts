@@ -13,6 +13,16 @@ describe(blockOctoGuide, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "octoguide",
+			        ],
+			      },
+			      "block": "[Block CSpell]",
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "workflows": {
@@ -84,6 +94,14 @@ describe(blockOctoGuide, () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "octoguide",
+			        ],
+			      },
+			      "block": "[Block CSpell]",
+			    },
 			    {
 			      "addons": {
 			        "files": [
@@ -166,6 +184,16 @@ describe(blockOctoGuide, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "words": [
+			          "octoguide",
+			        ],
+			      },
+			      "block": "[Block CSpell]",
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "workflows": {

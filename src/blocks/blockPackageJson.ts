@@ -8,7 +8,6 @@ import { base } from "../base.ts";
 import { formatFile } from "../utils/formatFile.ts";
 import { htmlToTextSafe } from "../utils/htmlToTextSafe.ts";
 import { resolveEmails } from "../utils/resolveEmails.ts";
-import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { CommandPhase } from "./phases.ts";
@@ -85,14 +84,12 @@ export const blockPackageJson = base.createBlock({
 								...(options.pnpm && {
 									packageManager: `pnpm@${options.pnpm}`,
 								}),
-								files: processFiles([
-									...filterExistingFiles(
-										addons.existingFiles,
-										addons.outdatedFiles,
-										options.bin,
-									),
-									...(addons.properties.files ?? []),
-								]),
+								files: mergeFiles(
+									processFiles(addons.properties.files),
+									addons.existingFiles,
+									addons.outdatedFiles,
+									options.bin,
+								),
 								keywords: options.keywords,
 								name: options.repository,
 								repository: {
@@ -128,53 +125,61 @@ export const blockPackageJson = base.createBlock({
 	},
 });
 
-function filterExistingFiles(
+function mergeFiles(
+	addonFiles: string[],
 	existingFiles: string[],
 	outdatedFiles: string[],
 	bin: Record<string, string | undefined> | string | undefined,
 ) {
-	const removals = new Set([
-		...outdatedFiles,
+	const removals = new Set(
+		[
+			...outdatedFiles,
 
-		// Older versions of this template listed files npm always includes anyway
-		...(typeof bin === "object" ? Object.values(bin) : [bin]).map(
-			trimPrecedingSlash,
-		),
-		"LICENSE.md",
-		"package.json",
-		"README.md",
-	]);
-
-	return existingFiles.filter(
-		(file) => !removals.has(trimPrecedingSlash(file)),
+			// Older versions of this template listed files npm always includes anyway
+			...(typeof bin === "object" ? Object.values(bin) : [bin]),
+			"LICENSE.md",
+			"package.json",
+			"README.md",
+		]
+			.filter((file) => file !== undefined)
+			.map(normalizeFile),
 	);
-}
+	const seen = new Set(addonFiles.map(normalizeFile));
 
-function processFiles(files: string[]) {
-	const unique = Array.from(new Set(files.filter(Boolean)));
+	// Existing entries keep their order, as negations depend on earlier entries
+	const files = [...addonFiles];
 
-	// If no files have been specified, we can skip the property altogether
-	if (!unique.length) {
-		return undefined;
+	for (const file of existingFiles) {
+		const normalized = normalizeFile(file);
+		if (normalized && !removals.has(normalized) && !seen.has(normalized)) {
+			files.push(file);
+			seen.add(normalized);
+		}
 	}
 
-	// Negated entries only exclude files from earlier entries, so they go last
-	const negations = unique.filter((file) => file.startsWith("!"));
+	// If no files have been specified, we can skip the property altogether
+	return files.length ? files : undefined;
+}
 
+function normalizeFile(file: string) {
+	return file.replace(/^(!?)\.?\//u, "$1").replace(/\/$/u, "");
+}
+
+function processFiles(files: string[] | undefined = []) {
 	// First sort so that shorter entries are first (e.g. "lib/")...
-	const sortedByLength = unique
-		.filter((file) => !file.startsWith("!"))
+	const sortedByLength = files
+		.filter(Boolean)
 		.sort((a, b) => a.length - b.length);
 
 	// ...then remove entries captured by earlier directories (e.g. "lib/index.js")
-	const patterns = sortedByLength.filter(
-		(file, i) =>
-			!sortedByLength
-				.slice(0, i)
-				.some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
-	);
-
-	return [...patterns.sort(), ...negations];
+	return sortedByLength
+		.filter(
+			(file, i) =>
+				!sortedByLength
+					.slice(0, i)
+					.some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
+		)
+		.sort();
 }
 
 function removeRangePrefix(version: string) {

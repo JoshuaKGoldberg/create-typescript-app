@@ -992,18 +992,16 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
-	it("keeps existing files alongside addon files, with negations last", () => {
+	it("keeps existing files after addon files, in their original order", () => {
 		const creation = testBlock(blockPackageJson, {
 			addons: {
 				existingFiles: [
 					"dist/",
-					"!dist/**/*.test.*",
 					"assets/",
+					"!dist/**/*.test.*",
 					"!dist/tests/",
 				],
-				properties: {
-					files: ["dist/", "dist/index.js"],
-				},
+				properties: { files: ["dist/", "dist/index.js"] },
 			},
 			options,
 		});
@@ -1013,10 +1011,93 @@ describe(blockPackageJson, () => {
 			JSON.parse(creation.files!["package.json"] as string).files,
 		).toMatchInlineSnapshot(`
 			[
-			  "assets/",
 			  "dist/",
+			  "assets/",
 			  "!dist/**/*.test.*",
 			  "!dist/tests/",
+			]
+		`);
+	});
+
+	it("keeps an existing file include under an existing directory", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["dist/", "dist/special.js", "!dist/*.js"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "dist/special.js",
+			  "!dist/*.js",
+			]
+		`);
+	});
+
+	it("keeps an existing re-include after an existing negation", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["dist/", "!dist/tests/", "dist/tests/*.js"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "!dist/tests/",
+			  "dist/tests/*.js",
+			]
+		`);
+	});
+
+	it("keeps an existing file under an addon directory", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["dist/", "dist/index.js.map"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "dist/index.js.map",
+			]
+		`);
+	});
+
+	it("dedupes existing files that only differ in slashes, using the addon spelling", () => {
+		const creation = testBlock(blockPackageJson, {
+			addons: {
+				existingFiles: ["./dist/", "/assets", "assets/", "lib/**"],
+				properties: { files: ["dist/"] },
+			},
+			options,
+		});
+
+		expect(
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unsafe-member-access
+			JSON.parse(creation.files!["package.json"] as string).files,
+		).toMatchInlineSnapshot(`
+			[
+			  "dist/",
+			  "/assets",
+			  "lib/**",
 			]
 		`);
 	});
@@ -1025,23 +1106,20 @@ describe(blockPackageJson, () => {
 		const creation = testBlock(blockPackageJson, {
 			addons: {
 				existingFiles: [
+					"lib",
+					"./lib/",
+					"/lib/",
 					"!lib/**/*.test.*",
 					"./bin/index.js",
 					"bin/other.js",
 					"LICENSE.md",
-					"lib/",
 					"package.json",
 					"README.md",
 				],
 				outdatedFiles: ["lib/"],
-				properties: {
-					files: ["dist/"],
-				},
+				properties: { files: ["dist/"] },
 			},
-			options: {
-				...options,
-				bin: "./bin/index.js",
-			},
+			options: { ...options, bin: "bin/index.js" },
 		});
 
 		expect(
@@ -1049,9 +1127,9 @@ describe(blockPackageJson, () => {
 			JSON.parse(creation.files!["package.json"] as string).files,
 		).toMatchInlineSnapshot(`
 			[
-			  "bin/other.js",
 			  "dist/",
 			  "!lib/**/*.test.*",
+			  "bin/other.js",
 			]
 		`);
 	});
@@ -1061,9 +1139,7 @@ describe(blockPackageJson, () => {
 			addons: {
 				existingFiles: ["lib/"],
 				outdatedFiles: ["lib/"],
-				properties: {
-					files: ["lib/"],
-				},
+				properties: { files: ["lib/"] },
 			},
 			options,
 		});

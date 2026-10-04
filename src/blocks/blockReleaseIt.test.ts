@@ -111,7 +111,7 @@ describe(blockReleaseIt, () => {
 			jobs:
 			  release:
 			    permissions:
-			      contents: write
+			      contents: read
 			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -288,7 +288,7 @@ describe(blockReleaseIt, () => {
 			jobs:
 			  release:
 			    permissions:
-			      contents: write
+			      contents: read
 			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:

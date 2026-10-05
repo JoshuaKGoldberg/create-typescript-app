@@ -38,6 +38,16 @@ describe(blockVSCode, () => {
 			      },
 			      "block": "[Block Development Docs]",
 			    },
+			    {
+			      "addons": {
+			        "checklists": {
+			          "tooling": [
+			            "I have tried restarting my IDE and the issue persists.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
+			    },
 			  ],
 			  "files": {
 			    ".vscode": {
@@ -89,6 +99,16 @@ describe(blockVSCode, () => {
 			        },
 			      },
 			      "block": "[Block Development Docs]",
+			    },
+			    {
+			      "addons": {
+			        "checklists": {
+			          "tooling": [
+			            "I have tried restarting my IDE and the issue persists.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
 			    },
 			  ],
 			  "files": {
@@ -155,6 +175,16 @@ describe(blockVSCode, () => {
 			        },
 			      },
 			      "block": "[Block Development Docs]",
+			    },
+			    {
+			      "addons": {
+			        "checklists": {
+			          "tooling": [
+			            "I have tried restarting my IDE and the issue persists.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
 			    },
 			  ],
 			  "files": {

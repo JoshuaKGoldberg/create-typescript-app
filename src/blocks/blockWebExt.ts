@@ -3,6 +3,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.ts";
 import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
@@ -97,6 +98,15 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 							steps: [{ run: "pnpm dev" }, { run: "pnpm lint:web-ext" }],
 						},
 					],
+				}),
+				blockGitHubIssueTemplates({
+					checklists: {
+						bug: [
+							"I have tried disabling other extensions and the issue persists.",
+							"I have tried the latest version of the extension and the issue persists.",
+						],
+						feature: ["I have looked at the latest version of the extension."],
+					},
 				}),
 				blockGitignore({
 					ignores: ["*.zip", "/lib", "web-ext-artifacts"],

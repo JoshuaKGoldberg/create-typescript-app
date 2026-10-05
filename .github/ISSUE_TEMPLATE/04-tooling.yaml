@@ -3,9 +3,9 @@ body:
       description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
       label: Tooling Report Checklist
       options:
-        - label: I have tried restarting my IDE and the issue persists.
-          required: true
         - label: I have pulled in the newest version of the project.
+          required: true
+        - label: I have tried restarting my IDE and the issue persists.
           required: true
         - label: I have [searched for related issues](https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=is%3Aissue) and found none that matched my issue.
           required: true

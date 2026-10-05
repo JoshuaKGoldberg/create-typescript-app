@@ -5,6 +5,7 @@ import { base } from "../base.ts";
 import { formatFile } from "../utils/formatFile.ts";
 import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
+import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.ts";
 
 export const blockVSCode = base.createBlock({
 	about: {
@@ -67,6 +68,11 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 								},
 							],
 						},
+					},
+				}),
+				blockGitHubIssueTemplates({
+					checklists: {
+						tooling: ["I have tried restarting my IDE and the issue persists."],
 					},
 				}),
 			],

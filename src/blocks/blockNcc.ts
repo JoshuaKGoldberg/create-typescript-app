@@ -83,6 +83,9 @@ pnpm build:release
 							"I have checked the workflow run logs for errors.",
 							`I have tried the [latest release](https://github.com/${options.owner}/${options.repository}/releases/latest) of this action and the issue persists.`,
 						],
+						feature: [
+							`I have looked at the [latest release](https://github.com/${options.owner}/${options.repository}/releases/latest) of this action.`,
+						],
 					},
 				}),
 				blockPackageJson({

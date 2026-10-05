@@ -126,6 +126,20 @@ describe("blockWebExt", () => {
 			    },
 			    {
 			      "addons": {
+			        "checklists": {
+			          "bug": [
+			            "I have tried disabling other extensions and the issue persists.",
+			            "I have tried the latest version of the extension and the issue persists.",
+			          ],
+			          "feature": [
+			            "I have looked at the latest version of the extension.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
+			    },
+			    {
+			      "addons": {
 			        "ignores": [
 			          "*.zip",
 			          "/lib",

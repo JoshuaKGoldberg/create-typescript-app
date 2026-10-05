@@ -33,8 +33,12 @@ describe(blockGitHubIssueTemplates, () => {
 		const creation = testBlock(blockGitHubIssueTemplates, {
 			addons: {
 				checklists: {
-					bug: ["I have checked the workflow run logs for errors."],
-					tooling: [],
+					bug: [
+						"I have tried the latest release and the issue persists.",
+						"I have checked the workflow run logs for errors.",
+					],
+					documentation: ["I have read the docs website."],
+					tooling: ["I have tried restarting my IDE and the issue persists."],
 				},
 			},
 			options: optionsBase,
@@ -50,6 +54,8 @@ describe(blockGitHubIssueTemplates, () => {
 			      label: Bug Report Checklist
 			      options:
 			        - label: I have checked the workflow run logs for errors.
+			          required: true
+			        - label: I have tried the latest release and the issue persists.
 			          required: true
 			        - label: I have [searched for related issues](https://github.com/test-owner/test-repository/issues?q=is%3Aissue) and found none that matched my issue.
 			          required: true
@@ -94,6 +100,8 @@ describe(blockGitHubIssueTemplates, () => {
 			      options:
 			        - label: I have looked at the latest \`main\` branch of the repository.
 			          required: true
+			        - label: I have read the docs website.
+			          required: true
 			        - label: I have [searched for related issues](https://github.com/test-owner/test-repository/issues?q=is%3Aissue) and found none that matched my issue.
 			          required: true
 			    type: checkboxes
@@ -129,8 +137,6 @@ describe(blockGitHubIssueTemplates, () => {
 			      description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
 			      label: Feature Request Checklist
 			      options:
-			        - label: I have looked at the latest version of the project.
-			          required: true
 			        - label: I have [searched for related issues](https://github.com/test-owner/test-repository/issues?q=is%3Aissue) and found none that matched my issue.
 			          required: true
 			    type: checkboxes
@@ -166,6 +172,10 @@ describe(blockGitHubIssueTemplates, () => {
 			      description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
 			      label: Tooling Report Checklist
 			      options:
+			        - label: I have pulled in the newest version of the project.
+			          required: true
+			        - label: I have tried restarting my IDE and the issue persists.
+			          required: true
 			        - label: I have [searched for related issues](https://github.com/test-owner/test-repository/issues?q=is%3Aissue) and found none that matched my issue.
 			          required: true
 			    type: checkboxes

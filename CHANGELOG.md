@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.69.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.69.0...2.69.1) (2026-10-05)
+
+### Bug Fixes
+
+- keep tsdown's dist/ settings out of blockNcc repositories ([#2540](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2540)) ([b971f76](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b971f7680753d809b1a1a0a4b20e487b12fb0579)), closes [#2514](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2514)
+
 ## [2.69.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.2...2.69.0) (2026-10-05)
 
 ### Features

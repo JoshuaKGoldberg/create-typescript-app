@@ -56,7 +56,8 @@ export const blockReleaseIt = base.createBlock({
 				blockRepositorySecrets({
 					secrets: [
 						{
-							description: "a GitHub PAT with repo and workflow permissions",
+							description:
+								"a fine-grained GitHub PAT, see https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/docs/TokensAndApps.md",
 							name: "ACCESS_TOKEN",
 						},
 					],

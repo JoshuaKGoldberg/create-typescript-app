@@ -14,13 +14,8 @@ The setup script will by default:
 4. Create a new repository on GitHub and set it as the local repository's upstream
 5. Configure relevant settings on the GitHub repository
 
-You'll then need to manually go through the following two steps to set up tooling on GitHub:
-
-1. Create one token in [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) _(unless you chose to opt out of releases)_:
-   - `ACCESS_TOKEN`: A [GitHub PAT](https://github.com/settings/tokens/new) with _repo_ and _workflow_ permissions
-2. Install two GitHub apps:
-   - [Codecov](https://github.com/marketplace/codecov) _(unless you chose to opt out of tests)_
-   - [Renovate](https://github.com/marketplace/renovate) _(unless you chose to opt out of renovate)_
+You'll then need to set up a token, some GitHub apps, and npm publishing by hand.
+See [Tokens and Apps](./TokensAndApps.md).
 
 Your new repository will then be ready for development!
 Hooray! 🥳

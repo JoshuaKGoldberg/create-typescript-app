@@ -5,7 +5,10 @@ import { resolveUses } from "./actions/resolveUses.ts";
 import { zActionStep } from "./actions/steps.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
-import { createMultiWorkflowFile } from "./files/createMultiWorkflowFile.ts";
+import {
+	createMultiWorkflowFile,
+	zMultiWorkflowJobPermissions,
+} from "./files/createMultiWorkflowFile.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { withPreviously } from "./files/withPreviously.ts";
@@ -21,6 +24,7 @@ export const blockGitHubActionsCI = base.createBlock({
 					checkoutWith: z.record(z.string(), z.string()).optional(),
 					if: z.string().optional(),
 					name: z.string(),
+					permissions: zMultiWorkflowJobPermissions.optional(),
 					steps: z.array(zActionStep),
 				}),
 			)

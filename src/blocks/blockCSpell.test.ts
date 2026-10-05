@@ -85,13 +85,7 @@ describe(blockCSpell, () => {
 			  "files": {
 			    "cspell.json": "{
 				"dictionaries": ["npm", "node", "typescript"],
-				"ignorePaths": [
-					".github",
-					"CHANGELOG.md",
-					"dist",
-					"node_modules",
-					"pnpm-lock.yaml"
-				]
+				"ignorePaths": ["CHANGELOG.md", "dist", "node_modules", "pnpm-lock.yaml"]
 			}
 			",
 			  },
@@ -166,7 +160,6 @@ describe(blockCSpell, () => {
 			    "cspell.json": "{
 				"dictionaries": ["npm", "node", "typescript"],
 				"ignorePaths": [
-					".github",
 					"CHANGELOG.md",
 					"dist",
 					"lib/",
@@ -246,13 +239,7 @@ describe(blockCSpell, () => {
 			  "files": {
 			    "cspell.json": "{
 				"dictionaries": ["npm", "node", "typescript"],
-				"ignorePaths": [
-					".github",
-					"CHANGELOG.md",
-					"dist",
-					"node_modules",
-					"pnpm-lock.yaml"
-				],
+				"ignorePaths": ["CHANGELOG.md", "dist", "node_modules", "pnpm-lock.yaml"],
 				"words": ["joshuakgoldberg"]
 			}
 			",
@@ -324,13 +311,7 @@ describe(blockCSpell, () => {
 			  "files": {
 			    "cspell.json": "{
 				"dictionaries": ["npm", "node", "typescript"],
-				"ignorePaths": [
-					".github",
-					"CHANGELOG.md",
-					"dist",
-					"node_modules",
-					"pnpm-lock.yaml"
-				]
+				"ignorePaths": ["CHANGELOG.md", "dist", "node_modules", "pnpm-lock.yaml"]
 			}
 			",
 			  },
@@ -418,13 +399,7 @@ describe(blockCSpell, () => {
 			  "files": {
 			    "cspell.json": "{
 				"dictionaries": ["npm", "node", "typescript"],
-				"ignorePaths": [
-					".github",
-					"CHANGELOG.md",
-					"dist",
-					"node_modules",
-					"pnpm-lock.yaml"
-				]
+				"ignorePaths": ["CHANGELOG.md", "dist", "node_modules", "pnpm-lock.yaml"]
 			}
 			",
 			  },
@@ -474,6 +449,37 @@ describe(blockCSpell, () => {
 			});
 
 			expect(actual).toEqual(data);
+		});
+
+		it("removes .github from ignorePaths when it is the only ignore path", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [JSON.stringify({ ignorePaths: [".github"] })],
+				},
+			});
+
+			expect(actual).toEqual({
+				ignorePaths: [],
+				words: [],
+			});
+		});
+
+		it("removes .github from ignorePaths when cspell.json contains it", () => {
+			const actual = testIntake(blockCSpell, {
+				files: {
+					"cspell.json": [
+						JSON.stringify({
+							ignorePaths: [".github", "other"],
+							words: ["abc"],
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				ignorePaths: ["other"],
+				words: ["abc"],
+			});
 		});
 	});
 });

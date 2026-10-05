@@ -4,7 +4,7 @@ concurrency:
 jobs:
   release:
     permissions:
-      contents: write
+      contents: read
       id-token: write
     runs-on: ubuntu-latest
     steps:

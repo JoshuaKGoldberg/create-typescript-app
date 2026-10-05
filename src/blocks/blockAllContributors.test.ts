@@ -163,7 +163,7 @@ describe("blockAllContributors", () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/test-repository/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -313,7 +313,7 @@ describe("blockAllContributors", () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/create-typescript-app/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/create-typescript-app/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/test-owner/test-repository/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
 			    </tr>
 			  </tbody>
 			</table>

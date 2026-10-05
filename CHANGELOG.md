@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.68.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.1...2.68.2) (2026-10-05)
+
+### Bug Fixes
+
+- link README contributors to the repository and print all contribution types ([#2535](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2535)) ([78fbd0c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/78fbd0c0bfbb8c9fce243d19e5431d5eb2b6ca58)), closes [#2519](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2519)
+
+## [2.68.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.0...2.68.1) (2026-10-04)
+
+### Bug Fixes
+
+- clear dist/ and ignore .d.ts files in blockNcc build:release ([#2537](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2537)) ([51e42cf](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/51e42cf2f5da1b9a548c938be3808344dfcd4e32)), closes [#2520](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2520)
+
+## [2.68.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.4...2.68.0) (2026-10-04)
+
+### Features
+
+- allow setting permissions on blockGitHubActionsCI jobs ([#2533](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2533)) ([e095792](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e095792bcb81442099540851ac2abcbe71147e4a)), closes [#2523](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2523), references [JoshuaKGoldberg/release-it-action#939](https://github.com/JoshuaKGoldberg/release-it-action/issues/939)
+- verify committed dist/ is up to date in blockNcc's Build (Release) job ([#2538](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2538)) ([0a91a14](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0a91a1497c717ea34229fbb4d7f3ddb7d8fa8560)), closes [#2521](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2521)
+
+### Bug Fixes
+
+- retain existing package.json files entries in transition mode ([#2536](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2536)) ([b6ffda2](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b6ffda22ae9137ce33f8793172fec7fda98be137)), closes [#2522](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2522)
+- say "issue tracker" in generated CONTRIBUTING.md ([#2530](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2530)) ([15a1a26](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/15a1a26d5e5982db70e9feacabb75c1481c75316)), closes [#2516](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2516)
+- spell check .github files with lint:spelling ([#2534](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2534)) ([d3fdb3b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d3fdb3bff88697d6ef9b42988c8911870f229a34)), closes [#2517](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2517)
+
+## [2.67.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.3...2.67.4) (2026-10-04)
+
+### Bug Fixes
+
+- correct blockNcc build --watch wording ([#2532](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2532)) ([cf35c6d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cf35c6d32fc64a0a3c791ae7473309f436b21ee7)), closes [#2515](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2515)
+- grant generated Release workflow contents: read instead of write ([#2531](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2531)) ([c6bd882](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c6bd8827618c1aec3f507b4f66e96d990411cc49)), closes [#2524](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2524), references [JoshuaKGoldberg/release-it-action#930](https://github.com/JoshuaKGoldberg/release-it-action/issues/930)
+
 ## [2.67.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.67.2...2.67.3) (2026-10-04)
 
 ### Bug Fixes

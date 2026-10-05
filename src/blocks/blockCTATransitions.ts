@@ -1,6 +1,7 @@
 import { base } from "../base.ts";
 import { packageData } from "../data/packageData.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
@@ -14,6 +15,9 @@ export const blockCTATransitions = base.createBlock({
 	produce({ options }) {
 		return {
 			addons: [
+				blockCSpell({
+					words: ["mshick", options.owner, "stefanzweifel"],
+				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: {

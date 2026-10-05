@@ -196,6 +196,9 @@ export default defineConfig(${JSON.stringify({
 				blockGitignore({
 					removals: ["/lib", "lib/"],
 				}),
+				blockPackageJson({
+					outdatedFiles: ["lib/"],
+				}),
 				blockRemoveDependencies({
 					dependencies: [
 						"@babel/cli",

@@ -25,6 +25,21 @@ You can also do step 4 from the command line with [`npm trust github --file rele
 
 From then on, the `release.yaml` workflow will publish new versions for you.
 
+## How do I release a new major version?
+
+Add a `!` before the colon in the PR title, such as `feat!: drop support for Node.js 20`.
+The Release workflow will then bump the major version, including from `0.x` to `1.0.0`.
+
+Use the `!` rather than writing `BREAKING CHANGE:` in the PR description.
+The workflow only checks titles when deciding whether to release, but a `BREAKING CHANGE:` line anywhere in a description still makes the next release major.
+
+To put several breaking changes into one major version:
+
+1. Disable the Release workflow with `gh workflow disable release.yaml`
+2. Merge all but the last PR
+3. Re-enable it with `gh workflow enable release.yaml`
+4. Merge the last PR
+
 ## Can I use _(insert tool here)_ with this template?
 
 Yes!

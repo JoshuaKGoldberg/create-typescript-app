@@ -6,6 +6,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.ts";
 import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
@@ -30,7 +31,7 @@ export const blockNcc = base.createBlock({
 			entry: scripts?.["build:release"]?.match(/ncc build (.+) -o dist/)?.[1],
 		};
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { build, entry = "src/index.ts" } = addons;
 
 		return {
@@ -48,7 +49,7 @@ Run [TypeScript](https://typescriptlang.org) locally to type check and build sou
 pnpm build
 \`\`\`
 
-Add \`--watch\` to run the builder in a watch mode that continuously cleans and recreates \`lib/\` as you save files:
+Add \`--watch\` to run the builder in a watch mode that rebuilds changed files into \`lib/\` as you save them:
 
 \`\`\`shell
 pnpm build --watch
@@ -57,11 +58,15 @@ pnpm build --watch
 							innerSections: [
 								{
 									contents: `
-Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to create an output \`dist/\` to be used in production.
+Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to clear and recreate an output \`dist/\` to be used in production.
 
 \`\`\`shell
 pnpm build:release
 \`\`\`
+
+CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces, not counting \`.d.ts\` files.
+If that happens, run \`pnpm build:release\` and commit the changed files under \`dist/\`.
+Renovate PRs that update bundled dependencies need the same: rebuild and commit \`dist/\` on their branch before they can merge.
 		`,
 									heading: "Building for Release",
 								},
@@ -80,12 +85,35 @@ pnpm build:release
 						},
 						{
 							name: "Build (Release)",
-							steps: [{ run: "pnpm build:release" }],
+							steps: [
+								{ run: "pnpm build:release" },
+								{
+									run: `# Verify dist/ is up to date
+changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
+if [ -n "$changes" ]; then
+  echo "$changes"
+  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
+  exit 1
+fi
+`,
+								},
+							],
 						},
 					],
 				}),
+				blockGitHubIssueTemplates({
+					checklists: {
+						bug: [
+							"I have checked the workflow run logs for errors.",
+							`I have tried the [latest release](https://github.com/${options.owner}/${options.repository}/releases/latest) of this action and the issue persists.`,
+						],
+						feature: [
+							`I have looked at the [latest release](https://github.com/${options.owner}/${options.repository}/releases/latest) of this action.`,
+						],
+					},
+				}),
 				blockGitignore({
-					ignores: ["/lib"],
+					ignores: ["/dist/**/*.d.ts", "/dist/**/*.d.ts.map", "/lib"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -95,7 +123,7 @@ pnpm build:release
 						files: ["lib/"],
 						scripts: {
 							build: build ?? "tsc --project tsconfig.build.json",
-							"build:release": `ncc build ${entry} -o dist`,
+							"build:release": `rm -rf dist && ncc build ${entry} -o dist`,
 						},
 					},
 				}),

@@ -8,6 +8,7 @@ import { formatFile } from "../utils/formatFile.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.ts";
 import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockReleaseIt } from "./blockReleaseIt.ts";
@@ -134,6 +135,15 @@ pnpm build --watch
 						},
 					],
 				}),
+				blockGitHubIssueTemplates({
+					checklists: {
+						bug: [
+							"I have pulled in the newest version of the project.",
+							"I have tried restarting my IDE and the issue persists.",
+						],
+						feature: ["I have looked at the latest version of the project."],
+					},
+				}),
 				blockGitignore({
 					ignores: ["/dist"],
 				}),
@@ -193,6 +203,9 @@ export default defineConfig(${JSON.stringify({
 			addons: [
 				blockGitignore({
 					removals: ["/lib", "dist/", "lib/"],
+				}),
+				blockPackageJson({
+					outdatedFiles: ["lib/"],
 				}),
 				blockRemoveDependencies({
 					dependencies: [

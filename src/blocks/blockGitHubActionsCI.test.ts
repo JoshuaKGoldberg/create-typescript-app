@@ -313,4 +313,156 @@ describe(blockGitHubActionsCI, () => {
 			}
 		`);
 	});
+
+	test("with job permissions", () => {
+		const creation = testBlock(blockGitHubActionsCI, {
+			addons: {
+				jobs: [
+					{
+						checkoutWith: { "fetch-depth": "0" },
+						name: "Action",
+						permissions: { contents: "read" },
+						steps: [
+							{
+								uses: "./",
+								with: { "github-token": "${{ secrets.GITHUB_TOKEN }}" },
+							},
+						],
+					},
+					{
+						name: "Build",
+						steps: [{ run: "pnpm build" }],
+					},
+				],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "requiredStatusChecks": [
+			          "Action",
+			          "Build",
+			          "Engines Check",
+			        ],
+			      },
+			      "block": "[Block Repository Branch Ruleset]",
+			    },
+			  ],
+			  "files": {
+			    ".github": {
+			      "actions": {
+			        "prepare": {
+			          "action.yaml": [
+			            "description: Prepares the repo for a typical CI job
+
+			name: Setup
+
+			runs:
+			  steps:
+			    - uses: pnpm/action-setup@v4
+			    - uses: actions/setup-node@v4
+			      with:
+			        cache: pnpm
+			        node-version: lts/*
+			    - run: pnpm install --frozen-lockfile
+			      shell: bash
+			  using: composite
+			",
+			            {
+			              "previously": [
+			                "action.yml",
+			              ],
+			            },
+			          ],
+			        },
+			      },
+			      "workflows": {
+			        "ci.yaml": [
+			          "jobs:
+			  action:
+			    name: Action
+			    permissions:
+			      contents: read
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			        with:
+			          fetch-depth: '0'
+			      - uses: ./.github/actions/prepare
+			      - uses: ./
+			        with:
+			          github-token: \${{ secrets.GITHUB_TOKEN }}
+
+			  build:
+			    name: Build
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - run: pnpm build
+
+			  engines_check:
+			    name: Engines Check
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions/checkout@v4
+			      - uses: ./.github/actions/prepare
+			      - uses: actions/setup-node@v4
+			        with:
+			          cache: pnpm
+			          node-version: 20.12.0
+			      - run: pnpm install --prod --engine-strict --ignore-scripts
+
+			name: CI
+
+			on:
+			  pull_request: ~
+			  push:
+			    branches:
+			      - main
+			",
+			          {
+			            "previously": [
+			              "ci.yml",
+			            ],
+			          },
+			        ],
+			        "pr-review-requested.yaml": [
+			          "jobs:
+			  pr_review_requested:
+			    permissions:
+			      pull-requests: write
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: actions-ecosystem/action-remove-labels@v1
+			        with:
+			          labels: 'status: waiting for author'
+			      - if: failure()
+			        run: |
+			          echo "Don't worry if the previous step failed."
+			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+
+			name: PR Review Requested
+
+			on:
+			  pull_request_target:
+			    types:
+			      - review_requested
+			",
+			          {
+			            "previously": [
+			              "pr-review-requested.yml",
+			            ],
+			          },
+			        ],
+			      },
+			    },
+			  },
+			}
+		`);
+	});
 });

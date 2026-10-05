@@ -2,7 +2,6 @@
 	"dictionaries": ["npm", "node", "typescript"],
 	"ignorePaths": [
 		".all-contributorsrc",
-		".github",
 		"CHANGELOG.md",
 		"coverage",
 		"dist",
@@ -11,6 +10,7 @@
 	],
 	"words": [
 		"Anson",
+		"JoshuaKGoldberg",
 		"TSESTree",
 		"apexskier",
 		"attw",

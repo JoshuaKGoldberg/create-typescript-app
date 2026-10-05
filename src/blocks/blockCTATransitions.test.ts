@@ -2,6 +2,7 @@ import { testBlock } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { packageData } from "../data/packageData.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockCTATransitions } from "./blockCTATransitions.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
@@ -14,6 +15,9 @@ describe("blockCTATransitions", () => {
 		});
 
 		expect(creation.addons).toEqual([
+			blockCSpell({
+				words: ["mshick", optionsBase.owner, "stefanzweifel"],
+			}),
 			blockPackageJson({
 				properties: {
 					devDependencies: {

@@ -27,6 +27,14 @@ describe(blockReleaseIt, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "words": [
+			          "apexskier",
+			        ],
+			      },
+			      "block": "[Block CSpell]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "0.0.0-mock",
@@ -111,7 +119,7 @@ describe(blockReleaseIt, () => {
 			jobs:
 			  release:
 			    permissions:
-			      contents: write
+			      contents: read
 			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -204,6 +212,14 @@ describe(blockReleaseIt, () => {
 			  "addons": [
 			    {
 			      "addons": {
+			        "words": [
+			          "apexskier",
+			        ],
+			      },
+			      "block": "[Block CSpell]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "0.0.0-mock",
@@ -288,7 +304,7 @@ describe(blockReleaseIt, () => {
 			jobs:
 			  release:
 			    permissions:
-			      contents: write
+			      contents: read
 			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:

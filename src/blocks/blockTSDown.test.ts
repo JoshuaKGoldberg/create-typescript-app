@@ -72,6 +72,20 @@ describe(blockTSDown, () => {
 			    },
 			    {
 			      "addons": {
+			        "checklists": {
+			          "bug": [
+			            "I have pulled in the newest version of the project.",
+			            "I have tried restarting my IDE and the issue persists.",
+			          ],
+			          "feature": [
+			            "I have looked at the latest version of the project.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
+			    },
+			    {
+			      "addons": {
 			        "ignores": [
 			          "/dist",
 			        ],
@@ -186,6 +200,20 @@ describe(blockTSDown, () => {
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
+			    },
+			    {
+			      "addons": {
+			        "checklists": {
+			          "bug": [
+			            "I have pulled in the newest version of the project.",
+			            "I have tried restarting my IDE and the issue persists.",
+			          ],
+			          "feature": [
+			            "I have looked at the latest version of the project.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
 			    },
 			    {
 			      "addons": {
@@ -347,6 +375,20 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			    },
 			    {
 			      "addons": {
+			        "checklists": {
+			          "bug": [
+			            "I have pulled in the newest version of the project.",
+			            "I have tried restarting my IDE and the issue persists.",
+			          ],
+			          "feature": [
+			            "I have looked at the latest version of the project.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
+			    },
+			    {
+			      "addons": {
 			        "ignores": [
 			          "/dist",
 			        ],
@@ -360,6 +402,9 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			    },
 			    {
 			      "addons": {
+			        "outdatedFiles": [
+			          "lib/",
+			        ],
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.0.0-mock",

@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { withPreviously } from "./files/withPreviously.ts";
@@ -9,6 +10,9 @@ export const blockFunding = base.createBlock({
 	},
 	produce({ options }) {
 		return {
+			addons: options.funding
+				? [blockCSpell({ words: [options.funding] })]
+				: [],
 			files: {
 				".github": {
 					"FUNDING.yaml": withPreviously(

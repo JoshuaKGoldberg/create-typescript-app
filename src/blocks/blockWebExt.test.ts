@@ -128,7 +128,6 @@ describe("blockWebExt", () => {
 			      "addons": {
 			        "checklists": {
 			          "bug": [
-			            "I have tried disabling other extensions and the issue persists.",
 			            "I have tried the latest version of the extension and the issue persists.",
 			          ],
 			          "feature": [

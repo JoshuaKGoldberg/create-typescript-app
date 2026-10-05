@@ -5,6 +5,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.ts";
 import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
@@ -23,7 +24,7 @@ export const blockNcc = base.createBlock({
 			)?.[1],
 		};
 	},
-	produce({ addons }) {
+	produce({ addons, options }) {
 		const { entry = "src/index.ts" } = addons;
 
 		return {
@@ -92,6 +93,17 @@ fi
 							],
 						},
 					],
+				}),
+				blockGitHubIssueTemplates({
+					checklists: {
+						bug: [
+							"I have checked the workflow run logs for errors.",
+							`I have tried the [latest release](https://github.com/${options.owner}/${options.repository}/releases/latest) of this action and the issue persists.`,
+						],
+						feature: [
+							`I have looked at the [latest release](https://github.com/${options.owner}/${options.repository}/releases/latest) of this action.`,
+						],
+					},
 				}),
 				blockGitignore({
 					ignores: ["/dist/**/*.d.ts", "/dist/**/*.d.ts.map"],

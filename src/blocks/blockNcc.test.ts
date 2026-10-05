@@ -102,6 +102,20 @@ describe(blockNcc, () => {
 			    },
 			    {
 			      "addons": {
+			        "checklists": {
+			          "bug": [
+			            "I have checked the workflow run logs for errors.",
+			            "I have tried the [latest release](https://github.com/test-owner/test-repository/releases/latest) of this action and the issue persists.",
+			          ],
+			          "feature": [
+			            "I have looked at the [latest release](https://github.com/test-owner/test-repository/releases/latest) of this action.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
+			    },
+			    {
+			      "addons": {
 			        "ignores": [
 			          "/dist/**/*.d.ts",
 			          "/dist/**/*.d.ts.map",
@@ -233,6 +247,20 @@ describe(blockNcc, () => {
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
+			    },
+			    {
+			      "addons": {
+			        "checklists": {
+			          "bug": [
+			            "I have checked the workflow run logs for errors.",
+			            "I have tried the [latest release](https://github.com/test-owner/test-repository/releases/latest) of this action and the issue persists.",
+			          ],
+			          "feature": [
+			            "I have looked at the [latest release](https://github.com/test-owner/test-repository/releases/latest) of this action.",
+			          ],
+			        },
+			      },
+			      "block": "[Block GitHub Issue Templates]",
 			    },
 			    {
 			      "addons": {

@@ -1,7 +1,9 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test } from "vitest";
 
+import { blockGitignore } from "./blockGitignore.ts";
 import { blockNcc } from "./blockNcc.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockNcc, () => {
@@ -17,6 +19,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignorePaths": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block CSpell]",
@@ -63,6 +66,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block ESLint]",
@@ -119,6 +123,7 @@ describe(blockNcc, () => {
 			        "ignores": [
 			          "/dist/**/*.d.ts",
 			          "/dist/**/*.d.ts.map",
+			          "/lib",
 			        ],
 			      },
 			      "block": "[Block Gitignore]",
@@ -129,8 +134,11 @@ describe(blockNcc, () => {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
+			          "files": [
+			            "lib/",
+			          ],
 			          "scripts": {
-			            "build": "tsc",
+			            "build": "tsc --project tsconfig.build.json",
 			            "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
 			          },
 			        },
@@ -141,11 +149,41 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "/dist",
+			          "/lib",
 			        ],
 			      },
 			      "block": "[Block Prettier]",
 			    },
+			    {
+			      "addons": {
+			        "builders": [
+			          {
+			            "order": 0,
+			            "run": "pnpm build",
+			          },
+			        ],
+			      },
+			      "block": "[Block release-it]",
+			    },
+			    {
+			      "addons": {
+			        "outDir": "lib",
+			      },
+			      "block": "[Block TypeScript]",
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "lib",
+			        ],
+			      },
+			      "block": "[Block Vitest]",
+			    },
 			  ],
+			  "files": {
+			    "tsconfig.build.json": "{ "exclude": ["src/**/*.test.ts"], "extends": "./tsconfig.json" }
+			",
+			  },
 			}
 		`);
 	});
@@ -165,6 +203,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignorePaths": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block CSpell]",
@@ -211,6 +250,7 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "dist",
+			          "lib",
 			        ],
 			      },
 			      "block": "[Block ESLint]",
@@ -267,6 +307,7 @@ describe(blockNcc, () => {
 			        "ignores": [
 			          "/dist/**/*.d.ts",
 			          "/dist/**/*.d.ts.map",
+			          "/lib",
 			        ],
 			      },
 			      "block": "[Block Gitignore]",
@@ -277,8 +318,11 @@ describe(blockNcc, () => {
 			          "devDependencies": {
 			            "@vercel/ncc": "^0.38.3",
 			          },
+			          "files": [
+			            "lib/",
+			          ],
 			          "scripts": {
-			            "build": "tsc",
+			            "build": "tsc --project tsconfig.build.json",
 			            "build:release": "rm -rf dist && ncc build src/action/index.ts -o dist",
 			          },
 			        },
@@ -289,13 +333,135 @@ describe(blockNcc, () => {
 			      "addons": {
 			        "ignores": [
 			          "/dist",
+			          "/lib",
 			        ],
 			      },
 			      "block": "[Block Prettier]",
 			    },
+			    {
+			      "addons": {
+			        "builders": [
+			          {
+			            "order": 0,
+			            "run": "pnpm build",
+			          },
+			        ],
+			      },
+			      "block": "[Block release-it]",
+			    },
+			    {
+			      "addons": {
+			        "outDir": "lib",
+			      },
+			      "block": "[Block TypeScript]",
+			    },
+			    {
+			      "addons": {
+			        "exclude": [
+			          "lib",
+			        ],
+			      },
+			      "block": "[Block Vitest]",
+			    },
 			  ],
+			  "files": {
+			    "tsconfig.build.json": "{ "exclude": ["src/**/*.test.ts"], "extends": "./tsconfig.json" }
+			",
+			  },
 			}
 		`);
+	});
+
+	test("with a build addon", () => {
+		const creation = testBlock(blockNcc, {
+			addons: {
+				build: "tsc --project tsconfig.custom.json",
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files).toBeUndefined();
+		expect(creation.addons?.find(({ block }) => block === blockPackageJson))
+			.toMatchInlineSnapshot(`
+				{
+				  "addons": {
+				    "properties": {
+				      "devDependencies": {
+				        "@vercel/ncc": "^0.38.3",
+				      },
+				      "files": [
+				        "lib/",
+				      ],
+				      "scripts": {
+				        "build": "tsc --project tsconfig.custom.json",
+				        "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
+				      },
+				    },
+				  },
+				  "block": "[Block Package JSON]",
+				}
+			`);
+	});
+
+	test("setup mode", () => {
+		const creation = testBlock(blockNcc, {
+			mode: "setup",
+			options: optionsBase,
+		});
+
+		expect(creation.addons?.filter(({ block }) => block === blockPackageJson))
+			.toMatchInlineSnapshot(`
+				[
+				  {
+				    "addons": {
+				      "properties": {
+				        "devDependencies": {
+				          "@vercel/ncc": "^0.38.3",
+				        },
+				        "exports": {
+				          ".": "./lib/index.js",
+				        },
+				        "files": [
+				          "lib/",
+				        ],
+				        "scripts": {
+				          "build": "tsc --project tsconfig.build.json",
+				          "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
+				        },
+				      },
+				    },
+				    "block": "[Block Package JSON]",
+				  },
+				]
+			`);
+	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockNcc, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.addons?.filter(({ block }) => block === blockGitignore))
+			.toMatchInlineSnapshot(`
+				[
+				  {
+				    "addons": {
+				      "ignores": [
+				        "/dist/**/*.d.ts",
+				        "/dist/**/*.d.ts.map",
+				        "/lib",
+				      ],
+				      "removals": [
+				        "/dist",
+				        "dist",
+				        "dist/",
+				      ],
+				    },
+				    "block": "[Block Gitignore]",
+				  },
+				]
+			`);
 	});
 
 	describe("intake", () => {
@@ -384,6 +550,38 @@ describe(blockNcc, () => {
 			});
 
 			expect(actual).toEqual({ entry: "src/action/index.ts" });
+		});
+
+		it("returns a build when options.packageData contains a tsc build script", () => {
+			const actual = testIntake(blockNcc, {
+				files: {},
+				options: {
+					...optionsBase,
+					packageData: {
+						scripts: {
+							build: "tsc --project tsconfig.build.json",
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ build: "tsc --project tsconfig.build.json" });
+		});
+
+		it("returns an undefined build when options.packageData contains a non-tsc build script", () => {
+			const actual = testIntake(blockNcc, {
+				files: {},
+				options: {
+					...optionsBase,
+					packageData: {
+						scripts: {
+							build: "tsdown",
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ build: undefined });
 		});
 	});
 });

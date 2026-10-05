@@ -1,4 +1,5 @@
 import sortKeys from "sort-keys";
+import { z } from "zod";
 import { CompilerOptionsSchema } from "zod-tsconfig";
 
 import { base } from "../base.ts";
@@ -8,7 +9,6 @@ import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockExampleFiles } from "./blockExampleFiles.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
-import { blockGitignore } from "./blockGitignore.ts";
 import { blockKnip } from "./blockKnip.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
@@ -22,6 +22,7 @@ export const blockTypeScript = base.createBlock({
 	},
 	addons: {
 		compilerOptions: CompilerOptionsSchema.optional(),
+		outDir: z.string().optional(),
 	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
@@ -35,7 +36,7 @@ export const blockTypeScript = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { compilerOptions } = addons;
+		const { compilerOptions, outDir } = addons;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
@@ -98,9 +99,6 @@ greet("Hello, world! ${options.emoji}");
 \`\`\``,
 					],
 				}),
-				blockGitignore({
-					ignores: ["/dist"],
-				}),
 				blockGitHubActionsCI({
 					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
 				}),
@@ -110,7 +108,6 @@ greet("Hello, world! ${options.emoji}");
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies("typescript"),
-						files: ["dist/"],
 					},
 				}),
 				blockVitest({ coverage: { include: ["src"] }, exclude: ["dist"] }),
@@ -155,7 +152,9 @@ greet("Hello, world! ${options.emoji}");
 							skipLibCheck: true,
 							strict: true,
 							target: "ES2023",
+							...(outDir && { outDir, rootDir: "src" }),
 							...compilerOptions,
+							...(outDir && { noEmit: undefined }),
 						}),
 						include: ["src"],
 					}),
@@ -166,9 +165,6 @@ greet("Hello, world! ${options.emoji}");
 	transition() {
 		return {
 			addons: [
-				blockGitignore({
-					removals: ["dist/"],
-				}),
 				blockRemoveWorkflows({
 					workflows: ["tsc"],
 				}),

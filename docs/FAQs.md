@@ -111,6 +111,28 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
 It's worth reading the [GitHub Actions documentation](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#writing-the-action-code).
 
+## How do I release beta versions?
+
+release-it can release prerelease versions with its [`--preRelease` option](https://github.com/release-it/release-it/blob/main/docs/pre-releases.md).
+To have the Release workflow release betas:
+
+1. In `.github/workflows/release.yaml`, add this alongside the `uses: JoshuaKGoldberg/release-it-action` line:
+
+   ```yaml
+   with:
+     release-it-args: --preRelease=beta
+   ```
+
+2. In `.release-it.json`, change the `after:git:release` hook to `npm publish --tag beta`, since npm won't publish a prerelease without a tag
+
+Each release will then be the next beta, such as `2.0.0-beta.0` and then `2.0.0-beta.1`.
+The version still follows your commits: from `1.2.0`, a breaking change releases `2.0.0-beta.0` and a fix releases `1.2.1-beta.0`.
+Users can install the latest beta with `npm install your-package@beta`.
+Re-running `create-typescript-app` resets both files, so redo these changes afterward if you're still releasing betas.
+
+To go back to stable releases, undo both changes.
+The next release will then drop the `-beta` suffix, such as going from `2.0.0-beta.1` to `2.0.0`.
+
 ## How can I bundle build output?
 
 By default, `create-typescript-app` configures [tsdown](https://tsdown.dev) with [`unbundle: true`](https://tsdown.dev/options/unbundle): every file under `src/` is built to a matching file under `dist/`.

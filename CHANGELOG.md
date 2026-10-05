@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.69.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.2...2.69.0) (2026-10-05)
+
+### Features
+
+- allow customizing issue template checklist items ([#2539](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2539)) ([55677fb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/55677fb506aaffb7035008faa8c166e51ad60447)), closes [#2518](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2518)
+
 ## [2.68.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.1...2.68.2) (2026-10-05)
 
 ### Bug Fixes

@@ -35,6 +35,7 @@
 	"dependencies": {
 		"@prettier/sync": "^0.6.1",
 		"@typescript-eslint/typescript-estree": "^8.67.0",
+		"all-contributors-types": "^0.1.0",
 		"bingo": "^0.13.1",
 		"bingo-fs": "^0.6.0",
 		"bingo-stratum": "^0.7.1",

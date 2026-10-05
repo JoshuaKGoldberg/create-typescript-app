@@ -1,10 +1,12 @@
+import {
+	contributionTypes,
+	createContributionLink,
+	isContributionTypeName,
+} from "all-contributors-types";
 import _ from "lodash";
 
 import { base } from "../base.ts";
-import {
-	contributionTypes,
-	startingOwnerContributions,
-} from "../data/contributions.ts";
+import { startingOwnerContributions } from "../data/contributions.ts";
 import { Contributor } from "../schemas.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockPrettier } from "./blockPrettier.ts";
@@ -57,10 +59,10 @@ export const blockAllContributors = base.createBlock({
 					],
 					sections: options.contributors
 						? [
-								printAllContributorsTable(
-									options.contributors,
-									`https://github.com/${options.owner}/${options.repository}`,
-								),
+								printAllContributorsTable(options.contributors, {
+									projectName: options.repository,
+									projectOwner: options.owner,
+								}),
 							]
 						: undefined,
 				}),
@@ -137,9 +139,14 @@ export const blockAllContributors = base.createBlock({
 	},
 });
 
+interface ProjectOptions {
+	projectName: string;
+	projectOwner: string;
+}
+
 function printAllContributorsTable(
 	contributors: Contributor[],
-	repositoryUrl: string,
+	project: ProjectOptions,
 ) {
 	return [
 		`## Contributors`,
@@ -153,7 +160,7 @@ function printAllContributorsTable(
 		// This intentionally uses the same sort as all-contributors-cli:
 		// https://github.com/all-contributors/cli/blob/74bc388bd6f0ae2658e6495e9d3781d737438a97/src/generate/index.js#L76
 		..._.sortBy(contributors, "name").flatMap((contributor, i) => {
-			const row = printContributorCell(contributor, repositoryUrl);
+			const row = printContributorCell(contributor, project);
 
 			return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];
 		}),
@@ -168,7 +175,10 @@ function printAllContributorsTable(
 	].join("\n");
 }
 
-function printContributorCell(contributor: Contributor, repositoryUrl: string) {
+function printContributorCell(
+	contributor: Contributor,
+	project: ProjectOptions,
+) {
 	return [
 		`      <td align="center" valign="top" width="14.28%">`,
 		`<a href="${contributor.profile}">`,
@@ -176,19 +186,15 @@ function printContributorCell(contributor: Contributor, repositoryUrl: string) {
 		`<br />`,
 		`<sub><b>${contributor.name}</b></sub></a><br />`,
 		contributor.contributions
-			.flatMap((contribution) => {
-				const type = contributionTypes[contribution];
-				if (!type) {
-					return [];
-				}
+			.filter(isContributionTypeName)
+			.map((contribution) => {
+				const { description, symbol } = contributionTypes[contribution];
+				const href = createContributionLink(contribution, {
+					...project,
+					login: contributor.login,
+				});
 
-				const href = type.link
-					? `${repositoryUrl}/${type.link}${contributor.login}`
-					: `#${contribution}-${contributor.login}`;
-
-				return [
-					`<a href="${href}" title="${type.description}">${type.symbol}</a>`,
-				];
+				return `<a href="${href}" title="${description}">${symbol}</a>`;
 			})
 			.join(" "),
 		`</td>`,

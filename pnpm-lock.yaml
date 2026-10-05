@@ -172,6 +172,9 @@ importers:
       '@typescript-eslint/typescript-estree':
         specifier: ^8.67.0
         version: 8.71.0(supports-color@7.2.0)(typescript@5.9.3)
+      all-contributors-types:
+        specifier: ^0.1.0
+        version: 0.1.0
       bingo:
         specifier: ^0.13.1
         version: 0.13.1
@@ -1984,6 +1987,10 @@ packages:
     resolution: {integrity: sha512-Ymgo3FJACRBEd1eE653FD1J/+uD0kqpUNYfr9zNC1Qby0LgbhDBzB3EF6uvkAbYpycStkk41J+0oo37Lc02yEw==}
     engines: {node: '>=4'}
     hasBin: true
+
+  all-contributors-types@0.1.0:
+    resolution: {integrity: sha512-kYf1J31EEI44F0YQbbmBBvQ1m/UQXIfjZTr5ewBXXSJ9uXGFO5Kx4eAErM+FTJGchXn6miZ33kWHYIDqh6fEwg==}
+    engines: {node: ^22.13.0 || ^24.11.0 || >=26.0.0}
 
   all-properties-lazy@0.1.0:
     resolution: {integrity: sha512-Ab9UQDstwhrTcsRP1m4QkT6W1PRMBoAnPJeB5LZcuum/nLiFMlSwYxH1J8fsRAolaXez0ijgbm6BAWZkQC9DVg==}
@@ -6137,6 +6144,8 @@ snapshots:
       prettier: 2.8.8
     transitivePeerDependencies:
       - encoding
+
+  all-contributors-types@0.1.0: {}
 
   all-properties-lazy@0.1.0:
     dependencies:

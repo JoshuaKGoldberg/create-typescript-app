@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.68.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.1...2.68.2) (2026-10-05)
+
+### Bug Fixes
+
+- link README contributors to the repository and print all contribution types ([#2535](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2535)) ([78fbd0c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/78fbd0c0bfbb8c9fce243d19e5431d5eb2b6ca58)), closes [#2519](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2519)
+
 ## [2.68.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.68.0...2.68.1) (2026-10-04)
 
 ### Bug Fixes

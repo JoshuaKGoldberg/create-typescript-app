@@ -144,6 +144,87 @@ export const blockGitHubActionsCI = base.createBlock({
 							}),
 							["pr-review-requested.yml"],
 						),
+						// pull_request_review workflows can't edit labels on PRs from forks.
+						// This one records the PR number for the privileged workflow below.
+						"pr-review-submitted.yaml": createSoloWorkflowFile({
+							if: "github.event.review.state == 'changes_requested'",
+							name: "PR Review Submitted",
+							on: {
+								pull_request_review: {
+									types: ["submitted"],
+								},
+							},
+							permissions: {},
+							steps: [
+								{
+									env: {
+										PR_NUMBER: "${{ github.event.pull_request.number }}",
+									},
+									run: 'echo "$PR_NUMBER" > pr-number',
+								},
+								{
+									uses: resolveUses(
+										"actions/upload-artifact",
+										"v7",
+										options.workflowsVersions,
+									),
+									with: {
+										name: "pr-number",
+										path: "pr-number",
+										"retention-days": 1,
+									},
+								},
+							],
+						}),
+						// The artifact is written by code from the PR, so it's untrusted:
+						// this workflow only labels the PR whose head commit was reviewed.
+						"pr-review-submitted-label.yaml": createSoloWorkflowFile({
+							if: "github.event.workflow_run.event == 'pull_request_review' && github.event.workflow_run.conclusion == 'success'",
+							name: "PR Review Submitted Label",
+							on: {
+								workflow_run: {
+									types: ["completed"],
+									workflows: ["PR Review Submitted"],
+								},
+							},
+							permissions: {
+								actions: "read",
+								"pull-requests": "write",
+							},
+							steps: [
+								{
+									uses: resolveUses(
+										"actions/download-artifact",
+										"v8",
+										options.workflowsVersions,
+									),
+									with: {
+										"github-token": "${{ secrets.GITHUB_TOKEN }}",
+										name: "pr-number",
+										"run-id": "${{ github.event.workflow_run.id }}",
+									},
+								},
+								{
+									env: {
+										GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+										HEAD_SHA: "${{ github.event.workflow_run.head_sha }}",
+									},
+									run: [
+										"pr_number=$(cat pr-number)",
+										'if [[ ! "$pr_number" =~ ^[0-9]+$ ]]; then',
+										'  echo "The pr-number artifact does not contain a PR number."',
+										"  exit 1",
+										"fi",
+										'if [[ "$(gh api "repos/$GITHUB_REPOSITORY/pulls/$pr_number" --jq .head.sha)" != "$HEAD_SHA" ]]; then',
+										`  echo "PR #$pr_number's head commit is not the reviewed commit, so it is not labeled."`,
+										"  exit 0",
+										"fi",
+										'gh api "repos/$GITHUB_REPOSITORY/issues/$pr_number/labels" --silent -f "labels[]=status: waiting for author"',
+										"",
+									].join("\n"),
+								},
+							],
+						}),
 					},
 				},
 			},

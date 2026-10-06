@@ -26,6 +26,9 @@ interface WorkflowFileOn {
 				branches?: string | string[];
 				types?: string[];
 		  };
+	pull_request_review?: {
+		types: string[];
+	};
 	pull_request_review_comment?: {
 		types: string[];
 	};
@@ -39,6 +42,10 @@ interface WorkflowFileOn {
 		types: string[];
 	};
 	workflow_dispatch?: null | string;
+	workflow_run?: {
+		types: string[];
+		workflows: string[];
+	};
 }
 interface WorkflowFileOptions {
 	concurrency?: WorkflowFileConcurrency;
@@ -51,6 +58,7 @@ interface WorkflowFileOptions {
 }
 
 interface WorkflowFilePermissions {
+	actions?: string;
 	contents?: string;
 	discussions?: string;
 	"id-token"?: string;

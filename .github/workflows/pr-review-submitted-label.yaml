@@ -1,0 +1,36 @@
+jobs:
+  pr_review_submitted_label:
+    if: github.event.workflow_run.event == 'pull_request_review' && github.event.workflow_run.conclusion == 'success'
+    permissions:
+      actions: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          name: pr-number
+          run-id: ${{ github.event.workflow_run.id }}
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          pr_number=$(cat pr-number)
+          if [[ ! "$pr_number" =~ ^[0-9]+$ ]]; then
+            echo "The pr-number artifact does not contain a PR number."
+            exit 1
+          fi
+          if [[ "$(gh api "repos/$GITHUB_REPOSITORY/pulls/$pr_number" --jq .head.sha)" != "$HEAD_SHA" ]]; then
+            echo "PR #$pr_number's head commit is not the reviewed commit, so it is not labeled."
+            exit 0
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/issues/$pr_number/labels" --silent -f "labels[]=status: waiting for author"
+
+name: PR Review Submitted Label
+
+on:
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - PR Review Submitted

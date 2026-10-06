@@ -40,17 +40,6 @@ describe("blockAllContributors", () => {
 			      },
 			      "block": "[Block README.md]",
 			    },
-			    {
-			      "addons": {
-			        "secrets": [
-			          {
-			            "description": "a GitHub PAT with repo and workflow permissions",
-			            "name": "ACCESS_TOKEN",
-			          },
-			        ],
-			      },
-			      "block": "[Block Repository Secrets]",
-			    },
 			  ],
 			  "files": {
 			    ".all-contributorsrc": "{
@@ -71,15 +60,16 @@ describe("blockAllContributors", () => {
 			        "contributors.yaml": [
 			          "jobs:
 			  contributors:
+			    permissions:
+			      actions: read
+			      contents: read
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
-			        with:
-			          fetch-depth: 0
-			      - uses: ./.github/actions/prepare
 			      - env:
-			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
+			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.7.0
 
 			name: Contributors
 
@@ -176,17 +166,6 @@ describe("blockAllContributors", () => {
 			      },
 			      "block": "[Block README.md]",
 			    },
-			    {
-			      "addons": {
-			        "secrets": [
-			          {
-			            "description": "a GitHub PAT with repo and workflow permissions",
-			            "name": "ACCESS_TOKEN",
-			          },
-			        ],
-			      },
-			      "block": "[Block Repository Secrets]",
-			    },
 			  ],
 			  "files": {
 			    ".all-contributorsrc": "{
@@ -222,15 +201,16 @@ describe("blockAllContributors", () => {
 			        "contributors.yaml": [
 			          "jobs:
 			  contributors:
+			    permissions:
+			      actions: read
+			      contents: read
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
-			        with:
-			          fetch-depth: 0
-			      - uses: ./.github/actions/prepare
 			      - env:
-			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
+			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.7.0
 
 			name: Contributors
 
@@ -326,17 +306,6 @@ describe("blockAllContributors", () => {
 			      },
 			      "block": "[Block README.md]",
 			    },
-			    {
-			      "addons": {
-			        "secrets": [
-			          {
-			            "description": "a GitHub PAT with repo and workflow permissions",
-			            "name": "ACCESS_TOKEN",
-			          },
-			        ],
-			      },
-			      "block": "[Block Repository Secrets]",
-			    },
 			  ],
 			  "files": {
 			    ".all-contributorsrc": "{
@@ -372,15 +341,16 @@ describe("blockAllContributors", () => {
 			        "contributors.yaml": [
 			          "jobs:
 			  contributors:
+			    permissions:
+			      actions: read
+			      contents: read
+			      issues: write
+			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
-			        with:
-			          fetch-depth: 0
-			      - uses: ./.github/actions/prepare
 			      - env:
-			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.5.0
+			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+			        uses: JoshuaKGoldberg/all-contributors-auto-action@v0.7.0
 
 			name: Contributors
 

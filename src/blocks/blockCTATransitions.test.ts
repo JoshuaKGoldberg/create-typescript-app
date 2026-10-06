@@ -6,6 +6,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockCTATransitions } from "./blockCTATransitions.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe("blockCTATransitions", () => {
@@ -27,6 +28,14 @@ describe("blockCTATransitions", () => {
 			}),
 			blockRepositoryBranchRuleset({
 				requiredStatusChecks: ["Transition"],
+			}),
+			blockRepositorySecrets({
+				secrets: [
+					{
+						description: "a GitHub PAT with repo and workflow permissions",
+						name: "ACCESS_TOKEN",
+					},
+				],
 			}),
 		]);
 		expect(creation.files).toMatchInlineSnapshot(`

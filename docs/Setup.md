@@ -24,16 +24,15 @@ Some tooling needs a token, GitHub apps, and npm settings that `create-typescrip
 
 ### `ACCESS_TOKEN`
 
-The _Contributors_, _CTA_, and _Release_ workflows use a GitHub personal access token stored as an `ACCESS_TOKEN` repository secret.
-You only need it if you have a `contributors.yaml`, `cta.yaml`, or `release.yaml` in `.github/workflows/`.
+The _CTA_ and _Release_ workflows use a GitHub personal access token stored as an `ACCESS_TOKEN` repository secret.
+You only need it if you have a `cta.yaml` or `release.yaml` in `.github/workflows/`.
 
 1. Create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) with:
    - **Resource owner**: the user or organization that owns the repository
    - **Repository access**: _Only select repositories_, then pick the repository
    - **Repository permissions**:
      - **Contents**: Read and write, to push commits and tags and create GitHub releases
-     - **Issues**: Read and write, for All Contributors to comment on issues
-     - **Pull requests**: Read and write, for All Contributors and CTA to comment on PRs, and for CTA to mark them as drafts
+     - **Pull requests**: Read and write, only if you have a `cta.yaml`, for CTA to comment on PRs and mark them as drafts
      - **Workflows**: Read and write, only if you have a `cta.yaml`, to push updated workflow files
 2. Add it as a repository secret named `ACCESS_TOKEN`, either:
    - On your repository's _Settings_ > _Secrets and variables_ > _Actions_ page

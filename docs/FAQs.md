@@ -281,3 +281,21 @@ If a Renovate-bumped devDependency regularly changes your build output, you can 
 	]
 }
 ```
+
+## Why do I get "The inferred type of ... cannot be named without a reference to ..." (TS2742)?
+
+TypeScript needs to write out a type for each export in its `.d.ts` output.
+If that type comes from a package you don't depend on directly, TypeScript can't refer to it, because pnpm only lets your package import its own dependencies.
+
+For example, `express()` returns a type from `@types/express-serve-static-core`, which `@types/express` depends on but a consuming package might not.
+This applies to every file in `src`, even test helpers that aren't part of your package's public API.
+
+The usual fix is to give the export a type annotation that only uses packages you depend on:
+
+```ts
+import express from "express";
+
+export const app: express.Express = express();
+```
+
+See [microsoft/TypeScript#47663 (comment)](https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1519138189) for other workarounds.

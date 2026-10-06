@@ -5,7 +5,6 @@ export async function readReadmeUsage(getReadme: () => Promise<string>) {
 
 	const indexOfUsage = readme.indexOf(startUsage);
 	if (indexOfUsage === -1) {
-		// Existing READMEs without a ## Usage heading shouldn't get one added
 		return readme.trim() ? "" : undefined;
 	}
 

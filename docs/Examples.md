@@ -1,6 +1,6 @@
 # Examples
 
-`create-typescript-app` can be used to create many different kinds of projects.
+`create-typescript-app` can be used to create common kinds of single-repository TypeScript projects.
 Most need only the default blocks, while some benefit from adding or excluding a few blocks.
 
 This page lists common kinds of projects, example repositories of each, and what's unique to setting each one up.

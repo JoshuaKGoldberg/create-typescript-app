@@ -231,14 +231,10 @@ To batch several PRs into one release:
 4. Merge the last PR
 
 The release from that last merge will include every change since the previous release.
-Each `feat`, `fix`, and `perf` change still gets its own changelog line, and the version bump is the largest any of them asks for.
 
 ## How do I release changes that didn't trigger a release?
 
 Commits typed as `build`, `chore`, `ci`, `docs`, `refactor`, `style`, or `test` don't trigger a release.
-
-Renovate titles updates to `dependencies` ranges as `fix(deps)`, so those are released on their own.
-It titles `devDependencies` and lockfile-only updates as `chore(deps)`, since those don't change what your package's users install.
 
 If a change that didn't trigger a release does need to reach users, push a `fix` commit to `main`:
 
@@ -247,10 +243,7 @@ git commit --allow-empty --message "fix: release recent dependency updates"
 git push
 ```
 
-Only repository admins can push to `main` directly.
-If you're not an admin, the changes will go out with the next release.
-
-If a devDependency regularly changes your build output, you can add a rule to `.github/renovate.json` to title its updates as `fix`:
+If a Renovate-bumped devDependency regularly changes your build output, you can add a rule to `.github/renovate.json` to title its updates as `fix`:
 
 ```json
 {

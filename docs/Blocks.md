@@ -27,6 +27,7 @@ This table summarizes each block and which base levels they're included in:
 | ESLint Perfectionist Plugin        | `--add-eslint-perfectionist-plugin`, `--exclude-eslint-perfectionist-plugin`               |         |        | 💯         |
 | ESLint Plugin                      | `--add-eslint-plugin`, `--exclude-eslint-plugin`                                           |         |        |            |
 | ESLint Regexp Plugin               | `--add-eslint-regexp-plugin`, `--exclude-eslint-regexp-plugin`                             |         |        | 💯         |
+| ESLint Unicorn Plugin              | `--add-eslint-unicorn-plugin`, `--exclude-eslint-unicorn-plugin`                           |         |        | 💯         |
 | ESLint YML Plugin                  | `--add-eslint-yml-plugin`, `--exclude-eslint-yml-plugin`                                   |         |        | 💯         |
 | Exports                            | `--add-exports`, `--exclude-exports`                                                       | ✔️      | ✅     | 💯         |
 | Funding                            | `--add-funding`, `--exclude-funding`                                                       |         | ✅     | 💯         |
@@ -278,6 +279,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint Spelling](#lint-spelling)
     - [Lint Strict](#lint-strict)
     - [Lint Stylistic](#lint-stylistic)
+    - [Lint Unicorn](#lint-unicorn)
     - [Lint YML](#lint-yml)
     - [OctoGuide Strict](#octoguide-strict)
 
@@ -334,6 +336,10 @@ Enables [typescript-eslint's strict configs](https://typescript-eslint.io/lintin
 ### Lint Stylistic
 
 Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/linting/configs/#stylistic) for increased scrutiny around consistent code style.
+
+### Lint Unicorn
+
+[`eslint-plugin-unicorn`](https://github.com/sindresorhus/eslint-plugin-unicorn): Enables its `unopinionated` config of rules that catch bugs and enforce best practices, without the more opinionated stylistic preferences of its `recommended` config.
 
 ### Lint YML
 

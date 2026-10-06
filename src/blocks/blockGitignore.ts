@@ -16,7 +16,7 @@ export const blockGitignore = base.createBlock({
 	intake({ files }) {
 		const gitignore = intakeFile(files, [".gitignore"]);
 		if (!gitignore) {
-			return undefined;
+			return;
 		}
 
 		return {
@@ -39,7 +39,7 @@ export const blockGitignore = base.createBlock({
 
 		return {
 			files: {
-				".gitignore": formatIgnoreFile([...patterns.sort(), ...negations]),
+				".gitignore": formatIgnoreFile([...patterns.toSorted(), ...negations]),
 			},
 		};
 	},

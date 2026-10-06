@@ -15,7 +15,7 @@ export const blockBin = base.createBlock({
 	intake({ files, options }) {
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 		if (!primaryBin) {
-			return undefined;
+			return;
 		}
 
 		const existing = intakeFile(files, primaryBin.split("/"));

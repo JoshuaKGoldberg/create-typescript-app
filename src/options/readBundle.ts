@@ -9,7 +9,7 @@ export async function readBundle(take: TakeInput) {
 		await take(inputFromFile, { filePath: "tsdown.config.ts" }),
 	);
 	if (!contents) {
-		return undefined;
+		return;
 	}
 
 	const data = parseDefineConfig(contents);

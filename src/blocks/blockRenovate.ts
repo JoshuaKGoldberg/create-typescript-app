@@ -49,7 +49,7 @@ export const blockRenovate = base.createBlock({
 							],
 							ignoreDeps: Array.from(
 								new Set(["codecov/codecov-action", ...ignoreDeps]),
-							).sort(),
+							).toSorted(),
 							labels: ["dependencies"],
 							minimumReleaseAge: "7 days",
 							patch: { enabled: false },

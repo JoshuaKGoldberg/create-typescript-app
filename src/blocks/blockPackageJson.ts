@@ -31,7 +31,7 @@ export const blockPackageJson = base.createBlock({
 	intake({ files }) {
 		const packageData = intakeFileAsJson(files, ["package.json"]);
 		if (!Array.isArray(packageData?.files)) {
-			return undefined;
+			return;
 		}
 
 		return {
@@ -169,21 +169,22 @@ function processFiles(files: string[] | undefined = []) {
 	// First sort so that shorter entries are first (e.g. "lib/")...
 	const sortedByLength = files
 		.filter(Boolean)
-		.sort((a, b) => a.length - b.length);
+		.toSorted((a, b) => a.length - b.length);
 
 	// ...then remove entries captured by earlier directories (e.g. "lib/index.js")
 	return sortedByLength
-		.filter(
-			(file, i) =>
-				!sortedByLength
-					.slice(0, i)
-					.some((earlier) => earlier.endsWith("/") && file.startsWith(earlier)),
+		.filter((file, i) =>
+			sortedByLength
+				.slice(0, i)
+				.every(
+					(earlier) => !(earlier.endsWith("/") && file.startsWith(earlier)),
+				),
 		)
-		.sort();
+		.toSorted();
 }
 
 function removeRangePrefix(version: string) {
-	const raw = version.replaceAll(/[\^~><=]/gu, "").split(" ")[0];
+	const raw = version.replaceAll(/[\^~><=]/gu, "").split(" ", 1)[0];
 
 	return semver.coerce(raw) ?? raw;
 }

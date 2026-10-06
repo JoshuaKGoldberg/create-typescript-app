@@ -28,7 +28,7 @@ export const blockTypeScript = base.createBlock({
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
 		const { data } = CompilerOptionsSchema.safeParse(raw?.compilerOptions);
 		if (!data) {
-			return undefined;
+			return;
 		}
 
 		return {

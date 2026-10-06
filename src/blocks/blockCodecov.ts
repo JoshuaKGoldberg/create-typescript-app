@@ -26,12 +26,12 @@ export const blockCodecov = base.createBlock({
 			["jobs", "test", "steps"],
 		);
 		if (!steps) {
-			return undefined;
+			return;
 		}
 
 		const step = findCodecovStep(steps);
 		if (!step) {
-			return undefined;
+			return;
 		}
 
 		const { CODECOV_TOKEN, ...env } = step.env ?? {};

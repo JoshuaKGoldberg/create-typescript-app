@@ -488,7 +488,6 @@ describe(blockESLint, () => {
 			export default defineConfig(
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
 				{
 					extends: [
 						eslint.configs.recommended,
@@ -502,6 +501,7 @@ describe(blockESLint, () => {
 						},
 					},
 				},
+				{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
 			);
 			",
 			      {
@@ -684,17 +684,6 @@ describe(blockESLint, () => {
 				),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 				{
-					extends: [a.configs.recommended],
-					files: ["**/*.a"],
-					rules: { "a/b": "error", "a/c": ["error", { d: "e" }] },
-				},
-				{
-					extends: [b.configs.recommended],
-					files: ["**/*.b"],
-					rules: { "b/c": "error", "b/d": ["error", { e: "f" }] },
-					settings: { react: { version: "detect" } },
-				},
-				{
 					extends: [
 						eslint.configs.recommended,
 						tseslint.configs.strictTypeChecked,
@@ -706,6 +695,17 @@ describe(blockESLint, () => {
 							projectService: { allowDefaultProject: ["*.config.*s"] },
 						},
 					},
+				},
+				{
+					extends: [a.configs.recommended],
+					files: ["**/*.a"],
+					rules: { "a/b": "error", "a/c": ["error", { d: "e" }] },
+				},
+				{
+					extends: [b.configs.recommended],
+					files: ["**/*.b"],
+					rules: { "b/c": "error", "b/d": ["error", { e: "f" }] },
+					settings: { react: { version: "detect" } },
 				},
 			);
 			",
@@ -874,6 +874,19 @@ describe(blockESLint, () => {
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+				{
 					extends: [],
 					files: ["**/*.js"],
 					rules: {
@@ -886,19 +899,6 @@ describe(blockESLint, () => {
 						// Standalone comment
 						b: "error",
 						e: "error",
-					},
-				},
-				{
-					extends: [
-						eslint.configs.recommended,
-						tseslint.configs.strictTypeChecked,
-						tseslint.configs.stylisticTypeChecked,
-					],
-					files: ["**/*.{js,ts}"],
-					languageOptions: {
-						parserOptions: {
-							projectService: { allowDefaultProject: ["*.config.*s"] },
-						},
 					},
 				},
 			);
@@ -1051,6 +1051,19 @@ describe(blockESLint, () => {
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+				{
 					files: ["**/*.js"],
 					rules: {
 						// One line
@@ -1064,19 +1077,6 @@ describe(blockESLint, () => {
 						// three lines
 						// three lines
 						a: "error",
-					},
-				},
-				{
-					extends: [
-						eslint.configs.recommended,
-						tseslint.configs.strictTypeChecked,
-						tseslint.configs.stylisticTypeChecked,
-					],
-					files: ["**/*.{js,ts}"],
-					languageOptions: {
-						parserOptions: {
-							projectService: { allowDefaultProject: ["*.config.*s"] },
-						},
 					},
 				},
 			);
@@ -1236,14 +1236,6 @@ describe(blockESLint, () => {
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 				{
-					extends: [a.configs.recommended],
-					files: ["**/*.a"],
-					languageOptions: { languageOption: true },
-					linterOptions: { linterOption: true },
-					rules: { "a/b": "error" },
-					settings: { react: { version: "detect" } },
-				},
-				{
 					extends: [
 						eslint.configs.recommended,
 						tseslint.configs.strictTypeChecked,
@@ -1255,6 +1247,14 @@ describe(blockESLint, () => {
 							projectService: { allowDefaultProject: ["*.config.*s"] },
 						},
 					},
+				},
+				{
+					extends: [a.configs.recommended],
+					files: ["**/*.a"],
+					languageOptions: { languageOption: true },
+					linterOptions: { linterOption: true },
+					rules: { "a/b": "error" },
+					settings: { react: { version: "detect" } },
 				},
 			);
 			",
@@ -1413,14 +1413,6 @@ describe(blockESLint, () => {
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 				{
-					extends: [a.configs.recommended],
-					files: ["**/*.a"],
-					languageOptions: { languageOption: true },
-					linterOptions: { linterOption: true },
-					rules: { "a/b": "error" },
-					settings: { react: { version: "detect" } },
-				},
-				{
 					extends: [
 						eslint.configs.recommended,
 						tseslint.configs.strictTypeChecked,
@@ -1432,6 +1424,14 @@ describe(blockESLint, () => {
 							projectService: { allowDefaultProject: ["*.config.*s"] },
 						},
 					},
+				},
+				{
+					extends: [a.configs.recommended],
+					files: ["**/*.a"],
+					languageOptions: { languageOption: true },
+					linterOptions: { linterOption: true },
+					rules: { "a/b": "error" },
+					settings: { react: { version: "detect" } },
 				},
 			);
 			",
@@ -1862,7 +1862,6 @@ describe(blockESLint, () => {
 			export default defineConfig(
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
-				{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
 				{
 					extends: [
 						eslint.configs.recommended,
@@ -1876,6 +1875,7 @@ describe(blockESLint, () => {
 						},
 					},
 				},
+				{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
 			);
 			",
 			      {

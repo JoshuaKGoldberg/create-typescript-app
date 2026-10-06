@@ -97,7 +97,7 @@ pnpm format --write
 					"pre-commit": ["npx lint-staged\n", { executable: true }],
 				},
 				".prettierignore": formatIgnoreFile(
-					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
+					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].toSorted(),
 				),
 				"prettier.config.ts": withPreviously(
 					formatFile(
@@ -105,8 +105,8 @@ pnpm format --write
 						`import type { Config } from "prettier";
 
 export default ${JSON.stringify({
-							...(overrides.length && { overrides: overrides.sort() }),
-							...(plugins.length && { plugins: plugins.sort() }),
+							...(overrides.length && { overrides: overrides.toSorted() }),
+							...(plugins.length && { plugins: plugins.toSorted() }),
 							useTabs: true,
 						})} satisfies Config;
 `,

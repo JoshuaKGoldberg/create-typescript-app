@@ -11,7 +11,7 @@ export async function readReadmeExplainer(getReadme: () => Promise<string>) {
 		lastTagMatchers,
 	);
 	if (!lastTagMatcher) {
-		return undefined;
+		return;
 	}
 
 	const endingIndex =

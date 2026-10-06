@@ -17,17 +17,17 @@ export function blockESLintPluginIntake(sourceText: string) {
 		}),
 	);
 	if (!ast) {
-		return undefined;
+		return;
 	}
 
 	const config = findConfig(ast.body);
 	if (!config) {
-		return undefined;
+		return;
 	}
 
 	const configEmoji = findConfigEmoji(config.properties);
 	if (!configEmoji) {
-		return undefined;
+		return;
 	}
 
 	const { data } = zConfigEmoji.safeParse(

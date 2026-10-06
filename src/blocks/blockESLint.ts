@@ -71,7 +71,7 @@ export const blockESLint = base.createBlock({
 				(packageImport) =>
 					`import ${packageImport.specifier} from "${typeof packageImport.source === "string" ? packageImport.source : packageImport.source.packageName}"`,
 			),
-		].sort((a, b) =>
+		].toSorted((a, b) =>
 			a.replace(/.+from/, "").localeCompare(b.replace(/.+from/, "")),
 		);
 
@@ -81,9 +81,9 @@ export const blockESLint = base.createBlock({
 					JSON.stringify(ignore),
 				),
 			),
-		).sort();
+		).toSorted();
 
-		const extensionEntries = mergeAllExtensions(
+		const [baseEntry, ...otherEntries] = mergeAllExtensions(
 			{
 				extends: [
 					"eslint.configs.recommended",
@@ -103,7 +103,7 @@ export const blockESLint = base.createBlock({
 											: [options.bin]),
 									]
 										.filter(Boolean)
-										.sort(),
+										.toSorted(),
 								),
 							),
 						},
@@ -121,11 +121,13 @@ export const blockESLint = base.createBlock({
 				: []),
 		);
 
-		const extensionLines = extensionEntries
-			.sort((a, b) =>
+		// The base entry stays first so other entries can override its rules
+		const extensionLines = [
+			baseEntry,
+			...otherEntries.toSorted((a, b) =>
 				processForSort(a.files).localeCompare(processForSort(b.files)),
-			)
-			.map(printExtension);
+			),
+		].map(printExtension);
 
 		return {
 			addons: [
@@ -283,7 +285,6 @@ function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
 				...existing.entries,
 				...group.entries,
 			};
-			continue;
 		} else {
 			byComment.set(group.comment, group);
 			grouped.push(group);

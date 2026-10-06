@@ -6,7 +6,7 @@ import { swallowError } from "../utils/swallowError.ts";
 export async function readFunding(take: TakeInput) {
 	for (const filePath of [".github/FUNDING.yaml", ".github/FUNDING.yml"]) {
 		const funding = swallowError(await take(inputFromFile, { filePath }))
-			?.split(":")[1]
+			?.split(":", 2)[1]
 			?.trim();
 
 		if (funding) {
@@ -14,5 +14,5 @@ export async function readFunding(take: TakeInput) {
 		}
 	}
 
-	return undefined;
+	return;
 }

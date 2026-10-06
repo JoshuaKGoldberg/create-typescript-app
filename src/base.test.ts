@@ -1,5 +1,5 @@
 import { prepareOptions } from "bingo";
-import { readFile } from "fs/promises";
+import { readFile } from "node:fs/promises";
 import { describe, expect, test, vi } from "vitest";
 
 import { base } from "./base.ts";

@@ -67,7 +67,7 @@ export const blockTSDown = base.createBlock({
 			intakeFileDefineConfig(files, ["tsdown.config.ts"]) ??
 			intakeFileDefineConfig(files, ["tsup.config.ts"]);
 		if (!rawData) {
-			return undefined;
+			return;
 		}
 
 		const { entry: rawEntry, ...rest } = rawData;

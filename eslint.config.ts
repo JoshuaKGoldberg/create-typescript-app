@@ -19,6 +19,7 @@ import n from "eslint-plugin-n";
 import packageJson from "eslint-plugin-package-json";
 import perfectionist from "eslint-plugin-perfectionist";
 import * as regexp from "eslint-plugin-regexp";
+import unicorn from "eslint-plugin-unicorn";
 import yml from "eslint-plugin-yml";
 import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
@@ -41,6 +42,7 @@ export default defineConfig(
 			regexp.configs["flat/recommended"],
 			tseslint.configs.strictTypeChecked,
 			tseslint.configs.stylisticTypeChecked,
+			unicorn.configs.unopinionated,
 		],
 		files: ["**/*.{js,ts}"],
 		languageOptions: {
@@ -74,8 +76,15 @@ export default defineConfig(
 			"no-useless-rename": "error",
 			"object-shorthand": "error",
 			"operator-assignment": "error",
+
+			// Sorting strings by code unit is intentional, and this rule isn't type-aware
+			"unicorn/require-array-sort-compare": "off",
 		},
 		settings: { perfectionist: { partitionByComment: true, type: "natural" } },
+	},
+	{
+		files: ["*.config.*"],
+		rules: { "unicorn/no-top-level-side-effects": "off" },
 	},
 	{
 		extends: [jsonc.configs["flat/recommended-with-json"]],

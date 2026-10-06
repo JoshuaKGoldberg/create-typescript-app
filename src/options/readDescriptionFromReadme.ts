@@ -8,16 +8,14 @@ export async function readDescriptionFromReadme(
 
 	const paragraphStart = readme.indexOf(paragraphStarter);
 	if (paragraphStart === -1) {
-		return undefined;
+		return;
 	}
 
 	const paragraphEnd = readme.indexOf(paragraphCloser);
-	if (paragraphEnd < paragraphStart + paragraphStarter.length + 2) {
-		return undefined;
-	}
-
-	return readme
-		.slice(paragraphStart + paragraphStarter.length, paragraphEnd)
-		.replaceAll(/\s+/gu, " ")
-		.trim();
+	return paragraphEnd < paragraphStart + paragraphStarter.length + 2
+		? undefined
+		: readme
+				.slice(paragraphStart + paragraphStarter.length, paragraphEnd)
+				.replaceAll(/\s+/gu, " ")
+				.trim();
 }

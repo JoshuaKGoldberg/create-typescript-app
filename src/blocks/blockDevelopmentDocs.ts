@@ -47,7 +47,7 @@ function printSection(heading: string, section: Section) {
 		`## ${heading}`,
 		``,
 		...(contents.before ? [contents.before] : []),
-		...(contents.items?.sort((a, b) =>
+		...(contents.items?.toSorted((a, b) =>
 			a.replaceAll("`", "").localeCompare(b.replaceAll("`", "")),
 		) ?? []),
 		...(contents.items?.length && contents.plural ? [``, contents.plural] : []),
@@ -85,7 +85,7 @@ export const blockDevelopmentDocs = base.createBlock({
 			``,
 			...(addons.hints.length ? [...addons.hints, ``] : []),
 			...Object.entries(addons.sections)
-				.sort(([a], [b]) => a.localeCompare(b))
+				.toSorted(([a], [b]) => a.localeCompare(b))
 				.flatMap(([heading, section]) => printSection(heading, section)),
 			...(options.documentation.development
 				? [options.documentation.development]

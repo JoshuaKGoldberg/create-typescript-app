@@ -6,24 +6,24 @@ export async function readLogo(getReadme: () => Promise<string>) {
 	const tag = /\n<img.+src=.+>/.exec(await getReadme())?.[0];
 
 	if (!tag) {
-		return undefined;
+		return;
 	}
 
 	const alt =
-		/alt=['"](.+)['"]\s*src=/.exec(tag)?.[1].split(/['"]?\s*\w+=/)[0] ??
+		/alt=['"](.+)['"]\s*src=/.exec(tag)?.[1].split(/['"]?\s*\w+=/, 1)[0] ??
 		"Project logo";
 
 	if (/All Contributors: \d+/.test(alt)) {
-		return undefined;
+		return;
 	}
 
 	const src = /src\s*=(.+)['"/]>/
 		.exec(tag)?.[1]
-		?.split(/\s*\w+=/)[0]
+		?.split(/\s*\w+=/, 1)[0]
 		.replaceAll(/^['"]|['"]$/g, "");
 
 	if (!src || src.includes("//img.shields.io")) {
-		return undefined;
+		return;
 	}
 
 	// TODO: imageSize does not go through take(input*), making it harder to test.

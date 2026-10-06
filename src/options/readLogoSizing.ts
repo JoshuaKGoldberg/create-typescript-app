@@ -37,6 +37,6 @@ function imageSizeSafe(src: Uint8Array) {
 		// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1993
 		return imageSize(src);
 	} catch {
-		return undefined;
+		return;
 	}
 }

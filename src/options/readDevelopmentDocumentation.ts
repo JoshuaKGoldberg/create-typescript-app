@@ -18,19 +18,17 @@ export async function readDevelopmentDocumentation(take: TakeInput) {
 			filePath: ".github/DEVELOPMENT.md",
 		}),
 	);
-	if (!existing) {
-		return undefined;
-	}
-
 	return existing
-		.split(/\n\n(?=##\s)/)
-		.filter((section) => !knownHeadings.has(parseHeading(section)))
-		.join("\n\n");
+		? existing
+				.split(/\n\n(?=##\s)/)
+				.filter((section) => !knownHeadings.has(parseHeading(section)))
+				.join("\n\n")
+		: undefined;
 }
 
 function parseHeading(section: string) {
 	return section
-		.split("\n")[0]
+		.split("\n", 1)[0]
 		.replace(/^#+\s+/, "")
 		.trim()
 		.toLowerCase();

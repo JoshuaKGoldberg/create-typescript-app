@@ -138,7 +138,7 @@ export const blockReleaseIt = base.createBlock({
 										uses: "./.github/actions/prepare",
 									},
 									...builders
-										.sort((a, b) => a.order - b.order)
+										.toSorted((a, b) => a.order - b.order)
 										.map(({ run }) => ({ run })),
 									{
 										env: {

@@ -18,6 +18,7 @@ import { blockESLintPackageJson } from "./blockESLintPackageJson.ts";
 import { blockESLintPerfectionist } from "./blockESLintPerfectionist.ts";
 import { blockESLintPlugin } from "./blockESLintPlugin.ts";
 import { blockESLintRegexp } from "./blockESLintRegexp.ts";
+import { blockESLintUnicorn } from "./blockESLintUnicorn.ts";
 import { blockESLintYML } from "./blockESLintYML.ts";
 import { blockExports } from "./blockExports.ts";
 import { blockFunding } from "./blockFunding.ts";
@@ -71,6 +72,7 @@ export const blocks = {
 	blockESLintPerfectionist,
 	blockESLintPlugin,
 	blockESLintRegexp,
+	blockESLintUnicorn,
 	blockESLintYML,
 	blockExports,
 	blockFunding,
@@ -125,6 +127,7 @@ export { blockESLintPackageJson } from "./blockESLintPackageJson.ts";
 export { blockESLintPerfectionist } from "./blockESLintPerfectionist.ts";
 export { blockESLintPlugin } from "./blockESLintPlugin.ts";
 export { blockESLintRegexp } from "./blockESLintRegexp.ts";
+export { blockESLintUnicorn } from "./blockESLintUnicorn.ts";
 export { blockESLintYML } from "./blockESLintYML.ts";
 export { blockExports } from "./blockExports.ts";
 export { blockFunding } from "./blockFunding.ts";

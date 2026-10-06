@@ -3,7 +3,7 @@ const graphemeSegmenter = new Intl.Segmenter(undefined, {
 });
 
 const pictographicPattern = /\p{Extended_Pictographic}|\p{Regional_Indicator}/u;
-const keyCapPattern = /\p{Emoji}\uFE0F?\u20E3/u;
+const keyCapPattern = /\p{Emoji}\u{FE0F}?\u{20E3}/u;
 
 export async function readEmoji(
 	getDescription: () => Promise<string | undefined>,

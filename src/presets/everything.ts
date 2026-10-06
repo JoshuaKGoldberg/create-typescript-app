@@ -10,6 +10,7 @@ import { blockESLintNode } from "../blocks/blockESLintNode.ts";
 import { blockESLintPackageJson } from "../blocks/blockESLintPackageJson.ts";
 import { blockESLintPerfectionist } from "../blocks/blockESLintPerfectionist.ts";
 import { blockESLintRegexp } from "../blocks/blockESLintRegexp.ts";
+import { blockESLintUnicorn } from "../blocks/blockESLintUnicorn.ts";
 import { blockESLintYML } from "../blocks/blockESLintYML.ts";
 import { blockKnip } from "../blocks/blockKnip.ts";
 import { blockNvmrc } from "../blocks/blockNvmrc.ts";
@@ -43,6 +44,7 @@ export const presetEverything = base.createPreset({
 		blockESLintPackageJson,
 		blockESLintPerfectionist,
 		blockESLintRegexp,
+		blockESLintUnicorn,
 		blockESLintYML,
 		blockKnip,
 		blockNvmrc,

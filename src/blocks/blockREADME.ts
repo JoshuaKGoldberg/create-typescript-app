@@ -5,7 +5,7 @@ import { base } from "../base.ts";
 function printAttributes(attributes: Record<string, number | string>) {
 	return Object.entries(attributes)
 		.map(([key, value]) => `${key}="${value}"`)
-		.sort()
+		.toSorted()
 		.join(" ");
 }
 
@@ -101,17 +101,15 @@ function formatBadges(badges: Badge[]) {
 			src: "https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg",
 		},
 	]
-		.sort(badgeSorter)
+		.toSorted(badgeSorter)
 		.map(formatBadge)
 		.join("\n");
 }
 
 function formatDescription(description: string) {
-	if (!description.includes(". ")) {
-		return description;
-	}
-
-	return "\n\t" + description.replaceAll(". ", ".\n\t") + "\n";
+	return description.includes(". ")
+		? "\n\t" + description.replaceAll(". ", ".\n\t") + "\n"
+		: description;
 }
 
 function removeEmojis(text: string) {

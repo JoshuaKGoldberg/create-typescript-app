@@ -7,14 +7,14 @@ const indicatorAfterAllContributorsSpellCheck =
 export async function readReadmeAdditional(getReadme: () => Promise<string>) {
 	const readme = await getReadme();
 	if (!readme) {
-		return undefined;
+		return;
 	}
 
 	const indexAfterContributors =
 		indicatorAfterAllContributorsSpellCheck.exec(readme) ??
 		indicatorAfterAllContributors.exec(readme);
 	if (!indexAfterContributors) {
-		return undefined;
+		return;
 	}
 
 	const indexOfFirstTemplatedBy = indicatorsTemplatedBy.reduce(

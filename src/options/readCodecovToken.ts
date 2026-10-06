@@ -26,5 +26,5 @@ async function readTestSteps(take: TakeInput) {
 		}
 	}
 
-	return undefined;
+	return;
 }

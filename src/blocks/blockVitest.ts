@@ -41,12 +41,12 @@ const zTest = z
 function intakeFromConfig(files: IntakeDirectory) {
 	const rawData = intakeFileDefineConfig(files, ["vitest.config.ts"]);
 	if (typeof rawData?.test !== "object") {
-		return undefined;
+		return;
 	}
 
 	const parsedData = zTest.safeParse(rawData.test).data;
 	if (!parsedData) {
-		return undefined;
+		return;
 	}
 
 	return {
@@ -78,7 +78,7 @@ export const blockVitest = base.createBlock({
 	produce({ addons }) {
 		const { actionSteps, coverage, environment, exclude } = addons;
 		const excludeText = JSON.stringify(
-			Array.from(new Set(["node_modules", ...exclude])).sort(),
+			Array.from(new Set(["node_modules", ...exclude])).toSorted(),
 		);
 
 		return {
@@ -253,7 +253,7 @@ export default defineConfig({
 		environment: "${environment}",`
 				: ""
 		}
-		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
+		exclude: [${excludeText.slice(1, -1)}],
 		setupFiles: ["console-fail-test/setup"],
 	},
 });

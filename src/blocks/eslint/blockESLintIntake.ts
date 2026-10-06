@@ -23,30 +23,26 @@ export function blockESLintIntake(sourceText: string) {
 	);
 	const configExport = ast?.body.find(nodeIsConfigExport);
 	if (!configExport) {
-		return undefined;
+		return;
 	}
 
 	const configArguments = configExport.declaration.arguments;
 	if (configArguments.length < 2) {
-		return undefined;
+		return;
 	}
 
 	const ignores = getConfigIgnores(configArguments[0]);
 	if (!ignores) {
-		return undefined;
+		return;
 	}
 
 	const rulesObject = getConfigRulesObject(configArguments.slice(1));
 	if (!rulesObject) {
-		return undefined;
+		return;
 	}
 
 	const rules = collectRulesObjectGroups(sourceText, rulesObject);
-	if (!rules) {
-		return undefined;
-	}
-
-	return { ignores, rules };
+	return rules ? { ignores, rules } : undefined;
 
 	function areArraysEqual<T>(a: T[], b: T[]) {
 		if (a.length !== b.length) {
@@ -68,7 +64,7 @@ export function blockESLintIntake(sourceText: string) {
 			property.key.type !== AST_NODE_TYPES.Literal ||
 			typeof property.key.value !== "string"
 		) {
-			return undefined;
+			return;
 		}
 
 		const name = property.key.value;
@@ -103,7 +99,7 @@ export function blockESLintIntake(sourceText: string) {
 
 			const rule = collectRuleFromProperty(property);
 			if (!rule) {
-				return undefined;
+				return;
 			}
 
 			if (!currentGroup || comment) {
@@ -150,7 +146,7 @@ export function blockESLintIntake(sourceText: string) {
 				),
 		);
 		if (!configObject) {
-			return undefined;
+			return;
 		}
 
 		const rulesObject = configObject.properties[3];

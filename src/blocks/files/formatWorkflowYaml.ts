@@ -5,8 +5,8 @@ export function formatWorkflowYaml(value: unknown) {
 		formatYaml(value)
 			// https://github.com/nodeca/js-yaml/pull/515
 			.replaceAll(/: "\\n(.+)"/g, ": |\n$1")
-			.replaceAll("\\n", "\n")
-			.replaceAll("\\t", "  "),
+			.replaceAll(String.raw`\n`, "\n")
+			.replaceAll(String.raw`\t`, "  "),
 	);
 }
 

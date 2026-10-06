@@ -22,7 +22,7 @@ export const blockOctoGuide = base.createBlock({
 			["jobs", "octoguide", "steps"],
 		);
 		if (!steps) {
-			return undefined;
+			return;
 		}
 
 		const runOctoGuideStep = steps.find(
@@ -31,7 +31,7 @@ export const blockOctoGuide = base.createBlock({
 				step.uses.startsWith("JoshuaKGoldberg/octoguide"),
 		);
 		if (!runOctoGuideStep) {
-			return undefined;
+			return;
 		}
 
 		return {

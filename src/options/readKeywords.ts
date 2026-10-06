@@ -6,6 +6,7 @@ export async function readKeywords(
 	const { keywords } = await getPackageData();
 
 	return (
-		keywords && Array.from(new Set((await getPackageData()).keywords)).sort()
+		keywords &&
+		Array.from(new Set((await getPackageData()).keywords)).toSorted()
 	);
 }

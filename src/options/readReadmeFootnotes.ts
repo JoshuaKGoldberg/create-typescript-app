@@ -6,7 +6,7 @@ export const indicatorsTemplatedBy = [
 export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
 	const readme = await getReadme();
 	if (!readme) {
-		return undefined;
+		return;
 	}
 
 	const indexOfLastTemplatedBy = indicatorsTemplatedBy.reduce(
@@ -17,7 +17,7 @@ export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
 		0,
 	);
 	if (!indexOfLastTemplatedBy) {
-		return undefined;
+		return;
 	}
 
 	const indexOfNextLine = readme.indexOf("\n", indexOfLastTemplatedBy);

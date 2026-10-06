@@ -7,7 +7,7 @@ export async function readGuide(take: TakeInput) {
 	});
 
 	if (development instanceof Error) {
-		return undefined;
+		return;
 	}
 
 	const tag = /> .*guided walkthrough, see \[((?!\[).+)\]\((.+)\)/i.exec(
@@ -15,7 +15,7 @@ export async function readGuide(take: TakeInput) {
 	);
 
 	if (!tag) {
-		return undefined;
+		return;
 	}
 
 	return {

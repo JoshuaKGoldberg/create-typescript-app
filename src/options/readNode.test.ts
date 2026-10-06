@@ -45,7 +45,7 @@ describe(readNode, () => {
 
 		it("defaults to the default pinned when nvmrc does not exist", async () => {
 			const { pinned } = await readNode(
-				() => Promise.resolve(new Error("")),
+				() => Promise.resolve(new Error("Oh no!")),
 				getPackageDataFull,
 			);
 

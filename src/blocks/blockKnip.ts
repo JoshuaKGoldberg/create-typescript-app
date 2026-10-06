@@ -30,7 +30,7 @@ export const blockKnip = base.createBlock({
 			intakeFileExportObject(files, ["knip.config.ts"]) ??
 			intakeFileAsJson(files, ["knip.json"]);
 		if (!knipJson) {
-			return undefined;
+			return;
 		}
 
 		return removeUndefinedObjects({
@@ -85,13 +85,13 @@ export const blockKnip = base.createBlock({
 						`import type { KnipConfig } from "knip";
 
 export default ${JSON.stringify({
-							entry: entry?.sort(),
+							entry: entry?.toSorted(),
 							ignoreDependencies,
 							ignoreExportsUsedInFile: {
 								interface: true,
 								type: true,
 							},
-							project: project?.sort(),
+							project: project?.toSorted(),
 							treatConfigHintsAsErrors: true,
 						})} satisfies KnipConfig;`,
 					),

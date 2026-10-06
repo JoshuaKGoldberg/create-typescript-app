@@ -5,7 +5,7 @@ export async function readReadmeUsage(getReadme: () => Promise<string>) {
 
 	const indexOfUsage = readme.indexOf(startUsage);
 	if (indexOfUsage === -1) {
-		return undefined;
+		return;
 	}
 
 	const offset = indexOfUsage + startUsage.length;

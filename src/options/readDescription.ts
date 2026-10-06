@@ -13,7 +13,7 @@ export async function readDescription(
 	// If we there is no package.json yet, this is probably setup mode.
 	const { description: fromPackageJson } = await getPackageData();
 	if (!fromPackageJson) {
-		return undefined;
+		return;
 	}
 
 	// If only a a package.json exists, this is probably transition mode.
@@ -29,7 +29,7 @@ export async function readDescription(
 		(await getRepository()) !== "create-typescript-app" &&
 		fromPackageJson === packageData.description
 	) {
-		return undefined;
+		return;
 	}
 
 	const fromPackageJsonNormalized = htmlToTextSafe(

@@ -31,12 +31,12 @@ export const blockCSpell = base.createBlock({
 	intake({ files }) {
 		const cspellJson = intakeFile(files, ["cspell.json"]);
 		if (!cspellJson) {
-			return undefined;
+			return;
 		}
 
 		const { data } = zAddons.safeParse(JSON5.parse<unknown>(cspellJson[0]));
 		if (!data) {
-			return undefined;
+			return;
 		}
 
 		return {
@@ -53,7 +53,7 @@ export const blockCSpell = base.createBlock({
 
 		const allWords = Array.from(
 			new Set([...(options.words ?? []), ...words]),
-		).sort();
+		).toSorted();
 
 		return {
 			addons: [
@@ -101,7 +101,7 @@ export const blockCSpell = base.createBlock({
 								"pnpm-lock.yaml",
 								...ignorePaths,
 							]),
-						).sort(),
+						).toSorted(),
 						...(allWords.length && { words: allWords }),
 					}),
 				),

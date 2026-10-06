@@ -9,6 +9,6 @@ export function intakeFileAsJson(files: IntakeDirectory, filePath: string[]) {
 	try {
 		return file && JSON5.parse<Record<string, unknown> | undefined>(file[0]);
 	} catch {
-		return undefined;
+		return;
 	}
 }

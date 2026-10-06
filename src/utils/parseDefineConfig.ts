@@ -13,11 +13,7 @@ export function parseDefineConfig(
 	}
 
 	const rawData = tryParseJSON5(`{${matched[1]}}`);
-	if (!rawData || typeof rawData !== "object") {
-		return undefined;
-	}
-
-	return rawData;
+	return !rawData || typeof rawData !== "object" ? undefined : rawData;
 }
 
 function tryParseJSON5(text: string) {
@@ -25,6 +21,6 @@ function tryParseJSON5(text: string) {
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 		return JSON5.parse(text) as Record<string, unknown> | undefined;
 	} catch {
-		return undefined;
+		return;
 	}
 }

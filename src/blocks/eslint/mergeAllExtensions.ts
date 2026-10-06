@@ -20,10 +20,11 @@ function mergeExtensions(
 	b: Extension,
 	files: string[],
 ): Extension {
+	/* eslint-disable unicorn/no-useless-fallback-in-spread -- languageOptions and linterOptions are unknown, so TypeScript needs the {} fallbacks */
 	return {
 		extends: Array.from(
 			new Set([...(a.extends ?? []), ...(b.extends ?? [])]),
-		).sort(),
+		).toSorted(),
 		files,
 		languageOptions: (a.languageOptions ?? b.languageOptions) && {
 			...(a.languageOptions ?? {}),
@@ -37,6 +38,7 @@ function mergeExtensions(
 		rules: mergeExtensionsRules(a.rules, b.rules),
 		settings: (a.settings ?? b.settings) && { ...a.settings, ...b.settings },
 	};
+	/* eslint-enable unicorn/no-useless-fallback-in-spread */
 }
 
 function mergeExtensionsRules(
@@ -48,16 +50,8 @@ function mergeExtensionsRules(
 	}
 
 	if (Array.isArray(a)) {
-		if (Array.isArray(b)) {
-			return [...a, ...b];
-		}
-
-		return [...a, { entries: b }];
+		return Array.isArray(b) ? [...a, ...b] : [...a, { entries: b }];
 	}
 
-	if (Array.isArray(b)) {
-		return [...b, { entries: a }];
-	}
-
-	return { ...a, ...b };
+	return Array.isArray(b) ? [...b, { entries: a }] : { ...a, ...b };
 }

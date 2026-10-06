@@ -82,7 +82,7 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 						? formatFile(
 								".vscode/extensions.json",
 								JSON.stringify({
-									recommendations: [...extensions].sort(),
+									recommendations: extensions.toSorted(),
 								}),
 							)
 						: undefined,
@@ -90,7 +90,7 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 						? formatFile(
 								".vscode/launch.json",
 								JSON.stringify({
-									configurations: [...debuggers].sort((a, b) =>
+									configurations: debuggers.toSorted((a, b) =>
 										a.name.localeCompare(b.name),
 									),
 									version: "0.2.0",
@@ -111,7 +111,9 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 						? formatFile(
 								".vscode/tasks.json",
 								JSON.stringify({
-									tasks: tasks.sort((a, b) => a.detail.localeCompare(b.detail)),
+									tasks: tasks.toSorted((a, b) =>
+										a.detail.localeCompare(b.detail),
+									),
 									version: "2.0.0",
 								}),
 							)

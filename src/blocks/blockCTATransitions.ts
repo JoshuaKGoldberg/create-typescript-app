@@ -39,7 +39,7 @@ export const blockCTATransitions = base.createBlock({
 									inputs: {
 										token: {
 											description:
-												"GitHub personal access token, see https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/docs/TokensAndApps.md",
+												"GitHub personal access token, see https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/docs/Setup.md#access_token",
 											required: true,
 										},
 									},

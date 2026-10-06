@@ -9,8 +9,7 @@ cd YourRepositoryName
 npx create-typescript-app
 ```
 
-You'll then need to set up a token, some GitHub apps, and npm publishing by hand.
-See [Tokens and Apps](./TokensAndApps.md).
+You'll then need to do some [manual setup](./Setup.md#manual-setup) for a token, GitHub apps, and npm publishing.
 
 Your new repository will then be ready for development!
 Hooray! 🥳

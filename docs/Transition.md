@@ -21,8 +21,7 @@ For example, if the repository previously used Jest for testing:
 - `@vitest/eslint-plugin`, `vitest`, and other Vitest-related packages will be installed
 - A `vitest.config.ts` file will be created
 
-You'll then need to set up a token, some GitHub apps, and npm publishing by hand.
-See [Tokens and Apps](./TokensAndApps.md).
+You'll then need to do some [manual setup](./Setup.md#manual-setup) for a token, GitHub apps, and npm publishing.
 
 Your repository will then have an approximate copy of this template's tooling ready for you to review!
 Hooray! 🥳

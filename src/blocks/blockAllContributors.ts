@@ -70,7 +70,7 @@ export const blockAllContributors = base.createBlock({
 					secrets: [
 						{
 							description:
-								"a fine-grained GitHub PAT, see https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/docs/TokensAndApps.md",
+								"a fine-grained GitHub PAT, see https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/docs/Setup.md#access_token",
 							name: "ACCESS_TOKEN",
 						},
 					],

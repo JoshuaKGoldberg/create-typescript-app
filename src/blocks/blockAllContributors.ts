@@ -69,8 +69,7 @@ export const blockAllContributors = base.createBlock({
 				blockRepositorySecrets({
 					secrets: [
 						{
-							description:
-								"a fine-grained GitHub PAT, see https://github.com/JoshuaKGoldberg/create-typescript-app/blob/main/docs/Setup.md#access_token",
+							description: "a GitHub PAT with repo and workflow permissions",
 							name: "ACCESS_TOKEN",
 						},
 					],

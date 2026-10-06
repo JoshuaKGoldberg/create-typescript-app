@@ -247,3 +247,42 @@ An example of this would be `"bin/index.js"`.
 A starter file will be created at that path that imports the built entry point; edit it to run your CLI.
 
 If you'd like an example of what that looks like, take a look at the [CTA source code](https://github.com/JoshuaKGoldberg/create-typescript-app/blob/e7fafcb8968f8f6c551ab0917c9a6a849a3cba28/bin/index.js)!
+
+## How do I release several changes at once?
+
+The `release.yaml` workflow runs on every push to `main`.
+It releases a new version if there's been a `feat`, `fix`, or `perf` commit, or a breaking change marked with `!`, since the last release.
+PRs are squash merged, so that usually means one release per PR.
+
+To batch several PRs into one release:
+
+1. Disable the _Release_ workflow from your repository's _Actions_ tab, or with `gh workflow disable release.yaml`
+2. Merge all but the last PR
+3. Re-enable the workflow, or run `gh workflow enable release.yaml`
+4. Merge the last PR
+
+The release from that last merge will include every change since the previous release.
+
+## How do I release changes that didn't trigger a release?
+
+Commits typed as `build`, `chore`, `ci`, `docs`, `refactor`, `style`, or `test` don't trigger a release.
+
+If a change that didn't trigger a release does need to reach users, push a `fix` commit to `main`:
+
+```shell
+git commit --allow-empty --message "fix: release recent dependency updates"
+git push
+```
+
+If a Renovate-bumped devDependency regularly changes your build output, you can add a rule to `.github/renovate.json` to title its updates as `fix`:
+
+```json
+{
+	"packageRules": [
+		{
+			"matchPackageNames": ["your-dev-dependency"],
+			"semanticCommitType": "fix"
+		}
+	]
+}
+```

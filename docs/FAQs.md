@@ -187,24 +187,6 @@ That's reasonable.
 Unless you know a package needs to support a CJS consumer, please strongly consider keeping it ESM-only (the `create-typescript-app` default).
 ESM-only packages have a smaller footprint by virtue of including fewer files.
 
-## Why do I get "The inferred type of ... cannot be named without a reference to ..."?
-
-That's TypeScript error TS2742.
-TypeScript needs to write out a type for each export in its `.d.ts` output.
-If that type comes from a package you don't depend on directly, TypeScript can't refer to it, because pnpm only lets your package import its own dependencies.
-For example, `express()` returns a type from `@types/express-serve-static-core`, which `@types/express` depends on but your package doesn't.
-This applies to every file in `src`, even test helpers that aren't part of your package's public API.
-
-The usual fix is to give the export a type annotation that only uses packages you depend on:
-
-```ts
-import express from "express";
-
-export const app: express.Express = express();
-```
-
-See [microsoft/TypeScript#47663 (comment)](https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1519138189) for other workarounds.
-
 ## What about `eslint-config-prettier`?
 
 [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) is an ESLint plugin that serves only to turn off all rules that are unnecessary or might conflict with formatters such as Prettier.
@@ -253,3 +235,21 @@ An example of this would be `"bin/index.js"`.
 A starter file will be created at that path that imports the built entry point; edit it to run your CLI.
 
 If you'd like an example of what that looks like, take a look at the [CTA source code](https://github.com/JoshuaKGoldberg/create-typescript-app/blob/e7fafcb8968f8f6c551ab0917c9a6a849a3cba28/bin/index.js)!
+
+## Why do I get "The inferred type of ... cannot be named without a reference to ..." (TS2742)?
+
+TypeScript needs to write out a type for each export in its `.d.ts` output.
+If that type comes from a package you don't depend on directly, TypeScript can't refer to it, because pnpm only lets your package import its own dependencies.
+
+For example, `express()` returns a type from `@types/express-serve-static-core`, which `@types/express` depends on but a consuming package might not.
+This applies to every file in `src`, even test helpers that aren't part of your package's public API.
+
+The usual fix is to give the export a type annotation that only uses packages you depend on:
+
+```ts
+import express from "express";
+
+export const app: express.Express = express();
+```
+
+See [microsoft/TypeScript#47663 (comment)](https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1519138189) for other workarounds.

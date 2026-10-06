@@ -49,7 +49,8 @@ You can read more about `create-typescript-app` and the tooling it supports:
 
 1. [**Blocks**](./docs/Blocks.md): a breakdown of all the pieces this template can set up.
 2. [**CLI**](./docs/CLI.md): providing granular options to customize how the template is run.
-3. [**FAQs**](./docs/FAQs.md): frequently asked questions and troubleshooting
+3. [**Examples**](./docs/Examples.md): kinds of projects this template can create, with example repositories
+4. [**FAQs**](./docs/FAQs.md): frequently asked questions and troubleshooting
 
 > [!NOTE]  
 > This template is opinionated and not endorsed by the TypeScript team.

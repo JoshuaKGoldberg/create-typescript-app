@@ -82,10 +82,9 @@ describe(blockReleaseIt, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
-			        with:
-			          fetch-depth: 0
-			      - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
+			      - env:
+			          TAG_NAME: \${{ github.event.release.tag_name }}
+			        run: echo "npm_version=\${TAG_NAME#v}" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
@@ -267,10 +266,9 @@ describe(blockReleaseIt, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
-			        with:
-			          fetch-depth: 0
-			      - run: echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"
+			      - env:
+			          TAG_NAME: \${{ github.event.release.tag_name }}
+			        run: echo "npm_version=\${TAG_NAME#v}" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}

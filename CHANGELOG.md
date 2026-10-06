@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.73.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.72.0...2.73.0) (2026-10-06)
+
+### Features
+
+- include ## Usage heading in readme usage option ([#2557](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2557)) ([69643e9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/69643e9f207faba39ca00e76306d09b32196e7af)), closes [#2144](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2144)
+
 ## [2.72.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.71.0...2.72.0) (2026-10-06)
 
 ### Features

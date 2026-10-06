@@ -4,6 +4,7 @@ import { resolveUses } from "./actions/resolveUses.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
+import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { withPreviously } from "./files/withPreviously.ts";
@@ -27,6 +28,14 @@ export const blockCTATransitions = base.createBlock({
 				}),
 				blockRepositoryBranchRuleset({
 					requiredStatusChecks: ["Transition"],
+				}),
+				blockRepositorySecrets({
+					secrets: [
+						{
+							description: "a GitHub PAT with repo and workflow permissions",
+							name: "ACCESS_TOKEN",
+						},
+					],
 				}),
 			],
 			files: {

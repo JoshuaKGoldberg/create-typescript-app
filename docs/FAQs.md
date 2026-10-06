@@ -236,6 +236,26 @@ You can also do step 4 from the command line with [`npm trust github --file rele
 
 From then on, the `release.yaml` workflow will publish new versions for you.
 
+## How do I release a beta version?
+
+release-it can release prerelease versions with its [`--preRelease` option](https://github.com/release-it/release-it/blob/main/docs/pre-releases.md).
+To have the Release workflow release betas:
+
+1. In `.github/workflows/release.yaml`, add this alongside the `uses: JoshuaKGoldberg/release-it-action` line:
+
+   ```yaml
+   with:
+     release-it-args: --preRelease=beta
+   ```
+
+2. In `.release-it.json`, change the `after:git:release` hook to `npm publish --tag beta`, since npm won't publish a prerelease without a tag
+
+Each release will then be the next beta, such as `2.0.0-beta.0` and then `2.0.0-beta.1`.
+The version still follows your commits: from `1.2.0`, a breaking change releases `2.0.0-beta.0` and a fix releases `1.2.1-beta.0`.
+
+To go back to stable releases, undo both changes.
+The next release will then drop the `-beta` suffix, such as going from `2.0.0-beta.1` to `2.0.0`.
+
 ## How do I release a new major version?
 
 Add a `!` before the colon in the PR title, such as `feat!: drop support for Node.js 20`.

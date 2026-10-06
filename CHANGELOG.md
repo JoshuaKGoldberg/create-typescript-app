@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.72.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.71.0...2.72.0) (2026-10-06)
+
+### Features
+
+- read post-release npm version from release tag ([#2553](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2553)) ([c67c110](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c67c110bef54c799a81abad7bdc48baf2b71b199)), closes [#1115](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1115)
+
 ## [2.71.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.70.0...2.71.0) (2026-10-06)
 
 ### Features

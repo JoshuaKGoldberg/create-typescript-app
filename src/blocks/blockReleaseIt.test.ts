@@ -82,6 +82,9 @@ describe(blockReleaseIt, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
+			      - env:
+			          TAG_NAME: \${{ github.event.release.tag_name }}
+			        run: echo "npm_version=\${TAG_NAME#v}" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
@@ -91,7 +94,7 @@ describe(blockReleaseIt, () => {
 			              The release is available on:
 
 			              * [GitHub releases](https://github.com/test-owner/test-repository/releases/tag/{release_tag})
-			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-repository/v/{release_tag})
+			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-repository/v/\${{ env.npm_version }})
 
 			              Cheers! 📦🚀
 
@@ -263,6 +266,9 @@ describe(blockReleaseIt, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
+			      - env:
+			          TAG_NAME: \${{ github.event.release.tag_name }}
+			        run: echo "npm_version=\${TAG_NAME#v}" >> "$GITHUB_ENV"
 			      - uses: apexskier/github-release-commenter@v1
 			        with:
 			          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
@@ -272,7 +278,7 @@ describe(blockReleaseIt, () => {
 			              The release is available on:
 
 			              * [GitHub releases](https://github.com/test-owner/test-repository/releases/tag/{release_tag})
-			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-repository/v/{release_tag})
+			              * [npm package (@latest dist-tag)](https://www.npmjs.com/package/test-repository/v/\${{ env.npm_version }})
 
 			              Cheers! 📦🚀
 

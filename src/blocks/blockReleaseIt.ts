@@ -79,6 +79,10 @@ export const blockReleaseIt = base.createBlock({
 								},
 								steps: [
 									{
+										env: { TAG_NAME: "${{ github.event.release.tag_name }}" },
+										run: 'echo "npm_version=${TAG_NAME#v}" >> "$GITHUB_ENV"',
+									},
+									{
 										uses: resolveUses(
 											"apexskier/github-release-commenter",
 											"v1",
@@ -91,7 +95,7 @@ export const blockReleaseIt = base.createBlock({
 							The release is available on:
 
 							* [GitHub releases](https://github.com/${options.owner}/${options.repository}/releases/tag/{release_tag})
-							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/{release_tag})
+							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/\${{ env.npm_version }})
 
 							Cheers! 📦🚀
 						`,

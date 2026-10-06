@@ -5,6 +5,9 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: echo "npm_version=${TAG_NAME#v}" >> "$GITHUB_ENV"
       - uses: apexskier/github-release-commenter@e7813a9625eabd79a875b4bc4046cfcae377ab34 # v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -14,7 +17,7 @@ jobs:
             The release is available on:
 
             * [GitHub releases](https://github.com/JoshuaKGoldberg/create-typescript-app/releases/tag/{release_tag})
-            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/create-typescript-app/v/{release_tag})
+            * [npm package (@latest dist-tag)](https://www.npmjs.com/package/create-typescript-app/v/${{ env.npm_version }})
 
             Cheers! 📦🚀
 

@@ -37,6 +37,7 @@ This table summarizes each block and which base levels they're included in:
 | Knip                               | `--add-knip`, `--exclude-knip`                                                             |         |        | 💯         |
 | MIT License                        | `--add-mit-license`, `--exclude-mit-license`                                               | ✔️      | ✅     | 💯         |
 | ncc                                | `--add-ncc`, `--exclude-ncc`                                                               |         |        |            |
+| NextJS                             | `--add-nextjs`, `--exclude-nextjs`                                                         |         |        |            |
 | nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        | 💯         |
 | OctoGuide                          | `--add-octoguide`, `--exclude-octoguide`                                                   |         | ✅     | 💯         |
 | OctoGuide Strict                   | `--add-octoguide-strict`, `--exclude-octoguide-strict`                                     |         |        | 💯         |

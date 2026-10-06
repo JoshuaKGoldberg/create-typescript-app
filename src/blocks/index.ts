@@ -28,6 +28,7 @@ import { blockGitignore } from "./blockGitignore.ts";
 import { blockKnip } from "./blockKnip.ts";
 import { blockMITLicense } from "./blockMITLicense.ts";
 import { blockNcc } from "./blockNcc.ts";
+import { blockNextJs } from "./blockNextJs.ts";
 import { blockNvmrc } from "./blockNvmrc.ts";
 import { blockOctoGuide } from "./blockOctoGuide.ts";
 import { blockOctoGuideStrict } from "./blockOctoGuideStrict.ts";
@@ -81,6 +82,7 @@ export const blocks = {
 	blockKnip,
 	blockMITLicense,
 	blockNcc,
+	blockNextJs,
 	blockNvmrc,
 	blockOctoGuide,
 	blockOctoGuideStrict,
@@ -135,6 +137,7 @@ export { blockGitignore } from "./blockGitignore.ts";
 export { blockKnip } from "./blockKnip.ts";
 export { blockMITLicense } from "./blockMITLicense.ts";
 export { blockNcc } from "./blockNcc.ts";
+export { blockNextJs } from "./blockNextJs.ts";
 export { blockNvmrc } from "./blockNvmrc.ts";
 export { blockOctoGuide } from "./blockOctoGuide.ts";
 export { blockOctoGuideStrict } from "./blockOctoGuideStrict.ts";

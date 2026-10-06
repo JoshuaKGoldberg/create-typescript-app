@@ -16,17 +16,24 @@ import { blockVitest } from "./blockVitest.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
+// zod-tsconfig doesn't yet describe language service plugins
+const zCompilerOptions = CompilerOptionsSchema.extend({
+	plugins: z.array(z.looseObject({ name: z.string() })).optional(),
+});
+
 export const blockTypeScript = base.createBlock({
 	about: {
 		name: "TypeScript",
 	},
 	addons: {
-		compilerOptions: CompilerOptionsSchema.optional(),
+		compilerOptions: zCompilerOptions.optional(),
+		exclude: z.array(z.string()).optional(),
+		include: z.array(z.string()).default([]),
 		outDir: z.string().optional(),
 	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
-		const { data } = CompilerOptionsSchema.safeParse(raw?.compilerOptions);
+		const { data } = zCompilerOptions.safeParse(raw?.compilerOptions);
 		if (!data) {
 			return undefined;
 		}
@@ -36,7 +43,7 @@ export const blockTypeScript = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { compilerOptions, outDir } = addons;
+		const { compilerOptions, exclude, include, outDir } = addons;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
@@ -156,7 +163,8 @@ greet("Hello, world! ${options.emoji}");
 							...compilerOptions,
 							...(outDir && { noEmit: undefined }),
 						}),
-						include: ["src"],
+						include: ["src", ...include],
+						...(exclude && { exclude }),
 					}),
 				),
 			},

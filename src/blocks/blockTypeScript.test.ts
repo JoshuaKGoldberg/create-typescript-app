@@ -370,6 +370,40 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
+	test("with include, exclude, and plugins addons", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					plugins: [{ name: "next" }],
+				},
+				exclude: ["node_modules"],
+				include: ["next-env.d.ts"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"noEmit": true,
+					"plugins": [{ "name": "next" }],
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src", "next-env.d.ts"],
+				"exclude": ["node_modules"]
+			}
+			"
+		`);
+	});
+
 	test("with an outDir addon and noEmit in compilerOptions", () => {
 		const creation = testBlock(blockTypeScript, {
 			addons: {
@@ -794,6 +828,21 @@ describe(blockTypeScript, () => {
 							other: true,
 						}),
 					],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions });
+		});
+
+		it("returns compilerOptions including plugins when tsconfig.json contains compilerOptions with plugins", () => {
+			const compilerOptions = {
+				module: "ESNext",
+				plugins: [{ name: "next" }],
+			};
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
 				},
 			});
 

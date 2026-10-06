@@ -84,7 +84,7 @@ describe(blockREADME, () => {
 					development: "Development docs.",
 					readme: {
 						additional: "Additional docs.",
-						usage: "Use it.",
+						usage: "## Usage\n\nUse it.",
 					},
 				},
 			},
@@ -111,6 +111,78 @@ describe(blockREADME, () => {
 			Thanks! 💖
 
 			Additional docs.
+			",
+			  },
+			}
+		`);
+	});
+
+	test("options.documentation.readme.usage without a ## Usage heading", () => {
+		const creation = testBlock(blockREADME, {
+			options: {
+				...optionsBase,
+				documentation: {
+					readme: {
+						usage: "",
+					},
+				},
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "README.md": "<h1 align="center">Test Title</h1>
+
+			<p align="center">Test description</p>
+
+			<p align="center">
+				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
+			</p>
+
+			## Development
+
+			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
+			Thanks! 💖
+
+			",
+			  },
+			}
+		`);
+	});
+
+	test("options.documentation.readme.usage with a custom heading", () => {
+		const creation = testBlock(blockREADME, {
+			options: {
+				...optionsBase,
+				documentation: {
+					readme: {
+						usage: "## Getting Started\n\nUse it.",
+					},
+				},
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "README.md": "<h1 align="center">Test Title</h1>
+
+			<p align="center">Test description</p>
+
+			<p align="center">
+				<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
+			</p>
+
+			## Getting Started
+
+			Use it.
+
+			## Development
+
+			See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
+			Thanks! 💖
+
 			",
 			  },
 			}

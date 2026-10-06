@@ -44,6 +44,10 @@ export const blockREADME = base.createBlock({
 			options.logo &&
 			`\n<img ${printAttributes({ align: "right", ...options.logo })}>\n`;
 
+		const usage =
+			options.documentation.readme.usage ??
+			["## Usage", ...defaultUsage].join("\n\n");
+
 		const suffixes = [
 			...notices,
 			options.documentation.readme.footnotes,
@@ -59,11 +63,7 @@ export const blockREADME = base.createBlock({
 ${formatBadges(badges)}
 </p>
 ${[logo, explainer].filter(Boolean).join("")}
-## Usage
-
-${options.documentation.readme.usage ?? defaultUsage.join("\n\n")}
-
-## Development
+${usage ? `${usage}\n\n` : ""}## Development
 
 See [\`.github/CONTRIBUTING.md\`](./.github/CONTRIBUTING.md), then [\`.github/DEVELOPMENT.md\`](./.github/DEVELOPMENT.md).
 Thanks! ${options.emoji}

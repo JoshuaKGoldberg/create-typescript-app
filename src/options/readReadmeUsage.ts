@@ -5,18 +5,20 @@ export async function readReadmeUsage(getReadme: () => Promise<string>) {
 
 	const indexOfUsage = readme.indexOf(startUsage);
 	if (indexOfUsage === -1) {
-		return undefined;
+		// Existing READMEs without a ## Usage heading shouldn't get one added
+		return readme.trim() ? "" : undefined;
 	}
 
-	const offset = indexOfUsage + startUsage.length;
-	const indexOfNextKnownHeading = readme
-		.slice(offset)
-		.search(/## (?:Development|Contributing|Contributors)/);
-	if (indexOfNextKnownHeading === -1) {
-		return readme.slice(offset) || undefined;
-	}
+	const remaining = readme.slice(indexOfUsage);
+	const indexOfNextKnownHeading = remaining.search(
+		/## (?:Development|Contributing|Contributors)/,
+	);
 
-	const usage = readme.slice(offset, indexOfNextKnownHeading + offset).trim();
+	const usage = (
+		indexOfNextKnownHeading === -1
+			? remaining
+			: remaining.slice(0, indexOfNextKnownHeading)
+	).trim();
 
-	return usage || undefined;
+	return usage === startUsage ? undefined : usage;
 }

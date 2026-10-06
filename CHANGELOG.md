@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.71.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.70.0...2.71.0) (2026-10-06)
+
+### Features
+
+- post all-contributors comments as github-actions[bot] ([#2552](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2552)) ([f7689d9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/f7689d94fd926f4b8c8139fed9af97c3725a33d1)), closes [#928](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/928)
+
 ## [2.70.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.69.1...2.70.0) (2026-10-06)
 
 ### Features

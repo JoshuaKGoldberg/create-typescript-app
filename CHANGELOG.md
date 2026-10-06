@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.70.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.69.1...2.70.0) (2026-10-06)
+
+### Features
+
+- add 'status: waiting for author' when changes are requested on a PR ([#2550](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2550)) ([12251a1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/12251a10442e0caa8c64e3ca08f6ee5894dbc61d)), closes [#633](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/633)
+
 ## [2.69.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.69.0...2.69.1) (2026-10-05)
 
 ### Bug Fixes

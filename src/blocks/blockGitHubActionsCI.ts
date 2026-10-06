@@ -57,6 +57,11 @@ export const blockGitHubActionsCI = base.createBlock({
 					],
 				},
 			].toSorted((a, b) => a.name.localeCompare(b.name));
+		const prReviewLabelsUses = resolveUses(
+			"JoshuaKGoldberg/pr-review-labels-action",
+			"v0.1.0",
+			options.workflowsVersions,
+		);
 
 		return {
 			addons: [
@@ -114,38 +119,27 @@ export const blockGitHubActionsCI = base.createBlock({
 								}),
 							["ci.yml"],
 						),
-						"pr-review-requested.yaml": withPreviously(
+						"pr-review-labels.yaml": withPreviously(
 							createSoloWorkflowFile({
-								name: "PR Review Requested",
+								name: "PR Review Labels",
 								on: {
 									pull_request_target: {
 										types: ["review_requested"],
 									},
+									workflow_run: {
+										types: ["completed"],
+										workflows: ["PR Review Submitted"],
+									},
 								},
 								permissions: {
+									actions: "read",
 									"pull-requests": "write",
 								},
-								steps: [
-									{
-										uses: resolveUses(
-											"actions-ecosystem/action-remove-labels",
-											"v1",
-											options.workflowsVersions,
-										),
-										with: {
-											labels: "status: waiting for author",
-										},
-									},
-									{
-										if: "failure()",
-										run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
-									},
-								],
+								steps: [{ uses: prReviewLabelsUses }],
 							}),
-							["pr-review-requested.yml"],
+							["pr-review-requested.yaml", "pr-review-requested.yml"],
 						),
 						"pr-review-submitted.yaml": createSoloWorkflowFile({
-							if: "github.event.review.state == 'changes_requested'",
 							name: "PR Review Submitted",
 							on: {
 								pull_request_review: {
@@ -153,73 +147,7 @@ export const blockGitHubActionsCI = base.createBlock({
 								},
 							},
 							permissions: {},
-							steps: [
-								{
-									env: {
-										PR_NUMBER: "${{ github.event.pull_request.number }}",
-									},
-									run: 'echo "$PR_NUMBER" > pr-number',
-								},
-								{
-									uses: resolveUses(
-										"actions/upload-artifact",
-										"v7",
-										options.workflowsVersions,
-									),
-									with: {
-										name: "pr-number",
-										path: "pr-number",
-										"retention-days": 1,
-									},
-								},
-							],
-						}),
-						"pr-review-submitted-label.yaml": createSoloWorkflowFile({
-							if: "github.event.workflow_run.event == 'pull_request_review' && github.event.workflow_run.conclusion == 'success'",
-							name: "PR Review Submitted Label",
-							on: {
-								workflow_run: {
-									types: ["completed"],
-									workflows: ["PR Review Submitted"],
-								},
-							},
-							permissions: {
-								actions: "read",
-								"pull-requests": "write",
-							},
-							steps: [
-								{
-									uses: resolveUses(
-										"actions/download-artifact",
-										"v8",
-										options.workflowsVersions,
-									),
-									with: {
-										"github-token": "${{ secrets.GITHUB_TOKEN }}",
-										name: "pr-number",
-										"run-id": "${{ github.event.workflow_run.id }}",
-									},
-								},
-								{
-									env: {
-										GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
-										HEAD_SHA: "${{ github.event.workflow_run.head_sha }}",
-									},
-									run: [
-										"pr_number=$(cat pr-number)",
-										'if [[ ! "$pr_number" =~ ^[0-9]+$ ]]; then',
-										'  echo "The pr-number artifact does not contain a PR number."',
-										"  exit 1",
-										"fi",
-										'if [[ "$(gh api "repos/$GITHUB_REPOSITORY/pulls/$pr_number" --jq .head.sha)" != "$HEAD_SHA" ]]; then',
-										`  echo "PR #$pr_number's head commit is not the reviewed commit, so it is not labeled."`,
-										"  exit 0",
-										"fi",
-										'gh api "repos/$GITHUB_REPOSITORY/issues/$pr_number/labels" --silent -f "labels[]=status: waiting for author"',
-										"",
-									].join("\n"),
-								},
-							],
+							steps: [{ uses: prReviewLabelsUses }],
 						}),
 					},
 				},

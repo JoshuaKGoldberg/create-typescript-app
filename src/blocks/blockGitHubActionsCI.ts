@@ -144,8 +144,6 @@ export const blockGitHubActionsCI = base.createBlock({
 							}),
 							["pr-review-requested.yml"],
 						),
-						// pull_request_review workflows can't edit labels on PRs from forks.
-						// This one records the PR number for the privileged workflow below.
 						"pr-review-submitted.yaml": createSoloWorkflowFile({
 							if: "github.event.review.state == 'changes_requested'",
 							name: "PR Review Submitted",
@@ -176,8 +174,6 @@ export const blockGitHubActionsCI = base.createBlock({
 								},
 							],
 						}),
-						// The artifact is written by code from the PR, so it's untrusted:
-						// this workflow only labels the PR whose head commit was reviewed.
 						"pr-review-submitted-label.yaml": createSoloWorkflowFile({
 							if: "github.event.workflow_run.event == 'pull_request_review' && github.event.workflow_run.conclusion == 'success'",
 							name: "PR Review Submitted Label",

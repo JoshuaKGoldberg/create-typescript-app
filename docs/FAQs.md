@@ -6,37 +6,6 @@ Yes!
 See [Contributing to a create-typescript-app Repository](https://www.joshuakgoldberg.com/blog/contributing-to-a-create-typescript-app-repository).
 It'll walk you through the common activities you'll need to contribute to a repository scaffolded with `create-typescript-app`.
 
-## How do I publish a new package for the first time?
-
-The `release.yaml` workflow publishes to npm with [trusted publishing](https://docs.npmjs.com/trusted-publishers), so it doesn't need an npm token.
-But npm only lets you add a trusted publisher to a package that already exists.
-So you'll need to publish the first version yourself:
-
-1. Pull the latest `main` branch, in case the Release workflow already bumped the version
-2. Run `pnpm build`
-3. Run `npm publish`, logging in with `npm login` first if needed
-4. Go to `https://www.npmjs.com/package/<your-package>/access` and add a GitHub Actions trusted publisher with:
-   - **Organization or user**: your GitHub username or organization
-   - **Repository**: your repository's name
-   - **Workflow filename**: `release.yaml`
-   - **Allowed actions**: `npm publish`
-
-You can also do step 4 from the command line with [`npm trust github --file release.yaml --allow-publish`](https://docs.npmjs.com/cli/commands/npm-trust) (npm 11.15.0 or later).
-
-From then on, the `release.yaml` workflow will publish new versions for you.
-
-## How do I release a new major version?
-
-Add a `!` before the colon in the PR title, such as `feat!: drop support for Node.js 20`.
-The Release workflow will then bump the major version, including from `0.x` to `1.0.0`.
-
-To put several breaking changes into one major version:
-
-1. Disable the Release workflow with `gh workflow disable release.yaml`
-2. Merge all but the last PR
-3. Re-enable it with `gh workflow enable release.yaml`
-4. Merge the last PR
-
 ## Can I use _(insert tool here)_ with this template?
 
 Yes!
@@ -247,6 +216,32 @@ An example of this would be `"bin/index.js"`.
 A starter file will be created at that path that imports the built entry point; edit it to run your CLI.
 
 If you'd like an example of what that looks like, take a look at the [CTA source code](https://github.com/JoshuaKGoldberg/create-typescript-app/blob/e7fafcb8968f8f6c551ab0917c9a6a849a3cba28/bin/index.js)!
+
+## How do I publish a new package for the first time?
+
+The `release.yaml` workflow publishes to npm with [trusted publishing](https://docs.npmjs.com/trusted-publishers), so it doesn't need an npm token.
+But npm only lets you add a trusted publisher to a package that already exists.
+So you'll need to publish the first version yourself:
+
+1. Pull the latest `main` branch, in case the Release workflow already bumped the version
+2. Run `pnpm build`
+3. Run `npm publish`, logging in with `npm login` first if needed
+4. Go to `https://www.npmjs.com/package/<your-package>/access` and add a GitHub Actions trusted publisher with:
+   - **Organization or user**: your GitHub username or organization
+   - **Repository**: your repository's name
+   - **Workflow filename**: `release.yaml`
+   - **Allowed actions**: `npm publish`
+
+You can also do step 4 from the command line with [`npm trust github --file release.yaml --allow-publish`](https://docs.npmjs.com/cli/commands/npm-trust) (npm 11.15.0 or later).
+
+From then on, the `release.yaml` workflow will publish new versions for you.
+
+## How do I release a new major version?
+
+Add a `!` before the colon in the PR title, such as `feat!: drop support for Node.js 20`.
+The Release workflow will then bump the major version, including from `0.x` to `1.0.0`.
+
+To put several breaking changes into one major version, see [How do I release several changes at once?](#how-do-i-release-several-changes-at-once).
 
 ## How do I release several changes at once?
 

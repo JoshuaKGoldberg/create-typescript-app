@@ -14,7 +14,7 @@ The setup script will by default:
 4. Create a new repository on GitHub and set it as the local repository's upstream
 5. Configure relevant settings on the GitHub repository
 
-You'll then need to do some [manual setup](#manual-setup) for a token, GitHub apps, and npm publishing.
+You'll then need to do some [manual setup](#app-and-token-permissions) for a token, GitHub apps, and npm publishing.
 Your new repository will then be ready for development!
 Hooray! 🥳
 

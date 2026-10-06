@@ -1,0 +1,20 @@
+jobs:
+  pr_review_labels:
+    permissions:
+      actions: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JoshuaKGoldberg/pr-review-labels-action@fee8e8b7d88399731e77a567973876c50a054e6d # v0.1.0
+
+name: PR Review Labels
+
+on:
+  pull_request_target:
+    types:
+      - review_requested
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - PR Review Submitted

@@ -1,0 +1,13 @@
+jobs:
+  pr_review_submitted:
+    permissions: {}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JoshuaKGoldberg/pr-review-labels-action@fee8e8b7d88399731e77a567973876c50a054e6d # v0.1.0
+
+name: PR Review Submitted
+
+on:
+  pull_request_review:
+    types:
+      - submitted

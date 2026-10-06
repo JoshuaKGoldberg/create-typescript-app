@@ -50,34 +50,49 @@ describe(blockGitHubActionsCI, () => {
 			      },
 			      "workflows": {
 			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": [
+			        "pr-review-labels.yaml": [
 			          "jobs:
-			  pr_review_requested:
+			  pr_review_labels:
 			    permissions:
+			      actions: read
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
 
-			name: PR Review Requested
+			name: PR Review Labels
 
 			on:
 			  pull_request_target:
 			    types:
 			      - review_requested
+			  workflow_run:
+			    types:
+			      - completed
+			    workflows:
+			      - PR Review Submitted
 			",
 			          {
 			            "previously": [
+			              "pr-review-requested.yaml",
 			              "pr-review-requested.yml",
 			            ],
 			          },
 			        ],
+			        "pr-review-submitted.yaml": "jobs:
+			  pr_review_submitted:
+			    permissions: {}
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
+
+			name: PR Review Submitted
+
+			on:
+			  pull_request_review:
+			    types:
+			      - submitted
+			",
 			      },
 			    },
 			  },
@@ -141,34 +156,49 @@ describe(blockGitHubActionsCI, () => {
 			      },
 			      "workflows": {
 			        "ci.yaml": undefined,
-			        "pr-review-requested.yaml": [
+			        "pr-review-labels.yaml": [
 			          "jobs:
-			  pr_review_requested:
+			  pr_review_labels:
 			    permissions:
+			      actions: read
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
 
-			name: PR Review Requested
+			name: PR Review Labels
 
 			on:
 			  pull_request_target:
 			    types:
 			      - review_requested
+			  workflow_run:
+			    types:
+			      - completed
+			    workflows:
+			      - PR Review Submitted
 			",
 			          {
 			            "previously": [
+			              "pr-review-requested.yaml",
 			              "pr-review-requested.yml",
 			            ],
 			          },
 			        ],
+			        "pr-review-submitted.yaml": "jobs:
+			  pr_review_submitted:
+			    permissions: {}
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
+
+			name: PR Review Submitted
+
+			on:
+			  pull_request_review:
+			    types:
+			      - submitted
+			",
 			      },
 			    },
 			  },
@@ -279,34 +309,49 @@ describe(blockGitHubActionsCI, () => {
 			            ],
 			          },
 			        ],
-			        "pr-review-requested.yaml": [
+			        "pr-review-labels.yaml": [
 			          "jobs:
-			  pr_review_requested:
+			  pr_review_labels:
 			    permissions:
+			      actions: read
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
 
-			name: PR Review Requested
+			name: PR Review Labels
 
 			on:
 			  pull_request_target:
 			    types:
 			      - review_requested
+			  workflow_run:
+			    types:
+			      - completed
+			    workflows:
+			      - PR Review Submitted
 			",
 			          {
 			            "previously": [
+			              "pr-review-requested.yaml",
 			              "pr-review-requested.yml",
 			            ],
 			          },
 			        ],
+			        "pr-review-submitted.yaml": "jobs:
+			  pr_review_submitted:
+			    permissions: {}
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
+
+			name: PR Review Submitted
+
+			on:
+			  pull_request_review:
+			    types:
+			      - submitted
+			",
 			      },
 			    },
 			  },
@@ -431,34 +476,49 @@ describe(blockGitHubActionsCI, () => {
 			            ],
 			          },
 			        ],
-			        "pr-review-requested.yaml": [
+			        "pr-review-labels.yaml": [
 			          "jobs:
-			  pr_review_requested:
+			  pr_review_labels:
 			    permissions:
+			      actions: read
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions-ecosystem/action-remove-labels@v1
-			        with:
-			          labels: 'status: waiting for author'
-			      - if: failure()
-			        run: |
-			          echo "Don't worry if the previous step failed."
-			          echo "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
 
-			name: PR Review Requested
+			name: PR Review Labels
 
 			on:
 			  pull_request_target:
 			    types:
 			      - review_requested
+			  workflow_run:
+			    types:
+			      - completed
+			    workflows:
+			      - PR Review Submitted
 			",
 			          {
 			            "previously": [
+			              "pr-review-requested.yaml",
 			              "pr-review-requested.yml",
 			            ],
 			          },
 			        ],
+			        "pr-review-submitted.yaml": "jobs:
+			  pr_review_submitted:
+			    permissions: {}
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/pr-review-labels-action@v0.1.0
+
+			name: PR Review Submitted
+
+			on:
+			  pull_request_review:
+			    types:
+			      - submitted
+			",
 			      },
 			    },
 			  },

@@ -57,6 +57,11 @@ export const blockGitHubActionsCI = base.createBlock({
 					],
 				},
 			].toSorted((a, b) => a.name.localeCompare(b.name));
+		const prReviewLabelsUses = resolveUses(
+			"JoshuaKGoldberg/pr-review-labels-action",
+			"v0.1.0",
+			options.workflowsVersions,
+		);
 
 		return {
 			addons: [
@@ -114,36 +119,36 @@ export const blockGitHubActionsCI = base.createBlock({
 								}),
 							["ci.yml"],
 						),
-						"pr-review-requested.yaml": withPreviously(
+						"pr-review-labels.yaml": withPreviously(
 							createSoloWorkflowFile({
-								name: "PR Review Requested",
+								name: "PR Review Labels",
 								on: {
 									pull_request_target: {
 										types: ["review_requested"],
 									},
+									workflow_run: {
+										types: ["completed"],
+										workflows: ["PR Review Submitted"],
+									},
 								},
 								permissions: {
+									actions: "read",
 									"pull-requests": "write",
 								},
-								steps: [
-									{
-										uses: resolveUses(
-											"actions-ecosystem/action-remove-labels",
-											"v1",
-											options.workflowsVersions,
-										),
-										with: {
-											labels: "status: waiting for author",
-										},
-									},
-									{
-										if: "failure()",
-										run: 'echo "Don\'t worry if the previous step failed."\necho "See https://github.com/actions-ecosystem/action-remove-labels/issues/221."\n',
-									},
-								],
+								steps: [{ uses: prReviewLabelsUses }],
 							}),
-							["pr-review-requested.yml"],
+							["pr-review-requested.yaml", "pr-review-requested.yml"],
 						),
+						"pr-review-submitted.yaml": createSoloWorkflowFile({
+							name: "PR Review Submitted",
+							on: {
+								pull_request_review: {
+									types: ["submitted"],
+								},
+							},
+							permissions: {},
+							steps: [{ uses: prReviewLabelsUses }],
+						}),
 					},
 				},
 			},

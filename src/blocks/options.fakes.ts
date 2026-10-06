@@ -6,7 +6,7 @@ export const optionsBase = {
 	directory: ".",
 	documentation: {
 		readme: {
-			usage: "Test usage.",
+			usage: "## Usage\n\nTest usage.",
 		},
 	},
 	email: {

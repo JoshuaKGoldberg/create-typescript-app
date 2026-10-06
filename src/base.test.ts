@@ -1,6 +1,7 @@
 import { prepareOptions } from "bingo";
 import { readFile } from "fs/promises";
 import { describe, expect, test, vi } from "vitest";
+import { z } from "zod";
 
 import { base } from "./base.ts";
 import { AllContributorsData } from "./types.ts";
@@ -73,5 +74,33 @@ describe("base", () => {
 			words: require("../cspell.json").words,
 			workflowsVersions: expect.any(Object),
 		});
+	});
+});
+
+describe("base.createBlock", () => {
+	const block = base.createBlock({
+		about: { name: "Example" },
+		addons: { known: z.string().optional() },
+		produce: ({ addons }) => ({ files: { "example.txt": addons.known } }),
+	});
+
+	test("known Addons", () => {
+		const creation = block.produce({
+			addons: { known: "value" },
+			options: {} as never,
+		});
+
+		expect(creation).toEqual({ files: { "example.txt": "value" } });
+	});
+
+	test("unknown Addons", () => {
+		expect(() =>
+			block.produce({
+				addons: { known: "value", unknown: true } as never,
+				options: {} as never,
+			}),
+		).toThrowErrorMatchingInlineSnapshot(
+			`[Error: Unknown Addon(s) passed to Block Example: unknown. Known Addons are: known.]`,
+		);
 	});
 });

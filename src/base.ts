@@ -1,4 +1,9 @@
-import { BaseOptionsFor, createBase } from "bingo-stratum";
+import { AnyOptionalShape, InferredObject } from "bingo";
+import {
+	BaseOptionsFor,
+	BlockDefinitionWithAddons,
+	createBase,
+} from "bingo-stratum";
 import { inputFromFile } from "input-from-file";
 import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
@@ -46,6 +51,7 @@ import {
 	zEmails,
 	zWorkflowsVersions,
 } from "./schemas.ts";
+import { assertKnownAddons } from "./utils/assertKnownAddons.ts";
 
 export const base = createBase({
 	options: {
@@ -367,5 +373,32 @@ export const base = createBase({
 		};
 	},
 });
+
+const createBlock = base.createBlock;
+
+// bingo-stratum silently drops unknown Addons, so we check for them ourselves.
+// https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2551
+base.createBlock = ((
+	blockDefinition: BlockDefinitionWithAddons<
+		AnyOptionalShape,
+		InferredObject<typeof base.options>
+	>,
+) => {
+	const block = createBlock(blockDefinition);
+
+	// Blocks without Addons don't define an addons shape to check against.
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	if (blockDefinition.addons) {
+		const knownAddons = new Set(Object.keys(blockDefinition.addons));
+		const produce = block.produce.bind(block);
+
+		block.produce = (context) => {
+			assertKnownAddons(block.about?.name, knownAddons, context.addons);
+			return produce(context);
+		};
+	}
+
+	return block;
+}) as typeof createBlock;
 
 export type BaseOptions = BaseOptionsFor<typeof base> & { preset?: string };

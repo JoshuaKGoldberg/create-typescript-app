@@ -80,17 +80,6 @@ export const blockReleaseIt = base.createBlock({
 								steps: [
 									{
 										uses: resolveUses(
-											"actions/checkout",
-											"v4",
-											options.workflowsVersions,
-										),
-										with: { "fetch-depth": 0 },
-									},
-									{
-										run: `echo "npm_version=$(npm pkg get version | tr -d '"')" >> "$GITHUB_ENV"`,
-									},
-									{
-										uses: resolveUses(
 											"apexskier/github-release-commenter",
 											"v1",
 											options.workflowsVersions,
@@ -102,7 +91,7 @@ export const blockReleaseIt = base.createBlock({
 							The release is available on:
 
 							* [GitHub releases](https://github.com/${options.owner}/${options.repository}/releases/tag/{release_tag})
-							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/\${{ env.npm_version }})
+							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/{release_tag})
 
 							Cheers! 📦🚀
 						`,

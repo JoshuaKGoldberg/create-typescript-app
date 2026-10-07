@@ -1455,6 +1455,60 @@ describe(blockESLint, () => {
 		`);
 	});
 
+	test("with a scriptFileExtensions addon", () => {
+		const creation = testBlock(blockESLint, {
+			addons: {
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: { "no-console": "error" },
+					},
+					{
+						files: ["**/*.test.*"],
+						rules: { "no-debugger": "error" },
+					},
+				],
+				scriptFileExtensions: ["tsx"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["eslint.config.ts"]).toMatchInlineSnapshot(`
+			[
+			  "import eslint from "@eslint/js";
+			import { defineConfig, globalIgnores } from "eslint/config";
+			import tseslint from "typescript-eslint";
+
+			export default defineConfig(
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
+				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts,tsx}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+					rules: { "no-console": "error" },
+				},
+				{ files: ["**/*.test.*"], rules: { "no-debugger": "error" } },
+			);
+			",
+			  {
+			    "previously": [
+			      "eslint.config.js",
+			      "eslint.config.mjs",
+			    ],
+			  },
+			]
+		`);
+	});
+
 	test("with object options.bin", () => {
 		const creation = testBlock(blockESLint, {
 			options: {

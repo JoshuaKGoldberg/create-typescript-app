@@ -4,16 +4,18 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockGitignore } from "./blockGitignore.ts";
+import { blockKnip } from "./blockKnip.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { blockVitest } from "./blockVitest.ts";
+import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
 
 export const blockNextJs = base.createBlock({
 	about: {
 		name: "NextJS",
 	},
-	produce() {
+	produce({ options }) {
 		return {
 			addons: [
 				blockCSpell({
@@ -51,7 +53,23 @@ pnpm start
 					},
 				}),
 				blockESLint({
+					extensions: [
+						{
+							extends: ['next.configs["core-web-vitals"]'],
+							files: [getScriptFileExtension(options)],
+						},
+					],
 					ignores: [".next", "next-env.d.ts"],
+					imports: [
+						{
+							source: {
+								packageName: "@next/eslint-plugin-next",
+								version: "^16.4.0",
+							},
+							specifier: "next",
+						},
+					],
+					scriptFileExtensions: ["tsx"],
 				}),
 				blockGitHubActionsCI({
 					jobs: [
@@ -64,6 +82,9 @@ pnpm start
 				blockGitignore({
 					ignores: ["/.next", "/next-env.d.ts", "*.tsbuildinfo"],
 				}),
+				blockKnip({
+					project: ["src/**/*.tsx"],
+				}),
 				blockPackageJson({
 					properties: {
 						dependencies: {
@@ -75,6 +96,8 @@ pnpm start
 							"@types/react": "^19.3.0",
 							"@types/react-dom": "^19.3.0",
 						},
+						// Sites are deployed rather than published to npm
+						private: true,
 						scripts: {
 							build: "next build",
 							dev: "next dev",
@@ -120,6 +143,47 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 `,
+			},
+		};
+	},
+	setup({ options }) {
+		return {
+			files: {
+				src: {
+					app: {
+						// Next.js builds fail without at least one page
+						"layout.tsx": `import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	description: ${JSON.stringify(options.description)},
+	title: ${JSON.stringify(options.title)},
+};
+
+export default function RootLayout({
+	children,
+}: Readonly<{ children: React.ReactNode }>) {
+	return (
+		<html lang="en">
+			<body>{children}</body>
+		</html>
+	);
+}
+`,
+						"page.tsx": `import { greet } from "../index.ts";
+
+export default function Home() {
+	const messages: string[] = [];
+
+	greet({
+		logger: (message) => messages.push(message),
+		message: "Hello, world!",
+	});
+
+	return <h1>{messages.join(" ")}</h1>;
+}
+`,
+					},
+				},
 			},
 		};
 	},

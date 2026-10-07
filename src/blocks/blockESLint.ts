@@ -37,6 +37,7 @@ export const blockESLint = base.createBlock({
 		extensions: z.array(zExtension).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
+		scriptFileExtensions: z.array(z.string()).default([]),
 	},
 	intake({ files }) {
 		const eslintConfigRaw = intakeFile(files, [
@@ -51,7 +52,8 @@ export const blockESLint = base.createBlock({
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
 	produce({ addons, options }) {
-		const { explanations, extensions, ignores, imports } = addons;
+		const { explanations, extensions, ignores, imports, scriptFileExtensions } =
+			addons;
 
 		const configFileName =
 			options.type === "commonjs" ? "eslint.config.mts" : "eslint.config.ts";
@@ -121,7 +123,20 @@ export const blockESLint = base.createBlock({
 				: []),
 		);
 
+		// Extensions targeting the default script files also apply to any added ones
+		const scriptFiles = getScriptFileExtension(options);
+		const scriptFilesWithAdditions = getScriptFileExtension(
+			options,
+			scriptFileExtensions,
+		);
+
 		const extensionLines = extensionEntries
+			.map((extension) => ({
+				...extension,
+				files: extension.files.map((files) =>
+					files === scriptFiles ? scriptFilesWithAdditions : files,
+				),
+			}))
 			.sort((a, b) =>
 				processForSort(a.files).localeCompare(processForSort(b.files)),
 			)

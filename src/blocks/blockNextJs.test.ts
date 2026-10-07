@@ -59,9 +59,31 @@ describe("blockNextJs", () => {
 			    },
 			    {
 			      "addons": {
+			        "extensions": [
+			          {
+			            "extends": [
+			              "next.configs["core-web-vitals"]",
+			            ],
+			            "files": [
+			              "**/*.{js,ts}",
+			            ],
+			          },
+			        ],
 			        "ignores": [
 			          ".next",
 			          "next-env.d.ts",
+			        ],
+			        "imports": [
+			          {
+			            "source": {
+			              "packageName": "@next/eslint-plugin-next",
+			              "version": "^16.4.0",
+			            },
+			            "specifier": "next",
+			          },
+			        ],
+			        "scriptFileExtensions": [
+			          "tsx",
 			        ],
 			      },
 			      "block": "[Block ESLint]",
@@ -93,6 +115,14 @@ describe("blockNextJs", () => {
 			    },
 			    {
 			      "addons": {
+			        "project": [
+			          "src/**/*.tsx",
+			        ],
+			      },
+			      "block": "[Block Knip]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "dependencies": {
 			            "next": "^16.4.0",
@@ -103,6 +133,7 @@ describe("blockNextJs", () => {
 			            "@types/react": "^19.3.0",
 			            "@types/react-dom": "^19.3.0",
 			          },
+			          "private": true,
 			          "scripts": {
 			            "build": "next build",
 			            "dev": "next dev",
@@ -172,6 +203,50 @@ describe("blockNextJs", () => {
 			};
 
 			export default nextConfig;
+			",
+			  },
+			}
+		`);
+	});
+
+	test("setup mode", () => {
+		const creation = testBlock(blockNextJs, {
+			mode: "setup",
+			options: optionsBase,
+		});
+
+		expect(creation.files?.src).toMatchInlineSnapshot(`
+			{
+			  "app": {
+			    "layout.tsx": "import type { Metadata } from "next";
+
+			export const metadata: Metadata = {
+				description: "Test description",
+				title: "Test Title",
+			};
+
+			export default function RootLayout({
+				children,
+			}: Readonly<{ children: React.ReactNode }>) {
+				return (
+					<html lang="en">
+						<body>{children}</body>
+					</html>
+				);
+			}
+			",
+			    "page.tsx": "import { greet } from "../index.ts";
+
+			export default function Home() {
+				const messages: string[] = [];
+
+				greet({
+					logger: (message) => messages.push(message),
+					message: "Hello, world!",
+				});
+
+				return <h1>{messages.join(" ")}</h1>;
+			}
 			",
 			  },
 			}

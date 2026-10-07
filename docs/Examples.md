@@ -123,7 +123,7 @@ Examples:
 Websites are built and served by a web framework such as [Next.js](https://nextjs.org) or [Remix](https://remix.run), and deployed to a hosting provider rather than published to npm.
 To create one with Next.js:
 
-- Add the [NextJS block](./Blocks.md), which sets up a `next.config.ts`, `pnpm build`, `pnpm dev`, and `pnpm start` scripts, and the `tsconfig.json` settings Next.js expects
+- Add the [NextJS block](./Blocks.md), which sets up a `next.config.ts`, `pnpm build`, `pnpm dev`, and `pnpm start` scripts, linting `.tsx` files with the Next.js ESLint plugin, and the `tsconfig.json` settings Next.js expects
 - Exclude the Release It and TSDown blocks, since Next.js builds the site and there's no package to publish
 
 ```js

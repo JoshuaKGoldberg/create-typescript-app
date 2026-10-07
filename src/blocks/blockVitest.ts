@@ -38,6 +38,19 @@ const zTest = z
 	})
 	.partial();
 
+const testFrameworkMigrations = [
+	{
+		name: "Jest",
+		packageName: "jest",
+		url: "https://vitest.dev/guide/migration/jest",
+	},
+	{
+		name: "Mocha",
+		packageName: "mocha",
+		url: "https://vitest.dev/guide/migration/mocha",
+	},
+];
+
 function intakeFromConfig(files: IntakeDirectory) {
 	const rawData = intakeFileDefineConfig(files, ["vitest.config.ts"]);
 	if (typeof rawData?.test !== "object") {
@@ -262,7 +275,19 @@ export default defineConfig({
 			},
 		};
 	},
-	transition() {
+	transition({ options }) {
+		const existingDependencies = {
+			...options.packageData?.dependencies,
+			...options.packageData?.devDependencies,
+		};
+		const suggestions = testFrameworkMigrations
+			.filter(({ packageName }) => packageName in existingDependencies)
+			.map(({ name, url }) =>
+				[`- manually migrate your ${name} tests to Vitest:`, `   ${url}`].join(
+					"\n",
+				),
+			);
+
 		return {
 			addons: [
 				blockGitignore({
@@ -284,6 +309,7 @@ export default defineConfig({
 					workflows: ["test"],
 				}),
 			],
+			suggestions: suggestions.length ? suggestions : undefined,
 		};
 	},
 });

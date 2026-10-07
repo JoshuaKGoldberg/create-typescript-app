@@ -549,6 +549,28 @@ describe(blockVitest, () => {
 		`);
 	});
 
+	test("transition mode with Jest and Mocha dependencies", () => {
+		const creation = testBlock(blockVitest, {
+			mode: "transition",
+			options: {
+				...optionsBase,
+				packageData: {
+					dependencies: { mocha: "1.2.3" },
+					devDependencies: { jest: "1.2.3" },
+				},
+			},
+		});
+
+		expect(creation.suggestions).toMatchInlineSnapshot(`
+			[
+			  "- manually migrate your Jest tests to Vitest:
+			   https://vitest.dev/guide/migration/jest",
+			  "- manually migrate your Mocha tests to Vitest:
+			   https://vitest.dev/guide/migration/mocha",
+			]
+		`);
+	});
+
 	test("with addons", () => {
 		const creation = testBlock(blockVitest, {
 			addons: {

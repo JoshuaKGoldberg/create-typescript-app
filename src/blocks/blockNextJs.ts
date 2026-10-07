@@ -138,7 +138,6 @@ pnpm start
 							"@types/react": "^19.3.0",
 							"@types/react-dom": "^19.3.0",
 						},
-						// Sites are deployed rather than published to npm
 						private: true,
 						scripts: {
 							build: "next build",
@@ -148,17 +147,14 @@ pnpm start
 					},
 				}),
 				blockPrettier({
-					// Next.js may generate an AGENTS.md for AI coding agents
 					ignores: ["/.next", "/AGENTS.md", "/next-env.d.ts"],
 				}),
 				blockTypeScript({
 					beforeTypeCheckSteps: [{ run: "pnpm next typegen" }],
-					// next/* imports only resolve with these, as next has no package exports
 					compilerOptions: {
 						module: "esnext",
 						moduleResolution: "bundler",
 					},
-					// Next.js rewrites tsconfig.json on build if these are missing
 					compilerOptionsDefaults: {
 						allowJs: true,
 						incremental: true,
@@ -182,7 +178,6 @@ pnpm start
 				...(addons.nextConfig
 					? { [addons.nextConfig.fileName]: addons.nextConfig.contents }
 					: {
-							// Lets existing blocks detection match other config file names
 							"next.config.ts": withPreviously(
 								defaultNextConfig,
 								nextConfigFileNames.filter((name) => name !== "next.config.ts"),
@@ -196,7 +191,6 @@ pnpm start
 			files: {
 				src: {
 					app: {
-						// Next.js builds fail without at least one page
 						"layout.tsx": `import type { Metadata } from "next";
 
 export const metadata: Metadata = {

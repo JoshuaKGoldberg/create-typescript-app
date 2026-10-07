@@ -80,12 +80,11 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
    +dist
    ```
 
-   - Rather than having to remember to compile each time, we'll update our pre-commit hook in `.husky/pre-commit` to build for us on each commit:
+   - Rather than having to remember to compile each time, we'll update our pre-commit hook in the `simple-git-hooks` field of our `package.json` to build for us on each commit, then run `pnpm simple-git-hooks` to apply it:
 
    ```diff
-   +pnpm run build
-   +git add dist
-   npx lint-staged
+   -"pre-commit": "pnpm pretty-quick --staged"
+   +"pre-commit": "pnpm run build && git add dist && pnpm pretty-quick --staged"
    ```
 
 1. Create an [`action.yaml` metadata file](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file).

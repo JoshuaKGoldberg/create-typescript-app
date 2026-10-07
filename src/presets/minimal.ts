@@ -13,6 +13,7 @@ import { blockGitHubPRTemplate } from "../blocks/blockGitHubPRTemplate.ts";
 import { blockGitignore } from "../blocks/blockGitignore.ts";
 import { blockMITLicense } from "../blocks/blockMITLicense.ts";
 import { blockPackageJson } from "../blocks/blockPackageJson.ts";
+import { blockPnpmWorkspace } from "../blocks/blockPnpmWorkspace.ts";
 import { blockPrettier } from "../blocks/blockPrettier.ts";
 import { blockREADME } from "../blocks/blockREADME.ts";
 import { blockRemoveDependencies } from "../blocks/blockRemoveDependencies.ts";
@@ -49,6 +50,7 @@ export const presetMinimal = base.createPreset({
 		blockGitignore,
 		blockMITLicense,
 		blockPackageJson,
+		blockPnpmWorkspace,
 		blockPrettier,
 		blockREADME,
 		blockRemoveDependencies,

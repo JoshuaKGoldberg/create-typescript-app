@@ -45,7 +45,10 @@ export function createMultiWorkflowFile({
 					steps: [
 						{
 							uses: resolveUses("actions/checkout", "v4", workflowsVersions),
-							with: job.checkoutWith,
+							with: {
+								"persist-credentials": false,
+								...job.checkoutWith,
+							},
 						},
 						{ uses: "./.github/actions/prepare" },
 						...job.steps,
@@ -59,6 +62,9 @@ export function createMultiWorkflowFile({
 			push: {
 				branches: ["main"],
 			},
+		},
+		permissions: {
+			contents: "read",
 		},
 	});
 }

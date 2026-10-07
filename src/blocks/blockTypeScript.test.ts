@@ -1,6 +1,7 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { optionsBase } from "./options.fakes.ts";
 
@@ -401,6 +402,73 @@ describe(blockTypeScript, () => {
 				"exclude": ["node_modules"]
 			}
 			"
+		`);
+	});
+
+	test("with compilerOptionsDefaults overridden by compilerOptions", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					allowJs: false,
+				},
+				compilerOptionsDefaults: {
+					allowJs: true,
+					incremental: true,
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"allowJs": false,
+					"declaration": true,
+					"esModuleInterop": true,
+					"incremental": true,
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"noEmit": true,
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src"]
+			}
+			"
+		`);
+	});
+
+	test("with a beforeTypeCheck addon", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				beforeTypeCheck: [{ run: "pnpm generate" }],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.addons?.find(({ block }) => block === blockGitHubActionsCI))
+			.toMatchInlineSnapshot(`
+			{
+			  "addons": {
+			    "jobs": [
+			      {
+			        "name": "Type Check",
+			        "steps": [
+			          {
+			            "run": "pnpm generate",
+			          },
+			          {
+			            "run": "pnpm tsc",
+			          },
+			        ],
+			      },
+			    ],
+			  },
+			  "block": "[Block GitHub Actions CI]",
+			}
 		`);
 	});
 
@@ -828,6 +896,36 @@ describe(blockTypeScript, () => {
 							other: true,
 						}),
 					],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions });
+		});
+
+		it("returns compilerOptions including plugins without names when tsconfig.json contains them", () => {
+			const compilerOptions = {
+				plugins: [{ transform: "typescript-transform-paths" }],
+				strict: true,
+			};
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions });
+		});
+
+		it("returns compilerOptions including paths when tsconfig.json contains compilerOptions with paths", () => {
+			const compilerOptions = {
+				paths: { "@/*": ["./src/*"] },
+				strict: true,
+			};
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
 				},
 			});
 

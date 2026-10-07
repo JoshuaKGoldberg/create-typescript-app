@@ -1509,6 +1509,52 @@ describe(blockESLint, () => {
 		`);
 	});
 
+	test("with a scriptFileExtensions addon and options.type set to commonjs", () => {
+		const creation = testBlock(blockESLint, {
+			addons: {
+				scriptFileExtensions: ["tsx"],
+			},
+			options: {
+				...optionsBase,
+				type: "commonjs",
+			},
+		});
+
+		expect(creation.files?.["eslint.config.mts"]).toMatchInlineSnapshot(`
+			[
+			  "import eslint from "@eslint/js";
+			import { defineConfig, globalIgnores } from "eslint/config";
+			import tseslint from "typescript-eslint";
+
+			export default defineConfig(
+				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
+				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
+				{ files: ["*.mjs"], languageOptions: { sourceType: "module" } },
+				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,mjs,ts,tsx}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+			);
+			",
+			  {
+			    "previously": [
+			      "eslint.config.js",
+			      "eslint.config.mjs",
+			    ],
+			  },
+			]
+		`);
+	});
+
 	test("with object options.bin", () => {
 		const creation = testBlock(blockESLint, {
 			options: {

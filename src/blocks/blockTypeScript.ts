@@ -5,6 +5,7 @@ import { CompilerOptionsSchema } from "zod-tsconfig";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
+import { zActionStep } from "./actions/steps.ts";
 import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockExampleFiles } from "./blockExampleFiles.ts";
@@ -16,9 +17,11 @@ import { blockVitest } from "./blockVitest.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
-// zod-tsconfig doesn't yet describe language service plugins
+// zod-tsconfig doesn't yet describe language service plugins,
+// and describes paths values as strings rather than arrays of strings
 const zCompilerOptions = CompilerOptionsSchema.extend({
-	plugins: z.array(z.looseObject({ name: z.string() })).optional(),
+	paths: z.record(z.string(), z.array(z.string())).optional(),
+	plugins: z.array(z.looseObject({ name: z.string().optional() })).optional(),
 });
 
 export const blockTypeScript = base.createBlock({
@@ -26,7 +29,10 @@ export const blockTypeScript = base.createBlock({
 		name: "TypeScript",
 	},
 	addons: {
+		beforeTypeCheck: z.array(zActionStep).default([]),
 		compilerOptions: zCompilerOptions.optional(),
+		// Unlike compilerOptions, these don't override existing tsconfig.json values
+		compilerOptionsDefaults: zCompilerOptions.optional(),
 		exclude: z.array(z.string()).optional(),
 		include: z.array(z.string()).default([]),
 		outDir: z.string().optional(),
@@ -43,7 +49,14 @@ export const blockTypeScript = base.createBlock({
 		};
 	},
 	produce({ addons, options }) {
-		const { compilerOptions, exclude, include, outDir } = addons;
+		const {
+			beforeTypeCheck,
+			compilerOptions,
+			compilerOptionsDefaults,
+			exclude,
+			include,
+			outDir,
+		} = addons;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
@@ -107,7 +120,12 @@ greet("Hello, world! ${options.emoji}");
 					],
 				}),
 				blockGitHubActionsCI({
-					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+					jobs: [
+						{
+							name: "Type Check",
+							steps: [...beforeTypeCheck, { run: "pnpm tsc" }],
+						},
+					],
 				}),
 				blockKnip({
 					project: ["src/**/*.ts"],
@@ -160,6 +178,7 @@ greet("Hello, world! ${options.emoji}");
 							strict: true,
 							target: "ES2023",
 							...(outDir && { outDir, rootDir: "src" }),
+							...compilerOptionsDefaults,
 							...compilerOptions,
 							...(outDir && { noEmit: undefined }),
 						}),

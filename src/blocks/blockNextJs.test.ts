@@ -33,6 +33,9 @@ describe("blockNextJs", () => {
 			\`\`\`shell
 			pnpm dev
 			\`\`\`
+
+			Next.js also generates the route types that \`pnpm tsc\` type checks against.
+			Run \`pnpm next typegen\` to generate them without starting a server.
 			",
 			            "innerSections": [
 			              {
@@ -147,6 +150,7 @@ describe("blockNextJs", () => {
 			      "addons": {
 			        "ignores": [
 			          "/.next",
+			          "/AGENTS.md",
 			          "/next-env.d.ts",
 			        ],
 			      },
@@ -154,18 +158,23 @@ describe("blockNextJs", () => {
 			    },
 			    {
 			      "addons": {
-			        "compilerOptions": {
+			        "beforeTypeCheck": [
+			          {
+			            "run": "pnpm next typegen",
+			          },
+			        ],
+			        "compilerOptionsDefaults": {
 			          "allowJs": true,
 			          "incremental": true,
 			          "isolatedModules": true,
 			          "jsx": "react-jsx",
 			          "lib": [
-			            "DOM",
-			            "DOM.Iterable",
-			            "ESNext",
+			            "dom",
+			            "dom.iterable",
+			            "esnext",
 			          ],
-			          "module": "ESNext",
-			          "moduleResolution": "Bundler",
+			          "module": "esnext",
+			          "moduleResolution": "bundler",
 			          "plugins": [
 			            {
 			              "name": "next",
@@ -192,19 +201,6 @@ describe("blockNextJs", () => {
 			      "block": "[Block Vitest]",
 			    },
 			  ],
-			  "files": {
-			    "next.config.ts": "import type { NextConfig } from "next";
-
-			const nextConfig: NextConfig = {
-				typescript: {
-					// Type checking already runs separately with pnpm tsc
-					ignoreBuildErrors: true,
-				},
-			};
-
-			export default nextConfig;
-			",
-			  },
 			}
 		`);
 	});
@@ -215,10 +211,22 @@ describe("blockNextJs", () => {
 			options: optionsBase,
 		});
 
-		expect(creation.files?.src).toMatchInlineSnapshot(`
+		expect(creation.files).toMatchInlineSnapshot(`
 			{
-			  "app": {
-			    "layout.tsx": "import type { Metadata } from "next";
+			  "next.config.ts": "import type { NextConfig } from "next";
+
+			const nextConfig: NextConfig = {
+				typescript: {
+					// Type checking already runs separately with pnpm tsc
+					ignoreBuildErrors: true,
+				},
+			};
+
+			export default nextConfig;
+			",
+			  "src": {
+			    "app": {
+			      "layout.tsx": "import type { Metadata } from "next";
 
 			export const metadata: Metadata = {
 				description: "Test description",
@@ -235,7 +243,7 @@ describe("blockNextJs", () => {
 				);
 			}
 			",
-			    "page.tsx": "import { greet } from "../index.ts";
+			      "page.tsx": "import { greet } from "../index.ts";
 
 			export default function Home() {
 				const messages: string[] = [];
@@ -248,8 +256,19 @@ describe("blockNextJs", () => {
 				return <h1>{messages.join(" ")}</h1>;
 			}
 			",
+			    },
 			  },
 			}
 		`);
+	});
+
+	test("transition mode", () => {
+		const creation = testBlock(blockNextJs, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		// Existing Next.js configs and pages should be left as-is
+		expect(creation.files).toBeUndefined();
 	});
 });

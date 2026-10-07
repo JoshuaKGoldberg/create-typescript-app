@@ -67,6 +67,12 @@ For example, this uses ncc instead of the default tsdown builder:
 npx create-typescript-app --add-ncc --exclude-tsdown
 ```
 
+Or, this creates a [Next.js](https://nextjs.org) site that isn't built or published as a package:
+
+```shell
+npx create-typescript-app --add-nextjs --exclude-release-it --exclude-tsdown
+```
+
 See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.
 
 ## "Minimal" Base Level

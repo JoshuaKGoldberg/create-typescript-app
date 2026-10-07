@@ -30,6 +30,9 @@ Run [Next.js](https://nextjs.org) locally to start a development server that reb
 \`\`\`shell
 pnpm dev
 \`\`\`
+
+Next.js also generates the route types that \`pnpm tsc\` type checks against.
+Run \`pnpm next typegen\` to generate them without starting a server.
 `,
 							innerSections: [
 								{
@@ -106,18 +109,20 @@ pnpm start
 					},
 				}),
 				blockPrettier({
-					ignores: ["/.next", "/next-env.d.ts"],
+					// Next.js may generate an AGENTS.md for AI coding agents
+					ignores: ["/.next", "/AGENTS.md", "/next-env.d.ts"],
 				}),
-				// Next.js rewrites tsconfig.json on build if these are missing
 				blockTypeScript({
-					compilerOptions: {
+					beforeTypeCheck: [{ run: "pnpm next typegen" }],
+					// Next.js rewrites tsconfig.json on build if these are missing
+					compilerOptionsDefaults: {
 						allowJs: true,
 						incremental: true,
 						isolatedModules: true,
 						jsx: "react-jsx",
-						lib: ["DOM", "DOM.Iterable", "ESNext"],
-						module: "ESNext",
-						moduleResolution: "Bundler",
+						lib: ["dom", "dom.iterable", "esnext"],
+						module: "esnext",
+						moduleResolution: "bundler",
 						plugins: [{ name: "next" }],
 					},
 					exclude: ["node_modules"],
@@ -131,6 +136,10 @@ pnpm start
 					exclude: [".next"],
 				}),
 			],
+		};
+	},
+	setup({ options }) {
+		return {
 			files: {
 				"next.config.ts": `import type { NextConfig } from "next";
 
@@ -143,12 +152,6 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 `,
-			},
-		};
-	},
-	setup({ options }) {
-		return {
-			files: {
 				src: {
 					app: {
 						// Next.js builds fail without at least one page

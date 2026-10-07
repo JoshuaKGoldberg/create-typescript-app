@@ -27,7 +27,6 @@ const defaultNextConfig = `import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	typescript: {
-		// Type checking already runs separately with pnpm tsc
 		ignoreBuildErrors: true,
 	},
 };

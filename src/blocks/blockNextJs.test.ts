@@ -214,7 +214,6 @@ describe(blockNextJs, () => {
 
 			const nextConfig: NextConfig = {
 				typescript: {
-					// Type checking already runs separately with pnpm tsc
 					ignoreBuildErrors: true,
 				},
 			};
@@ -247,7 +246,6 @@ describe(blockNextJs, () => {
 
 			const nextConfig: NextConfig = {
 				typescript: {
-					// Type checking already runs separately with pnpm tsc
 					ignoreBuildErrors: true,
 				},
 			};

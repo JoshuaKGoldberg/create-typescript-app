@@ -131,7 +131,6 @@ export const blockESLint = base.createBlock({
 				: []),
 		);
 
-		// Extensions targeting the default script files also apply to any added ones
 		const scriptFiles = getScriptFileExtension(options);
 		const scriptFilesWithAdditions = getScriptFileExtension(
 			options,

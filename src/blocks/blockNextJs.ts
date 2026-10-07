@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import { base } from "../base.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
@@ -10,12 +12,33 @@ import { blockPrettier } from "./blockPrettier.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
+import { intakeFile } from "./intake/intakeFile.ts";
+
+const defaultNextConfig = `import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+	typescript: {
+		// Type checking already runs separately with pnpm tsc
+		ignoreBuildErrors: true,
+	},
+};
+
+export default nextConfig;
+`;
 
 export const blockNextJs = base.createBlock({
 	about: {
 		name: "NextJS",
 	},
-	produce({ options }) {
+	addons: {
+		nextConfig: z.string().optional(),
+	},
+	intake({ files }) {
+		const nextConfig = intakeFile(files, ["next.config.ts"]);
+
+		return nextConfig && { nextConfig: nextConfig[0] };
+	},
+	produce({ addons, options }) {
 		return {
 			addons: [
 				blockCSpell({
@@ -31,7 +54,7 @@ Run [Next.js](https://nextjs.org) locally to start a development server that reb
 pnpm dev
 \`\`\`
 
-Next.js also generates the route types that \`pnpm tsc\` type checks against.
+Next.js also generates the route types that \`pnpm lint\` and \`pnpm tsc\` check against.
 Run \`pnpm next typegen\` to generate them without starting a server.
 `,
 							innerSections: [
@@ -56,6 +79,7 @@ pnpm start
 					},
 				}),
 				blockESLint({
+					beforeLintSteps: [{ run: "pnpm next typegen" }],
 					extensions: [
 						{
 							extends: ['next.configs["core-web-vitals"]'],
@@ -113,7 +137,12 @@ pnpm start
 					ignores: ["/.next", "/AGENTS.md", "/next-env.d.ts"],
 				}),
 				blockTypeScript({
-					beforeTypeCheck: [{ run: "pnpm next typegen" }],
+					beforeTypeCheckSteps: [{ run: "pnpm next typegen" }],
+					// next/* imports only resolve with these, as next has no package exports
+					compilerOptions: {
+						module: "esnext",
+						moduleResolution: "bundler",
+					},
 					// Next.js rewrites tsconfig.json on build if these are missing
 					compilerOptionsDefaults: {
 						allowJs: true,
@@ -121,8 +150,6 @@ pnpm start
 						isolatedModules: true,
 						jsx: "react-jsx",
 						lib: ["dom", "dom.iterable", "esnext"],
-						module: "esnext",
-						moduleResolution: "bundler",
 						plugins: [{ name: "next" }],
 					},
 					exclude: ["node_modules"],
@@ -136,22 +163,14 @@ pnpm start
 					exclude: [".next"],
 				}),
 			],
+			files: {
+				"next.config.ts": addons.nextConfig ?? defaultNextConfig,
+			},
 		};
 	},
 	setup({ options }) {
 		return {
 			files: {
-				"next.config.ts": `import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-	typescript: {
-		// Type checking already runs separately with pnpm tsc
-		ignoreBuildErrors: true,
-	},
-};
-
-export default nextConfig;
-`,
 				src: {
 					app: {
 						// Next.js builds fail without at least one page

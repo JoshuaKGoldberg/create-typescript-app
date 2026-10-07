@@ -6,6 +6,7 @@ import { z } from "zod";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
+import { zActionStep } from "./actions/steps.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
@@ -33,6 +34,7 @@ export const blockESLint = base.createBlock({
 	},
 	addons: {
 		beforeLint: z.string().optional(),
+		beforeLintSteps: z.array(zActionStep).default([]),
 		explanations: z.array(z.string()).default([]),
 		extensions: z.array(zExtension).default([]),
 		ignores: z.array(z.string()).default([]),
@@ -52,8 +54,14 @@ export const blockESLint = base.createBlock({
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
 	produce({ addons, options }) {
-		const { explanations, extensions, ignores, imports, scriptFileExtensions } =
-			addons;
+		const {
+			beforeLintSteps,
+			explanations,
+			extensions,
+			ignores,
+			imports,
+			scriptFileExtensions,
+		} = addons;
 
 		const configFileName =
 			options.type === "commonjs" ? "eslint.config.mts" : "eslint.config.ts";
@@ -176,6 +184,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 							name: "Lint",
 							steps: [
 								...(options.bin ? [{ run: "pnpm build" }] : []),
+								...beforeLintSteps,
 								{ run: "pnpm lint" },
 							],
 						},

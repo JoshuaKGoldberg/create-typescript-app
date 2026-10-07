@@ -2,6 +2,7 @@ import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
 import { blockESLint } from "./blockESLint.ts";
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 vi.mock("../data/packageData.ts", async (importOriginal) => {
@@ -1552,6 +1553,37 @@ describe(blockESLint, () => {
 			    ],
 			  },
 			]
+		`);
+	});
+
+	test("with a beforeLintSteps addon", () => {
+		const creation = testBlock(blockESLint, {
+			addons: {
+				beforeLintSteps: [{ run: "pnpm generate" }],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.addons?.find(({ block }) => block === blockGitHubActionsCI))
+			.toMatchInlineSnapshot(`
+			{
+			  "addons": {
+			    "jobs": [
+			      {
+			        "name": "Lint",
+			        "steps": [
+			          {
+			            "run": "pnpm generate",
+			          },
+			          {
+			            "run": "pnpm lint",
+			          },
+			        ],
+			      },
+			    ],
+			  },
+			  "block": "[Block GitHub Actions CI]",
+			}
 		`);
 	});
 

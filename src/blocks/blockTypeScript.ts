@@ -29,7 +29,7 @@ export const blockTypeScript = base.createBlock({
 		name: "TypeScript",
 	},
 	addons: {
-		beforeTypeCheck: z.array(zActionStep).default([]),
+		beforeTypeCheckSteps: z.array(zActionStep).default([]),
 		compilerOptions: zCompilerOptions.optional(),
 		// Unlike compilerOptions, these don't override existing tsconfig.json values
 		compilerOptionsDefaults: zCompilerOptions.optional(),
@@ -50,7 +50,7 @@ export const blockTypeScript = base.createBlock({
 	},
 	produce({ addons, options }) {
 		const {
-			beforeTypeCheck,
+			beforeTypeCheckSteps,
 			compilerOptions,
 			compilerOptionsDefaults,
 			exclude,
@@ -123,7 +123,7 @@ greet("Hello, world! ${options.emoji}");
 					jobs: [
 						{
 							name: "Type Check",
-							steps: [...beforeTypeCheck, { run: "pnpm tsc" }],
+							steps: [...beforeTypeCheckSteps, { run: "pnpm tsc" }],
 						},
 					],
 				}),

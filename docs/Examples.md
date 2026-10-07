@@ -124,6 +124,7 @@ Websites are built and served by a web framework such as [Next.js](https://nextj
 To create one with Next.js:
 
 - Add the [NextJS block](./Blocks.md), which sets up Next.js configuration, scripts, and `.tsx` linting
+- If adding it to an existing repository, first switch `tsconfig.json` to `"module": "esnext"` and `"moduleResolution": "bundler"`, and add your own pages under `src/app/`
 - Exclude the Release It and TSDown blocks, since Next.js builds the site and there's no package to publish
 
 ```js

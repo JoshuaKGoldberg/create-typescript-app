@@ -1,10 +1,10 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test } from "vitest";
 
 import { blockNextJs } from "./blockNextJs.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockNextJs", () => {
+describe(blockNextJs, () => {
 	test("production", () => {
 		const creation = testBlock(blockNextJs, {
 			options: optionsBase,
@@ -34,7 +34,7 @@ describe("blockNextJs", () => {
 			pnpm dev
 			\`\`\`
 
-			Next.js also generates the route types that \`pnpm tsc\` type checks against.
+			Next.js also generates the route types that \`pnpm lint\` and \`pnpm tsc\` check against.
 			Run \`pnpm next typegen\` to generate them without starting a server.
 			",
 			            "innerSections": [
@@ -62,6 +62,11 @@ describe("blockNextJs", () => {
 			    },
 			    {
 			      "addons": {
+			        "beforeLintSteps": [
+			          {
+			            "run": "pnpm next typegen",
+			          },
+			        ],
 			        "extensions": [
 			          {
 			            "extends": [
@@ -158,11 +163,15 @@ describe("blockNextJs", () => {
 			    },
 			    {
 			      "addons": {
-			        "beforeTypeCheck": [
+			        "beforeTypeCheckSteps": [
 			          {
 			            "run": "pnpm next typegen",
 			          },
 			        ],
+			        "compilerOptions": {
+			          "module": "esnext",
+			          "moduleResolution": "bundler",
+			        },
 			        "compilerOptionsDefaults": {
 			          "allowJs": true,
 			          "incremental": true,
@@ -173,8 +182,6 @@ describe("blockNextJs", () => {
 			            "dom.iterable",
 			            "esnext",
 			          ],
-			          "module": "esnext",
-			          "moduleResolution": "bundler",
 			          "plugins": [
 			            {
 			              "name": "next",
@@ -201,6 +208,19 @@ describe("blockNextJs", () => {
 			      "block": "[Block Vitest]",
 			    },
 			  ],
+			  "files": {
+			    "next.config.ts": "import type { NextConfig } from "next";
+
+			const nextConfig: NextConfig = {
+				typescript: {
+					// Type checking already runs separately with pnpm tsc
+					ignoreBuildErrors: true,
+				},
+			};
+
+			export default nextConfig;
+			",
+			  },
 			}
 		`);
 	});
@@ -268,7 +288,40 @@ describe("blockNextJs", () => {
 			options: optionsBase,
 		});
 
-		// Existing Next.js configs and pages should be left as-is
-		expect(creation.files).toBeUndefined();
+		// Starter pages are only created in setup mode
+		expect(Object.keys(creation.files ?? {})).toEqual(["next.config.ts"]);
+	});
+
+	test("with a nextConfig addon", () => {
+		const nextConfig = `export default { reactCompiler: true };\n`;
+
+		const creation = testBlock(blockNextJs, {
+			addons: { nextConfig },
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["next.config.ts"]).toBe(nextConfig);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when next.config.ts does not exist", () => {
+			const actual = testIntake(blockNextJs, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns nextConfig when next.config.ts exists", () => {
+			const nextConfig = `export default { reactCompiler: true };\n`;
+
+			const actual = testIntake(blockNextJs, {
+				files: {
+					"next.config.ts": [nextConfig],
+				},
+			});
+
+			expect(actual).toEqual({ nextConfig });
+		});
 	});
 });

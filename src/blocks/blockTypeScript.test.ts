@@ -441,10 +441,10 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
-	test("with a beforeTypeCheck addon", () => {
+	test("with a beforeTypeCheckSteps addon", () => {
 		const creation = testBlock(blockTypeScript, {
 			addons: {
-				beforeTypeCheck: [{ run: "pnpm generate" }],
+				beforeTypeCheckSteps: [{ run: "pnpm generate" }],
 			},
 			options: optionsBase,
 		});

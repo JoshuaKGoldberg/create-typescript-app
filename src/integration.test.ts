@@ -125,7 +125,8 @@ If you're interested in learning more, see the 'getting started' docs on:
 // The all-contributors bot adds defaults that blockAllContributors omits:
 // a "commitConvention" setting and markdownlint comments around the table.
 // Ignoring them lets its contributor PRs pass without manual cleanup.
-// See https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2188
+// See https://github.com/all-contributors/cli/issues/369
+// See https://github.com/all-contributors/cli/issues/540
 function removeAllContributorsBotDefaults(text: string, filePath: string) {
 	switch (filePath) {
 		case ".all-contributorsrc": {

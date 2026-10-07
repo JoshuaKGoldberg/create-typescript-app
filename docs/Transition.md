@@ -20,6 +20,7 @@ For example, if the repository previously used Jest for testing:
 - Any Jest config file like `jest.config.js` will be deleted
 - `@vitest/eslint-plugin`, `vitest`, and other Vitest-related packages will be installed
 - A `vitest.config.ts` file will be created
+- You'll need to manually migrate existing test files to Vitest, following [Vitest's _Migrating from Jest_ guide](https://vitest.dev/guide/migration/jest)
 
 You'll then need to do some [manual setup](./Setup.md#app-and-token-permissions) for a token, GitHub apps, and npm publishing.
 

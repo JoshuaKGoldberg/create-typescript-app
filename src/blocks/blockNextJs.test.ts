@@ -209,7 +209,8 @@ describe(blockNextJs, () => {
 			    },
 			  ],
 			  "files": {
-			    "next.config.ts": "import type { NextConfig } from "next";
+			    "next.config.ts": [
+			      "import type { NextConfig } from "next";
 
 			const nextConfig: NextConfig = {
 				typescript: {
@@ -220,6 +221,14 @@ describe(blockNextJs, () => {
 
 			export default nextConfig;
 			",
+			      {
+			        "previously": [
+			          "next.config.js",
+			          "next.config.mjs",
+			          "next.config.mts",
+			        ],
+			      },
+			    ],
 			  },
 			}
 		`);
@@ -233,7 +242,8 @@ describe(blockNextJs, () => {
 
 		expect(creation.files).toMatchInlineSnapshot(`
 			{
-			  "next.config.ts": "import type { NextConfig } from "next";
+			  "next.config.ts": [
+			    "import type { NextConfig } from "next";
 
 			const nextConfig: NextConfig = {
 				typescript: {
@@ -244,6 +254,14 @@ describe(blockNextJs, () => {
 
 			export default nextConfig;
 			",
+			    {
+			      "previously": [
+			        "next.config.js",
+			        "next.config.mjs",
+			        "next.config.mts",
+			      ],
+			    },
+			  ],
 			  "src": {
 			    "app": {
 			      "layout.tsx": "import type { Metadata } from "next";
@@ -290,6 +308,17 @@ describe(blockNextJs, () => {
 
 		// Starter pages are only created in setup mode
 		expect(Object.keys(creation.files ?? {})).toEqual(["next.config.ts"]);
+	});
+
+	test("without a nextConfig addon", () => {
+		const creation = testBlock(blockNextJs, {
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["next.config.ts"]).toEqual([
+			expect.any(String),
+			{ previously: ["next.config.js", "next.config.mjs", "next.config.mts"] },
+		]);
 	});
 
 	test("with a nextConfig addon", () => {
@@ -339,6 +368,35 @@ describe(blockNextJs, () => {
 
 			expect(actual).toEqual({
 				nextConfig: { contents, fileName: "next.config.mjs" },
+			});
+		});
+
+		it("prefers next.config.js over next.config.mjs", () => {
+			const contents = `module.exports = { reactCompiler: true };\n`;
+
+			const actual = testIntake(blockNextJs, {
+				files: {
+					"next.config.js": [contents],
+					"next.config.mjs": ["export default {};\n"],
+				},
+			});
+
+			expect(actual).toEqual({
+				nextConfig: { contents, fileName: "next.config.js" },
+			});
+		});
+
+		it("returns nextConfig when only next.config.mts exists", () => {
+			const contents = `export default { reactCompiler: true };\n`;
+
+			const actual = testIntake(blockNextJs, {
+				files: {
+					"next.config.mts": [contents],
+				},
+			});
+
+			expect(actual).toEqual({
+				nextConfig: { contents, fileName: "next.config.mts" },
 			});
 		});
 	});

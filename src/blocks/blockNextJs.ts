@@ -12,6 +12,7 @@ import { blockPrettier } from "./blockPrettier.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
+import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFile } from "./intake/intakeFile.ts";
 
 // In the order of precedence Next.js uses when several exist
@@ -181,7 +182,13 @@ pnpm start
 			files: {
 				...(addons.nextConfig
 					? { [addons.nextConfig.fileName]: addons.nextConfig.contents }
-					: { "next.config.ts": defaultNextConfig }),
+					: {
+							// Lets existing blocks detection match other config file names
+							"next.config.ts": withPreviously(
+								defaultNextConfig,
+								nextConfigFileNames.filter((name) => name !== "next.config.ts"),
+							),
+						}),
 			},
 		};
 	},

@@ -293,18 +293,19 @@ describe(blockNextJs, () => {
 	});
 
 	test("with a nextConfig addon", () => {
-		const nextConfig = `export default { reactCompiler: true };\n`;
+		const contents = `export default { reactCompiler: true };\n`;
 
 		const creation = testBlock(blockNextJs, {
-			addons: { nextConfig },
+			addons: { nextConfig: { contents, fileName: "next.config.mjs" } },
 			options: optionsBase,
 		});
 
-		expect(creation.files?.["next.config.ts"]).toBe(nextConfig);
+		expect(creation.files?.["next.config.mjs"]).toBe(contents);
+		expect(creation.files).not.toHaveProperty("next.config.ts");
 	});
 
 	describe("intake", () => {
-		it("returns undefined when next.config.ts does not exist", () => {
+		it("returns undefined when no Next.js config file exists", () => {
 			const actual = testIntake(blockNextJs, {
 				files: {},
 			});
@@ -313,15 +314,32 @@ describe(blockNextJs, () => {
 		});
 
 		it("returns nextConfig when next.config.ts exists", () => {
-			const nextConfig = `export default { reactCompiler: true };\n`;
+			const contents = `export default { reactCompiler: true };\n`;
 
 			const actual = testIntake(blockNextJs, {
 				files: {
-					"next.config.ts": [nextConfig],
+					"next.config.ts": [contents],
 				},
 			});
 
-			expect(actual).toEqual({ nextConfig });
+			expect(actual).toEqual({
+				nextConfig: { contents, fileName: "next.config.ts" },
+			});
+		});
+
+		it("returns the config Next.js would use when several exist", () => {
+			const contents = `export default { reactCompiler: true };\n`;
+
+			const actual = testIntake(blockNextJs, {
+				files: {
+					"next.config.mjs": [contents],
+					"next.config.ts": ["export default {};\n"],
+				},
+			});
+
+			expect(actual).toEqual({
+				nextConfig: { contents, fileName: "next.config.mjs" },
+			});
 		});
 	});
 });

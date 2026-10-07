@@ -14,6 +14,14 @@ import { blockVitest } from "./blockVitest.ts";
 import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
 import { intakeFile } from "./intake/intakeFile.ts";
 
+// In the order of precedence Next.js uses when several exist
+const nextConfigFileNames = [
+	"next.config.js",
+	"next.config.mjs",
+	"next.config.ts",
+	"next.config.mts",
+];
+
 const defaultNextConfig = `import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -31,12 +39,19 @@ export const blockNextJs = base.createBlock({
 		name: "NextJS",
 	},
 	addons: {
-		nextConfig: z.string().optional(),
+		nextConfig: z
+			.object({ contents: z.string(), fileName: z.string() })
+			.optional(),
 	},
 	intake({ files }) {
-		const nextConfig = intakeFile(files, ["next.config.ts"]);
+		const fileName = nextConfigFileNames.find((name) => name in files);
+		if (!fileName) {
+			return undefined;
+		}
 
-		return nextConfig && { nextConfig: nextConfig[0] };
+		const nextConfig = intakeFile(files, [fileName]);
+
+		return nextConfig && { nextConfig: { contents: nextConfig[0], fileName } };
 	},
 	produce({ addons, options }) {
 		return {
@@ -164,7 +179,9 @@ pnpm start
 				}),
 			],
 			files: {
-				"next.config.ts": addons.nextConfig ?? defaultNextConfig,
+				...(addons.nextConfig
+					? { [addons.nextConfig.fileName]: addons.nextConfig.contents }
+					: { "next.config.ts": defaultNextConfig }),
 			},
 		};
 	},

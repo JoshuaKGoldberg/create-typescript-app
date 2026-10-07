@@ -104,7 +104,7 @@ pnpm build --watch
 ### Formatting
 
 [**Prettier**](https://prettier.io): Formats code for developers and enforces a consistent formatting style.
-It's run on file save per [VS Code](https://code.visualstudio.com/docs/getstarted/settings) settings and as a Git commit hook via [husky](https://typicode.github.io/husky) and [lint-staged](https://github.com/okonet/lint-staged).
+It's run on file save per [VS Code](https://code.visualstudio.com/docs/getstarted/settings) settings and as a Git commit hook via [simple-git-hooks](https://github.com/toplenboren/simple-git-hooks) and [pretty-quick](https://github.com/prettier/pretty-quick).
 Additional formatting can be provided by the following plugins:
 
 - [prettier-plugin-curly](https://github.com/JoshuaKGoldberg/prettier-plugin-curly)

@@ -125,6 +125,7 @@ To create one with Next.js:
 
 - Add the [NextJS block](./Blocks.md), which sets up Next.js configuration, scripts, and `.tsx` linting
 - If adding it to an existing repository, first switch `tsconfig.json` to `"module": "esnext"` and `"moduleResolution": "bundler"`, and add your own pages under `src/app/`
+- Keep a `next.config.*` file, which is how later runs of `create-typescript-app` detect the block
 - Exclude the Release It and TSDown blocks, since Next.js builds the site and there's no package to publish
 
 ```js

@@ -111,10 +111,43 @@ If you're interested in learning more, see the 'getting started' docs on:
 
 	const processText = (text: string, filePath: string) =>
 		/all-contributorsrc|js|md|ts|yaml/.test(filePath)
-			? prettier.format(text, { filepath: filePath, useTabs: true })
+			? prettier.format(removeAllContributorsBotDefaults(text, filePath), {
+					filepath: filePath,
+					useTabs: true,
+				})
 			: text;
 
 	expect(
 		await diffCreatedDirectory(actual, created.files, { processText }),
 	).toBeUndefined();
 });
+
+/**
+ * The all-contributors bot adds defaults that blockAllContributors omits:
+ * a "commitConvention" setting and markdownlint comments around the table.
+ * Ignoring them lets its contributor PRs pass without manual cleanup.
+ * @see https://github.com/all-contributors/cli/issues/369
+ * @see https://github.com/all-contributors/cli/issues/540
+ */
+function removeAllContributorsBotDefaults(text: string, filePath: string) {
+	switch (filePath) {
+		case ".all-contributorsrc": {
+			const data = JSON.parse(text) as Record<string, unknown>;
+			if (data.commitConvention !== "angular") {
+				return text;
+			}
+
+			delete data.commitConvention;
+			return JSON.stringify(data, null, 2);
+		}
+
+		case "README.md":
+			return text.replaceAll(
+				/^<!-- markdownlint-(?:disable|restore) -->\r?\n/gm,
+				"",
+			);
+
+		default:
+			return text;
+	}
+}

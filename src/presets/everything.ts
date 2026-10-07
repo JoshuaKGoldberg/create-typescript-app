@@ -25,6 +25,7 @@ import { blockPrettierPluginSh } from "../blocks/blockPrettierPluginSh.ts";
 import { blockRenovate } from "../blocks/blockRenovate.ts";
 import { blockSlopIssueUnlink } from "../blocks/blockSlopIssueUnlink.ts";
 import { blockVSCode } from "../blocks/blockVSCode.ts";
+import { blockZizmor } from "../blocks/blockZizmor.ts";
 import { presetCommon } from "./common.ts";
 
 export const presetEverything = base.createPreset({
@@ -61,5 +62,6 @@ export const presetEverything = base.createPreset({
 		blockRenovate,
 		blockSlopIssueUnlink,
 		blockVSCode,
+		blockZizmor,
 	],
 });

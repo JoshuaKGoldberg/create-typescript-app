@@ -302,8 +302,9 @@ describe(blockNextJs, () => {
 			options: optionsBase,
 		});
 
-		// Starter pages are only created in setup mode
-		expect(Object.keys(creation.files ?? {})).toEqual(["next.config.ts"]);
+		expect(creation.files).toEqual({
+			"next.config.ts": expect.anything(),
+		});
 	});
 
 	test("without a nextConfig addon", () => {
@@ -311,10 +312,14 @@ describe(blockNextJs, () => {
 			options: optionsBase,
 		});
 
-		expect(creation.files?.["next.config.ts"]).toEqual([
-			expect.any(String),
-			{ previously: ["next.config.js", "next.config.mjs", "next.config.mts"] },
-		]);
+		expect(creation.files).toEqual({
+			"next.config.ts": [
+				expect.any(String),
+				{
+					previously: ["next.config.js", "next.config.mjs", "next.config.mts"],
+				},
+			],
+		});
 	});
 
 	test("with a nextConfig addon", () => {
@@ -325,8 +330,7 @@ describe(blockNextJs, () => {
 			options: optionsBase,
 		});
 
-		expect(creation.files?.["next.config.mjs"]).toBe(contents);
-		expect(creation.files).not.toHaveProperty("next.config.ts");
+		expect(creation.files).toEqual({ "next.config.mjs": contents });
 	});
 
 	describe("intake", () => {

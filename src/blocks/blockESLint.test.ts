@@ -1564,27 +1564,16 @@ describe(blockESLint, () => {
 			options: optionsBase,
 		});
 
-		expect(creation.addons?.find(({ block }) => block === blockGitHubActionsCI))
-			.toMatchInlineSnapshot(`
-			{
-			  "addons": {
-			    "jobs": [
-			      {
-			        "name": "Lint",
-			        "steps": [
-			          {
-			            "run": "pnpm generate",
-			          },
-			          {
-			            "run": "pnpm lint",
-			          },
-			        ],
-			      },
-			    ],
-			  },
-			  "block": "[Block GitHub Actions CI]",
-			}
-		`);
+		expect(creation.addons).toContainEqual(
+			blockGitHubActionsCI({
+				jobs: [
+					{
+						name: "Lint",
+						steps: [{ run: "pnpm generate" }, { run: "pnpm lint" }],
+					},
+				],
+			}),
+		);
 	});
 
 	test("with object options.bin", () => {

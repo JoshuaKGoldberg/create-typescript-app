@@ -448,27 +448,16 @@ describe(blockTypeScript, () => {
 			options: optionsBase,
 		});
 
-		expect(creation.addons?.find(({ block }) => block === blockGitHubActionsCI))
-			.toMatchInlineSnapshot(`
-			{
-			  "addons": {
-			    "jobs": [
-			      {
-			        "name": "Type Check",
-			        "steps": [
-			          {
-			            "run": "pnpm generate",
-			          },
-			          {
-			            "run": "pnpm tsc",
-			          },
-			        ],
-			      },
-			    ],
-			  },
-			  "block": "[Block GitHub Actions CI]",
-			}
-		`);
+		expect(creation.addons).toContainEqual(
+			blockGitHubActionsCI({
+				jobs: [
+					{
+						name: "Type Check",
+						steps: [{ run: "pnpm generate" }, { run: "pnpm tsc" }],
+					},
+				],
+			}),
+		);
 	});
 
 	test("with an outDir addon and noEmit in compilerOptions", () => {

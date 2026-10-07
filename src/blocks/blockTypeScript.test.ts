@@ -405,15 +405,15 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
-	test("with compilerOptionsDefaults overridden by compilerOptions", () => {
+	test("with existingCompilerOptions overridden by compilerOptions", () => {
 		const creation = testBlock(blockTypeScript, {
 			addons: {
 				compilerOptions: {
-					allowJs: false,
+					moduleResolution: "bundler",
 				},
-				compilerOptionsDefaults: {
-					allowJs: true,
-					incremental: true,
+				existingCompilerOptions: {
+					jsx: "preserve",
+					moduleResolution: "node",
 				},
 			},
 			options: optionsBase,
@@ -422,12 +422,11 @@ describe(blockTypeScript, () => {
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
 			"{
 				"compilerOptions": {
-					"allowJs": false,
 					"declaration": true,
 					"esModuleInterop": true,
-					"incremental": true,
+					"jsx": "preserve",
 					"module": "nodenext",
-					"moduleResolution": "nodenext",
+					"moduleResolution": "bundler",
 					"noEmit": true,
 					"resolveJsonModule": true,
 					"rewriteRelativeImportExtensions": true,
@@ -873,7 +872,7 @@ describe(blockTypeScript, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns compilerOptions when tsconfig.json contains compilerOptions", () => {
+		it("returns existingCompilerOptions when tsconfig.json contains compilerOptions", () => {
 			const compilerOptions = { module: "ESNext" };
 
 			const actual = testIntake(blockTypeScript, {
@@ -882,10 +881,10 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions });
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 
-		it("returns compilerOptions when tsconfig.json contains compilerOptions and other data", () => {
+		it("returns existingCompilerOptions when tsconfig.json contains compilerOptions and other data", () => {
 			const compilerOptions = { module: "ESNext" };
 
 			const actual = testIntake(blockTypeScript, {
@@ -899,10 +898,10 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions });
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 
-		it("returns compilerOptions including plugins without names when tsconfig.json contains them", () => {
+		it("returns existingCompilerOptions including plugins without names when tsconfig.json contains them", () => {
 			const compilerOptions = {
 				plugins: [{ transform: "typescript-transform-paths" }],
 				strict: true,
@@ -914,10 +913,10 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions });
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 
-		it("returns compilerOptions including paths when tsconfig.json contains compilerOptions with paths", () => {
+		it("returns existingCompilerOptions including paths when tsconfig.json contains compilerOptions with paths", () => {
 			const compilerOptions = {
 				paths: { "@/*": ["./src/*"] },
 				strict: true,
@@ -929,10 +928,10 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions });
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 
-		it("returns compilerOptions including plugins when tsconfig.json contains compilerOptions with plugins", () => {
+		it("returns existingCompilerOptions including plugins when tsconfig.json contains compilerOptions with plugins", () => {
 			const compilerOptions = {
 				module: "ESNext",
 				plugins: [{ name: "next" }],
@@ -944,7 +943,7 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions });
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 	});
 });

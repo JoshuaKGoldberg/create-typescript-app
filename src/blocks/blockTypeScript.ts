@@ -31,9 +31,8 @@ export const blockTypeScript = base.createBlock({
 	addons: {
 		beforeTypeCheckSteps: z.array(zActionStep).default([]),
 		compilerOptions: zCompilerOptions.optional(),
-		// Unlike compilerOptions, these don't override existing tsconfig.json values
-		compilerOptionsDefaults: zCompilerOptions.optional(),
 		exclude: z.array(z.string()).optional(),
+		existingCompilerOptions: zCompilerOptions.optional(),
 		include: z.array(z.string()).default([]),
 		outDir: z.string().optional(),
 	},
@@ -45,15 +44,15 @@ export const blockTypeScript = base.createBlock({
 		}
 
 		return {
-			compilerOptions: data,
+			existingCompilerOptions: data,
 		};
 	},
 	produce({ addons, options }) {
 		const {
 			beforeTypeCheckSteps,
 			compilerOptions,
-			compilerOptionsDefaults,
 			exclude,
+			existingCompilerOptions,
 			include,
 			outDir,
 		} = addons;
@@ -178,7 +177,7 @@ greet("Hello, world! ${options.emoji}");
 							strict: true,
 							target: "ES2023",
 							...(outDir && { outDir, rootDir: "src" }),
-							...compilerOptionsDefaults,
+							...existingCompilerOptions,
 							...compilerOptions,
 							...(outDir && { noEmit: undefined }),
 						}),

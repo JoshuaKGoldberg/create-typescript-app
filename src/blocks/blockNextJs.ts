@@ -152,15 +152,13 @@ pnpm start
 				blockTypeScript({
 					beforeTypeCheckSteps: [{ run: "pnpm next typegen" }],
 					compilerOptions: {
-						module: "esnext",
-						moduleResolution: "bundler",
-					},
-					compilerOptionsDefaults: {
 						allowJs: true,
 						incremental: true,
 						isolatedModules: true,
 						jsx: "react-jsx",
 						lib: ["dom", "dom.iterable", "esnext"],
+						module: "esnext",
+						moduleResolution: "bundler",
 						plugins: [{ name: "next" }],
 					},
 					exclude: ["node_modules"],

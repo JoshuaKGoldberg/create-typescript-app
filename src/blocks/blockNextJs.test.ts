@@ -169,10 +169,6 @@ describe(blockNextJs, () => {
 			          },
 			        ],
 			        "compilerOptions": {
-			          "module": "esnext",
-			          "moduleResolution": "bundler",
-			        },
-			        "compilerOptionsDefaults": {
 			          "allowJs": true,
 			          "incremental": true,
 			          "isolatedModules": true,
@@ -182,6 +178,8 @@ describe(blockNextJs, () => {
 			            "dom.iterable",
 			            "esnext",
 			          ],
+			          "module": "esnext",
+			          "moduleResolution": "bundler",
 			          "plugins": [
 			            {
 			              "name": "next",

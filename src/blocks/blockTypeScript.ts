@@ -17,28 +17,21 @@ import { blockVitest } from "./blockVitest.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
-// zod-tsconfig doesn't yet describe language service plugins,
-// and describes paths values as strings rather than arrays of strings
-const zCompilerOptions = CompilerOptionsSchema.extend({
-	paths: z.record(z.string(), z.array(z.string())).optional(),
-	plugins: z.array(z.looseObject({ name: z.string().optional() })).optional(),
-});
-
 export const blockTypeScript = base.createBlock({
 	about: {
 		name: "TypeScript",
 	},
 	addons: {
 		beforeTypeCheckSteps: z.array(zActionStep).default([]),
-		compilerOptions: zCompilerOptions.optional(),
+		compilerOptions: CompilerOptionsSchema.optional(),
 		exclude: z.array(z.string()).optional(),
-		existingCompilerOptions: zCompilerOptions.optional(),
+		existingCompilerOptions: CompilerOptionsSchema.optional(),
 		include: z.array(z.string()).default([]),
 		outDir: z.string().optional(),
 	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
-		const { data } = zCompilerOptions.safeParse(raw?.compilerOptions);
+		const { data } = CompilerOptionsSchema.safeParse(raw?.compilerOptions);
 		if (!data) {
 			return undefined;
 		}

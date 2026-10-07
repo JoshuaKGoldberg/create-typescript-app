@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.74.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.73.0...2.74.0) (2026-10-07)
+
+### Features
+
+- suggest migrating Jest and Mocha tests to Vitest in transition mode ([#2561](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2561)) ([61c5c97](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/61c5c971636e1eee81fd843cab03e4cc2d9ec6e7)), closes [#1375](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1375)
+
 ## [2.73.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.72.0...2.73.0) (2026-10-06)
 
 ### Features

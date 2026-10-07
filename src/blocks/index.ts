@@ -49,6 +49,7 @@ import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 import { blockTemplatedWith } from "./blockTemplatedWith.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
+import { blockVite } from "./blockVite.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { blockWebExt } from "./blockWebExt.ts";
@@ -105,6 +106,7 @@ export const blocks = {
 	blockTemplatedWith,
 	blockTSDown,
 	blockTypeScript,
+	blockVite,
 	blockVitest,
 	blockVSCode,
 	blockWebExt,
@@ -162,6 +164,7 @@ export { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 export { blockTemplatedWith } from "./blockTemplatedWith.ts";
 export { blockTSDown } from "./blockTSDown.ts";
 export { blockTypeScript } from "./blockTypeScript.ts";
+export { blockVite } from "./blockVite.ts";
 export { blockVitest } from "./blockVitest.ts";
 export { blockVSCode } from "./blockVSCode.ts";
 export { blockWebExt } from "./blockWebExt.ts";

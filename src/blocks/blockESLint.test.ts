@@ -87,6 +87,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -229,6 +230,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -407,6 +409,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -622,6 +625,7 @@ describe(blockESLint, () => {
 			            "eslint": "0.0.0-mock",
 			            "eslint-plugin-regexp": "0.0.0-mock",
 			            "eslint-plugin-unknown": "1.2.3",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -825,6 +829,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -1002,6 +1007,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -1187,6 +1193,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -1364,6 +1371,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -1519,6 +1527,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -1668,6 +1677,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -1814,6 +1824,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {
@@ -1959,6 +1970,7 @@ describe(blockESLint, () => {
 			            "@eslint/js": "0.0.0-mock",
 			            "@types/node": "0.0.0-mock",
 			            "eslint": "0.0.0-mock",
+			            "jiti": "0.0.0-mock",
 			            "typescript-eslint": "0.0.0-mock",
 			          },
 			          "scripts": {

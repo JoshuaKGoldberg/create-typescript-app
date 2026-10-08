@@ -173,6 +173,7 @@ Each should be shown in VS Code, and can be run manually on the command-line:
 								"@eslint/js",
 								"@types/node",
 								"eslint",
+								"jiti",
 								"typescript-eslint",
 								...imports
 									.filter((imported) => typeof imported.source === "string")

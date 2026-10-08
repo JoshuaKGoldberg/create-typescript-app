@@ -1,3 +1,4 @@
+import _ from "lodash";
 import sortKeys from "sort-keys";
 import { z } from "zod";
 import { CompilerOptionsSchema } from "zod-tsconfig";
@@ -170,8 +171,15 @@ greet("Hello, world! ${options.emoji}");
 							strict: true,
 							target: "ES2023",
 							...(outDir && { outDir, rootDir: "src" }),
-							...existingCompilerOptions,
-							...compilerOptions,
+							..._.mergeWith(
+								{},
+								existingCompilerOptions,
+								compilerOptions,
+								(existing: unknown, added: unknown) =>
+									Array.isArray(existing) && Array.isArray(added)
+										? _.unionWith(existing, added, (a, b) => _.isEqual(a, b))
+										: undefined,
+							),
 							...(outDir && { noEmit: undefined }),
 						}),
 						include: ["src", ...include],

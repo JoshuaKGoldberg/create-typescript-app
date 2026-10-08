@@ -440,6 +440,49 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
+	test("with existingCompilerOptions arrays merged with compilerOptions arrays", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					lib: ["dom", "esnext"],
+					plugins: [{ name: "next" }],
+				},
+				existingCompilerOptions: {
+					lib: ["esnext", "webworker"],
+					plugins: [
+						{ name: "next" },
+						{ name: "typescript-plugin-css-modules" },
+					],
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"lib": ["esnext", "webworker", "dom"],
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"noEmit": true,
+					"plugins": [
+						{ "name": "next" },
+						{ "name": "typescript-plugin-css-modules" }
+					],
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src"]
+			}
+			"
+		`);
+	});
+
 	test("with a beforeTypeCheckSteps addon", () => {
 		const creation = testBlock(blockTypeScript, {
 			addons: {

@@ -7,6 +7,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockPnpmWorkspace } from "./blockPnpmWorkspace.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
@@ -73,16 +74,24 @@ pnpm format --write
 					properties: {
 						devDependencies: getPackageDependencies(
 							...plugins.filter((plugin) => !plugin.startsWith(".")),
-							"husky",
-							"lint-staged",
 							"prettier",
+							"pretty-quick",
+							"simple-git-hooks",
 						),
-						"lint-staged": {
-							"*": "prettier --ignore-unknown --write",
-						},
 						scripts: {
 							format: "prettier .",
-							prepare: "husky",
+							prepare: "simple-git-hooks",
+						},
+						"simple-git-hooks": {
+							"pre-commit": "pnpm pretty-quick --staged",
+						},
+					},
+				}),
+				blockPnpmWorkspace({
+					properties: {
+						allowBuilds: {
+							// The prepare script already installs the Git hooks
+							"simple-git-hooks": false,
 						},
 					},
 				}),
@@ -92,12 +101,8 @@ pnpm format --write
 				}),
 			],
 			files: {
-				".husky": {
-					".gitignore": "_\n",
-					"pre-commit": ["npx lint-staged\n", { executable: true }],
-				},
 				".prettierignore": formatIgnoreFile(
-					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
+					["/dist", "/pnpm-lock.yaml", ...ignores].sort(),
 				),
 				"prettier.config.ts": withPreviously(
 					formatFile(
@@ -125,15 +130,39 @@ export default ${JSON.stringify({
 	transition() {
 		return {
 			addons: [
+				blockPackageJson({
+					properties: {
+						"lint-staged": undefined,
+					},
+				}),
 				blockRemoveDependencies({
-					dependencies: ["eslint-config-prettier", "eslint-plugin-prettier"],
+					dependencies: [
+						"eslint-config-prettier",
+						"eslint-plugin-prettier",
+						"husky",
+						"lint-staged",
+					],
 				}),
 				blockRemoveFiles({
-					files: [".prettierrc*", "prettier.config.{c,j,m}*"],
+					files: [
+						".husky",
+						".lintstagedrc*",
+						".prettierrc*",
+						"lint-staged.config.*",
+						"prettier.config.{c,j,m}*",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["format", "prettier"],
 				}),
+			],
+			scripts: [
+				{
+					// husky points Git at its own hooks directory, which is removed
+					commands: ["git config --unset core.hooksPath ^\\.husky"],
+					phase: CommandPhase.Migrations,
+					silent: true,
+				},
 			],
 		};
 	},

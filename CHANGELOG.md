@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.74.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.0...2.74.1) (2026-10-10)
+
+### Bug Fixes
+
+- **deps:** update dependency bingo-stratum to ^0.8.0 ([#2574](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2574)) ([e9e5a82](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e9e5a82b85ba88d690599c68c47ecc65ab1d9e05))
+
 ## [2.74.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.73.0...2.74.0) (2026-10-07)
 
 ### Features

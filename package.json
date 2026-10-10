@@ -38,7 +38,7 @@
 		"all-contributors-types": "^0.1.0",
 		"bingo": "^0.13.1",
 		"bingo-fs": "^0.6.0",
-		"bingo-stratum": "^0.7.1",
+		"bingo-stratum": "^0.8.0",
 		"cached-factory": "^0.3.0",
 		"cspell-populate-words": "0.3.1",
 		"execa": "^10.0.1",

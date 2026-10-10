@@ -1,6 +1,7 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
+import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { optionsBase } from "./options.fakes.ts";
 
@@ -368,6 +369,138 @@ describe(blockTypeScript, () => {
 			}
 			"
 		`);
+	});
+
+	test("with include, exclude, and plugins addons", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					plugins: [{ name: "next" }],
+				},
+				exclude: ["node_modules"],
+				include: ["next-env.d.ts"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"noEmit": true,
+					"plugins": [{ "name": "next" }],
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src", "next-env.d.ts"],
+				"exclude": ["node_modules"]
+			}
+			"
+		`);
+	});
+
+	test("with existingCompilerOptions overridden by compilerOptions", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					moduleResolution: "bundler",
+				},
+				existingCompilerOptions: {
+					jsx: "preserve",
+					moduleResolution: "node",
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"jsx": "preserve",
+					"module": "nodenext",
+					"moduleResolution": "bundler",
+					"noEmit": true,
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src"]
+			}
+			"
+		`);
+	});
+
+	test("with existingCompilerOptions arrays merged with compilerOptions arrays", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					lib: ["dom", "esnext"],
+					plugins: [{ name: "next" }],
+				},
+				existingCompilerOptions: {
+					lib: ["esnext", "webworker"],
+					plugins: [
+						{ name: "next" },
+						{ name: "typescript-plugin-css-modules" },
+					],
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"lib": ["esnext", "webworker", "dom"],
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"noEmit": true,
+					"plugins": [
+						{ "name": "next" },
+						{ "name": "typescript-plugin-css-modules" }
+					],
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src"]
+			}
+			"
+		`);
+	});
+
+	test("with a beforeTypeCheckSteps addon", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				beforeTypeCheckSteps: [{ run: "pnpm generate" }],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.addons).toContainEqual(
+			blockGitHubActionsCI({
+				jobs: [
+					{
+						name: "Type Check",
+						steps: [{ run: "pnpm generate" }, { run: "pnpm tsc" }],
+					},
+				],
+			}),
+		);
 	});
 
 	test("with an outDir addon and noEmit in compilerOptions", () => {
@@ -771,7 +904,7 @@ describe(blockTypeScript, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns compilerOptions when tsconfig.json contains compilerOptions", () => {
+		it("returns existingCompilerOptions when tsconfig.json contains compilerOptions", () => {
 			const compilerOptions = { module: "ESNext" };
 
 			const actual = testIntake(blockTypeScript, {
@@ -780,10 +913,10 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions });
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 
-		it("returns compilerOptions when tsconfig.json contains compilerOptions and other data", () => {
+		it("returns existingCompilerOptions when tsconfig.json contains compilerOptions and other data", () => {
 			const compilerOptions = { module: "ESNext" };
 
 			const actual = testIntake(blockTypeScript, {
@@ -797,7 +930,52 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions });
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
+		});
+
+		it("returns existingCompilerOptions including plugins without names when tsconfig.json contains them", () => {
+			const compilerOptions = {
+				plugins: [{ transform: "typescript-transform-paths" }],
+				strict: true,
+			};
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
+				},
+			});
+
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
+		});
+
+		it("returns existingCompilerOptions including paths when tsconfig.json contains compilerOptions with paths", () => {
+			const compilerOptions = {
+				paths: { "@/*": ["./src/*"] },
+				strict: true,
+			};
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
+				},
+			});
+
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
+		});
+
+		it("returns existingCompilerOptions including plugins when tsconfig.json contains compilerOptions with plugins", () => {
+			const compilerOptions = {
+				module: "ESNext",
+				plugins: [{ name: "next" }],
+			};
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions })],
+				},
+			});
+
+			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 	});
 });

@@ -37,6 +37,7 @@ This table summarizes each block and which base levels they're included in:
 | Knip                               | `--add-knip`, `--exclude-knip`                                                             |         |        | 💯         |
 | MIT License                        | `--add-mit-license`, `--exclude-mit-license`                                               | ✔️      | ✅     | 💯         |
 | ncc                                | `--add-ncc`, `--exclude-ncc`                                                               |         |        |            |
+| NextJS                             | `--add-nextjs`, `--exclude-nextjs`                                                         |         |        |            |
 | nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        | 💯         |
 | OctoGuide                          | `--add-octoguide`, `--exclude-octoguide`                                                   |         | ✅     | 💯         |
 | OctoGuide Strict                   | `--add-octoguide-strict`, `--exclude-octoguide-strict`                                     |         |        | 💯         |
@@ -64,6 +65,12 @@ For example, this uses ncc instead of the default tsdown builder:
 
 ```shell
 npx create-typescript-app --add-ncc --exclude-tsdown
+```
+
+Or, this creates a [Next.js](https://nextjs.org) site that isn't built or published as a package:
+
+```shell
+npx create-typescript-app --add-nextjs --exclude-release-it --exclude-tsdown
 ```
 
 See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.

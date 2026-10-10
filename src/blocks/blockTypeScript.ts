@@ -1,3 +1,4 @@
+import _ from "lodash";
 import sortKeys from "sort-keys";
 import { z } from "zod";
 import { CompilerOptionsSchema } from "zod-tsconfig";
@@ -5,6 +6,7 @@ import { CompilerOptionsSchema } from "zod-tsconfig";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
+import { zActionStep } from "./actions/steps.ts";
 import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockExampleFiles } from "./blockExampleFiles.ts";
@@ -21,7 +23,11 @@ export const blockTypeScript = base.createBlock({
 		name: "TypeScript",
 	},
 	addons: {
+		beforeTypeCheckSteps: z.array(zActionStep).default([]),
 		compilerOptions: CompilerOptionsSchema.optional(),
+		exclude: z.array(z.string()).optional(),
+		existingCompilerOptions: CompilerOptionsSchema.optional(),
+		include: z.array(z.string()).default([]),
 		outDir: z.string().optional(),
 	},
 	intake({ files }) {
@@ -32,11 +38,18 @@ export const blockTypeScript = base.createBlock({
 		}
 
 		return {
-			compilerOptions: data,
+			existingCompilerOptions: data,
 		};
 	},
 	produce({ addons, options }) {
-		const { compilerOptions, outDir } = addons;
+		const {
+			beforeTypeCheckSteps,
+			compilerOptions,
+			exclude,
+			existingCompilerOptions,
+			include,
+			outDir,
+		} = addons;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
@@ -100,7 +113,12 @@ greet("Hello, world! ${options.emoji}");
 					],
 				}),
 				blockGitHubActionsCI({
-					jobs: [{ name: "Type Check", steps: [{ run: "pnpm tsc" }] }],
+					jobs: [
+						{
+							name: "Type Check",
+							steps: [...beforeTypeCheckSteps, { run: "pnpm tsc" }],
+						},
+					],
 				}),
 				blockKnip({
 					project: ["src/**/*.ts"],
@@ -153,10 +171,19 @@ greet("Hello, world! ${options.emoji}");
 							strict: true,
 							target: "ES2023",
 							...(outDir && { outDir, rootDir: "src" }),
-							...compilerOptions,
+							..._.mergeWith(
+								{},
+								existingCompilerOptions,
+								compilerOptions,
+								(existing: unknown, added: unknown) =>
+									Array.isArray(existing) && Array.isArray(added)
+										? _.unionWith(existing, added, (a, b) => _.isEqual(a, b))
+										: undefined,
+							),
 							...(outDir && { noEmit: undefined }),
 						}),
-						include: ["src"],
+						include: ["src", ...include],
+						...(exclude && { exclude }),
 					}),
 				),
 			},

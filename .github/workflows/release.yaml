@@ -17,7 +17,7 @@ jobs:
       - run: pnpm build
       - env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        uses: JoshuaKGoldberg/release-it-action@d785123cf337c25cdfb43f24d6c98549123d7be2 # v0.5.7
+        uses: JoshuaKGoldberg/release-it-action@c8081a3d2382b75d5fd1315443c095d7f95fd146 # v0.6.4
 
 name: Release
 

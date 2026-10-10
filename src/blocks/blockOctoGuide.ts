@@ -5,6 +5,7 @@ import { resolveUses } from "./actions/resolveUses.ts";
 import { intakeFileYamlSteps } from "./actions/steps.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockZizmor } from "./blockZizmor.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 
@@ -44,6 +45,13 @@ export const blockOctoGuide = base.createBlock({
 			addons: [
 				blockCSpell({
 					words: ["octoguide"],
+				}),
+				blockZizmor({
+					rules: {
+						// OctoGuide needs pull_request_target to comment on PRs from forks,
+						// and doesn't check out or run any PR code.
+						"dangerous-triggers": { ignore: ["octoguide.yaml"] },
+					},
 				}),
 			],
 			files: {

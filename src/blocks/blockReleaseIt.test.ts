@@ -125,6 +125,7 @@ describe(blockReleaseIt, () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
+			          persist-credentials: true
 			          ref: main
 			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - uses: ./.github/actions/prepare
@@ -309,6 +310,7 @@ describe(blockReleaseIt, () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
+			          persist-credentials: true
 			          ref: main
 			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - uses: ./.github/actions/prepare

@@ -7,6 +7,7 @@ import { blockCTATransitions } from "./blockCTATransitions.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
+import { blockZizmor } from "./blockZizmor.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe("blockCTATransitions", () => {
@@ -36,6 +37,11 @@ describe("blockCTATransitions", () => {
 						name: "ACCESS_TOKEN",
 					},
 				],
+			}),
+			blockZizmor({
+				rules: {
+					"bot-conditions": { ignore: ["cta.yaml"] },
+				},
 			}),
 		]);
 		expect(creation.files).toMatchInlineSnapshot(`
@@ -115,6 +121,7 @@ describe("blockCTATransitions", () => {
 			        uses: actions/checkout@v4
 			        with:
 			          fetch-depth: 0
+			          persist-credentials: true
 			          ref: \${{github.event.pull_request.head.ref}}
 			          repository: \${{github.event.pull_request.head.repo.full_name}}
 			          token: \${{ secrets.ACCESS_TOKEN }}

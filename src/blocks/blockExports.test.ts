@@ -20,6 +20,14 @@ describe(blockExports, () => {
 			      },
 			      "block": "[Block TSDown]",
 			    },
+			    {
+			      "addons": {
+			        "runInCI": [
+			          "node ./dist/index.mjs",
+			        ],
+			      },
+			      "block": "[Block Vite]",
+			    },
 			  ],
 			}
 		`);
@@ -45,6 +53,14 @@ describe(blockExports, () => {
 			        ],
 			      },
 			      "block": "[Block TSDown]",
+			    },
+			    {
+			      "addons": {
+			        "runInCI": [
+			          "node ./dist/index.mjs --version",
+			        ],
+			      },
+			      "block": "[Block Vite]",
 			    },
 			  ],
 			}
@@ -74,6 +90,14 @@ describe(blockExports, () => {
 			        ],
 			      },
 			      "block": "[Block TSDown]",
+			    },
+			    {
+			      "addons": {
+			        "runInCI": [
+			          "node ./dist/index.mjs",
+			        ],
+			      },
+			      "block": "[Block Vite]",
 			    },
 			  ],
 			}

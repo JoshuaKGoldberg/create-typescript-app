@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.74.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.1...2.74.2) (2026-10-11)
+
+### Bug Fixes
+
+- **deps:** update dependency zod-tsconfig to ^0.3.0 ([#2576](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2576)) ([be261ef](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/be261ef208fd8c6e6003c250fd3e014c485d68c4))
+
 ## [2.74.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.0...2.74.1) (2026-10-10)
 
 ### Bug Fixes

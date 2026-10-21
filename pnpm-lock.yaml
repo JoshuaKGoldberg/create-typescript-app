@@ -342,8 +342,8 @@ importers:
         specifier: 0.9.1
         version: 0.9.1(@eslint/markdown@8.0.3(supports-color@7.2.0))(eslint@10.13.0(jiti@2.7.0)(supports-color@7.2.0))
       eslint-plugin-n:
-        specifier: 18.4.0
-        version: 18.4.0(eslint@10.13.0(jiti@2.7.0)(supports-color@7.2.0))(typescript@5.9.3)
+        specifier: 18.5.0
+        version: 18.5.0(eslint@10.13.0(jiti@2.7.0)(supports-color@7.2.0))(typescript@5.9.3)
       eslint-plugin-package-json:
         specifier: 1.10.0
         version: 1.10.0(eslint@10.13.0(jiti@2.7.0)(supports-color@7.2.0))
@@ -2534,8 +2534,8 @@ packages:
       '@eslint/markdown': ^7.1.0 || ^8.0.0
       eslint: '>=9.0.0'
 
-  eslint-plugin-n@18.4.0:
-    resolution: {integrity: sha512-TEm6Nqn9+l7EWfJXOL6pmrEdpiM2ZTgo4fNMRDvBTM70jeQ7x3X3Akcx+sRCIRfpcSVwMypH3ZAA33PLyNKmYw==}
+  eslint-plugin-n@18.5.0:
+    resolution: {integrity: sha512-M7uF6MTN/An+AXqvyIbXq7npJIZOkd5eKo8iMMvWrcDVNyZVdA6TF2lw01aKQfCEidRfpnR78GhAjZorlXNHiw==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     peerDependencies:
       eslint: '>=8.57.1'
@@ -6710,7 +6710,7 @@ snapshots:
       synckit: 0.11.13
       undici: 7.30.1
 
-  eslint-plugin-n@18.4.0(eslint@10.13.0(jiti@2.7.0)(supports-color@7.2.0))(typescript@5.9.3):
+  eslint-plugin-n@18.5.0(eslint@10.13.0(jiti@2.7.0)(supports-color@7.2.0))(typescript@5.9.3):
     dependencies:
       '@eslint-community/eslint-utils': 4.10.1(eslint@10.13.0(jiti@2.7.0)(supports-color@7.2.0))
       enhanced-resolve: 5.26.0

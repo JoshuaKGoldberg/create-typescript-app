@@ -7,7 +7,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: JoshuaKGoldberg/octoguide@28b3b77db94236a7110efdc5e2a9a28e01538485 # 0.28.0
+      - uses: JoshuaKGoldberg/octoguide@ba5148358fb3d5f31ff41714db6045546d3bbfac # 0.29.0
         with:
           config: strict
           github-token: ${{ secrets.GITHUB_TOKEN }}

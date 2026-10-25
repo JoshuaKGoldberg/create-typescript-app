@@ -59,6 +59,7 @@ This table summarizes each block and which base levels they're included in:
 | Vitest                             | `--add-vitest`, `--exclude-vitest`                                                         |         | ✅     | 💯         |
 | VS Code                            | `--add-vs-code`, `--exclude-vs-code`                                                       |         |        | 💯         |
 | Web-ext                            | `--add-web-ext`, `--exclude-web-ext`                                                       |         |        |            |
+| zizmor                             | `--add-zizmor`, `--exclude-zizmor`                                                         |         |        | 💯         |
 
 For example, this uses ncc instead of the default tsdown builder:
 
@@ -269,6 +270,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Testing](#testing)
   - ["Everything" Base Level](#everything-base-level)
     - [Lint ESLint](#lint-eslint)
+    - [Lint GitHub Actions](#lint-github-actions)
     - [Lint JSDoc](#lint-jsdoc)
     - [Lint JSON](#lint-json)
     - [Lint Package JSON](#lint-package-json)
@@ -284,6 +286,11 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
 ### Lint ESLint
 
 [`@eslint-community/eslint-plugin-eslint-comments`](https://eslint-community.github.io/eslint-plugin-eslint-comments): Enforces proper usage of [ESLint configuration comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments).
+
+### Lint GitHub Actions
+
+[**zizmor**](https://zizmor.sh): Static analysis for GitHub Actions workflows and composite actions that detects common security issues.
+It runs in CI using [zizmor-action](https://github.com/zizmorcore/zizmor-action), configured by `.github/zizmor.yaml`.
 
 ### Lint JSDoc
 

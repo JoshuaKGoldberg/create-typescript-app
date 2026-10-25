@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { blockTSDown } from "./blockTSDown.ts";
+import { blockVite } from "./blockVite.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
 const zFilePath = z.string();
@@ -30,6 +31,7 @@ export const blockExports = base.createBlock({
 	produce({ addons, options }) {
 		const { filePath = "./dist/index.mjs", runArgs } = addons;
 		const main = zFilePath.safeParse(options.packageData?.main).data;
+		const runArgsText = runArgs.map((arg) => ` ${arg}`).join("");
 
 		return {
 			addons: [
@@ -37,9 +39,11 @@ export const blockExports = base.createBlock({
 				blockTSDown({
 					exports: filePath.startsWith(".") ? filePath : `./${filePath}`,
 					...(main && { main: libToDist(main) }),
-					runInCI: [
-						`node ${filePath}${runArgs.map((arg) => ` ${arg}`).join("")}`,
-					],
+					runInCI: [`node ${filePath}${runArgsText}`],
+				}),
+				// Vite always builds the entry point to the same path
+				blockVite({
+					runInCI: [`node ./dist/index.mjs${runArgsText}`],
 				}),
 			],
 		};

@@ -111,6 +111,12 @@ Examples:
 Libraries are what `create-typescript-app` sets up by default: a package built with [tsdown](https://tsdown.dev) and published to npm with [release-it](https://github.com/release-it/release-it).
 No extra configuration is needed.
 
+To build with [Vite's library mode](https://vite.dev/guide/build#library-mode) instead, add the [Vite block](./Blocks.md) and exclude the TSDown block:
+
+```shell
+npx create-typescript-app --add-vite --exclude-tsdown
+```
+
 See [FAQs > How do I publish a new package for the first time?](./FAQs.md#how-do-i-publish-a-new-package-for-the-first-time) for getting the first release out.
 
 ## Website

@@ -56,6 +56,7 @@ This table summarizes each block and which base levels they're included in:
 | Templated With                     | `--add-templated-with`, `--exclude-templated-with`                                         | ✔️      | ✅     | 💯         |
 | TSDown                             | `--add-tsdown`, `--exclude-tsdown`                                                         | ✔️      | ✅     | 💯         |
 | TypeScript                         | `--add-typescript`, `--exclude-typescript`                                                 | ✔️      | ✅     | 💯         |
+| Vite                               | `--add-vite`, `--exclude-vite`                                                             |         |        |            |
 | Vitest                             | `--add-vitest`, `--exclude-vitest`                                                         |         | ✅     | 💯         |
 | VS Code                            | `--add-vs-code`, `--exclude-vs-code`                                                       |         |        | 💯         |
 | Web-ext                            | `--add-web-ext`, `--exclude-web-ext`                                                       |         |        |            |

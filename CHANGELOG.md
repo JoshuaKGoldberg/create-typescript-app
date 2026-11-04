@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.74.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.2...2.74.3) (2026-11-04)
+
+### Bug Fixes
+
+- **deps:** update dependency bingo to ^0.14.0 ([#2612](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2612)) ([14f4315](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/14f4315bcfef321f5ef7596f42527dd71f4e9728))
+
 ## [2.74.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.1...2.74.2) (2026-10-11)
 
 ### Bug Fixes

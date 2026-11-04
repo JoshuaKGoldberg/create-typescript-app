@@ -49,6 +49,7 @@ import { blockTypeScript } from "./blockTypeScript.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { blockWebExt } from "./blockWebExt.ts";
+import { blockZizmor } from "./blockZizmor.ts";
 
 export const blocks = {
 	blockAllContributors,
@@ -102,6 +103,7 @@ export const blocks = {
 	blockVitest,
 	blockVSCode,
 	blockWebExt,
+	blockZizmor,
 };
 
 export { blockAllContributors } from "./blockAllContributors.ts";
@@ -156,3 +158,4 @@ export { blockTypeScript } from "./blockTypeScript.ts";
 export { blockVitest } from "./blockVitest.ts";
 export { blockVSCode } from "./blockVSCode.ts";
 export { blockWebExt } from "./blockWebExt.ts";
+export { blockZizmor } from "./blockZizmor.ts";

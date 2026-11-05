@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.74.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.4...2.74.5) (2026-11-05)
+
+### Bug Fixes
+
+- **deps:** update dependency input-from-script to ^0.6.0 ([#2615](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2615)) ([4f550c7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4f550c7d42c49bae3b5dd44a06e467252f3cd462)), references [#8203](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/8203)
+
 ## [2.74.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.3...2.74.4) (2026-11-04)
 
 ### Bug Fixes

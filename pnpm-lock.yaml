@@ -212,8 +212,8 @@ importers:
         specifier: ^0.5.9
         version: 0.5.9(bingo@0.14.0(zod@4.6.7))
       input-from-script:
-        specifier: ^0.5.9
-        version: 0.5.9(bingo@0.14.0(zod@4.6.7))
+        specifier: ^0.6.0
+        version: 0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
       js-yaml:
         specifier: ^5.0.0
         version: 5.5.0
@@ -2980,11 +2980,15 @@ packages:
       zod:
         optional: true
 
-  input-from-script@0.5.9:
-    resolution: {integrity: sha512-69FfKBD8QyEvJG+voGVAWyV/tGhrqPxGSH/VyvvjBTxTLL0qGUFmaQSMLTr8eA7iWk2R/SwyLS/9E2Raz9F1sg==}
+  input-from-script@0.6.0:
+    resolution: {integrity: sha512-aXnd5SBr4RDvjDDfdetlSJvN0R72KsCKjxm/cbE8u1Ygz4XYr0MGV7Z5Z1PoOU2QbmNtlMgEhjON9G1S730Akw==}
     engines: {node: '>=18'}
     peerDependencies:
-      bingo: ^0.13.0
+      bingo: ^0.14.0
+      zod: ^4.4.3
+    peerDependenciesMeta:
+      zod:
+        optional: true
 
   inquirer@7.3.3:
     resolution: {integrity: sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==}
@@ -7252,9 +7256,10 @@ snapshots:
     optionalDependencies:
       zod: 4.6.7
 
-  input-from-script@0.5.9(bingo@0.14.0(zod@4.6.7)):
+  input-from-script@0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
     dependencies:
       bingo: 0.14.0(zod@4.6.7)
+    optionalDependencies:
       zod: 4.6.7
 
   inquirer@7.3.3:

@@ -179,11 +179,11 @@ importers:
         specifier: ^0.14.0
         version: 0.14.0(zod@4.6.7)
       bingo-fs:
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^0.7.0
+        version: 0.7.0
       bingo-stratum:
         specifier: ^0.8.0
-        version: 0.8.0(bingo-fs@0.6.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
+        version: 0.8.0(bingo-fs@0.7.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
       cached-factory:
         specifier: ^0.3.0
         version: 0.3.0
@@ -319,10 +319,10 @@ importers:
         version: 0.6.0
       bingo-stratum-testers:
         specifier: 0.5.14
-        version: 0.5.14(bingo-fs@0.6.0)(bingo-stratum@0.8.0(bingo-fs@0.6.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7))(bingo@0.14.0(zod@4.6.7))
+        version: 0.5.14(bingo-fs@0.7.0)(bingo-stratum@0.8.0(bingo-fs@0.7.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7))(bingo@0.14.0(zod@4.6.7))
       bingo-testers:
         specifier: 0.9.0
-        version: 0.9.0(bingo-fs@0.6.0)(bingo@0.14.0(zod@4.6.7))
+        version: 0.9.0(bingo-fs@0.7.0)(bingo@0.14.0(zod@4.6.7))
       console-fail-test:
         specifier: 0.10.0
         version: 0.10.0
@@ -1972,6 +1972,10 @@ packages:
   bingo-fs@0.6.0:
     resolution: {integrity: sha512-vKEkj1R0jPIjEAUWJB/F3sDgn+mtelbkRs+mmU5CoMZpKQ04WavA4DWWO/Jq88jY840PrqEJInuC9ue4RvUV0g==}
     engines: {node: '>=18'}
+
+  bingo-fs@0.7.0:
+    resolution: {integrity: sha512-6ssc4svRqUN3YNlzBMHqVyO24dD0G1UZd8VilFEzSqthRvPV0xHBN0iXRgiLC5VhOwJyMtqQzs2/ft+Gl1arHw==}
+    engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
 
   bingo-requests@0.5.6:
     resolution: {integrity: sha512-cpvNWqMlFkbynxJzyKJ4B/R57zR2MsPkJSldNJRxSTN6LlgB9uzQ8jAeDZy2ENoUHNlH5nApv2JyHxVqFxcjSg==}
@@ -6098,6 +6102,8 @@ snapshots:
 
   bingo-fs@0.6.0: {}
 
+  bingo-fs@0.7.0: {}
+
   bingo-requests@0.5.6:
     dependencies:
       '@octokit/types': 16.0.0
@@ -6106,17 +6112,17 @@ snapshots:
     dependencies:
       '@octokit/types': 16.0.0
 
-  bingo-stratum-testers@0.5.14(bingo-fs@0.6.0)(bingo-stratum@0.8.0(bingo-fs@0.6.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7))(bingo@0.14.0(zod@4.6.7)):
+  bingo-stratum-testers@0.5.14(bingo-fs@0.7.0)(bingo-stratum@0.8.0(bingo-fs@0.7.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7))(bingo@0.14.0(zod@4.6.7)):
     dependencies:
       bingo: 0.14.0(zod@4.6.7)
-      bingo-fs: 0.6.0
-      bingo-stratum: 0.8.0(bingo-fs@0.6.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
+      bingo-fs: 0.7.0
+      bingo-stratum: 0.8.0(bingo-fs@0.7.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
 
-  bingo-stratum@0.8.0(bingo-fs@0.6.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
+  bingo-stratum@0.8.0(bingo-fs@0.7.0)(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
     dependencies:
       all-properties-lazy: 0.1.0
       bingo: 0.14.0(zod@4.6.7)
-      bingo-fs: 0.6.0
+      bingo-fs: 0.7.0
       cached-factory: 0.3.0
       hash-object: 5.1.0
       octokit: 5.0.5
@@ -6131,12 +6137,12 @@ snapshots:
       get-github-auth-token: 0.1.2
       octokit: 5.0.5
 
-  bingo-testers@0.9.0(bingo-fs@0.6.0)(bingo@0.14.0(zod@4.6.7)):
+  bingo-testers@0.9.0(bingo-fs@0.7.0)(bingo@0.14.0(zod@4.6.7)):
     dependencies:
       '@vitest/utils': 4.1.12
       all-properties-lazy: 0.1.0
       bingo: 0.14.0(zod@4.6.7)
-      bingo-fs: 0.6.0
+      bingo-fs: 0.7.0
       octokit: 5.0.5
       tinyrainbow: 3.2.0
       without-undefined-properties: 0.1.2

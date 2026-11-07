@@ -209,8 +209,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
       input-from-file-json:
-        specifier: ^0.5.9
-        version: 0.5.9(bingo@0.14.0(zod@4.6.7))
+        specifier: ^0.6.0
+        version: 0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
       input-from-script:
         specifier: ^0.6.0
         version: 0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
@@ -2962,23 +2962,31 @@ packages:
     resolution: {integrity: sha512-IBTdIkzZNOpqm7q3dRqJvMaldXjDHWkEDfrwGEQTs5eaQMWV+djAhR+wahyNNMAa+qpbDUhBMVt4ZKNwpPm7xQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  input-from-file-json@0.5.9:
-    resolution: {integrity: sha512-BmmSslk9xoeYod5uB4ZJhjT3MhFletlLtKyyM640useRffnAxBOVe7VAtWPQDyLLrBflYNpQEgNmIWV4+TinMg==}
-    engines: {node: '>=18'}
+  input-from-file-json@0.6.0:
+    resolution: {integrity: sha512-LYdayY0OCmkDdxjPC8h9hjarLL6J1Wr9owI0FE4Vt0fLtGlsTg3RGoI0FeogQTlzMjluRuDLmIN+JXoiDdDq7w==}
+    engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
     peerDependencies:
-      bingo: ^0.13.0
-
-  input-from-file@0.5.9:
-    resolution: {integrity: sha512-Tzfn9kDyfdZG6Aq8RxQdi5wE/95fLVKEe+LqEwOgc3ZaCmYw4Ne2jg8VTW2pY5IUTklwB++lHpAUTo87v/9tIA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      bingo: ^0.13.0
+      bingo: ^0.15.0
+      zod: ^4.4.3
+    peerDependenciesMeta:
+      zod:
+        optional: true
 
   input-from-file@0.6.0:
     resolution: {integrity: sha512-OUCKbRQ4iRyrE6e0lp2LFjiVml0+aZp6CjcabZnbqy1JF2uaPw0PNaDIAX14/462mwzxUpWOwrk2aygf0YVUWw==}
     engines: {node: '>=18'}
     peerDependencies:
       bingo: ^0.14.0
+      zod: ^4.4.3
+    peerDependenciesMeta:
+      zod:
+        optional: true
+
+  input-from-file@0.7.0:
+    resolution: {integrity: sha512-jUO4XZLZoOeaCLJr43c1RYQRr4OW5nW0JtsgyPG9ttpIlKoQFOxPjlD1nmrTh35lP/BGNpkWed1/5RYciXTZyw==}
+    engines: {node: ^22.15.0 || ^24.15.0 || >=26.0.0}
+    peerDependencies:
+      bingo: ^0.15.0
       zod: ^4.4.3
     peerDependenciesMeta:
       zod:
@@ -7235,17 +7243,20 @@ snapshots:
 
   ini@6.0.0: {}
 
-  input-from-file-json@0.5.9(bingo@0.14.0(zod@4.6.7)):
+  input-from-file-json@0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
     dependencies:
       bingo: 0.14.0(zod@4.6.7)
-      input-from-file: 0.5.9(bingo@0.14.0(zod@4.6.7))
-
-  input-from-file@0.5.9(bingo@0.14.0(zod@4.6.7)):
-    dependencies:
-      bingo: 0.14.0(zod@4.6.7)
+      input-from-file: 0.7.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
+    optionalDependencies:
       zod: 4.6.7
 
   input-from-file@0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
+    dependencies:
+      bingo: 0.14.0(zod@4.6.7)
+    optionalDependencies:
+      zod: 4.6.7
+
+  input-from-file@0.7.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
     dependencies:
       bingo: 0.14.0(zod@4.6.7)
     optionalDependencies:

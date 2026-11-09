@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.75.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.5...2.75.0) (2026-11-09)
+
+### Features
+
+- support an ignore Addon in blockKnip ([#2627](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2627)) ([ff25069](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ff25069e5243331d278e541a908d1d8636ce74a4)), closes [#2625](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2625)
+- support an include Addon in blockTypeScript ([#2628](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2628)) ([4bfdd79](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4bfdd790094b2f94ae264f7cf83e97af89790c09)), closes [#2626](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2626)
+
 ## [2.74.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.4...2.74.5) (2026-11-05)
 
 ### Bug Fixes

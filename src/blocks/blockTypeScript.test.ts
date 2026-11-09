@@ -341,6 +341,34 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
+	test("with an include addon", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				include: ["scripts", "src"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"noEmit": true,
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["scripts", "src"]
+			}
+			"
+		`);
+	});
+
 	test("with an outDir addon", () => {
 		const creation = testBlock(blockTypeScript, {
 			addons: {
@@ -798,6 +826,31 @@ describe(blockTypeScript, () => {
 			});
 
 			expect(actual).toEqual({ compilerOptions });
+		});
+
+		it("returns include when tsconfig.json contains include", () => {
+			const include = ["scripts", "src"];
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ include })],
+				},
+			});
+
+			expect(actual).toEqual({ include });
+		});
+
+		it("returns compilerOptions and include when tsconfig.json contains both", () => {
+			const compilerOptions = { module: "ESNext" };
+			const include = ["scripts", "src"];
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ compilerOptions, include })],
+				},
+			});
+
+			expect(actual).toEqual({ compilerOptions, include });
 		});
 	});
 });

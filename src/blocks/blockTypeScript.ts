@@ -22,21 +22,26 @@ export const blockTypeScript = base.createBlock({
 	},
 	addons: {
 		compilerOptions: CompilerOptionsSchema.optional(),
+		include: z.array(z.string()).default([]),
 		outDir: z.string().optional(),
 	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
-		const { data } = CompilerOptionsSchema.safeParse(raw?.compilerOptions);
-		if (!data) {
+		const compilerOptions = CompilerOptionsSchema.safeParse(
+			raw?.compilerOptions,
+		).data;
+		const include = z.array(z.string()).safeParse(raw?.include).data;
+		if (!compilerOptions && !include) {
 			return undefined;
 		}
 
 		return {
-			compilerOptions: data,
+			...(compilerOptions && { compilerOptions }),
+			...(include && { include }),
 		};
 	},
 	produce({ addons, options }) {
-		const { compilerOptions, outDir } = addons;
+		const { compilerOptions, include, outDir } = addons;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
@@ -156,7 +161,7 @@ greet("Hello, world! ${options.emoji}");
 							...compilerOptions,
 							...(outDir && { noEmit: undefined }),
 						}),
-						include: ["src"],
+						include: Array.from(new Set(["src", ...include])).sort(),
 					}),
 				),
 			},

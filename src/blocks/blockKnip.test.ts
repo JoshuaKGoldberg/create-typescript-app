@@ -114,6 +114,7 @@ describe(blockKnip, () => {
 		const creation = testBlock(blockKnip, {
 			addons: {
 				entry: ["src/index.ts"],
+				ignore: ["src/fixtures/**"],
 				ignoreDependencies: ["abc", "def"],
 				project: ["src/**/*.ts"],
 			},
@@ -188,6 +189,7 @@ describe(blockKnip, () => {
 
 			export default {
 				entry: ["src/index.ts"],
+				ignore: ["src/fixtures/**"],
 				ignoreDependencies: ["abc", "def"],
 				ignoreExportsUsedInFile: { interface: true, type: true },
 				project: ["src/**/*.ts"],
@@ -359,6 +361,32 @@ describe(blockKnip, () => {
 			});
 
 			expect(actual).toEqual({ ignoreDependencies });
+		});
+
+		it("returns ignore when knip.config.ts exists and contains ignore", () => {
+			const ignore = ["src/fixtures/**"];
+
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.config.ts": [
+						`export default { ignore: ${JSON.stringify(ignore)} };`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({ ignore });
+		});
+
+		it("returns ignore when knip.json exists and contains ignore", () => {
+			const ignore = ["src/fixtures/**"];
+
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.json": [JSON.stringify({ ignore })],
+				},
+			});
+
+			expect(actual).toEqual({ ignore });
 		});
 	});
 });

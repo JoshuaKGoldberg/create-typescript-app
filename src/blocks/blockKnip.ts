@@ -22,6 +22,7 @@ export const blockKnip = base.createBlock({
 	},
 	addons: {
 		entry: zStringArray.optional(),
+		ignore: zStringArray.optional(),
 		ignoreDependencies: zStringArray.optional(),
 		project: zStringArray.optional(),
 	},
@@ -35,13 +36,14 @@ export const blockKnip = base.createBlock({
 
 		return removeUndefinedObjects({
 			entry: zStringArray.safeParse(knipJson.entry).data,
+			ignore: zStringArray.safeParse(knipJson.ignore).data,
 			ignoreDependencies: zStringArray.safeParse(knipJson.ignoreDependencies)
 				.data,
 			project: zStringArray.safeParse(knipJson.project).data,
 		});
 	},
 	produce({ addons }) {
-		const { entry, ignoreDependencies, project } = addons;
+		const { entry, ignore, ignoreDependencies, project } = addons;
 		return {
 			addons: [
 				blockDevelopmentDocs({
@@ -86,6 +88,7 @@ export const blockKnip = base.createBlock({
 
 export default ${JSON.stringify({
 							entry: entry?.sort(),
+							ignore: ignore?.sort(),
 							ignoreDependencies,
 							ignoreExportsUsedInFile: {
 								interface: true,

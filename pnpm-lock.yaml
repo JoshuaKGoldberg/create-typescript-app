@@ -206,8 +206,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.4
       input-from-file:
-        specifier: ^0.6.0
-        version: 0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
+        specifier: ^0.8.0
+        version: 0.8.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7)
       input-from-file-json:
         specifier: ^0.5.9
         version: 0.5.9(bingo@0.14.0(zod@4.6.7))
@@ -2974,11 +2974,11 @@ packages:
     peerDependencies:
       bingo: ^0.13.0
 
-  input-from-file@0.6.0:
-    resolution: {integrity: sha512-OUCKbRQ4iRyrE6e0lp2LFjiVml0+aZp6CjcabZnbqy1JF2uaPw0PNaDIAX14/462mwzxUpWOwrk2aygf0YVUWw==}
-    engines: {node: '>=18'}
+  input-from-file@0.8.0:
+    resolution: {integrity: sha512-MSfeslsQWuGf1EjQY2RQrQiLpsdD5QbvVJDOBlPmLul2S9LHUEVIzmyyfnQobjAzImKKBXxtWll3My/W1Y1REA==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
     peerDependencies:
-      bingo: ^0.14.0
+      bingo: ^0.16.0
       zod: ^4.4.3
     peerDependenciesMeta:
       zod:
@@ -7245,7 +7245,7 @@ snapshots:
       bingo: 0.14.0(zod@4.6.7)
       zod: 4.6.7
 
-  input-from-file@0.6.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
+  input-from-file@0.8.0(bingo@0.14.0(zod@4.6.7))(zod@4.6.7):
     dependencies:
       bingo: 0.14.0(zod@4.6.7)
     optionalDependencies:

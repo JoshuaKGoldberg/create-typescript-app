@@ -36,7 +36,7 @@
 		"@prettier/sync": "^0.6.1",
 		"@typescript-eslint/typescript-estree": "^8.67.0",
 		"all-contributors-types": "^0.1.0",
-		"bingo": "^0.14.0",
+		"bingo": "^0.16.0",
 		"bingo-fs": "^0.6.0",
 		"bingo-stratum": "^0.8.0",
 		"cached-factory": "^0.3.0",

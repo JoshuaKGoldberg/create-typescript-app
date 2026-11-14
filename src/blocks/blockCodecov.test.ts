@@ -48,6 +48,18 @@ describe(blockCodecov, () => {
 			      },
 			      "block": "[Block Vitest]",
 			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "ref-confusion": {
+			            "ignore": [
+			              "ci.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
+			    },
 			  ],
 			}
 		`);
@@ -95,6 +107,18 @@ describe(blockCodecov, () => {
 			        ],
 			      },
 			      "block": "[Block Vitest]",
+			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "ref-confusion": {
+			            "ignore": [
+			              "ci.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
 			    },
 			    {
 			      "addons": {
@@ -155,6 +179,18 @@ describe(blockCodecov, () => {
 			      },
 			      "block": "[Block Vitest]",
 			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "ref-confusion": {
+			            "ignore": [
+			              "ci.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
+			    },
 			  ],
 			}
 		`);
@@ -209,6 +245,18 @@ describe(blockCodecov, () => {
 			        ],
 			      },
 			      "block": "[Block Vitest]",
+			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "ref-confusion": {
+			            "ignore": [
+			              "ci.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
 			    },
 			  ],
 			}

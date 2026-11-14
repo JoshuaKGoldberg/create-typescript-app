@@ -1,0 +1,16 @@
+rules:
+  dangerous-triggers:
+    ignore:
+      - octoguide.yaml
+      - pr-review-labels.yaml
+  ref-confusion:
+    ignore:
+      - ci.yaml
+  ref-version-mismatch:
+    disable: true
+  self-repository:
+    disable: true
+  unpinned-uses:
+    config:
+      policies:
+        "*": ref-pin

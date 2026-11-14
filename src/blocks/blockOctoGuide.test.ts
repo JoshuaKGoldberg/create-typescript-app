@@ -22,6 +22,18 @@ describe(blockOctoGuide, () => {
 			      },
 			      "block": "[Block CSpell]",
 			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "octoguide.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -101,6 +113,18 @@ describe(blockOctoGuide, () => {
 			        ],
 			      },
 			      "block": "[Block CSpell]",
+			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "octoguide.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
 			    },
 			    {
 			      "addons": {
@@ -192,6 +216,18 @@ describe(blockOctoGuide, () => {
 			        ],
 			      },
 			      "block": "[Block CSpell]",
+			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "octoguide.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
 			    },
 			  ],
 			  "files": {

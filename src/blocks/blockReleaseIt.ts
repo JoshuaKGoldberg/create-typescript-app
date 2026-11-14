@@ -130,6 +130,8 @@ export const blockReleaseIt = base.createBlock({
 										),
 										with: {
 											"fetch-depth": 0,
+											// release-it pushes the release commit and tag with git
+											"persist-credentials": true,
 											ref: "main",
 											token: "${{ secrets.ACCESS_TOKEN }}",
 										},

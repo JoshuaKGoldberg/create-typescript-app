@@ -25,7 +25,7 @@ export function getPackageDependency(name: string) {
 		);
 	}
 
-	return version;
+	return version.replace(/^[\^~]/u, "");
 }
 
 function getPackageInner(

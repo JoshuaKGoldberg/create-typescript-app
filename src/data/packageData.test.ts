@@ -6,6 +6,7 @@ vi.mock("node:module", () => ({
 	createRequire: () => () => ({
 		dependencies: {
 			"package-dep": "0.0.2",
+			"package-range-dep": "^0.0.3",
 		},
 		devDependencies: {
 			"package-dev-dep": "0.0.1",
@@ -24,6 +25,12 @@ describe(getPackageDependencies, () => {
 		const actual = getPackageDependencies("package-dep");
 
 		expect(actual).toEqual({ "package-dep": "0.0.2" });
+	});
+
+	it("returns a pinned version when a dependency has a range prefix", () => {
+		const actual = getPackageDependencies("package-range-dep");
+
+		expect(actual).toEqual({ "package-range-dep": "0.0.3" });
 	});
 
 	it("throws an error when neither exist", () => {

@@ -2,8 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 
 import { readLogo } from "./readLogo.ts";
 
+const mockReadFile = vi.fn(() => Promise.resolve(Buffer.from([0])));
+
 vi.mock("node:fs/promises", () => ({
-	readFile: vi.fn(() => Promise.resolve(Buffer.from([0]))),
+	get readFile() {
+		return mockReadFile;
+	},
 }));
 
 const mockReadLogoSizing = vi.fn().mockResolvedValue({});
@@ -166,6 +170,20 @@ describe(readLogo, () => {
 			expect(logo).toEqual({
 				alt: "Project logo: the TypeScript blue square with rounded corners, but a plus sign instead of 'TS'",
 				src: "./docs/create-typescript-app.png",
+			});
+		});
+
+		it("omits sizing and does not throw when reading the logo file fails", async () => {
+			mockReadFile.mockRejectedValueOnce(new Error("ENOENT"));
+
+			const logo = await readLogo(() =>
+				Promise.resolve(`
+<img src="missing.png"/>`),
+			);
+
+			expect(logo).toEqual({
+				alt: "Project logo",
+				src: "missing.png",
 			});
 		});
 	});

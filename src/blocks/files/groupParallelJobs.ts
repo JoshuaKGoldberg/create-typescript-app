@@ -4,7 +4,6 @@ import {
 	MultiWorkflowJobStep,
 } from "./createMultiWorkflowFile.ts";
 
-// GitHub queues parallel steps past 10 per job, so extra jobs get their own runner
 const maximumParallelSteps = 10;
 
 export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {

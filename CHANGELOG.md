@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.75.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.1...2.75.2) (2026-11-19)
+
+### Performance Improvements
+
+- run pnpm dedupe with --prefer-offline ([#2638](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2638)) ([6cfa221](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6cfa22104a31b70cf78fd6c752ce3cc86417fe75)), closes [#2637](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2637)
+
 ## [2.75.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.0...2.75.1) (2026-11-19)
 
 ### Performance Improvements

@@ -8,35 +8,37 @@ import {
 const maximumParallelSteps = 10;
 
 /**
- * Merges jobs that each have at most one step (after any `pnpm build`) into a
- * single "CI" job that runs those steps in a `parallel:` group.
+ * Merges jobs that each have one step (after an optional leading `pnpm build`)
+ * into a single "CI" job that runs those steps in a `parallel:` group.
  * This skips repeating checkout and setup for every job.
  * Jobs that need their own checkout, condition, permissions, or multiple
  * sequential steps stay separate.
  */
 export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
-	const parallelJobs: MultiWorkflowJobOptions[] = [];
+	const parallelSteps: MultiWorkflowJobStep[] = [];
 	const separateJobs: MultiWorkflowJobOptions[] = [];
+	let needsBuild = false;
 
 	for (const job of jobs) {
-		if (canRunInParallel(job) && parallelJobs.length < maximumParallelSteps) {
-			parallelJobs.push(job);
+		const builds = isBuildStep(job.steps[0]);
+		const steps = builds ? job.steps.slice(1) : job.steps;
+
+		if (
+			canRunInParallel(job) &&
+			steps.length <= 1 &&
+			steps.every(canStepRunInParallel) &&
+			parallelSteps.length < maximumParallelSteps
+		) {
+			needsBuild ||= builds;
+			parallelSteps.push(...steps.map((step) => ({ name: job.name, ...step })));
 		} else {
 			separateJobs.push(job);
 		}
 	}
 
-	const parallelSteps = parallelJobs.flatMap((job) =>
-		job.steps
-			.filter((step) => !isBuildStep(step))
-			.map((step) => ({ name: job.name, ...step })),
-	);
-
 	if (parallelSteps.length < 2) {
 		return jobs;
 	}
-
-	const needsBuild = parallelJobs.some((job) => job.steps.some(isBuildStep));
 
 	return [
 		{
@@ -51,14 +53,18 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 }
 
 function canRunInParallel(job: MultiWorkflowJobOptions) {
-	return (
-		!job.checkoutWith &&
-		!job.if &&
-		!job.permissions &&
-		job.steps.filter((step) => !isBuildStep(step)).length <= 1
-	);
+	return !job.checkoutWith && !job.if && !job.permissions;
 }
 
-function isBuildStep(step: MultiWorkflowJobStep) {
-	return "run" in step && step.run === "pnpm build" && !step.if;
+function canStepRunInParallel(step: MultiWorkflowJobStep) {
+	return !("if" in step && step.if) && !("parallel" in step);
+}
+
+function isBuildStep(step: MultiWorkflowJobStep | undefined) {
+	return (
+		!!step &&
+		Object.keys(step).length === 1 &&
+		"run" in step &&
+		step.run === "pnpm build"
+	);
 }

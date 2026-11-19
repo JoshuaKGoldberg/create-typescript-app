@@ -399,6 +399,19 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
+	test("with an exclude addon", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				exclude: ["node_modules", ".next", "node_modules"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toContain(
+			'"exclude": [".next", "node_modules"]',
+		);
+	});
+
 	test("with include, exclude, and plugins addons", () => {
 		const creation = testBlock(blockTypeScript, {
 			addons: {
@@ -1004,6 +1017,18 @@ describe(blockTypeScript, () => {
 			});
 
 			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
+		});
+
+		it("returns exclude when tsconfig.json contains exclude", () => {
+			const exclude = ["node_modules", "scripts"];
+
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [JSON.stringify({ exclude })],
+				},
+			});
+
+			expect(actual).toEqual({ exclude });
 		});
 
 		it("returns include when tsconfig.json contains include", () => {

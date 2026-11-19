@@ -25,7 +25,7 @@ export const blockTypeScript = base.createBlock({
 	addons: {
 		beforeTypeCheckSteps: z.array(zActionStep).default([]),
 		compilerOptions: CompilerOptionsSchema.optional(),
-		exclude: z.array(z.string()).optional(),
+		exclude: z.array(z.string()).default([]),
 		existingCompilerOptions: CompilerOptionsSchema.optional(),
 		include: z.array(z.string()).default([]),
 		outDir: z.string().optional(),
@@ -35,13 +35,15 @@ export const blockTypeScript = base.createBlock({
 		const compilerOptions = CompilerOptionsSchema.safeParse(
 			raw?.compilerOptions,
 		).data;
+		const exclude = z.array(z.string()).safeParse(raw?.exclude).data;
 		const include = z.array(z.string()).safeParse(raw?.include).data;
-		if (!compilerOptions && !include) {
+		if (!compilerOptions && !exclude && !include) {
 			return undefined;
 		}
 
 		return {
 			...(compilerOptions && { existingCompilerOptions: compilerOptions }),
+			...(exclude && { exclude }),
 			...(include && { include }),
 		};
 	},
@@ -187,7 +189,9 @@ greet("Hello, world! ${options.emoji}");
 							...(outDir && { noEmit: undefined }),
 						}),
 						include: Array.from(new Set(["src", ...include])).sort(),
-						...(exclude && { exclude }),
+						...(exclude.length && {
+							exclude: Array.from(new Set(exclude)).sort(),
+						}),
 					}),
 				),
 			},

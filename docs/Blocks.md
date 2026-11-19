@@ -60,6 +60,7 @@ This table summarizes each block and which base levels they're included in:
 | Templated With                     | `--add-templated-with`, `--exclude-templated-with`                                         | ✔️      | ✅     | 💯         |
 | TSDown                             | `--add-tsdown`, `--exclude-tsdown`                                                         | ✔️      | ✅     | 💯         |
 | TypeScript                         | `--add-typescript`, `--exclude-typescript`                                                 | ✔️      | ✅     | 💯         |
+| Vite                               | `--add-vite`, `--exclude-vite`                                                             |         |        |            |
 | Vitest                             | `--add-vitest`, `--exclude-vitest`                                                         |         | ✅     | 💯         |
 | VS Code                            | `--add-vs-code`, `--exclude-vs-code`                                                       |         |        | 💯         |
 | Web-ext                            | `--add-web-ext`, `--exclude-web-ext`                                                       |         |        |            |
@@ -69,6 +70,8 @@ For example, this uses ncc instead of the default tsdown builder:
 ```shell
 npx create-typescript-app --add-ncc --exclude-tsdown
 ```
+
+The Vite block is another builder alternative, so pass `--add-vite` together with `--exclude-tsdown`: both blocks write `scripts.build` and `exports` in `package.json`.
 
 Or, this creates a [Next.js](https://nextjs.org) site that isn't built or published as a package:
 

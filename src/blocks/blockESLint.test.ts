@@ -531,7 +531,7 @@ describe(blockESLint, () => {
 	test("with addons", () => {
 		const creation = testBlock(blockESLint, {
 			addons: {
-				beforeLintDocs: "Before lint.",
+				beforeLint: "Before lint.",
 				explanations: ["This is a great config!", "You should use it!"],
 				extensions: [
 					{

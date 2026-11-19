@@ -33,7 +33,7 @@ export const blockESLint = base.createBlock({
 		name: "ESLint",
 	},
 	addons: {
-		beforeLintDocs: z.string().optional(),
+		beforeLint: z.string().optional(),
 		beforeLintSteps: z.array(zActionStep).default([]),
 		explanations: z.array(z.string()).default([]),
 		extensions: z.array(zExtension).default([]),
@@ -163,7 +163,7 @@ For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complai
 pnpm run lint --fix
 \`\`\`
 `,
-									...(addons.beforeLintDocs ? [addons.beforeLintDocs] : []),
+									...(addons.beforeLint ? [addons.beforeLint] : []),
 								],
 								before: `
 This package includes several forms of linting to enforce consistent code quality and styling.

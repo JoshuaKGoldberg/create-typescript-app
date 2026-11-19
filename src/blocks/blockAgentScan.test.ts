@@ -30,7 +30,7 @@ describe("blockAgentScan", () => {
 			          "agentscan:mixed-signals",
 			        ],
 			      },
-			      "block": "[Block Slop Unlink Issues]",
+			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {
@@ -104,7 +104,7 @@ describe("blockAgentScan", () => {
 			          "agentscan:mixed-signals",
 			        ],
 			      },
-			      "block": "[Block Slop Unlink Issues]",
+			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {

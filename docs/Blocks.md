@@ -55,7 +55,7 @@ This table summarizes each block and which base levels they're included in:
 | Renovate                           | `--add-renovate`, `--exclude-renovate`                                                     |         |        | 💯         |
 | Security Docs                      | `--add-security-docs`, `--exclude-security-docs`                                           | ✔️      | ✅     | 💯         |
 | Side Effects                       | `--add-side-effects`, `--exclude-side-effects`                                             | ✔️      | ✅     | 💯         |
-| Slop Unlink Issues                 | `--add-slop-unlink-issues`, `--exclude-slop-unlink-issues`                                 |         |        | 💯         |
+| Slop Issue Unlink                  | `--add-slop-issue-unlink`, `--exclude-slop-issue-unlink`                                   |         |        | 💯         |
 | Templated With                     | `--add-templated-with`, `--exclude-templated-with`                                         | ✔️      | ✅     | 💯         |
 | TSDown                             | `--add-tsdown`, `--exclude-tsdown`                                                         | ✔️      | ✅     | 💯         |
 | TypeScript                         | `--add-typescript`, `--exclude-typescript`                                                 | ✔️      | ✅     | 💯         |
@@ -285,7 +285,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint Stylistic](#lint-stylistic)
     - [Lint YML](#lint-yml)
     - [OctoGuide Strict](#octoguide-strict)
-    - [Slop Unlink Issues](#slop-unlink-issues)
+    - [Slop Issue Unlink](#slop-issue-unlink)
 
 ### AgentScan
 
@@ -362,6 +362,6 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 
 [**OctoGuide's Strict Config**](https://octo.guide/configs#rules-table): additionally enforces enforcing semantic pull request conventions.
 
-### Slop Unlink Issues
+### Slop Issue Unlink
 
-Removes links between issues and closed, unmerged PRs labeled by [AgentScan](#agentscan) or [Anti-Slop](#anti-slop), so those issues don't keep showing the slop PRs as linked.
+[**slop-issue-unlink-action**](https://github.com/JoshuaKGoldberg/slop-issue-unlink-action): removes links between issues and closed, unmerged PRs labeled by [AgentScan](#agentscan) or [Anti-Slop](#anti-slop), so those issues don't keep showing the slop PRs as linked.

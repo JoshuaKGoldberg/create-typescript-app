@@ -23,7 +23,7 @@ import { blockPrettierPluginPaddingLines } from "../blocks/blockPrettierPluginPa
 import { blockPrettierPluginSentencesPerLine } from "../blocks/blockPrettierPluginSentencesPerLine.ts";
 import { blockPrettierPluginSh } from "../blocks/blockPrettierPluginSh.ts";
 import { blockRenovate } from "../blocks/blockRenovate.ts";
-import { blockSlopUnlinkIssues } from "../blocks/blockSlopUnlinkIssues.ts";
+import { blockSlopIssueUnlink } from "../blocks/blockSlopIssueUnlink.ts";
 import { blockVSCode } from "../blocks/blockVSCode.ts";
 import { presetCommon } from "./common.ts";
 
@@ -59,7 +59,7 @@ export const presetEverything = base.createPreset({
 		blockPrettierPluginSentencesPerLine,
 		blockPrettierPluginSh,
 		blockRenovate,
-		blockSlopUnlinkIssues,
+		blockSlopIssueUnlink,
 		blockVSCode,
 	],
 });

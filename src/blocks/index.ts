@@ -45,7 +45,7 @@ import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { blockRenovate } from "./blockRenovate.ts";
 import { blockSecurityDocs } from "./blockSecurityDocs.ts";
 import { blockSideEffects } from "./blockSideEffects.ts";
-import { blockSlopUnlinkIssues } from "./blockSlopUnlinkIssues.ts";
+import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 import { blockTemplatedWith } from "./blockTemplatedWith.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
@@ -101,7 +101,7 @@ export const blocks = {
 	blockRenovate,
 	blockSecurityDocs,
 	blockSideEffects,
-	blockSlopUnlinkIssues,
+	blockSlopIssueUnlink,
 	blockTemplatedWith,
 	blockTSDown,
 	blockTypeScript,
@@ -158,7 +158,7 @@ export { blockReleaseIt } from "./blockReleaseIt.ts";
 export { blockRenovate } from "./blockRenovate.ts";
 export { blockSecurityDocs } from "./blockSecurityDocs.ts";
 export { blockSideEffects } from "./blockSideEffects.ts";
-export { blockSlopUnlinkIssues } from "./blockSlopUnlinkIssues.ts";
+export { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 export { blockTemplatedWith } from "./blockTemplatedWith.ts";
 export { blockTSDown } from "./blockTSDown.ts";
 export { blockTypeScript } from "./blockTypeScript.ts";

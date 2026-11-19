@@ -36,7 +36,7 @@ describe(blockAntiSlop, () => {
 			          "suspected ai slop",
 			        ],
 			      },
-			      "block": "[Block Slop Unlink Issues]",
+			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {
@@ -107,7 +107,7 @@ describe(blockAntiSlop, () => {
 			          "suspected ai slop",
 			        ],
 			      },
-			      "block": "[Block Slop Unlink Issues]",
+			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {
@@ -184,7 +184,7 @@ describe(blockAntiSlop, () => {
 			          "suspected ai slop",
 			        ],
 			      },
-			      "block": "[Block Slop Unlink Issues]",
+			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {

@@ -3,7 +3,6 @@ import {
 	createContributionLink,
 	isContributionTypeName,
 } from "all-contributors-types";
-import _ from "lodash";
 
 import { base } from "../base.ts";
 import { startingOwnerContributions } from "../data/contributions.ts";
@@ -148,11 +147,13 @@ function printAllContributorsTable(
 		`    <tr>`,
 		// This intentionally uses the same sort as all-contributors-cli:
 		// https://github.com/all-contributors/cli/blob/74bc388bd6f0ae2658e6495e9d3781d737438a97/src/generate/index.js#L76
-		..._.sortBy(contributors, "name").flatMap((contributor, i) => {
-			const row = printContributorCell(contributor, project);
+		...contributors
+			.toSorted((a, b) => Number(a.name > b.name) - Number(a.name < b.name))
+			.flatMap((contributor, i) => {
+				const row = printContributorCell(contributor, project);
 
-			return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];
-		}),
+				return i && i % 7 === 0 ? [`    </tr>`, `    <tr>`, row] : [row];
+			}),
 		`    </tr>`,
 		`  </tbody>`,
 		`</table>`,

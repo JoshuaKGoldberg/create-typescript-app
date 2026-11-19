@@ -524,6 +524,43 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
+	test("with existingCompilerOptions objects merged with compilerOptions objects", () => {
+		const creation = testBlock(blockTypeScript, {
+			addons: {
+				compilerOptions: {
+					jsx: undefined,
+					paths: { "b/*": ["./b/*"] },
+				},
+				existingCompilerOptions: {
+					jsx: "preserve",
+					paths: { "a/*": ["./a/*"] },
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
+			"{
+				"compilerOptions": {
+					"declaration": true,
+					"esModuleInterop": true,
+					"jsx": "preserve",
+					"module": "nodenext",
+					"moduleResolution": "nodenext",
+					"noEmit": true,
+					"paths": { "a/*": ["./a/*"], "b/*": ["./b/*"] },
+					"resolveJsonModule": true,
+					"rewriteRelativeImportExtensions": true,
+					"skipLibCheck": true,
+					"strict": true,
+					"target": "ES2023"
+				},
+				"include": ["src"]
+			}
+			"
+		`);
+	});
+
 	test("with a beforeTypeCheckSteps addon", () => {
 		const creation = testBlock(blockTypeScript, {
 			addons: {

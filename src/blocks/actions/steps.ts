@@ -1,5 +1,4 @@
 import { IntakeDirectory } from "bingo-fs";
-import _ from "lodash";
 import { z } from "zod";
 
 import { intakeFileAsYaml } from "../intake/intakeFileAsYaml.ts";
@@ -20,9 +19,15 @@ export interface JobOrRunStep {
 }
 
 export function getYamlSteps(yaml: unknown, ymlPath: string[]) {
-	const steps = _.get(yaml, ymlPath) as JobOrRunStep[] | undefined;
+	const steps = ymlPath.reduce<unknown>(
+		(value, key) =>
+			value && typeof value === "object"
+				? (value as Record<string, unknown>)[key]
+				: undefined,
+		yaml,
+	);
 
-	return Array.isArray(steps) ? steps : undefined;
+	return Array.isArray(steps) ? (steps as JobOrRunStep[]) : undefined;
 }
 
 export function intakeFileYamlSteps(

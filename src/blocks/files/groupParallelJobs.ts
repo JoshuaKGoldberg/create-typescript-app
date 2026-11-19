@@ -4,18 +4,9 @@ import {
 	MultiWorkflowJobStep,
 } from "./createMultiWorkflowFile.ts";
 
-// GitHub runs at most 10 background steps at once per job, queueing the rest.
-// Jobs past that limit stay separate so they get their own runner instead.
-// https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions
+// GitHub queues parallel steps past 10 per job, so extra jobs get their own runner
 const maximumParallelSteps = 10;
 
-/**
- * Merges jobs that each have one step (after an optional leading `pnpm build`)
- * into a single "CI" job that runs those steps in a `parallel:` group.
- * This skips repeating checkout and setup for every job.
- * Jobs that need their own checkout, condition, permissions, or multiple
- * sequential steps stay separate.
- */
 export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 	if (jobs.some((job) => createJobName(job.name) === "ci")) {
 		return jobs;

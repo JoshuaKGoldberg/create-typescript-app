@@ -147,6 +147,53 @@ describe(blockPnpmWorkspace, () => {
 		`);
 	});
 
+	test("with existing text that lacks properties", () => {
+		const creation = testBlock(blockPnpmWorkspace, {
+			addons: {
+				existing: { packages: ["packages/*"] },
+				existingText: "# Workspace packages\npackages:\n  - packages/*\n",
+				properties: { allowBuilds: { "simple-git-hooks": false } },
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "pnpm-workspace.yaml": "# Workspace packages
+			packages:
+			  - packages/*
+
+			allowBuilds:
+			  simple-git-hooks: false
+			",
+			  },
+			}
+		`);
+	});
+
+	test("with existing text that needs values merged into a property", () => {
+		const creation = testBlock(blockPnpmWorkspace, {
+			addons: {
+				existing: { allowBuilds: { esbuild: true } },
+				existingText: "# Builds\nallowBuilds:\n  esbuild: true\n",
+				properties: { allowBuilds: { "simple-git-hooks": false } },
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "pnpm-workspace.yaml": "allowBuilds:
+			  esbuild: true
+			  simple-git-hooks: false
+			",
+			  },
+			}
+		`);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when pnpm-workspace.yaml does not exist", () => {
 			const actual = testIntake(blockPnpmWorkspace, {
@@ -180,6 +227,8 @@ describe(blockPnpmWorkspace, () => {
 					allowBuilds: { esbuild: true },
 					packages: ["packages/*"],
 				},
+				existingText:
+					"allowBuilds:\n  esbuild: true\n\npackages:\n  - packages/*\n",
 			});
 		});
 	});

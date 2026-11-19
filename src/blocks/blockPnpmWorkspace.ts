@@ -15,22 +15,33 @@ export const blockPnpmWorkspace = base.createBlock({
 	addons: {
 		// Kept separate from properties so existing values don't conflict with them
 		existing: zProperties.optional(),
+		existingText: z.string().optional(),
 		properties: zProperties.default({}),
 	},
 	intake({ files }) {
 		const file = intakeFile(files, ["pnpm-workspace.yaml"]);
-		const { data } = zProperties.safeParse(file && loadYamlSafe(file[0]));
+		const [text] = file ?? [];
+		const { data } = zProperties.safeParse(text && loadYamlSafe(text));
 
-		return data && { existing: data };
+		return data && { existing: data, existingText: text };
 	},
 	produce({ addons }) {
-		const { existing = {}, properties } = addons;
+		const { existing = {}, existingText, properties } = addons;
 		const merged = mergeProperties(properties, existing);
 
-		// Leaving an already-complete file untouched preserves its formatting and comments
-		return Object.keys(merged).length && !_.isEqual(merged, existing)
-			? { files: { "pnpm-workspace.yaml": formatYaml(merged) } }
-			: {};
+		if (!Object.keys(merged).length || _.isEqual(merged, existing)) {
+			return {};
+		}
+
+		const missing = _.omitBy(properties, (_value, key) => key in existing);
+
+		// Appending to the existing text preserves its formatting and comments
+		const contents =
+			existingText && _.isEqual(merged, { ...existing, ...missing })
+				? `${existingText.trimEnd()}\n\n${formatYaml(missing)}`
+				: formatYaml(merged);
+
+		return { files: { "pnpm-workspace.yaml": contents } };
 	},
 });
 

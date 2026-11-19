@@ -79,11 +79,11 @@ describe("blockCTATransitions", () => {
 
 			          > ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your \`.github/workflows/cta-transitions.yaml\` file.
 			    - id: package-change
-			      uses: JoshuaKGoldberg/package-change-detector-action@0.1.0
+			      uses: JoshuaKGoldberg/package-change-detector-action@v0.0.1
 			      with:
 			        properties: engines
 			    - if: steps.package-change.outputs.changed == 'true'
-			      uses: JoshuaKGoldberg/draft-pull-request-once-action@0.0.1
+			      uses: JoshuaKGoldberg/draft-pull-request-once-action@0.1.0
 			      with:
 			        github-token: \${{ inputs.token }}
 			        message: |-

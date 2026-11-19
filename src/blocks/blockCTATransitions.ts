@@ -101,7 +101,7 @@ export const blockCTATransitions = base.createBlock({
 												id: "package-change",
 												uses: resolveUses(
 													"JoshuaKGoldberg/package-change-detector-action",
-													"0.1.0",
+													"v0.0.1",
 													options.workflowsVersions,
 												),
 												with: {
@@ -112,7 +112,7 @@ export const blockCTATransitions = base.createBlock({
 												if: `steps.package-change.outputs.changed == 'true'`,
 												uses: resolveUses(
 													"JoshuaKGoldberg/draft-pull-request-once-action",
-													"0.0.1",
+													"0.1.0",
 													options.workflowsVersions,
 												),
 												with: {

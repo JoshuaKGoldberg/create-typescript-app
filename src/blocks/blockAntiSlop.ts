@@ -2,19 +2,20 @@ import { z } from "zod";
 
 import { base } from "../base.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
-import { intakeFileYamlSteps } from "./actions/steps.ts";
+import { intakeFileYamlSteps, zActionStep } from "./actions/steps.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.ts";
 import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
-const failureLabel = "suspected ai slop";
+export const antiSlopFailureLabel = "suspected ai slop";
 
 export const blockAntiSlop = base.createBlock({
 	about: {
 		name: "Anti-Slop",
 	},
 	addons: {
+		actionSteps: z.array(zActionStep).default([]),
 		honeypot: z.union([z.literal(false), z.string()]).default("SASSAFRAS"),
 	},
 	intake({ files }) {
@@ -42,7 +43,7 @@ export const blockAntiSlop = base.createBlock({
 		} as const;
 	},
 	produce({ addons, options }) {
-		const { honeypot } = addons;
+		const { actionSteps, honeypot } = addons;
 		const [honeypotTerm] = honeypot
 			? honeypot
 					.split("\n")
@@ -65,7 +66,7 @@ export const blockAntiSlop = base.createBlock({
 						]
 					: []),
 				blockSlopIssueUnlink({
-					labels: [failureLabel],
+					labels: [antiSlopFailureLabel],
 				}),
 			],
 			files: {
@@ -93,7 +94,7 @@ export const blockAntiSlop = base.createBlock({
 									with: {
 										...(honeypotTerm && { "blocked-terms": honeypot }),
 										"exempt-draft-prs": true,
-										"failure-add-pr-labels": failureLabel,
+										"failure-add-pr-labels": antiSlopFailureLabel,
 										"failure-pr-message": [
 											"Thanks for the PR! This repository's automated PR quality checks flagged it as likely low-quality or AI-generated, so it's been closed.",
 											"If you believe that's a mistake, please comment with more context and a maintainer will take a look.",
@@ -101,6 +102,7 @@ export const blockAntiSlop = base.createBlock({
 										"require-pr-template": true,
 									},
 								},
+								...actionSteps,
 							],
 						}),
 					},

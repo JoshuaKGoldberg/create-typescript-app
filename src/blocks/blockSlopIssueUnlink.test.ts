@@ -23,6 +23,36 @@ describe(blockSlopIssueUnlink, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
+			            "with": {
+			              "labels": "agentscan:automated-account
+			agentscan:community-flagged
+			agentscan:mixed-signals",
+			            },
+			          },
+			        ],
+			      },
+			      "block": "[Block AgentScan]",
+			    },
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
+			            "with": {
+			              "labels": "suspected ai slop",
+			            },
+			          },
+			        ],
+			      },
+			      "block": "[Block Anti-Slop]",
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "workflows": {
@@ -33,7 +63,7 @@ describe(blockSlopIssueUnlink, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: JoshuaKGoldberg/slop-issue-unlink-action@v0.2.0
+			      - uses: JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0
 			        with:
 			          labels: |-
 			            spam: a
@@ -69,6 +99,36 @@ describe(blockSlopIssueUnlink, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
+			            "with": {
+			              "labels": "agentscan:automated-account
+			agentscan:community-flagged
+			agentscan:mixed-signals",
+			            },
+			          },
+			        ],
+			      },
+			      "block": "[Block AgentScan]",
+			    },
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
+			            "with": {
+			              "labels": "suspected ai slop",
+			            },
+			          },
+			        ],
+			      },
+			      "block": "[Block Anti-Slop]",
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "workflows": {
@@ -79,7 +139,7 @@ describe(blockSlopIssueUnlink, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: JoshuaKGoldberg/slop-issue-unlink-action@v0.2.0
+			      - uses: JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0
 
 			name: Slop Issue Unlink
 
@@ -115,6 +175,36 @@ describe(blockSlopIssueUnlink, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
+			  "addons": [
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@abc123 # v9.9.9",
+			            "with": {
+			              "labels": "agentscan:automated-account
+			agentscan:community-flagged
+			agentscan:mixed-signals",
+			            },
+			          },
+			        ],
+			      },
+			      "block": "[Block AgentScan]",
+			    },
+			    {
+			      "addons": {
+			        "actionSteps": [
+			          {
+			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@abc123 # v9.9.9",
+			            "with": {
+			              "labels": "suspected ai slop",
+			            },
+			          },
+			        ],
+			      },
+			      "block": "[Block Anti-Slop]",
+			    },
+			  ],
 			  "files": {
 			    ".github": {
 			      "workflows": {

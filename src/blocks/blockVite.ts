@@ -120,9 +120,8 @@ pnpm build
 						},
 						exports: {
 							".": {
-								types: "./dist/index.d.ts",
-								// TypeScript needs types first, and Node.js needs default last
 								default: "./dist/index.mjs",
+								types: "./dist/index.d.ts",
 							},
 						},
 						files: ["dist/"],
@@ -141,7 +140,6 @@ pnpm build
 				}),
 			],
 			files: {
-				// Vite doesn't generate declaration files, so tsc creates them
 				"tsconfig.declarations.json": formatFile(
 					"tsconfig.declarations.json",
 					JSON.stringify({
@@ -154,13 +152,13 @@ pnpm build
 						},
 						exclude: ["src/**/*.test.*"],
 						extends: "./tsconfig.json",
+						include: ["src"],
 					}),
 				),
 				"vite.config.ts": formatFile(
 					"vite.config.ts",
 					`import { defineConfig } from "vite";
 
-// ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
 export default defineConfig(${JSON.stringify({
 						build: {
 							...buildRest,

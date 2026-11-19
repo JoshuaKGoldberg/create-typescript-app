@@ -117,12 +117,12 @@ describe(blockVite, () => {
 					"rootDir": "src"
 				},
 				"exclude": ["src/**/*.test.*"],
-				"extends": "./tsconfig.json"
+				"extends": "./tsconfig.json",
+				"include": ["src"]
 			}
 			",
 			    "vite.config.ts": "import { defineConfig } from "vite";
 
-			// ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
 			export default defineConfig({
 				build: {
 					lib: { entry: "src/index.ts", formats: ["es"] },
@@ -189,7 +189,6 @@ describe(blockVite, () => {
 		expect(creation.files?.["vite.config.ts"]).toMatchInlineSnapshot(`
 			"import { defineConfig } from "vite";
 
-			// ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
 			export default defineConfig({
 				build: {
 					lib: { entry: "src/index.ts", formats: ["es"] },
@@ -284,7 +283,6 @@ describe(blockVite, () => {
 			expect(creation.files?.["vite.config.ts"]).toMatchInlineSnapshot(`
 				"import { defineConfig } from "vite";
 
-				// ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
 				export default defineConfig({
 					build: {
 						minify: false,

@@ -41,7 +41,6 @@ export const blockExports = base.createBlock({
 					...(main && { main: libToDist(main) }),
 					runInCI: [`node ${filePath}${runArgsText}`],
 				}),
-				// Vite always builds the entry point to the same path
 				blockVite({
 					runInCI: [`node ./dist/index.mjs${runArgsText}`],
 				}),

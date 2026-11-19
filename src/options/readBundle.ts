@@ -40,6 +40,5 @@ async function readViteBundle(take: TakeInput) {
 		await readDefineConfig(take, "vite.config.ts"),
 	);
 
-	// Vite bundles by default, so only an explicit preserveModules: true opts out
 	return data && data.build.rolldownOptions?.output?.preserveModules !== true;
 }

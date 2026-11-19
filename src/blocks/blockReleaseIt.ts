@@ -130,6 +130,7 @@ export const blockReleaseIt = base.createBlock({
 										),
 										with: {
 											"fetch-depth": 0,
+											"persist-credentials": true,
 											ref: "main",
 											token: "${{ secrets.ACCESS_TOKEN }}",
 										},

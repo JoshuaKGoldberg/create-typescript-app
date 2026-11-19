@@ -3,8 +3,10 @@ import { blockAreTheTypesWrong } from "./blocks/blockAreTheTypesWrong.ts";
 import { blockCTATransitions } from "./blocks/blockCTATransitions.ts";
 import { blockESLintPlugin } from "./blocks/blockESLintPlugin.ts";
 import { blockNcc } from "./blocks/blockNcc.ts";
+import { blockNextJs } from "./blocks/blockNextJs.ts";
 import { blockRemoveDependencies } from "./blocks/blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blocks/blockRemoveFiles.ts";
+import { blockVite } from "./blocks/blockVite.ts";
 import { blockWebExt } from "./blocks/blockWebExt.ts";
 import { presetCommon } from "./presets/common.ts";
 import { presetEverything } from "./presets/everything.ts";
@@ -23,8 +25,10 @@ export const template = base.createStratumTemplate({
 		blockCTATransitions,
 		blockESLintPlugin,
 		blockNcc,
+		blockNextJs,
 		blockRemoveDependencies,
 		blockRemoveFiles,
+		blockVite,
 		blockWebExt,
 	],
 	presets: [presetMinimal, presetCommon, presetEverything],

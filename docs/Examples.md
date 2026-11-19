@@ -111,6 +111,12 @@ Examples:
 Libraries are what `create-typescript-app` sets up by default: a package built with [tsdown](https://tsdown.dev) and published to npm with [release-it](https://github.com/release-it/release-it).
 No extra configuration is needed.
 
+To build with [Vite's library mode](https://vite.dev/guide/build#library-mode) instead, add the [Vite block](./Blocks.md) and exclude the TSDown block:
+
+```shell
+npx create-typescript-app --add-vite --exclude-tsdown
+```
+
 See [FAQs > How do I publish a new package for the first time?](./FAQs.md#how-do-i-publish-a-new-package-for-the-first-time) for getting the first release out.
 
 ## Website
@@ -121,7 +127,32 @@ Examples:
 - [tidelift-me-up-site](https://github.com/JoshuaKGoldberg/tidelift-me-up-site)
 
 Websites are built and served by a web framework such as [Next.js](https://nextjs.org) or [Remix](https://remix.run), and deployed to a hosting provider rather than published to npm.
-`create-typescript-app` doesn't have blocks specific to any web framework, so:
+To create one with Next.js:
+
+- Add the [NextJS block](./Blocks.md), which sets up Next.js configuration, scripts, and `.tsx` linting
+- If adding it to an existing repository, add your own pages under `src/app/`
+- Keep a `next.config.*` file, which is how later runs of `create-typescript-app` detect the block
+- Exclude the Release It and TSDown blocks, since Next.js builds the site and there's no package to publish
+
+```js
+import {
+	blockNextJs,
+	blockReleaseIt,
+	blockTSDown,
+	createConfig,
+} from "create-typescript-app";
+
+export default createConfig({
+	refinements: {
+		blocks: {
+			add: [blockNextJs],
+			exclude: [blockReleaseIt, blockTSDown],
+		},
+	},
+});
+```
+
+For other web frameworks, which don't have blocks in `create-typescript-app`:
 
 - Exclude the Release It and TSDown blocks, since the framework builds the site and there's no package to publish
 - Use the framework's own `build` and `dev` scripts, along with any framework-recommended configuration such as ESLint plugins

@@ -5,6 +5,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
+import { blockZizmor } from "./blockZizmor.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { withPreviously } from "./files/withPreviously.ts";
@@ -36,6 +37,11 @@ export const blockCTATransitions = base.createBlock({
 							name: "ACCESS_TOKEN",
 						},
 					],
+				}),
+				blockZizmor({
+					rules: {
+						"bot-conditions": { ignore: ["cta.yaml"] },
+					},
 				}),
 			],
 			files: {
@@ -157,6 +163,7 @@ export const blockCTATransitions = base.createBlock({
 										),
 										with: {
 											"fetch-depth": 0,
+											"persist-credentials": true,
 											ref: "${{github.event.pull_request.head.ref}}",
 											repository:
 												"${{github.event.pull_request.head.repo.full_name}}",

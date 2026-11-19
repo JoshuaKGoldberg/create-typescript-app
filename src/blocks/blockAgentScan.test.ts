@@ -61,7 +61,7 @@ describe(blockAgentScan, () => {
 			  issues:
 			    types:
 			      - opened
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - reopened
@@ -133,7 +133,7 @@ describe(blockAgentScan, () => {
 			  issues:
 			    types:
 			      - opened
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - reopened
@@ -210,7 +210,7 @@ describe(blockAgentScan, () => {
 			  issues:
 			    types:
 			      - opened
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - reopened

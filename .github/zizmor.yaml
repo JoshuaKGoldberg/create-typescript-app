@@ -1,0 +1,12 @@
+rules:
+  ref-confusion:
+    ignore:
+      - ci.yaml
+  ref-version-mismatch:
+    disable: true
+  self-repository:
+    disable: true
+  unpinned-uses:
+    config:
+      policies:
+        "*": ref-pin

@@ -61,7 +61,7 @@ describe(blockAntiSlop, () => {
 			name: Anti-Slop
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - ready_for_review
@@ -132,7 +132,7 @@ describe(blockAntiSlop, () => {
 			name: Anti-Slop
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - ready_for_review
@@ -205,7 +205,7 @@ describe(blockAntiSlop, () => {
 			name: Anti-Slop
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - ready_for_review
@@ -267,7 +267,7 @@ describe(blockAntiSlop, () => {
 			name: Anti-Slop
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - ready_for_review
@@ -339,7 +339,7 @@ describe(blockAntiSlop, () => {
 			name: Anti-Slop
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - ready_for_review
@@ -416,7 +416,7 @@ describe(blockAntiSlop, () => {
 			name: Anti-Slop
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - ready_for_review

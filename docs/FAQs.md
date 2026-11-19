@@ -108,6 +108,8 @@ Dependencies are still left external; see [tsdown > Dependencies](https://tsdown
 Re-running `create-typescript-app` in a repository keeps whatever the existing `tsdown.config.ts` does: bundling stays on unless it contains `unbundle: true`.
 To switch an existing repository back, add `unbundle: true` to its `tsdown.config.ts` and re-run `create-typescript-app`.
 
+With the Vite block, an existing `vite.config.ts` is read the same way: bundling stays on unless `build.rolldownOptions.output` contains `preserveModules: true`.
+
 ## How can I add dual CommonJS / ECMAScript Modules emit?
 
 First, I'd suggest reading [TypeScript Handbook > Modules - Introduction](https://www.typescriptlang.org/docs/handbook/modules/introduction.html) to understand how CommonJS (CJS) and ECMAScript (ESM) came to be.

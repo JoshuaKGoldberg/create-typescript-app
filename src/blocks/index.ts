@@ -30,6 +30,7 @@ import { blockGitignore } from "./blockGitignore.ts";
 import { blockKnip } from "./blockKnip.ts";
 import { blockMITLicense } from "./blockMITLicense.ts";
 import { blockNcc } from "./blockNcc.ts";
+import { blockNextJs } from "./blockNextJs.ts";
 import { blockNvmrc } from "./blockNvmrc.ts";
 import { blockOctoGuide } from "./blockOctoGuide.ts";
 import { blockOctoGuideStrict } from "./blockOctoGuideStrict.ts";
@@ -49,9 +50,11 @@ import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 import { blockTemplatedWith } from "./blockTemplatedWith.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
+import { blockVite } from "./blockVite.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { blockWebExt } from "./blockWebExt.ts";
+import { blockZizmor } from "./blockZizmor.ts";
 
 export const blocks = {
 	blockAgentScan,
@@ -86,6 +89,7 @@ export const blocks = {
 	blockKnip,
 	blockMITLicense,
 	blockNcc,
+	blockNextJs,
 	blockNvmrc,
 	blockOctoGuide,
 	blockOctoGuideStrict,
@@ -105,9 +109,11 @@ export const blocks = {
 	blockTemplatedWith,
 	blockTSDown,
 	blockTypeScript,
+	blockVite,
 	blockVitest,
 	blockVSCode,
 	blockWebExt,
+	blockZizmor,
 };
 
 export { blockAgentScan } from "./blockAgentScan.ts";
@@ -143,6 +149,7 @@ export { blockGitignore } from "./blockGitignore.ts";
 export { blockKnip } from "./blockKnip.ts";
 export { blockMITLicense } from "./blockMITLicense.ts";
 export { blockNcc } from "./blockNcc.ts";
+export { blockNextJs } from "./blockNextJs.ts";
 export { blockNvmrc } from "./blockNvmrc.ts";
 export { blockOctoGuide } from "./blockOctoGuide.ts";
 export { blockOctoGuideStrict } from "./blockOctoGuideStrict.ts";
@@ -162,6 +169,8 @@ export { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 export { blockTemplatedWith } from "./blockTemplatedWith.ts";
 export { blockTSDown } from "./blockTSDown.ts";
 export { blockTypeScript } from "./blockTypeScript.ts";
+export { blockVite } from "./blockVite.ts";
 export { blockVitest } from "./blockVitest.ts";
 export { blockVSCode } from "./blockVSCode.ts";
 export { blockWebExt } from "./blockWebExt.ts";
+export { blockZizmor } from "./blockZizmor.ts";

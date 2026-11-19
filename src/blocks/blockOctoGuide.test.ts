@@ -53,7 +53,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  issue_comment:
+			  issue_comment: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - created
 			      - deleted
@@ -67,7 +67,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - edited
 			      - opened
@@ -142,7 +142,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  issue_comment:
+			  issue_comment: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - created
 			      - deleted
@@ -156,7 +156,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - edited
 			      - opened
@@ -224,7 +224,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  issue_comment:
+			  issue_comment: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - created
 			      - deleted
@@ -238,7 +238,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - edited
 			      - opened

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.76.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.76.0...2.76.1) (2026-11-19)
+
+### Bug Fixes
+
+- name GitHub PR Template block correctly ([#2644](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2644)) ([456bacd](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/456bacde255171f4186c3228dfcdddc5c46acc84)), closes [#2643](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2643)
+
 ## [2.76.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.3...2.76.0) (2026-11-19)
 
 ### Features

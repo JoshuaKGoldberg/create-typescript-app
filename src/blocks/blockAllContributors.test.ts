@@ -99,7 +99,7 @@ describe("blockAllContributors", () => {
 		`);
 	});
 
-	it("runs add including existing owner contributions when they exist", () => {
+	it("merges starting contributions into existing owner contributions when they exist", () => {
 		const creation = testBlock(blockAllContributors, {
 			options: {
 				...optionsBase,
@@ -153,7 +153,7 @@ describe("blockAllContributors", () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/test-repository/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/test-repository/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="#content-JoshuaKGoldberg" title="Content">🖋</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-JoshuaKGoldberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-JoshuaKGoldberg" title="Maintenance">🚧</a> <a href="#projectManagement-JoshuaKGoldberg" title="Project Management">📆</a></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -180,7 +180,12 @@ describe("blockAllContributors", () => {
 			        "design",
 			        "doc",
 			        "test",
-			        "tool"
+			        "tool",
+			        "content",
+			        "ideas",
+			        "infra",
+			        "maintenance",
+			        "projectManagement"
 			      ],
 			      "login": "JoshuaKGoldberg",
 			      "name": "Josh Goldberg",
@@ -228,14 +233,7 @@ describe("blockAllContributors", () => {
 			      },
 			    },
 			  },
-			  "scripts": [
-			    {
-			      "commands": [
-			        "pnpx all-contributors-cli@6.23.1 add JoshuaKGoldberg bug,code,design,doc,test,tool,content,ideas,infra,maintenance,projectManagement",
-			      ],
-			      "phase": 3,
-			    },
-			  ],
+			  "scripts": undefined,
 			}
 		`);
 	});
@@ -378,6 +376,44 @@ describe("blockAllContributors", () => {
 			  ],
 			}
 		`);
+	});
+
+	it("matches the owner contributor case-insensitively", () => {
+		const creation = testBlock(blockAllContributors, {
+			options: {
+				...optionsBase,
+				contributors: [
+					{
+						avatar_url: "https://avatars.githubusercontent.com/u/3335181?v=4",
+						contributions: [],
+						login: "Test-Owner",
+						name: "Test Owner",
+						profile: "http://www.example.com",
+					},
+				],
+			},
+		});
+
+		expect(creation.scripts).toBeUndefined();
+		expect(
+			JSON.parse(creation.files?.[".all-contributorsrc"] as string),
+		).toMatchObject({
+			contributors: [
+				{
+					contributions: [
+						"code",
+						"content",
+						"doc",
+						"ideas",
+						"infra",
+						"maintenance",
+						"projectManagement",
+						"tool",
+					],
+					login: "Test-Owner",
+				},
+			],
+		});
 	});
 
 	it("marks its workflow as previously a .yml file", () => {

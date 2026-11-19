@@ -7,14 +7,16 @@
       "contributions": [
         "bug",
         "code",
-        "maintenance",
-        "review",
-        "tool",
+        "content",
+        "design",
         "doc",
-        "infra",
-        "test",
         "ideas",
-        "design"
+        "infra",
+        "maintenance",
+        "projectManagement",
+        "review",
+        "test",
+        "tool"
       ],
       "login": "JoshuaKGoldberg",
       "name": "Josh Goldberg",

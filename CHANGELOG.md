@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.80.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.79.0...2.80.0) (2026-11-19)
+
+### Features
+
+- add opt-in Vite block ([#2563](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2563)) ([64c474f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/64c474fb105c001a4d528d60d2fa5316391a8243)), closes [#1917](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1917)
+
 ## [2.79.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.78.1...2.79.0) (2026-11-19)
 
 ### Features

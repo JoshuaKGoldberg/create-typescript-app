@@ -31,7 +31,7 @@ describe("blockPnpmDedupe", () => {
 			    {
 			      "addons": {
 			        "cleanupCommands": [
-			          "pnpm dedupe",
+			          "pnpm dedupe --prefer-offline",
 			        ],
 			      },
 			      "block": "[Block Package JSON]",
@@ -68,7 +68,7 @@ describe("blockPnpmDedupe", () => {
 			    {
 			      "addons": {
 			        "cleanupCommands": [
-			          "pnpm dedupe",
+			          "pnpm dedupe --prefer-offline",
 			        ],
 			      },
 			      "block": "[Block Package JSON]",

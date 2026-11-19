@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.76.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.3...2.76.0) (2026-11-19)
+
+### Features
+
+- add AgentScan, Anti-Slop, and Slop Issue Unlink blocks ([#2642](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2642)) ([2cfd5e1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2cfd5e1004a55ed179cbab22a1c55b2a6cad6081)), closes [#2641](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2641)
+
 ## [2.75.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.2...2.75.3) (2026-11-19)
 
 ### Bug Fixes

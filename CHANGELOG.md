@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.81.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.80.0...2.81.0) (2026-11-19)
+
+### Features
+
+- add zizmor block for GitHub Actions static analysis ([#2566](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2566)) ([00e997b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/00e997b281786f7080e3fc89bc74cf6454f9edba)), closes [#2381](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2381)
+
 ## [2.80.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.79.0...2.80.0) (2026-11-19)
 
 ### Features

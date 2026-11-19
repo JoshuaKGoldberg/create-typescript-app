@@ -718,4 +718,31 @@ describe(blockGitHubActionsCI, () => {
 			}
 		`);
 	});
+
+	test("with more jobs that can run in parallel than the concurrency limit", () => {
+		const creation = testBlock(blockGitHubActionsCI, {
+			addons: {
+				jobs: Array.from({ length: 11 }, (_, i) => ({
+					name: `Check ${String(i).padStart(2, "0")}`,
+					steps: [{ run: `pnpm check:${i}` }],
+				})),
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.addons).toMatchInlineSnapshot(`
+			[
+			  {
+			    "addons": {
+			      "requiredStatusChecks": [
+			        "Check 10",
+			        "CI",
+			        "Engines Check",
+			      ],
+			    },
+			    "block": "[Block Repository Branch Ruleset]",
+			  },
+			]
+		`);
+	});
 });

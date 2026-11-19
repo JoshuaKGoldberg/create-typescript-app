@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.79.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.78.1...2.79.0) (2026-11-19)
+
+### Features
+
+- add blockNextJs for Next.js sites ([#2558](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2558)) ([c089dbe](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c089dbe0783ad191d311e39aecb2ba185a40f1a4)), closes [#2156](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2156)
+
 ## [2.78.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.78.0...2.78.1) (2026-11-19)
 
 ### Bug Fixes

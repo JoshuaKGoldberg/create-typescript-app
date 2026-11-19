@@ -251,6 +251,21 @@ describe(blockVite, () => {
 			});
 		});
 
+		test("returns only properties when vite.config.ts has no build settings", () => {
+			const actual = testIntake(blockVite, {
+				files: {
+					"vite.config.ts": [
+						`defineConfig(${JSON.stringify({ resolve: { alias: { a: "b" } } })})`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				build: undefined,
+				properties: { resolve: { alias: { a: "b" } } },
+			});
+		});
+
 		test("carries existing settings into vite.config.ts", () => {
 			const creation = testBlock(blockVite, {
 				addons: {

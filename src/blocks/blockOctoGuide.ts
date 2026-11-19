@@ -82,7 +82,7 @@ export const blockOctoGuide = base.createBlock({
 									{
 										uses: resolveUses(
 											"JoshuaKGoldberg/octoguide",
-											"0.11.1",
+											"0.33.1",
 											options.workflowsVersions,
 										),
 										with: {

@@ -34,10 +34,12 @@ export const blockAntiSlop = base.createBlock({
 		}
 
 		const blockedTerms: unknown = step.with?.["blocked-terms"];
+		const honeypot =
+			typeof blockedTerms === "number" ? String(blockedTerms) : blockedTerms;
 
 		return {
-			honeypot: blockedTerms ? String(blockedTerms) : (false as const),
-		};
+			honeypot: typeof honeypot === "string" && honeypot ? honeypot : false,
+		} as const;
 	},
 	produce({ addons, options }) {
 		const { honeypot } = addons;

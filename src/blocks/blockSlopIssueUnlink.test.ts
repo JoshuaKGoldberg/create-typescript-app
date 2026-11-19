@@ -54,6 +54,48 @@ describe(blockSlopIssueUnlink, () => {
 		`);
 	});
 
+	test("with the action's default labels", () => {
+		const creation = testBlock(blockSlopIssueUnlink, {
+			addons: {
+				labels: [
+					"suspected ai slop",
+					"agentscan:automated-account",
+					"agentscan:community-flagged",
+					"agentscan:mixed-signals",
+				],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    ".github": {
+			      "workflows": {
+			        "slop-issue-unlink.yaml": "jobs:
+			  slop_issue_unlink:
+			    if: \${{ !github.event.pull_request.merged }}
+			    permissions:
+			      pull-requests: write
+			    runs-on: ubuntu-latest
+			    steps:
+			      - uses: JoshuaKGoldberg/slop-issue-unlink-action@v0.2.0
+
+			name: Slop Issue Unlink
+
+			on:
+			  pull_request_target:
+			    types:
+			      - closed
+			      - labeled
+			",
+			      },
+			    },
+			  },
+			}
+		`);
+	});
+
 	test("with options.workflowsVersions", () => {
 		const creation = testBlock(blockSlopIssueUnlink, {
 			addons: {

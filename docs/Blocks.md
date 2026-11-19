@@ -364,4 +364,4 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 
 ### Slop Issue Unlink
 
-[**slop-issue-unlink-action**](https://github.com/JoshuaKGoldberg/slop-issue-unlink-action): removes links between issues and closed, unmerged PRs labeled by [AgentScan](#agentscan) or [Anti-Slop](#anti-slop), so those issues don't keep showing the slop PRs as linked.
+[**slop-issue-unlink-action**](https://github.com/marketplace/actions/slop-issue-unlink-action): removes links between issues and closed, unmerged PRs labeled by [AgentScan](#agentscan) or [Anti-Slop](#anti-slop), so those issues don't keep showing the slop PRs as linked.

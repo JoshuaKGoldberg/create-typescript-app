@@ -6,12 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: JoshuaKGoldberg/slop-issue-unlink-action@3f4a93908b74468ddfd1e59b0bc3aca1321eb617 # v0.2.0
-        with:
-          labels: |-
-            agentscan:automated-account
-            agentscan:community-flagged
-            agentscan:mixed-signals
-            suspected ai slop
 
 name: Slop Issue Unlink
 

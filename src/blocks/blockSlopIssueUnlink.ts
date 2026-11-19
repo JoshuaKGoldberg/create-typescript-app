@@ -4,6 +4,14 @@ import { base } from "../base.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
+// The action's default labels input, as of the version used below.
+const defaultLabels = [
+	"agentscan:automated-account",
+	"agentscan:community-flagged",
+	"agentscan:mixed-signals",
+	"suspected ai slop",
+];
+
 export const blockSlopIssueUnlink = base.createBlock({
 	about: {
 		name: "Slop Issue Unlink",
@@ -12,10 +20,14 @@ export const blockSlopIssueUnlink = base.createBlock({
 		labels: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
-		const { labels } = addons;
+		const labels = addons.labels.toSorted();
 		if (!labels.length) {
 			return {};
 		}
+
+		const usesDefaultLabels =
+			labels.length === defaultLabels.length &&
+			labels.every((label, i) => label === defaultLabels[i]);
 
 		return {
 			files: {
@@ -39,9 +51,11 @@ export const blockSlopIssueUnlink = base.createBlock({
 										"v0.2.0",
 										options.workflowsVersions,
 									),
-									with: {
-										labels: labels.toSorted().join("\n"),
-									},
+									...(!usesDefaultLabels && {
+										with: {
+											labels: labels.join("\n"),
+										},
+									}),
 								},
 							],
 						}),

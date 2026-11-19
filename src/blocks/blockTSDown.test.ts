@@ -51,7 +51,7 @@ describe(blockTSDown, () => {
 			    },
 			    {
 			      "addons": {
-			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
+			        "beforeLintDocs": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
 			      "block": "[Block ESLint]",
 			    },
@@ -179,7 +179,7 @@ describe(blockTSDown, () => {
 			    },
 			    {
 			      "addons": {
-			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
+			        "beforeLintDocs": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
 			      "block": "[Block ESLint]",
 			    },
@@ -354,7 +354,7 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			    },
 			    {
 			      "addons": {
-			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
+			        "beforeLintDocs": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
 			      "block": "[Block ESLint]",
 			    },

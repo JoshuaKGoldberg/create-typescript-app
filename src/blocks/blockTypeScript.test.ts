@@ -426,7 +426,7 @@ describe(blockTypeScript, () => {
 					"strict": true,
 					"target": "ES2023"
 				},
-				"include": ["src", "next-env.d.ts"],
+				"include": ["next-env.d.ts", "src"],
 				"exclude": ["node_modules"]
 			}
 			"
@@ -1028,7 +1028,10 @@ describe(blockTypeScript, () => {
 				},
 			});
 
-			expect(actual).toEqual({ compilerOptions, include });
+			expect(actual).toEqual({
+				existingCompilerOptions: compilerOptions,
+				include,
+			});
 		});
 	});
 });

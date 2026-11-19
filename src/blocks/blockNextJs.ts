@@ -15,8 +15,7 @@ import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFile } from "./intake/intakeFile.ts";
 
-// In the order of precedence Next.js uses when several exist
-const nextConfigFileNames = [
+const nextConfigFileNamesByPrecedence = [
 	"next.config.js",
 	"next.config.mjs",
 	"next.config.ts",
@@ -44,7 +43,9 @@ export const blockNextJs = base.createBlock({
 			.optional(),
 	},
 	intake({ files }) {
-		const fileName = nextConfigFileNames.find((name) => name in files);
+		const fileName = nextConfigFileNamesByPrecedence.find(
+			(name) => name in files,
+		);
 		if (!fileName) {
 			return undefined;
 		}
@@ -178,7 +179,9 @@ pnpm start
 					: {
 							"next.config.ts": withPreviously(
 								defaultNextConfig,
-								nextConfigFileNames.filter((name) => name !== "next.config.ts"),
+								nextConfigFileNamesByPrecedence.filter(
+									(name) => name !== "next.config.ts",
+								),
 							),
 						}),
 			},

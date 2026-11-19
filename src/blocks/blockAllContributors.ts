@@ -27,9 +27,6 @@ export const blockAllContributors = base.createBlock({
 		const ownerContributions = Array.from(
 			new Set([...(owner?.contributions ?? []), ...startingOwnerContributions]),
 		);
-
-		// If the owner is already known, their contributions can be merged in directly.
-		// Otherwise, all-contributors-cli is needed to retrieve their GitHub profile.
 		const contributors = options.contributors?.map((contributor) =>
 			contributor === owner
 				? { ...contributor, contributions: ownerContributions }

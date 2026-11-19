@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.77.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.76.1...2.77.0) (2026-11-19)
+
+### Features
+
+- explain AgentScan's comments with custom messages ([#2648](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2648)) ([a382b07](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a382b071f7bc9c4b0e09ec280079af45add86edb)), closes [#2647](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2647)
+
+### Bug Fixes
+
+- handle multi-term and numeric Anti-Slop blocked-terms, and clarify docs ([#2650](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2650)) ([20eb39d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/20eb39d3aa0f8cd7d556d6934b722ac877132b10)), closes [#2649](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2649)
+
 ## [2.76.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.76.0...2.76.1) (2026-11-19)
 
 ### Bug Fixes

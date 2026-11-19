@@ -25,7 +25,7 @@ export interface MultiWorkflowJobOptions {
 }
 
 export type MultiWorkflowJobStep =
-	| ({ if?: string; name?: string } & (
+	| ({ env?: Record<string, string>; if?: string; name?: string } & (
 			{ run: string } | { uses: string; with?: Record<string, string> }
 	  ))
 	| { parallel: MultiWorkflowJobStep[] };

@@ -61,6 +61,7 @@ describe(groupParallelJobs, () => {
 		["checkoutWith", { checkoutWith: { "fetch-depth": "0" } }, [lint.steps[0]]],
 		["if", { if: "github.event_name == 'push'" }, [lint.steps[0]]],
 		["permissions", { permissions: { contents: "read" } }, [lint.steps[0]]],
+		["no steps", {}, []],
 		["a step with if", {}, [{ if: "always()", run: "pnpm lint" }]],
 		["a later pnpm build", {}, [{ run: "pnpm lint" }, { run: "pnpm build" }]],
 		[
@@ -84,6 +85,27 @@ describe(groupParallelJobs, () => {
 				],
 			},
 			separate,
+		]);
+	});
+
+	test("names each parallel step after its job", () => {
+		expect(
+			groupParallelJobs([
+				{ name: "Lint", steps: [{ name: "Other", run: "pnpm lint" }] },
+				typeCheck,
+			]),
+		).toEqual([
+			{
+				name: "CI",
+				steps: [
+					{
+						parallel: [
+							{ name: "Lint", run: "pnpm lint" },
+							{ name: "Type Check", run: "pnpm tsc" },
+						],
+					},
+				],
+			},
 		]);
 	});
 

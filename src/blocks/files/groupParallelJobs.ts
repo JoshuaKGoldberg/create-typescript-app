@@ -25,12 +25,12 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 
 		if (
 			canRunInParallel(job) &&
-			steps.length <= 1 &&
+			(builds ? steps.length <= 1 : steps.length === 1) &&
 			steps.every(canStepRunInParallel) &&
 			parallelSteps.length < maximumParallelSteps
 		) {
 			needsBuild ||= builds;
-			parallelSteps.push(...steps.map((step) => ({ name: job.name, ...step })));
+			parallelSteps.push(...steps.map((step) => ({ ...step, name: job.name })));
 		} else {
 			separateJobs.push(job);
 		}

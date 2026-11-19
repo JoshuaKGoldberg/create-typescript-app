@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.75.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.0...2.75.1) (2026-11-19)
+
+### Performance Improvements
+
+- skip all-contributors-cli when the owner is already a contributor ([#2636](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2636)) ([cf5e082](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cf5e0822cf044ecc17521532132d6cc2fc17f24b)), references [#1782](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1782)
+
 ## [2.75.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.74.5...2.75.0) (2026-11-09)
 
 ### Features

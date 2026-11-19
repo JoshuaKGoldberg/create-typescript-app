@@ -74,11 +74,8 @@ describe(blockPrettier, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "0.0.0-mock",
-			            "lint-staged": "0.0.0-mock",
 			            "prettier": "0.0.0-mock",
-			          },
-			          "lint-staged": {
-			            "*": "prettier --ignore-unknown --write",
+			            "pretty-quick": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "format": "prettier .",
@@ -105,7 +102,7 @@ describe(blockPrettier, () => {
 			      ".gitignore": "_
 			",
 			      "pre-commit": [
-			        "npx lint-staged
+			        "npx pretty-quick --staged
 			",
 			        {
 			          "executable": true,
@@ -196,12 +193,10 @@ describe(blockPrettier, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "0.0.0-mock",
-			            "lint-staged": "0.0.0-mock",
 			            "prettier": "0.0.0-mock",
+			            "pretty-quick": "0.0.0-mock",
 			          },
-			          "lint-staged": {
-			            "*": "prettier --ignore-unknown --write",
-			          },
+			          "lint-staged": undefined,
 			          "scripts": {
 			            "format": "prettier .",
 			            "prepare": "husky",
@@ -226,6 +221,7 @@ describe(blockPrettier, () => {
 			        "dependencies": [
 			          "eslint-config-prettier",
 			          "eslint-plugin-prettier",
+			          "lint-staged",
 			        ],
 			      },
 			      "block": "[Block Remove Dependencies]",
@@ -233,7 +229,9 @@ describe(blockPrettier, () => {
 			    {
 			      "addons": {
 			        "files": [
+			          ".lintstagedrc*",
 			          ".prettierrc*",
+			          "lint-staged.config.*",
 			          "prettier.config.{c,j,m}*",
 			        ],
 			      },
@@ -254,7 +252,7 @@ describe(blockPrettier, () => {
 			      ".gitignore": "_
 			",
 			      "pre-commit": [
-			        "npx lint-staged
+			        "npx pretty-quick --staged
 			",
 			        {
 			          "executable": true,
@@ -358,14 +356,11 @@ describe(blockPrettier, () => {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "0.0.0-mock",
-			            "lint-staged": "0.0.0-mock",
 			            "prettier": "0.0.0-mock",
 			            "prettier-plugin-curly": "0.0.0-mock",
 			            "prettier-plugin-packagejson": "0.0.0-mock",
 			            "prettier-plugin-sh": "0.0.0-mock",
-			          },
-			          "lint-staged": {
-			            "*": "prettier --ignore-unknown --write",
+			            "pretty-quick": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "format": "prettier .",
@@ -392,7 +387,7 @@ describe(blockPrettier, () => {
 			      ".gitignore": "_
 			",
 			      "pre-commit": [
-			        "npx lint-staged
+			        "npx pretty-quick --staged
 			",
 			        {
 			          "executable": true,

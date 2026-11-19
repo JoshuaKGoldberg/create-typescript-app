@@ -74,12 +74,9 @@ pnpm format --write
 						devDependencies: getPackageDependencies(
 							...plugins.filter((plugin) => !plugin.startsWith(".")),
 							"husky",
-							"lint-staged",
 							"prettier",
+							"pretty-quick",
 						),
-						"lint-staged": {
-							"*": "prettier --ignore-unknown --write",
-						},
 						scripts: {
 							format: "prettier .",
 							prepare: "husky",
@@ -94,7 +91,7 @@ pnpm format --write
 			files: {
 				".husky": {
 					".gitignore": "_\n",
-					"pre-commit": ["npx lint-staged\n", { executable: true }],
+					"pre-commit": ["npx pretty-quick --staged\n", { executable: true }],
 				},
 				".prettierignore": formatIgnoreFile(
 					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
@@ -125,11 +122,25 @@ export default ${JSON.stringify({
 	transition() {
 		return {
 			addons: [
+				blockPackageJson({
+					properties: {
+						"lint-staged": undefined,
+					},
+				}),
 				blockRemoveDependencies({
-					dependencies: ["eslint-config-prettier", "eslint-plugin-prettier"],
+					dependencies: [
+						"eslint-config-prettier",
+						"eslint-plugin-prettier",
+						"lint-staged",
+					],
 				}),
 				blockRemoveFiles({
-					files: [".prettierrc*", "prettier.config.{c,j,m}*"],
+					files: [
+						".lintstagedrc*",
+						".prettierrc*",
+						"lint-staged.config.*",
+						"prettier.config.{c,j,m}*",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["format", "prettier"],

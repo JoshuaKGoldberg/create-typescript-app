@@ -36,7 +36,7 @@ describe(blockOctoGuide, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: JoshuaKGoldberg/octoguide@0.11.1
+			      - uses: JoshuaKGoldberg/octoguide@0.33.1
 			        with:
 			          config: recommended
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
@@ -125,7 +125,7 @@ describe(blockOctoGuide, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: JoshuaKGoldberg/octoguide@0.11.1
+			      - uses: JoshuaKGoldberg/octoguide@0.33.1
 			        with:
 			          config: recommended
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
@@ -207,7 +207,7 @@ describe(blockOctoGuide, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: JoshuaKGoldberg/octoguide@0.11.1
+			      - uses: JoshuaKGoldberg/octoguide@0.33.1
 			        with:
 			          config: strict
 			          github-token: \${{ secrets.GITHUB_TOKEN }}

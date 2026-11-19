@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.78.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.77.1...2.78.0) (2026-11-19)
+
+### Features
+
+- run single-step CI jobs as parallel steps in one job ([#2653](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2653)) ([ba0b307](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ba0b307cb26a2fcf5f3a14ac1410b83b8bad859a)), closes [#2605](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2605)
+
 ## [2.77.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.77.0...2.77.1) (2026-11-19)
 
 ### Bug Fixes

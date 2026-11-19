@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.81.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.81.0...2.81.1) (2026-11-19)
+
+### Bug Fixes
+
+- replace lodash with straightforward code ([#2656](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2656)) ([2f06c4c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2f06c4c21e81e864e05c82fb43a3270d110bc392)), closes [#2655](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2655)
+
 ## [2.81.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.80.0...2.81.0) (2026-11-19)
 
 ### Features

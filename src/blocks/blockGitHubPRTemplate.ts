@@ -2,7 +2,7 @@ import { base } from "../base.ts";
 
 export const blockGitHubPRTemplate = base.createBlock({
 	about: {
-		name: "GitHub Issue Templates",
+		name: "GitHub PR Template",
 	},
 	produce({ options }) {
 		return {

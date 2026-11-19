@@ -49,6 +49,9 @@ describe("blockAgentScan", () => {
 			        with:
 			          auto-close: true
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
+			          message-automation: This account's recent GitHub activity looks automated, so this has been closed automatically. If that's a mistake, please comment with more context and a maintainer will take a look.
+			          message-community-flagged: This account has been flagged by the community as likely automated. If that's a mistake, please comment with more context and a maintainer will take a look.
+			          message-mixed: This account's recent GitHub activity shows some signs of automation. A maintainer will take a look.
 			          scan-issues: true
 			          trusted-author-associations: collaborator,member,owner
 
@@ -123,6 +126,9 @@ describe("blockAgentScan", () => {
 			        with:
 			          auto-close: true
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
+			          message-automation: This account's recent GitHub activity looks automated, so this has been closed automatically. If that's a mistake, please comment with more context and a maintainer will take a look.
+			          message-community-flagged: This account has been flagged by the community as likely automated. If that's a mistake, please comment with more context and a maintainer will take a look.
+			          message-mixed: This account's recent GitHub activity shows some signs of automation. A maintainer will take a look.
 			          scan-issues: true
 			          trusted-author-associations: collaborator,member,owner
 

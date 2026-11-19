@@ -13,7 +13,6 @@ export const blockPnpmWorkspace = base.createBlock({
 		name: "pnpm Workspace",
 	},
 	addons: {
-		// Kept separate from properties so existing values don't conflict with them
 		existing: zProperties.optional(),
 		existingText: z.string().optional(),
 		properties: zProperties.default({}),
@@ -35,7 +34,6 @@ export const blockPnpmWorkspace = base.createBlock({
 
 		const missing = _.omitBy(properties, (_value, key) => key in existing);
 
-		// Appending to the existing text preserves its formatting and comments
 		const contents =
 			existingText && _.isEqual(merged, { ...existing, ...missing })
 				? `${existingText.trimEnd()}\n\n${formatYaml(missing)}`
@@ -58,7 +56,6 @@ function mergeProperties(
 	for (const [key, value] of Object.entries(properties)) {
 		const existingValue = existing[key];
 
-		// Empty YAML keys such as "allowBuilds:" are parsed as null
 		if (existingValue == null) {
 			merged[key] = value;
 		} else if (isPlainObject(value) && isPlainObject(existingValue)) {

@@ -35,7 +35,6 @@ import { blockOctoGuide } from "./blockOctoGuide.ts";
 import { blockOctoGuideStrict } from "./blockOctoGuideStrict.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPnpmDedupe } from "./blockPnpmDedupe.ts";
-import { blockPnpmWorkspace } from "./blockPnpmWorkspace.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 import { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.ts";
 import { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.ts";
@@ -92,7 +91,6 @@ export const blocks = {
 	blockOctoGuideStrict,
 	blockPackageJson,
 	blockPnpmDedupe,
-	blockPnpmWorkspace,
 	blockPrettier,
 	blockPrettierPluginCurly,
 	blockPrettierPluginPackageJson,
@@ -150,7 +148,6 @@ export { blockOctoGuide } from "./blockOctoGuide.ts";
 export { blockOctoGuideStrict } from "./blockOctoGuideStrict.ts";
 export { blockPackageJson } from "./blockPackageJson.ts";
 export { blockPnpmDedupe } from "./blockPnpmDedupe.ts";
-export { blockPnpmWorkspace } from "./blockPnpmWorkspace.ts";
 export { blockPrettier } from "./blockPrettier.ts";
 export { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.ts";
 export { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.ts";

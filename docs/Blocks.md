@@ -44,7 +44,6 @@ This table summarizes each block and which base levels they're included in:
 | OctoGuide Strict                   | `--add-octoguide-strict`, `--exclude-octoguide-strict`                                     |         |        | 💯         |
 | Package JSON                       | `--add-package-json`, `--exclude-package-json`                                             | ✔️      | ✅     | 💯         |
 | pnpm Dedupe                        | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                               |         |        | 💯         |
-| pnpm Workspace                     | `--add-pnpm-workspace`, `--exclude-pnpm-workspace`                                         | ✔️      | ✅     | 💯         |
 | Prettier                           | `--add-prettier`, `--exclude-prettier`                                                     | ✔️      | ✅     | 💯         |
 | Prettier Plugin Curly              | `--add-prettier-plugin-curly`, `--exclude-prettier-plugin-curly`                           |         |        | 💯         |
 | Prettier Plugin Package JSON       | `--add-prettier-plugin-package-json`, `--exclude-prettier-plugin-package-json`             |         |        | 💯         |

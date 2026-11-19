@@ -90,7 +90,6 @@ pnpm format --write
 				blockPnpmWorkspace({
 					properties: {
 						allowBuilds: {
-							// The prepare script already installs the Git hooks
 							"simple-git-hooks": false,
 						},
 					},
@@ -158,7 +157,6 @@ export default ${JSON.stringify({
 			],
 			scripts: [
 				{
-					// husky points Git at its own hooks directory, which is removed
 					commands: ["git config --unset core.hooksPath ^\\.husky"],
 					phase: CommandPhase.Migrations,
 					silent: true,

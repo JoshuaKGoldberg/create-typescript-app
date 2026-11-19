@@ -526,7 +526,7 @@ describe(blockGitHubActionsCI, () => {
 		`);
 	});
 
-	test("with parallelizable jobs", () => {
+	test("with jobs that can run in parallel", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			addons: {
 				jobs: [

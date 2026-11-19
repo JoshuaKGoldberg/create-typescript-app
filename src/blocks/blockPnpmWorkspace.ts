@@ -1,7 +1,8 @@
-import _ from "lodash";
+import { isDeepStrictEqual } from "node:util";
 import { z } from "zod";
 
 import { base } from "../base.ts";
+import { isPlainObject } from "../utils/isPlainObject.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { intakeFile } from "./intake/intakeFile.ts";
 import { loadYamlSafe } from "./intake/intakeFileAsYaml.ts";
@@ -28,24 +29,22 @@ export const blockPnpmWorkspace = base.createBlock({
 		const { existing = {}, existingText, properties } = addons;
 		const merged = mergeProperties(properties, existing);
 
-		if (!Object.keys(merged).length || _.isEqual(merged, existing)) {
+		if (!Object.keys(merged).length || isDeepStrictEqual(merged, existing)) {
 			return {};
 		}
 
-		const missing = _.omitBy(properties, (_value, key) => key in existing);
+		const missing = Object.fromEntries(
+			Object.entries(properties).filter(([key]) => !(key in existing)),
+		);
 
 		const contents =
-			existingText && _.isEqual(merged, { ...existing, ...missing })
+			existingText && isDeepStrictEqual(merged, { ...existing, ...missing })
 				? `${existingText.trimEnd()}\n\n${formatYaml(missing)}`
 				: formatYaml(merged);
 
 		return { files: { "pnpm-workspace.yaml": contents } };
 	},
 });
-
-function isPlainObject(value: unknown): value is Record<string, unknown> {
-	return !!value && typeof value === "object" && !Array.isArray(value);
-}
 
 function mergeProperties(
 	properties: Record<string, unknown>,

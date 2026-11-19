@@ -1,3 +1,4 @@
+import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
 import { base } from "../base.ts";
@@ -9,17 +10,67 @@ import { blockGitHubIssueTemplates } from "./blockGitHubIssueTemplates.ts";
 import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockReleaseIt } from "./blockReleaseIt.ts";
+import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
 import { CommandPhase } from "./phases.ts";
+
+const zProperties = z.record(z.string(), z.unknown());
+
+const zBuild = z
+	.object({
+		rolldownOptions: z
+			.object({ output: zProperties.optional() })
+			.catchall(z.unknown())
+			.optional(),
+	})
+	.catchall(z.unknown());
+
+function omit(record: Record<string, unknown> | undefined, keys: string[]) {
+	return Object.fromEntries(
+		Object.entries(record ?? {}).filter(([key]) => !keys.includes(key)),
+	);
+}
 
 export const blockVite = base.createBlock({
 	about: {
 		name: "Vite",
 	},
 	addons: {
+		build: zBuild.default({}),
+		properties: zProperties.default({}),
 		runInCI: z.array(z.string()).default([]),
 	},
+	intake({ files }) {
+		const rawData = intakeFileDefineConfig(files, ["vite.config.ts"]);
+		if (!rawData) {
+			return undefined;
+		}
+
+		const { build: rawBuild, ...properties } = rawData;
+		const { rolldownOptions: rawRolldownOptions, ...build } = omit(
+			zProperties.safeParse(rawBuild).data,
+			["lib", "ssr"],
+		);
+		const { output: rawOutput, ...rolldownOptions } =
+			zProperties.safeParse(rawRolldownOptions).data ?? {};
+		const output = omit(zProperties.safeParse(rawOutput).data, [
+			"chunkFileNames",
+			"entryFileNames",
+			"preserveModules",
+			"preserveModulesRoot",
+		]);
+
+		return {
+			build: removeUndefinedObjects({
+				...build,
+				rolldownOptions: { ...rolldownOptions, output },
+			}),
+			properties,
+		};
+	},
 	produce({ addons, options }) {
-		const { runInCI } = addons;
+		const { build, properties, runInCI } = addons;
+		const { rolldownOptions, ...buildRest } = build;
+		const { output, ...rolldownRest } = rolldownOptions ?? {};
 
 		return {
 			addons: [
@@ -110,25 +161,29 @@ pnpm build
 					`import { defineConfig } from "vite";
 
 // ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
-export default defineConfig({
-	build: {
-		lib: {
-			entry: "src/index.ts",
-			formats: ["es"],
-		},
-		rolldownOptions: {
-			output: ${JSON.stringify({
-				chunkFileNames: "[name]-[hash].mjs",
-				entryFileNames: "[name].mjs",
-				...(!options.bundle && {
-					preserveModules: true,
-					preserveModulesRoot: "src",
-				}),
-			})},
-		},
-		ssr: true,
-	},
-});
+export default defineConfig(${JSON.stringify({
+						build: {
+							...buildRest,
+							lib: {
+								entry: "src/index.ts",
+								formats: ["es"],
+							},
+							rolldownOptions: {
+								...rolldownRest,
+								output: {
+									...output,
+									chunkFileNames: "[name]-[hash].mjs",
+									entryFileNames: "[name].mjs",
+									...(!options.bundle && {
+										preserveModules: true,
+										preserveModulesRoot: "src",
+									}),
+								},
+							},
+							ssr: true,
+						},
+						...properties,
+					})});
 `,
 				),
 			},

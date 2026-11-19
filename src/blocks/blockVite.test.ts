@@ -1,4 +1,4 @@
-import { testBlock } from "bingo-stratum-testers";
+import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
@@ -125,10 +125,7 @@ describe(blockVite, () => {
 			// ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
 			export default defineConfig({
 				build: {
-					lib: {
-						entry: "src/index.ts",
-						formats: ["es"],
-					},
+					lib: { entry: "src/index.ts", formats: ["es"] },
 					rolldownOptions: {
 						output: {
 							chunkFileNames: "[name]-[hash].mjs",
@@ -195,10 +192,7 @@ describe(blockVite, () => {
 			// ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
 			export default defineConfig({
 				build: {
-					lib: {
-						entry: "src/index.ts",
-						formats: ["es"],
-					},
+					lib: { entry: "src/index.ts", formats: ["es"] },
 					rolldownOptions: {
 						output: {
 							chunkFileNames: "[name]-[hash].mjs",
@@ -210,5 +204,90 @@ describe(blockVite, () => {
 			});
 			"
 		`);
+	});
+
+	describe("intake", () => {
+		test("returns undefined when vite.config.ts does not exist", () => {
+			expect(testIntake(blockVite, { files: {} })).toBeUndefined();
+		});
+
+		test("returns undefined when vite.config.ts does not contain data", () => {
+			const actual = testIntake(blockVite, {
+				files: { "vite.config.ts": ["..."] },
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		test("returns properties and build settings that the block does not own", () => {
+			const actual = testIntake(blockVite, {
+				files: {
+					"vite.config.ts": [
+						`defineConfig(${JSON.stringify({
+							build: {
+								lib: { entry: "src/other.ts" },
+								minify: false,
+								rolldownOptions: {
+									external: ["fs"],
+									output: { banner: "// hi", preserveModules: true },
+								},
+								ssr: true,
+							},
+							resolve: { alias: { a: "b" } },
+						})})`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				build: {
+					minify: false,
+					rolldownOptions: {
+						external: ["fs"],
+						output: { banner: "// hi" },
+					},
+				},
+				properties: { resolve: { alias: { a: "b" } } },
+			});
+		});
+
+		test("carries intaken settings into vite.config.ts", () => {
+			const creation = testBlock(blockVite, {
+				addons: {
+					build: {
+						minify: false,
+						rolldownOptions: {
+							external: ["fs"],
+							output: { banner: "// hi" },
+						},
+					},
+					properties: { resolve: { alias: { a: "b" } } },
+				},
+				options: { ...optionsBase, bundle: true },
+			});
+
+			expect(creation.files?.["vite.config.ts"]).toMatchInlineSnapshot(`
+				"import { defineConfig } from "vite";
+
+				// ssr targets Node.js and keeps dependencies external, rather than bundling them for browsers
+				export default defineConfig({
+					build: {
+						minify: false,
+						lib: { entry: "src/index.ts", formats: ["es"] },
+						rolldownOptions: {
+							external: ["fs"],
+							output: {
+								banner: "// hi",
+								chunkFileNames: "[name]-[hash].mjs",
+								entryFileNames: "[name].mjs",
+							},
+						},
+						ssr: true,
+					},
+					resolve: { alias: { a: "b" } },
+				});
+				"
+			`);
+		});
 	});
 });

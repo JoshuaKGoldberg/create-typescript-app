@@ -6,13 +6,30 @@ const lint = { name: "Lint", steps: [{ run: "pnpm lint" }] };
 const typeCheck = { name: "Type Check", steps: [{ run: "pnpm tsc" }] };
 
 describe(groupParallelJobs, () => {
-	test("returns jobs unchanged when fewer than two can run in parallel", () => {
+	test("returns jobs unchanged when none can run in parallel", () => {
 		const jobs = [
-			lint,
 			{ name: "Test", steps: [{ run: "pnpm test" }, { uses: "codecov" }] },
 		];
 
 		expect(groupParallelJobs(jobs)).toBe(jobs);
+	});
+
+	test("moves a lone job that can run in parallel into CI", () => {
+		const testJob = {
+			name: "Test",
+			steps: [{ run: "pnpm test" }, { uses: "codecov" }],
+		};
+
+		expect(groupParallelJobs([lint, testJob])).toEqual([
+			{ name: "CI", steps: [{ name: "Lint", run: "pnpm lint" }] },
+			testJob,
+		]);
+	});
+
+	test("moves a lone build job into CI", () => {
+		expect(
+			groupParallelJobs([{ name: "Build", steps: [{ run: "pnpm build" }] }]),
+		).toEqual([{ name: "CI", steps: [{ run: "pnpm build" }] }]);
 	});
 
 	test.each(["CI", "ci"])(

@@ -390,7 +390,7 @@ describe(blockGitHubActionsCI, () => {
 			      "addons": {
 			        "requiredStatusChecks": [
 			          "Action",
-			          "Build",
+			          "CI",
 			          "Engines Check",
 			        ],
 			      },
@@ -442,8 +442,8 @@ describe(blockGitHubActionsCI, () => {
 			        with:
 			          github-token: \${{ secrets.GITHUB_TOKEN }}
 
-			  build:
-			    name: Build
+			  ci:
+			    name: CI
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4

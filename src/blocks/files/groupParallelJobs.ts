@@ -32,7 +32,7 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 		}
 	}
 
-	if (parallelSteps.length < 2) {
+	if (separateJobs.length === jobs.length) {
 		return jobs;
 	}
 
@@ -41,7 +41,9 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 			name: "CI",
 			steps: [
 				...(needsBuild ? [{ run: "pnpm build" }] : []),
-				{ parallel: parallelSteps },
+				...(parallelSteps.length > 1
+					? [{ parallel: parallelSteps }]
+					: parallelSteps),
 			],
 		},
 		...separateJobs,

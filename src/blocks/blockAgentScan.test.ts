@@ -22,6 +22,16 @@ describe("blockAgentScan", () => {
 			      },
 			      "block": "[Block CSpell]",
 			    },
+			    {
+			      "addons": {
+			        "labels": [
+			          "agentscan:automated-account",
+			          "agentscan:community-flagged",
+			          "agentscan:mixed-signals",
+			        ],
+			      },
+			      "block": "[Block Slop Unlink Issues]",
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -85,6 +95,16 @@ describe("blockAgentScan", () => {
 			        ],
 			      },
 			      "block": "[Block CSpell]",
+			    },
+			    {
+			      "addons": {
+			        "labels": [
+			          "agentscan:automated-account",
+			          "agentscan:community-flagged",
+			          "agentscan:mixed-signals",
+			        ],
+			      },
+			      "block": "[Block Slop Unlink Issues]",
 			    },
 			  ],
 			  "files": {

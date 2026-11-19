@@ -1,6 +1,7 @@
 import { base } from "../base.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockCSpell } from "./blockCSpell.ts";
+import { blockSlopUnlinkIssues } from "./blockSlopUnlinkIssues.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
 export const blockAgentScan = base.createBlock({
@@ -12,6 +13,14 @@ export const blockAgentScan = base.createBlock({
 			addons: [
 				blockCSpell({
 					words: ["agentscan", "MatteoGabriele"],
+				}),
+				blockSlopUnlinkIssues({
+					// These are the action's default labels.
+					labels: [
+						"agentscan:automated-account",
+						"agentscan:community-flagged",
+						"agentscan:mixed-signals",
+					],
 				}),
 			],
 			files: {

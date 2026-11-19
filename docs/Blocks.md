@@ -55,6 +55,7 @@ This table summarizes each block and which base levels they're included in:
 | Renovate                           | `--add-renovate`, `--exclude-renovate`                                                     |         |        | 💯         |
 | Security Docs                      | `--add-security-docs`, `--exclude-security-docs`                                           | ✔️      | ✅     | 💯         |
 | Side Effects                       | `--add-side-effects`, `--exclude-side-effects`                                             | ✔️      | ✅     | 💯         |
+| Slop Unlink Issues                 | `--add-slop-unlink-issues`, `--exclude-slop-unlink-issues`                                 |         |        | 💯         |
 | Templated With                     | `--add-templated-with`, `--exclude-templated-with`                                         | ✔️      | ✅     | 💯         |
 | TSDown                             | `--add-tsdown`, `--exclude-tsdown`                                                         | ✔️      | ✅     | 💯         |
 | TypeScript                         | `--add-typescript`, `--exclude-typescript`                                                 | ✔️      | ✅     | 💯         |
@@ -284,6 +285,7 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint Stylistic](#lint-stylistic)
     - [Lint YML](#lint-yml)
     - [OctoGuide Strict](#octoguide-strict)
+    - [Slop Unlink Issues](#slop-unlink-issues)
 
 ### AgentScan
 
@@ -294,6 +296,8 @@ Maintainers and collaborators are skipped.
 
 [**anti-slop**](https://github.com/peakoss/anti-slop): runs a suite of quality checks on new pull requests, such as following the PR template, account age, and contribution history.
 PRs that fail too many checks are labeled `suspected ai slop` and closed with an explanatory comment.
+The PR template also gets a hidden honeypot instruction asking AI agents to include a term (by default, `SASSAFRAS`) that the action blocks.
+You can change the term with a `blockAntiSlop({ honeypot: "..." })` [addon](./Configuration%20Files.md#addons).
 Maintainers, collaborators, bots, and draft PRs are exempt.
 
 ### Lint ESLint
@@ -357,3 +361,7 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 ### OctoGuide Strict
 
 [**OctoGuide's Strict Config**](https://octo.guide/configs#rules-table): additionally enforces enforcing semantic pull request conventions.
+
+### Slop Unlink Issues
+
+Removes links between issues and closed, unmerged PRs labeled by [AgentScan](#agentscan) or [Anti-Slop](#anti-slop), so those issues don't keep showing the slop PRs as linked.

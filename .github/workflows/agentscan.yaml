@@ -1,0 +1,26 @@
+jobs:
+  agentscan:
+    if: ${{ !endsWith(github.actor, '[bot]') }}
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: MatteoGabriele/agentscan-action@7ad606f1e21df2119da8be99b763f282a670a1c5 # v2.8.0
+        with:
+          auto-close: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          scan-issues: true
+          trusted-author-associations: collaborator,member,owner
+
+name: AgentScan
+
+on:
+  issues:
+    types:
+      - opened
+  pull_request_target:
+    types:
+      - opened
+      - reopened

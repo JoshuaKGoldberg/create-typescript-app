@@ -7,7 +7,9 @@ This table summarizes each block and which base levels they're included in:
 
 | Block                              | Flags                                                                                      | Minimal | Common | Everything |
 | ---------------------------------- | ------------------------------------------------------------------------------------------ | ------- | ------ | ---------- |
+| AgentScan                          | `--add-agentscan`, `--exclude-agentscan`                                                   |         |        | 💯         |
 | AllContributors                    | `--add-allcontributors`, `--exclude-allcontributors`                                       |         | ✅     | 💯         |
+| Anti-Slop                          | `--add-anti-slop`, `--exclude-anti-slop`                                                   |         |        | 💯         |
 | Are The Types Wrong                | `--add-are-the-types-wrong`, `--exclude-are-the-types-wrong`                               |         |        |            |
 | Bin                                | `--add-bin`, `--exclude-bin`                                                               | ✔️      | ✅     | 💯         |
 | Contributing Docs                  | `--add-contributing-docs`, `--exclude-contributing-docs`                                   | ✔️      | ✅     | 💯         |
@@ -268,6 +270,8 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Renovate](#renovate)
     - [Testing](#testing)
   - ["Everything" Base Level](#everything-base-level)
+    - [AgentScan](#agentscan)
+    - [Anti-Slop](#anti-slop)
     - [Lint ESLint](#lint-eslint)
     - [Lint JSDoc](#lint-jsdoc)
     - [Lint JSON](#lint-json)
@@ -280,6 +284,17 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint Stylistic](#lint-stylistic)
     - [Lint YML](#lint-yml)
     - [OctoGuide Strict](#octoguide-strict)
+
+### AgentScan
+
+[**AgentScan**](https://github.com/MatteoGabriele/agentscan-action): flags new issues and pull requests from accounts whose public activity looks automated, and closes ones from accounts it classifies as automation.
+Maintainers and collaborators are skipped.
+
+### Anti-Slop
+
+[**anti-slop**](https://github.com/peakoss/anti-slop): runs a suite of quality checks on new pull requests, such as following the PR template, account age, and contribution history.
+PRs that fail too many checks are labeled `suspected ai slop` and closed with an explanatory comment.
+Maintainers, collaborators, bots, and draft PRs are exempt.
 
 ### Lint ESLint
 

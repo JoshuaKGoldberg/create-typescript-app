@@ -1,4 +1,6 @@
+import { blockAgentScan } from "./blockAgentScan.ts";
 import { blockAllContributors } from "./blockAllContributors.ts";
+import { blockAntiSlop } from "./blockAntiSlop.ts";
 import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
 import { blockBin } from "./blockBin.ts";
 import { blockCodecov } from "./blockCodecov.ts";
@@ -51,7 +53,9 @@ import { blockVSCode } from "./blockVSCode.ts";
 import { blockWebExt } from "./blockWebExt.ts";
 
 export const blocks = {
+	blockAgentScan,
 	blockAllContributors,
+	blockAntiSlop,
 	blockAreTheTypesWrong,
 	blockBin,
 	blockCodecov,
@@ -104,7 +108,9 @@ export const blocks = {
 	blockWebExt,
 };
 
+export { blockAgentScan } from "./blockAgentScan.ts";
 export { blockAllContributors } from "./blockAllContributors.ts";
+export { blockAntiSlop } from "./blockAntiSlop.ts";
 export { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
 export { blockBin } from "./blockBin.ts";
 export { blockCodecov } from "./blockCodecov.ts";

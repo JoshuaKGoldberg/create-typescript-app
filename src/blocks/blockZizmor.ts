@@ -48,31 +48,14 @@ export const blockZizmor = base.createBlock({
 	produce({ addons, options }) {
 		const rules: Record<string, Rule> = {
 			...addons.rules,
-			// blockGitHubActionsCI's pr-review-labels.yaml needs pull_request_target
-			// and workflow_run to label PRs from forks, and doesn't run any PR code.
-			// It's listed here to avoid a circular import with blockGitHubActionsCI.
-			"dangerous-triggers": {
-				...addons.rules?.["dangerous-triggers"],
-				ignore: [
-					"pr-review-labels.yaml",
-					...(addons.rules?.["dangerous-triggers"]?.ignore ?? []),
-				],
-			},
-			// Renovate's hash pins have floating version comments, such as "# v4".
-			// Those are flagged online whenever their upstream tags move, until
-			// Renovate's digest updates land (which minimumReleaseAge can delay).
 			"ref-version-mismatch": {
 				disable: true,
 				...addons.rules?.["ref-version-mismatch"],
 			},
-			// Generated workflows and composite actions still reference local actions
-			// with ./ rather than GitHub's newer $/ self-repository syntax.
 			"self-repository": {
 				disable: true,
 				...addons.rules?.["self-repository"],
 			},
-			// Generated workflows reference actions by tag rather than commit hash.
-			// Hash pins, such as from Renovate's config:best-practices, still pass.
 			"unpinned-uses": {
 				config: {
 					policies: {

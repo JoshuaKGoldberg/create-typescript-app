@@ -47,9 +47,6 @@ describe(blockZizmor, () => {
 			    ".github": {
 			      "zizmor.yaml": [
 			        "rules:
-			  dangerous-triggers:
-			    ignore:
-			      - pr-review-labels.yaml
 			  ref-version-mismatch:
 			    disable: true
 			  self-repository:
@@ -121,9 +118,6 @@ describe(blockZizmor, () => {
 			    ".github": {
 			      "zizmor.yaml": [
 			        "rules:
-			  dangerous-triggers:
-			    ignore:
-			      - pr-review-labels.yaml
 			  ref-version-mismatch:
 			    disable: true
 			  self-repository:

@@ -32,18 +32,6 @@ describe(blockAgentScan, () => {
 			      },
 			      "block": "[Block Slop Issue Unlink]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "agentscan.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -73,7 +61,7 @@ describe(blockAgentScan, () => {
 			  issues:
 			    types:
 			      - opened
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - reopened
@@ -115,18 +103,6 @@ describe(blockAgentScan, () => {
 			      },
 			      "block": "[Block Slop Issue Unlink]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "agentscan.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -157,7 +133,7 @@ describe(blockAgentScan, () => {
 			  issues:
 			    types:
 			      - opened
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - reopened
@@ -205,18 +181,6 @@ describe(blockAgentScan, () => {
 			      },
 			      "block": "[Block Slop Issue Unlink]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "agentscan.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -246,7 +210,7 @@ describe(blockAgentScan, () => {
 			  issues:
 			    types:
 			      - opened
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - opened
 			      - reopened

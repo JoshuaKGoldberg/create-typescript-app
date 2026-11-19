@@ -40,8 +40,6 @@ export const blockCTATransitions = base.createBlock({
 				}),
 				blockZizmor({
 					rules: {
-						// cta.yaml deliberately checks github.actor so that pushes to
-						// renovate/ branches by either the owner or Renovate trigger it.
 						"bot-conditions": { ignore: ["cta.yaml"] },
 					},
 				}),
@@ -165,7 +163,6 @@ export const blockCTATransitions = base.createBlock({
 										),
 										with: {
 											"fetch-depth": 0,
-											// git-auto-commit-action pushes changes with git
 											"persist-credentials": true,
 											ref: "${{github.event.pull_request.head.ref}}",
 											repository:

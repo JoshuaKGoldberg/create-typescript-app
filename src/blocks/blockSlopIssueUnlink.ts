@@ -6,7 +6,6 @@ import { WorkflowsVersions } from "../schemas.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { agentScanLabels, blockAgentScan } from "./blockAgentScan.ts";
 import { antiSlopFailureLabel, blockAntiSlop } from "./blockAntiSlop.ts";
-import { blockZizmor } from "./blockZizmor.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
 const defaultLabels = [
@@ -44,11 +43,6 @@ export const blockSlopIssueUnlink: BlockWithAddons<
 				}),
 				blockAntiSlop({
 					actionSteps: [createStep([antiSlopFailureLabel])],
-				}),
-				blockZizmor({
-					rules: {
-						"dangerous-triggers": { ignore: ["slop-issue-unlink.yaml"] },
-					},
 				}),
 			],
 			files: {

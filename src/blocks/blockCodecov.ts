@@ -83,7 +83,6 @@ export const blockCodecov = base.createBlock({
 				}),
 				blockZizmor({
 					rules: {
-						// codecov/codecov-action has both a v3 branch and a v3 tag.
 						"ref-confusion": { ignore: ["ci.yaml"] },
 					},
 				}),

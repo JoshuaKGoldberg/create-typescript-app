@@ -1,11 +1,4 @@
 rules:
-  dangerous-triggers:
-    ignore:
-      - agentscan.yaml
-      - anti-slop.yaml
-      - octoguide.yaml
-      - pr-review-labels.yaml
-      - slop-issue-unlink.yaml
   ref-confusion:
     ignore:
       - ci.yaml

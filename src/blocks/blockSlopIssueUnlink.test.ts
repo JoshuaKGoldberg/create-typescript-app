@@ -52,18 +52,6 @@ describe(blockSlopIssueUnlink, () => {
 			      },
 			      "block": "[Block Anti-Slop]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "slop-issue-unlink.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -84,7 +72,7 @@ describe(blockSlopIssueUnlink, () => {
 			name: Slop Issue Unlink
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - closed
 			      - labeled
@@ -140,18 +128,6 @@ describe(blockSlopIssueUnlink, () => {
 			      },
 			      "block": "[Block Anti-Slop]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "slop-issue-unlink.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -168,7 +144,7 @@ describe(blockSlopIssueUnlink, () => {
 			name: Slop Issue Unlink
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - closed
 			      - labeled
@@ -228,18 +204,6 @@ describe(blockSlopIssueUnlink, () => {
 			      },
 			      "block": "[Block Anti-Slop]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "slop-issue-unlink.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -258,7 +222,7 @@ describe(blockSlopIssueUnlink, () => {
 			name: Slop Issue Unlink
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - closed
 			      - labeled

@@ -22,18 +22,6 @@ describe(blockOctoGuide, () => {
 			      },
 			      "block": "[Block CSpell]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "octoguide.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -65,7 +53,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  issue_comment:
+			  issue_comment: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - created
 			      - deleted
@@ -79,7 +67,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - edited
 			      - opened
@@ -113,18 +101,6 @@ describe(blockOctoGuide, () => {
 			        ],
 			      },
 			      "block": "[Block CSpell]",
-			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "octoguide.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
 			    },
 			    {
 			      "addons": {
@@ -166,7 +142,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  issue_comment:
+			  issue_comment: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - created
 			      - deleted
@@ -180,7 +156,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - edited
 			      - opened
@@ -217,18 +193,6 @@ describe(blockOctoGuide, () => {
 			      },
 			      "block": "[Block CSpell]",
 			    },
-			    {
-			      "addons": {
-			        "rules": {
-			          "dangerous-triggers": {
-			            "ignore": [
-			              "octoguide.yaml",
-			            ],
-			          },
-			        },
-			      },
-			      "block": "[Block zizmor]",
-			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -260,7 +224,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  issue_comment:
+			  issue_comment: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - created
 			      - deleted
@@ -274,7 +238,7 @@ describe(blockOctoGuide, () => {
 			      - created
 			      - deleted
 			      - edited
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - edited
 			      - opened

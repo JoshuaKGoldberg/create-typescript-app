@@ -6,7 +6,6 @@ import { intakeFileYamlSteps, zActionStep } from "./actions/steps.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.ts";
 import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
-import { blockZizmor } from "./blockZizmor.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
 export const antiSlopFailureLabel = "suspected ai slop";
@@ -56,11 +55,6 @@ export const blockAntiSlop = base.createBlock({
 			addons: [
 				blockCSpell({
 					words: ["peakoss"],
-				}),
-				blockZizmor({
-					rules: {
-						"dangerous-triggers": { ignore: ["anti-slop.yaml"] },
-					},
 				}),
 				...(honeypotTerm
 					? [

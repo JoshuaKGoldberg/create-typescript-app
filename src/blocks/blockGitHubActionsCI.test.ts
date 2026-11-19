@@ -63,10 +63,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -169,10 +169,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -329,10 +329,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -504,10 +504,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -707,10 +707,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:

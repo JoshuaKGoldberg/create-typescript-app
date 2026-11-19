@@ -5,6 +5,7 @@ import { resolveUses } from "./actions/resolveUses.ts";
 import { zActionStep } from "./actions/steps.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
+import { blockZizmor } from "./blockZizmor.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
 export const agentScanLabels: readonly string[] = [
@@ -30,6 +31,11 @@ export const blockAgentScan = base.createBlock({
 				}),
 				blockSlopIssueUnlink({
 					labels: [...agentScanLabels],
+				}),
+				blockZizmor({
+					rules: {
+						"dangerous-triggers": { ignore: ["agentscan.yaml"] },
+					},
 				}),
 			],
 			files: {

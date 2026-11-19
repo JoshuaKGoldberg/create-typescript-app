@@ -19,6 +19,11 @@ jobs:
             run: pnpm format --list-different
           - name: Lint
             run: pnpm lint
+          - name: Lint GitHub Actions
+            uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
+            with:
+              advanced-security: "false"
+              annotations: "true"
           - name: Lint Knip
             run: pnpm lint:knip
           - name: Lint Spelling

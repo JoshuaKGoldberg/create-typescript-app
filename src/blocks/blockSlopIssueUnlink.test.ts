@@ -52,6 +52,18 @@ describe(blockSlopIssueUnlink, () => {
 			      },
 			      "block": "[Block Anti-Slop]",
 			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "slop-issue-unlink.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -128,6 +140,18 @@ describe(blockSlopIssueUnlink, () => {
 			      },
 			      "block": "[Block Anti-Slop]",
 			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "slop-issue-unlink.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -203,6 +227,18 @@ describe(blockSlopIssueUnlink, () => {
 			        ],
 			      },
 			      "block": "[Block Anti-Slop]",
+			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "slop-issue-unlink.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
 			    },
 			  ],
 			  "files": {

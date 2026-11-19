@@ -32,6 +32,18 @@ describe(blockAgentScan, () => {
 			      },
 			      "block": "[Block Slop Issue Unlink]",
 			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "agentscan.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -102,6 +114,18 @@ describe(blockAgentScan, () => {
 			        ],
 			      },
 			      "block": "[Block Slop Issue Unlink]",
+			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "agentscan.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
 			    },
 			  ],
 			  "files": {
@@ -180,6 +204,18 @@ describe(blockAgentScan, () => {
 			        ],
 			      },
 			      "block": "[Block Slop Issue Unlink]",
+			    },
+			    {
+			      "addons": {
+			        "rules": {
+			          "dangerous-triggers": {
+			            "ignore": [
+			              "agentscan.yaml",
+			            ],
+			          },
+			        },
+			      },
+			      "block": "[Block zizmor]",
 			    },
 			  ],
 			  "files": {

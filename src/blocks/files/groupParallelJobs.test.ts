@@ -15,11 +15,14 @@ describe(groupParallelJobs, () => {
 		expect(groupParallelJobs(jobs)).toBe(jobs);
 	});
 
-	test("returns jobs unchanged when one is already named CI", () => {
-		const jobs = [{ name: "CI", steps: [{ run: "pnpm ci" }] }, lint, typeCheck];
+	test.each(["CI", "ci"])(
+		"returns jobs unchanged when one is already named %s",
+		(name) => {
+			const jobs = [{ name, steps: [{ run: "pnpm ci" }] }, lint, typeCheck];
 
-		expect(groupParallelJobs(jobs)).toBe(jobs);
-	});
+			expect(groupParallelJobs(jobs)).toBe(jobs);
+		},
+	);
 
 	test("groups single-step jobs without building when none build", () => {
 		expect(groupParallelJobs([lint, typeCheck])).toEqual([

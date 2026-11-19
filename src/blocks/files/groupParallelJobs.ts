@@ -1,3 +1,4 @@
+import { createJobName } from "./createJobName.ts";
 import {
 	MultiWorkflowJobOptions,
 	MultiWorkflowJobStep,
@@ -16,6 +17,10 @@ const maximumParallelSteps = 10;
  * sequential steps stay separate.
  */
 export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
+	if (jobs.some((job) => createJobName(job.name) === "ci")) {
+		return jobs;
+	}
+
 	const parallelSteps: MultiWorkflowJobStep[] = [];
 	const separateJobs: MultiWorkflowJobOptions[] = [];
 	let needsBuild = false;
@@ -37,7 +42,7 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 		}
 	}
 
-	if (parallelSteps.length < 2 || jobs.some((job) => job.name === "CI")) {
+	if (parallelSteps.length < 2) {
 		return jobs;
 	}
 

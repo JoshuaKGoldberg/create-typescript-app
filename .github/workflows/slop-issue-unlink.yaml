@@ -5,7 +5,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: JoshuaKGoldberg/slop-issue-unlink-action@423f5a797b9c053036032b84404154100ef11206 # v0.1.0
+      - uses: JoshuaKGoldberg/slop-issue-unlink-action@3f4a93908b74468ddfd1e59b0bc3aca1321eb617 # v0.2.0
         with:
           labels: |-
             agentscan:automated-account

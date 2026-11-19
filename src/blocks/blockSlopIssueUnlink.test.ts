@@ -33,7 +33,7 @@ describe(blockSlopIssueUnlink, () => {
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: JoshuaKGoldberg/slop-issue-unlink-action@v0.1.0
+			      - uses: JoshuaKGoldberg/slop-issue-unlink-action@v0.2.0
 			        with:
 			          labels: |-
 			            spam: a

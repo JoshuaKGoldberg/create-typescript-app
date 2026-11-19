@@ -19,7 +19,7 @@ export const blockPnpmDedupe = base.createBlock({
 					],
 				}),
 				blockPackageJson({
-					cleanupCommands: ["pnpm dedupe"],
+					cleanupCommands: ["pnpm dedupe --prefer-offline"],
 				}),
 			],
 		};

@@ -20,20 +20,22 @@ export const blockAllContributors = base.createBlock({
 		name: "AllContributors",
 	},
 	produce({ options }) {
-		const contributions = options.contributors?.length;
-		const ownerContributions = Array.from(
-			new Set(
-				[
-					options.contributors?.find(
-						(contributor) =>
-							contributor.login.toLowerCase() === options.owner.toLowerCase(),
-					)?.contributions,
-					startingOwnerContributions,
-				]
-					.filter(Boolean)
-					.flat(),
-			),
+		const owner = options.contributors?.find(
+			(contributor) =>
+				contributor.login.toLowerCase() === options.owner.toLowerCase(),
 		);
+		const ownerContributions = Array.from(
+			new Set([...(owner?.contributions ?? []), ...startingOwnerContributions]),
+		);
+
+		// If the owner is already known, their contributions can be merged in directly.
+		// Otherwise, all-contributors-cli is needed to retrieve their GitHub profile.
+		const contributors = options.contributors?.map((contributor) =>
+			contributor === owner
+				? { ...contributor, contributions: ownerContributions }
+				: contributor,
+		);
+		const contributions = contributors?.length;
 
 		return {
 			addons: [
@@ -56,9 +58,9 @@ export const blockAllContributors = base.createBlock({
 							src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
 						},
 					],
-					sections: options.contributors
+					sections: contributors
 						? [
-								printAllContributorsTable(options.contributors, {
+								printAllContributorsTable(contributors, {
 									projectName: options.repository,
 									projectOwner: options.owner,
 								}),
@@ -72,7 +74,7 @@ export const blockAllContributors = base.createBlock({
 						badgeTemplate:
 							'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
 						commitType: "docs",
-						contributors: options.contributors ?? [],
+						contributors: contributors ?? [],
 						contributorsPerLine: 7,
 						contributorsSortAlphabetically: true,
 						files: ["README.md"],
@@ -115,14 +117,16 @@ export const blockAllContributors = base.createBlock({
 					},
 				},
 			},
-			scripts: [
-				{
-					commands: [
-						`pnpx all-contributors-cli@6.23.1 add ${options.owner} ${ownerContributions.join(",")}`,
+			scripts: owner
+				? undefined
+				: [
+						{
+							commands: [
+								`pnpx all-contributors-cli@6.23.1 add ${options.owner} ${ownerContributions.join(",")}`,
+							],
+							phase: CommandPhase.Process,
+						},
 					],
-					phase: CommandPhase.Process,
-				},
-			],
 		};
 	},
 });

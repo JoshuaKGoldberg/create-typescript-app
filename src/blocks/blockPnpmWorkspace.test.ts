@@ -116,6 +116,37 @@ describe(blockPnpmWorkspace, () => {
 		`);
 	});
 
+	test("with existing scalar values that conflict with properties", () => {
+		const creation = testBlock(blockPnpmWorkspace, {
+			addons: {
+				existing: {
+					packages: ["packages/*"],
+					strictDepBuilds: true,
+				},
+				properties: {
+					minimumReleaseAgeExclude: ["example@1.2.3"],
+					strictDepBuilds: false,
+				},
+			},
+			options: optionsBase,
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "pnpm-workspace.yaml": "minimumReleaseAgeExclude:
+			  - example@1.2.3
+
+			packages:
+			  - packages/*
+
+			strictDepBuilds: true
+			",
+			  },
+			}
+		`);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when pnpm-workspace.yaml does not exist", () => {
 			const actual = testIntake(blockPnpmWorkspace, {

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.83.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.82.0...2.83.0) (2026-11-19)
+
+### Features
+
+- bump default OctoGuide version to 0.33.1 ([#2657](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2657)) ([43de9df](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/43de9dfde9cc52d2bb9b25a57a046f8eb49a6460)), closes [#574](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/574), references [octoguide/bot#69](https://github.com/octoguide/bot/issues/69)
+
 ## [2.82.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.81.1...2.82.0) (2026-11-19)
 
 ### Features

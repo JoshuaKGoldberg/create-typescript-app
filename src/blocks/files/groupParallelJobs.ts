@@ -3,7 +3,8 @@ import {
 	MultiWorkflowJobStep,
 } from "./createMultiWorkflowFile.ts";
 
-// GitHub runs at most 10 background steps at once per job, queueing the rest:
+// GitHub runs at most 10 background steps at once per job, queueing the rest.
+// Jobs past that limit stay separate so they get their own runner instead.
 // https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions
 const maximumParallelSteps = 10;
 
@@ -36,7 +37,7 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 		}
 	}
 
-	if (parallelSteps.length < 2) {
+	if (parallelSteps.length < 2 || jobs.some((job) => job.name === "CI")) {
 		return jobs;
 	}
 
@@ -57,7 +58,7 @@ function canRunInParallel(job: MultiWorkflowJobOptions) {
 }
 
 function canStepRunInParallel(step: MultiWorkflowJobStep) {
-	return !("if" in step && step.if) && !("parallel" in step);
+	return !("if" in step && step.if);
 }
 
 function isBuildStep(step: MultiWorkflowJobStep | undefined) {

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.78.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.78.0...2.78.1) (2026-11-19)
+
+### Bug Fixes
+
+- add jiti to blockESLint devDependencies ([#2568](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2568)) ([996cc55](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/996cc55c303ba6becaaad1bebe0a2d0e1cc5bca7)), closes [#2559](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2559)
+
 ## [2.78.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.77.1...2.78.0) (2026-11-19)
 
 ### Features

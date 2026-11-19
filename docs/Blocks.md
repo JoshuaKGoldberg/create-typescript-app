@@ -39,6 +39,7 @@ This table summarizes each block and which base levels they're included in:
 | Knip                               | `--add-knip`, `--exclude-knip`                                                             |         |        | 💯         |
 | MIT License                        | `--add-mit-license`, `--exclude-mit-license`                                               | ✔️      | ✅     | 💯         |
 | ncc                                | `--add-ncc`, `--exclude-ncc`                                                               |         |        |            |
+| NextJS                             | `--add-nextjs`, `--exclude-nextjs`                                                         |         |        |            |
 | nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        | 💯         |
 | OctoGuide                          | `--add-octoguide`, `--exclude-octoguide`                                                   |         | ✅     | 💯         |
 | OctoGuide Strict                   | `--add-octoguide-strict`, `--exclude-octoguide-strict`                                     |         |        | 💯         |
@@ -71,6 +72,12 @@ npx create-typescript-app --add-ncc --exclude-tsdown
 ```
 
 The Vite block is another builder alternative, so pass `--add-vite` together with `--exclude-tsdown`: both blocks write `scripts.build` and `exports` in `package.json`.
+
+Or, this creates a [Next.js](https://nextjs.org) site that isn't built or published as a package:
+
+```shell
+npx create-typescript-app --add-nextjs --exclude-release-it --exclude-tsdown
+```
 
 See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.
 

@@ -1,29 +1,28 @@
 jobs:
-  are_the_types_wrong:
-    name: Are The Types Wrong?
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: ./.github/actions/prepare
       - run: pnpm build
-      - run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/prepare
-      - run: pnpm build
-      - run: node ./dist/index.mjs --version
-
-  dedupe_check:
-    name: Dedupe Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/prepare
-      - run: pnpm dedupe --check
+      - parallel:
+          - name: Are The Types Wrong?
+            run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only
+          - name: Build
+            run: node ./dist/index.mjs --version
+          - name: Dedupe Check
+            run: pnpm dedupe --check
+          - name: Format Check
+            run: pnpm format --list-different
+          - name: Lint
+            run: pnpm lint
+          - name: Lint Knip
+            run: pnpm lint:knip
+          - name: Lint Spelling
+            run: pnpm lint:spelling
+          - name: Type Check
+            run: pnpm tsc
 
   engines_check:
     name: Engines Check
@@ -37,39 +36,6 @@ jobs:
           node-version: 22.13.0
       - run: pnpm install --prod --engine-strict --ignore-scripts
 
-  format_check:
-    name: Format Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/prepare
-      - run: pnpm format --list-different
-
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/prepare
-      - run: pnpm build
-      - run: pnpm lint
-
-  lint_knip:
-    name: Lint Knip
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/prepare
-      - run: pnpm lint:knip
-
-  lint_spelling:
-    name: Lint Spelling
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/prepare
-      - run: pnpm lint:spelling
-
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -81,14 +47,6 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         if: always()
         uses: codecov/codecov-action@v3
-
-  type_check:
-    name: Type Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/prepare
-      - run: pnpm tsc
 
 name: CI
 

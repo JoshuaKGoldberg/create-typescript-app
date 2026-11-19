@@ -11,6 +11,7 @@ import {
 } from "./files/createMultiWorkflowFile.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { formatYaml } from "./files/formatYaml.ts";
+import { groupParallelJobs } from "./files/groupParallelJobs.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 
 export const blockGitHubActionsCI = base.createBlock({
@@ -57,6 +58,8 @@ export const blockGitHubActionsCI = base.createBlock({
 					],
 				},
 			].toSorted((a, b) => a.name.localeCompare(b.name));
+		const ciJobs =
+			jobsWithEnginesCheck && groupParallelJobs(jobsWithEnginesCheck);
 		const prReviewLabelsUses = resolveUses(
 			"JoshuaKGoldberg/pr-review-labels-action",
 			"v0.1.0",
@@ -66,7 +69,7 @@ export const blockGitHubActionsCI = base.createBlock({
 		return {
 			addons: [
 				blockRepositoryBranchRuleset({
-					requiredStatusChecks: jobsWithEnginesCheck?.map((job) => job.name),
+					requiredStatusChecks: ciJobs?.map((job) => job.name),
 				}),
 			],
 			files: {
@@ -111,9 +114,9 @@ export const blockGitHubActionsCI = base.createBlock({
 					},
 					workflows: {
 						"ci.yaml": withPreviously(
-							jobsWithEnginesCheck &&
+							ciJobs &&
 								createMultiWorkflowFile({
-									jobs: jobsWithEnginesCheck,
+									jobs: ciJobs,
 									name: "CI",
 									workflowsVersions: options.workflowsVersions,
 								}),

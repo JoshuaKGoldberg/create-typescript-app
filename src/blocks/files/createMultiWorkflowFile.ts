@@ -24,9 +24,11 @@ export interface MultiWorkflowJobOptions {
 	steps: MultiWorkflowJobStep[];
 }
 
-export type MultiWorkflowJobStep = { if?: string } & (
-	{ run: string } | { uses: string; with?: Record<string, string> }
-);
+export type MultiWorkflowJobStep =
+	| ({ if?: string; name?: string } & (
+			{ run: string } | { uses: string; with?: Record<string, string> }
+	  ))
+	| { parallel: MultiWorkflowJobStep[] };
 
 export function createMultiWorkflowFile({
 	jobs,

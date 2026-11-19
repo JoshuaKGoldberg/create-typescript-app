@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.77.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.77.0...2.77.1) (2026-11-19)
+
+### Bug Fixes
+
+- unlink issues in the same job after AgentScan and Anti-Slop close PRs ([#2652](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2652)) ([52b60c1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/52b60c130fed1c37bae4c56b988c5c8498ffb3ad)), closes [#2651](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2651)
+
 ## [2.77.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.76.1...2.77.0) (2026-11-19)
 
 ### Features

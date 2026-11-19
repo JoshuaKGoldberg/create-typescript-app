@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { isDeepStrictEqual } from "node:util";
 import sortKeys from "sort-keys";
 import { z } from "zod";
 import { CompilerOptionsSchema } from "zod-tsconfig";
@@ -6,6 +6,7 @@ import { CompilerOptionsSchema } from "zod-tsconfig";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
+import { isPlainObject } from "../utils/isPlainObject.ts";
 import { zActionStep } from "./actions/steps.ts";
 import { getPrimaryBin } from "./bin/getPrimaryBin.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
@@ -177,15 +178,7 @@ greet("Hello, world! ${options.emoji}");
 							strict: true,
 							target: "ES2023",
 							...(outDir && { outDir, rootDir: "src" }),
-							..._.mergeWith(
-								{},
-								existingCompilerOptions,
-								compilerOptions,
-								(existing: unknown, added: unknown) =>
-									Array.isArray(existing) && Array.isArray(added)
-										? _.unionWith(existing, added, (a, b) => _.isEqual(a, b))
-										: undefined,
-							),
+							...mergeOptions(existingCompilerOptions, compilerOptions),
 							...(outDir && { noEmit: undefined }),
 						}),
 						include: Array.from(new Set(["src", ...include])).sort(),
@@ -207,3 +200,35 @@ greet("Hello, world! ${options.emoji}");
 		};
 	},
 });
+
+function mergeOptions(
+	...sources: (Record<string, unknown> | undefined)[]
+): Record<string, unknown> {
+	const merged: Record<string, unknown> = {};
+
+	for (const source of sources) {
+		for (const [key, value] of Object.entries(source ?? {})) {
+			const existing = merged[key];
+
+			if (value === undefined) {
+				continue;
+			}
+
+			if (Array.isArray(existing) && Array.isArray(value)) {
+				merged[key] = [
+					...(existing as unknown[]),
+					...(value as unknown[]),
+				].filter(
+					(item, index, all) =>
+						all.findIndex((other) => isDeepStrictEqual(item, other)) === index,
+				);
+			} else if (isPlainObject(existing) && isPlainObject(value)) {
+				merged[key] = mergeOptions(existing, value);
+			} else {
+				merged[key] = value;
+			}
+		}
+	}
+
+	return merged;
+}

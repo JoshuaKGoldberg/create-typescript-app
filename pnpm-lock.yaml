@@ -223,9 +223,6 @@ importers:
       lazy-value:
         specifier: ^3.0.0
         version: 3.0.0
-      lodash:
-        specifier: ^4.18.1
-        version: 4.18.1
       marked:
         specifier: ^18.0.10
         version: 18.1.2
@@ -293,9 +290,6 @@ importers:
       '@types/html-to-text':
         specifier: 9.0.4
         version: 9.0.4
-      '@types/lodash':
-        specifier: 4.17.25
-        version: 4.17.25
       '@types/node':
         specifier: 26.6.2
         version: 26.6.2
@@ -1625,9 +1619,6 @@ packages:
 
   '@types/linkify-it@5.0.0':
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
-
-  '@types/lodash@4.17.25':
-    resolution: {integrity: sha512-+K1NIO8I+F9/wNulfVvu23QYd0Pe9/OCqRrim4NoYIf1VoEDL90Ve4ClzpyqBLc7NpGGWRvYNCKZ1BE/Jpf8dQ==}
 
   '@types/markdown-it@14.2.0':
     resolution: {integrity: sha512-NoQ2yGlLWj4wpxMs+TYmRKk3thDrQ97agr7sFqfLsAlvoS8SNQuTrlObhFqG9iugdTtgOE9jpJ6FNM4ZGsa5xQ==}
@@ -5752,8 +5743,6 @@ snapshots:
   '@types/katex@0.16.8': {}
 
   '@types/linkify-it@5.0.0': {}
-
-  '@types/lodash@4.17.25': {}
 
   '@types/markdown-it@14.2.0':
     dependencies:

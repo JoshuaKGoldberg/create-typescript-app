@@ -297,7 +297,7 @@ Maintainers and collaborators are skipped.
 [**anti-slop**](https://github.com/peakoss/anti-slop): runs a suite of quality checks on new pull requests, such as following the PR template, account age, and contribution history.
 PRs that fail too many checks are labeled `suspected ai slop` and closed with an explanatory comment.
 The PR template also gets a hidden honeypot instruction asking AI agents to include a term (by default, `SASSAFRAS`) that the action blocks.
-You can change the term with a `blockAntiSlop({ honeypot: "..." })` [addon](./Configuration%20Files.md#addons).
+You can change the term with a `blockAntiSlop({ honeypot: "..." })` [addon](./Configuration%20Files.md#addons), or turn the honeypot off with `blockAntiSlop({ honeypot: false })`.
 Maintainers, collaborators, bots, and draft PRs are exempt.
 
 ### Lint ESLint

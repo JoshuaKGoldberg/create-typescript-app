@@ -4,7 +4,6 @@ import { base } from "../base.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
-// The action's default labels input, as of the version used below.
 const defaultLabels = [
 	"agentscan:automated-account",
 	"agentscan:community-flagged",

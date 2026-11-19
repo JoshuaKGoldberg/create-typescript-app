@@ -15,7 +15,6 @@ export const blockAgentScan = base.createBlock({
 					words: ["agentscan", "MatteoGabriele"],
 				}),
 				blockSlopIssueUnlink({
-					// These are the action's default labels.
 					labels: [
 						"agentscan:automated-account",
 						"agentscan:community-flagged",

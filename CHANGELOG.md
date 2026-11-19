@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.75.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.2...2.75.3) (2026-11-19)
+
+### Bug Fixes
+
+- use existing action versions in blockCTATransitions ([#2640](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2640)) ([aeb97ce](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aeb97ce46ac04f70b3f3ffde8800e37b2f730310)), closes [#2639](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2639)
+
 ## [2.75.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.75.1...2.75.2) (2026-11-19)
 
 ### Performance Improvements

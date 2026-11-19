@@ -1,0 +1,24 @@
+jobs:
+  anti-slop:
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: peakoss/anti-slop@57858eead489d08b255fab2af45a506c2ca6eab2 # v0.3.0
+        with:
+          blocked-terms: SASSAFRAS
+          exempt-draft-prs: true
+          failure-add-pr-labels: suspected ai slop
+          failure-pr-message: Thanks for the PR! This repository's automated PR quality checks flagged it as likely low-quality or AI-generated, so it's been closed. If you believe that's a mistake, please comment with more context and a maintainer will take a look.
+          require-pr-template: true
+
+name: Anti-Slop
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - ready_for_review
+      - reopened

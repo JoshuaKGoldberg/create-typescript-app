@@ -1,4 +1,6 @@
 import { base } from "../base.ts";
+import { blockAgentScan } from "../blocks/blockAgentScan.ts";
+import { blockAntiSlop } from "../blocks/blockAntiSlop.ts";
 import { blockCSpell } from "../blocks/blockCSpell.ts";
 import { blockESLintComments } from "../blocks/blockESLintComments.ts";
 import { blockESLintJSDoc } from "../blocks/blockESLintJSDoc.ts";
@@ -21,6 +23,7 @@ import { blockPrettierPluginPaddingLines } from "../blocks/blockPrettierPluginPa
 import { blockPrettierPluginSentencesPerLine } from "../blocks/blockPrettierPluginSentencesPerLine.ts";
 import { blockPrettierPluginSh } from "../blocks/blockPrettierPluginSh.ts";
 import { blockRenovate } from "../blocks/blockRenovate.ts";
+import { blockSlopIssueUnlink } from "../blocks/blockSlopIssueUnlink.ts";
 import { blockVSCode } from "../blocks/blockVSCode.ts";
 import { presetCommon } from "./common.ts";
 
@@ -32,6 +35,8 @@ export const presetEverything = base.createPreset({
 	},
 	blocks: [
 		...presetCommon.blocks,
+		blockAgentScan,
+		blockAntiSlop,
 		blockCSpell,
 		blockESLintComments,
 		blockESLintJSDoc,
@@ -54,6 +59,7 @@ export const presetEverything = base.createPreset({
 		blockPrettierPluginSentencesPerLine,
 		blockPrettierPluginSh,
 		blockRenovate,
+		blockSlopIssueUnlink,
 		blockVSCode,
 	],
 });

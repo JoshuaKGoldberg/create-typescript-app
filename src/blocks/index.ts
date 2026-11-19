@@ -1,4 +1,6 @@
+import { blockAgentScan } from "./blockAgentScan.ts";
 import { blockAllContributors } from "./blockAllContributors.ts";
+import { blockAntiSlop } from "./blockAntiSlop.ts";
 import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
 import { blockBin } from "./blockBin.ts";
 import { blockCodecov } from "./blockCodecov.ts";
@@ -43,6 +45,7 @@ import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { blockRenovate } from "./blockRenovate.ts";
 import { blockSecurityDocs } from "./blockSecurityDocs.ts";
 import { blockSideEffects } from "./blockSideEffects.ts";
+import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 import { blockTemplatedWith } from "./blockTemplatedWith.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
@@ -51,7 +54,9 @@ import { blockVSCode } from "./blockVSCode.ts";
 import { blockWebExt } from "./blockWebExt.ts";
 
 export const blocks = {
+	blockAgentScan,
 	blockAllContributors,
+	blockAntiSlop,
 	blockAreTheTypesWrong,
 	blockBin,
 	blockCodecov,
@@ -96,6 +101,7 @@ export const blocks = {
 	blockRenovate,
 	blockSecurityDocs,
 	blockSideEffects,
+	blockSlopIssueUnlink,
 	blockTemplatedWith,
 	blockTSDown,
 	blockTypeScript,
@@ -104,7 +110,9 @@ export const blocks = {
 	blockWebExt,
 };
 
+export { blockAgentScan } from "./blockAgentScan.ts";
 export { blockAllContributors } from "./blockAllContributors.ts";
+export { blockAntiSlop } from "./blockAntiSlop.ts";
 export { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
 export { blockBin } from "./blockBin.ts";
 export { blockCodecov } from "./blockCodecov.ts";
@@ -150,6 +158,7 @@ export { blockReleaseIt } from "./blockReleaseIt.ts";
 export { blockRenovate } from "./blockRenovate.ts";
 export { blockSecurityDocs } from "./blockSecurityDocs.ts";
 export { blockSideEffects } from "./blockSideEffects.ts";
+export { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 export { blockTemplatedWith } from "./blockTemplatedWith.ts";
 export { blockTSDown } from "./blockTSDown.ts";
 export { blockTypeScript } from "./blockTypeScript.ts";

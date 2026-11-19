@@ -1,0 +1,16 @@
+jobs:
+  slop_issue_unlink:
+    if: ${{ !github.event.pull_request.merged }}
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JoshuaKGoldberg/slop-issue-unlink-action@3f4a93908b74468ddfd1e59b0bc3aca1321eb617 # v0.2.0
+
+name: Slop Issue Unlink
+
+on:
+  pull_request_target:
+    types:
+      - closed
+      - labeled

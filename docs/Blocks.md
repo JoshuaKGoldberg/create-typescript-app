@@ -7,7 +7,9 @@ This table summarizes each block and which base levels they're included in:
 
 | Block                              | Flags                                                                                      | Minimal | Common | Everything |
 | ---------------------------------- | ------------------------------------------------------------------------------------------ | ------- | ------ | ---------- |
+| AgentScan                          | `--add-agentscan`, `--exclude-agentscan`                                                   |         |        | 💯         |
 | AllContributors                    | `--add-allcontributors`, `--exclude-allcontributors`                                       |         | ✅     | 💯         |
+| Anti-Slop                          | `--add-anti-slop`, `--exclude-anti-slop`                                                   |         |        | 💯         |
 | Are The Types Wrong                | `--add-are-the-types-wrong`, `--exclude-are-the-types-wrong`                               |         |        |            |
 | Bin                                | `--add-bin`, `--exclude-bin`                                                               | ✔️      | ✅     | 💯         |
 | Contributing Docs                  | `--add-contributing-docs`, `--exclude-contributing-docs`                                   | ✔️      | ✅     | 💯         |
@@ -53,6 +55,7 @@ This table summarizes each block and which base levels they're included in:
 | Renovate                           | `--add-renovate`, `--exclude-renovate`                                                     |         |        | 💯         |
 | Security Docs                      | `--add-security-docs`, `--exclude-security-docs`                                           | ✔️      | ✅     | 💯         |
 | Side Effects                       | `--add-side-effects`, `--exclude-side-effects`                                             | ✔️      | ✅     | 💯         |
+| Slop Issue Unlink                  | `--add-slop-issue-unlink`, `--exclude-slop-issue-unlink`                                   |         |        | 💯         |
 | Templated With                     | `--add-templated-with`, `--exclude-templated-with`                                         | ✔️      | ✅     | 💯         |
 | TSDown                             | `--add-tsdown`, `--exclude-tsdown`                                                         | ✔️      | ✅     | 💯         |
 | TypeScript                         | `--add-typescript`, `--exclude-typescript`                                                 | ✔️      | ✅     | 💯         |
@@ -268,6 +271,8 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Renovate](#renovate)
     - [Testing](#testing)
   - ["Everything" Base Level](#everything-base-level)
+    - [AgentScan](#agentscan)
+    - [Anti-Slop](#anti-slop)
     - [Lint ESLint](#lint-eslint)
     - [Lint JSDoc](#lint-jsdoc)
     - [Lint JSON](#lint-json)
@@ -280,6 +285,20 @@ Using the _"everything"_ level will gain you comprehensive, strict coverage of a
     - [Lint Stylistic](#lint-stylistic)
     - [Lint YML](#lint-yml)
     - [OctoGuide Strict](#octoguide-strict)
+    - [Slop Issue Unlink](#slop-issue-unlink)
+
+### AgentScan
+
+[**AgentScan**](https://github.com/MatteoGabriele/agentscan-action): flags new issues and pull requests from accounts whose public activity looks automated, and closes ones from accounts it classifies as automation.
+Maintainers and collaborators are skipped.
+
+### Anti-Slop
+
+[**anti-slop**](https://github.com/peakoss/anti-slop): runs a suite of quality checks on new pull requests, such as following the PR template, account age, and contribution history.
+PRs that fail too many checks are labeled `suspected ai slop` and closed with an explanatory comment.
+The PR template also gets a hidden honeypot instruction asking AI agents to include a term (by default, `SASSAFRAS`) that the action blocks.
+You can change the term with a `blockAntiSlop({ honeypot: "..." })` [addon](./Configuration%20Files.md#addons), or turn the honeypot off with `blockAntiSlop({ honeypot: false })`.
+Maintainers, collaborators, bots, and draft PRs are exempt.
 
 ### Lint ESLint
 
@@ -342,3 +361,7 @@ Enables [typescript-eslint's stylistic configs](https://typescript-eslint.io/lin
 ### OctoGuide Strict
 
 [**OctoGuide's Strict Config**](https://octo.guide/configs#rules-table): additionally enforces enforcing semantic pull request conventions.
+
+### Slop Issue Unlink
+
+[**slop-issue-unlink-action**](https://github.com/marketplace/actions/slop-issue-unlink-action): removes links between issues and closed, unmerged PRs labeled by [AgentScan](#agentscan) or [Anti-Slop](#anti-slop), so those issues don't keep showing the slop PRs as linked.

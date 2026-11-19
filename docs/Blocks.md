@@ -70,6 +70,8 @@ For example, this uses ncc instead of the default tsdown builder:
 npx create-typescript-app --add-ncc --exclude-tsdown
 ```
 
+The Vite block is another builder alternative, so pass `--add-vite` together with `--exclude-tsdown`: both blocks write `scripts.build` and `exports` in `package.json`.
+
 See also [CLI](./CLI.md) for customizing templated repositories when running `npx create-typescript-app`.
 
 ## "Minimal" Base Level

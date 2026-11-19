@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.82.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.81.1...2.82.0) (2026-11-19)
+
+### Features
+
+- switch from lint-staged to pretty-quick ([#2565](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2565)) ([88540de](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/88540de334fc9158505a44f8a607cbabf569cbea)), closes [#2364](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2364)
+
 ## [2.81.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.81.0...2.81.1) (2026-11-19)
 
 ### Bug Fixes

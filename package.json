@@ -1,6 +1,6 @@
 {
 	"name": "create-typescript-app",
-	"version": "2.81.0",
+	"version": "2.81.1",
 	"description": "Quickstart-friendly TypeScript template with comprehensive, configurable, opinionated tooling. 🎁",
 	"repository": {
 		"type": "git",
@@ -26,11 +26,8 @@
 		"lint": "eslint . --max-warnings 0",
 		"lint:knip": "knip",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
-		"prepare": "simple-git-hooks",
+		"prepare": "husky",
 		"test": "vitest"
-	},
-	"simple-git-hooks": {
-		"pre-commit": "pnpm pretty-quick --staged"
 	},
 	"dependencies": {
 		"@prettier/sync": "^0.6.1",
@@ -96,6 +93,7 @@
 		"eslint-plugin-perfectionist": "5.13.0",
 		"eslint-plugin-regexp": "3.3.1",
 		"eslint-plugin-yml": "3.9.0",
+		"husky": "9.1.7",
 		"jiti": "2.7.0",
 		"knip": "6.44.0",
 		"prettier-plugin-curly": "0.4.1",
@@ -105,7 +103,6 @@
 		"prettier-plugin-sh": "0.20.0",
 		"pretty-quick": "4.2.2",
 		"release-it": "21.1.0",
-		"simple-git-hooks": "2.14.0",
 		"tsdown": "0.23.0",
 		"typescript": "5.9.3",
 		"typescript-eslint": "8.71.0",

@@ -7,7 +7,6 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
-import { blockPnpmWorkspace } from "./blockPnpmWorkspace.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
@@ -74,23 +73,13 @@ pnpm format --write
 					properties: {
 						devDependencies: getPackageDependencies(
 							...plugins.filter((plugin) => !plugin.startsWith(".")),
+							"husky",
 							"prettier",
 							"pretty-quick",
-							"simple-git-hooks",
 						),
 						scripts: {
 							format: "prettier .",
-							prepare: "simple-git-hooks",
-						},
-						"simple-git-hooks": {
-							"pre-commit": "pnpm pretty-quick --staged",
-						},
-					},
-				}),
-				blockPnpmWorkspace({
-					properties: {
-						allowBuilds: {
-							"simple-git-hooks": false,
+							prepare: "husky",
 						},
 					},
 				}),
@@ -100,8 +89,12 @@ pnpm format --write
 				}),
 			],
 			files: {
+				".husky": {
+					".gitignore": "_\n",
+					"pre-commit": ["npx pretty-quick --staged\n", { executable: true }],
+				},
 				".prettierignore": formatIgnoreFile(
-					["/dist", "/pnpm-lock.yaml", ...ignores].sort(),
+					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
 				),
 				"prettier.config.ts": withPreviously(
 					formatFile(
@@ -138,13 +131,11 @@ export default ${JSON.stringify({
 					dependencies: [
 						"eslint-config-prettier",
 						"eslint-plugin-prettier",
-						"husky",
 						"lint-staged",
 					],
 				}),
 				blockRemoveFiles({
 					files: [
-						".husky",
 						".lintstagedrc*",
 						".prettierrc*",
 						"lint-staged.config.*",
@@ -154,13 +145,6 @@ export default ${JSON.stringify({
 				blockRemoveWorkflows({
 					workflows: ["format", "prettier"],
 				}),
-			],
-			scripts: [
-				{
-					commands: ["git config --unset core.hooksPath ^\\.husky"],
-					phase: CommandPhase.Migrations,
-					silent: true,
-				},
 			],
 		};
 	},

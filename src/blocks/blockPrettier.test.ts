@@ -73,30 +73,17 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
+			            "husky": "0.0.0-mock",
 			            "prettier": "0.0.0-mock",
 			            "pretty-quick": "0.0.0-mock",
-			            "simple-git-hooks": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "format": "prettier .",
-			            "prepare": "simple-git-hooks",
-			          },
-			          "simple-git-hooks": {
-			            "pre-commit": "pnpm pretty-quick --staged",
+			            "prepare": "husky",
 			          },
 			        },
 			      },
 			      "block": "[Block Package JSON]",
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "allowBuilds": {
-			            "simple-git-hooks": false,
-			          },
-			        },
-			      },
-			      "block": "[Block pnpm Workspace]",
 			    },
 			    {
 			      "addons": {
@@ -111,7 +98,19 @@ describe(blockPrettier, () => {
 			    },
 			  ],
 			  "files": {
-			    ".prettierignore": "/dist
+			    ".husky": {
+			      ".gitignore": "_
+			",
+			      "pre-commit": [
+			        "npx pretty-quick --staged
+			",
+			        {
+			          "executable": true,
+			        },
+			      ],
+			    },
+			    ".prettierignore": "/.husky
+			/dist
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": [
@@ -193,31 +192,18 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
+			            "husky": "0.0.0-mock",
 			            "prettier": "0.0.0-mock",
 			            "pretty-quick": "0.0.0-mock",
-			            "simple-git-hooks": "0.0.0-mock",
 			          },
 			          "lint-staged": undefined,
 			          "scripts": {
 			            "format": "prettier .",
-			            "prepare": "simple-git-hooks",
-			          },
-			          "simple-git-hooks": {
-			            "pre-commit": "pnpm pretty-quick --staged",
+			            "prepare": "husky",
 			          },
 			        },
 			      },
 			      "block": "[Block Package JSON]",
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "allowBuilds": {
-			            "simple-git-hooks": false,
-			          },
-			        },
-			      },
-			      "block": "[Block pnpm Workspace]",
 			    },
 			    {
 			      "addons": {
@@ -235,7 +221,6 @@ describe(blockPrettier, () => {
 			        "dependencies": [
 			          "eslint-config-prettier",
 			          "eslint-plugin-prettier",
-			          "husky",
 			          "lint-staged",
 			        ],
 			      },
@@ -244,7 +229,6 @@ describe(blockPrettier, () => {
 			    {
 			      "addons": {
 			        "files": [
-			          ".husky",
 			          ".lintstagedrc*",
 			          ".prettierrc*",
 			          "lint-staged.config.*",
@@ -264,7 +248,19 @@ describe(blockPrettier, () => {
 			    },
 			  ],
 			  "files": {
-			    ".prettierignore": "/dist
+			    ".husky": {
+			      ".gitignore": "_
+			",
+			      "pre-commit": [
+			        "npx pretty-quick --staged
+			",
+			        {
+			          "executable": true,
+			        },
+			      ],
+			    },
+			    ".prettierignore": "/.husky
+			/dist
 			/pnpm-lock.yaml
 			",
 			    "prettier.config.ts": [
@@ -285,13 +281,6 @@ describe(blockPrettier, () => {
 			        "pnpm format --write",
 			      ],
 			      "phase": 4,
-			    },
-			    {
-			      "commands": [
-			        "git config --unset core.hooksPath ^\\.husky",
-			      ],
-			      "phase": 0,
-			      "silent": true,
 			    },
 			  ],
 			}
@@ -366,33 +355,20 @@ describe(blockPrettier, () => {
 			      "addons": {
 			        "properties": {
 			          "devDependencies": {
+			            "husky": "0.0.0-mock",
 			            "prettier": "0.0.0-mock",
 			            "prettier-plugin-curly": "0.0.0-mock",
 			            "prettier-plugin-packagejson": "0.0.0-mock",
 			            "prettier-plugin-sh": "0.0.0-mock",
 			            "pretty-quick": "0.0.0-mock",
-			            "simple-git-hooks": "0.0.0-mock",
 			          },
 			          "scripts": {
 			            "format": "prettier .",
-			            "prepare": "simple-git-hooks",
-			          },
-			          "simple-git-hooks": {
-			            "pre-commit": "pnpm pretty-quick --staged",
+			            "prepare": "husky",
 			          },
 			        },
 			      },
 			      "block": "[Block Package JSON]",
-			    },
-			    {
-			      "addons": {
-			        "properties": {
-			          "allowBuilds": {
-			            "simple-git-hooks": false,
-			          },
-			        },
-			      },
-			      "block": "[Block pnpm Workspace]",
 			    },
 			    {
 			      "addons": {
@@ -407,7 +383,19 @@ describe(blockPrettier, () => {
 			    },
 			  ],
 			  "files": {
-			    ".prettierignore": "/dist
+			    ".husky": {
+			      ".gitignore": "_
+			",
+			      "pre-commit": [
+			        "npx pretty-quick --staged
+			",
+			        {
+			          "executable": true,
+			        },
+			      ],
+			    },
+			    ".prettierignore": "/.husky
+			/dist
 			/pnpm-lock.yaml
 			generated
 			",

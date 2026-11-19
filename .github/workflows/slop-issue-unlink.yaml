@@ -5,7 +5,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: JoshuaKGoldberg/slop-issue-unlink-action@3f4a93908b74468ddfd1e59b0bc3aca1321eb617 # v0.2.0
+      - uses: JoshuaKGoldberg/slop-issue-unlink-action@346a2ebcee0728154050e233fd908ea2550bb93c # v0.3.0
 
 name: Slop Issue Unlink
 

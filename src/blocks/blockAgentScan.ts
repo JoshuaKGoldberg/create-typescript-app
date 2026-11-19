@@ -1,25 +1,35 @@
+import { z } from "zod";
+
 import { base } from "../base.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
+import { zActionStep } from "./actions/steps.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
+
+export const agentScanLabels: readonly string[] = [
+	"agentscan:automated-account",
+	"agentscan:community-flagged",
+	"agentscan:mixed-signals",
+];
 
 export const blockAgentScan = base.createBlock({
 	about: {
 		name: "AgentScan",
 	},
-	produce({ options }) {
+	addons: {
+		actionSteps: z.array(zActionStep).default([]),
+	},
+	produce({ addons, options }) {
+		const { actionSteps } = addons;
+
 		return {
 			addons: [
 				blockCSpell({
 					words: ["agentscan", "MatteoGabriele"],
 				}),
 				blockSlopIssueUnlink({
-					labels: [
-						"agentscan:automated-account",
-						"agentscan:community-flagged",
-						"agentscan:mixed-signals",
-					],
+					labels: [...agentScanLabels],
 				}),
 			],
 			files: {
@@ -61,6 +71,7 @@ export const blockAgentScan = base.createBlock({
 										"trusted-author-associations": "collaborator,member,owner",
 									},
 								},
+								...actionSteps,
 							],
 						}),
 					},

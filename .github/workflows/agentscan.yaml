@@ -16,6 +16,12 @@ jobs:
           message-mixed: This account's recent GitHub activity shows some signs of automation. A maintainer will take a look.
           scan-issues: true
           trusted-author-associations: collaborator,member,owner
+      - uses: JoshuaKGoldberg/slop-issue-unlink-action@346a2ebcee0728154050e233fd908ea2550bb93c # v0.3.0
+        with:
+          labels: |-
+            agentscan:automated-account
+            agentscan:community-flagged
+            agentscan:mixed-signals
 
 name: AgentScan
 

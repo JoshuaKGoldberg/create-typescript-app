@@ -1,7 +1,11 @@
+import { BlockWithAddons } from "bingo-stratum";
 import { z } from "zod";
 
-import { base } from "../base.ts";
+import { base, BaseOptions } from "../base.ts";
+import { WorkflowsVersions } from "../schemas.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
+import { agentScanLabels, blockAgentScan } from "./blockAgentScan.ts";
+import { antiSlopFailureLabel, blockAntiSlop } from "./blockAntiSlop.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 
 const defaultLabels = [
@@ -11,7 +15,11 @@ const defaultLabels = [
 	"suspected ai slop",
 ];
 
-export const blockSlopIssueUnlink = base.createBlock({
+// Explicitly typed to break the type cycle with the blocks it adds steps to.
+export const blockSlopIssueUnlink: BlockWithAddons<
+	{ labels: string[] },
+	BaseOptions
+> = base.createBlock({
 	about: {
 		name: "Slop Issue Unlink",
 	},
@@ -19,16 +27,24 @@ export const blockSlopIssueUnlink = base.createBlock({
 		labels: z.array(z.string()).default([]),
 	},
 	produce({ addons, options }) {
-		const labels = addons.labels.toSorted();
-		if (!labels.length) {
+		if (!addons.labels.length) {
 			return {};
 		}
 
-		const usesDefaultLabels =
-			labels.length === defaultLabels.length &&
-			labels.every((label, i) => label === defaultLabels[i]);
+		const createStep = (labels: readonly string[]) =>
+			createUnlinkStep(labels, options.workflowsVersions);
 
 		return {
+			// Closures made with GITHUB_TOKEN don't trigger other workflows,
+			// so the actions that close slop also unlink in the same job.
+			addons: [
+				blockAgentScan({
+					actionSteps: [createStep(agentScanLabels)],
+				}),
+				blockAntiSlop({
+					actionSteps: [createStep([antiSlopFailureLabel])],
+				}),
+			],
 			files: {
 				".github": {
 					workflows: {
@@ -43,20 +59,7 @@ export const blockSlopIssueUnlink = base.createBlock({
 							permissions: {
 								"pull-requests": "write",
 							},
-							steps: [
-								{
-									uses: resolveUses(
-										"JoshuaKGoldberg/slop-issue-unlink-action",
-										"v0.2.0",
-										options.workflowsVersions,
-									),
-									...(!usesDefaultLabels && {
-										with: {
-											labels: labels.join("\n"),
-										},
-									}),
-								},
-							],
+							steps: [createStep(addons.labels)],
 						}),
 					},
 				},
@@ -64,3 +67,26 @@ export const blockSlopIssueUnlink = base.createBlock({
 		};
 	},
 });
+
+function createUnlinkStep(
+	labels: readonly string[],
+	workflowsVersions: undefined | WorkflowsVersions,
+) {
+	const sorted = labels.toSorted();
+	const usesDefaultLabels =
+		sorted.length === defaultLabels.length &&
+		sorted.every((label, i) => label === defaultLabels[i]);
+
+	return {
+		uses: resolveUses(
+			"JoshuaKGoldberg/slop-issue-unlink-action",
+			"v0.3.0",
+			workflowsVersions,
+		),
+		...(!usesDefaultLabels && {
+			with: {
+				labels: sorted.join("\n"),
+			},
+		}),
+	};
+}

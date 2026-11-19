@@ -63,10 +63,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -169,10 +169,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -275,6 +275,8 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
+			        with:
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - uses: actions/setup-node@v4
 			        with:
@@ -287,6 +289,8 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
+			        with:
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - env:
 			          VAR_ENV: 'true'
@@ -302,6 +306,9 @@ describe(blockGitHubActionsCI, () => {
 			  push:
 			    branches:
 			      - main
+
+			permissions:
+			  contents: read
 			",
 			          {
 			            "previously": [
@@ -322,10 +329,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -437,6 +444,7 @@ describe(blockGitHubActionsCI, () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: '0'
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - uses: ./
 			        with:
@@ -447,6 +455,8 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
+			        with:
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm build
 
@@ -455,6 +465,8 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
+			        with:
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - uses: actions/setup-node@v4
 			        with:
@@ -469,6 +481,9 @@ describe(blockGitHubActionsCI, () => {
 			  push:
 			    branches:
 			      - main
+
+			permissions:
+			  contents: read
 			",
 			          {
 			            "previously": [
@@ -489,10 +504,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:
@@ -615,6 +630,7 @@ describe(blockGitHubActionsCI, () => {
 			      - uses: actions/checkout@v4
 			        with:
 			          fetch-depth: '0'
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - uses: ./
 
@@ -623,6 +639,8 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
+			        with:
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm build
 			      - parallel:
@@ -638,6 +656,8 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
+			        with:
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - uses: actions/setup-node@v4
 			        with:
@@ -650,6 +670,8 @@ describe(blockGitHubActionsCI, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - uses: actions/checkout@v4
+			        with:
+			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
 			      - run: pnpm run test --coverage
 			      - if: always()
@@ -662,6 +684,9 @@ describe(blockGitHubActionsCI, () => {
 			  push:
 			    branches:
 			      - main
+
+			permissions:
+			  contents: read
 			",
 			          {
 			            "previously": [
@@ -682,10 +707,10 @@ describe(blockGitHubActionsCI, () => {
 			name: PR Review Labels
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - review_requested
-			  workflow_run:
+			  workflow_run: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - completed
 			    workflows:

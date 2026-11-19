@@ -7,6 +7,7 @@ import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockVitest } from "./blockVitest.ts";
+import { blockZizmor } from "./blockZizmor.ts";
 import {
 	codecovTokenSecret,
 	findCodecovStep,
@@ -79,6 +80,11 @@ export const blockCodecov = base.createBlock({
 							),
 						},
 					],
+				}),
+				blockZizmor({
+					rules: {
+						"ref-confusion": { ignore: ["ci.yaml"] },
+					},
 				}),
 			],
 		};

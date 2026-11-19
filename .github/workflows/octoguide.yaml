@@ -24,7 +24,7 @@ on:
       - created
       - deleted
       - edited
-  issue_comment:
+  issue_comment: # zizmor: ignore[dangerous-triggers]
     types:
       - created
       - deleted
@@ -38,7 +38,7 @@ on:
       - created
       - deleted
       - edited
-  pull_request_target:
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     types:
       - edited
       - opened

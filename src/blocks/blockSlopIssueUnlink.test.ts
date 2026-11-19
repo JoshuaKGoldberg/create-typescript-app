@@ -72,7 +72,7 @@ describe(blockSlopIssueUnlink, () => {
 			name: Slop Issue Unlink
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - closed
 			      - labeled
@@ -144,7 +144,7 @@ describe(blockSlopIssueUnlink, () => {
 			name: Slop Issue Unlink
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - closed
 			      - labeled
@@ -222,7 +222,7 @@ describe(blockSlopIssueUnlink, () => {
 			name: Slop Issue Unlink
 
 			on:
-			  pull_request_target:
+			  pull_request_target: # zizmor: ignore[dangerous-triggers]
 			    types:
 			      - closed
 			      - labeled

@@ -251,7 +251,7 @@ describe(blockVite, () => {
 			});
 		});
 
-		test("carries intaken settings into vite.config.ts", () => {
+		test("carries existing settings into vite.config.ts", () => {
 			const creation = testBlock(blockVite, {
 				addons: {
 					build: {

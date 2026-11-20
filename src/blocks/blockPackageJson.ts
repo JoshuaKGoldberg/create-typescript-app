@@ -13,6 +13,8 @@ import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { CommandPhase } from "./phases.ts";
 
 const PackageJsonWithNullableScripts = PackageJson.partial().extend({
+	// pnpm's devEngines.runtime also allows onFail: "download"
+	devEngines: z.record(z.string(), z.unknown()).optional(),
 	scripts: z
 		.record(z.string(), z.union([z.string(), z.undefined()]))
 		.optional(),

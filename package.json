@@ -111,5 +111,12 @@
 	"packageManager": "pnpm@12.17.0",
 	"engines": {
 		"node": "^22.13.0 || ^24.11.0 || >=26.0.0"
+	},
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"onFail": "download",
+			"version": "24.22.1"
+		}
 	}
 }

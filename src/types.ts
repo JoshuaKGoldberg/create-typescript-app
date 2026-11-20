@@ -16,6 +16,7 @@ export interface PartialPackageData {
 	dependencies?: Record<string, string>;
 	description?: string;
 	devDependencies?: Record<string, string>;
+	devEngines?: { runtime?: { name?: string; version?: string } };
 	email?: string;
 	engines?: { node?: string };
 	keywords?: string[];

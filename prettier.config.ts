@@ -1,7 +1,6 @@
 import type { Config } from "prettier";
 
 export default {
-	overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 	plugins: [
 		"prettier-plugin-curly",
 		"prettier-plugin-packagejson",

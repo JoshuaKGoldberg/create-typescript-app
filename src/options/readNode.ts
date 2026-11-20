@@ -6,12 +6,15 @@ export async function readNode(
 	getNvmrc: () => Promise<Error | string>,
 	getPackageDataFull: () => Promise<PartialPackageData>,
 ) {
-	const { engines } = await getPackageDataFull();
+	const { devEngines, engines } = await getPackageDataFull();
 
 	return {
 		minimum:
 			(engines?.node && /\d/u.test(engines.node) && engines.node) ||
 			defaults.node.minimum,
-		pinned: swallowError(await getNvmrc())?.trim() || defaults.node.pinned,
+		pinned:
+			(devEngines?.runtime?.name === "node" && devEngines.runtime.version) ||
+			swallowError(await getNvmrc())?.trim() ||
+			defaults.node.pinned,
 	};
 }

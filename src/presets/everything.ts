@@ -14,9 +14,9 @@ import { blockESLintPerfectionist } from "../blocks/blockESLintPerfectionist.ts"
 import { blockESLintRegexp } from "../blocks/blockESLintRegexp.ts";
 import { blockESLintYML } from "../blocks/blockESLintYML.ts";
 import { blockKnip } from "../blocks/blockKnip.ts";
-import { blockNvmrc } from "../blocks/blockNvmrc.ts";
 import { blockOctoGuideStrict } from "../blocks/blockOctoGuideStrict.ts";
 import { blockPnpmDedupe } from "../blocks/blockPnpmDedupe.ts";
+import { blockPnpmDevEngines } from "../blocks/blockPnpmDevEngines.ts";
 import { blockPrettierPluginCurly } from "../blocks/blockPrettierPluginCurly.ts";
 import { blockPrettierPluginPackageJson } from "../blocks/blockPrettierPluginPackageJson.ts";
 import { blockPrettierPluginPaddingLines } from "../blocks/blockPrettierPluginPaddingLines.ts";
@@ -51,8 +51,8 @@ export const presetEverything = base.createPreset({
 		blockESLintRegexp,
 		blockESLintYML,
 		blockKnip,
-		blockNvmrc,
 		blockPnpmDedupe,
+		blockPnpmDevEngines,
 		blockOctoGuideStrict,
 		blockPrettierPluginCurly,
 		blockPrettierPluginPackageJson,

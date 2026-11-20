@@ -71,5 +71,32 @@ describe(readNode, () => {
 
 			expect(pinned).toBe(nvmrc);
 		});
+
+		it("uses devEngines.runtime.version when its runtime is node", async () => {
+			const getNvmrc = vi.fn();
+
+			const { pinned } = await readNode(getNvmrc, () =>
+				Promise.resolve({
+					devEngines: { runtime: { name: "node", version: "24.5.6" } },
+				}),
+			);
+
+			expect(pinned).toBe("24.5.6");
+			expect(getNvmrc).not.toHaveBeenCalled();
+		});
+
+		it("ignores devEngines.runtime.version when its runtime is not node", async () => {
+			const nvmrc = "23.4.5";
+
+			const { pinned } = await readNode(
+				() => Promise.resolve(nvmrc),
+				() =>
+					Promise.resolve({
+						devEngines: { runtime: { name: "bun", version: "1.2.3" } },
+					}),
+			);
+
+			expect(pinned).toBe(nvmrc);
+		});
 	});
 });

@@ -40,11 +40,12 @@ This table summarizes each block and which base levels they're included in:
 | MIT License                        | `--add-mit-license`, `--exclude-mit-license`                                               | ✔️      | ✅     | 💯         |
 | ncc                                | `--add-ncc`, `--exclude-ncc`                                                               |         |        |            |
 | NextJS                             | `--add-nextjs`, `--exclude-nextjs`                                                         |         |        |            |
-| nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        | 💯         |
+| nvmrc                              | `--add-nvmrc`, `--exclude-nvmrc`                                                           |         |        |            |
 | OctoGuide                          | `--add-octoguide`, `--exclude-octoguide`                                                   |         | ✅     | 💯         |
 | OctoGuide Strict                   | `--add-octoguide-strict`, `--exclude-octoguide-strict`                                     |         |        | 💯         |
 | Package JSON                       | `--add-package-json`, `--exclude-package-json`                                             | ✔️      | ✅     | 💯         |
 | pnpm Dedupe                        | `--add-pnpm-dedupe`, `--exclude-pnpm-dedupe`                                               |         |        | 💯         |
+| pnpm Dev Engines                   | `--add-pnpm-dev-engines`, `--exclude-pnpm-dev-engines`                                     |         |        | 💯         |
 | Prettier                           | `--add-prettier`, `--exclude-prettier`                                                     | ✔️      | ✅     | 💯         |
 | Prettier Plugin Curly              | `--add-prettier-plugin-curly`, `--exclude-prettier-plugin-curly`                           |         |        | 💯         |
 | Prettier Plugin Package JSON       | `--add-prettier-plugin-package-json`, `--exclude-prettier-plugin-package-json`             |         |        | 💯         |

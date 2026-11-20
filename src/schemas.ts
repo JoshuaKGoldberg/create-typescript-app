@@ -17,14 +17,12 @@ export const zContributor = z.object({
 
 export type Contributor = z.infer<typeof zContributor>;
 
-export const zReadme = z.object({
+const zReadme = z.object({
 	additional: z.string().optional(),
 	explainer: z.string().optional(),
 	footnotes: z.string().optional(),
 	usage: z.string().optional(),
 });
-
-export type Readme = z.infer<typeof zReadme>;
 
 export const zDocumentation = z.object({
 	development: z.string().optional(),
@@ -33,16 +31,12 @@ export const zDocumentation = z.object({
 
 export type Documentation = z.infer<typeof zDocumentation>;
 
-export const zWorkflowVersion = z.object({
+const zWorkflowVersion = z.object({
 	hash: z.string().optional(),
 	pinned: z.boolean().optional(),
 });
 
-export type WorkflowVersion = z.infer<typeof zWorkflowVersion>;
-
-export const zWorkflowVersions = z.record(z.string(), zWorkflowVersion);
-
-export type WorkflowVersions = z.infer<typeof zWorkflowVersions>;
+const zWorkflowVersions = z.record(z.string(), zWorkflowVersion);
 
 export const zWorkflowsVersions = z.record(z.string(), zWorkflowVersions);
 

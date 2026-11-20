@@ -124,7 +124,7 @@ describe(blockTSDown, () => {
 			    "tsdown.config.ts": [
 			      "import { defineConfig } from "tsdown";
 
-			export default defineConfig({ entry: ["src/**/*.ts"], unbundle: true });
+			export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
 			",
 			      {
 			        "previously": [
@@ -260,7 +260,7 @@ describe(blockTSDown, () => {
 			      "import { defineConfig } from "tsdown";
 
 			export default defineConfig({
-				entry: ["src/**/*.ts", "src/other.ts"],
+				entry: ["src/index.ts", "src/other.ts"],
 				unbundle: true,
 				dts: false,
 			});
@@ -292,7 +292,7 @@ describe(blockTSDown, () => {
 				`import { defineConfig } from "tsdown";
 
 export default defineConfig({
-	entry: ["src/**/*.ts"],
+	entry: ["src/index.ts"],
 	unbundle: true,
 	outDir: "build",
 });
@@ -467,7 +467,7 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			    "tsdown.config.ts": [
 			      "import { defineConfig } from "tsdown";
 
-			export default defineConfig({ entry: ["src/**/*.ts"], unbundle: true });
+			export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
 			",
 			      {
 			        "previously": [
@@ -519,6 +519,21 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			});
 
 			expect(actual).toEqual({ entry, properties: { fixedExtension: false } });
+		});
+
+		it("drops exclusion globs from entry when tsdown.config.ts contains them", () => {
+			const actual = testIntake(blockTSDown, {
+				files: {
+					"tsdown.config.ts": [
+						`defineConfig(${JSON.stringify({ entry: ["src/**/*.ts", "!src/**/*.test.*", "src/other.ts"] })})`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				entry: ["src/other.ts"],
+				properties: { fixedExtension: false },
+			});
 		});
 
 		it.each(["src/**/*.ts", "src/index.ts"])(

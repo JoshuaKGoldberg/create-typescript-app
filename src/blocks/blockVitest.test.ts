@@ -214,14 +214,6 @@ describe(blockVitest, () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			      "block": "[Block TSDown]",
-			    },
-			    {
-			      "addons": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -462,14 +454,6 @@ describe(blockVitest, () => {
 			        ],
 			      },
 			      "block": "[Block Prettier]",
-			    },
-			    {
-			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
 			      "addons": {
@@ -771,14 +755,6 @@ describe(blockVitest, () => {
 			    },
 			    {
 			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			      "block": "[Block TSDown]",
-			    },
-			    {
-			      "addons": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -1023,14 +999,6 @@ describe(blockVitest, () => {
 			        ],
 			      },
 			      "block": "[Block Prettier]",
-			    },
-			    {
-			      "addons": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
 			      "addons": {

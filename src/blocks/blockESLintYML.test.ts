@@ -26,15 +26,7 @@ describe("blockESLintYML", () => {
 			            ],
 			            "rules": {
 			              "yml/file-extension": "error",
-			              "yml/sort-keys": [
-			                "error",
-			                {
-			                  "order": {
-			                    "type": "asc",
-			                  },
-			                  "pathPattern": "^.*$",
-			                },
-			              ],
+			              "yml/sort-keys": "error",
 			              "yml/sort-sequence-values": [
 			                "error",
 			                {

@@ -52,6 +52,7 @@ export const blockKnip = base.createBlock({
 							contents: {
 								items: [
 									`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
+									`- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests`,
 								],
 							},
 						},
@@ -63,13 +64,18 @@ export const blockKnip = base.createBlock({
 							name: "Lint Knip",
 							steps: [{ run: "pnpm lint:knip" }],
 						},
+						{
+							name: "Lint Knip Production",
+							steps: [{ run: "pnpm lint:knip:production" }],
+						},
 					],
 				}),
 				blockPackageJson({
 					properties: {
 						devDependencies: getPackageDependencies("knip"),
 						scripts: {
-							"lint:knip": "knip && knip --production",
+							"lint:knip": "knip",
+							"lint:knip:production": "knip --production",
 						},
 					},
 				}),

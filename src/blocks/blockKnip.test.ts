@@ -38,6 +38,7 @@ describe(blockKnip, () => {
 			            "contents": {
 			              "items": [
 			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+			                "- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests",
 			              ],
 			            },
 			          },
@@ -56,6 +57,14 @@ describe(blockKnip, () => {
 			              },
 			            ],
 			          },
+			          {
+			            "name": "Lint Knip Production",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:knip:production",
+			              },
+			            ],
+			          },
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
@@ -67,7 +76,8 @@ describe(blockKnip, () => {
 			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
-			            "lint:knip": "knip && knip --production",
+			            "lint:knip": "knip",
+			            "lint:knip:production": "knip --production",
 			          },
 			        },
 			      },
@@ -131,6 +141,7 @@ describe(blockKnip, () => {
 			            "contents": {
 			              "items": [
 			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+			                "- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests",
 			              ],
 			            },
 			          },
@@ -149,6 +160,14 @@ describe(blockKnip, () => {
 			              },
 			            ],
 			          },
+			          {
+			            "name": "Lint Knip Production",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:knip:production",
+			              },
+			            ],
+			          },
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
@@ -160,7 +179,8 @@ describe(blockKnip, () => {
 			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
-			            "lint:knip": "knip && knip --production",
+			            "lint:knip": "knip",
+			            "lint:knip:production": "knip --production",
 			          },
 			        },
 			      },
@@ -244,6 +264,7 @@ export default {
 			            "contents": {
 			              "items": [
 			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+			                "- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests",
 			              ],
 			            },
 			          },
@@ -262,6 +283,14 @@ export default {
 			              },
 			            ],
 			          },
+			          {
+			            "name": "Lint Knip Production",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:knip:production",
+			              },
+			            ],
+			          },
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
@@ -273,7 +302,8 @@ export default {
 			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
-			            "lint:knip": "knip && knip --production",
+			            "lint:knip": "knip",
+			            "lint:knip:production": "knip --production",
 			          },
 			        },
 			      },

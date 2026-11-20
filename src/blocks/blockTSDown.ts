@@ -23,7 +23,7 @@ import { CommandPhase } from "./phases.ts";
 const zEntry = z.array(z.string());
 const zProperties = z.record(z.string(), z.unknown());
 
-// Whichever of these is the base entry is re-added in produce based on options.bundle
+// The base entry is re-added in produce; src/**/*.ts was the unbundled default
 const defaultEntries = new Set(["src/**/*.ts", "src/index.ts"]);
 
 function hasJsEntryPoint(files: IntakeDirectory) {
@@ -75,7 +75,10 @@ export const blockTSDown = base.createBlock({
 		return {
 			entry: zEntry
 				.safeParse(rawEntry)
-				.data?.filter((entry) => !defaultEntries.has(entry)),
+				// Exclusion globs only applied to the old src/**/*.ts default entry
+				.data?.filter(
+					(entry) => !defaultEntries.has(entry) && !entry.startsWith("!"),
+				),
 			properties: removeUndefinedObjects({
 				...zProperties.safeParse(rest).data,
 
@@ -174,12 +177,8 @@ pnpm build --watch
 						`import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
-							entry: Array.from(
-								new Set([
-									options.bundle ? "src/index.ts" : "src/**/*.ts",
-									...entry,
-								]),
-							),
+							// unbundle still only builds modules reachable from entries
+							entry: Array.from(new Set(["src/index.ts", ...entry])),
 							...(options.bundle ? {} : { unbundle: true }),
 							...properties,
 						})});

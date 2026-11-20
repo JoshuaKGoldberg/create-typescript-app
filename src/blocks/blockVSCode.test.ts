@@ -5,16 +5,17 @@ import { blockVSCode } from "./blockVSCode.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockVSCode, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockVSCode, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "hints": [
 			          "> This repository includes a list of suggested VS Code extensions.",
 			          "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
@@ -36,17 +37,16 @@ describe(blockVSCode, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "tooling": [
 			            "I have tried restarting my IDE and the issue persists.",
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			  ],
 			  "files": {
@@ -62,21 +62,22 @@ describe(blockVSCode, () => {
 		`);
 	});
 
-	test("with empty addons", () => {
+	test("with empty props", () => {
 		const creation = testBlock(blockVSCode, {
-			addons: {
+			options: optionsBase,
+			props: {
 				debuggers: [],
 				settings: {},
 				tasks: [],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "hints": [
 			          "> This repository includes a list of suggested VS Code extensions.",
 			          "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
@@ -98,17 +99,16 @@ describe(blockVSCode, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "tooling": [
 			            "I have tried restarting my IDE and the issue persists.",
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			  ],
 			  "files": {
@@ -124,9 +124,10 @@ describe(blockVSCode, () => {
 		`);
 	});
 
-	test("with full addons", () => {
+	test("with full props", () => {
 		const creation = testBlock(blockVSCode, {
-			addons: {
+			options: optionsBase,
+			props: {
 				debuggers: [
 					{
 						name: "fake-debugger",
@@ -145,14 +146,14 @@ describe(blockVSCode, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "hints": [
 			          "> This repository includes a list of suggested VS Code extensions.",
 			          "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
@@ -174,17 +175,16 @@ describe(blockVSCode, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "tooling": [
 			            "I have tried restarting my IDE and the issue persists.",
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			  ],
 			  "files": {

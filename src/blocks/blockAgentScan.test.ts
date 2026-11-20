@@ -12,25 +12,25 @@ describe(blockAgentScan, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "agentscan",
 			          "MatteoGabriele",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Slop Issue Unlink]",
+			      "props": {
 			        "labels": [
 			          "agentscan:automated-account",
 			          "agentscan:community-flagged",
 			          "agentscan:mixed-signals",
 			        ],
 			      },
-			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {
@@ -75,33 +75,33 @@ describe(blockAgentScan, () => {
 
 	test("with actionSteps", () => {
 		const creation = testBlock(blockAgentScan, {
-			addons: {
+			options: optionsBase,
+			props: {
 				actionSteps: [{ uses: "test/after@v1" }],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "agentscan",
 			          "MatteoGabriele",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Slop Issue Unlink]",
+			      "props": {
 			        "labels": [
 			          "agentscan:automated-account",
 			          "agentscan:community-flagged",
 			          "agentscan:mixed-signals",
 			        ],
 			      },
-			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {
@@ -161,25 +161,25 @@ describe(blockAgentScan, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "agentscan",
 			          "MatteoGabriele",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Slop Issue Unlink]",
+			      "props": {
 			        "labels": [
 			          "agentscan:automated-account",
 			          "agentscan:community-flagged",
 			          "agentscan:mixed-signals",
 			        ],
 			      },
-			      "block": "[Block Slop Issue Unlink]",
 			    },
 			  ],
 			  "files": {

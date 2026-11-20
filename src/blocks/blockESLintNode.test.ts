@@ -8,7 +8,7 @@ vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockESLintNode", () => {
+describe(blockESLintNode, () => {
 	test("production", () => {
 		const creation = testBlock(blockESLintNode, {
 			options: optionsBase,
@@ -16,9 +16,10 @@ describe("blockESLintNode", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -56,7 +57,6 @@ describe("blockESLintNode", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			  ],
 			}

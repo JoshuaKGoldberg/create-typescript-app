@@ -15,21 +15,11 @@ export const blockReleaseIt = base.createBlock({
 	about: {
 		name: "release-it",
 	},
-	addons: {
-		builders: z
-			.array(
-				z.object({
-					order: z.number(),
-					run: z.string(),
-				}),
-			)
-			.default([]),
-	},
-	produce({ addons, options }) {
-		const { builders } = addons;
+	produce({ options, props }) {
+		const { builders } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					words: ["apexskier"],
 				}),
@@ -199,5 +189,15 @@ export const blockReleaseIt = base.createBlock({
 				].join("\n"),
 			],
 		};
+	},
+	props: {
+		builders: z
+			.array(
+				z.object({
+					order: z.number(),
+					run: z.string(),
+				}),
+			)
+			.default([]),
 	},
 });

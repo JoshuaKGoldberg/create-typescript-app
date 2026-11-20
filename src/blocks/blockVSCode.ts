@@ -11,32 +11,12 @@ export const blockVSCode = base.createBlock({
 	about: {
 		name: "VS Code",
 	},
-	addons: {
-		debuggers: z
-			.array(
-				z.intersection(
-					z.record(z.string(), z.unknown()),
-					z.object({ name: z.string() }),
-				),
-			)
-			.optional(),
-		extensions: z.array(z.string()).optional(),
-		settings: z.record(z.string(), z.unknown()).default({}),
-		tasks: z
-			.array(
-				z.intersection(
-					z.object({ detail: z.string() }),
-					z.record(z.string(), z.unknown()),
-				),
-			)
-			.optional(),
-	},
-	produce({ addons, options }) {
-		const { debuggers, extensions, settings, tasks } = addons;
+	produce({ options, props }) {
+		const { debuggers, extensions, settings, tasks } = props;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
-			addons: [
+			extensions: [
 				blockDevelopmentDocs({
 					hints: [
 						`> This repository includes a list of suggested VS Code extensions.`,
@@ -119,5 +99,25 @@ To launch it, open a test file, then run _Debug Current Test File_ from the VS C
 				},
 			},
 		};
+	},
+	props: {
+		debuggers: z
+			.array(
+				z.intersection(
+					z.record(z.string(), z.unknown()),
+					z.object({ name: z.string() }),
+				),
+			)
+			.optional(),
+		extensions: z.array(z.string()).optional(),
+		settings: z.record(z.string(), z.unknown()).default({}),
+		tasks: z
+			.array(
+				z.intersection(
+					z.object({ detail: z.string() }),
+					z.record(z.string(), z.unknown()),
+				),
+			)
+			.optional(),
 	},
 });

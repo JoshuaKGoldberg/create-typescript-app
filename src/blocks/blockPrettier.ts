@@ -19,26 +19,11 @@ export const blockPrettier = base.createBlock({
 	about: {
 		name: "Prettier",
 	},
-	addons: {
-		ignores: z.array(z.string()).default([]),
-		overrides: z
-			.array(
-				z.object({
-					files: z.string(),
-					options: z.object({
-						parser: z.string(),
-					}),
-				}),
-			)
-			.default([]),
-		plugins: z.array(z.string()).default([]),
-		runBefore: z.array(z.string()).default([]),
-	},
-	produce({ addons }) {
-		const { ignores, overrides, plugins, runBefore } = addons;
+	produce({ props }) {
+		const { ignores, overrides, plugins, runBefore } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					ignorePaths: [".all-contributorsrc"],
 				}),
@@ -119,9 +104,24 @@ export default ${JSON.stringify({
 			],
 		};
 	},
+	props: {
+		ignores: z.array(z.string()).default([]),
+		overrides: z
+			.array(
+				z.object({
+					files: z.string(),
+					options: z.object({
+						parser: z.string(),
+					}),
+				}),
+			)
+			.default([]),
+		plugins: z.array(z.string()).default([]),
+		runBefore: z.array(z.string()).default([]),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockPackageJson({
 					properties: {
 						"lint-staged": undefined,

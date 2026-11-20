@@ -14,10 +14,6 @@ export const blockAntiSlop = base.createBlock({
 	about: {
 		name: "Anti-Slop",
 	},
-	addons: {
-		actionSteps: z.array(zActionStep).default([]),
-		honeypot: z.union([z.literal(false), z.string()]).default("SASSAFRAS"),
-	},
 	intake({ files }) {
 		const steps = intakeFileYamlSteps(
 			files,
@@ -42,8 +38,8 @@ export const blockAntiSlop = base.createBlock({
 			honeypot: typeof honeypot === "string" && honeypot ? honeypot : false,
 		} as const;
 	},
-	produce({ addons, options }) {
-		const { actionSteps, honeypot } = addons;
+	produce({ options, props }) {
+		const { actionSteps, honeypot } = props;
 		const [honeypotTerm] = honeypot
 			? honeypot
 					.split("\n")
@@ -52,7 +48,7 @@ export const blockAntiSlop = base.createBlock({
 			: [];
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					words: ["peakoss"],
 				}),
@@ -109,5 +105,9 @@ export const blockAntiSlop = base.createBlock({
 				},
 			},
 		};
+	},
+	props: {
+		actionSteps: z.array(zActionStep).default([]),
+		honeypot: z.union([z.literal(false), z.string()]).default("SASSAFRAS"),
 	},
 });

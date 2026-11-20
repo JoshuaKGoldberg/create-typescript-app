@@ -73,13 +73,6 @@ export const blockVitest = base.createBlock({
 	about: {
 		name: "Vitest",
 	},
-	addons: {
-		actionSteps: z.array(zActionStep).default([]),
-		coverage: zCoverage.default({}),
-		environment: zEnvironment.optional(),
-		exclude: zExclude.default([]),
-		flags: z.array(z.string()).default([]),
-	},
 	intake({ files, options }) {
 		return {
 			...intakeFromConfig(files),
@@ -88,14 +81,14 @@ export const blockVitest = base.createBlock({
 				.split(" "),
 		};
 	},
-	produce({ addons }) {
-		const { actionSteps, coverage, environment, exclude } = addons;
+	produce({ props }) {
+		const { actionSteps, coverage, environment, exclude } = props;
 		const excludeText = JSON.stringify(
 			Array.from(new Set(["node_modules", ...exclude])).sort(),
 		);
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					ignorePaths: ["coverage"],
 				}),
@@ -217,7 +210,7 @@ describe(greet, () => {
 							"vitest",
 						),
 						scripts: {
-							test: `vitest ${addons.flags.join(" ")}`.trim(),
+							test: `vitest ${props.flags.join(" ")}`.trim(),
 						},
 					},
 				}),
@@ -275,6 +268,13 @@ export default defineConfig({
 			},
 		};
 	},
+	props: {
+		actionSteps: z.array(zActionStep).default([]),
+		coverage: zCoverage.default({}),
+		environment: zEnvironment.optional(),
+		exclude: zExclude.default([]),
+		flags: z.array(z.string()).default([]),
+	},
 	transition({ options }) {
 		const existingDependencies = {
 			...options.packageData?.dependencies,
@@ -289,7 +289,7 @@ export default defineConfig({
 			);
 
 		return {
-			addons: [
+			extensions: [
 				blockGitignore({
 					removals: ["/coverage*", "coverage*/", "coverage/"],
 				}),

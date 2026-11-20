@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockPnpmDedupe } from "./blockPnpmDedupe.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockPnpmDedupe", () => {
+describe(blockPnpmDedupe, () => {
 	test("without mode", () => {
 		const creation = testBlock(blockPnpmDedupe, {
 			options: optionsBase,
@@ -12,9 +12,10 @@ describe("blockPnpmDedupe", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Dedupe Check",
@@ -26,15 +27,14 @@ describe("blockPnpmDedupe", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "cleanupCommands": [
 			          "pnpm dedupe --prefer-offline",
 			        ],
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
@@ -49,9 +49,10 @@ describe("blockPnpmDedupe", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Dedupe Check",
@@ -63,23 +64,22 @@ describe("blockPnpmDedupe", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "cleanupCommands": [
 			          "pnpm dedupe --prefer-offline",
 			        ],
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "lint-packages",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			}

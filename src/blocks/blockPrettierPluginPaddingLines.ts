@@ -7,7 +7,7 @@ export const blockPrettierPluginPaddingLines = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockPrettier({
 					plugins: ["prettier-plugin-padding-lines"],
 				}),

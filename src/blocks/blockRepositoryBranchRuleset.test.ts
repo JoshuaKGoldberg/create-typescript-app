@@ -5,7 +5,7 @@ import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts"
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockRepositoryBranchRuleset, () => {
-	test("without addons when mode is undefined", () => {
+	test("without props when mode is undefined", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
 			options: optionsBase,
 		});
@@ -13,7 +13,7 @@ describe(blockRepositoryBranchRuleset, () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("without addons when mode is setup", () => {
+	test("without props when mode is setup", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
 			mode: "setup",
 			options: optionsBase,
@@ -79,7 +79,7 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
 	});
 
-	test("without addons when mode is transition", () => {
+	test("without props when mode is transition", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
 			mode: "transition",
 			options: optionsBase,
@@ -155,24 +155,24 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
 	});
 
-	test("with addons when mode is undefined", () => {
+	test("with props when mode is undefined", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
-			addons: {
+			options: optionsBase,
+			props: {
 				requiredStatusChecks: ["build", "test"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons when mode is setup", () => {
+	test("with props when mode is setup", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
-			addons: {
-				requiredStatusChecks: ["build", "test"],
-			},
 			mode: "setup",
 			options: optionsBase,
+			props: {
+				requiredStatusChecks: ["build", "test"],
+			},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -242,13 +242,13 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
 	});
 
-	test("with addons when mode is transition", () => {
+	test("with props when mode is transition", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
-			addons: {
-				requiredStatusChecks: ["build", "test"],
-			},
 			mode: "transition",
 			options: optionsBase,
+			props: {
+				requiredStatusChecks: ["build", "test"],
+			},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -328,13 +328,13 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
 	});
 
-	test("with addons and no rulesetId option when mode is transition", () => {
+	test("with props and no rulesetId option when mode is transition", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
-			addons: {
-				requiredStatusChecks: ["build", "test"],
-			},
 			mode: "transition",
 			options: optionsBase,
+			props: {
+				requiredStatusChecks: ["build", "test"],
+			},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -414,15 +414,15 @@ describe(blockRepositoryBranchRuleset, () => {
 		`);
 	});
 
-	test("with addons and a rulesetId option when mode is transition", () => {
+	test("with props and a rulesetId option when mode is transition", () => {
 		const creation = testBlock(blockRepositoryBranchRuleset, {
-			addons: {
-				requiredStatusChecks: ["build", "test"],
-			},
 			mode: "transition",
 			options: {
 				...optionsBase,
 				rulesetId: "1234",
+			},
+			props: {
+				requiredStatusChecks: ["build", "test"],
 			},
 		});
 

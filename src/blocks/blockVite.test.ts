@@ -6,16 +6,17 @@ import { blockVite } from "./blockVite.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockVite, () => {
-	test("without addons or options", () => {
+	test("without props or options", () => {
 		const creation = testBlock(blockVite, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
@@ -28,16 +29,16 @@ describe(blockVite, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Build",
@@ -49,10 +50,10 @@ describe(blockVite, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "bug": [
 			            "I have pulled in the newest version of the project.",
@@ -63,18 +64,18 @@ describe(blockVite, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/dist",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "vite": "^8.3.0",
@@ -93,10 +94,10 @@ describe(blockVite, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block release-it]",
+			      "props": {
 			        "builders": [
 			          {
 			            "order": 0,
@@ -104,7 +105,6 @@ describe(blockVite, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block release-it]",
 			    },
 			  ],
 			  "files": {
@@ -144,15 +144,15 @@ describe(blockVite, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockVite, {
-			addons: {
+			options: optionsBase,
+			props: {
 				runInCI: ["node ./dist/index.mjs"],
 			},
-			options: optionsBase,
 		});
 
-		expect(creation.addons).toContainEqual(
+		expect(creation.extensions).toContainEqual(
 			blockGitHubActionsCI({
 				jobs: [
 					{
@@ -267,7 +267,8 @@ describe(blockVite, () => {
 
 		test("carries existing settings into vite.config.ts", () => {
 			const creation = testBlock(blockVite, {
-				addons: {
+				options: { ...optionsBase, bundle: true },
+				props: {
 					build: {
 						minify: false,
 						rolldownOptions: {
@@ -277,7 +278,6 @@ describe(blockVite, () => {
 					},
 					properties: { resolve: { alias: { a: "b" } } },
 				},
-				options: { ...optionsBase, bundle: true },
 			});
 
 			expect(creation.files?.["vite.config.ts"]).toMatchInlineSnapshot(`

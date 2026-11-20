@@ -55,13 +55,6 @@ export const blockTSDown = base.createBlock({
 	about: {
 		name: "TSDown",
 	},
-	addons: {
-		entry: zEntry.default([]),
-		exports: z.string().optional(),
-		main: z.string().optional(),
-		properties: zProperties.default({}),
-		runInCI: z.array(z.string()).default([]),
-	},
 	intake({ files }) {
 		const rawData =
 			intakeFileDefineConfig(files, ["tsdown.config.ts"]) ??
@@ -97,11 +90,11 @@ export const blockTSDown = base.createBlock({
 			}),
 		};
 	},
-	produce({ addons, options }) {
-		const { entry, exports, main, properties, runInCI } = addons;
+	produce({ options, props }) {
+		const { entry, exports, main, properties, runInCI } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockDevelopmentDocs({
 					sections: {
 						Building: {
@@ -198,9 +191,16 @@ export default defineConfig(${JSON.stringify({
 				: undefined,
 		};
 	},
+	props: {
+		entry: zEntry.default([]),
+		exports: z.string().optional(),
+		main: z.string().optional(),
+		properties: zProperties.default({}),
+		runInCI: z.array(z.string()).default([]),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockGitignore({
 					removals: ["/lib", "dist/", "lib/"],
 				}),

@@ -10,18 +10,8 @@ export const blockGitHubIssueTemplates = base.createBlock({
 	about: {
 		name: "GitHub Issue Templates",
 	},
-	addons: {
-		checklists: z
-			.object({
-				bug: zChecklist,
-				documentation: zChecklist,
-				feature: zChecklist,
-				tooling: zChecklist,
-			})
-			.default({}),
-	},
-	produce({ addons, options }) {
-		const { checklists } = addons;
+	produce({ options, props }) {
+		const { checklists } = props;
 
 		const createChecklistOptions = (labels: string[] = []) =>
 			[
@@ -213,5 +203,15 @@ export const blockGitHubIssueTemplates = base.createBlock({
 				},
 			},
 		};
+	},
+	props: {
+		checklists: z
+			.object({
+				bug: zChecklist,
+				documentation: zChecklist,
+				feature: zChecklist,
+				tooling: zChecklist,
+			})
+			.default({}),
 	},
 });

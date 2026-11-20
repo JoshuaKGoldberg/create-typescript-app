@@ -23,14 +23,6 @@ export const blockTypeScript = base.createBlock({
 	about: {
 		name: "TypeScript",
 	},
-	addons: {
-		beforeTypeCheckSteps: z.array(zActionStep).default([]),
-		compilerOptions: CompilerOptionsSchema.optional(),
-		exclude: z.array(z.string()).default([]),
-		existingCompilerOptions: CompilerOptionsSchema.optional(),
-		include: z.array(z.string()).default([]),
-		outDir: z.string().optional(),
-	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
 		const compilerOptions = CompilerOptionsSchema.safeParse(
@@ -48,7 +40,7 @@ export const blockTypeScript = base.createBlock({
 			...(include && { include }),
 		};
 	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		const {
 			beforeTypeCheckSteps,
 			compilerOptions,
@@ -56,11 +48,11 @@ export const blockTypeScript = base.createBlock({
 			existingCompilerOptions,
 			include,
 			outDir,
-		} = addons;
+		} = props;
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		return {
-			addons: [
+			extensions: [
 				blockDevelopmentDocs({
 					sections: {
 						"Type Checking": {
@@ -190,9 +182,17 @@ greet("Hello, world! ${options.emoji}");
 			},
 		};
 	},
+	props: {
+		beforeTypeCheckSteps: z.array(zActionStep).default([]),
+		compilerOptions: CompilerOptionsSchema.optional(),
+		exclude: z.array(z.string()).default([]),
+		existingCompilerOptions: CompilerOptionsSchema.optional(),
+		include: z.array(z.string()).default([]),
+		outDir: z.string().optional(),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveWorkflows({
 					workflows: ["tsc"],
 				}),

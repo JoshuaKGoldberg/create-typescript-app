@@ -7,7 +7,7 @@ export const blockPrettierPluginSh = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockPrettier({
 					plugins: ["prettier-plugin-sh"],
 				}),

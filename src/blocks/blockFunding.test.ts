@@ -6,7 +6,7 @@ import { blockFunding } from "./blockFunding.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockFunding", () => {
+describe(blockFunding, () => {
 	test("marks FUNDING.yaml as previously FUNDING.yml", () => {
 		const creation = testBlock(blockFunding, {
 			options: { ...optionsBase, funding: "abc" },
@@ -24,7 +24,7 @@ describe("blockFunding", () => {
 			options: { ...optionsBase, funding: "abc" },
 		});
 
-		expect(creation.addons).toEqual([blockCSpell({ words: ["abc"] })]);
+		expect(creation.extensions).toEqual([blockCSpell({ words: ["abc"] })]);
 	});
 
 	test("does not add CSpell words when funding does not exist", () => {
@@ -32,7 +32,7 @@ describe("blockFunding", () => {
 			options: optionsBase,
 		});
 
-		expect(creation.addons).toEqual([]);
+		expect(creation.extensions).toEqual([]);
 	});
 
 	test("transition mode", () => {
@@ -41,7 +41,7 @@ describe("blockFunding", () => {
 			options: optionsBase,
 		});
 
-		expect(creation.addons).toContainEqual(
+		expect(creation.extensions).toContainEqual(
 			blockRemoveFiles({ files: [".github/FUNDING.yml"] }),
 		);
 	});

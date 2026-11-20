@@ -8,7 +8,7 @@ vi.mock("../utils/resolveBin.ts", () => ({
 	resolveBin: (bin: string) => `path/to/${bin}`,
 }));
 
-describe("blockTemplatedWith", () => {
+describe(blockTemplatedWith, () => {
 	test("production with unknown owner", () => {
 		const creation = testBlock(blockTemplatedWith, {
 			options: optionsBase,
@@ -16,9 +16,10 @@ describe("blockTemplatedWith", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "notices": [
 			          "
 			<!-- You can remove this notice if you don't want it 🙂 no worries! -->",
@@ -26,7 +27,6 @@ describe("blockTemplatedWith", () => {
 			",
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			  ],
 			}
@@ -43,15 +43,15 @@ describe("blockTemplatedWith", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "notices": [
 			          "> 💝 This package was templated with [\`create-typescript-app\`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo framework](https://create.bingo).
 			",
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			  ],
 			}

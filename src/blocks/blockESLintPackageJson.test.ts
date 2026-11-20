@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockESLintPackageJson } from "./blockESLintPackageJson.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockESLintPackageJson", () => {
+describe(blockESLintPackageJson, () => {
 	test("without mode", () => {
 		const creation = testBlock(blockESLintPackageJson, {
 			options: optionsBase,
@@ -12,9 +12,10 @@ describe("blockESLintPackageJson", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -33,17 +34,16 @@ describe("blockESLintPackageJson", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "scripts": {
 			            "lint:package-json": undefined,
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
@@ -58,9 +58,10 @@ describe("blockESLintPackageJson", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -79,42 +80,41 @@ describe("blockESLintPackageJson", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "scripts": {
 			            "lint:package-json": undefined,
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".npmpackagejsonlintrc*",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Dependencies]",
+			      "props": {
 			        "dependencies": [
 			          "npm-package-json-lint",
 			          "npm-package-json-lint-config-default",
 			        ],
 			      },
-			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "lint-package-json",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			}

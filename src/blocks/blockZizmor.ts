@@ -22,9 +22,6 @@ export const blockZizmor = base.createBlock({
 	about: {
 		name: "zizmor",
 	},
-	addons: {
-		rules: z.record(z.string(), zRule).optional(),
-	},
 	intake({ files }) {
 		const zizmorYaml =
 			intakeFileAsYaml(files, [".github", "zizmor.yaml"]) ??
@@ -45,16 +42,16 @@ export const blockZizmor = base.createBlock({
 
 		return Object.keys(rules).length ? { rules } : undefined;
 	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		const rules: Record<string, Rule> = {
-			...addons.rules,
+			...props.rules,
 			"ref-version-mismatch": {
 				disable: true,
-				...addons.rules?.["ref-version-mismatch"],
+				...props.rules?.["ref-version-mismatch"],
 			},
 			"self-repository": {
 				disable: true,
-				...addons.rules?.["self-repository"],
+				...props.rules?.["self-repository"],
 			},
 			"unpinned-uses": {
 				config: {
@@ -62,12 +59,12 @@ export const blockZizmor = base.createBlock({
 						"*": "ref-pin",
 					},
 				},
-				...addons.rules?.["unpinned-uses"],
+				...props.rules?.["unpinned-uses"],
 			},
 		};
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					words: ["zizmor", "zizmorcore"],
 				}),
@@ -113,9 +110,12 @@ export const blockZizmor = base.createBlock({
 			},
 		};
 	},
+	props: {
+		rules: z.record(z.string(), zRule).optional(),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: ["zizmor.{yaml,yml}"],
 				}),

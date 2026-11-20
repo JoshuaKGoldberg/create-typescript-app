@@ -10,7 +10,7 @@ export const blockESLintMarkdown = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockESLint({
 					extensions: [
 						{

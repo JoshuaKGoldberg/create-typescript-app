@@ -5,12 +5,12 @@ import { blockNvmrc } from "./blockNvmrc.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockNvmrc", () => {
-	it("only includes blockPackageJson addons when options.node does not exist", () => {
+describe(blockNvmrc, () => {
+	it("only includes blockPackageJson extensions when options.node does not exist", () => {
 		const creation = testBlock(blockNvmrc, { options: optionsBase });
 
 		expect(creation).toEqual({
-			addons: [
+			extensions: [
 				blockPrettier({
 					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				}),
@@ -27,7 +27,7 @@ describe("blockNvmrc", () => {
 		});
 
 		expect(creation).toEqual({
-			addons: [
+			extensions: [
 				blockPrettier({
 					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				}),

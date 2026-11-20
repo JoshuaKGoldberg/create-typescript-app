@@ -6,16 +6,17 @@ import { blockCodecov } from "./blockCodecov.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockCodecov, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockCodecov, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Apps]",
+			      "props": {
 			        "apps": [
 			          {
 			            "name": "Codecov",
@@ -23,10 +24,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Apps]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "🧪 Coverage",
@@ -35,10 +36,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "if": "always()",
@@ -46,10 +47,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block zizmor]",
+			      "props": {
 			        "rules": {
 			          "ref-confusion": {
 			            "ignore": [
@@ -58,7 +59,6 @@ describe(blockCodecov, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block zizmor]",
 			    },
 			  ],
 			}
@@ -73,9 +73,10 @@ describe(blockCodecov, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Apps]",
+			      "props": {
 			        "apps": [
 			          {
 			            "name": "Codecov",
@@ -83,10 +84,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Apps]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "🧪 Coverage",
@@ -95,10 +96,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "if": "always()",
@@ -106,10 +107,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block zizmor]",
+			      "props": {
 			        "rules": {
 			          "ref-confusion": {
 			            "ignore": [
@@ -118,16 +119,15 @@ describe(blockCodecov, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block zizmor]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".github/codecov.{yaml,yml}",
 			          "codecov.{yaml,yml}",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			}
@@ -141,9 +141,10 @@ describe(blockCodecov, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Apps]",
+			      "props": {
 			        "apps": [
 			          {
 			            "name": "Codecov",
@@ -151,10 +152,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Apps]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "🧪 Coverage",
@@ -163,10 +164,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "env": {
@@ -177,10 +178,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block zizmor]",
+			      "props": {
 			        "rules": {
 			          "ref-confusion": {
 			            "ignore": [
@@ -189,28 +190,28 @@ describe(blockCodecov, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block zizmor]",
 			    },
 			  ],
 			}
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockCodecov, {
-			addons: {
+			options: optionsBase,
+			props: {
 				env: {
 					CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}",
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Apps]",
+			      "props": {
 			        "apps": [
 			          {
 			            "name": "Codecov",
@@ -218,10 +219,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Apps]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "🧪 Coverage",
@@ -230,10 +231,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "env": {
@@ -244,10 +245,10 @@ describe(blockCodecov, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block zizmor]",
+			      "props": {
 			        "rules": {
 			          "ref-confusion": {
 			            "ignore": [
@@ -256,7 +257,6 @@ describe(blockCodecov, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block zizmor]",
 			    },
 			  ],
 			}

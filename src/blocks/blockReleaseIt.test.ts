@@ -19,22 +19,23 @@ vi.mock("../data/packageData.ts", async (importOriginal) => {
 });
 
 describe(blockReleaseIt, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockReleaseIt, { options: optionsBase });
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "apexskier",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "0.0.0-mock",
@@ -45,10 +46,10 @@ describe(blockReleaseIt, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "📦 npm version",
@@ -57,10 +58,10 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Repository Secrets]",
+			      "props": {
 			        "secrets": [
 			          {
 			            "description": "a GitHub PAT with repo and workflow permissions",
@@ -68,7 +69,6 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Repository Secrets]",
 			    },
 			  ],
 			  "files": {
@@ -186,9 +186,10 @@ describe(blockReleaseIt, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockReleaseIt, {
-			addons: {
+			options: optionsBase,
+			props: {
 				builders: [
 					{
 						order: 1,
@@ -204,22 +205,22 @@ describe(blockReleaseIt, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "apexskier",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@release-it/conventional-changelog": "0.0.0-mock",
@@ -230,10 +231,10 @@ describe(blockReleaseIt, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "📦 npm version",
@@ -242,10 +243,10 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Repository Secrets]",
+			      "props": {
 			        "secrets": [
 			          {
 			            "description": "a GitHub PAT with repo and workflow permissions",
@@ -253,7 +254,6 @@ describe(blockReleaseIt, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Repository Secrets]",
 			    },
 			  ],
 			  "files": {

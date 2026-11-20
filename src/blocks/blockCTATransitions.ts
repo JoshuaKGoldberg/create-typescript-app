@@ -16,7 +16,7 @@ export const blockCTATransitions = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					words: ["mshick", options.owner, "stefanzweifel"],
 				}),

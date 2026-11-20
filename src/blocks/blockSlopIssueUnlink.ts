@@ -1,4 +1,4 @@
-import { BlockWithAddons } from "bingo-stratum";
+import { BlockWithProps } from "bingo-stratum";
 import { z } from "zod";
 
 import { base, BaseOptions } from "../base.ts";
@@ -16,18 +16,15 @@ const defaultLabels = [
 ];
 
 // Explicitly typed to break the type cycle with the blocks it adds steps to.
-export const blockSlopIssueUnlink: BlockWithAddons<
+export const blockSlopIssueUnlink: BlockWithProps<
 	{ labels: string[] },
 	BaseOptions
 > = base.createBlock({
 	about: {
 		name: "Slop Issue Unlink",
 	},
-	addons: {
-		labels: z.array(z.string()).default([]),
-	},
-	produce({ addons, options }) {
-		if (!addons.labels.length) {
+	produce({ options, props }) {
+		if (!props.labels.length) {
 			return {};
 		}
 
@@ -37,7 +34,7 @@ export const blockSlopIssueUnlink: BlockWithAddons<
 		return {
 			// Closures made with GITHUB_TOKEN don't trigger other workflows,
 			// so the actions that close slop also unlink in the same job.
-			addons: [
+			extensions: [
 				blockAgentScan({
 					actionSteps: [createStep(agentScanLabels)],
 				}),
@@ -59,12 +56,15 @@ export const blockSlopIssueUnlink: BlockWithAddons<
 							permissions: {
 								"pull-requests": "write",
 							},
-							steps: [createStep(addons.labels)],
+							steps: [createStep(props.labels)],
 						}),
 					},
 				},
 			},
 		};
+	},
+	props: {
+		labels: z.array(z.string()).default([]),
 	},
 });
 

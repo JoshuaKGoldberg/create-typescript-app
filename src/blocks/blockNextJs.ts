@@ -37,11 +37,6 @@ export const blockNextJs = base.createBlock({
 	about: {
 		name: "NextJS",
 	},
-	addons: {
-		nextConfig: z
-			.object({ contents: z.string(), fileName: z.string() })
-			.optional(),
-	},
 	intake({ files }) {
 		const fileName = nextConfigFileNamesByPrecedence.find(
 			(name) => name in files,
@@ -54,9 +49,9 @@ export const blockNextJs = base.createBlock({
 
 		return nextConfig && { nextConfig: { contents: nextConfig[0], fileName } };
 	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					ignorePaths: [".next", "*.tsbuildinfo", "next-env.d.ts"],
 				}),
@@ -174,8 +169,8 @@ pnpm start
 				}),
 			],
 			files: {
-				...(addons.nextConfig
-					? { [addons.nextConfig.fileName]: addons.nextConfig.contents }
+				...(props.nextConfig
+					? { [props.nextConfig.fileName]: props.nextConfig.contents }
 					: {
 							"next.config.ts": withPreviously(
 								defaultNextConfig,
@@ -186,6 +181,11 @@ pnpm start
 						}),
 			},
 		};
+	},
+	props: {
+		nextConfig: z
+			.object({ contents: z.string(), fileName: z.string() })
+			.optional(),
 	},
 	setup({ options }) {
 		return {

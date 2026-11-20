@@ -15,7 +15,7 @@ export const blockWebExt = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					ignorePaths: ["assets", "lib"],
 				}),

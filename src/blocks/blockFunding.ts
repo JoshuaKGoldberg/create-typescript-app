@@ -10,7 +10,7 @@ export const blockFunding = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: options.funding
+			extensions: options.funding
 				? [blockCSpell({ words: [options.funding] })]
 				: [],
 			files: {
@@ -25,7 +25,7 @@ export const blockFunding = base.createBlock({
 	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: [".github/FUNDING.yml"],
 				}),

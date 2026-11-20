@@ -7,7 +7,7 @@ export const blockAreTheTypesWrong = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockGitHubActionsCI({
 					jobs: [
 						{

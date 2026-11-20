@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.84.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.83.0...2.84.0) (2026-11-20)
+
+### Features
+
+- use src/index.ts as the tsdown entry in unbundled mode ([#2661](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2661)) ([4fc740b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4fc740b25840475a4cf78a99c597b4b3d08152c4)), closes [#1931](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1931)
+
 ## [2.83.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.82.0...2.83.0) (2026-11-19)
 
 ### Features

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.85.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.84.0...2.85.0) (2026-11-20)
+
+### Features
+
+- add lint:knip:production script for Knip's production mode ([#2662](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2662)) ([3869f0b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3869f0b10dc67912e91ce19b57cfe22c0d73388c)), closes [#2660](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2660)
+
 ## [2.84.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.83.0...2.84.0) (2026-11-20)
 
 ### Features

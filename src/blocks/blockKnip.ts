@@ -69,7 +69,7 @@ export const blockKnip = base.createBlock({
 					properties: {
 						devDependencies: getPackageDependencies("knip"),
 						scripts: {
-							"lint:knip": "knip",
+							"lint:knip": "knip && knip --production",
 						},
 					},
 				}),
@@ -94,7 +94,7 @@ export default ${JSON.stringify({
 								interface: true,
 								type: true,
 							},
-							project: project?.sort(),
+							project: project && dedupeProductionPatterns(project).sort(),
 							treatConfigHintsAsErrors: true,
 						})} satisfies KnipConfig;`,
 					),
@@ -121,3 +121,11 @@ export default ${JSON.stringify({
 		};
 	},
 });
+
+// Patterns ending in ! are also used in --production mode, so they replace
+// any older copies of the same pattern without the suffix
+function dedupeProductionPatterns(patterns: string[]) {
+	const unique = new Set(patterns);
+
+	return Array.from(unique).filter((pattern) => !unique.has(`${pattern}!`));
+}

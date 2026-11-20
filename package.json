@@ -24,7 +24,7 @@
 		"build": "tsdown",
 		"format": "prettier .",
 		"lint": "eslint . --max-warnings 0",
-		"lint:knip": "knip",
+		"lint:knip": "knip && knip --production",
 		"lint:spelling": "cspell \"**\" \".github/**/*\"",
 		"prepare": "husky",
 		"test": "vitest"

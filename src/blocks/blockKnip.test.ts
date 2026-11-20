@@ -67,7 +67,7 @@ describe(blockKnip, () => {
 			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
-			            "lint:knip": "knip",
+			            "lint:knip": "knip && knip --production",
 			          },
 			        },
 			      },
@@ -160,7 +160,7 @@ describe(blockKnip, () => {
 			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
-			            "lint:knip": "knip",
+			            "lint:knip": "knip && knip --production",
 			          },
 			        },
 			      },
@@ -205,6 +205,27 @@ describe(blockKnip, () => {
 			  },
 			}
 		`);
+	});
+
+	test("project patterns with and without a production suffix", () => {
+		const creation = testBlock(blockKnip, {
+			addons: {
+				project: ["src/**/*.ts", "src/**/*.ts!", "!src/**/*.fakes.ts!"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["knip.config.ts"]).toEqual([
+			`import type { KnipConfig } from "knip";
+
+export default {
+	ignoreExportsUsedInFile: { interface: true, type: true },
+	project: ["!src/**/*.fakes.ts!", "src/**/*.ts!"],
+	treatConfigHintsAsErrors: true,
+} satisfies KnipConfig;
+`,
+			{ previously: ["knip.json"] },
+		]);
 	});
 
 	test("transition mode", () => {
@@ -252,7 +273,7 @@ describe(blockKnip, () => {
 			            "knip": "0.0.0-mock",
 			          },
 			          "scripts": {
-			            "lint:knip": "knip",
+			            "lint:knip": "knip && knip --production",
 			          },
 			        },
 			      },

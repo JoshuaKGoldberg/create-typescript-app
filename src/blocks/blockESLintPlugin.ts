@@ -4,6 +4,7 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockKnip } from "./blockKnip.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { blockVitest } from "./blockVitest.ts";
@@ -118,6 +119,10 @@ These are all set to \`"error"\` in the recommended config:
 
 <!-- begin auto-generated rules list --><!-- end auto-generated rules list -->`,
 					],
+				}),
+				blockKnip({
+					// The rule tester is only used by tests, so it's not production code
+					project: ["!src/rules/ruleTester.ts!"],
 				}),
 				blockPackageJson({
 					properties: {

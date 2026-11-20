@@ -110,7 +110,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			      "block": "[Block Knip]",
@@ -273,7 +273,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			      "block": "[Block Knip]",
@@ -707,7 +707,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			      "block": "[Block Knip]",
@@ -877,7 +877,7 @@ describe(blockTypeScript, () => {
 			    {
 			      "addons": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			      "block": "[Block Knip]",

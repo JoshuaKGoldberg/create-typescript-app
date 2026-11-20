@@ -124,6 +124,14 @@ describe(blockESLintPlugin, () => {
 			    },
 			    {
 			      "addons": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
+			        ],
+			      },
+			      "block": "[Block Knip]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "dependencies": {
 			            "@typescript-eslint/utils": "^8.29.0",
@@ -309,6 +317,14 @@ describe(blockESLintPlugin, () => {
 			    },
 			    {
 			      "addons": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
+			        ],
+			      },
+			      "block": "[Block Knip]",
+			    },
+			    {
+			      "addons": {
 			        "properties": {
 			          "dependencies": {
 			            "@typescript-eslint/utils": "^8.29.0",
@@ -489,6 +505,14 @@ describe(blockESLintPlugin, () => {
 			        ],
 			      },
 			      "block": "[Block README.md]",
+			    },
+			    {
+			      "addons": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
+			        ],
+			      },
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {
@@ -787,6 +811,14 @@ describe(blockESLintPlugin, () => {
 			        ],
 			      },
 			      "block": "[Block README.md]",
+			    },
+			    {
+			      "addons": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
+			        ],
+			      },
+			      "block": "[Block Knip]",
 			    },
 			    {
 			      "addons": {

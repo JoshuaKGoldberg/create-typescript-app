@@ -38,6 +38,7 @@ describe(blockKnip, () => {
 			            "contents": {
 			              "items": [
 			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+			                "- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests",
 			              ],
 			            },
 			          },
@@ -56,6 +57,14 @@ describe(blockKnip, () => {
 			              },
 			            ],
 			          },
+			          {
+			            "name": "Lint Knip Production",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:knip:production",
+			              },
+			            ],
+			          },
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
@@ -68,6 +77,7 @@ describe(blockKnip, () => {
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
+			            "lint:knip:production": "knip --production",
 			          },
 			        },
 			      },
@@ -131,6 +141,7 @@ describe(blockKnip, () => {
 			            "contents": {
 			              "items": [
 			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+			                "- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests",
 			              ],
 			            },
 			          },
@@ -149,6 +160,14 @@ describe(blockKnip, () => {
 			              },
 			            ],
 			          },
+			          {
+			            "name": "Lint Knip Production",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:knip:production",
+			              },
+			            ],
+			          },
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
@@ -161,6 +180,7 @@ describe(blockKnip, () => {
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
+			            "lint:knip:production": "knip --production",
 			          },
 			        },
 			      },
@@ -207,6 +227,27 @@ describe(blockKnip, () => {
 		`);
 	});
 
+	test("project patterns with and without a production suffix", () => {
+		const creation = testBlock(blockKnip, {
+			addons: {
+				project: ["src/**/*.ts", "src/**/*.ts!", "!src/**/*.fakes.ts!"],
+			},
+			options: optionsBase,
+		});
+
+		expect(creation.files?.["knip.config.ts"]).toEqual([
+			`import type { KnipConfig } from "knip";
+
+export default {
+	ignoreExportsUsedInFile: { interface: true, type: true },
+	project: ["!src/**/*.fakes.ts!", "src/**/*.ts!"],
+	treatConfigHintsAsErrors: true,
+} satisfies KnipConfig;
+`,
+			{ previously: ["knip.json"] },
+		]);
+	});
+
 	test("transition mode", () => {
 		const creation = testBlock(blockKnip, {
 			mode: "transition",
@@ -223,6 +264,7 @@ describe(blockKnip, () => {
 			            "contents": {
 			              "items": [
 			                "- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports",
+			                "- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests",
 			              ],
 			            },
 			          },
@@ -241,6 +283,14 @@ describe(blockKnip, () => {
 			              },
 			            ],
 			          },
+			          {
+			            "name": "Lint Knip Production",
+			            "steps": [
+			              {
+			                "run": "pnpm lint:knip:production",
+			              },
+			            ],
+			          },
 			        ],
 			      },
 			      "block": "[Block GitHub Actions CI]",
@@ -253,6 +303,7 @@ describe(blockKnip, () => {
 			          },
 			          "scripts": {
 			            "lint:knip": "knip",
+			            "lint:knip:production": "knip --production",
 			          },
 			        },
 			      },

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.86.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.85.0...2.86.0) (2026-11-20)
+
+### Features
+
+- use default options for yml/sort-keys ([#2663](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2663)) ([7a4a770](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7a4a770ca931a25ce9d7e4235f9582301c0c28bf)), references [#2208](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2208)
+
 ## [2.85.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.84.0...2.85.0) (2026-11-20)
 
 ### Features

@@ -9,7 +9,7 @@ vi.mock("../utils/resolveBin.ts", () => ({
 }));
 
 describe(blockRemoveFiles, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockRemoveFiles, {
 			options: optionsBase,
 		});
@@ -17,12 +17,12 @@ describe(blockRemoveFiles, () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockRemoveFiles, {
-			addons: {
+			options: optionsBase,
+			props: {
 				files: ["a", "b", "c"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`{}`);
@@ -37,13 +37,13 @@ describe(blockRemoveFiles, () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons and mode", () => {
+	test("with props and mode", () => {
 		const creation = testBlock(blockRemoveFiles, {
-			addons: {
-				files: ["a", "b", "c"],
-			},
 			mode: "transition",
 			options: optionsBase,
+			props: {
+				files: ["a", "b", "c"],
+			},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

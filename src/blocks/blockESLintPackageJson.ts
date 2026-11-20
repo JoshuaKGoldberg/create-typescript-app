@@ -11,7 +11,7 @@ export const blockESLintPackageJson = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockESLint({
 					extensions: [
 						{
@@ -41,7 +41,7 @@ export const blockESLintPackageJson = base.createBlock({
 	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: [".npmpackagejsonlintrc*"],
 				}),

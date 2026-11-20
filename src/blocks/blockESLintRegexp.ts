@@ -8,7 +8,7 @@ export const blockESLintRegexp = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockESLint({
 					extensions: [
 						{

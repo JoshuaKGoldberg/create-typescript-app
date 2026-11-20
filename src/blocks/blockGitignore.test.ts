@@ -5,7 +5,7 @@ import { blockGitignore } from "./blockGitignore.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockGitignore, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockGitignore, {
 			options: optionsBase,
 		});
@@ -20,12 +20,12 @@ describe(blockGitignore, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockGitignore, {
-			addons: {
+			options: optionsBase,
+			props: {
 				ignores: ["/lib"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -39,12 +39,12 @@ describe(blockGitignore, () => {
 		`);
 	});
 
-	test("with duplicate and negated addons", () => {
+	test("with duplicate and negated props", () => {
 		const creation = testBlock(blockGitignore, {
-			addons: {
+			options: optionsBase,
+			props: {
 				ignores: ["!/docs/keep.md", "/node_modules", "/docs", "*.log"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -62,12 +62,12 @@ describe(blockGitignore, () => {
 
 	test("with existing entries and removals", () => {
 		const creation = testBlock(blockGitignore, {
-			addons: {
+			options: optionsBase,
+			props: {
 				existing: [".env", "/lib", "node_modules/"],
 				ignores: ["/lib"],
 				removals: ["/lib", ".env"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

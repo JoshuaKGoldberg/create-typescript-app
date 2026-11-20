@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockRepositorySettings } from "./blockRepositorySettings.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockRepositorySettings", () => {
+describe(blockRepositorySettings, () => {
 	test("with a short description", () => {
 		const creation = testBlock(blockRepositorySettings, {
 			options: optionsBase,

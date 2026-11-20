@@ -60,11 +60,7 @@ export const blockDevelopmentDocs = base.createBlock({
 	about: {
 		name: "Development Docs",
 	},
-	addons: {
-		hints: z.array(z.string()).default([]),
-		sections: z.record(z.string(), zSection).default({}),
-	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		const lines = [
 			`# Development`,
 			``,
@@ -83,8 +79,8 @@ export const blockDevelopmentDocs = base.createBlock({
 			`pnpm install`,
 			`\`\`\``,
 			``,
-			...(addons.hints.length ? [...addons.hints, ``] : []),
-			...Object.entries(addons.sections)
+			...(props.hints.length ? [...props.hints, ``] : []),
+			...Object.entries(props.sections)
 				.sort(([a], [b]) => a.localeCompare(b))
 				.flatMap(([heading, section]) => printSection(heading, section)),
 			...(options.documentation.development
@@ -100,9 +96,13 @@ export const blockDevelopmentDocs = base.createBlock({
 			},
 		};
 	},
+	props: {
+		hints: z.array(z.string()).default([]),
+		sections: z.record(z.string(), zSection).default({}),
+	},
 	transition() {
 		return {
-			addons: [blockRemoveFiles({ files: ["DEVELOPMENT.md"] })],
+			extensions: [blockRemoveFiles({ files: ["DEVELOPMENT.md"] })],
 		};
 	},
 });

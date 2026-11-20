@@ -5,47 +5,47 @@ import { blockExampleFiles } from "./blockExampleFiles.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockExampleFiles, () => {
-	test("without addons.files", () => {
+	test("without props.files", () => {
 		const creation = testBlock(blockExampleFiles, {
-			addons: {},
 			options: optionsBase,
+			props: {},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons.files and without mode", () => {
+	test("with props.files and without mode", () => {
 		const creation = testBlock(blockExampleFiles, {
-			addons: {
+			options: optionsBase,
+			props: {
 				files: {
 					"index.ts": "console.log('Hello, world!');",
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	test("with addons.files and mode: setup", () => {
+	test("with props.files and mode: setup", () => {
 		const creation = testBlock(blockExampleFiles, {
-			addons: {
-				files: {
-					"index.ts": "console.log('Hello, world!');",
-				},
-			},
 			mode: "setup",
 			options: optionsBase,
+			props: {
+				files: {
+					"index.ts": "console.log('Hello, world!');",
+				},
+			},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "defaultUsage": undefined,
 			      },
-			      "block": "[Block README.md]",
 			    },
 			  ],
 			  "files": {

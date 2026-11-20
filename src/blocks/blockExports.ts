@@ -12,10 +12,6 @@ export const blockExports = base.createBlock({
 	about: {
 		name: "Exports",
 	},
-	addons: {
-		filePath: zFilePath.optional(),
-		runArgs: z.array(z.string()).default([]),
-	},
 	intake({ files }) {
 		const packageData = intakeFileAsJson(files, ["package.json"]);
 		const exports = zExports.safeParse(packageData?.exports).data;
@@ -28,13 +24,13 @@ export const blockExports = base.createBlock({
 
 		return filePath ? { filePath: libToDist(filePath) } : undefined;
 	},
-	produce({ addons, options }) {
-		const { filePath = "./dist/index.mjs", runArgs } = addons;
+	produce({ options, props }) {
+		const { filePath = "./dist/index.mjs", runArgs } = props;
 		const main = zFilePath.safeParse(options.packageData?.main).data;
 		const runArgsText = runArgs.map((arg) => ` ${arg}`).join("");
 
 		return {
-			addons: [
+			extensions: [
 				// The entry point is built by tsdown, so it's only set when tsdown is used
 				blockTSDown({
 					exports: filePath.startsWith(".") ? filePath : `./${filePath}`,
@@ -46,6 +42,10 @@ export const blockExports = base.createBlock({
 				}),
 			],
 		};
+	},
+	props: {
+		filePath: zFilePath.optional(),
+		runArgs: z.array(z.string()).default([]),
 	},
 });
 

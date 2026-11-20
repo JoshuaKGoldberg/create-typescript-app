@@ -30,16 +30,17 @@ vi.mock("./eslint/blockESLintIntake.ts", () => ({
 }));
 
 describe(blockESLint, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockESLint, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -64,10 +65,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -79,10 +80,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -96,10 +97,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -125,7 +126,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -180,9 +180,10 @@ describe(blockESLint, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -207,10 +208,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -222,10 +223,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -239,10 +240,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -268,10 +269,10 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Dependencies]",
+			      "props": {
 			        "dependencies": [
 			          "@types/eslint",
 			          "@typescript-eslint/eslint-plugin",
@@ -282,26 +283,25 @@ describe(blockESLint, () => {
 			          "yaml-eslint-parser",
 			        ],
 			      },
-			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".eslintrc*",
 			          ".eslintignore",
 			          "eslint.config.{cjs,js,mjs}",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "eslint",
 			          "lint",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {
@@ -359,9 +359,10 @@ describe(blockESLint, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -386,10 +387,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -401,10 +402,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -418,10 +419,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -447,10 +448,10 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Dependencies]",
+			      "props": {
 			        "dependencies": [
 			          "@types/eslint",
 			          "@typescript-eslint/eslint-plugin",
@@ -461,26 +462,25 @@ describe(blockESLint, () => {
 			          "yaml-eslint-parser",
 			        ],
 			      },
-			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".eslintrc*",
 			          ".eslintignore",
 			          "eslint.config.{cjs,js,mjs}",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "eslint",
 			          "lint",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {
@@ -528,9 +528,10 @@ describe(blockESLint, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
+			options: optionsBase,
+			props: {
 				beforeLint: "Before lint.",
 				explanations: ["This is a great config!", "You should use it!"],
 				extensions: [
@@ -566,14 +567,14 @@ describe(blockESLint, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -599,10 +600,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -614,10 +615,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -634,10 +635,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -663,7 +664,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -736,7 +736,8 @@ describe(blockESLint, () => {
 
 	test("with identical addon rules comments across two extensions", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
+			options: optionsBase,
+			props: {
 				extensions: [
 					{
 						files: ["**/*.js"],
@@ -774,14 +775,14 @@ describe(blockESLint, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -806,10 +807,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -821,10 +822,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -838,10 +839,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -867,7 +868,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -931,7 +931,8 @@ describe(blockESLint, () => {
 
 	test("with multiline addon rules comments", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
+			options: optionsBase,
+			props: {
 				extensions: [
 					{
 						files: ["**/*.js"],
@@ -952,14 +953,14 @@ describe(blockESLint, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -984,10 +985,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -999,10 +1000,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -1016,10 +1017,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -1045,7 +1046,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -1110,7 +1110,8 @@ describe(blockESLint, () => {
 
 	test("with addon extensions merging where the first provides everything", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
+			options: optionsBase,
+			props: {
 				extensions: [
 					{
 						extends: ["a.configs.recommended"],
@@ -1138,14 +1139,14 @@ describe(blockESLint, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -1170,10 +1171,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -1185,10 +1186,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -1202,10 +1203,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -1231,7 +1232,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -1288,7 +1288,8 @@ describe(blockESLint, () => {
 
 	test("with addon extensions merging where the second provides everything", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
+			options: optionsBase,
+			props: {
 				extensions: [
 					{
 						files: ["**/*.a"],
@@ -1316,14 +1317,14 @@ describe(blockESLint, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -1348,10 +1349,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -1363,10 +1364,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -1380,10 +1381,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -1409,7 +1410,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -1466,7 +1466,8 @@ describe(blockESLint, () => {
 
 	test("with a scriptFileExtensions addon", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
+			options: optionsBase,
+			props: {
 				extensions: [
 					{
 						files: ["**/*.{js,ts}"],
@@ -1479,7 +1480,6 @@ describe(blockESLint, () => {
 				],
 				scriptFileExtensions: ["tsx"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["eslint.config.ts"]).toMatchInlineSnapshot(`
@@ -1520,12 +1520,12 @@ describe(blockESLint, () => {
 
 	test("with a scriptFileExtensions addon and options.type set to commonjs", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
-				scriptFileExtensions: ["tsx"],
-			},
 			options: {
 				...optionsBase,
 				type: "commonjs",
+			},
+			props: {
+				scriptFileExtensions: ["tsx"],
 			},
 		});
 
@@ -1566,13 +1566,13 @@ describe(blockESLint, () => {
 
 	test("with a beforeLintSteps addon", () => {
 		const creation = testBlock(blockESLint, {
-			addons: {
+			options: optionsBase,
+			props: {
 				beforeLintSteps: [{ run: "pnpm generate" }],
 			},
-			options: optionsBase,
 		});
 
-		expect(creation.addons).toContainEqual(
+		expect(creation.extensions).toContainEqual(
 			blockGitHubActionsCI({
 				jobs: [
 					{
@@ -1594,9 +1594,10 @@ describe(blockESLint, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -1621,10 +1622,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -1639,10 +1640,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -1656,10 +1657,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -1685,7 +1686,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -1744,9 +1744,10 @@ describe(blockESLint, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -1771,10 +1772,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -1789,10 +1790,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -1806,10 +1807,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -1835,7 +1836,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -1894,9 +1894,10 @@ describe(blockESLint, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -1921,10 +1922,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -1936,10 +1937,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -1953,10 +1954,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -1982,7 +1983,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -2040,9 +2040,10 @@ describe(blockESLint, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -2067,10 +2068,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint",
@@ -2082,10 +2083,10 @@ describe(blockESLint, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@eslint/js": "0.0.0-mock",
@@ -2099,10 +2100,10 @@ describe(blockESLint, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "dbaeumer.vscode-eslint",
 			        ],
@@ -2128,7 +2129,6 @@ describe(blockESLint, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {

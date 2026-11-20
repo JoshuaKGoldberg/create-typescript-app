@@ -12,9 +12,6 @@ export const blockOctoGuide = base.createBlock({
 	about: {
 		name: "OctoGuide",
 	},
-	addons: {
-		config: z.union([z.literal("recommended"), z.literal("strict")]).optional(),
-	},
 	intake({ files }) {
 		const steps = intakeFileYamlSteps(
 			files,
@@ -39,9 +36,9 @@ export const blockOctoGuide = base.createBlock({
 				"recommended" | "strict" | undefined,
 		};
 	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					words: ["octoguide"],
 				}),
@@ -86,7 +83,7 @@ export const blockOctoGuide = base.createBlock({
 											options.workflowsVersions,
 										),
 										with: {
-											config: addons.config ?? "recommended",
+											config: props.config ?? "recommended",
 											"github-token": "${{ secrets.GITHUB_TOKEN }}",
 										},
 									},
@@ -99,9 +96,12 @@ export const blockOctoGuide = base.createBlock({
 			},
 		};
 	},
+	props: {
+		config: z.union([z.literal("recommended"), z.literal("strict")]).optional(),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: [
 						".github/workflows/accessibility-alt-text-bot.{yaml,yml}",

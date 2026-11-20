@@ -8,11 +8,6 @@ export const blockGitignore = base.createBlock({
 	about: {
 		name: "Gitignore",
 	},
-	addons: {
-		existing: z.array(z.string()).default([]),
-		ignores: z.array(z.string()).default([]),
-		removals: z.array(z.string()).default([]),
-	},
 	intake({ files }) {
 		const gitignore = intakeFile(files, [".gitignore"]);
 		if (!gitignore) {
@@ -26,12 +21,12 @@ export const blockGitignore = base.createBlock({
 				.filter((line) => line && !line.startsWith("#")),
 		};
 	},
-	produce({ addons }) {
-		const removals = new Set(["node_modules/", ...addons.removals]);
+	produce({ props }) {
+		const removals = new Set(["node_modules/", ...props.removals]);
 		const ignores = new Set([
 			"/node_modules",
-			...addons.existing.filter((line) => !removals.has(line)),
-			...addons.ignores,
+			...props.existing.filter((line) => !removals.has(line)),
+			...props.ignores,
 		]);
 
 		const negations = [...ignores].filter((line) => line.startsWith("!"));
@@ -42,5 +37,10 @@ export const blockGitignore = base.createBlock({
 				".gitignore": formatIgnoreFile([...patterns.sort(), ...negations]),
 			},
 		};
+	},
+	props: {
+		existing: z.array(z.string()).default([]),
+		ignores: z.array(z.string()).default([]),
+		removals: z.array(z.string()).default([]),
 	},
 });

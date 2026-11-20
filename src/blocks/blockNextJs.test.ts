@@ -12,19 +12,20 @@ describe(blockNextJs, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          ".next",
 			          "*.tsbuildinfo",
 			          "next-env.d.ts",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
@@ -58,10 +59,10 @@ describe(blockNextJs, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "beforeLintSteps": [
 			          {
 			            "run": "pnpm next typegen",
@@ -94,10 +95,10 @@ describe(blockNextJs, () => {
 			          "tsx",
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Build",
@@ -109,28 +110,28 @@ describe(blockNextJs, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/.next",
 			          "/next-env.d.ts",
 			          "*.tsbuildinfo",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "project": [
 			          "src/**/*.tsx",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "dependencies": {
 			            "next": "^16.4.0",
@@ -149,20 +150,20 @@ describe(blockNextJs, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/.next",
 			          "/AGENTS.md",
 			          "/next-env.d.ts",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block TypeScript]",
+			      "props": {
 			        "beforeTypeCheckSteps": [
 			          {
 			            "run": "pnpm next typegen",
@@ -195,15 +196,14 @@ describe(blockNextJs, () => {
 			          ".next/dev/types/**/*.ts",
 			        ],
 			      },
-			      "block": "[Block TypeScript]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "exclude": [
 			          ".next",
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			  ],
 			  "files": {
@@ -326,8 +326,8 @@ describe(blockNextJs, () => {
 		const contents = `export default { reactCompiler: true };\n`;
 
 		const creation = testBlock(blockNextJs, {
-			addons: { nextConfig: { contents, fileName: "next.config.mjs" } },
 			options: optionsBase,
+			props: { nextConfig: { contents, fileName: "next.config.mjs" } },
 		});
 
 		expect(creation.files).toEqual({ "next.config.mjs": contents });

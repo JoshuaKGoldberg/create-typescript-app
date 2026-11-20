@@ -4,23 +4,24 @@ import { describe, expect, it } from "vitest";
 import { blockAllContributors } from "./blockAllContributors.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockAllContributors", () => {
+describe(blockAllContributors, () => {
 	it("defaults contributors to [] when not provided", () => {
 		const creation = testBlock(blockAllContributors, { options: optionsBase });
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/.all-contributorsrc",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "👪 All Contributors: undefined",
@@ -38,7 +39,6 @@ describe("blockAllContributors", () => {
 			        ],
 			        "sections": undefined,
 			      },
-			      "block": "[Block README.md]",
 			    },
 			  ],
 			  "files": {
@@ -118,17 +118,18 @@ describe("blockAllContributors", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/.all-contributorsrc",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "👪 All Contributors: 1",
@@ -164,7 +165,6 @@ describe("blockAllContributors", () => {
 			<!-- spellchecker: enable -->",
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			  ],
 			  "files": {
@@ -256,17 +256,18 @@ describe("blockAllContributors", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/.all-contributorsrc",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "👪 All Contributors: 1",
@@ -302,7 +303,6 @@ describe("blockAllContributors", () => {
 			<!-- spellchecker: enable -->",
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			  ],
 			  "files": {

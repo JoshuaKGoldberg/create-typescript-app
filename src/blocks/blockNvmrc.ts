@@ -7,7 +7,7 @@ export const blockNvmrc = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockPrettier({
 					overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				}),

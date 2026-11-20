@@ -41,7 +41,7 @@ export default createConfig({
 });
 ```
 
-If your extension's tests touch the DOM, consider also setting [Vitest's `environment`](https://vitest.dev/config/#environment) to `"happy-dom"` with a `blockVitest({ environment: "happy-dom" })` addon.
+If your extension's tests touch the DOM, consider also setting [Vitest's `environment`](https://vitest.dev/config/#environment) to `"happy-dom"` with a `blockVitest({ environment: "happy-dom" })` extension.
 
 ## CLI
 
@@ -70,7 +70,7 @@ Framework plugins are libraries that a specific tool such as ESLint or Prettier 
 
 - ESLint plugins can add the [ESLint Plugin block](./Blocks.md), which sets up [`eslint-doc-generator`](https://github.com/bmish/eslint-doc-generator) to generate rule docs
 - Some frameworks still load plugins with CommonJS `require`, in which case you may want to [add dual CommonJS / ECMAScript Modules emit](./FAQs.md#how-can-i-add-dual-commonjs--ecmascript-modules-emit)
-- If the repository uses its own plugin on itself, its build needs to run before that tool; for example, prettier-plugin-curly adds a `blockPrettier({ runBefore: ["pnpm build --no-dts"] })` addon
+- If the repository uses its own plugin on itself, its build needs to run before that tool; for example, prettier-plugin-curly adds a `blockPrettier({ runBefore: ["pnpm build --no-dts"] })` extension
 
 ## GitHub Action
 

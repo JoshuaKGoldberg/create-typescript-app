@@ -9,7 +9,7 @@ export const blockContributorCovenant = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockREADME({
 					badges: [
 						{
@@ -164,7 +164,7 @@ Translations are available at
 	},
 	transition() {
 		return {
-			addons: [blockRemoveFiles({ files: ["CODE_OF_CONDUCT.md"] })],
+			extensions: [blockRemoveFiles({ files: ["CODE_OF_CONDUCT.md"] })],
 		};
 	},
 });

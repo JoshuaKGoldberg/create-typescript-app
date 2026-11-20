@@ -23,24 +23,25 @@ vi.mock("../utils/resolveBin.ts", () => ({
 }));
 
 describe(blockVitest, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockVitest, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Testing": {
 			            "contents": "
@@ -65,10 +66,10 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -103,10 +104,10 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
@@ -155,18 +156,18 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Test",
@@ -178,18 +179,18 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "entry": [
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "0.0.0-mock",
@@ -202,26 +203,26 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block TSDown]",
+			      "props": {
 			        "entry": [
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -245,7 +246,6 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -276,17 +276,18 @@ describe(blockVitest, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Testing": {
 			            "contents": "
@@ -311,10 +312,10 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -349,10 +350,10 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
@@ -401,10 +402,10 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
@@ -414,10 +415,10 @@ describe(blockVitest, () => {
 			          "coverage/",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Test",
@@ -429,18 +430,18 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "entry": [
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "0.0.0-mock",
@@ -453,26 +454,26 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block TSDown]",
+			      "props": {
 			        "entry": [
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -496,10 +497,10 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Dependencies]",
+			      "props": {
 			        "dependencies": [
 			          "@vitest/coverage-istanbul",
 			          "eslint-plugin-jest",
@@ -508,25 +509,24 @@ describe(blockVitest, () => {
 			          "jest mocha",
 			        ],
 			      },
-			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".mocha*",
 			          "jest.config.*",
 			          "vitest.config.{c,j,m}*",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "test",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {
@@ -571,9 +571,10 @@ describe(blockVitest, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockVitest, {
-			addons: {
+			options: optionsBase,
+			props: {
 				coverage: {
 					exclude: ["other"],
 					include: ["src/"],
@@ -582,22 +583,22 @@ describe(blockVitest, () => {
 				exclude: ["lib/"],
 				flags: ["--typecheck"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Testing": {
 			            "contents": "
@@ -622,10 +623,10 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -660,10 +661,10 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
@@ -712,18 +713,18 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Test",
@@ -735,18 +736,18 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "entry": [
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "0.0.0-mock",
@@ -759,26 +760,26 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block TSDown]",
+			      "props": {
 			        "entry": [
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -802,7 +803,6 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -827,9 +827,10 @@ describe(blockVitest, () => {
 		`);
 	});
 
-	test("with duplicate excludes addons", () => {
+	test("with duplicate excludes props", () => {
 		const creation = testBlock(blockVitest, {
-			addons: {
+			options: optionsBase,
+			props: {
 				coverage: {
 					exclude: ["other"],
 					include: ["src/"],
@@ -837,22 +838,22 @@ describe(blockVitest, () => {
 				exclude: ["lib/", "node_modules", "node_modules"],
 				flags: ["--typecheck"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          "coverage",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Testing": {
 			            "contents": "
@@ -877,10 +878,10 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -915,10 +916,10 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.test.ts": "import { describe, expect, it, vi } from "vitest";
 
@@ -967,18 +968,18 @@ describe(blockVitest, () => {
 			",
 			        },
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Test",
@@ -990,18 +991,18 @@ describe(blockVitest, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "entry": [
 			          "src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "@vitest/coverage-v8": "0.0.0-mock",
@@ -1014,26 +1015,26 @@ describe(blockVitest, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/coverage",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block TSDown]",
+			      "props": {
 			        "entry": [
 			          "!src/**/*.test.*",
 			        ],
 			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [
 			          {
 			            "args": [
@@ -1057,7 +1058,6 @@ describe(blockVitest, () => {
 			          "vitest.explorer",
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {

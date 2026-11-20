@@ -5,7 +5,7 @@ import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockGitHubApps, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockGitHubApps, {
 			options: optionsBase,
 		});
@@ -17,9 +17,10 @@ describe(blockGitHubApps, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockGitHubApps, {
-			addons: {
+			options: optionsBase,
+			props: {
 				apps: [
 					{
 						name: "Secret A.",
@@ -31,7 +32,6 @@ describe(blockGitHubApps, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

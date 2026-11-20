@@ -19,24 +19,25 @@ vi.mock("../data/packageData.ts", async (importOriginal) => {
 });
 
 describe(blockPrettier, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockPrettier, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Formatting": {
 			            "contents": "
@@ -52,10 +53,10 @@ describe(blockPrettier, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Format Check",
@@ -67,10 +68,10 @@ describe(blockPrettier, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "0.0.0-mock",
@@ -83,10 +84,10 @@ describe(blockPrettier, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "esbenp.prettier-vscode",
 			        ],
@@ -94,7 +95,6 @@ describe(blockPrettier, () => {
 			          "editor.defaultFormatter": "esbenp.prettier-vscode",
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -145,17 +145,18 @@ describe(blockPrettier, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Formatting": {
 			            "contents": "
@@ -171,10 +172,10 @@ describe(blockPrettier, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Format Check",
@@ -186,10 +187,10 @@ describe(blockPrettier, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "0.0.0-mock",
@@ -203,10 +204,10 @@ describe(blockPrettier, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "esbenp.prettier-vscode",
 			        ],
@@ -214,20 +215,20 @@ describe(blockPrettier, () => {
 			          "editor.defaultFormatter": "esbenp.prettier-vscode",
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Dependencies]",
+			      "props": {
 			        "dependencies": [
 			          "eslint-config-prettier",
 			          "eslint-plugin-prettier",
 			          "lint-staged",
 			        ],
 			      },
-			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".lintstagedrc*",
 			          ".prettierrc*",
@@ -235,16 +236,15 @@ describe(blockPrettier, () => {
 			          "prettier.config.{c,j,m}*",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "format",
 			          "prettier",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {
@@ -287,9 +287,10 @@ describe(blockPrettier, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockPrettier, {
-			addons: {
+			options: optionsBase,
+			props: {
 				ignores: ["generated"],
 				overrides: [{ files: ".nvmrc", options: { parser: "yaml" } }],
 				plugins: [
@@ -300,22 +301,22 @@ describe(blockPrettier, () => {
 				],
 				runBefore: ["pnpm build || exit 0"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          ".all-contributorsrc",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Formatting": {
 			            "contents": "
@@ -331,10 +332,10 @@ describe(blockPrettier, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Format Check",
@@ -349,10 +350,10 @@ describe(blockPrettier, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "husky": "0.0.0-mock",
@@ -368,10 +369,10 @@ describe(blockPrettier, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "esbenp.prettier-vscode",
 			        ],
@@ -379,7 +380,6 @@ describe(blockPrettier, () => {
 			          "editor.defaultFormatter": "esbenp.prettier-vscode",
 			        },
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {

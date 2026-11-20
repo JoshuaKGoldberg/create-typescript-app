@@ -9,9 +9,6 @@ export const blockBin = base.createBlock({
 	about: {
 		name: "Bin",
 	},
-	addons: {
-		contents: z.string().optional(),
-	},
 	intake({ files, options }) {
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 		if (!primaryBin) {
@@ -22,7 +19,7 @@ export const blockBin = base.createBlock({
 
 		return existing ? { contents: existing[0] } : undefined;
 	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		const primaryBin = getPrimaryBin(options.bin, options.repository);
 
 		// A bin inside the build output is produced by the build, not by this block.
@@ -33,7 +30,7 @@ export const blockBin = base.createBlock({
 		const segments = primaryBin.split("/");
 		const toRoot = "../".repeat(segments.length - 1);
 		const contents = (
-			addons.contents ??
+			props.contents ??
 			`#!/usr/bin/env node
 import "${toRoot}dist/index.mjs";
 `
@@ -45,5 +42,8 @@ import "${toRoot}dist/index.mjs";
 				[contents, { executable: true }],
 			) as CreatedDirectory,
 		};
+	},
+	props: {
+		contents: z.string().optional(),
 	},
 });

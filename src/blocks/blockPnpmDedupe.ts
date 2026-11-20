@@ -9,7 +9,7 @@ export const blockPnpmDedupe = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockGitHubActionsCI({
 					jobs: [
 						{
@@ -26,7 +26,7 @@ export const blockPnpmDedupe = base.createBlock({
 	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveWorkflows({
 					workflows: ["lint-packages"],
 				}),

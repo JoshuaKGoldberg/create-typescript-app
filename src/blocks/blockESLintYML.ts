@@ -7,7 +7,7 @@ export const blockESLintYML = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockESLint({
 					extensions: [
 						{

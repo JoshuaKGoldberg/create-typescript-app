@@ -7,7 +7,16 @@ export const blockRepositorySecrets = base.createBlock({
 	about: {
 		name: "Repository Secrets",
 	},
-	addons: {
+	produce({ options, props }) {
+		return {
+			suggestions: getInstallationSuggestions(
+				"populate the secret",
+				props.secrets.map((secret) => `${secret.name} (${secret.description})`),
+				`https://github.com/${options.owner}/${options.repository}/settings/secrets/actions`,
+			),
+		};
+	},
+	props: {
 		secrets: z
 			.array(
 				z.object({
@@ -16,16 +25,5 @@ export const blockRepositorySecrets = base.createBlock({
 				}),
 			)
 			.default([]),
-	},
-	produce({ addons, options }) {
-		return {
-			suggestions: getInstallationSuggestions(
-				"populate the secret",
-				addons.secrets.map(
-					(secret) => `${secret.name} (${secret.description})`,
-				),
-				`https://github.com/${options.owner}/${options.repository}/settings/secrets/actions`,
-			),
-		};
 	},
 });

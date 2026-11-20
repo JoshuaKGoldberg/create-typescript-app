@@ -114,7 +114,7 @@ ${options.emoji} is a good starter if you're not sure which to use.
 	},
 	transition() {
 		return {
-			addons: [blockRemoveFiles({ files: ["CONTRIBUTING.md"] })],
+			extensions: [blockRemoveFiles({ files: ["CONTRIBUTING.md"] })],
 		};
 	},
 });

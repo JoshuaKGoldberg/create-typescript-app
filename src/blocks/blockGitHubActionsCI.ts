@@ -18,21 +18,8 @@ export const blockGitHubActionsCI = base.createBlock({
 	about: {
 		name: "GitHub Actions CI",
 	},
-	addons: {
-		jobs: z
-			.array(
-				z.object({
-					checkoutWith: z.record(z.string(), z.string()).optional(),
-					if: z.string().optional(),
-					name: z.string(),
-					permissions: zMultiWorkflowJobPermissions.optional(),
-					steps: z.array(zActionStep),
-				}),
-			)
-			.optional(),
-	},
-	produce({ addons, options }) {
-		const { jobs } = addons;
+	produce({ options, props }) {
+		const { jobs } = props;
 		const minimumNodeVersion = options.node.minimum
 			.replace(/^\D*/u, "")
 			.split(/[^\d.]/u)[0];
@@ -67,7 +54,7 @@ export const blockGitHubActionsCI = base.createBlock({
 		);
 
 		return {
-			addons: [
+			extensions: [
 				blockRepositoryBranchRuleset({
 					requiredStatusChecks: ciJobs?.map((job) => job.name),
 				}),
@@ -157,9 +144,22 @@ export const blockGitHubActionsCI = base.createBlock({
 			},
 		};
 	},
+	props: {
+		jobs: z
+			.array(
+				z.object({
+					checkoutWith: z.record(z.string(), z.string()).optional(),
+					if: z.string().optional(),
+					name: z.string(),
+					permissions: zMultiWorkflowJobPermissions.optional(),
+					steps: z.array(zActionStep),
+				}),
+			)
+			.optional(),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: [".circleci", ".github/workflows/ci.yml", "travis.{yaml,yml}"],
 				}),

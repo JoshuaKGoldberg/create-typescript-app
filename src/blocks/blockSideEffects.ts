@@ -7,14 +7,11 @@ export const blockSideEffects = base.createBlock({
 	about: {
 		name: "Side Effects",
 	},
-	addons: {
-		sideEffects: z.union([z.boolean(), z.array(z.string())]).optional(),
-	},
-	produce({ addons }) {
-		const { sideEffects = false } = addons;
+	produce({ props }) {
+		const { sideEffects = false } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockPackageJson({
 					properties: {
 						sideEffects,
@@ -22,5 +19,8 @@ export const blockSideEffects = base.createBlock({
 				}),
 			],
 		};
+	},
+	props: {
+		sideEffects: z.union([z.boolean(), z.array(z.string())]).optional(),
 	},
 });

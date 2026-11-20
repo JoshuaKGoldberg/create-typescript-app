@@ -32,15 +32,6 @@ export const blockESLint = base.createBlock({
 	about: {
 		name: "ESLint",
 	},
-	addons: {
-		beforeLint: z.string().optional(),
-		beforeLintSteps: z.array(zActionStep).default([]),
-		explanations: z.array(z.string()).default([]),
-		extensions: z.array(zExtension).default([]),
-		ignores: z.array(z.string()).default([]),
-		imports: z.array(zPackageImport).default([]),
-		scriptFileExtensions: z.array(z.string()).default([]),
-	},
 	intake({ files }) {
 		const eslintConfigRaw = intakeFile(files, [
 			[
@@ -53,7 +44,7 @@ export const blockESLint = base.createBlock({
 
 		return eslintConfigRaw ? blockESLintIntake(eslintConfigRaw[0]) : undefined;
 	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		const {
 			beforeLintSteps,
 			explanations,
@@ -61,7 +52,7 @@ export const blockESLint = base.createBlock({
 			ignores,
 			imports,
 			scriptFileExtensions,
-		} = addons;
+		} = props;
 
 		const configFileName =
 			options.type === "commonjs" ? "eslint.config.mts" : "eslint.config.ts";
@@ -150,7 +141,7 @@ export const blockESLint = base.createBlock({
 			.map(printExtension);
 
 		return {
-			addons: [
+			extensions: [
 				blockDevelopmentDocs({
 					sections: {
 						Linting: {
@@ -163,7 +154,7 @@ For example, ESLint can be run with \`--fix\` to auto-fix some lint rule complai
 pnpm run lint --fix
 \`\`\`
 `,
-									...(addons.beforeLint ? [addons.beforeLint] : []),
+									...(props.beforeLint ? [props.beforeLint] : []),
 								],
 								before: `
 This package includes several forms of linting to enforce consistent code quality and styling.
@@ -270,9 +261,18 @@ export default defineConfig(
 			],
 		};
 	},
+	props: {
+		beforeLint: z.string().optional(),
+		beforeLintSteps: z.array(zActionStep).default([]),
+		explanations: z.array(z.string()).default([]),
+		extensions: z.array(zExtension).default([]),
+		ignores: z.array(z.string()).default([]),
+		imports: z.array(zPackageImport).default([]),
+		scriptFileExtensions: z.array(z.string()).default([]),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveDependencies({
 					dependencies: [
 						"@types/eslint",

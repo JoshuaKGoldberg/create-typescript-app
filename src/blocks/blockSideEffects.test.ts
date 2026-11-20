@@ -5,69 +5,69 @@ import { blockSideEffects } from "./blockSideEffects.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockSideEffects, () => {
-	it("without addons", () => {
+	it("without props", () => {
 		const creation = testBlock(blockSideEffects, { options: optionsBase });
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "sideEffects": false,
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
 		`);
 	});
 
-	it("with addons (boolean)", () => {
+	it("with props (boolean)", () => {
 		const creation = testBlock(blockSideEffects, {
-			addons: {
+			options: optionsBase,
+			props: {
 				sideEffects: true,
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "sideEffects": true,
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}
 		`);
 	});
 
-	it("with addons (Array)", () => {
+	it("with props (Array)", () => {
 		const creation = testBlock(blockSideEffects, {
-			addons: {
+			options: optionsBase,
+			props: {
 				sideEffects: ["./main.js"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "sideEffects": [
 			            "./main.js",
 			          ],
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			  ],
 			}

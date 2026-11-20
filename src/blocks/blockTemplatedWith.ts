@@ -7,7 +7,7 @@ export const blockTemplatedWith = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockREADME({
 					notices: [
 						options.owner !== "JoshuaKGoldberg" &&

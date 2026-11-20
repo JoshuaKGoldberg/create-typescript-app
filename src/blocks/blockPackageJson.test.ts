@@ -12,7 +12,7 @@ const options = {
 };
 
 describe(blockPackageJson, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockPackageJson, { options });
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -56,14 +56,14 @@ describe(blockPackageJson, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          "package-lock.json yarn.lock",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {
@@ -97,9 +97,10 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				cleanupCommands: ["pnpm dedupe"],
 				properties: {
 					dependencies: {
@@ -108,7 +109,6 @@ describe(blockPackageJson, () => {
 					other: true,
 				},
 			},
-			options,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -149,9 +149,10 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
-	test("with addons adding devDependencies", () => {
+	test("with props adding devDependencies", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				cleanupCommands: ["pnpm dedupe"],
 				properties: {
 					dependencies: {
@@ -163,7 +164,6 @@ describe(blockPackageJson, () => {
 					other: true,
 				},
 			},
-			options,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -207,20 +207,20 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
-	test("with addons adding a devDependency that is already a dependency", () => {
+	test("with props adding a devDependency that is already a dependency", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					devDependencies: {
-						"is-even": "4.5.6",
-						"is-odd": "1.2.3",
-					},
-				},
-			},
 			options: {
 				...options,
 				packageData: {
 					dependencies: {
+						"is-odd": "1.2.3",
+					},
+				},
+			},
+			props: {
+				properties: {
+					devDependencies: {
+						"is-even": "4.5.6",
 						"is-odd": "1.2.3",
 					},
 				},
@@ -256,18 +256,18 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
-	test("with addons removing an existing property", () => {
+	test("with props removing an existing property", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					"lint-staged": undefined,
-				},
-			},
 			options: {
 				...options,
 				packageData: {
 					"lint-staged": { "*": "prettier --write" },
 				} as BaseOptions["packageData"],
+			},
+			props: {
+				properties: {
+					"lint-staged": undefined,
+				},
 			},
 		});
 
@@ -376,14 +376,14 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
-	test("with addons adding overlapping files", () => {
+	test("with props adding overlapping files", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				properties: {
 					files: ["README.md", "LICENSE.md", "lib/", "lib/bin/file.js"],
 				},
 			},
-			options,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -706,18 +706,18 @@ describe(blockPackageJson, () => {
 	it("preserves an existing dependency when the addon has an invalid version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					dependencies: {
-						[dependency]: "0.9.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					dependencies: {
 						[dependency]: "1.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					dependencies: {
+						[dependency]: "0.9.0",
 					},
 				},
 			},
@@ -736,17 +736,17 @@ describe(blockPackageJson, () => {
 	it("uses an addon's version when there is no existing equivalent", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					dependencies: {
-						[dependency]: "1.1.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					dependencies: {},
+				},
+			},
+			props: {
+				properties: {
+					dependencies: {
+						[dependency]: "1.1.0",
+					},
 				},
 			},
 		});
@@ -764,18 +764,18 @@ describe(blockPackageJson, () => {
 	it("uses the addon's version when the existing equivalent is invalid semver", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					dependencies: {
-						[dependency]: "1.0.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					dependencies: {
 						[dependency]: "next",
+					},
+				},
+			},
+			props: {
+				properties: {
+					dependencies: {
+						[dependency]: "1.0.0",
 					},
 				},
 			},
@@ -794,18 +794,18 @@ describe(blockPackageJson, () => {
 	it("preserves an existing dependency when the addon has an older version minimum", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					dependencies: {
-						[dependency]: "^0.9.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					dependencies: {
 						[dependency]: "^1.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					dependencies: {
+						[dependency]: "^0.9.0",
 					},
 				},
 			},
@@ -824,18 +824,18 @@ describe(blockPackageJson, () => {
 	it("preserves an existing dependency when the addon has an older version range", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					dependencies: {
-						[dependency]: "^0.9.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					dependencies: {
 						[dependency]: "^1.0.0 || ^2.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					dependencies: {
+						[dependency]: "^0.9.0",
 					},
 				},
 			},
@@ -854,16 +854,16 @@ describe(blockPackageJson, () => {
 	it("merges an existing dependency when the addon has the same version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
+			options: {
+				...optionsBase,
+				packageData: {
 					dependencies: {
 						[dependency]: "1.0.0",
 					},
 				},
 			},
-			options: {
-				...optionsBase,
-				packageData: {
+			props: {
+				properties: {
 					dependencies: {
 						[dependency]: "1.0.0",
 					},
@@ -884,18 +884,18 @@ describe(blockPackageJson, () => {
 	it("replaces an existing dependency when the addon has a newer version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					dependencies: {
-						[dependency]: "1.1.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					dependencies: {
 						[dependency]: "1.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					dependencies: {
+						[dependency]: "1.1.0",
 					},
 				},
 			},
@@ -914,18 +914,18 @@ describe(blockPackageJson, () => {
 	it("replaces an existing dependency when the addon has a newer version than the first range element", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					dependencies: {
-						[dependency]: "^1.1.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					dependencies: {
 						[dependency]: "^1.0.0 || ^2.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					dependencies: {
+						[dependency]: "^1.1.0",
 					},
 				},
 			},
@@ -944,18 +944,18 @@ describe(blockPackageJson, () => {
 	it("preserves an existing devDependency when the addon has an older pinned version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					devDependencies: {
-						[dependency]: "0.9.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					devDependencies: {
 						[dependency]: "1.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					devDependencies: {
+						[dependency]: "0.9.0",
 					},
 				},
 			},
@@ -974,16 +974,16 @@ describe(blockPackageJson, () => {
 	it("merges an existing devDependency when the addon has the same version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
+			options: {
+				...optionsBase,
+				packageData: {
 					devDependencies: {
 						[dependency]: "1.0.0",
 					},
 				},
 			},
-			options: {
-				...optionsBase,
-				packageData: {
+			props: {
+				properties: {
 					devDependencies: {
 						[dependency]: "1.0.0",
 					},
@@ -1004,18 +1004,18 @@ describe(blockPackageJson, () => {
 	it("replaces an existing devDependency when the addon has a newer version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {
-			addons: {
-				properties: {
-					devDependencies: {
-						[dependency]: "1.1.0",
-					},
-				},
-			},
 			options: {
 				...optionsBase,
 				packageData: {
 					devDependencies: {
 						[dependency]: "1.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					devDependencies: {
+						[dependency]: "1.1.0",
 					},
 				},
 			},
@@ -1033,7 +1033,8 @@ describe(blockPackageJson, () => {
 
 	it("keeps existing files after addon files, in their original order", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				existingFiles: [
 					"dist/",
 					"assets/",
@@ -1042,7 +1043,6 @@ describe(blockPackageJson, () => {
 				],
 				properties: { files: ["dist/", "dist/index.js"] },
 			},
-			options,
 		});
 
 		expect(
@@ -1060,11 +1060,11 @@ describe(blockPackageJson, () => {
 
 	it("keeps an existing file include under an existing directory", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				existingFiles: ["dist/", "dist/special.js", "!dist/*.js"],
 				properties: { files: ["dist/"] },
 			},
-			options,
 		});
 
 		expect(
@@ -1081,11 +1081,11 @@ describe(blockPackageJson, () => {
 
 	it("keeps an existing re-include after an existing negation", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				existingFiles: ["dist/", "!dist/tests/", "dist/tests/*.js"],
 				properties: { files: ["dist/"] },
 			},
-			options,
 		});
 
 		expect(
@@ -1102,11 +1102,11 @@ describe(blockPackageJson, () => {
 
 	it("keeps an existing file under an addon directory", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				existingFiles: ["dist/", "dist/index.js.map"],
 				properties: { files: ["dist/"] },
 			},
-			options,
 		});
 
 		expect(
@@ -1122,11 +1122,11 @@ describe(blockPackageJson, () => {
 
 	it("dedupes existing files that only differ in slashes, using the addon spelling", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				existingFiles: ["./dist/", "/assets", "assets/", "lib/**"],
 				properties: { files: ["dist/"] },
 			},
-			options,
 		});
 
 		expect(
@@ -1143,7 +1143,8 @@ describe(blockPackageJson, () => {
 
 	it("removes existing files that are outdated or always included", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options: { ...options, bin: "bin/index.js" },
+			props: {
 				existingFiles: [
 					"lib",
 					"./lib/",
@@ -1158,7 +1159,6 @@ describe(blockPackageJson, () => {
 				outdatedFiles: ["lib/"],
 				properties: { files: ["dist/"] },
 			},
-			options: { ...options, bin: "bin/index.js" },
 		});
 
 		expect(
@@ -1175,12 +1175,12 @@ describe(blockPackageJson, () => {
 
 	it("keeps addon files that are also outdated existing files", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				existingFiles: ["lib/"],
 				outdatedFiles: ["lib/"],
 				properties: { files: ["lib/"] },
 			},
-			options,
 		});
 
 		expect(
@@ -1195,11 +1195,11 @@ describe(blockPackageJson, () => {
 
 	it("omits files when all existing files are removed", () => {
 		const creation = testBlock(blockPackageJson, {
-			addons: {
+			options,
+			props: {
 				existingFiles: ["lib/", "package.json"],
 				outdatedFiles: ["lib/"],
 			},
-			options,
 		});
 
 		expect(

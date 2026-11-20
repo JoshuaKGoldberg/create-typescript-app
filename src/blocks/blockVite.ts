@@ -34,11 +34,6 @@ export const blockVite = base.createBlock({
 	about: {
 		name: "Vite",
 	},
-	addons: {
-		build: zBuild.default({}),
-		properties: zProperties.default({}),
-		runInCI: z.array(z.string()).default([]),
-	},
 	intake({ files }) {
 		const rawData = intakeFileDefineConfig(files, ["vite.config.ts"]);
 		if (!rawData) {
@@ -67,13 +62,13 @@ export const blockVite = base.createBlock({
 			properties,
 		};
 	},
-	produce({ addons, options }) {
-		const { build, properties, runInCI } = addons;
+	produce({ options, props }) {
+		const { build, properties, runInCI } = props;
 		const { rolldownOptions, ...buildRest } = build;
 		const { output, ...rolldownRest } = rolldownOptions ?? {};
 
 		return {
-			addons: [
+			extensions: [
 				blockDevelopmentDocs({
 					sections: {
 						Building: {
@@ -194,5 +189,10 @@ export default defineConfig(${JSON.stringify({
 					]
 				: undefined,
 		};
+	},
+	props: {
+		build: zBuild.default({}),
+		properties: zProperties.default({}),
+		runInCI: z.array(z.string()).default([]),
 	},
 });

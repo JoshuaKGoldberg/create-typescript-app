@@ -34,7 +34,7 @@ export const blockAllContributors = base.createBlock({
 		const contributions = contributors?.length;
 
 		return {
-			addons: [
+			extensions: [
 				blockPrettier({
 					ignores: ["/.all-contributorsrc"],
 				}),

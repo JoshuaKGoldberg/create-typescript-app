@@ -405,7 +405,7 @@ describe(blockREADME, () => {
 		`);
 	});
 
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockREADME, { options: optionsBase });
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -434,9 +434,10 @@ describe(blockREADME, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockREADME, {
-			addons: {
+			options: optionsBase,
+			props: {
 				badges: [
 					{
 						alt: "Badge Z",
@@ -455,7 +456,6 @@ describe(blockREADME, () => {
 				notices: ["> Hello, world! 💖"],
 				sections: [`## Other\n\nHello!`],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

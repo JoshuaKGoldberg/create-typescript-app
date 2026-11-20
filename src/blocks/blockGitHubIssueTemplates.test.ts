@@ -29,9 +29,10 @@ describe(blockGitHubIssueTemplates, () => {
 		});
 	});
 
-	test("with checklists addons", () => {
+	test("with checklists props", () => {
 		const creation = testBlock(blockGitHubIssueTemplates, {
-			addons: {
+			options: optionsBase,
+			props: {
 				checklists: {
 					bug: [
 						"I have tried the latest release and the issue persists.",
@@ -41,7 +42,6 @@ describe(blockGitHubIssueTemplates, () => {
 					tooling: ["I have tried restarting my IDE and the issue persists."],
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.[".github"]).toMatchInlineSnapshot(`

@@ -8,7 +8,7 @@ export const blockRemoveFiles = base.createBlock({
 	about: {
 		name: "Remove Files",
 	},
-	addons: {
+	props: {
 		files: z.array(z.string()).optional(),
 	},
 	// TODO: Make produce() optional, so this empty-ish produce() can be removed
@@ -16,13 +16,13 @@ export const blockRemoveFiles = base.createBlock({
 	produce() {
 		return {};
 	},
-	transition({ addons }) {
+	transition({ props }) {
 		return {
-			scripts: addons.files
+			scripts: props.files
 				? [
 						{
 							commands: [
-								`node ${resolveBin("trash-cli/cli.js")} ${addons.files.join(" ")}`,
+								`node ${resolveBin("trash-cli/cli.js")} ${props.files.join(" ")}`,
 							],
 							phase: CommandPhase.Migrations,
 							silent: true,

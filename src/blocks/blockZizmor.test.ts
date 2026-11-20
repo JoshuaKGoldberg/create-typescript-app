@@ -6,25 +6,26 @@ import { blockZizmor } from "./blockZizmor.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockZizmor, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockZizmor, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "zizmor",
 			          "zizmorcore",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint GitHub Actions",
@@ -40,7 +41,6 @@ describe(blockZizmor, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			  ],
 			  "files": {
@@ -76,18 +76,19 @@ describe(blockZizmor, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "zizmor",
 			          "zizmorcore",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint GitHub Actions",
@@ -103,15 +104,14 @@ describe(blockZizmor, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          "zizmor.{yaml,yml}",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {
@@ -139,9 +139,10 @@ describe(blockZizmor, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockZizmor, {
-			addons: {
+			options: optionsBase,
+			props: {
 				rules: {
 					"dangerous-triggers": {
 						ignore: ["pr-review-labels.yaml", "octoguide.yaml"],
@@ -158,23 +159,23 @@ describe(blockZizmor, () => {
 					},
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "zizmor",
 			          "zizmorcore",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint GitHub Actions",
@@ -190,7 +191,6 @@ describe(blockZizmor, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			  ],
 			  "files": {
@@ -243,9 +243,9 @@ describe(blockZizmor, () => {
 			},
 		});
 
-		expect(creation.addons).toContainEqual(
+		expect(creation.extensions).toContainEqual(
 			expect.objectContaining({
-				addons: {
+				props: {
 					jobs: [
 						expect.objectContaining({
 							steps: [
@@ -381,8 +381,8 @@ describe(blockZizmor, () => {
 
 			expect(
 				testBlock(blockZizmor, {
-					addons: actual,
 					options: optionsBase,
+					props: actual,
 				}).files,
 			).toEqual(produced);
 		});

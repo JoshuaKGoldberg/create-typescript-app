@@ -5,7 +5,7 @@ import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockDevelopmentDocs, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockDevelopmentDocs, {
 			options: optionsBase,
 		});
@@ -38,14 +38,14 @@ describe(blockDevelopmentDocs, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          "DEVELOPMENT.md",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {
@@ -66,9 +66,10 @@ describe(blockDevelopmentDocs, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockDevelopmentDocs, {
-			addons: {
+			options: optionsBase,
+			props: {
 				hints: ["> Be excellent to each other!"],
 				sections: {
 					First: {
@@ -100,7 +101,6 @@ describe(blockDevelopmentDocs, () => {
 					},
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

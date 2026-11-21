@@ -7,7 +7,7 @@ export const blockRemoveWorkflows = base.createBlock({
 	about: {
 		name: "Remove Workflows",
 	},
-	addons: {
+	props: {
 		workflows: z.array(z.string()).optional(),
 	},
 	// TODO: Make produce() optional, so this empty-ish produce() can be removed
@@ -15,11 +15,11 @@ export const blockRemoveWorkflows = base.createBlock({
 	produce() {
 		return {};
 	},
-	transition({ addons }) {
-		const { workflows } = addons;
+	transition({ props }) {
+		const { workflows } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: workflows?.map(
 						(workflow) => `.github/workflows/${workflow}.{yaml,yml}`,

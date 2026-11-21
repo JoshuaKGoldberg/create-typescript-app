@@ -5,7 +5,7 @@ import { blockSlopIssueUnlink } from "./blockSlopIssueUnlink.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockSlopIssueUnlink, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockSlopIssueUnlink, {
 			options: optionsBase,
 		});
@@ -15,17 +15,18 @@ describe(blockSlopIssueUnlink, () => {
 
 	test("with labels", () => {
 		const creation = testBlock(blockSlopIssueUnlink, {
-			addons: {
+			options: optionsBase,
+			props: {
 				labels: ["spam: b", "spam: a"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block AgentScan]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
@@ -37,10 +38,10 @@ describe(blockSlopIssueUnlink, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block AgentScan]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Anti-Slop]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
@@ -50,7 +51,6 @@ describe(blockSlopIssueUnlink, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Anti-Slop]",
 			    },
 			  ],
 			  "files": {
@@ -86,7 +86,8 @@ describe(blockSlopIssueUnlink, () => {
 
 	test("with the action's default labels", () => {
 		const creation = testBlock(blockSlopIssueUnlink, {
-			addons: {
+			options: optionsBase,
+			props: {
 				labels: [
 					"suspected ai slop",
 					"agentscan:automated-account",
@@ -94,14 +95,14 @@ describe(blockSlopIssueUnlink, () => {
 					"agentscan:mixed-signals",
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block AgentScan]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
@@ -113,10 +114,10 @@ describe(blockSlopIssueUnlink, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block AgentScan]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Anti-Slop]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@v0.3.0",
@@ -126,7 +127,6 @@ describe(blockSlopIssueUnlink, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Anti-Slop]",
 			    },
 			  ],
 			  "files": {
@@ -158,9 +158,6 @@ describe(blockSlopIssueUnlink, () => {
 
 	test("with options.workflowsVersions", () => {
 		const creation = testBlock(blockSlopIssueUnlink, {
-			addons: {
-				labels: ["spam"],
-			},
 			options: {
 				...optionsBase,
 				workflowsVersions: {
@@ -171,13 +168,17 @@ describe(blockSlopIssueUnlink, () => {
 					},
 				},
 			},
+			props: {
+				labels: ["spam"],
+			},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block AgentScan]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@abc123 # v9.9.9",
@@ -189,10 +190,10 @@ describe(blockSlopIssueUnlink, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block AgentScan]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Anti-Slop]",
+			      "props": {
 			        "actionSteps": [
 			          {
 			            "uses": "JoshuaKGoldberg/slop-issue-unlink-action@abc123 # v9.9.9",
@@ -202,7 +203,6 @@ describe(blockSlopIssueUnlink, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block Anti-Slop]",
 			    },
 			  ],
 			  "files": {

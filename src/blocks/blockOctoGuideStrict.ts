@@ -7,7 +7,7 @@ export const blockOctoGuideStrict = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockOctoGuide({
 					config: "strict",
 				}),

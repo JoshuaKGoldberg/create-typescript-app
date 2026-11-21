@@ -6,21 +6,21 @@ import { blockOctoGuide } from "./blockOctoGuide.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockOctoGuide, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockOctoGuide, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "octoguide",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			  ],
 			  "files": {
@@ -93,23 +93,23 @@ describe(blockOctoGuide, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "octoguide",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".github/workflows/accessibility-alt-text-bot.{yaml,yml}",
 			          ".github/workflows/compliance.{yaml,yml}",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {
@@ -174,24 +174,24 @@ describe(blockOctoGuide, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockOctoGuide, {
-			addons: {
+			options: optionsBase,
+			props: {
 				config: "strict",
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "words": [
 			          "octoguide",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			  ],
 			  "files": {

@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockContributingDocs } from "./blockContributingDocs.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockContributingDocs", () => {
+describe(blockContributingDocs, () => {
 	test("without mode", () => {
 		const creation = testBlock(blockContributingDocs, {
 			options: optionsBase,
@@ -127,14 +127,14 @@ describe("blockContributingDocs", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          "CONTRIBUTING.md",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {

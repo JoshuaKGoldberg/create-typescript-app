@@ -5,16 +5,17 @@ import { blockRenovate } from "./blockRenovate.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockRenovate, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockRenovate, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Apps]",
+			      "props": {
 			        "apps": [
 			          {
 			            "name": "Renovate",
@@ -22,7 +23,6 @@ describe(blockRenovate, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Apps]",
 			    },
 			  ],
 			  "files": {
@@ -48,19 +48,20 @@ describe(blockRenovate, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockRenovate, {
-			addons: {
+			options: optionsBase,
+			props: {
 				ignoreDeps: ["all-contributors-cli"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Apps]",
+			      "props": {
 			        "apps": [
 			          {
 			            "name": "Renovate",
@@ -68,7 +69,6 @@ describe(blockRenovate, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Apps]",
 			    },
 			  ],
 			  "files": {
@@ -100,7 +100,7 @@ describe(blockRenovate, () => {
 				files: {},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [] });
+			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
 		});
 
 		it("returns no ignoreDeps when .github/renovate.json does not contain truthy data", () => {
@@ -112,7 +112,7 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [] });
+			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
 		});
 
 		it("returns no ignoreDeps when .github/renovate.json contains only unrelated data", () => {
@@ -124,7 +124,7 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [] });
+			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
 		});
 
 		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps", () => {
@@ -138,7 +138,7 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps });
+			expect(actual).toEqual({ ignoreDeps, packageRules: [] });
 		});
 
 		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data", () => {
@@ -157,7 +157,7 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps });
+			expect(actual).toEqual({ ignoreDeps, packageRules: [] });
 		});
 	});
 });

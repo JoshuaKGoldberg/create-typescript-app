@@ -8,7 +8,7 @@ export const blockMITLicense = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockREADME({
 					badges: [
 						{

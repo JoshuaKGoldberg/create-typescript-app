@@ -5,19 +5,19 @@ import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockGitHubActionsCI, () => {
-	test("without addons or mode", () => {
+	test("without props or mode", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Repository Branch Ruleset]",
+			      "props": {
 			        "requiredStatusChecks": undefined,
 			      },
-			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			  ],
 			  "files": {
@@ -108,22 +108,22 @@ describe(blockGitHubActionsCI, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Repository Branch Ruleset]",
+			      "props": {
 			        "requiredStatusChecks": undefined,
 			      },
-			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".circleci",
 			          ".github/workflows/ci.yml",
 			          "travis.{yaml,yml}",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {
@@ -206,9 +206,10 @@ describe(blockGitHubActionsCI, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
-			addons: {
+			options: optionsBase,
+			props: {
 				jobs: [
 					{
 						name: "Validate",
@@ -223,20 +224,19 @@ describe(blockGitHubActionsCI, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Repository Branch Ruleset]",
+			      "props": {
 			        "requiredStatusChecks": [
 			          "Engines Check",
 			          "Validate",
 			        ],
 			      },
-			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			  ],
 			  "files": {
@@ -368,7 +368,8 @@ describe(blockGitHubActionsCI, () => {
 
 	test("with job permissions", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
-			addons: {
+			options: optionsBase,
+			props: {
 				jobs: [
 					{
 						checkoutWith: { "fetch-depth": "0" },
@@ -387,21 +388,20 @@ describe(blockGitHubActionsCI, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Repository Branch Ruleset]",
+			      "props": {
 			        "requiredStatusChecks": [
 			          "Action",
 			          "CI",
 			          "Engines Check",
 			        ],
 			      },
-			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			  ],
 			  "files": {
@@ -543,7 +543,8 @@ describe(blockGitHubActionsCI, () => {
 
 	test("with jobs that can run in parallel", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
-			addons: {
+			options: optionsBase,
+			props: {
 				jobs: [
 					{
 						checkoutWith: { "fetch-depth": "0" },
@@ -574,14 +575,14 @@ describe(blockGitHubActionsCI, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Repository Branch Ruleset]",
+			      "props": {
 			        "requiredStatusChecks": [
 			          "Action",
 			          "CI",
@@ -589,7 +590,6 @@ describe(blockGitHubActionsCI, () => {
 			          "Test",
 			        ],
 			      },
-			      "block": "[Block Repository Branch Ruleset]",
 			    },
 			  ],
 			  "files": {
@@ -746,26 +746,26 @@ describe(blockGitHubActionsCI, () => {
 
 	test("with more jobs that can run in parallel than the concurrency limit", () => {
 		const creation = testBlock(blockGitHubActionsCI, {
-			addons: {
+			options: optionsBase,
+			props: {
 				jobs: Array.from({ length: 11 }, (_, i) => ({
 					name: `Check ${String(i).padStart(2, "0")}`,
 					steps: [{ run: `pnpm check:${i}` }],
 				})),
 			},
-			options: optionsBase,
 		});
 
-		expect(creation.addons).toMatchInlineSnapshot(`
+		expect(creation.extensions).toMatchInlineSnapshot(`
 			[
 			  {
-			    "addons": {
+			    "block": "[Block Repository Branch Ruleset]",
+			    "props": {
 			      "requiredStatusChecks": [
 			        "Check 10",
 			        "CI",
 			        "Engines Check",
 			      ],
 			    },
-			    "block": "[Block Repository Branch Ruleset]",
 			  },
 			]
 		`);

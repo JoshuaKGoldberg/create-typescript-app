@@ -10,13 +10,13 @@ import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { blockZizmor } from "./blockZizmor.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockCTATransitions", () => {
+describe(blockCTATransitions, () => {
 	test("production", () => {
 		const creation = testBlock(blockCTATransitions, {
 			options: optionsBase,
 		});
 
-		expect(creation.addons).toEqual([
+		expect(creation.extensions).toEqual([
 			blockCSpell({
 				words: ["mshick", optionsBase.owner, "stefanzweifel"],
 			}),

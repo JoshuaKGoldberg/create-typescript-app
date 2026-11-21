@@ -17,9 +17,6 @@ export const blockCodecov = base.createBlock({
 	about: {
 		name: "Codecov",
 	},
-	addons: {
-		env: z.record(z.string(), z.string()).optional(),
-	},
 	intake({ files }) {
 		const steps = intakeFileYamlSteps(
 			files,
@@ -44,13 +41,13 @@ export const blockCodecov = base.createBlock({
 			env: Object.keys(env).length ? env : undefined,
 		};
 	},
-	produce({ addons, options }) {
+	produce({ options, props }) {
 		const env = options.codecovToken
-			? { CODECOV_TOKEN: codecovTokenSecret, ...addons.env }
-			: addons.env;
+			? { CODECOV_TOKEN: codecovTokenSecret, ...props.env }
+			: props.env;
 
 		return {
-			addons: [
+			extensions: [
 				blockGitHubApps({
 					apps: [
 						{
@@ -89,9 +86,12 @@ export const blockCodecov = base.createBlock({
 			],
 		};
 	},
+	props: {
+		env: z.record(z.string(), z.string()).optional(),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: [".github/codecov.{yaml,yml}", "codecov.{yaml,yml}"],
 				}),

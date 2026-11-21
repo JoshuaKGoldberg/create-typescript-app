@@ -7,7 +7,7 @@ export const blockPrettierPluginCurly = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockPrettier({
 					plugins: ["prettier-plugin-curly"],
 				}),

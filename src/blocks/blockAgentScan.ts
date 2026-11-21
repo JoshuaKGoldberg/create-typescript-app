@@ -17,14 +17,11 @@ export const blockAgentScan = base.createBlock({
 	about: {
 		name: "AgentScan",
 	},
-	addons: {
-		actionSteps: z.array(zActionStep).default([]),
-	},
-	produce({ addons, options }) {
-		const { actionSteps } = addons;
+	produce({ options, props }) {
+		const { actionSteps } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					words: ["agentscan", "MatteoGabriele"],
 				}),
@@ -78,5 +75,8 @@ export const blockAgentScan = base.createBlock({
 				},
 			},
 		};
+	},
+	props: {
+		actionSteps: z.array(zActionStep).default([]),
 	},
 });

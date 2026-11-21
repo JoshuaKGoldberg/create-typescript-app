@@ -5,62 +5,62 @@ import { blockExports } from "./blockExports.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockExports, () => {
-	it("without addons", () => {
+	it("without props", () => {
 		const creation = testBlock(blockExports, { options: optionsBase });
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block TSDown]",
+			      "props": {
 			        "exports": "./dist/index.mjs",
 			        "runInCI": [
 			          "node ./dist/index.mjs",
 			        ],
 			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vite]",
+			      "props": {
 			        "runInCI": [
 			          "node ./dist/index.mjs",
 			        ],
 			      },
-			      "block": "[Block Vite]",
 			    },
 			  ],
 			}
 		`);
 	});
 
-	it("with addons", () => {
+	it("with props", () => {
 		const creation = testBlock(blockExports, {
-			addons: {
+			options: optionsBase,
+			props: {
 				filePath: "other.js",
 				runArgs: ["--version"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block TSDown]",
+			      "props": {
 			        "exports": "./other.js",
 			        "runInCI": [
 			          "node other.js --version",
 			        ],
 			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vite]",
+			      "props": {
 			        "runInCI": [
 			          "node ./dist/index.mjs --version",
 			        ],
 			      },
-			      "block": "[Block Vite]",
 			    },
 			  ],
 			}
@@ -69,35 +69,35 @@ describe(blockExports, () => {
 
 	it("with a legacy lib/ main in options.packageData", () => {
 		const creation = testBlock(blockExports, {
-			addons: {
-				filePath: "./dist/index.js",
-			},
 			options: {
 				...optionsBase,
 				packageData: { main: "lib/index.js" },
+			},
+			props: {
+				filePath: "./dist/index.js",
 			},
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block TSDown]",
+			      "props": {
 			        "exports": "./dist/index.js",
 			        "main": "./dist/index.js",
 			        "runInCI": [
 			          "node ./dist/index.js",
 			        ],
 			      },
-			      "block": "[Block TSDown]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vite]",
+			      "props": {
 			        "runInCI": [
 			          "node ./dist/index.mjs",
 			        ],
 			      },
-			      "block": "[Block Vite]",
 			    },
 			  ],
 			}

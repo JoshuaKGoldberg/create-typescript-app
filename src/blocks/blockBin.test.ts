@@ -104,9 +104,10 @@ describe(blockBin, () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	it("rewrites legacy lib/ imports in addons.contents to the build output", () => {
+	it("rewrites legacy lib/ imports in props.contents to the build output", () => {
 		const creation = testBlock(blockBin, {
-			addons: {
+			options: { ...optionsBase, bin: "bin/index.js" },
+			props: {
 				contents: `#!/usr/bin/env node
 import { run } from "../lib/index.js";
 import "../lib/other.js";
@@ -114,7 +115,6 @@ import "../lib/other.js";
 run();
 `,
 			},
-			options: { ...optionsBase, bin: "bin/index.js" },
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
@@ -138,10 +138,10 @@ run();
 		`);
 	});
 
-	it("uses addons.contents when provided", () => {
+	it("uses props.contents when provided", () => {
 		const creation = testBlock(blockBin, {
-			addons: { contents: "#!/usr/bin/env node\nconsole.log('hi');\n" },
 			options: { ...optionsBase, bin: "bin/index.js" },
+			props: { contents: "#!/usr/bin/env node\nconsole.log('hi');\n" },
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

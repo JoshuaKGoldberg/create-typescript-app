@@ -19,16 +19,17 @@ vi.mock("../data/packageData.ts", async (importOriginal) => {
 });
 
 describe(blockTSDown, () => {
-	test("without addons or options", () => {
+	test("without props or options", () => {
 		const creation = testBlock(blockTSDown, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
@@ -47,16 +48,16 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Build",
@@ -68,10 +69,10 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "bug": [
 			            "I have pulled in the newest version of the project.",
@@ -82,18 +83,18 @@ describe(blockTSDown, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/dist",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.0.0-mock",
@@ -106,10 +107,10 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block release-it]",
+			      "props": {
 			        "builders": [
 			          {
 			            "order": 0,
@@ -117,7 +118,6 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block release-it]",
 			    },
 			  ],
 			  "files": {
@@ -138,9 +138,10 @@ describe(blockTSDown, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockTSDown, {
-			addons: {
+			options: optionsBase,
+			props: {
 				entry: ["src/other.ts"],
 				exports: "./dist/other.mjs",
 				main: "./dist/other.mjs",
@@ -149,14 +150,14 @@ describe(blockTSDown, () => {
 				},
 				runInCI: ["lib/other.js"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
@@ -175,16 +176,16 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Build",
@@ -199,10 +200,10 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "bug": [
 			            "I have pulled in the newest version of the project.",
@@ -213,18 +214,18 @@ describe(blockTSDown, () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/dist",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "tsdown": "0.0.0-mock",
@@ -241,10 +242,10 @@ describe(blockTSDown, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block release-it]",
+			      "props": {
 			        "builders": [
 			          {
 			            "order": 0,
@@ -252,7 +253,6 @@ describe(blockTSDown, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block release-it]",
 			    },
 			  ],
 			  "files": {
@@ -279,12 +279,12 @@ describe(blockTSDown, () => {
 
 	test("with an explicit outDir", () => {
 		const creation = testBlock(blockTSDown, {
-			addons: {
+			options: optionsBase,
+			props: {
 				properties: {
 					outDir: "build",
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files).toEqual({
@@ -304,10 +304,10 @@ export default defineConfig({
 
 	test("with the bundle option", () => {
 		const creation = testBlock(blockTSDown, {
-			addons: {
+			options: { ...optionsBase, bundle: true },
+			props: {
 				entry: ["src/other.ts"],
 			},
-			options: { ...optionsBase, bundle: true },
 		});
 
 		expect(creation.files).toEqual({
@@ -329,9 +329,10 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
@@ -350,16 +351,16 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Build",
@@ -371,10 +372,10 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "bug": [
 			            "I have pulled in the newest version of the project.",
@@ -385,10 +386,10 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "/dist",
 			        ],
@@ -398,10 +399,10 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          "lib/",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "outdatedFiles": [
 			          "lib/",
 			        ],
@@ -417,10 +418,10 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block release-it]",
+			      "props": {
 			        "builders": [
 			          {
 			            "order": 0,
@@ -428,10 +429,10 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          },
 			        ],
 			      },
-			      "block": "[Block release-it]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Dependencies]",
+			      "props": {
 			        "dependencies": [
 			          "@babel/cli",
 			          "@babel/core",
@@ -439,10 +440,10 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          "babel",
 			        ],
 			      },
-			      "block": "[Block Remove Dependencies]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".babelrc*",
 			          "babel.config.*",
@@ -451,16 +452,15 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          "tsup.config.*",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "build",
 			          "tsup",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {

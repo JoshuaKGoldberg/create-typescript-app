@@ -7,7 +7,7 @@ import { blockRepositoryLabels } from "./blockRepositoryLabels.ts";
 import { optionsBase } from "./options.fakes.ts";
 import { outcomeLabels } from "./outcomeLabels.ts";
 
-describe("blockRepositoryLabels", () => {
+describe(blockRepositoryLabels, () => {
 	test("when options.existingLabels is undefined", () => {
 		const creation = testBlock(blockRepositoryLabels, {
 			options: { ...optionsBase, existingLabels: undefined },

@@ -6,11 +6,8 @@ export const blockGitHubPRTemplate = base.createBlock({
 	about: {
 		name: "GitHub PR Template",
 	},
-	addons: {
-		comments: z.array(z.string()).default([]),
-	},
-	produce({ addons, options }) {
-		const { comments } = addons;
+	produce({ options, props }) {
+		const { comments } = props;
 
 		return {
 			files: {
@@ -32,5 +29,8 @@ ${comments.map((comment) => `<!-- ${comment} -->\n`).join("")}
 				},
 			},
 		};
+	},
+	props: {
+		comments: z.array(z.string()).default([]),
 	},
 });

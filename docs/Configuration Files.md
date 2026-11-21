@@ -57,11 +57,11 @@ export default createConfig({
 
 See [Blocks.md](./Blocks.md) for the list of blocks, which presets contain them, and their corresponding `--exclude-*` flags.
 
-### `addons`
+### `extensions`
 
-Any additional [Addons](https://www.create.bingo/engines/stratum/concepts/blocks#addons) provided to Blocks provided by the selected Preset.
+Any additional [Extensions](https://www.create.bingo/engines/stratum/concepts/blocks#extensions) provided to Blocks provided by the selected Preset.
 
-For example, this configuration file adds the word `"joshuakgoldberg"` to the CSpell Block's Addons:
+For example, this configuration file adds the word `"joshuakgoldberg"` to the CSpell Block's Props:
 
 ```ts
 // create-typescript-app.config.js
@@ -69,7 +69,7 @@ import { blockCSpell, createConfig } from "create-typescript-app";
 
 export default createConfig({
 	refinements: {
-		addons: [
+		extensions: [
 			blockCSpell({
 				words: ["joshuakgoldberg"],
 			}),
@@ -126,9 +126,9 @@ export default createConfig({
 
 Running `npx create-typescript-app` in a repository with that configuration file would not include that Block, and so its generated README.md would not include the notice.
 
-#### Custom Blocks and Addons
+#### Custom Blocks and Extensions
 
-Custom Blocks can provide Addons to any other Blocks, including those provided by the package.
+Custom Blocks can provide Extensions to any other Blocks, including those provided by the package.
 This allows your repositories to blend in seamlessly with the features provided by your Template.
 
 For example, to add an [`@arethetypeswrong/cli`](https://www.npmjs.com/package/@arethetypeswrong/cli) lint task to the `package.json` file, a repository using the `create-typescript-app` Template could create and use a custom Block:
@@ -143,7 +143,7 @@ export const blockLintAreTheTypesWrong = base.createBlock({
 	},
 	produce() {
 		return {
-			addons: [
+			extensions: [
 				blockPackageJson({
 					properties: {
 						devDependencies: {

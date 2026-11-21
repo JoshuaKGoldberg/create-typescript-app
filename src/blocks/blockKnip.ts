@@ -20,12 +20,6 @@ export const blockKnip = base.createBlock({
 	about: {
 		name: "Knip",
 	},
-	addons: {
-		entry: zStringArray.optional(),
-		ignore: zStringArray.optional(),
-		ignoreDependencies: zStringArray.optional(),
-		project: zStringArray.optional(),
-	},
 	intake({ files }) {
 		const knipJson =
 			intakeFileExportObject(files, ["knip.config.ts"]) ??
@@ -42,10 +36,10 @@ export const blockKnip = base.createBlock({
 			project: zStringArray.safeParse(knipJson.project).data,
 		});
 	},
-	produce({ addons }) {
-		const { entry, ignore, ignoreDependencies, project } = addons;
+	produce({ props }) {
+		const { entry, ignore, ignoreDependencies, project } = props;
 		return {
-			addons: [
+			extensions: [
 				blockDevelopmentDocs({
 					sections: {
 						Linting: {
@@ -109,9 +103,15 @@ export default ${JSON.stringify({
 			},
 		};
 	},
+	props: {
+		entry: zStringArray.optional(),
+		ignore: zStringArray.optional(),
+		ignoreDependencies: zStringArray.optional(),
+		project: zStringArray.optional(),
+	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveFiles({
 					files: [
 						".knip*",

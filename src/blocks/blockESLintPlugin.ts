@@ -18,9 +18,6 @@ export const blockESLintPlugin = base.createBlock({
 	about: {
 		name: "ESLint Plugin",
 	},
-	addons: {
-		configEmoji: zConfigEmoji,
-	},
 	intake({ files }) {
 		const docGeneratorConfigRaw = intakeFile(files, [
 			[".eslint-doc-generatorrc.js", ".eslint-doc-generatorrc.mjs"],
@@ -30,15 +27,15 @@ export const blockESLintPlugin = base.createBlock({
 			? blockESLintPluginIntake(docGeneratorConfigRaw[0])
 			: undefined;
 	},
-	produce({ addons, options }) {
-		const { configEmoji } = addons;
+	produce({ options, props }) {
+		const { configEmoji } = props;
 		const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
 		const pluginName = options.repository
 			.replace(/^eslint-plugin-/, "")
 			.replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					words: ["eslint-doc-generatorrc"],
 				}),
@@ -176,6 +173,9 @@ export default config;
 				},
 			],
 		};
+	},
+	props: {
+		configEmoji: zConfigEmoji,
 	},
 	setup({ options }) {
 		const pluginName = options.repository.replace("eslint-plugin-", "");

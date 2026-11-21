@@ -18,10 +18,6 @@ export const blockNcc = base.createBlock({
 	about: {
 		name: "ncc",
 	},
-	addons: {
-		build: z.string().optional(),
-		entry: z.string().optional(),
-	},
 	intake({ options }) {
 		const scripts = options.packageData?.scripts;
 
@@ -31,11 +27,11 @@ export const blockNcc = base.createBlock({
 			entry: scripts?.["build:release"]?.match(/ncc build (.+) -o dist/)?.[1],
 		};
 	},
-	produce({ addons, options }) {
-		const { build, entry = "src/index.ts" } = addons;
+	produce({ options, props }) {
+		const { build, entry = "src/index.ts" } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockCSpell({
 					ignorePaths: ["dist", "lib"],
 				}),
@@ -159,9 +155,13 @@ fi
 			}),
 		};
 	},
+	props: {
+		build: z.string().optional(),
+		entry: z.string().optional(),
+	},
 	setup() {
 		return {
-			addons: [
+			extensions: [
 				blockPackageJson({
 					properties: {
 						// tsc builds the package's entry point into lib/, not ncc's dist/
@@ -173,7 +173,7 @@ fi
 	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				// dist/ holds the committed ncc bundle, so it must not be ignored
 				blockGitignore({
 					removals: ["/dist", "dist", "dist/"],

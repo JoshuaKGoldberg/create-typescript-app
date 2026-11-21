@@ -22,12 +22,6 @@ export const blockPackageJson = base.createBlock({
 	about: {
 		name: "Package JSON",
 	},
-	addons: {
-		cleanupCommands: z.array(z.string()).default([]),
-		existingFiles: z.array(z.string()).default([]),
-		outdatedFiles: z.array(z.string()).default([]),
-		properties: PackageJsonWithNullableScripts.default({}),
-	},
 	intake({ files }) {
 		const packageData = intakeFileAsJson(files, ["package.json"]);
 		if (!Array.isArray(packageData?.files)) {
@@ -40,16 +34,16 @@ export const blockPackageJson = base.createBlock({
 			),
 		};
 	},
-	produce({ addons, offline, options }) {
+	produce({ offline, options, props }) {
 		const dependencies = useLargerVersions(options.packageData?.dependencies, {
 			...options.packageData?.dependencies,
-			...addons.properties.dependencies,
+			...props.properties.dependencies,
 		});
 		const devDependencies = Object.fromEntries(
 			Object.entries(
 				useLargerVersions(options.packageData?.devDependencies, {
 					...options.packageData?.devDependencies,
-					...addons.properties.devDependencies,
+					...props.properties.devDependencies,
 				}),
 			).filter(([name]) => !(name in dependencies)),
 		);
@@ -63,7 +57,7 @@ export const blockPackageJson = base.createBlock({
 						JSON.stringify(
 							removeUndefinedObjects({
 								...options.packageData,
-								...addons.properties,
+								...props.properties,
 								author: {
 									email: resolveEmails(options.email).npm,
 									name: options.author,
@@ -85,9 +79,9 @@ export const blockPackageJson = base.createBlock({
 									packageManager: `pnpm@${options.pnpm}`,
 								}),
 								files: mergeFiles(
-									processFiles(addons.properties.files),
-									addons.existingFiles,
-									addons.outdatedFiles,
+									processFiles(props.properties.files),
+									props.existingFiles,
+									props.outdatedFiles,
 									options.bin,
 								),
 								keywords: options.keywords,
@@ -98,7 +92,7 @@ export const blockPackageJson = base.createBlock({
 								},
 								scripts: {
 									...options.packageData?.scripts,
-									...addons.properties.scripts,
+									...props.properties.scripts,
 								},
 								type: options.type ?? "module",
 								version: options.version ?? "0.0.0",
@@ -111,16 +105,24 @@ export const blockPackageJson = base.createBlock({
 				{
 					commands: [
 						`pnpm install ${offline ? "--offline " : ""}--no-frozen-lockfile`,
-						...addons.cleanupCommands,
+						...props.cleanupCommands,
 					],
 					phase: CommandPhase.Install,
 				},
 			],
 		};
 	},
+	props: {
+		cleanupCommands: z.array(z.string()).default([]),
+		existingFiles: z.array(z.string()).default([]),
+		outdatedFiles: z.array(z.string()).default([]),
+		properties: PackageJsonWithNullableScripts.default({}),
+	},
 	transition() {
 		return {
-			addons: [blockRemoveFiles({ files: ["package-lock.json yarn.lock"] })],
+			extensions: [
+				blockRemoveFiles({ files: ["package-lock.json yarn.lock"] }),
+			],
 		};
 	},
 });

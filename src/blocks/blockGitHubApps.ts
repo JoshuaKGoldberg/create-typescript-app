@@ -7,7 +7,16 @@ export const blockGitHubApps = base.createBlock({
 	about: {
 		name: "GitHub Apps",
 	},
-	addons: {
+	produce({ options, props }) {
+		return {
+			suggestions: getInstallationSuggestions(
+				"enable the GitHub app",
+				props.apps.map((app) => `${app.name} (${app.url})`),
+				`https://github.com/${options.owner}/${options.repository}/settings/installations`,
+			),
+		};
+	},
+	props: {
 		apps: z
 			.array(
 				z.object({
@@ -16,14 +25,5 @@ export const blockGitHubApps = base.createBlock({
 				}),
 			)
 			.default([]),
-	},
-	produce({ addons, options }) {
-		return {
-			suggestions: getInstallationSuggestions(
-				"enable the GitHub app",
-				addons.apps.map((app) => `${app.name} (${app.url})`),
-				`https://github.com/${options.owner}/${options.repository}/settings/installations`,
-			),
-		};
 	},
 });

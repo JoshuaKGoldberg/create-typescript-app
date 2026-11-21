@@ -27,14 +27,8 @@ export const blockREADME = base.createBlock({
 	about: {
 		name: "README.md",
 	},
-	addons: {
-		badges: z.array(zBadge).default([]),
-		defaultUsage: z.array(z.string()).default([]),
-		notices: z.array(z.string()).default([]),
-		sections: z.array(z.string()).default([]),
-	},
-	produce({ addons, options }) {
-		const { badges, defaultUsage, notices, sections } = addons;
+	produce({ options, props }) {
+		const { badges, defaultUsage, notices, sections } = props;
 
 		const explainer =
 			options.documentation.readme.explainer &&
@@ -74,6 +68,12 @@ ${[...sections, options.documentation.readme.additional]
 ${suffixes.length ? `\n${suffixes.map((suffix) => suffix.trim()).join("\n\n")}` : ""}`,
 			},
 		};
+	},
+	props: {
+		badges: z.array(zBadge).default([]),
+		defaultUsage: z.array(z.string()).default([]),
+		notices: z.array(z.string()).default([]),
+		sections: z.array(z.string()).default([]),
 	},
 });
 

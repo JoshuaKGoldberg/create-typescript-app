@@ -9,6 +9,12 @@
 	"ignoreDeps": ["all-contributors-cli", "codecov/codecov-action"],
 	"labels": ["dependencies"],
 	"minimumReleaseAge": "7 days",
+	"packageRules": [
+		{
+			"groupName": "Bingo",
+			"matchSourceUrls": ["https://github.com/bingo-js/bingo"]
+		}
+	],
 	"patch": { "enabled": false },
 	"postUpdateOptions": ["pnpmDedupe"]
 }

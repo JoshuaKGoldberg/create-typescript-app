@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockWebExt } from "./blockWebExt.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockWebExt", () => {
+describe(blockWebExt, () => {
 	test("production", () => {
 		const creation = testBlock(blockWebExt, {
 			options: optionsBase,
@@ -12,18 +12,19 @@ describe("blockWebExt", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block CSpell]",
+			      "props": {
 			        "ignorePaths": [
 			          "assets",
 			          "lib",
 			        ],
 			      },
-			      "block": "[Block CSpell]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Building": {
 			            "contents": "
@@ -88,18 +89,18 @@ describe("blockWebExt", () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "ignores": [
 			          "lib",
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Build",
@@ -122,10 +123,10 @@ describe("blockWebExt", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
 			        "checklists": {
 			          "bug": [
 			            "I have tried the latest version of the extension and the issue persists.",
@@ -135,20 +136,20 @@ describe("blockWebExt", () => {
 			          ],
 			        },
 			      },
-			      "block": "[Block GitHub Issue Templates]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Gitignore]",
+			      "props": {
 			        "ignores": [
 			          "*.zip",
 			          "/lib",
 			          "web-ext-artifacts",
 			        ],
 			      },
-			      "block": "[Block Gitignore]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "esbuild": "^0.25.0",
@@ -164,24 +165,23 @@ describe("blockWebExt", () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Prettier]",
+			      "props": {
 			        "ignores": [
 			          "/lib",
 			          "assets/",
 			        ],
 			      },
-			      "block": "[Block Prettier]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "exclude": [
 			          "lib",
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			  ],
 			}

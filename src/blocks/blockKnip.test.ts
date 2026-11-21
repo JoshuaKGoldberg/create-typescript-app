@@ -23,16 +23,17 @@ vi.mock("../utils/resolveBin.ts", () => ({
 }));
 
 describe(blockKnip, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockKnip, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -44,10 +45,10 @@ describe(blockKnip, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint Knip",
@@ -67,10 +68,10 @@ describe(blockKnip, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "knip": "0.0.0-mock",
@@ -81,23 +82,22 @@ describe(blockKnip, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".ts-prunerc*",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "webpro.vscode-knip",
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -120,22 +120,23 @@ describe(blockKnip, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockKnip, {
-			addons: {
+			options: optionsBase,
+			props: {
 				entry: ["src/index.ts"],
 				ignore: ["src/fixtures/**"],
 				ignoreDependencies: ["abc", "def"],
 				project: ["src/**/*.ts"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -147,10 +148,10 @@ describe(blockKnip, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint Knip",
@@ -170,10 +171,10 @@ describe(blockKnip, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "knip": "0.0.0-mock",
@@ -184,23 +185,22 @@ describe(blockKnip, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".ts-prunerc*",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "webpro.vscode-knip",
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -229,10 +229,10 @@ describe(blockKnip, () => {
 
 	test("project patterns with and without a production suffix", () => {
 		const creation = testBlock(blockKnip, {
-			addons: {
+			options: optionsBase,
+			props: {
 				project: ["src/**/*.ts", "src/**/*.ts!", "!src/**/*.fakes.ts!"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["knip.config.ts"]).toEqual([
@@ -256,9 +256,10 @@ export default {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Linting": {
 			            "contents": {
@@ -270,10 +271,10 @@ export default {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Lint Knip",
@@ -293,10 +294,10 @@ export default {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "knip": "0.0.0-mock",
@@ -307,10 +308,10 @@ export default {
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          ".ts-prunerc*",
 			          ".knip*",
@@ -319,24 +320,23 @@ export default {
 			          "knip.json*",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "extensions": [
 			          "webpro.vscode-knip",
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "knip",
 			          "lint-knip",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {

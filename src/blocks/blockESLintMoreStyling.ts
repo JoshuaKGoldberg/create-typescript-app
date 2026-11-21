@@ -11,7 +11,7 @@ export const blockESLintMoreStyling = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockESLint({
 					extensions: [
 						{

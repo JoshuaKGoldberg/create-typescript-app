@@ -5,7 +5,7 @@ import { blockGitHubPRTemplate } from "./blockGitHubPRTemplate.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockGitHubPRTemplate, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockGitHubPRTemplate, {
 			options: optionsBase,
 		});
@@ -36,10 +36,10 @@ describe(blockGitHubPRTemplate, () => {
 
 	test("with comments", () => {
 		const creation = testBlock(blockGitHubPRTemplate, {
-			addons: {
+			options: optionsBase,
+			props: {
 				comments: ["First comment.", "Second comment."],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

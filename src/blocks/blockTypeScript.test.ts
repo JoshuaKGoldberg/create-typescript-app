@@ -20,16 +20,17 @@ vi.mock("../data/packageData.ts", async (importOriginal) => {
 });
 
 describe(blockTypeScript, () => {
-	test("without addons or options", () => {
+	test("without props or options", () => {
 		const creation = testBlock(blockTypeScript, {
 			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Type Checking": {
 			            "contents": "
@@ -50,10 +51,10 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
@@ -90,10 +91,10 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -105,28 +106,28 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "project": [
 			          "src/**/*.ts!",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "coverage": {
 			          "include": [
 			            "src",
@@ -136,10 +137,10 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [],
 			        "settings": {
 			          "js/ts.tsdk.path": "node_modules/typescript/lib",
@@ -153,7 +154,6 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -178,21 +178,22 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				compilerOptions: {
 					strictBindCallApply: false,
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Type Checking": {
 			            "contents": "
@@ -213,10 +214,10 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
@@ -253,10 +254,10 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -268,28 +269,28 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "project": [
 			          "src/**/*.ts!",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "coverage": {
 			          "include": [
 			            "src",
@@ -299,10 +300,10 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [],
 			        "settings": {
 			          "js/ts.tsdk.path": "node_modules/typescript/lib",
@@ -316,7 +317,6 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -344,10 +344,10 @@ describe(blockTypeScript, () => {
 
 	test("with an include addon", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				include: ["scripts", "src"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
@@ -372,10 +372,10 @@ describe(blockTypeScript, () => {
 
 	test("with an outDir addon", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				outDir: "lib",
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
@@ -401,10 +401,10 @@ describe(blockTypeScript, () => {
 
 	test("with an exclude addon", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				exclude: ["node_modules", ".next", "node_modules"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toContain(
@@ -412,16 +412,16 @@ describe(blockTypeScript, () => {
 		);
 	});
 
-	test("with include, exclude, and plugins addons", () => {
+	test("with include, exclude, and plugins props", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				compilerOptions: {
 					plugins: [{ name: "next" }],
 				},
 				exclude: ["node_modules"],
 				include: ["next-env.d.ts"],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
@@ -448,7 +448,8 @@ describe(blockTypeScript, () => {
 
 	test("with existingCompilerOptions overridden by compilerOptions", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				compilerOptions: {
 					moduleResolution: "bundler",
 				},
@@ -457,7 +458,6 @@ describe(blockTypeScript, () => {
 					moduleResolution: "node",
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
@@ -483,7 +483,8 @@ describe(blockTypeScript, () => {
 
 	test("with existingCompilerOptions arrays merged with compilerOptions arrays", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				compilerOptions: {
 					lib: ["dom", "esnext"],
 					plugins: [{ name: "next" }],
@@ -496,7 +497,6 @@ describe(blockTypeScript, () => {
 					],
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
@@ -526,7 +526,8 @@ describe(blockTypeScript, () => {
 
 	test("with existingCompilerOptions objects merged with compilerOptions objects", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				compilerOptions: {
 					jsx: undefined,
 					paths: { "b/*": ["./b/*"] },
@@ -536,7 +537,6 @@ describe(blockTypeScript, () => {
 					paths: { "a/*": ["./a/*"] },
 				},
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
@@ -563,13 +563,13 @@ describe(blockTypeScript, () => {
 
 	test("with a beforeTypeCheckSteps addon", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				beforeTypeCheckSteps: [{ run: "pnpm generate" }],
 			},
-			options: optionsBase,
 		});
 
-		expect(creation.addons).toContainEqual(
+		expect(creation.extensions).toContainEqual(
 			blockGitHubActionsCI({
 				jobs: [
 					{
@@ -583,14 +583,14 @@ describe(blockTypeScript, () => {
 
 	test("with an outDir addon and noEmit in compilerOptions", () => {
 		const creation = testBlock(blockTypeScript, {
-			addons: {
+			options: optionsBase,
+			props: {
 				compilerOptions: {
 					noEmit: true,
 					outDir: "lib",
 				},
 				outDir: "lib",
 			},
-			options: optionsBase,
 		});
 
 		expect(creation.files?.["tsconfig.json"]).toMatchInlineSnapshot(`
@@ -624,9 +624,10 @@ describe(blockTypeScript, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Type Checking": {
 			            "contents": "
@@ -647,10 +648,10 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
@@ -687,10 +688,10 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -702,28 +703,28 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "project": [
 			          "src/**/*.ts!",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "coverage": {
 			          "include": [
 			            "src",
@@ -733,10 +734,10 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [
 			          {
 			            "name": "Debug Program",
@@ -761,7 +762,6 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			  ],
 			  "files": {
@@ -794,9 +794,10 @@ describe(blockTypeScript, () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block Development Docs]",
+			      "props": {
 			        "sections": {
 			          "Type Checking": {
 			            "contents": "
@@ -817,10 +818,10 @@ describe(blockTypeScript, () => {
 			          },
 			        },
 			      },
-			      "block": "[Block Development Docs]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Example Files]",
+			      "props": {
 			        "files": {
 			          "greet.ts": "import { GreetOptions } from "./types.ts";
 
@@ -857,10 +858,10 @@ describe(blockTypeScript, () => {
 			\`\`\`",
 			        ],
 			      },
-			      "block": "[Block Example Files]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Type Check",
@@ -872,28 +873,28 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Knip]",
+			      "props": {
 			        "project": [
 			          "src/**/*.ts!",
 			        ],
 			      },
-			      "block": "[Block Knip]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Package JSON]",
+			      "props": {
 			        "properties": {
 			          "devDependencies": {
 			            "typescript": "0.0.0-mock",
 			          },
 			        },
 			      },
-			      "block": "[Block Package JSON]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Vitest]",
+			      "props": {
 			        "coverage": {
 			          "include": [
 			            "src",
@@ -903,10 +904,10 @@ describe(blockTypeScript, () => {
 			          "dist",
 			        ],
 			      },
-			      "block": "[Block Vitest]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block VS Code]",
+			      "props": {
 			        "debuggers": [],
 			        "settings": {
 			          "js/ts.tsdk.path": "node_modules/typescript/lib",
@@ -920,15 +921,14 @@ describe(blockTypeScript, () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block VS Code]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Workflows]",
+			      "props": {
 			        "workflows": [
 			          "tsc",
 			        ],
 			      },
-			      "block": "[Block Remove Workflows]",
 			    },
 			  ],
 			  "files": {

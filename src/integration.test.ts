@@ -28,7 +28,7 @@ vi.mock("./utils/resolveBin.ts", () => ({
 }));
 
 // This test checks the Bingo production using options inferred from disk,
-// along with some explicit addons and blocks specified.
+// along with some explicit extensions and blocks specified.
 // It ensures that result has no differences from the actual files on disk.
 //
 // If the test fails, it's most likely due to a block being changed without the
@@ -36,8 +36,8 @@ vi.mock("./utils/resolveBin.ts", () => ({
 // You may need to manually update files on disk to match the block's output.
 //
 // The next most likely culprit for failures is changing file contents that are
-// specified by the addons mentioned in the producePreset() call below.
-// Most addons are inferred from the files on disk by each block's intake();
+// specified by the extensions mentioned in the producePreset() call below.
+// Most props are inferred from the files on disk by each block's intake();
 // only the ones without an intake need to be listed here.
 // If you change one of those on disk, you'll need to manually update here too.
 // TODO: Eventually the create engine will be able to infer them:
@@ -54,7 +54,11 @@ test("Producing the everything preset matches the files in this repository", asy
 		files: actual,
 		options: (await prepareOptions(base)) as BaseOptions,
 		refinements: {
-			addons: [
+			blocks: {
+				add: [blockAreTheTypesWrong],
+				exclude: [blockTemplatedWith],
+			},
+			extensions: [
 				blockESLint({
 					explanations: [
 						`👋 Hi! This ESLint configuration contains a lot more stuff than many repos'!
@@ -102,10 +106,6 @@ If you're interested in learning more, see the 'getting started' docs on:
 					runArgs: ["--version"],
 				}),
 			],
-			blocks: {
-				add: [blockAreTheTypesWrong],
-				exclude: [blockTemplatedWith],
-			},
 		},
 	});
 

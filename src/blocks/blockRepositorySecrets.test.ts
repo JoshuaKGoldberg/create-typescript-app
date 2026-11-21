@@ -5,7 +5,7 @@ import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockRepositorySecrets, () => {
-	test("without addons", () => {
+	test("without props", () => {
 		const creation = testBlock(blockRepositorySecrets, {
 			options: optionsBase,
 		});
@@ -17,9 +17,10 @@ describe(blockRepositorySecrets, () => {
 		`);
 	});
 
-	test("with addons", () => {
+	test("with props", () => {
 		const creation = testBlock(blockRepositorySecrets, {
-			addons: {
+			options: optionsBase,
+			props: {
 				secrets: [
 					{
 						description: "Secret description a.",
@@ -31,7 +32,6 @@ describe(blockRepositorySecrets, () => {
 					},
 				],
 			},
-			options: optionsBase,
 		});
 
 		expect(creation).toMatchInlineSnapshot(`

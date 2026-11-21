@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockContributorCovenant } from "./blockContributorCovenant.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockContributorCovenant", () => {
+describe(blockContributorCovenant, () => {
 	test("without mode", () => {
 		const creation = testBlock(blockContributorCovenant, {
 			options: optionsBase,
@@ -12,9 +12,10 @@ describe("blockContributorCovenant", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "🤝 Code of Conduct: Kept",
@@ -23,7 +24,6 @@ describe("blockContributorCovenant", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			  ],
 			  "files": {
@@ -178,9 +178,10 @@ describe("blockContributorCovenant", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block README.md]",
+			      "props": {
 			        "badges": [
 			          {
 			            "alt": "🤝 Code of Conduct: Kept",
@@ -189,15 +190,14 @@ describe("blockContributorCovenant", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block README.md]",
 			    },
 			    {
-			      "addons": {
+			      "block": "[Block Remove Files]",
+			      "props": {
 			        "files": [
 			          "CODE_OF_CONDUCT.md",
 			        ],
 			      },
-			      "block": "[Block Remove Files]",
 			    },
 			  ],
 			  "files": {

@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockAreTheTypesWrong", () => {
+describe(blockAreTheTypesWrong, () => {
 	test("production", () => {
 		const creation = testBlock(blockAreTheTypesWrong, {
 			options: optionsBase,
@@ -12,9 +12,10 @@ describe("blockAreTheTypesWrong", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block GitHub Actions CI]",
+			      "props": {
 			        "jobs": [
 			          {
 			            "name": "Are The Types Wrong?",
@@ -29,7 +30,6 @@ describe("blockAreTheTypesWrong", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block GitHub Actions CI]",
 			    },
 			  ],
 			}

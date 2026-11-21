@@ -16,25 +16,24 @@ import { CommandPhase } from "./phases.ts";
 
 const filesGlob = `"**" ".github/**/*"`;
 
-const addons = {
+const props = {
 	ignorePaths: z.array(z.string()).default([]),
 	words: z.array(z.string()).default([]),
 };
 
-const zAddons = z.object(addons);
+const zProps = z.object(props);
 
 export const blockCSpell = base.createBlock({
 	about: {
 		name: "CSpell",
 	},
-	addons,
 	intake({ files }) {
 		const cspellJson = intakeFile(files, ["cspell.json"]);
 		if (!cspellJson) {
 			return undefined;
 		}
 
-		const { data } = zAddons.safeParse(JSON5.parse<unknown>(cspellJson[0]));
+		const { data } = zProps.safeParse(JSON5.parse<unknown>(cspellJson[0]));
 		if (!data) {
 			return undefined;
 		}
@@ -48,15 +47,15 @@ export const blockCSpell = base.createBlock({
 			),
 		};
 	},
-	produce({ addons, options }) {
-		const { ignorePaths, words } = addons;
+	produce({ options, props }) {
+		const { ignorePaths, words } = props;
 
 		const allWords = Array.from(
 			new Set([...(options.words ?? []), ...words]),
 		).sort();
 
 		return {
-			addons: [
+			extensions: [
 				blockDevelopmentDocs({
 					sections: {
 						Linting: {
@@ -108,6 +107,7 @@ export const blockCSpell = base.createBlock({
 			},
 		};
 	},
+	props,
 	setup({ options }) {
 		const wordArgs = getObjectStringsDeep(options)
 			.map((word) => `--words "${word.replaceAll(`"`, " ")}"`)
@@ -126,7 +126,7 @@ export const blockCSpell = base.createBlock({
 	},
 	transition() {
 		return {
-			addons: [
+			extensions: [
 				blockRemoveWorkflows({
 					workflows: ["lint-spelling", "spelling"],
 				}),

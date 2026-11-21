@@ -8,16 +8,16 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 	about: {
 		name: "Repository Branch Ruleset",
 	},
-	addons: {
+	props: {
 		requiredStatusChecks: z.array(z.string()).optional(),
 	},
-	setup({ addons, options }) {
+	setup({ options, props }) {
 		return {
 			requests: [
 				{
 					endpoint: "POST /repos/{owner}/{repo}/rulesets",
 					parameters: createRulesetParameters(
-						addons.requiredStatusChecks,
+						props.requiredStatusChecks,
 						options,
 					),
 					type: "octokit",
@@ -25,7 +25,7 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 			],
 		};
 	},
-	transition({ addons, options }) {
+	transition({ options, props }) {
 		return {
 			requests: [
 				{
@@ -42,7 +42,7 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 					? {
 							endpoint: "PUT /repos/{owner}/{repo}/rulesets/{ruleset_id}",
 							parameters: createRulesetParameters(
-								addons.requiredStatusChecks,
+								props.requiredStatusChecks,
 								options,
 								options.rulesetId,
 							),
@@ -51,7 +51,7 @@ export const blockRepositoryBranchRuleset = base.createBlock({
 					: {
 							endpoint: "POST /repos/{owner}/{repo}/rulesets",
 							parameters: createRulesetParameters(
-								addons.requiredStatusChecks,
+								props.requiredStatusChecks,
 								options,
 							),
 							type: "octokit",

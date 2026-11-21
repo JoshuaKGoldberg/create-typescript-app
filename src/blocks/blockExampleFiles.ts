@@ -7,21 +7,21 @@ export const blockExampleFiles = base.createBlock({
 	about: {
 		name: "Example Files",
 	},
-	addons: {
+	props: {
 		files: z.record(z.string(), z.string()).default({}),
 		usage: z.array(z.string()).default([]),
 	},
-	setup({ addons }) {
-		const { usage } = addons;
+	setup({ props }) {
+		const { usage } = props;
 
 		return {
-			addons: [
+			extensions: [
 				blockREADME({
 					defaultUsage: usage,
 				}),
 			],
 			files: {
-				src: addons.files,
+				src: props.files,
 			},
 		};
 	},

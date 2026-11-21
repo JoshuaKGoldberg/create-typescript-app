@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { blockESLintYML } from "./blockESLintYML.ts";
 import { optionsBase } from "./options.fakes.ts";
 
-describe("blockESLintYML", () => {
+describe(blockESLintYML, () => {
 	test("production", () => {
 		const creation = testBlock(blockESLintYML, {
 			options: optionsBase,
@@ -12,9 +12,10 @@ describe("blockESLintYML", () => {
 
 		expect(creation).toMatchInlineSnapshot(`
 			{
-			  "addons": [
+			  "extensions": [
 			    {
-			      "addons": {
+			      "block": "[Block ESLint]",
+			      "props": {
 			        "extensions": [
 			          {
 			            "extends": [
@@ -46,7 +47,6 @@ describe("blockESLintYML", () => {
 			          },
 			        ],
 			      },
-			      "block": "[Block ESLint]",
 			    },
 			  ],
 			}

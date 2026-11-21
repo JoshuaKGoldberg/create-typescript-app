@@ -310,7 +310,7 @@ Maintainers and collaborators are skipped.
 PRs that fail too many checks are labeled `suspected ai slop` and closed with an explanatory comment.
 The PR template also gets a hidden honeypot instruction asking AI agents to include a term (by default, `SASSAFRAS`) that the action blocks.
 Including it fails one of anti-slop's checks, which counts toward its threshold of failed checks (4 by default) like any other.
-You can change the term with a `blockAntiSlop({ honeypot: "..." })` [addon](./Configuration%20Files.md#addons), or turn the honeypot off with `blockAntiSlop({ honeypot: false })`.
+You can change the term with a `blockAntiSlop({ honeypot: "..." })` [extension](./Configuration%20Files.md#extensions), or turn the honeypot off with `blockAntiSlop({ honeypot: false })`.
 Owners, members, collaborators, common bots such as Renovate and Dependabot, and draft PRs are exempt.
 
 ### Lint ESLint

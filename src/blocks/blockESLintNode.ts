@@ -8,7 +8,7 @@ export const blockESLintNode = base.createBlock({
 	},
 	produce({ options }) {
 		return {
-			addons: [
+			extensions: [
 				blockESLint({
 					extensions: [
 						{

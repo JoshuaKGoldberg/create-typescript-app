@@ -1,4 +1,5 @@
 import { createRequire } from "node:module";
+import semver from "semver";
 
 const require = createRequire(import.meta.url);
 
@@ -25,7 +26,11 @@ function getPackageDependency(name: string) {
 		);
 	}
 
-	return version;
+	// Created repositories pin exact versions, but dependencies may be ranges
+	return (
+		(semver.validRange(version) && semver.minVersion(version)?.version) ||
+		version
+	);
 }
 
 function getPackageInner(

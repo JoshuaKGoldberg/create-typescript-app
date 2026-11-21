@@ -65,6 +65,7 @@ describe("base", () => {
 			owner: "JoshuaKGoldberg",
 			packageData: expect.any(Object),
 			pnpm: expect.any(String),
+			private: false,
 			repository: "create-typescript-app",
 			title: "Create TypeScript App",
 			type: expect.any(String),

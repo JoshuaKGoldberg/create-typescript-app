@@ -196,6 +196,56 @@ describe(blockCodecov, () => {
 		`);
 	});
 
+	test("with private option", () => {
+		const creation = testBlock(blockCodecov, {
+			options: {
+				...optionsBase,
+				private: true,
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "extensions": [
+			    {
+			      "block": "[Block GitHub Apps]",
+			      "props": {
+			        "apps": [
+			          {
+			            "name": "Codecov",
+			            "url": "https://github.com/apps/codecov",
+			          },
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Vitest]",
+			      "props": {
+			        "actionSteps": [
+			          {
+			            "if": "always()",
+			            "uses": "codecov/codecov-action@v3",
+			          },
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block zizmor]",
+			      "props": {
+			        "rules": {
+			          "ref-confusion": {
+			            "ignore": [
+			              "ci.yaml",
+			            ],
+			          },
+			        },
+			      },
+			    },
+			  ],
+			}
+		`);
+	});
+
 	test("with props", () => {
 		const creation = testBlock(blockCodecov, {
 			options: optionsBase,

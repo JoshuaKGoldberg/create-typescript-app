@@ -56,15 +56,20 @@ export const blockCodecov = base.createBlock({
 						},
 					],
 				}),
-				blockREADME({
-					badges: [
-						{
-							alt: "🧪 Coverage",
-							href: `https://codecov.io/gh/${options.owner}/${options.repository}`,
-							src: `https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage`,
-						},
-					],
-				}),
+				// Shields.io can't read coverage for private repositories
+				...(options.private
+					? []
+					: [
+							blockREADME({
+								badges: [
+									{
+										alt: "🧪 Coverage",
+										href: `https://codecov.io/gh/${options.owner}/${options.repository}`,
+										src: `https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage`,
+									},
+								],
+							}),
+						]),
 				blockVitest({
 					actionSteps: [
 						{

@@ -26,6 +26,17 @@ describe(blockRepositorySettings, () => {
 			        "has_wiki": false,
 			        "owner": "test-owner",
 			        "repo": "test-repository",
+			        "squash_merge_commit_message": "PR_BODY",
+			        "squash_merge_commit_title": "PR_TITLE",
+			      },
+			      "type": "octokit",
+			    },
+			    {
+			      "endpoint": "PATCH /repos/{owner}/{repo}",
+			      "id": "secret-scanning",
+			      "parameters": {
+			        "owner": "test-owner",
+			        "repo": "test-repository",
 			        "security_and_analysis": {
 			          "secret_scanning": {
 			            "status": "enabled",
@@ -34,8 +45,6 @@ describe(blockRepositorySettings, () => {
 			            "status": "enabled",
 			          },
 			        },
-			        "squash_merge_commit_message": "PR_BODY",
-			        "squash_merge_commit_title": "PR_TITLE",
 			      },
 			      "type": "octokit",
 			    },
@@ -68,6 +77,17 @@ describe(blockRepositorySettings, () => {
 			        "has_wiki": false,
 			        "owner": "test-owner",
 			        "repo": "test-repository",
+			        "squash_merge_commit_message": "PR_BODY",
+			        "squash_merge_commit_title": "PR_TITLE",
+			      },
+			      "type": "octokit",
+			    },
+			    {
+			      "endpoint": "PATCH /repos/{owner}/{repo}",
+			      "id": "secret-scanning",
+			      "parameters": {
+			        "owner": "test-owner",
+			        "repo": "test-repository",
 			        "security_and_analysis": {
 			          "secret_scanning": {
 			            "status": "enabled",
@@ -76,8 +96,6 @@ describe(blockRepositorySettings, () => {
 			            "status": "enabled",
 			          },
 			        },
-			        "squash_merge_commit_message": "PR_BODY",
-			        "squash_merge_commit_title": "PR_TITLE",
 			      },
 			      "type": "octokit",
 			    },

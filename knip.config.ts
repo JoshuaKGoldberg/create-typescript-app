@@ -9,6 +9,6 @@ export default {
 		"trash-cli",
 	],
 	ignoreExportsUsedInFile: { interface: true, type: true },
-	project: ["src/**/*.ts"],
+	project: ["!src/**/*.fakes.ts!", "src/**/*.ts!"],
 	treatConfigHintsAsErrors: true,
 } satisfies KnipConfig;

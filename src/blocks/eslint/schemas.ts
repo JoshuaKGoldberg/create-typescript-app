@@ -16,8 +16,6 @@ export const zRuleOptions = z.union([
 	]),
 ]);
 
-export type RuleOptions = z.infer<typeof zRuleOptions>;
-
 export const zExtensionRuleGroup = z.object({
 	comment: z.string().optional(),
 	entries: z.record(z.string(), zRuleOptions),
@@ -25,13 +23,9 @@ export const zExtensionRuleGroup = z.object({
 
 export type ExtensionRuleGroup = z.infer<typeof zExtensionRuleGroup>;
 
-export const zRulesArray = z.array(zExtensionRuleGroup);
+const zRulesArray = z.array(zExtensionRuleGroup);
 
-export type RulesArray = z.infer<typeof zRulesArray>;
-
-export const zRulesRecord = z.record(z.string(), zRuleOptions);
-
-export type RulesRecord = z.infer<typeof zRulesRecord>;
+const zRulesRecord = z.record(z.string(), zRuleOptions);
 
 export const zExtensionRules = z.union([zRulesArray, zRulesRecord]);
 

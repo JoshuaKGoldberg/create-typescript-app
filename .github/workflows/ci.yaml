@@ -26,6 +26,8 @@ jobs:
               annotations: "true"
           - name: Lint Knip
             run: pnpm lint:knip
+          - name: Lint Knip Production
+            run: pnpm lint:knip:production
           - name: Lint Spelling
             run: pnpm lint:spelling
           - name: Type Check

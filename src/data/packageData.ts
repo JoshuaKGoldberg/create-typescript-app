@@ -14,7 +14,7 @@ export function getPackageDependencies(...names: string[]) {
 	);
 }
 
-export function getPackageDependency(name: string) {
+function getPackageDependency(name: string) {
 	const version =
 		getPackageInner("devDependencies", name) ??
 		getPackageInner("dependencies", name);

@@ -123,6 +123,14 @@ describe(blockESLintPlugin, () => {
 			      },
 			    },
 			    {
+			      "block": "[Block Knip]",
+			      "props": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Package JSON]",
 			      "props": {
 			        "properties": {
@@ -308,6 +316,14 @@ describe(blockESLintPlugin, () => {
 			      },
 			    },
 			    {
+			      "block": "[Block Knip]",
+			      "props": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Package JSON]",
 			      "props": {
 			        "properties": {
@@ -487,6 +503,14 @@ describe(blockESLintPlugin, () => {
 			These are all set to \`"error"\` in the recommended config:
 
 			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Knip]",
+			      "props": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
 			        ],
 			      },
 			    },
@@ -785,6 +809,14 @@ describe(blockESLintPlugin, () => {
 			These are all set to \`"error"\` in the recommended config:
 
 			<!-- begin auto-generated rules list --><!-- end auto-generated rules list -->",
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Knip]",
+			      "props": {
+			        "project": [
+			          "!src/rules/ruleTester.ts!",
 			        ],
 			      },
 			    },

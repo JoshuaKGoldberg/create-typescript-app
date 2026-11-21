@@ -121,7 +121,7 @@ pnpm start
 					ignores: ["/.next", "/next-env.d.ts", "*.tsbuildinfo"],
 				}),
 				blockKnip({
-					project: ["src/**/*.tsx"],
+					project: ["src/**/*.tsx!"],
 				}),
 				blockPackageJson({
 					properties: {

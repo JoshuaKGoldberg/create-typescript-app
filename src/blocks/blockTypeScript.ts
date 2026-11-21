@@ -120,7 +120,7 @@ greet("Hello, world! ${options.emoji}");
 					],
 				}),
 				blockKnip({
-					project: ["src/**/*.ts"],
+					project: ["src/**/*.ts!"],
 				}),
 				blockPackageJson({
 					properties: {

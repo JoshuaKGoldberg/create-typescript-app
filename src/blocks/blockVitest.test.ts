@@ -213,14 +213,6 @@ describe(blockVitest, () => {
 			      },
 			    },
 			    {
-			      "block": "[Block TSDown]",
-			      "props": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			    },
-			    {
 			      "block": "[Block VS Code]",
 			      "props": {
 			        "debuggers": [
@@ -460,14 +452,6 @@ describe(blockVitest, () => {
 			      "props": {
 			        "ignores": [
 			          "/coverage",
-			        ],
-			      },
-			    },
-			    {
-			      "block": "[Block TSDown]",
-			      "props": {
-			        "entry": [
-			          "!src/**/*.test.*",
 			        ],
 			      },
 			    },
@@ -770,14 +754,6 @@ describe(blockVitest, () => {
 			      },
 			    },
 			    {
-			      "block": "[Block TSDown]",
-			      "props": {
-			        "entry": [
-			          "!src/**/*.test.*",
-			        ],
-			      },
-			    },
-			    {
 			      "block": "[Block VS Code]",
 			      "props": {
 			        "debuggers": [
@@ -1021,14 +997,6 @@ describe(blockVitest, () => {
 			      "props": {
 			        "ignores": [
 			          "/coverage",
-			        ],
-			      },
-			    },
-			    {
-			      "block": "[Block TSDown]",
-			      "props": {
-			        "entry": [
-			          "!src/**/*.test.*",
 			        ],
 			      },
 			    },

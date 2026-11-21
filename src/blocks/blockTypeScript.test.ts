@@ -111,7 +111,7 @@ describe(blockTypeScript, () => {
 			      "block": "[Block Knip]",
 			      "props": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			    },
@@ -274,7 +274,7 @@ describe(blockTypeScript, () => {
 			      "block": "[Block Knip]",
 			      "props": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			    },
@@ -708,7 +708,7 @@ describe(blockTypeScript, () => {
 			      "block": "[Block Knip]",
 			      "props": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			    },
@@ -878,7 +878,7 @@ describe(blockTypeScript, () => {
 			      "block": "[Block Knip]",
 			      "props": {
 			        "project": [
-			          "src/**/*.ts",
+			          "src/**/*.ts!",
 			        ],
 			      },
 			    },

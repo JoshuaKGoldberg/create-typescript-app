@@ -125,7 +125,7 @@ describe(blockNextJs, () => {
 			      "block": "[Block Knip]",
 			      "props": {
 			        "project": [
-			          "src/**/*.tsx",
+			          "src/**/*.tsx!",
 			        ],
 			      },
 			    },

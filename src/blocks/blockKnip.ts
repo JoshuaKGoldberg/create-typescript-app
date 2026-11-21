@@ -46,6 +46,7 @@ export const blockKnip = base.createBlock({
 							contents: {
 								items: [
 									`- \`pnpm lint:knip\` ([knip](https://github.com/webpro/knip)): Detects unused files, dependencies, and code exports`,
+									`- \`pnpm lint:knip:production\` ([knip](https://knip.dev/features/production-mode)): Detects unused files, dependencies, and code exports in production code, not counting usage from tests`,
 								],
 							},
 						},
@@ -57,6 +58,10 @@ export const blockKnip = base.createBlock({
 							name: "Lint Knip",
 							steps: [{ run: "pnpm lint:knip" }],
 						},
+						{
+							name: "Lint Knip Production",
+							steps: [{ run: "pnpm lint:knip:production" }],
+						},
 					],
 				}),
 				blockPackageJson({
@@ -64,6 +69,7 @@ export const blockKnip = base.createBlock({
 						devDependencies: getPackageDependencies("knip"),
 						scripts: {
 							"lint:knip": "knip",
+							"lint:knip:production": "knip --production",
 						},
 					},
 				}),
@@ -88,7 +94,7 @@ export default ${JSON.stringify({
 								interface: true,
 								type: true,
 							},
-							project: project?.sort(),
+							project: project && dedupeProductionPatterns(project).sort(),
 							treatConfigHintsAsErrors: true,
 						})} satisfies KnipConfig;`,
 					),
@@ -121,3 +127,11 @@ export default ${JSON.stringify({
 		};
 	},
 });
+
+// Patterns ending in ! are also used in --production mode, so they replace
+// any older copies of the same pattern without the suffix
+function dedupeProductionPatterns(patterns: string[]) {
+	const unique = new Set(patterns);
+
+	return Array.from(unique).filter((pattern) => !unique.has(`${pattern}!`));
+}

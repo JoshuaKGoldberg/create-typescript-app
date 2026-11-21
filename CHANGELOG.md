@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.86.0...2.87.0) (2026-11-21)
+
+### Features
+
+- bump bingo packages to fix executable file modes ([#2658](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2658)) ([054fefd](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/054fefdfc5fa09e9d63ade490118b57223fb0d0a)), closes [#2630](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2630) [#2560](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2560) [bingo-js/bingo#594](https://github.com/bingo-js/bingo/issues/594), references [bingo-js/bingo#472](https://github.com/bingo-js/bingo/issues/472) [#2609](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2609) [#2610](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2610) [#2621](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2621) [#2622](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2622) [#2623](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2623) [#2624](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2624)
+
 ## [2.86.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.85.0...2.86.0) (2026-11-20)
 
 ### Features

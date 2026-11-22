@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
@@ -100,10 +101,7 @@ pnpm start
 					ignores: [".next", "next-env.d.ts"],
 					imports: [
 						{
-							source: {
-								packageName: "@next/eslint-plugin-next",
-								version: "^16.4.0",
-							},
+							source: "@next/eslint-plugin-next",
 							specifier: "next",
 						},
 					],
@@ -125,15 +123,11 @@ pnpm start
 				}),
 				blockPackageJson({
 					properties: {
-						dependencies: {
-							next: "^16.4.0",
-							react: "^19.3.0",
-							"react-dom": "^19.3.0",
-						},
-						devDependencies: {
-							"@types/react": "^19.3.0",
-							"@types/react-dom": "^19.3.0",
-						},
+						dependencies: getPackageDependencies("next", "react", "react-dom"),
+						devDependencies: getPackageDependencies(
+							"@types/react",
+							"@types/react-dom",
+						),
 						private: true,
 						scripts: {
 							build: "next build",

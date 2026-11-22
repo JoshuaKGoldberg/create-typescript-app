@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
@@ -112,10 +113,7 @@ Then upload that \`./web-ext-artifacts/refined_saved_replies-*.zip\` file to:
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							esbuild: "^0.25.0",
-							"web-ext": "^8.3.0",
-						},
+						devDependencies: getPackageDependencies("esbuild", "web-ext"),
 						files: ["lib/"],
 						scripts: {
 							build: "web-ext build --overwrite-dest",

@@ -2,6 +2,7 @@ import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
 import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
@@ -110,9 +111,7 @@ pnpm build
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							vite: "^8.3.0",
-						},
+						devDependencies: getPackageDependencies("vite"),
 						exports: {
 							".": {
 								default: "./dist/index.mjs",

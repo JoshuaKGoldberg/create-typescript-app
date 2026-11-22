@@ -133,7 +133,7 @@ describe(blockNcc, () => {
 			      "props": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vercel/ncc": "^0.38.3",
+			            "@vercel/ncc": "0.38.3",
 			          },
 			          "files": [
 			            "lib/",
@@ -317,7 +317,7 @@ describe(blockNcc, () => {
 			      "props": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vercel/ncc": "^0.38.3",
+			            "@vercel/ncc": "0.38.3",
 			          },
 			          "files": [
 			            "lib/",
@@ -388,7 +388,7 @@ describe(blockNcc, () => {
 				  "props": {
 				    "properties": {
 				      "devDependencies": {
-				        "@vercel/ncc": "^0.38.3",
+				        "@vercel/ncc": "0.38.3",
 				      },
 				      "files": [
 				        "lib/",
@@ -412,29 +412,29 @@ describe(blockNcc, () => {
 		expect(
 			creation.extensions?.filter(({ block }) => block === blockPackageJson),
 		).toMatchInlineSnapshot(`
-				[
-				  {
-				    "block": "[Block Package JSON]",
-				    "props": {
-				      "properties": {
-				        "devDependencies": {
-				          "@vercel/ncc": "^0.38.3",
-				        },
-				        "exports": {
-				          ".": "./lib/index.js",
-				        },
-				        "files": [
-				          "lib/",
-				        ],
-				        "scripts": {
-				          "build": "tsc --project tsconfig.build.json",
-				          "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
-				        },
-				      },
-				    },
-				  },
-				]
-			`);
+			[
+			  {
+			    "block": "[Block Package JSON]",
+			    "props": {
+			      "properties": {
+			        "devDependencies": {
+			          "@vercel/ncc": "0.38.3",
+			        },
+			        "exports": {
+			          ".": "./lib/index.js",
+			        },
+			        "files": [
+			          "lib/",
+			        ],
+			        "scripts": {
+			          "build": "tsc --project tsconfig.build.json",
+			          "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
+			        },
+			      },
+			    },
+			  },
+			]
+		`);
 	});
 
 	test("transition mode", () => {

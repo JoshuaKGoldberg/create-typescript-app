@@ -84,10 +84,7 @@ describe(blockNextJs, () => {
 			        ],
 			        "imports": [
 			          {
-			            "source": {
-			              "packageName": "@next/eslint-plugin-next",
-			              "version": "^16.4.0",
-			            },
+			            "source": "@next/eslint-plugin-next",
 			            "specifier": "next",
 			          },
 			        ],
@@ -134,13 +131,13 @@ describe(blockNextJs, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "next": "^16.4.0",
-			            "react": "^19.3.0",
-			            "react-dom": "^19.3.0",
+			            "next": "16.4.0",
+			            "react": "19.3.0",
+			            "react-dom": "19.3.0",
 			          },
 			          "devDependencies": {
-			            "@types/react": "^19.3.0",
-			            "@types/react-dom": "^19.3.0",
+			            "@types/react": "19.3.0",
+			            "@types/react-dom": "19.3.0",
 			          },
 			          "private": true,
 			          "scripts": {

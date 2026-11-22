@@ -152,8 +152,8 @@ describe(blockWebExt, () => {
 			      "props": {
 			        "properties": {
 			          "devDependencies": {
-			            "esbuild": "^0.25.0",
-			            "web-ext": "^8.3.0",
+			            "esbuild": "0.25.0",
+			            "web-ext": "8.3.0",
 			          },
 			          "files": [
 			            "lib/",

@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { base } from "../base.ts";
+import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
@@ -113,9 +114,7 @@ fi
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: {
-							"@vercel/ncc": "^0.38.3",
-						},
+						devDependencies: getPackageDependencies("@vercel/ncc"),
 						files: ["lib/"],
 						scripts: {
 							build: build ?? "tsc --project tsconfig.build.json",

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.2...2.87.3) (2026-11-22)
+
+### Bug Fixes
+
+- **deps:** update dependency zod-package-json to v3 ([#2679](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2679)) ([a1d5752](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a1d57523b718b0381b918b6a88a1b9b63e330123))
+
 ## [2.87.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.1...2.87.2) (2026-11-22)
 
 ### Bug Fixes

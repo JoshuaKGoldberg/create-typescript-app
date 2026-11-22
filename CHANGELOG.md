@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.8...2.87.9) (2026-11-22)
+
+### Bug Fixes
+
+- ignore temporary files that parallel CI steps can trip over ([#2719](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2719)) ([a678f93](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a678f93a87e05c12187f401f4b05ec08248c96a6)), closes [#2718](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2718)
+
 ## [2.87.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.7...2.87.8) (2026-11-22)
 
 ### Bug Fixes

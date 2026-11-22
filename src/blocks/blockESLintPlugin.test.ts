@@ -68,10 +68,7 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "imports": [
 			          {
-			            "source": {
-			              "packageName": "eslint-plugin-eslint-plugin",
-			              "version": "6.4.0",
-			            },
+			            "source": "eslint-plugin-eslint-plugin",
 			            "specifier": "eslintPlugin",
 			          },
 			        ],
@@ -135,12 +132,11 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "^8.29.0",
+			            "@typescript-eslint/utils": "8.29.0",
 			          },
 			          "devDependencies": {
 			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
-			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
 			          "scripts": {
 			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
@@ -261,10 +257,7 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "imports": [
 			          {
-			            "source": {
-			              "packageName": "eslint-plugin-eslint-plugin",
-			              "version": "6.4.0",
-			            },
+			            "source": "eslint-plugin-eslint-plugin",
 			            "specifier": "eslintPlugin",
 			          },
 			        ],
@@ -328,12 +321,11 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "^8.29.0",
+			            "@typescript-eslint/utils": "8.29.0",
 			          },
 			          "devDependencies": {
 			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
-			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
 			          "scripts": {
 			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
@@ -452,10 +444,7 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "imports": [
 			          {
-			            "source": {
-			              "packageName": "eslint-plugin-eslint-plugin",
-			              "version": "6.4.0",
-			            },
+			            "source": "eslint-plugin-eslint-plugin",
 			            "specifier": "eslintPlugin",
 			          },
 			        ],
@@ -519,12 +508,11 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "^8.29.0",
+			            "@typescript-eslint/utils": "8.29.0",
 			          },
 			          "devDependencies": {
 			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
-			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
 			          "scripts": {
 			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",
@@ -758,10 +746,7 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "imports": [
 			          {
-			            "source": {
-			              "packageName": "eslint-plugin-eslint-plugin",
-			              "version": "6.4.0",
-			            },
+			            "source": "eslint-plugin-eslint-plugin",
 			            "specifier": "eslintPlugin",
 			          },
 			        ],
@@ -825,12 +810,11 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "^8.29.0",
+			            "@typescript-eslint/utils": "8.29.0",
 			          },
 			          "devDependencies": {
 			            "@typescript-eslint/rule-tester": "8.29.1",
 			            "eslint-doc-generator": "2.1.0",
-			            "eslint-plugin-eslint-plugin": "6.4.0",
 			          },
 			          "scripts": {
 			            "build:docs": "pnpm build --no-dts && eslint-doc-generator",

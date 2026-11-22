@@ -78,7 +78,7 @@ describe(blockVite, () => {
 			      "props": {
 			        "properties": {
 			          "devDependencies": {
-			            "vite": "^8.3.0",
+			            "vite": "8.3.0",
 			          },
 			          "exports": {
 			            ".": {

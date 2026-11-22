@@ -1,6 +1,8 @@
 import { createRequire } from "node:module";
 import semver from "semver";
 
+import blockDependencies from "./blockDependencies/package.json" with { type: "json" };
+
 const require = createRequire(import.meta.url);
 
 export const packageData =
@@ -15,14 +17,21 @@ export function getPackageDependencies(...names: string[]) {
 	);
 }
 
+function getBlockDependency(name: string) {
+	const inner = blockDependencies.dependencies;
+
+	return inner[name as keyof typeof inner] as string | undefined;
+}
+
 function getPackageDependency(name: string) {
 	const version =
 		getPackageInner("devDependencies", name) ??
-		getPackageInner("dependencies", name);
+		getPackageInner("dependencies", name) ??
+		getBlockDependency(name);
 
 	if (!version) {
 		throw new Error(
-			`'${name}' is neither in package.json's dependencies nor its devDependencies.`,
+			`'${name}' is not in package.json's dependencies or devDependencies, nor in src/data/blockDependencies/package.json.`,
 		);
 	}
 

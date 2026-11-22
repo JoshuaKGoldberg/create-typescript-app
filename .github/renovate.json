@@ -11,6 +11,10 @@
 	"minimumReleaseAge": "7 days",
 	"packageRules": [
 		{
+			"automerge": false,
+			"matchFileNames": ["src/data/blockDependencies/package.json"]
+		},
+		{
 			"groupName": "Bingo",
 			"matchSourceUrls": ["https://github.com/bingo-js/bingo"]
 		}

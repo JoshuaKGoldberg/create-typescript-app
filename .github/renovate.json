@@ -21,6 +21,11 @@
 			"matchFileNames": [".github/workflows/ci.yaml"]
 		},
 		{
+			"allowedVersions": "<7",
+			"description": "typescript-eslint and other tools don't yet support TypeScript 7's lack of a JS API.",
+			"matchDepNames": ["typescript"]
+		},
+		{
 			"groupName": "Bingo",
 			"matchSourceUrls": ["https://github.com/bingo-js/bingo"]
 		}

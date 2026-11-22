@@ -2,13 +2,6 @@ import { minimatch } from "minimatch";
 
 import { Extension, ExtensionRules } from "./schemas.ts";
 
-/**
- * Sorts extensions alphabetically by their files, then moves any extension
- * that sets rules for files all also matched by a later extension's files
- * (which enables those rules or extends configs) to after that extension.
- * That way, more specific overrides (e.g. `.github/foo.yml`) take precedence
- * over the general blocks they override (e.g. `**\/*.{yml,yaml}`).
- */
 export function sortExtensions(extensions: Extension[]) {
 	const sorted = extensions.toSorted((a, b) =>
 		processForSort(a.files).localeCompare(processForSort(b.files)),

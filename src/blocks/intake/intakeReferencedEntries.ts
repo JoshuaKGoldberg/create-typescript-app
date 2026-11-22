@@ -9,11 +9,6 @@ const relativeImport =
 	/(?:from|import)\s*(?:\(\s*)?["'](\.{1,2}\/[^"']+)["']/gu;
 const sourceExtensions = [".ts", ".tsx", ".mts", ".cts"];
 
-/**
- * Finds the source files for build output that package.json or its bin files
- * reference, such as a `bin/index.js` importing `../lib/cli.js`.
- * The old `src/**\/*.ts` entry built those even when nothing imported them.
- */
 export function intakeReferencedEntries(
 	files: IntakeDirectory,
 	outDir: unknown,

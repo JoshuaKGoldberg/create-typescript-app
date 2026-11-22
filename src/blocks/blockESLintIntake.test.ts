@@ -73,6 +73,21 @@ describe(blockESLintIntake, () => {
 			`,
 		],
 		[
+			"config with object argument containing a non-literal rule name",
+			`
+				export default tseslint.config(
+					{ ignores: [] },
+					{
+						extends: [],
+						files: ["**/*.ts"],
+						languageOptions: {},
+						rules: { [ruleName]: "error" },
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
 			"config with object argument containing non-literal files",
 			`
 				export default tseslint.config(

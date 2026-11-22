@@ -15,6 +15,12 @@
 			"matchFileNames": ["src/data/blockDependencies/package.json"]
 		},
 		{
+			"description": "The Engines Check job's Node.js version is the minimum from engines.node.",
+			"enabled": false,
+			"matchDepNames": ["node"],
+			"matchFileNames": [".github/workflows/ci.yaml"]
+		},
+		{
 			"groupName": "Bingo",
 			"matchSourceUrls": ["https://github.com/bingo-js/bingo"]
 		}

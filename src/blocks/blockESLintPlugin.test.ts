@@ -191,8 +191,6 @@ describe(blockESLintPlugin, () => {
 		`);
 	});
 
-	// Bingo infers existing blocks before options such as repository are known:
-	// https://github.com/bingo-js/bingo/issues/289
 	test("without options.repository", () => {
 		const creation = testBlock(blockESLintPlugin, {
 			options: {

@@ -549,6 +549,21 @@ export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
 			expect(actual).toEqual({ entry, properties: { fixedExtension: false } });
 		});
 
+		it("drops sourcemap when tsup.config.ts contains it", () => {
+			const actual = testIntake(blockTSDown, {
+				files: {
+					"tsup.config.ts": [
+						`defineConfig(${JSON.stringify({ entry: ["src/other.ts"], sourcemap: true })})`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				entry: ["src/other.ts"],
+				properties: { fixedExtension: false },
+			});
+		});
+
 		it("drops exclusion globs from entry when tsdown.config.ts contains them", () => {
 			const actual = testIntake(blockTSDown, {
 				files: {

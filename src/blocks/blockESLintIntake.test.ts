@@ -162,6 +162,36 @@ describe(blockESLintIntake, () => {
 			`,
 		],
 		[
+			"config with non-literal ignores",
+			`
+				export default tseslint.config(
+					{ ignores: [other] },
+					{
+						extends: [],
+						files: ["**/*.ts"],
+						languageOptions: {},
+						rules: {},
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
+			"defineConfig with empty globalIgnores",
+			`
+				export default defineConfig(
+					globalIgnores(),
+					{
+						extends: [],
+						files: ["**/*.{js,ts}"],
+						languageOptions: {},
+						rules: {},
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
 			"defineConfig with non-literal globalIgnores",
 			`
 				export default defineConfig(

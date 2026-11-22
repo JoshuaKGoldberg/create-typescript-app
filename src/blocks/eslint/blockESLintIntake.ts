@@ -145,13 +145,7 @@ export function blockESLintIntake(sourceText: string) {
 			node.properties[0].type === AST_NODE_TYPES.Property &&
 			node.properties[0].key.type === AST_NODE_TYPES.Identifier &&
 			node.properties[0].key.name === "ignores" &&
-			node.properties[0].value.type === AST_NODE_TYPES.ArrayExpression &&
-			node.properties[0].value.elements.every(
-				(element): element is TSESTree.Literal & { value: string } =>
-					element?.type === AST_NODE_TYPES.Literal &&
-					typeof element.value === "string",
-			) &&
-			node.properties[0].value.elements.map((element) => element.value)
+			getStringLiterals(node.properties[0].value)
 		);
 	}
 

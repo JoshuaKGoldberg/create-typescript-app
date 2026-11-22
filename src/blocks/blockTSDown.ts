@@ -215,6 +215,7 @@ export default defineConfig(${JSON.stringify({
 						"@babel/core",
 						"@babel/preset-typescript",
 						"babel",
+						"tsup",
 					],
 				}),
 				blockRemoveFiles({

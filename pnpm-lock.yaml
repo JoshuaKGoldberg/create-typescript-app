@@ -235,6 +235,9 @@ importers:
       marked:
         specifier: ^18.0.10
         version: 18.1.2
+      minimatch:
+        specifier: ^11.0.9
+        version: 11.0.9
       npm-user:
         specifier: ^6.1.1
         version: 6.1.1

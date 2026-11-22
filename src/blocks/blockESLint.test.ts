@@ -880,6 +880,19 @@ describe(blockESLint, () => {
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+				{
 					extends: [],
 					files: ["**/*.js"],
 					rules: {
@@ -892,19 +905,6 @@ describe(blockESLint, () => {
 						// Standalone comment
 						b: "error",
 						e: "error",
-					},
-				},
-				{
-					extends: [
-						eslint.configs.recommended,
-						tseslint.configs.strictTypeChecked,
-						tseslint.configs.stylisticTypeChecked,
-					],
-					files: ["**/*.{js,ts}"],
-					languageOptions: {
-						parserOptions: {
-							projectService: { allowDefaultProject: ["*.config.*s"] },
-						},
 					},
 				},
 			);
@@ -1058,6 +1058,19 @@ describe(blockESLint, () => {
 				globalIgnores(["dist", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
 				{ linterOptions: { reportUnusedDisableDirectives: "error" } },
 				{
+					extends: [
+						eslint.configs.recommended,
+						tseslint.configs.strictTypeChecked,
+						tseslint.configs.stylisticTypeChecked,
+					],
+					files: ["**/*.{js,ts}"],
+					languageOptions: {
+						parserOptions: {
+							projectService: { allowDefaultProject: ["*.config.*s"] },
+						},
+					},
+				},
+				{
 					files: ["**/*.js"],
 					rules: {
 						// One line
@@ -1071,19 +1084,6 @@ describe(blockESLint, () => {
 						// three lines
 						// three lines
 						a: "error",
-					},
-				},
-				{
-					extends: [
-						eslint.configs.recommended,
-						tseslint.configs.strictTypeChecked,
-						tseslint.configs.stylisticTypeChecked,
-					],
-					files: ["**/*.{js,ts}"],
-					languageOptions: {
-						parserOptions: {
-							projectService: { allowDefaultProject: ["*.config.*s"] },
-						},
 					},
 				},
 			);

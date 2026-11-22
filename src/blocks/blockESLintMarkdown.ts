@@ -54,7 +54,6 @@ export const blockESLintMarkdown = base.createBlock({
 		};
 	},
 	transition({ options }) {
-		// Older versions of this template ran Markdownlint in a lint:md script
 		if (
 			!options.packageData?.scripts?.["lint:md"]?.startsWith("markdownlint")
 		) {

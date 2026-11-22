@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.3...2.87.4) (2026-11-22)
+
+### Bug Fixes
+
+- stop carrying source and declaration map options through transition mode ([#2711](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2711)) ([cd4fc52](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cd4fc5285446759bab5cfa60a23924380f31e257)), closes [#2710](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2710)
+
 ## [2.87.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.2...2.87.3) (2026-11-22)
 
 ### Bug Fixes

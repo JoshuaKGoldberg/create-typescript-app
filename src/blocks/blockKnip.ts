@@ -17,6 +17,8 @@ import { intakeFileExportObject } from "./intake/intakeFileExportObject.ts";
 
 const zStringArray = z.array(z.string());
 
+const zIgnoreIssues = z.record(z.string(), zStringArray);
+
 export const blockKnip = base.createBlock({
 	about: {
 		name: "Knip",
@@ -37,11 +39,12 @@ export const blockKnip = base.createBlock({
 			ignore: zStringArray.safeParse(knipJson.ignore).data,
 			ignoreDependencies: zStringArray.safeParse(knipJson.ignoreDependencies)
 				.data,
+			ignoreIssues: zIgnoreIssues.safeParse(knipJson.ignoreIssues).data,
 			project: zStringArray.safeParse(knipJson.project).data,
 		});
 	},
 	produce({ props }) {
-		const { entry, ignore, ignoreDependencies, project } = props;
+		const { entry, ignore, ignoreDependencies, ignoreIssues, project } = props;
 		return {
 			extensions: [
 				blockDevelopmentDocs({
@@ -98,6 +101,7 @@ export default ${JSON.stringify({
 								interface: true,
 								type: true,
 							},
+							ignoreIssues,
 							project: project && dedupeProductionPatterns(project).sort(),
 							treatConfigHintsAsErrors: true,
 						})} satisfies KnipConfig;`,
@@ -111,6 +115,7 @@ export default ${JSON.stringify({
 		entry: zStringArray.optional(),
 		ignore: zStringArray.optional(),
 		ignoreDependencies: zStringArray.optional(),
+		ignoreIssues: zIgnoreIssues.optional(),
 		project: zStringArray.optional(),
 	},
 	transition() {

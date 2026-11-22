@@ -127,6 +127,7 @@ describe(blockKnip, () => {
 				entry: ["src/index.ts"],
 				ignore: ["src/fixtures/**"],
 				ignoreDependencies: ["abc", "def"],
+				ignoreIssues: { "package.json": ["dependencies"] },
 				project: ["src/**/*.ts"],
 			},
 		});
@@ -212,6 +213,7 @@ describe(blockKnip, () => {
 				ignore: ["src/fixtures/**"],
 				ignoreDependencies: ["abc", "def"],
 				ignoreExportsUsedInFile: { interface: true, type: true },
+				ignoreIssues: { "package.json": ["dependencies"] },
 				project: ["src/**/*.ts"],
 				treatConfigHintsAsErrors: true,
 			} satisfies KnipConfig;
@@ -438,6 +440,39 @@ export default {
 			});
 
 			expect(actual).toEqual({ ignore });
+		});
+
+		it("returns ignoreIssues when knip.config.ts exists and contains ignoreIssues", () => {
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.config.ts": [
+						`import type { KnipConfig } from "knip";
+
+export default {
+	entry: ["src/**/*.test.*"],
+	ignoreIssues: { "package.json": ["dependencies"] },
+} satisfies KnipConfig;
+`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				entry: ["src/**/*.test.*"],
+				ignoreIssues: { "package.json": ["dependencies"] },
+			});
+		});
+
+		it("returns ignoreIssues when knip.json exists and contains ignoreIssues", () => {
+			const ignoreIssues = { "src/generated/**": ["exports", "types"] };
+
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.json": [JSON.stringify({ ignoreIssues })],
+				},
+			});
+
+			expect(actual).toEqual({ ignoreIssues });
 		});
 
 		it("keeps a src/index.ts entry when package.json has no built index.js entry point", () => {

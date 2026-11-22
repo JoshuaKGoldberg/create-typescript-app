@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.0...2.87.1) (2026-11-22)
+
+### Bug Fixes
+
+- pin versions of devDependencies sourced from CTA's dependencies ([#2669](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2669)) ([ff9ed17](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ff9ed1711621f0422e3fe7d274ea49dde512e68b)), closes [#2631](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2631)
+
 ## [2.87.0](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.86.0...2.87.0) (2026-11-21)
 
 ### Features

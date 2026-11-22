@@ -29,7 +29,9 @@ async function readDefineConfig(take: TakeInput, filePath: string) {
 }
 
 async function readTSDownBundle(take: TakeInput) {
-	const data = await readDefineConfig(take, "tsdown.config.ts");
+	const data =
+		(await readDefineConfig(take, "tsdown.config.ts")) ??
+		(await readDefineConfig(take, "tsdown.config.mts"));
 
 	// tsdown bundles by default, so only an explicit unbundle: true opts out
 	return data && data.unbundle !== true;

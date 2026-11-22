@@ -1,3 +1,4 @@
+import { IntakeDirectory } from "bingo-fs";
 import removeUndefinedObjects from "remove-undefined-objects";
 import { z } from "zod";
 
@@ -29,7 +30,10 @@ export const blockKnip = base.createBlock({
 		}
 
 		return removeUndefinedObjects({
-			entry: zStringArray.safeParse(knipJson.entry).data,
+			entry: removeRedundantIndexEntry(
+				files,
+				zStringArray.safeParse(knipJson.entry).data,
+			),
 			ignore: zStringArray.safeParse(knipJson.ignore).data,
 			ignoreDependencies: zStringArray.safeParse(knipJson.ignoreDependencies)
 				.data,
@@ -134,4 +138,32 @@ function dedupeProductionPatterns(patterns: string[]) {
 	const unique = new Set(patterns);
 
 	return Array.from(unique).filter((pattern) => !unique.has(`${pattern}!`));
+}
+
+function hasBuiltIndexEntryPoint(files: IntakeDirectory) {
+	const packageData = intakeFileAsJson(files, ["package.json"]);
+	const exports = packageData?.exports;
+	const entryPoint =
+		typeof exports === "string"
+			? exports
+			: ((exports as Record<string, unknown> | undefined)?.["."] ??
+				packageData?.main);
+
+	return (
+		typeof entryPoint === "string" &&
+		/^(?:\.\/)?(?:dist|lib)\/index\.js$/u.test(entryPoint)
+	);
+}
+
+function removeRedundantIndexEntry(
+	files: IntakeDirectory,
+	entry: string[] | undefined,
+) {
+	if (!entry?.includes("src/index.ts") || !hasBuiltIndexEntryPoint(files)) {
+		return entry;
+	}
+
+	const filtered = entry.filter((pattern) => pattern !== "src/index.ts");
+
+	return filtered.length ? filtered : undefined;
 }

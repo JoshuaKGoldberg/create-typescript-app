@@ -287,6 +287,41 @@ describe(blockPrettier, () => {
 		`);
 	});
 
+	test("with options.type set to commonjs", () => {
+		const creation = testBlock(blockPrettier, {
+			options: { ...optionsBase, type: "commonjs" },
+		});
+
+		expect(creation.files?.["prettier.config.mts"]).toEqual([
+			`import type { Config } from "prettier";
+
+export default { useTabs: true } satisfies Config;
+`,
+			{ previously: [".prettierrc.json", "prettier.config.ts"] },
+		]);
+		expect(creation.files).not.toHaveProperty(["prettier.config.ts"]);
+	});
+
+	test("transition mode with options.type set to commonjs", () => {
+		const creation = testBlock(blockPrettier, {
+			mode: "transition",
+			options: { ...optionsBase, type: "commonjs" },
+		});
+
+		expect(creation.extensions).toContainEqual(
+			expect.objectContaining({
+				props: {
+					files: [
+						".lintstagedrc*",
+						".prettierrc*",
+						"lint-staged.config.*",
+						"prettier.config.{c,j,mj}*",
+					],
+				},
+			}),
+		);
+	});
+
 	test("with props", () => {
 		const creation = testBlock(blockPrettier, {
 			options: optionsBase,
@@ -430,6 +465,23 @@ describe(blockPrettier, () => {
 			    },
 			  ],
 			}
+		`);
+	});
+
+	test("with an ignores prop that duplicates a default ignore", () => {
+		const creation = testBlock(blockPrettier, {
+			options: optionsBase,
+			props: {
+				ignores: ["/dist", "/lib"],
+			},
+		});
+
+		expect(creation.files?.[".prettierignore"]).toMatchInlineSnapshot(`
+			"/.husky
+			/dist
+			/lib
+			/pnpm-lock.yaml
+			"
 		`);
 	});
 });

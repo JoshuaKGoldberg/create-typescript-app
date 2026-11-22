@@ -211,7 +211,7 @@ export default defineConfig(${JSON.stringify({
 	},
 	props: {
 		entry: zEntry.default([]),
-		exports: z.string().optional(),
+		exports: z.union([z.string(), zProperties]).optional(),
 		main: z.string().optional(),
 		properties: zProperties.default({}),
 		runInCI: z.array(z.string()).default([]),

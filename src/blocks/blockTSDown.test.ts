@@ -681,6 +681,21 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 				expect(actual?.entry).toEqual([]);
 			});
 
+			it("skips a bin file that does not exist", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [JSON.stringify({ bin: "bin/index.js" })],
+						src: {
+							"cli.ts": ["export {};"],
+							"index.ts": ["export {};"],
+						},
+						"tsup.config.ts": [legacyConfig],
+					},
+				});
+
+				expect(actual?.entry).toEqual([]);
+			});
+
 			it("does not add referenced files when the config did not use src/**/*.ts", () => {
 				const actual = testIntake(blockTSDown, {
 					files: {

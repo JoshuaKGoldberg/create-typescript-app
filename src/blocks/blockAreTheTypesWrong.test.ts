@@ -14,6 +14,14 @@ describe(blockAreTheTypesWrong, () => {
 			{
 			  "extensions": [
 			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "ignorePaths": [
+			          "/*.tgz",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block GitHub Actions CI]",
 			      "props": {
 			        "jobs": [
@@ -28,6 +36,14 @@ describe(blockAreTheTypesWrong, () => {
 			              },
 			            ],
 			          },
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Prettier]",
+			      "props": {
+			        "ignores": [
+			          "/*.tgz",
 			        ],
 			      },
 			    },

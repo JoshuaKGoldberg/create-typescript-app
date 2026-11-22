@@ -14,6 +14,14 @@ describe(blockPnpmDedupe, () => {
 			{
 			  "extensions": [
 			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "ignorePaths": [
+			          "/_tmp_*",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block GitHub Actions CI]",
 			      "props": {
 			        "jobs": [
@@ -33,6 +41,14 @@ describe(blockPnpmDedupe, () => {
 			      "props": {
 			        "cleanupCommands": [
 			          "pnpm dedupe --prefer-offline",
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Prettier]",
+			      "props": {
+			        "ignores": [
+			          "/_tmp_*",
 			        ],
 			      },
 			    },
@@ -51,6 +67,14 @@ describe(blockPnpmDedupe, () => {
 			{
 			  "extensions": [
 			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "ignorePaths": [
+			          "/_tmp_*",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block GitHub Actions CI]",
 			      "props": {
 			        "jobs": [
@@ -70,6 +94,14 @@ describe(blockPnpmDedupe, () => {
 			      "props": {
 			        "cleanupCommands": [
 			          "pnpm dedupe --prefer-offline",
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Prettier]",
+			      "props": {
+			        "ignores": [
+			          "/_tmp_*",
 			        ],
 			      },
 			    },

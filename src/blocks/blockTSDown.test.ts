@@ -438,6 +438,7 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			          "@babel/core",
 			          "@babel/preset-typescript",
 			          "babel",
+			          "tsup",
 			        ],
 			      },
 			    },

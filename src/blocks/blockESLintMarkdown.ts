@@ -1,5 +1,6 @@
 import { base } from "../base.ts";
 import { blockESLint } from "./blockESLint.ts";
+import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
@@ -35,9 +36,12 @@ export const blockESLintMarkdown = base.createBlock({
 				}),
 				blockRemoveDependencies({
 					dependencies: [
+						"@types/eslint-plugin-markdown",
 						"eslint-plugin-markdown",
 						"markdownlint",
 						"markdownlint-cli",
+						"markdownlint-sentences-per-line",
+						"sentences-per-line",
 					],
 				}),
 				blockRemoveFiles({
@@ -45,6 +49,26 @@ export const blockESLintMarkdown = base.createBlock({
 				}),
 				blockRemoveWorkflows({
 					workflows: ["lint_markdown", "lint_md"],
+				}),
+			],
+		};
+	},
+	transition({ options }) {
+		// Older versions of this template ran Markdownlint in a lint:md script
+		if (
+			!options.packageData?.scripts?.["lint:md"]?.startsWith("markdownlint")
+		) {
+			return {};
+		}
+
+		return {
+			extensions: [
+				blockPackageJson({
+					properties: {
+						scripts: {
+							"lint:md": undefined,
+						},
+					},
 				}),
 			],
 		};

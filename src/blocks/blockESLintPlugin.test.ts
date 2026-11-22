@@ -191,6 +191,21 @@ describe(blockESLintPlugin, () => {
 		`);
 	});
 
+	// Bingo infers existing blocks before options such as repository are known:
+	// https://github.com/bingo-js/bingo/issues/289
+	test("without options.repository", () => {
+		const creation = testBlock(blockESLintPlugin, {
+			options: {
+				...optionsBase,
+				repository: undefined as unknown as string,
+			},
+		});
+
+		expect(Object.keys(creation.files ?? {})).toEqual([
+			".eslint-doc-generatorrc.js",
+		]);
+	});
+
 	test("with options.type set to commonjs", () => {
 		const creation = testBlock(blockESLintPlugin, {
 			options: {

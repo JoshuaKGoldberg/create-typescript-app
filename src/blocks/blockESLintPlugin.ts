@@ -31,8 +31,11 @@ export const blockESLintPlugin = base.createBlock({
 	produce({ options, props }) {
 		const { configEmoji } = props;
 		const configFileName = `.eslint-doc-generatorrc.${options.type === "commonjs" ? "mjs" : "js"}`;
-		const pluginName = options.repository
-			.replace(/^eslint-plugin-/, "")
+		// options.repository isn't known yet when Bingo infers existing blocks,
+		// so this must not crash for that to detect the block's files on disk:
+		// https://github.com/bingo-js/bingo/issues/289
+		const pluginName = (options.repository as string | undefined)
+			?.replace(/^eslint-plugin-/, "")
 			.replaceAll(/-\w/g, (matched) => matched[1].toUpperCase());
 
 		return {

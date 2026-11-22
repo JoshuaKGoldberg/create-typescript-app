@@ -68,7 +68,7 @@ pnpm build:docs
 				blockESLint({
 					extensions: [
 						{
-							extends: ['eslintPlugin.configs["flat/recommended"]'],
+							extends: ["eslintPlugin.configs.recommended"],
 							files: [getScriptFileExtension(options)],
 						},
 					],

@@ -55,7 +55,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,ts}",
@@ -257,7 +257,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,mjs,ts}",
@@ -444,7 +444,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,ts}",
@@ -746,7 +746,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,ts}",

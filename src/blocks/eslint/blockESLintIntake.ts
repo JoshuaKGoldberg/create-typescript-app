@@ -36,17 +36,20 @@ export function blockESLintIntake(sourceText: string) {
 		return undefined;
 	}
 
-	const rulesObject = getConfigRulesObject(configArguments.slice(1));
-	if (!rulesObject) {
+	const configObject = getConfigObject(configArguments.slice(1));
+	if (!configObject) {
 		return undefined;
 	}
 
-	const rules = collectRulesObjectGroups(sourceText, rulesObject);
+	const rules = collectRulesObjectGroups(sourceText, configObject.rules);
 	if (!rules) {
 		return undefined;
 	}
 
-	return { ignores, rules };
+	return {
+		extensions: rules.length ? [{ files: configObject.files, rules }] : [],
+		ignores,
+	};
 
 	function areArraysEqual<T>(a: T[], b: T[]) {
 		if (a.length !== b.length) {
@@ -86,6 +89,7 @@ export function blockESLintIntake(sourceText: string) {
 	) {
 		let previousNode: TSESTree.Node | undefined;
 		let currentGroup: ExtensionRuleGroup | undefined;
+		let inStylisticGroup = false;
 		const groups: ExtensionRuleGroup[] = [];
 
 		for (const property of rulesObject.properties) {
@@ -94,11 +98,21 @@ export function blockESLintIntake(sourceText: string) {
 				property.range[0],
 			);
 			const comment =
-				precedingText.replaceAll(/\/\/ ?|\t\s*/g, "").trim() || undefined;
+				precedingText
+					.split("\n")
+					.map((line) => line.trim().replace(/^\/\/ ?/, ""))
+					.filter(Boolean)
+					.join("\n") || undefined;
 
-			// blockESLintMoreStyling's comment always gets pushed to the end.
-			if (comment === stylisticComment) {
-				break;
+			// blockESLintMoreStyling's group is produced by that block itself.
+			// Groups after it are still kept, as they may be custom rules.
+			if (comment) {
+				inStylisticGroup = comment === stylisticComment;
+			}
+
+			if (inStylisticGroup) {
+				previousNode = property;
+				continue;
 			}
 
 			const rule = collectRuleFromProperty(property);
@@ -119,6 +133,15 @@ export function blockESLintIntake(sourceText: string) {
 	}
 
 	function getConfigIgnores(node: TSESTree.Node) {
+		// defineConfig(...) configs start with globalIgnores([...], "Global Ignores")
+		if (
+			node.type === AST_NODE_TYPES.CallExpression &&
+			node.callee.type === AST_NODE_TYPES.Identifier &&
+			node.callee.name === "globalIgnores"
+		) {
+			return node.arguments.length > 0 && getStringLiterals(node.arguments[0]);
+		}
+
 		return (
 			node.type === AST_NODE_TYPES.ObjectExpression &&
 			node.properties.length === 1 &&
@@ -135,7 +158,7 @@ export function blockESLintIntake(sourceText: string) {
 		);
 	}
 
-	function getConfigRulesObject(nodes: TSESTree.Node[]) {
+	function getConfigObject(nodes: TSESTree.Node[]) {
 		const configObject = nodes.find(
 			(node): node is TSESTree.ObjectExpression =>
 				node.type === AST_NODE_TYPES.ObjectExpression &&
@@ -153,12 +176,32 @@ export function blockESLintIntake(sourceText: string) {
 			return undefined;
 		}
 
-		const rulesObject = configObject.properties[3];
-		return (
-			rulesObject.type === AST_NODE_TYPES.Property &&
-			rulesObject.value.type === AST_NODE_TYPES.ObjectExpression &&
-			rulesObject.value
+		const [, filesProperty, , rulesProperty] = configObject.properties;
+		if (
+			filesProperty.type !== AST_NODE_TYPES.Property ||
+			rulesProperty.type !== AST_NODE_TYPES.Property ||
+			rulesProperty.value.type !== AST_NODE_TYPES.ObjectExpression
+		) {
+			return undefined;
+		}
+
+		const files = getStringLiterals(filesProperty.value);
+		return files && { files, rules: rulesProperty.value };
+	}
+
+	function getStringLiterals(node: TSESTree.Node) {
+		if (node.type !== AST_NODE_TYPES.ArrayExpression) {
+			return undefined;
+		}
+
+		const values = node.elements.map((element) =>
+			element?.type === AST_NODE_TYPES.Literal &&
+			typeof element.value === "string"
+				? element.value
+				: undefined,
 		);
+
+		return values.every((value) => value !== undefined) ? values : undefined;
 	}
 
 	function nodeIsConfigExport(node: TSESTree.Node): node is ConfigExport {
@@ -170,6 +213,10 @@ export function blockESLintIntake(sourceText: string) {
 	}
 
 	function nodeIsConfigFunction(node: TSESTree.Node) {
+		if (node.type === AST_NODE_TYPES.Identifier) {
+			return node.name === "defineConfig";
+		}
+
 		return (
 			node.type === AST_NODE_TYPES.MemberExpression &&
 			node.object.type === AST_NODE_TYPES.Identifier &&

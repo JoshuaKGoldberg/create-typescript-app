@@ -86,6 +86,21 @@ describe(blockESLintIntake, () => {
 				);
 			`,
 		],
+		[
+			"defineConfig with non-literal globalIgnores",
+			`
+				export default defineConfig(
+					globalIgnores(ignores, "Global Ignores"),
+					{
+						extends: [],
+						files: ["**/*.{js,ts}"],
+						languageOptions: {},
+						rules: {},
+						settings: {},
+					},
+				);
+			`,
+		],
 	])("returns undefined when given %s", (_, sourceText) => {
 		const actual = blockESLintIntake(sourceText);
 
@@ -119,21 +134,26 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -159,21 +179,26 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -200,23 +225,28 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						comment:
-							"These on-by-default rules work well for this repo if configured",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								comment:
+									"These on-by-default rules work well for this repo if configured",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -244,27 +274,32 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						entries: {
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
-					},
-					{
-						comment:
-							"These on-by-default rules work well for this repo if configured",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+							{
+								comment:
+									"These on-by-default rules work well for this repo if configured",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -294,23 +329,28 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib"],
-				rules: [
+				extensions: [
 					{
-						comment:
-							"These on-by-default rules work well for this repo if configured",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								comment:
+									"These on-by-default rules work well for this repo if configured",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib"],
 			},
 		],
 		[
@@ -332,15 +372,149 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib"],
-				rules: [
+				extensions: [
 					{
-						comment: "First line.\nSecond line.\nThird line.",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": "error",
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								comment: "First line.\nSecond line.\nThird line.",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": "error",
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib"],
+			},
+		],
+		[
+			"defineConfig with globalIgnores",
+			`
+export default defineConfig(
+	globalIgnores(["lib", "node_modules", "pnpm-lock.yaml"], "Global Ignores"),
+	{ linterOptions: { reportUnusedDisableDirectives: "error" } },
+	{
+		extends: [comments.recommended, tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"@typescript-eslint/consistent-indexed-object-style": "off",
+
+			// Stylistic concerns that don't interfere with Prettier
+			"operator-assignment": "error",
+		},
+		settings: { /* ... */ }
+	},
+	{
+		extends: [jsonc.configs["flat/recommended-with-json"]],
+		files: ["**/*.json"],
+	},
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/consistent-indexed-object-style": "off",
+								},
+							},
+						],
+					},
+				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
+			},
+		],
+		[
+			"defineConfig with an ignores object",
+			`
+export default defineConfig(
+	{ ignores: ["lib"] },
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"@typescript-eslint/no-dynamic-delete": "off",
+		},
+		settings: { /* ... */ }
+	}
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/no-dynamic-delete": "off",
+								},
+							},
+						],
+					},
+				],
+				ignores: ["lib"],
+			},
+		],
+		[
+			"defineConfig with only the stylistic group in rules",
+			`
+export default defineConfig(
+	globalIgnores(["lib"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			// Stylistic concerns that don't interfere with Prettier
+			"operator-assignment": "error",
+		},
+		settings: { /* ... */ }
+	}
+);`,
+			{
+				extensions: [],
+				ignores: ["lib"],
+			},
+		],
+		[
+			"custom commented group in rules after the stylistic comment",
+			`
+export default defineConfig(
+	globalIgnores(["lib"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			// Stylistic concerns that don't interfere with Prettier
+			"no-useless-rename": "error",
+			"operator-assignment": "error",
+
+			// https://github.com/eslint-community/eslint-plugin-n/issues/472
+			"n/no-unpublished-bin": "off",
+		},
+		settings: { /* ... */ }
+	}
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								comment:
+									"https://github.com/eslint-community/eslint-plugin-n/issues/472",
+								entries: {
+									"n/no-unpublished-bin": "off",
+								},
+							},
+						],
+					},
+				],
+				ignores: ["lib"],
 			},
 		],
 	])("returns data when given %s", (_, sourceText, expected) => {

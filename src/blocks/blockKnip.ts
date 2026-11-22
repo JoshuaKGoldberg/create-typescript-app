@@ -155,8 +155,6 @@ function hasBuiltIndexEntryPoint(files: IntakeDirectory) {
 	);
 }
 
-// Older versions of this template listed src/index.ts as an entry, but Knip
-// already treats it as one through the package's built index.js entry point
 function removeRedundantIndexEntry(
 	files: IntakeDirectory,
 	entry: string[] | undefined,

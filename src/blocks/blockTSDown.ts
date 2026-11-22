@@ -88,6 +88,9 @@ export const blockTSDown = base.createBlock({
 				// lib was the default before build output moved to tsdown's dist
 				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
 
+				// Published packages shouldn't ship source maps (#1909)
+				sourcemap: undefined,
+
 				// Owned by the base bundle option, which is read from this file
 				unbundle: undefined,
 			}),

@@ -152,7 +152,6 @@ export const blockGitHubActionsCI = base.createBlock({
 					if: z.string().optional(),
 					name: z.string(),
 					permissions: zMultiWorkflowJobPermissions.optional(),
-					sequential: z.boolean().optional(),
 					steps: z.array(zActionStep),
 				}),
 			)

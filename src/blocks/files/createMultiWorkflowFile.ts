@@ -21,7 +21,6 @@ export interface MultiWorkflowJobOptions {
 	if?: string;
 	name: string;
 	permissions?: z.infer<typeof zMultiWorkflowJobPermissions>;
-	sequential?: boolean;
 	steps: MultiWorkflowJobStep[];
 }
 

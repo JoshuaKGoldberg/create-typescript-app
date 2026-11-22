@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 
@@ -9,6 +10,9 @@ export const blockAreTheTypesWrong = base.createBlock({
 	produce() {
 		return {
 			extensions: [
+				blockCSpell({
+					ignorePaths: ["/*.tgz"],
+				}),
 				blockGitHubActionsCI({
 					jobs: [
 						{

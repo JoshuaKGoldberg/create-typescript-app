@@ -114,35 +114,6 @@ describe(groupParallelJobs, () => {
 		]);
 	});
 
-	test("runs sequential jobs after building and before the group", () => {
-		expect(
-			groupParallelJobs([
-				{ name: "Build", steps: [{ run: "pnpm build" }] },
-				{
-					name: "Dedupe Check",
-					sequential: true,
-					steps: [{ run: "pnpm dedupe --check" }],
-				},
-				lint,
-				typeCheck,
-			]),
-		).toEqual([
-			{
-				name: "CI",
-				steps: [
-					{ run: "pnpm build" },
-					{ name: "Dedupe Check", run: "pnpm dedupe --check" },
-					{
-						parallel: [
-							{ name: "Lint", run: "pnpm lint" },
-							{ name: "Type Check", run: "pnpm tsc" },
-						],
-					},
-				],
-			},
-		]);
-	});
-
 	test("names each parallel step after its job", () => {
 		expect(
 			groupParallelJobs([

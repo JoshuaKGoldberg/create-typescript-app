@@ -12,7 +12,6 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 	}
 
 	const parallelSteps: MultiWorkflowJobStep[] = [];
-	const sequentialSteps: MultiWorkflowJobStep[] = [];
 	const separateJobs: MultiWorkflowJobOptions[] = [];
 	let needsBuild = false;
 
@@ -24,12 +23,10 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 			canRunInParallel(job) &&
 			(builds ? steps.length <= 1 : steps.length === 1) &&
 			steps.every(canStepRunInParallel) &&
-			(job.sequential || parallelSteps.length < maximumParallelSteps)
+			parallelSteps.length < maximumParallelSteps
 		) {
 			needsBuild ||= builds;
-			(job.sequential ? sequentialSteps : parallelSteps).push(
-				...steps.map((step) => ({ ...step, name: job.name })),
-			);
+			parallelSteps.push(...steps.map((step) => ({ ...step, name: job.name })));
 		} else {
 			separateJobs.push(job);
 		}
@@ -44,7 +41,6 @@ export function groupParallelJobs(jobs: MultiWorkflowJobOptions[]) {
 			name: "CI",
 			steps: [
 				...(needsBuild ? [{ run: "pnpm build" }] : []),
-				...sequentialSteps,
 				...(parallelSteps.length > 1
 					? [{ parallel: parallelSteps }]
 					: parallelSteps),

@@ -12,7 +12,6 @@ const zExports = z.union([
 	z.object({ ".": z.union([zFilePath, zConditions]) }),
 ]);
 
-// Conditions that Node.js may resolve when running the entry point directly
 const runnableConditions = new Set(["default", "import", "node", "require"]);
 
 export const blockExports = base.createBlock({
@@ -24,7 +23,6 @@ export const blockExports = base.createBlock({
 		const exports = zExports.safeParse(packageData?.exports).data;
 		const entry = typeof exports === "string" ? exports : exports?.["."];
 
-		// Conditional exports (e.g. "browser" or "import"/"require") are kept as-is
 		if (typeof entry === "object") {
 			const conditions = conditionsLibToDist(entry);
 			const filePath = findRunnableFilePath(conditions);

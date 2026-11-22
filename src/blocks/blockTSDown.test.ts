@@ -536,6 +536,155 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			});
 		});
 
+		describe("files the old src/**/*.ts entry built", () => {
+			const legacyConfig = `defineConfig(${JSON.stringify({
+				bundle: false,
+				entry: ["src/**/*.ts", "!src/**/*.test.*"],
+				outDir: "lib",
+			})})`;
+
+			it("adds a source file imported by a bin file from the build output", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						bin: {
+							"index.js": [
+								`#!/usr/bin/env node\nimport { cli } from "../lib/cli.js";\n\nawait cli(process.argv.slice(2));\n`,
+							],
+						},
+						"package.json": [
+							JSON.stringify({
+								bin: { "test-repository": "./bin/index.js" },
+								main: "lib/index.js",
+							}),
+						],
+						src: {
+							"cli.ts": ["export async function cli() {}"],
+							"index.ts": ["export {};"],
+						},
+						"tsup.config.ts": [legacyConfig],
+					},
+				});
+
+				expect(actual?.entry).toEqual(["src/cli.ts"]);
+			});
+
+			it("adds a nested source file imported by a bin file", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						bin: {
+							"index.js": [
+								`import { githubCli } from "../lib/cli/githubCli.js";`,
+							],
+						},
+						"package.json": [JSON.stringify({ bin: "bin/index.js" })],
+						src: {
+							cli: { "githubCli.ts": ["export {};"] },
+							"index.ts": ["export {};"],
+						},
+						"tsup.config.ts": [legacyConfig],
+					},
+				});
+
+				expect(actual?.entry).toEqual(["src/cli/githubCli.ts"]);
+			});
+
+			it("adds source files for package.json exports conditions and browser", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [
+							JSON.stringify({
+								browser: "./lib/browser.js",
+								exports: {
+									".": {
+										browser: "./lib/browser.js",
+										default: "./lib/index.js",
+										types: "./lib/index.d.ts",
+									},
+									"./package.json": "./package.json",
+								},
+								main: "lib/index.js",
+							}),
+						],
+						src: {
+							"browser.ts": ["export {};"],
+							"index.ts": ["export {};"],
+						},
+						"tsdown.config.ts": [legacyConfig],
+					},
+				});
+
+				expect(actual?.entry).toEqual(["src/browser.ts"]);
+			});
+
+			it("adds a source file for a bin inside the build output", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						"package.json": [JSON.stringify({ bin: "lib/cli.js" })],
+						src: {
+							"cli.ts": ["export {};"],
+							"index.ts": ["export {};"],
+						},
+						"tsup.config.ts": [legacyConfig],
+					},
+				});
+
+				expect(actual?.entry).toEqual(["src/cli.ts"]);
+			});
+
+			it("uses the build output directory from the config", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						bin: {
+							"index.js": [
+								`import "../build/cli.js";\nimport "../lib/other.js";`,
+							],
+						},
+						"package.json": [JSON.stringify({ bin: "bin/index.js" })],
+						src: {
+							"cli.ts": ["export {};"],
+							"other.ts": ["export {};"],
+						},
+						"tsdown.config.ts": [
+							`defineConfig(${JSON.stringify({ entry: ["src/**/*.ts"], outDir: "build" })})`,
+						],
+					},
+				});
+
+				expect(actual?.entry).toEqual(["src/cli.ts"]);
+			});
+
+			it("skips referenced output files without a source file", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						bin: { "index.js": [`import "../lib/missing.js";`] },
+						"package.json": [JSON.stringify({ bin: "bin/index.js" })],
+						src: { "index.ts": ["export {};"] },
+						"tsup.config.ts": [legacyConfig],
+					},
+				});
+
+				expect(actual?.entry).toEqual([]);
+			});
+
+			it("does not add referenced files when the config did not use src/**/*.ts", () => {
+				const actual = testIntake(blockTSDown, {
+					files: {
+						bin: { "index.js": [`import "../dist/cli.js";`] },
+						"package.json": [JSON.stringify({ bin: "bin/index.js" })],
+						src: {
+							"cli.ts": ["export {};"],
+							"index.ts": ["export {};"],
+						},
+						"tsdown.config.ts": [
+							`defineConfig(${JSON.stringify({ entry: ["src/index.ts"] })})`,
+						],
+					},
+				});
+
+				expect(actual?.entry).toEqual([]);
+			});
+		});
+
 		it.each(["src/**/*.ts", "src/index.ts"])(
 			"drops the default entry %j from entry when tsdown.config.ts contains it",
 			(defaultEntry) => {

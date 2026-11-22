@@ -132,10 +132,10 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "8.29.0",
+			            "@typescript-eslint/utils": "8.73.0",
 			          },
 			          "devDependencies": {
-			            "@typescript-eslint/rule-tester": "8.29.1",
+			            "@typescript-eslint/rule-tester": "8.73.0",
 			            "eslint-doc-generator": "2.1.0",
 			          },
 			          "scripts": {
@@ -321,10 +321,10 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "8.29.0",
+			            "@typescript-eslint/utils": "8.73.0",
 			          },
 			          "devDependencies": {
-			            "@typescript-eslint/rule-tester": "8.29.1",
+			            "@typescript-eslint/rule-tester": "8.73.0",
 			            "eslint-doc-generator": "2.1.0",
 			          },
 			          "scripts": {
@@ -508,10 +508,10 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "8.29.0",
+			            "@typescript-eslint/utils": "8.73.0",
 			          },
 			          "devDependencies": {
-			            "@typescript-eslint/rule-tester": "8.29.1",
+			            "@typescript-eslint/rule-tester": "8.73.0",
 			            "eslint-doc-generator": "2.1.0",
 			          },
 			          "scripts": {
@@ -810,10 +810,10 @@ describe(blockESLintPlugin, () => {
 			      "props": {
 			        "properties": {
 			          "dependencies": {
-			            "@typescript-eslint/utils": "8.29.0",
+			            "@typescript-eslint/utils": "8.73.0",
 			          },
 			          "devDependencies": {
-			            "@typescript-eslint/rule-tester": "8.29.1",
+			            "@typescript-eslint/rule-tester": "8.73.0",
 			            "eslint-doc-generator": "2.1.0",
 			          },
 			          "scripts": {

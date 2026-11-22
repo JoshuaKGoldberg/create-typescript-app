@@ -133,7 +133,7 @@ describe(blockNcc, () => {
 			      "props": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vercel/ncc": "0.38.3",
+			            "@vercel/ncc": "0.45.0",
 			          },
 			          "files": [
 			            "lib/",
@@ -317,7 +317,7 @@ describe(blockNcc, () => {
 			      "props": {
 			        "properties": {
 			          "devDependencies": {
-			            "@vercel/ncc": "0.38.3",
+			            "@vercel/ncc": "0.45.0",
 			          },
 			          "files": [
 			            "lib/",
@@ -388,7 +388,7 @@ describe(blockNcc, () => {
 				  "props": {
 				    "properties": {
 				      "devDependencies": {
-				        "@vercel/ncc": "0.38.3",
+				        "@vercel/ncc": "0.45.0",
 				      },
 				      "files": [
 				        "lib/",
@@ -418,7 +418,7 @@ describe(blockNcc, () => {
 			    "props": {
 			      "properties": {
 			        "devDependencies": {
-			          "@vercel/ncc": "0.38.3",
+			          "@vercel/ncc": "0.45.0",
 			        },
 			        "exports": {
 			          ".": "./lib/index.js",

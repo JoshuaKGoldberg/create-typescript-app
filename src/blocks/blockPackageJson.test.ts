@@ -1208,6 +1208,24 @@ describe(blockPackageJson, () => {
 		).toBeUndefined();
 	});
 
+	it("lowercases a repository name with capital letters for the package name", () => {
+		const creation = testBlock(blockPackageJson, {
+			options: {
+				...options,
+				repository: "Test-Repository",
+			},
+		});
+
+		const packageJson = JSON.parse(creation.files?.["package.json"] as string);
+
+		expect(packageJson).toMatchObject({
+			name: "test-repository",
+			repository: {
+				url: "git+https://github.com/test-owner/Test-Repository.git",
+			},
+		});
+	});
+
 	describe("intake", () => {
 		test("returns undefined when package.json does not exist", () => {
 			const actual = testIntake(blockPackageJson, {

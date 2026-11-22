@@ -10,7 +10,7 @@
 		"@typescript-eslint/rule-tester": "8.73.0",
 		"@typescript-eslint/utils": "8.73.0",
 		"@vercel/ncc": "0.38.3",
-		"esbuild": "0.25.0",
+		"esbuild": "0.28.2",
 		"eslint-doc-generator": "2.1.0",
 		"eslint-plugin-eslint-plugin": "6.4.0",
 		"next": "16.4.0",

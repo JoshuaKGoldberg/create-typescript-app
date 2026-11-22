@@ -1,6 +1,7 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test, vi } from "vitest";
 
+import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { optionsBase } from "./options.fakes.ts";
 
@@ -275,6 +276,32 @@ describe(blockTSDown, () => {
 			  "scripts": undefined,
 			}
 		`);
+	});
+
+	test("with conditional exports", () => {
+		const creation = testBlock(blockTSDown, {
+			options: optionsBase,
+			props: {
+				exports: {
+					browser: "./dist/browser.js",
+					default: "./dist/index.js",
+				},
+			},
+		});
+
+		expect(
+			creation.extensions?.find(({ block }) => block === blockPackageJson)
+				?.props,
+		).toMatchObject({
+			properties: {
+				exports: {
+					".": {
+						browser: "./dist/browser.js",
+						default: "./dist/index.js",
+					},
+				},
+			},
+		});
 	});
 
 	test("with an explicit outDir", () => {

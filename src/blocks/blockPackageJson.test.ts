@@ -1216,8 +1216,7 @@ describe(blockPackageJson, () => {
 			},
 		});
 
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const packageJson = JSON.parse(creation.files!["package.json"] as string);
+		const packageJson = JSON.parse(creation.files?.["package.json"] as string);
 
 		expect(packageJson).toMatchObject({
 			name: "test-repository",

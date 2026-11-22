@@ -85,7 +85,6 @@ export const blockPackageJson = base.createBlock({
 									options.bin,
 								),
 								keywords: options.keywords,
-								// npm package names can't contain capital letters, unlike repositories
 								name: options.repository.toLowerCase(),
 								repository: {
 									type: "git",

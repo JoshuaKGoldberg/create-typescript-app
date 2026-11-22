@@ -24,6 +24,7 @@ import {
 	zExtension,
 	zPackageImport,
 } from "./eslint/schemas.ts";
+import { sortExtensions } from "./eslint/sortExtensions.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFile } from "./intake/intakeFile.ts";
 import { CommandPhase } from "./phases.ts";
@@ -128,17 +129,16 @@ export const blockESLint = base.createBlock({
 			scriptFileExtensions,
 		);
 
-		const extensionLines = extensionEntries
-			.map((extension) => ({
-				...extension,
-				files: extension.files.map((files) =>
-					files === scriptFiles ? scriptFilesWithAdditions : files,
-				),
-			}))
-			.sort((a, b) =>
-				processForSort(a.files).localeCompare(processForSort(b.files)),
-			)
-			.map(printExtension);
+		const extensionEntriesWithFiles = extensionEntries.map((extension) => ({
+			...extension,
+			files: extension.files.map((files) =>
+				files === scriptFiles ? scriptFilesWithAdditions : files,
+			),
+		}));
+
+		const extensionLines = sortExtensions(extensionEntriesWithFiles).map(
+			printExtension,
+		);
 
 		return {
 			extensions: [
@@ -354,8 +354,4 @@ function printExtensionRules(rules: ExtensionRules) {
 
 function printGroupComment(comment: string | undefined) {
 	return comment ? `\n\n// ${comment.replaceAll("\n", "\n// ")}\n` : "";
-}
-
-function processForSort(files: string[]) {
-	return files.join("").replaceAll("{", "");
 }

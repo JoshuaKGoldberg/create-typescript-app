@@ -85,7 +85,7 @@ export const blockPackageJson = base.createBlock({
 									options.bin,
 								),
 								keywords: options.keywords,
-								name: options.repository,
+								name: options.repository.toLowerCase(),
 								repository: {
 									type: "git",
 									url: `git+https://github.com/${options.owner}/${options.repository}.git`,

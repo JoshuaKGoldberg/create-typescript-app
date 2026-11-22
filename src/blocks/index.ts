@@ -39,6 +39,7 @@ import { blockPnpmDedupe } from "./blockPnpmDedupe.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 import { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.ts";
 import { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.ts";
+import { blockPrettierPluginPaddingLines } from "./blockPrettierPluginPaddingLines.ts";
 import { blockPrettierPluginSentencesPerLine } from "./blockPrettierPluginSentencesPerLine.ts";
 import { blockPrettierPluginSh } from "./blockPrettierPluginSh.ts";
 import { blockREADME } from "./blockREADME.ts";
@@ -98,6 +99,7 @@ export const blocks = {
 	blockPrettier,
 	blockPrettierPluginCurly,
 	blockPrettierPluginPackageJson,
+	blockPrettierPluginPaddingLines,
 	blockPrettierPluginSentencesPerLine,
 	blockPrettierPluginSh,
 	blockREADME,
@@ -158,6 +160,7 @@ export { blockPnpmDedupe } from "./blockPnpmDedupe.ts";
 export { blockPrettier } from "./blockPrettier.ts";
 export { blockPrettierPluginCurly } from "./blockPrettierPluginCurly.ts";
 export { blockPrettierPluginPackageJson } from "./blockPrettierPluginPackageJson.ts";
+export { blockPrettierPluginPaddingLines } from "./blockPrettierPluginPaddingLines.ts";
 export { blockPrettierPluginSentencesPerLine } from "./blockPrettierPluginSentencesPerLine.ts";
 export { blockPrettierPluginSh } from "./blockPrettierPluginSh.ts";
 export { blockREADME } from "./blockREADME.ts";

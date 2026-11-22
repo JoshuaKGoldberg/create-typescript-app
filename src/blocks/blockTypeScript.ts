@@ -233,8 +233,6 @@ function mergeOptions(
 	return merged;
 }
 
-// Published packages shouldn't ship source or declaration maps (#1909, #2414).
-// tsdown also turns on source maps whenever declarationMap is enabled.
 const mapOptions = new Set([
 	"declarationMap",
 	"inlineSourceMap",

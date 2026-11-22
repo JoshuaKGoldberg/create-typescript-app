@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.2](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.1...2.87.2) (2026-11-22)
+
+### Bug Fixes
+
+- source block-only dependency versions from a Renovate-visible package.json ([#2670](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2670)) ([1d6ffea](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1d6ffea027173621d932716ed972dd67e544e9b7)), closes [#2567](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2567)
+
 ## [2.87.1](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.0...2.87.1) (2026-11-22)
 
 ### Bug Fixes

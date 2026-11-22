@@ -104,8 +104,6 @@ export function blockESLintIntake(sourceText: string) {
 					.filter(Boolean)
 					.join("\n") || undefined;
 
-			// blockESLintMoreStyling's group is produced by that block itself.
-			// Groups after it are still kept, as they may be custom rules.
 			if (comment) {
 				inStylisticGroup = comment === stylisticComment;
 			}
@@ -133,7 +131,6 @@ export function blockESLintIntake(sourceText: string) {
 	}
 
 	function getConfigIgnores(node: TSESTree.Node) {
-		// defineConfig(...) configs start with globalIgnores([...], "Global Ignores")
 		if (
 			node.type === AST_NODE_TYPES.CallExpression &&
 			node.callee.type === AST_NODE_TYPES.Identifier &&

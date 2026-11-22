@@ -266,6 +266,31 @@ describe(blockExports, () => {
 			});
 		});
 
+		it("keeps non-path condition values when package.json exports '.' contains a null condition", () => {
+			const actual = testIntake(blockExports, {
+				files: {
+					"package.json": [
+						JSON.stringify({
+							exports: {
+								".": {
+									browser: null,
+									default: "./lib/index.js",
+								},
+							},
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				conditions: {
+					browser: null,
+					default: "./dist/index.js",
+				},
+				filePath: "./dist/index.js",
+			});
+		});
+
 		it("returns filePath when package.json exports is a string", () => {
 			const actual = testIntake(blockExports, {
 				files: {

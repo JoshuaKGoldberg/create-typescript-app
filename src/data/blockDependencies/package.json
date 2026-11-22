@@ -9,7 +9,7 @@
 		"@types/react-dom": "19.3.0",
 		"@typescript-eslint/rule-tester": "8.73.0",
 		"@typescript-eslint/utils": "8.73.0",
-		"@vercel/ncc": "0.38.3",
+		"@vercel/ncc": "0.45.0",
 		"esbuild": "0.28.2",
 		"eslint-doc-generator": "2.1.0",
 		"eslint-plugin-eslint-plugin": "6.4.0",
@@ -17,6 +17,6 @@
 		"react": "19.3.0",
 		"react-dom": "19.3.0",
 		"vite": "8.3.0",
-		"web-ext": "8.3.0"
+		"web-ext": "8.10.0"
 	}
 }

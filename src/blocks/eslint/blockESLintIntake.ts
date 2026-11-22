@@ -89,6 +89,7 @@ export function blockESLintIntake(sourceText: string) {
 	) {
 		let previousNode: TSESTree.Node | undefined;
 		let currentGroup: ExtensionRuleGroup | undefined;
+		let inStylisticGroup = false;
 		const groups: ExtensionRuleGroup[] = [];
 
 		for (const property of rulesObject.properties) {
@@ -97,11 +98,19 @@ export function blockESLintIntake(sourceText: string) {
 				property.range[0],
 			);
 			const comment =
-				precedingText.replaceAll(/\/\/ ?|\t\s*/g, "").trim() || undefined;
+				precedingText
+					.split("\n")
+					.map((line) => line.trim().replace(/^\/\/ ?/, ""))
+					.filter(Boolean)
+					.join("\n") || undefined;
 
-			// blockESLintMoreStyling's comment always gets pushed to the end.
-			if (comment === stylisticComment) {
-				break;
+			if (comment) {
+				inStylisticGroup = comment === stylisticComment;
+			}
+
+			if (inStylisticGroup) {
+				previousNode = property;
+				continue;
 			}
 
 			const rule = collectRuleFromProperty(property);
@@ -122,19 +131,21 @@ export function blockESLintIntake(sourceText: string) {
 	}
 
 	function getConfigIgnores(node: TSESTree.Node) {
+		if (
+			node.type === AST_NODE_TYPES.CallExpression &&
+			node.callee.type === AST_NODE_TYPES.Identifier &&
+			node.callee.name === "globalIgnores"
+		) {
+			return node.arguments.length > 0 && getStringLiterals(node.arguments[0]);
+		}
+
 		return (
 			node.type === AST_NODE_TYPES.ObjectExpression &&
 			node.properties.length === 1 &&
 			node.properties[0].type === AST_NODE_TYPES.Property &&
 			node.properties[0].key.type === AST_NODE_TYPES.Identifier &&
 			node.properties[0].key.name === "ignores" &&
-			node.properties[0].value.type === AST_NODE_TYPES.ArrayExpression &&
-			node.properties[0].value.elements.every(
-				(element): element is TSESTree.Literal & { value: string } =>
-					element?.type === AST_NODE_TYPES.Literal &&
-					typeof element.value === "string",
-			) &&
-			node.properties[0].value.elements.map((element) => element.value)
+			getStringLiterals(node.properties[0].value)
 		);
 	}
 
@@ -159,24 +170,29 @@ export function blockESLintIntake(sourceText: string) {
 		const [, filesProperty, , rulesProperty] = configObject.properties;
 		if (
 			filesProperty.type !== AST_NODE_TYPES.Property ||
-			filesProperty.value.type !== AST_NODE_TYPES.ArrayExpression ||
 			rulesProperty.type !== AST_NODE_TYPES.Property ||
 			rulesProperty.value.type !== AST_NODE_TYPES.ObjectExpression
 		) {
 			return undefined;
 		}
 
-		const files = filesProperty.value.elements.map((element) =>
+		const files = getStringLiterals(filesProperty.value);
+		return files && { files, rules: rulesProperty.value };
+	}
+
+	function getStringLiterals(node: TSESTree.Node) {
+		if (node.type !== AST_NODE_TYPES.ArrayExpression) {
+			return undefined;
+		}
+
+		const values = node.elements.map((element) =>
 			element?.type === AST_NODE_TYPES.Literal &&
 			typeof element.value === "string"
 				? element.value
 				: undefined,
 		);
-		if (!files.every((file) => file !== undefined)) {
-			return undefined;
-		}
 
-		return { files, rules: rulesProperty.value };
+		return values.every((value) => value !== undefined) ? values : undefined;
 	}
 
 	function nodeIsConfigExport(node: TSESTree.Node): node is ConfigExport {
@@ -188,6 +204,10 @@ export function blockESLintIntake(sourceText: string) {
 	}
 
 	function nodeIsConfigFunction(node: TSESTree.Node) {
+		if (node.type === AST_NODE_TYPES.Identifier) {
+			return node.name === "defineConfig";
+		}
+
 		return (
 			node.type === AST_NODE_TYPES.MemberExpression &&
 			node.object.type === AST_NODE_TYPES.Identifier &&

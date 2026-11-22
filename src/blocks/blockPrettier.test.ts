@@ -432,4 +432,21 @@ describe(blockPrettier, () => {
 			}
 		`);
 	});
+
+	test("with an ignores prop that duplicates a default ignore", () => {
+		const creation = testBlock(blockPrettier, {
+			options: optionsBase,
+			props: {
+				ignores: ["/dist", "/lib"],
+			},
+		});
+
+		expect(creation.files?.[".prettierignore"]).toMatchInlineSnapshot(`
+			"/.husky
+			/dist
+			/lib
+			/pnpm-lock.yaml
+			"
+		`);
+	});
 });

@@ -41,12 +41,13 @@ export function blockESLintIntake(sourceText: string) {
 		return undefined;
 	}
 
-	const rules = collectRulesObjectGroups(sourceText, rulesObject);
-	if (!rules) {
+	// blockESLint no longer takes a rules prop: rules are scoped to extensions.
+	// The rules object is still parsed to confirm the config's known shape.
+	if (!collectRulesObjectGroups(sourceText, rulesObject)) {
 		return undefined;
 	}
 
-	return { ignores, rules };
+	return { ignores };
 
 	function areArraysEqual<T>(a: T[], b: T[]) {
 		if (a.length !== b.length) {

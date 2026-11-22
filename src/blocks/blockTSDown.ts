@@ -18,6 +18,7 @@ import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
+import { intakeReferencedEntries } from "./intake/intakeReferencedEntries.ts";
 import { CommandPhase } from "./phases.ts";
 
 const zEntry = z.array(z.string());
@@ -57,21 +58,31 @@ export const blockTSDown = base.createBlock({
 	},
 	intake({ files }) {
 		const rawData =
-			intakeFileDefineConfig(files, ["tsdown.config.ts"]) ??
-			intakeFileDefineConfig(files, ["tsup.config.ts"]);
+			intakeFileDefineConfig(files, [
+				["tsdown.config.ts", "tsdown.config.mts"],
+			]) ?? intakeFileDefineConfig(files, ["tsup.config.ts"]);
 		if (!rawData) {
 			return undefined;
 		}
 
 		const { entry: rawEntry, ...rest } = rawData;
+		const entries = zEntry.safeParse(rawEntry).data;
 
 		return {
-			entry: zEntry
-				.safeParse(rawEntry)
-				// Exclusion globs only applied to the old src/**/*.ts default entry
-				.data?.filter(
-					(entry) => !defaultEntries.has(entry) && !entry.startsWith("!"),
-				),
+			entry:
+				entries &&
+				Array.from(
+					new Set([
+						...entries,
+						...(entries.includes("src/**/*.ts")
+							? intakeReferencedEntries(files, rest.outDir)
+							: []),
+					]),
+				)
+					// Exclusion globs only applied to the old src/**/*.ts default entry
+					.filter(
+						(entry) => !defaultEntries.has(entry) && !entry.startsWith("!"),
+					),
 			properties: removeUndefinedObjects({
 				...zProperties.safeParse(rest).data,
 
@@ -88,6 +99,9 @@ export const blockTSDown = base.createBlock({
 				// lib was the default before build output moved to tsdown's dist
 				outDir: isLegacyOutDir(rest.outDir) ? undefined : rest.outDir,
 
+				// Published packages shouldn't ship source maps (#1909)
+				sourcemap: undefined,
+
 				// Owned by the base bundle option, which is read from this file
 				unbundle: undefined,
 			}),
@@ -95,6 +109,9 @@ export const blockTSDown = base.createBlock({
 	},
 	produce({ options, props }) {
 		const { entry, exports, main, properties, runInCI } = props;
+
+		const configFileName =
+			options.type === "commonjs" ? "tsdown.config.mts" : "tsdown.config.ts";
 
 		return {
 			extensions: [
@@ -164,9 +181,9 @@ pnpm build --watch
 				}),
 			],
 			files: {
-				"tsdown.config.ts": withPreviously(
+				[configFileName]: withPreviously(
 					formatFile(
-						"tsdown.config.ts",
+						configFileName,
 						`import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
@@ -177,7 +194,9 @@ export default defineConfig(${JSON.stringify({
 						})});
 `,
 					),
-					["tsup.config.ts"],
+					options.type === "commonjs"
+						? ["tsdown.config.ts", "tsup.config.ts"]
+						: ["tsup.config.ts"],
 				),
 			},
 			scripts: options.bin
@@ -192,7 +211,7 @@ export default defineConfig(${JSON.stringify({
 	},
 	props: {
 		entry: zEntry.default([]),
-		exports: z.string().optional(),
+		exports: z.union([z.string(), zProperties]).optional(),
 		main: z.string().optional(),
 		properties: zProperties.default({}),
 		runInCI: z.array(z.string()).default([]),
@@ -212,6 +231,7 @@ export default defineConfig(${JSON.stringify({
 						"@babel/core",
 						"@babel/preset-typescript",
 						"babel",
+						"tsup",
 					],
 				}),
 				blockRemoveFiles({

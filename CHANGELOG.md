@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.87.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.4...2.87.5) (2026-11-22)
+
+### Bug Fixes
+
+- carry blockESLint intake rules into extensions ([#2685](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2685)) ([20910ba](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/20910ba2e8b9ca397789b14d5107f974ebd3e422)), closes [#2684](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2684)
+- dedupe .prettierignore entries ([#2704](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2704)) ([064e757](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/064e757200be6a162b4d4b918770ffd55f16b02b)), closes [#2698](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2698)
+- detect existing blockESLintPlugin files in transition mode ([#2707](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2707)) ([be3e95c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/be3e95cd8adc0718456ea01f0c9a75e9b1c81df2)), closes [#2702](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2702)
+- drop redundant src/index.ts Knip entry in transition mode ([#2703](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2703)) ([122070f](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/122070f7b2e897f2eb60ce7ad296fd4623449fe2)), closes [#2697](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2697)
+- export blockPrettierPluginPaddingLines ([#2691](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2691)) ([b81b0fb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b81b0fb4a3548316268f79408e00998f356ab00e)), closes [#2689](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2689)
+- keep bin and exports source files as tsdown entries in transition mode ([#2687](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2687)) ([ef47ff8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ef47ff82f3455f31d1515bba367f5ca97e8f657e)), closes [#2686](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2686)
+- keep conditional package.json exports in transition mode ([#2694](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2694)) ([9b5b88c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9b5b88c0ce3377c00ec4868155bdb0b146225b32)), closes [#2692](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2692)
+- lowercase the repository name for package.json's name ([#2695](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2695)) ([4ec35b7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4ec35b78bfbab85b4100ee95b506cb0a068281eb)), closes [#2693](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2693)
+- remove leftover tsup and Markdownlint dependencies and lint:md script in transition mode ([#2700](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2700)) ([91cedc5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/91cedc54314c256e695594b049de09ab5bcc59a4)), closes [#2696](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2696)
+- sort ESLint rule overrides after the broader extensions they override ([#2706](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2706)) ([bdd30b7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bdd30b7b2b33e0a02f3a803a02b580cd48bf2acf)), closes [#2701](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2701)
+- use .mts tsdown and Prettier configs in CommonJS packages ([#2690](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2690)) ([c0a2efb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c0a2efb911655aff1044934f32f74ba8e4bb61f9)), closes [#2688](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2688)
+
+## [2.87.4](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.3...2.87.4) (2026-11-22)
+
+### Bug Fixes
+
+- stop carrying source and declaration map options through transition mode ([#2711](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2711)) ([cd4fc52](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/cd4fc5285446759bab5cfa60a23924380f31e257)), closes [#2710](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2710)
+
 ## [2.87.3](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.2...2.87.3) (2026-11-22)
 
 ### Bug Fixes

@@ -19,8 +19,13 @@ export const blockPrettier = base.createBlock({
 	about: {
 		name: "Prettier",
 	},
-	produce({ props }) {
+	produce({ options, props }) {
 		const { ignores, overrides, plugins, runBefore } = props;
+
+		const configFileName =
+			options.type === "commonjs"
+				? "prettier.config.mts"
+				: "prettier.config.ts";
 
 		return {
 			extensions: [
@@ -79,11 +84,13 @@ pnpm format --write
 					"pre-commit": ["npx pretty-quick --staged\n", { executable: true }],
 				},
 				".prettierignore": formatIgnoreFile(
-					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
+					Array.from(
+						new Set(["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores]),
+					).sort(),
 				),
-				"prettier.config.ts": withPreviously(
+				[configFileName]: withPreviously(
 					formatFile(
-						"prettier.config.ts",
+						configFileName,
 						`import type { Config } from "prettier";
 
 export default ${JSON.stringify({
@@ -93,7 +100,9 @@ export default ${JSON.stringify({
 						})} satisfies Config;
 `,
 					),
-					[".prettierrc.json"],
+					options.type === "commonjs"
+						? [".prettierrc.json", "prettier.config.ts"]
+						: [".prettierrc.json"],
 				),
 			},
 			scripts: [
@@ -119,7 +128,7 @@ export default ${JSON.stringify({
 		plugins: z.array(z.string()).default([]),
 		runBefore: z.array(z.string()).default([]),
 	},
-	transition() {
+	transition({ options }) {
 		return {
 			extensions: [
 				blockPackageJson({
@@ -139,7 +148,9 @@ export default ${JSON.stringify({
 						".lintstagedrc*",
 						".prettierrc*",
 						"lint-staged.config.*",
-						"prettier.config.{c,j,m}*",
+						options.type === "commonjs"
+							? "prettier.config.{c,j,mj}*"
+							: "prettier.config.{c,j,m}*",
 					],
 				}),
 				blockRemoveWorkflows({

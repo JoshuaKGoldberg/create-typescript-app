@@ -18,6 +18,7 @@ import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
+import { intakeReferencedEntries } from "./intake/intakeReferencedEntries.ts";
 import { CommandPhase } from "./phases.ts";
 
 const zEntry = z.array(z.string());
@@ -64,14 +65,23 @@ export const blockTSDown = base.createBlock({
 		}
 
 		const { entry: rawEntry, ...rest } = rawData;
+		const entries = zEntry.safeParse(rawEntry).data;
 
 		return {
-			entry: zEntry
-				.safeParse(rawEntry)
-				// Exclusion globs only applied to the old src/**/*.ts default entry
-				.data?.filter(
-					(entry) => !defaultEntries.has(entry) && !entry.startsWith("!"),
-				),
+			entry:
+				entries &&
+				Array.from(
+					new Set([
+						...entries,
+						...(entries.includes("src/**/*.ts")
+							? intakeReferencedEntries(files, rest.outDir)
+							: []),
+					]),
+				)
+					// Exclusion globs only applied to the old src/**/*.ts default entry
+					.filter(
+						(entry) => !defaultEntries.has(entry) && !entry.startsWith("!"),
+					),
 			properties: removeUndefinedObjects({
 				...zProperties.safeParse(rest).data,
 

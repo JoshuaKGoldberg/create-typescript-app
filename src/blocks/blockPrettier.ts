@@ -19,8 +19,14 @@ export const blockPrettier = base.createBlock({
 	about: {
 		name: "Prettier",
 	},
-	produce({ props }) {
+	produce({ options, props }) {
 		const { ignores, overrides, plugins, runBefore } = props;
+
+		// Prettier can't load ESM syntax from a .ts config in a CommonJS package
+		const configFileName =
+			options.type === "commonjs"
+				? "prettier.config.mts"
+				: "prettier.config.ts";
 
 		return {
 			extensions: [
@@ -81,9 +87,9 @@ pnpm format --write
 				".prettierignore": formatIgnoreFile(
 					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
 				),
-				"prettier.config.ts": withPreviously(
+				[configFileName]: withPreviously(
 					formatFile(
-						"prettier.config.ts",
+						configFileName,
 						`import type { Config } from "prettier";
 
 export default ${JSON.stringify({
@@ -93,7 +99,9 @@ export default ${JSON.stringify({
 						})} satisfies Config;
 `,
 					),
-					[".prettierrc.json"],
+					options.type === "commonjs"
+						? [".prettierrc.json", "prettier.config.ts"]
+						: [".prettierrc.json"],
 				),
 			},
 			scripts: [
@@ -119,7 +127,7 @@ export default ${JSON.stringify({
 		plugins: z.array(z.string()).default([]),
 		runBefore: z.array(z.string()).default([]),
 	},
-	transition() {
+	transition({ options }) {
 		return {
 			extensions: [
 				blockPackageJson({
@@ -139,7 +147,10 @@ export default ${JSON.stringify({
 						".lintstagedrc*",
 						".prettierrc*",
 						"lint-staged.config.*",
-						"prettier.config.{c,j,m}*",
+						// Runs after files are written, so it must spare the new config
+						options.type === "commonjs"
+							? "prettier.config.{c,j,mj}*"
+							: "prettier.config.{c,j,m}*",
 					],
 				}),
 				blockRemoveWorkflows({

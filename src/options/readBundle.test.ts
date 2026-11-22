@@ -5,8 +5,9 @@ import { readBundle } from "./readBundle.ts";
 const mockTake = vi.fn();
 
 describe(readBundle, () => {
-	it("resolves with undefined when neither tsdown.config.ts nor vite.config.ts can be read", async () => {
+	it("resolves with undefined when neither tsdown.config.*ts nor vite.config.ts can be read", async () => {
 		mockTake
+			.mockResolvedValueOnce(new Error("Oh no!"))
 			.mockResolvedValueOnce(new Error("Oh no!"))
 			.mockResolvedValueOnce(new Error("Oh no!"));
 
@@ -53,8 +54,24 @@ describe(readBundle, () => {
 		expect(actual).toBe(true);
 	});
 
+	it("resolves with false when tsdown.config.mts contains unbundle: true", async () => {
+		mockTake
+			.mockResolvedValueOnce(new Error("Oh no!"))
+			.mockResolvedValueOnce(
+				`defineConfig(${JSON.stringify({ entry: ["src/index.ts"], unbundle: true })})`,
+			);
+
+		const actual = await readBundle(mockTake);
+
+		expect(actual).toBe(false);
+		expect(mockTake).toHaveBeenLastCalledWith(expect.anything(), {
+			filePath: "tsdown.config.mts",
+		});
+	});
+
 	it("resolves with undefined when vite.config.ts does not contain library mode", async () => {
 		mockTake
+			.mockResolvedValueOnce(new Error("Oh no!"))
 			.mockResolvedValueOnce(new Error("Oh no!"))
 			.mockResolvedValueOnce(
 				`defineConfig(${JSON.stringify({ build: { outDir: "build" } })})`,
@@ -66,14 +83,17 @@ describe(readBundle, () => {
 	});
 
 	it("resolves with false when vite.config.ts contains preserveModules: true", async () => {
-		mockTake.mockResolvedValueOnce(new Error("Oh no!")).mockResolvedValueOnce(
-			`defineConfig(${JSON.stringify({
-				build: {
-					lib: { entry: "src/index.ts" },
-					rolldownOptions: { output: { preserveModules: true } },
-				},
-			})})`,
-		);
+		mockTake
+			.mockResolvedValueOnce(new Error("Oh no!"))
+			.mockResolvedValueOnce(new Error("Oh no!"))
+			.mockResolvedValueOnce(
+				`defineConfig(${JSON.stringify({
+					build: {
+						lib: { entry: "src/index.ts" },
+						rolldownOptions: { output: { preserveModules: true } },
+					},
+				})})`,
+			);
 
 		const actual = await readBundle(mockTake);
 
@@ -82,6 +102,7 @@ describe(readBundle, () => {
 
 	it("resolves with true when vite.config.ts does not contain preserveModules", async () => {
 		mockTake
+			.mockResolvedValueOnce(new Error("Oh no!"))
 			.mockResolvedValueOnce(new Error("Oh no!"))
 			.mockResolvedValueOnce(
 				`defineConfig(${JSON.stringify({ build: { lib: { entry: "src/index.ts" } } })})`,

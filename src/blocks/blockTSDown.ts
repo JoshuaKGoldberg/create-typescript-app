@@ -57,8 +57,9 @@ export const blockTSDown = base.createBlock({
 	},
 	intake({ files }) {
 		const rawData =
-			intakeFileDefineConfig(files, ["tsdown.config.ts"]) ??
-			intakeFileDefineConfig(files, ["tsup.config.ts"]);
+			intakeFileDefineConfig(files, [
+				["tsdown.config.ts", "tsdown.config.mts"],
+			]) ?? intakeFileDefineConfig(files, ["tsup.config.ts"]);
 		if (!rawData) {
 			return undefined;
 		}
@@ -95,6 +96,10 @@ export const blockTSDown = base.createBlock({
 	},
 	produce({ options, props }) {
 		const { entry, exports, main, properties, runInCI } = props;
+
+		// tsdown can't load ESM syntax from a .ts config in a CommonJS package
+		const configFileName =
+			options.type === "commonjs" ? "tsdown.config.mts" : "tsdown.config.ts";
 
 		return {
 			extensions: [
@@ -164,9 +169,9 @@ pnpm build --watch
 				}),
 			],
 			files: {
-				"tsdown.config.ts": withPreviously(
+				[configFileName]: withPreviously(
 					formatFile(
-						"tsdown.config.ts",
+						configFileName,
 						`import { defineConfig } from "tsdown";
 
 export default defineConfig(${JSON.stringify({
@@ -177,7 +182,9 @@ export default defineConfig(${JSON.stringify({
 						})});
 `,
 					),
-					["tsup.config.ts"],
+					options.type === "commonjs"
+						? ["tsdown.config.ts", "tsup.config.ts"]
+						: ["tsup.config.ts"],
 				),
 			},
 			scripts: options.bin

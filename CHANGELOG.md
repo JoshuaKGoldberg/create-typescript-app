@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.87.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.5...2.87.6) (2026-11-22)
+
+### Bug Fixes
+
+- **deps:** update dependency @vercel/ncc to v0.45.0 ([#2678](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2678)) ([10e47dd](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/10e47dd1ba923e07df27107ddbd269743cd85242)), references [#8203](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/8203)
+- **deps:** update dependency web-ext to v8.10.0 ([#2709](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2709)) ([0c29d71](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/0c29d7161d9fda13bce3f1328ca1c5a61d1e0941))
+- intake defineConfig ESLint configs in transition mode ([#2705](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2705)) ([731f069](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/731f069efbd0d8310280928d03269ebd2fac484c)), closes [#2699](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2699)
+
 ## [2.87.5](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.4...2.87.5) (2026-11-22)
 
 ### Bug Fixes

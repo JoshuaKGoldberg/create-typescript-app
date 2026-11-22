@@ -79,7 +79,9 @@ pnpm format --write
 					"pre-commit": ["npx pretty-quick --staged\n", { executable: true }],
 				},
 				".prettierignore": formatIgnoreFile(
-					["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores].sort(),
+					Array.from(
+						new Set(["/.husky", "/dist", "/pnpm-lock.yaml", ...ignores]),
+					).sort(),
 				),
 				"prettier.config.ts": withPreviously(
 					formatFile(

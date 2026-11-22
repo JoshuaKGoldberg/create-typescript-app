@@ -91,7 +91,7 @@
 		"eslint-plugin-markdown-links": "0.9.1",
 		"eslint-plugin-n": "18.5.0",
 		"eslint-plugin-package-json": "1.14.0",
-		"eslint-plugin-perfectionist": "5.13.0",
+		"eslint-plugin-perfectionist": "5.14.0",
 		"eslint-plugin-regexp": "3.3.1",
 		"eslint-plugin-yml": "3.9.0",
 		"husky": "9.1.7",

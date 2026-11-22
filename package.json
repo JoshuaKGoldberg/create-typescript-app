@@ -51,6 +51,7 @@
 		"json5": "^2.2.3",
 		"lazy-value": "^3.0.0",
 		"marked": "^18.0.10",
+		"minimatch": "^11.0.9",
 		"npm-user": "^6.1.1",
 		"object-strings-deep": "^0.1.2",
 		"parse-author": "^2.0.0",

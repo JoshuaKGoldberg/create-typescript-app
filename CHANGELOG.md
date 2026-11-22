@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.8](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.7...2.87.8) (2026-11-22)
+
+### Bug Fixes
+
+- preserve Knip ignoreIssues in transition mode ([#2717](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2717)) ([499be93](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/499be932be2b513afac19e737516ea71dccd8d41)), closes [#2716](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2716)
+
 ## [2.87.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.6...2.87.7) (2026-11-22)
 
 ### Bug Fixes

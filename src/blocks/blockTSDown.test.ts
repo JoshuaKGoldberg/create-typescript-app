@@ -321,6 +321,22 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 		});
 	});
 
+	test("with options.type set to commonjs", () => {
+		const creation = testBlock(blockTSDown, {
+			options: { ...optionsBase, type: "commonjs" },
+		});
+
+		expect(creation.files).toEqual({
+			"tsdown.config.mts": [
+				`import { defineConfig } from "tsdown";
+
+export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
+`,
+				{ previously: ["tsdown.config.ts", "tsup.config.ts"] },
+			],
+		});
+	});
+
 	test("transition mode", () => {
 		const creation = testBlock(blockTSDown, {
 			mode: "transition",
@@ -516,6 +532,18 @@ export default defineConfig({ entry: ["src/index.ts", "src/other.ts"] });
 			const actual = testIntake(blockTSDown, {
 				files: {
 					"tsdown.config.ts": [`defineConfig(${JSON.stringify({ entry })})`],
+				},
+			});
+
+			expect(actual).toEqual({ entry, properties: { fixedExtension: false } });
+		});
+
+		it("returns entry when tsdown.config.mts contains entry", () => {
+			const entry = ["src/other.ts"];
+
+			const actual = testIntake(blockTSDown, {
+				files: {
+					"tsdown.config.mts": [`defineConfig(${JSON.stringify({ entry })})`],
 				},
 			});
 

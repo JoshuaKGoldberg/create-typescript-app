@@ -31,6 +31,14 @@ describe(blockAreTheTypesWrong, () => {
 			        ],
 			      },
 			    },
+			    {
+			      "block": "[Block Prettier]",
+			      "props": {
+			        "ignores": [
+			          "/*.tgz",
+			        ],
+			      },
+			    },
 			  ],
 			}
 		`);

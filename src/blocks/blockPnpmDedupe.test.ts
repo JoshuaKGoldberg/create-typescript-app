@@ -19,6 +19,7 @@ describe(blockPnpmDedupe, () => {
 			        "jobs": [
 			          {
 			            "name": "Dedupe Check",
+			            "sequential": true,
 			            "steps": [
 			              {
 			                "run": "pnpm dedupe --check",
@@ -56,6 +57,7 @@ describe(blockPnpmDedupe, () => {
 			        "jobs": [
 			          {
 			            "name": "Dedupe Check",
+			            "sequential": true,
 			            "steps": [
 			              {
 			                "run": "pnpm dedupe --check",

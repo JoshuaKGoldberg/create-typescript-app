@@ -8,13 +8,13 @@ jobs:
           persist-credentials: false
       - uses: ./.github/actions/prepare
       - run: pnpm build
+      - name: Dedupe Check
+        run: pnpm dedupe --check
       - parallel:
           - name: Are The Types Wrong?
             run: npx --yes @arethetypeswrong/cli --pack . --ignore-rules cjs-resolves-to-esm --profile esm-only
           - name: Build
             run: node ./dist/index.mjs --version
-          - name: Dedupe Check
-            run: pnpm dedupe --check
           - name: Format Check
             run: pnpm format --list-different
           - name: Lint

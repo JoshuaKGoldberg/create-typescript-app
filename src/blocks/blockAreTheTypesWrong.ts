@@ -1,5 +1,6 @@
 import { base } from "../base.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
+import { blockPrettier } from "./blockPrettier.ts";
 
 export const blockAreTheTypesWrong = base.createBlock({
 	about: {
@@ -20,6 +21,9 @@ export const blockAreTheTypesWrong = base.createBlock({
 							],
 						},
 					],
+				}),
+				blockPrettier({
+					ignores: ["/*.tgz"],
 				}),
 			],
 		};

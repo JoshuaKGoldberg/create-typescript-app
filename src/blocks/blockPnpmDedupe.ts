@@ -14,6 +14,7 @@ export const blockPnpmDedupe = base.createBlock({
 					jobs: [
 						{
 							name: "Dedupe Check",
+							sequential: true,
 							steps: [{ run: "pnpm dedupe --check" }],
 						},
 					],

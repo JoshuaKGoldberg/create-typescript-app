@@ -1,4 +1,3 @@
-import { Result } from "execa";
 import { describe, expect, it, vi } from "vitest";
 
 import { readAuthor } from "./readAuthor.ts";
@@ -51,7 +50,7 @@ describe(readAuthor, () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({}),
 			() => Promise.resolve(undefined),
-			() => Promise.resolve({ stdout: gitUser } as Result),
+			() => Promise.resolve({ stdout: gitUser }),
 			undefined,
 		);
 
@@ -64,7 +63,7 @@ describe(readAuthor, () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({ name: "" }),
 			() => Promise.resolve({ name: "" }),
-			() => Promise.resolve({ stdout: gitUser } as Result),
+			() => Promise.resolve({ stdout: gitUser }),
 			undefined,
 		);
 
@@ -77,7 +76,7 @@ describe(readAuthor, () => {
 		const actual = await readAuthor(
 			() => Promise.resolve({}),
 			() => Promise.resolve(undefined),
-			() => Promise.resolve({ stdout: "" } as Result),
+			() => Promise.resolve({ stdout: "" }),
 			owner,
 		);
 

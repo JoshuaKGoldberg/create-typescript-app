@@ -10,10 +10,17 @@ const options: DumpOptions = {
 		...nullCoreTag,
 		represent: () => "~",
 	}),
-	sortKeys: true,
-	// https://github.com/nodeca/js-yaml/pull/515
 	transform(documents) {
 		visit(documents, (node) => {
+			if (node.kind === "mapping") {
+				node.items.sort((a, b) => {
+					const x = a.key.kind === "scalar" ? a.key.value : "";
+					const y = b.key.kind === "scalar" ? b.key.value : "";
+					return x < y ? -1 : x > y ? 1 : 0;
+				});
+			}
+
+			// https://github.com/nodeca/js-yaml/pull/515
 			if (node.kind === "scalar" && node.value.includes("\n\t\t")) {
 				node.value = node.value
 					.replaceAll(": |-\n", ": |\n")

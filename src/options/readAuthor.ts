@@ -5,7 +5,7 @@ import { PackageAuthor } from "./readPackageAuthor.ts";
 export async function readAuthor(
 	getPackageAuthor: () => Promise<PackageAuthor>,
 	getNpmDefaults: () => Promise<undefined | { name?: string }>,
-	getGitUser: () => Promise<ExecaError | Result | undefined>,
+	getGitUser: () => Promise<Pick<ExecaError | Result, "stdout"> | undefined>,
 	owner: string | undefined,
 ) {
 	return (

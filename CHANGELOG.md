@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.7](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.6...2.87.7) (2026-11-22)
+
+### Bug Fixes
+
+- **deps:** update dependency esbuild to v0.28.2 ([#2682](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2682)) ([08578be](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/08578bec35ae4d04d13474021f03b2010c071bcd)), references [./triangle.svg#x](https://github.com/./triangle.svg/issues/x)
+
 ## [2.87.6](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.5...2.87.6) (2026-11-22)
 
 ### Bug Fixes

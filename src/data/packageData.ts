@@ -26,7 +26,6 @@ function getPackageDependency(name: string) {
 		);
 	}
 
-	// Created repositories pin exact versions, but dependencies may be ranges
 	return (
 		(semver.validRange(version) && semver.minVersion(version)?.version) ||
 		version

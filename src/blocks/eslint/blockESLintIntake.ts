@@ -36,18 +36,20 @@ export function blockESLintIntake(sourceText: string) {
 		return undefined;
 	}
 
-	const rulesObject = getConfigRulesObject(configArguments.slice(1));
-	if (!rulesObject) {
+	const configObject = getConfigObject(configArguments.slice(1));
+	if (!configObject) {
 		return undefined;
 	}
 
-	// blockESLint no longer takes a rules prop: rules are scoped to extensions.
-	// The rules object is still parsed to confirm the config's known shape.
-	if (!collectRulesObjectGroups(sourceText, rulesObject)) {
+	const rules = collectRulesObjectGroups(sourceText, configObject.rules);
+	if (!rules) {
 		return undefined;
 	}
 
-	return { ignores };
+	return {
+		extensions: rules.length ? [{ files: configObject.files, rules }] : [],
+		ignores,
+	};
 
 	function areArraysEqual<T>(a: T[], b: T[]) {
 		if (a.length !== b.length) {
@@ -136,7 +138,7 @@ export function blockESLintIntake(sourceText: string) {
 		);
 	}
 
-	function getConfigRulesObject(nodes: TSESTree.Node[]) {
+	function getConfigObject(nodes: TSESTree.Node[]) {
 		const configObject = nodes.find(
 			(node): node is TSESTree.ObjectExpression =>
 				node.type === AST_NODE_TYPES.ObjectExpression &&
@@ -154,12 +156,27 @@ export function blockESLintIntake(sourceText: string) {
 			return undefined;
 		}
 
-		const rulesObject = configObject.properties[3];
-		return (
-			rulesObject.type === AST_NODE_TYPES.Property &&
-			rulesObject.value.type === AST_NODE_TYPES.ObjectExpression &&
-			rulesObject.value
+		const [, filesProperty, , rulesProperty] = configObject.properties;
+		if (
+			filesProperty.type !== AST_NODE_TYPES.Property ||
+			filesProperty.value.type !== AST_NODE_TYPES.ArrayExpression ||
+			rulesProperty.type !== AST_NODE_TYPES.Property ||
+			rulesProperty.value.type !== AST_NODE_TYPES.ObjectExpression
+		) {
+			return undefined;
+		}
+
+		const files = filesProperty.value.elements.map((element) =>
+			element?.type === AST_NODE_TYPES.Literal &&
+			typeof element.value === "string"
+				? element.value
+				: undefined,
 		);
+		if (!files.every((file) => file !== undefined)) {
+			return undefined;
+		}
+
+		return { files, rules: rulesProperty.value };
 	}
 
 	function nodeIsConfigExport(node: TSESTree.Node): node is ConfigExport {

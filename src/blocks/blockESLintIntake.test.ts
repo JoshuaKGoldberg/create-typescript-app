@@ -28,6 +28,21 @@ describe(blockESLintIntake, () => {
 			`,
 		],
 		[
+			"config with object argument containing non-literal files",
+			`
+				export default tseslint.config(
+					{ ignores: [] },
+					{
+						extends: [],
+						files: [pattern],
+						languageOptions: {},
+						rules: {},
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
 			"config with object argument containing unknown properties",
 			`
 				export default tseslint.config(
@@ -119,21 +134,26 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -159,21 +179,26 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -200,23 +225,28 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						comment:
-							"These on-by-default rules work well for this repo if configured",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								comment:
+									"These on-by-default rules work well for this repo if configured",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -244,27 +274,32 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
-				rules: [
+				extensions: [
 					{
-						entries: {
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
-					},
-					{
-						comment:
-							"These on-by-default rules work well for this repo if configured",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								entries: {
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+							{
+								comment:
+									"These on-by-default rules work well for this repo if configured",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib", "node_modules", "pnpm-lock.yaml"],
 			},
 		],
 		[
@@ -294,23 +329,28 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib"],
-				rules: [
+				extensions: [
 					{
-						comment:
-							"These on-by-default rules work well for this repo if configured",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": [
-								"error",
-								{ ignorePrimitives: true },
-							],
-							"@typescript-eslint/restrict-template-expressions": [
-								"error",
-								{ allowBoolean: true },
-							],
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								comment:
+									"These on-by-default rules work well for this repo if configured",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": [
+										"error",
+										{ ignorePrimitives: true },
+									],
+									"@typescript-eslint/restrict-template-expressions": [
+										"error",
+										{ allowBoolean: true },
+									],
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib"],
 			},
 		],
 		[
@@ -332,15 +372,20 @@ export default tseslint.config(
 	}
 );`,
 			{
-				ignores: ["lib"],
-				rules: [
+				extensions: [
 					{
-						comment: "First line.\nSecond line.\nThird line.",
-						entries: {
-							"@typescript-eslint/prefer-nullish-coalescing": "error",
-						},
+						files: ["**/*.{js,ts}"],
+						rules: [
+							{
+								comment: "First line.\nSecond line.\nThird line.",
+								entries: {
+									"@typescript-eslint/prefer-nullish-coalescing": "error",
+								},
+							},
+						],
 					},
 				],
+				ignores: ["lib"],
 			},
 		],
 	])("returns data when given %s", (_, sourceText, expected) => {

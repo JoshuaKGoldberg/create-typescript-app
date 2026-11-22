@@ -22,7 +22,6 @@ export const blockPrettier = base.createBlock({
 	produce({ options, props }) {
 		const { ignores, overrides, plugins, runBefore } = props;
 
-		// Prettier can't load ESM syntax from a .ts config in a CommonJS package
 		const configFileName =
 			options.type === "commonjs"
 				? "prettier.config.mts"
@@ -147,7 +146,6 @@ export default ${JSON.stringify({
 						".lintstagedrc*",
 						".prettierrc*",
 						"lint-staged.config.*",
-						// Runs after files are written, so it must spare the new config
 						options.type === "commonjs"
 							? "prettier.config.{c,j,mj}*"
 							: "prettier.config.{c,j,m}*",

@@ -97,7 +97,6 @@ export const blockTSDown = base.createBlock({
 	produce({ options, props }) {
 		const { entry, exports, main, properties, runInCI } = props;
 
-		// tsdown can't load ESM syntax from a .ts config in a CommonJS package
 		const configFileName =
 			options.type === "commonjs" ? "tsdown.config.mts" : "tsdown.config.ts";
 

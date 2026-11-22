@@ -28,6 +28,81 @@ describe(blockESLintIntake, () => {
 			`,
 		],
 		[
+			"config with object argument containing non-array files",
+			`
+				export default tseslint.config(
+					{ ignores: [] },
+					{
+						extends: [],
+						files: pattern,
+						languageOptions: {},
+						rules: {},
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
+			"config with object argument containing non-object rules",
+			`
+				export default tseslint.config(
+					{ ignores: [] },
+					{
+						extends: [],
+						files: ["**/*.ts"],
+						languageOptions: {},
+						rules: other,
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
+			"config with object argument containing an invalid rule entry",
+			`
+				export default tseslint.config(
+					{ ignores: [] },
+					{
+						extends: [],
+						files: ["**/*.ts"],
+						languageOptions: {},
+						rules: { "no-console": "sometimes" },
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
+			"config with object argument containing a non-literal rule name",
+			`
+				export default tseslint.config(
+					{ ignores: [] },
+					{
+						extends: [],
+						files: ["**/*.ts"],
+						languageOptions: {},
+						rules: { [ruleName]: "error" },
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
+			"config with object argument containing non-literal files",
+			`
+				export default tseslint.config(
+					{ ignores: [] },
+					{
+						extends: [],
+						files: [pattern],
+						languageOptions: {},
+						rules: {},
+						settings: {},
+					},
+				);
+			`,
+		],
+		[
 			"config with object argument containing unknown properties",
 			`
 				export default tseslint.config(
@@ -385,6 +460,23 @@ export default tseslint.config(
 						],
 					},
 				],
+				ignores: ["lib"],
+			},
+		],
+		[
+			"empty rules",
+			`export default tseslint.config(
+	{ ignores: ["lib"] },
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: {},
+		rules: {},
+		settings: {}
+	}
+);`,
+			{
+				extensions: [],
 				ignores: ["lib"],
 			},
 		],

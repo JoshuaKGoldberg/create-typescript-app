@@ -25,9 +25,9 @@ export const blockTypeScript = base.createBlock({
 	},
 	intake({ files }) {
 		const raw = intakeFileAsJson(files, ["tsconfig.json"]);
-		const compilerOptions = CompilerOptionsSchema.safeParse(
-			raw?.compilerOptions,
-		).data;
+		const compilerOptions = withoutMapOptions(
+			CompilerOptionsSchema.safeParse(raw?.compilerOptions).data,
+		);
 		const exclude = z.array(z.string()).safeParse(raw?.exclude).data;
 		const include = z.array(z.string()).safeParse(raw?.include).data;
 		if (!compilerOptions && !exclude && !include) {
@@ -231,4 +231,20 @@ function mergeOptions(
 	}
 
 	return merged;
+}
+
+const mapOptions = new Set([
+	"declarationMap",
+	"inlineSourceMap",
+	"inlineSources",
+	"sourceMap",
+]);
+
+function withoutMapOptions<T extends object>(compilerOptions: T | undefined) {
+	return (
+		compilerOptions &&
+		(Object.fromEntries(
+			Object.entries(compilerOptions).filter(([key]) => !mapOptions.has(key)),
+		) as T)
+	);
 }

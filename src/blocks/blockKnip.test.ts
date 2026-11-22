@@ -439,5 +439,57 @@ export default {
 
 			expect(actual).toEqual({ ignore });
 		});
+
+		it("keeps a src/index.ts entry when package.json has no built index.js entry point", () => {
+			const entry = ["src/**/*.test.*", "src/index.ts"];
+
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.json": [JSON.stringify({ entry })],
+					"package.json": [JSON.stringify({ main: "./lib/other.js" })],
+				},
+			});
+
+			expect(actual).toEqual({ entry });
+		});
+
+		it("removes a src/index.ts entry when package.json main is a built index.js", () => {
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.json": [
+						JSON.stringify({ entry: ["src/**/*.test.*", "src/index.ts"] }),
+					],
+					"package.json": [JSON.stringify({ main: "lib/index.js" })],
+				},
+			});
+
+			expect(actual).toEqual({ entry: ["src/**/*.test.*"] });
+		});
+
+		it("removes a src/index.ts entry when package.json exports is a built index.js", () => {
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.config.ts": [
+						`export default { entry: ["src/index.ts", "src/**/*.test.*"] };`,
+					],
+					"package.json": [
+						JSON.stringify({ exports: { ".": "./dist/index.js" } }),
+					],
+				},
+			});
+
+			expect(actual).toEqual({ entry: ["src/**/*.test.*"] });
+		});
+
+		it("removes entry when its only pattern is a redundant src/index.ts", () => {
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.json": [JSON.stringify({ entry: ["src/index.ts"] })],
+					"package.json": [JSON.stringify({ exports: "./dist/index.js" })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
 	});
 });

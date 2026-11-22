@@ -994,6 +994,28 @@ describe(blockTypeScript, () => {
 			expect(actual).toEqual({ existingCompilerOptions: compilerOptions });
 		});
 
+		it("removes source and declaration map options from existingCompilerOptions", () => {
+			const actual = testIntake(blockTypeScript, {
+				files: {
+					"tsconfig.json": [
+						JSON.stringify({
+							compilerOptions: {
+								declarationMap: true,
+								inlineSourceMap: true,
+								inlineSources: true,
+								module: "ESNext",
+								sourceMap: true,
+							},
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				existingCompilerOptions: { module: "ESNext" },
+			});
+		});
+
 		it("returns existingCompilerOptions when tsconfig.json contains compilerOptions and other data", () => {
 			const compilerOptions = { module: "ESNext" };
 

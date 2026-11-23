@@ -1,6 +1,7 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test } from "vitest";
 
+import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitignore } from "./blockGitignore.ts";
 import { blockNcc } from "./blockNcc.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
@@ -403,6 +404,58 @@ describe(blockNcc, () => {
 			`);
 	});
 
+	test("with a rebuildDistWorkflow prop", () => {
+		const creation = testBlock(blockNcc, {
+			options: optionsBase,
+			props: {
+				rebuildDistWorkflow: "rebuild-dist.yml",
+			},
+		});
+
+		expect(
+			creation.extensions?.find(({ block }) => block === blockDevelopmentDocs),
+		).toMatchInlineSnapshot(`
+			{
+			  "block": "[Block Development Docs]",
+			  "props": {
+			    "sections": {
+			      "Building": {
+			        "contents": "
+			Run [TypeScript](https://typescriptlang.org) locally to type check and build source files from \`src/\` into output files in \`lib/\`:
+
+			\`\`\`shell
+			pnpm build
+			\`\`\`
+
+			Add \`--watch\` to run the builder in a watch mode that rebuilds changed files into \`lib/\` as you save them:
+
+			\`\`\`shell
+			pnpm build --watch
+			\`\`\`
+			",
+			        "innerSections": [
+			          {
+			            "contents": "
+			Run [\`@vercel/ncc\`](https://github.com/vercel/ncc) to clear and recreate an output \`dist/\` to be used in production.
+
+			\`\`\`shell
+			pnpm build:release
+			\`\`\`
+
+			CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces, not counting \`.d.ts\` files.
+			If that happens, run \`pnpm build:release\` and commit the changed files under \`dist/\`.
+			On Renovate branches, the [Rebuild Dist workflow](./workflows/rebuild-dist.yml) runs \`pnpm build:release\` and pushes any \`dist/\` changes so dependency updates can still merge.
+					",
+			            "heading": "Building for Release",
+			          },
+			        ],
+			      },
+			    },
+			  },
+			}
+		`);
+	});
+
 	test("setup mode", () => {
 		const creation = testBlock(blockNcc, {
 			mode: "setup",
@@ -567,6 +620,36 @@ describe(blockNcc, () => {
 			});
 
 			expect(actual).toEqual({ build: "tsc --project tsconfig.build.json" });
+		});
+
+		it("returns a rebuildDistWorkflow when a rebuild-dist workflow exists", () => {
+			const actual = testIntake(blockNcc, {
+				files: {
+					".github": {
+						workflows: {
+							"rebuild-dist.yml": ["name: Rebuild Dist"],
+						},
+					},
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({ rebuildDistWorkflow: "rebuild-dist.yml" });
+		});
+
+		it("returns an undefined rebuildDistWorkflow when no rebuild-dist workflow exists", () => {
+			const actual = testIntake(blockNcc, {
+				files: {
+					".github": {
+						workflows: {
+							"ci.yaml": ["name: CI"],
+						},
+					},
+				},
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({ rebuildDistWorkflow: undefined });
 		});
 
 		it("returns an undefined build when options.packageData contains a non-tsc build script", () => {

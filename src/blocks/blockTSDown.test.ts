@@ -261,9 +261,9 @@ describe(blockTSDown, () => {
 			      "import { defineConfig } from "tsdown";
 
 			export default defineConfig({
+				dts: false,
 				entry: ["src/index.ts", "src/other.ts"],
 				unbundle: true,
-				dts: false,
 			});
 			",
 			      {
@@ -320,8 +320,8 @@ describe(blockTSDown, () => {
 
 export default defineConfig({
 	entry: ["src/index.ts"],
-	unbundle: true,
 	outDir: "build",
+	unbundle: true,
 });
 `,
 				{ previously: ["tsup.config.ts"] },

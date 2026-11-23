@@ -65,8 +65,6 @@ export const blockAllContributors = base.createBlock({
 				}),
 			],
 			files: {
-				// This matches how all-contributors-cli writes the file, with a trailing newline:
-				// https://github.com/all-contributors/cli/blob/v6.23.1/src/util/config-file.js#L46
 				".all-contributorsrc":
 					JSON.stringify(
 						{

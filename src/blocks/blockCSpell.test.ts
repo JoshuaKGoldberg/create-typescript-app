@@ -449,6 +449,25 @@ describe(blockCSpell, () => {
 		);
 	});
 
+	test("with wordRemovals", () => {
+		const creation = testBlock(blockCSpell, {
+			options: {
+				...optionsBase,
+				words: ["markdownlintignore", "tsup", "zizmor"],
+			},
+			props: {
+				wordRemovals: ["markdownlintignore", "tsup"],
+				words: ["octoguide", "tsup"],
+			},
+		});
+
+		expect(JSON.parse(creation.files?.["cspell.json"] as string)).toEqual(
+			expect.objectContaining({
+				words: ["octoguide", "zizmor"],
+			}),
+		);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when cspell.json does not exist", () => {
 			const actual = testIntake(blockCSpell, {

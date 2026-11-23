@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
@@ -54,21 +55,24 @@ export const blockESLintMarkdown = base.createBlock({
 		};
 	},
 	transition({ options }) {
-		if (
-			!options.packageData?.scripts?.["lint:md"]?.startsWith("markdownlint")
-		) {
-			return {};
-		}
-
 		return {
 			extensions: [
-				blockPackageJson({
-					properties: {
-						scripts: {
-							"lint:md": undefined,
-						},
-					},
+				blockCSpell({
+					wordRemovals: ["markdownlintignore"],
 				}),
+				...(options.packageData?.scripts?.["lint:md"]?.startsWith(
+					"markdownlint",
+				)
+					? [
+							blockPackageJson({
+								properties: {
+									scripts: {
+										"lint:md": undefined,
+									},
+								},
+							}),
+						]
+					: []),
 			],
 		};
 	},

@@ -5,6 +5,7 @@ import { formatFile } from "../utils/formatFile.ts";
 import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
+const zGitIgnoredAuthors = z.array(z.string()).default([]);
 const zIgnoreDeps = z.array(z.string()).default([]);
 const zPackageRules = z.array(z.record(z.string(), z.unknown())).default([]);
 
@@ -16,12 +17,14 @@ export const blockRenovate = base.createBlock({
 		const raw = intakeFileAsJson(files, [".github", "renovate.json"]);
 
 		return {
+			gitIgnoredAuthors: zGitIgnoredAuthors.safeParse(raw?.gitIgnoredAuthors)
+				.data,
 			ignoreDeps: zIgnoreDeps.safeParse(raw?.ignoreDeps).data,
 			packageRules: zPackageRules.safeParse(raw?.packageRules).data,
 		};
 	},
 	produce({ props }) {
-		const { ignoreDeps, packageRules } = props;
+		const { gitIgnoredAuthors, ignoreDeps, packageRules } = props;
 
 		return {
 			extensions: [
@@ -46,6 +49,7 @@ export const blockRenovate = base.createBlock({
 								"config:best-practices",
 								"replacements:all",
 							],
+							...(gitIgnoredAuthors.length && { gitIgnoredAuthors }),
 							ignoreDeps: Array.from(
 								new Set(["codecov/codecov-action", ...ignoreDeps]),
 							).sort(),
@@ -61,6 +65,7 @@ export const blockRenovate = base.createBlock({
 		};
 	},
 	props: {
+		gitIgnoredAuthors: zGitIgnoredAuthors,
 		ignoreDeps: zIgnoreDeps,
 		packageRules: zPackageRules,
 	},

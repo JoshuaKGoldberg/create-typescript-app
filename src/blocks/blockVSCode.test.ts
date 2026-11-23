@@ -25,15 +25,7 @@ describe(blockVSCode, () => {
 			            "innerSections": [],
 			          },
 			          "Testing": {
-			            "innerSections": [
-			              {
-			                "contents": "
-			This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-			To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-			",
-			                "heading": "Debugging Tests",
-			              },
-			            ],
+			            "innerSections": [],
 			          },
 			        },
 			      },
@@ -87,15 +79,7 @@ describe(blockVSCode, () => {
 			            "innerSections": [],
 			          },
 			          "Testing": {
-			            "innerSections": [
-			              {
-			                "contents": "
-			This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-			To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-			",
-			                "heading": "Debugging Tests",
-			              },
-			            ],
+			            "innerSections": [],
 			          },
 			        },
 			      },
@@ -163,15 +147,7 @@ describe(blockVSCode, () => {
 			            "innerSections": [],
 			          },
 			          "Testing": {
-			            "innerSections": [
-			              {
-			                "contents": "
-			This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
-			To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
-			",
-			                "heading": "Debugging Tests",
-			              },
-			            ],
+			            "innerSections": [],
 			          },
 			        },
 			      },
@@ -209,6 +185,70 @@ describe(blockVSCode, () => {
 				"version": "2.0.0"
 			}
 			",
+			    },
+			  },
+			}
+		`);
+	});
+
+	test("with a Debug Current Test File debugger", () => {
+		const creation = testBlock(blockVSCode, {
+			options: optionsBase,
+			props: {
+				debuggers: [{ name: "Debug Current Test File" }],
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "extensions": [
+			    {
+			      "block": "[Block Development Docs]",
+			      "props": {
+			        "hints": [
+			          "> This repository includes a list of suggested VS Code extensions.",
+			          "> It's a good idea to use [VS Code](https://code.visualstudio.com) and accept its suggestion to install them, as they'll help with development.",
+			        ],
+			        "sections": {
+			          "Building": {
+			            "innerSections": [],
+			          },
+			          "Testing": {
+			            "innerSections": [
+			              {
+			                "contents": "
+			This repository includes a [VS Code launch configuration](https://code.visualstudio.com/docs/editor/debugging) for debugging unit tests.
+			To launch it, open a test file, then run _Debug Current Test File_ from the VS Code Debug panel (or press F5).
+			",
+			                "heading": "Debugging Tests",
+			              },
+			            ],
+			          },
+			        },
+			      },
+			    },
+			    {
+			      "block": "[Block GitHub Issue Templates]",
+			      "props": {
+			        "checklists": {
+			          "tooling": [
+			            "I have tried restarting my IDE and the issue persists.",
+			          ],
+			        },
+			      },
+			    },
+			  ],
+			  "files": {
+			    ".vscode": {
+			      "extensions.json": undefined,
+			      "launch.json": "{
+				"configurations": [{ "name": "Debug Current Test File" }],
+				"version": "0.2.0"
+			}
+			",
+			      "settings.json": "{ "editor.formatOnSave": true, "editor.rulers": [80] }
+			",
+			      "tasks.json": undefined,
 			    },
 			  },
 			}

@@ -569,6 +569,22 @@ describe(blockNcc, () => {
 			expect(actual).toEqual({ build: "tsc --project tsconfig.build.json" });
 		});
 
+		it("returns an undefined build when options.packageData contains a bare tsc build script", () => {
+			const actual = testIntake(blockNcc, {
+				files: {},
+				options: {
+					...optionsBase,
+					packageData: {
+						scripts: {
+							build: "tsc",
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ build: undefined });
+		});
+
 		it("returns an undefined build when options.packageData contains a non-tsc build script", () => {
 			const actual = testIntake(blockNcc, {
 				files: {},

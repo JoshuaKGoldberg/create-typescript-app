@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.10](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.9...2.87.10) (2026-11-23)
+
+### Bug Fixes
+
+- remove lib from Vitest, CSpell, and ESLint ignores when transitioning to tsdown ([#2721](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2721)) ([5e8e386](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/5e8e386cec664109bb9d5a2af1de8f1a9afeeaaa)), closes [#2720](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2720)
+
 ## [2.87.9](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.8...2.87.9) (2026-11-22)
 
 ### Bug Fixes

@@ -69,6 +69,7 @@ Examples:
 Framework plugins are libraries that a specific tool such as ESLint or Prettier loads.
 
 - ESLint plugins can add the [ESLint Plugin block](./Blocks.md), which sets up [`eslint-doc-generator`](https://github.com/bmish/eslint-doc-generator) to generate rule docs
+  - New repositories should be created with `--add-eslint-plugin --exclude-example-files`, as the block provides its own starting files
 - Some frameworks still load plugins with CommonJS `require`, in which case you may want to [add dual CommonJS / ECMAScript Modules emit](./FAQs.md#how-can-i-add-dual-commonjs--ecmascript-modules-emit)
 - If the repository uses its own plugin on itself, its build needs to run before that tool; for example, prettier-plugin-curly adds a `blockPrettier({ runBefore: ["pnpm build --no-dts"] })` extension
 

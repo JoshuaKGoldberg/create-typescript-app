@@ -39,6 +39,9 @@ export const blockReleaseIt = base.createBlock({
 	},
 	produce({ options, props }) {
 		const { builders } = props;
+		const packageName = (
+			options.repository as string | undefined
+		)?.toLowerCase();
 
 		return {
 			extensions: [
@@ -60,8 +63,8 @@ export const blockReleaseIt = base.createBlock({
 					badges: [
 						{
 							alt: "📦 npm version",
-							href: `http://npmjs.com/package/${options.repository}`,
-							src: `https://img.shields.io/npm/v/${options.repository}?color=21bb42&label=%F0%9F%93%A6%20npm`,
+							href: `http://npmjs.com/package/${packageName}`,
+							src: `https://img.shields.io/npm/v/${packageName}?color=21bb42&label=%F0%9F%93%A6%20npm`,
 						},
 					],
 				}),
@@ -108,7 +111,7 @@ export const blockReleaseIt = base.createBlock({
 							The release is available on:
 
 							* [GitHub releases](https://github.com/${options.owner}/${options.repository}/releases/tag/{release_tag})
-							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${options.repository}/v/\${{ env.npm_version }})
+							* [npm package (@latest dist-tag)](https://www.npmjs.com/package/${packageName}/v/\${{ env.npm_version }})
 
 							Cheers! 📦🚀
 						`,
@@ -198,7 +201,7 @@ export const blockReleaseIt = base.createBlock({
 			suggestions: [
 				[
 					`- add ${options.owner}/${options.repository} and \`release.yaml\` as a Trusted Publisher on:`,
-					`   https://www.npmjs.com/package/${options.repository}/access`,
+					`   https://www.npmjs.com/package/${packageName}/access`,
 				].join("\n"),
 			],
 		};

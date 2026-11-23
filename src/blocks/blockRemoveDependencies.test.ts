@@ -53,7 +53,7 @@ describe(blockRemoveDependencies, () => {
 			      "commands": [
 			        "node path/to/remove-dependencies/bin/index.js a b c",
 			      ],
-			      "phase": 3,
+			      "phase": 0,
 			    },
 			  ],
 			}

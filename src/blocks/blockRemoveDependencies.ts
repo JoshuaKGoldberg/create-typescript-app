@@ -24,7 +24,7 @@ export const blockRemoveDependencies = base.createBlock({
 							commands: [
 								`node ${resolveBin("remove-dependencies/bin/index.js")} ${props.dependencies.join(" ")}`,
 							],
-							phase: CommandPhase.Process,
+							phase: CommandPhase.Migrations,
 						},
 					]
 				: undefined,

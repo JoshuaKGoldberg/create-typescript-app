@@ -50,6 +50,7 @@ export const blockESLint = base.createBlock({
 			beforeLintSteps,
 			explanations,
 			extensions,
+			ignoreRemovals,
 			ignores,
 			imports,
 			scriptFileExtensions,
@@ -79,9 +80,9 @@ export const blockESLint = base.createBlock({
 
 		const ignoreLines = Array.from(
 			new Set(
-				["dist", "node_modules", "pnpm-lock.yaml", ...ignores].map((ignore) =>
-					JSON.stringify(ignore),
-				),
+				["dist", "node_modules", "pnpm-lock.yaml", ...ignores]
+					.filter((ignore) => !ignoreRemovals.includes(ignore))
+					.map((ignore) => JSON.stringify(ignore)),
 			),
 		).sort();
 
@@ -266,6 +267,7 @@ export default defineConfig(
 		beforeLintSteps: z.array(zActionStep).default([]),
 		explanations: z.array(z.string()).default([]),
 		extensions: z.array(zExtension).default([]),
+		ignoreRemovals: z.array(z.string()).default([]),
 		ignores: z.array(z.string()).default([]),
 		imports: z.array(zPackageImport).default([]),
 		scriptFileExtensions: z.array(z.string()).default([]),

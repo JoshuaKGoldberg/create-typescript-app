@@ -81,9 +81,12 @@ export const blockVitest = base.createBlock({
 		};
 	},
 	produce({ props }) {
-		const { actionSteps, coverage, environment, exclude } = props;
+		const { actionSteps, coverage, environment, exclude, excludeRemovals } =
+			props;
 		const excludeText = JSON.stringify(
-			Array.from(new Set(["node_modules", ...exclude])).sort(),
+			Array.from(new Set(["node_modules", ...exclude]))
+				.filter((entry) => !excludeRemovals.includes(entry))
+				.sort(),
 		);
 
 		return {
@@ -269,6 +272,7 @@ export default defineConfig({
 		coverage: zCoverage.default({}),
 		environment: zEnvironment.optional(),
 		exclude: zExclude.default([]),
+		excludeRemovals: z.array(z.string()).default([]),
 		flags: z.array(z.string()).default([]),
 	},
 	transition({ options }) {

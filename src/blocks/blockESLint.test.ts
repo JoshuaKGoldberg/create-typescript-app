@@ -2175,6 +2175,23 @@ describe(blockESLint, () => {
 		`);
 	});
 
+	test("with ignoreRemovals", () => {
+		const creation = testBlock(blockESLint, {
+			options: optionsBase,
+			props: {
+				ignoreRemovals: ["lib"],
+				ignores: ["coverage", "lib"],
+			},
+		});
+
+		expect(creation.files?.["eslint.config.ts"]).toEqual([
+			expect.stringContaining(
+				`["coverage", "dist", "node_modules", "pnpm-lock.yaml"],`,
+			),
+			expect.anything(),
+		]);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when there is no eslint.config file", () => {
 			const actual = testIntake(blockESLint, {

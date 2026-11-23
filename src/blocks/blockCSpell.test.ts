@@ -409,6 +409,28 @@ describe(blockCSpell, () => {
 		`);
 	});
 
+	test("with ignorePathRemovals", () => {
+		const creation = testBlock(blockCSpell, {
+			options: optionsBase,
+			props: {
+				ignorePathRemovals: ["lib"],
+				ignorePaths: ["coverage", "lib"],
+			},
+		});
+
+		expect(JSON.parse(creation.files?.["cspell.json"] as string)).toEqual(
+			expect.objectContaining({
+				ignorePaths: [
+					"CHANGELOG.md",
+					"coverage",
+					"dist",
+					"node_modules",
+					"pnpm-lock.yaml",
+				],
+			}),
+		);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when cspell.json does not exist", () => {
 			const actual = testIntake(blockCSpell, {

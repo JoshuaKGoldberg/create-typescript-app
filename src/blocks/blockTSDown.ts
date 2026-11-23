@@ -5,6 +5,7 @@ import { z } from "zod";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
@@ -15,6 +16,7 @@ import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
+import { blockVitest } from "./blockVitest.ts";
 import { withPreviously } from "./files/withPreviously.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
@@ -219,6 +221,12 @@ export default defineConfig(${JSON.stringify({
 	transition() {
 		return {
 			extensions: [
+				blockCSpell({
+					ignorePathRemovals: ["lib"],
+				}),
+				blockESLint({
+					ignoreRemovals: ["lib"],
+				}),
 				blockGitignore({
 					removals: ["/lib", "dist/", "lib/"],
 				}),
@@ -245,6 +253,9 @@ export default defineConfig(${JSON.stringify({
 				}),
 				blockRemoveWorkflows({
 					workflows: ["build", "tsup"],
+				}),
+				blockVitest({
+					excludeRemovals: ["lib"],
 				}),
 			],
 		};

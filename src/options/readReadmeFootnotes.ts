@@ -9,12 +9,14 @@ export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
 		return undefined;
 	}
 
-	const indexOfLastTemplatedBy = indicatorsTemplatedBy.reduce(
-		(largest, indicator) => {
-			const indexOf = indicator.exec(readme)?.index;
-			return indexOf ? Math.max(largest, indexOf) : largest;
-		},
+	const indexOfLastTemplatedBy = Math.max(
 		0,
+		...indicatorsTemplatedBy.flatMap((indicator) =>
+			Array.from(
+				readme.matchAll(new RegExp(indicator, "g")),
+				(match) => match.index,
+			),
+		),
 	);
 	if (!indexOfLastTemplatedBy) {
 		return undefined;

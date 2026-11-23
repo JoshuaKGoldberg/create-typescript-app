@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockPrettier } from "./blockPrettier.ts";
 import { optionsBase } from "./options.fakes.ts";
@@ -483,5 +483,76 @@ export default { useTabs: true } satisfies Config;
 			/pnpm-lock.yaml
 			"
 		`);
+	});
+
+	test("with a preCommit prop", () => {
+		const creation = testBlock(blockPrettier, {
+			options: optionsBase,
+			props: {
+				preCommit: "pnpm build\nnpx pretty-quick --staged",
+			},
+		});
+
+		expect(creation.files?.[".husky"]).toEqual({
+			".gitignore": "_\n",
+			"pre-commit": [
+				"pnpm build\nnpx pretty-quick --staged\n",
+				{ executable: true },
+			],
+		});
+	});
+
+	describe("intake", () => {
+		it("returns undefined when there is no pre-commit hook", () => {
+			const actual = testIntake(blockPrettier, {
+				files: { ".husky": {} },
+				options: optionsBase,
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		test.each([
+			["", "npx pretty-quick --staged"],
+			["npx pretty-quick --staged\n", "npx pretty-quick --staged"],
+			["npx lint-staged\n", "npx pretty-quick --staged"],
+			["npx lint-staged@15 --quiet\n", "npx pretty-quick --staged"],
+			["npx --no lint-staged\n", "npx pretty-quick --staged"],
+			["lint-staged\r\n", "npx pretty-quick --staged"],
+			["pnpm exec lint-staged\n", "npx pretty-quick --staged"],
+			["yarn lint-staged || true\n", "npx pretty-quick --staged || true"],
+			[
+				"npx lint-staged\nnpx pretty-quick --staged\n",
+				"npx pretty-quick --staged",
+			],
+			[
+				'#!/bin/sh\n. "$(dirname "$0")/_/husky.sh"\n\nnpx lint-staged\n',
+				"npx pretty-quick --staged",
+			],
+			[
+				"pnpm build:release\ngit add dist\nnpx lint-staged\n",
+				"pnpm build:release\ngit add dist\nnpx pretty-quick --staged",
+			],
+			[
+				"npx lint-staged\npnpm build:release\n",
+				"npx pretty-quick --staged\npnpm build:release",
+			],
+			[
+				"pnpm build && npx lint-staged && git add dist\n",
+				"pnpm build && npx pretty-quick --staged && git add dist",
+			],
+			[
+				"if [ -f a ]; then\n  pnpm a\nfi\nif [ -f b ]; then\n  npx lint-staged\nfi\n",
+				"if [ -f a ]; then\n  pnpm a\nfi\nif [ -f b ]; then\n  npx pretty-quick --staged\nfi",
+			],
+			["pnpm tsc\n", "pnpm tsc\nnpx pretty-quick --staged"],
+		])("updates pre-commit hook %j to %j", (existing, preCommit) => {
+			const actual = testIntake(blockPrettier, {
+				files: { ".husky": { "pre-commit": [existing] } },
+				options: optionsBase,
+			});
+
+			expect(actual).toEqual({ preCommit });
+		});
 	});
 });

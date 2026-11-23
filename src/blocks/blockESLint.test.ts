@@ -501,7 +501,7 @@ describe(blockESLint, () => {
 						tseslint.configs.strictTypeChecked,
 						tseslint.configs.stylisticTypeChecked,
 					],
-					files: ["**/*.{js,mjs,ts}"],
+					files: ["**/*.{js,mjs,mts,ts}"],
 					languageOptions: {
 						parserOptions: {
 							projectService: { allowDefaultProject: ["*.config.*s"] },
@@ -1547,7 +1547,7 @@ describe(blockESLint, () => {
 						tseslint.configs.strictTypeChecked,
 						tseslint.configs.stylisticTypeChecked,
 					],
-					files: ["**/*.{js,mjs,ts,tsx}"],
+					files: ["**/*.{js,mjs,mts,ts,tsx}"],
 					languageOptions: {
 						parserOptions: {
 							projectService: { allowDefaultProject: ["*.config.*s"] },
@@ -1886,6 +1886,49 @@ describe(blockESLint, () => {
 		`);
 	});
 
+	test.each([
+		["string", "bin/index.mjs"],
+		["object", { other: "bin/other.js", "test-bin": "./bin/index.mjs" }],
+	])("with an .mjs %s options.bin", (_, bin) => {
+		const creation = testBlock(blockESLint, {
+			options: { ...optionsBase, bin },
+			props: {
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [{ entries: { "no-console": "error" } }],
+					},
+					{
+						files: ["**/*.{js,mjs,ts}"],
+						rules: [{ entries: { "no-debugger": "error" } }],
+					},
+				],
+			},
+		});
+
+		const [contents] = creation.files?.["eslint.config.ts"] as [string];
+
+		expect(contents.match(/files: .+/g)).toEqual([
+			'files: ["**/*.{js,mjs,ts}"],',
+		]);
+		expect(contents).toContain(
+			'rules: { "no-console": "error", "no-debugger": "error" }',
+		);
+	});
+
+	test.each(["bin/index.js", "dist/index.mjs", "./dist/index.mjs"])(
+		"with options.bin set to %s",
+		(bin) => {
+			const creation = testBlock(blockESLint, {
+				options: { ...optionsBase, bin },
+			});
+
+			const [contents] = creation.files?.["eslint.config.ts"] as [string];
+
+			expect(contents).toContain('files: ["**/*.{js,ts}"]');
+		},
+	);
+
 	test("with options.type set to commonjs", () => {
 		const creation = testBlock(blockESLint, {
 			options: {
@@ -2003,7 +2046,7 @@ describe(blockESLint, () => {
 						tseslint.configs.strictTypeChecked,
 						tseslint.configs.stylisticTypeChecked,
 					],
-					files: ["**/*.{js,mjs,ts}"],
+					files: ["**/*.{js,mjs,mts,ts}"],
 					languageOptions: {
 						parserOptions: {
 							projectService: { allowDefaultProject: ["*.config.*s"] },

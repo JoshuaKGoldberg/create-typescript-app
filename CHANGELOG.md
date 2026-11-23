@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.87.17](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.16...2.87.17) (2026-11-23)
+
+### Bug Fixes
+
+- allow the Anti-Slop workflow to create its label ([#2790](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2790)) ([1494aae](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1494aae9caf5c19a1ff85337f83d0ef643d04e39)), closes [#2789](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2789)
+- don't initialize rule docs when transitioning ESLint plugins ([#2794](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2794)) ([8ee7f30](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8ee7f30b7e389e418f51638e884dc1c3eac59386)), closes [#2793](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2793)
+- remove outdated dependencies before installing packages ([#2792](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2792)) ([e7eafa8](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e7eafa8fe16a73c8c7912d878351723b2e84ca75)), closes [#2791](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2791)
+- use lowercase package names in npm links ([#2796](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2796)) ([fb9ef63](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/fb9ef63db64d448d6acf4548299fedf386986f8e)), closes [#2795](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2795)
+
 ## [2.87.16](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.15...2.87.16) (2026-11-23)
 
 ### Bug Fixes

@@ -174,6 +174,14 @@ describe(blockESLintMarkdown, () => {
 			      },
 			    },
 			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "wordRemovals": [
+			          "markdownlintignore",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Package JSON]",
 			      "props": {
 			        "properties": {

@@ -23,6 +23,9 @@ export async function readReadmeFootnotes(getReadme: () => Promise<string>) {
 	}
 
 	const indexOfNextLine = readme.indexOf("\n", indexOfLastTemplatedBy);
+	if (indexOfNextLine === -1) {
+		return undefined;
+	}
 
 	return readme.slice(indexOfNextLine).trim() || undefined;
 }

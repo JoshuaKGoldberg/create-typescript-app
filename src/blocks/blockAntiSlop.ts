@@ -77,7 +77,7 @@ export const blockAntiSlop = base.createBlock({
 							},
 							permissions: {
 								contents: "read",
-								issues: "read",
+								issues: "write",
 								"pull-requests": "write",
 							},
 							steps: [

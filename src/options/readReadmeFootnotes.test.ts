@@ -75,4 +75,34 @@ After.
 
 		expect(result).toBe("[^1]: After.");
 	});
+
+	it("resolves undefined when there is no content after multiple quote templated by notices", async () => {
+		const getReadme = () =>
+			Promise.resolve(`# My Package
+
+> 💝 This package was templated with etc. etc.
+
+> 💙 This package was templated with etc. etc.
+`);
+
+		const result = await readReadmeFootnotes(getReadme);
+
+		expect(result).toBeUndefined();
+	});
+
+	it("resolves the content after the last of multiple quote templated by notices", async () => {
+		const getReadme = () =>
+			Promise.resolve(`# My Package
+
+> 💝 This package was templated with etc. etc.
+
+> 💙 This package was templated with etc. etc.
+
+[^1]: After.
+`);
+
+		const result = await readReadmeFootnotes(getReadme);
+
+		expect(result).toBe("[^1]: After.");
+	});
 });

@@ -30,17 +30,6 @@ describe(blockESLintNode, () => {
 			            ],
 			          },
 			          {
-			            "extends": [
-			              "tseslint.configs.disableTypeChecked",
-			            ],
-			            "files": [
-			              "**/*.md/*.ts",
-			            ],
-			            "rules": {
-			              "n/no-missing-import": "off",
-			            },
-			          },
-			          {
 			            "files": [
 			              "**/*.test.*",
 			              "eslint.config.*",

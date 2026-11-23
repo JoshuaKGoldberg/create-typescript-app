@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.87.11](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.10...2.87.11) (2026-11-23)
+
+### Bug Fixes
+
+- don't keep a bare tsc build script in blockNcc intake ([#2727](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2727)) ([1907b8e](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1907b8e36f1ffb970a7812884965b3cef50ae479)), closes [#2726](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2726)
+- drop older duplicate templated-with notices from README.md ([#2749](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2749)) ([35f2eec](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/35f2eeccb08fd5509ec5f27293880f058e065559)), closes [#2748](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2748)
+- end .all-contributorsrc with a trailing newline ([#2723](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2723)) ([d63ce5c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/d63ce5ccdb94f4fe32d2e739e8bbe7fdd9556334)), closes [#2722](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2722)
+- keep Renovate from bumping the Engines Check job's Node.js version ([#2737](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2737)) ([bb21042](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bb210423a7bf35aa4ebdda28aa599fa9c5e6a591)), closes [#2732](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2732)
+- only document VS Code test debugging when Vitest is used ([#2729](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2729)) ([c68e25d](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c68e25dfb927c49f0d64e867657a11443434e57e)), closes [#2728](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2728)
+- point the CTA transitions opt-out comment at cta.yaml ([#2736](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2736)) ([59ad9d7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/59ad9d7f2138f1d79a7c1bd7883334649c7633dd)), closes [#2733](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2733)
+- preserve custom release-it git options in transition mode ([#2741](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2741)) ([69e2242](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/69e2242e08643152f3621d15350a07c18e9b090c)), closes [#2740](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2740)
+- preserve Renovate gitIgnoredAuthors in transition mode ([#2735](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2735)) ([eef4a66](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/eef4a66c68885e6b337f66c17337c934de11ed40)), closes [#2731](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2731)
+- remove CSpell words for tools that transition mode removes ([#2743](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2743)) ([b26c4b4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b26c4b4f3dfa6dc4333cf60a8380517bdbc5758e)), closes [#2742](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2742)
+- remove the old lint:packages script when transitioning ([#2725](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2725)) ([79f54d4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/79f54d44d811d5cea2ef36253fcc3ffdad687d76)), closes [#2724](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2724)
+- stop generating a dead ESLint override for Markdown code blocks ([#2734](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2734)) ([75ac4a0](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/75ac4a0730ffe8832e2b6fd6d3363482fb06a4ea)), closes [#2730](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2730)
+
 ## [2.87.10](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.9...2.87.10) (2026-11-23)
 
 ### Bug Fixes

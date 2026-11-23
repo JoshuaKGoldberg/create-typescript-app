@@ -140,8 +140,6 @@ export const blockCSpell = base.createBlock({
 	},
 });
 
-// CSpell matches words case-insensitively by default,
-// so e.g. "JoshuaKGoldberg" and "joshuakgoldberg" are redundant together.
 function dedupeCaseInsensitive(words: string[]) {
 	const seen = new Set<string>();
 

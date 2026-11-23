@@ -33,8 +33,9 @@ export const blockGitHubActionsCI = base.createBlock({
 						{
 							uses: resolveUses(
 								"actions/setup-node",
-								"v4",
+								"v7",
 								options.workflowsVersions,
+								"949feb2413d6458794dcd2491c4babbbce0c15c1",
 							),
 							with: {
 								cache: "pnpm",
@@ -51,6 +52,7 @@ export const blockGitHubActionsCI = base.createBlock({
 			"JoshuaKGoldberg/pr-review-labels-action",
 			"v0.1.0",
 			options.workflowsVersions,
+			"fee8e8b7d88399731e77a567973876c50a054e6d",
 		);
 
 		return {
@@ -72,15 +74,17 @@ export const blockGitHubActionsCI = base.createBlock({
 											{
 												uses: resolveUses(
 													"pnpm/action-setup",
-													"v4",
+													"v6",
 													options.workflowsVersions,
+													"73e46992e05b19abd31f2f3c20e0e7370d762115",
 												),
 											},
 											{
 												uses: resolveUses(
 													"actions/setup-node",
-													"v4",
+													"v7",
 													options.workflowsVersions,
+													"949feb2413d6458794dcd2491c4babbbce0c15c1",
 												),
 												with: {
 													cache: "pnpm",

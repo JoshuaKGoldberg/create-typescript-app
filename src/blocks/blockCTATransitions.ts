@@ -70,8 +70,9 @@ export const blockCTATransitions = base.createBlock({
 												id: "auto-commit-action",
 												uses: resolveUses(
 													"stefanzweifel/git-auto-commit-action",
-													"v5",
+													"v7",
 													options.workflowsVersions,
+													"d0b01107b5db882071f96de5dd4b54961ea93f4c",
 												),
 												with: {
 													commit_author:
@@ -86,8 +87,9 @@ export const blockCTATransitions = base.createBlock({
 												if: "steps.auto-commit-action.outputs.changes_detected == 'true'",
 												uses: resolveUses(
 													"mshick/add-pr-comment",
-													"v2",
+													"v3",
 													options.workflowsVersions,
+													"ec328af66588ab8f77cdeb2c264f14aba45bbf59",
 												),
 												with: {
 													issue: "${{ github.event.pull_request.number }}",
@@ -109,6 +111,7 @@ export const blockCTATransitions = base.createBlock({
 													"JoshuaKGoldberg/package-change-detector-action",
 													"v0.0.1",
 													options.workflowsVersions,
+													"6acfdff89acb0ece6a8550f92d8f37ea888e1288",
 												),
 												with: {
 													properties: "engines",
@@ -120,6 +123,7 @@ export const blockCTATransitions = base.createBlock({
 													"JoshuaKGoldberg/draft-pull-request-once-action",
 													"0.1.0",
 													options.workflowsVersions,
+													"bedb63df0d09d762e9d5b5b1839c8704a6526fcc",
 												),
 												with: {
 													"github-token": "${{ inputs.token }}",
@@ -158,8 +162,9 @@ export const blockCTATransitions = base.createBlock({
 										if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')`,
 										uses: resolveUses(
 											"actions/checkout",
-											"v4",
+											"v7",
 											options.workflowsVersions,
+											"3d3c42e5aac5ba805825da76410c181273ba90b1",
 										),
 										with: {
 											"fetch-depth": 0,

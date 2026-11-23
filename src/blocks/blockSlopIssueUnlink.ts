@@ -82,6 +82,7 @@ function createUnlinkStep(
 			"JoshuaKGoldberg/slop-issue-unlink-action",
 			"v0.3.0",
 			workflowsVersions,
+			"346a2ebcee0728154050e233fd908ea2550bb93c",
 		),
 		...(!usesDefaultLabels && {
 			with: {

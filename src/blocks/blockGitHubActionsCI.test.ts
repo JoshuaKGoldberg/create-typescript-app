@@ -31,8 +31,8 @@ describe(blockGitHubActionsCI, () => {
 
 			runs:
 			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
+			    - uses: pnpm/action-setup@v6
+			    - uses: actions/setup-node@v7
 			      with:
 			        cache: pnpm
 			        node-version: lts/*
@@ -137,8 +137,8 @@ describe(blockGitHubActionsCI, () => {
 
 			runs:
 			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
+			    - uses: pnpm/action-setup@v6
+			    - uses: actions/setup-node@v7
 			      with:
 			        cache: pnpm
 			        node-version: lts/*
@@ -250,8 +250,8 @@ describe(blockGitHubActionsCI, () => {
 
 			runs:
 			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
+			    - uses: pnpm/action-setup@v6
+			    - uses: actions/setup-node@v7
 			      with:
 			        cache: pnpm
 			        node-version: lts/*
@@ -274,11 +274,11 @@ describe(blockGitHubActionsCI, () => {
 			    name: Engines Check
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
-			      - uses: actions/setup-node@v4
+			      - uses: actions/setup-node@v7
 			        with:
 			          cache: pnpm
 			          node-version: 20.12.0
@@ -288,7 +288,7 @@ describe(blockGitHubActionsCI, () => {
 			    name: Validate
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
@@ -415,8 +415,8 @@ describe(blockGitHubActionsCI, () => {
 
 			runs:
 			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
+			    - uses: pnpm/action-setup@v6
+			    - uses: actions/setup-node@v7
 			      with:
 			        cache: pnpm
 			        node-version: lts/*
@@ -441,7 +441,7 @@ describe(blockGitHubActionsCI, () => {
 			      contents: read
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          fetch-depth: '0'
 			          persist-credentials: false
@@ -454,7 +454,7 @@ describe(blockGitHubActionsCI, () => {
 			    name: CI
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
@@ -464,11 +464,11 @@ describe(blockGitHubActionsCI, () => {
 			    name: Engines Check
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
-			      - uses: actions/setup-node@v4
+			      - uses: actions/setup-node@v7
 			        with:
 			          cache: pnpm
 			          node-version: 20.12.0
@@ -603,8 +603,8 @@ describe(blockGitHubActionsCI, () => {
 
 			runs:
 			  steps:
-			    - uses: pnpm/action-setup@v4
-			    - uses: actions/setup-node@v4
+			    - uses: pnpm/action-setup@v6
+			    - uses: actions/setup-node@v7
 			      with:
 			        cache: pnpm
 			        node-version: lts/*
@@ -627,7 +627,7 @@ describe(blockGitHubActionsCI, () => {
 			    name: Action
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          fetch-depth: '0'
 			          persist-credentials: false
@@ -638,7 +638,7 @@ describe(blockGitHubActionsCI, () => {
 			    name: CI
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
@@ -655,11 +655,11 @@ describe(blockGitHubActionsCI, () => {
 			    name: Engines Check
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          persist-credentials: false
 			      - uses: ./.github/actions/prepare
-			      - uses: actions/setup-node@v4
+			      - uses: actions/setup-node@v7
 			        with:
 			          cache: pnpm
 			          node-version: 20.12.0
@@ -669,7 +669,7 @@ describe(blockGitHubActionsCI, () => {
 			    name: Test
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          persist-credentials: false
 			      - uses: ./.github/actions/prepare

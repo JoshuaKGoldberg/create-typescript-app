@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.87.13](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.12...2.87.13) (2026-11-23)
+
+### Bug Fixes
+
+- mention an existing Rebuild Dist workflow in blockNcc's development docs ([#2754](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2754)) ([705c23c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/705c23c29f46256233e2842ffa5735ced48143b5)), closes [#2752](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2752)
+- only add CONTRIBUTING.md Post-Merge Recognition with AllContributors ([#2756](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2756)) ([590e836](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/590e836d0dc098e7af7a99829cf2611a3692773f)), closes [#2755](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2755)
+
 ## [2.87.12](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.11...2.87.12) (2026-11-23)
 
 ### Bug Fixes

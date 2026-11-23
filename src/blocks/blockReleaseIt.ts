@@ -99,6 +99,7 @@ export const blockReleaseIt = base.createBlock({
 											"apexskier/github-release-commenter",
 											"v1",
 											options.workflowsVersions,
+											"e7813a9625eabd79a875b4bc4046cfcae377ab34",
 										),
 										with: {
 											"comment-template": `
@@ -137,8 +138,9 @@ export const blockReleaseIt = base.createBlock({
 									{
 										uses: resolveUses(
 											"actions/checkout",
-											"v4",
+											"v7",
 											options.workflowsVersions,
+											"3d3c42e5aac5ba805825da76410c181273ba90b1",
 										),
 										with: {
 											"fetch-depth": 0,
@@ -159,8 +161,9 @@ export const blockReleaseIt = base.createBlock({
 										},
 										uses: resolveUses(
 											"JoshuaKGoldberg/release-it-action",
-											"v0.5.7",
+											"v0.6.4",
 											options.workflowsVersions,
+											"c8081a3d2382b75d5fd1315443c095d7f95fd146",
 										),
 									},
 								],

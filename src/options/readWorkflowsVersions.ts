@@ -52,9 +52,11 @@ export async function readWorkflowsVersions(
 			return;
 		}
 
-		for (const match of raw.matchAll(/uses:\s*(\w.+)/g)) {
-			const [, uses] = match;
-			collectUses(uses);
+		// Folded scalars (uses: >-) may put the "# version" comment on its own line
+		for (const [, folded, uses] of raw.matchAll(
+			/uses:\s*(?:>-?\s+(\w.+(?:\n\s+#.+)?)|(\w.+))/g,
+		)) {
+			collectUses(folded ? folded.replaceAll(/\s+/g, " ") : uses);
 		}
 	}
 

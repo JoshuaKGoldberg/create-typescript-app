@@ -1,5 +1,6 @@
 import { IntakeDirectory } from "bingo-fs";
 import removeUndefinedObjects from "remove-undefined-objects";
+import sortKeys from "sort-keys";
 import { z } from "zod";
 
 import { base } from "../base.ts";
@@ -188,12 +189,14 @@ pnpm build --watch
 						configFileName,
 						`import { defineConfig } from "tsdown";
 
-export default defineConfig(${JSON.stringify({
-							// unbundle still only builds modules reachable from entries
-							entry: Array.from(new Set(["src/index.ts", ...entry])),
-							...(options.bundle ? {} : { unbundle: true }),
-							...properties,
-						})});
+export default defineConfig(${JSON.stringify(
+							sortKeys({
+								// unbundle still only builds modules reachable from entries
+								entry: Array.from(new Set(["src/index.ts", ...entry])),
+								...(options.bundle ? {} : { unbundle: true }),
+								...properties,
+							}),
+						)});
 `,
 					),
 					options.type === "commonjs"

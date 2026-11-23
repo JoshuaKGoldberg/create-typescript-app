@@ -81,6 +81,7 @@ export const blockOctoGuide = base.createBlock({
 											"JoshuaKGoldberg/octoguide",
 											"0.33.1",
 											options.workflowsVersions,
+											"8d29abce6793b35c6bfab51d4db6bfa62634b871",
 										),
 										with: {
 											config: props.config ?? "recommended",

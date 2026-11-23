@@ -5,6 +5,7 @@ import { formatFile } from "../utils/formatFile.ts";
 import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
+const zCustomManagers = z.array(z.record(z.string(), z.unknown())).default([]);
 const zGitIgnoredAuthors = z.array(z.string()).default([]);
 const zIgnoreDeps = z.array(z.string()).default([]);
 const zPackageRules = z.array(z.record(z.string(), z.unknown())).default([]);
@@ -17,6 +18,7 @@ export const blockRenovate = base.createBlock({
 		const raw = intakeFileAsJson(files, [".github", "renovate.json"]);
 
 		return {
+			customManagers: zCustomManagers.safeParse(raw?.customManagers).data,
 			gitIgnoredAuthors: zGitIgnoredAuthors.safeParse(raw?.gitIgnoredAuthors)
 				.data,
 			ignoreDeps: zIgnoreDeps.safeParse(raw?.ignoreDeps).data,
@@ -24,7 +26,8 @@ export const blockRenovate = base.createBlock({
 		};
 	},
 	produce({ props }) {
-		const { gitIgnoredAuthors, ignoreDeps, packageRules } = props;
+		const { customManagers, gitIgnoredAuthors, ignoreDeps, packageRules } =
+			props;
 
 		return {
 			extensions: [
@@ -44,6 +47,7 @@ export const blockRenovate = base.createBlock({
 						JSON.stringify({
 							$schema: "https://docs.renovatebot.com/renovate-schema.json",
 							automerge: true,
+							...(customManagers.length && { customManagers }),
 							extends: [
 								":preserveSemverRanges",
 								"config:best-practices",
@@ -65,6 +69,7 @@ export const blockRenovate = base.createBlock({
 		};
 	},
 	props: {
+		customManagers: zCustomManagers,
 		gitIgnoredAuthors: zGitIgnoredAuthors,
 		ignoreDeps: zIgnoreDeps,
 		packageRules: zPackageRules,

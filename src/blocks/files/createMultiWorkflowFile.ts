@@ -46,7 +46,12 @@ export function createMultiWorkflowFile({
 					"runs-on": "ubuntu-latest",
 					steps: [
 						{
-							uses: resolveUses("actions/checkout", "v4", workflowsVersions),
+							uses: resolveUses(
+								"actions/checkout",
+								"v7",
+								workflowsVersions,
+								"3d3c42e5aac5ba805825da76410c181273ba90b1",
+							),
 							with: {
 								"persist-credentials": false,
 								...job.checkoutWith,

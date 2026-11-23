@@ -122,7 +122,7 @@ describe(blockReleaseIt, () => {
 			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          fetch-depth: 0
 			          persist-credentials: true
@@ -131,7 +131,7 @@ describe(blockReleaseIt, () => {
 			      - uses: ./.github/actions/prepare
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.5.7
+			        uses: JoshuaKGoldberg/release-it-action@v0.6.4
 
 			name: Release
 
@@ -307,7 +307,7 @@ describe(blockReleaseIt, () => {
 			      id-token: write
 			    runs-on: ubuntu-latest
 			    steps:
-			      - uses: actions/checkout@v4
+			      - uses: actions/checkout@v7
 			        with:
 			          fetch-depth: 0
 			          persist-credentials: true
@@ -319,7 +319,7 @@ describe(blockReleaseIt, () => {
 			      - run: two
 			      - env:
 			          GITHUB_TOKEN: \${{ secrets.ACCESS_TOKEN }}
-			        uses: JoshuaKGoldberg/release-it-action@v0.5.7
+			        uses: JoshuaKGoldberg/release-it-action@v0.6.4
 
 			name: Release
 

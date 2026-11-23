@@ -162,10 +162,6 @@ export default config;
 					commands: ["pnpm build"],
 					phase: CommandPhase.Build,
 				},
-				{
-					commands: ["pnpm eslint-doc-generator --init-rule-docs"],
-					phase: CommandPhase.Process,
-				},
 			],
 		};
 	},
@@ -288,6 +284,22 @@ export const createRule = ESLintUtils.RuleCreator(
 `,
 				},
 			},
+			scripts: [
+				{
+					commands: ["pnpm eslint-doc-generator --init-rule-docs"],
+					phase: CommandPhase.Process,
+				},
+			],
+		};
+	},
+	transition() {
+		return {
+			scripts: [
+				{
+					commands: ["pnpm eslint-doc-generator"],
+					phase: CommandPhase.Process,
+				},
+			],
 		};
 	},
 });

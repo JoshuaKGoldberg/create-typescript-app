@@ -31,7 +31,7 @@ describe(blockZizmor, () => {
 			            "name": "Lint GitHub Actions",
 			            "steps": [
 			              {
-			                "uses": "zizmorcore/zizmor-action@v0.6.4",
+			                "uses": "zizmorcore/zizmor-action@v0.8.1",
 			                "with": {
 			                  "advanced-security": "false",
 			                  "annotations": "true",
@@ -94,7 +94,7 @@ describe(blockZizmor, () => {
 			            "name": "Lint GitHub Actions",
 			            "steps": [
 			              {
-			                "uses": "zizmorcore/zizmor-action@v0.6.4",
+			                "uses": "zizmorcore/zizmor-action@v0.8.1",
 			                "with": {
 			                  "advanced-security": "false",
 			                  "annotations": "true",
@@ -181,7 +181,7 @@ describe(blockZizmor, () => {
 			            "name": "Lint GitHub Actions",
 			            "steps": [
 			              {
-			                "uses": "zizmorcore/zizmor-action@v0.6.4",
+			                "uses": "zizmorcore/zizmor-action@v0.8.1",
 			                "with": {
 			                  "advanced-security": "false",
 			                  "annotations": "true",
@@ -229,7 +229,7 @@ describe(blockZizmor, () => {
 		`);
 	});
 
-	test("with a hash-pinned zizmor-action in workflowsVersions", () => {
+	test("with an older hash-pinned zizmor-action in workflowsVersions", () => {
 		const creation = testBlock(blockZizmor, {
 			options: {
 				...optionsBase,
@@ -250,7 +250,7 @@ describe(blockZizmor, () => {
 						expect.objectContaining({
 							steps: [
 								expect.objectContaining({
-									uses: "zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4",
+									uses: "zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1",
 								}),
 							],
 						}),

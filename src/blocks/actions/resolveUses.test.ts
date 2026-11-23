@@ -84,4 +84,44 @@ describe(resolveUses, () => {
 
 		expect(actual).toBe("test-action@abc # v1.3.5");
 	});
+
+	it("uses the provided hash when the provided version is greater than an action version pinned to a hash", () => {
+		const actual = resolveUses(
+			"test-action",
+			"v1.2.3",
+			{
+				"test-action": {
+					"v1.1.4": {
+						hash: "abc",
+					},
+				},
+			},
+			"def",
+		);
+
+		expect(actual).toBe("test-action@def # v1.2.3");
+	});
+
+	it("does not use the provided hash when the provided version is greater than action versions not pinned to a hash", () => {
+		const actual = resolveUses(
+			"test-action",
+			"v1.2.3",
+			{
+				"test-action": {
+					"v1.1.4": {
+						pinned: true,
+					},
+				},
+			},
+			"def",
+		);
+
+		expect(actual).toBe("test-action@v1.2.3");
+	});
+
+	it("does not use the provided hash when workflowsVersions does not contain the action", () => {
+		const actual = resolveUses("test-action", "v1.2.3", { other: {} }, "def");
+
+		expect(actual).toBe("test-action@v1.2.3");
+	});
 });

@@ -65,14 +65,14 @@ describe(blockCTATransitions, () => {
 			    - run: npx create-typescript-app
 			      shell: bash
 			    - id: auto-commit-action
-			      uses: stefanzweifel/git-auto-commit-action@v5
+			      uses: stefanzweifel/git-auto-commit-action@v7
 			      with:
 			        commit_author: The Friendly Bingo Bot <bot@create.bingo>
 			        commit_message: Check in changes from re-running npx create-typescript-app
 			        commit_user_email: bot@create.bingo
 			        commit_user_name: The Friendly Bingo Bot
 			    - if: steps.auto-commit-action.outputs.changes_detected == 'true'
-			      uses: mshick/add-pr-comment@v2
+			      uses: mshick/add-pr-comment@v3
 			      with:
 			        issue: \${{ github.event.pull_request.number }}
 			        message: |-
@@ -118,7 +118,7 @@ describe(blockCTATransitions, () => {
 			    steps:
 			      - id: checkout
 			        if: (github.actor == 'test-owner' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')
-			        uses: actions/checkout@v4
+			        uses: actions/checkout@v7
 			        with:
 			          fetch-depth: 0
 			          persist-credentials: true

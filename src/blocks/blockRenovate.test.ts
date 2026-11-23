@@ -349,6 +349,26 @@ describe(blockRenovate, () => {
 			});
 		});
 
+		it("ignores invalid data in other files", () => {
+			const ignoreDeps = ["all-contributors-cli"];
+
+			const actual = testIntake(blockRenovate, {
+				files: {
+					".github": {
+						"renovate.json": [JSON.stringify({ ignoreDeps })],
+					},
+					"renovate.json": [JSON.stringify({ ignoreDeps: "invalid" })],
+				},
+			});
+
+			expect(actual).toEqual({
+				customManagers: [],
+				gitIgnoredAuthors: [],
+				ignoreDeps,
+				packageRules: [],
+			});
+		});
+
 		it("merges data with the highest precedence last when multiple files exist", () => {
 			const packageRules = [
 				{ enabled: false, matchDepNames: ["node"] },

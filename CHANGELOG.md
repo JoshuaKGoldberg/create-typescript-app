@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.87.15](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.14...2.87.15) (2026-11-23)
+
+### Bug Fixes
+
+- don't read the last README.md character as a footnote ([#2777](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2777)) ([b8ac4c3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b8ac4c3ea632421484dd6f3c61d866fe57324c0c)), closes [#2775](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2775)
+- match the all-contributors bot's avatar images ([#2781](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2781)) ([c525b7a](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c525b7a8caeecde3d09ee2c3a3aa7296f9fa99a7)), closes [#2778](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2778)
+- only ignore .all-contributorsrc in CSpell with AllContributors ([#2773](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2773)) ([a6ac006](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a6ac0069f9b68c638b551bd79022255ae279893b)), closes [#2771](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2771)
+- only ignore codecov-action in renovate.json with Codecov ([#2782](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2782)) ([94af333](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/94af3332bc43a8142c040a397dc57beeaa9414dd)), closes [#2780](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2780)
+- preserve existing commands in .husky/pre-commit ([#2770](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2770)) ([1aef952](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1aef952f89ce82f1068246b86e54c194174cfa08)), closes [#2769](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2769)
+- raise .nvmrc versions that can't load TypeScript config files ([#2779](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2779)) ([6e023c5](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/6e023c5e2f77df49498c057f2d49a19894ed798d)), closes [#2776](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2776)
+- remove lib from Vitest coverage excludes when transitioning to tsdown ([#2760](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2760)) ([20978c4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/20978c4d390c1685dc78de3e7862000251b43a84)), closes [#2759](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2759), references [#2721](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2721)
+- remove other Renovate config locations in transition mode ([#2774](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2774)) ([ffb0979](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/ffb0979af7300864aa265bb70e5550a707517f0a)), closes [#2772](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2772)
+- smoke test both import and require entry points in CI ([#2762](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2762)) ([e489001](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e489001b5820020aefbe3825f9fe3018def54446)), closes [#2761](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2761)
+
 ## [2.87.14](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.13...2.87.14) (2026-11-23)
 
 ### Bug Fixes

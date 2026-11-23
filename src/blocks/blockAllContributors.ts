@@ -110,6 +110,7 @@ Please do ping the maintainer who merged your PR if that doesn't happen within 2
 											"JoshuaKGoldberg/all-contributors-auto-action",
 											"v0.7.0",
 											options.workflowsVersions,
+											"c578423db9b2c14d3cee9c72f6c2aed31c128030",
 										),
 									},
 								],

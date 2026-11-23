@@ -52,6 +52,16 @@ describe(blockRenovate, () => {
 		const creation = testBlock(blockRenovate, {
 			options: optionsBase,
 			props: {
+				customManagers: [
+					{
+						customType: "regex",
+						datasourceTemplate: "github-tags",
+						managerFilePatterns: ["/^src/.+\\.ts$/"],
+						matchStrings: [
+							'uses\\("(?<depName>[^"]+)", "(?<currentValue>[^"]+)"',
+						],
+					},
+				],
 				ignoreDeps: ["all-contributors-cli"],
 			},
 		});
@@ -76,6 +86,16 @@ describe(blockRenovate, () => {
 			      "renovate.json": "{
 				"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 				"automerge": true,
+				"customManagers": [
+					{
+						"customType": "regex",
+						"datasourceTemplate": "github-tags",
+						"managerFilePatterns": ["/^src/.+\\\\.ts$/"],
+						"matchStrings": [
+							"uses\\\\(\\"(?<depName>[^\\"]+)\\", \\"(?<currentValue>[^\\"]+)\\""
+						]
+					}
+				],
 				"extends": [
 					":preserveSemverRanges",
 					"config:best-practices",
@@ -137,6 +157,7 @@ describe(blockRenovate, () => {
 			});
 
 			expect(actual).toEqual({
+				customManagers: [],
 				gitIgnoredAuthors: [],
 				ignoreDeps: [],
 				packageRules: [],
@@ -153,6 +174,7 @@ describe(blockRenovate, () => {
 			});
 
 			expect(actual).toEqual({
+				customManagers: [],
 				gitIgnoredAuthors: [],
 				ignoreDeps: [],
 				packageRules: [],
@@ -169,6 +191,7 @@ describe(blockRenovate, () => {
 			});
 
 			expect(actual).toEqual({
+				customManagers: [],
 				gitIgnoredAuthors: [],
 				ignoreDeps: [],
 				packageRules: [],
@@ -187,6 +210,7 @@ describe(blockRenovate, () => {
 			});
 
 			expect(actual).toEqual({
+				customManagers: [],
 				gitIgnoredAuthors: [],
 				ignoreDeps,
 				packageRules: [],
@@ -210,8 +234,37 @@ describe(blockRenovate, () => {
 			});
 
 			expect(actual).toEqual({
+				customManagers: [],
 				gitIgnoredAuthors: [],
 				ignoreDeps,
+				packageRules: [],
+			});
+		});
+
+		it("returns customManagers when .github/renovate.json contains customManagers", () => {
+			const customManagers = [
+				{
+					customType: "regex",
+					datasourceTemplate: "github-tags",
+					managerFilePatterns: ["/^src/.+\\.ts$/"],
+					matchStrings: [
+						'uses\\("(?<depName>[^"]+)", "(?<currentValue>[^"]+)"',
+					],
+				},
+			];
+
+			const actual = testIntake(blockRenovate, {
+				files: {
+					".github": {
+						"renovate.json": [JSON.stringify({ customManagers })],
+					},
+				},
+			});
+
+			expect(actual).toEqual({
+				customManagers,
+				gitIgnoredAuthors: [],
+				ignoreDeps: [],
 				packageRules: [],
 			});
 		});
@@ -230,6 +283,7 @@ describe(blockRenovate, () => {
 			});
 
 			expect(actual).toEqual({
+				customManagers: [],
 				gitIgnoredAuthors,
 				ignoreDeps: [],
 				packageRules: [],

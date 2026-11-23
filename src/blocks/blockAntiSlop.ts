@@ -86,6 +86,7 @@ export const blockAntiSlop = base.createBlock({
 										"peakoss/anti-slop",
 										"v0.3.0",
 										options.workflowsVersions,
+										"57858eead489d08b255fab2af45a506c2ca6eab2",
 									),
 									with: {
 										...(honeypotTerm && { "blocked-terms": honeypot }),

@@ -54,6 +54,7 @@ export const blockAgentScan = base.createBlock({
 										"MatteoGabriele/agentscan-action",
 										"v2.8.0",
 										options.workflowsVersions,
+										"7ad606f1e21df2119da8be99b763f282a670a1c5",
 									),
 									with: {
 										"auto-close": true,

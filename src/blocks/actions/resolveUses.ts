@@ -11,6 +11,7 @@ export function resolveUses(
 	action: string,
 	version: string,
 	workflowsVersions?: WorkflowsVersions,
+	hash?: string,
 ) {
 	if (!workflowsVersions || !(action in workflowsVersions)) {
 		return `${action}@${version}`;
@@ -30,7 +31,11 @@ export function resolveUses(
 	);
 
 	if (!(biggestVersion in workflowVersions)) {
-		return `${action}@${biggestVersion}`;
+		// Repositories that pinned this action to a commit hash should stay pinned
+		return hash &&
+			Object.values(workflowVersions).some((existing) => existing.hash)
+			? `${action}@${hash} # ${biggestVersion}`
+			: `${action}@${biggestVersion}`;
 	}
 
 	const atBiggestVersion = workflowVersions[biggestVersion];

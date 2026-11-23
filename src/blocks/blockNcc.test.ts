@@ -4,6 +4,7 @@ import { describe, expect, it, test } from "vitest";
 import { blockGitignore } from "./blockGitignore.ts";
 import { blockNcc } from "./blockNcc.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockNcc, () => {
@@ -91,7 +92,7 @@ describe(blockNcc, () => {
 			              },
 			              {
 			                "run": "# Verify dist/ is up to date
-			changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
+			changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts')
 			if [ -n "$changes" ]; then
 			  echo "$changes"
 			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
@@ -123,7 +124,6 @@ describe(blockNcc, () => {
 			      "props": {
 			        "ignores": [
 			          "/dist/**/*.d.ts",
-			          "/dist/**/*.d.ts.map",
 			          "/lib",
 			        ],
 			      },
@@ -275,7 +275,7 @@ describe(blockNcc, () => {
 			              },
 			              {
 			                "run": "# Verify dist/ is up to date
-			changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
+			changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts')
 			if [ -n "$changes" ]; then
 			  echo "$changes"
 			  echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
@@ -307,7 +307,6 @@ describe(blockNcc, () => {
 			      "props": {
 			        "ignores": [
 			          "/dist/**/*.d.ts",
-			          "/dist/**/*.d.ts.map",
 			          "/lib",
 			        ],
 			      },
@@ -451,18 +450,33 @@ describe(blockNcc, () => {
 				    "props": {
 				      "ignores": [
 				        "/dist/**/*.d.ts",
-				        "/dist/**/*.d.ts.map",
 				        "/lib",
 				      ],
 				      "removals": [
 				        "/dist",
 				        "dist",
 				        "dist/",
+				        "/dist/**/*.d.ts.map",
 				      ],
 				    },
 				  },
 				]
 			`);
+		expect(
+			creation.extensions?.filter(({ block }) => block === blockRemoveFiles),
+		).toMatchInlineSnapshot(`
+			[
+			  {
+			    "block": "[Block Remove Files]",
+			    "props": {
+			      "files": [
+			        "dist/**/*.d.ts",
+			        "dist/**/*.d.ts.map",
+			      ],
+			    },
+			  },
+			]
+		`);
 	});
 
 	describe("intake", () => {

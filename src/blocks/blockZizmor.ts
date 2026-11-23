@@ -76,8 +76,9 @@ export const blockZizmor = base.createBlock({
 								{
 									uses: resolveUses(
 										"zizmorcore/zizmor-action",
-										"v0.6.4",
+										"v0.8.1",
 										options.workflowsVersions,
+										"45d7276c9ca790aabd705e31ca99c6185c3e76dd",
 									),
 									with: {
 										"advanced-security": "false",

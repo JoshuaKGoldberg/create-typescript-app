@@ -48,9 +48,10 @@ export const blockCSpell = base.createBlock({
 	produce({ options, props }) {
 		const { ignorePathRemovals, ignorePaths, wordRemovals, words } = props;
 
-		const allWords = Array.from(new Set([...(options.words ?? []), ...words]))
-			.filter((word) => !wordRemovals.includes(word))
-			.sort();
+		const allWords = dedupeCaseInsensitive([
+			...(options.words ?? []),
+			...words,
+		]).filter((word) => !wordRemovals.includes(word));
 
 		return {
 			extensions: [
@@ -139,3 +140,19 @@ export const blockCSpell = base.createBlock({
 		};
 	},
 });
+
+function dedupeCaseInsensitive(words: string[]) {
+	const seen = new Set<string>();
+
+	return Array.from(new Set(words))
+		.sort()
+		.filter((word) => {
+			const key = word.toLowerCase();
+			if (seen.has(key)) {
+				return false;
+			}
+
+			seen.add(key);
+			return true;
+		});
+}

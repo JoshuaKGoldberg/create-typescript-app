@@ -48,9 +48,10 @@ export const blockCSpell = base.createBlock({
 	produce({ options, props }) {
 		const { ignorePathRemovals, ignorePaths, words } = props;
 
-		const allWords = Array.from(
-			new Set([...(options.words ?? []), ...words]),
-		).sort();
+		const allWords = dedupeCaseInsensitive([
+			...(options.words ?? []),
+			...words,
+		]);
 
 		return {
 			extensions: [
@@ -138,3 +139,21 @@ export const blockCSpell = base.createBlock({
 		};
 	},
 });
+
+// CSpell matches words case-insensitively by default,
+// so e.g. "JoshuaKGoldberg" and "joshuakgoldberg" are redundant together.
+function dedupeCaseInsensitive(words: string[]) {
+	const seen = new Set<string>();
+
+	return Array.from(new Set(words))
+		.sort()
+		.filter((word) => {
+			const key = word.toLowerCase();
+			if (seen.has(key)) {
+				return false;
+			}
+
+			seen.add(key);
+			return true;
+		});
+}

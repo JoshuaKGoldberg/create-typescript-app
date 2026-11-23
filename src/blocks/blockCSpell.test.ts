@@ -431,6 +431,24 @@ describe(blockCSpell, () => {
 		);
 	});
 
+	test("with words that differ only by case", () => {
+		const creation = testBlock(blockCSpell, {
+			options: {
+				...optionsBase,
+				words: ["joshuakgoldberg", "OctoGuide", "zizmor"],
+			},
+			props: {
+				words: ["JoshuaKGoldberg", "octoguide", "zizmor"],
+			},
+		});
+
+		expect(JSON.parse(creation.files?.["cspell.json"] as string)).toEqual(
+			expect.objectContaining({
+				words: ["JoshuaKGoldberg", "OctoGuide", "zizmor"],
+			}),
+		);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when cspell.json does not exist", () => {
 			const actual = testIntake(blockCSpell, {

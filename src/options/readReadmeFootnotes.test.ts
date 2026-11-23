@@ -32,6 +32,17 @@ describe(readReadmeFootnotes, () => {
 		expect(result).toBeUndefined();
 	});
 
+	it("resolves undefined when there is no newline after a quote templated by notice", async () => {
+		const getReadme = () =>
+			Promise.resolve(`# My Package
+
+> 💖 This package was templated with etc. etc.`);
+
+		const result = await readReadmeFootnotes(getReadme);
+
+		expect(result).toBeUndefined();
+	});
+
 	it("resolves the content when there plain text content after a quote templated by notice", async () => {
 		const getReadme = () =>
 			Promise.resolve(`# My Package

@@ -287,7 +287,12 @@ export default defineConfig(
 					],
 				}),
 				blockRemoveFiles({
-					files: [".eslintrc*", ".eslintignore", "eslint.config.{cjs,js,mjs}"],
+					files: [
+						".eslintrc*",
+						".eslintignore",
+						"eslint.config.{cjs,js,mjs}",
+						"tsconfig.eslint.json",
+					],
 				}),
 				blockRemoveWorkflows({
 					workflows: ["eslint", "lint"],

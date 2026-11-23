@@ -65,22 +65,25 @@ export const blockAllContributors = base.createBlock({
 				}),
 			],
 			files: {
-				".all-contributorsrc": JSON.stringify(
-					{
-						badgeTemplate:
-							'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
-						commitType: "docs",
-						contributors: contributors ?? [],
-						contributorsPerLine: 7,
-						contributorsSortAlphabetically: true,
-						files: ["README.md"],
-						projectName: options.repository,
-						projectOwner: options.owner,
-						repoType: "github",
-					},
-					null,
-					2,
-				),
+				// This matches how all-contributors-cli writes the file, with a trailing newline:
+				// https://github.com/all-contributors/cli/blob/v6.23.1/src/util/config-file.js#L46
+				".all-contributorsrc":
+					JSON.stringify(
+						{
+							badgeTemplate:
+								'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
+							commitType: "docs",
+							contributors: contributors ?? [],
+							contributorsPerLine: 7,
+							contributorsSortAlphabetically: true,
+							files: ["README.md"],
+							projectName: options.repository,
+							projectOwner: options.owner,
+							repoType: "github",
+						},
+						null,
+						2,
+					) + "\n",
 				".github": {
 					workflows: {
 						"contributors.yaml": withPreviously(

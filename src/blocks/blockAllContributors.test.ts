@@ -54,7 +54,8 @@ describe(blockAllContributors, () => {
 			  "projectName": "test-repository",
 			  "projectOwner": "test-owner",
 			  "repoType": "github"
-			}",
+			}
+			",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yaml": [
@@ -200,7 +201,8 @@ describe(blockAllContributors, () => {
 			  "projectName": "test-repository",
 			  "projectOwner": "JoshuaKGoldberg",
 			  "repoType": "github"
-			}",
+			}
+			",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yaml": [
@@ -333,7 +335,8 @@ describe(blockAllContributors, () => {
 			  "projectName": "test-repository",
 			  "projectOwner": "test-owner",
 			  "repoType": "github"
-			}",
+			}
+			",
 			    ".github": {
 			      "workflows": {
 			        "contributors.yaml": [

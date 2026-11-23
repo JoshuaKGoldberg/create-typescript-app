@@ -389,6 +389,40 @@ describe(blockReleaseIt, () => {
 		});
 	});
 
+	test("with an uppercase options.repository", () => {
+		const creation = testBlock(blockReleaseIt, {
+			options: {
+				...optionsBase,
+				repository: "TestRepository",
+			},
+		});
+		const output = JSON.stringify(creation);
+
+		expect(output).toContain("http://npmjs.com/package/testrepository");
+		expect(output).toContain("https://img.shields.io/npm/v/testrepository?");
+		expect(output).toContain("https://www.npmjs.com/package/testrepository/v/");
+		expect(output).toContain(
+			"https://www.npmjs.com/package/testrepository/access",
+		);
+		expect(output).toContain(
+			"https://github.com/test-owner/TestRepository/releases",
+		);
+	});
+
+	test("without options.repository", () => {
+		const creation = testBlock(blockReleaseIt, {
+			options: {
+				...optionsBase,
+				repository: undefined as unknown as string,
+			},
+		});
+
+		expect(Object.keys(creation.files ?? {})).toEqual([
+			".github",
+			".release-it.json",
+		]);
+	});
+
 	describe("intake", () => {
 		it("returns undefined when .release-it.json does not exist", () => {
 			const actual = testIntake(blockReleaseIt, {

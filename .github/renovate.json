@@ -1,6 +1,18 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"automerge": true,
+	"customManagers": [
+		{
+			"customType": "regex",
+			"datasourceTemplate": "github-tags",
+			"description": "Default GitHub Actions versions that blocks pass to resolveUses().",
+			"managerFilePatterns": ["/^src/blocks/.+\\.ts$/"],
+			"matchStrings": [
+				"resolveUses\\(\\s*\"(?<depName>[^\"]+)\",\\s*\"(?<currentValue>[^\"]+)\",\\s*[\\w.]+,\\s*\"(?<currentDigest>[a-f\\d]{40})\""
+			],
+			"versioningTemplate": "github-actions"
+		}
+	],
 	"extends": [
 		":preserveSemverRanges",
 		"config:best-practices",

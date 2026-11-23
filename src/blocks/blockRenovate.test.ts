@@ -52,6 +52,16 @@ describe(blockRenovate, () => {
 		const creation = testBlock(blockRenovate, {
 			options: optionsBase,
 			props: {
+				customManagers: [
+					{
+						customType: "regex",
+						datasourceTemplate: "github-tags",
+						managerFilePatterns: ["/^src/.+\\.ts$/"],
+						matchStrings: [
+							'uses\\("(?<depName>[^"]+)", "(?<currentValue>[^"]+)"',
+						],
+					},
+				],
 				ignoreDeps: ["all-contributors-cli"],
 			},
 		});
@@ -76,6 +86,16 @@ describe(blockRenovate, () => {
 			      "renovate.json": "{
 				"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 				"automerge": true,
+				"customManagers": [
+					{
+						"customType": "regex",
+						"datasourceTemplate": "github-tags",
+						"managerFilePatterns": ["/^src/.+\\\\.ts$/"],
+						"matchStrings": [
+							"uses\\\\(\\"(?<depName>[^\\"]+)\\", \\"(?<currentValue>[^\\"]+)\\""
+						]
+					}
+				],
 				"extends": [
 					":preserveSemverRanges",
 					"config:best-practices",
@@ -100,7 +120,11 @@ describe(blockRenovate, () => {
 				files: {},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
+			expect(actual).toEqual({
+				customManagers: [],
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 
 		it("returns no ignoreDeps when .github/renovate.json does not contain truthy data", () => {
@@ -112,7 +136,11 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
+			expect(actual).toEqual({
+				customManagers: [],
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 
 		it("returns no ignoreDeps when .github/renovate.json contains only unrelated data", () => {
@@ -124,7 +152,11 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
+			expect(actual).toEqual({
+				customManagers: [],
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 
 		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps", () => {
@@ -138,7 +170,11 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps, packageRules: [] });
+			expect(actual).toEqual({
+				customManagers: [],
+				ignoreDeps,
+				packageRules: [],
+			});
 		});
 
 		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data", () => {
@@ -157,7 +193,38 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps, packageRules: [] });
+			expect(actual).toEqual({
+				customManagers: [],
+				ignoreDeps,
+				packageRules: [],
+			});
+		});
+
+		it("returns customManagers when .github/renovate.json contains customManagers", () => {
+			const customManagers = [
+				{
+					customType: "regex",
+					datasourceTemplate: "github-tags",
+					managerFilePatterns: ["/^src/.+\\.ts$/"],
+					matchStrings: [
+						'uses\\("(?<depName>[^"]+)", "(?<currentValue>[^"]+)"',
+					],
+				},
+			];
+
+			const actual = testIntake(blockRenovate, {
+				files: {
+					".github": {
+						"renovate.json": [JSON.stringify({ customManagers })],
+					},
+				},
+			});
+
+			expect(actual).toEqual({
+				customManagers,
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 	});
 });

@@ -64,7 +64,6 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "ignores": [
 			          ".eslint-doc-generatorrc.js",
-			          "docs/rules/*/*.ts",
 			        ],
 			        "imports": [
 			          {
@@ -260,7 +259,6 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "ignores": [
 			          ".eslint-doc-generatorrc.mjs",
-			          "docs/rules/*/*.ts",
 			        ],
 			        "imports": [
 			          {
@@ -441,7 +439,6 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "ignores": [
 			          ".eslint-doc-generatorrc.js",
-			          "docs/rules/*/*.ts",
 			        ],
 			        "imports": [
 			          {
@@ -755,7 +752,6 @@ describe(blockESLintPlugin, () => {
 			        ],
 			        "ignores": [
 			          ".eslint-doc-generatorrc.js",
-			          "docs/rules/*/*.ts",
 			        ],
 			        "imports": [
 			          {

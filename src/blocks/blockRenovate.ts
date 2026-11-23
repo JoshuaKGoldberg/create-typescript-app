@@ -54,9 +54,9 @@ export const blockRenovate = base.createBlock({
 								"replacements:all",
 							],
 							...(gitIgnoredAuthors.length && { gitIgnoredAuthors }),
-							ignoreDeps: Array.from(
-								new Set(["codecov/codecov-action", ...ignoreDeps]),
-							).sort(),
+							...(ignoreDeps.length && {
+								ignoreDeps: Array.from(new Set(ignoreDeps)).sort(),
+							}),
 							labels: ["dependencies"],
 							minimumReleaseAge: "7 days",
 							...(packageRules.length && { packageRules }),

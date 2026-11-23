@@ -38,6 +38,14 @@ describe(blockCodecov, () => {
 			      },
 			    },
 			    {
+			      "block": "[Block Renovate]",
+			      "props": {
+			        "ignoreDeps": [
+			          "codecov/codecov-action",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Vitest]",
 			      "props": {
 			        "actionSteps": [
@@ -94,6 +102,14 @@ describe(blockCodecov, () => {
 			            "href": "https://codecov.io/gh/test-owner/test-repository",
 			            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
 			          },
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Renovate]",
+			      "props": {
+			        "ignoreDeps": [
+			          "codecov/codecov-action",
 			        ],
 			      },
 			    },
@@ -166,6 +182,14 @@ describe(blockCodecov, () => {
 			      },
 			    },
 			    {
+			      "block": "[Block Renovate]",
+			      "props": {
+			        "ignoreDeps": [
+			          "codecov/codecov-action",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Vitest]",
 			      "props": {
 			        "actionSteps": [
@@ -229,6 +253,14 @@ describe(blockCodecov, () => {
 			            "href": "https://codecov.io/gh/test-owner/test-repository",
 			            "src": "https://img.shields.io/codecov/c/github/test-owner/test-repository?label=%F0%9F%A7%AA%20coverage",
 			          },
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Renovate]",
+			      "props": {
+			        "ignoreDeps": [
+			          "codecov/codecov-action",
 			        ],
 			      },
 			    },

@@ -169,7 +169,7 @@ describe(blockAllContributors, () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/test-repository/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="#content-JoshuaKGoldberg" title="Content">🖋</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-JoshuaKGoldberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-JoshuaKGoldberg" title="Maintenance">🚧</a> <a href="#projectManagement-JoshuaKGoldberg" title="Project Management">📆</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.joshuakgoldberg.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4&size=100" width="100px" height="100px" alt="Josh Goldberg"/><br /><sub><b>Josh Goldberg</b></sub></a><br /><a href="https://github.com/JoshuaKGoldberg/test-repository/issues?q=author%3AJoshuaKGoldberg" title="Bug reports">🐛</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Code">💻</a> <a href="#design-JoshuaKGoldberg" title="Design">🎨</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Documentation">📖</a> <a href="https://github.com/JoshuaKGoldberg/test-repository/commits?author=JoshuaKGoldberg" title="Tests">⚠️</a> <a href="#tool-JoshuaKGoldberg" title="Tools">🔧</a> <a href="#content-JoshuaKGoldberg" title="Content">🖋</a> <a href="#ideas-JoshuaKGoldberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-JoshuaKGoldberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-JoshuaKGoldberg" title="Maintenance">🚧</a> <a href="#projectManagement-JoshuaKGoldberg" title="Project Management">📆</a></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -315,7 +315,7 @@ describe(blockAllContributors, () => {
 			<table>
 			  <tbody>
 			    <tr>
-			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4?s=100" width="100px;" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/test-owner/test-repository/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
+			      <td align="center" valign="top" width="14.28%"><a href="http://www.example.com"><img src="https://avatars.githubusercontent.com/u/3335181?v=4&size=100" width="100px" height="100px" alt="Other"/><br /><sub><b>Other</b></sub></a><br /><a href="https://github.com/test-owner/test-repository/issues?q=author%3Aother" title="Bug reports">🐛</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Code">💻</a> <a href="#design-other" title="Design">🎨</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Documentation">📖</a> <a href="https://github.com/test-owner/test-repository/commits?author=other" title="Tests">⚠️</a> <a href="#tool-other" title="Tools">🔧</a></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -438,6 +438,42 @@ describe(blockAllContributors, () => {
 				},
 			],
 		});
+	});
+
+	it.each([
+		[
+			"https://avatars.githubusercontent.com/u/1?v=4",
+			"https://avatars.githubusercontent.com/u/1?v=4&size=100",
+		],
+		["https://example.com/a.png", "https://example.com/a.png?size=100"],
+		["/a.png", "/a.png"],
+	])("prints avatar URL %s as %s", (avatarUrl, expected) => {
+		const creation = testBlock(blockAllContributors, {
+			options: {
+				...optionsBase,
+				contributors: [
+					{
+						avatar_url: avatarUrl,
+						contributions: ["code"],
+						login: "other",
+						name: "Other",
+						profile: "http://www.example.com",
+					},
+				],
+			},
+		});
+
+		expect(creation.extensions).toContainEqual(
+			expect.objectContaining({
+				props: expect.objectContaining({
+					sections: [
+						expect.stringContaining(
+							`<img src="${expected}" width="100px" height="100px" alt="Other"/>`,
+						),
+					],
+				}) as unknown,
+			}),
+		);
 	});
 
 	it("marks its workflow as previously a .yml file", () => {

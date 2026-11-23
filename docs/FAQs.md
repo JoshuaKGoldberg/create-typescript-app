@@ -40,7 +40,7 @@ Here we'll outline the steps required to migrate a CTA app to a GitHub Action:
 
            - name: Verify dist is up to date
              run: |
-               changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
+               changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts')
                if [ -n "$changes" ]; then
                  echo "$changes"
                  echo "::error::dist/ is out of date. Run 'pnpm build', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."

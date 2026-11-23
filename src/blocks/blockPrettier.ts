@@ -12,14 +12,27 @@ import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { blockVSCode } from "./blockVSCode.ts";
 import { formatIgnoreFile } from "./files/formatIgnoreFile.ts";
 import { withPreviously } from "./files/withPreviously.ts";
+import { intakeFile } from "./intake/intakeFile.ts";
 import { CommandPhase } from "./phases.ts";
+
+const formatCommand = "npx pretty-quick --staged";
+
+const formatterCommandMatcher =
+	/(?<=(?:^|&&|;)\s*)(?:(?:npx|pnpx|(?:npm|pnpm|yarn)(?: (?:dlx|exec|run))?)(?: -\S+)* )?(?:lint-staged|pretty-quick)(?:@\S+)?(?: [^\s&;|]+)*(?=\s*(?:$|&&|\|\||;))/gu;
+
+const huskyBoilerplateMatcher = /^#!.*\bsh$|\/_\/husky\.sh/u;
 
 export const blockPrettier = base.createBlock({
 	about: {
 		name: "Prettier",
 	},
+	intake({ files }) {
+		const preCommit = intakeFile(files, [".husky", "pre-commit"]);
+
+		return preCommit && { preCommit: updatePreCommit(preCommit[0]) };
+	},
 	produce({ options, props }) {
-		const { ignores, overrides, plugins, runBefore } = props;
+		const { ignores, overrides, plugins, preCommit, runBefore } = props;
 
 		const configFileName =
 			options.type === "commonjs"
@@ -77,7 +90,7 @@ pnpm format --write
 			files: {
 				".husky": {
 					".gitignore": "_\n",
-					"pre-commit": ["npx pretty-quick --staged\n", { executable: true }],
+					"pre-commit": [`${preCommit}\n`, { executable: true }],
 				},
 				".prettierignore": formatIgnoreFile(
 					Array.from(
@@ -122,6 +135,7 @@ export default ${JSON.stringify({
 			)
 			.default([]),
 		plugins: z.array(z.string()).default([]),
+		preCommit: z.string().default(formatCommand),
 		runBefore: z.array(z.string()).default([]),
 	},
 	transition({ options }) {
@@ -156,3 +170,21 @@ export default ${JSON.stringify({
 		};
 	},
 });
+
+function updatePreCommit(preCommit: string) {
+	const lines = preCommit
+		.trim()
+		.split(/\r?\n/u)
+		.filter((line) => !huskyBoilerplateMatcher.test(line))
+		.map((line) => line.replaceAll(formatterCommandMatcher, formatCommand))
+		.filter(
+			(line, index, all) =>
+				line !== formatCommand || all.indexOf(line) === index,
+		);
+
+	if (!lines.some((line) => line.includes(formatCommand))) {
+		lines.push(formatCommand);
+	}
+
+	return lines.join("\n").trim();
+}

@@ -102,6 +102,10 @@ export const blockOctoGuide = base.createBlock({
 	transition() {
 		return {
 			extensions: [
+				// From the compliance workflow's mtfoley/pr-compliance-action
+				blockCSpell({
+					wordRemovals: ["mtfoley"],
+				}),
 				blockRemoveFiles({
 					files: [
 						".github/workflows/accessibility-alt-text-bot.{yaml,yml}",

@@ -94,13 +94,53 @@ describe(blockRenovate, () => {
 		`);
 	});
 
+	test("with gitIgnoredAuthors", () => {
+		const creation = testBlock(blockRenovate, {
+			options: optionsBase,
+			props: {
+				gitIgnoredAuthors: [
+					"41898282+github-actions[bot]@users.noreply.github.com",
+				],
+			},
+		});
+
+		expect(creation.files).toMatchInlineSnapshot(`
+			{
+			  ".github": {
+			    "renovate.json": "{
+				"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+				"automerge": true,
+				"extends": [
+					":preserveSemverRanges",
+					"config:best-practices",
+					"replacements:all"
+				],
+				"gitIgnoredAuthors": [
+					"41898282+github-actions[bot]@users.noreply.github.com"
+				],
+				"ignoreDeps": ["codecov/codecov-action"],
+				"labels": ["dependencies"],
+				"minimumReleaseAge": "7 days",
+				"patch": { "enabled": false },
+				"postUpdateOptions": ["pnpmDedupe"]
+			}
+			",
+			  },
+			}
+		`);
+	});
+
 	describe("intake", () => {
 		it("returns no ignoreDeps when .github/renovate.json does not exist", () => {
 			const actual = testIntake(blockRenovate, {
 				files: {},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
+			expect(actual).toEqual({
+				gitIgnoredAuthors: [],
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 
 		it("returns no ignoreDeps when .github/renovate.json does not contain truthy data", () => {
@@ -112,7 +152,11 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
+			expect(actual).toEqual({
+				gitIgnoredAuthors: [],
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 
 		it("returns no ignoreDeps when .github/renovate.json contains only unrelated data", () => {
@@ -124,7 +168,11 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps: [], packageRules: [] });
+			expect(actual).toEqual({
+				gitIgnoredAuthors: [],
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 
 		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps", () => {
@@ -138,7 +186,11 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps, packageRules: [] });
+			expect(actual).toEqual({
+				gitIgnoredAuthors: [],
+				ignoreDeps,
+				packageRules: [],
+			});
 		});
 
 		it("returns ignoreDeps when .github/renovate.json contains ignoreDeps and other data", () => {
@@ -157,7 +209,31 @@ describe(blockRenovate, () => {
 				},
 			});
 
-			expect(actual).toEqual({ ignoreDeps, packageRules: [] });
+			expect(actual).toEqual({
+				gitIgnoredAuthors: [],
+				ignoreDeps,
+				packageRules: [],
+			});
+		});
+
+		it("returns gitIgnoredAuthors when .github/renovate.json contains gitIgnoredAuthors", () => {
+			const gitIgnoredAuthors = [
+				"41898282+github-actions[bot]@users.noreply.github.com",
+			];
+
+			const actual = testIntake(blockRenovate, {
+				files: {
+					".github": {
+						"renovate.json": [JSON.stringify({ gitIgnoredAuthors })],
+					},
+				},
+			});
+
+			expect(actual).toEqual({
+				gitIgnoredAuthors,
+				ignoreDeps: [],
+				packageRules: [],
+			});
 		});
 	});
 });

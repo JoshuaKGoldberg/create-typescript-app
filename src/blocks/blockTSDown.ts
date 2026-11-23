@@ -223,6 +223,7 @@ export default defineConfig(${JSON.stringify({
 			extensions: [
 				blockCSpell({
 					ignorePathRemovals: ["lib"],
+					wordRemovals: ["tsup"],
 				}),
 				blockESLint({
 					ignoreRemovals: ["lib"],

@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.87.16](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.15...2.87.16) (2026-11-23)
+
+### Bug Fixes
+
+- preserve an existing package.json sideEffects in transition mode ([#2786](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2786)) ([07b3c74](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/07b3c749a40a863582fd112056f25433e74e09ba)), closes [#2785](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2785)
+- remove unused changelog types from .release-it.json ([#2784](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2784)) ([8a41328](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/8a41328fded0de2110780fec2e3770eb8aec948b)), closes [#2783](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2783)
+- sort contributors the same way as all-contributors-cli 7 ([#2788](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2788)) ([902d650](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/902d65071b37c96e0e48aebe18fccf3ee39ea32e)), closes [#2787](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2787)
+
 ## [2.87.15](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.14...2.87.15) (2026-11-23)
 
 ### Bug Fixes

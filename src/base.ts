@@ -31,6 +31,7 @@ import { readOwner } from "./options/readOwner.ts";
 import { readPackageAuthor } from "./options/readPackageAuthor.ts";
 import { readPackageData } from "./options/readPackageData.ts";
 import { readPnpm } from "./options/readPnpm.ts";
+import { readPrivate } from "./options/readPrivate.ts";
 import { readReadmeAdditional } from "./options/readReadmeAdditional.ts";
 import { readReadmeExplainer } from "./options/readReadmeExplainer.ts";
 import { readReadmeFootnotes } from "./options/readReadmeFootnotes.ts";
@@ -153,6 +154,10 @@ export const base = createBase({
 			.string()
 			.optional()
 			.describe("pnpm version for package.json's packageManager field"),
+		private: z
+			.boolean()
+			.optional()
+			.describe("whether the repository is private on GitHub"),
 		repository: z
 			.string()
 			.describe("'kebab-case' or 'PascalCase' title of the repository"),
@@ -295,6 +300,10 @@ export const base = createBase({
 
 		const getPnpm = lazyValue(async () => await readPnpm(getPackageData));
 
+		const getPrivate = lazyValue(
+			async () => await readPrivate(take, getOwner, getRepository),
+		);
+
 		const getReadme = lazyValue(
 			async () => await readFileSafe("README.md", ""),
 		);
@@ -357,6 +366,7 @@ export const base = createBase({
 			owner: getOwner,
 			packageData: getPackageData,
 			pnpm: getPnpm,
+			private: getPrivate,
 			repository: getRepository,
 			rulesetId: getRulesetId,
 			title: getTitle,

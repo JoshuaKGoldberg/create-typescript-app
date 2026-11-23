@@ -23,6 +23,19 @@ export const blockRepositorySettings = base.createBlock({
 						has_wiki: false,
 						owner: options.owner,
 						repo: options.repository,
+						squash_merge_commit_message: "PR_BODY",
+						squash_merge_commit_title: "PR_TITLE",
+					},
+					type: "octokit",
+				},
+				// Secret scanning is a paid feature on private repositories.
+				// Sending it separately keeps a rejection from failing the settings above.
+				{
+					endpoint: "PATCH /repos/{owner}/{repo}",
+					id: "secret-scanning",
+					parameters: {
+						owner: options.owner,
+						repo: options.repository,
 						security_and_analysis: {
 							secret_scanning: {
 								status: "enabled",
@@ -31,8 +44,6 @@ export const blockRepositorySettings = base.createBlock({
 								status: "enabled",
 							},
 						},
-						squash_merge_commit_message: "PR_BODY",
-						squash_merge_commit_title: "PR_TITLE",
 					},
 					type: "octokit",
 				},

@@ -639,6 +639,173 @@ export default defineConfig(
 				ignores: ["lib"],
 			},
 		],
+		[
+			"rules in a package.json object",
+			`
+export default defineConfig(
+	globalIgnores(["dist"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"no-console": "off",
+		},
+		settings: { /* ... */ }
+	},
+	{
+		extends: [packageJson.configs.recommended],
+		files: ["package.json"],
+		// TODO: Enable this!
+		rules: { "package-json/specify-peers-locally": "off" },
+	},
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [{ entries: { "no-console": "off" } }],
+					},
+					{
+						files: ["package.json"],
+						rules: [
+							{ entries: { "package-json/specify-peers-locally": "off" } },
+						],
+					},
+				],
+				ignores: ["dist"],
+			},
+		],
+		[
+			"commented rules in a package.json object",
+			`
+export default defineConfig(
+	globalIgnores(["dist"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"no-console": "off",
+		},
+		settings: { /* ... */ }
+	},
+	{
+		files: ["package.json"],
+		rules: {
+			// TODO: Enable this!
+			"package-json/specify-peers-locally": "off",
+		},
+	},
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [{ entries: { "no-console": "off" } }],
+					},
+					{
+						files: ["package.json"],
+						rules: [
+							{
+								comment: "TODO: Enable this!",
+								entries: { "package-json/specify-peers-locally": "off" },
+							},
+						],
+					},
+				],
+				ignores: ["dist"],
+			},
+		],
+		[
+			"non-literal rules in a package.json object",
+			`
+export default defineConfig(
+	globalIgnores(["dist"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"no-console": "off",
+		},
+		settings: { /* ... */ }
+	},
+	{
+		files: ["package.json"],
+		rules: { "package-json/specify-peers-locally": severity },
+	},
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [{ entries: { "no-console": "off" } }],
+					},
+				],
+				ignores: ["dist"],
+			},
+		],
+		[
+			"spread rules in a package.json object",
+			`
+export default defineConfig(
+	globalIgnores(["dist"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"no-console": "off",
+		},
+		settings: { /* ... */ }
+	},
+	{
+		files: ["package.json"],
+		rules: { ...packageJsonRules },
+	},
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [{ entries: { "no-console": "off" } }],
+					},
+				],
+				ignores: ["dist"],
+			},
+		],
+		[
+			"rules in objects for other files",
+			`
+export default defineConfig(
+	globalIgnores(["dist"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,ts}"],
+		languageOptions: { /* ... */ },
+		rules: {
+			"no-console": "off",
+		},
+		settings: { /* ... */ }
+	},
+	packageJson.configs.recommended,
+	{ extends: [packageJson.configs.recommended], files: ["package.json"] },
+	{ rules: { "no-debugger": "off" } },
+	{ files: packageJsonFiles, rules: { "no-debugger": "off" } },
+	{ files: ["**/*.md/*.ts"], rules: { "n/no-missing-import": "off" } },
+	{ files: ["package.json"], rules: packageJsonRules },
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,ts}"],
+						rules: [{ entries: { "no-console": "off" } }],
+					},
+				],
+				ignores: ["dist"],
+			},
+		],
 	])("returns data when given %s", (_, sourceText, expected) => {
 		const actual = blockESLintIntake(sourceText);
 

@@ -32,9 +32,22 @@ export const blockPnpmDedupe = base.createBlock({
 			],
 		};
 	},
-	transition() {
+	transition({ options }) {
 		return {
 			extensions: [
+				// Older versions of this template ran dedupe as a lint:packages script
+				...(options.packageData?.scripts?.["lint:packages"] ===
+				"pnpm dedupe --check"
+					? [
+							blockPackageJson({
+								properties: {
+									scripts: {
+										"lint:packages": undefined,
+									},
+								},
+							}),
+						]
+					: []),
 				blockRemoveWorkflows({
 					workflows: ["lint-packages"],
 				}),

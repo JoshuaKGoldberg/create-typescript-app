@@ -399,6 +399,9 @@ export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
 			      "block": "[Block ESLint]",
 			      "props": {
 			        "beforeLint": "Note that you'll need to run \`pnpm build\` before \`pnpm lint\` so that lint rules which check the file system can pick up on any built files.",
+			        "ignoreRemovals": [
+			          "lib",
+			        ],
 			      },
 			    },
 			    {
@@ -474,6 +477,14 @@ export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
 			      },
 			    },
 			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "ignorePathRemovals": [
+			          "lib",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Remove Dependencies]",
 			      "props": {
 			        "dependencies": [
@@ -503,6 +514,14 @@ export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
 			        "workflows": [
 			          "build",
 			          "tsup",
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Vitest]",
+			      "props": {
+			        "excludeRemovals": [
+			          "lib",
 			        ],
 			      },
 			    },

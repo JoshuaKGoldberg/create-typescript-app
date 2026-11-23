@@ -1049,6 +1049,20 @@ describe(blockVitest, () => {
 		`);
 	});
 
+	test("with excludeRemovals", () => {
+		const creation = testBlock(blockVitest, {
+			options: optionsBase,
+			props: {
+				exclude: ["dist", "lib"],
+				excludeRemovals: ["lib"],
+			},
+		});
+
+		expect(creation.files?.["vitest.config.ts"]).toContain(
+			`exclude: ["dist", "node_modules"],`,
+		);
+	});
+
 	describe("intake", () => {
 		it("returns nothing when vitest.config.ts does not pass a test to defineConfig", () => {
 			const actual = testIntake(blockVitest, {

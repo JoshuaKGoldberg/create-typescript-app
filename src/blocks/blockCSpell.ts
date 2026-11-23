@@ -16,12 +16,10 @@ import { CommandPhase } from "./phases.ts";
 
 const filesGlob = `"**" ".github/**/*"`;
 
-const props = {
+const zProps = z.object({
 	ignorePaths: z.array(z.string()).default([]),
 	words: z.array(z.string()).default([]),
-};
-
-const zProps = z.object(props);
+});
 
 export const blockCSpell = base.createBlock({
 	about: {
@@ -48,7 +46,7 @@ export const blockCSpell = base.createBlock({
 		};
 	},
 	produce({ options, props }) {
-		const { ignorePaths, words } = props;
+		const { ignorePathRemovals, ignorePaths, words } = props;
 
 		const allWords = Array.from(
 			new Set([...(options.words ?? []), ...words]),
@@ -100,14 +98,20 @@ export const blockCSpell = base.createBlock({
 								"pnpm-lock.yaml",
 								...ignorePaths,
 							]),
-						).sort(),
+						)
+							.filter((ignorePath) => !ignorePathRemovals.includes(ignorePath))
+							.sort(),
 						...(allWords.length && { words: allWords }),
 					}),
 				),
 			},
 		};
 	},
-	props,
+	props: {
+		ignorePathRemovals: z.array(z.string()).default([]),
+		ignorePaths: z.array(z.string()).default([]),
+		words: z.array(z.string()).default([]),
+	},
 	setup({ options }) {
 		const wordArgs = getObjectStringsDeep(options)
 			.map((word) => `--words "${word.replaceAll(`"`, " ")}"`)

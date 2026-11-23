@@ -15,12 +15,13 @@ import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { blockVitest } from "./blockVitest.ts";
+import { intakeFile } from "./intake/intakeFile.ts";
 
 export const blockNcc = base.createBlock({
 	about: {
 		name: "ncc",
 	},
-	intake({ options }) {
+	intake({ files, options }) {
 		const scripts = options.packageData?.scripts;
 
 		return {
@@ -28,10 +29,17 @@ export const blockNcc = base.createBlock({
 			// A bare tsc has none, so it'd build test files with the generated tsconfig.json
 			build: scripts?.build?.match(/^tsc\s+\S/) ? scripts.build : undefined,
 			entry: scripts?.["build:release"]?.match(/ncc build (.+) -o dist/)?.[1],
+			// Some repositories have their own workflow to rebuild dist/ on Renovate branches
+			rebuildDistWorkflow: ["rebuild-dist.yaml", "rebuild-dist.yml"].find(
+				(fileName) => intakeFile(files, [".github", "workflows", fileName]),
+			),
 		};
 	},
 	produce({ options, props }) {
-		const { build, entry = "src/index.ts" } = props;
+		const { build, entry = "src/index.ts", rebuildDistWorkflow } = props;
+		const renovateDist = rebuildDistWorkflow
+			? `On Renovate branches, the [Rebuild Dist workflow](./workflows/${rebuildDistWorkflow}) runs \`pnpm build:release\` and pushes any \`dist/\` changes so dependency updates can still merge.`
+			: `Renovate PRs that update bundled dependencies need the same: rebuild and commit \`dist/\` on their branch before they can merge.`;
 
 		return {
 			extensions: [
@@ -65,7 +73,7 @@ pnpm build:release
 
 CI fails if the committed \`dist/\` doesn't match what \`pnpm build:release\` produces, not counting \`.d.ts\` files.
 If that happens, run \`pnpm build:release\` and commit the changed files under \`dist/\`.
-Renovate PRs that update bundled dependencies need the same: rebuild and commit \`dist/\` on their branch before they can merge.
+${renovateDist}
 		`,
 									heading: "Building for Release",
 								},
@@ -159,6 +167,7 @@ fi
 	props: {
 		build: z.string().optional(),
 		entry: z.string().optional(),
+		rebuildDistWorkflow: z.string().optional(),
 	},
 	setup() {
 		return {

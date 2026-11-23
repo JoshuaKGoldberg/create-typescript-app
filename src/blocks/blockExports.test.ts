@@ -1,5 +1,5 @@
 import { testBlock, testIntake } from "bingo-stratum-testers";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, test } from "vitest";
 
 import { blockExports } from "./blockExports.ts";
 import { optionsBase } from "./options.fakes.ts";
@@ -142,6 +142,79 @@ describe(blockExports, () => {
 			  ],
 			}
 		`);
+	});
+
+	test.each([
+		[
+			"nested import and require conditions",
+			{
+				conditions: {
+					import: { default: "./dist/index.mjs", types: "./dist/index.d.mts" },
+					require: { default: "./dist/index.cjs", types: "./dist/index.d.cts" },
+				},
+				filePath: "./dist/index.mjs",
+			},
+			["node ./dist/index.mjs", "node ./dist/index.cjs"],
+		],
+		[
+			"require before import conditions",
+			{
+				conditions: Object.fromEntries([
+					["require", "./dist/index.cjs"],
+					["import", "./dist/index.mjs"],
+				]),
+				filePath: "./dist/index.cjs",
+			},
+			["node ./dist/index.cjs", "node ./dist/index.mjs"],
+		],
+		[
+			"import and require conditions with runArgs",
+			{
+				conditions: {
+					import: "./dist/index.mjs",
+					require: "./dist/index.cjs",
+				},
+				runArgs: ["--version"],
+			},
+			["node ./dist/index.mjs --version", "node ./dist/index.cjs --version"],
+		],
+		[
+			"import and require conditions sharing a file",
+			{
+				conditions: {
+					import: "./dist/index.js",
+					require: "./dist/index.js",
+				},
+				filePath: "./dist/index.js",
+			},
+			["node ./dist/index.js"],
+		],
+		[
+			"node and default conditions",
+			{
+				conditions: Object.fromEntries([
+					["node", "./dist/node.js"],
+					["default", "./dist/browser.js"],
+				]),
+				filePath: "./dist/node.js",
+			},
+			["node ./dist/node.js"],
+		],
+		[
+			"a filePath that is not among the conditions",
+			{
+				conditions: {
+					import: "./dist/index.mjs",
+					require: "./dist/index.cjs",
+				},
+				filePath: "./dist/other.mjs",
+			},
+			["node ./dist/other.mjs"],
+		],
+	])("runInCI with %s", (_, props, runInCI) => {
+		const creation = testBlock(blockExports, { options: optionsBase, props });
+
+		expect(creation.extensions?.[0].props).toMatchObject({ runInCI });
 	});
 
 	describe("intake", () => {

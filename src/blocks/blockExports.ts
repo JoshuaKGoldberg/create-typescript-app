@@ -13,6 +13,8 @@ const zExports = z.union([
 ]);
 
 const runnableConditions = new Set(["default", "import", "node", "require"]);
+const runnableImportConditions = new Set(["default", "import", "node"]);
+const runnableRequireConditions = new Set(["default", "node", "require"]);
 
 export const blockExports = base.createBlock({
 	about: {
@@ -25,7 +27,7 @@ export const blockExports = base.createBlock({
 
 		if (typeof entry === "object") {
 			const conditions = conditionsLibToDist(entry);
-			const filePath = findRunnableFilePath(conditions);
+			const filePath = findRunnableFilePath(conditions, runnableConditions);
 
 			return { conditions, ...(filePath && { filePath }) };
 		}
@@ -50,7 +52,9 @@ export const blockExports = base.createBlock({
 						conditions ??
 						(filePath.startsWith(".") ? filePath : `./${filePath}`),
 					...(main && { main: libToDist(main) }),
-					runInCI: [`node ${filePath}${runArgsText}`],
+					runInCI: getRunnableFilePaths(filePath, conditions).map(
+						(runnable) => `node ${runnable}${runArgsText}`,
+					),
 				}),
 				blockVite({
 					runInCI: [`node ./dist/index.mjs${runArgsText}`],
@@ -80,9 +84,10 @@ function conditionsLibToDist(conditions: Record<string, unknown>) {
 
 function findRunnableFilePath(
 	conditions: Record<string, unknown>,
+	runnable: Set<string>,
 ): string | undefined {
 	for (const [condition, value] of Object.entries(conditions)) {
-		if (!runnableConditions.has(condition)) {
+		if (!runnable.has(condition)) {
 			continue;
 		}
 
@@ -91,13 +96,26 @@ function findRunnableFilePath(
 		}
 
 		const nested = zConditions.safeParse(value).data;
-		const filePath = nested && findRunnableFilePath(nested);
+		const filePath = nested && findRunnableFilePath(nested, runnable);
 		if (filePath) {
 			return filePath;
 		}
 	}
 
 	return undefined;
+}
+
+function getRunnableFilePaths(
+	filePath: string,
+	conditions: Record<string, unknown> = {},
+) {
+	const resolved = [runnableImportConditions, runnableRequireConditions]
+		.map((runnable) => findRunnableFilePath(conditions, runnable))
+		.filter((resolvedPath) => resolvedPath !== undefined);
+
+	return resolved.includes(filePath)
+		? Array.from(new Set([filePath, ...resolved]))
+		: [filePath];
 }
 
 function libToDist(filePath: string) {

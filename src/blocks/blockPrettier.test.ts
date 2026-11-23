@@ -28,14 +28,6 @@ describe(blockPrettier, () => {
 			{
 			  "extensions": [
 			    {
-			      "block": "[Block CSpell]",
-			      "props": {
-			        "ignorePaths": [
-			          ".all-contributorsrc",
-			        ],
-			      },
-			    },
-			    {
 			      "block": "[Block Development Docs]",
 			      "props": {
 			        "sections": {
@@ -146,14 +138,6 @@ describe(blockPrettier, () => {
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "extensions": [
-			    {
-			      "block": "[Block CSpell]",
-			      "props": {
-			        "ignorePaths": [
-			          ".all-contributorsrc",
-			        ],
-			      },
-			    },
 			    {
 			      "block": "[Block Development Docs]",
 			      "props": {
@@ -341,14 +325,6 @@ export default { useTabs: true } satisfies Config;
 		expect(creation).toMatchInlineSnapshot(`
 			{
 			  "extensions": [
-			    {
-			      "block": "[Block CSpell]",
-			      "props": {
-			        "ignorePaths": [
-			          ".all-contributorsrc",
-			        ],
-			      },
-			    },
 			    {
 			      "block": "[Block Development Docs]",
 			      "props": {

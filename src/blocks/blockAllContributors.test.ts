@@ -19,6 +19,14 @@ describe(blockAllContributors, () => {
 			      },
 			    },
 			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "ignorePaths": [
+			          ".all-contributorsrc",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Prettier]",
 			      "props": {
 			        "ignores": [
@@ -132,6 +140,14 @@ describe(blockAllContributors, () => {
 			      "props": {
 			        "postMergeRecognition": "Once your PR is merged, if you haven't yet been added to the [_Contributors_ table in the README.md](../README.md#contributors) for its [type of contribution](https://allcontributors.org/docs/en/emoji-key "Allcontributors emoji key"), you should be soon.
 			Please do ping the maintainer who merged your PR if that doesn't happen within 24 hours - it was likely an oversight on our end!",
+			      },
+			    },
+			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "ignorePaths": [
+			          ".all-contributorsrc",
+			        ],
 			      },
 			    },
 			    {
@@ -278,6 +294,14 @@ describe(blockAllContributors, () => {
 			      "props": {
 			        "postMergeRecognition": "Once your PR is merged, if you haven't yet been added to the [_Contributors_ table in the README.md](../README.md#contributors) for its [type of contribution](https://allcontributors.org/docs/en/emoji-key "Allcontributors emoji key"), you should be soon.
 			Please do ping the maintainer who merged your PR if that doesn't happen within 24 hours - it was likely an oversight on our end!",
+			      },
+			    },
+			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "ignorePaths": [
+			          ".all-contributorsrc",
+			        ],
 			      },
 			    },
 			    {

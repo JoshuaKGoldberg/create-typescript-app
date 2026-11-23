@@ -3,7 +3,6 @@ import { z } from "zod";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
-import { blockCSpell } from "./blockCSpell.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
@@ -29,9 +28,6 @@ export const blockPrettier = base.createBlock({
 
 		return {
 			extensions: [
-				blockCSpell({
-					ignorePaths: [".all-contributorsrc"],
-				}),
 				blockDevelopmentDocs({
 					sections: {
 						Formatting: {

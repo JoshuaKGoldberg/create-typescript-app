@@ -9,6 +9,7 @@ import { startingOwnerContributions } from "../data/contributions.ts";
 import { Contributor } from "../schemas.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockContributingDocs } from "./blockContributingDocs.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
@@ -39,6 +40,9 @@ export const blockAllContributors = base.createBlock({
 				blockContributingDocs({
 					postMergeRecognition: `Once your PR is merged, if you haven't yet been added to the [_Contributors_ table in the README.md](../README.md#contributors) for its [type of contribution](https://allcontributors.org/docs/en/emoji-key "Allcontributors emoji key"), you should be soon.
 Please do ping the maintainer who merged your PR if that doesn't happen within 24 hours - it was likely an oversight on our end!`,
+				}),
+				blockCSpell({
+					ignorePaths: [".all-contributorsrc"],
 				}),
 				blockPrettier({
 					ignores: ["/.all-contributorsrc"],

@@ -150,6 +150,40 @@ describe(blockRenovate, () => {
 		`);
 	});
 
+	test("transition mode", () => {
+		const creation = testBlock(blockRenovate, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.extensions).toMatchInlineSnapshot(`
+			[
+			  {
+			    "block": "[Block GitHub Apps]",
+			    "props": {
+			      "apps": [
+			        {
+			          "name": "Renovate",
+			          "url": "https://github.com/apps/renovate",
+			        },
+			      ],
+			    },
+			  },
+			  {
+			    "block": "[Block Remove Files]",
+			    "props": {
+			      "files": [
+			        ".github/renovate.{json5,jsonc}",
+			        ".renovaterc",
+			        ".renovaterc.{json,json5,jsonc}",
+			        "renovate.{json,json5,jsonc}",
+			      ],
+			    },
+			  },
+			]
+		`);
+	});
+
 	describe("intake", () => {
 		it("returns no ignoreDeps when .github/renovate.json does not exist", () => {
 			const actual = testIntake(blockRenovate, {
@@ -287,6 +321,65 @@ describe(blockRenovate, () => {
 				gitIgnoredAuthors,
 				ignoreDeps: [],
 				packageRules: [],
+			});
+		});
+
+		it.each([
+			["renovate.json"],
+			["renovate.jsonc"],
+			["renovate.json5"],
+			[".renovaterc"],
+			[".renovaterc.json"],
+			[".renovaterc.jsonc"],
+			[".renovaterc.json5"],
+		])("returns data when only %s exists", (fileName) => {
+			const ignoreDeps = ["all-contributors-cli"];
+
+			const actual = testIntake(blockRenovate, {
+				files: {
+					[fileName]: [JSON.stringify({ ignoreDeps })],
+				},
+			});
+
+			expect(actual).toEqual({
+				customManagers: [],
+				gitIgnoredAuthors: [],
+				ignoreDeps,
+				packageRules: [],
+			});
+		});
+
+		it("merges data with the highest precedence last when multiple files exist", () => {
+			const packageRules = [
+				{ enabled: false, matchDepNames: ["node"] },
+				{ automerge: false, matchDepNames: ["typescript"] },
+				{ automerge: false, matchDepNames: ["eslint"] },
+			];
+
+			const actual = testIntake(blockRenovate, {
+				files: {
+					".github": {
+						"renovate.json": [
+							JSON.stringify({
+								ignoreDeps: ["codecov/codecov-action"],
+								packageRules: packageRules.slice(0, 2),
+							}),
+						],
+					},
+					"renovate.json": [
+						JSON.stringify({
+							ignoreDeps: ["all-contributors-cli", "codecov/codecov-action"],
+							packageRules: packageRules.slice(1),
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				customManagers: [],
+				gitIgnoredAuthors: [],
+				ignoreDeps: ["codecov/codecov-action", "all-contributors-cli"],
+				packageRules,
 			});
 		});
 	});

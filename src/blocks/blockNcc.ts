@@ -12,6 +12,7 @@ import { blockGitignore } from "./blockGitignore.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
 import { blockReleaseIt } from "./blockReleaseIt.ts";
+import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { blockVitest } from "./blockVitest.ts";
 
@@ -86,7 +87,7 @@ Renovate PRs that update bundled dependencies need the same: rebuild and commit 
 								{ run: "pnpm build:release" },
 								{
 									run: `# Verify dist/ is up to date
-changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts' ':!*.d.ts.map')
+changes=$(git status --porcelain --untracked-files=all --ignored -- dist ':!*.d.ts')
 if [ -n "$changes" ]; then
   echo "$changes"
   echo "::error::dist/ is out of date. Run 'pnpm build:release', then commit the files listed above. Files marked !! are gitignored and need 'git add --force'."
@@ -110,7 +111,7 @@ fi
 					},
 				}),
 				blockGitignore({
-					ignores: ["/dist/**/*.d.ts", "/dist/**/*.d.ts.map", "/lib"],
+					ignores: ["/dist/**/*.d.ts", "/lib"],
 				}),
 				blockPackageJson({
 					properties: {
@@ -174,8 +175,13 @@ fi
 		return {
 			extensions: [
 				// dist/ holds the committed ncc bundle, so it must not be ignored
+				// Declaration maps are no longer emitted, so they needn't be ignored
 				blockGitignore({
-					removals: ["/dist", "dist", "dist/"],
+					removals: ["/dist", "dist", "dist/", "/dist/**/*.d.ts.map"],
+				}),
+				// Previously committed declarations are now ignored, so they'd drift
+				blockRemoveFiles({
+					files: ["dist/**/*.d.ts", "dist/**/*.d.ts.map"],
 				}),
 			],
 		};

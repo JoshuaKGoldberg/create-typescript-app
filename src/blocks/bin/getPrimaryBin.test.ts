@@ -2,16 +2,24 @@ import { describe, expect, test } from "vitest";
 
 import { getPrimaryBin } from "./getPrimaryBin.ts";
 
-const repository = "test-repository";
+const repository = "Test-Repository";
 
 describe(getPrimaryBin, () => {
 	test.each([
-		[undefined, undefined],
-		["bin/index.js", "bin/index.js"],
-		[{ [repository]: "bin/index.js" }, "bin/index.js"],
-		[{}, undefined],
-		[{ other: "bin/index.js" }, undefined],
-	])("%j", (bin, expected) => {
-		expect(getPrimaryBin(bin, repository)).toBe(expected);
+		[undefined, repository, undefined],
+		["bin/index.js", repository, "bin/index.js"],
+		["bin/index.js", undefined, "bin/index.js"],
+		[{ [repository]: "bin/index.js" }, repository, "bin/index.js"],
+		[{ "test-repository": "bin/index.js" }, repository, "bin/index.js"],
+		[
+			{ [repository]: "bin/index.js", "test-repository": "bin/other.js" },
+			repository,
+			"bin/index.js",
+		],
+		[{ [repository]: "bin/index.js" }, undefined, undefined],
+		[{}, repository, undefined],
+		[{ other: "bin/index.js" }, repository, undefined],
+	])("%j in %s", (bin, name, expected) => {
+		expect(getPrimaryBin(bin, name)).toBe(expected);
 	});
 });

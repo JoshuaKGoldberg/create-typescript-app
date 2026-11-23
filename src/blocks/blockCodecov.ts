@@ -6,6 +6,7 @@ import { intakeFileYamlSteps } from "./actions/steps.ts";
 import { blockGitHubApps } from "./blockGitHubApps.ts";
 import { blockREADME } from "./blockREADME.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRenovate } from "./blockRenovate.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { blockZizmor } from "./blockZizmor.ts";
 import {
@@ -64,6 +65,9 @@ export const blockCodecov = base.createBlock({
 							src: `https://img.shields.io/codecov/c/github/${options.owner}/${options.repository}?label=%F0%9F%A7%AA%20coverage`,
 						},
 					],
+				}),
+				blockRenovate({
+					ignoreDeps: ["codecov/codecov-action"],
 				}),
 				blockVitest({
 					actionSteps: [

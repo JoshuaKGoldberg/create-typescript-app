@@ -61,9 +61,30 @@ describe(readNode, () => {
 			expect(pinned).toBe(defaults.node.pinned);
 		});
 
-		it("uses the trimmed nvmrc text value when nvmrc contains text", async () => {
-			const nvmrc = "23.4.5";
+		it.each(["18", "20.20.2", "v20.20.2", "22.15.1", "v22.17", "23.4.5"])(
+			"defaults to the default pinned when nvmrc is %s, which doesn't support type stripping",
+			async (nvmrc) => {
+				const { pinned } = await readNode(
+					() => Promise.resolve(`${nvmrc}\n`),
+					getPackageDataFull,
+				);
 
+				expect(pinned).toBe(defaults.node.pinned);
+			},
+		);
+
+		it.each([
+			"22",
+			"22.18.0",
+			"23.6.0",
+			"24.14.0",
+			"26.13.1",
+			"lts/*",
+			"lts/jod",
+			"node",
+			"v22.18",
+			"v24.14.0",
+		])("uses the trimmed nvmrc text value when nvmrc is %s", async (nvmrc) => {
 			const { pinned } = await readNode(
 				() => Promise.resolve(`${nvmrc}\n`),
 				getPackageDataFull,

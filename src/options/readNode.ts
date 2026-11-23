@@ -1,4 +1,6 @@
-import { defaults } from "../constants.ts";
+import semver from "semver";
+
+import { defaults, nodeTypeStripping } from "../constants.ts";
 import { PartialPackageData } from "../types.ts";
 import { swallowError } from "../utils/swallowError.ts";
 
@@ -7,11 +9,19 @@ export async function readNode(
 	getPackageDataFull: () => Promise<PartialPackageData>,
 ) {
 	const { engines } = await getPackageDataFull();
+	const nvmrc = swallowError(await getNvmrc())?.trim();
 
 	return {
 		minimum:
 			(engines?.node && /\d/u.test(engines.node) && engines.node) ||
 			defaults.node.minimum,
-		pinned: swallowError(await getNvmrc())?.trim() || defaults.node.pinned,
+		pinned:
+			nvmrc && supportsTypeStripping(nvmrc) ? nvmrc : defaults.node.pinned,
 	};
+}
+
+function supportsTypeStripping(version: string) {
+	return (
+		!semver.validRange(version) || semver.intersects(version, nodeTypeStripping)
+	);
 }

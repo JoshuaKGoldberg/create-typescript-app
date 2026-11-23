@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.87.12](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.11...2.87.12) (2026-11-23)
+
+### Bug Fixes
+
+- dedupe CSpell words case-insensitively ([#2747](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2747)) ([28bea2b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/28bea2b7ddaba84085e7fa06e4cc4c725dfe15f2)), closes [#2746](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2746), references [#2743](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2743)
+- keep default GitHub Actions current and SHA-pinned ([#2753](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2753)) ([9642a54](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9642a54a647e4bf7c9169a5ba738507ca494a01d)), closes [#2750](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2750) [#2751](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2751)
+- remove previously committed dist/ declarations when transitioning to blockNcc ([#2739](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2739)) ([b237945](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/b23794559200aed63a91b976a759ffcd3774cc1d)), closes [#2738](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2738)
+- remove tsconfig.eslint.json when transitioning ([#2758](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2758)) ([c66b72b](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c66b72b0f06735bb9ba5fee57611c945d0e57818)), closes [#2757](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2757)
+- sort tsdown.config.ts keys ([#2745](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2745)) ([9bcc265](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9bcc2657e1dd846816f0503b35ba8dde2b0e7f46)), closes [#2744](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2744)
+
 ## [2.87.11](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.10...2.87.11) (2026-11-23)
 
 ### Bug Fixes

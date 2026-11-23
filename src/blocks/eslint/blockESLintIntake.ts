@@ -46,8 +46,13 @@ export function blockESLintIntake(sourceText: string) {
 		return undefined;
 	}
 
+	const packageJsonRules = getPackageJsonRules(configArguments.slice(1));
+
 	return {
-		extensions: rules.length ? [{ files: configObject.files, rules }] : [],
+		extensions: [
+			{ files: configObject.files, rules },
+			{ files: ["package.json"], rules: packageJsonRules },
+		].filter((extension) => extension.rules.length),
 		ignores,
 	};
 
@@ -178,6 +183,35 @@ export function blockESLintIntake(sourceText: string) {
 
 		const files = getStringLiterals(filesProperty.value);
 		return files && { files, rules: rulesProperty.value };
+	}
+
+	function getObjectProperty(node: TSESTree.ObjectExpression, name: string) {
+		return node.properties.find(
+			(property): property is TSESTree.Property =>
+				property.type === AST_NODE_TYPES.Property &&
+				property.key.type === AST_NODE_TYPES.Identifier &&
+				property.key.name === name,
+		)?.value;
+	}
+
+	function getPackageJsonRules(nodes: TSESTree.Node[]) {
+		return nodes.flatMap((node) => {
+			if (node.type !== AST_NODE_TYPES.ObjectExpression) {
+				return [];
+			}
+
+			const files = getObjectProperty(node, "files");
+			const rules = getObjectProperty(node, "rules");
+			if (
+				!files ||
+				rules?.type !== AST_NODE_TYPES.ObjectExpression ||
+				!areArraysEqual(getStringLiterals(files) ?? [], ["package.json"])
+			) {
+				return [];
+			}
+
+			return tryCatch(() => collectRulesObjectGroups(sourceText, rules)) ?? [];
+		});
 	}
 
 	function getStringLiterals(node: TSESTree.Node) {

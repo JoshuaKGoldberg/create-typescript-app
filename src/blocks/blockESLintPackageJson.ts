@@ -1,4 +1,5 @@
 import { base } from "../base.ts";
+import { blockCSpell } from "./blockCSpell.ts";
 import { blockESLint } from "./blockESLint.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRemoveDependencies } from "./blockRemoveDependencies.ts";
@@ -42,6 +43,9 @@ export const blockESLintPackageJson = base.createBlock({
 	transition() {
 		return {
 			extensions: [
+				blockCSpell({
+					wordRemovals: ["npmpackagejsonlintrc"],
+				}),
 				blockRemoveFiles({
 					files: [".npmpackagejsonlintrc*"],
 				}),

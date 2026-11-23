@@ -90,11 +90,6 @@ export default defineConfig(
 		},
 	},
 	{
-		extends: [tseslint.configs.disableTypeChecked],
-		files: ["**/*.md/*.ts"],
-		rules: { "n/no-missing-import": "off" },
-	},
-	{
 		extends: [vitest.configs.recommended],
 		files: ["**/*.test.*"],
 		rules: {

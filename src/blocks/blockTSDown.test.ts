@@ -482,6 +482,9 @@ export default defineConfig({ entry: ["src/index.ts"], unbundle: true });
 			        "ignorePathRemovals": [
 			          "lib",
 			        ],
+			        "wordRemovals": [
+			          "tsup",
+			        ],
 			      },
 			    },
 			    {

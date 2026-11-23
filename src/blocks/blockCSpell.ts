@@ -46,11 +46,11 @@ export const blockCSpell = base.createBlock({
 		};
 	},
 	produce({ options, props }) {
-		const { ignorePathRemovals, ignorePaths, words } = props;
+		const { ignorePathRemovals, ignorePaths, wordRemovals, words } = props;
 
-		const allWords = Array.from(
-			new Set([...(options.words ?? []), ...words]),
-		).sort();
+		const allWords = Array.from(new Set([...(options.words ?? []), ...words]))
+			.filter((word) => !wordRemovals.includes(word))
+			.sort();
 
 		return {
 			extensions: [
@@ -110,6 +110,7 @@ export const blockCSpell = base.createBlock({
 	props: {
 		ignorePathRemovals: z.array(z.string()).default([]),
 		ignorePaths: z.array(z.string()).default([]),
+		wordRemovals: z.array(z.string()).default([]),
 		words: z.array(z.string()).default([]),
 	},
 	setup({ options }) {

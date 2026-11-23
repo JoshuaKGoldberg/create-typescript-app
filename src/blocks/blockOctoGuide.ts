@@ -102,6 +102,9 @@ export const blockOctoGuide = base.createBlock({
 	transition() {
 		return {
 			extensions: [
+				blockCSpell({
+					wordRemovals: ["mtfoley"],
+				}),
 				blockRemoveFiles({
 					files: [
 						".github/workflows/accessibility-alt-text-bot.{yaml,yml}",

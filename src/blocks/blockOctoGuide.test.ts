@@ -97,6 +97,9 @@ describe(blockOctoGuide, () => {
 			    {
 			      "block": "[Block CSpell]",
 			      "props": {
+			        "wordRemovals": [
+			          "mtfoley",
+			        ],
 			        "words": [
 			          "octoguide",
 			        ],

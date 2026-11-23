@@ -33,10 +33,16 @@ export const blockNcc = base.createBlock({
 			rebuildDistWorkflow: ["rebuild-dist.yaml", "rebuild-dist.yml"].find(
 				(fileName) => intakeFile(files, [".github", "workflows", fileName]),
 			),
+			tsc: scripts?.tsc === "tsc" ? undefined : scripts?.tsc,
 		};
 	},
 	produce({ options, props }) {
-		const { build, entry = "src/index.ts", rebuildDistWorkflow } = props;
+		const {
+			build,
+			entry = "src/index.ts",
+			rebuildDistWorkflow,
+			tsc = "tsc --noEmit",
+		} = props;
 		const renovateDist = rebuildDistWorkflow
 			? `On Renovate branches, the [Rebuild Dist workflow](./workflows/${rebuildDistWorkflow}) runs \`pnpm build:release\` and pushes any \`dist/\` changes so dependency updates can still merge.`
 			: `Renovate PRs that update bundled dependencies need the same: rebuild and commit \`dist/\` on their branch before they can merge.`;
@@ -129,6 +135,7 @@ fi
 						scripts: {
 							build: build ?? "tsc --project tsconfig.build.json",
 							"build:release": `rm -rf dist && ncc build ${entry} -o dist`,
+							tsc,
 						},
 					},
 				}),
@@ -168,6 +175,7 @@ fi
 		build: z.string().optional(),
 		entry: z.string().optional(),
 		rebuildDistWorkflow: z.string().optional(),
+		tsc: z.string().optional(),
 	},
 	setup() {
 		return {

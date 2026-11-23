@@ -142,6 +142,7 @@ describe(blockNcc, () => {
 			          "scripts": {
 			            "build": "tsc --project tsconfig.build.json",
 			            "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
+			            "tsc": "tsc --noEmit",
 			          },
 			        },
 			      },
@@ -325,6 +326,7 @@ describe(blockNcc, () => {
 			          "scripts": {
 			            "build": "tsc --project tsconfig.build.json",
 			            "build:release": "rm -rf dist && ncc build src/action/index.ts -o dist",
+			            "tsc": "tsc --noEmit",
 			          },
 			        },
 			      },
@@ -396,11 +398,31 @@ describe(blockNcc, () => {
 				      "scripts": {
 				        "build": "tsc --project tsconfig.custom.json",
 				        "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
+				        "tsc": "tsc --noEmit",
 				      },
 				    },
 				  },
 				}
 			`);
+	});
+
+	test("with a tsc addon", () => {
+		const creation = testBlock(blockNcc, {
+			options: optionsBase,
+			props: {
+				tsc: "tsc --noEmit --project tsconfig.custom.json",
+			},
+		});
+
+		expect(
+			creation.extensions?.find(({ block }) => block === blockPackageJson),
+		).toMatchObject({
+			props: {
+				properties: {
+					scripts: { tsc: "tsc --noEmit --project tsconfig.custom.json" },
+				},
+			},
+		});
 	});
 
 	test("with a rebuildDistWorkflow prop", () => {
@@ -481,6 +503,7 @@ describe(blockNcc, () => {
 			        "scripts": {
 			          "build": "tsc --project tsconfig.build.json",
 			          "build:release": "rm -rf dist && ncc build src/index.ts -o dist",
+			          "tsc": "tsc --noEmit",
 			        },
 			      },
 			    },
@@ -696,6 +719,40 @@ describe(blockNcc, () => {
 			});
 
 			expect(actual).toEqual({ build: undefined });
+		});
+
+		it("returns a tsc when options.packageData contains a tsc script with its own settings", () => {
+			const actual = testIntake(blockNcc, {
+				files: {},
+				options: {
+					...optionsBase,
+					packageData: {
+						scripts: {
+							tsc: "tsc --noEmit --project tsconfig.custom.json",
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({
+				tsc: "tsc --noEmit --project tsconfig.custom.json",
+			});
+		});
+
+		it("returns an undefined tsc when options.packageData contains a bare tsc script", () => {
+			const actual = testIntake(blockNcc, {
+				files: {},
+				options: {
+					...optionsBase,
+					packageData: {
+						scripts: {
+							tsc: "tsc",
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ tsc: undefined });
 		});
 	});
 });

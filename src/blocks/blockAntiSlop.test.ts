@@ -46,7 +46,7 @@ describe(blockAntiSlop, () => {
 			  anti-slop:
 			    permissions:
 			      contents: read
-			      issues: read
+			      issues: write
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -117,7 +117,7 @@ describe(blockAntiSlop, () => {
 			  anti-slop:
 			    permissions:
 			      contents: read
-			      issues: read
+			      issues: write
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -188,7 +188,7 @@ describe(blockAntiSlop, () => {
 			  anti-slop:
 			    permissions:
 			      contents: read
-			      issues: read
+			      issues: write
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -253,7 +253,7 @@ describe(blockAntiSlop, () => {
 			  anti-slop:
 			    permissions:
 			      contents: read
-			      issues: read
+			      issues: write
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -323,7 +323,7 @@ describe(blockAntiSlop, () => {
 			  anti-slop:
 			    permissions:
 			      contents: read
-			      issues: read
+			      issues: write
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:
@@ -401,7 +401,7 @@ describe(blockAntiSlop, () => {
 			  anti-slop:
 			    permissions:
 			      contents: read
-			      issues: read
+			      issues: write
 			      pull-requests: write
 			    runs-on: ubuntu-latest
 			    steps:

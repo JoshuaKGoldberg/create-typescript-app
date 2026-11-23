@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.87.14](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.13...2.87.14) (2026-11-23)
+
+### Bug Fixes
+
+- don't emit from pnpm tsc in blockNcc repositories ([#2766](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2766)) ([7cb25fb](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/7cb25fb5e0b949df2981c92076c73db25bcfd369)), closes [#2765](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2765)
+- intake package.json rules from existing ESLint configs ([#2768](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2768)) ([69ccae3](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/69ccae3b3d5b579a73fb7bccf990c45ef982705c)), closes [#2767](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2767)
+- lint .mjs bins and CommonJS .mts configs with ESLint ([#2764](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2764)) ([c2edc85](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/c2edc85d632b5270fd835d7dc0786a22555aca69)), closes [#2763](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2763)
+
 ## [2.87.13](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.12...2.87.13) (2026-11-23)
 
 ### Bug Fixes

@@ -86,28 +86,32 @@ export const blockESLint = base.createBlock({
 			),
 		).sort();
 
-		const extensionEntries = mergeAllExtensions(
+		const bins = (
+			typeof options.bin === "object"
+				? Object.values(options.bin)
+				: [options.bin]
+		).filter((bin) => bin !== undefined);
+
+		const scriptFiles = getScriptFileExtension(options);
+		const scriptFilesWithAdditions = getScriptFileExtension(options, [
+			...scriptFileExtensions,
+			...(bins.some(isSourceModuleBin) ? ["mjs"] : []),
+			...(options.type === "commonjs" ? ["mts"] : []),
+		]);
+
+		const extensionEntries = [
 			{
 				extends: [
 					"eslint.configs.recommended",
 					"tseslint.configs.strictTypeChecked",
 					"tseslint.configs.stylisticTypeChecked",
 				],
-				files: [getScriptFileExtension(options)],
+				files: [scriptFiles],
 				languageOptions: {
 					parserOptions: {
 						projectService: {
 							allowDefaultProject: Array.from(
-								new Set(
-									[
-										"*.config.*s",
-										...(typeof options.bin === "object"
-											? Object.values(options.bin)
-											: [options.bin]),
-									]
-										.filter(Boolean)
-										.sort(),
-								),
+								new Set(["*.config.*s", ...bins].filter(Boolean).sort()),
 							),
 						},
 					},
@@ -122,24 +126,16 @@ export const blockESLint = base.createBlock({
 						},
 					]
 				: []),
-		);
-
-		const scriptFiles = getScriptFileExtension(options);
-		const scriptFilesWithAdditions = getScriptFileExtension(
-			options,
-			scriptFileExtensions,
-		);
-
-		const extensionEntriesWithFiles = extensionEntries.map((extension) => ({
+		].map((extension) => ({
 			...extension,
 			files: extension.files.map((files) =>
 				files === scriptFiles ? scriptFilesWithAdditions : files,
 			),
 		}));
 
-		const extensionLines = sortExtensions(extensionEntriesWithFiles).map(
-			printExtension,
-		);
+		const extensionLines = sortExtensions(
+			mergeAllExtensions(...extensionEntries),
+		).map(printExtension);
 
 		return {
 			extensions: [
@@ -322,6 +318,10 @@ function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
 	}
 
 	return grouped;
+}
+
+function isSourceModuleBin(bin: string) {
+	return bin.endsWith(".mjs") && !/^(?:\.\/)?dist\//u.test(bin);
 }
 
 function printExtension(extension: Extension) {

@@ -11,7 +11,7 @@ export function getScriptFileExtension(
 			...(options.type === "commonjs" ? ["js", "mjs", "ts"] : ["js", "ts"]),
 			...additionalExtensions,
 		]),
-	);
+	).sort();
 
 	return `**/*.{${extensions.join(",")}}`;
 }

@@ -291,8 +291,6 @@ export default defineConfig(
 						".eslintrc*",
 						".eslintignore",
 						"eslint.config.{cjs,js,mjs}",
-						// Older versions of this template used a tsconfig.eslint.json
-						// for typed linting before switching to the project service
 						"tsconfig.eslint.json",
 					],
 				}),

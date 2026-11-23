@@ -4,3 +4,5 @@ export const defaults = {
 		pinned: "24.19.0",
 	},
 };
+
+export const nodeTypeStripping = "^22.18.0 || >=23.6.0";

@@ -180,12 +180,6 @@ describe(blockESLintPlugin, () => {
 			      ],
 			      "phase": 2,
 			    },
-			    {
-			      "commands": [
-			        "pnpm eslint-doc-generator --init-rule-docs",
-			      ],
-			      "phase": 3,
-			    },
 			  ],
 			}
 		`);
@@ -381,12 +375,6 @@ describe(blockESLintPlugin, () => {
 			        "pnpm build",
 			      ],
 			      "phase": 2,
-			    },
-			    {
-			      "commands": [
-			        "pnpm eslint-doc-generator --init-rule-docs",
-			      ],
-			      "phase": 3,
 			    },
 			  ],
 			}
@@ -690,6 +678,18 @@ describe(blockESLintPlugin, () => {
 		`);
 	});
 
+	test("transition mode", () => {
+		const creation = testBlock(blockESLintPlugin, {
+			mode: "transition",
+			options: optionsBase,
+		});
+
+		expect(creation.scripts).toEqual([
+			{ commands: ["pnpm build"], phase: 2 },
+			{ commands: ["pnpm eslint-doc-generator"], phase: 3 },
+		]);
+	});
+
 	test("props", () => {
 		const creation = testBlock(blockESLintPlugin, {
 			options: optionsBase,
@@ -874,12 +874,6 @@ describe(blockESLintPlugin, () => {
 			        "pnpm build",
 			      ],
 			      "phase": 2,
-			    },
-			    {
-			      "commands": [
-			        "pnpm eslint-doc-generator --init-rule-docs",
-			      ],
-			      "phase": 3,
 			    },
 			  ],
 			}

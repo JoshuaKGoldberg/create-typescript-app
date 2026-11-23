@@ -1063,6 +1063,43 @@ describe(blockVitest, () => {
 		);
 	});
 
+	test("with excludeRemovals matching some of coverage.exclude", () => {
+		const creation = testBlock(blockVitest, {
+			options: optionsBase,
+			props: {
+				coverage: {
+					exclude: ["lib", "src/index.ts"],
+					include: ["src"],
+				},
+				excludeRemovals: ["lib"],
+			},
+		});
+
+		expect(creation.files?.["vitest.config.ts"]).toContain(
+			`		coverage: {
+			exclude: ["src/index.ts"],
+			include: ["src"],`,
+		);
+	});
+
+	test("with excludeRemovals matching all of coverage.exclude", () => {
+		const creation = testBlock(blockVitest, {
+			options: optionsBase,
+			props: {
+				coverage: {
+					exclude: ["lib"],
+					include: ["src"],
+				},
+				excludeRemovals: ["lib"],
+			},
+		});
+
+		expect(creation.files?.["vitest.config.ts"]).toContain(
+			`		coverage: {
+			include: ["src"],`,
+		);
+	});
+
 	describe("intake", () => {
 		it("returns nothing when vitest.config.ts does not pass a test to defineConfig", () => {
 			const actual = testIntake(blockVitest, {

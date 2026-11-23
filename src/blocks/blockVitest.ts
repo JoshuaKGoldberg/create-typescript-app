@@ -88,6 +88,9 @@ export const blockVitest = base.createBlock({
 				.filter((entry) => !excludeRemovals.includes(entry))
 				.sort(),
 		);
+		const coverageExclude = coverage.exclude?.filter(
+			(entry) => !excludeRemovals.includes(entry),
+		);
 
 		return {
 			extensions: [
@@ -246,8 +249,8 @@ export default defineConfig({
 		clearMocks: true,
 		coverage: {
 			${
-				coverage.exclude?.length
-					? `exclude: ${JSON.stringify(coverage.exclude)},
+				coverageExclude?.length
+					? `exclude: ${JSON.stringify(coverageExclude)},
 			`
 					: ""
 			}include: ${JSON.stringify(coverage.include)},

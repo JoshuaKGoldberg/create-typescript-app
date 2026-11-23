@@ -337,9 +337,10 @@ It runs in CI using [zizmor-action](https://github.com/zizmorcore/zizmor-action)
 ### Lint Packages
 
 Uses [`pnpm dedupe`](https://pnpm.io/cli/dedupe) to deduplicate package dependencies.
+A _Dedupe Check_ CI job fails if `pnpm-lock.yaml` has unnecessarily duplicated packages:
 
 ```shell
-pnpm lint:packages
+pnpm dedupe --check
 ```
 
 > This is grouped with _"Lint"_ tooling pieces, but will likely eventually be renamed ([#896](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/896)).

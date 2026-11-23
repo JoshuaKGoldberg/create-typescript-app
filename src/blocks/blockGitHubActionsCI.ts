@@ -4,6 +4,7 @@ import { base } from "../base.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { zActionStep } from "./actions/steps.ts";
 import { blockRemoveFiles } from "./blockRemoveFiles.ts";
+import { blockRenovate } from "./blockRenovate.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import {
 	createMultiWorkflowFile,
@@ -60,6 +61,21 @@ export const blockGitHubActionsCI = base.createBlock({
 				blockRepositoryBranchRuleset({
 					requiredStatusChecks: ciJobs?.map((job) => job.name),
 				}),
+				...(ciJobs
+					? [
+							blockRenovate({
+								packageRules: [
+									{
+										description:
+											"The Engines Check job's Node.js version is the minimum from engines.node.",
+										enabled: false,
+										matchDepNames: ["node"],
+										matchFileNames: [".github/workflows/ci.yaml"],
+									},
+								],
+							}),
+						]
+					: []),
 			],
 			files: {
 				".github": {

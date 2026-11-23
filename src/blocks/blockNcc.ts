@@ -24,7 +24,8 @@ export const blockNcc = base.createBlock({
 
 		return {
 			// Existing tsc builds may use their own settings, such as a tsconfig.build.json
-			build: scripts?.build?.match(/^tsc\b/) ? scripts.build : undefined,
+			// A bare tsc has none, so it'd build test files with the generated tsconfig.json
+			build: scripts?.build?.match(/^tsc\s+\S/) ? scripts.build : undefined,
 			entry: scripts?.["build:release"]?.match(/ncc build (.+) -o dist/)?.[1],
 		};
 	},

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
+import { isPlainObject } from "../utils/isPlainObject.ts";
 import { resolveUses } from "./actions/resolveUses.ts";
 import { blockCSpell } from "./blockCSpell.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
@@ -10,10 +11,31 @@ import { blockREADME } from "./blockREADME.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { withPreviously } from "./files/withPreviously.ts";
+import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
+
+const git = {
+	commitMessage: "chore: release v${version}",
+	pushArgs: ["--follow-tags", "--atomic"],
+	requireCommits: true,
+};
 
 export const blockReleaseIt = base.createBlock({
 	about: {
 		name: "release-it",
+	},
+	intake({ files }) {
+		const releaseItJson = intakeFileAsJson(files, [".release-it.json"]);
+		if (!isPlainObject(releaseItJson?.git)) {
+			return undefined;
+		}
+
+		// Keep a repository's own git options, such as getLatestTagFromAllRefs,
+		// but not the ones this Block always sets itself.
+		const extraGit = Object.fromEntries(
+			Object.entries(releaseItJson.git).filter(([key]) => !(key in git)),
+		);
+
+		return Object.keys(extraGit).length ? { git: extraGit } : undefined;
 	},
 	produce({ options, props }) {
 		const { builders } = props;
@@ -153,11 +175,11 @@ export const blockReleaseIt = base.createBlock({
 				".release-it.json": formatFile(
 					".release-it.json",
 					JSON.stringify({
-						git: {
-							commitMessage: "chore: release v${version}",
-							pushArgs: ["--follow-tags", "--atomic"],
-							requireCommits: true,
-						},
+						git: Object.fromEntries(
+							Object.entries({ ...props.git, ...git }).sort(([a], [b]) =>
+								a.localeCompare(b),
+							),
+						),
 						github: {
 							release: true,
 							releaseName: "v${version}",
@@ -202,5 +224,6 @@ export const blockReleaseIt = base.createBlock({
 				}),
 			)
 			.default([]),
+		git: z.record(z.string(), z.unknown()).optional(),
 	},
 });

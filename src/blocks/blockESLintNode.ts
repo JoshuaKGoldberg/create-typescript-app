@@ -16,11 +16,6 @@ export const blockESLintNode = base.createBlock({
 							files: [getScriptFileExtension(options)],
 						},
 						{
-							extends: ["tseslint.configs.disableTypeChecked"],
-							files: ["**/*.md/*.ts"],
-							rules: { "n/no-missing-import": "off" },
-						},
-						{
 							files: ["**/*.test.*", "eslint.config.*"],
 							rules: { "n/no-unsupported-features/node-builtins": "off" },
 						},

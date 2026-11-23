@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test, vi } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test, vi } from "vitest";
 
 import { blockReleaseIt } from "./blockReleaseIt.ts";
 import { optionsBase } from "./options.fakes.ts";
@@ -385,6 +385,87 @@ describe(blockReleaseIt, () => {
 				],
 				"release.yaml": [expect.any(String), { previously: ["release.yml"] }],
 			},
+		});
+	});
+
+	test("with git props", () => {
+		const creation = testBlock(blockReleaseIt, {
+			options: optionsBase,
+			props: {
+				git: {
+					getLatestTagFromAllRefs: true,
+					requireCommits: false,
+				},
+			},
+		});
+
+		expect(
+			JSON.parse(
+				(creation.files?.[".release-it.json"] as string | undefined) ?? "",
+			),
+		).toMatchObject({
+			git: {
+				commitMessage: "chore: release v${version}",
+				getLatestTagFromAllRefs: true,
+				pushArgs: ["--follow-tags", "--atomic"],
+				requireCommits: true,
+			},
+		});
+	});
+
+	describe("intake", () => {
+		it("returns undefined when .release-it.json does not exist", () => {
+			const actual = testIntake(blockReleaseIt, {
+				files: {},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when .release-it.json has no git options", () => {
+			const actual = testIntake(blockReleaseIt, {
+				files: {
+					".release-it.json": [JSON.stringify({ npm: { publish: false } })],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns undefined when .release-it.json only has git options the block sets", () => {
+			const actual = testIntake(blockReleaseIt, {
+				files: {
+					".release-it.json": [
+						JSON.stringify({
+							git: {
+								commitMessage: "chore: release v${version}",
+								pushArgs: ["--atomic", "--follow-tags"],
+								requireCommits: true,
+							},
+						}),
+					],
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it("returns other git options when .release-it.json has them", () => {
+			const actual = testIntake(blockReleaseIt, {
+				files: {
+					".release-it.json": [
+						JSON.stringify({
+							git: {
+								commitMessage: "chore: release v${version}",
+								getLatestTagFromAllRefs: true,
+								requireCommits: true,
+							},
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({ git: { getLatestTagFromAllRefs: true } });
 		});
 	});
 });

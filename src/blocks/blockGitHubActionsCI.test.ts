@@ -238,6 +238,23 @@ describe(blockGitHubActionsCI, () => {
 			        ],
 			      },
 			    },
+			    {
+			      "block": "[Block Renovate]",
+			      "props": {
+			        "packageRules": [
+			          {
+			            "description": "The Engines Check job's Node.js version is the minimum from engines.node.",
+			            "enabled": false,
+			            "matchDepNames": [
+			              "node",
+			            ],
+			            "matchFileNames": [
+			              ".github/workflows/ci.yaml",
+			            ],
+			          },
+			        ],
+			      },
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -400,6 +417,23 @@ describe(blockGitHubActionsCI, () => {
 			          "Action",
 			          "CI",
 			          "Engines Check",
+			        ],
+			      },
+			    },
+			    {
+			      "block": "[Block Renovate]",
+			      "props": {
+			        "packageRules": [
+			          {
+			            "description": "The Engines Check job's Node.js version is the minimum from engines.node.",
+			            "enabled": false,
+			            "matchDepNames": [
+			              "node",
+			            ],
+			            "matchFileNames": [
+			              ".github/workflows/ci.yaml",
+			            ],
+			          },
 			        ],
 			      },
 			    },
@@ -591,6 +625,23 @@ describe(blockGitHubActionsCI, () => {
 			        ],
 			      },
 			    },
+			    {
+			      "block": "[Block Renovate]",
+			      "props": {
+			        "packageRules": [
+			          {
+			            "description": "The Engines Check job's Node.js version is the minimum from engines.node.",
+			            "enabled": false,
+			            "matchDepNames": [
+			              "node",
+			            ],
+			            "matchFileNames": [
+			              ".github/workflows/ci.yaml",
+			            ],
+			          },
+			        ],
+			      },
+			    },
 			  ],
 			  "files": {
 			    ".github": {
@@ -764,6 +815,23 @@ describe(blockGitHubActionsCI, () => {
 			        "Check 10",
 			        "CI",
 			        "Engines Check",
+			      ],
+			    },
+			  },
+			  {
+			    "block": "[Block Renovate]",
+			    "props": {
+			      "packageRules": [
+			        {
+			          "description": "The Engines Check job's Node.js version is the minimum from engines.node.",
+			          "enabled": false,
+			          "matchDepNames": [
+			            "node",
+			          ],
+			          "matchFileNames": [
+			            ".github/workflows/ci.yaml",
+			          ],
+			        },
 			      ],
 			    },
 			  },

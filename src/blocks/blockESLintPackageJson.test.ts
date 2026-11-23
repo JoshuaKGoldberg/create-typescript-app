@@ -92,6 +92,14 @@ describe(blockESLintPackageJson, () => {
 			      },
 			    },
 			    {
+			      "block": "[Block CSpell]",
+			      "props": {
+			        "wordRemovals": [
+			          "npmpackagejsonlintrc",
+			        ],
+			      },
+			    },
+			    {
 			      "block": "[Block Remove Files]",
 			      "props": {
 			        "files": [

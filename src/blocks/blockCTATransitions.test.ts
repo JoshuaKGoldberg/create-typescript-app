@@ -83,7 +83,7 @@ describe(blockCTATransitions, () => {
 			          Cheers!
 			           — _The Friendly Bingo Bot_ 💝
 
-			          > ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your \`.github/workflows/cta-transitions.yaml\` file.
+			          > ℹ️ These automatic commits keep your repository up-to-date with new versions of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app). If you want to opt out, delete your \`.github/workflows/cta.yaml\` file.
 			    - id: package-change
 			      uses: JoshuaKGoldberg/package-change-detector-action@v0.0.1
 			      with:

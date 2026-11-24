@@ -7,7 +7,6 @@ import { blockCTATransitions } from "./blockCTATransitions.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
-import { blockZizmor } from "./blockZizmor.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockCTATransitions, () => {
@@ -37,11 +36,6 @@ describe(blockCTATransitions, () => {
 						name: "ACCESS_TOKEN",
 					},
 				],
-			}),
-			blockZizmor({
-				rules: {
-					"bot-conditions": { ignore: ["cta.yaml"] },
-				},
 			}),
 		]);
 		expect(creation.files).toMatchInlineSnapshot(`
@@ -117,7 +111,7 @@ describe(blockCTATransitions, () => {
 			    runs-on: ubuntu-latest
 			    steps:
 			      - id: checkout
-			        if: (github.actor == 'test-owner' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')
+			        if: github.event.pull_request.head.repo.full_name == github.repository && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')
 			        uses: actions/checkout@v7
 			        with:
 			          fetch-depth: 0
@@ -130,7 +124,7 @@ describe(blockCTATransitions, () => {
 			        with:
 			          token: \${{ secrets.ACCESS_TOKEN }}
 			      - if: steps.checkout.outcome == 'skipped'
-			        run: echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'
+			        run: echo 'Skipping transition mode because the PR does not appear to be an update to create-typescript-app from a branch in this repository.'
 
 			name: CTA
 

@@ -5,7 +5,6 @@ import { blockCSpell } from "./blockCSpell.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import { blockRepositorySecrets } from "./blockRepositorySecrets.ts";
-import { blockZizmor } from "./blockZizmor.ts";
 import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { withPreviously } from "./files/withPreviously.ts";
@@ -37,11 +36,6 @@ export const blockCTATransitions = base.createBlock({
 							name: "ACCESS_TOKEN",
 						},
 					],
-				}),
-				blockZizmor({
-					rules: {
-						"bot-conditions": { ignore: ["cta.yaml"] },
-					},
 				}),
 			],
 			files: {
@@ -159,7 +153,7 @@ export const blockCTATransitions = base.createBlock({
 								steps: [
 									{
 										id: "checkout",
-										if: `(github.actor == '${options.owner}' || github.actor == 'renovate[bot]') && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')`,
+										if: "github.event.pull_request.head.repo.full_name == github.repository && startsWith(github.head_ref, 'renovate/') && contains(github.event.pull_request.title, 'create-typescript-app')",
 										uses: resolveUses(
 											"actions/checkout",
 											"v7",
@@ -184,7 +178,7 @@ export const blockCTATransitions = base.createBlock({
 									},
 									{
 										if: "steps.checkout.outcome == 'skipped'",
-										run: "echo 'Skipping transition mode because the PR does not appear to be an automated or owner-created update to create-typescript-app.'",
+										run: "echo 'Skipping transition mode because the PR does not appear to be an update to create-typescript-app from a branch in this repository.'",
 									},
 								],
 							}),

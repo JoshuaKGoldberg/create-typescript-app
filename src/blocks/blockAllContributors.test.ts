@@ -39,7 +39,7 @@ describe(blockAllContributors, () => {
 			      "props": {
 			        "badges": [
 			          {
-			            "alt": "👪 All Contributors: undefined",
+			            "alt": "👪 All Contributors: 0",
 			            "comments": {
 			              "after": "
 			<!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -49,10 +49,27 @@ describe(blockAllContributors, () => {
 				",
 			            },
 			            "href": "#contributors",
-			            "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-undefined-21bb42.svg",
+			            "src": "https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-0-21bb42.svg",
 			          },
 			        ],
-			        "sections": undefined,
+			        "sections": [
+			          "## Contributors
+
+			<!-- spellchecker: disable -->
+			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+			<!-- prettier-ignore-start -->
+			<table>
+			  <tbody>
+			    <tr>
+			    </tr>
+			  </tbody>
+			</table>
+
+			<!-- prettier-ignore-end -->
+
+			<!-- ALL-CONTRIBUTORS-LIST:END -->
+			<!-- spellchecker: enable -->",
+			        ],
 			      },
 			    },
 			  ],

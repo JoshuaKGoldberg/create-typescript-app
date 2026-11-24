@@ -28,7 +28,7 @@ export const blockBin = base.createBlock({
 		}
 
 		const segments = primaryBin.split("/");
-		const toRoot = "../".repeat(segments.length - 1);
+		const toRoot = "../".repeat(segments.length - 1) || "./";
 		const contents = (
 			props.contents ??
 			`#!/usr/bin/env node

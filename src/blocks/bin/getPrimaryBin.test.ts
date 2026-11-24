@@ -9,7 +9,9 @@ describe(getPrimaryBin, () => {
 		[undefined, repository, undefined],
 		["bin/index.js", repository, "bin/index.js"],
 		["bin/index.js", undefined, "bin/index.js"],
+		["./bin/index.js", repository, "bin/index.js"],
 		[{ [repository]: "bin/index.js" }, repository, "bin/index.js"],
+		[{ [repository]: "./bin/index.js" }, repository, "bin/index.js"],
 		[{ "test-repository": "bin/index.js" }, repository, "bin/index.js"],
 		[
 			{ [repository]: "bin/index.js", "test-repository": "bin/other.js" },

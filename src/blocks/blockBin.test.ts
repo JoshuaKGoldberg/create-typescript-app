@@ -59,6 +59,50 @@ describe(blockBin, () => {
 		`);
 	});
 
+	it("produces a starter bin file with the right relative import when options.bin starts with ./", () => {
+		const creation = testBlock(blockBin, {
+			options: { ...optionsBase, bin: "./bin/index.js" },
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "bin": {
+			      "index.js": [
+			        "#!/usr/bin/env node
+			import "../dist/index.mjs";
+			",
+			        {
+			          "executable": true,
+			        },
+			      ],
+			    },
+			  },
+			}
+		`);
+	});
+
+	it("produces a starter bin file with the right relative import when options.bin is in the root directory", () => {
+		const creation = testBlock(blockBin, {
+			options: { ...optionsBase, bin: "index.js" },
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "files": {
+			    "index.js": [
+			      "#!/usr/bin/env node
+			import "./dist/index.mjs";
+			",
+			      {
+			        "executable": true,
+			      },
+			    ],
+			  },
+			}
+		`);
+	});
+
 	it("produces a starter bin file for the repository's bin when options.bin is an object", () => {
 		const creation = testBlock(blockBin, {
 			options: {
@@ -96,13 +140,16 @@ describe(blockBin, () => {
 		expect(creation).toMatchInlineSnapshot(`{}`);
 	});
 
-	it("produces nothing when options.bin is inside the build output", () => {
-		const creation = testBlock(blockBin, {
-			options: { ...optionsBase, bin: "dist/index.js" },
-		});
+	it.each(["dist/index.js", "./dist/index.js"])(
+		"produces nothing when options.bin is inside the build output as %s",
+		(bin) => {
+			const creation = testBlock(blockBin, {
+				options: { ...optionsBase, bin },
+			});
 
-		expect(creation).toMatchInlineSnapshot(`{}`);
-	});
+			expect(creation).toEqual({});
+		},
+	);
 
 	it("rewrites legacy lib/ imports in props.contents to the build output", () => {
 		const creation = testBlock(blockBin, {

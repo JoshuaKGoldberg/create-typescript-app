@@ -1929,6 +1929,21 @@ describe(blockESLint, () => {
 		},
 	);
 
+	test.each([
+		["string", "./bin/index.js"],
+		["object", { repo: "./bin/index.js" }],
+	])("with a ./ path in %s options.bin", (_, bin) => {
+		const creation = testBlock(blockESLint, {
+			options: { ...optionsBase, bin },
+		});
+
+		const [contents] = creation.files?.["eslint.config.ts"] as [string];
+
+		expect(contents).toContain(
+			'allowDefaultProject: ["*.config.*s", "bin/index.js"]',
+		);
+	});
+
 	test("with options.type set to commonjs", () => {
 		const creation = testBlock(blockESLint, {
 			options: {

@@ -7,6 +7,13 @@ import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRenovate } from "./blockRenovate.ts";
 import { blockRepositoryBranchRuleset } from "./blockRepositoryBranchRuleset.ts";
 import {
+	getMatrixJobCheckNames,
+	MatrixJob,
+	withVersionComments,
+	zMatrixJob,
+} from "./ci/matrixJobs.ts";
+import { createJobName } from "./files/createJobName.ts";
+import {
 	createMultiWorkflowFile,
 	zMultiWorkflowJobPermissions,
 } from "./files/createMultiWorkflowFile.ts";
@@ -14,13 +21,30 @@ import { createSoloWorkflowFile } from "./files/createSoloWorkflowFile.ts";
 import { formatYaml } from "./files/formatYaml.ts";
 import { groupParallelJobs } from "./files/groupParallelJobs.ts";
 import { withPreviously } from "./files/withPreviously.ts";
+import { intakeFileAsYaml } from "./intake/intakeFileAsYaml.ts";
 
 export const blockGitHubActionsCI = base.createBlock({
 	about: {
 		name: "GitHub Actions CI",
 	},
+	intake({ files }) {
+		const { data } = z
+			.object({ jobs: z.record(z.string(), z.unknown()) })
+			.safeParse(intakeFileAsYaml(files, [".github", "workflows", "ci.yaml"]));
+
+		const existingMatrixJobs = Object.entries(data?.jobs ?? {}).flatMap(
+			([id, job]): [string, MatrixJob][] => {
+				const matrixJob = zMatrixJob.safeParse(job).data;
+				return matrixJob ? [[id, matrixJob]] : [];
+			},
+		);
+
+		return existingMatrixJobs.length
+			? { existingMatrixJobs: Object.fromEntries(existingMatrixJobs) }
+			: undefined;
+	},
 	produce({ options, props }) {
-		const { jobs } = props;
+		const { existingMatrixJobs, jobs } = props;
 		const minimumNodeVersion = options.node.minimum
 			.replace(/^\D*/u, "")
 			.split(/[^\d.]/u)[0];
@@ -48,7 +72,28 @@ export const blockGitHubActionsCI = base.createBlock({
 				},
 			].toSorted((a, b) => a.name.localeCompare(b.name));
 		const ciJobs =
-			jobsWithEnginesCheck && groupParallelJobs(jobsWithEnginesCheck);
+			jobsWithEnginesCheck &&
+			groupParallelJobs(
+				jobsWithEnginesCheck.filter(
+					(job) => !(createJobName(job.name) in existingMatrixJobs),
+				),
+			);
+		const ciMatrixJobs = Object.fromEntries(
+			(jobsWithEnginesCheck ?? []).flatMap((job) => {
+				const id = createJobName(job.name);
+				return id in existingMatrixJobs
+					? [
+							[
+								id,
+								withVersionComments(
+									existingMatrixJobs[id],
+									options.workflowsVersions,
+								),
+							],
+						]
+					: [];
+			}),
+		);
 		const prReviewLabelsUses = resolveUses(
 			"JoshuaKGoldberg/pr-review-labels-action",
 			"v0.1.0",
@@ -59,7 +104,10 @@ export const blockGitHubActionsCI = base.createBlock({
 		return {
 			extensions: [
 				blockRepositoryBranchRuleset({
-					requiredStatusChecks: ciJobs?.map((job) => job.name),
+					requiredStatusChecks: ciJobs && [
+						...ciJobs.map((job) => job.name),
+						...Object.values(ciMatrixJobs).flatMap(getMatrixJobCheckNames),
+					],
 				}),
 				...(ciJobs
 					? [
@@ -124,6 +172,7 @@ export const blockGitHubActionsCI = base.createBlock({
 							ciJobs &&
 								createMultiWorkflowFile({
 									jobs: ciJobs,
+									matrixJobs: ciMatrixJobs,
 									name: "CI",
 									workflowsVersions: options.workflowsVersions,
 								}),
@@ -165,6 +214,7 @@ export const blockGitHubActionsCI = base.createBlock({
 		};
 	},
 	props: {
+		existingMatrixJobs: z.record(z.string(), zMatrixJob).default({}),
 		jobs: z
 			.array(
 				z.object({

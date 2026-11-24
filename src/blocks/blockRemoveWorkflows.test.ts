@@ -1,5 +1,5 @@
-import { testBlock } from "bingo-stratum-testers";
-import { describe, expect, test } from "vitest";
+import { testBlock, testIntake } from "bingo-stratum-testers";
+import { describe, expect, it, test } from "vitest";
 
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { optionsBase } from "./options.fakes.ts";
@@ -69,5 +69,72 @@ describe(blockRemoveWorkflows, () => {
 			  ],
 			}
 		`);
+	});
+
+	test("with reusable workflows and mode", () => {
+		const creation = testBlock(blockRemoveWorkflows, {
+			mode: "transition",
+			options: optionsBase,
+			props: {
+				reusable: ["b"],
+				workflows: ["a", "b"],
+			},
+		});
+
+		expect(creation).toMatchInlineSnapshot(`
+			{
+			  "extensions": [
+			    {
+			      "block": "[Block Remove Files]",
+			      "props": {
+			        "files": [
+			          ".github/workflows/a.{yaml,yml}",
+			        ],
+			      },
+			    },
+			  ],
+			}
+		`);
+	});
+
+	describe("intake", () => {
+		it("returns undefined when there are no workflows", () => {
+			expect(testIntake(blockRemoveWorkflows, { files: {} })).toBeUndefined();
+		});
+
+		it("returns undefined when no workflow is reusable", () => {
+			const actual = testIntake(blockRemoveWorkflows, {
+				files: {
+					".github": {
+						workflows: {
+							"format.yaml": ["on:\n  pull_request: ~"],
+							"lint.yaml": ["on: push"],
+							"tsc.yaml": ["invalid: ]"],
+						},
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		it.each([
+			["a string", "on: workflow_call"],
+			["an array", "on: [push, workflow_call]"],
+			["an object", "on:\n  workflow_call:\n    inputs: {}"],
+		])("returns a reusable workflow's name when on is %s", (_, contents) => {
+			const actual = testIntake(blockRemoveWorkflows, {
+				files: {
+					".github": {
+						workflows: {
+							"format.yml": [contents],
+							"lint.yaml": ["on: push"],
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({ reusable: ["format"] });
+		});
 	});
 });

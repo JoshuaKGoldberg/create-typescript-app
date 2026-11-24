@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.20](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.19...2.87.20) (2026-11-24)
+
+### Bug Fixes
+
+- preserve matrix jobs in CI when transitioning ([#2824](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2824)) ([1e69a29](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/1e69a29b7f727ffd718d75aa8b011901cf11b986)), closes [#2823](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2823)
+
 ## [2.87.19](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.18...2.87.19) (2026-11-24)
 
 ### Bug Fixes

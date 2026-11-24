@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.87.18](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.17...2.87.18) (2026-11-24)
+
+### Bug Fixes
+
+- find object bins by lowercase package name ([#2802](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2802)) ([e8fb1d6](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e8fb1d657c985f79204cad25c5ec5ab1ccecaf5a)), closes [#2801](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2801)
+- remove dead docs/rules ignore from ESLint plugins ([#2800](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2800)) ([a2c2335](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/a2c233511fa95a97029a5e695e992f37dc50e8ea)), closes [#2799](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2799)
+
 ## [2.87.17](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.16...2.87.17) (2026-11-23)
 
 ### Bug Fixes

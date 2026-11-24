@@ -72,7 +72,7 @@ pnpm build:docs
 							files: [getScriptFileExtension(options)],
 						},
 					],
-					ignores: [configFileName, "docs/rules/*/*.ts"],
+					ignores: [configFileName],
 					imports: [
 						{
 							source: "eslint-plugin-eslint-plugin",

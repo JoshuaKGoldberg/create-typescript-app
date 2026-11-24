@@ -304,6 +304,28 @@ describe(blockTSDown, () => {
 		});
 	});
 
+	test("with subpaths", () => {
+		const creation = testBlock(blockTSDown, {
+			options: optionsBase,
+			props: {
+				exports: "./dist/index.js",
+				subpaths: { "./bin/index.js": "./bin/index.js" },
+			},
+		});
+
+		expect(
+			creation.extensions?.find(({ block }) => block === blockPackageJson)
+				?.props,
+		).toMatchObject({
+			properties: {
+				exports: {
+					".": "./dist/index.js",
+					"./bin/index.js": "./bin/index.js",
+				},
+			},
+		});
+	});
+
 	test("with browser", () => {
 		const creation = testBlock(blockTSDown, {
 			options: optionsBase,

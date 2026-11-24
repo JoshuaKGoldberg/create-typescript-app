@@ -2,6 +2,7 @@ import { IntakeDirectory } from "bingo-fs";
 import removeUndefinedObjects from "remove-undefined-objects";
 import sortKeys from "sort-keys";
 import { z } from "zod";
+import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
@@ -111,7 +112,7 @@ export const blockTSDown = base.createBlock({
 		};
 	},
 	produce({ options, props }) {
-		const { entry, exports, main, properties, runInCI } = props;
+		const { browser, entry, exports, main, properties, runInCI } = props;
 
 		const configFileName =
 			options.type === "commonjs" ? "tsdown.config.mts" : "tsdown.config.ts";
@@ -165,6 +166,7 @@ pnpm build --watch
 				}),
 				blockPackageJson({
 					properties: {
+						...(browser && { browser }),
 						devDependencies: getPackageDependencies("tsdown"),
 						...(exports && { exports: { ".": exports } }),
 						files: ["dist/"],
@@ -215,6 +217,7 @@ export default defineConfig(${JSON.stringify(
 		};
 	},
 	props: {
+		browser: PackageJson.shape.browser,
 		entry: zEntry.default([]),
 		exports: z.union([z.string(), zProperties]).optional(),
 		main: z.string().optional(),

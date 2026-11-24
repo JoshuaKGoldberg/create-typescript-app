@@ -3,6 +3,7 @@ import { inputFromFile } from "input-from-file";
 import { inputFromScript } from "input-from-script";
 import lazyValue from "lazy-value";
 import { z } from "zod";
+import { PackageJson } from "zod-package-json";
 
 import { readAccess } from "./options/readAccess.ts";
 import { readAllContributors } from "./options/readAllContributors.ts";
@@ -140,6 +141,7 @@ export const base = createBase({
 		owner: z.string().describe("organization or user owning the repository"),
 		packageData: z
 			.object({
+				browser: PackageJson.shape.browser,
 				dependencies: z.record(z.string(), z.string()).optional(),
 				devDependencies: z.record(z.string(), z.string()).optional(),
 				main: z.string().optional(),

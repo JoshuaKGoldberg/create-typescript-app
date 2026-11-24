@@ -1,16 +1,20 @@
 import { z } from "zod";
+import { PackageJson } from "zod-package-json";
 
 import { base } from "../base.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { blockVite } from "./blockVite.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
 
+const zBrowser = PackageJson.shape.browser;
 const zFilePath = z.string();
 const zConditions = z.record(z.string(), z.unknown());
 const zExports = z.union([
 	zFilePath,
 	z.object({ ".": z.union([zFilePath, zConditions]) }),
 ]);
+
+type Browser = NonNullable<z.infer<typeof zBrowser>>;
 
 const runnableConditions = new Set(["default", "import", "node", "require"]);
 const runnableImportConditions = new Set(["default", "import", "node"]);
@@ -41,6 +45,7 @@ export const blockExports = base.createBlock({
 	},
 	produce({ options, props }) {
 		const { conditions, filePath = "./dist/index.mjs", runArgs } = props;
+		const browser = zBrowser.safeParse(options.packageData?.browser).data;
 		const main = zFilePath.safeParse(options.packageData?.main).data;
 		const runArgsText = runArgs.map((arg) => ` ${arg}`).join("");
 
@@ -48,6 +53,7 @@ export const blockExports = base.createBlock({
 			extensions: [
 				// The entry point is built by tsdown, so it's only set when tsdown is used
 				blockTSDown({
+					...(browser && { browser: browserLibToDist(browser) }),
 					exports:
 						conditions ??
 						(filePath.startsWith(".") ? filePath : `./${filePath}`),
@@ -68,6 +74,17 @@ export const blockExports = base.createBlock({
 		runArgs: z.array(z.string()).default([]),
 	},
 });
+
+function browserLibToDist(browser: Browser) {
+	return typeof browser === "string"
+		? libToDist(browser)
+		: Object.fromEntries(
+				Object.entries(browser).map(([from, to]) => [
+					libToDist(from),
+					typeof to === "string" ? libToDist(to) : to,
+				]),
+			);
+}
 
 function conditionsLibToDist(conditions: Record<string, unknown>) {
 	return Object.fromEntries(

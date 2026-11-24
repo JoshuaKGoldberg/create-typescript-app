@@ -115,9 +115,15 @@ export const blockCSpell = base.createBlock({
 		words: z.array(z.string()).default([]),
 	},
 	setup({ options }) {
-		const wordArgs = getObjectStringsDeep(options)
-			.map((word) => `--words "${word.replaceAll(`"`, " ")}"`)
-			.join(" ");
+		const words = getSafeWords(
+			getObjectStringsDeep({
+				...options,
+				directory: undefined,
+				existingLabels: undefined,
+			}),
+		);
+
+		const wordArgs = words.map((word) => `--words ${word}`).join(" ");
 
 		return {
 			scripts: [
@@ -155,4 +161,18 @@ function dedupeCaseInsensitive(words: string[]) {
 			seen.add(key);
 			return true;
 		});
+}
+
+function getSafeWords(texts: string[]) {
+	const words = texts.flatMap(
+		(text) =>
+			text
+				.replaceAll(/[a-z]+:\/\/[^\s"]+/gi, " ")
+				.replaceAll(/(?:n['’]t|['’](?:[dms]|ll|re|ve))(?!\p{L})/giu, " ")
+				.match(/[\p{L}\p{N}][\p{L}\p{M}\p{N}@./:_-]*/gu) ?? [],
+	);
+
+	return Array.from(new Set(words)).filter((word) =>
+		/[\p{L}\p{M}]{4}/u.test(word),
+	);
 }

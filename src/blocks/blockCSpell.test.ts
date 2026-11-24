@@ -318,14 +318,44 @@ describe(blockCSpell, () => {
 			  "scripts": [
 			    {
 			      "commands": [
-			        "node path/to/cspell-populate-words/bin/index.mjs --words "access" --words "public" --words "description" --words "Test description" --words "directory" --words "." --words "documentation" --words "readme" --words "usage" --words "## Usage
-
-			Test usage." --words "email" --words "github" --words "github@email.com" --words "npm" --words "npm@email.com" --words "emoji" --words "💖" --words "node" --words "minimum" --words "20.12.0" --words "owner" --words "test-owner" --words "preset" --words "minimal" --words "repository" --words "test-repository" --words "title" --words "Test Title"",
+			        "node path/to/cspell-populate-words/bin/index.mjs --words access --words public --words description --words Test --words directory --words documentation --words readme --words usage --words Usage --words usage. --words email --words github --words github@email.com --words npm@email.com --words emoji --words node --words minimum --words owner --words test-owner --words preset --words minimal --words repository --words test-repository --words title --words Title --words existingLabels",
 			      ],
 			      "phase": 3,
 			    },
 			  ],
 			}
+		`);
+	});
+
+	test("setup mode with options that contain unsafe text", () => {
+		const creation = testBlock(blockCSpell, {
+			mode: "setup",
+			options: {
+				...optionsBase,
+				description:
+					"A `touch one` $(touch two) \"quoted\" <b>bold</b>; it's the user’s naïve & doesn't\\ O'Café --flag | > % 🦄 1️⃣ quoted",
+				directory: "/path/to/directory",
+				documentation: {
+					readme: {
+						usage:
+							"## Usage\n\n```shell\nnpx @scope/some_name --yes\n```\n\n[link](https://example.com/path?query=value) me@example.com",
+					},
+				},
+				existingLabels: [
+					{ color: "000000", description: "Existing", name: "label" },
+				],
+			},
+		});
+
+		expect(creation.scripts).toMatchInlineSnapshot(`
+			[
+			  {
+			    "commands": [
+			      "node path/to/cspell-populate-words/bin/index.mjs --words access --words public --words description --words touch --words quoted --words bold --words user --words naïve --words does --words Café --words flag --words directory --words documentation --words readme --words usage --words Usage --words shell --words scope/some_name --words link --words me@example.com --words email --words github --words github@email.com --words npm@email.com --words emoji --words node --words minimum --words owner --words test-owner --words preset --words minimal --words repository --words test-repository --words title --words Test --words Title --words existingLabels",
+			    ],
+			    "phase": 3,
+			  },
+			]
 		`);
 	});
 

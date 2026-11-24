@@ -5,10 +5,8 @@ import path from "node:path";
 // https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1992
 export function resolveBin(bin: string) {
 	const [packageName, ...segments] = bin.split("/");
-	const packagePath = findPackageJSON(packageName, import.meta.url);
-	if (!packagePath) {
-		throw new Error(`Could not find package: ${packageName}`);
-	}
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+	const packagePath = findPackageJSON(packageName, import.meta.url)!;
 
 	return path.join(path.dirname(packagePath), ...segments);
 }

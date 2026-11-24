@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.22](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.21...2.87.22) (2026-11-24)
+
+### Bug Fixes
+
+- preserve package.json exports subpaths in transition mode ([#2830](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2830)) ([aa9b71c](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/aa9b71ce0ddbfdeb0c838e0e3f1d955aa847ad16)), closes [#2829](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2829)
+
 ## [2.87.21](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.20...2.87.21) (2026-11-24)
 
 ### Bug Fixes

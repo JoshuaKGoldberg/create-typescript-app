@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.87.19](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.18...2.87.19) (2026-11-24)
+
+### Bug Fixes
+
+- add README.md contributors section without inferred contributors ([#2808](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2808)) ([9bc1eea](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9bc1eeae2e93dc26550e6ecd510f1ae56972f3c2)), closes [#2807](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2807)
+- create working bins for ./ and root-level bin paths ([#2814](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2814)) ([41e46a1](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/41e46a1e5d8945caabf5759333e6878d63617945)), closes [#2813](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2813)
+- move package.json browser from lib/ to dist/ when transitioning ([#2812](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2812)) ([64059e6](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/64059e6e07fd8573ae69479d4120c1e7dbaa92d0)), closes [#2811](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2811)
+- only export new ESLint plugins as default ([#2818](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2818)) ([9ffdd39](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/9ffdd39547d836b3ea8bd59c88e9b6061c587591)), closes [#2817](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2817)
+- pass only plain words to cspell-populate-words ([#2806](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2806)) ([4dab0fc](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/4dab0fc9e8b232ff7cf1818332465b48c4cb4203)), closes [#2805](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2805)
+- pass pnpm lint in new ESLint plugins ([#2816](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2816)) ([2a3ecd7](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/2a3ecd76071e19758f3a9afe5d6a49768226b6d8)), closes [#2815](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2815), references [#2713](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2713)
+- pass tsc in new CommonJS ESLint plugins ([#2822](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2822)) ([45a0162](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/45a016213f2e6361045d42c8a0a84c1c67d6107b)), closes [#2821](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2821)
+- preserve production dependency ranges when transitioning ([#2810](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2810)) ([67288b4](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/67288b4364560bc00060f27f08b2327ae56accfe)), closes [#2809](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2809)
+- type the recommended config's severities in new ESLint plugins ([#2820](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2820)) ([e724129](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/e72412936131bb43b2a8a2a2d6ccbbf1d984fc59)), closes [#2819](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2819)
+
 ## [2.87.18](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.17...2.87.18) (2026-11-24)
 
 ### Bug Fixes

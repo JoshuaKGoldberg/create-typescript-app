@@ -6,6 +6,7 @@ import { z } from "zod";
 import { base } from "../base.ts";
 import { getPackageDependencies } from "../data/packageData.ts";
 import { formatFile } from "../utils/formatFile.ts";
+import { trimPrecedingSlash } from "../utils/trimPrecedingSlash.ts";
 import { zActionStep } from "./actions/steps.ts";
 import { blockDevelopmentDocs } from "./blockDevelopmentDocs.ts";
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
@@ -90,7 +91,9 @@ export const blockESLint = base.createBlock({
 			typeof options.bin === "object"
 				? Object.values(options.bin)
 				: [options.bin]
-		).filter((bin) => bin !== undefined);
+		)
+			.map(trimPrecedingSlash)
+			.filter((bin) => bin !== undefined);
 
 		const scriptFiles = getScriptFileExtension(options);
 		const scriptFilesWithAdditions = getScriptFileExtension(options, [
@@ -321,7 +324,7 @@ function groupByComment(rulesGroups: ExtensionRuleGroup[]) {
 }
 
 function isSourceModuleBin(bin: string) {
-	return bin.endsWith(".mjs") && !/^(?:\.\/)?dist\//u.test(bin);
+	return bin.endsWith(".mjs") && !bin.startsWith("dist/");
 }
 
 function printExtension(extension: Extension) {

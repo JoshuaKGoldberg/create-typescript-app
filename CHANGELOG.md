@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.21](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.20...2.87.21) (2026-11-24)
+
+### Bug Fixes
+
+- run transitions on same-repository PRs in organizations ([#2826](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2826)) ([084f4f6](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/084f4f6096f0e2991cbcbd0374ee1fa7c17156d0)), closes [#2825](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2825)
+
 ## [2.87.20](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.19...2.87.20) (2026-11-24)
 
 ### Bug Fixes

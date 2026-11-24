@@ -304,6 +304,24 @@ describe(blockTSDown, () => {
 		});
 	});
 
+	test("with browser", () => {
+		const creation = testBlock(blockTSDown, {
+			options: optionsBase,
+			props: {
+				browser: "./dist/browser.js",
+			},
+		});
+
+		expect(
+			creation.extensions?.find(({ block }) => block === blockPackageJson)
+				?.props,
+		).toMatchObject({
+			properties: {
+				browser: "./dist/browser.js",
+			},
+		});
+	});
+
 	test("with an explicit outDir", () => {
 		const creation = testBlock(blockTSDown, {
 			options: optionsBase,

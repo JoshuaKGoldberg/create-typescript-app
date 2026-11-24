@@ -104,6 +104,40 @@ describe(blockExports, () => {
 		`);
 	});
 
+	it.each([
+		["a string", "./lib/browser.js", "./dist/browser.js"],
+		["a string without ./", "lib/browser.js", "./dist/browser.js"],
+		["a string outside lib/", "./src/browser.js", "./src/browser.js"],
+		[
+			"an object",
+			{
+				"./lib/node.js": "./lib/browser.js",
+				"./lib/server.js": false,
+				fs: "./shims/fs.js",
+				path: false,
+			},
+			{
+				"./dist/node.js": "./dist/browser.js",
+				"./dist/server.js": false,
+				fs: "./shims/fs.js",
+				path: false,
+			},
+		],
+	])(
+		"with %s browser in options.packageData",
+		(_, browser: Record<string, boolean | string> | string, expected) => {
+			const creation = testBlock(blockExports, {
+				options: { ...optionsBase, packageData: { browser } },
+			});
+
+			expect(creation.extensions?.[0].props).toEqual({
+				browser: expected,
+				exports: "./dist/index.mjs",
+				runInCI: ["node ./dist/index.mjs"],
+			});
+		},
+	);
+
 	it("with conditions", () => {
 		const creation = testBlock(blockExports, {
 			options: optionsBase,

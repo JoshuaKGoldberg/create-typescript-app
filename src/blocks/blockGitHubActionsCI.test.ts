@@ -1,4 +1,4 @@
-import { testBlock } from "bingo-stratum-testers";
+import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, test } from "vitest";
 
 import { blockGitHubActionsCI } from "./blockGitHubActionsCI.ts";
@@ -837,5 +837,140 @@ describe(blockGitHubActionsCI, () => {
 			  },
 			]
 		`);
+	});
+
+	test("with an existing matrix job", () => {
+		const creation = testBlock(blockGitHubActionsCI, {
+			options: {
+				...optionsBase,
+				workflowsVersions: {
+					"actions/checkout": { v7: { hash: "abc123" } },
+				},
+			},
+			props: {
+				existingMatrixJobs: {
+					other: {
+						name: "Other",
+						steps: [{ run: "pnpm other" }],
+						strategy: { matrix: { os: ["ubuntu-latest"] } },
+					},
+					test: {
+						name: "Test (${{ matrix.os }})",
+						"runs-on": "${{ matrix.os }}",
+						steps: [
+							{ uses: "actions/checkout@abc123" },
+							{ run: "pnpm build" },
+							{ run: "pnpm run test" },
+						],
+						strategy: {
+							"fail-fast": false,
+							matrix: { os: ["ubuntu-latest", "windows-latest"] },
+						},
+					},
+				},
+				jobs: [
+					{ name: "Lint", steps: [{ run: "pnpm lint" }] },
+					{ name: "Test", steps: [{ run: "pnpm run test --coverage" }] },
+				],
+			},
+		});
+
+		expect(creation.extensions?.[0]).toMatchInlineSnapshot(`
+			{
+			  "block": "[Block Repository Branch Ruleset]",
+			  "props": {
+			    "requiredStatusChecks": [
+			      "CI",
+			      "Engines Check",
+			      "Test (ubuntu-latest)",
+			      "Test (windows-latest)",
+			    ],
+			  },
+			}
+		`);
+		expect(creation.files).toMatchObject({
+			".github": {
+				workflows: {
+					"ci.yaml": [
+						expect.stringContaining(`
+  test:
+    name: Test (\${{ matrix.os }})
+    runs-on: \${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@abc123 # v7
+      - run: pnpm build
+      - run: pnpm run test
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+`),
+						expect.anything(),
+					],
+				},
+			},
+		});
+	});
+
+	describe("intake", () => {
+		test.each([
+			["no ci.yaml", undefined],
+			["an empty ci.yaml", ""],
+			["no jobs", "name: CI"],
+			[
+				"no matrix jobs",
+				"jobs: { test: { name: Test, steps: [{ run: pnpm test }] } }",
+			],
+		])("returns undefined with %s", (_, contents) => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						workflows: contents === undefined ? {} : { "ci.yaml": [contents] },
+					},
+				},
+			});
+
+			expect(actual).toBeUndefined();
+		});
+
+		test("returns only matrix jobs when there are any", () => {
+			const actual = testIntake(blockGitHubActionsCI, {
+				files: {
+					".github": {
+						workflows: {
+							"ci.yaml": [
+								`jobs:
+  lint:
+    name: Lint
+    steps:
+      - run: pnpm lint
+  test:
+    name: Test (\${{ matrix.os }})
+    runs-on: \${{ matrix.os }}
+    steps:
+      - run: pnpm test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+`,
+							],
+						},
+					},
+				},
+			});
+
+			expect(actual).toEqual({
+				existingMatrixJobs: {
+					test: {
+						name: "Test (${{ matrix.os }})",
+						"runs-on": "${{ matrix.os }}",
+						steps: [{ run: "pnpm test" }],
+						strategy: { matrix: { os: ["ubuntu-latest", "windows-latest"] } },
+					},
+				},
+			});
+		});
 	});
 });

@@ -55,7 +55,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,ts}",
@@ -250,7 +250,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,mjs,ts}",
@@ -430,7 +430,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,ts}",
@@ -606,7 +606,7 @@ describe(blockESLintPlugin, () => {
 			",
 			        "enums.ts": "import { createRule } from "../utils.ts";
 
-			export const rule = createRule({
+			export const rule = createRule<[], "enum">({
 				create(context) {
 					return {
 						TSEnumDeclaration(node) {
@@ -617,7 +617,6 @@ describe(blockESLintPlugin, () => {
 						},
 					};
 				},
-				defaultOptions: [],
 				meta: {
 					docs: {
 						description: "Avoid using TypeScript's enums.",
@@ -743,7 +742,7 @@ describe(blockESLintPlugin, () => {
 			        "extensions": [
 			          {
 			            "extends": [
-			              "eslintPlugin.configs["flat/recommended"]",
+			              "eslintPlugin.configs.recommended",
 			            ],
 			            "files": [
 			              "**/*.{js,ts}",

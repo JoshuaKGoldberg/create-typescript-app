@@ -68,7 +68,7 @@ pnpm build:docs
 				blockESLint({
 					extensions: [
 						{
-							extends: ['eslintPlugin.configs["flat/recommended"]'],
+							extends: ["eslintPlugin.configs.recommended"],
 							files: [getScriptFileExtension(options)],
 						},
 					],
@@ -233,7 +233,7 @@ ruleTester.run("enums", rule, {
 `,
 						"enums.ts": `import { createRule } from "../utils.ts";
 
-export const rule = createRule({
+export const rule = createRule<[], "enum">({
 	create(context) {
 		return {
 			TSEnumDeclaration(node) {
@@ -244,7 +244,6 @@ export const rule = createRule({
 			},
 		};
 	},
-	defaultOptions: [],
 	meta: {
 		docs: {
 			description: "Avoid using TypeScript's enums.",

@@ -178,7 +178,7 @@ export default config;
 
 import { rules } from "./rules/index.ts";
 
-const require = Module.createRequire(import.meta.url);
+${options.type === "commonjs" ? "// @ts-expect-error -- tsdown builds to ES modules, which have import.meta\n" : ""}const require = Module.createRequire(import.meta.url);
 
 const { name, version } =
 	// \`import\`ing here would bypass the TSConfig's \`"rootDir": "src"\`

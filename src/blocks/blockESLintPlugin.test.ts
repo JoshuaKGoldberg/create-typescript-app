@@ -379,6 +379,22 @@ describe(blockESLintPlugin, () => {
 		`);
 	});
 
+	test("setup mode with commonjs type", () => {
+		const creation = testBlock(blockESLintPlugin, {
+			mode: "setup",
+			options: {
+				...optionsBase,
+				type: "commonjs",
+			},
+		});
+
+		expect(creation.files?.src).toMatchObject({
+			"index.ts": expect.stringContaining(
+				"// @ts-expect-error -- tsdown builds to ES modules, which have import.meta\nconst require = Module.createRequire(import.meta.url);",
+			) as string,
+		});
+	});
+
 	test("setup mode", () => {
 		const creation = testBlock(blockESLintPlugin, {
 			mode: "setup",

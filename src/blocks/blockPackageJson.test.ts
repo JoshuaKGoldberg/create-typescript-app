@@ -941,6 +941,74 @@ describe(blockPackageJson, () => {
 		`);
 	});
 
+	it.each([
+		["^1.0.0", "1.1.0", "^1.0.0"],
+		["~1.1.0", "1.1.2", "~1.1.0"],
+		[">=1", "2.0.0", ">=1"],
+		["^1.0.0 || ^2.0.0", "2.1.0", "^1.0.0 || ^2.0.0"],
+		["^1.0.0", "2.1.0", "^2.1.0"],
+		["~1.0.0", "1.1.0", "~1.1.0"],
+		["1.x", "2.1.0", "^2.1.0"],
+		[">=1 <3", "3.0.0", "^3.0.0"],
+		["^1.0.0 || ^2.0.0", "3.0.0", "^3.0.0"],
+		["1.0.0", "1.1.0", "1.1.0"],
+		["^2.0.0", "1.1.0", "^2.0.0"],
+		["workspace:^", "1.1.0", "1.1.0"],
+	])(
+		"handles an existing dependency range of %s when the addon's version is %s",
+		(existing, replacement, expected) => {
+			const creation = testBlock(blockPackageJson, {
+				options: {
+					...optionsBase,
+					packageData: {
+						dependencies: {
+							"test-dependency": existing,
+						},
+					},
+				},
+				props: {
+					properties: {
+						dependencies: {
+							"test-dependency": replacement,
+						},
+					},
+				},
+			});
+
+			expect(JSON.parse(creation.files?.["package.json"] as string)).toEqual(
+				expect.objectContaining({
+					dependencies: { "test-dependency": expected },
+				}),
+			);
+		},
+	);
+
+	it("replaces an existing devDependency range that allows the addon's newer version", () => {
+		const creation = testBlock(blockPackageJson, {
+			options: {
+				...optionsBase,
+				packageData: {
+					devDependencies: {
+						"test-dependency": "^1.0.0",
+					},
+				},
+			},
+			props: {
+				properties: {
+					devDependencies: {
+						"test-dependency": "1.1.0",
+					},
+				},
+			},
+		});
+
+		expect(JSON.parse(creation.files?.["package.json"] as string)).toEqual(
+			expect.objectContaining({
+				devDependencies: { "test-dependency": "1.1.0" },
+			}),
+		);
+	});
+
 	it("preserves an existing devDependency when the addon has an older pinned version", () => {
 		const dependency = "test-dependency";
 		const creation = testBlock(blockPackageJson, {

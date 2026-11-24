@@ -35,10 +35,14 @@ export const blockPackageJson = base.createBlock({
 		};
 	},
 	produce({ offline, options, props }) {
-		const dependencies = useLargerVersions(options.packageData?.dependencies, {
-			...options.packageData?.dependencies,
-			...props.properties.dependencies,
-		});
+		const dependencies = useLargerVersions(
+			options.packageData?.dependencies,
+			{
+				...options.packageData?.dependencies,
+				...props.properties.dependencies,
+			},
+			useLargerRange,
+		);
 		const devDependencies = Object.fromEntries(
 			Object.entries(
 				useLargerVersions(options.packageData?.devDependencies, {
@@ -190,6 +194,24 @@ function removeRangePrefix(version: string) {
 	return semver.coerce(raw) ?? raw;
 }
 
+function useLargerRange(existing: string | undefined, replacement: string) {
+	if (
+		!existing ||
+		!semver.validRange(existing) ||
+		semver.valid(existing) ||
+		!semver.valid(replacement)
+	) {
+		return useLargerVersion(existing, replacement);
+	}
+
+	return semver.satisfies(replacement, existing)
+		? existing
+		: useLargerVersion(
+				existing,
+				`${existing.startsWith("~") ? "~" : "^"}${replacement}`,
+			);
+}
+
 function useLargerVersion(existing: string | undefined, replacement: string) {
 	if (!existing || existing === replacement) {
 		return replacement;
@@ -206,6 +228,7 @@ function useLargerVersion(existing: string | undefined, replacement: string) {
 function useLargerVersions(
 	existing: Record<string, string | undefined> | undefined,
 	replacements: Record<string, string>,
+	useLarger = useLargerVersion,
 ) {
 	if (!existing) {
 		return replacements;
@@ -214,7 +237,7 @@ function useLargerVersions(
 	return Object.fromEntries(
 		Object.entries(replacements).map(([key, replacement]) => [
 			key,
-			useLargerVersion(existing[key], replacement),
+			useLarger(existing[key], replacement),
 		]),
 	);
 }

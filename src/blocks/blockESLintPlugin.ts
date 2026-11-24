@@ -199,7 +199,7 @@ const recommended = {
 		"${pluginName}": plugin,
 	},
 	rules: Object.fromEntries(
-		Object.keys(rules).map((rule) => [\`${pluginName}/\${rule}\`, "error"]),
+		Object.keys(rules).map((rule) => [\`${pluginName}/\${rule}\`, "error" as const]),
 	),
 };
 

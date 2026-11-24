@@ -572,7 +572,7 @@ describe(blockESLintPlugin, () => {
 					"test-repository": plugin,
 				},
 				rules: Object.fromEntries(
-					Object.keys(rules).map((rule) => [\`test-repository/\${rule}\`, "error"]),
+					Object.keys(rules).map((rule) => [\`test-repository/\${rule}\`, "error" as const]),
 				),
 			};
 

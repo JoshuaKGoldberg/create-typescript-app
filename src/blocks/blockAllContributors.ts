@@ -28,12 +28,12 @@ export const blockAllContributors = base.createBlock({
 		const ownerContributions = Array.from(
 			new Set([...(owner?.contributions ?? []), ...startingOwnerContributions]),
 		);
-		const contributors = options.contributors?.map((contributor) =>
+		const contributors = (options.contributors ?? []).map((contributor) =>
 			contributor === owner
 				? { ...contributor, contributions: ownerContributions }
 				: contributor,
 		);
-		const contributions = contributors?.length;
+		const contributions = contributors.length;
 
 		return {
 			extensions: [
@@ -63,14 +63,12 @@ Please do ping the maintainer who merged your PR if that doesn't happen within 2
 							src: `https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-${contributions}-21bb42.svg`,
 						},
 					],
-					sections: contributors
-						? [
-								printAllContributorsTable(contributors, {
-									projectName: options.repository,
-									projectOwner: options.owner,
-								}),
-							]
-						: undefined,
+					sections: [
+						printAllContributorsTable(contributors, {
+							projectName: options.repository,
+							projectOwner: options.owner,
+						}),
+					],
 				}),
 			],
 			files: {
@@ -80,7 +78,7 @@ Please do ping the maintainer who merged your PR if that doesn't happen within 2
 							badgeTemplate:
 								'	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: <%= contributors.length %>" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg" /></a>',
 							commitType: "docs",
-							contributors: contributors ?? [],
+							contributors,
 							contributorsPerLine: 7,
 							contributorsSortAlphabetically: true,
 							files: ["README.md"],

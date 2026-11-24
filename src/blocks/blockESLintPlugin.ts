@@ -184,7 +184,7 @@ const { name, version } =
 	// \`import\`ing here would bypass the TSConfig's \`"rootDir": "src"\`
 	require("../package.json") as typeof import("../package.json");
 
-export const plugin = {
+const plugin = {
 	configs: {
 		get recommended() {
 			return recommended;

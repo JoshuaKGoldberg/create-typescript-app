@@ -138,6 +138,20 @@ describe(blockExports, () => {
 		},
 	);
 
+	it("with subpaths", () => {
+		const subpaths = { "./bin/index.js": "./bin/index.js" };
+		const creation = testBlock(blockExports, {
+			options: optionsBase,
+			props: { subpaths },
+		});
+
+		expect(creation.extensions?.[0].props).toEqual({
+			exports: "./dist/index.mjs",
+			runInCI: ["node ./dist/index.mjs"],
+			subpaths,
+		});
+	});
+
 	it("with conditions", () => {
 		const creation = testBlock(blockExports, {
 			options: optionsBase,
@@ -406,6 +420,53 @@ describe(blockExports, () => {
 			});
 
 			expect(actual).toEqual({ filePath: "./dist/index.js" });
+		});
+
+		it("returns dist/ subpaths when package.json exports contains them alongside a string '.' entry", () => {
+			const actual = testIntake(blockExports, {
+				files: {
+					"package.json": [
+						JSON.stringify({
+							exports: {
+								".": "./lib/index.js",
+								"./bin/index.js": "./bin/index.js",
+								"./internal/*": null,
+								"./rules": { import: "./lib/rules.js" },
+							},
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				filePath: "./dist/index.js",
+				subpaths: {
+					"./bin/index.js": "./bin/index.js",
+					"./internal/*": null,
+					"./rules": { import: "./dist/rules.js" },
+				},
+			});
+		});
+
+		it("returns subpaths when package.json exports contains them alongside a conditional '.' entry", () => {
+			const actual = testIntake(blockExports, {
+				files: {
+					"package.json": [
+						JSON.stringify({
+							exports: {
+								".": { default: "./dist/index.js" },
+								"./package.json": "./package.json",
+							},
+						}),
+					],
+				},
+			});
+
+			expect(actual).toEqual({
+				conditions: { default: "./dist/index.js" },
+				filePath: "./dist/index.js",
+				subpaths: { "./package.json": "./package.json" },
+			});
 		});
 
 		it("returns filePath when package.json exports contains a string '.' entry", () => {

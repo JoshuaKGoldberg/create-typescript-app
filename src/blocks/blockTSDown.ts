@@ -112,7 +112,8 @@ export const blockTSDown = base.createBlock({
 		};
 	},
 	produce({ options, props }) {
-		const { browser, entry, exports, main, properties, runInCI } = props;
+		const { browser, entry, exports, main, properties, runInCI, subpaths } =
+			props;
 
 		const configFileName =
 			options.type === "commonjs" ? "tsdown.config.mts" : "tsdown.config.ts";
@@ -168,7 +169,7 @@ pnpm build --watch
 					properties: {
 						...(browser && { browser }),
 						devDependencies: getPackageDependencies("tsdown"),
-						...(exports && { exports: { ".": exports } }),
+						...(exports && { exports: { ".": exports, ...subpaths } }),
 						files: ["dist/"],
 						...(main && { main }),
 						scripts: {
@@ -223,6 +224,7 @@ export default defineConfig(${JSON.stringify(
 		main: z.string().optional(),
 		properties: zProperties.default({}),
 		runInCI: z.array(z.string()).default([]),
+		subpaths: zProperties.optional(),
 	},
 	transition() {
 		return {

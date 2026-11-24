@@ -11,7 +11,7 @@ const zFilePath = z.string();
 const zConditions = z.record(z.string(), z.unknown());
 const zExports = z.union([
 	zFilePath,
-	z.object({ ".": z.union([zFilePath, zConditions]) }),
+	z.looseObject({ ".": z.union([zFilePath, zConditions]) }),
 ]);
 
 type Browser = NonNullable<z.infer<typeof zBrowser>>;
@@ -27,13 +27,17 @@ export const blockExports = base.createBlock({
 	intake({ files }) {
 		const packageData = intakeFileAsJson(files, ["package.json"]);
 		const exports = zExports.safeParse(packageData?.exports).data;
-		const entry = typeof exports === "string" ? exports : exports?.["."];
+		const { ".": entry, ...rawSubpaths } =
+			typeof exports === "object" ? exports : { ".": exports };
+		const subpaths = Object.keys(rawSubpaths).length
+			? { subpaths: conditionsLibToDist(rawSubpaths) }
+			: undefined;
 
 		if (typeof entry === "object") {
 			const conditions = conditionsLibToDist(entry);
 			const filePath = findRunnableFilePath(conditions, runnableConditions);
 
-			return { conditions, ...(filePath && { filePath }) };
+			return { conditions, ...(filePath && { filePath }), ...subpaths };
 		}
 
 		const filePath =
@@ -41,10 +45,17 @@ export const blockExports = base.createBlock({
 				? zFilePath.safeParse(packageData?.main).data
 				: entry;
 
-		return filePath ? { filePath: libToDist(filePath) } : undefined;
+		return filePath
+			? { filePath: libToDist(filePath), ...subpaths }
+			: undefined;
 	},
 	produce({ options, props }) {
-		const { conditions, filePath = "./dist/index.mjs", runArgs } = props;
+		const {
+			conditions,
+			filePath = "./dist/index.mjs",
+			runArgs,
+			subpaths,
+		} = props;
 		const browser = zBrowser.safeParse(options.packageData?.browser).data;
 		const main = zFilePath.safeParse(options.packageData?.main).data;
 		const runArgsText = runArgs.map((arg) => ` ${arg}`).join("");
@@ -61,6 +72,7 @@ export const blockExports = base.createBlock({
 					runInCI: getRunnableFilePaths(filePath, conditions).map(
 						(runnable) => `node ${runnable}${runArgsText}`,
 					),
+					...(subpaths && { subpaths }),
 				}),
 				blockVite({
 					runInCI: [`node ./dist/index.mjs${runArgsText}`],
@@ -72,6 +84,7 @@ export const blockExports = base.createBlock({
 		conditions: zConditions.optional(),
 		filePath: zFilePath.optional(),
 		runArgs: z.array(z.string()).default([]),
+		subpaths: zConditions.optional(),
 	},
 });
 

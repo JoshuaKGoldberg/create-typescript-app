@@ -284,6 +284,42 @@ describe(blockExports, () => {
 			expect(actual).toBeUndefined();
 		});
 
+		it.each([
+			["tsdown.config.ts", "{ dts: true }"],
+			["tsdown.config.ts", "{ fixedExtension: false }"],
+			["tsup.config.ts", "{ dts: true }"],
+		])(
+			"returns a .js filePath when package.json does not contain exports or main and %s is %s",
+			(fileName, config) => {
+				const actual = testIntake(blockExports, {
+					files: {
+						[fileName]: [`defineConfig(${config})`],
+						"package.json": [JSON.stringify({ type: "module" })],
+					},
+				});
+
+				expect(actual).toEqual({ filePath: "./dist/index.js" });
+			},
+		);
+
+		it.each([
+			["module", "{ fixedExtension: true }"],
+			["module", '{ format: ["cjs", "esm"] }'],
+			["commonjs", "{ dts: true }"],
+		])(
+			"returns undefined when package.json only contains type %s and tsdown.config.ts is %s",
+			(type, config) => {
+				const actual = testIntake(blockExports, {
+					files: {
+						"package.json": [JSON.stringify({ type })],
+						"tsdown.config.ts": [`defineConfig(${config})`],
+					},
+				});
+
+				expect(actual).toBeUndefined();
+			},
+		);
+
 		it("returns filePath from main when package.json does not contain exports", () => {
 			const actual = testIntake(blockExports, {
 				files: {

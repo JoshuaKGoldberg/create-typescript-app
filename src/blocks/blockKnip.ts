@@ -26,7 +26,8 @@ export const blockKnip = base.createBlock({
 	intake({ files }) {
 		const knipJson =
 			intakeFileExportObject(files, ["knip.config.ts"]) ??
-			intakeFileAsJson(files, ["knip.json"]);
+			intakeFileAsJson(files, ["knip.json"]) ??
+			intakeFileAsJson(files, ["knip.jsonc"]);
 		if (!knipJson) {
 			return undefined;
 		}

@@ -416,6 +416,19 @@ export default {
 			expect(actual).toEqual({ ignoreDependencies });
 		});
 
+		it("returns ignoreDependencies when knip.jsonc exists with comments and contains ignoreDependencies", () => {
+			const ignoreDependencies = ["abc"];
+			const actual = testIntake(blockKnip, {
+				files: {
+					"knip.jsonc": [
+						`// comment\n${JSON.stringify({ ignoreDependencies })}`,
+					],
+				},
+			});
+
+			expect(actual).toEqual({ ignoreDependencies });
+		});
+
 		it("returns ignore when knip.config.ts exists and contains ignore", () => {
 			const ignore = ["src/fixtures/**"];
 

@@ -262,6 +262,30 @@ export default tseslint.config(
 			},
 		],
 		[
+			"files containing JSX extensions",
+			`
+export default defineConfig(
+	globalIgnores(["dist"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.{js,jsx,ts,tsx}"],
+		languageOptions: { /* ... */ },
+		rules: { "no-console": "error" },
+		settings: { /* ... */ }
+	}
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.{js,jsx,ts,tsx}"],
+						rules: [{ entries: { "no-console": "error" } }],
+					},
+				],
+				ignores: ["dist"],
+				scriptFileExtensions: ["jsx", "tsx"],
+			},
+		],
+		[
 			"non-commented group in rules",
 			`
 export default tseslint.config(

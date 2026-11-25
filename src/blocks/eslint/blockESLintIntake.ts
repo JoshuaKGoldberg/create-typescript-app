@@ -47,6 +47,7 @@ export function blockESLintIntake(sourceText: string) {
 	}
 
 	const packageJsonRules = getPackageJsonRules(configArguments.slice(1));
+	const scriptFileExtensions = getJsxExtensions(configObject.files);
 
 	return {
 		extensions: [
@@ -54,6 +55,7 @@ export function blockESLintIntake(sourceText: string) {
 			{ files: ["package.json"], rules: packageJsonRules },
 		].filter((extension) => extension.rules.length),
 		ignores,
+		...(scriptFileExtensions.length && { scriptFileExtensions }),
 	};
 
 	function areArraysEqual<T>(a: T[], b: T[]) {
@@ -183,6 +185,14 @@ export function blockESLintIntake(sourceText: string) {
 
 		const files = getStringLiterals(filesProperty.value);
 		return files && { files, rules: rulesProperty.value };
+	}
+
+	function getJsxExtensions(files: string[]) {
+		return files
+			.flatMap(
+				(file) => /^\*\*\/\*\.\{(.+)\}$/u.exec(file)?.[1].split(",") ?? [],
+			)
+			.filter((extension) => extension === "jsx" || extension === "tsx");
 	}
 
 	function getObjectProperty(node: TSESTree.ObjectExpression, name: string) {

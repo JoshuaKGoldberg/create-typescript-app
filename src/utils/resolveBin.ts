@@ -1,9 +1,12 @@
-import { fileURLToPath } from "node:url";
+import { findPackageJSON } from "node:module";
+import path from "node:path";
 
 // TODO: try to see if we can avoid this altogether...
 // https://github.com/JoshuaKGoldberg/create-typescript-app/issues/1992
 export function resolveBin(bin: string) {
-	// This can't be tested yet in Vitest :(
-	// https://github.com/vitest-dev/vitest/issues/6953
-	return fileURLToPath(import.meta.resolve(bin));
+	const [packageName, ...segments] = bin.split("/");
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+	const packagePath = findPackageJSON(packageName, import.meta.url)!;
+
+	return path.join(path.dirname(packagePath), ...segments);
 }

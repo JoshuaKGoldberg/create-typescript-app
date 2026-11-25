@@ -1,3 +1,4 @@
+import { IntakeDirectory } from "bingo-fs";
 import { z } from "zod";
 import { PackageJson } from "zod-package-json";
 
@@ -5,6 +6,7 @@ import { base } from "../base.ts";
 import { blockTSDown } from "./blockTSDown.ts";
 import { blockVite } from "./blockVite.ts";
 import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
+import { intakeFileTSDown } from "./intake/intakeFileTSDown.ts";
 
 const zBrowser = PackageJson.shape.browser;
 const zFilePath = z.string();
@@ -42,7 +44,8 @@ export const blockExports = base.createBlock({
 
 		const filePath =
 			packageData?.exports === undefined
-				? zFilePath.safeParse(packageData?.main).data
+				? (zFilePath.safeParse(packageData?.main).data ??
+					getDefaultFilePath(files, packageData?.type))
 				: entry;
 
 		return filePath
@@ -133,6 +136,13 @@ function findRunnableFilePath(
 	}
 
 	return undefined;
+}
+
+function getDefaultFilePath(files: IntakeDirectory, type: unknown) {
+	return type !== "commonjs" &&
+		intakeFileTSDown(files)?.fixedExtension === false
+		? "./dist/index.js"
+		: undefined;
 }
 
 function getRunnableFilePaths(

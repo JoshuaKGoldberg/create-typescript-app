@@ -1,4 +1,3 @@
-import { IntakeDirectory } from "bingo-fs";
 import removeUndefinedObjects from "remove-undefined-objects";
 import sortKeys from "sort-keys";
 import { z } from "zod";
@@ -20,8 +19,7 @@ import { blockRemoveFiles } from "./blockRemoveFiles.ts";
 import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { withPreviously } from "./files/withPreviously.ts";
-import { intakeFileAsJson } from "./intake/intakeFileAsJson.ts";
-import { intakeFileDefineConfig } from "./intake/intakeFileDefineConfig.ts";
+import { intakeFileTSDown } from "./intake/intakeFileTSDown.ts";
 import { intakeReferencedEntries } from "./intake/intakeReferencedEntries.ts";
 import { CommandPhase } from "./phases.ts";
 
@@ -30,24 +28,6 @@ const zProperties = z.record(z.string(), z.unknown());
 
 // The base entry is re-added in produce; src/**/*.ts was the unbundled default
 const defaultEntries = new Set(["src/**/*.ts", "src/index.ts"]);
-
-function hasJsEntryPoint(files: IntakeDirectory) {
-	const packageData = intakeFileAsJson(files, ["package.json"]);
-	const exports = packageData?.exports;
-	const entryPoint =
-		typeof exports === "string"
-			? exports
-			: ((exports as Record<string, unknown> | undefined)?.["."] ??
-				packageData?.main);
-
-	return typeof entryPoint === "string"
-		? entryPoint.endsWith(".js")
-		: entryPoint === undefined;
-}
-
-function isEsmOnly(format: unknown) {
-	return format === undefined || format === "esm";
-}
 
 function isLegacyOutDir(outDir: unknown) {
 	return (
@@ -61,10 +41,7 @@ export const blockTSDown = base.createBlock({
 		name: "TSDown",
 	},
 	intake({ files }) {
-		const rawData =
-			intakeFileDefineConfig(files, [
-				["tsdown.config.ts", "tsdown.config.mts"],
-			]) ?? intakeFileDefineConfig(files, ["tsup.config.ts"]);
+		const rawData = intakeFileTSDown(files);
 		if (!rawData) {
 			return undefined;
 		}
@@ -93,11 +70,6 @@ export const blockTSDown = base.createBlock({
 				// In case of a tsup.config.ts migrated to tsdown.config.ts
 				bundle: undefined,
 				clean: rest.clean === false ? false : undefined,
-				fixedExtension:
-					rest.fixedExtension ??
-					(isEsmOnly(rest.format) && hasJsEntryPoint(files)
-						? false
-						: undefined),
 				format: rest.format === "esm" ? undefined : rest.format,
 
 				// lib was the default before build output moved to tsdown's dist

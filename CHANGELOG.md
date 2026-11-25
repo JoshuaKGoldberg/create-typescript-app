@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.23](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.22...2.87.23) (2026-11-25)
+
+### Bug Fixes
+
+- keep reusable workflows in transition mode ([#2832](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2832)) ([bbdbda9](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/bbdbda98e46b2f870caec7176ea0a420397ec483)), closes [#2831](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2831)
+
 ## [2.87.22](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.21...2.87.22) (2026-11-24)
 
 ### Bug Fixes

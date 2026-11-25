@@ -10,6 +10,7 @@ import { blockGitignore } from "./blockGitignore.ts";
 import { blockKnip } from "./blockKnip.ts";
 import { blockPackageJson } from "./blockPackageJson.ts";
 import { blockPrettier } from "./blockPrettier.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { blockTypeScript } from "./blockTypeScript.ts";
 import { blockVitest } from "./blockVitest.ts";
 import { getScriptFileExtension } from "./eslint/getScriptFileExtension.ts";
@@ -219,6 +220,15 @@ export default function Home() {
 					},
 				},
 			},
+		};
+	},
+	transition() {
+		return {
+			extensions: [
+				blockRemoveWorkflows({
+					workflows: ["build"],
+				}),
+			],
 		};
 	},
 });

@@ -2,6 +2,7 @@ import { testBlock, testIntake } from "bingo-stratum-testers";
 import { describe, expect, it, test } from "vitest";
 
 import { blockNextJs } from "./blockNextJs.ts";
+import { blockRemoveWorkflows } from "./blockRemoveWorkflows.ts";
 import { optionsBase } from "./options.fakes.ts";
 
 describe(blockNextJs, () => {
@@ -299,6 +300,9 @@ describe(blockNextJs, () => {
 			options: optionsBase,
 		});
 
+		expect(creation.extensions).toContainEqual(
+			blockRemoveWorkflows({ workflows: ["build"] }),
+		);
 		expect(creation.files).toEqual({
 			"next.config.ts": expect.anything(),
 		});

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.87.24](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.23...2.87.24) (2026-11-25)
+
+### Bug Fixes
+
+- resolve bins of packages that don't export them ([#2828](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2828)) ([3f8a800](https://github.com/JoshuaKGoldberg/create-typescript-app/commit/3f8a800033728cad46c3d9fa05db3a9c94e78617)), closes [#2827](https://github.com/JoshuaKGoldberg/create-typescript-app/issues/2827)
+
 ## [2.87.23](https://github.com/JoshuaKGoldberg/create-typescript-app/compare/2.87.22...2.87.23) (2026-11-25)
 
 ### Bug Fixes

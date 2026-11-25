@@ -4,6 +4,7 @@ import { blockAntiSlop } from "./blockAntiSlop.ts";
 import { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
 import { blockBin } from "./blockBin.ts";
 import { blockCodecov } from "./blockCodecov.ts";
+import { blockConsoleFailTest } from "./blockConsoleFailTest.ts";
 import { blockContributingDocs } from "./blockContributingDocs.ts";
 import { blockContributorCovenant } from "./blockContributorCovenant.ts";
 import { blockCSpell } from "./blockCSpell.ts";
@@ -64,6 +65,7 @@ export const blocks = {
 	blockAreTheTypesWrong,
 	blockBin,
 	blockCodecov,
+	blockConsoleFailTest,
 	blockContributingDocs,
 	blockContributorCovenant,
 	blockCSpell,
@@ -124,6 +126,7 @@ export { blockAntiSlop } from "./blockAntiSlop.ts";
 export { blockAreTheTypesWrong } from "./blockAreTheTypesWrong.ts";
 export { blockBin } from "./blockBin.ts";
 export { blockCodecov } from "./blockCodecov.ts";
+export { blockConsoleFailTest } from "./blockConsoleFailTest.ts";
 export { blockContributingDocs } from "./blockContributingDocs.ts";
 export { blockContributorCovenant } from "./blockContributorCovenant.ts";
 export { blockCSpell } from "./blockCSpell.ts";

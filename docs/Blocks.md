@@ -16,6 +16,7 @@ This table summarizes each block and which base levels they're included in:
 | Contributor Covenant               | `--add-contributor-covenant`, `--exclude-contributor-covenant`                             | ✔️      | ✅     | 💯         |
 | CSpell                             | `--add-cspell`, `--exclude-cspell`                                                         |         |        | 💯         |
 | Codecov                            | `--add-codecov`, `--exclude-codecov`                                                       |         | ✅     | 💯         |
+| Console Fail Test                  | `--add-console-fail-test`, `--exclude-console-fail-test`                                   |         | ✅     | 💯         |
 | Development Docs                   | `--add-development-docs`, `--exclude-development-docs`                                     | ✔️      | ✅     | 💯         |
 | ESLint                             | `--add-eslint`, `--exclude-eslint`                                                         | ✔️      | ✅     | 💯         |
 | ESLint Comments Plugin             | `--add-eslint-comments-plugin`, `--exclude-eslint-comments-plugin`                         |         |        | 💯         |
@@ -238,10 +239,11 @@ It will automatically post friendly comments when contributors take actions you 
 
 [**Vitest**](https://vitest.dev): Fast unit tests, configured with coverage tracking.
 
-Additionally:
+[`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) is added to the ESLint config to lint for Vitest-specific issues.
 
-- [`@vitest/eslint-plugin`](https://github.com/vitest-dev/eslint-plugin-vitest) will be added to the ESLint config to lint for Vitest-specific issues
-- [`console-fail-test`](https://github.com/JoshuaKGoldberg/console-fail-test) will also be added to ensure tests don't accidentally log to the console.
+The separate [**Console Fail Test**](https://github.com/JoshuaKGoldberg/console-fail-test) block makes Vitest tests fail on unexpected console output.
+Common and Everything enable it by default.
+Use `--exclude-console-fail-test` to disable it, or `--add-console-fail-test` to enable it in a preset that also includes Vitest.
 
 Running tests in watch mode:
 

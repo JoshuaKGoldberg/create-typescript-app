@@ -81,8 +81,14 @@ export const blockVitest = base.createBlock({
 		};
 	},
 	produce({ props }) {
-		const { actionSteps, coverage, environment, exclude, excludeRemovals } =
-			props;
+		const {
+			actionSteps,
+			coverage,
+			environment,
+			exclude,
+			excludeRemovals,
+			setup,
+		} = props;
 		const excludeText = JSON.stringify(
 			Array.from(new Set(["node_modules", ...exclude]))
 				.filter((entry) => !excludeRemovals.includes(entry))
@@ -112,12 +118,7 @@ Add the \`--coverage\` flag to compute test coverage and place reports in the \`
 
 \`\`\`shell
 pnpm run test --coverage
-\`\`\`
-
-Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-Calls to \`console.log\`, \`console.warn\`, and other console methods will cause a test to fail.
-
-
+\`\`\`${setup.documentation?.length ? `\n\n${setup.documentation.join("\n\n")}` : ""}
 		`,
 						},
 					},
@@ -208,12 +209,14 @@ describe(greet, () => {
 				}),
 				blockPackageJson({
 					properties: {
-						devDependencies: getPackageDependencies(
-							"@vitest/coverage-v8",
-							"@vitest/eslint-plugin",
-							"console-fail-test",
-							"vitest",
-						),
+						devDependencies: {
+							...getPackageDependencies(
+								"@vitest/coverage-v8",
+								"@vitest/eslint-plugin",
+								"vitest",
+							),
+							...setup.devDependencies,
+						},
 						scripts: {
 							test: `vitest ${props.flags.join(" ")}`.trim(),
 						},
@@ -261,8 +264,11 @@ export default defineConfig({
 		environment: "${environment}",`
 				: ""
 		}
-		exclude: [${excludeText.slice(1, excludeText.length - 1)}],
-		setupFiles: ["console-fail-test/setup"],
+		exclude: [${excludeText.slice(1, excludeText.length - 1)}],${
+			setup.files?.length
+				? `\n\t\tsetupFiles: ${JSON.stringify(setup.files)},`
+				: ""
+		}
 	},
 });
 	`,
@@ -277,6 +283,13 @@ export default defineConfig({
 		exclude: zExclude.default([]),
 		excludeRemovals: z.array(z.string()).default([]),
 		flags: z.array(z.string()).default([]),
+		setup: z
+			.object({
+				devDependencies: z.record(z.string(), z.string()).optional(),
+				documentation: z.array(z.string()).optional(),
+				files: z.array(z.string()).optional(),
+			})
+			.default({}),
 	},
 	transition({ options }) {
 		const existingDependencies = {

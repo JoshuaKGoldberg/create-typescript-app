@@ -262,6 +262,29 @@ export default tseslint.config(
 			},
 		],
 		[
+			"files without an extensions group",
+			`
+export default defineConfig(
+	globalIgnores(["dist"], "Global Ignores"),
+	{
+		extends: [tseslint.configs.strictTypeChecked],
+		files: ["**/*.ts"],
+		languageOptions: { /* ... */ },
+		rules: { "no-console": "error" },
+		settings: { /* ... */ }
+	}
+);`,
+			{
+				extensions: [
+					{
+						files: ["**/*.ts"],
+						rules: [{ entries: { "no-console": "error" } }],
+					},
+				],
+				ignores: ["dist"],
+			},
+		],
+		[
 			"files containing JSX extensions",
 			`
 export default defineConfig(

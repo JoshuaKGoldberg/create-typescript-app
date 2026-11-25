@@ -68,6 +68,8 @@ describe(blockESLintMarkdown, () => {
 			      "block": "[Block Remove Workflows]",
 			      "props": {
 			        "workflows": [
+			          "lint-markdown",
+			          "lint-md",
 			          "lint_markdown",
 			          "lint_md",
 			        ],
@@ -168,6 +170,8 @@ describe(blockESLintMarkdown, () => {
 			      "block": "[Block Remove Workflows]",
 			      "props": {
 			        "workflows": [
+			          "lint-markdown",
+			          "lint-md",
 			          "lint_markdown",
 			          "lint_md",
 			        ],

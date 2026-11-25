@@ -49,7 +49,7 @@ export const blockESLintMarkdown = base.createBlock({
 					files: [".markdownlint*", ".markdownlintignore"],
 				}),
 				blockRemoveWorkflows({
-					workflows: ["lint_markdown", "lint_md"],
+					workflows: ["lint-markdown", "lint-md", "lint_markdown", "lint_md"],
 				}),
 			],
 		};

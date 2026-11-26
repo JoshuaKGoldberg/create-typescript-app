@@ -201,6 +201,10 @@ greet("Hello, world! ${options.emoji}");
 	},
 });
 
+function isEqualLib(a: unknown, b: unknown) {
+	return String(a).toLowerCase() === String(b).toLowerCase();
+}
+
 function mergeOptions(
 	...sources: (Record<string, unknown> | undefined)[]
 ): Record<string, unknown> {
@@ -215,12 +219,14 @@ function mergeOptions(
 			}
 
 			if (Array.isArray(existing) && Array.isArray(value)) {
+				const isEqual = key === "lib" ? isEqualLib : isDeepStrictEqual;
+
 				merged[key] = [
 					...(existing as unknown[]),
 					...(value as unknown[]),
 				].filter(
 					(item, index, all) =>
-						all.findIndex((other) => isDeepStrictEqual(item, other)) === index,
+						all.findIndex((other) => isEqual(item, other)) === index,
 				);
 			} else if (isPlainObject(existing) && isPlainObject(value)) {
 				merged[key] = mergeOptions(existing, value);

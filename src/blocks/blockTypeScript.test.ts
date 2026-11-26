@@ -524,6 +524,28 @@ describe(blockTypeScript, () => {
 		`);
 	});
 
+	test("with existingCompilerOptions lib that differs from compilerOptions lib only by case", () => {
+		const creation = testBlock(blockTypeScript, {
+			options: optionsBase,
+			props: {
+				compilerOptions: {
+					lib: ["dom", "dom.iterable", "esnext"],
+				},
+				existingCompilerOptions: {
+					lib: ["DOM", "ESNext", "WebWorker"],
+				},
+			},
+		});
+
+		expect(
+			JSON.parse(creation.files?.["tsconfig.json"] as string),
+		).toMatchObject({
+			compilerOptions: {
+				lib: ["DOM", "ESNext", "WebWorker", "dom.iterable"],
+			},
+		});
+	});
+
 	test("with existingCompilerOptions objects merged with compilerOptions objects", () => {
 		const creation = testBlock(blockTypeScript, {
 			options: optionsBase,

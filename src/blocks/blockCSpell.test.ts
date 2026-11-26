@@ -439,6 +439,21 @@ describe(blockCSpell, () => {
 		`);
 	});
 
+	test("with dictionaries", () => {
+		const creation = testBlock(blockCSpell, {
+			options: optionsBase,
+			props: {
+				dictionaries: ["css", "node", "html"],
+			},
+		});
+
+		expect(JSON.parse(creation.files?.["cspell.json"] as string)).toEqual(
+			expect.objectContaining({
+				dictionaries: ["npm", "node", "typescript", "css", "html"],
+			}),
+		);
+	});
+
 	test("with ignorePathRemovals", () => {
 		const creation = testBlock(blockCSpell, {
 			options: optionsBase,
@@ -527,8 +542,9 @@ describe(blockCSpell, () => {
 			expect(actual).toBeUndefined();
 		});
 
-		it("returns the data when cspell.json contains ignorePaths and words", () => {
+		it("returns the data when cspell.json contains dictionaries, ignorePaths, and words", () => {
 			const data = {
+				dictionaries: ["css", "npm"],
 				ignorePaths: ["other"],
 				words: ["abc", "def"],
 			};
@@ -550,6 +566,7 @@ describe(blockCSpell, () => {
 			});
 
 			expect(actual).toEqual({
+				dictionaries: [],
 				ignorePaths: [],
 				words: [],
 			});
@@ -568,6 +585,7 @@ describe(blockCSpell, () => {
 			});
 
 			expect(actual).toEqual({
+				dictionaries: [],
 				ignorePaths: ["other"],
 				words: ["abc"],
 			});

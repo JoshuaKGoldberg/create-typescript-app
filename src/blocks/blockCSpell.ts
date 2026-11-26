@@ -14,9 +14,12 @@ import { blockVSCode } from "./blockVSCode.ts";
 import { intakeFile } from "./intake/intakeFile.ts";
 import { CommandPhase } from "./phases.ts";
 
+const defaultDictionaries = ["npm", "node", "typescript"];
+
 const filesGlob = `"**" ".github/**/*"`;
 
 const zProps = z.object({
+	dictionaries: z.array(z.string()).default([]),
 	ignorePaths: z.array(z.string()).default([]),
 	words: z.array(z.string()).default([]),
 });
@@ -46,7 +49,13 @@ export const blockCSpell = base.createBlock({
 		};
 	},
 	produce({ options, props }) {
-		const { ignorePathRemovals, ignorePaths, wordRemovals, words } = props;
+		const {
+			dictionaries,
+			ignorePathRemovals,
+			ignorePaths,
+			wordRemovals,
+			words,
+		} = props;
 
 		const allWords = dedupeCaseInsensitive([
 			...(options.words ?? []),
@@ -90,7 +99,9 @@ export const blockCSpell = base.createBlock({
 				"cspell.json": formatFile(
 					"cspell.json",
 					JSON.stringify({
-						dictionaries: ["npm", "node", "typescript"],
+						dictionaries: Array.from(
+							new Set([...defaultDictionaries, ...dictionaries]),
+						),
 						ignorePaths: Array.from(
 							new Set([
 								"CHANGELOG.md",
@@ -109,6 +120,7 @@ export const blockCSpell = base.createBlock({
 		};
 	},
 	props: {
+		dictionaries: z.array(z.string()).default([]),
 		ignorePathRemovals: z.array(z.string()).default([]),
 		ignorePaths: z.array(z.string()).default([]),
 		wordRemovals: z.array(z.string()).default([]),
